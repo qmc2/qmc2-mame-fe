@@ -1,0 +1,832 @@
+<ui version="4.0" >
+ <author>R. Reucher</author>
+ <class>ROMStatusExporter</class>
+ <widget class="QDialog" name="ROMStatusExporter" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>335</width>
+    <height>319</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>ROM status export</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_5" >
+   <item row="0" column="0" >
+    <layout class="QHBoxLayout" name="horizontalLayout_2" >
+     <item>
+      <widget class="QLabel" name="labelOutputFormat" >
+       <property name="text" >
+        <string>Select output format</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBoxOutputFormat" >
+       <property name="toolTip" >
+        <string>Select output format</string>
+       </property>
+       <item>
+        <property name="text" >
+         <string>ASCII</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>CSV</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>HTML</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QFrame" name="frameExportParams" >
+     <property name="frameShape" >
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4" >
+      <item row="0" column="0" >
+       <widget class="QLabel" name="label" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text" >
+         <string>Exported ROM states</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <layout class="QHBoxLayout" name="horizontalLayout_3" >
+        <item>
+         <widget class="QToolButton" name="toolButtonExportC" >
+          <property name="toolTip" >
+           <string>Export ROM state C (correct)?</string>
+          </property>
+          <property name="icon" >
+           <iconset resource="qmc2.qrc" >
+            <normaloff>:/data/img/sphere_green.png</normaloff>:/data/img/sphere_green.png</iconset>
+          </property>
+          <property name="checkable" >
+           <bool>true</bool>
+          </property>
+          <property name="checked" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButtonExportM" >
+          <property name="toolTip" >
+           <string>Export ROM state M (mostly correct)?</string>
+          </property>
+          <property name="icon" >
+           <iconset resource="qmc2.qrc" >
+            <normaloff>:/data/img/sphere_yellowgreen.png</normaloff>:/data/img/sphere_yellowgreen.png</iconset>
+          </property>
+          <property name="checkable" >
+           <bool>true</bool>
+          </property>
+          <property name="checked" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButtonExportI" >
+          <property name="toolTip" >
+           <string>Export ROM state I (incorrect)?</string>
+          </property>
+          <property name="icon" >
+           <iconset resource="qmc2.qrc" >
+            <normaloff>:/data/img/sphere_red.png</normaloff>:/data/img/sphere_red.png</iconset>
+          </property>
+          <property name="checkable" >
+           <bool>true</bool>
+          </property>
+          <property name="checked" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButtonExportN" >
+          <property name="toolTip" >
+           <string>Export ROM state N (not found)?</string>
+          </property>
+          <property name="icon" >
+           <iconset resource="qmc2.qrc" >
+            <normaloff>:/data/img/sphere_grey.png</normaloff>:/data/img/sphere_grey.png</iconset>
+          </property>
+          <property name="checkable" >
+           <bool>true</bool>
+          </property>
+          <property name="checked" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButtonExportU" >
+          <property name="toolTip" >
+           <string>Export ROM state U (unknown)?</string>
+          </property>
+          <property name="icon" >
+           <iconset resource="qmc2.qrc" >
+            <normaloff>:/data/img/sphere_blue.png</normaloff>:/data/img/sphere_blue.png</iconset>
+          </property>
+          <property name="checkable" >
+           <bool>true</bool>
+          </property>
+          <property name="checked" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2" >
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QLabel" name="labelSortCriteria" >
+        <property name="text" >
+         <string>Sort criteria</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QComboBox" name="comboBoxSortCriteria" >
+        <property name="toolTip" >
+         <string>Select sort criteria</string>
+        </property>
+        <item>
+         <property name="text" >
+          <string>Game description</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>ROM state</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>Year</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>Manufacturer</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>Game name</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0" >
+       <widget class="QLabel" name="labelSortOrder" >
+        <property name="text" >
+         <string>Sort order</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" >
+       <widget class="QComboBox" name="comboBoxSortOrder" >
+        <property name="toolTip" >
+         <string>Select sort order</string>
+        </property>
+        <item>
+         <property name="text" >
+          <string>Ascending</string>
+         </property>
+         <property name="icon" >
+          <iconset resource="qmc2.qrc" >
+           <normaloff>:/data/img/up.png</normaloff>:/data/img/up.png</iconset>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>Descending</string>
+         </property>
+         <property name="icon" >
+          <iconset resource="qmc2.qrc" >
+           <normaloff>:/data/img/down.png</normaloff>:/data/img/down.png</iconset>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="0" >
+       <widget class="QCheckBox" name="checkBoxIncludeHeader" >
+        <property name="toolTip" >
+         <string>Include some header information in export</string>
+        </property>
+        <property name="text" >
+         <string>Include header</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" >
+       <widget class="QCheckBox" name="checkBoxIncludeStatistics" >
+        <property name="toolTip" >
+         <string>Include statistical overview of the ROM state in export</string>
+        </property>
+        <property name="text" >
+         <string>Include ROM statistics</string>
+        </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" >
+       <widget class="QCheckBox" name="checkBoxExportToClipboard" >
+        <property name="toolTip" >
+         <string>Export to the system clipboard instead of a file</string>
+        </property>
+        <property name="text" >
+         <string>Export to clipboard</string>
+        </property>
+        <property name="checked" >
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" >
+       <widget class="QCheckBox" name="checkBoxOverwriteBlindly" >
+        <property name="toolTip" >
+         <string>Overwrite existing files without asking what to do</string>
+        </property>
+        <property name="text" >
+         <string>Overwrite blindly</string>
+        </property>
+        <property name="checked" >
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0" colspan="2" >
+       <widget class="QStackedWidget" name="stackedWidgetOutputParams" >
+        <property name="currentIndex" >
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="pageASCII" >
+         <layout class="QGridLayout" name="gridLayout_7" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <item row="0" column="0" >
+           <layout class="QGridLayout" name="gridLayout" >
+            <item row="0" column="0" >
+             <widget class="QToolButton" name="toolButtonBrowseASCIIFile" >
+              <property name="toolTip" >
+               <string>Browse ASCII export file</string>
+              </property>
+              <property name="text" >
+               <string>ASCII file</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="qmc2.qrc" >
+                <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+              </property>
+              <property name="toolButtonStyle" >
+               <enum>Qt::ToolButtonTextBesideIcon</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" colspan="2" >
+             <widget class="QLineEdit" name="lineEditASCIIFile" >
+              <property name="toolTip" >
+               <string>ASCII export file</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" >
+             <widget class="QLabel" name="labelASCIIColumnWidth" >
+              <property name="text" >
+               <string>Column width</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1" >
+             <widget class="QSpinBox" name="spinBoxASCIIColumnWidth" >
+              <property name="enabled" >
+               <bool>true</bool>
+              </property>
+              <property name="toolTip" >
+               <string>Maximum column width for ASCII export (0 = unlimited)</string>
+              </property>
+              <property name="specialValueText" >
+               <string>unlimited</string>
+              </property>
+              <property name="maximum" >
+               <number>99999</number>
+              </property>
+              <property name="value" >
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0" colspan="2" >
+             <spacer name="verticalSpacer" >
+              <property name="orientation" >
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0" >
+               <size>
+                <width>20</width>
+                <height>26</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="2" >
+             <spacer name="horizontalSpacer_5" >
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="pageCSV" >
+         <layout class="QGridLayout" name="gridLayout_6" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <item row="0" column="0" >
+           <layout class="QGridLayout" name="gridLayout_2" >
+            <item row="0" column="0" >
+             <widget class="QToolButton" name="toolButtonBrowseCSVFile" >
+              <property name="toolTip" >
+               <string>Browse CSV export file</string>
+              </property>
+              <property name="text" >
+               <string>CSV file</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="qmc2.qrc" >
+                <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+              </property>
+              <property name="toolButtonStyle" >
+               <enum>Qt::ToolButtonTextBesideIcon</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" colspan="5" >
+             <widget class="QLineEdit" name="lineEditCSVFile" >
+              <property name="toolTip" >
+               <string>CSV export file</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" >
+             <widget class="QLabel" name="labelCSVSeparator" >
+              <property name="text" >
+               <string>Separator</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0" colspan="6" >
+             <spacer name="verticalSpacer_2" >
+              <property name="orientation" >
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0" >
+               <size>
+                <width>17</width>
+                <height>63</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="1" >
+             <widget class="QLineEdit" name="lineEditCSVSeparator" >
+              <property name="enabled" >
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize" >
+               <size>
+                <width>30</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize" >
+               <size>
+                <width>30</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="toolTip" >
+               <string>Field separator for CSV export</string>
+              </property>
+              <property name="text" >
+               <string>;</string>
+              </property>
+              <property name="maxLength" >
+               <number>1</number>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignHCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3" >
+             <widget class="QLabel" name="labelCSVDelimiter" >
+              <property name="text" >
+               <string>Delimiter</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="4" >
+             <widget class="QLineEdit" name="lineEditCSVDelimiter" >
+              <property name="enabled" >
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize" >
+               <size>
+                <width>30</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize" >
+               <size>
+                <width>30</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="toolTip" >
+               <string>Text delimiter for CSV export</string>
+              </property>
+              <property name="text" >
+               <string>"</string>
+              </property>
+              <property name="maxLength" >
+               <number>1</number>
+              </property>
+              <property name="alignment" >
+               <set>Qt::AlignHCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2" >
+             <spacer name="horizontalSpacer" >
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="5" >
+             <spacer name="horizontalSpacer_3" >
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="pageHTML" >
+         <layout class="QGridLayout" name="gridLayout_8" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <item row="0" column="0" >
+           <layout class="QGridLayout" name="gridLayout_3" >
+            <item row="0" column="0" >
+             <widget class="QToolButton" name="toolButtonBrowseHTMLFile" >
+              <property name="toolTip" >
+               <string>Browse HTML export file</string>
+              </property>
+              <property name="text" >
+               <string>HTML file</string>
+              </property>
+              <property name="icon" >
+               <iconset resource="qmc2.qrc" >
+                <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+              </property>
+              <property name="toolButtonStyle" >
+               <enum>Qt::ToolButtonTextBesideIcon</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" colspan="2" >
+             <widget class="QLineEdit" name="lineEditHTMLFile" >
+              <property name="toolTip" >
+               <string>HTML export file</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" >
+             <widget class="QLabel" name="labelHTMLBorderWidth" >
+              <property name="text" >
+               <string>Border width</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1" >
+             <widget class="QSpinBox" name="spinBoxHTMLBorderWidth" >
+              <property name="enabled" >
+               <bool>true</bool>
+              </property>
+              <property name="toolTip" >
+               <string>Border line width for tables (0 = no border)</string>
+              </property>
+              <property name="maximum" >
+               <number>99</number>
+              </property>
+              <property name="value" >
+               <number>1</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0" colspan="2" >
+             <spacer name="verticalSpacer_3" >
+              <property name="orientation" >
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0" >
+               <size>
+                <width>20</width>
+                <height>53</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="2" >
+             <spacer name="horizontalSpacer_4" >
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <layout class="QHBoxLayout" name="horizontalLayout" >
+     <item>
+      <widget class="QPushButton" name="pushButtonExport" >
+       <property name="toolTip" >
+        <string>Export now!</string>
+       </property>
+       <property name="text" >
+        <string>&amp;Export</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="qmc2.qrc" >
+         <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonClose" >
+       <property name="toolTip" >
+        <string>Close ROM status export</string>
+       </property>
+       <property name="text" >
+        <string>&amp;Close</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="qmc2.qrc" >
+         <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QProgressBar" name="progressBarExport" >
+       <property name="toolTip" >
+        <string>Export progress indicator</string>
+       </property>
+       <property name="value" >
+        <number>0</number>
+       </property>
+       <property name="format" >
+        <string>%p%</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="9" />
+ <tabstops>
+  <tabstop>comboBoxOutputFormat</tabstop>
+  <tabstop>toolButtonExportC</tabstop>
+  <tabstop>toolButtonExportM</tabstop>
+  <tabstop>toolButtonExportI</tabstop>
+  <tabstop>toolButtonExportN</tabstop>
+  <tabstop>toolButtonExportU</tabstop>
+  <tabstop>comboBoxSortCriteria</tabstop>
+  <tabstop>comboBoxSortOrder</tabstop>
+  <tabstop>checkBoxIncludeHeader</tabstop>
+  <tabstop>checkBoxIncludeStatistics</tabstop>
+  <tabstop>checkBoxExportToClipboard</tabstop>
+  <tabstop>checkBoxOverwriteBlindly</tabstop>
+  <tabstop>toolButtonBrowseASCIIFile</tabstop>
+  <tabstop>lineEditASCIIFile</tabstop>
+  <tabstop>spinBoxASCIIColumnWidth</tabstop>
+  <tabstop>toolButtonBrowseCSVFile</tabstop>
+  <tabstop>lineEditCSVFile</tabstop>
+  <tabstop>lineEditCSVSeparator</tabstop>
+  <tabstop>lineEditCSVDelimiter</tabstop>
+  <tabstop>toolButtonBrowseHTMLFile</tabstop>
+  <tabstop>lineEditHTMLFile</tabstop>
+  <tabstop>spinBoxHTMLBorderWidth</tabstop>
+  <tabstop>pushButtonExport</tabstop>
+  <tabstop>pushButtonClose</tabstop>
+ </tabstops>
+ <resources>
+  <include location="qmc2.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>pushButtonClose</sender>
+   <signal>clicked()</signal>
+   <receiver>ROMStatusExporter</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>84</x>
+     <y>279</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>327</x>
+     <y>289</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxExportToClipboard</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonBrowseASCIIFile</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>53</x>
+     <y>120</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>67</x>
+     <y>146</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxExportToClipboard</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lineEditASCIIFile</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>144</x>
+     <y>129</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>177</x>
+     <y>150</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxExportToClipboard</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonBrowseCSVFile</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>67</x>
+     <y>123</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>72</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxExportToClipboard</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lineEditCSVFile</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>144</x>
+     <y>121</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>148</x>
+     <y>150</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxExportToClipboard</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxOverwriteBlindly</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>100</x>
+     <y>120</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>187</x>
+     <y>120</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxExportToClipboard</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolButtonBrowseHTMLFile</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>55</x>
+     <y>127</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>60</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxExportToClipboard</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lineEditHTMLFile</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>43</x>
+     <y>127</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>149</x>
+     <y>146</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

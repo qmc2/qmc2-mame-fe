@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# colrm 1.00
+# by Adam M. Costello
+# <amc@cs.wustl.edu>
+#
+# Emulates BSD colrm command using awk.
+
+awk '
+  { a = a + 0
+    b = b + 0
+    if (a > 0)
+      if (b >= a)
+        print substr($0, 1, a - 1) substr($0, b + 1)
+      else
+        if (b > 0)
+          print substr($0, 1, b - 1) substr($0, a + 1)
+        else
+          print substr($0, 1, a - 1)
+    else
+      print $0
+  }
+' a=${1-0} b=${2-0}
