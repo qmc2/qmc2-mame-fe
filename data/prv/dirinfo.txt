@@ -1,0 +1,2 @@
+The "prv" directory is the default place to store in-game screen shots (a.k.a.
+previews).

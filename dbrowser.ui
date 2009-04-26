@@ -1,0 +1,271 @@
+<ui version="4.0" >
+ <author>R. Reucher</author>
+ <class>DocBrowser</class>
+ <widget class="QDialog" name="DocBrowser" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>691</width>
+    <height>507</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Documentation</string>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item rowspan="6" row="0" column="1" >
+    <widget class="QTextBrowser" name="manualBrowser" />
+   </item>
+   <item row="0" column="0" >
+    <widget class="QToolButton" name="reloadButton" >
+     <property name="enabled" >
+      <bool>true</bool>
+     </property>
+     <property name="focusPolicy" >
+      <enum>Qt::TabFocus</enum>
+     </property>
+     <property name="toolTip" >
+      <string>Reload / top of file</string>
+     </property>
+     <property name="text" >
+      <string/>
+     </property>
+     <property name="icon" >
+      <iconset resource="qmc2.qrc" >
+       <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" >
+    <widget class="QToolButton" name="closeButton" >
+     <property name="enabled" >
+      <bool>true</bool>
+     </property>
+     <property name="focusPolicy" >
+      <enum>Qt::TabFocus</enum>
+     </property>
+     <property name="toolTip" >
+      <string>Close documentation browser</string>
+     </property>
+     <property name="text" >
+      <string/>
+     </property>
+     <property name="icon" >
+      <iconset resource="qmc2.qrc" >
+       <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>21</width>
+       <height>310</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QToolButton" name="homeButton" >
+     <property name="enabled" >
+      <bool>true</bool>
+     </property>
+     <property name="focusPolicy" >
+      <enum>Qt::TabFocus</enum>
+     </property>
+     <property name="toolTip" >
+      <string>Help index</string>
+     </property>
+     <property name="text" >
+      <string/>
+     </property>
+     <property name="icon" >
+      <iconset resource="qmc2.qrc" >
+       <normaloff>:/data/img/home.png</normaloff>:/data/img/home.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <widget class="QToolButton" name="backwardButton" >
+     <property name="enabled" >
+      <bool>false</bool>
+     </property>
+     <property name="focusPolicy" >
+      <enum>Qt::TabFocus</enum>
+     </property>
+     <property name="toolTip" >
+      <string>Go backward</string>
+     </property>
+     <property name="text" >
+      <string/>
+     </property>
+     <property name="icon" >
+      <iconset resource="qmc2.qrc" >
+       <normaloff>:/data/img/previous.png</normaloff>:/data/img/previous.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" >
+    <widget class="QToolButton" name="forwardButton" >
+     <property name="enabled" >
+      <bool>false</bool>
+     </property>
+     <property name="focusPolicy" >
+      <enum>Qt::TabFocus</enum>
+     </property>
+     <property name="toolTip" >
+      <string>Go forward</string>
+     </property>
+     <property name="text" >
+      <string/>
+     </property>
+     <property name="icon" >
+      <iconset resource="qmc2.qrc" >
+       <normaloff>:/data/img/next.png</normaloff>:/data/img/next.png</iconset>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="9" />
+ <tabstops>
+  <tabstop>reloadButton</tabstop>
+  <tabstop>homeButton</tabstop>
+  <tabstop>backwardButton</tabstop>
+  <tabstop>forwardButton</tabstop>
+  <tabstop>closeButton</tabstop>
+  <tabstop>manualBrowser</tabstop>
+ </tabstops>
+ <includes/>
+ <resources>
+  <include location="qmc2.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>reloadButton</sender>
+   <signal>clicked()</signal>
+   <receiver>manualBrowser</receiver>
+   <slot>reload()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>21</x>
+     <y>21</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>336</x>
+     <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>closeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>DocBrowser</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>21</x>
+     <y>417</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>320</x>
+     <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>homeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>manualBrowser</receiver>
+   <slot>home()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>21</x>
+     <y>52</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>336</x>
+     <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>backwardButton</sender>
+   <signal>clicked()</signal>
+   <receiver>manualBrowser</receiver>
+   <slot>backward()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>21</x>
+     <y>83</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>336</x>
+     <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>forwardButton</sender>
+   <signal>clicked()</signal>
+   <receiver>manualBrowser</receiver>
+   <slot>forward()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>21</x>
+     <y>114</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>336</x>
+     <y>219</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>manualBrowser</sender>
+   <signal>forwardAvailable(bool)</signal>
+   <receiver>forwardButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>336</x>
+     <y>219</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>21</x>
+     <y>114</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>manualBrowser</sender>
+   <signal>backwardAvailable(bool)</signal>
+   <receiver>backwardButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>336</x>
+     <y>219</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>21</x>
+     <y>83</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

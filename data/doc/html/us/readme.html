@@ -1,0 +1,718 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+  <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
+</head>
+<body style="color: black; background-color: lightyellow;" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
+<h3>README - v0.2.b9, 25-APR-2009</h3>
+<h3><a name="Contents"></a>Contents</h3>
+<ol>
+  <li>
+    <p><a href="#1.">What is the M.A.M.E./M.E.S.S. Catalog / Launcher II?</a></p>
+  </li>
+  <li>
+    <p><a href="#2.">Build and installation instructions</a></p>
+  </li>
+  <li>
+    <p><a href="#3.">Command line arguments and configuration</a></p>
+  </li>
+  <li>
+    <p><a href="#4.">Game/machine list statistics, ROM status and the ROMAlyzer</a></p>
+  </li>
+  <li>
+    <p><a href="#5.">GUI style plugins and style sheets</a></p>
+  </li>
+  <li>
+    <p><a href="#6.">Short cuts, GUI control keys and joystick support</a></p>
+  </li>
+  <li>
+    <p><a href="#7.">External tools and tool argument syntax</a></p>
+  </li>
+  <li>
+    <p><a href="#8.">Multi-platform support</a></p>
+  </li>
+  <li>
+    <p><a href="#9.">Contact</a></p>
+  </li>
+  <li>
+    <p><a href="#10.">Contributing</a></p>
+  </li>
+  <li>
+    <p><a href="#11.">License and copyright</a></p>
+  </li>
+  <li>
+    <p><a href="#12.">Legal notice</a></p>
+  </li>
+</ol>
+<h3><a name="1."></a>1. What is the M.A.M.E./M.E.S.S. Catalog / Launcher II?</h3>
+<p>
+<i>M.A.M.E./M.E.S.S. Catalog / Launcher II</i> -- also referred to as <i>QMC2</i> --
+is the successor of one of the first UNIX MAME GUI front ends available on this planet
+called <i>QMamecat</i> (derived from <i>MAMECAT</i>, which was text-only).
+</p>
+<p>
+QMamecat was based upon Qt 2; its development was frozen in 2003. QMC2 has been rebuilt
+from scratch as a Qt 4 project. Parts of the design and code were inspired by its predecessor,
+but it's not just a remake. We tried to make the new design as flexible as possible to minimize
+dependencies from front end and CLI related MAME changes, which was a major deficiency of
+QMamecat. QMC2 now uses a template based emulator configuration scheme, which can easily be
+enhanced with additional command line options (defined in an XML template file).
+</p>
+<p>
+As a result of this flexible design, QMC2 can be used for multiple emulators.
+On UNIX and Mac we currently support SDLMAME &amp; SDLMESS, on Windows you have the choice between
+the original variants of MAME &amp; MESS as well as MAMEUIFX32 (through a replacement template for
+use with the MAME variant).
+</p>
+<p>XMAME support has been dropped since QMC2 0.2.b1 (use QMC2 0.1 if you still need XMAME!).</p>
+<p>QMC2's current major features include:</p>
+<ul>
+  <li>Extremely fast preview- &amp; flyer- image support, optionally smoothly scaled (PNG images, buffered in a resizable LRU-cache)</li>
+  <li>Support for game/machine icons (also PNG images), fast (pre-)caching mechanism</li>
+  <li>Icons, preview- &amp; flyer-images can either be stored as individual files in respective directories or they can be combined and compressed in ZIP archives</li>
+  <li>Easily extensible template-based emulator configuration scheme (defined through an external XML file)</li>
+  <li>Cool editor for configuration of global and game/machine-specific emulator options, including a search function</li>
+  <li>Support for all emulation-related extra information available through the emulator (displayed in a tree)</li>
+  <li>Fast search function with automatic wildcard pattern matching</li>
+  <li>Selectable sort criteria and order for game/machine list (description, name/ID, ROM state, year and manufacturer)</li>
+  <li>Straightforward process management to control emulator processes</li>
+  <li>Clear and full logging (separate front end and emulator logs)</li>
+  <li>Cached ROM state verification, indicated as colored spheres in front of each game/machine description</li>
+  <li>Verification of sample sets</li>
+  <li>Game/machine image checks (icons, previews &amp; flyers)
+  <li>Online display of current game/machine list and search result statistics</li>
+  <li>Two game/machine list views: <i>full detail</i> and <i>parent/clone hierarchy</i></li>
+  <li>The GUI will always remain interactive even if heavy background processing is running</li>
+  <li>Time-consuming background tasks can be stopped on demand at (nearly) any time</li>
+  <li>Optional auto-save/restore of window layout and game/machine selection</li>
+  <li>Multi-platform support (Linux/UNIX, Mac OS X and Windows)</li>
+  <li>Fully multi-language capable - right now, translations exist for English (us), German (de), Polish (pl) and French (fr)</li>
+  <li>Game/machine favorites management and play-history</li>
+  <li>Online HTML documentation and browser</li>
+  <li>Designed to be used for multiple emulators (SDLMAME/SDLMESS on UNIX and Mac, MAME/MAMEUIFX32/MESS on Windows)</li>
+  <li>Built-in support for GUI styles (KDE 4 / Qt 4 style plugins are supported)</li>
+  <li>Automatic caching of analysed game/machine data to speed up processing</li>
+  <li>Import &amp; export of emulator configuration files (i. e. mame.ini/mess.ini)</li>
+  <li>All short cuts and GUI control keys can be remapped</li>
+  <li>Removal of obsolete samples and image files (stored in directories or ZIP archives)</li>
+  <li>Automatic caching of XML output from the emulator</li>
+  <li>Built-in ROMAlyzer to deeply analyze a game's/machine's ROMs and CHDs - inspired by <a href="credits.html#Carsten">Carsten Engel's</a> ROMAlyzer script (see scripts/romalyzer.pl in source distribution)</li>
+  <li>Optional use of OpenGL features (currently only preview &amp; flyer image painting)</li>
+  <li>Support for direct GUI control via analog and digital joysticks through SDL (<i>Simple Directmedia Layer</i>)</li>
+  <li>Detailed game/machine information from MAME's <i>history.dat</i> game information database and MESS' <i>sysinfo.dat</i> machine information database</li>
+  <li>Basically the same for <i>mameinfo.dat</i> as MAME's emulator information database (there's nothing like that for MESS)</li>
+  <li>Support for MAME's output notifications via a named pipe (see emulator control panel)</li>
+  <li>Built in audio player based on the Phonon API</li>
+  <li>ROM status export to clipboard or file as ASCII, CSV or HTML</li>
+  <li>Integrated MESS device configuration</li>
+  <li>All (SDL)MAME and (SDL)MESS variants of QMC2 supported on the respective target platform can launch each other (doesn't work on Windows yet)</li>
+</ul>
+<h3><a name="2."></a>2. Build and installation instructions</h3>
+<p>Please see <a href="faq.html#A1.7">this FAQ section</a> for instructions on specific distributions.</p>
+<table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); font-weight: bold;">Software requirement</td>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); font-weight: bold;">Where to get</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">All: Qt 4.4.0+ (Qt 4.5.0+ recommended)</td>
+      <td style="vertical-align: top;">http://www.qtsoftware.com/downloads</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">UNIX &amp; Mac: GNU make 3.8+</td>
+      <td style="vertical-align: top;">ftp://ftp.gnu.org/pub/gnu/make</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Windows: Visual C++ 2008 (Express)</td>
+      <td style="vertical-align: top;">http://www.microsoft.com/Express/download/default.aspx</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">All: zlib 1.2.3+</td>
+      <td style="vertical-align: top;">http://www.zlib.net/</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">UNIX &amp; Mac: SDLMAME/SDLMESS 0.129+<br></td>
+      <td style="vertical-align: top;">http://rbelmont.mameworld.info/?page_id=163</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Windows: MAME/MESS 0.130+<br></td>
+      <td style="vertical-align: top;">http://mamedev.org/release.html<br>http://www.mess.org/download.php</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Additional tools (optional):<br>All: zip 2.32+ (3.0+ recommended)<br>UNIX and Mac: common <i>rm</i> command<br>Windows: built-in shell command <i>del</i></td>
+      <td style="vertical-align: top;"><br>http://www.info-zip.org<br>ftp://ftp.gnu.org/pub/gnu/coreutils</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Joystick support (optional):<br>All: SDL 1.2.13+<br>Windows: DirectX SDK</td>
+      <td style="vertical-align: top;"><br>http://www.libsdl.org<br>http://www.microsoft.com/downloads/details.aspx?FamilyId=5493F76A-6D37-478D-BA17-28B1CCA4865A</td>
+    </tr>
+  </tbody>
+</table>
+<p><b>Building the QMC2 binary on UNIX and Mac OS X</b></p>
+<p>Uncompress and untar the source distribution archive:
+</p>
+<pre>$ bzip2 -d qmc2-&lt;version&gt;.tar.bz2<br>$ tar xvf qmc2-&lt;version&gt;.tar</pre>
+<p>Make sure that the environment is setup correctly:</p>
+<pre>$ cd qmc2<br>$ export QTDIR=/your/qt4/installation/directory</pre>
+<p>At this point, you may have to create (or adjust) an OS-dependent configuration file, if your
+platform should not be in the list of tested operating environments;
+see <a href="#8.">section 8.</a> for more details.</p>
+<p>Now you are ready to run the build process:</p>
+<pre>$ make</pre>
+<p>If you have an SMP system, you should better run make in jobserver
+mode, this is completely safe and much faster. For example:</p>
+<pre>$ make -j3</pre>
+<p>(replace "3" with "#CPUs + 1")</p>
+<p>QMC2 is generally prepared to support multiple emulators. You have to choose which target emulator you're going to use.
+SDLMAME is the default emulator. For other potential emulators, please use the following make command:</p>
+<pre>$ make [-jX] EMULATOR=&lt;emulator-name&gt;</pre>
+<p>Joystick support is optional (but enabled by default) and requires SDL - the <i>Simple Directmedia Layer</i>. If you would like to disable it, for example because SDL is not supported on your OS (huh?), you could use the <i>JOYSTICK</i> make command line option to do so:</p>
+<pre>$ make [-jX] JOYSTICK=0</pre>
+<p>If you are using Qt 4.4+, the QMC2 build system will automatically enable the use of Qt's Phonon integration for some multimedia functionality (like the built-in audio player). This feature is fully optional though and as it requires a working Phonon environment - especially a working backend API such as <i>gstreamer</i> - you can disable it at compile time. Use the <i>PHONON</i> make command line option to accomplish that:</p>
+<pre>$ make [-jX] PHONON=0</pre>
+<p>Note that nearly all (*) of the supported make command line options can be freely combined when <i>make</i> is called. See</p>
+<pre>$ make help</pre>
+<p>for more information.</p>
+<p>(*) The only exceptions are <i>DISTCC</i> and <i>CCACHE</i> which cannot be enabled at the same time.
+<p><b>IMPORTANT NOTE</b></p>
+<p>Pease <b>never ever run <i>qmake</i> standalone</b> -- when qmake is called directly, important settings may be missing in the resulting <i>Makefile.qmake</i> file. If you see strange errors like undeclared MAJOR / MINOR variables, this simply means you've run qmake yourself -- prior to version 0.2.b6 this even destroyed QMC2's <i>Makefile</i>, but that's at least avoided now by forcing qmake's output to be stored as <i>Makefile.qmake</i> in the project definition.<p>
+<p>We've been asked about this so many times that we thought it would be necessary to make it absolutely clear that <b>everything is controlled by make rules and thus you should only call make and nothing else!</b></p>
+<p>Ending the rant here :).</p>
+<p>Instead, qmake will be called by make and it will pass a lot of important arguments to qmake which depend on the local situation. On a clean source tree you'll see what's passed to qmake in the first line of the output (that is, if not called with QUIET=1). If you'd call qmake exactly this way it would work, though.</p>
+<p><b>Installation on UNIX and Mac OS X</b></p>
+<p>As soon as QMC2 has been compiled and linked completely, it's ready for use. There is basically no need to explicitly install QMC2 as it
+has been designed to work fully self-contained. Even the data-directory <u>can</u> be kept locally, which works well.</p>
+<p>However, it's still advisable to install QMC2 system-wide (you have to do this as <i>root</i>). The user's configuration and his data will
+be kept locally (in $HOME/.qmc2/ on most *NIX or ~/Library/Application Support/qmc2/ on OS X):</p>
+<pre>$ su<br>Password:<br># make install [EMULATOR=&lt;emulator-name&gt;]<br># exit</pre>
+<p>The QMC2 binary will be named as qmc2-<i>emulator</i> (i.e. <i>qmc2-sdlmame</i> or <i>qmc2-sdlmess</i>), depending on the value of the EMULATOR make option.
+However, a symbolic link named <i>qmc2</i> will created in the binary installation directory on <i>make install</i> which links to the binary file that was last installed.</p>
+<p>The system-wide default configuration will be installed to <i>/etc/qmc2/qmc2.ini</i> or <i>/etc/qmc2/qmc2.ini.new</i> (if an older version of that file already exists).
+In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new settings</b> and add them to /etc/qmc2/qmc2.ini manually!</p>
+<p>Note that in order to use the <i>QMC2 variant launcher</i> - one QMC2 variant can launch (or switch to) the other - it is <b>required</b> that all binaries are in your search path (including the <i>runonce</i> launcher wrapper)!</p>
+<p><b>Building the QMC2 binary on Windows</b></p>
+<p>The build steps on Windows are completely different than the ones on UNIX and Mac. There may be other ways to do it on Windows than the one described here,
+but that's how we succeeded and what we therefore can support (note that this is still <i>preliminary</i> information and the Windows build process will eventually
+become cleaner and more automatic when time permits):</p>
+<ol>
+  <li>Install all software requirements mentioned above.</li>
+  <li>Extract all contents from the QMC2 source distribution archive into a directory.</li>
+  <li>For correct embedding of <i>static</i> images that QMC2 uses (mostly icons) it's necessary to copy <b>all</b> image files from <i>data/img/classic/</i> to <i>data/img/</i>, overwriting the existing symbolic links (this is due to the fact that we are relinking the images on UNIX and Mac, but on Windows this doesn't work). If you'd like to exchange some images with those in other image sets (see sub-directories below <i>data/img/</i>, i. e. <i>crazy/</i> or <i>crazy-black/</i>), copy these files over the ones that are in <i>data/img/</i> now.</li>
+  <li>Edit the batch script <i>scripts/generate-vcprojects.bat</i> and adjust the path variables at the beginning of the script.</li>
+  <li>Make sure the current working directory is the top-level path of where you extracted the QMC2 sources and run <i>scripts/generate-vcprojects.bat</i>. This will create two additional sub-directories (<i>debug/</i> and <i>release/</i>) and  generate two VC++ project files: <i>qmc2-mame.vcproj</i> and <i>qmc2-mess.vcproj</i>.</li>
+  <li>Open one (or both) project files in Visual C++ 2008 Express (double-clicking the .vcproj files should also work).</li>
+  <li>Edit the project settings within VC++ to produce <i>Release</i> instead of <i>Debug</i> (default) output.</li>
+  <li>Edit the project settings within VC++ to use <i>/SUBSYSTEM:WINDOWS</i> instead of <i>/SUBSYSTEM:CONSOLE</i> (you normally don't want a console window).</li>
+  <li>Select <i>Build</i> from the project's context menu to create the front end executable, which you will find in the <i>release/</i> sub-directory after it has been successfully built.</li>
+  <li>If you're going to build both variants, don't forget to <i>clean up</i> the project before you start the second build process!</li>
+</ol>
+<p><b>Installation on Windows</b></p>
+<p>Provided that all necessary DLLs are included in paths pointed to by <i>%LIBPATH%</i>, an installation isn't really required on Windows. As on UNIX and Mac, you can simply start the executable
+(<i>release/qmc2-&lt;emulator&gt;.exe</i>), just make sure the current working directory is the top-level QMC2 source path to make it find its data files automatically (most -- if not all -- default paths are relative to the build directory).</p>
+<p>If you would like to create binary packages, all you'd have to do is copy the relevant files (binaries/DLLs and data) into a directory which you package as an archive afterwards (using zip or rar, for example).
+The <i>installation</i> at a user's end would then just be to extract this archive. That's it! There's nothing like a script to support you in that, though.</p>
+<p>The <a href="credits.html">QMC2-dev team</a> will release Win32 binary packages of this sort starting with v0.2.b8 (final).</p>
+<p>The required DLLs include: <i>phonon4.dll</i>, <i>phonon_backend\phonon_ds94.dll</i>, <i>QtCore4.dll</i>, <i>QtGui4.dll</i>, <i>QtOpenGL4.dll</i>, <i>QtTest4.dll</i>, <i>QtXml4.dll</i>, <i>SDL.dll</i> and <i>zlib1.dll</i>.</p>
+<h3><a name="3."></a>3. Command line arguments and configuration</h3>
+<p>Usage:</p>
+<pre>$ qmc2[-<i>emulator</i>] [qt4_arguments]</pre>
+<p>QMC2 does not provide any arguments except those inherited from Qt 4. See http://doc.qtsoftware.com/4.5/qapplication.html#QApplication for details
+(note, however, that some of these arguments are useless since QMC2 will overwrite them with its configured settings).</p>
+<p><b>Notes on the configuration of QMC2</b></p>
+<p>UNIX and Mac OS X:</p>
+<ul>
+  <li>The user's configuration file will be stored as <i>~/.qmc2/qmc2.ini</i> on UNIX, or as <i>~/Library/Application Support/qmc2/qmc2.ini</i> on Mac OS X.</li>
+  <li>A system-wide default configuration can be used to pre-configure QMC2 for your users (common paths: <i>/etc/qmc2/qmc2.ini</i> on UNIX, or <i>/Library/Application Support/qmc2/qmc2.ini</i> on Mac OS X).</li>
+</ul>
+<p>Windows:</p>
+<ul>
+  <li>The user's configuration file will be stored as <i>%USERPROFILE%\.qmc2\qmc2.ini</i> on Windows.</li>
+  <li>A system-wide default configuration for all users isn't supported (yet).</li>
+  <li>All paths need to be specified <i>POSIX-like</i>, that is backslashes ("\", Windows) become slashes ("/", POSIX) within QMC2 --
+      so don't be surprised when you see paths like <i>C:/some/directory</i> (instead of <i>C:\some\directory</i>) in QMC2,
+      because that's how it's supposed to look like :)! The only exception is the command displayed on the emulator control panel
+      (and in the front end log) because it may be copied to clipboard and reused on the command line directly (which wouldn't work with
+      slashes in path names).</li>
+</ul>
+<p>All platforms:</p>
+<ul>
+  <li>If no configuration can be found for a specific option, hard-coded default values will be used for all front end settings (see code);
+      default values for the emulator configuration are read from the current XML template (default paths: <i>/usr/local/share/qmc2/opt/&lt;EMULATOR&gt;/template.xml</i>
+      on UNIX and Mac OS X, <i>data/opt/&lt;EMULATOR&gt;/template.xml</i> on Windows).</li>
+  <li>If the path to the emulator's executable file has not been set (yet), QMC2 will assume that you are starting it for the first time
+      (your setup is considered <i>incomplete</i> as long as this option hasn't been set).</li>
+  <li>Although it is recommended to edit the configuration with the built-in setup dialog, you may change it manually with
+      any editor at your own risk -- only do this if QMC2 is <b>not</b> currently running, though!</li>
+</ul>
+<h3><a name="4."></a>4. Game/machine list statistics, ROM status and the ROMAlyzer</h3>
+<p>Game/machine list statistics are shown in the lower-left corner of the main widget, below the game/machine list.
+The letters - and their colors - have the following meanings:
+</p>
+<table style="text-align: left;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="background-color: rgb(192, 192, 192); text-align: left; vertical-align: middle; font-weight: bold;">Letter</td>
+      <td style="background-color: rgb(192, 192, 192); font-weight: bold; text-align: left; vertical-align: middle;">Icon / Color</td>
+      <td style="background-color: rgb(192, 192, 192); font-weight: bold; text-align: left; vertical-align: middle;">Meaning</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: middle;">L</td>
+      <td style="text-align: left; vertical-align: middle;">
+      <table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td width="22" style="width: 22px; vertical-align: middle;">&nbsp;</td>
+            <td style="vertical-align: middle;">black</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td style="text-align: left; vertical-align: middle;">Number of <span style="text-decoration: underline;">L</span>isted games/machines</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: middle;">C</td>
+      <td style="text-align: left; vertical-align: middle;">
+      <table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td width="22" style="width: 22px; vertical-align: middle;"><img alt="" src="img/sphere_green.png" style="width: 16px; height: 16px;"></td>
+            <td style="vertical-align: middle;">green</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td style="text-align: left; vertical-align: middle;">Number of <span style="text-decoration: underline;">C</span>orrect games/machines (*)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: middle;">M</td>
+      <td style="text-align: left; vertical-align: middle;">
+      <table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td width="22" style="width: 22px; vertical-align: middle;"><img alt="" src="img/sphere_yellowgreen.png" style="width: 16px; height: 16px;"></td>
+            <td style="vertical-align: middle;">yellowgreen</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td style="text-align: left; vertical-align: middle;">Number of <span style="text-decoration: underline;">M</span>ostly correct games/machines (*)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: middle;">I</td>
+      <td style="text-align: left; vertical-align: middle;">
+      <table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td width="22" style="width: 22px; vertical-align: middle;"><img alt="" src="img/sphere_red.png" style="width: 16px; height: 16px;"></td>
+            <td style="vertical-align: middle;">red</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td style="text-align: left; vertical-align: middle;">Number of <span style="text-decoration: underline;">I</span>ncorrect games/machines (*)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: middle;">N</td>
+      <td style="text-align: left; vertical-align: middle;">
+      <table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td width="22" style="width: 22px; vertical-align: middle;"><img alt="" src="img/sphere_grey.png" style="width: 16px; height: 16px;"></td>
+            <td style="vertical-align: middle;">grey</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td style="text-align: left; vertical-align: middle;">Number of games/machines which were <span style="text-decoration: underline;">N</span>ot found (*)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: middle;">U</td>
+      <td style="text-align: left; vertical-align: middle;">
+      <table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td width="22" style="width: 22px; vertical-align: middle;"><img alt="" src="img/sphere_blue.png" style="width: 16px; height: 16px;"></td>
+            <td style="vertical-align: middle;">blue</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td style="text-align: left; vertical-align: middle;">Number of games/machines with an <span style="text-decoration: underline;">U</span>nknown ROM status</td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: middle;">S</td>
+      <td style="text-align: left; vertical-align: middle;">
+      <table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td width="22" style="width: 22px; vertical-align: middle;">&nbsp;</td>
+            <td style="vertical-align: middle;">brown</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td style="text-align: left; vertical-align: middle;">Number of game/machine-matches for the current <span style="text-decoration: underline;">S</span>earch-pattern (if any)</td>
+    </tr>
+  </tbody>
+</table>
+<p>(*) only available if the ROM state has been checked</p>
+<p>If any statistical number is yet undetermined, a question mark (?) is shown instead.</p>
+<p>Individual ROM states are displayed in the game/machine list itself, indicated by colored sphere icons
+in front of each game/machine entry (see table above). When using the <i>classic</i> image set, BIOS ROMs will contain a white <b>B</b>
+in their ROM status icons and obviously cannot be run. Other (= non-default) image sets may indicate BIOS ROMs differently.</p>
+<p>Depending on your hardware, ROM status determination may be a very time-consuming task, so it's not started automatically.
+You have to explicitly trigger a ROM check (see <i>Tools</i> menu) at least once. To speed up this process for future runs, ROM states
+are cached in an external <i>ROM state cache</i> file (default: <i>~/.qmc2/&lt;emulator&gt;.rsc</i> on UNIX, <i>~/Library/Application Support/qmc2/&lt;emulator&gt;.rsc</i> on Mac OS X,
+or <i>%USERPROFILE%\.qmc2\&lt;emulator&gt;.rsc</i> on Windows). If QMC2 finds cached ROM state information in this file, it will read the states for each game/machine from the cache
+when the game/machine list is reloaded.</p>
+<p>Unless the option <i>AutoTriggerROMCheck</i> hasn't been activated, it is in your responsibility to trigger a re-check of the ROM states when anything changes (ROM images or
+MAME/MESS updates). If the number of totally supported games/machines (by the emulator) is different than the number of cached ROM states, QMC2 will log a warning to the front end log
+(and optionally trigger an automatic ROM check, if <i>AutoTriggerROMCheck</i> has been set).</p>
+<p>QMC2 also supports individual ROM checks, so changes to only <i>some</i> games/machines of your collection do not force you to fully re-check every ROM.
+For MAME/MESS updates there's no way around it, though (unless you know which games/machines have changed or have been added).</p>
+<p>ROM states can also be used to filter and/or sort the game/machine list. Please note that as a matter of principle
+the ROM state filter cannot be applied to the hierarchical parent/clone view of the game/machine list, because the display of clones depends on the display
+of their parents.</p>
+<p>BTW, the words <i>game</i> and <i>machine</i> are used as <u>synonyms</u> within QMC2. The MAME variants prefer to operate on <i>games</i>, whereas the MESS variants operate on <i>machines</i> (or <i>systems</i>).</p>
+<p><b>ROMAlyzer</b></p>
+<p>Since v0.2.b1, there is also a so called <i>ROMAlyzer</i> which allows to deeply scan individual (or multiple) games/machines for their exact ROM state. This work was inspired by <a href="credits.html#Carsten">Carsten Engel's</a> romalyzer.pl Perl script (see scripts/romalyzer.pl in the source distribution) - he also offered very helpful comments on ROM identification and how to handle CHDs. Thanks!</p>
+<p>ROMAlyzer features &amp; restrictions:</p>
+<ul>
+  <li>Imitates MAME's &amp; MESS's way of finding ROMs, using their CRCs to identify the individual ROM files (in ZIPs).</li>
+  <li>Uses the XML game/machine data to compare (expected) checksums and sizes as well as to know which ROM &amp; CHD files are required, if they need to be merged from other sets etc.</li>
+  <li>ZIP-archived ROMs will be decompressed and their checksums will be recalculated on-the-fly (this will also identify ZIP-archives with invalid file integrity).</li>
+  <li>ROMs which are stored in game/machine-directories (not ZIP-archived) will be loaded to calculate their hashes.</li>
+  <li>All required hash algorithms are supported: CRC(-32), SHA1 and MD5.</li>
+  <li>CHDs are not yet loaded, their header checksums are used instead -- note that future versions of QMC2 will mostly likely only support CHD loading for v4 and above as it provides the raw SHA1 checksum for the compressed data in its header.</li>
+  <li>ROM and CHD files will never be fully loaded into memory, only small blocks of data are read for hash calculation and dropped directly afterwards.</li>
+  <li>Long ROMAlyzer runs can be paused / resumed (or interrupted) at nearly any time.</li>
+</ul>
+<h3><a name="5."></a>5. GUI style plugins and style sheets</h3>
+<p>GUI styles can be switched on-the-fly by explicitly selecting available style plugins from the respective combo-box in the setup dialog (see <i>Front end</i> -&gt; <i>GUI</i>). If you installed additional style plugins to Qt, these will be available here as well.</p>
+<p>The <i>Default</i> GUI style is system's default style.</p>
+<p>KDE styles are supported if they were made for KDE 4 (Qt 4)!</p>
+<p>Since v0.1.b11, support for style-specific custom color palettes (which can be setup with <i>qtconfig</i>) has been added. The default behavior of QMC2 is to use the default palette. You can disable this via the <i>StandardColorPalette</i> setting to use the customized color palette instead - if applicable (see <i>Front end</i> -&gt; <i>GUI</i> in the configuration dialog).</p>
+<p>Note that some add-on GUI styles may look ugly or be even buggy (as of this writing, some version of the Oxygen style for example is known to raise an X11 bug when the ROMAlyzer is opened initially). Don't ask for support if you know that this is the cause of your troubles! Please contact the style's developer(s) instead.</p>
+<p>Qt style sheets can be used in conjunction with any GUI style. For now, the style sheet (a .qss file) can only be specified on the command line using the <i>-stylesheet</i> option. Note however that using a style sheet which changes the background brush of all QLabel's may render a few widgets <i>unusable</i> because their background colors cannot be changed dynamically after they have such a style sheet set. The most important one is the optional vertical game/machine status indicator (object name <i>labelGameStatus</i>).</p>
+<p>See here for more information on Qt style sheets: http://doc.qtsoftware.com/4.5/stylesheet.html</p>
+<h3><a name="6."></a>6. Short cuts, GUI control keys and joystick support</h3>
+<p>Several functions (or <i>actions</i> in Qt technical jargon :) can be accessed via short cut key-sequences. The following table lists all of them:</p>
+<table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); font-weight: bold;">Short cut</td>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); font-weight: bold;">Function</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+P</td>
+      <td style="vertical-align: top;">Play the currently selected game/machine (start emulation)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+F</td>
+      <td style="vertical-align: top;">Copy the currently selected game/machine to the list of favorites</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+R</td>
+      <td style="vertical-align: top;">Reload the entire game/machine list</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+X</td>
+      <td style="vertical-align: top;">Stop any active processing, otherwise exit QMC2</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+O</td>
+      <td style="vertical-align: top;">Open the options dialog</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+T</td>
+      <td style="vertical-align: top;">Housekeeping: recreate template configuration map (needed if the XML options template changes at run-time)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+I</td>
+      <td style="vertical-align: top;">Housekeeping: clear image cache</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+N</td>
+      <td style="vertical-align: top;">Housekeeping: clear icon cache</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+H</td>
+      <td style="vertical-align: top;">QMC2 documentation browser</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+A</td>
+      <td style="vertical-align: top;">About QMC2: version, license etc.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Q</td>
+      <td style="vertical-align: top;">About Qt: version, license etc.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+S</td>
+      <td style="vertical-align: top;">Check current game's/machine's ROM state individually and update its state in the ROM state cache</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+D</td>
+      <td style="vertical-align: top;">Analyse (deep-scan) current ROM with the ROMAlyzer</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Z</td>
+      <td style="vertical-align: top;">Open ROMAlyzer to deeply analyse the ROMs of one or more games/machines</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Shift+A</td>
+      <td style="vertical-align: top;">Setup arcade mode</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+E</td>
+      <td style="vertical-align: top;">Export current ROM status to file</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+1</td>
+      <td style="vertical-align: top;">Check ROM states for all games/machines and recreate the ROM state cache from scratch</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+2</td>
+      <td style="vertical-align: top;">Check sample set for games that need samples</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+3</td>
+      <td style="vertical-align: top;">Check preview images for existance &amp; accessability</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+4</td>
+      <td style="vertical-align: top;">Check flyer images for existance &amp; accessability</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+5</td>
+      <td style="vertical-align: top;">Check icon images for existance &amp; accessability</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+C</td>
+      <td style="vertical-align: top;">Toggle ROM state filtering for status <i><u>C</u>orrect</i></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+M</td>
+      <td style="vertical-align: top;">Toggle ROM state filtering for status <i><u>M</u>ostly correct</i></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+I</td>
+      <td style="vertical-align: top;">Toggle ROM state filtering for status <i><u>I</u>ncorrect</i></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+N</td>
+      <td style="vertical-align: top;">Toggle ROM state filtering for status <i><u>N</u>ot found</i></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+U</td>
+      <td style="vertical-align: top;">Toggle ROM state filtering for status <i><u>U</u>nknown</i></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+1</td>
+      <td style="vertical-align: top;">Launch QMC2 for (SDL)MAME</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+2</td>
+      <td style="vertical-align: top;">Launch QMC2 for (SDL)MESS</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">F5</td>
+      <td style="vertical-align: top;">View game/machine list with full detail</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">F6</td>
+      <td style="vertical-align: top;">View parent/clone hierarchy</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">F11</td>
+      <td style="vertical-align: top;">Toggle between full screen and windowed mode</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">F12</td>
+      <td style="vertical-align: top;">Toggle between normal and arcade mode</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Meta+F12</td>
+      <td style="vertical-align: top;">Arcade mode: take a snapshot from the current arcade scene</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Meta+F</td>
+      <td style="vertical-align: top;">Arcade mode: toggle FPS counter display</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192);" colspan="2">When Phonon features are enabled, the following short cuts will also be available:</td> 
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+P</td>
+      <td style="vertical-align: top;">Audio player: play/resume current track</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+#</td>
+      <td style="vertical-align: top;">Audio player: pause current track</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+S</td>
+      <td style="vertical-align: top;">Audio player: stop current track</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+-</td>
+      <td style="vertical-align: top;">Audio player: jump to start of previous track</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt++</td>
+      <td style="vertical-align: top;">Audio player: jump to start of next track</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+F</td>
+      <td style="vertical-align: top;">Audio player: fast forward within current track (jump to next track if end is reached)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+B</td>
+      <td style="vertical-align: top;">Audio player: fast backward within current track (jump to previous track if start is reached)</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+PgUp</td>
+      <td style="vertical-align: top;">Audio player: raise volume</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Alt+PgDown</td>
+      <td style="vertical-align: top;">Audio player: lower volume</td>
+    </tr>
+  </tbody>
+</table>
+<p><b>Remapping short cuts and GUI control keys</b></p>
+<p>Since v0.1.b11, QMC2 also supports remapping of all these short cuts and some special keys (cursor keys, tab, +/-, ...)
+needed for GUI control by key-strokes. It should be very handy for users of MAME cabinets with sticks that map their controls
+to key-strokes (X-Arcade controls for example).  We hope it's useful for others as well :).</p>
+<p><b>Joystick control</b></p>
+<p>For users of (regular) analog or digital joysticks, there is direct support for joystick GUI control through SDL (Simple Directmedia Layer) since v0.2.b3. Simply enable joystick support on the respective configuration page, map any of the above functions or GUI control keys to joystick functions and you can start using a stick to control QMC2 right away.</p>
+<p>Internally, joystick functions are mapped to active keyboard short cuts and/or GUI control keys. The corresponding key presses are
+emulated in software as soon as a mapped joystick function is recognized. This means that using a joystick to control the GUI will cause
+some additional events, but it doesn't hurt.</p>
+<p>Key events for joystick mappings will always be sent to the widget which currently has focus, but <u>only</u> if the widget is one of
+QMC2. All other cases will be ignored, which means that it does not influence the emulator (or vice versa), although QMC2 still recognizes
+the joystick movements, button presses etc... it will just not react on them while the emulator (or any other application) has focus.</p>
+<p>The only exception to this rule is when QMC2 is currently in joystick test- or calibration-mode. However, this can safely be used concurrently to a running emulator which uses the same stick (i. e. for debugging).</p>
+<h3><a name="7."></a>7. External tools and tool argument syntax</h3>
+<p>External tools like <i>zip</i> (on all platforms), <i>rm</i> (on UNIX and Mac) or <i>del</i> (on Windows) are used for specific operations which weren't natively built into QMC2.</p>
+<p>For example, to remove obsolete image files from ZIP archives, QMC2 uses an external zip-tool and passes the files to be removed on the argument list when the zip-tool is started. We recommend to use Info-ZIP's zip 2.32+/3.0+ which is what we've tested. But it could be any zip program that supports the deletion of multiple entries from ZIP archives at once.</p>
+<p>Similarly, a second tool is needed for the deletion of files within filesystems (when images are stored directory based, for example). We recommend the common <i>rm</i> command on UNIX and Mac OS X, and the simple shell command <i>del</i> on Windows. This tool also needs to support the deletion of multiple files in one step.</p> 
+<p>Tools can have a single function or they can have multiple functions. For each function, an argument list has to be specified which defines the correct syntax for the command. Macros (like <i>$MACRONAME$</i>) can be used as placeholders and will be filled with real data before execution.</p>
+<p>The following macros exist:</p>
+<table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); font-weight: bold;">Macro</td>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); font-weight: bold;">Will be replaced with...</td>
+      <td style="vertical-align: top; background-color: rgb(192, 192, 192); font-weight: bold;">Valid tools</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$ARCHIVE$</td>
+      <td style="vertical-align: top;">... the currently processed ZIP archive's filename (fully qualified)</td>
+      <td style="vertical-align: top;">Zip tool</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$FILELIST$</td>
+      <td style="vertical-align: top;">... the currently processed list of files ("file1 file2 ..." - fully qualified)</td>
+      <td style="vertical-align: top;">Zip tool<br>File removal tool</td>
+    </tr>
+  </tbody>
+</table>
+<p>Everything else will be passed as literal text at the position where it's specified (see <i>Front end</i> -&gt; <i>Tools</i> in setup dialog).</p>
+<p>When external tools are started by QMC2, a simple tool-executor dialog will pop up to display the command and its output.</p>
+<h3><a name="8."></a>8. Multi-platform support</h3>
+<p>As the front end code has been designed with portability in mind, QMC2 should work on any UNIX or UNIX-like
+platform, on Mac OS X and meanwhile also on Windows, provided Qt 4 and (SDL)MAME/MESS (or whatever emulator may be used)
+are supported on this platform as well.</p>
+<p>
+However, you may have to create or adopt the corresponding OS-specific configuration file, which is
+<span style="font-style: italic;">arch/`uname`.cfg</span>. If it does not exist nor fit your local situation, the build
+will most likely fail:</p>
+<pre>$ make ARCH=test<br>ls: arch/test.cfg: No such file or directory<br>Qmake version: 1.07a (Qt 3.3.7)<br>Qmake is free software from Trolltech AS.<br>Error: Wrong QMake version. QMake version 2 (Qt 4) required!</pre>
+<p>Note that by using the <span style="font-style: italic;">ARCH</span>-variable
+on the make command line, you could easily specify a <span style="font-style: italic;">local</span>
+configuration, even if a system configuration file already exists for your platform. Take the
+one that comes nearest to your system configuration and change it to your needs.</p>
+<p>Since v0.1.b10, there's an alternative method which will help to solve distribution-specific build problems.
+Let's say you wanted to use the Qt 4 packages provided by your distribution and you know that the version is
+sufficient. So, instead of just considering <i>Linux</i> as the OS name (or <i>architecture</i>), also consider
+the local differences of this type of setup:<p>
+<pre>$ make DISTCFG=1</pre>
+<p>If make is called this way, the QMC2 build process will try to figure out what the exact name and release of your
+OS / distribution is. It will load the OS-specific configuration just as before (i.e. <i>arch/Linux.cfg</i>), but it will overwrite
+the OS configuration settings with the distribution-specific configuration settings (i.e. <i>arch/Linux/openSUSE_10.3.cfg</i> in case of an openSUSE 10.3 installation).
+This means that only differences to the global OS configuration need to be placed in this file.<p>
+<p>Of course, this mechanism requires that a specific configuration file for your OS / distribution exists. If not, the build
+will fail. Create the required file (see output from <i>make</i> or run <i>make os-detect</i> to figure out the expected name of the
+configuration file) and try again!<p>
+<p>In case of any trouble, feel free to contact us (see <a href="#9.">section 9.</a>). Please attach the output of
+<i>make os-detect</i> in this case!</p>
+<p>Also, please send us your configuration file if you try QMC2 on other platforms / distributions than the ones included in the
+<i>arch/</i> or <i>arch/&lt;os-name&gt;/</i> directories. Regardless if you are successful or not, any help is greatly
+appreciated (see <a href="#10.">section 10.</a>).</p>
+<p>Since v0.2.b7, QMC2 is also supported on Mac OS X -- thanks to <a href="credits.html#Vas">Vas Crabb</a> who ported it in the first place and maintains the port now.</p>
+<p>Since v0.2.b8, QMC2 is also supported on Windows using the original MAME/MESS variants.</p>
+<h3><a name="9."></a>9. Contact</h3>
+<p>Project homepage:</p>
+<ul>
+<li>http://qmc2.arcadehits.net/</li>
+</ul>
+<p>Development site:</p>
+<ul>
+<li>http://sourceforge.net/projects/qmc2</li>
+</ul>
+<p>QMC2 development mailing list:</p>
+<ul>
+<li>qmc2-devel@lists.sourceforge.net (subscribers only)</li>
+<li>https://lists.sourceforge.net/lists/listinfo/qmc2-devel</li>
+</ul>
+<p>Bug tracker:</p>
+<ul>
+<li>https://apps.sourceforge.net/mantisbt/qmc2</li>
+</ul>
+<h3><a name="10."></a>10. Contributing</h3>
+<p>Help and contributions are greatly appreciated. Following are the most important areas where we need your support:</p>
+<ul>
+  <li>Beta testing, bug hunting</li>
+  <li>Documentation</li>
+  <li>Translations (application and documentation)</li>
+  <li>Graphics &amp; GUI design</li>
+  <li>Useful feedback and ideas</li>
+</ul>
+<p>If you think you can help us in one or more of these areas, please <a href="#9.">contact us</a>!</p>
+<p>We are using <i>SourceForge.net</i> as our open-source development platform. If you intend to become a QMC2 developer,
+note that you're required to use SVN (<i>Subversion</i>).</p>
+<p>See <a href="credits.html">credits.html</a> for a list of contributers.</p>
+<ul>
+</ul>
+<h3><a name="11."></a>11. License and copyright</h3>
+<p><i>QMC2 - M.A.M.E./M.E.S.S. Catalog / Launcher II</i><br>
+Copyright &copy; 2006 - 2009 R. Reucher, Germany, All Rights Reserved</p>
+<p>This program is free
+software; you can redistribute it and/or modify it under the terms of
+the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the license, or (at your option) any
+later version.</p>
+<p>This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+General Public License for more details.</p>
+<p>You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software Foundation,
+Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.</p>
+<p>Third party software used in this project:</p>
+<p><i>Minizip 1.01e</i><br>
+Copyright &copy; 1998 - 2005 Gilles Vollant, http://www.winimage.com/zLibDll/minizip.html, info@winimage.com</p>
+<p><i>runonce --- GUI program-launching wrapper</i><br>
+Copyright &copy; 2001 Jamie Zawinski, jwz@jwz.org</p>
+<p>See <a href="copying.html">copying.html</a> for the GNU General Public License.</p>
+<h3><a name="12."></a>12. Legal notice</h3>
+<p>Please note that you are required to have permission to use or to be the legal owner of any ROM images you are going to run through an emulator and / or this front end.
+   The goal of emulators and its surrounding projects is educational and academic (of course, it's also fun :).</p>
+<p><b>We do NOT and will NEVER encourage or support any type of illegal use!</b></p>
+<p>However, a hand full of ROM images has been released to the public for non-commercial use. For instance, free MAME compatible ROMs are available at http://mamedev.org/roms.</p>
+</body>
+</html>

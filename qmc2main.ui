@@ -1,0 +1,2463 @@
+<ui version="4.0" >
+ <author>R. Reucher</author>
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>778</width>
+    <height>542</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>M.A.M.E. Catalog / Launcher II</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QGridLayout" name="gridLayout" >
+    <item row="0" column="0" >
+     <widget class="QSplitter" name="hSplitter" >
+      <property name="orientation" >
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QWidget" name="layoutWidget" >
+       <layout class="QVBoxLayout" >
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <property name="sizeConstraint" >
+         <enum>QLayout::SetNoConstraint</enum>
+        </property>
+        <item>
+         <widget class="QComboBox" name="comboBoxSearch" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Ignored" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip" >
+           <string>Search for games (not case-sensitive)</string>
+          </property>
+          <property name="statusTip" >
+           <string>Search for games</string>
+          </property>
+          <property name="editable" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTabWidget" name="tabWidgetGamelist" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Expanding" hsizetype="Ignored" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="contextMenuPolicy" >
+           <enum>Qt::CustomContextMenu</enum>
+          </property>
+          <property name="currentIndex" >
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="tabGamelist" >
+           <attribute name="title" >
+            <string>&amp;Game list</string>
+           </attribute>
+           <attribute name="icon" >
+            <iconset resource="qmc2.qrc" >
+             <normaloff>:/data/img/view_detail.png</normaloff>:/data/img/view_detail.png</iconset>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_2" >
+            <item row="0" column="0" >
+             <widget class="QStackedWidget" name="stackedWidgetView" >
+              <property name="currentIndex" >
+               <number>0</number>
+              </property>
+              <widget class="QWidget" name="gamelistPage" >
+               <layout class="QGridLayout" >
+                <property name="margin" >
+                 <number>0</number>
+                </property>
+                <property name="spacing" >
+                 <number>6</number>
+                </property>
+                <item row="0" column="0" >
+                 <widget class="QTreeWidget" name="treeWidgetGamelist" >
+                  <property name="contextMenuPolicy" >
+                   <enum>Qt::CustomContextMenu</enum>
+                  </property>
+                  <property name="statusTip" >
+                   <string>List of all supported games</string>
+                  </property>
+                  <property name="columnCount" >
+                   <number>5</number>
+                  </property>
+                  <column>
+                   <property name="text" >
+                    <string>Game / Attribute</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text" >
+                    <string>Icon / Value</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text" >
+                    <string>Year</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text" >
+                    <string>Manufacturer</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text" >
+                    <string>Name</string>
+                   </property>
+                  </column>
+                  <item>
+                   <property name="text" >
+                    <string>Waiting for data...</string>
+                   </property>
+                   <property name="text" >
+                    <string/>
+                   </property>
+                   <property name="text" >
+                    <string/>
+                   </property>
+                   <property name="text" >
+                    <string/>
+                   </property>
+                   <property name="text" >
+                    <string/>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="hierarchyPage" >
+               <layout class="QGridLayout" >
+                <property name="margin" >
+                 <number>0</number>
+                </property>
+                <property name="spacing" >
+                 <number>6</number>
+                </property>
+                <item row="0" column="0" >
+                 <widget class="QTreeWidget" name="treeWidgetHierarchy" >
+                  <property name="contextMenuPolicy" >
+                   <enum>Qt::CustomContextMenu</enum>
+                  </property>
+                  <property name="statusTip" >
+                   <string>Parent / clone hierarchy</string>
+                  </property>
+                  <column>
+                   <property name="text" >
+                    <string>Game / Clones</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text" >
+                    <string>Icon</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text" >
+                    <string>Year</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text" >
+                    <string>Manufacturer</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text" >
+                    <string>Name</string>
+                   </property>
+                  </column>
+                  <item>
+                   <property name="text" >
+                    <string>Waiting for data...</string>
+                   </property>
+                   <property name="text" >
+                    <string/>
+                   </property>
+                   <property name="text" >
+                    <string/>
+                   </property>
+                   <property name="text" >
+                    <string/>
+                   </property>
+                   <property name="text" >
+                    <string/>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+            <item row="1" column="0" >
+             <layout class="QHBoxLayout" name="horizontalLayout_2" >
+              <property name="spacing" >
+               <number>0</number>
+              </property>
+              <property name="sizeConstraint" >
+               <enum>QLayout::SetNoConstraint</enum>
+              </property>
+              <item>
+               <widget class="QComboBox" name="comboBoxViewSelect" >
+                <property name="sizePolicy" >
+                 <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip" >
+                 <string>Switch between detailed game list and parent / clone hierarchy</string>
+                </property>
+                <property name="statusTip" >
+                 <string>Switch between detailed game list and parent / clone hierarchy</string>
+                </property>
+                <item>
+                 <property name="text" >
+                  <string>Game list with full detail (filtered)</string>
+                 </property>
+                 <property name="icon" >
+                  <iconset resource="qmc2.qrc" >
+                   <normaloff>:/data/img/view_detail.png</normaloff>:/data/img/view_detail.png</iconset>
+                 </property>
+                </item>
+                <item>
+                 <property name="text" >
+                  <string>Parent / clone hierarchy (not filtered)</string>
+                 </property>
+                 <property name="icon" >
+                  <iconset resource="qmc2.qrc" >
+                   <normaloff>:/data/img/view_tree.png</normaloff>:/data/img/view_tree.png</iconset>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonSelectRomFilter" >
+                <property name="sizePolicy" >
+                 <sizepolicy vsizetype="Minimum" hsizetype="Fixed" >
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip" >
+                 <string>Toggle individual ROM states</string>
+                </property>
+                <property name="statusTip" >
+                 <string>Toggle individual ROM states</string>
+                </property>
+                <property name="text" >
+                 <string/>
+                </property>
+                <property name="icon" >
+                 <iconset resource="qmc2.qrc" >
+                  <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabSearch" >
+           <attribute name="title" >
+            <string>&amp;Search</string>
+           </attribute>
+           <attribute name="icon" >
+            <iconset resource="qmc2.qrc" >
+             <normaloff>:/data/img/hint.png</normaloff>:/data/img/hint.png</iconset>
+           </attribute>
+           <layout class="QGridLayout" >
+            <property name="margin" >
+             <number>9</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item row="0" column="0" >
+             <widget class="QListWidget" name="listWidgetSearch" >
+              <property name="contextMenuPolicy" >
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
+              <property name="toolTip" >
+               <string>Search result</string>
+              </property>
+              <property name="statusTip" >
+               <string>Search result</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabFavorites" >
+           <attribute name="title" >
+            <string>Favo&amp;rites</string>
+           </attribute>
+           <attribute name="icon" >
+            <iconset resource="qmc2.qrc" >
+             <normaloff>:/data/img/favorites.png</normaloff>:/data/img/favorites.png</iconset>
+           </attribute>
+           <layout class="QGridLayout" >
+            <property name="margin" >
+             <number>9</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item row="0" column="0" >
+             <widget class="QListWidget" name="listWidgetFavorites" >
+              <property name="contextMenuPolicy" >
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
+              <property name="toolTip" >
+               <string>Favorite games</string>
+              </property>
+              <property name="statusTip" >
+               <string>Favorite games</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabPlayed" >
+           <attribute name="title" >
+            <string>&amp;Played</string>
+           </attribute>
+           <attribute name="icon" >
+            <iconset resource="qmc2.qrc" >
+             <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
+           </attribute>
+           <layout class="QGridLayout" >
+            <property name="margin" >
+             <number>9</number>
+            </property>
+            <property name="spacing" >
+             <number>6</number>
+            </property>
+            <item row="0" column="0" >
+             <widget class="QListWidget" name="listWidgetPlayed" >
+              <property name="contextMenuPolicy" >
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
+              <property name="toolTip" >
+               <string>Games last played</string>
+              </property>
+              <property name="statusTip" >
+               <string>Games last played</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" >
+          <property name="sizeConstraint" >
+           <enum>QLayout::SetNoConstraint</enum>
+          </property>
+          <item>
+           <widget class="QLabel" name="labelGamelistStatus" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Ignored" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip" >
+             <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search</string>
+            </property>
+            <property name="statusTip" >
+             <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search</string>
+            </property>
+            <property name="text" >
+             <string>&lt;b>&lt;font color=black>L:?&lt;/font> &lt;font color=#00cc00>C:?&lt;/font> &lt;font color=#a2c743>M:?&lt;/font> &lt;font color=#f90000>I:?&lt;/font> &lt;font color=#7f7f7f>N:?&lt;/font> &lt;font color=#0000f9>U:?&lt;/font> &lt;font color=chocolate>S:?&lt;/font>&lt;/b></string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QProgressBar" name="progressBarGamelist" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Ignored" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip" >
+             <string>Progress indicator for game list processing</string>
+            </property>
+            <property name="statusTip" >
+             <string>Progress indicator for game list processing</string>
+            </property>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QSplitter" name="vSplitter" >
+       <property name="orientation" >
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QWidget" name="layoutWidget2" >
+        <layout class="QHBoxLayout" name="horizontalLayout" >
+         <property name="spacing" >
+          <number>0</number>
+         </property>
+         <property name="sizeConstraint" >
+          <enum>QLayout::SetNoConstraint</enum>
+         </property>
+         <item>
+          <widget class="QLabel" name="labelGameStatus" >
+           <property name="sizePolicy" >
+            <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize" >
+            <size>
+             <width>4</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize" >
+            <size>
+             <width>16777215</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="palette" >
+            <palette>
+             <active>
+              <colorrole role="WindowText" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Button" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Light" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>127</red>
+                 <green>127</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Midlight" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>63</red>
+                 <green>63</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Dark" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>127</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Mid" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>170</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Text" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="BrightText" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="ButtonText" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Base" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Window" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Shadow" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="AlternateBase" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>127</red>
+                 <green>127</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="ToolTipBase" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>220</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="ToolTipText" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </active>
+             <inactive>
+              <colorrole role="WindowText" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Button" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Light" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>127</red>
+                 <green>127</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Midlight" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>63</red>
+                 <green>63</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Dark" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>127</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Mid" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>170</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Text" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="BrightText" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="ButtonText" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Base" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Window" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Shadow" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="AlternateBase" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>127</red>
+                 <green>127</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="ToolTipBase" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>220</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="ToolTipText" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </inactive>
+             <disabled>
+              <colorrole role="WindowText" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>127</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Button" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Light" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>127</red>
+                 <green>127</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Midlight" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>63</red>
+                 <green>63</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Dark" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>127</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Mid" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>170</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Text" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>127</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="BrightText" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="ButtonText" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>127</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Base" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Window" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Shadow" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="AlternateBase" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="ToolTipBase" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>220</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="ToolTipText" >
+               <brush brushstyle="SolidPattern" >
+                <color alpha="255" >
+                 <red>0</red>
+                 <green>0</green>
+                 <blue>0</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </disabled>
+            </palette>
+           </property>
+           <property name="toolTip" >
+            <string>Game status indicator</string>
+           </property>
+           <property name="statusTip" >
+            <string>Game status indicator</string>
+           </property>
+           <property name="autoFillBackground" >
+            <bool>true</bool>
+           </property>
+           <property name="text" >
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTabWidget" name="tabWidgetGameDetail" >
+           <property name="sizePolicy" >
+            <sizepolicy vsizetype="Ignored" hsizetype="Ignored" >
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="contextMenuPolicy" >
+            <enum>Qt::CustomContextMenu</enum>
+           </property>
+           <property name="currentIndex" >
+            <number>0</number>
+           </property>
+           <widget class="QWidget" name="tabPreview" >
+            <attribute name="title" >
+             <string>Previe&amp;w</string>
+            </attribute>
+            <attribute name="icon" >
+             <iconset resource="qmc2.qrc" >
+              <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="tabFlyer" >
+            <attribute name="title" >
+             <string>Fl&amp;yer</string>
+            </attribute>
+            <attribute name="icon" >
+             <iconset resource="qmc2.qrc" >
+              <normaloff>:/data/img/thumbnail.png</normaloff>:/data/img/thumbnail.png</iconset>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="tabGameInfo" >
+            <attribute name="title" >
+             <string>Game &amp;info</string>
+            </attribute>
+            <attribute name="icon" >
+             <iconset resource="qmc2.qrc" >
+              <normaloff>:/data/img/info.png</normaloff>:/data/img/info.png</iconset>
+            </attribute>
+            <layout class="QGridLayout" >
+             <item row="0" column="0" >
+              <widget class="QTextBrowser" name="textBrowserGameInfo" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Expanding" hsizetype="Ignored" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip" >
+                <string>Detailed game information</string>
+               </property>
+               <property name="statusTip" >
+                <string>Detailed game information</string>
+               </property>
+               <property name="textInteractionFlags" >
+                <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+               </property>
+               <property name="openLinks" >
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="tabEmuInfo" >
+            <attribute name="title" >
+             <string>Em&amp;ulator info</string>
+            </attribute>
+            <attribute name="icon" >
+             <iconset resource="qmc2.qrc" >
+              <normaloff>:/data/img/info.png</normaloff>:/data/img/info.png</iconset>
+            </attribute>
+            <layout class="QGridLayout" >
+             <item row="0" column="0" >
+              <widget class="QTextBrowser" name="textBrowserEmuInfo" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Expanding" hsizetype="Ignored" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip" >
+                <string>Detailed emulator information</string>
+               </property>
+               <property name="statusTip" >
+                <string>Detailed emulator information</string>
+               </property>
+               <property name="textInteractionFlags" >
+                <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+               </property>
+               <property name="openLinks" >
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="tabConfiguration" >
+            <attribute name="title" >
+             <string>&amp;Configuration</string>
+            </attribute>
+            <attribute name="icon" >
+             <iconset resource="qmc2.qrc" >
+              <normaloff>:/data/img/work.png</normaloff>:/data/img/work.png</iconset>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="tabDevices" >
+            <attribute name="title" >
+             <string>De&amp;vices</string>
+            </attribute>
+            <attribute name="icon" >
+             <iconset resource="qmc2.qrc" >
+              <normaloff>:/data/img/tape.png</normaloff>:/data/img/tape.png</iconset>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="tabCabinet" >
+            <attribute name="title" >
+             <string>Ca&amp;binet</string>
+            </attribute>
+            <attribute name="icon" >
+             <iconset resource="qmc2.qrc" >
+              <normaloff>:/data/img/arcadecabinet.png</normaloff>:/data/img/arcadecabinet.png</iconset>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="tabController" >
+            <attribute name="title" >
+             <string>C&amp;ontroller</string>
+            </attribute>
+            <attribute name="icon" >
+             <iconset resource="qmc2.qrc" >
+              <normaloff>:/data/img/joystick.png</normaloff>:/data/img/joystick.png</iconset>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="tabMarquee" >
+            <attribute name="title" >
+             <string>&amp;Marquee</string>
+            </attribute>
+            <attribute name="icon" >
+             <iconset resource="qmc2.qrc" >
+              <normaloff>:/data/img/marquee.png</normaloff>:/data/img/marquee.png</iconset>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="tabTitle" >
+            <attribute name="title" >
+             <string>Titl&amp;e</string>
+            </attribute>
+            <attribute name="icon" >
+             <iconset resource="qmc2.qrc" >
+              <normaloff>:/data/img/arcademode.png</normaloff>:/data/img/arcademode.png</iconset>
+            </attribute>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QTabWidget" name="tabWidgetLogsAndEmulators" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Ignored" hsizetype="Ignored" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="contextMenuPolicy" >
+         <enum>Qt::CustomContextMenu</enum>
+        </property>
+        <property name="currentIndex" >
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="tabFrontendLog" >
+         <attribute name="title" >
+          <string>&amp;Front end log</string>
+         </attribute>
+         <attribute name="icon" >
+          <iconset resource="qmc2.qrc" >
+           <normaloff>:/data/img/editpaste.png</normaloff>:/data/img/editpaste.png</iconset>
+         </attribute>
+         <layout class="QGridLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item row="0" column="0" >
+           <widget class="QTextBrowser" name="textBrowserFrontendLog" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Expanding" hsizetype="Ignored" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip" >
+             <string>Frontend log</string>
+            </property>
+            <property name="statusTip" >
+             <string>Frontend log</string>
+            </property>
+            <property name="lineWrapMode" >
+             <enum>QTextEdit::NoWrap</enum>
+            </property>
+            <property name="readOnly" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabEmulatorLog" >
+         <attribute name="title" >
+          <string>Emulator &amp;log</string>
+         </attribute>
+         <attribute name="icon" >
+          <iconset resource="qmc2.qrc" >
+           <normaloff>:/data/img/editpaste.png</normaloff>:/data/img/editpaste.png</iconset>
+         </attribute>
+         <layout class="QGridLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item row="0" column="0" >
+           <widget class="QTextBrowser" name="textBrowserEmulatorLog" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Expanding" hsizetype="Ignored" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip" >
+             <string>Emulator log</string>
+            </property>
+            <property name="statusTip" >
+             <string>Emulator log</string>
+            </property>
+            <property name="lineWrapMode" >
+             <enum>QTextEdit::NoWrap</enum>
+            </property>
+            <property name="readOnly" >
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabEmulators" >
+         <attribute name="title" >
+          <string>E&amp;mulator control</string>
+         </attribute>
+         <attribute name="icon" >
+          <iconset resource="qmc2.qrc" >
+           <normaloff>:/data/img/calculator.png</normaloff>:/data/img/calculator.png</iconset>
+         </attribute>
+         <layout class="QGridLayout" >
+          <property name="margin" >
+           <number>9</number>
+          </property>
+          <property name="spacing" >
+           <number>6</number>
+          </property>
+          <item row="0" column="0" >
+           <widget class="QTreeWidget" name="treeWidgetEmulators" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Expanding" hsizetype="Ignored" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="contextMenuPolicy" >
+             <enum>Qt::CustomContextMenu</enum>
+            </property>
+            <property name="toolTip" >
+             <string>Emulator control panel</string>
+            </property>
+            <property name="statusTip" >
+             <string>Emulator control panel</string>
+            </property>
+            <property name="selectionMode" >
+             <enum>QAbstractItemView::ExtendedSelection</enum>
+            </property>
+            <property name="allColumnsShowFocus" >
+             <bool>true</bool>
+            </property>
+            <column>
+             <property name="text" >
+              <string>#</string>
+             </property>
+            </column>
+            <column>
+             <property name="text" >
+              <string>Game / Notifier</string>
+             </property>
+            </column>
+            <column>
+             <property name="text" >
+              <string>Status</string>
+             </property>
+            </column>
+            <column>
+             <property name="text" >
+              <string>LED0</string>
+             </property>
+            </column>
+            <column>
+             <property name="text" >
+              <string>LED1</string>
+             </property>
+            </column>
+            <column>
+             <property name="text" >
+              <string>PID</string>
+             </property>
+            </column>
+            <column>
+             <property name="text" >
+              <string>Command</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabAudioPlayer" >
+         <attribute name="title" >
+          <string>Au&amp;dio player</string>
+         </attribute>
+         <attribute name="icon" >
+          <iconset resource="qmc2.qrc" >
+           <normaloff>:/data/img/cd.png</normaloff>:/data/img/cd.png</iconset>
+         </attribute>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QFrame" name="frame" >
+            <property name="frameShape" >
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow" >
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" >
+             <item row="0" column="0" >
+              <widget class="QListWidget" name="listWidgetAudioPlaylist" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Expanding" hsizetype="Ignored" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="contextMenuPolicy" >
+                <enum>Qt::ActionsContextMenu</enum>
+               </property>
+               <property name="toolTip" >
+                <string>Playlist</string>
+               </property>
+               <property name="selectionMode" >
+                <enum>QAbstractItemView::ExtendedSelection</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0" >
+              <layout class="QHBoxLayout" >
+               <item>
+                <widget class="QToolButton" name="toolButtonAudioPreviousTrack" >
+                 <property name="toolTip" >
+                  <string>Previous track</string>
+                 </property>
+                 <property name="icon" >
+                  <iconset resource="qmc2.qrc" >
+                   <normaloff>:/data/img/media_back.png</normaloff>:/data/img/media_back.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="toolButtonAudioNextTrack" >
+                 <property name="toolTip" >
+                  <string>Next track</string>
+                 </property>
+                 <property name="icon" >
+                  <iconset resource="qmc2.qrc" >
+                   <normaloff>:/data/img/media_next.png</normaloff>:/data/img/media_next.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="toolButtonAudioFastBackward" >
+                 <property name="toolTip" >
+                  <string>Fast backward</string>
+                 </property>
+                 <property name="icon" >
+                  <iconset resource="qmc2.qrc" >
+                   <normaloff>:/data/img/media_fastbackward.png</normaloff>:/data/img/media_fastbackward.png</iconset>
+                 </property>
+                 <property name="autoRepeat" >
+                  <bool>true</bool>
+                 </property>
+                 <property name="autoRepeatDelay" >
+                  <number>100</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="toolButtonAudioFastForward" >
+                 <property name="toolTip" >
+                  <string>Fast forward</string>
+                 </property>
+                 <property name="icon" >
+                  <iconset resource="qmc2.qrc" >
+                   <normaloff>:/data/img/media_fastforward.png</normaloff>:/data/img/media_fastforward.png</iconset>
+                 </property>
+                 <property name="autoRepeat" >
+                  <bool>true</bool>
+                 </property>
+                 <property name="autoRepeatDelay" >
+                  <number>100</number>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="toolButtonAudioStopTrack" >
+                 <property name="toolTip" >
+                  <string>Stop track</string>
+                 </property>
+                 <property name="icon" >
+                  <iconset resource="qmc2.qrc" >
+                   <normaloff>:/data/img/media_stop.png</normaloff>:/data/img/media_stop.png</iconset>
+                 </property>
+                 <property name="checkable" >
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="toolButtonAudioPauseTrack" >
+                 <property name="toolTip" >
+                  <string>Pause track</string>
+                 </property>
+                 <property name="icon" >
+                  <iconset resource="qmc2.qrc" >
+                   <normaloff>:/data/img/media_pause.png</normaloff>:/data/img/media_pause.png</iconset>
+                 </property>
+                 <property name="checkable" >
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="toolButtonAudioPlayTrack" >
+                 <property name="toolTip" >
+                  <string>Play track</string>
+                 </property>
+                 <property name="icon" >
+                  <iconset resource="qmc2.qrc" >
+                   <normaloff>:/data/img/media_play.png</normaloff>:/data/img/media_play.png</iconset>
+                 </property>
+                 <property name="checkable" >
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QProgressBar" name="progressBarAudioProgress" >
+                 <property name="toolTip" >
+                  <string>Progress indicator for current track</string>
+                 </property>
+                 <property name="maximum" >
+                  <number>100</number>
+                 </property>
+                 <property name="format" >
+                  <string>%vs (%ms total)</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="2" column="0" >
+              <layout class="QHBoxLayout" >
+               <item>
+                <widget class="QToolButton" name="toolButtonAudioAddTracks" >
+                 <property name="toolTip" >
+                  <string>Browse for tracks to add to playlist</string>
+                 </property>
+                 <property name="icon" >
+                  <iconset resource="qmc2.qrc" >
+                   <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="toolButtonAudioRemoveTracks" >
+                 <property name="enabled" >
+                  <bool>false</bool>
+                 </property>
+                 <property name="toolTip" >
+                  <string>Remove selected tracks from playlist</string>
+                 </property>
+                 <property name="icon" >
+                  <iconset resource="qmc2.qrc" >
+                   <normaloff>:/data/img/stop.png</normaloff>:/data/img/stop.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBoxAudioPlayOnStart" >
+                 <property name="toolTip" >
+                  <string>Start playing automatically when QMC2 has started</string>
+                 </property>
+                 <property name="text" >
+                  <string>Play on start</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBoxAudioShuffle" >
+                 <property name="toolTip" >
+                  <string>Select random tracks from playlist</string>
+                 </property>
+                 <property name="text" >
+                  <string>Shuffle</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBoxAudioPause" >
+                 <property name="toolTip" >
+                  <string>Automatically pause audio playback when at least one emulator is running</string>
+                 </property>
+                 <property name="text" >
+                  <string>Pause</string>
+                 </property>
+                 <property name="checked" >
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBoxAudioFade" >
+                 <property name="toolTip" >
+                  <string>Fade in and out on pause / resume</string>
+                 </property>
+                 <property name="text" >
+                  <string>Fade in/out</string>
+                 </property>
+                 <property name="checked" >
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSlider" name="sliderAudioVolume" >
+                 <property name="toolTip" >
+                  <string>Audio player volume</string>
+                 </property>
+                 <property name="maximum" >
+                  <number>100</number>
+                 </property>
+                 <property name="sliderPosition" >
+                  <number>50</number>
+                 </property>
+                 <property name="orientation" >
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>778</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_Help" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionDocumentation" />
+    <addaction name="separator" />
+    <addaction name="actionAbout" />
+    <addaction name="actionAboutQt" />
+   </widget>
+   <widget class="QMenu" name="menu_Tools" >
+    <property name="title" >
+     <string>&amp;Tools</string>
+    </property>
+    <widget class="QMenu" name="menuCleanUp" >
+     <property name="title" >
+      <string>&amp;Clean up</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="qmc2.qrc" >
+       <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+     </property>
+     <addaction name="actionClearImageCache" />
+     <addaction name="actionClearIconCache" />
+     <addaction name="separator" />
+     <addaction name="actionRecreateTemplateMap" />
+    </widget>
+    <widget class="QMenu" name="menuAudio_player" >
+     <property name="title" >
+      <string>&amp;Audio player</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="qmc2.qrc" >
+       <normaloff>:/data/img/cd.png</normaloff>:/data/img/cd.png</iconset>
+     </property>
+     <addaction name="actionAudioPlayTrack" />
+     <addaction name="actionAudioPauseTrack" />
+     <addaction name="actionAudioStopTrack" />
+     <addaction name="actionAudioFastForward" />
+     <addaction name="actionAudioFastBackward" />
+     <addaction name="actionAudioNextTrack" />
+     <addaction name="actionAudioPreviousTrack" />
+     <addaction name="actionAudioRaiseVolume" />
+     <addaction name="actionAudioLowerVolume" />
+    </widget>
+    <addaction name="actionCheckROMs" />
+    <addaction name="actionCheckSamples" />
+    <addaction name="separator" />
+    <addaction name="actionCheckPreviews" />
+    <addaction name="actionCheckFlyers" />
+    <addaction name="actionCheckIcons" />
+    <addaction name="separator" />
+    <addaction name="actionROMAlyzer" />
+    <addaction name="actionExportROMStatus" />
+    <addaction name="separator" />
+    <addaction name="actionOptions" />
+    <addaction name="separator" />
+    <addaction name="menuAudio_player" />
+    <addaction name="separator" />
+    <addaction name="menuCleanUp" />
+   </widget>
+   <widget class="QMenu" name="menu_Game" >
+    <property name="title" >
+     <string>G&amp;ame</string>
+    </property>
+    <widget class="QMenu" name="menu_Check" >
+     <property name="title" >
+      <string>&amp;Check</string>
+     </property>
+     <addaction name="actionCheckCurrentROM" />
+     <addaction name="actionAnalyseCurrentROM" />
+    </widget>
+    <widget class="QMenu" name="menu_View" >
+     <property name="title" >
+      <string>&amp;View</string>
+     </property>
+     <addaction name="actionViewFullDetail" />
+     <addaction name="actionViewParentClones" />
+    </widget>
+    <addaction name="actionPlay" />
+    <addaction name="actionToFavorites" />
+    <addaction name="separator" />
+    <addaction name="actionReload" />
+    <addaction name="separator" />
+    <addaction name="menu_View" />
+    <addaction name="menu_Check" />
+    <addaction name="separator" />
+    <addaction name="actionExitStop" />
+   </widget>
+   <widget class="QMenu" name="menu_Display" >
+    <property name="title" >
+     <string>&amp;Display</string>
+    </property>
+    <widget class="QMenu" name="menu_Arcade" >
+     <property name="title" >
+      <string>&amp;Arcade</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="qmc2.qrc" >
+       <normaloff>:/data/img/arcadecabinet.png</normaloff>:/data/img/arcadecabinet.png</iconset>
+     </property>
+     <addaction name="actionArcadeToggle" />
+     <addaction name="actionArcadeSetup" />
+     <addaction name="separator" />
+     <addaction name="actionArcadeTakeScreenshot" />
+     <addaction name="separator" />
+     <addaction name="actionArcadeShowFPS" />
+    </widget>
+    <addaction name="actionFullscreenToggle" />
+    <addaction name="separator" />
+    <addaction name="menu_Arcade" />
+    <addaction name="separator" />
+    <addaction name="actionLaunchQMC2MAME" />
+    <addaction name="actionLaunchQMC2MESS" />
+   </widget>
+   <addaction name="menu_Game" />
+   <addaction name="menu_Tools" />
+   <addaction name="menu_Display" />
+   <addaction name="menu_Help" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QToolBar" name="toolbar" >
+   <property name="contextMenuPolicy" >
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="windowTitle" >
+    <string>Toolbar</string>
+   </property>
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>22</width>
+     <height>22</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea" >
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionExitStop" />
+   <addaction name="separator" />
+   <addaction name="actionPlay" />
+   <addaction name="actionToFavorites" />
+   <addaction name="actionReload" />
+   <addaction name="separator" />
+   <addaction name="actionCheckROMs" />
+   <addaction name="actionCheckSamples" />
+   <addaction name="separator" />
+   <addaction name="actionCheckPreviews" />
+   <addaction name="actionCheckFlyers" />
+   <addaction name="actionCheckIcons" />
+   <addaction name="separator" />
+   <addaction name="actionROMAlyzer" />
+   <addaction name="actionExportROMStatus" />
+   <addaction name="separator" />
+   <addaction name="actionFullscreenToggle" />
+   <addaction name="actionArcadeToggle" />
+   <addaction name="separator" />
+   <addaction name="actionOptions" />
+   <addaction name="separator" />
+   <addaction name="actionLaunchQMC2MAME" />
+   <addaction name="actionLaunchQMC2MESS" />
+  </widget>
+  <action name="actionCheckSamples" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/sound.png</normaloff>:/data/img/sound.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Check &amp;samples...</string>
+   </property>
+   <property name="toolTip" >
+    <string>Check sample set</string>
+   </property>
+   <property name="statusTip" >
+    <string>Check sample set</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+2</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionCheckPreviews" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Check &amp;previews...</string>
+   </property>
+   <property name="toolTip" >
+    <string>Check preview images</string>
+   </property>
+   <property name="statusTip" >
+    <string>Check preview images</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+3</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionPlay" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/launch.png</normaloff>:/data/img/launch.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Play</string>
+   </property>
+   <property name="toolTip" >
+    <string>Play current game</string>
+   </property>
+   <property name="statusTip" >
+    <string>Play current game</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+P</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionExitStop" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/exit.png</normaloff>:/data/img/exit.png</iconset>
+   </property>
+   <property name="text" >
+    <string>E&amp;xit / Stop</string>
+   </property>
+   <property name="toolTip" >
+    <string>Exit program / Stop any active processing</string>
+   </property>
+   <property name="statusTip" >
+    <string>Exit program / Stop any active processing</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+X</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionDocumentation" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/help.png</normaloff>:/data/img/help.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Documentation...</string>
+   </property>
+   <property name="toolTip" >
+    <string>View online documentation</string>
+   </property>
+   <property name="statusTip" >
+    <string>View online documentation</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+H</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionAbout" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/info.png</normaloff>:/data/img/info.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;About...</string>
+   </property>
+   <property name="toolTip" >
+    <string>About M.A.M.E. Catalog / Launcher II</string>
+   </property>
+   <property name="statusTip" >
+    <string>About M.A.M.E. Catalog / Launcher II</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+A</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionAboutQt" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/qt-logo.png</normaloff>:/data/img/qt-logo.png</iconset>
+   </property>
+   <property name="text" >
+    <string>About &amp;Qt...</string>
+   </property>
+   <property name="statusTip" >
+    <string>About Qt</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionCheckROMs" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/rom.png</normaloff>:/data/img/rom.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Check &amp;ROMs...</string>
+   </property>
+   <property name="toolTip" >
+    <string>Check ROM collection</string>
+   </property>
+   <property name="statusTip" >
+    <string>Check ROM collection</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+1</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionOptions" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/work.png</normaloff>:/data/img/work.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Options...</string>
+   </property>
+   <property name="iconText" >
+    <string>Options</string>
+   </property>
+   <property name="toolTip" >
+    <string>Frontend setup and global emulator configuration</string>
+   </property>
+   <property name="statusTip" >
+    <string>Frontend setup and global emulator configuration</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionReload" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Reload</string>
+   </property>
+   <property name="toolTip" >
+    <string>Reload entire game list</string>
+   </property>
+   <property name="statusTip" >
+    <string>Reload entire game list</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+R</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionClearImageCache" >
+   <property name="text" >
+    <string>Clear image cache</string>
+   </property>
+   <property name="toolTip" >
+    <string>Clear image cache</string>
+   </property>
+   <property name="statusTip" >
+    <string>Clear image cache</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+I</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionRecreateTemplateMap" >
+   <property name="text" >
+    <string>Recreate template map</string>
+   </property>
+   <property name="toolTip" >
+    <string>Recreate template configuration map</string>
+   </property>
+   <property name="statusTip" >
+    <string>Recreate template configuration map</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+T</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionToFavorites" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/favorites.png</normaloff>:/data/img/favorites.png</iconset>
+   </property>
+   <property name="text" >
+    <string>To &amp;favorites</string>
+   </property>
+   <property name="toolTip" >
+    <string>Add current game to favorites</string>
+   </property>
+   <property name="statusTip" >
+    <string>Add current game to favorites</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+F</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionViewFullDetail" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/view_detail.png</normaloff>:/data/img/view_detail.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Full detail</string>
+   </property>
+   <property name="toolTip" >
+    <string>View game list with full detail</string>
+   </property>
+   <property name="statusTip" >
+    <string>View game list with full detail</string>
+   </property>
+   <property name="shortcut" >
+    <string>F5</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionViewParentClones" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/view_tree.png</normaloff>:/data/img/view_tree.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Parent / clones</string>
+   </property>
+   <property name="toolTip" >
+    <string>View parent / clone hierarchy</string>
+   </property>
+   <property name="statusTip" >
+    <string>View parent / clone hierarchy</string>
+   </property>
+   <property name="whatsThis" >
+    <string/>
+   </property>
+   <property name="shortcut" >
+    <string>F6</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionCheckFlyers" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/thumbnail.png</normaloff>:/data/img/thumbnail.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Check &amp;flyers...</string>
+   </property>
+   <property name="toolTip" >
+    <string>Check flyer images</string>
+   </property>
+   <property name="statusTip" >
+    <string>Check flyer images</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+4</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionClearIconCache" >
+   <property name="text" >
+    <string>Clear icon cache</string>
+   </property>
+   <property name="statusTip" >
+    <string>Clear icon cache</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+N</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionCheckIcons" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/icon.png</normaloff>:/data/img/icon.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Check &amp;icons...</string>
+   </property>
+   <property name="toolTip" >
+    <string>Check icon images</string>
+   </property>
+   <property name="statusTip" >
+    <string>Check icon images</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+5</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionCheckCurrentROM" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/rom.png</normaloff>:/data/img/rom.png</iconset>
+   </property>
+   <property name="text" >
+    <string>ROM state</string>
+   </property>
+   <property name="iconText" >
+    <string>ROM state</string>
+   </property>
+   <property name="toolTip" >
+    <string>Check current game's ROM state</string>
+   </property>
+   <property name="statusTip" >
+    <string>Check current game's ROM state</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionAnalyseCurrentROM" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/search.png</normaloff>:/data/img/search.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Analyse ROM...</string>
+   </property>
+   <property name="iconText" >
+    <string>Analyse ROM</string>
+   </property>
+   <property name="toolTip" >
+    <string>Analyse current game with ROMAlyzer</string>
+   </property>
+   <property name="statusTip" >
+    <string>Analyse current game with ROMAlyzer</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+D</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionROMAlyzer" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/search.png</normaloff>:/data/img/search.png</iconset>
+   </property>
+   <property name="text" >
+    <string>ROMAly&amp;zer...</string>
+   </property>
+   <property name="toolTip" >
+    <string>Open ROMAlyzer dialog</string>
+   </property>
+   <property name="statusTip" >
+    <string>Open ROMAlyzer dialog</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Z</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+   <property name="visible" >
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionArcadeSetup" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/work.png</normaloff>:/data/img/work.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Setup...</string>
+   </property>
+   <property name="toolTip" >
+    <string>Setup arcade mode</string>
+   </property>
+   <property name="statusTip" >
+    <string>Setup arcade mode</string>
+   </property>
+   <property name="whatsThis" >
+    <string/>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Shift+A</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionArcadeToggle" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/arcademode.png</normaloff>:/data/img/arcademode.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Toggle arcade</string>
+   </property>
+   <property name="toolTip" >
+    <string>Toggle arcade mode</string>
+   </property>
+   <property name="statusTip" >
+    <string>Toggle arcade mode</string>
+   </property>
+   <property name="whatsThis" >
+    <string/>
+   </property>
+   <property name="shortcut" >
+    <string>F12</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionFullscreenToggle" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/toggle_fullscreen.png</normaloff>:/data/img/toggle_fullscreen.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Toggle &amp;full screen</string>
+   </property>
+   <property name="toolTip" >
+    <string>Toggle full screen</string>
+   </property>
+   <property name="statusTip" >
+    <string>Toggle full screen / windowed mode</string>
+   </property>
+   <property name="shortcut" >
+    <string>F11</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionAudioPreviousTrack" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/media_back.png</normaloff>:/data/img/media_back.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Previous track</string>
+   </property>
+   <property name="statusTip" >
+    <string>Play previous track</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt+-</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+   <property name="autoRepeat" >
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionAudioNextTrack" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/media_next.png</normaloff>:/data/img/media_next.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Next track</string>
+   </property>
+   <property name="statusTip" >
+    <string>Play next track</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt++</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+   <property name="autoRepeat" >
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionAudioFastBackward" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/media_fastbackward.png</normaloff>:/data/img/media_fastbackward.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Fast backward</string>
+   </property>
+   <property name="statusTip" >
+    <string>Fast backward within track</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt+B</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionAudioFastForward" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/media_fastforward.png</normaloff>:/data/img/media_fastforward.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Fast forward</string>
+   </property>
+   <property name="statusTip" >
+    <string>Fast forward within track</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt+F</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionAudioStopTrack" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/media_stop.png</normaloff>:/data/img/media_stop.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Stop track</string>
+   </property>
+   <property name="statusTip" >
+    <string>Stop current track</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt+S</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+   <property name="autoRepeat" >
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionAudioPauseTrack" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/media_pause.png</normaloff>:/data/img/media_pause.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Pause track</string>
+   </property>
+   <property name="statusTip" >
+    <string>Pause current track</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt+#</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+   <property name="autoRepeat" >
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionAudioPlayTrack" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/media_play.png</normaloff>:/data/img/media_play.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Play track</string>
+   </property>
+   <property name="statusTip" >
+    <string>Play current track</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt+P</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+   <property name="autoRepeat" >
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionAudioRaiseVolume" >
+   <property name="text" >
+    <string>Raise volume</string>
+   </property>
+   <property name="statusTip" >
+    <string>Raise audio player volume</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt+PgUp</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionAudioLowerVolume" >
+   <property name="text" >
+    <string>Lower volume</string>
+   </property>
+   <property name="statusTip" >
+    <string>Lower audio player volume</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt+PgDown</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionExportROMStatus" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Export ROM status...</string>
+   </property>
+   <property name="toolTip" >
+    <string>Export ROM status</string>
+   </property>
+   <property name="statusTip" >
+    <string>Export ROM status</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+E</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionLaunchQMC2MAME" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/mame.png</normaloff>:/data/img/mame.png</iconset>
+   </property>
+   <property name="text" >
+    <string>QMC2 for SDLMAME</string>
+   </property>
+   <property name="toolTip" >
+    <string>Launch QMC2 for SDLMAME</string>
+   </property>
+   <property name="statusTip" >
+    <string>Launch QMC2 for SDLMAME</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt+1</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionLaunchQMC2MESS" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/mess.png</normaloff>:/data/img/mess.png</iconset>
+   </property>
+   <property name="text" >
+    <string>QMC2 for SDLMESS</string>
+   </property>
+   <property name="toolTip" >
+    <string>Launch QMC2 for SDLMESS</string>
+   </property>
+   <property name="statusTip" >
+    <string>Launch QMC2 for SDLMESS</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Alt+2</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionArcadeShowFPS" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Show FPS</string>
+   </property>
+   <property name="toolTip" >
+    <string>Toggle FPS display</string>
+   </property>
+   <property name="statusTip" >
+    <string>Toggle FPS display</string>
+   </property>
+   <property name="shortcut" >
+    <string>Meta+F</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionArcadeTakeScreenshot" >
+   <property name="icon" >
+    <iconset resource="qmc2.qrc" >
+     <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Screen shot</string>
+   </property>
+   <property name="toolTip" >
+    <string>Save a screen shot from the current arcade scene</string>
+   </property>
+   <property name="statusTip" >
+    <string>Take screen shot from arcade scene</string>
+   </property>
+   <property name="shortcut" >
+    <string>Meta+F12</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="9" />
+ <tabstops>
+  <tabstop>comboBoxSearch</tabstop>
+  <tabstop>tabWidgetGamelist</tabstop>
+  <tabstop>treeWidgetGamelist</tabstop>
+  <tabstop>treeWidgetHierarchy</tabstop>
+  <tabstop>listWidgetSearch</tabstop>
+  <tabstop>listWidgetFavorites</tabstop>
+  <tabstop>listWidgetPlayed</tabstop>
+  <tabstop>comboBoxViewSelect</tabstop>
+  <tabstop>pushButtonSelectRomFilter</tabstop>
+  <tabstop>tabWidgetGameDetail</tabstop>
+  <tabstop>textBrowserGameInfo</tabstop>
+  <tabstop>textBrowserEmuInfo</tabstop>
+  <tabstop>tabWidgetLogsAndEmulators</tabstop>
+  <tabstop>textBrowserFrontendLog</tabstop>
+  <tabstop>textBrowserEmulatorLog</tabstop>
+  <tabstop>treeWidgetEmulators</tabstop>
+  <tabstop>listWidgetAudioPlaylist</tabstop>
+  <tabstop>toolButtonAudioPreviousTrack</tabstop>
+  <tabstop>toolButtonAudioNextTrack</tabstop>
+  <tabstop>toolButtonAudioFastBackward</tabstop>
+  <tabstop>toolButtonAudioFastForward</tabstop>
+  <tabstop>toolButtonAudioStopTrack</tabstop>
+  <tabstop>toolButtonAudioPauseTrack</tabstop>
+  <tabstop>toolButtonAudioPlayTrack</tabstop>
+  <tabstop>toolButtonAudioAddTracks</tabstop>
+  <tabstop>toolButtonAudioRemoveTracks</tabstop>
+  <tabstop>checkBoxAudioPlayOnStart</tabstop>
+  <tabstop>checkBoxAudioShuffle</tabstop>
+  <tabstop>checkBoxAudioPause</tabstop>
+  <tabstop>checkBoxAudioFade</tabstop>
+  <tabstop>sliderAudioVolume</tabstop>
+ </tabstops>
+ <resources>
+  <include location="qmc2.qrc" />
+ </resources>
+ <connections/>
+</ui>

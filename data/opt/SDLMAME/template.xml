@@ -1,0 +1,1111 @@
+<?xml version="1.0"?>
+<template emulator="SDLMAME" version="0.131" format="0.2.2">
+  <section name="search_paths">
+    <description lang="us" text="Search paths"/>
+    <description lang="de" text="Suchpfade"/>
+    <description lang="pl" text="Przeszukiwane ścieżki"/>
+    <description lang="fr" text="Répertoires de recherche"/>
+    <option name="rompath" type="directory" default="roms">
+      <description lang="us" text="Path to ROM sets and hard disk images"/>
+      <description lang="de" text="Suchpfad für ROM-Sets und Festplatten Abbilder"/>
+      <description lang="pl" text="Ścieżka do zestawów ROM-ów i obrazów twardych dysków"/>
+      <description lang="fr" text="Répertoires des ROMS et Images Disques"/>
+    </option>
+    <option name="samplepath" type="directory" default="samples">
+      <description lang="us" text="Path to sample sets"/>
+      <description lang="de" text="Suchpfad für Sample-Sets"/>
+      <description lang="pl" text="Ścieżka do zestawów sampli"/>
+      <description lang="fr" text="Répertoires des samples"/>
+    </option>
+    <option name="artpath" type="directory" default="artwork">
+      <description lang="us" text="Path to artwork files"/>
+      <description lang="de" text="Suchpfad für Kunstwerk-Dateien"/>
+      <description lang="pl" text="Katalog ilustracji"/>
+      <description lang="fr" text="Répertoires des illustrations artwork"/>
+    </option>
+    <option name="ctrlrpath" type="directory" default="ctrlr">
+      <description lang="us" text="Path to controller definitions"/>
+      <description lang="de" text="Suchpfad für Controller-Definitionen"/>
+      <description lang="pl" text="Ścieżka do definicji kontrolerów"/>
+      <description lang="fr" text="Répertoire des paramètres des controleurs"/>
+    </option>
+    <option name="inipath" type="directory" default="~/.mame;.;ini">
+      <description lang="us" text="Path to ini files"/>
+      <description lang="de" text="Suchpfad für INI-Dateien"/>
+      <description lang="pl" text="Ścieżka do plików ini"/>
+      <description lang="fr" text="Répertoires des fichiers ini"/>
+    </option>
+    <option name="fontpath" type="directory" default=".">
+      <description lang="us" text="Path to font files"/>
+      <description lang="de" text="Suchpfad für Font-Dateien"/>
+      <description lang="pl" text="Ścieżki do plików czcionek"/>
+      <description lang="fr" text="Répertoire des polices de caractères"/>
+    </option>
+    <option name="cheatpath" type="directory" default="cheat">
+      <description lang="us" text="Path to cheat files"/>
+      <description lang="de" text="Suchpfad für Cheat-Dateien"/>
+      <description lang="pl" text="Ścieżka do plików ułatwień"/>
+      <description lang="fr" text="Répertoire des fichiers cheats"/>
+    </option>
+    <option name="crsshairpath" type="directory" default="crsshair">
+      <description lang="us" text="Path to crosshair files"/>
+      <description lang="de" text="Suchpfad für Fadenkreuz-Dateien"/>
+    </option>
+  </section>
+  <section name="output_directories">
+    <description lang="us" text="Output directories"/>
+    <description lang="de" text="Ausgabe-Verzeichnisse"/>
+    <description lang="pl" text="Katalogi wyjściowe"/>
+    <description lang="fr" text="Répertoires de sortie"/>
+    <option name="cfg_directory" type="directory" default="cfg">
+      <description lang="us" text="Directory to save configurations"/>
+      <description lang="de" text="Verzeichnis zur Speicherung von Konfigurationen"/>
+      <description lang="pl" text="Katalog do zapisywania konfiguracji"/>
+      <description lang="fr" text="Répertoire pour enregistrer les configurations"/>
+    </option>
+    <option name="nvram_directory" type="directory" default="nvram">
+      <description lang="us" text="Directory to save nvram contents"/>
+      <description lang="de" text="Verzeichnis zur Speicherung von NVRAM-Inhalten"/>
+      <description lang="pl" text="Katalog do zapisywania zawartości nieulotnej pamięci RAM"/>
+      <description lang="fr" text="Répertoire pour enregistrer les contenus NVRAM"/>
+    </option>
+    <option name="memcard_directory" type="directory" default="memcard">
+      <description lang="us" text="Directory to save memory card contents"/>
+      <description lang="de" text="Verzeichnis zur Speicherung von Memcard-Inhalten"/>
+      <description lang="pl" text="Katalog do zapisywania zawartości kart pamięci"/>
+      <description lang="fr" text="Répertoire pour enregistrer les contenus des cartes mémoire"/>
+    </option>
+    <option name="input_directory" type="directory" default="inp">
+      <description lang="us" text="Directory to save input device logs"/>
+      <description lang="de" text="Verzeichnis zur Speicherung von Eingabegeräte-Logs"/>
+      <description lang="pl" text="Katalog do zapisywania dzienników urządzeń wejściowych"/>
+      <description lang="fr" text="Répertoire pour enregistrer les parties (INP)"/>
+    </option>
+    <option name="state_directory" type="directory" default="sta">
+      <description lang="us" text="Directory to save states"/>
+      <description lang="de" text="Verzeichnis zur Speicherung von Spiel-Stati"/>
+      <description lang="pl" text="Katalog do zapisywania stanów gier"/>
+      <description lang="fr" text="Répertoire pour enregistrer les états (STA)"/>
+    </option>
+    <option name="snapshot_directory" type="directory" default="snap">
+      <description lang="us" text="Directory to save screenshots (PNG)"/>
+      <description lang="de" text="Verzeichnis zur Speicherung von Screenshots (PNG)"/>
+      <description lang="pl" text="Katalog do zapisywania zrzutów ekranu (PNG)"/>
+      <description lang="fr" text="Répertoire pour enregistrer les captures d'écran (PNG)"/>
+    </option>
+    <option name="diff_directory" type="directory" default="diff">
+      <description lang="us" text="Directory for hard drive image difference files"/>
+      <description lang="de" text="Verzeichnis zur Speicherung von Unterschieden zwischen Festplatten-Abbildern"/>
+      <description lang="pl" text="Katalog do zapisywania plików różnic obrazów twardych dysków"/>
+      <description lang="fr" text="Répertoire pour les fichiers diff"/>
+    </option>
+    <option name="comment_directory" type="directory" default="comments">
+      <description lang="us" text="Directory to save debugger comments"/>
+      <description lang="de" text="Verzeichnis für Debugger-Kommentare"/>
+      <description lang="pl" text="Katalog do zapisywania komentarzy debuggera"/>
+      <description lang="fr" text="Répertoire pour enregistrer les commentaires de débogage"/>
+    </option>
+  </section>
+  <section name="state_playback">
+    <description lang="us" text="State / playback"/>
+    <description lang="de" text="Status / Wiedergabe"/>
+    <description lang="pl" text="Stan / odtwarzanie"/>
+    <description lang="fr" text="Etat / relecture"/>
+    <option name="state" type="string" default="">
+      <description lang="us" text="Saved state to load"/>
+      <description lang="de" text="Zu ladender Spiel-Status"/>
+      <description lang="pl" text="Stan do załadowania"/>
+      <description lang="fr" text="Etat à charger"/>
+    </option>
+    <option name="autosave" type="bool" default="false">
+      <description lang="us" text="Enable automatic restore at startup, and automatic save at exit time"/>
+      <description lang="de" text="Spiel-Status beim Beenden automatisch sichern und beim Start wiederherstellen"/>
+      <description lang="pl" text="Automatycznie zapisz stan gry przy wyjściu i przywróć przy starcie"/>
+      <description lang="fr" text="Sauvegarde automatiquement l'état en sortie et le restaure au démarrage"/>
+    </option>
+    <option name="playback" type="file" default="">
+      <description lang="us" text="Playback an input file"/>
+      <description lang="de" text="Wiedergabe einer Eingabe-Datei"/>
+      <description lang="pl" text="Odtwórz plik wejścia"/>
+      <description lang="fr" text="Relire un fichier input"/>
+    </option>
+    <option name="record" type="file" default="">
+      <description lang="us" text="Record an input file"/>
+      <description lang="de" text="Aufnahme einer Eingabe-Datei"/>
+      <description lang="pl" text="Zapisz plik wejścia"/>
+      <description lang="fr" text="Enregistrer un fichier input"/>
+    </option>
+    <option name="mngwrite" type="file" default="">
+      <description lang="us" text="Optional filename to write an MNG movie of the current session"/>
+      <description lang="de" text="Optionaler Dateiname zur Aufnahme eines MNG Films"/>
+      <description lang="pl" text="Plik do zapisu filmu MNG bieżącej sesji"/>
+      <description lang="fr" text="Nom de fichier pour enregistrer les films MNG de la session courante"/>
+    </option>
+    <option name="aviwrite" type="file" default="">
+      <description lang="us" text="Optional filename to write an AVI movie of the current session"/>
+      <description lang="de" text="Optionaler Dateiname zur Aufnahme eines AVI Films"/>
+      <description lang="pl" text="Plik do zapisu filmu AVI bieżącej sesji"/>
+      <description lang="fr" text="Nom de fichier optionnel pour enregistrer une vidéo AVI de la session courante"/>
+    </option>
+    <option name="wavwrite" type="file" default="">
+      <description lang="us" text="Optional filename to write a WAV file of the current session"/>
+      <description lang="de" text="Optionaler Dateiname zur Aufnahme einer WAV Datei"/>
+      <description lang="pl" text="Plik do zapisu pliku WAV bieżącej sesji"/>
+      <description lang="fr" text="Nom de fichier pour enregistrer les sons WAV de la session courante"/>
+    </option>
+    <option name="snapname" type="string" default="%g/%i">
+      <description lang="us" text="Override of the default snapshot/movie naming: %g == gamename, %i == index"/>
+      <description lang="de" text="Namensgebung für Screenshots/Movies ändern: %g == Spielname, %i == Index"/>
+      <description lang="pl" text="Zastąp domyślne nazywanie zrzutów ekranu: %g == nazwa gry, %i == indeks"/>
+      <description lang="fr" text="Modifier le nommage des captures par défaut: %g == Snomderom, %i == index"/>
+    </option>
+    <option name="snapsize" type="string" default="auto">
+      <description lang="us" text="Specify snapshot/movie resolution (WIDTHxHEIGHT) or 'auto' to use minimal size"/>
+      <description lang="de" text="Screenshot/Movie Auflösung festlegen (BREITExHOEHE) oder 'auto' für minimale Größe"/>
+      <description lang="pl" text="Określ rozdzielczość zrzutów ekranu/filmów (SZEROKOŚĆxWYSOKOŚĆ) lub 'auto' aby użyć minimalnego rozmiaru"/>
+      <description lang="fr" text="Spécifier la résolution des captures/vidéos (LARGEURxHAUTEUR) ou 'auto' pour utiliser la taille minimale"/>    
+    </option>
+    <option name="snapview" type="string" default="internal">
+      <description lang="us" text="Specify snapshot/movie view or 'internal' to use internal pixel-aspect views"/>
+      <description lang="de" text="Screenshot/Movie Ansicht festlegen oder 'internal' für interne Ansicht"/>
+      <description lang="pl" text="Określ widok zrzutów ekranu/filmów lub 'internal' aby użyć wewnętrzych widoków zachowujących proporcje pikseli"/>
+      <description lang="fr" text="Spécifier la vue de capture/vidéo ou 'internal' pour utiliser la vue 'interne'"/>    
+    </option>
+  </section>
+  <section name="performance">
+    <description lang="us" text="Performance"/>
+    <description lang="de" text="Performance"/>
+    <description lang="pl" text="Wydajność"/>
+    <description lang="fr" text="Performances"/>
+    <option name="autoframeskip" type="bool" default="false">
+      <description lang="us" text="Enable automatic frameskip selection"/>
+      <description lang="de" text="Automatische Frameskip-Auswahl aktivieren"/>
+      <description lang="pl" text="Aktywuj wybór automatycznego opuszczania klatek"/>
+      <description lang="fr" text="Activer le saut d'image automatique"/>
+    </option>
+    <option name="frameskip" type="int" default="0">
+      <description lang="us" text="Set frameskip to fixed value, 0-12 (autoframeskip must be disabled)"/>
+      <description lang="de" text="Setze Frameskip auf festen Wert, 0-12 (autoframeskip muss abgeschaltet sein)"/>
+      <description lang="pl" text="Ustaw opuszczanie klatek na zadaną wartość, 0-12 (autoframeskip musi być wyłączone)"/>
+      <description lang="fr" text="Saut d'image à valeur fixe, 0 à 12 (autoframeskip doit être désactivé)"/>
+    </option>
+    <option name="seconds_to_run" type="int" default="0">
+      <description lang="us" text="Number of emulated seconds to run before automatically exiting"/>
+      <description lang="de" text="Anzahl emulierter Sekunden bis zum automatischen Beenden"/>
+      <description lang="pl" text="Liczba emulowanych sekund do uruchomienia przed wyłączeniem"/>
+      <description lang="fr" text="Nombre de secondes à jouer avant sortie"/>
+    </option>
+    <option name="throttle" type="bool" default="true">
+      <description lang="us" text="Enable throttling to keep game running in sync with real time"/>
+      <description lang="de" text="Drosselung aktivieren, um mit der Echtzeit zu synchronisieren"/>
+      <description lang="pl" text="Aktywuj dławienie aby utrzymać grę w synchronizacji z czasem rzeczywistym"/>
+      <description lang="fr" text="Activer l'étranglement pour conserver le jeu en synchronisation temps réel"/>
+    </option>
+    <option name="sleep" type="bool" default="true">
+      <description lang="us" text="Enable sleeping, which gives time back to other applications when idle"/>
+      <description lang="de" text="'Schlafen bei Untätigkeit' aktivieren, um weniger Rechenzeit zu verbrauchen"/>
+      <description lang="pl" text="Aktywuj usypianie, które oddaje czas innym aplikacjom podczas bezczynności"/>
+      <description lang="fr" text="Activer la mise en sommeil pendant l'inactivité pour libérer des ressources pour d'autres applications"/>
+    </option>
+    <option name="speed" type="float" default="1.0">
+      <description lang="us" text="Controls the speed of gameplay, relative to realtime; smaller numbers are slower"/>
+      <description lang="de" text="Steuert die Geschwindigkeit des Gameplays, relativ zur Echtzeit; kleinere Werte verlangsamen"/>
+      <description lang="pl" text="Kontroluje szybkość gry względem czasu rzeczywistego; mniejsze liczby spowalniaję"/>
+      <description lang="fr" text="Controle la vitesse de jeu, relative au temps réel; les petites valeurs ralentissent"/>
+    </option>
+    <option name="refreshspeed" type="bool" default="false">
+      <description lang="us" text="Automatically adjusts the speed of gameplay to keep the refresh rate lower than the screen"/>
+      <description lang="de" text="Spielgeschwindigkeit automatisch an die Refresh-Rate der Anzeige anpassen"/>
+      <description lang="pl" text="Automatycznie dostosowuje szybkość gry aby utrzymać szybkość odświeżania poniżej ekranu"/>
+      <description lang="fr" text="Ajuste automatiquement la vitesse de jeu pour conserver le taux de rafraichissement du jeu plus bas que celui de l'écran"/>
+    </option>
+    <option name="multithreading" type="bool" default="false">
+      <description lang="us" text="Enable multithreading; this enables rendering and blitting on a separate thread"/>
+      <description lang="de" text="Multi-Threading aktivieren; Render- und Blit-Operationen werden in eigenen Threads ausgeführt"/>
+      <description lang="pl" text="Włącz wielowątkowość; ta opcja włącza renderowanie i rozmywanie w oddzielnym wątku"/>
+      <description lang="fr" text="Active le multi-tâche; ceci sépare le rendu et le blitting sur deux tâches séparées"/>
+    </option>
+    <option name="sdlvideofps" type="bool" default="false">
+      <description lang="us" text="Show SDL video performance"/>
+      <description lang="de" text="SDL Video Performance anzeigen"/>
+      <description lang="pl" text="Pokaż wydajność obrazu SDL"/>
+      <description lang="fr" text="Affiche les performances video de SDL"/>
+    </option>
+  </section>
+  <section name="rotation">
+    <description lang="us" text="Rotation"/>
+    <description lang="de" text="Rotation"/>
+    <description lang="pl" text="Obrót"/>
+    <description lang="fr" text="Rotation"/>  
+    <option name="rotate" type="bool" default="true">
+      <description lang="us" text="Rotate the game screen according to the game's orientation needs it"/>
+      <description lang="de" text="Bildschirm so drehen, wie das Spiel es benötigt"/>
+      <description lang="pl" text="Obróć ekran gry zgodnie z potrzebami gry"/>
+      <description lang="fr" text="Pivote l'écran en fonction des besoins du jeu"/>
+    </option>
+    <option name="ror" type="bool" default="false">
+      <description lang="us" text="Rotate screen clockwise 90 degrees"/>
+      <description lang="de" text="Bildschirm im Uhrzeigersinn um 90 Grad drehen"/>
+      <description lang="pl" text="Obróć ekran zgodnie z ruchem wskazówek zegara o 90 stopni"/>
+      <description lang="fr" text="Rotation de l'écran de 90 degrés dans le sens des aiguilles d'une montre"/>     
+    </option>
+    <option name="rol" type="bool" default="false">
+      <description lang="us" text="Rotate screen counter-clockwise 90 degrees"/>
+      <description lang="de" text="Bildschirm gegen den Uhrzeigersinn um 90 Grad drehen"/>
+      <description lang="pl" text="Obróć ekran przeciwnie do ruchu wskazówek zegara o 90 stopni"/>
+      <description lang="fr" text="Rotation de l'écran de 90 degrés dans le sens contraire des aiguilles d'une montre"/> 
+    </option>
+    <option name="autoror" type="bool" default="false">
+      <description lang="us" text="Automatically rotate screen clockwise 90 degrees if vertical"/>
+      <description lang="de" text="Bildschirm automatisch im Uhrzeigersinn um 90 Grad drehen falls vertikal"/>
+      <description lang="pl" text="Automatycznie obróć ekran zgodnie z ruchem wskazówek zegara jeśli pionowy"/>
+      <description lang="fr" text="# Rotation automatique de l'écran dans le sens des aiguilles d'une montre"/>
+    </option>
+    <option name="autorol" type="bool" default="false">
+      <description lang="us" text="Automatically rotate screen counterclockwise 90 degrees if vertical"/>
+      <description lang="de" text="Bildschirm automatisch gegen den Uhrzeigersinn um 90 Grad drehen falls vertikal"/>
+      <description lang="pl" text="Automatycznie obróć ekran przeciwnie do ruchu wskazówek zegara jeśli pionowy"/>
+      <description lang="fr" text="# Rotation automatique de l'écran dans le sens contraire des aiguilles d'une montre"/>
+    </option>
+    <option name="flipx" type="bool" default="false">
+      <description lang="us" text="Flip screen left-right"/>
+      <description lang="de" text="Bildschirm horizontal umkehren"/>
+      <description lang="pl" text="Odbij ekran w poziomie"/>
+      <description lang="fr" text="Inverse l'image horizontalement"/>      
+    </option>
+    <option name="flipy" type="bool" default="false">
+      <description lang="us" text="Flip screen upside-down"/>
+      <description lang="de" text="Bildschirm vertikal umkehren"/>
+      <description lang="pl" text="Odbij ekran w pionie"/>
+      <description lang="fr" text="Inverse l'image verticalement"/>  
+    </option>
+  </section>
+  <section name="artwork">
+    <description lang="us" text="Artwork"/>
+    <description lang="de" text="Kunstwerke"/>
+    <description lang="pl" text="Ilustracje"/>
+    <description lang="fr" text="Illustrations Artwork"/>
+    <option name="artwork_crop" type="bool" default="false">
+      <description lang="us" text="Crop artwork to game screen size"/>
+      <description lang="de" text="Kunstwerke auf Spiel-Bildschirmgröße begrenzen"/>
+      <description lang="pl" text="Przytnij ilustracje do rozmiaru ekranu gry"/>
+      <description lang="fr" text="Réduit l'artwork en fonction de la dimension de l'écran du jeu"/>
+    </option>
+    <option name="use_backdrops" type="bool" default="true">
+      <description lang="us" text="Enable backdrops if artwork is enabled and available"/>
+      <description lang="de" text="Hintergründe anzeigen, falls vorhanden und aktiviert"/>
+      <description lang="pl" text="Aktywuj tła, kiedy ilustracje są dostępne i aktywne"/>
+      <description lang="fr" text="Utilise les arrières plans si l'artwork est activé et disponible"/>      
+    </option>
+    <option name="use_overlays" type="bool" default="true">
+      <description lang="us" text="Enable overlays if artwork is enabled and available"/>
+      <description lang="de" text="Überlagerungen anzeigen, falls vorhanden und aktiviert"/>
+      <description lang="pl" text="Aktywuj nakładki, kiedy ilustracje są dostępne i aktywne"/>
+      <description lang="fr" text="Utilise l'affichage de calques en transparence si l'artwork est activé et disponible"/>
+    </option>
+    <option name="use_bezels" type="bool" default="true">
+      <description lang="us" text="Enable bezels if artwork is enabled and available"/>
+      <description lang="de" text="Einfassungen anzeigen, falls vorhanden und aktiviert"/>
+      <description lang="pl" text="Aktywuj ramki, kiedy ilustracje są dostępne i aktywne"/>
+      <description lang="fr" text="Utilise l'affichage des bezels si l'artwork est activé et disponible"/>     
+    </option>
+  </section>
+  <section name="game_screen">
+    <description lang="us" text="Game screen"/>
+    <description lang="de" text="Spiel-Bildschirm"/>
+    <description lang="pl" text="Ekran gry"/>
+    <description lang="fr" text="Ecran de jeu"/>  
+    <option name="brightness" type="float" default="1.0">
+      <description lang="us" text="Default game screen brightness correction"/>
+      <description lang="de" text="Voreingestellte Korrektur der Helligkeit"/>
+      <description lang="pl" text="Domyślna poprawka jasności ekranu gry"/>
+      <description lang="fr" text="Luminosité de l'écran par défaut"/>  
+    </option>
+    <option name="contrast" type="float" default="1.0">
+      <description lang="us" text="Default game screen contrast correction"/>
+      <description lang="de" text="Voreingestellte Korrektur des Kontrasts"/>
+      <description lang="pl" text="Domyślna poprawka kontrastu ekranu gry"/>
+      <description lang="fr" text="Contraste de l'écran par défaut"/> 
+    </option>
+    <option name="gamma" type="float" default="1.0">
+      <description lang="us" text="Default game screen gamma correction"/>
+      <description lang="de" text="Voreingestellte Gamma-Korrektur"/>
+      <description lang="pl" text="Domyślna poprawka gammy ekranu gry"/>
+      <description lang="fr" text="Correction du gamma de l'écran par défaut"/> 
+    </option>
+    <option name="pause_brightness" type="float" default="0.65">
+      <description lang="us" text="Amount to scale the screen brightness when paused"/>
+      <description lang="de" text="Skalierung der Helligkeit während Pausen"/>
+      <description lang="pl" text="Skalowanie jasności ekranu podczas pauzy"/>
+      <description lang="fr" text="Luminosité de l'écran en mode pause"/> 
+    </option>
+  </section>
+  <section name="vector_rendering">
+    <description lang="us" text="Vector Rendering"/>
+    <description lang="de" text="Vektor-Rendern"/>
+    <description lang="pl" text="Renderowanie grafiki wektorowej"/>
+    <description lang="fr" text="Rendu Vectoriel"/> 
+    <option name="antialias" type="bool" default="true">
+      <description lang="us" text="Use antialiasing when drawing vectors"/>
+      <description lang="de" text="Anti-Aliasing bei Vektorgrafik verwenden"/>
+      <description lang="pl" text="Użyj antyaliasingu podczas rysowania wektorów"/>
+      <description lang="fr" text="Active l'anti-alias pour le dessin des vecteurs"/> 
+    </option>
+    <option name="beam" type="float" default="1.0">
+      <description lang="us" text="Set vector beam width"/>
+      <description lang="de" text="Strahlen-Breite der Vektoren"/>
+      <description lang="pl" text="Ustaw rozmiar wiązki wektora"/>
+      <description lang="fr" text="Sélectionner la taille du rayon"/>
+    </option>
+    <option name="flicker" type="float" default="0.0">
+      <description lang="us" text="Set vector flicker effect"/>
+      <description lang="de" text="Wert für Vektor Flacker-Effekt"/>
+      <description lang="pl" text="Ustaw efekt migotania wektora"/>
+      <description lang="fr" text="Sélectionner l'éclat des vecteurs"/>
+    </option>
+  </section>
+  <section name="sound">
+    <description lang="us" text="Sound"/>
+    <description lang="de" text="Sound"/>
+    <description lang="pl" text="Dźwięk"/>
+    <description lang="fr" text="Son"/>
+    <option name="sound" type="bool" default="true">
+      <description lang="us" text="Enable sound output"/>
+      <description lang="de" text="Sound-Ausgabe aktivieren"/>
+      <description lang="pl" text="Włącz wyjście dźwięku"/>
+      <description lang="fr" text="Active les sons"/>
+    </option>
+    <option name="samplerate" type="int" default="48000">
+      <description lang="us" text="Sound output sample rate"/>
+      <description lang="de" text="Sampling-Rate für Sound-Ausgabe"/>
+      <description lang="pl" text="Częstotliwość próbkowania wyjścia dźwięku"/>
+      <description lang="fr" text="Fréquence d'échantillonnage"/>
+    </option>
+    <option name="samples" type="bool" default="true">
+      <description lang="us" text="Enable the use of external samples if available"/>
+      <description lang="de" text="Sample-Verwendung aktivieren, falls verfügbar"/>
+      <description lang="pl" text="Włącz użycie zewnętrznych sampli, jeśli dostępne"/>
+      <description lang="fr" text="Autorise la lecture des samples si disponibles"/>
+    </option>
+    <option name="volume" type="int" default="0">
+      <description lang="us" text="Sound volume in decibels (-32 min, 0 max)"/>
+      <description lang="de" text="Lautstärke in Dezibel (-32 min, 0 max)"/>
+      <description lang="pl" text="Siła głosu w decybelach (-32 min, 0 max)"/>
+      <description lang="fr" text="Volume sonore en décibels (-32 min, 0 max)"/>
+    </option>
+    <option name="audio_latency" type="int" default="3">
+      <description lang="us" text="Set audio latency (increase to reduce glitches, decrease for responsiveness)"/>
+      <description lang="de" text="Audio-Latenz einstellen (erhöhen zur Reduktion von Störungen, verringern zur Verbesserung des Antwortverhaltens)"/>
+      <description lang="pl" text="Ustaw zwłokę dźwięku (zwiększ aby zmniejszyć trzaski, zmniejsz dla szybszej odpowiedzi)"/>
+      <description lang="fr" text="# Latence Audio (augmenter la valeur pour réduire les problèmes de son)"/>
+    </option>
+  </section>
+  <section name="input_devices">
+    <description lang="us" text="Input devices"/>
+    <description lang="de" text="Eingabegeräte"/>
+    <description lang="pl" text="Urządzenia wejścia"/>
+    <description lang="fr" text="Périphériques d'entrée"/>
+    <option name="coin_lockout" type="bool" default="true">
+      <description lang="us" text="Enable coin lockouts to actually lock out coins"/>
+      <description lang="pl" text="Włącz odrzucanie monet przez przeznaczone do tego mechanizmy"/>
+      <description lang="de" text="Münzsperre aktivieren"/>
+      <description lang="fr" text="Active le blocage des pièces (crédits)"/>
+    </option>
+    <option name="ctrlr" type="string" default="">
+      <description lang="us" text="Preconfigure for specified controller"/>
+      <description lang="de" text="Vorkonfiguration für angegebenen Controller"/>
+      <description lang="pl" text="Prekonfiguracja dla podanego kontrolera"/>
+      <description lang="fr" text="Pré-configuration pour un contrôleur spécifié"/>
+    </option>
+    <option name="mouse" type="bool" default="false">
+      <description lang="us" text="Enable mouse input"/>
+      <description lang="de" text="Maus-Eingabe aktivieren"/>
+      <description lang="pl" text="Włącz wejście myszy"/>
+      <description lang="fr" text="Autorise l'utilisation de la souris"/>
+    </option>
+    <option name="joystick" type="bool" default="true">
+      <description lang="us" text="Enable joystick input"/>
+      <description lang="de" text="Joystick-Eingabe aktivieren"/>
+      <description lang="pl" text="Włącz wejście dżojstika"/>
+      <description lang="fr" text="Autorise l'utilisation du joystick"/>
+    </option>
+    <option name="lightgun" type="bool" default="false">
+      <description lang="us" text="Enable lightgun input"/>
+      <description lang="de" text="Lightgun-Eingabe aktivieren"/>
+      <description lang="pl" text="Włącz wejście pistoletu świetlnego"/>
+      <description lang="fr" text="Autorise l'utilisation du pisolet a visée infra-rouge"/>
+    </option>
+    <option name="multikeyboard" type="bool" default="false">
+      <description lang="us" text="Enable separate input from each keyboard device (if present)"/>
+      <description lang="de" text="Eingabe von mehreren Tastaturen aktivieren (falls vorhanden)"/>
+      <description lang="pl" text="Włącz oddzielne wejście z każdej klawiatury (jeśli obecne)"/>
+      <description lang="fr" text="Autorise des entrées séparées pour chaque clavier (si présents)"/>     
+    </option>
+    <option name="multimouse" type="bool" default="false">
+      <description lang="us" text="Enable separate input from each mouse device (if present)"/>
+      <description lang="de" text="Eingabe von mehreren Mäusen aktivieren (falls vorhanden)"/>
+      <description lang="pl" text="Włącz oddzielne wejście z każdej myszy (jeśli obecne)"/>
+      <description lang="fr" text="Autorise des entrées séparées pour chaque souris (si présentes)"/>         
+    </option>
+    <option name="steadykey" type="bool" default="false">
+      <description lang="us" text="Enable steadykey support"/>
+      <description lang="de" text="Steadykey-Support aktivieren"/>
+      <description lang="pl" text="Włącz wsparcie dla klawiszy trwałych"/>
+      <description lang="fr" text="Autorise le support des steadykeys"/>       
+    </option>
+    <option name="offscreen_reload" type="bool" default="false">
+      <description lang="us" text="Convert lightgun button 2 into offscreen reload"/>
+      <description lang="de" text="Lightgun Button 2 zu 'Offscreen Reload' konvertieren"/>
+      <description lang="pl" text="Skonwertuj 2 przycisk pistoletu na przeładowanie 'poza ekranem'"/>
+      <description lang="fr" text="Convertir le bouton 2 du pisolet a visée infra-rouge en 'recharge hors écran'"/>      
+    </option>
+    <option name="joystick_map" type="file" default="auto">
+      <description lang="us" text="Explicit joystick map, or 'auto' to auto-select"/>
+      <description lang="de" text="Explizite Joystick-Map oder 'auto' für Auto-Selektion"/>
+      <description lang="pl" text="Sprecyzowana mapa komend dżojstika, lub 'auto' dla wyboru automatycznego"/>
+      <description lang="fr" text="Choisir l'assignation des commandes du joystick, sinon 'auto' pour choisir automatiquement"/>      
+    </option>
+    <option name="joystick_deadzone" type="float" default="0.3">
+      <description lang="us" text="Center deadzone range for joystick where change is ignored (0.0 center, 1.0 end)"/>
+      <description lang="de" text="Joystick-Deadzone für die Änderungen ignoriert werden (0.0 = Zentrum, 1.0 = Ende)"/>
+      <description lang="pl" text="Środkowa martwa strefa dla dżojstika, dla której zmiany są ignorowane (0.0 środek, 1.0 koniec)"/>
+      <description lang="fr" text="Choisir la zone morte du joystick sur laquelle les contrôles sont ignorés (0.0 centre, 1.0 fin)"/>       
+    </option>
+    <option name="joystick_saturation" type="float" default="0.85">
+      <description lang="us" text="End of axis saturation range for joystick where change is ignored (0.0 center, 1.0 end)"/>
+      <description lang="de" text="Ende der Achsen-Saturierung ab der Änderungen ignoriert werden (0.0 = Zentrum, 1.0 = Ende)"/>
+      <description lang="pl" text="Nasycenie końca osi dżojstika, dla którego zmiany są ignorowane (0.0 środek, 1.0 koniec)"/>
+      <description lang="fr" text="Choisir le plafond des axes du joystick pour lequel les contrôles sont ignorés (0.0 centre, 1.0 fin)"/>
+    </option>
+  </section>
+  <section name="misc">
+    <description lang="us" text="Miscellaneous"/>
+    <description lang="de" text="Verschiedenes"/>
+    <description lang="pl" text="Różne"/>
+    <description lang="fr" text="Divers"/>
+    <option name="bios" type="string" default="">
+      <description lang="us" text="Select the system BIOS to use"/>
+      <description lang="de" text="Zu verwendendes System BIOS auswählen"/>
+      <description lang="pl" text="Wybierz BIOS systemowy do użytku"/>
+      <description lang="fr" text="Sélection du BIOS Système à utiliser"/>     
+    </option>
+    <option name="cheat" type="bool" default="false">
+      <description lang="us" text="Enable cheat subsystem"/>
+      <description lang="de" text="Aktiviere Cheat-Subsystem"/>
+      <description lang="pl" text="Włącz podsystem ułatwień"/>
+      <description lang="fr" text="Autorise l'utilisation de cheat.dat"/>
+    </option>
+    <option name="skip_gameinfo" type="bool" default="false">
+      <description lang="us" text="Skip displaying the information screen at startup"/>
+      <description lang="de" text="Anzeige des Gameinfo-Screens beim Start ausschalten"/>
+      <description lang="pl" text="Pomiń wyświetlanie ekranu informacyjnego przy uruchomieniu"/>
+      <description lang="fr" text="Passer l'affichage du menu d'informations au lancement d'un jeu"/>     
+    </option>
+  </section>
+  <section name="configuration">
+    <description lang="us" text="Configuration"/>
+    <description lang="de" text="Konfiguration"/>
+    <description lang="pl" text="Konfiguracja"/>
+    <description lang="fr" text="Configuration"/>
+    <option name="readconfig" type="bool" default="true">
+      <description lang="us" text="Enable loading of configuration files"/>
+      <description lang="de" text="Laden der Konfigurationsdateien aktivieren"/>
+      <description lang="pl" text="Włącz ładowanie plików konfiguracyjnych"/>
+      <description lang="fr" text="Active le chargement des fichiers de configuration"/>
+    </option>
+  </section>
+  <section name="debugging">
+    <description lang="us" text="Debugging"/>
+    <description lang="de" text="Debugging"/>
+    <description lang="pl" text="Debugowanie"/>
+    <description lang="fr" text="Débogage"/>
+    <option name="log" type="bool" default="false">
+      <description lang="us" text="Generate an error.log file"/>
+      <description lang="de" text="Erstelle error.log Datei"/>
+      <description lang="pl" text="Generuj plik error.log"/>
+      <description lang="fr" text="Générer un fichier error.log"/>
+    </option>
+    <option name="oslog" type="bool" default="false">
+      <description lang="us" text="Output error.log data to the system debugger"/>
+      <description lang="de" text="Error-Log Output an System Debugger ausgeben"/>
+      <description lang="pl" text="Wypisz dane error.log do debugera systemowego"/>
+      <description lang="fr" text="Envoyer error.log vers le déboggeur système"/>
+    </option>
+    <option name="verbose" type="bool" default="false">
+      <description lang="us" text="Display additional diagnostic information"/>
+      <description lang="de" text="Mehr Diagnose-Informationen ausgeben"/>
+      <description lang="pl" text="Wyświetl dodatkowe informacje diagnostyczne"/>
+      <description lang="fr" text="Affiche des informations de diagnostic supplémentaires"/>     
+    </option>
+    <option name="update_in_pause" type="bool" default="false">
+      <description lang="us" text="Keep calling video updates while in pause"/>
+      <description lang="de" text="Video-Updates im Pause-Modus"/>
+      <description lang="pl" text="Kontynuuj wywoływanie aktualizacji obrazu podczas pauzy"/>
+      <description lang="fr" text="Continuer d'afficher la video pendant la pause"/>     
+    </option>
+    <option name="debug" type="bool" default="false">
+      <description lang="us" text="Enable/disable debugger"/>
+      <description lang="de" text="Debugger aktivieren/deaktivieren"/>
+      <description lang="pl" text="Włącz/Wyłącz debugger"/>
+      <description lang="fr" text="Active/désactive le debogger"/>
+    </option>
+    <option name="debugscript" type="file" default="">
+      <description lang="us" text="Script for debugger"/>
+      <description lang="de" text="Skript für Debugger"/>
+      <description lang="pl" text="Skrypt dla debuggera"/>
+      <description lang="fr" text="Script pour le debogger"/>
+    </option>
+  </section>
+  <section name="video">
+    <description lang="us" text="Video"/>
+    <description lang="de" text="Video"/>
+    <description lang="pl" text="Obraz"/>
+    <description lang="fr" text="Vidéo"/>   
+    <option name="video" type="string" default="soft">
+      <description lang="us" text="Video output method: none, soft or opengl"/>
+      <description lang="de" text="Methode zur Video-Ausgabe: none, soft oder opengl"/>
+      <description lang="pl" text="Metoda wyjścia obrazu: none, soft lub opengl"/>
+      <description lang="fr" text="Méthode de sortie vidéo: none, soft ou opengl"/>
+    </option>
+    <option name="numscreens" type="int" default="1">
+      <description lang="us" text="Number of screens to create; SDLMAME only supports 1 screen at this time"/>
+      <description lang="de" text="Anzahl zu erzeugender Screens; SDLMAME unterstützt derzeit nur 1 Screen"/>
+      <description lang="pl" text="Liczba ekranów do utworzenia; SDLMAME wspiera w chwili obecnej jedynie 1 ekran"/>
+      <description lang="fr" text="Nombre d'écran à créer; SDLMAME ne supporte actuellement qu'un seul écran"/>
+    </option>
+    <option name="window" type="bool" default="false">
+      <description lang="us" text="Enable window mode; otherwise, fullscreen mode is assumed"/>
+      <description lang="de" text="Fenster-Modus auswählen; andernfalls wird Vollbild-Modus angenommen"/>
+      <description lang="pl" text="Włącz tryb wyświetlania w oknie, w przeciwnym wypadku zakładany jest tryb pełnoekranowy"/>
+      <description lang="fr" text="Active le mode fenêtré; Sinon, le mode plein écran est utilisé"/>      
+    </option>
+    <option name="maximize" type="bool" default="true">
+      <description lang="us" text="Default to maximized windows; otherwise, windows will be minimized"/>
+      <description lang="de" text="Fenster standardmäßig maximieren; andernfalls werden Fenster minimiert"/>
+      <description lang="pl" text="Okna domyślnie zmaksymalizowane; w przeciwnym wypadku będą zminimalizowane"/>
+      <description lang="fr" text="Maximiser la fenêtre; sinon la fenêtre sera minimisée"/>
+    </option>
+    <option name="keepaspect" type="bool" default="true">
+      <description lang="us" text="Constrain to the proper aspect ratio"/>
+      <description lang="de" text="Seitenverhältnis beibehalten"/>
+      <description lang="pl" text="Wymuś prawidłową proporcję obrazu"/>
+      <description lang="fr" text="Utiliser des proportions d'affichage en rapport à l'aspect de l'original"/>
+    </option>
+    <option name="unevenstretch" type="bool" default="true">
+      <description lang="us" text="Allow non-integer stretch factors"/>
+      <description lang="de" text="Nicht-ganzzahlige Skalierungsfaktoren zulassen"/>
+      <description lang="pl" text="Pozwól na niecałkowite współczynniki rozciągnięcia"/>
+      <description lang="fr" text="Autorise un rapport de valeur non-intègre"/>      
+    </option>
+    <option name="effect" type="file" default="none">
+      <description lang="us" text="Name of a PNG file to use for visual effects, or 'none'"/>
+      <description lang="de" text="Name einer PNG Datei für visuelle Effekte, oder 'none'"/>
+      <description lang="pl" text="Nazwa pliku PNG do użycia dla efektów wizualnych, albo 'none'"/>
+      <description lang="fr" text="Nom du fichier PNG à utiliser pour effets visuels, sinon 'none'"/>
+    </option>
+    <option name="centerh" type="bool" default="true">
+      <description lang="us" text="Center horizontally within the view area"/>
+      <description lang="de" text="Horizontal skalieren innerhalb des Sichtbereichs"/>
+      <description lang="pl" text="Wyśrodkuj w poziomie w obszarze widoku"/>
+      <description lang="fr" text="Centrer horizontalement en fonction de l'aire d'affichage"/>
+    </option>
+    <option name="centerv" type="bool" default="true">
+      <description lang="us" text="Center vertically within the view area"/>
+      <description lang="de" text="Vertikal skalieren innerhalb des Sichtbereichs"/>
+      <description lang="pl" text="Wyśrodkuj w pionie w obszarze widoku"/>
+      <description lang="fr" text="Centrer verticalement en fonction de l'aire d'affichage"/>
+    </option>
+    <option name="waitvsync" type="bool" default="false">
+      <description lang="us" text="Wait for the start of VBLANK before flipping screens; reduces tearing effects"/>
+      <description lang="de" text="Auf V-Sync warten, bevor die Bildschirme getauscht werden; reduziert Flacker-Effekte"/>
+      <description lang="pl" text="Czekaj na synchronizację pionową przed przerzucaniem ekranów; zmniejsza efekty rwania"/>
+      <description lang="fr" text="Attendre la synchronisation verticale avant de passer à l'image suivante; réduit les effets de saccade"/>
+    </option>
+    <option name="scalemode" type="string" default="none">
+      <description lang="us" text="Scale mode: none, async, yv12, yuy2, yv12x2, yuy2x2 (-video soft only)"/>
+      <description lang="de" text="Scalierungs-Modus: none, async, yv12, yuy2, yv12x2, yuy2x2 (nur mit -video soft)"/>
+      <description lang="pl" text="Tryb skalowania: none, async, yv12, yuy2, yv12x2, yuy2x2 (tylko z -video soft)"/>
+      <description lang="fr" text="Mode d'agrandissement: none, async, yv12, yuy2, yv12x2, yuy2x2 (-video soft uniquement)"/>
+    </option>
+  </section>
+  <section name="opengl">
+    <description lang="us" text="OpenGL"/>
+    <description lang="de" text="OpenGL"/>
+    <description lang="pl" text="OpenGL"/>
+    <description lang="fr" text="OpenGL"/>
+    <option name="filter" type="bool" default="true">
+      <description lang="us" text="Enable bilinear filtering on screen output"/>
+      <description lang="de" text="Bilineare Filterung aktivieren"/>
+      <description lang="pl" text="Włącz filtrowanie dwuliniowe na wyjściu ekranu"/>
+      <description lang="fr" text="Active le filtrage bi-linéaire"/>
+    </option>
+    <option name="prescale" type="int" default="1">
+      <description lang="us" text="Scale screen rendering by this amount in software"/>
+      <description lang="de" text="Bildschirm-Skalierung um diesen Betrag (in Software)"/>
+      <description lang="pl" text="Skaluj renderowanie ekranu tyle razy (programowo)"/>
+      <description lang="fr" text="Agrandir l'affichage par ce rapport (en software)"/>
+    </option>
+    <option name="gl_forcepow2texture" type="bool" default="false">
+      <description lang="us" text="Force power of two textures (default off)"/>
+      <description lang="de" text="'Power of 2' Texturen forcieren (Standard: aus)"/>
+      <description lang="pl" text="Wymuś tekstury będące potęgo liczby dwa (domyślnie wyłączone)"/>
+      <description lang="fr" text="Force le rendu de textures 'power of two' (défaut non)"/>
+    </option>
+    <option name="gl_notexturerect" type="bool" default="false">
+      <description lang="us" text="Don't use OpenGL GL_ARB_texture_rectangle (default on)"/>
+      <description lang="de" text="OpenGL GL_ARB_texture_rectangle nicht benutzen (Standard: an)"/>
+      <description lang="pl" text="Nie używaj GL_ARB_texture_rectangle (domyślnie włączone)"/>
+      <description lang="fr" text="Ne pas utiliser GL_ARB_texture_rectangle (défaut oui)"/>
+    </option>
+    <option name="gl_vbo" type="bool" default="true">
+      <description lang="us" text="Enable OpenGL VBO, if available (default on)"/>
+      <description lang="de" text="OpenGL VBO aktivieren, falls verfügbar (Standard: an)"/>
+      <description lang="pl" text="Włącz OpenGL VBO, jeśli dostępne (domyślnie włączone)"/>
+      <description lang="fr" text="Active OpenGL VBO, si disponible (défaut oui)"/>
+    </option>
+    <option name="gl_pbo" type="bool" default="true">
+      <description lang="us" text="Enable OpenGL PBO, if available (default on)"/>
+      <description lang="de" text="OpenGL PBO aktivieren, falls verfügbar (Standard: an)"/>
+      <description lang="pl" text="Włącz OpenGL PBO, jeśli dostępne (domyślnie włączone)"/>
+      <description lang="fr" text="Active OpenGL PBO, si disponible (défaut oui)"/>
+    </option>
+    <option name="gl_glsl" type="bool" default="false">
+      <description lang="us" text="Enable OpenGL GLSL, if available (default off)"/>
+      <description lang="de" text="OpenGL GLSL aktivieren, falls verfügbar (Standard: aus)"/>
+      <description lang="pl" text="Włącz OpenGL GLSL, jeśli dostępne (domyślnie wyłączone)"/>
+      <description lang="fr" text="Active OpenGL GLSL, si disponible (défaut oui)"/>
+    </option>
+    <option name="gl_glsl_filter" type="int" default="1">
+      <description lang="us" text="Enable OpenGL GLSL filtering instead of FF filtering: 0-plain, 1-bilinear (default 1)"/>
+      <description lang="de" text="OpenGL GLSL Filterung anstelle der FF Filterung aktivieren: 0-plain, 1-bilinear (Standard: 1)"/>
+      <description lang="pl" text="Włącz filtrowanie OpenGL GLSL zamiast filtrowania FF: 0-proste, 1-dwuliniowe (domyślne: 1)"/>
+      <description lang="fr" text="Active OpenGL GLSL plutôt que filtrage FF: 0-normal 1-bi-linéaire (défaut: 1)"/>
+    </option>
+    <option name="gl_glsl_vid_attr" type="bool" default="true">
+      <description lang="us" text="Enable OpenGL GLSL handling of brightness and contrast. Better RGB game performance for free (default on)"/>
+      <description lang="de" text="OpenGL GLSL Verwaltung von Helligkeit und Kontrast: bessere RGB Spiel-Performance gratis (Standard: an)"/>
+      <description lang="pl" text="Włącz obsługę jasności i kontrastu przez OpenGL GLSL. Lepsza wydajność RGB za darmo (domyślnie włączone)"/>
+      <description lang="fr" text="Active OpenGL GLSL pour le contrôle de luminosité et contraste. Meilleurs perfs RGB gratis (défaut: oui)"/>
+    </option>
+    <option name="glsl_shader_mame0" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 0"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 0"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 0"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 0"/>
+    </option>
+    <option name="glsl_shader_mame1" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 1"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 1"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 1"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 1"/>
+    </option>
+    <option name="glsl_shader_mame2" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 2"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 2"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 2"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 2"/>
+    </option>
+    <option name="glsl_shader_mame3" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 3"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 3"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 3"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 3"/>
+    </option>
+    <option name="glsl_shader_mame4" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 4"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 4"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 4"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 4"/>
+    </option>
+    <option name="glsl_shader_mame5" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 5"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 5"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 5"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 5"/>
+    </option>
+    <option name="glsl_shader_mame6" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 6"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 6"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 6"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 6"/>
+    </option>
+    <option name="glsl_shader_mame7" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 7"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 7"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 7"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 7"/>
+    </option>
+    <option name="glsl_shader_mame8" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 8"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 8"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 8"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 8"/>
+    </option>
+    <option name="glsl_shader_mame9" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 9"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 9"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 9"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 9"/>
+    </option>
+    <option name="glsl_shader_screen0" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 0"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 0"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 0"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 0"/>
+    </option>
+    <option name="glsl_shader_screen1" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 1"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 1"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 1"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 1"/>
+    </option>
+    <option name="glsl_shader_screen2" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 2"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 2"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 2"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 2"/>
+    </option>
+    <option name="glsl_shader_screen3" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 3"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 3"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 3"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 3"/>
+    </option>
+    <option name="glsl_shader_screen4" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 4"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 4"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 4"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 4"/>
+    </option>
+    <option name="glsl_shader_screen5" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 5"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 5"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 5"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 5"/>
+    </option>
+    <option name="glsl_shader_screen6" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 6"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 6"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 6"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 6"/>
+    </option>
+    <option name="glsl_shader_screen7" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 7"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 7"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 7"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 7"/>
+    </option>
+    <option name="glsl_shader_screen8" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 8"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 8"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 8"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 8"/>
+    </option>
+    <option name="glsl_shader_screen9" type="string" default="none">
+      <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 9"/>
+      <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 9"/>
+      <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 9"/>
+      <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 9"/>
+    </option>
+  </section>
+  <section name="per_window_video">
+    <description lang="us" text="Per-Window Video"/>
+    <description lang="de" text="Per-Fenster Video"/>
+    <description lang="pl" text="Obraz dla danego ekranu"/>
+    <description lang="fr" text="Fenêtre Vidéo"/>
+    <option name="screen" type="string" default="auto">
+      <description lang="us" text="Explicit name of the screen; 'auto' will try a best guess"/>
+      <description lang="de" text="Expliziter Name des Screens; 'auto' erzeugt ihn automatisch"/>
+      <description lang="pl" text="Sprecyzowana nazwa ekranu; 'auto' spróbuje najlepszego odgadnięcia"/>
+      <description lang="fr" text="Nom explicite de l'écran; 'auto' essaiera le plus approprié"/>
+    </option>
+    <option name="aspect" type="string" default="auto">
+      <description lang="us" text="Aspect ratio for all screens; 'auto' will try a best guess"/>
+      <description lang="de" text="Seitenverhältnis aller Screens; 'auto' erzeugt es automatisch"/>
+      <description lang="pl" text="Proporcja obrazu dla wszystkich ekranów; 'auto' spróbuje najlepszego odgadnięcia"/>
+      <description lang="fr" text="Ratio d'aspect des écrans; 'auto' essaiera le plus approprié"/>
+    </option>
+    <option name="resolution" type="string" default="auto">
+      <description lang="us" text="Preferred resolution for all screens; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
+      <description lang="de" text="Vorgezogene Auflösung aller Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
+      <description lang="pl" text="Preferowana rozdzielczość dla wszystkich ekranów; format to SZEROKOŚĆXWYSOKOŚĆ[@ODŚWIEŻANIE] lub 'auto'"/>
+      <description lang="fr" text="Résolution d'écran préférée (tous les écrans); le format est LARGEURxHAUTEUR[@RAFRAICHISSEMENT] sinon 'auto'"/>
+    </option>
+    <option name="view" type="string" default="auto">
+      <description lang="us" text="Preferred view for all screens"/>
+      <description lang="de" text="Vorgezogene Ansicht aller Screens"/>
+      <description lang="pl" text="Preferowany widok dla wszystkich ekranów"/>
+      <description lang="fr" text="Vue préférée pour tous les écrans"/>
+    </option>
+    <option name="screen0" type="string" default="auto">
+      <description lang="us" text="Explicit name of screen 0; 'auto' will try a best guess"/>
+      <description lang="de" text="Expliziter Name des 0. Screens; 'auto' erzeugt ihn automatisch"/>
+      <description lang="pl" text="Sprecyzowana nazwa ekranu 0; 'auto' spróbuje najlepszego odgadnięcia"/>
+      <description lang="fr" text="Nom explicite de l'écran 0; 'auto' essaiera le plus approprié"/>
+    </option>
+    <option name="aspect0" type="string" default="auto">
+      <description lang="us" text="Aspect ratio of screen 0; 'auto' will try a best guess"/>
+      <description lang="de" text="Seitenverhältnis des 0. Screens; 'auto' erzeugt es automatisch"/>
+      <description lang="pl" text="Proporcja obrazu dla ekranu 0; 'auto' spróbuje najlepszego odgadnięcia"/>
+      <description lang="fr" text="Ratio d'aspect pour l'écran 0; 'auto' essaiera le plus approprié"/>
+    </option>
+    <option name="resolution0" type="string" default="auto">
+      <description lang="us" text="Preferred resolution for screen 0; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
+      <description lang="de" text="Vorgezogene Auflösung des 0. Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
+      <description lang="pl" text="Preferowana rozdzielczość dla ekranu 0; format to SZEROKOŚĆXWYSOKOŚĆ[@ODŚWIEŻANIE] lub 'auto'"/>
+      <description lang="fr" text="Résolution préférée pour l'écran 0; le format est LARGEURxHAUTEUR[@RAFRAICHISSEMENT] sinon 'auto'"/>
+    </option>
+    <option name="view0" type="string" default="auto">
+      <description lang="us" text="Preferred view for screen 0"/>
+      <description lang="de" text="Vorgezogene Ansicht des 0. Screens"/>
+      <description lang="pl" text="Preferowany widok dla ekranu 0"/>
+      <description lang="fr" text="Vue préférée pour l'écran 0"/>
+    </option>
+    <option name="screen1" type="string" default="auto">
+      <description lang="us" text="Explicit name of screen 1; 'auto' will try a best guess"/>
+      <description lang="de" text="Expliziter Name des 1. Screens; 'auto' erzeugt ihn automatisch"/>
+      <description lang="pl" text="Sprecyzowana nazwa ekranu 1; 'auto' spróbuje najlepszego odgadnięcia"/>
+      <description lang="fr" text="Nom explicite de l'écran 1; 'auto' essaiera le plus approprié"/>
+    </option>
+    <option name="aspect1" type="string" default="auto">
+      <description lang="us" text="Aspect ratio of screen 1; 'auto' will try a best guess"/>
+      <description lang="de" text="Seitenverhältnis des 1. Screens; 'auto' erzeugt es automatisch"/>
+      <description lang="pl" text="Proporcja obrazu dla ekranu 1; 'auto' spróbuje najlepszego odgadnięcia"/>
+      <description lang="fr" text="Ratio d'aspect pour l'écran 1; 'auto' essaiera le plus approprié"/>
+    </option>
+    <option name="resolution1" type="string" default="auto">
+      <description lang="us" text="Preferred resolution for screen 1; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
+      <description lang="de" text="Vorgezogene Auflösung des 1. Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
+      <description lang="pl" text="Preferowana rozdzielczość dla ekranu 1; format to SZEROKOŚĆXWYSOKOŚĆ[@ODŚWIEŻANIE] lub 'auto'"/>
+      <description lang="fr" text="Résolution préférée pour l'écran 1; le format est LARGEURxHAUTEUR[@RAFRAICHISSEMENT] sinon 'auto'"/>
+    </option>
+    <option name="view1" type="string" default="auto">
+      <description lang="us" text="Preferred view for screen 1"/>
+      <description lang="de" text="Vorgezogene Ansicht des 1. Screens"/>
+      <description lang="pl" text="Preferowany widok dla ekranu 1"/>
+      <description lang="fr" text="Vue préférée pour l'écran 1"/>
+    </option>
+    <option name="screen2" type="string" default="auto">
+      <description lang="us" text="Explicit name of screen 2; 'auto' will try a best guess"/>
+      <description lang="de" text="Expliziter Name des 2. Screens; 'auto' erzeugt ihn automatisch"/>
+      <description lang="pl" text="Sprecyzowana nazwa ekranu 2; 'auto' spróbuje najlepszego odgadnięcia"/>
+      <description lang="fr" text="Nom explicite de l'écran 2; 'auto' essaiera le plus approprié"/>
+    </option>
+    <option name="aspect2" type="string" default="auto">
+      <description lang="us" text="Aspect ratio of screen 2; 'auto' will try a best guess"/>
+      <description lang="de" text="Seitenverhältnis des 2. Screens; 'auto' erzeugt es automatisch"/>
+      <description lang="pl" text="Proporcja obrazu dla ekranu 2; 'auto' spróbuje najlepszego odgadnięcia"/>
+      <description lang="fr" text="Ratio d'aspect pour l'écran 2; 'auto' essaiera le plus approprié"/>
+    </option>
+    <option name="resolution2" type="string" default="auto">
+      <description lang="us" text="Preferred resolution for screen 2; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
+      <description lang="de" text="Vorgezogene Auflösung des 2. Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
+      <description lang="pl" text="Preferowana rozdzielczość dla ekranu 2; format to SZEROKOŚĆXWYSOKOŚĆ[@ODŚWIEŻANIE] lub 'auto'"/>
+      <description lang="fr" text="Résolution préférée pour l'écran 2; le format est LARGEURxHAUTEUR[@RAFRAICHISSEMENT] sinon 'auto'"/>
+    </option>
+    <option name="view2" type="string" default="auto">
+      <description lang="us" text="Preferred view for screen 2"/>
+      <description lang="de" text="Vorgezogene Ansicht des 2. Screens"/>
+      <description lang="pl" text="Preferowany widok dla ekranu 2"/>
+      <description lang="fr" text="Vue préférée pour l'écran 2"/>
+    </option>
+    <option name="screen3" type="string" default="auto">
+      <description lang="us" text="Explicit name of screen 3; 'auto' will try a best guess"/>
+      <description lang="de" text="Expliziter Name des 3. Screens; 'auto' erzeugt ihn automatisch"/>
+      <description lang="pl" text="Sprecyzowana nazwa ekranu 3; 'auto' spróbuje najlepszego odgadnięcia"/>
+      <description lang="fr" text="Nom explicite de l'écran 3; 'auto' essaiera le plus approprié"/>
+    </option>
+    <option name="aspect3" type="string" default="auto">
+      <description lang="us" text="Aspect ratio of screen 3; 'auto' will try a best guess"/>
+      <description lang="de" text="Seitenverhältnis des 3. Screens; 'auto' erzeugt es automatisch"/>
+      <description lang="pl" text="Proporcja obrazu dla ekranu 3; 'auto' spróbuje najlepszego odgadnięcia"/>
+      <description lang="fr" text="Ratio d'aspect pour l'écran 3; 'auto' essaiera le plus approprié"/>
+    </option>
+    <option name="resolution3" type="string" default="auto">
+      <description lang="us" text="Preferred resolution for screen 3; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
+      <description lang="de" text="Vorgezogene Auflösung des 3. Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
+      <description lang="pl" text="Preferowana rozdzielczość dla ekranu 3; format to SZEROKOŚĆXWYSOKOŚĆ[@ODŚWIEŻANIE] lub 'auto'"/>
+      <description lang="fr" text="Résolution préférée pour l'écran 3; le format est LARGEURxHAUTEUR[@RAFRAICHISSEMENT] sinon 'auto'"/>
+    </option>
+    <option name="view3" type="string" default="auto">
+      <description lang="us" text="Preferred view for screen 3"/>
+      <description lang="de" text="Vorgezogene Ansicht des 3. Screens"/>
+      <description lang="pl" text="Preferowany widok dla ekranu 3"/>
+      <description lang="fr" text="Vue préférée pour l'écran 3"/>
+    </option>
+  </section>
+  <section name="fullscreen">
+    <description lang="us" text="Full screen"/>
+    <description lang="de" text="Vollbildschirm"/>
+    <description lang="pl" text="Pełny ekran"/>
+    <description lang="fr" text="Plein écran"/>
+    <option name="switchres" type="bool" default="false">
+      <description lang="us" text="Enable resolution switching"/>
+      <description lang="de" text="Auflösungsanpassung aktivieren"/>
+      <description lang="pl" text="Włącz przełączanie rozdzielczości"/>
+      <description lang="fr" text="Autoriser le changement de résolution d'écran"/>
+    </option>
+    <option name="useallheads" type="bool" default="false">
+      <description lang="us" text="Split full screen image across monitors"/>
+      <description lang="de" text="Vollbildschirm-Darstellung über alle Monitore verteilen"/>
+      <description lang="pl" text="Rozdziel obraz pełnoekranowy na wszystkie monitory"/>
+      <description lang="fr" text="Partager l'image plein écran sur les moniteurs"/>
+    </option>
+  </section>
+  <section name="automatic_device_selection">
+    <description lang="us" text="Automatic device selection"/>
+    <description lang="de" text="Automatische Geräteauswahl"/>
+    <description lang="pl" text="Automatyczny wybór urządzeń"/>
+    <description lang="fr" text="Choix automatique du périphérique de jeu"/>
+    <option name="paddle_device" type="string" default="keyboard">
+      <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a paddle control is present"/>
+      <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Paddle-Controller verfügbar ist"/>
+      <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest manipulator drążkowy"/>
+      <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle au paddle est disponible"/>
+    </option>
+    <option name="adstick_device" type="string" default="keyboard">
+      <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if an analog joystick control is present"/>
+      <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls analoger Joystick-Controller verfügbar ist"/>
+      <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest joystick analogowy"/>
+      <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle au joystick analogique est disponible"/>
+    </option>
+    <option name="pedal_device" type="string" default="keyboard">
+      <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a pedal control is present"/>
+      <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Pedal-Controller verfügbar ist"/>
+      <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest manipulator pedałowy"/>
+      <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle de type pédale d'accélérateur est disponible"/>
+    </option>
+    <option name="dial_device" type="string" default="keyboard">
+      <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a dial control is present"/>
+      <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Dial-Controller verfügbar ist"/>
+      <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest manipulator tarczowy"/>
+      <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle au dial est disponible"/>
+    </option>
+    <option name="trackball_device" type="string" default="keyboard">
+      <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a trackball control is present"/>
+      <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Trackball-Controller verfügbar ist"/>
+      <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest trackball"/>
+      <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle au trackball est disponible"/>
+    </option>
+    <option name="lightgun_device" type="string" default="keyboard">
+      <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a lightgun control is present"/>
+      <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Lightgun-Controller verfügbar ist"/>
+      <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest pistolet świetlny"/>
+      <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle au Lightgun est disponible"/>
+    </option>
+    <option name="positional_device" type="string" default="keyboard">
+      <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a positional control is present"/>
+      <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Positional-Controller verfügbar ist"/>
+      <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest manipulator pozycyjny"/>
+      <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle de position est disponible"/>
+    </option>
+    <option name="mouse_device" type="string" default="mouse">
+      <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a mouse control is present"/>
+      <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Maus-Controller verfügbar ist"/>
+      <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecna jest mysz"/>
+      <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle à la souris est disponible"/>
+    </option>
+  </section>
+  <section name="keyboard_mapping">
+    <description lang="us" text="Keyboard mapping"/>
+    <description lang="de" text="Tastatur-Mapping"/>
+    <description lang="pl" text="Mapowanie klawiatury"/>
+    <description lang="fr" text="Mapping de clavier"/>
+    <option name="keymap" type="bool" default="false">
+      <description lang="us" text="Enable keyboard mapping"/>
+      <description lang="de" text="Tastatur-Mapping aktivieren"/>
+      <description lang="pl" text="Włącz mapowanie klawiatury"/>
+      <description lang="fr" text="Activer le mapping de clavier"/>
+    </option>
+    <option name="keymap_file" type="file" default="keymap.dat">
+      <description lang="us" text="Keyboard map file"/>
+      <description lang="de" text="Tastatur-Map Datei"/>
+      <description lang="pl" text="Plik mapy klawiatury"/>
+      <description lang="fr" text="Fichier pour le mapping de clavier"/>
+    </option>
+  </section>
+  <section name="joystick_mapping">
+    <description lang="us" text="Joystick mapping"/>
+    <description lang="de" text="Joystick-Mapping"/>
+    <description lang="pl" text="Mapowanie dżojstika"/>
+    <description lang="fr" text="Mapping de joystick"/>
+    <option name="joy_idx1" type="string" default="auto">
+      <description lang="us" text="Name of joystick mapped to joystick #1"/>
+      <description lang="de" text="Name des Joytsicks, der als Joystick #1 gemapped wird"/>
+      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #1"/>
+      <description lang="fr" text="Nom du joystick mappé en joystick #1"/>
+    </option>
+    <option name="joy_idx2" type="string" default="auto">
+      <description lang="us" text="Name of joystick mapped to joystick #2"/>
+      <description lang="de" text="Name des Joytsicks, der als Joystick #2 gemapped wird"/>
+      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #2"/>
+      <description lang="fr" text="Nom du joystick mappé en joystick #2"/>
+    </option>
+    <option name="joy_idx3" type="string" default="auto">
+      <description lang="us" text="Name of joystick mapped to joystick #3"/>
+      <description lang="de" text="Name des Joytsicks, der als Joystick #3 gemapped wird"/>
+      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #3"/>
+      <description lang="fr" text="Nom du joystick mappé en joystick #3"/>
+    </option>
+    <option name="joy_idx4" type="string" default="auto">
+      <description lang="us" text="Name of joystick mapped to joystick #4"/>
+      <description lang="de" text="Name des Joytsicks, der als Joystick #4 gemapped wird"/>
+      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #4"/>
+      <description lang="fr" text="Nom du joystick mappé en joystick #4"/>
+    </option>
+    <option name="joy_idx5" type="string" default="auto">
+      <description lang="us" text="Name of joystick mapped to joystick #5"/>
+      <description lang="de" text="Name des Joytsicks, der als Joystick #5 gemapped wird"/>
+      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #5"/>
+      <description lang="fr" text="Nom du joystick mappé en joystick #5"/>
+    </option>
+    <option name="joy_idx6" type="string" default="auto">
+      <description lang="us" text="Name of joystick mapped to joystick #6"/>
+      <description lang="de" text="Name des Joytsicks, der als Joystick #6 gemapped wird"/>
+      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #6"/>
+      <description lang="fr" text="Nom du joystick mappé en joystick #6"/>
+    </option>
+    <option name="joy_idx7" type="string" default="auto">
+      <description lang="us" text="Name of joystick mapped to joystick #7"/>
+      <description lang="de" text="Name des Joytsicks, der als Joystick #7 gemapped wird"/>
+      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #7"/>
+      <description lang="fr" text="Nom du joystick mappé en joystick #7"/>
+    </option>
+    <option name="joy_idx8" type="string" default="auto">
+      <description lang="us" text="Name of joystick mapped to joystick #8"/>
+      <description lang="de" text="Name des Joytsicks, der als Joystick #8 gemapped wird"/>
+      <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #8"/>
+      <description lang="fr" text="Nom du joystick mappé en joystick #8"/>
+    </option>
+    <option name="sixaxis" type="bool" default="false">
+      <description lang="us" text="Use special handling for PS3 Sixaxis controllers"/>
+      <description lang="de" text="Spezielle Behandlung von PS3 Sixaxis Controllern aktivieren"/>
+      <description lang="pl" text="Użyj specjalnej obsługi kontrolera PS3 Sixaxis"/>
+      <description lang="fr" text="Utiliser les paramètres pour les contrôleurs PS3 6 axes"/>
+    </option>
+  </section>
+  <section name="sdl_driver_options">
+    <description lang="us" text="SDL driver options"/>
+    <description lang="de" text="SDL Treiber Optionen"/>
+    <description lang="pl" text="Opcje sterowników SDL"/>
+    <description lang="fr" text="Options du pilote SDL"/>
+    <option name="videodriver" type="string" default="auto">
+      <description lang="us" text="SDL video driver to use ('x11', 'directfb', ... or 'auto' for SDL default)"/>
+      <description lang="de" text="Einzusetzender SDL Video Treiber ('x11', 'directfb', ... oder 'auto' für SDL Standard)"/>
+      <description lang="pl" text="Używany sterownik obrazu SDL ('x11', 'directfb', ... lub 'auto' dla domyślnego SDL)"/>
+      <description lang="fr" text="pilote SDL video à utiliser ('x11', 'directfb', ... ou 'auto' pour réglage par défaut)"/>
+    </option>
+    <option name="audiodriver" type="string" default="auto">
+      <description lang="us" text="SDL audio driver to use ('alsa', 'arts', ... or 'auto' for SDL default)"/>
+      <description lang="de" text="Einzusetzender SDL Audio Treiber ('alsa', 'arts', ... oder 'auto' für SDL Standard)"/>
+      <description lang="pl" text="Używany sterownik dźwięku SDL ('alsa', 'arts', ... lub 'auto' dla domyślnego SDL)"/>
+      <description lang="fr" text="pilote SDL audio à utiliser ('alsa', 'arts', ... ou 'auto' pour réglage par défaut)"/>
+    </option>
+    <option name="gl_lib" type="file" default="auto">
+      <description lang="us" text="Alternative libGL.so to use; 'auto' for system default"/>
+      <description lang="de" text="Alternativ einzusetzende libGL.so; 'auto' für System Standard"/>
+      <description lang="pl" text="Alternatywny libGL.so; 'auto' dla domyślnego systemowego"/>
+      <description lang="fr" text="libGL.so alernatif à utiliser; 'auto' pour réglage par défaut"/>
+    </option>
+  </section>
+</template>
