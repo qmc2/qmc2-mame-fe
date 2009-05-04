@@ -4,6 +4,7 @@ Name=QMC2 (EMULATOR)
 GenericName=GENERICNAME
 Comment=EMULATOR front end
 Comment[pl]=Nakładka na EMULATOR
+Comment[de]=EMULATOR Frontend
 Exec=TARGET
 Icon=DATADIR/qmc2/img/EMUICO
 Terminal=false
