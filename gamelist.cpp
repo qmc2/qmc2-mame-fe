@@ -333,6 +333,9 @@ void Gamelist::load()
   // supported games/machines
   args.clear();
   args << "-listfull";
+#if defined(QMC2_AUDIT_WILDCARD)
+  args << "*";
+#endif
   qApp->processEvents();
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   commandProc.start(qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString(), args);
@@ -514,6 +517,9 @@ void Gamelist::load()
 #endif
     args.clear();
     args << "-listxml";
+#if defined(QMC2_AUDIT_WILDCARD)
+    args << "*";
+#endif
 
     listXMLCache.open(QIODevice::WriteOnly | QIODevice::Text);
     if ( !listXMLCache.isOpen() ) {
@@ -613,6 +619,10 @@ void Gamelist::verify(bool currentOnly)
   args << "-verifyroms";
   if ( verifyCurrentOnly )
     args << checkedItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+#if defined(QMC2_AUDIT_WILDCARD)
+  else
+    args << "*";
+#endif
 
   verifyProc = new QProcess(this);
   connect(verifyProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(verifyError(QProcess::ProcessError)));

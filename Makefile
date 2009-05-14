@@ -176,6 +176,12 @@ ifndef VARIANT_LAUNCHER
 VARIANT_LAUNCHER = 1
 endif
 
+# AUDIT_WILDCARD: use wildcards (i.e. "mame -listxml '*'") on full audit calls
+#                 (1) or not (0, default)
+ifndef AUDIT_WILDCARD
+AUDIT_WILDCARD = 0
+endif
+
 # >>> END OF MAKE OPTIONS <<<
 
 # emulator target fallback for mameuifx32
@@ -242,6 +248,10 @@ DEFINES += QMC2_$(EMULATOR)
 
 ifeq '$(VARIANT_LAUNCHER)' '1'
 DEFINES += QMC2_VARIANT_LAUNCHER
+endif
+
+ifeq '$(AUDIT_WILDCARD)' '1'
+DEFINES += QMC2_AUDIT_WILDCARD
 endif
 
 # setup SDL library and include paths
@@ -537,6 +547,7 @@ config:
 	@echo "### Option ###         ### Description ###                         ### Value ###" 
 	@echo "ARCADE_OPENGL=<aogl>   Enable use of OpenGL for arcade mode (0, 1) $(ARCADE_OPENGL)"
 	@echo "ARCH=<arch-name>       Target system's OS / architecture name      $(ARCH)"
+	@echo "AUDIT_WILDCARD=<vl>    Use wildcards on full audit calls (0, 1)    $(AUDIT_WILDCARD)"
 	@echo "AWK=<awk>              UNIX command awk                            $(AWK)"
 	@echo "BASENAME=<basename>    UNIX command basename                       $(BASENAME)"
 	@echo "BINDIR=<bindir>        Binary directory for installation           $(BINDIR)"
@@ -588,6 +599,7 @@ config:
 	@echo "TAR=<tar>              UNIX command tar                            $(TAR)"
 	@echo "TR=<tr>                UNIX command tr                             $(TR)"
 	@echo "TIME=<time>            UNIX command time                           $(TIME)"
+	@echo "VARIANT_LAUNCHER=<vl>  Enable the QMC2 variant launcher (0, 1)     $(VARIANT_LAUNCHER)"
 	@echo "WIP=<wip>              Enable unfinished code (0, 1)               $(WIP)"
 
 # process translations

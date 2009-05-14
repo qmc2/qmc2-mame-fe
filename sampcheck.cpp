@@ -168,6 +168,9 @@ void SampleChecker::verify()
   if ( qmc2Config->contains("MAME/Configuration/Global/samplepath") )
     args << "-samplepath" << qmc2Config->value("MAME/Configuration/Global/samplepath").toString().replace("~", "$HOME");
   args << "-verifysamples";
+#if defined(QMC2_AUDIT_WILDCARD)
+  args << "*";
+#endif
 
   verifyProc = new QProcess(this);
   connect(verifyProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(verifyError(QProcess::ProcessError)));
