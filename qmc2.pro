@@ -21,6 +21,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			messdevcfg.ui \
 			direditwidget.ui \
 			fileeditwidget.ui \
+			detailsetup.ui \
 			arcade/arcadesetupdialog.ui
 		SOURCES += qmc2main.cpp \
 			options.cpp \
@@ -48,6 +49,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			messdevcfg.cpp \
 			direditwidget.cpp \
 			fileeditwidget.cpp \
+			detailsetup.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			arcade/arcadeview.cpp \
@@ -84,6 +86,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			messdevcfg.h \
 			direditwidget.h \
 			fileeditwidget.h \
+			detailsetup.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \

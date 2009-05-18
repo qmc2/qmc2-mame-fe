@@ -42,6 +42,7 @@
 #include "sampcheck.h"
 #include "romalyzer.h"
 #include "romstatusexport.h"
+#include "detailsetup.h"
 #include "unzip.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
@@ -83,6 +84,7 @@ ImageChecker *qmc2ImageChecker = NULL;
 SampleChecker *qmc2SampleChecker = NULL;
 ROMAlyzer *qmc2ROMAlyzer = NULL;
 ROMStatusExporter *qmc2ROMStatusExporter = NULL;
+DetailSetup *qmc2DetailSetup = NULL;
 ArcadeView *qmc2ArcadeView = NULL;
 ArcadeSetupDialog *qmc2ArcadeSetupDialog = NULL;
 #if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
@@ -731,6 +733,12 @@ MainWindow::MainWindow(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetGameDetail_East_activated()));
+  menuTabWidgetGameDetail->addSeparator();
+  s = tr("Detail setup");
+  action = menuTabWidgetGameDetail->addAction(tr("&Setup..."));
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetGameDetail_Setup_activated()));
 
   menuTabWidgetLogsAndEmulators = new QMenu(0);
   s = tr("Set tab position north");
@@ -3157,6 +3165,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2ROMStatusExporter->close();
     delete qmc2ROMStatusExporter;
   }
+  if ( qmc2DetailSetup ) {
+    log(QMC2_LOG_FRONTEND, tr("destroying detail setup"));
+    qmc2DetailSetup->close();
+    delete qmc2DetailSetup;
+  }
   if ( !qmc2GameInfoDB.isEmpty() ) {
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
     log(QMC2_LOG_FRONTEND, tr("destroying game info DB"));
@@ -4586,6 +4599,23 @@ void MainWindow::on_menuTabWidgetGameDetail_East_activated()
   tabWidgetGameDetail->setTabPosition(QTabWidget::East);
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::East);
+}
+
+void MainWindow::on_menuTabWidgetGameDetail_Setup_activated()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetGameDetail_Setup_activated()"));
+#endif
+
+  if ( !qmc2DetailSetup )
+    qmc2DetailSetup = new DetailSetup(this);
+
+  if ( qmc2DetailSetup->isHidden() )
+    qmc2DetailSetup->show();
+  else if ( qmc2DetailSetup->isMinimized() )
+    qmc2DetailSetup->showNormal();
+
+  QTimer::singleShot(0, qmc2DetailSetup, SLOT(raise()));
 }
 
 void MainWindow::on_tabWidgetGameDetail_customContextMenuRequested(const QPoint &p)

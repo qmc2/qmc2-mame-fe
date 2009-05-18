@@ -13,7 +13,7 @@ FileEditWidget::FileEditWidget(QString filePath, QString filter, QWidget *parent
   : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: FileEditWidget::FileEditWidget(QString filePath = %1, QString filter = %2, QWidget *parent = %3").arg(filePath).arg(filter).arg((qulonglong) parent));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: FileEditWidget::FileEditWidget(QString filePath = %1, QString filter = %2, QWidget *parent = %3)").arg(filePath).arg(filter).arg((qulonglong) parent));
 #endif
 
   setupUi(this);

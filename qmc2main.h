@@ -189,6 +189,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_menuTabWidgetGameDetail_South_activated();
     void on_menuTabWidgetGameDetail_West_activated();
     void on_menuTabWidgetGameDetail_East_activated();
+    void on_menuTabWidgetGameDetail_Setup_activated();
     void on_menuTabWidgetLogsAndEmulators_North_activated();
     void on_menuTabWidgetLogsAndEmulators_South_activated();
     void on_menuTabWidgetLogsAndEmulators_West_activated();

@@ -1,0 +1,246 @@
+<ui version="4.0" >
+ <class>DetailSetup</class>
+ <widget class="QDialog" name="DetailSetup" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>501</width>
+    <height>429</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Detail setup</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2" >
+   <item row="0" column="0" >
+    <layout class="QGridLayout" name="gridLayout" >
+     <item row="6" column="3" colspan="2" >
+      <widget class="QPushButton" name="pushButton_2" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip" >
+        <string>Cancel detail setup</string>
+       </property>
+       <property name="text" >
+        <string>&amp;Cancel</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="qmc2.qrc" >
+         <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item rowspan="6" row="0" column="0" colspan="2" >
+      <widget class="QListView" name="listViewAvailableDetails" >
+       <property name="toolTip" >
+        <string>List of available details</string>
+       </property>
+      </widget>
+     </item>
+     <item rowspan="6" row="0" column="4" colspan="2" >
+      <widget class="QListView" name="listViewActiveDetails" >
+       <property name="toolTip" >
+        <string>List of active details and their order</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2" colspan="2" >
+      <widget class="QPushButton" name="pushButtonActivateDetails" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+       <property name="toolTip" >
+        <string>Activate selected details</string>
+       </property>
+       <property name="text" >
+        <string>Activate</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="qmc2.qrc" >
+         <normaloff>:/data/img/next-sail.png</normaloff>:/data/img/next-sail.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2" colspan="2" >
+      <widget class="QPushButton" name="pushButtonDeactivateDetails" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+       <property name="toolTip" >
+        <string>Deactivate selected details</string>
+       </property>
+       <property name="text" >
+        <string>Deactivate</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="qmc2.qrc" >
+         <normaloff>:/data/img/previous-sail.png</normaloff>:/data/img/previous-sail.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2" colspan="2" >
+      <spacer name="verticalSpacer" >
+       <property name="orientation" >
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType" >
+        <enum>QSizePolicy::Preferred</enum>
+       </property>
+       <property name="sizeHint" stdset="0" >
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="4" column="2" colspan="2" >
+      <widget class="QPushButton" name="pushButtonDetailsDown" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+       <property name="toolTip" >
+        <string>Move selected details down</string>
+       </property>
+       <property name="text" >
+        <string>Down</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="qmc2.qrc" >
+         <normaloff>:/data/img/down.png</normaloff>:/data/img/down.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2" colspan="2" >
+      <widget class="QPushButton" name="pushButtonDetailsUp" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+       <property name="toolTip" >
+        <string>Move selected details up</string>
+       </property>
+       <property name="text" >
+        <string>Up</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="qmc2.qrc" >
+         <normaloff>:/data/img/up.png</normaloff>:/data/img/up.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1" colspan="2" >
+      <widget class="QPushButton" name="pushButtonOk" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip" >
+        <string>Accept detail setup</string>
+       </property>
+       <property name="text" >
+        <string>&amp;Ok</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="qmc2.qrc" >
+         <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0" >
+      <spacer name="horizontalSpacer" >
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="5" column="2" colspan="2" >
+      <spacer name="verticalSpacer_2" >
+       <property name="orientation" >
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0" >
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="6" column="5" >
+      <spacer name="horizontalSpacer_2" >
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>listViewAvailableDetails</tabstop>
+  <tabstop>pushButtonActivateDetails</tabstop>
+  <tabstop>pushButtonDeactivateDetails</tabstop>
+  <tabstop>pushButtonDetailsUp</tabstop>
+  <tabstop>pushButtonDetailsDown</tabstop>
+  <tabstop>listViewActiveDetails</tabstop>
+  <tabstop>pushButtonOk</tabstop>
+  <tabstop>pushButton_2</tabstop>
+ </tabstops>
+ <resources>
+  <include location="qmc2.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>pushButtonOk</sender>
+   <signal>clicked()</signal>
+   <receiver>DetailSetup</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>280</x>
+     <y>431</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>173</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>DetailSetup</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>362</x>
+     <y>431</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>441</x>
+     <y>423</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
