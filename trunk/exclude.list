@@ -1206,6 +1206,9 @@ qmc2/.svn/text-base/controller.h.svn-base
 qmc2/.svn/text-base/dbrowser.cpp.svn-base
 qmc2/.svn/text-base/dbrowser.h.svn-base
 qmc2/.svn/text-base/dbrowser.ui.svn-base
+qmc2/.svn/text-base/detailsetup.cpp.svn-base
+qmc2/.svn/text-base/detailsetup.h.svn-base
+qmc2/.svn/text-base/detailsetup.ui.svn-base
 qmc2/.svn/text-base/direditwidget.cpp.svn-base
 qmc2/.svn/text-base/direditwidget.h.svn-base
 qmc2/.svn/text-base/direditwidget.ui.svn-base
