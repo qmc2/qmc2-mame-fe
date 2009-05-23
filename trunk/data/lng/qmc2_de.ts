@@ -1231,7 +1231,7 @@ p, li { white-space: pre-wrap; }
         <translation>Einstellung der Details</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.ui" line="172"/>
+        <location filename="../../detailsetup.ui" line="178"/>
         <source>&amp;Cancel</source>
         <translation>Abbre&amp;chen</translation>
     </message>
@@ -1256,7 +1256,7 @@ p, li { white-space: pre-wrap; }
         <translation>Ausgewählte Details deaktivieren</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.ui" line="111"/>
+        <location filename="../../detailsetup.ui" line="114"/>
         <source>Move selected details down</source>
         <translation>Ausgewählte Details nach unten bewegen</translation>
     </message>
@@ -1266,7 +1266,7 @@ p, li { white-space: pre-wrap; }
         <translation>Ausgewählte Details nach oben bewegen</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.ui" line="144"/>
+        <location filename="../../detailsetup.ui" line="150"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
@@ -1276,7 +1276,7 @@ p, li { white-space: pre-wrap; }
         <translation>WARNUNG: die Einstellung der Spiel-/Maschinen-Details funktioniert noch nicht!</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="51"/>
+        <location filename="../../detailsetup.cpp" line="60"/>
         <source>Previe&amp;w</source>
         <translation>Vorscha&amp;u</translation>
     </message>
@@ -1286,112 +1286,112 @@ p, li { white-space: pre-wrap; }
         <translation>Spiel-Vorschaubild</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="53"/>
+        <location filename="../../detailsetup.cpp" line="63"/>
         <source>Fl&amp;yer</source>
         <translation>Fl&amp;yer</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="26"/>
+        <location filename="../../detailsetup.cpp" line="27"/>
         <source>Game flyer image</source>
         <translation>Spiel Flyer-Bild</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="27"/>
+        <location filename="../../detailsetup.cpp" line="29"/>
         <source>Game &amp;info</source>
         <translation>Spiel &amp;Info</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="28"/>
+        <location filename="../../detailsetup.cpp" line="30"/>
         <source>Game information</source>
         <translation>Spiel Informationen</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="29"/>
+        <location filename="../../detailsetup.cpp" line="32"/>
         <source>Em&amp;ulator info</source>
         <translation>Em&amp;ulator Info</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="30"/>
+        <location filename="../../detailsetup.cpp" line="33"/>
         <source>Emulator information</source>
         <translation>Emulator Informationen</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="57"/>
+        <location filename="../../detailsetup.cpp" line="69"/>
         <source>&amp;Configuration</source>
         <translation>&amp;Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="58"/>
+        <location filename="../../detailsetup.cpp" line="70"/>
         <source>Emulator configuration</source>
         <translation>Emulator Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="33"/>
+        <location filename="../../detailsetup.cpp" line="38"/>
         <source>Ca&amp;binet</source>
         <translation>Geh&amp;äuse</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="34"/>
+        <location filename="../../detailsetup.cpp" line="39"/>
         <source>Arcade cabinet image</source>
         <translation>Arcade-Gehäuse Bild</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="35"/>
+        <location filename="../../detailsetup.cpp" line="41"/>
         <source>C&amp;ontroller</source>
         <translation>C&amp;ontroller</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="36"/>
+        <location filename="../../detailsetup.cpp" line="42"/>
         <source>Control panel image</source>
         <translation>Controller Bild</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="37"/>
+        <location filename="../../detailsetup.cpp" line="44"/>
         <source>&amp;Marquee</source>
         <translation>&amp;Marquee</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="38"/>
+        <location filename="../../detailsetup.cpp" line="45"/>
         <source>Marquee image</source>
         <translation>Marquee Bild</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="39"/>
+        <location filename="../../detailsetup.cpp" line="47"/>
         <source>Titl&amp;e</source>
         <translation>Tit&amp;el</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="40"/>
+        <location filename="../../detailsetup.cpp" line="48"/>
         <source>Title screen image</source>
         <translation>Titel Bild</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="52"/>
+        <location filename="../../detailsetup.cpp" line="61"/>
         <source>Machine preview image</source>
         <translation>Machinen Vorschaubild</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="54"/>
+        <location filename="../../detailsetup.cpp" line="64"/>
         <source>Machine flyer image</source>
         <translation>Machinen Flyer-Bild</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="55"/>
+        <location filename="../../detailsetup.cpp" line="66"/>
         <source>Machine &amp;info</source>
         <translation>Machinen &amp;Info</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="56"/>
+        <location filename="../../detailsetup.cpp" line="67"/>
         <source>Machine information</source>
         <translation>Maschinen Informationen</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="59"/>
+        <location filename="../../detailsetup.cpp" line="72"/>
         <source>De&amp;vices</source>
         <translation>&amp;Geräte</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="60"/>
+        <location filename="../../detailsetup.cpp" line="73"/>
         <source>Device configuration</source>
         <translation>Geräte Konfiguration</translation>
     </message>
@@ -1406,22 +1406,22 @@ p, li { white-space: pre-wrap; }
         <translation>Aktive Details</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.ui" line="141"/>
+        <location filename="../../detailsetup.ui" line="147"/>
         <source>Apply detail setup and close dialog</source>
         <translation>Detail-Einstellung übernehmen und Dialog schließen</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.ui" line="169"/>
+        <location filename="../../detailsetup.ui" line="175"/>
         <source>Cancel detail setup and close dialog</source>
         <translation>Detail-Einstellung abbrechen und Dialog schließen</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.ui" line="155"/>
+        <location filename="../../detailsetup.ui" line="161"/>
         <source>Apply detail setup</source>
         <translation>Detail-Einstellung übernehmen</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.ui" line="158"/>
+        <location filename="../../detailsetup.ui" line="164"/>
         <source>&amp;Apply</source>
         <translation>&amp;Anwenden</translation>
     </message>
