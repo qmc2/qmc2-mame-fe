@@ -188,6 +188,9 @@
 #define QMC2_ONE_GIGABYTE		1073741824
 #define QMC2_ONE_TERABYTE		1099511627776
 
+// MAWS web cache size (8M fixed for now -- enough for compressed data)
+#define QMC2_MAWS_CACHE_SIZE		8 * QMC2_ONE_MEGABYTE
+
 // type conversions
 #define QMC2_TO_UINT32(a)		((uchar)*((a) + 0) * (quint32)16777216ULL + \
 					(uchar)*((a) + 1) * (quint32)65536ULL + \
