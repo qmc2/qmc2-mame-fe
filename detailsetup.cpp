@@ -1,3 +1,5 @@
+#include <QSettings>
+
 #include "detailsetup.h"
 #include "macros.h"
 
@@ -7,6 +9,8 @@
 #include "qmc2main.h"
 extern MainWindow *qmc2MainWindow;
 #endif
+
+extern QSettings *qmc2Config;
 
 DetailSetup::DetailSetup(QWidget *parent)
   : QDialog(parent)
@@ -47,15 +51,15 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_TITLE_INDEX] = tr("Titl&e");
   longTitleMap[QMC2_TITLE_INDEX] = tr("Title screen image");
   iconMap[QMC2_TITLE_INDEX] = QIcon(QString::fromUtf8(":/data/img/arcademode.png"));
-  activeDetailList << QMC2_PREVIEW_INDEX
-                   << QMC2_FLYER_INDEX
-                   << QMC2_GAMEINFO_INDEX
-                   << QMC2_EMUINFO_INDEX
-                   << QMC2_CONFIG_INDEX
-                   << QMC2_CABINET_INDEX
-                   << QMC2_CONTROLLER_INDEX
-                   << QMC2_MARQUEE_INDEX
-                   << QMC2_TITLE_INDEX;
+  availableDetailList << QMC2_PREVIEW_INDEX
+                      << QMC2_FLYER_INDEX
+                      << QMC2_GAMEINFO_INDEX
+                      << QMC2_EMUINFO_INDEX
+                      << QMC2_CONFIG_INDEX
+                      << QMC2_CABINET_INDEX
+                      << QMC2_CONTROLLER_INDEX
+                      << QMC2_MARQUEE_INDEX
+                      << QMC2_TITLE_INDEX;
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
   shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Previe&w");
   longTitleMap[QMC2_PREVIEW_INDEX] = tr("Machine preview image");
@@ -72,16 +76,14 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_DEVICE_INDEX] = tr("De&vices");
   longTitleMap[QMC2_DEVICE_INDEX] = tr("Device configuration");
   iconMap[QMC2_DEVICE_INDEX] = QIcon(QString::fromUtf8(":/data/img/tape.png"));
-  activeDetailList << QMC2_PREVIEW_INDEX
-                   << QMC2_FLYER_INDEX
-                   << QMC2_MACHINEINFO_INDEX
-                   << QMC2_CONFIG_INDEX
-                   << QMC2_DEVICE_INDEX;
+  availableDetailList << QMC2_PREVIEW_INDEX
+                      << QMC2_FLYER_INDEX
+                      << QMC2_MACHINEINFO_INDEX
+                      << QMC2_CONFIG_INDEX
+                      << QMC2_DEVICE_INDEX;
 #endif
 
   setupUi(this);
-
-  loadDetail();
 
   QMapIterator<int, QString> it(longTitleMap);
   while ( it.hasNext() ) {
@@ -89,10 +91,7 @@ DetailSetup::DetailSetup(QWidget *parent)
     listWidgetAvailableDetails->addItem(new QListWidgetItem(iconMap[it.key()], it.value()));
   }
 
-  int i;
-  for (i = 0; i < activeDetailList.count(); i++) {
-    listWidgetActiveDetails->addItem(new QListWidgetItem(iconMap[activeDetailList[i]], longTitleMap[activeDetailList[i]]));
-  }
+  loadDetail();
 
   adjustSize();
 }
@@ -111,6 +110,38 @@ void DetailSetup::loadDetail()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DetailSetup::loadDetail()");
 #endif
 
+  activeDetailList.clear();
+  if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ActiveDetails") ) {
+    // use default detail list
+#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+    activeDetailList << QMC2_PREVIEW_INDEX
+                     << QMC2_FLYER_INDEX
+                     << QMC2_GAMEINFO_INDEX
+                     << QMC2_EMUINFO_INDEX
+                     << QMC2_CONFIG_INDEX
+                     << QMC2_CABINET_INDEX
+                     << QMC2_CONTROLLER_INDEX
+                     << QMC2_MARQUEE_INDEX
+                     << QMC2_TITLE_INDEX;
+#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+    activeDetailList << QMC2_PREVIEW_INDEX
+                     << QMC2_FLYER_INDEX
+                     << QMC2_MACHINEINFO_INDEX
+                     << QMC2_CONFIG_INDEX
+                     << QMC2_DEVICE_INDEX;
+#endif
+  } else {
+    QStringList activeIndexList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ActiveDetails").toStringList();
+    foreach (QString s, activeIndexList) {
+      int i = s.toInt();
+      if ( availableDetailList.contains(i) )
+        activeDetailList << i;
+    }
+  }
+
+  listWidgetActiveDetails->clear();
+  foreach (int i, activeDetailList)
+    listWidgetActiveDetails->addItem(new QListWidgetItem(iconMap[i], longTitleMap[i]));
 }
 
 void DetailSetup::saveDetail()
@@ -119,6 +150,11 @@ void DetailSetup::saveDetail()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DetailSetup::saveDetail()");
 #endif
 
+  QStringList activeIndexList;
+  foreach (int i, activeDetailList)
+    if ( availableDetailList.contains(i) )
+      activeIndexList << QString::number(i);
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ActiveDetails", activeIndexList);
 }
 
 void DetailSetup::on_listWidgetAvailableDetails_itemSelectionChanged()
@@ -165,8 +201,13 @@ void DetailSetup::on_pushButtonActivateDetails_clicked()
   foreach (QListWidgetItem *item, listWidgetAvailableDetails->selectedItems()) {
     if ( item ) {
       QList<QListWidgetItem *> il = listWidgetActiveDetails->findItems(item->text(), Qt::MatchExactly); 
-      if ( il.count() == 0 )
-        listWidgetActiveDetails->addItem(new QListWidgetItem(iconMap[longTitleMap.key(item->text())], item->text()));
+      if ( il.count() == 0 ) {
+        int pageIndex = longTitleMap.key(item->text());
+        if ( availableDetailList.contains(pageIndex) ) {
+          listWidgetActiveDetails->addItem(new QListWidgetItem(iconMap[pageIndex], item->text()));
+          activeDetailList << pageIndex;
+        }
+      }
     }
   }
 }
@@ -179,9 +220,12 @@ void DetailSetup::on_pushButtonDeactivateDetails_clicked()
 
   foreach (QListWidgetItem *item, listWidgetActiveDetails->selectedItems()) {
     if ( item ) {
-      QListWidgetItem *takenItem = listWidgetActiveDetails->takeItem(listWidgetActiveDetails->row(item));
+      int row = listWidgetActiveDetails->row(item);
+      QListWidgetItem *takenItem = listWidgetActiveDetails->takeItem(row);
       if ( takenItem )
         delete takenItem;
+      if ( row >= 0 && row < activeDetailList.count() )
+        activeDetailList.removeAt(row);
     }
   }
 }
@@ -196,9 +240,12 @@ void DetailSetup::on_pushButtonDetailsUp_clicked()
     if ( item ) {
       int row = listWidgetActiveDetails->row(item);
       if ( row > 0 ) {
+        activeDetailList.move(row, row - 1);
         QListWidgetItem *takenItem = listWidgetActiveDetails->takeItem(row);
-        listWidgetActiveDetails->insertItem(row - 1, takenItem);
-        takenItem->setSelected(TRUE);
+        if ( takenItem ) {
+          listWidgetActiveDetails->insertItem(row - 1, takenItem);
+          takenItem->setSelected(TRUE);
+        }
       }
     }
   }
@@ -213,10 +260,13 @@ void DetailSetup::on_pushButtonDetailsDown_clicked()
   foreach (QListWidgetItem *item, listWidgetActiveDetails->selectedItems()) {
     if ( item ) {
       int row = listWidgetActiveDetails->row(item);
-      if ( row < listWidgetActiveDetails->count() ) {
+      if ( row < listWidgetActiveDetails->count() - 1 ) {
+        activeDetailList.move(row, row + 1);
         QListWidgetItem *takenItem = listWidgetActiveDetails->takeItem(row);
-        listWidgetActiveDetails->insertItem(row + 1, takenItem);
-        takenItem->setSelected(TRUE);
+        if ( takenItem ) {
+          listWidgetActiveDetails->insertItem(row + 1, takenItem);
+          takenItem->setSelected(TRUE);
+        }
       }
     }
   }

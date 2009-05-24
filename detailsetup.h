@@ -13,6 +13,7 @@ class DetailSetup : public QDialog, public Ui::DetailSetup
     QMap<int, QString> shortTitleMap;
     QMap<int, QString> longTitleMap;
     QMap<int, QIcon> iconMap;
+    QList<int> availableDetailList;
     QList<int> activeDetailList;
 
     DetailSetup(QWidget *parent = 0);
