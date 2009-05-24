@@ -105,6 +105,8 @@ DetailSetup::DetailSetup(QWidget *parent)
   loadDetail();
 
   adjustSize();
+
+  qmc2MainWindow->tabWidgetGameDetail->setUpdatesEnabled(TRUE);
 }
 
 DetailSetup::~DetailSetup()
