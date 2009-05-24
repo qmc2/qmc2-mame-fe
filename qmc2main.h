@@ -240,6 +240,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void loadGameInfoDB();
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
     void loadEmuInfoDB();
+    void mawsLoadFinished(bool);
 #endif
     void createFifo(bool logFifoCreation = TRUE);
     void recreateFifo();

@@ -1,5 +1,6 @@
 #include <QMessageBox>
 #include <QPixmapCache>
+#include <QCache>
 #include <QHeaderView>
 #include <QTextStream>
 #include <QScrollBar>
@@ -17,6 +18,7 @@
 #include <QClipboard>
 #include <QDateTime>
 #include <QMutex>
+#include <QtWebKit>
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS)
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -152,6 +154,9 @@ QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
 QTreeWidgetItem *qmc2LastGameInfoItem = NULL;
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
 QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
+QWebView *qmc2MAWSLookup = NULL;
+QTreeWidgetItem *qmc2LastMAWSItem = NULL;
+QCache<QString, QByteArray> qmc2MAWSCache;
 #endif
 QTreeWidgetItem *qmc2HierarchySelectedItem = NULL;
 QMenu *qmc2EmulatorMenu = NULL,
@@ -347,6 +352,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   actionLaunchQMC2MAME->setVisible(FALSE);
+  qmc2MAWSCache.setMaxCost(QMC2_MAWS_CACHE_SIZE);
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
   actionLaunchQMC2MESS->setVisible(FALSE);
   setWindowTitle(tr("M.E.S.S. Catalog / Launcher II"));
@@ -2105,7 +2111,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         if ( qmc2MESSDeviceConfigurator ) {
           qmc2MESSDeviceConfigurator->save();
           QLayout *vbl = tabDevices->layout();
-          delete vbl;
+          if ( vbl )
+            delete vbl;
           delete qmc2MESSDeviceConfigurator;
           qmc2MESSDeviceConfigurator = NULL;
         }
@@ -2118,6 +2125,36 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         qmc2MESSDeviceConfigurator->show();
         qmc2LastDeviceConfigItem = qmc2CurrentItem;
         tabDevices->setUpdatesEnabled(TRUE);
+      }
+      break;
+#elif defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+    case QMC2_MAWS_INDEX:
+      if ( qmc2CurrentItem != qmc2LastMAWSItem ) {
+        tabMAWS->setUpdatesEnabled(FALSE);
+        if ( qmc2MAWSLookup ) {
+          QLayout *vbl = tabMAWS->layout();
+          if ( vbl )
+            delete vbl;
+          delete qmc2MAWSLookup;
+          qmc2MAWSLookup = NULL;
+        }
+        QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+        QVBoxLayout *layout = new QVBoxLayout;
+        qmc2MAWSLookup = new QWebView(tabMAWS);
+        QString mawsUrl = "http://maws.mameworld.info/maws/romset/" + gameName;
+        if ( !qmc2MAWSCache.contains(gameName) ) {
+          // FIXME: make MAWS URL a configurable setting
+          QString mawsUrl = "http://maws.mameworld.info/maws/romset/" + gameName;
+          qmc2MAWSLookup->setHtml("<center><p><b>" + tr("Fetching MAWS page for '%1', please wait...").arg(qmc2GamelistDescriptionMap[gameName]) +
+                                  "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center>");
+          qmc2MAWSLookup->load(QUrl(mawsUrl));
+        } else
+          qmc2MAWSLookup->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])));
+        layout->addWidget(qmc2MAWSLookup);
+        tabMAWS->setLayout(layout);
+        qmc2LastMAWSItem = qmc2CurrentItem;
+        connect(qmc2MAWSLookup, SIGNAL(loadFinished(bool)), this, SLOT(mawsLoadFinished(bool)));
+        tabMAWS->setUpdatesEnabled(TRUE);
       }
       break;
 #endif
@@ -4744,6 +4781,25 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
   else
     pushButtonSelectRomFilter->setVisible(TRUE);
 }
+
+#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+void MainWindow::mawsLoadFinished(bool ok)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::mawsLoadFinished(bool ok = %1)").arg(ok));
+#endif
+
+  if ( qmc2CurrentItem && qmc2MAWSLookup && ok ) {
+    QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+    if ( qmc2MAWSLookup->url().toString().endsWith("/" + gameName) ) {
+      QByteArray mawsData = qCompress(qmc2MAWSLookup->page()->mainFrame()->toHtml().toAscii());
+      qmc2MAWSCache.insert(gameName, new QByteArray(mawsData), mawsData.size());
+      // only cache the first page, so disconnect all signals!
+      disconnect(qmc2MAWSLookup);
+    }
+  }
+}
+#endif
 
 void myQtMessageHandler(QtMsgType type, const char *msg)
 {

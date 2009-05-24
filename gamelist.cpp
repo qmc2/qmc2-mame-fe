@@ -11,6 +11,7 @@
 #include <QDir>
 #include <QBitArray>
 #include <QByteArray>
+#include <QWebView>
 
 #include "gamelist.h"
 #include "emuopt.h"
@@ -52,6 +53,8 @@ extern Title *qmc2Title;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern QTreeWidgetItem *qmc2LastGameInfoItem;
+extern QTreeWidgetItem *qmc2LastMAWSItem;
+extern QWebView *qmc2MAWSLookup;
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
 extern QTreeWidgetItem *qmc2LastEmuInfoItem;
 #endif
@@ -234,6 +237,16 @@ void Gamelist::load()
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   qmc2MainWindow->textBrowserEmuInfo->clear();
   qmc2LastEmuInfoItem = NULL;
+  if ( qmc2MAWSLookup ) {
+    if ( qmc2MAWSLookup ) {
+      QLayout *vbl = qmc2MainWindow->tabMAWS->layout();
+      if ( vbl )
+        delete vbl;
+      delete qmc2MAWSLookup;
+      qmc2MAWSLookup = NULL;
+    }
+  }
+  qmc2LastMAWSItem = NULL;
 #endif
   qmc2Preview->repaint();
   qmc2Flyer->repaint();
@@ -249,7 +262,8 @@ void Gamelist::load()
   if ( qmc2EmulatorOptions ) {
     qmc2EmulatorOptions->save();
     QLayout *vbl = qmc2MainWindow->tabConfiguration->layout();
-    delete vbl;
+    if ( vbl )
+      delete vbl;
     delete qmc2EmulatorOptions;
     delete qmc2MainWindow->pushButtonCurrentEmulatorOptionsExportToFile;
     delete qmc2MainWindow->pushButtonCurrentEmulatorOptionsImportFromFile;
