@@ -319,6 +319,9 @@ MainWindow::MainWindow(QWidget *parent)
 
   setupUi(this);
 
+  // updated by detail setup
+  tabWidgetGameDetail->setUpdatesEnabled(FALSE);
+
 #if defined(Q_WS_WIN)
   actionLaunchQMC2MAME->setText(tr("QMC2 for MAME"));
   actionLaunchQMC2MAME->setToolTip(tr("Launch QMC2 for MAME"));
