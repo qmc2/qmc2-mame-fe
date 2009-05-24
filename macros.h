@@ -41,7 +41,9 @@
 #define QMC2_CONTROLLER_INDEX		7
 #define QMC2_MARQUEE_INDEX		8
 #define QMC2_TITLE_INDEX		9
+#define QMC2_MAWS_INDEX			10
 
+// column to add game icon in game list
 #define QMC2_ICON_INDEX			2
 
 // index positions of gamelist view selector

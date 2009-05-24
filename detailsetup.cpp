@@ -47,6 +47,11 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_TITLE_INDEX] = tr("Titl&e");
   longTitleMap[QMC2_TITLE_INDEX] = tr("Title screen image");
   iconMap[QMC2_TITLE_INDEX] = QIcon(QString::fromUtf8(":/data/img/arcademode.png"));
+#if defined (QMC2_USE_WIP_CODE)
+  shortTitleMap[QMC2_MAWS_INDEX] = tr("MAWS");
+  longTitleMap[QMC2_MAWS_INDEX] = tr("MAWS page (web lookup)");
+  iconMap[QMC2_MAWS_INDEX] = QIcon(QString::fromUtf8(":/data/img/internet.png"));
+#endif
   availableDetailList << QMC2_PREVIEW_INDEX
                       << QMC2_FLYER_INDEX
                       << QMC2_GAMEINFO_INDEX
@@ -56,6 +61,9 @@ DetailSetup::DetailSetup(QWidget *parent)
                       << QMC2_CONTROLLER_INDEX
                       << QMC2_MARQUEE_INDEX
                       << QMC2_TITLE_INDEX;
+#if defined (QMC2_USE_WIP_CODE)
+  availableDetailList << QMC2_MAWS_INDEX;
+#endif
   tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
   tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
   tabWidgetsMap[QMC2_GAMEINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_GAMEINFO_INDEX);
@@ -65,6 +73,9 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_CONTROLLER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONTROLLER_INDEX);
   tabWidgetsMap[QMC2_MARQUEE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MARQUEE_INDEX);
   tabWidgetsMap[QMC2_TITLE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_TITLE_INDEX);
+#if defined (QMC2_USE_WIP_CODE)
+  tabWidgetsMap[QMC2_MAWS_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MAWS_INDEX);
+#endif
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
   shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Previe&w");
   longTitleMap[QMC2_PREVIEW_INDEX] = tr("Machine preview image");
@@ -136,6 +147,9 @@ void DetailSetup::loadDetail()
                      << QMC2_CONTROLLER_INDEX
                      << QMC2_MARQUEE_INDEX
                      << QMC2_TITLE_INDEX;
+#if defined (QMC2_USE_WIP_CODE)
+    activeDetailList << QMC2_MAWS_INDEX;
+#endif
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
     activeDetailList << QMC2_PREVIEW_INDEX
                      << QMC2_FLYER_INDEX
@@ -240,12 +254,15 @@ void DetailSetup::on_pushButtonDeactivateDetails_clicked()
 
   foreach (QListWidgetItem *item, listWidgetActiveDetails->selectedItems()) {
     if ( item ) {
-      int row = listWidgetActiveDetails->row(item);
-      QListWidgetItem *takenItem = listWidgetActiveDetails->takeItem(row);
-      if ( takenItem )
-        delete takenItem;
-      if ( row >= 0 && row < activeDetailList.count() )
-        activeDetailList.removeAt(row);
+      if ( item->text() != longTitleMap[QMC2_CONFIG_INDEX] ) {
+        int row = listWidgetActiveDetails->row(item);
+        QListWidgetItem *takenItem = listWidgetActiveDetails->takeItem(row);
+        if ( takenItem )
+          delete takenItem;
+        if ( row >= 0 && row < activeDetailList.count() )
+          activeDetailList.removeAt(row);
+      } else
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFO: the configuration tab can't be removed"));
     }
   }
 }

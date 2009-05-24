@@ -885,7 +885,7 @@
             <enum>Qt::CustomContextMenu</enum>
            </property>
            <property name="currentIndex" >
-            <number>0</number>
+            <number>10</number>
            </property>
            <widget class="QWidget" name="tabPreview" >
             <attribute name="title" >
@@ -1023,6 +1023,11 @@
             <attribute name="icon" >
              <iconset resource="qmc2.qrc" >
               <normaloff>:/data/img/arcademode.png</normaloff>:/data/img/arcademode.png</iconset>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="tabMAWS" >
+            <attribute name="title" >
+             <string>MAWS</string>
             </attribute>
            </widget>
           </widget>

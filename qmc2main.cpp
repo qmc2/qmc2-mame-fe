@@ -892,7 +892,7 @@ void MainWindow::on_actionPlay_activated()
   }
 
   qmc2LastConfigItem = NULL;
-  on_tabWidgetGameDetail_currentChanged(QMC2_CONFIG_INDEX);
+  on_tabWidgetGameDetail_currentChanged(qmc2DetailSetup->appliedDetailList.indexOf(QMC2_CONFIG_INDEX));
 
   QStringList args;
   QString sectionTitle;
@@ -2124,11 +2124,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 
     case QMC2_CONFIG_INDEX:
       if ( qmc2CurrentItem != qmc2LastConfigItem ) {
-        tabConfiguration->setUpdatesEnabled(FALSE);
+        QWidget *configWidget = qmc2DetailSetup->tabWidgetsMap[QMC2_CONFIG_INDEX];
+        configWidget->setUpdatesEnabled(FALSE);
         if ( qmc2EmulatorOptions ) {
           qmc2EmulatorOptions->save();
-          QLayout *vbl = tabConfiguration->layout();
-          delete vbl;
+          QLayout *vbl = configWidget->layout();
+          if ( vbl )
+            delete vbl;
           delete qmc2EmulatorOptions;
           delete pushButtonCurrentEmulatorOptionsExportToFile;
           delete pushButtonCurrentEmulatorOptionsImportFromFile;
@@ -2137,9 +2139,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
         QVBoxLayout *layout = new QVBoxLayout;
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
-        qmc2EmulatorOptions = new EmulatorOptions("MAME/Configuration/" + gameName, tabConfiguration);
+        qmc2EmulatorOptions = new EmulatorOptions("MAME/Configuration/" + gameName, configWidget);
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
-        qmc2EmulatorOptions = new EmulatorOptions("MESS/Configuration/" + gameName, tabConfiguration);
+        qmc2EmulatorOptions = new EmulatorOptions("MESS/Configuration/" + gameName, configWidget);
 #endif
         qmc2EmulatorOptions->load();
         layout->addWidget(qmc2EmulatorOptions);
@@ -2164,7 +2166,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         buttonLayout->addWidget(pushButtonCurrentEmulatorOptionsExportToFile);
         buttonLayout->addWidget(pushButtonCurrentEmulatorOptionsImportFromFile);
         layout->addLayout(buttonLayout);
-        tabConfiguration->setLayout(layout);
+        configWidget->setLayout(layout);
         qmc2EmulatorOptions->show();
         pushButtonCurrentEmulatorOptionsExportToFile->show();
         pushButtonCurrentEmulatorOptionsImportFromFile->show();
@@ -2181,7 +2183,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         qmc2EmulatorOptions->resizeColumnToContents(0);
         qmc2EmulatorOptions->pseudoConstructor();
         qmc2LastConfigItem = qmc2CurrentItem;
-        tabConfiguration->setUpdatesEnabled(TRUE);
+        configWidget->setUpdatesEnabled(TRUE);
       }
       break;
 
@@ -2256,9 +2258,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
     default:
       // if local emulator options exits and they are no longer needed, close & destroy them...
       if ( qmc2EmulatorOptions ) {
+        QWidget *configWidget = qmc2DetailSetup->tabWidgetsMap[QMC2_CONFIG_INDEX];
         qmc2EmulatorOptions->save();
-        QLayout *vbl = tabConfiguration->layout();
-        delete vbl;
+        QLayout *vbl = configWidget->layout();
+        if ( vbl )
+          delete vbl;
         delete qmc2EmulatorOptions;
         delete pushButtonCurrentEmulatorOptionsExportToFile;
         delete pushButtonCurrentEmulatorOptionsImportFromFile;
