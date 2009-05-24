@@ -15,6 +15,8 @@ class DetailSetup : public QDialog, public Ui::DetailSetup
     QMap<int, QIcon> iconMap;
     QList<int> availableDetailList;
     QList<int> activeDetailList;
+    QList<int> appliedDetailList;
+    QMap<int, QWidget *> tabWidgetsMap;
 
     DetailSetup(QWidget *parent = 0);
     ~DetailSetup();
