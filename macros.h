@@ -30,11 +30,10 @@
 #define QMC2_PLAYED_INDEX		3
 
 // index positions of game detail & image checker tabs
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
 #define QMC2_PREVIEW_INDEX		0
 #define QMC2_FLYER_INDEX		1
-#define QMC2_ICON_INDEX			2
 #define QMC2_GAMEINFO_INDEX		2
+#define QMC2_MACHINEINFO_INDEX		QMC2_GAMEINFO_INDEX
 #define QMC2_EMUINFO_INDEX		3
 #define QMC2_CONFIG_INDEX		4
 #define QMC2_DEVICE_INDEX		5
@@ -42,20 +41,8 @@
 #define QMC2_CONTROLLER_INDEX		7
 #define QMC2_MARQUEE_INDEX		8
 #define QMC2_TITLE_INDEX		9
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
-#define QMC2_PREVIEW_INDEX		0
-#define QMC2_FLYER_INDEX		1
+
 #define QMC2_ICON_INDEX			2
-#define QMC2_GAMEINFO_INDEX		2
-#define QMC2_MACHINEINFO_INDEX		QMC2_GAMEINFO_INDEX
-#define QMC2_EMUINFO_INDEX		3
-#define QMC2_CONFIG_INDEX		3
-#define QMC2_DEVICE_INDEX		4
-#define QMC2_CABINET_INDEX		5
-#define QMC2_CONTROLLER_INDEX		6
-#define QMC2_MARQUEE_INDEX		7
-#define QMC2_TITLE_INDEX		8
-#endif
 
 // index positions of gamelist view selector
 #define QMC2_VIEW_DETAIL_INDEX		0

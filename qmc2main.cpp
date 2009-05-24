@@ -858,7 +858,7 @@ MainWindow::MainWindow(QWidget *parent)
   qApp->processEvents();
 #endif
 
-  QTimer::singleShot(50, this, SLOT(init()));
+  QTimer::singleShot(0, this, SLOT(init()));
 }
 
 MainWindow::~MainWindow()
