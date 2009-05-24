@@ -186,6 +186,7 @@ qmc2/data/img/classic/.svn/prop-base/hint_small.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/home.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/icon.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/info.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/internet.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/joystick.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/keyboard.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/kill.png.svn-base
@@ -299,6 +300,7 @@ qmc2/data/img/classic/.svn/text-base/hint_small.png.svn-base
 qmc2/data/img/classic/.svn/text-base/home.png.svn-base
 qmc2/data/img/classic/.svn/text-base/icon.png.svn-base
 qmc2/data/img/classic/.svn/text-base/info.png.svn-base
+qmc2/data/img/classic/.svn/text-base/internet.png.svn-base
 qmc2/data/img/classic/.svn/text-base/joystick.png.svn-base
 qmc2/data/img/classic/.svn/text-base/keyboard.png.svn-base
 qmc2/data/img/classic/.svn/text-base/kill.png.svn-base
@@ -413,6 +415,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/hint_small.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/home.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/icon.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/info.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/internet.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/joystick.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/keyboard.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/kill.png.svn-base
@@ -526,6 +529,7 @@ qmc2/data/img/crazy-black/.svn/text-base/hint_small.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/home.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/icon.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/info.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/internet.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/joystick.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/keyboard.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/kill.png.svn-base
@@ -640,6 +644,7 @@ qmc2/data/img/crazy/.svn/prop-base/hint_small.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/home.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/icon.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/info.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/internet.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/joystick.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/keyboard.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/kill.png.svn-base
@@ -753,6 +758,7 @@ qmc2/data/img/crazy/.svn/text-base/hint_small.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/home.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/icon.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/info.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/internet.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/joystick.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/keyboard.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/kill.png.svn-base
@@ -867,6 +873,7 @@ qmc2/data/img/.svn/prop-base/hint_small.png.svn-base
 qmc2/data/img/.svn/prop-base/home.png.svn-base
 qmc2/data/img/.svn/prop-base/icon.png.svn-base
 qmc2/data/img/.svn/prop-base/info.png.svn-base
+qmc2/data/img/.svn/prop-base/internet.png.svn-base
 qmc2/data/img/.svn/prop-base/joystick.png.svn-base
 qmc2/data/img/.svn/prop-base/keyboard.png.svn-base
 qmc2/data/img/.svn/prop-base/kill.png.svn-base
@@ -980,6 +987,7 @@ qmc2/data/img/.svn/text-base/hint_small.png.svn-base
 qmc2/data/img/.svn/text-base/home.png.svn-base
 qmc2/data/img/.svn/text-base/icon.png.svn-base
 qmc2/data/img/.svn/text-base/info.png.svn-base
+qmc2/data/img/.svn/text-base/internet.png.svn-base
 qmc2/data/img/.svn/text-base/joystick.png.svn-base
 qmc2/data/img/.svn/text-base/keyboard.png.svn-base
 qmc2/data/img/.svn/text-base/kill.png.svn-base
