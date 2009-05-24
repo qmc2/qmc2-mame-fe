@@ -4629,7 +4629,12 @@ void MainWindow::on_tabWidgetGameDetail_customContextMenuRequested(const QPoint 
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetGameDetail_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
-  if ( !tabWidgetGameDetail->currentWidget()->childrenRect().contains(p, TRUE) ) {
+  if ( tabWidgetGameDetail->currentWidget() ) {
+    if ( !tabWidgetGameDetail->currentWidget()->childrenRect().contains(p, TRUE) ) {
+      menuTabWidgetGameDetail->move(tabWidgetGameDetail->mapToGlobal(p));
+      menuTabWidgetGameDetail->show();
+    }
+  } else {
     menuTabWidgetGameDetail->move(tabWidgetGameDetail->mapToGlobal(p));
     menuTabWidgetGameDetail->show();
   }
