@@ -343,7 +343,6 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
-  tabWidgetGameDetail->removeTab(QMC2_DEVICE_INDEX);
   actionLaunchQMC2MAME->setVisible(FALSE);
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
   actionLaunchQMC2MESS->setVisible(FALSE);
@@ -388,9 +387,6 @@ MainWindow::MainWindow(QWidget *parent)
   qmc2Options->checkBoxShowGameName->setText(tr("Show machine name"));
   qmc2Options->checkBoxShowGameName->setToolTip(tr("Show machine's description at the bottom of any images"));
   qmc2Options->checkBoxShowGameNameOnlyWhenRequired->setToolTip(tr("Show machine's description only when the machine list is not visible due to the current layout"));
-  tabWidgetGameDetail->removeTab(QMC2_EMUINFO_INDEX);
-  while ( tabWidgetGameDetail->count() > QMC2_DEVICE_INDEX + 1 )
-    tabWidgetGameDetail->removeTab(tabWidgetGameDetail->count() - 1);
   treeWidgetGamelist->headerItem()->setText(QMC2_GAMELIST_COLUMN_ICON, tr("Value"));
   actionCheckIcons->setVisible(FALSE);
 #endif
@@ -444,11 +440,6 @@ MainWindow::MainWindow(QWidget *parent)
     hSplitter->setSizes(hSplitterSizes);
     vSplitter->setSizes(vSplitterSizes);
     tabWidgetGamelist->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
-    tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
-    tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", 0).toInt());
-#endif
     tabWidgetLogsAndEmulators->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", 0).toInt());
     int i;
     QVariantList defaultGamelistColumnWidths,
@@ -733,15 +724,12 @@ MainWindow::MainWindow(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetGameDetail_East_activated()));
-  // FIXME: remove this when game/machine detail setup is ready
-#if QMC2_WIP_CODE == 1
   menuTabWidgetGameDetail->addSeparator();
   s = tr("Detail setup");
   action = menuTabWidgetGameDetail->addAction(tr("&Setup..."));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetGameDetail_Setup_activated()));
-#endif
 
   menuTabWidgetLogsAndEmulators = new QMenu(0);
   s = tr("Set tab position north");
@@ -870,7 +858,7 @@ MainWindow::MainWindow(QWidget *parent)
   qApp->processEvents();
 #endif
 
-  QTimer::singleShot(0, this, SLOT(init()));
+  QTimer::singleShot(50, this, SLOT(init()));
 }
 
 MainWindow::~MainWindow()
@@ -2011,7 +1999,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 #if QMC2_OPENGL == 1
     // images painted through OpenGL need extra "clear()'s", otherwise garbage is displayed
-    switch ( currentIndex ) {
+    switch ( qmc2DetailSetup->appliedDetailList[currentIndex] ) {
       case QMC2_PREVIEW_INDEX: {
           QPainter pPreview(qmc2Preview);
           qmc2Preview->drawCenteredImage(0, &pPreview);
@@ -2106,7 +2094,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       break;
   }
 
-  switch ( currentIndex ) {
+  switch ( qmc2DetailSetup->appliedDetailList[currentIndex] ) {
 #if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
     case QMC2_DEVICE_INDEX:
       if ( qmc2CurrentItem != qmc2LastDeviceConfigItem ) {
@@ -4624,9 +4612,6 @@ void MainWindow::on_menuTabWidgetGameDetail_Setup_activated()
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetGameDetail_Setup_activated()"));
 #endif
 
-  if ( !qmc2DetailSetup )
-    qmc2DetailSetup = new DetailSetup(this);
-
   if ( qmc2DetailSetup->isHidden() )
     qmc2DetailSetup->show();
   else if ( qmc2DetailSetup->isMinimized() )
@@ -4894,6 +4879,19 @@ int main(int argc, char *argv[])
   qmc2Config = qmc2Options->config;
   qmc2ProcessManager = new ProcessManager(0);
   qmc2MainWindow = new MainWindow(0);
+
+  // prepare & restore game/machine detail setup
+  qmc2DetailSetup = new DetailSetup(qmc2MainWindow);
+  qmc2DetailSetup->saveDetail();
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
+#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+    qmc2MainWindow->tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
+#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+    qmc2MainWindow->tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", 0).toInt());
+#endif
+  }
+
+  // finalize initial setup
   qmc2Options->apply();
   qmc2GuiReady = TRUE;
   prepareShortcuts();

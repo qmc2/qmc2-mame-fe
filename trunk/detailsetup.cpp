@@ -5,10 +5,8 @@
 
 #define QMC2_DEBUG
 
-#ifdef QMC2_DEBUG
 #include "qmc2main.h"
 extern MainWindow *qmc2MainWindow;
-#endif
 
 extern QSettings *qmc2Config;
 
@@ -60,6 +58,15 @@ DetailSetup::DetailSetup(QWidget *parent)
                       << QMC2_CONTROLLER_INDEX
                       << QMC2_MARQUEE_INDEX
                       << QMC2_TITLE_INDEX;
+  tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
+  tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
+  tabWidgetsMap[QMC2_GAMEINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_GAMEINFO_INDEX);
+  tabWidgetsMap[QMC2_EMUINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_EMUINFO_INDEX);
+  tabWidgetsMap[QMC2_CONFIG_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONFIG_INDEX);
+  tabWidgetsMap[QMC2_CABINET_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CABINET_INDEX);
+  tabWidgetsMap[QMC2_CONTROLLER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONTROLLER_INDEX);
+  tabWidgetsMap[QMC2_MARQUEE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MARQUEE_INDEX);
+  tabWidgetsMap[QMC2_TITLE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_TITLE_INDEX);
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
   shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Previe&w");
   longTitleMap[QMC2_PREVIEW_INDEX] = tr("Machine preview image");
@@ -81,9 +88,15 @@ DetailSetup::DetailSetup(QWidget *parent)
                       << QMC2_MACHINEINFO_INDEX
                       << QMC2_CONFIG_INDEX
                       << QMC2_DEVICE_INDEX;
+  tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
+  tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
+  tabWidgetsMap[QMC2_MACHINEINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MACHINEINFO_INDEX);
+  tabWidgetsMap[QMC2_CONFIG_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONFIG_INDEX);
+  tabWidgetsMap[QMC2_DEVICE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_DEVICE_INDEX);
 #endif
 
   setupUi(this);
+  hide();
 
   QMapIterator<int, QString> it(longTitleMap);
   while ( it.hasNext() ) {
@@ -139,6 +152,8 @@ void DetailSetup::loadDetail()
     }
   }
 
+  appliedDetailList = activeDetailList;
+
   listWidgetActiveDetails->clear();
   foreach (int i, activeDetailList)
     listWidgetActiveDetails->addItem(new QListWidgetItem(iconMap[i], longTitleMap[i]));
@@ -150,10 +165,15 @@ void DetailSetup::saveDetail()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DetailSetup::saveDetail()");
 #endif
 
+  appliedDetailList.clear();
+  qmc2MainWindow->tabWidgetGameDetail->clear();
   QStringList activeIndexList;
   foreach (int i, activeDetailList)
-    if ( availableDetailList.contains(i) )
+    if ( availableDetailList.contains(i) ) {
+      appliedDetailList << i;
       activeIndexList << QString::number(i);
+      qmc2MainWindow->tabWidgetGameDetail->addTab(tabWidgetsMap[i], iconMap[i], shortTitleMap[i]);
+    }
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ActiveDetails", activeIndexList);
 }
 
