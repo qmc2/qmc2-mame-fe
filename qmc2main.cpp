@@ -2142,6 +2142,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
         QVBoxLayout *layout = new QVBoxLayout;
         qmc2MAWSLookup = new QWebView(tabMAWS);
+        qmc2MAWSLookup->setStatusTip(tr("MAWS page for '%1'").arg(qmc2GamelistDescriptionMap[gameName]));
         QString mawsUrl = "http://maws.mameworld.info/maws/romset/" + gameName;
         if ( !qmc2MAWSCache.contains(gameName) ) {
           // FIXME: make MAWS URL a configurable setting
