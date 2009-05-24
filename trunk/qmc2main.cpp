@@ -157,6 +157,7 @@ QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
 QWebView *qmc2MAWSLookup = NULL;
 QTreeWidgetItem *qmc2LastMAWSItem = NULL;
 QCache<QString, QByteArray> qmc2MAWSCache;
+QString qmc2MAWSUrl;
 #endif
 QTreeWidgetItem *qmc2HierarchySelectedItem = NULL;
 QMenu *qmc2EmulatorMenu = NULL,
@@ -2145,8 +2146,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         if ( !qmc2MAWSCache.contains(gameName) ) {
           // FIXME: make MAWS URL a configurable setting
           qmc2MAWSLookup->setHtml("<center><p><b>" + tr("Fetching MAWS page for '%1', please wait...").arg(qmc2GamelistDescriptionMap[gameName]) +
-                                  "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center>");
-          qmc2MAWSLookup->load(QUrl(mawsUrl));
+                                  "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center>", QUrl(mawsUrl));
+          qmc2MAWSLookup->stop();
+          qmc2MAWSUrl = mawsUrl;
+          QTimer::singleShot(QMC2_MAWS_LOAD_DELAY, this, SLOT(mawsLoadStart()));
         } else {
           qmc2MAWSLookup->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
           qmc2MAWSLookup->stop();
@@ -4799,6 +4802,17 @@ void MainWindow::mawsLoadFinished(bool ok)
       disconnect(qmc2MAWSLookup);
     }
   }
+}
+
+void MainWindow::mawsLoadStart()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::mawsLoadStart()"));
+#endif
+
+  if ( qmc2CurrentItem && qmc2MAWSLookup )
+    if ( qmc2MAWSLookup->url() == QUrl(qmc2MAWSUrl) )
+      qmc2MAWSLookup->load(QUrl(qmc2MAWSUrl));
 }
 #endif
 

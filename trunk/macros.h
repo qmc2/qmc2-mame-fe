@@ -191,6 +191,9 @@
 // MAWS web cache size (8M fixed for now -- enough for compressed data)
 #define QMC2_MAWS_CACHE_SIZE		8 * QMC2_ONE_MEGABYTE
 
+// MAWS load delay in milliseconds
+#define QMC2_MAWS_LOAD_DELAY		250
+
 // type conversions
 #define QMC2_TO_UINT32(a)		((uchar)*((a) + 0) * (quint32)16777216ULL + \
 					(uchar)*((a) + 1) * (quint32)65536ULL + \
