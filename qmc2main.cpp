@@ -2144,12 +2144,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         QString mawsUrl = "http://maws.mameworld.info/maws/romset/" + gameName;
         if ( !qmc2MAWSCache.contains(gameName) ) {
           // FIXME: make MAWS URL a configurable setting
-          QString mawsUrl = "http://maws.mameworld.info/maws/romset/" + gameName;
           qmc2MAWSLookup->setHtml("<center><p><b>" + tr("Fetching MAWS page for '%1', please wait...").arg(qmc2GamelistDescriptionMap[gameName]) +
                                   "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center>");
           qmc2MAWSLookup->load(QUrl(mawsUrl));
-        } else
-          qmc2MAWSLookup->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])));
+        } else {
+          qmc2MAWSLookup->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
+          qmc2MAWSLookup->stop();
+        }
         layout->addWidget(qmc2MAWSLookup);
         tabMAWS->setLayout(layout);
         qmc2LastMAWSItem = qmc2CurrentItem;
