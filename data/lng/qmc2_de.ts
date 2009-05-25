@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de">
-<defaultcodec></defaultcodec>
 <context>
     <name></name>
     <message>
@@ -1458,13 +1457,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="273"/>
-        <source>MAWS base URL (%1):</source>
-        <translation>MAWS Basis URL (%1):</translation>
+        <source>MAWS base URL</source>
+        <translation>MAWS Basis URL</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="273"/>
-        <source>caution: wrong URLs can lead to crash!</source>
-        <translation>Achtung: Falsche URLs können Crashs auslösen!</translation>
+        <source>wrong URLs can lead to crash!</source>
+        <translation>falsche URLs können Crashs auslösen!</translation>
     </message>
 </context>
 <context>
