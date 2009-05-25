@@ -188,6 +188,9 @@
 #define QMC2_ONE_GIGABYTE		1073741824
 #define QMC2_ONE_TERABYTE		1099511627776
 
+// MAWS base URL
+#define QMC2_MAWS_BASE_URL		"http://maws.mameworld.info/maws/romset/"
+
 // MAWS web cache size (8M fixed for now -- enough for compressed data)
 #define QMC2_MAWS_CACHE_SIZE		8 * QMC2_ONE_MEGABYTE
 
