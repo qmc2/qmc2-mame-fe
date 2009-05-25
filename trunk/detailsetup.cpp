@@ -270,7 +270,7 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
             bool ok;
             QString baseUrl = QInputDialog::getText(this,
                                                     tr("MAWS configuration"),
-                                                    tr("MAWS base URL (%1):").arg(tr("caution: wrong URLs can lead to crash!")),
+                                                    tr("MAWS base URL") + " (" + tr("wrong URLs can lead to crash!") + "):",
                                                     QLineEdit::Normal,
                                                     qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString(),
                                                     &ok);

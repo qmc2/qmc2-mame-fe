@@ -1476,12 +1476,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="273"/>
-        <source>MAWS base URL (%1):</source>
+        <source>MAWS base URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="273"/>
-        <source>caution: wrong URLs can lead to crash!</source>
+        <source>wrong URLs can lead to crash!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
