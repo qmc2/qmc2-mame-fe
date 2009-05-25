@@ -2143,7 +2143,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         QVBoxLayout *layout = new QVBoxLayout;
         qmc2MAWSLookup = new QWebView(tabMAWS);
         qmc2MAWSLookup->setStatusTip(tr("MAWS page for '%1'").arg(qmc2GamelistDescriptionMap[gameName]));
-        QString mawsUrl = "http://maws.mameworld.info/maws/romset/" + gameName;
+        QString mawsUrl = QMC2_MAWS_BASE_URL + gameName;
         if ( !qmc2MAWSCache.contains(gameName) ) {
           // FIXME: make MAWS URL a configurable setting
           qmc2MAWSLookup->setHtml("<center><p><b>" + tr("Fetching MAWS page for '%1', please wait...").arg(qmc2GamelistDescriptionMap[gameName]) +
@@ -4796,12 +4796,28 @@ void MainWindow::mawsLoadFinished(bool ok)
 
   if ( qmc2CurrentItem && qmc2MAWSLookup && ok ) {
     QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
-    if ( qmc2MAWSLookup->url().toString().endsWith("/" + gameName) ) {
+    // only cache the ROM set page, don't cache followed pages
+    if ( qmc2MAWSLookup->url().toString() == QString(QMC2_MAWS_BASE_URL + gameName) ) {
       QByteArray mawsData = qCompress(qmc2MAWSLookup->page()->mainFrame()->toHtml().toAscii());
+      if ( qmc2MAWSCache.contains(gameName) ) {
+        qmc2MAWSCache.remove(gameName);
+#ifdef QMC2_DEBUG
+        log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: URL exists, updating cache entry for '%1'").arg(QMC2_MAWS_BASE_URL + gameName));
+#endif
+      } else {
+#ifdef QMC2_DEBUG
+        log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: URL not found, creating cache entry for '%1'").arg(QMC2_MAWS_BASE_URL + gameName));
+#endif
+      }
       qmc2MAWSCache.insert(gameName, new QByteArray(mawsData), mawsData.size());
-      // only cache the first page, so disconnect all signals!
-      disconnect(qmc2MAWSLookup);
+#ifdef QMC2_DEBUG
+      log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: %1% filled").arg((double)100.0 * ((double)qmc2MAWSCache.totalCost()/(double)qmc2MAWSCache.maxCost()), 0, 'f', 2));
+#endif
     }
+#ifdef QMC2_DEBUG
+    else
+      log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: ignoring URL '%1'").arg(qmc2MAWSLookup->url().toString()));
+#endif
   }
 }
 
