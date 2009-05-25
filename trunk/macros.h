@@ -188,14 +188,17 @@
 #define QMC2_ONE_GIGABYTE		1073741824
 #define QMC2_ONE_TERABYTE		1099511627776
 
-// MAWS base URL
+// MAWS homepage URL
+#define QMC2_MAWS_HOMEPAGE_URL		"http://maws.mameworld.info/"
+
+// MAWS ROM set base URL (default)
 #define QMC2_MAWS_BASE_URL		"http://maws.mameworld.info/maws/romset/"
 
-// MAWS web cache size (8M fixed for now -- enough for compressed data)
+// MAWS web cache size (in-memory, 8M fixed for now)
 #define QMC2_MAWS_CACHE_SIZE		8 * QMC2_ONE_MEGABYTE
 
-// MAWS load delay in milliseconds
-#define QMC2_MAWS_LOAD_DELAY		250
+// maximum age of an MAWS disk-cache entry in seconds (24h for now)
+#define QMC2_MAWS_MAX_CACHE_AGE		86400
 
 // type conversions
 #define QMC2_TO_UINT32(a)		((uchar)*((a) + 0) * (quint32)16777216ULL + \

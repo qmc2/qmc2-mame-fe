@@ -164,6 +164,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseGameInfoDB->setEnabled(enable);
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   qmc2Options->toolButtonBrowseEmuInfoDB->setEnabled(enable);
+  qmc2Options->toolButtonBrowseMAWSCacheDirectory->setEnabled(enable);
 #endif
   qmc2Options->toolButtonBrowseExecutableFile->setEnabled(enable);
   qmc2Options->lineEditExecutableFile->setEnabled(enable);
