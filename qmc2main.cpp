@@ -4798,6 +4798,14 @@ void MainWindow::mawsLoadFinished(bool ok)
     QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
     // only cache the ROM set page, don't cache followed pages
     if ( qmc2MAWSLookup->url().toString() == QString(QMC2_MAWS_BASE_URL + gameName) ) {
+      QString mawsHtml = qmc2MAWSLookup->page()->mainFrame()->toHtml();
+      mawsHtml.replace("href=\"#top\"", QString("href=\"%1#top\"").arg(qmc2MAWSLookup->url().path()));
+      QPoint scrollPos = qmc2MAWSLookup->page()->mainFrame()->scrollPosition();
+      qmc2MAWSLookup->setUpdatesEnabled(FALSE);
+      qmc2MAWSLookup->setHtml(mawsHtml, QUrl(QMC2_MAWS_BASE_URL + gameName));
+      qmc2MAWSLookup->stop();
+      qmc2MAWSLookup->page()->mainFrame()->setScrollPosition(scrollPos);
+      qmc2MAWSLookup->setUpdatesEnabled(TRUE);
       QByteArray mawsData = qCompress(qmc2MAWSLookup->page()->mainFrame()->toHtml().toAscii());
       if ( qmc2MAWSCache.contains(gameName) ) {
         qmc2MAWSCache.remove(gameName);
