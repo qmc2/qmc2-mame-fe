@@ -2143,14 +2143,12 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         QVBoxLayout *layout = new QVBoxLayout;
         qmc2MAWSLookup = new QWebView(tabMAWS);
         qmc2MAWSLookup->setStatusTip(tr("MAWS page for '%1'").arg(qmc2GamelistDescriptionMap[gameName]));
-        QString mawsUrl = QMC2_MAWS_BASE_URL + gameName;
+        QString mawsUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString() + gameName;
         if ( !qmc2MAWSCache.contains(gameName) ) {
-          // FIXME: make MAWS URL a configurable setting
           qmc2MAWSLookup->setHtml("<center><p><b>" + tr("Fetching MAWS page for '%1', please wait...").arg(qmc2GamelistDescriptionMap[gameName]) +
-                                  "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center>", QUrl(mawsUrl));
-          qmc2MAWSLookup->stop();
+                                  "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center>");
           qmc2MAWSUrl = mawsUrl;
-          QTimer::singleShot(QMC2_MAWS_LOAD_DELAY, this, SLOT(mawsLoadStart()));
+          qmc2MAWSLookup->load(QUrl(mawsUrl));
         } else {
           qmc2MAWSLookup->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
           qmc2MAWSLookup->stop();
@@ -4797,12 +4795,12 @@ void MainWindow::mawsLoadFinished(bool ok)
   if ( qmc2CurrentItem && qmc2MAWSLookup && ok ) {
     QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
     // only cache the ROM set page, don't cache followed pages
-    if ( qmc2MAWSLookup->url().toString() == QString(QMC2_MAWS_BASE_URL + gameName) ) {
+    if ( qmc2MAWSLookup->url().toString() == QString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString() + gameName) ) {
       QString mawsHtml = qmc2MAWSLookup->page()->mainFrame()->toHtml();
       mawsHtml.replace("href=\"#top\"", QString("href=\"%1#top\"").arg(qmc2MAWSLookup->url().path()));
       QPoint scrollPos = qmc2MAWSLookup->page()->mainFrame()->scrollPosition();
       qmc2MAWSLookup->setUpdatesEnabled(FALSE);
-      qmc2MAWSLookup->setHtml(mawsHtml, QUrl(QMC2_MAWS_BASE_URL + gameName));
+      qmc2MAWSLookup->setHtml(mawsHtml, QUrl(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString() + gameName));
       qmc2MAWSLookup->stop();
       qmc2MAWSLookup->page()->mainFrame()->setScrollPosition(scrollPos);
       qmc2MAWSLookup->setUpdatesEnabled(TRUE);
@@ -4810,11 +4808,11 @@ void MainWindow::mawsLoadFinished(bool ok)
       if ( qmc2MAWSCache.contains(gameName) ) {
         qmc2MAWSCache.remove(gameName);
 #ifdef QMC2_DEBUG
-        log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: URL exists, updating cache entry for '%1'").arg(QMC2_MAWS_BASE_URL + gameName));
+        log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: URL exists, updating cache entry for '%1'").arg(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString() + gameName));
 #endif
       } else {
 #ifdef QMC2_DEBUG
-        log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: URL not found, creating cache entry for '%1'").arg(QMC2_MAWS_BASE_URL + gameName));
+        log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: URL not found, creating cache entry for '%1'").arg(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString() + gameName));
 #endif
       }
       qmc2MAWSCache.insert(gameName, new QByteArray(mawsData), mawsData.size());
@@ -4827,17 +4825,6 @@ void MainWindow::mawsLoadFinished(bool ok)
       log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: ignoring URL '%1'").arg(qmc2MAWSLookup->url().toString()));
 #endif
   }
-}
-
-void MainWindow::mawsLoadStart()
-{
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::mawsLoadStart()"));
-#endif
-
-  if ( qmc2CurrentItem && qmc2MAWSLookup )
-    if ( qmc2MAWSLookup->url() == QUrl(qmc2MAWSUrl) )
-      qmc2MAWSLookup->load(QUrl(qmc2MAWSUrl));
 }
 #endif
 

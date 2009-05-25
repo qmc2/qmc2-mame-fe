@@ -14,6 +14,7 @@ class DetailSetup : public QDialog, public Ui::DetailSetup
     QMap<int, QString> longTitleMap;
     QMap<int, QIcon> iconMap;
     QList<int> availableDetailList;
+    QList<int> configurableDetailList;
     QList<int> activeDetailList;
     QList<int> appliedDetailList;
     QMap<int, QWidget *> tabWidgetsMap;
@@ -29,6 +30,7 @@ class DetailSetup : public QDialog, public Ui::DetailSetup
     void on_listWidgetAvailableDetails_itemSelectionChanged(); 
     void on_listWidgetActiveDetails_itemSelectionChanged(); 
     void on_pushButtonActivateDetails_clicked();
+    void on_pushButtonConfigureDetail_clicked();
     void on_pushButtonDeactivateDetails_clicked();
     void on_pushButtonDetailsUp_clicked();
     void on_pushButtonDetailsDown_clicked();
