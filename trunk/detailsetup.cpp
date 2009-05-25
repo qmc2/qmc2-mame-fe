@@ -1,3 +1,4 @@
+#include <QInputDialog>
 #include <QSettings>
 
 #include "detailsetup.h"
@@ -70,6 +71,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_MARQUEE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MARQUEE_INDEX);
   tabWidgetsMap[QMC2_TITLE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_TITLE_INDEX);
   tabWidgetsMap[QMC2_MAWS_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MAWS_INDEX);
+  configurableDetailList << QMC2_MAWS_INDEX;
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
   shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Previe&w");
   longTitleMap[QMC2_PREVIEW_INDEX] = tr("Machine preview image");
@@ -100,6 +102,11 @@ DetailSetup::DetailSetup(QWidget *parent)
 
   setupUi(this);
   hide();
+
+#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+  // no configurable details for MESS variants yet
+  pushButtonConfigureDetail->setVisible(FALSE);
+#endif
 
   QMapIterator<int, QString> it(longTitleMap);
   while ( it.hasNext() ) {
@@ -191,6 +198,15 @@ void DetailSetup::on_listWidgetAvailableDetails_itemSelectionChanged()
 
   if ( listWidgetAvailableDetails->selectedItems().count() > 0 ) {
     pushButtonActivateDetails->setEnabled(TRUE);
+    if ( listWidgetAvailableDetails->selectedItems().count() == 1 ) {
+      if ( configurableDetailList.contains(longTitleMap.key(listWidgetAvailableDetails->selectedItems()[0]->text())) ) {
+        pushButtonConfigureDetail->setEnabled(TRUE);
+      } else {
+        pushButtonConfigureDetail->setEnabled(FALSE);
+      }
+    } else {
+      pushButtonConfigureDetail->setEnabled(FALSE);
+    }
   } else {
     pushButtonActivateDetails->setEnabled(FALSE);
   }
@@ -233,6 +249,38 @@ void DetailSetup::on_pushButtonActivateDetails_clicked()
           listWidgetActiveDetails->addItem(new QListWidgetItem(iconMap[pageIndex], item->text()));
           activeDetailList << pageIndex;
         }
+      }
+    }
+  }
+}
+
+void DetailSetup::on_pushButtonConfigureDetail_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DetailSetup::on_pushButtonConfigureDetail_clicked()");
+#endif
+
+  if ( listWidgetAvailableDetails->selectedItems().count() == 1 ) {
+    int pageIndex = longTitleMap.key(listWidgetAvailableDetails->selectedItems()[0]->text());
+    if ( configurableDetailList.contains(pageIndex) ) {
+      switch ( pageIndex ) {
+#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+        case QMC2_MAWS_INDEX:
+          {
+            bool ok;
+            QString baseUrl = QInputDialog::getText(this,
+                                                    tr("MAWS configuration"),
+                                                    tr("MAWS base URL (%1):").arg(tr("caution: wrong URLs can lead to crash!")),
+                                                    QLineEdit::Normal,
+                                                    qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString(),
+                                                    &ok);
+            if ( ok && !baseUrl.isEmpty() )
+              qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", baseUrl);
+          }
+          break;
+#endif
+        default:
+          break;
       }
     }
   }

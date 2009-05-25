@@ -39,21 +39,42 @@
           </widget>
          </item>
          <item row="1" column="0" >
-          <widget class="QPushButton" name="pushButtonActivateDetails" >
-           <property name="enabled" >
-            <bool>false</bool>
-           </property>
-           <property name="toolTip" >
-            <string>Activate selected details</string>
-           </property>
-           <property name="text" >
-            <string/>
-           </property>
-           <property name="icon" >
-            <iconset resource="qmc2.qrc" >
-             <normaloff>:/data/img/next-sail.png</normaloff>:/data/img/next-sail.png</iconset>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_2" >
+           <item>
+            <widget class="QPushButton" name="pushButtonConfigureDetail" >
+             <property name="enabled" >
+              <bool>false</bool>
+             </property>
+             <property name="toolTip" >
+              <string>Configure current detail</string>
+             </property>
+             <property name="text" >
+              <string>Configure...</string>
+             </property>
+             <property name="icon" >
+              <iconset resource="qmc2.qrc" >
+               <normaloff>:/data/img/configure.png</normaloff>:/data/img/configure.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButtonActivateDetails" >
+             <property name="enabled" >
+              <bool>false</bool>
+             </property>
+             <property name="toolTip" >
+              <string>Activate selected details</string>
+             </property>
+             <property name="text" >
+              <string/>
+             </property>
+             <property name="icon" >
+              <iconset resource="qmc2.qrc" >
+               <normaloff>:/data/img/next-sail.png</normaloff>:/data/img/next-sail.png</iconset>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>
@@ -203,6 +224,7 @@
  <tabstops>
   <tabstop>listWidgetAvailableDetails</tabstop>
   <tabstop>listWidgetActiveDetails</tabstop>
+  <tabstop>pushButtonConfigureDetail</tabstop>
   <tabstop>pushButtonActivateDetails</tabstop>
   <tabstop>pushButtonDeactivateDetails</tabstop>
   <tabstop>pushButtonDetailsUp</tabstop>

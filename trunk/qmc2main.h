@@ -241,7 +241,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
     void loadEmuInfoDB();
     void mawsLoadFinished(bool);
-    void mawsLoadStart();
 #endif
     void createFifo(bool logFifoCreation = TRUE);
     void recreateFifo();
