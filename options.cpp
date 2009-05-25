@@ -164,6 +164,9 @@ Options::Options(QWidget *parent)
   stackedWidgetController->setVisible(FALSE);
   stackedWidgetMarquee->setVisible(FALSE);
   stackedWidgetTitle->setVisible(FALSE);
+  labelMAWSCacheDirectory->setVisible(FALSE);
+  lineEditMAWSCacheDirectory->setVisible(FALSE);
+  toolButtonBrowseMAWSCacheDirectory->setVisible(FALSE);
 #endif
 
   // shortcuts
@@ -310,6 +313,7 @@ void Options::apply()
   toolButtonBrowseGameInfoDB->setIconSize(iconSize);
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   toolButtonBrowseEmuInfoDB->setIconSize(iconSize);
+  toolButtonBrowseMAWSCacheDirectory->setIconSize(iconSize);
 #endif
   toolButtonBrowsePreviewDirectory->setIconSize(iconSize);
   toolButtonBrowsePreviewFile->setIconSize(iconSize);
@@ -784,6 +788,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
   config->setValue("MAME/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
   config->setValue("MAME/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
+  config->setValue("MAME/FilesAndDirectories/MAWSCacheDirectory", lineEditMAWSCacheDirectory->text());
   s = lineEditOptionsTemplateFile->text();
   needRecreateTemplateMap = needRecreateTemplateMap || (config->value("MAME/FilesAndDirectories/OptionsTemplateFile").toString() != s );
   config->setValue("MAME/FilesAndDirectories/OptionsTemplateFile", s);
@@ -1391,6 +1396,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditListXMLCache->setText(config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
   lineEditGamelistCacheFile->setText(config->value("MAME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mame.glc").toString());
   lineEditROMStateCacheFile->setText(config->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
+  QString mawsCachePath = config->value("MAME/FilesAndDirectories/MAWSCacheDirectory", userScopePath + "/maws/").toString();
+  lineEditMAWSCacheDirectory->setText(mawsCachePath);
+  QDir mawsCacheDir(mawsCachePath);
+  if ( !mawsCacheDir.exists() )
+    mawsCacheDir.mkdir(mawsCachePath);
 #if defined(QMC2_SDLMAME)
   lineEditOptionsTemplateFile->setText(config->value("MAME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template.xml").toString());
 #elif defined(QMC2_MAME)
@@ -1698,6 +1708,20 @@ void Options::on_toolButtonBrowseROMStateCacheFile_clicked()
   QString s = QFileDialog::getOpenFileName(this, tr("Choose ROM state cache file"), lineEditROMStateCacheFile->text(), tr("All files (*)"));
   if ( !s.isNull() )
     lineEditROMStateCacheFile->setText(s);
+  raise();
+}
+
+void Options::on_toolButtonBrowseMAWSCacheDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMAWSCacheDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose MAWS cache directory"), lineEditMAWSCacheDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditMAWSCacheDirectory->setText(s);
+  }
   raise();
 }
 
