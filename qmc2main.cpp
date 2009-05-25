@@ -157,7 +157,6 @@ QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
 QWebView *qmc2MAWSLookup = NULL;
 QTreeWidgetItem *qmc2LastMAWSItem = NULL;
 QCache<QString, QByteArray> qmc2MAWSCache;
-QString qmc2MAWSUrl;
 #endif
 QTreeWidgetItem *qmc2HierarchySelectedItem = NULL;
 QMenu *qmc2EmulatorMenu = NULL,
@@ -2142,12 +2141,14 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
         QVBoxLayout *layout = new QVBoxLayout;
         qmc2MAWSLookup = new QWebView(tabMAWS);
+        qmc2MAWSLookup->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
+        qmc2MAWSLookup->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
         qmc2MAWSLookup->setStatusTip(tr("MAWS page for '%1'").arg(qmc2GamelistDescriptionMap[gameName]));
         QString mawsUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString() + gameName;
         if ( !qmc2MAWSCache.contains(gameName) ) {
-          qmc2MAWSLookup->setHtml("<center><p><b>" + tr("Fetching MAWS page for '%1', please wait...").arg(qmc2GamelistDescriptionMap[gameName]) +
-                                  "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center>");
-          qmc2MAWSUrl = mawsUrl;
+          qmc2MAWSLookup->setHtml("<html><head></head><body><center><p><b>" +
+                                  tr("Fetching MAWS page for '%1', please wait...").arg(qmc2GamelistDescriptionMap[gameName]) +
+                                  "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center></body></html>");
           qmc2MAWSLookup->load(QUrl(mawsUrl));
         } else {
           qmc2MAWSLookup->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
