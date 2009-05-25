@@ -1458,13 +1458,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="273"/>
-        <source>MAWS base URL</source>
-        <translation>MAWS Basis URL</translation>
-    </message>
-    <message>
-        <location filename="../../detailsetup.cpp" line="273"/>
-        <source>wrong URLs can lead to crash!</source>
-        <translation>falsche URLs können Crashs auslösen!</translation>
+        <source>MAWS URL pattern (use %1 as placeholder for game ID):</source>
+        <translation>MAWS URL Schablone (%1 als Platzhalter für Spiele-ID verwenden):</translation>
     </message>
 </context>
 <context>
