@@ -750,7 +750,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("Network/HTTPProxy/Host", lineEditHTTPProxyHost->text());
   config->setValue("Network/HTTPProxy/Port", spinBoxHTTPProxyPort->value());
   config->setValue("Network/HTTPProxy/UserID", lineEditHTTPProxyUserID->text());
-  config->setValue("Network/HTTPProxy/Password", lineEditHTTPProxyPassword->text());
+  config->setValue("Network/HTTPProxy/Password", qCompress(lineEditHTTPProxyPassword->text().toLatin1()));
   if ( groupBoxHTTPProxy->isChecked() ) {
       QNetworkProxy::setApplicationProxy(QNetworkProxy(QNetworkProxy::HttpProxy, 
                                          lineEditHTTPProxyHost->text(),
@@ -1407,7 +1407,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditHTTPProxyHost->setText(config->value("Network/HTTPProxy/Host", "").toString());
   spinBoxHTTPProxyPort->setValue(config->value("Network/HTTPProxy/Port", 80).toInt());
   lineEditHTTPProxyUserID->setText(config->value("Network/HTTPProxy/UserID", "").toString());
-  lineEditHTTPProxyPassword->setText(config->value("Network/HTTPProxy/Password", "").toString());
+  lineEditHTTPProxyPassword->setText(QString(qUncompress(config->value("Network/HTTPProxy/Password", "").toByteArray())));
 #endif
 
   // Emulator
