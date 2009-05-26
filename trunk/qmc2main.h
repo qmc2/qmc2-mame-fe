@@ -91,6 +91,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_actionExportROMStatus_activated();
     void on_actionClearImageCache_activated();
     void on_actionClearIconCache_activated();
+#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+    void on_actionClearMAWSCache_activated();
+#endif
     void on_actionRecreateTemplateMap_activated();
     void on_actionOptions_activated();
 
