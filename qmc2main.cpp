@@ -867,6 +867,9 @@ MainWindow::MainWindow(QWidget *parent)
   qApp->processEvents();
 #endif
 
+  // setup intial focus widget
+  on_tabWidgetGamelist_currentChanged(tabWidgetGamelist->currentIndex());
+
   QTimer::singleShot(0, this, SLOT(init()));
 }
 
@@ -1880,6 +1883,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 
     case QMC2_SEARCH_INDEX:
       QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
+      listWidgetSearch->setFocus();
       break;
 
     case QMC2_FAVORITES_INDEX:
@@ -1961,8 +1965,9 @@ void MainWindow::checkCurrentSearchSelection()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkCurrentSearchSelection()");
 #endif
 
-  listWidgetSearch->clearSelection();
+  listWidgetSearch->blockSignals(TRUE);
   listWidgetSearch->setCurrentIndex(QModelIndex());
+  listWidgetSearch->clearSelection();
 
   if ( !qmc2CurrentItem )
     return;
@@ -1971,12 +1976,13 @@ void MainWindow::checkCurrentSearchSelection()
   if ( searchMatches.count() > 0 ) {
     QListWidgetItem *matchedItem = searchMatches[0];
     if ( matchedItem != NULL ) {
-      listWidgetSearch->setCurrentItem(matchedItem);
+      listWidgetSearch->setCurrentItem(matchedItem, QItemSelectionModel::ClearAndSelect);
       listWidgetSearch->scrollToItem(matchedItem, QAbstractItemView::PositionAtTop);
-      matchedItem->setSelected(TRUE);
       qApp->processEvents();
     }
   }
+
+  listWidgetSearch->blockSignals(FALSE);
 }
 
 void MainWindow::checkCurrentFavoritesSelection()
@@ -1985,9 +1991,9 @@ void MainWindow::checkCurrentFavoritesSelection()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkCurrentFavoritesSelection()");
 #endif
 
-  listWidgetFavorites->setFocus();
-  listWidgetFavorites->clearSelection();
+  listWidgetFavorites->blockSignals(TRUE);
   listWidgetFavorites->setCurrentIndex(QModelIndex());
+  listWidgetFavorites->clearSelection();
 
   if ( !qmc2CurrentItem )
     return;
@@ -1996,12 +2002,14 @@ void MainWindow::checkCurrentFavoritesSelection()
   if ( favoritesMatches.count() > 0 ) {
     QListWidgetItem *matchedItem = favoritesMatches[0];
     if ( matchedItem != NULL ) {
-      listWidgetFavorites->setCurrentItem(matchedItem);
+      listWidgetFavorites->setCurrentItem(matchedItem, QItemSelectionModel::ClearAndSelect);
       listWidgetFavorites->scrollToItem(matchedItem, QAbstractItemView::PositionAtTop);
-      matchedItem->setSelected(TRUE);
       qApp->processEvents();
     }
   }
+
+  listWidgetFavorites->setFocus();
+  listWidgetFavorites->blockSignals(FALSE);
 }
 
 void MainWindow::checkCurrentPlayedSelection()
@@ -2010,9 +2018,9 @@ void MainWindow::checkCurrentPlayedSelection()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkCurrentPlayedSelection()");
 #endif
 
-  listWidgetPlayed->setFocus();
-  listWidgetPlayed->clearSelection();
+  listWidgetPlayed->blockSignals(TRUE);
   listWidgetPlayed->setCurrentIndex(QModelIndex());
+  listWidgetPlayed->clearSelection();
 
   if ( !qmc2CurrentItem )
     return;
@@ -2021,12 +2029,14 @@ void MainWindow::checkCurrentPlayedSelection()
   if ( playedMatches.count() > 0 ) {
     QListWidgetItem *matchedItem = playedMatches[0];
     if ( matchedItem != NULL ) {
-      listWidgetPlayed->setCurrentItem(matchedItem);
+      listWidgetPlayed->setCurrentItem(matchedItem, QItemSelectionModel::ClearAndSelect);
       listWidgetPlayed->scrollToItem(matchedItem, QAbstractItemView::PositionAtTop);
-      matchedItem->setSelected(TRUE);
       qApp->processEvents();
     }
   }
+
+  listWidgetPlayed->setFocus();
+  listWidgetPlayed->blockSignals(FALSE);
 }
 
 void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)

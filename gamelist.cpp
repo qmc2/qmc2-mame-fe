@@ -1722,6 +1722,8 @@ void Gamelist::loadFavorites()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading favorites)"));
   if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_FAVORITES_INDEX )
     QTimer::singleShot(0, qmc2MainWindow, SLOT(checkCurrentFavoritesSelection()));
+  else
+    qmc2MainWindow->listWidgetFavorites->setCurrentIndex(QModelIndex());
 }
 
 void Gamelist::saveFavorites()
@@ -1787,6 +1789,8 @@ void Gamelist::loadPlayHistory()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading play history)"));
   if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_PLAYED_INDEX )
     QTimer::singleShot(0, qmc2MainWindow, SLOT(checkCurrentPlayedSelection()));
+  else
+    qmc2MainWindow->listWidgetPlayed->setCurrentIndex(QModelIndex());
 }
 
 void Gamelist::savePlayHistory()
