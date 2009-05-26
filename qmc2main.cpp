@@ -2160,8 +2160,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
             if ( QDateTime::currentDateTime().toTime_t() - mawsCacheAge.toULong() < QMC2_MAWS_MAX_CACHE_AGE ) {
               if ( !qmc2MAWSCache.contains(gameName) ) {
                 QString mawsCacheData = ts.read(QMC2_ONE_MEGABYTE);
-                qmc2MAWSCache.insert(gameName, new QByteArray(mawsCacheData.toLatin1()), mawsCacheData.size());
-                qmc2MAWSLookup->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
+                qmc2MAWSLookup->setHtml(QString(qUncompress(mawsCacheData.toLatin1())), QUrl(mawsUrl));
                 foundInDiskCache = TRUE;
               }
             }
