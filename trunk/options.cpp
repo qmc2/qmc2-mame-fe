@@ -12,6 +12,7 @@
 #include <QAction>
 #include <QPair>
 #include <QLocale>
+#include <QNetworkProxy>
 
 #include "options.h"
 #include "emuopt.h"
@@ -736,11 +737,25 @@ void Options::on_pushButtonApply_clicked()
   }
 #endif
 
-  // Tools
+  // Tools / Proxy
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/ZipTool", lineEditZipTool->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments", lineEditZipToolRemovalArguments->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool", lineEditFileRemovalTool->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments", lineEditFileRemovalToolArguments->text());
+  config->setValue("Network/HTTPProxy/Enable", groupBoxHTTPProxy->isChecked());
+  config->setValue("Network/HTTPProxy/Host", lineEditHTTPProxyHost->text());
+  config->setValue("Network/HTTPProxy/Port", spinBoxHTTPProxyPort->value());
+  config->setValue("Network/HTTPProxy/UserID", lineEditHTTPProxyUserID->text());
+  config->setValue("Network/HTTPProxy/Password", lineEditHTTPProxyPassword->text());
+  if ( groupBoxHTTPProxy->isChecked() ) {
+      QNetworkProxy::setApplicationProxy(QNetworkProxy(QNetworkProxy::HttpProxy, 
+                                         lineEditHTTPProxyHost->text(),
+                                         spinBoxHTTPProxyPort->value(),
+                                         lineEditHTTPProxyUserID->text().isEmpty() ? QString() : lineEditHTTPProxyUserID->text(),
+                                         lineEditHTTPProxyPassword->text().isEmpty() ? QString() : lineEditHTTPProxyPassword->text()));
+  } else {
+      QNetworkProxy::setApplicationProxy(QNetworkProxy(QNetworkProxy::NoProxy));
+  }
 
   // Emulator
 
@@ -1370,7 +1385,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   }
 #endif
 
-  // Tools
+  // Tools / Proxy
 #if defined (Q_WS_WIN)
   lineEditZipTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipTool", "zip").toString());
   lineEditZipToolRemovalArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments", "$ARCHIVE$ -d $FILELIST$").toString());
@@ -1382,6 +1397,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditFileRemovalTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool", "rm").toString());
   lineEditFileRemovalToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments", "-f -v $FILELIST$").toString());
 #endif
+  groupBoxHTTPProxy->setChecked(config->value("Network/HTTPProxy/Enable", FALSE).toBool());
+  lineEditHTTPProxyHost->setText(config->value("Network/HTTPProxy/Host", "").toString());
+  spinBoxHTTPProxyPort->setValue(config->value("Network/HTTPProxy/Port", 80).toInt());
+  lineEditHTTPProxyUserID->setText(config->value("Network/HTTPProxy/UserID", "").toString());
+  lineEditHTTPProxyPassword->setText(config->value("Network/HTTPProxy/Password", "").toString());
 
   // Emulator
 

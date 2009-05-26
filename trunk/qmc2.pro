@@ -2,7 +2,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 	greaterThan(QT_MINOR_VERSION, 3) {
 		isEmpty(TARGET):TARGET = qmc2
 		CONFIG += qtestlib
-		QT += xml webkit
+		QT += xml webkit network
 		TEMPLATE = app
 		INCLUDEPATH += minizip/
 		FORMS += qmc2main.ui \

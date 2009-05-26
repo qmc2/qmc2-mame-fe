@@ -2479,147 +2479,238 @@
          </widget>
          <widget class="QWidget" name="tabFrontendTools" >
           <attribute name="title" >
-           <string>&amp;Tools</string>
+           <string>&amp;Tools / Proxy</string>
           </attribute>
-          <layout class="QGridLayout" >
-           <property name="margin" >
-            <number>9</number>
-           </property>
-           <property name="spacing" >
-            <number>6</number>
-           </property>
+          <layout class="QGridLayout" name="gridLayout_2" >
            <item row="0" column="0" >
-            <widget class="QGroupBox" name="groupBoxZipTool" >
-             <property name="title" >
-              <string>Zip tool</string>
-             </property>
-             <layout class="QGridLayout" >
-              <property name="margin" >
-               <number>9</number>
-              </property>
-              <property name="spacing" >
-               <number>6</number>
-              </property>
-              <item row="0" column="0" >
-               <widget class="QLabel" name="labelZipTool" >
-                <property name="text" >
-                 <string>Command</string>
+            <layout class="QGridLayout" name="gridLayout_4" >
+             <item row="0" column="0" >
+              <widget class="QGroupBox" name="groupBoxZipTool" >
+               <property name="title" >
+                <string>Zip tool</string>
+               </property>
+               <layout class="QGridLayout" >
+                <property name="margin" >
+                 <number>9</number>
                 </property>
-               </widget>
-              </item>
-              <item row="0" column="1" >
-               <widget class="QLineEdit" name="lineEditZipTool" >
-                <property name="toolTip" >
-                 <string>External zip tool, i.e. "zip" (read and execute)</string>
+                <property name="spacing" >
+                 <number>6</number>
                 </property>
-               </widget>
-              </item>
-              <item row="0" column="2" >
-               <widget class="QToolButton" name="toolButtonBrowseZipTool" >
-                <property name="sizePolicy" >
-                 <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
+                <item row="0" column="0" >
+                 <widget class="QLabel" name="labelZipTool" >
+                  <property name="text" >
+                   <string>Command</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1" >
+                 <widget class="QLineEdit" name="lineEditZipTool" >
+                  <property name="toolTip" >
+                   <string>External zip tool, i.e. "zip" (read and execute)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2" >
+                 <widget class="QToolButton" name="toolButtonBrowseZipTool" >
+                  <property name="sizePolicy" >
+                   <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="toolTip" >
+                   <string>Browse for zip tool</string>
+                  </property>
+                  <property name="icon" >
+                   <iconset resource="qmc2.qrc" >
+                    <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0" >
+                 <widget class="QLabel" name="labelZipToolRemovalArguments" >
+                  <property name="text" >
+                   <string>Arguments</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1" colspan="2" >
+                 <widget class="QLineEdit" name="lineEditZipToolRemovalArguments" >
+                  <property name="toolTip" >
+                   <string>Zip tool argument list to remove entries from the ZIP archive (i. e. "$ARCHIVE$ -d $FILELIST$")</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="1" column="0" >
+              <widget class="QGroupBox" name="groupBoxFileRemovalTool" >
+               <property name="title" >
+                <string>File removal tool</string>
+               </property>
+               <layout class="QGridLayout" >
+                <property name="margin" >
+                 <number>9</number>
                 </property>
-                <property name="toolTip" >
-                 <string>Browse for zip tool</string>
+                <property name="spacing" >
+                 <number>6</number>
                 </property>
-                <property name="icon" >
-                 <iconset resource="qmc2.qrc" >
-                  <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0" >
-               <widget class="QLabel" name="labelZipToolRemovalArguments" >
-                <property name="text" >
-                 <string>Arguments</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1" colspan="2" >
-               <widget class="QLineEdit" name="lineEditZipToolRemovalArguments" >
-                <property name="toolTip" >
-                 <string>Zip tool argument list to remove entries from the ZIP archive (i. e. "$ARCHIVE$ -d $FILELIST$")</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="1" column="0" >
-            <widget class="QGroupBox" name="groupBoxFileRemovalTool" >
-             <property name="title" >
-              <string>File removal tool</string>
-             </property>
-             <layout class="QGridLayout" >
-              <property name="margin" >
-               <number>9</number>
-              </property>
-              <property name="spacing" >
-               <number>6</number>
-              </property>
-              <item row="0" column="0" >
-               <widget class="QLabel" name="labelFileRemovalTool" >
-                <property name="text" >
-                 <string>Command</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1" >
-               <widget class="QLineEdit" name="lineEditFileRemovalTool" >
-                <property name="toolTip" >
-                 <string>External file removal tool, i.e. "rm" (read and execute)</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2" >
-               <widget class="QToolButton" name="toolButtonBrowseFileRemovalTool" >
-                <property name="sizePolicy" >
-                 <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="toolTip" >
-                 <string>Browse for file removal tool</string>
-                </property>
-                <property name="icon" >
-                 <iconset resource="qmc2.qrc" >
-                  <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0" >
-               <widget class="QLabel" name="labelFileRemovalToolArguments" >
-                <property name="text" >
-                 <string>Arguments</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1" colspan="2" >
-               <widget class="QLineEdit" name="lineEditFileRemovalToolArguments" >
-                <property name="toolTip" >
-                 <string>File removal tool argument list (i. e. "-f -v $FILELIST$")</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="2" column="0" >
-            <spacer name="spacer10" >
-             <property name="orientation" >
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0" >
-              <size>
-               <width>20</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
+                <item row="0" column="0" >
+                 <widget class="QLabel" name="labelFileRemovalTool" >
+                  <property name="text" >
+                   <string>Command</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1" >
+                 <widget class="QLineEdit" name="lineEditFileRemovalTool" >
+                  <property name="toolTip" >
+                   <string>External file removal tool, i.e. "rm" (read and execute)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2" >
+                 <widget class="QToolButton" name="toolButtonBrowseFileRemovalTool" >
+                  <property name="sizePolicy" >
+                   <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="toolTip" >
+                   <string>Browse for file removal tool</string>
+                  </property>
+                  <property name="icon" >
+                   <iconset resource="qmc2.qrc" >
+                    <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0" >
+                 <widget class="QLabel" name="labelFileRemovalToolArguments" >
+                  <property name="text" >
+                   <string>Arguments</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1" colspan="2" >
+                 <widget class="QLineEdit" name="lineEditFileRemovalToolArguments" >
+                  <property name="toolTip" >
+                   <string>File removal tool argument list (i. e. "-f -v $FILELIST$")</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="3" column="0" >
+              <spacer name="spacer10" >
+               <property name="orientation" >
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0" >
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="2" column="0" >
+              <widget class="QGroupBox" name="groupBoxHTTPProxy" >
+               <property name="enabled" >
+                <bool>true</bool>
+               </property>
+               <property name="toolTip" >
+                <string>Enable / disable the use of an HTTP proxy on any web lookups</string>
+               </property>
+               <property name="title" >
+                <string>Use HTTP proxy</string>
+               </property>
+               <property name="checkable" >
+                <bool>true</bool>
+               </property>
+               <property name="checked" >
+                <bool>false</bool>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_3" >
+                <item row="0" column="0" >
+                 <widget class="QLabel" name="labelHTTPProxyHost" >
+                  <property name="text" >
+                   <string>Host / IP</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1" >
+                 <widget class="QLineEdit" name="lineEditHTTPProxyHost" >
+                  <property name="toolTip" >
+                   <string>Hostname or IP address of the HTTP proxy server</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2" >
+                 <widget class="QLabel" name="labelHTTPProxyPort" >
+                  <property name="text" >
+                   <string>Port</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="3" >
+                 <widget class="QSpinBox" name="spinBoxHTTPProxyPort" >
+                  <property name="toolTip" >
+                   <string>Port to access the HTTP proxy service</string>
+                  </property>
+                  <property name="maximum" >
+                   <number>65535</number>
+                  </property>
+                  <property name="value" >
+                   <number>80</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0" >
+                 <widget class="QLabel" name="labelHTTPProxyUserID" >
+                  <property name="text" >
+                   <string>User ID</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1" colspan="3" >
+                 <widget class="QLineEdit" name="lineEditHTTPProxyUserID" >
+                  <property name="toolTip" >
+                   <string>User ID to access the HTTP proxy service (empty = no authentication)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0" >
+                 <widget class="QLabel" name="labelHTTPProxyPassword" >
+                  <property name="text" >
+                   <string>Password</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1" colspan="3" >
+                 <widget class="QLineEdit" name="lineEditHTTPProxyPassword" >
+                  <property name="toolTip" >
+                   <string>Password to access the HTTP proxy service (empty = no authentication)</string>
+                  </property>
+                  <property name="echoMode" >
+                   <enum>QLineEdit::Password</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1" colspan="3" >
+                 <widget class="QLabel" name="labelNoEncryptionWarning" >
+                  <property name="text" >
+                   <string>&lt;font size="-1">&lt;b>WARNING: the password is stored unencrypted!&lt;/b>&lt;/font></string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -3160,6 +3251,11 @@
   <tabstop>lineEditFileRemovalTool</tabstop>
   <tabstop>toolButtonBrowseFileRemovalTool</tabstop>
   <tabstop>lineEditFileRemovalToolArguments</tabstop>
+  <tabstop>groupBoxHTTPProxy</tabstop>
+  <tabstop>lineEditHTTPProxyHost</tabstop>
+  <tabstop>spinBoxHTTPProxyPort</tabstop>
+  <tabstop>lineEditHTTPProxyUserID</tabstop>
+  <tabstop>lineEditHTTPProxyPassword</tabstop>
   <tabstop>tabWidgetGlobalMAMESetup</tabstop>
   <tabstop>lineEditExecutableFile</tabstop>
   <tabstop>toolButtonBrowseExecutableFile</tabstop>
