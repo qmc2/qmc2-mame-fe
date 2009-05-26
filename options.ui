@@ -2701,9 +2701,9 @@
                  </widget>
                 </item>
                 <item row="3" column="1" colspan="3" >
-                 <widget class="QLabel" name="labelNoEncryptionWarning" >
+                 <widget class="QLabel" name="labelWeakEncryptionWarning" >
                   <property name="text" >
-                   <string>&lt;font size="-1">&lt;b>WARNING: the password is stored unencrypted!&lt;/b>&lt;/font></string>
+                   <string>&lt;font size="-1">&lt;b>WARNING: the stored password is only &lt;u>weakly&lt;/u> encrypted!&lt;/b>&lt;/font></string>
                   </property>
                  </widget>
                 </item>
