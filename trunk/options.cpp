@@ -168,6 +168,9 @@ Options::Options(QWidget *parent)
   labelMAWSCacheDirectory->setVisible(FALSE);
   lineEditMAWSCacheDirectory->setVisible(FALSE);
   toolButtonBrowseMAWSCacheDirectory->setVisible(FALSE);
+  // MESS variants don't need HTTP proxy support yet
+  groupBoxHTTPProxy->setVisible(FALSE);
+  tabWidgetFrontendSettings->setTabText(QMC2_OPTIONS_FE_TOOLS_INDEX, tr("&Tools"));
 #endif
 
   // shortcuts
@@ -742,6 +745,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments", lineEditZipToolRemovalArguments->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool", lineEditFileRemovalTool->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments", lineEditFileRemovalToolArguments->text());
+#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   config->setValue("Network/HTTPProxy/Enable", groupBoxHTTPProxy->isChecked());
   config->setValue("Network/HTTPProxy/Host", lineEditHTTPProxyHost->text());
   config->setValue("Network/HTTPProxy/Port", spinBoxHTTPProxyPort->value());
@@ -756,6 +760,7 @@ void Options::on_pushButtonApply_clicked()
   } else {
       QNetworkProxy::setApplicationProxy(QNetworkProxy(QNetworkProxy::NoProxy));
   }
+#endif
 
   // Emulator
 
@@ -1397,11 +1402,13 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditFileRemovalTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool", "rm").toString());
   lineEditFileRemovalToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments", "-f -v $FILELIST$").toString());
 #endif
+#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   groupBoxHTTPProxy->setChecked(config->value("Network/HTTPProxy/Enable", FALSE).toBool());
   lineEditHTTPProxyHost->setText(config->value("Network/HTTPProxy/Host", "").toString());
   spinBoxHTTPProxyPort->setValue(config->value("Network/HTTPProxy/Port", 80).toInt());
   lineEditHTTPProxyUserID->setText(config->value("Network/HTTPProxy/UserID", "").toString());
   lineEditHTTPProxyPassword->setText(config->value("Network/HTTPProxy/Password", "").toString());
+#endif
 
   // Emulator
 
