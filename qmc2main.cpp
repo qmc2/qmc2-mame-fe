@@ -355,6 +355,7 @@ MainWindow::MainWindow(QWidget *parent)
   qmc2MAWSCache.setMaxCost(QMC2_MAWS_CACHE_SIZE);
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
   actionLaunchQMC2MESS->setVisible(FALSE);
+  actionClearMAWSCache->setVisible(FALSE);
   setWindowTitle(tr("M.E.S.S. Catalog / Launcher II"));
   menu_Tools->removeAction(actionCheckIcons);
   treeWidgetGamelist->headerItem()->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Machine / Attribute"));
@@ -1352,6 +1353,36 @@ void MainWindow::on_actionClearIconCache_activated()
   qmc2IconsPreloaded = FALSE;
   log(QMC2_LOG_FRONTEND, tr("icon cache cleared"));
 }
+
+#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+void MainWindow::on_actionClearMAWSCache_activated()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearMAWSCache_activated()");
+#endif
+
+  QString cacheStatus = tr("freed %n byte(s) in %1", "", qmc2MAWSCache.totalCost()).arg(tr("%n entry(s)", "", qmc2MAWSCache.count()));
+  qmc2MAWSCache.clear();
+  log(QMC2_LOG_FRONTEND, tr("MAWS in-memory cache cleared (%1)").arg(cacheStatus));
+  QDir mawsCacheDir(qmc2Config->value("MAME/FilesAndDirectories/MAWSCacheDirectory").toString());
+  qulonglong removedBytes = 0;
+  qulonglong removedFiles = 0;
+  if ( mawsCacheDir.exists() ) {
+    QStringList webCacheFiles = mawsCacheDir.entryList(QStringList("*.wc"));
+    foreach (QString webCacheFile, webCacheFiles) {
+      QFileInfo fi(mawsCacheDir.filePath(webCacheFile));
+      qint64 fSize = fi.size();
+      if ( mawsCacheDir.remove(webCacheFile) ) {
+        removedBytes += fSize;
+        removedFiles++;
+      }
+      qApp->processEvents();
+    }
+  }
+  cacheStatus = tr("removed %n byte(s) in %1", "", removedBytes).arg(tr("%n file(s)", "", removedFiles));
+  log(QMC2_LOG_FRONTEND, tr("MAWS on-disk cache cleared (%1)").arg(cacheStatus));
+}
+#endif
 
 void MainWindow::on_actionRecreateTemplateMap_activated()
 {
@@ -4914,6 +4945,7 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+H"].second = qmc2MainWindow->actionDocumentation;
   qmc2ShortcutMap["Ctrl+I"].second = qmc2MainWindow->actionClearImageCache;
   qmc2ShortcutMap["Ctrl+Shift+A"].second = qmc2MainWindow->actionArcadeSetup;
+  qmc2ShortcutMap["Ctrl+M"].second = qmc2MainWindow->actionClearMAWSCache;
   qmc2ShortcutMap["Ctrl+N"].second = qmc2MainWindow->actionClearIconCache;
   qmc2ShortcutMap["Ctrl+O"].second = qmc2MainWindow->actionOptions;
   qmc2ShortcutMap["Ctrl+P"].second = qmc2MainWindow->actionPlay;

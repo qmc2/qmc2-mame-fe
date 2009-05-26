@@ -885,7 +885,7 @@
             <enum>Qt::CustomContextMenu</enum>
            </property>
            <property name="currentIndex" >
-            <number>10</number>
+            <number>0</number>
            </property>
            <widget class="QWidget" name="tabPreview" >
             <attribute name="title" >
@@ -1028,6 +1028,10 @@
            <widget class="QWidget" name="tabMAWS" >
             <attribute name="title" >
              <string>MAWS</string>
+            </attribute>
+            <attribute name="icon" >
+             <iconset resource="qmc2.qrc" >
+              <normaloff>:/data/img/internet.png</normaloff>:/data/img/internet.png</iconset>
             </attribute>
            </widget>
           </widget>
@@ -1488,6 +1492,7 @@
      </property>
      <addaction name="actionClearImageCache" />
      <addaction name="actionClearIconCache" />
+     <addaction name="actionClearMAWSCache" />
      <addaction name="separator" />
      <addaction name="actionRecreateTemplateMap" />
     </widget>
@@ -2424,6 +2429,17 @@
    </property>
    <property name="shortcutContext" >
     <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionClearMAWSCache" >
+   <property name="text" >
+    <string>Clear MAWS cache</string>
+   </property>
+   <property name="statusTip" >
+    <string>Clear MAWS cache</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+M</string>
    </property>
   </action>
  </widget>
