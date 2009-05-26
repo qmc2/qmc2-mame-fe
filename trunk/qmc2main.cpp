@@ -770,7 +770,6 @@ MainWindow::MainWindow(QWidget *parent)
   connect(&searchTimer, SIGNAL(timeout()), this, SLOT(on_comboBoxSearch_textChanged_delayed()));
   connect(&updateTimer, SIGNAL(timeout()), this, SLOT(on_treeWidgetGamelist_itemSelectionChanged_delayed()));
 
-  treeWidgetGamelist->setFocus();
   comboBoxViewSelect->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", QMC2_GAMELIST_INDEX).toInt());
   if ( comboBoxViewSelect->currentIndex() == QMC2_VIEW_DETAIL_INDEX )
     tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/view_detail.png")));
@@ -1720,10 +1719,9 @@ void MainWindow::on_comboBoxSearch_activated(QString pattern)
 #endif
 
   on_comboBoxSearch_textChanged_delayed();
-  if ( tabWidgetGamelist->currentWidget() != tabSearch ) {
+  if ( tabWidgetGamelist->currentWidget() != tabSearch )
     tabWidgetGamelist->setCurrentWidget(tabSearch);
-    QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
-  }
+  QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
 }
 
 void MainWindow::on_listWidgetSearch_currentTextChanged(QString s)
@@ -1874,6 +1872,10 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
   switch ( currentIndex ) {
     case QMC2_GAMELIST_INDEX:
       QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
+      if ( stackedWidgetView->currentIndex() == QMC2_VIEW_DETAIL_INDEX )
+        treeWidgetGamelist->setFocus();
+      else
+        treeWidgetHierarchy->setFocus();
       break;
 
     case QMC2_SEARCH_INDEX:
@@ -1983,6 +1985,7 @@ void MainWindow::checkCurrentFavoritesSelection()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkCurrentFavoritesSelection()");
 #endif
 
+  listWidgetFavorites->setFocus();
   listWidgetFavorites->clearSelection();
   listWidgetFavorites->setCurrentIndex(QModelIndex());
 
@@ -2007,6 +2010,7 @@ void MainWindow::checkCurrentPlayedSelection()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkCurrentPlayedSelection()");
 #endif
 
+  listWidgetPlayed->setFocus();
   listWidgetPlayed->clearSelection();
   listWidgetPlayed->setCurrentIndex(QModelIndex());
 
