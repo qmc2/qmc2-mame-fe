@@ -5616,9 +5616,59 @@ Sollen diese beim Beenden geschlossen werden?</translation>
         <translation>Laden der aktuellen URL anhalten</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="80"/>
+        <location filename="../../miniwebbrowser.ui" line="94"/>
         <source>Current URL</source>
         <translation>Aktuelle URL</translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.ui" line="83"/>
+        <source>Go home (first page)</source>
+        <translation>Zur ersten Seite zurückkehren</translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="168"/>
+        <source>sorry, this feature is not yet implemented</source>
+        <translation>Sorry, diese Funktion ist noch nicht implementiert</translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="31"/>
+        <source>Open link</source>
+        <translation>Link öffnen</translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="32"/>
+        <source>Save link as...</source>
+        <translation>Link speichern unter...</translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="33"/>
+        <source>Copy link</source>
+        <translation>Link kopieren</translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="34"/>
+        <source>Save image as...</source>
+        <translation>Bild speichern unter...</translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="35"/>
+        <source>Copy image</source>
+        <translation>Bild kopieren</translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="40"/>
+        <source>Reload</source>
+        <translation>Neu laden</translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="42"/>
+        <source>Stop</source>
+        <translation>Anhalten</translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="44"/>
+        <source>Copy</source>
+        <translation>Kopieren</translation>
     </message>
 </context>
 <context>

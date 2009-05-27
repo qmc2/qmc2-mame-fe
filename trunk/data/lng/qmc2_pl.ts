@@ -5652,8 +5652,58 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="80"/>
+        <location filename="../../miniwebbrowser.ui" line="94"/>
         <source>Current URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.ui" line="83"/>
+        <source>Go home (first page)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="168"/>
+        <source>sorry, this feature is not yet implemented</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="31"/>
+        <source>Open link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="32"/>
+        <source>Save link as...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="33"/>
+        <source>Copy link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="34"/>
+        <source>Save image as...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="35"/>
+        <source>Copy image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="40"/>
+        <source>Reload</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="42"/>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="44"/>
+        <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
