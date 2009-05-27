@@ -165,7 +165,9 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseGameInfoDB->setEnabled(enable);
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   qmc2Options->toolButtonBrowseEmuInfoDB->setEnabled(enable);
+#if QT_VERSON >= 0x040500
   qmc2Options->toolButtonBrowseMAWSCacheDirectory->setEnabled(enable);
+#endif
 #endif
   qmc2Options->toolButtonBrowseExecutableFile->setEnabled(enable);
   qmc2Options->lineEditExecutableFile->setEnabled(enable);
@@ -239,6 +241,7 @@ void Gamelist::load()
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   qmc2MainWindow->textBrowserEmuInfo->clear();
   qmc2LastEmuInfoItem = NULL;
+#if QT_VERSON >= 0x040500
   if ( qmc2MAWSLookup ) {
     QLayout *vbl = qmc2MainWindow->tabMAWS->layout();
     if ( vbl )
@@ -247,6 +250,7 @@ void Gamelist::load()
     qmc2MAWSLookup = NULL;
   }
   qmc2LastMAWSItem = NULL;
+#endif
 #endif
   qmc2Preview->repaint();
   qmc2Flyer->repaint();

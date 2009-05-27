@@ -48,9 +48,11 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_TITLE_INDEX] = tr("Titl&e");
   longTitleMap[QMC2_TITLE_INDEX] = tr("Title screen image");
   iconMap[QMC2_TITLE_INDEX] = QIcon(QString::fromUtf8(":/data/img/arcademode.png"));
+#if QT_VERSION >= 0x040500
   shortTitleMap[QMC2_MAWS_INDEX] = tr("MAWS");
   longTitleMap[QMC2_MAWS_INDEX] = tr("MAWS page (web lookup)");
   iconMap[QMC2_MAWS_INDEX] = QIcon(QString::fromUtf8(":/data/img/internet.png"));
+#endif
   availableDetailList << QMC2_PREVIEW_INDEX
                       << QMC2_FLYER_INDEX
                       << QMC2_GAMEINFO_INDEX
@@ -59,8 +61,10 @@ DetailSetup::DetailSetup(QWidget *parent)
                       << QMC2_CABINET_INDEX
                       << QMC2_CONTROLLER_INDEX
                       << QMC2_MARQUEE_INDEX
-                      << QMC2_TITLE_INDEX
-                      << QMC2_MAWS_INDEX;
+                      << QMC2_TITLE_INDEX;
+#if QT_VERSION >= 0x040500
+  availableDetailList << QMC2_MAWS_INDEX;
+#endif
   tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
   tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
   tabWidgetsMap[QMC2_GAMEINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_GAMEINFO_INDEX);
@@ -70,8 +74,10 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_CONTROLLER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONTROLLER_INDEX);
   tabWidgetsMap[QMC2_MARQUEE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MARQUEE_INDEX);
   tabWidgetsMap[QMC2_TITLE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_TITLE_INDEX);
+#if QT_VERSION >= 0x040500
   tabWidgetsMap[QMC2_MAWS_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MAWS_INDEX);
   configurableDetailList << QMC2_MAWS_INDEX;
+#endif
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
   shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Previe&w");
   longTitleMap[QMC2_PREVIEW_INDEX] = tr("Machine preview image");
@@ -103,7 +109,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   setupUi(this);
   hide();
 
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_SDLMESS) || defined(QMC2_MESS) || QT_VERSION < 0x040500
   // no configurable details for MESS variants yet
   pushButtonConfigureDetail->setVisible(FALSE);
 #endif
@@ -147,8 +153,10 @@ void DetailSetup::loadDetail()
                      << QMC2_CABINET_INDEX
                      << QMC2_CONTROLLER_INDEX
                      << QMC2_MARQUEE_INDEX
-                     << QMC2_TITLE_INDEX
-                     << QMC2_MAWS_INDEX;
+                     << QMC2_TITLE_INDEX;
+#if QT_VERSION >= 0x040500
+    activeDetailList << QMC2_MAWS_INDEX;
+#endif
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
     activeDetailList << QMC2_PREVIEW_INDEX
                      << QMC2_FLYER_INDEX

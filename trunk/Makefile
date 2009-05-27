@@ -182,6 +182,12 @@ ifndef AUDIT_WILDCARD
 AUDIT_WILDCARD = 0
 endif
 
+# BROWSER_EXTRAS: enable (1) or disable (0, default) extra browser features
+#                 such as Qt's Web Inspector
+ifndef BROWSER_EXTRAS
+BROWSER_EXTRAS = 0
+endif
+
 # >>> END OF MAKE OPTIONS <<<
 
 # emulator target fallback for mameuifx32
@@ -252,6 +258,10 @@ endif
 
 ifeq '$(AUDIT_WILDCARD)' '1'
 DEFINES += QMC2_AUDIT_WILDCARD
+endif
+
+ifeq '$(BROWSER_EXTRAS)' '1'
+DEFINES += QMC2_BROWSER_EXTRAS_ENABLED
 endif
 
 # setup SDL library and include paths
@@ -551,6 +561,7 @@ config:
 	@echo "AWK=<awk>              UNIX command awk                            $(AWK)"
 	@echo "BASENAME=<basename>    UNIX command basename                       $(BASENAME)"
 	@echo "BINDIR=<bindir>        Binary directory for installation           $(BINDIR)"
+	@echo "BROWSER_EXTRAS=<ena>   Enable browser extra features (0, 1)        $(BROWSER_EXTRAS)"
 	@echo "CCACHE=<ccache>        Use a compiler cache (0, 1)                 $(CCACHE)"
 	@echo "CCACHE_CC=<cc>         Command used for cached cc                  $(CCACHE_CC)"
 	@echo "CCACHE_CXX=<cxx>       Command used for cached c++                 $(CCACHE_CXX)"

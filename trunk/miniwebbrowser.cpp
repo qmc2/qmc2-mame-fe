@@ -42,6 +42,29 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   webViewBrowser->pageAction(QWebPage::Stop)->setText(tr("Stop"));
   webViewBrowser->pageAction(QWebPage::Stop)->setIcon(QIcon(QString::fromUtf8(":/data/img/stop_browser.png")));
   webViewBrowser->pageAction(QWebPage::Copy)->setText(tr("Copy"));
+  webViewBrowser->pageAction(QWebPage::InspectElement)->setText(tr("Inspect"));
+
+  // setup browser settings
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, TRUE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, TRUE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavaEnabled, TRUE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, TRUE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PrivateBrowsingEnabled, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanAccessClipboard, FALSE);
+#if defined(QMC2_BROWSER_EXTRAS_ENABLED)
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, TRUE);
+#else
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, FALSE);
+#endif
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::LinksIncludedInFocusChain, FALSE);
+#if QT_VERSION >= 0x040500
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::ZoomTextOnly, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PrintElementBackgrounds, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineStorageDatabaseEnabled, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineWebApplicationCacheEnabled, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::LocalStorageDatabaseEnabled, FALSE);
+#endif
 }
 
 MiniWebBrowser::~MiniWebBrowser()

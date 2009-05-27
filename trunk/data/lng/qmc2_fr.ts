@@ -5645,7 +5645,7 @@ Faut-il les tuer à la sortie ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="168"/>
+        <location filename="../../miniwebbrowser.cpp" line="185"/>
         <source>sorry, this feature is not yet implemented</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5687,6 +5687,11 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="44"/>
         <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="45"/>
+        <source>Inspect</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
