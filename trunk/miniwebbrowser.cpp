@@ -26,13 +26,19 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   // hide actions we don't provide
   webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(FALSE);
   webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(FALSE);
+  webViewBrowser->pageAction(QWebPage::OpenFrameInNewWindow)->setVisible(FALSE);
 
   // change provided page actions to better fit our usage / integrate into QMC2's look
   webViewBrowser->pageAction(QWebPage::OpenLink)->setText(tr("Open link"));
+  webViewBrowser->pageAction(QWebPage::OpenLink)->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
   webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk)->setText(tr("Save link as..."));
+  webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk)->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
   webViewBrowser->pageAction(QWebPage::CopyLinkToClipboard)->setText(tr("Copy link"));
+  webViewBrowser->pageAction(QWebPage::CopyLinkToClipboard)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
   webViewBrowser->pageAction(QWebPage::DownloadImageToDisk)->setText(tr("Save image as..."));
+  webViewBrowser->pageAction(QWebPage::DownloadImageToDisk)->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
   webViewBrowser->pageAction(QWebPage::CopyImageToClipboard)->setText(tr("Copy image"));
+  webViewBrowser->pageAction(QWebPage::CopyImageToClipboard)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
   webViewBrowser->pageAction(QWebPage::Back)->setText(tr("Go back"));
   webViewBrowser->pageAction(QWebPage::Back)->setIcon(QIcon(QString::fromUtf8(":/data/img/back.png")));
   webViewBrowser->pageAction(QWebPage::Forward)->setText(tr("Go forward"));
@@ -42,13 +48,16 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   webViewBrowser->pageAction(QWebPage::Stop)->setText(tr("Stop"));
   webViewBrowser->pageAction(QWebPage::Stop)->setIcon(QIcon(QString::fromUtf8(":/data/img/stop_browser.png")));
   webViewBrowser->pageAction(QWebPage::Copy)->setText(tr("Copy"));
+#if defined(QMC2_BROWSER_EXTRAS_ENABLED)
   webViewBrowser->pageAction(QWebPage::InspectElement)->setText(tr("Inspect"));
+  webViewBrowser->pageAction(QWebPage::InspectElement)->setIcon(QIcon(QString::fromUtf8(":/data/img/inspect.png")));
+#endif
 
   // setup browser settings
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, TRUE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, TRUE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavaEnabled, TRUE);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, TRUE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::PrivateBrowsingEnabled, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanAccessClipboard, FALSE);
