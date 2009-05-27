@@ -4863,6 +4863,7 @@ void MainWindow::mawsLoadFinished(bool ok)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::mawsLoadFinished(bool ok = %1)").arg(ok));
 #endif
 
+#if QT_VERSION >= 0x040500
   if ( qmc2CurrentItem && qmc2MAWSLookup && ok ) {
     QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
     // only cache the ROM set page, don't cache followed pages
@@ -4912,6 +4913,7 @@ void MainWindow::mawsLoadFinished(bool ok)
       log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: ignoring URL '%1'").arg(qmc2MAWSLookup->webViewBrowser->url().toString()));
 #endif
   }
+#endif
 }
 #endif
 
@@ -4960,7 +4962,9 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+H"].second = qmc2MainWindow->actionDocumentation;
   qmc2ShortcutMap["Ctrl+I"].second = qmc2MainWindow->actionClearImageCache;
   qmc2ShortcutMap["Ctrl+Shift+A"].second = qmc2MainWindow->actionArcadeSetup;
+#if QT_VERSION >= 0x040500
   qmc2ShortcutMap["Ctrl+M"].second = qmc2MainWindow->actionClearMAWSCache;
+#endif
   qmc2ShortcutMap["Ctrl+N"].second = qmc2MainWindow->actionClearIconCache;
   qmc2ShortcutMap["Ctrl+O"].second = qmc2MainWindow->actionOptions;
   qmc2ShortcutMap["Ctrl+P"].second = qmc2MainWindow->actionPlay;

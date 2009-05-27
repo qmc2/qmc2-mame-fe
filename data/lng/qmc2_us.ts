@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="en">
+<defaultcodec></defaultcodec>
 <context>
     <name></name>
     <message>
@@ -5626,7 +5627,7 @@ Should they be killed on exit?</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="168"/>
+        <location filename="../../miniwebbrowser.cpp" line="185"/>
         <source>sorry, this feature is not yet implemented</source>
         <translation></translation>
     </message>
@@ -5668,6 +5669,11 @@ Should they be killed on exit?</translation>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="44"/>
         <source>Copy</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="45"/>
+        <source>Inspect</source>
         <translation></translation>
     </message>
 </context>
