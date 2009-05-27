@@ -75,6 +75,20 @@
       </widget>
      </item>
      <item>
+      <widget class="QToolButton" name="toolButtonHome" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+       <property name="toolTip" >
+        <string>Go home (first page)</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="qmc2.qrc" >
+         <normaloff>:/data/img/home.png</normaloff>:/data/img/home.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLineEdit" name="lineEditURL" >
        <property name="toolTip" >
         <string>Current URL</string>
@@ -100,6 +114,7 @@
   <tabstop>toolButtonForward</tabstop>
   <tabstop>toolButtonReload</tabstop>
   <tabstop>toolButtonStop</tabstop>
+  <tabstop>toolButtonHome</tabstop>
   <tabstop>lineEditURL</tabstop>
   <tabstop>webViewBrowser</tabstop>
  </tabstops>
