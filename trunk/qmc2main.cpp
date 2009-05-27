@@ -2219,7 +2219,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           if ( !qmc2MAWSCache.contains(gameName) ) {
             qmc2MAWSLookup->webViewBrowser->setHtml("<html><head></head><body><center><p><b>" +
                                     tr("Fetching MAWS page for '%1', please wait...").arg(qmc2GamelistDescriptionMap[gameName]) +
-                                    "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center></body></html>");
+                                    "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center></body></html>", QUrl(mawsUrl));
             qmc2MAWSLookup->webViewBrowser->load(QUrl(mawsUrl));
           } else {
             qmc2MAWSLookup->webViewBrowser->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
