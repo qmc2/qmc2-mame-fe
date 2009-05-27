@@ -24,6 +24,7 @@
 #include "marquee.h"
 #include "title.h"
 #include "romstatusexport.h"
+#include "miniwebbrowser.h"
 #include "macros.h"
 #include "unzip.h"
 
@@ -54,7 +55,7 @@ extern QTreeWidgetItem *qmc2CurrentItem;
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern QTreeWidgetItem *qmc2LastGameInfoItem;
 extern QTreeWidgetItem *qmc2LastMAWSItem;
-extern QWebView *qmc2MAWSLookup;
+extern MiniWebBrowser *qmc2MAWSLookup;
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
 extern QTreeWidgetItem *qmc2LastEmuInfoItem;
 #endif
@@ -239,13 +240,11 @@ void Gamelist::load()
   qmc2MainWindow->textBrowserEmuInfo->clear();
   qmc2LastEmuInfoItem = NULL;
   if ( qmc2MAWSLookup ) {
-    if ( qmc2MAWSLookup ) {
-      QLayout *vbl = qmc2MainWindow->tabMAWS->layout();
-      if ( vbl )
-        delete vbl;
-      delete qmc2MAWSLookup;
-      qmc2MAWSLookup = NULL;
-    }
+    QLayout *vbl = qmc2MainWindow->tabMAWS->layout();
+    if ( vbl )
+      delete vbl;
+    delete qmc2MAWSLookup;
+    qmc2MAWSLookup = NULL;
   }
   qmc2LastMAWSItem = NULL;
 #endif
