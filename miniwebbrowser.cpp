@@ -48,6 +48,7 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   webViewBrowser->pageAction(QWebPage::Stop)->setText(tr("Stop"));
   webViewBrowser->pageAction(QWebPage::Stop)->setIcon(QIcon(QString::fromUtf8(":/data/img/stop_browser.png")));
   webViewBrowser->pageAction(QWebPage::Copy)->setText(tr("Copy"));
+  webViewBrowser->pageAction(QWebPage::Copy)->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
 #if defined(QMC2_BROWSER_EXTRAS_ENABLED)
   webViewBrowser->pageAction(QWebPage::InspectElement)->setText(tr("Inspect"));
   webViewBrowser->pageAction(QWebPage::InspectElement)->setIcon(QIcon(QString::fromUtf8(":/data/img/inspect.png")));

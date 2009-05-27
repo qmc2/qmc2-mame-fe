@@ -183,7 +183,7 @@ AUDIT_WILDCARD = 0
 endif
 
 # BROWSER_EXTRAS: enable (1) or disable (0, default) extra browser features
-#                 such as Qt's Web Inspector
+#                 such as the Web Inspector (caution: may be buggy!)
 ifndef BROWSER_EXTRAS
 BROWSER_EXTRAS = 0
 endif
