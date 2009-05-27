@@ -45,6 +45,7 @@
 #include "romalyzer.h"
 #include "romstatusexport.h"
 #include "detailsetup.h"
+#include "miniwebbrowser.h"
 #include "unzip.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
@@ -154,7 +155,7 @@ QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
 QTreeWidgetItem *qmc2LastGameInfoItem = NULL;
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
 QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
-QWebView *qmc2MAWSLookup = NULL;
+MiniWebBrowser *qmc2MAWSLookup = NULL;
 QTreeWidgetItem *qmc2LastMAWSItem = NULL;
 QCache<QString, QByteArray> qmc2MAWSCache;
 #endif
@@ -2185,10 +2186,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         }
         QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
         QVBoxLayout *layout = new QVBoxLayout;
-        qmc2MAWSLookup = new QWebView(tabMAWS);
-        qmc2MAWSLookup->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
-        qmc2MAWSLookup->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
-        qmc2MAWSLookup->setStatusTip(tr("MAWS page for '%1'").arg(qmc2GamelistDescriptionMap[gameName]));
+        qmc2MAWSLookup = new MiniWebBrowser(tabMAWS);
+        qmc2MAWSLookup->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
+        qmc2MAWSLookup->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
+        qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MAWS page for '%1'").arg(qmc2GamelistDescriptionMap[gameName]));
         layout->addWidget(qmc2MAWSLookup);
         tabMAWS->setLayout(layout);
         QString mawsUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString().arg(gameName);
@@ -2205,7 +2206,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
             if ( QDateTime::currentDateTime().toTime_t() - mawsCacheAge.toULong() < QMC2_MAWS_MAX_CACHE_AGE ) {
               if ( !qmc2MAWSCache.contains(gameName) ) {
                 QString mawsCacheData = ts.read(QMC2_ONE_MEGABYTE);
-                qmc2MAWSLookup->setHtml(QString(qUncompress(mawsCacheData.toLatin1())), QUrl(mawsUrl));
+                qmc2MAWSLookup->webViewBrowser->setHtml(QString(qUncompress(mawsCacheData.toLatin1())), QUrl(mawsUrl));
                 foundInDiskCache = TRUE;
               }
             }
@@ -2216,17 +2217,17 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         if ( !foundInDiskCache ) {
           // now check in memory cache and fetch data if unavailable
           if ( !qmc2MAWSCache.contains(gameName) ) {
-            qmc2MAWSLookup->setHtml("<html><head></head><body><center><p><b>" +
+            qmc2MAWSLookup->webViewBrowser->setHtml("<html><head></head><body><center><p><b>" +
                                     tr("Fetching MAWS page for '%1', please wait...").arg(qmc2GamelistDescriptionMap[gameName]) +
                                     "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center></body></html>");
-            qmc2MAWSLookup->load(QUrl(mawsUrl));
+            qmc2MAWSLookup->webViewBrowser->load(QUrl(mawsUrl));
           } else {
-            qmc2MAWSLookup->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
-            qmc2MAWSLookup->stop();
+            qmc2MAWSLookup->webViewBrowser->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
+            qmc2MAWSLookup->webViewBrowser->stop();
           }
         }
         qmc2LastMAWSItem = qmc2CurrentItem;
-        connect(qmc2MAWSLookup, SIGNAL(loadFinished(bool)), this, SLOT(mawsLoadFinished(bool)));
+        connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(mawsLoadFinished(bool)));
         tabMAWS->setUpdatesEnabled(TRUE);
       }
       break;
@@ -4865,19 +4866,19 @@ void MainWindow::mawsLoadFinished(bool ok)
   if ( qmc2CurrentItem && qmc2MAWSLookup && ok ) {
     QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
     // only cache the ROM set page, don't cache followed pages
-    if ( qmc2MAWSLookup->url().toString() == qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString().arg(gameName) ) {
-      QString mawsHtml = qmc2MAWSLookup->page()->mainFrame()->toHtml();
-      mawsHtml.replace("href=\"#top\"", QString("href=\"%1#top\"").arg(qmc2MAWSLookup->url().path()));
+    if ( qmc2MAWSLookup->webViewBrowser->url().toString() == qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString().arg(gameName) ) {
+      QString mawsHtml = qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml();
+      mawsHtml.replace("href=\"#top\"", QString("href=\"%1#top\"").arg(qmc2MAWSLookup->webViewBrowser->url().path()));
       int startIndex = mawsHtml.indexOf("<div class=\"ifFoot\"");
       mawsHtml.remove(startIndex, mawsHtml.indexOf("</div>") + 6);
       mawsHtml.insert(startIndex, QString("<p><font size=\"-1\">Copyright &copy; 2004 - %1 <a href=\"%2\"><b>MAWS</b></a>, All Rights Reserved</font></p>").arg(QDate::currentDate().year()).arg(QMC2_MAWS_HOMEPAGE_URL));
-      QPoint scrollPos = qmc2MAWSLookup->page()->mainFrame()->scrollPosition();
-      qmc2MAWSLookup->setUpdatesEnabled(FALSE);
-      qmc2MAWSLookup->setHtml(mawsHtml, QUrl(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString().arg(gameName)));
-      qmc2MAWSLookup->stop();
-      qmc2MAWSLookup->page()->mainFrame()->setScrollPosition(scrollPos);
-      qmc2MAWSLookup->setUpdatesEnabled(TRUE);
-      QByteArray mawsData = qCompress(qmc2MAWSLookup->page()->mainFrame()->toHtml().toAscii());
+      QPoint scrollPos = qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->scrollPosition();
+      qmc2MAWSLookup->webViewBrowser->setUpdatesEnabled(FALSE);
+      qmc2MAWSLookup->webViewBrowser->setHtml(mawsHtml, QUrl(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString().arg(gameName)));
+      qmc2MAWSLookup->webViewBrowser->stop();
+      qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->setScrollPosition(scrollPos);
+      qmc2MAWSLookup->webViewBrowser->setUpdatesEnabled(TRUE);
+      QByteArray mawsData = qCompress(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toAscii());
       if ( qmc2MAWSCache.contains(gameName) ) {
         qmc2MAWSCache.remove(gameName);
 #ifdef QMC2_DEBUG
@@ -4908,7 +4909,7 @@ void MainWindow::mawsLoadFinished(bool ok)
     }
 #ifdef QMC2_DEBUG
     else
-      log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: ignoring URL '%1'").arg(qmc2MAWSLookup->url().toString()));
+      log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: ignoring URL '%1'").arg(qmc2MAWSLookup->webViewBrowser->url().toString()));
 #endif
   }
 }
