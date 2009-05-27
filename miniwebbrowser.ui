@@ -70,7 +70,7 @@
        </property>
        <property name="icon" >
         <iconset resource="qmc2.qrc" >
-         <normaloff>:/data/img/remove.png</normaloff>:/data/img/remove.png</iconset>
+         <normaloff>:/data/img/stop_browser.png</normaloff>:/data/img/stop_browser.png</iconset>
        </property>
       </widget>
      </item>

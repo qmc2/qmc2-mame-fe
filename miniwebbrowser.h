@@ -24,6 +24,10 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void on_webViewBrowser_loadFinished(bool);
     void on_webViewBrowser_loadProgress(int);
     void on_toolButtonHome_clicked();
+
+    // page actions
+    void processPageActionDownloadImageToDisk();
+    void processPageActionDownloadLinkToDisk();
 };
 
 #endif

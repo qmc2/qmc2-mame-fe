@@ -1,11 +1,10 @@
 #include <QWebHistory>
-#include "miniwebbrowser.h"
 
+#include "miniwebbrowser.h"
 #include "macros.h"
-#ifdef QMC2_DEBUG
 #include "qmc2main.h"
+
 extern MainWindow *qmc2MainWindow;
-#endif
 
 MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   : QWidget(parent)
@@ -14,10 +13,35 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::MiniWebBrowser(QWidget *parent = %1)").arg((qulonglong) parent));
 #endif
 
+  setupUi(this);
+
   firstTimeLoadStarted = TRUE;
   firstTimeLoadProgress = TRUE;
   firstTimeLoadFinished = TRUE;
-  setupUi(this);
+
+  // connect actions we provide
+  connect(webViewBrowser->pageAction(QWebPage::DownloadImageToDisk), SIGNAL(triggered()), this, SLOT(processPageActionDownloadImageToDisk()));
+  connect(webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk), SIGNAL(triggered()), this, SLOT(processPageActionDownloadLinkToDisk()));
+
+  // hide actions we don't provide
+  webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(FALSE);
+  webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(FALSE);
+
+  // change provided page actions to better fit our usage / integrate into QMC2's look
+  webViewBrowser->pageAction(QWebPage::OpenLink)->setText(tr("Open link"));
+  webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk)->setText(tr("Save link as..."));
+  webViewBrowser->pageAction(QWebPage::CopyLinkToClipboard)->setText(tr("Copy link"));
+  webViewBrowser->pageAction(QWebPage::DownloadImageToDisk)->setText(tr("Save image as..."));
+  webViewBrowser->pageAction(QWebPage::CopyImageToClipboard)->setText(tr("Copy image"));
+  webViewBrowser->pageAction(QWebPage::Back)->setText(tr("Go back"));
+  webViewBrowser->pageAction(QWebPage::Back)->setIcon(QIcon(QString::fromUtf8(":/data/img/back.png")));
+  webViewBrowser->pageAction(QWebPage::Forward)->setText(tr("Go forward"));
+  webViewBrowser->pageAction(QWebPage::Forward)->setIcon(QIcon(QString::fromUtf8(":/data/img/forward.png")));
+  webViewBrowser->pageAction(QWebPage::Reload)->setText(tr("Reload"));
+  webViewBrowser->pageAction(QWebPage::Reload)->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
+  webViewBrowser->pageAction(QWebPage::Stop)->setText(tr("Stop"));
+  webViewBrowser->pageAction(QWebPage::Stop)->setIcon(QIcon(QString::fromUtf8(":/data/img/stop_browser.png")));
+  webViewBrowser->pageAction(QWebPage::Copy)->setText(tr("Copy"));
 }
 
 MiniWebBrowser::~MiniWebBrowser()
@@ -38,18 +62,18 @@ void MiniWebBrowser::on_lineEditURL_returnPressed()
     webViewBrowser->load(QUrl(lineEditURL->text()));
 }
 
-void MiniWebBrowser::on_webViewBrowser_linkClicked(const QUrl)
+void MiniWebBrowser::on_webViewBrowser_linkClicked(const QUrl url)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_webViewBrowser_linkClicked()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_linkClicked(const QUrl url = %1)").arg(url.toString()));
 #endif
 
 }
 
-void MiniWebBrowser::on_webViewBrowser_urlChanged(const QUrl)
+void MiniWebBrowser::on_webViewBrowser_urlChanged(const QUrl url)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_webViewBrowser_urlChanged()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_urlChanged(const QUrl url = %1)").arg(url.toString()));
 #endif
 
   lineEditURL->setText(webViewBrowser->url().toString());
@@ -124,4 +148,22 @@ void MiniWebBrowser::on_toolButtonHome_clicked()
 
   if ( homeUrl.isValid() )
     webViewBrowser->load(homeUrl);
+}
+
+void MiniWebBrowser::processPageActionDownloadImageToDisk()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::processPageActionDownloadImageToDisk()");
+#endif
+
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "MiniWebBrowser::processPageActionDownloadImageToDisk(): "+ tr("sorry, this feature is not yet implemented"));
+}
+
+void MiniWebBrowser::processPageActionDownloadLinkToDisk()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::processPageActionDownloadLinkToDisk()");
+#endif
+
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "MiniWebBrowser::processPageActionDownloadLinkToDisk(): "+ tr("sorry, this feature is not yet implemented"));
 }
