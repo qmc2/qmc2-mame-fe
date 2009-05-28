@@ -188,6 +188,13 @@ ifndef BROWSER_EXTRAS
 BROWSER_EXTRAS = 0
 endif
 
+# WC_COMPRESSION: enable (1, default) or disable (0) web-cache compression when
+#                 storing HTML data to disk (i.e. used by the MAWS web-cache --
+#                 and has nothing to do with a toilet :)
+ifndef WC_COMPRESSION
+WC_COMPRESSION = 1
+endif
+
 # >>> END OF MAKE OPTIONS <<<
 
 # emulator target fallback for mameuifx32
@@ -262,6 +269,10 @@ endif
 
 ifeq '$(BROWSER_EXTRAS)' '1'
 DEFINES += QMC2_BROWSER_EXTRAS_ENABLED
+endif
+
+ifeq '$(WC_COMPRESSION)' '1'
+DEFINES += QMC2_WC_COMPRESSION_ENABLED
 endif
 
 # setup SDL library and include paths
@@ -611,6 +622,7 @@ config:
 	@echo "TR=<tr>                UNIX command tr                             $(TR)"
 	@echo "TIME=<time>            UNIX command time                           $(TIME)"
 	@echo "VARIANT_LAUNCHER=<vl>  Enable the QMC2 variant launcher (0, 1)     $(VARIANT_LAUNCHER)"
+	@echo "WC_COMPRESSION=<wcc>   Compress MAWS web-cache data (0, 1)         $(WIP)"
 	@echo "WIP=<wip>              Enable unfinished code (0, 1)               $(WIP)"
 
 # process translations

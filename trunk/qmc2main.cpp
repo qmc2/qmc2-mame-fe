@@ -2208,8 +2208,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
             QString mawsCacheAge = ts.readLine().split('\t')[1];
             if ( QDateTime::currentDateTime().toTime_t() - mawsCacheAge.toULong() < QMC2_MAWS_MAX_CACHE_AGE ) {
               if ( !qmc2MAWSCache.contains(gameName) ) {
+#if defined(QMC2_WC_COMPRESSION_ENABLED)
                 QString mawsCacheData = ts.read(QMC2_ONE_MEGABYTE);
                 qmc2MAWSLookup->webViewBrowser->setHtml(QString(qUncompress(mawsCacheData.toLatin1())), QUrl(mawsUrl));
+#else
+                QString mawsCacheData = ts.read(16 * QMC2_ONE_MEGABYTE);
+                qmc2MAWSLookup->webViewBrowser->setHtml(mawsCacheData, QUrl(mawsUrl));
+#endif
                 foundInDiskCache = TRUE;
               }
             }
@@ -4911,7 +4916,11 @@ void MainWindow::mawsLoadFinished(bool ok)
           ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
           ts << "TIMESTAMP\t" + QString::number(QDateTime::currentDateTime().toTime_t()) + "\n";
 #endif
+#if defined(QMC2_WC_COMPRESSION_ENABLED)
           ts << mawsData;
+#else
+          ts << qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml();
+#endif
           ts.flush();
           mawsCacheFile.close();
         }

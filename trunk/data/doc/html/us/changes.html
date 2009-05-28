@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-color: lightyellow;" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b9, 27-MAY-2009</h3>
+<h3>CHANGES - v0.2.b9, 28-MAY-2009</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b9, 27-MAY-2009:</b></p>
+<p><b>v0.2.b9, 28-MAY-2009:</b></p>
 <ul>
   <li>fix: corrected some main widget layout restoration troubles related to maximized windowed mode vs. full screen mode -- thanks to <a href="credits.html#Armin">Armin Schmidhuber</a> for finding the issues</li>
   <li>fix: fixed a series of bugs related to automatic keyboard focussing in main widget functions</li>
@@ -23,12 +23,13 @@ inf: informational only
   <li>imp: (SDL)MESS templates updated to 0.131 (new option <i>crsshairpath</i>)</li>
   <li>imp: SDLMAME template updated to 0.131u2 (no new options)</li>
   <li>imp: exchanged MESS icon with one derived from the new offical logo</li>
-  <li>new: added new make option <i>AUDIT_WILDCARD</i> to enable the use of wildcards ('*') on full audit calls if required (default: disabled)</li>
+  <li>new: added new make option <i>AUDIT_WILDCARD</i> to enable/disable the use of wildcards ('*') on full audit calls if required (default: disabled)</li>
   <li>new: free reordering &amp; (de)activation of all available game/machine details</li>
   <li>new: Qt 4.5+ only: all MAME variants now include an MAWS lookup feature as an additional game detail page (in-memory and disk-caching included)</li>
   <li>new: Qt 4.5+ only: all (HTTP) network access can be routed directly or via a proxy</li>
   <li>new: Qt 4.5+ only: integrated (mini) web browser based on the QWebView class (used by MAWS lookup)</li>
-  <li>new: Qt 4.5+ only: added new make option <i>BROWSER_EXTRAS</i> to enable the use of browser extra features such as Qt's <i>Web Inspector</i> (default: disabled)</li>
+  <li>new: added new make option <i>BROWSER_EXTRAS</i> to enable/disable the use of browser extra features such as Qt's <i>Web Inspector</i> (default: disabled) -- warning: these extra features may be buggy!</li>
+  <li>new: added new make option <i>WC_COMPRESSION</i> to enable/disable on-disk web-cache compression (default: enabled on UNIX and Mac, disabled on Windows for now)</li>
 </ul>
 <p><b>v0.2.b8, 23-APR-2009:</b></p>
 <ul>
