@@ -12,6 +12,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     bool firstTimeLoadStarted,
          firstTimeLoadProgress,
          firstTimeLoadFinished;
+    QPalette savePalette;
 
     MiniWebBrowser(QWidget *parent = 0);
     ~MiniWebBrowser();
@@ -24,6 +25,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void on_webViewBrowser_loadFinished(bool);
     void on_webViewBrowser_loadProgress(int);
     void on_toolButtonHome_clicked();
+    void on_toolButtonLoad_clicked();
 
     // page actions
     void processPageActionDownloadImageToDisk();
