@@ -4911,7 +4911,8 @@ void MainWindow::mawsLoadFinished(bool ok)
           ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
           ts << "TIMESTAMP\t" + QString::number(QDateTime::currentDateTime().toTime_t()) + "\n";
 #endif
-          ts << QByteArray(mawsData);
+          ts << mawsData;
+          ts.flush();
           mawsCacheFile.close();
         }
       }
