@@ -4904,8 +4904,13 @@ void MainWindow::mawsLoadFinished(bool ok)
         QFile mawsCacheFile(mawsCacheDir.filePath(gameName + ".wc"));
         if ( mawsCacheFile.open(QIODevice::WriteOnly) ) {
           QTextStream ts(&mawsCacheFile);
+#if defined(Q_WS_WIN)
+          ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\r\n";
+          ts << "TIMESTAMP\t" + QString::number(QDateTime::currentDateTime().toTime_t()) + "\r\n";
+#else
           ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
           ts << "TIMESTAMP\t" + QString::number(QDateTime::currentDateTime().toTime_t()) + "\n";
+#endif
           ts << QByteArray(mawsData);
           mawsCacheFile.close();
         }
