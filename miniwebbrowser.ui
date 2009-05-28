@@ -26,6 +26,9 @@
        <property name="toolTip" >
         <string>Go back</string>
        </property>
+       <property name="statusTip" >
+        <string>Go back</string>
+       </property>
        <property name="icon" >
         <iconset resource="qmc2.qrc" >
          <normaloff>:/data/img/back.png</normaloff>:/data/img/back.png</iconset>
@@ -38,6 +41,9 @@
         <bool>false</bool>
        </property>
        <property name="toolTip" >
+        <string>Go forward</string>
+       </property>
+       <property name="statusTip" >
         <string>Go forward</string>
        </property>
        <property name="icon" >
@@ -54,6 +60,9 @@
        <property name="toolTip" >
         <string>Reload current URL</string>
        </property>
+       <property name="statusTip" >
+        <string>Reload current URL</string>
+       </property>
        <property name="icon" >
         <iconset resource="qmc2.qrc" >
          <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
@@ -66,6 +75,9 @@
         <bool>false</bool>
        </property>
        <property name="toolTip" >
+        <string>Stop loading of current URL</string>
+       </property>
+       <property name="statusTip" >
         <string>Stop loading of current URL</string>
        </property>
        <property name="icon" >
@@ -82,6 +94,9 @@
        <property name="toolTip" >
         <string>Go home (first page)</string>
        </property>
+       <property name="statusTip" >
+        <string>Go home (first page)</string>
+       </property>
        <property name="icon" >
         <iconset resource="qmc2.qrc" >
          <normaloff>:/data/img/home.png</normaloff>:/data/img/home.png</iconset>
@@ -92,6 +107,23 @@
       <widget class="QLineEdit" name="lineEditURL" >
        <property name="toolTip" >
         <string>Current URL</string>
+       </property>
+       <property name="statusTip" >
+        <string>Current URL</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonLoad" >
+       <property name="toolTip" >
+        <string>Load URL</string>
+       </property>
+       <property name="statusTip" >
+        <string>Load URL</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="qmc2.qrc" >
+         <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
        </property>
       </widget>
      </item>
@@ -116,6 +148,7 @@
   <tabstop>toolButtonStop</tabstop>
   <tabstop>toolButtonHome</tabstop>
   <tabstop>lineEditURL</tabstop>
+  <tabstop>toolButtonLoad</tabstop>
   <tabstop>webViewBrowser</tabstop>
  </tabstops>
  <resources>
@@ -129,8 +162,8 @@
    <slot>back()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>29</x>
-     <y>24</y>
+     <x>26</x>
+     <y>25</y>
     </hint>
     <hint type="destinationlabel" >
      <x>53</x>
@@ -145,8 +178,8 @@
    <slot>forward()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>59</x>
-     <y>29</y>
+     <x>58</x>
+     <y>25</y>
     </hint>
     <hint type="destinationlabel" >
      <x>90</x>
@@ -177,12 +210,28 @@
    <slot>stop()</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>125</x>
-     <y>29</y>
+     <x>122</x>
+     <y>25</y>
     </hint>
     <hint type="destinationlabel" >
      <x>156</x>
      <y>76</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEditURL</sender>
+   <signal>returnPressed()</signal>
+   <receiver>toolButtonLoad</receiver>
+   <slot>animateClick()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>416</x>
+     <y>15</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>493</x>
+     <y>11</y>
     </hint>
    </hints>
   </connection>

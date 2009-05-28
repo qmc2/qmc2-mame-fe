@@ -183,6 +183,17 @@ void MiniWebBrowser::on_toolButtonHome_clicked()
     webViewBrowser->load(homeUrl);
 }
 
+void MiniWebBrowser::on_toolButtonLoad_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_toolButtonLoad_clicked()");
+#endif
+
+  QUrl url(lineEditURL->text());
+  if ( url.isValid() )
+    webViewBrowser->load(url);
+}
+
 void MiniWebBrowser::processPageActionDownloadImageToDisk()
 {
 #ifdef QMC2_DEBUG
