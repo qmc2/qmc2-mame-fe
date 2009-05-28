@@ -29,7 +29,8 @@
 #define QMC2_FAVORITES_INDEX		2
 #define QMC2_PLAYED_INDEX		3
 
-// index positions of game detail & image checker tabs
+// index positions of game detail (upper right)
+// (FIXME: also used for image checker tabs)
 #define QMC2_PREVIEW_INDEX		0
 #define QMC2_FLYER_INDEX		1
 #define QMC2_GAMEINFO_INDEX		2
@@ -42,6 +43,13 @@
 #define QMC2_MARQUEE_INDEX		8
 #define QMC2_TITLE_INDEX		9
 #define QMC2_MAWS_INDEX			10
+
+// index positions of special front end tabs (lower right)
+#define QMC2_FRONTENDLOG_INDEX		0
+#define QMC2_EMULATORLOG_INDEX		1
+#define QMC2_EMULATORCONTROL_INDEX	2
+#define QMC2_AUDIOPLAYER_INDEX		3
+#define QMC2_DOWNLOADS_INDEX		4
 
 // column to add game icon in game list
 #define QMC2_ICON_INDEX			2
