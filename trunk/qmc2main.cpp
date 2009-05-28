@@ -343,6 +343,11 @@ MainWindow::MainWindow(QWidget *parent)
   actionArcadeToggle->setVisible(FALSE);
 #endif
 
+  // FIXME: remove this when the download manager is ready
+#if QMC2_WIP_CODE != 1 || defined(QMC2_SDLMESS) || defined(QMC2_MESS) || QT_VERSION < 0x040500
+  tabWidgetLogsAndEmulators->removeTab(QMC2_DOWNLOADS_INDEX);
+#endif
+
   labelGameStatus->setVisible(FALSE);
   labelGameStatus->setPalette(qmc2StatusColorBlue);
 
