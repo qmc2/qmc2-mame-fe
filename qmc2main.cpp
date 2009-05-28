@@ -4882,7 +4882,7 @@ void MainWindow::mawsLoadFinished(bool ok)
       qmc2MAWSLookup->webViewBrowser->stop();
       qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->setScrollPosition(scrollPos);
       qmc2MAWSLookup->webViewBrowser->setUpdatesEnabled(TRUE);
-      QByteArray mawsData = qCompress(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toAscii());
+      QByteArray mawsData = qCompress(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
       if ( qmc2MAWSCache.contains(gameName) ) {
         qmc2MAWSCache.remove(gameName);
 #ifdef QMC2_DEBUG
