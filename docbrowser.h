@@ -19,6 +19,7 @@ class DocBrowser : public QDialog, public Ui::DocBrowser
     ~DocBrowser();
 
   public slots:
+    void titleChanged(QString &);
 
   protected:
     void showEvent(QShowEvent *);
