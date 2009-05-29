@@ -136,7 +136,10 @@ void MiniWebBrowser::on_webViewBrowser_loadStarted()
   progressBar->reset();
   progressBar->setRange(0, 100);
   progressBar->setValue(0);
-  progressBar->setMaximumHeight(font().pointSize() + 4);
+  QFont f(font());
+  f.setPointSize(f.pointSize() - 2);
+  progressBar->setFont(f);
+  progressBar->setMaximumHeight(f.pointSize() + 4);
   progressBar->show();
 
   if ( firstTimeLoadStarted ) {
@@ -207,7 +210,10 @@ void MiniWebBrowser::on_webViewBrowser_statusBarMessage(const QString &message)
 
   labelStatus->setVisible(!message.isEmpty());
   if ( labelStatus->isVisible() ) {
-    labelStatus->setMaximumHeight(font().pointSize() + 4);
+    QFont f(font());
+    f.setPointSize(f.pointSize() - 2);
+    labelStatus->setFont(f);
+    labelStatus->setMaximumHeight(f.pointSize() + 4);
     labelStatus->setText(message + " ");
   }
 }
@@ -277,7 +283,10 @@ void MiniWebBrowser::webViewBrowser_linkHovered(const QString &link, const QStri
   
   labelStatus->setVisible(!link.isEmpty());
   if ( labelStatus->isVisible() ) {
-    labelStatus->setMaximumHeight(font().pointSize() + 4);
+    QFont f(font());
+    f.setPointSize(f.pointSize() - 2);
+    labelStatus->setFont(f);
+    labelStatus->setMaximumHeight(f.pointSize() + 4);
     labelStatus->setText(link + " ");
   }
 }
