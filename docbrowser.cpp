@@ -9,7 +9,11 @@ extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 
 DocBrowser::DocBrowser(QWidget *parent)
-  : QDialog(parent)
+#if defined(Q_WS_WIN)
+  : QDialog(parent, Qt::Dialog)
+#else
+  : QDialog(parent, Qt::Dialog | Qt::SubWindow)
+#endif
 {
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DocBrowser::DocBrowser(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
@@ -72,5 +76,5 @@ void DocBrowser::titleChanged(QString &title)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DocBrowser::titleChanged(QString &title = ...");
 #endif
 
-  setWindowTitle(tr("DocBrowser") + " :: " + title);
+  setWindowTitle(tr("MiniWebBrowser") + " :: " + title);
 }

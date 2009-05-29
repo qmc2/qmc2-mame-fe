@@ -12,7 +12,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>DocBrowser</string>
+   <string>MiniWebBrowser</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">

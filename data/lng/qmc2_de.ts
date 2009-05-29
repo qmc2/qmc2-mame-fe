@@ -1640,10 +1640,10 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DocBrowser</name>
     <message>
-        <location filename="../../docbrowser.cpp" line="75"/>
+        <location filename="../../docbrowser.cpp" line="79"/>
         <location filename="../../docbrowser.ui" line="15"/>
-        <source>DocBrowser</source>
-        <translation>DocBrowser</translation>
+        <source>MiniWebBrowser</source>
+        <translation>MiniWebBrowser</translation>
     </message>
 </context>
 <context>
