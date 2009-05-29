@@ -1408,10 +1408,12 @@ void Gamelist::parse()
       qmc2ParentMap[jValue] = iValue;
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
       // "fill up" emulator info data for clones
-      QByteArray *p = qmc2EmuInfoDB[hierarchyItem->text(QMC2_GAMELIST_COLUMN_NAME)];
-      if ( p )
-        if ( !qmc2EmuInfoDB.contains(baseItem->text(QMC2_GAMELIST_COLUMN_NAME)) )
-          qmc2EmuInfoDB[baseItem->text(QMC2_GAMELIST_COLUMN_NAME)] = p;
+      if ( !qmc2EmuInfoDB.isEmpty() ) {
+        QByteArray *p = qmc2EmuInfoDB[hierarchyItem->text(QMC2_GAMELIST_COLUMN_NAME)];
+        if ( p )
+          if ( !qmc2EmuInfoDB.contains(baseItem->text(QMC2_GAMELIST_COLUMN_NAME)) )
+            qmc2EmuInfoDB[baseItem->text(QMC2_GAMELIST_COLUMN_NAME)] = p;
+      }
 #endif
       switch ( qmc2GamelistStatusMap[jValue][0].toAscii() ) {
         case 'C': 

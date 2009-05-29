@@ -1104,12 +1104,12 @@ void MainWindow::on_actionReload_activated()
     log(QMC2_LOG_FRONTEND, tr("gamelist reload already active"));
   } else {
     qmc2StopParser = FALSE;
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool() )
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool() && qmc2DetailSetup->appliedDetailList.contains(QMC2_GAMEINFO_INDEX) )
       if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser )
         loadGameInfoDB();
 
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() )
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() && qmc2DetailSetup->appliedDetailList.contains(QMC2_EMUINFO_INDEX) )
       if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser )
         loadEmuInfoDB();
 #endif
