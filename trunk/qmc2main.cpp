@@ -1529,6 +1529,9 @@ void MainWindow::on_actionLaunchQMC2MAME_activated()
       if ( qmc2ArcadeSetupDialog )
         if ( qmc2ArcadeSetupDialog->isVisible() )
           qmc2ArcadeSetupDialog->showMinimized();
+      if ( qmc2DocBrowser )
+        if ( qmc2DocBrowser->isVisible() )
+          qmc2DocBrowser->showMinimized();
       showMinimized();
     }
   } else
@@ -1581,6 +1584,9 @@ void MainWindow::on_actionLaunchQMC2MESS_activated()
       if ( qmc2ArcadeSetupDialog )
         if ( qmc2ArcadeSetupDialog->isVisible() )
           qmc2ArcadeSetupDialog->showMinimized();
+      if ( qmc2DocBrowser )
+        if ( qmc2DocBrowser->isVisible() )
+          qmc2DocBrowser->showMinimized();
       showMinimized();
     }
   } else
@@ -1603,7 +1609,10 @@ void MainWindow::on_actionDocumentation_activated()
     qmc2DocBrowser->browser->webViewBrowser->load(docUrl);
   }
 
-  qmc2DocBrowser->show();
+  if ( qmc2DocBrowser->isMinimized() )
+    qmc2DocBrowser->showNormal();
+  else
+    qmc2DocBrowser->show();
   qmc2DocBrowser->raise();
 }
 
