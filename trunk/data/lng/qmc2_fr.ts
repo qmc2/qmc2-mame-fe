@@ -1411,241 +1411,241 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.ui" line="14"/>
         <source>Detail setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration des Onglets</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="200"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Annuler</translation>
+        <translation>&amp;Annuler</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="35"/>
         <source>List of available details</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste des onglets disponibles</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="90"/>
         <source>List of active details and their order</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste et ordre des onglets actifs</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="67"/>
         <source>Activate selected details</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer l&apos;onglet sélectionné</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="105"/>
         <source>Deactivate selected details</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactiver l&apos;onglet sélectionné</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="136"/>
         <source>Move selected details down</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer l&apos;onglet sélectionné vers le bas</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="119"/>
         <source>Move selected details up</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer l&apos;onglet sélectionné vers le haut</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="172"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="20"/>
         <source>WARNING: the game/machine detail setup isn&apos;t working yet!</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: La configuration d&apos;onglet n&apos;est pas encore fonctionnelle!</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="24"/>
         <location filename="../../detailsetup.cpp" line="76"/>
         <source>Previe&amp;w</source>
-        <translation type="unfinished">&amp;Capture</translation>
+        <translation>&amp;Capture</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="25"/>
         <source>Game preview image</source>
-        <translation type="unfinished">Capture d&apos;écran du jeu</translation>
+        <translation>Capture d&apos;écran du jeu</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="27"/>
         <location filename="../../detailsetup.cpp" line="79"/>
         <source>Fl&amp;yer</source>
-        <translation type="unfinished">Fl&amp;yer</translation>
+        <translation>Fl&amp;yer</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="28"/>
         <source>Game flyer image</source>
-        <translation type="unfinished">Illustration Promotionnelle (flyer)</translation>
+        <translation>Illustration Promotionnelle (flyer)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="30"/>
         <source>Game &amp;info</source>
-        <translation type="unfinished">&amp;history.dat</translation>
+        <translation>&amp;history.dat</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="31"/>
         <source>Game information</source>
-        <translation type="unfinished"></translation>
+        <translation>Information de jeu (history.dat)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="33"/>
         <source>Em&amp;ulator info</source>
-        <translation type="unfinished">mamein&amp;fo.dat</translation>
+        <translation>mamein&amp;fo.dat</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="34"/>
         <source>Emulator information</source>
-        <translation type="unfinished"></translation>
+        <translation>Information d&apos;émulateur (mameinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="36"/>
         <location filename="../../detailsetup.cpp" line="85"/>
         <source>&amp;Configuration</source>
-        <translation type="unfinished">&amp;Configuration</translation>
+        <translation>&amp;Configuration</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="37"/>
         <location filename="../../detailsetup.cpp" line="86"/>
         <source>Emulator configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="39"/>
         <source>Ca&amp;binet</source>
-        <translation type="unfinished">&amp;Borne (cabinet)</translation>
+        <translation>&amp;Borne</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="40"/>
         <source>Arcade cabinet image</source>
-        <translation type="unfinished"></translation>
+        <translation>Image de la borne (cabinet)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="42"/>
         <source>C&amp;ontroller</source>
-        <translation type="unfinished">&amp;Controlleur</translation>
+        <translation>&amp;Controlleur</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="43"/>
         <source>Control panel image</source>
-        <translation type="unfinished"></translation>
+        <translation>Image du panneau de jeu</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="45"/>
         <source>&amp;Marquee</source>
-        <translation type="unfinished">&amp;Marquee</translation>
+        <translation>&amp;Marquee</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="46"/>
         <source>Marquee image</source>
-        <translation type="unfinished">Image du panneau limuneux de la borne (marquee)</translation>
+        <translation>Image du panneau limuneux de la borne (marquee)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="48"/>
         <source>Titl&amp;e</source>
-        <translation type="unfinished">Titr&amp;e</translation>
+        <translation>Titr&amp;e</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="49"/>
         <source>Title screen image</source>
-        <translation type="unfinished"></translation>
+        <translation>Image de l&apos;écran titre</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="77"/>
         <source>Machine preview image</source>
-        <translation type="unfinished">Capture d&apos;écran de la machine</translation>
+        <translation>Capture d&apos;écran de la machine</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="80"/>
         <source>Machine flyer image</source>
-        <translation type="unfinished">Illustration Promotionnelle de la Machine (flyer)</translation>
+        <translation>Illustration Promotionnelle de la Machine (flyer)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="82"/>
         <source>Machine &amp;info</source>
-        <translation type="unfinished">&amp;information Machine</translation>
+        <translation>&amp;information Machine</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="83"/>
         <source>Machine information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informations sur la machine</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="88"/>
         <source>De&amp;vices</source>
-        <translation type="unfinished">Pé&amp;riphériques</translation>
+        <translation>Pé&amp;riphériques</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="89"/>
         <source>Device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration de périphérique</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="29"/>
         <source>Available details</source>
-        <translation type="unfinished"></translation>
+        <translation>Onglets disponibles</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="84"/>
         <source>Active details</source>
-        <translation type="unfinished"></translation>
+        <translation>Onglets actifs</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="169"/>
         <source>Apply detail setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Appliquer la configuration des onglets et fermer cette fenêtre</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="197"/>
         <source>Cancel detail setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuler la configuration et fermet cette fenêtre</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="183"/>
         <source>Apply detail setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Appliquer la configuration des onglets</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="186"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished">&amp;Appliquer</translation>
+        <translation>&amp;Appliquer</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="51"/>
         <source>MAWS</source>
-        <translation type="unfinished"></translation>
+        <translation>MAWS</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="52"/>
         <source>MAWS page (web lookup)</source>
-        <translation type="unfinished"></translation>
+        <translation>Page MAWS (accès web)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="305"/>
         <source>INFO: the configuration tab can&apos;t be removed</source>
-        <translation type="unfinished"></translation>
+        <translation>INFO: l&apos;onglet de configration ne peut être supprimé</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="272"/>
         <source>MAWS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuration de MAWS</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="50"/>
         <source>Configure current detail</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurer l&apos;onglet actuel</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="53"/>
         <source>Configure...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurer...</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="273"/>
         <source>MAWS URL pattern (use %1 as placeholder for game ID):</source>
-        <translation type="unfinished"></translation>
+        <translation>Forme d&apos;URL MAWS (utiliser %1 en remplacement pour l&apos;ID de jeu):</translation>
     </message>
 </context>
 <context>
@@ -1662,7 +1662,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../docbrowser.cpp" line="79"/>
         <location filename="../../docbrowser.ui" line="15"/>
         <source>MiniWebBrowser</source>
-        <translation type="unfinished"></translation>
+        <translation>MiniNavigateurWeb</translation>
     </message>
 </context>
 <context>
@@ -6009,120 +6009,120 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="745"/>
         <source>Detail setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurer les onglets</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3303"/>
         <source>destroying detail setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Détruire la configuration des onglets</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1035"/>
         <source>MAWS</source>
-        <translation type="unfinished"></translation>
+        <translation>MAWS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2232"/>
         <source>Fetching MAWS page for &apos;%1&apos;, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Récupération de la page MAWS pour &apos;%1&apos;, patientez...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2198"/>
         <source>MAWS page for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Page MAWS pour &apos;%1&apos;</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="1373"/>
         <source>freed %n byte(s) in %1</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n bit libéré en %1</numerusform>
+            <numerusform>%n bits libérés en %1</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="1373"/>
         <source>%n entry(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n entrée</numerusform>
+            <numerusform>%n entrées</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1375"/>
         <source>MAWS in-memory cache cleared (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>La cache mémoire de MAWS à été nettoyé (%1)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2591"/>
         <location filename="../../qmc2main.ui" line="2594"/>
         <source>Clear MAWS cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyer le cache de MAWS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2597"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="1391"/>
         <source>removed %n byte(s) in %1</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n bit supprimé en %1</numerusform>
+            <numerusform>%n bits supprimés en %1</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="1391"/>
         <source>%n file(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n fichier</numerusform>
+            <numerusform>%n fichiers</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1392"/>
         <source>MAWS on-disk cache cleared (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache disque MAWS nettoyé (%1)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1512"/>
         <source>Downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Téléchargements</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1520"/>
         <location filename="../../qmc2main.ui" line="1523"/>
         <source>List of active/inactive downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste des téléchargements actifs/inactifs</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1539"/>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progression</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1547"/>
         <location filename="../../qmc2main.ui" line="1550"/>
         <source>Clear finished / stopped downloads from list</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyer les téléchargements finis/stoppés de la liste</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1564"/>
         <location filename="../../qmc2main.ui" line="1567"/>
         <source>Reload selected downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger les téléchargements sélectionnés</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1581"/>
         <location filename="../../qmc2main.ui" line="1584"/>
         <source>Stop selected downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Stopper les téléchargements sélectionnés</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1598"/>
         <location filename="../../qmc2main.ui" line="1601"/>
         <source>Total progress of running downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Progression totale des téléchargements en cours</translation>
     </message>
 </context>
 <context>
@@ -6156,57 +6156,57 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../miniwebbrowser.ui" line="14"/>
         <source>Mini Web Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Mini Navigateur Web</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="49"/>
         <location filename="../../miniwebbrowser.ui" line="28"/>
         <location filename="../../miniwebbrowser.ui" line="31"/>
         <source>Go back</source>
-        <translation type="unfinished"></translation>
+        <translation>Précédent</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="51"/>
         <location filename="../../miniwebbrowser.ui" line="45"/>
         <location filename="../../miniwebbrowser.ui" line="48"/>
         <source>Go forward</source>
-        <translation type="unfinished">Suivant</translation>
+        <translation>Suivant</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="62"/>
         <location filename="../../miniwebbrowser.ui" line="65"/>
         <source>Reload current URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger l&apos;adresse URL courante</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="79"/>
         <location filename="../../miniwebbrowser.ui" line="82"/>
         <source>Stop loading of current URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêter le chargement de l&apos;adresse URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="110"/>
         <location filename="../../miniwebbrowser.ui" line="113"/>
         <source>Current URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL actuelle</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="120"/>
         <location filename="../../miniwebbrowser.ui" line="123"/>
         <source>Load URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger l&apos;URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="139"/>
         <location filename="../../miniwebbrowser.ui" line="142"/>
         <source>Current progress loading URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Progession du chargement de l&apos;URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="96"/>
         <location filename="../../miniwebbrowser.ui" line="99"/>
         <source>Go home (first page)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aller à l&apos;accueil (première page)</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="224"/>
@@ -6214,57 +6214,57 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../miniwebbrowser.cpp" line="242"/>
         <location filename="../../miniwebbrowser.cpp" line="251"/>
         <source>sorry, this feature is not yet implemented</source>
-        <translation type="unfinished"></translation>
+        <translation>désolé, cette fonction n&apos;est pas encore disponible</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="39"/>
         <source>Open link</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir le lien</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="41"/>
         <source>Save link as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauver le lien sous...</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="43"/>
         <source>Copy link</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier le lien</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="45"/>
         <source>Save image as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauver l&apos;image sous...</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="47"/>
         <source>Copy image</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier l&apos;image</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="53"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="55"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Stop</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="57"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="60"/>
         <source>Inspect</source>
-        <translation type="unfinished"></translation>
+        <translation>Inspecter</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="122"/>
         <source>No title</source>
-        <translation type="unfinished"></translation>
+        <translation>Sans titre</translation>
     </message>
 </context>
 <context>
@@ -8322,87 +8322,87 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="1741"/>
         <source>Choose MAWS cache directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le répertoire cache de MAWS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3011"/>
         <source>MAWS cache directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire cache de MAWS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3018"/>
         <source>MAWS cache directory (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire cache de MAWS (écriture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3025"/>
         <source>Browse MAWS cache directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir le répertoire cache de MAWS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2483"/>
         <source>&amp;Tools / Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Outils / Proxy</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2630"/>
         <source>Use HTTP proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser un proxy HTTP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2642"/>
         <source>Host / IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Hôte/IP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2649"/>
         <source>Hostname or IP address of the HTTP proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom d&apos;hôte ou adresse IP du serveur proxy HTTP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2656"/>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2663"/>
         <source>Port to access the HTTP proxy service</source>
-        <translation type="unfinished"></translation>
+        <translation>Port pour l&apos;accès au service du proxy HTTP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2676"/>
         <source>User ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Compte Utilisateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2683"/>
         <source>User ID to access the HTTP proxy service (empty = no authentication)</source>
-        <translation type="unfinished"></translation>
+        <translation>Compte Utilisateur pour accéder au service de proxy HTTP (vide = pas d&apos;authentification)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2690"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2627"/>
         <source>Enable / disable the use of an HTTP proxy on any web lookups</source>
-        <translation type="unfinished"></translation>
+        <translation>Active / Désactive l&apos;utilisation d&apos;un proxy HTTP pour tout accès web</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2697"/>
         <source>Password to access the HTTP proxy service (empty = no authentication)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mot de passe pour accéder au service de proxy HTTP (vide = pas d&apos;authentification)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2707"/>
         <source>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: the stored password is only &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;ATTENTION: le mot de passe enregistré est seulement &lt;u&gt;hebdomadairement&lt;/u&gt; encrypté!&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="186"/>
         <source>Clear MAWS cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Vider le cache de MAWS</translation>
     </message>
 </context>
 <context>
