@@ -1398,13 +1398,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditFileRemovalTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool", "rm").toString());
   lineEditFileRemovalToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments", "-f -v $FILELIST$").toString());
 #endif
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   groupBoxHTTPProxy->setChecked(config->value("Network/HTTPProxy/Enable", FALSE).toBool());
   lineEditHTTPProxyHost->setText(config->value("Network/HTTPProxy/Host", "").toString());
   spinBoxHTTPProxyPort->setValue(config->value("Network/HTTPProxy/Port", 80).toInt());
   lineEditHTTPProxyUserID->setText(config->value("Network/HTTPProxy/UserID", "").toString());
   lineEditHTTPProxyPassword->setText(QString(qUncompress(config->value("Network/HTTPProxy/Password", "").toByteArray())));
-#endif
 
   // Emulator
 
