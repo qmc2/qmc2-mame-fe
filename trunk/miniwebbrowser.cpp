@@ -6,6 +6,8 @@
 
 extern MainWindow *qmc2MainWindow;
 
+#define QMC2_DEBUG
+
 MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   : QWidget(parent)
 {
@@ -21,10 +23,13 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 
   progressBar->hide();
 
+  webViewBrowser->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+
   // connect page actions we provide
   connect(webViewBrowser->pageAction(QWebPage::DownloadImageToDisk), SIGNAL(triggered()), this, SLOT(processPageActionDownloadImageToDisk()));
   connect(webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk), SIGNAL(triggered()), this, SLOT(processPageActionDownloadLinkToDisk()));
   connect(webViewBrowser->page(), SIGNAL(downloadRequested(const QNetworkRequest &)), this, SLOT(processPageActionDownloadRequested(const QNetworkRequest &)));
+  connect(webViewBrowser->page(), SIGNAL(unsupportedContent(QNetworkReply *)), this, SLOT(processPageActionHandleUnsupportedContent(QNetworkReply *)));
 
   // hide page actions we don't provide
   webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(FALSE);
@@ -102,6 +107,8 @@ void MiniWebBrowser::on_webViewBrowser_linkClicked(const QUrl url)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_linkClicked(const QUrl url = %1)").arg(url.toString()));
 #endif
 
+  if ( url.isValid() )
+    webViewBrowser->load(url);
 }
 
 void MiniWebBrowser::on_webViewBrowser_urlChanged(const QUrl url)
@@ -230,4 +237,13 @@ void MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &r
 #endif
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "MiniWebBrowser::processPageActionDownloadRequested(): "+ tr("sorry, this feature is not yet implemented"));
+}
+
+void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *reply)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *reply = ...)");
+#endif
+
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "MiniWebBrowser::processPageActionHandleUnsupportedContent(): "+ tr("sorry, this feature is not yet implemented"));
 }
