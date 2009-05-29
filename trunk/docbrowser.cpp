@@ -17,8 +17,7 @@ DocBrowser::DocBrowser(QWidget *parent)
   setupUi(this);
 
   browser = new MiniWebBrowser(this);
-  horizontalLayout->addWidget(browser);
-//  setLayout(horizontalLayout);
+  verticalLayout->addWidget(browser);
 
   widgetSize = QSize(-1, -1);
   widgetPosValid = FALSE;

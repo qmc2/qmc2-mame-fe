@@ -19,6 +19,8 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   firstTimeLoadProgress = TRUE;
   firstTimeLoadFinished = TRUE;
 
+  progressBar->hide();
+
   // connect page actions we provide
   connect(webViewBrowser->pageAction(QWebPage::DownloadImageToDisk), SIGNAL(triggered()), this, SLOT(processPageActionDownloadImageToDisk()));
   connect(webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk), SIGNAL(triggered()), this, SLOT(processPageActionDownloadLinkToDisk()));
@@ -117,6 +119,11 @@ void MiniWebBrowser::on_webViewBrowser_loadStarted()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_webViewBrowser_loadStarted()");
 #endif
 
+  progressBar->reset();
+  progressBar->setRange(0, 100);
+  progressBar->setValue(0);
+  progressBar->show();
+
   if ( firstTimeLoadStarted ) {
     firstTimeLoadStarted = FALSE;
     homeUrl = webViewBrowser->url();
@@ -141,6 +148,8 @@ void MiniWebBrowser::on_webViewBrowser_loadProgress(int progress)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_loadProgress(int progress = %1)").arg(progress));
 #endif
 
+  progressBar->setValue(progress);
+
   if ( firstTimeLoadProgress ) {
     firstTimeLoadProgress = FALSE;
     homeUrl = webViewBrowser->url();
@@ -156,6 +165,9 @@ void MiniWebBrowser::on_webViewBrowser_loadFinished(bool ok)
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_loadFinished(bool ok = %1)").arg(ok));
 #endif
+
+  progressBar->reset();
+  progressBar->hide();
 
   if ( firstTimeLoadFinished ) {
     firstTimeLoadFinished = FALSE;
