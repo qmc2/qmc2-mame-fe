@@ -23,6 +23,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void on_webViewBrowser_loadStarted();
     void on_webViewBrowser_loadFinished(bool);
     void on_webViewBrowser_loadProgress(int);
+    void on_webViewBrowser_statusBarMessage(const QString &);
     void on_toolButtonHome_clicked();
     void on_toolButtonLoad_clicked();
 
@@ -31,6 +32,10 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void processPageActionDownloadLinkToDisk();
     void processPageActionDownloadRequested(const QNetworkRequest &);
     void processPageActionHandleUnsupportedContent(QNetworkReply *);
+
+    // other
+    void webViewBrowser_linkHovered(const QString &, const QString &, const QString &);
+    void webViewBrowser_statusBarVisibilityChangeRequested(bool);
 
   signals:
     void titleChanged(QString &);
