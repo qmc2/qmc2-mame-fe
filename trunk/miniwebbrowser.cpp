@@ -1,12 +1,11 @@
 #include <QWebHistory>
+#include <QWebFrame>
 
 #include "miniwebbrowser.h"
 #include "macros.h"
 #include "qmc2main.h"
 
 extern MainWindow *qmc2MainWindow;
-
-#define QMC2_DEBUG
 
 MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   : QWidget(parent)
@@ -118,6 +117,10 @@ void MiniWebBrowser::on_webViewBrowser_urlChanged(const QUrl url)
 #endif
 
   lineEditURL->setText(webViewBrowser->url().toString());
+
+  QString newTitle = webViewBrowser->page()->mainFrame()->title();
+  if ( newTitle.isEmpty() ) newTitle = tr("No title");
+  emit titleChanged(newTitle);
 }
 
 void MiniWebBrowser::on_webViewBrowser_loadStarted()

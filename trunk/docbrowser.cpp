@@ -25,6 +25,8 @@ DocBrowser::DocBrowser(QWidget *parent)
 
   widgetPos = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/DocBrowser/Pos", QPoint((parent->width() - width()) / 2, (parent->height() - height()) / 2)).toPoint();
   move(widgetPos);
+
+  connect(browser, SIGNAL(titleChanged(QString &)), this, SLOT(titleChanged(QString &)));
 }
 
 DocBrowser::~DocBrowser()
@@ -62,4 +64,13 @@ void DocBrowser::moveEvent(QMoveEvent *e)
 #endif
 
   e->accept();
+}
+
+void DocBrowser::titleChanged(QString &title)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DocBrowser::titleChanged(QString &title = ...");
+#endif
+
+  setWindowTitle(tr("DocBrowser") + " :: " + title);
 }
