@@ -1,124 +1,125 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <author>R. Reucher</author>
  <class>ROMAlyzer</class>
- <widget class="QDialog" name="ROMAlyzer" >
-  <property name="geometry" >
+ <widget class="QDialog" name="ROMAlyzer">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>482</width>
-    <height>369</height>
+    <height>368</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>ROMAlyzer</string>
   </property>
-  <layout class="QGridLayout" >
-   <item row="0" column="0" >
-    <layout class="QHBoxLayout" >
+  <layout class="QGridLayout">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout">
      <item>
-      <widget class="QLineEdit" name="lineEditGames" >
-       <property name="toolTip" >
+      <widget class="QLineEdit" name="lineEditGames">
+       <property name="toolTip">
         <string>Shortname of game to be analyzed - wildcards allowed, use space as delimiter for multiple games</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButtonAnalyze" >
-       <property name="enabled" >
+      <widget class="QPushButton" name="pushButtonAnalyze">
+       <property name="enabled">
         <bool>false</bool>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Start / stop analysis</string>
        </property>
-       <property name="text" >
+       <property name="text">
         <string>&amp;Analyze</string>
        </property>
-       <property name="icon" >
-        <iconset resource="qmc2.qrc" >
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/find.png</normaloff>:/data/img/find.png</iconset>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButtonPause" >
-       <property name="toolTip" >
+      <widget class="QPushButton" name="pushButtonPause">
+       <property name="toolTip">
         <string>Pause / resume active analysis</string>
        </property>
-       <property name="text" >
+       <property name="text">
         <string>&amp;Pause</string>
        </property>
-       <property name="icon" >
-        <iconset resource="qmc2.qrc" >
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item row="1" column="0" >
-    <widget class="QTabWidget" name="tabWidgetAnalysis" >
-     <property name="currentIndex" >
+   <item row="1" column="0">
+    <widget class="QTabWidget" name="tabWidgetAnalysis">
+     <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tabReport" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tabReport">
+      <attribute name="title">
        <string>Report</string>
       </attribute>
-      <layout class="QGridLayout" >
-       <item row="0" column="0" >
-        <widget class="QTreeWidget" name="treeWidgetChecksums" >
-         <property name="contextMenuPolicy" >
+      <layout class="QGridLayout">
+       <item row="0" column="0">
+        <widget class="QTreeWidget" name="treeWidgetChecksums">
+         <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
-         <property name="toolTip" >
+         <property name="toolTip">
           <string>Analysis report</string>
          </property>
-         <property name="allColumnsShowFocus" >
+         <property name="allColumnsShowFocus">
           <bool>true</bool>
          </property>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Game / File</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Merge</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Type</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Emu status</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>File status</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Size</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>CRC</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>SHA1</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>MD5</string>
           </property>
          </column>
@@ -126,168 +127,168 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tabLog" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tabLog">
+      <attribute name="title">
        <string>Log</string>
       </attribute>
-      <layout class="QGridLayout" >
-       <item row="0" column="0" colspan="3" >
-        <widget class="QTextBrowser" name="textBrowserLog" >
-         <property name="toolTip" >
+      <layout class="QGridLayout">
+       <item row="0" column="0" colspan="3">
+        <widget class="QTextBrowser" name="textBrowserLog">
+         <property name="toolTip">
           <string>Analysis log</string>
          </property>
-         <property name="lineWrapMode" >
+         <property name="lineWrapMode">
           <enum>QTextEdit::NoWrap</enum>
          </property>
         </widget>
        </item>
-       <item row="1" column="0" >
-        <widget class="QLineEdit" name="lineEditSearchString" >
-         <property name="toolTip" >
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="lineEditSearchString">
+         <property name="toolTip">
           <string>Search string</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1" >
-        <widget class="QPushButton" name="pushButtonSearchForward" >
-         <property name="toolTip" >
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pushButtonSearchForward">
+         <property name="toolTip">
           <string>Search string forward</string>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>&amp;Forward</string>
          </property>
-         <property name="icon" >
-          <iconset resource="qmc2.qrc" >
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
            <normaloff>:/data/img/next.png</normaloff>:/data/img/next.png</iconset>
          </property>
-         <property name="autoRepeat" >
+         <property name="autoRepeat">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="1" column="2" >
-        <widget class="QPushButton" name="pushButtonSearchBackward" >
-         <property name="toolTip" >
+       <item row="1" column="2">
+        <widget class="QPushButton" name="pushButtonSearchBackward">
+         <property name="toolTip">
           <string>Search string backward</string>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>&amp;Backward</string>
          </property>
-         <property name="icon" >
-          <iconset resource="qmc2.qrc" >
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
            <normaloff>:/data/img/previous.png</normaloff>:/data/img/previous.png</iconset>
          </property>
-         <property name="autoRepeat" >
+         <property name="autoRepeat">
           <bool>true</bool>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tabSettings" >
-      <attribute name="title" >
+     <widget class="QWidget" name="tabSettings">
+      <attribute name="title">
        <string>Settings</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_3" >
-       <item row="0" column="0" >
-        <widget class="QGroupBox" name="groupBoxFlags" >
-         <property name="title" >
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBoxFlags">
+         <property name="title">
           <string>Analysis / report flags</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_2" >
-          <item row="0" column="0" >
-           <layout class="QGridLayout" name="gridLayout_1" >
-            <item row="0" column="0" >
-             <widget class="QCheckBox" name="checkBoxAppendReport" >
-              <property name="toolTip" >
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_1">
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="checkBoxAppendReport">
+              <property name="toolTip">
                <string>If set, analysis output is appended (otherwise the report is cleared before the analysis)</string>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Append to report</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="1" >
-             <widget class="QCheckBox" name="checkBoxAutoScroll" >
-              <property name="toolTip" >
+            <item row="0" column="1">
+             <widget class="QCheckBox" name="checkBoxAutoScroll">
+              <property name="toolTip">
                <string>Automatically scroll to the currently analyzed game</string>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Auto scroll</string>
               </property>
-              <property name="checked" >
+              <property name="checked">
                <bool>true</bool>
               </property>
              </widget>
             </item>
-            <item row="1" column="0" >
-             <widget class="QCheckBox" name="checkBoxExpandFiles" >
-              <property name="toolTip" >
+            <item row="1" column="0">
+             <widget class="QCheckBox" name="checkBoxExpandFiles">
+              <property name="toolTip">
                <string>Automatically expand file info</string>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Expand file info</string>
               </property>
              </widget>
             </item>
-            <item row="1" column="1" >
-             <widget class="QCheckBox" name="checkBoxExpandChecksums" >
-              <property name="enabled" >
+            <item row="1" column="1">
+             <widget class="QCheckBox" name="checkBoxExpandChecksums">
+              <property name="enabled">
                <bool>false</bool>
               </property>
-              <property name="toolTip" >
+              <property name="toolTip">
                <string>Automatically expand checksums</string>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Expand checksums</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="2" >
-             <widget class="QCheckBox" name="checkBoxCalculateCRC" >
-              <property name="toolTip" >
+            <item row="0" column="2">
+             <widget class="QCheckBox" name="checkBoxCalculateCRC">
+              <property name="toolTip">
                <string>Calculate CRC-32 checksum</string>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Calculate CRC</string>
               </property>
-              <property name="checked" >
+              <property name="checked">
                <bool>true</bool>
               </property>
              </widget>
             </item>
-            <item row="2" column="2" >
-             <widget class="QCheckBox" name="checkBoxCalculateMD5" >
-              <property name="toolTip" >
+            <item row="2" column="2">
+             <widget class="QCheckBox" name="checkBoxCalculateMD5">
+              <property name="toolTip">
                <string>Calculate MD5 hash</string>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Calculate MD5</string>
               </property>
-              <property name="checked" >
+              <property name="checked">
                <bool>true</bool>
               </property>
              </widget>
             </item>
-            <item row="1" column="2" >
-             <widget class="QCheckBox" name="checkBoxCalculateSHA1" >
-              <property name="toolTip" >
+            <item row="1" column="2">
+             <widget class="QCheckBox" name="checkBoxCalculateSHA1">
+              <property name="toolTip">
                <string>Calculate SHA1 hash</string>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Calculate SHA1</string>
               </property>
-              <property name="checked" >
+              <property name="checked">
                <bool>true</bool>
               </property>
              </widget>
             </item>
-            <item rowspan="5" row="0" column="3" >
-             <spacer name="horizontalSpacer" >
-              <property name="orientation" >
+            <item row="0" column="3" rowspan="5">
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
-              <property name="sizeHint" stdset="0" >
+              <property name="sizeHint" stdset="0">
                <size>
                 <width>40</width>
                 <height>20</height>
@@ -295,73 +296,73 @@
               </property>
              </spacer>
             </item>
-            <item row="2" column="0" >
-             <widget class="QLabel" name="labelMaxFileSize" >
-              <property name="text" >
+            <item row="2" column="0">
+             <widget class="QLabel" name="labelMaxFileSize">
+              <property name="text">
                <string>Maximum file size</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="1" >
-             <widget class="QSpinBox" name="spinBoxMaxFileSize" >
-              <property name="toolTip" >
+            <item row="2" column="1">
+             <widget class="QSpinBox" name="spinBoxMaxFileSize">
+              <property name="toolTip">
                <string>Maximum file size to load, skip file if too big (0 = no limit)</string>
               </property>
-              <property name="specialValueText" >
+              <property name="specialValueText">
                <string>unlimited</string>
               </property>
-              <property name="suffix" >
+              <property name="suffix">
                <string> MB</string>
               </property>
-              <property name="minimum" >
+              <property name="minimum">
                <number>0</number>
               </property>
-              <property name="maximum" >
+              <property name="maximum">
                <number>999999</number>
               </property>
-              <property name="value" >
+              <property name="value">
                <number>0</number>
               </property>
              </widget>
             </item>
-            <item row="3" column="0" >
-             <widget class="QLabel" name="labelMaxLogSize" >
-              <property name="text" >
+            <item row="3" column="0">
+             <widget class="QLabel" name="labelMaxLogSize">
+              <property name="text">
                <string>Maximum log size</string>
               </property>
              </widget>
             </item>
-            <item row="3" column="1" >
-             <widget class="QSpinBox" name="spinBoxMaxLogSize" >
-              <property name="toolTip" >
+            <item row="3" column="1">
+             <widget class="QSpinBox" name="spinBoxMaxLogSize">
+              <property name="toolTip">
                <string>Maximum number of lines in log (0 = no limit)</string>
               </property>
-              <property name="specialValueText" >
+              <property name="specialValueText">
                <string>unlimited</string>
               </property>
-              <property name="suffix" >
+              <property name="suffix">
                <string> lines</string>
               </property>
-              <property name="minimum" >
+              <property name="minimum">
                <number>0</number>
               </property>
-              <property name="maximum" >
+              <property name="maximum">
                <number>999999</number>
               </property>
-              <property name="value" >
+              <property name="value">
                <number>0</number>
               </property>
              </widget>
             </item>
-            <item row="3" column="2" >
-             <widget class="QCheckBox" name="checkBoxSelectGame" >
-              <property name="toolTip" >
+            <item row="3" column="2">
+             <widget class="QCheckBox" name="checkBoxSelectGame">
+              <property name="toolTip">
                <string>Select game in game list if selected in analysis report?</string>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Select game</string>
               </property>
-              <property name="checked" >
+              <property name="checked">
                <bool>true</bool>
               </property>
              </widget>
@@ -371,53 +372,53 @@
          </layout>
         </widget>
        </item>
-       <item row="1" column="0" >
-        <widget class="QGroupBox" name="groupBoxExportOptions" >
-         <property name="enabled" >
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBoxExportOptions">
+         <property name="enabled">
           <bool>false</bool>
          </property>
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Ignored" hsizetype="Preferred" >
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Export options</string>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QCheckBox" name="checkBoxExportIncludeEmuInfo" >
-            <property name="toolTip" >
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="checkBoxExportIncludeEmuInfo">
+            <property name="toolTip">
              <string>Include emulator information in export</string>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>Include emulator info</string>
             </property>
-            <property name="checked" >
+            <property name="checked">
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QCheckBox" name="checkBoxExportIncludeFrontendInfo" >
-            <property name="toolTip" >
+          <item row="0" column="1">
+           <widget class="QCheckBox" name="checkBoxExportIncludeFrontendInfo">
+            <property name="toolTip">
              <string>Include frontend (QMC2) information in export</string>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>Include frontend info</string>
             </property>
-            <property name="checked" >
+            <property name="checked">
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="0" column="2" >
+          <item row="0" column="2">
            <spacer>
-            <property name="orientation" >
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>0</width>
               <height>20</height>
@@ -425,36 +426,36 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="0" colspan="3" >
-           <widget class="QTabWidget" name="tabWidgetFormats" >
-            <property name="currentIndex" >
+          <item row="1" column="0" colspan="3">
+           <widget class="QTabWidget" name="tabWidgetFormats">
+            <property name="currentIndex">
              <number>0</number>
             </property>
-            <widget class="QWidget" name="tabASCII" >
-             <attribute name="title" >
+            <widget class="QWidget" name="tabASCII">
+             <attribute name="title">
               <string>ASCII</string>
              </attribute>
-             <layout class="QGridLayout" >
-              <item row="0" column="0" >
-               <widget class="QLabel" name="labelASCIMaxColumnWidth" >
-                <property name="text" >
+             <layout class="QGridLayout">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelASCIMaxColumnWidth">
+                <property name="text">
                  <string>Maximum column width</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="1" >
-               <widget class="QSpinBox" name="spinBoxExportASCIIMaxColumnWidth" >
-                <property name="toolTip" >
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="spinBoxExportASCIIMaxColumnWidth">
+                <property name="toolTip">
                  <string>Maximum column width (truncate if larger, 0 = no limit)</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="2" >
+              <item row="0" column="2">
                <spacer>
-                <property name="orientation" >
+                <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
-                <property name="sizeHint" stdset="0" >
+                <property name="sizeHint" stdset="0">
                  <size>
                   <width>0</width>
                   <height>20</height>
@@ -462,65 +463,65 @@
                 </property>
                </spacer>
               </item>
-              <item row="1" column="0" >
-               <widget class="QLabel" name="labelASCIMaxColumnWidth_2" >
-                <property name="text" >
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelASCIMaxColumnWidth_2">
+                <property name="text">
                  <string>Spaces between columns</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="1" >
-               <widget class="QSpinBox" name="spinBoxExportASCIISpaceBetweenColumns" >
-                <property name="toolTip" >
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="spinBoxExportASCIISpaceBetweenColumns">
+                <property name="toolTip">
                  <string>Spaces between columns</string>
                 </property>
-                <property name="minimum" >
+                <property name="minimum">
                  <number>1</number>
                 </property>
                </widget>
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="tabCSV" >
-             <attribute name="title" >
+            <widget class="QWidget" name="tabCSV">
+             <attribute name="title">
               <string>CSV</string>
              </attribute>
-             <layout class="QGridLayout" >
-              <item row="0" column="0" >
-               <widget class="QLabel" name="labelASCIMaxColumnWidth_3" >
-                <property name="text" >
+             <layout class="QGridLayout">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelASCIMaxColumnWidth_3">
+                <property name="text">
                  <string>Field separator character</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="1" >
-               <widget class="QLineEdit" name="lineEditExportCSVFieldSeparator" >
-                <property name="sizePolicy" >
-                 <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="lineEditExportCSVFieldSeparator">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
-                <property name="toolTip" >
+                <property name="toolTip">
                  <string>CSV field separator character (default: ;)</string>
                 </property>
-                <property name="text" >
+                <property name="text">
                  <string>;</string>
                 </property>
-                <property name="maxLength" >
+                <property name="maxLength">
                  <number>1</number>
                 </property>
-                <property name="alignment" >
+                <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="0" column="2" >
+              <item row="0" column="2">
                <spacer>
-                <property name="orientation" >
+                <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
-                <property name="sizeHint" stdset="0" >
+                <property name="sizeHint" stdset="0">
                  <size>
                   <width>0</width>
                   <height>20</height>
@@ -528,39 +529,39 @@
                 </property>
                </spacer>
               </item>
-              <item row="1" column="0" >
-               <widget class="QLabel" name="labelASCIMaxColumnWidth_4" >
-                <property name="text" >
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelASCIMaxColumnWidth_4">
+                <property name="text">
                  <string>Text delimiter character</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="1" >
-               <widget class="QLineEdit" name="lineEditExportCSVTextDelimiter" >
-                <property name="sizePolicy" >
-                 <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="lineEditExportCSVTextDelimiter">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
-                <property name="toolTip" >
-                 <string>CSV text delimiter character (default: ")</string>
+                <property name="toolTip">
+                 <string>CSV text delimiter character (default: &quot;)</string>
                 </property>
-                <property name="text" >
-                 <string>"</string>
+                <property name="text">
+                 <string>&quot;</string>
                 </property>
-                <property name="maxLength" >
+                <property name="maxLength">
                  <number>1</number>
                 </property>
-                <property name="alignment" >
+                <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="tabHTML" >
-             <attribute name="title" >
+            <widget class="QWidget" name="tabHTML">
+             <attribute name="title">
               <string>HTML</string>
              </attribute>
             </widget>
@@ -569,12 +570,12 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="0" >
+       <item row="2" column="0">
         <spacer>
-         <property name="orientation" >
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>21</width>
            <height>20</height>
@@ -586,87 +587,87 @@
      </widget>
     </widget>
    </item>
-   <item row="2" column="0" >
-    <layout class="QHBoxLayout" >
+   <item row="2" column="0">
+    <layout class="QHBoxLayout">
      <item>
-      <widget class="QPushButton" name="pushButtonClose" >
-       <property name="toolTip" >
+      <widget class="QPushButton" name="pushButtonClose">
+       <property name="toolTip">
         <string>Close ROMAlyzer</string>
        </property>
-       <property name="text" >
+       <property name="text">
         <string>&amp;Close</string>
        </property>
-       <property name="icon" >
-        <iconset resource="qmc2.qrc" >
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="labelStatus" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Preferred" hsizetype="MinimumExpanding" >
+      <widget class="QLabel" name="labelStatus">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Current ROMAlyzer status</string>
        </property>
-       <property name="text" >
+       <property name="text">
         <string>Idle</string>
        </property>
-       <property name="alignment" >
+       <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="progressBar" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Minimum" hsizetype="MinimumExpanding" >
+      <widget class="QProgressBar" name="progressBar">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Analysis progress indicator</string>
        </property>
-       <property name="minimum" >
+       <property name="minimum">
         <number>0</number>
        </property>
-       <property name="maximum" >
+       <property name="maximum">
         <number>1</number>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QProgressBar" name="progressBarFileIO" >
-       <property name="sizePolicy" >
-        <sizepolicy vsizetype="Ignored" hsizetype="Minimum" >
+      <widget class="QProgressBar" name="progressBarFileIO">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>File I/O progress indicator</string>
        </property>
-       <property name="minimum" >
+       <property name="minimum">
         <number>0</number>
        </property>
-       <property name="maximum" >
+       <property name="maximum">
         <number>1</number>
        </property>
-       <property name="alignment" >
+       <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
-       <property name="textVisible" >
+       <property name="textVisible">
         <bool>false</bool>
        </property>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <property name="format" >
+       <property name="format">
         <string/>
        </property>
       </widget>
@@ -675,7 +676,7 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="9" />
+ <layoutdefault spacing="6" margin="9"/>
  <tabstops>
   <tabstop>lineEditGames</tabstop>
   <tabstop>pushButtonAnalyze</tabstop>
@@ -706,7 +707,7 @@
   <tabstop>pushButtonClose</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc" />
+  <include location="qmc2.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -715,11 +716,11 @@
    <receiver>ROMAlyzer</receiver>
    <slot>accept()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>84</x>
      <y>478</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>153</x>
      <y>3</y>
     </hint>
@@ -731,11 +732,11 @@
    <receiver>checkBoxExpandChecksums</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>65</x>
      <y>169</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>69</x>
      <y>191</y>
     </hint>

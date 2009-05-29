@@ -1,54 +1,55 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <author>R, Reucher</author>
  <class>FileEditWidget</class>
- <widget class="QWidget" name="FileEditWidget" >
-  <property name="geometry" >
+ <widget class="QWidget" name="FileEditWidget">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>226</width>
-    <height>31</height>
+    <width>221</width>
+    <height>26</height>
    </rect>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2" >
-   <property name="margin" >
+  <layout class="QGridLayout" name="gridLayout_2">
+   <property name="margin">
     <number>0</number>
    </property>
-   <property name="spacing" >
+   <property name="spacing">
     <number>0</number>
    </property>
-   <item row="0" column="0" >
-    <widget class="QFrame" name="frame" >
-     <property name="autoFillBackground" >
+   <item row="0" column="0">
+    <widget class="QFrame" name="frame">
+     <property name="autoFillBackground">
       <bool>true</bool>
      </property>
-     <property name="frameShape" >
+     <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
-     <property name="frameShadow" >
+     <property name="frameShadow">
       <enum>QFrame::Plain</enum>
      </property>
-     <layout class="QGridLayout" name="gridLayout" >
-      <property name="margin" >
+     <layout class="QGridLayout" name="gridLayout">
+      <property name="margin">
        <number>0</number>
       </property>
-      <property name="spacing" >
+      <property name="spacing">
        <number>0</number>
       </property>
-      <item row="0" column="0" >
-       <widget class="QLineEdit" name="lineEditFile" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+      <item row="0" column="0">
+       <widget class="QLineEdit" name="lineEditFile">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
        </widget>
       </item>
-      <item row="0" column="1" >
-       <widget class="QPushButton" name="pushButtonBrowse" >
-        <property name="icon" >
-         <iconset resource="qmc2.qrc" >
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushButtonBrowse">
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
         </property>
        </widget>
@@ -58,9 +59,9 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="9" />
+ <layoutdefault spacing="6" margin="9"/>
  <resources>
-  <include location="qmc2.qrc" />
+  <include location="qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

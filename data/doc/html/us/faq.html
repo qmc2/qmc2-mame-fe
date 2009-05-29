@@ -9,10 +9,10 @@
   </style>
 </head>
 <body style="color: black; background-color: lightyellow;" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.2.b9, 21-MAY-2009</h3>
+<h3>FAQ - v0.2.b9, 29-MAY-2009</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
-<p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.4+, but my (Linux) distribution comes with an older version of Qt. What should I do about that?</a></div></p>
+<p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (Linux) distribution comes with an older version of Qt. What should I do about that?</a></div></p>
 <p><div class="menuitem"><a href="#A1.2">Q1.2: Aren't there any binary packages on the net?</a></div></p>
 <p><div class="menuitem"><a href="#A1.3">Q1.3: I want to be at the cutting edge of QMC2 development. How do I access your development code base?</a></div></p>
 <p><div class="menuitem"><a href="#A1.4">Q1.4: Why aren't you using autoconf/automake (configure)?</a></div></p>
@@ -45,23 +45,23 @@
 <p><div class="menuitem"><a href="#A3.5">Q3.5: On PPC Linux all embedded images / icons are <i>bluish</i></a></div></p>
 <hr>
 <h3>Answers</h3>
-<p><a name="A1.1"></a><b>Q1.1: QMC2 needs Qt 4.4+, but my (Linux) distribution comes with an older version of Qt. What should I do about that?</b></p>
+<p><a name="A1.1"></a><b>Q1.1: QMC2 needs Qt 4.5+, but my (Linux) distribution comes with an older version of Qt. What should I do about that?</b></p>
 <p>First of all, don't worry. Regardless if an older version of Qt is already installed or not, you can use several versions in parallel. This includes self-compiled versions as in the following example. You only need to take care of some environment variables as described in the build instructions of <a href="readme.html#2.">readme.html</a>.
 </p>
 <p>If you need to build Qt 4 from source, please follow these steps (on X11 platforms):</p>
-<p>1) Download the latest source archive of Qt 4 from this URL: http://www.qtsoftware.com/downloads -- for example qt-x11-opensource-src-4.5.0.tar.gz.</p>
+<p>1) Download the latest source archive of Qt 4 from this URL: <a href="http://www.qtsoftware.com/downloads">http://www.qtsoftware.com/downloads</a> -- for example qt-x11-opensource-src-4.5.1.tar.gz.</p>
 <p>2) Extract this tar-ball to a directory where you are going to build it, then configure and build it completely:</p>
-<pre># mkdir -p src &amp;&amp; cd src<br># gzcat /tmp/qt-x11-opensource-src-4.5.0.tar.gz | tar xfv -<br># cd qt-x11-opensource-src-4.5.0<br># ./configure -platform linux-g++ -prefix /usr/local/lib/qt-4.5.0<br># make</pre>
+<pre># mkdir -p src &amp;&amp; cd src<br># gzcat /tmp/qt-x11-opensource-src-4.5.1.tar.gz | tar xfv -<br># cd qt-x11-opensource-src-4.5.1<br># ./configure -platform linux-g++ -prefix /usr/local/lib/qt-4.5.1<br># make</pre>
 <p>Exchange the values for <span style="font-style: italic;">-platform</span> and <span style="font-style: italic;">-prefix</span> with things that fit your needs. The example is for a 32-bit Linux distribution, building Qt 4 on a 64-bit Linux system requires <i>-platform linux-g++-64</i>! See the available <i>make specs</i> in the Qt source (directory <i>mkspecs/</i>) for other platforms.</p>
 <p>3) Install the library (it will be installed to the prefix-directory specified on the configure command line!):</p>
 <pre># make install</pre>
 <p>This is VERY important for Qt 4 (whereas in case of Qt 3 this wasn't necessary)!</p>
 <p>Now, following the instructions of <a href="readme.html#2.">readme.html</a>, you are able to build and use QMC2!!</p>
 <p>Note that building Qt from source is recommended for QMC2, even if your distribution already comes with <i>sufficient</i> Qt 4 packages. Some distributions use buggy versions of Qt (performance issues, potential crashes), others do not include all the required features. Installing Qt as described here is guaranteed to work with QMC2 - provided that Qt itself builds cleanly :). On Linux at least, there should be no problem at all to build Qt from source. On <u>most</u> other platforms supported by Qt this is true as well.</p>
-<p>See here for official installation instructions (covering all platforms): http://doc.qtsoftware.com/4.5/installation.html</p>
+<p>See here for official installation instructions (covering all platforms): <a href="http://doc.qtsoftware.com/4.5/installation.html">http://doc.qtsoftware.com/4.5/installation.html</a></p>
 <hr>
 <p><a name="A1.2"></a><b>Q1.2: Aren't there any binary packages on the net?</b></p>
-<p>Please see http://qmc2.arcadehits.net/download.html for more information.</p>
+<p>Please see <a href="http://qmc2.arcadehits.net/download.html">http://qmc2.arcadehits.net/download.html</a> for more information.</p>
 <hr>
 <p><a name="A1.3"></a><b>Q1.3: I want to be at the cutting edge of QMC2 development. How do I access your development code base?</b></p>
 <p>We are using <i>Subversion</i> (SVN) for the code repository during development.</p>
@@ -121,6 +121,7 @@ libqt4-devel-doc-data-4.4.0-12.1
 <u>libqt4-devel-4.4.0-12.4</u>
 libqt4-sql-4.4.0-12.4</pre>
 <p>Underlined packages are <u>required</u> for QMC2 to build and run. The library versions may differ, though (Qt 4.4+ required).</p>
+<p><b>FIXME: this answer is not up-to-date (Qt 4.5+ required now)!</b></p>
 <hr>
 <p><a name="A1.6"></a><b>Q1.6: How do I know about the available make targets and build configuration options?</b></p>
 <p>Run</p>
@@ -157,6 +158,7 @@ On Hardy Heron, you may have to use
 <pre>$ make DISTCFG=1 PHONON=0
 $ sudo make install DISTCFG=1 PHONON=0</pre>
 <p>instead, which disables the Phonon features.</p>
+<p><b>FIXME: this answer is not up-to-date (Qt 4.5+ required now)!</b></p>
 <hr>
 <p><a name="A1.7.2"></a><b>Q1.7.2: openSUSE 11.0 and 11.1</b></p>
 <p>To build and install QMC2 from source (SVN) on openSUSE 11.0 or 11.1 using their provided Qt 4.4 packages, follow these steps:</p>
@@ -183,6 +185,7 @@ Password:
 <ul>
 <li>The Oxygen default style from KDE 4 causes some troubles such as single-click activation of games/machines and strange Qt warnings. Select a different GUI style to fix that.</li>
 </ul>
+<p><b>FIXME: this answer is not up-to-date (Qt 4.5+ required now)!</b></p>
 <hr>
 <p><a name="A1.7.3"></a><b>Q1.7.3: Fedora release 9 and 10</b></p>
 <p>To build and install QMC2 from source (SVN) on Fedora release 9 and 10 using their provided Qt 4.4 packages, follow these steps:</p>
@@ -204,6 +207,7 @@ $ su
 Password:
 # make install DISTCFG=1
 # logout</pre>
+<p><b>FIXME: this answer is not up-to-date (Qt 4.5+ required now)!</b></p>
 <hr>
 <p><a name="A1.8"></a><b>Q1.8: The build fails due to compiler errors regarding the <i>accessibleName</i> property used in emuopt.cpp</b></p>
 <p>If you see compiler errors similar to the following, please make sure that <i>Qt Accessibilty</i> has been enabled in your version / build of Qt!</p>
@@ -328,7 +332,7 @@ Try "mame | less" for example - the behavior will be the same.</p>
 <p><a name="A2.9"></a><b>Q2.9: In rare cases, QMC2 <i>hangs</i> during emulation or after the emulator has finished. That's a bug, right?</b></p>
 <p>Yes and no - it's not a bug of QMC2 at least :). It can happen when you've limited the size of the emulator log and the emulator is excessively generating output to <i>stdout</i> or <i>stderr</i>. The function used to limit the log size is fairly slow in case of Qt 4.3, and so it may not be able to keep up with the speed of incoming messages. It's been observed for <i>tinklpit</i> (and SDLMAME 0.127) for example, which outputs a lot of subsequent <i>popcount</i> messages very quickly.<p>
 <p>Qt 4.4.0+ doesn't appear to have this problem, so it's recommended to use Qt 4.4+ if you want to limit the in-memory sizes of the logs and not be affected by this issue.</p>
-<p><b>This answer is obsolete</b>: as of v0.2.b6 Qt 4.3 is no longer supported - upgrade to Qt 4.4+ please.</p>
+<p><b>This answer is obsolete</b>: as of v0.2.b9, Qt 4.5+ is required -- upgrade please!</p>
 <hr>
 <p><a name="A2.10"></a><b>Q2.10: I'm having trouble to set up the emulator configuration. Am I missing something?</b></p>
 <p>You may be missing some background information about how QMC2 handles the emulator configuration internally. Let's try to fill that gap...</p>
@@ -401,8 +405,8 @@ I had to go into the CompizConfig Settings Manager, General Options, Focus &amp;
 <p>Qt 4.3.2 is known to have a bug which slows down the process of hiding items in
 a QTreeWidget (or QTreeView).</p>
 <p>Use a different version of Qt! <i>Qt Software</i> promised to include the fix in Qt 4.3.3 and above (update: yes, the fix is included since!).
-A temporary fix for Qt 4.3.2 is available from the QMC2 home page (http://qmc2.arcadehits.net/)</p>
-<p><b>This answer is obsolete</b>: as of v0.2.b6 Qt 4.3 is no longer supported - upgrade to Qt 4.4+ please.</p>
+A temporary fix for Qt 4.3.2 is available from the QMC2 home page (<a href="http://qmc2.arcadehits.net">http://qmc2.arcadehits.net</a>)</p>
+<p><b>This answer is obsolete</b>: as of v0.2.b9, Qt 4.5+ is required -- upgrade please!</p>
 <hr>
 <p><a name="A3.3"></a><b>Q3.3: QMC2 crashes with a segmentation fault when I click the browse buttons of certain file settings (options dialog)</b></p>
 <p>You're most probably hitting a bug of Qt 4.3.x's QFileDialog class, which crashes when a hidden directory is passed to it (when a directory component of the file's path starts with a dot as in <i>/home/user/.qmc2/qmc2.tmp</i>).</p>
@@ -410,7 +414,7 @@ A temporary fix for Qt 4.3.2 is available from the QMC2 home page (http://qmc2.a
 <p>If you insist on using the file browsers, you'll have to wait for a fix for Qt 4.3.x which will hopefully be available soon.<p>
 <p>The bug exists for at least these versions of Qt: 4.3.2 and 4.3.3 (not sure about 4.3.0 and 4.3.1, though). If you should be using a different version of Qt, please let us know!</p>
 <p><i>Qt Software</i> meanwhile confirmed the bug and fixed it for Qt 4.3.4!</p>
-<p><b>This answer is obsolete</b>: as of v0.2.b6 Qt 4.3 is no longer supported - upgrade to Qt 4.4+ please.</p>
+<p><b>This answer is obsolete</b>: as of v0.2.b9, Qt 4.5+ is required -- upgrade please!</p>
 <hr>
 <p><a name="A3.4"></a><b>Q3.4: What does this <i>QtWarningMsg: QPixmap::scaled: Pixmap is a null pixmap</i> message in the front end log mean?</b></p>
 <p>This message means that the preview- or flyer-image which is about to be displayed is either not available or an invalid PNG.</p>
@@ -420,6 +424,6 @@ A temporary fix for Qt 4.3.2 is available from the QMC2 home page (http://qmc2.a
 <p><a name="A3.5"></a><b>Q3.5: On PPC Linux all embedded images / icons are <i>bluish</i></b></p>
 <p>This is a known bug of Qt on that platform. It only happens to PNG images that are embedded into the application in the form of a <i>Qt resource</i>. Unfortunately, QMC2 uses <b>only</b> PNG images and most of them are embedded (all static icons), so the bug may concern everyone running on a PPC Linux system!</p>
 <p>A bug report has already been filed at <i>Qt Software</i>'s bug tracking system and chances are it will sooner or later be fixed by the former <i>Trolls</i>... anyway, other than a somewhat unusual look'n'feel it doesn't really harm and QMC2 will run fine on this platfom :)!</p>
-<p>Note: according to this task-tracker entry, there's at least hope that it has already been fixed (for Qt 4.5.2, which isn't ready for prime time yet as of this writing): http://www.qtsoftware.com/developer/task-tracker/index_html?method=entry&amp;id=196152</p>
+<p>Note: according to this task-tracker entry, there's at least hope that it has already been fixed (for Qt 4.5.2, which isn't ready for prime time yet as of this writing): <a href="http://www.qtsoftware.com/developer/task-tracker/index_html?method=entry&id=196152">http://www.qtsoftware.com/developer/task-tracker/index_html?method=entry&amp;id=196152</a></p>
 </body>
 </html>

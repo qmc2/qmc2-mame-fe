@@ -168,18 +168,6 @@ Options::Options(QWidget *parent)
   labelMAWSCacheDirectory->setVisible(FALSE);
   lineEditMAWSCacheDirectory->setVisible(FALSE);
   toolButtonBrowseMAWSCacheDirectory->setVisible(FALSE);
-  // MESS variants don't need HTTP proxy support yet
-  groupBoxHTTPProxy->setVisible(FALSE);
-  tabWidgetFrontendSettings->setTabText(QMC2_OPTIONS_FE_TOOLS_INDEX, tr("&Tools"));
-#endif
-
-#if QT_VERSION < 0x040500
-  // no need for HTTP proxy support when using Qt 4.4
-  lineEditMAWSCacheDirectory->setVisible(FALSE);
-  labelMAWSCacheDirectory->setVisible(FALSE);
-  toolButtonBrowseMAWSCacheDirectory->setVisible(FALSE);
-  groupBoxHTTPProxy->setVisible(FALSE);
-  tabWidgetFrontendSettings->setTabText(QMC2_OPTIONS_FE_TOOLS_INDEX, tr("&Tools"));
 #endif
 
   // shortcuts
@@ -195,9 +183,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+H"] = QPair<QString, QAction *>(tr("Online documentation"), NULL);
   qmc2ShortcutMap["Ctrl+I"] = QPair<QString, QAction *>(tr("Clear image cache"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+A"] = QPair<QString, QAction *>(tr("Setup arcade mode"), NULL);
-#if QT_VERSION >= 0x040500
   qmc2ShortcutMap["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear MAWS cache"), NULL);
-#endif
   qmc2ShortcutMap["Ctrl+N"] = QPair<QString, QAction *>(tr("Clear icon cache"), NULL);
   qmc2ShortcutMap["Ctrl+O"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
   qmc2ShortcutMap["Ctrl+P"] = QPair<QString, QAction *>(tr("Play selected game"), NULL);
@@ -329,9 +315,7 @@ void Options::apply()
   toolButtonBrowseGameInfoDB->setIconSize(iconSize);
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   toolButtonBrowseEmuInfoDB->setIconSize(iconSize);
-#if QT_VERSION >= 0x040500
   toolButtonBrowseMAWSCacheDirectory->setIconSize(iconSize);
-#endif
 #endif
   toolButtonBrowsePreviewDirectory->setIconSize(iconSize);
   toolButtonBrowsePreviewFile->setIconSize(iconSize);
@@ -759,7 +743,6 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments", lineEditZipToolRemovalArguments->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool", lineEditFileRemovalTool->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments", lineEditFileRemovalToolArguments->text());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   config->setValue("Network/HTTPProxy/Enable", groupBoxHTTPProxy->isChecked());
   config->setValue("Network/HTTPProxy/Host", lineEditHTTPProxyHost->text());
   config->setValue("Network/HTTPProxy/Port", spinBoxHTTPProxyPort->value());
@@ -774,7 +757,6 @@ void Options::on_pushButtonApply_clicked()
   } else {
       QNetworkProxy::setApplicationProxy(QNetworkProxy(QNetworkProxy::NoProxy));
   }
-#endif
 
   // Emulator
 
@@ -822,9 +804,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
   config->setValue("MAME/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
   config->setValue("MAME/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
-#if QT_VERSION >= 0x040500
   config->setValue("MAME/FilesAndDirectories/MAWSCacheDirectory", lineEditMAWSCacheDirectory->text());
-#endif
   s = lineEditOptionsTemplateFile->text();
   needRecreateTemplateMap = needRecreateTemplateMap || (config->value("MAME/FilesAndDirectories/OptionsTemplateFile").toString() != s );
   config->setValue("MAME/FilesAndDirectories/OptionsTemplateFile", s);
@@ -1439,13 +1419,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditListXMLCache->setText(config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
   lineEditGamelistCacheFile->setText(config->value("MAME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mame.glc").toString());
   lineEditROMStateCacheFile->setText(config->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
-#if QT_VERSION >= 0x040500
   QString mawsCachePath = config->value("MAME/FilesAndDirectories/MAWSCacheDirectory", userScopePath + "/maws/").toString();
   lineEditMAWSCacheDirectory->setText(mawsCachePath);
   QDir mawsCacheDir(mawsCachePath);
   if ( !mawsCacheDir.exists() )
     mawsCacheDir.mkdir(mawsCachePath);
-#endif
 #if defined(QMC2_SDLMAME)
   lineEditOptionsTemplateFile->setText(config->value("MAME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template.xml").toString());
 #elif defined(QMC2_MAME)

@@ -1,4 +1,4 @@
-#include "dbrowser.h"
+#include "docbrowser.h"
 #include "options.h"
 #include "qmc2main.h"
 #include "macros.h"
@@ -15,6 +15,10 @@ DocBrowser::DocBrowser(QWidget *parent)
 #endif
 
   setupUi(this);
+
+  browser = new MiniWebBrowser(this);
+  horizontalLayout->addWidget(browser);
+//  setLayout(horizontalLayout);
 
   widgetSize = QSize(-1, -1);
   widgetPosValid = FALSE;
