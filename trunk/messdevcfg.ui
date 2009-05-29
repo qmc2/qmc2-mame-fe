@@ -1,157 +1,158 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <author>R. Reucher</author>
  <class>MESSDeviceConfigurator</class>
- <widget class="QWidget" name="MESSDeviceConfigurator" >
-  <property name="geometry" >
+ <widget class="QWidget" name="MESSDeviceConfigurator">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>453</width>
-    <height>336</height>
+    <width>403</width>
+    <height>498</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>MESS device configuration</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_3" >
-   <property name="margin" >
+  <layout class="QGridLayout" name="gridLayout_3">
+   <property name="margin">
     <number>0</number>
    </property>
-   <property name="spacing" >
+   <property name="spacing">
     <number>0</number>
    </property>
-   <item row="0" column="0" >
-    <widget class="QSplitter" name="vSplitter" >
-     <property name="orientation" >
+   <item row="0" column="0">
+    <widget class="QSplitter" name="vSplitter">
+     <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <widget class="QGroupBox" name="groupBoxActiveDeviceConfiguration" >
-      <property name="sizePolicy" >
-       <sizepolicy vsizetype="Ignored" hsizetype="Ignored" >
+     <widget class="QGroupBox" name="groupBoxActiveDeviceConfiguration">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
-      <property name="title" >
+      <property name="title">
        <string>Active device configuration</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_2" >
-       <item row="0" column="0" >
-        <layout class="QHBoxLayout" name="horizontalLayout" >
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QPushButton" name="pushButtonConfiguration" >
-           <property name="text" >
+          <widget class="QPushButton" name="pushButtonConfiguration">
+           <property name="text">
             <string>Configuration</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEditConfigurationName" >
-           <property name="toolTip" >
+          <widget class="QLineEdit" name="lineEditConfigurationName">
+           <property name="toolTip">
             <string>Name of device configuration</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButtonNewConfiguration" >
-           <property name="toolTip" >
+          <widget class="QPushButton" name="pushButtonNewConfiguration">
+           <property name="toolTip">
             <string>Create a new device configuration</string>
            </property>
-           <property name="text" >
+           <property name="text">
             <string/>
            </property>
-           <property name="icon" >
-            <iconset resource="qmc2.qrc" >
+           <property name="icon">
+            <iconset resource="qmc2.qrc">
              <normaloff>:/data/img/filenew.png</normaloff>:/data/img/filenew.png</iconset>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButtonCloneConfiguration" >
-           <property name="toolTip" >
+          <widget class="QPushButton" name="pushButtonCloneConfiguration">
+           <property name="toolTip">
             <string>Clone current device configuration</string>
            </property>
-           <property name="text" >
+           <property name="text">
             <string/>
            </property>
-           <property name="icon" >
-            <iconset resource="qmc2.qrc" >
+           <property name="icon">
+            <iconset resource="qmc2.qrc">
              <normaloff>:/data/img/editcopy.png</normaloff>:/data/img/editcopy.png</iconset>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButtonRemoveConfiguration" >
-           <property name="toolTip" >
+          <widget class="QPushButton" name="pushButtonRemoveConfiguration">
+           <property name="toolTip">
             <string>Remove current device configuration from list of available configurations</string>
            </property>
-           <property name="text" >
+           <property name="text">
             <string/>
            </property>
-           <property name="icon" >
-            <iconset resource="qmc2.qrc" >
+           <property name="icon">
+            <iconset resource="qmc2.qrc">
              <normaloff>:/data/img/editdelete.png</normaloff>:/data/img/editdelete.png</iconset>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButtonSaveConfiguration" >
-           <property name="toolTip" >
+          <widget class="QPushButton" name="pushButtonSaveConfiguration">
+           <property name="toolTip">
             <string>Save current device configuration to list of available configurations</string>
            </property>
-           <property name="text" >
+           <property name="text">
             <string/>
            </property>
-           <property name="icon" >
-            <iconset resource="qmc2.qrc" >
+           <property name="icon">
+            <iconset resource="qmc2.qrc">
              <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
            </property>
           </widget>
          </item>
         </layout>
        </item>
-       <item row="1" column="0" >
-        <widget class="QTreeWidget" name="treeWidgetDeviceSetup" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="MinimumExpanding" hsizetype="Expanding" >
+       <item row="1" column="0">
+        <widget class="QTreeWidget" name="treeWidgetDeviceSetup">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="toolTip" >
+         <property name="toolTip">
           <string>Device setup of current configuration</string>
          </property>
-         <property name="alternatingRowColors" >
+         <property name="alternatingRowColors">
           <bool>true</bool>
          </property>
-         <property name="rootIsDecorated" >
+         <property name="rootIsDecorated">
           <bool>false</bool>
          </property>
-         <property name="uniformRowHeights" >
+         <property name="uniformRowHeights">
           <bool>true</bool>
          </property>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Device instance</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Type</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Tag</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>Extensions</string>
           </property>
          </column>
          <column>
-          <property name="text" >
+          <property name="text">
            <string>File</string>
           </property>
          </column>
@@ -159,32 +160,32 @@
        </item>
       </layout>
      </widget>
-     <widget class="QGroupBox" name="groupBoxAvailableDeviceConfigurations" >
-      <property name="sizePolicy" >
-       <sizepolicy vsizetype="Ignored" hsizetype="Ignored" >
+     <widget class="QGroupBox" name="groupBoxAvailableDeviceConfigurations">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
-      <property name="title" >
+      <property name="title">
        <string>Available device configurations</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout" >
-       <item row="0" column="0" >
-        <widget class="QListWidget" name="listWidgetDeviceConfigurations" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="MinimumExpanding" hsizetype="Expanding" >
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QListWidget" name="listWidgetDeviceConfigurations">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="contextMenuPolicy" >
+         <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
-         <property name="toolTip" >
+         <property name="toolTip">
           <string>List of available device configurations</string>
          </property>
-         <property name="sortingEnabled" >
+         <property name="sortingEnabled">
           <bool>true</bool>
          </property>
         </widget>
@@ -195,7 +196,7 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="9" />
+ <layoutdefault spacing="6" margin="9"/>
  <tabstops>
   <tabstop>pushButtonConfiguration</tabstop>
   <tabstop>lineEditConfigurationName</tabstop>
@@ -207,7 +208,7 @@
   <tabstop>listWidgetDeviceConfigurations</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc" />
+  <include location="qmc2.qrc"/>
  </resources>
  <connections/>
 </ui>

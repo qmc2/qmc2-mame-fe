@@ -1,7 +1,8 @@
 #ifndef _DBROWSER_H_
 #define _DBROWSER_H_
 
-#include "ui_dbrowser.h"
+#include "ui_docbrowser.h"
+#include "miniwebbrowser.h"
 
 class DocBrowser : public QDialog, public Ui::DocBrowser
 {
@@ -12,6 +13,7 @@ class DocBrowser : public QDialog, public Ui::DocBrowser
     QSize widgetSize;
     bool widgetPosValid;
     bool ignoreResizeAndMove;
+    MiniWebBrowser *browser;
 
     DocBrowser(QWidget *parent = 0);
     ~DocBrowser();

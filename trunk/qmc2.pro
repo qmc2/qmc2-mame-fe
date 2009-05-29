@@ -1,5 +1,5 @@
 greaterThan(QT_MAJOR_VERSION, 3) {
-	greaterThan(QT_MINOR_VERSION, 3) {
+	greaterThan(QT_MINOR_VERSION, 4) {
 		isEmpty(TARGET):TARGET = qmc2
 		CONFIG += qtestlib
 		QT += xml webkit network
@@ -7,7 +7,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		INCLUDEPATH += minizip/
 		FORMS += qmc2main.ui \
 			options.ui \
-			dbrowser.ui \
+			docbrowser.ui \
 			about.ui \
 			welcome.ui \
 			imgcheck.ui \
@@ -26,7 +26,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			arcade/arcadesetupdialog.ui
 		SOURCES += qmc2main.cpp \
 			options.cpp \
-			dbrowser.cpp \
+			docbrowser.cpp \
 			about.cpp \
 			welcome.cpp \
 			imgcheck.cpp \
@@ -64,7 +64,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			arcade/arcadesetupdialog.cpp
 		HEADERS += qmc2main.h \
 			options.h \
-			dbrowser.h \
+			docbrowser.h \
 			about.h \
 			welcome.h \
 			imgcheck.h \
@@ -132,8 +132,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			CONFIG += embed_manifest_exe
 		}
 	} else {
-		error(Qt $$QT_VERSION is insufficient -- Qt 4.4.0+ required)
+		error(Qt $$QT_VERSION is insufficient -- Qt 4.5.0+ required)
 	}
 } else {
-	error(Qt $$QT_VERSION is insufficient -- Qt 4.4.0+ required)
+	error(Qt $$QT_VERSION is insufficient -- Qt 4.5.0+ required)
 }

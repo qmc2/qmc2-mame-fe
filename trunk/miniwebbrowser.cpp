@@ -19,14 +19,15 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   firstTimeLoadProgress = TRUE;
   firstTimeLoadFinished = TRUE;
 
-  // connect actions we provide
+  // connect page actions we provide
   connect(webViewBrowser->pageAction(QWebPage::DownloadImageToDisk), SIGNAL(triggered()), this, SLOT(processPageActionDownloadImageToDisk()));
   connect(webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk), SIGNAL(triggered()), this, SLOT(processPageActionDownloadLinkToDisk()));
+  connect(webViewBrowser->page(), SIGNAL(downloadRequested(const QNetworkRequest &)), this, SLOT(processPageActionDownloadRequested(const QNetworkRequest &)));
 
-  // hide actions we don't provide
-  webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(FALSE);
+  // hide page actions we don't provide
   webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(FALSE);
   webViewBrowser->pageAction(QWebPage::OpenFrameInNewWindow)->setVisible(FALSE);
+  webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(FALSE);
 
   // change provided page actions to better fit our usage / integrate into QMC2's look
   webViewBrowser->pageAction(QWebPage::OpenLink)->setText(tr("Open link"));
@@ -68,13 +69,11 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, FALSE);
 #endif
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::LinksIncludedInFocusChain, FALSE);
-#if QT_VERSION >= 0x040500
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::ZoomTextOnly, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::PrintElementBackgrounds, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineStorageDatabaseEnabled, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineWebApplicationCacheEnabled, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::LocalStorageDatabaseEnabled, FALSE);
-#endif
 }
 
 MiniWebBrowser::~MiniWebBrowser()
@@ -210,4 +209,13 @@ void MiniWebBrowser::processPageActionDownloadLinkToDisk()
 #endif
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "MiniWebBrowser::processPageActionDownloadLinkToDisk(): "+ tr("sorry, this feature is not yet implemented"));
+}
+
+void MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &request)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &request = ...)");
+#endif
+
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "MiniWebBrowser::processPageActionDownloadRequested(): "+ tr("sorry, this feature is not yet implemented"));
 }

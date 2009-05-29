@@ -1,136 +1,137 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>MiniWebBrowser</class>
- <widget class="QWidget" name="MiniWebBrowser" >
-  <property name="geometry" >
+ <widget class="QWidget" name="MiniWebBrowser">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>511</width>
-    <height>448</height>
+    <width>800</width>
+    <height>633</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Mini Web Browser</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout" >
-   <property name="margin" >
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
     <number>0</number>
    </property>
-   <item row="0" column="0" >
-    <layout class="QHBoxLayout" name="horizontalLayout" >
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QToolButton" name="toolButtonBack" >
-       <property name="enabled" >
+      <widget class="QToolButton" name="toolButtonBack">
+       <property name="enabled">
         <bool>false</bool>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Go back</string>
        </property>
-       <property name="statusTip" >
+       <property name="statusTip">
         <string>Go back</string>
        </property>
-       <property name="icon" >
-        <iconset resource="qmc2.qrc" >
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/back.png</normaloff>:/data/img/back.png</iconset>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButtonForward" >
-       <property name="enabled" >
+      <widget class="QToolButton" name="toolButtonForward">
+       <property name="enabled">
         <bool>false</bool>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Go forward</string>
        </property>
-       <property name="statusTip" >
+       <property name="statusTip">
         <string>Go forward</string>
        </property>
-       <property name="icon" >
-        <iconset resource="qmc2.qrc" >
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/forward.png</normaloff>:/data/img/forward.png</iconset>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButtonReload" >
-       <property name="enabled" >
+      <widget class="QToolButton" name="toolButtonReload">
+       <property name="enabled">
         <bool>false</bool>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Reload current URL</string>
        </property>
-       <property name="statusTip" >
+       <property name="statusTip">
         <string>Reload current URL</string>
        </property>
-       <property name="icon" >
-        <iconset resource="qmc2.qrc" >
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButtonStop" >
-       <property name="enabled" >
+      <widget class="QToolButton" name="toolButtonStop">
+       <property name="enabled">
         <bool>false</bool>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Stop loading of current URL</string>
        </property>
-       <property name="statusTip" >
+       <property name="statusTip">
         <string>Stop loading of current URL</string>
        </property>
-       <property name="icon" >
-        <iconset resource="qmc2.qrc" >
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/stop_browser.png</normaloff>:/data/img/stop_browser.png</iconset>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButtonHome" >
-       <property name="enabled" >
+      <widget class="QToolButton" name="toolButtonHome">
+       <property name="enabled">
         <bool>false</bool>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Go home (first page)</string>
        </property>
-       <property name="statusTip" >
+       <property name="statusTip">
         <string>Go home (first page)</string>
        </property>
-       <property name="icon" >
-        <iconset resource="qmc2.qrc" >
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/home.png</normaloff>:/data/img/home.png</iconset>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEditURL" >
-       <property name="toolTip" >
+      <widget class="QLineEdit" name="lineEditURL">
+       <property name="toolTip">
         <string>Current URL</string>
        </property>
-       <property name="statusTip" >
+       <property name="statusTip">
         <string>Current URL</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="toolButtonLoad" >
-       <property name="toolTip" >
+      <widget class="QToolButton" name="toolButtonLoad">
+       <property name="toolTip">
         <string>Load URL</string>
        </property>
-       <property name="statusTip" >
+       <property name="statusTip">
         <string>Load URL</string>
        </property>
-       <property name="icon" >
-        <iconset resource="qmc2.qrc" >
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item row="1" column="0" >
-    <widget class="QWebView" name="webViewBrowser" />
+   <item row="1" column="0">
+    <widget class="QWebView" name="webViewBrowser"/>
    </item>
   </layout>
  </widget>
@@ -152,7 +153,7 @@
   <tabstop>webViewBrowser</tabstop>
  </tabstops>
  <resources>
-  <include location="qmc2.qrc" />
+  <include location="qmc2.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -161,11 +162,11 @@
    <receiver>webViewBrowser</receiver>
    <slot>back()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>26</x>
      <y>25</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>53</x>
      <y>71</y>
     </hint>
@@ -177,11 +178,11 @@
    <receiver>webViewBrowser</receiver>
    <slot>forward()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>58</x>
      <y>25</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>90</x>
      <y>61</y>
     </hint>
@@ -193,11 +194,11 @@
    <receiver>webViewBrowser</receiver>
    <slot>reload()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>86</x>
      <y>19</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>122</x>
      <y>69</y>
     </hint>
@@ -209,11 +210,11 @@
    <receiver>webViewBrowser</receiver>
    <slot>stop()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>122</x>
      <y>25</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>156</x>
      <y>76</y>
     </hint>
@@ -225,11 +226,11 @@
    <receiver>toolButtonLoad</receiver>
    <slot>animateClick()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>416</x>
      <y>15</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>493</x>
      <y>11</y>
     </hint>

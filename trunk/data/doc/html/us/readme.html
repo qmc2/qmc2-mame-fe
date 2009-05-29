@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-color: lightyellow;" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b9, 27-MAY-2009</h3>
+<h3>README - v0.2.b9, 29-MAY-2009</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -119,8 +119,8 @@ use with the MAME variant).
       <td style="vertical-align: top; background-color: rgb(192, 192, 192); font-weight: bold;">Where to get</td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">All: Qt 4.4.0+ (Qt 4.5.0+ recommended)</td>
-      <td style="vertical-align: top;">http://www.qtsoftware.com/downloads</td>
+      <td style="vertical-align: top;">All: Qt 4.5.0+ (Qt 4.5.1+ recommended)</td>
+      <td style="vertical-align: top;"><a href="http://www.qtsoftware.com/downloads">http://www.qtsoftware.com/downloads</a></td>
     </tr>
     <tr>
       <td style="vertical-align: top;">UNIX &amp; Mac: GNU make 3.8+</td>
@@ -128,27 +128,32 @@ use with the MAME variant).
     </tr>
     <tr>
       <td style="vertical-align: top;">Windows: Visual C++ 2008 (Express)</td>
-      <td style="vertical-align: top;">http://www.microsoft.com/Express/download/default.aspx</td>
+      <td style="vertical-align: top;"><a href="http://www.microsoft.com/Express/download/default.aspx">http://www.microsoft.com/Express/download/default.aspx</a></td>
     </tr>
     <tr>
       <td style="vertical-align: top;">All: zlib 1.2.3+</td>
-      <td style="vertical-align: top;">http://www.zlib.net/</td>
+      <td style="vertical-align: top;"><a href="http://www.zlib.net">http://www.zlib.net</a></td>
     </tr>
     <tr>
       <td style="vertical-align: top;">UNIX &amp; Mac: SDLMAME/SDLMESS 0.129+<br></td>
-      <td style="vertical-align: top;">http://rbelmont.mameworld.info/?page_id=163</td>
+      <td style="vertical-align: top;"><a href="http://rbelmont.mameworld.info/?page_id=163">http://rbelmont.mameworld.info/?page_id=163</a></td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Windows: MAME/MESS 0.130+<br></td>
-      <td style="vertical-align: top;">http://mamedev.org/release.html<br>http://www.mess.org/download.php</td>
+      <td style="vertical-align: top;"><a href="http://mamedev.org/release.html">http://mamedev.org/release.html</a><br>
+                                       <a href="http://www.mess.org/download.php">http://www.mess.org/download.php</a></td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Additional tools (optional):<br>All: zip 2.32+ (3.0+ recommended)<br>UNIX and Mac: common <i>rm</i> command<br>Windows: built-in shell command <i>del</i></td>
-      <td style="vertical-align: top;"><br>http://www.info-zip.org<br>ftp://ftp.gnu.org/pub/gnu/coreutils</td>
+      <td style="vertical-align: top;"><br>
+                                       <a href="http://www.info-zip.org">http://www.info-zip.org</a><br>
+                                       ftp://ftp.gnu.org/pub/gnu/coreutils</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Joystick support (optional):<br>All: SDL 1.2.13+<br>Windows: DirectX SDK</td>
-      <td style="vertical-align: top;"><br>http://www.libsdl.org<br>http://www.microsoft.com/downloads/details.aspx?FamilyId=5493F76A-6D37-478D-BA17-28B1CCA4865A</td>
+      <td style="vertical-align: top;"><br>
+                                       <a href="http://www.libsdl.org">http://www.libsdl.org</a><br>
+                                       <a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=5493F76A-6D37-478D-BA17-28B1CCA4865A">http://www.microsoft.com/downloads/details.aspx?FamilyId=5493F76A-6D37-478D-BA17-28B1CCA4865A</a></td>
     </tr>
   </tbody>
 </table>
@@ -172,7 +177,7 @@ SDLMAME is the default emulator. For other potential emulators, please use the f
 <pre>$ make [-jX] EMULATOR=&lt;emulator-name&gt;</pre>
 <p>Joystick support is optional (but enabled by default) and requires SDL - the <i>Simple Directmedia Layer</i>. If you would like to disable it, for example because SDL is not supported on your OS (huh?), you could use the <i>JOYSTICK</i> make command line option to do so:</p>
 <pre>$ make [-jX] JOYSTICK=0</pre>
-<p>If you are using Qt 4.4+, the QMC2 build system will automatically enable the use of Qt's Phonon integration for some multimedia functionality (like the built-in audio player). This feature is fully optional though and as it requires a working Phonon environment - especially a working backend API such as <i>gstreamer</i> - you can disable it at compile time. Use the <i>PHONON</i> make command line option to accomplish that:</p>
+<p>The QMC2 build system will automatically enable the use of Qt's Phonon integration for some multimedia functionality (like the built-in audio player). This feature is fully optional though and as it requires a working Phonon environment - especially a working backend API such as <i>gstreamer</i> - you can disable it at compile time. Use the <i>PHONON</i> make command line option to accomplish that:</p>
 <pre>$ make [-jX] PHONON=0</pre>
 <p>Note that nearly all (*) of the supported make command line options can be freely combined when <i>make</i> is called. See</p>
 <pre>$ make help</pre>
@@ -215,12 +220,12 @@ become cleaner and more automatic when time permits):</p>
 (<i>release/qmc2-&lt;emulator&gt;.exe</i>), just make sure the current working directory is the top-level QMC2 source path to make it find its data files automatically (most -- if not all -- default paths are relative to the build directory).</p>
 <p>If you would like to create binary packages, all you'd have to do is copy the relevant files (binaries/DLLs and data) into a directory which you package as an archive afterwards (using zip or rar, for example).
 The <i>installation</i> at a user's end would then just be to extract this archive. That's it! There's nothing like a script to support you in that, though.</p>
-<p>The <a href="credits.html">QMC2-dev team</a> will release Win32 binary packages of this sort starting with v0.2.b8 (final).</p>
+<p>The <a href="credits.html">QMC2-dev team</a> is releasing Win32 binary packages of this sort since v0.2.b8 (only final versions, though).</p>
 <p>The required DLLs include: <i>phonon4.dll</i>, <i>phonon_backend\phonon_ds94.dll</i>, <i>QtCore4.dll</i>, <i>QtGui4.dll</i>, <i>QtOpenGL4.dll</i>, <i>QtTest4.dll</i>, <i>QtXml4.dll</i>, <i>SDL.dll</i> and <i>zlib1.dll</i>.</p>
 <h3><a name="3."></a>3. Command line arguments and configuration</h3>
 <p>Usage:</p>
 <pre>$ qmc2[-<i>emulator</i>] [qt4_arguments]</pre>
-<p>QMC2 does not provide any arguments except those inherited from Qt 4. See http://doc.qtsoftware.com/4.5/qapplication.html#QApplication for details
+<p>QMC2 does not provide any arguments except those inherited from Qt 4. See <a href="http://doc.qtsoftware.com/4.5/qapplication.html#QApplication">http://doc.qtsoftware.com/4.5/qapplication.html#QApplication</a> for details
 (note, however, that some of these arguments are useless since QMC2 will overwrite them with its configured settings).</p>
 <p><b>Notes on the configuration of QMC2</b></p>
 <p>UNIX and Mac OS X:</p>
@@ -399,7 +404,7 @@ of their parents.</p>
 <p>Since v0.1.b11, support for style-specific custom color palettes (which can be setup with <i>qtconfig</i>) has been added. The default behavior of QMC2 is to use the default palette. You can disable this via the <i>StandardColorPalette</i> setting to use the customized color palette instead - if applicable (see <i>Front end</i> -&gt; <i>GUI</i> in the configuration dialog).</p>
 <p>Note that some add-on GUI styles may look ugly or be even buggy (as of this writing, some version of the Oxygen style for example is known to raise an X11 bug when the ROMAlyzer is opened initially). Don't ask for support if you know that this is the cause of your troubles! Please contact the style's developer(s) instead.</p>
 <p>Qt style sheets can be used in conjunction with any GUI style. For now, the style sheet (a .qss file) can only be specified on the command line using the <i>-stylesheet</i> option. Note however that using a style sheet which changes the background brush of all QLabel's may render a few widgets <i>unusable</i> because their background colors cannot be changed dynamically after they have such a style sheet set. The most important one is the optional vertical game/machine status indicator (object name <i>labelGameStatus</i>).</p>
-<p>See here for more information on Qt style sheets: http://doc.qtsoftware.com/4.5/stylesheet.html</p>
+<p>See here for more information on Qt style sheets: <a href="http://doc.qtsoftware.com/4.5/stylesheet.html">http://doc.qtsoftware.com/4.5/stylesheet.html</a></p>
 <h3><a name="6."></a>6. Short cuts, GUI control keys and joystick support</h3>
 <p>Several functions (or <i>actions</i> in Qt technical jargon :) can be accessed via short cut key-sequences. The following table lists all of them:</p>
 <table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
@@ -664,11 +669,11 @@ appreciated (see <a href="#10.">section 10.</a>).</p>
 <h3><a name="9."></a>9. Contact</h3>
 <p>Project homepage:</p>
 <ul>
-<li>http://qmc2.arcadehits.net/</li>
+<li><a href="http://qmc2.arcadehits.net">http://qmc2.arcadehits.net</a></li>
 </ul>
 <p>Development site:</p>
 <ul>
-<li>http://sourceforge.net/projects/qmc2</li>
+<li><a href="http://sourceforge.net/projects/qmc2">http://sourceforge.net/projects/qmc2</a></li>
 </ul>
 <p>QMC2 development mailing list:</p>
 <ul>
@@ -711,14 +716,17 @@ along with this program; if not, write to the Free Software Foundation,
 Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.</p>
 <p>Third party software used in this project:</p>
 <p><i>Minizip 1.01e</i><br>
-Copyright &copy; 1998 - 2005 Gilles Vollant, http://www.winimage.com/zLibDll/minizip.html, info@winimage.com</p>
+Copyright &copy; 1998 - 2005 Gilles Vollant<br>
+<a href="http://www.winimage.com/zLibDll/minizip.html">http://www.winimage.com/zLibDll/minizip.html</a><br>
+info@winimage.com</p>
 <p><i>runonce --- GUI program-launching wrapper</i><br>
-Copyright &copy; 2001 Jamie Zawinski, jwz@jwz.org</p>
+Copyright &copy; 2001 Jamie Zawinski<br>
+jwz@jwz.org</p>
 <p>See <a href="copying.html">copying.html</a> for the GNU General Public License.</p>
 <h3><a name="12."></a>12. Legal notice</h3>
 <p>Please note that you are required to have permission to use or to be the legal owner of any ROM images you are going to run through an emulator and / or this front end.
    The goal of emulators and its surrounding projects is educational and academic (of course, it's also fun :).</p>
 <p><b>We do NOT and will NEVER encourage or support any type of illegal use!</b></p>
-<p>However, a hand full of ROM images has been released to the public for non-commercial use. For instance, free MAME compatible ROMs are available at http://mamedev.org/roms.</p>
+<p>However, a hand full of ROM images has been released to the public for non-commercial use. For instance, free MAME compatible ROMs are available at <a href="http://mamedev.org/roms">http://mamedev.org/roms</a>.</p>
 </body>
 </html>

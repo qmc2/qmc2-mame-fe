@@ -37,7 +37,7 @@
 #include "controller.h"
 #include "marquee.h"
 #include "title.h"
-#include "dbrowser.h"
+#include "docbrowser.h"
 #include "about.h"
 #include "welcome.h"
 #include "imgcheck.h"
@@ -344,7 +344,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
   // FIXME: remove this when the download manager is ready
-#if QMC2_WIP_CODE != 1 || defined(QMC2_SDLMESS) || defined(QMC2_MESS) || QT_VERSION < 0x040500
+#if QMC2_WIP_CODE != 1 || defined(QMC2_SDLMESS) || defined(QMC2_MESS)
   tabWidgetLogsAndEmulators->removeTab(QMC2_DOWNLOADS_INDEX);
 #endif
 
@@ -359,9 +359,7 @@ MainWindow::MainWindow(QWidget *parent)
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   actionLaunchQMC2MAME->setVisible(FALSE);
   qmc2MAWSCache.setMaxCost(QMC2_MAWS_CACHE_SIZE);
-#if QT_VERSION < 0x040500
   actionClearMAWSCache->setVisible(FALSE);
-#endif
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
   actionLaunchQMC2MESS->setVisible(FALSE);
   actionClearMAWSCache->setVisible(FALSE);
@@ -1597,12 +1595,12 @@ void MainWindow::on_actionDocumentation_activated()
 
   if ( !qmc2DocBrowser ) {
     qmc2DocBrowser = new DocBrowser(this);
-    QStringList searchPaths;
-    searchPaths << qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() +
-                   "doc/html/" +
-                   qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString();
-    qmc2DocBrowser->manualBrowser->setSearchPaths(searchPaths);
-    qmc2DocBrowser->manualBrowser->setSource(QUrl("index.html"));
+    QString searchPath;
+    searchPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() +
+                 "doc/html/" +
+                 qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString();
+    QUrl docUrl("file://" + searchPath + "/index.html");
+    qmc2DocBrowser->browser->webViewBrowser->load(docUrl);
   }
 
   qmc2DocBrowser->show();
@@ -4876,7 +4874,6 @@ void MainWindow::mawsLoadFinished(bool ok)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::mawsLoadFinished(bool ok = %1)").arg(ok));
 #endif
 
-#if QT_VERSION >= 0x040500
   if ( qmc2CurrentItem && qmc2MAWSLookup && ok ) {
     QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
     // only cache the ROM set page, don't cache followed pages
@@ -4936,7 +4933,6 @@ void MainWindow::mawsLoadFinished(bool ok)
       log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: ignoring URL '%1'").arg(qmc2MAWSLookup->webViewBrowser->url().toString()));
 #endif
   }
-#endif
 }
 #endif
 
@@ -4985,9 +4981,7 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+H"].second = qmc2MainWindow->actionDocumentation;
   qmc2ShortcutMap["Ctrl+I"].second = qmc2MainWindow->actionClearImageCache;
   qmc2ShortcutMap["Ctrl+Shift+A"].second = qmc2MainWindow->actionArcadeSetup;
-#if QT_VERSION >= 0x040500
   qmc2ShortcutMap["Ctrl+M"].second = qmc2MainWindow->actionClearMAWSCache;
-#endif
   qmc2ShortcutMap["Ctrl+N"].second = qmc2MainWindow->actionClearIconCache;
   qmc2ShortcutMap["Ctrl+O"].second = qmc2MainWindow->actionOptions;
   qmc2ShortcutMap["Ctrl+P"].second = qmc2MainWindow->actionPlay;
