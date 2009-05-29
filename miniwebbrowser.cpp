@@ -16,12 +16,14 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 
   setupUi(this);
 
+  labelStatus->hide();
+  progressBar->hide();
+
   firstTimeLoadStarted = TRUE;
   firstTimeLoadProgress = TRUE;
   firstTimeLoadFinished = TRUE;
 
-  progressBar->hide();
-
+  // we want to manipulate the link activation
   webViewBrowser->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
 
   // connect page actions we provide
@@ -29,6 +31,8 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   connect(webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk), SIGNAL(triggered()), this, SLOT(processPageActionDownloadLinkToDisk()));
   connect(webViewBrowser->page(), SIGNAL(downloadRequested(const QNetworkRequest &)), this, SLOT(processPageActionDownloadRequested(const QNetworkRequest &)));
   connect(webViewBrowser->page(), SIGNAL(unsupportedContent(QNetworkReply *)), this, SLOT(processPageActionHandleUnsupportedContent(QNetworkReply *)));
+  connect(webViewBrowser->page(), SIGNAL(linkHovered(const QString &, const QString &, const QString &)), this, SLOT(webViewBrowser_linkHovered(const QString &, const QString &, const QString &)));
+  connect(webViewBrowser->page(), SIGNAL(statusBarVisibilityChangeRequested(bool)), this, SLOT(webViewBrowser_statusBarVisibilityChangeRequested(bool)));
 
   // hide page actions we don't provide
   webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(FALSE);
@@ -132,6 +136,7 @@ void MiniWebBrowser::on_webViewBrowser_loadStarted()
   progressBar->reset();
   progressBar->setRange(0, 100);
   progressBar->setValue(0);
+  progressBar->setMaximumHeight(font().pointSize() + 4);
   progressBar->show();
 
   if ( firstTimeLoadStarted ) {
@@ -194,6 +199,19 @@ void MiniWebBrowser::on_webViewBrowser_loadFinished(bool ok)
   toolButtonHome->setEnabled(TRUE);
 }
 
+void MiniWebBrowser::on_webViewBrowser_statusBarMessage(const QString &message)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_statusBarMessage(const QString &message = %1)").arg(message));
+#endif
+
+  labelStatus->setVisible(!message.isEmpty());
+  if ( labelStatus->isVisible() ) {
+    labelStatus->setMaximumHeight(font().pointSize() + 4);
+    labelStatus->setText(message + " ");
+  }
+}
+
 void MiniWebBrowser::on_toolButtonHome_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -250,3 +268,26 @@ void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *re
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "MiniWebBrowser::processPageActionHandleUnsupportedContent(): "+ tr("sorry, this feature is not yet implemented"));
 }
+
+void MiniWebBrowser::webViewBrowser_linkHovered(const QString &link, const QString &title, const QString &textContent)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_linkHovered(const QString &link = %1, const QString &title = %2, const QString &textContent = %3)").arg(link).arg(title).arg(textContent));
+#endif
+  
+  labelStatus->setVisible(!link.isEmpty());
+  if ( labelStatus->isVisible() ) {
+    labelStatus->setMaximumHeight(font().pointSize() + 4);
+    labelStatus->setText(link + " ");
+  }
+}
+
+void MiniWebBrowser::webViewBrowser_statusBarVisibilityChangeRequested(bool visible)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_statusBarVisibilityChangeRequested(bool visible = %1)").arg(visible));
+#endif
+  
+  labelStatus->setVisible(visible);
+}
+

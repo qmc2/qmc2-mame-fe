@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>R. Reucher</author>
  <class>MiniWebBrowser</class>
  <widget class="QWidget" name="MiniWebBrowser">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>633</height>
+    <width>612</width>
+    <height>574</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Mini Web Browser</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout_2">
    <property name="margin">
     <number>0</number>
    </property>
@@ -131,23 +132,60 @@
     </layout>
    </item>
    <item row="1" column="0">
-    <widget class="QWebView" name="webViewBrowser"/>
-   </item>
-   <item row="2" column="0">
-    <widget class="QProgressBar" name="progressBar">
-     <property name="toolTip">
-      <string>Current progress loading URL</string>
-     </property>
-     <property name="statusTip">
-      <string>Current progress loading URL</string>
-     </property>
-     <property name="value">
+    <layout class="QGridLayout" name="gridLayout">
+     <property name="horizontalSpacing">
       <number>0</number>
      </property>
-    </widget>
+     <property name="verticalSpacing">
+      <number>3</number>
+     </property>
+     <item row="0" column="0" colspan="2">
+      <widget class="QWebView" name="webViewBrowser">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelStatus">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QProgressBar" name="progressBar">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Current progress loading URL</string>
+       </property>
+       <property name="statusTip">
+        <string>Current progress loading URL</string>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
+ <layoutdefault spacing="6" margin="9"/>
  <customwidgets>
   <customwidget>
    <class>QWebView</class>
