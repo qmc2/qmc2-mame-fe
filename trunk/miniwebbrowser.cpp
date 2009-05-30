@@ -84,6 +84,9 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineStorageDatabaseEnabled, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineWebApplicationCacheEnabled, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::LocalStorageDatabaseEnabled, FALSE);
+
+  // status bar timeout connection
+  connect(&statusTimer, SIGNAL(timeout()), this, SLOT(statusTimeout()));
 }
 
 MiniWebBrowser::~MiniWebBrowser()
@@ -214,14 +217,16 @@ void MiniWebBrowser::on_webViewBrowser_statusBarMessage(const QString &message)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_statusBarMessage(const QString &message = %1)").arg(message));
 #endif
 
-  labelStatus->setVisible(!message.isEmpty());
-  if ( labelStatus->isVisible() ) {
+  if ( !message.isEmpty() ) {
+    statusTimer.stop();
+    labelStatus->setVisible(TRUE);
     QFont f(font());
     f.setPointSize(f.pointSize() - 2);
     labelStatus->setFont(f);
     labelStatus->setMaximumHeight(f.pointSize() + 4);
     labelStatus->setText(message + " ");
-  }
+  } else
+    statusTimer.start(QMC2_BROWSER_STATUS_TIMEOUT);
 }
 
 void MiniWebBrowser::on_toolButtonHome_clicked()
@@ -292,14 +297,16 @@ void MiniWebBrowser::webViewBrowser_linkHovered(const QString &link, const QStri
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_linkHovered(const QString &link = %1, const QString &title = %2, const QString &textContent = %3)").arg(link).arg(title).arg(textContent));
 #endif
   
-  labelStatus->setVisible(!link.isEmpty());
-  if ( labelStatus->isVisible() ) {
+  if ( !link.isEmpty() ) {
+    statusTimer.stop();
+    labelStatus->setVisible(TRUE);
     QFont f(font());
     f.setPointSize(f.pointSize() - 2);
     labelStatus->setFont(f);
     labelStatus->setMaximumHeight(f.pointSize() + 4);
     labelStatus->setText(link + " ");
-  }
+  } else
+    statusTimer.start(QMC2_BROWSER_STATUS_TIMEOUT);
 }
 
 void MiniWebBrowser::webViewBrowser_statusBarVisibilityChangeRequested(bool visible)
@@ -311,3 +318,13 @@ void MiniWebBrowser::webViewBrowser_statusBarVisibilityChangeRequested(bool visi
   labelStatus->setVisible(visible);
 }
 
+void MiniWebBrowser::statusTimeout()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::statusTimeout()");
+#endif
+
+  statusTimer.stop();
+  labelStatus->clear();
+  labelStatus->setVisible(FALSE);
+}

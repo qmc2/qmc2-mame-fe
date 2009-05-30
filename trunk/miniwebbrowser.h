@@ -1,6 +1,7 @@
 #ifndef _MINIWEBBROWSER_H_
 #define _MINIWEBBROWSER_H_
 
+#include <QTimer>
 #include "ui_miniwebbrowser.h"
 
 class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
@@ -12,6 +13,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     bool firstTimeLoadStarted,
          firstTimeLoadProgress,
          firstTimeLoadFinished;
+    QTimer statusTimer;
 
     MiniWebBrowser(QWidget *parent = 0);
     ~MiniWebBrowser();
@@ -36,6 +38,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     // other
     void webViewBrowser_linkHovered(const QString &, const QString &, const QString &);
     void webViewBrowser_statusBarVisibilityChangeRequested(bool);
+    void statusTimeout();
 
   signals:
     void titleChanged(QString &);

@@ -196,6 +196,9 @@
 #define QMC2_ONE_GIGABYTE		1073741824
 #define QMC2_ONE_TERABYTE		1099511627776
 
+// mini web browser: hide status bar after how many milliseconds (if no longer required)
+#define QMC2_BROWSER_STATUS_TIMEOUT	250
+
 // MAWS homepage URL
 #define QMC2_MAWS_HOMEPAGE_URL		"http://maws.mameworld.info/"
 
