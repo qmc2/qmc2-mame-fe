@@ -359,7 +359,6 @@ MainWindow::MainWindow(QWidget *parent)
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   actionLaunchQMC2MAME->setVisible(FALSE);
   qmc2MAWSCache.setMaxCost(QMC2_MAWS_CACHE_SIZE);
-  actionClearMAWSCache->setVisible(FALSE);
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
   actionLaunchQMC2MESS->setVisible(FALSE);
   actionClearMAWSCache->setVisible(FALSE);

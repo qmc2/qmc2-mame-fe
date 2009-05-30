@@ -178,7 +178,10 @@ void DetailSetup::saveDetail()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DetailSetup::saveDetail()");
 #endif
 
+  int oldIndex = appliedDetailList[qmc2MainWindow->tabWidgetGameDetail->currentIndex()];
+
   appliedDetailList.clear();
+  
   qmc2MainWindow->tabWidgetGameDetail->clear();
   QStringList activeIndexList;
   foreach (int i, activeDetailList)
@@ -188,6 +191,9 @@ void DetailSetup::saveDetail()
       qmc2MainWindow->tabWidgetGameDetail->addTab(tabWidgetsMap[i], iconMap[i], shortTitleMap[i]);
     }
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ActiveDetails", activeIndexList);
+
+  if ( appliedDetailList.contains(oldIndex) )
+    qmc2MainWindow->tabWidgetGameDetail->setCurrentIndex(appliedDetailList.indexOf(oldIndex));
 }
 
 void DetailSetup::on_listWidgetAvailableDetails_itemSelectionChanged()
