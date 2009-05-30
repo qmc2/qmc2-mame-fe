@@ -100,8 +100,14 @@ void MiniWebBrowser::on_lineEditURL_returnPressed()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_lineEditURL_returnPressed()");
 #endif
 
-  if ( !lineEditURL->text().isEmpty() )
-    webViewBrowser->load(QUrl(lineEditURL->text()));
+  if ( !lineEditURL->text().isEmpty() ) {
+    QString text = lineEditURL->text().toLower();
+    QUrl url(text, QUrl::TolerantMode);
+    if ( url.scheme().isEmpty() )
+      if ( !text.startsWith("http://") )
+        text.prepend("http://");
+    webViewBrowser->load(QUrl(text, QUrl::TolerantMode));
+  }
 }
 
 void MiniWebBrowser::on_webViewBrowser_linkClicked(const QUrl url)
@@ -120,7 +126,7 @@ void MiniWebBrowser::on_webViewBrowser_urlChanged(const QUrl url)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_urlChanged(const QUrl url = %1)").arg(url.toString()));
 #endif
 
-  lineEditURL->setText(webViewBrowser->url().toString());
+  lineEditURL->setText(QString::fromUtf8(webViewBrowser->url().toEncoded()));
 
   QString newTitle = webViewBrowser->page()->mainFrame()->title();
   if ( newTitle.isEmpty() ) newTitle = tr("No title");
@@ -234,9 +240,14 @@ void MiniWebBrowser::on_toolButtonLoad_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_toolButtonLoad_clicked()");
 #endif
 
-  QUrl url(lineEditURL->text());
-  if ( url.isValid() )
-    webViewBrowser->load(url);
+  if ( !lineEditURL->text().isEmpty() ) {
+    QString text = lineEditURL->text().toLower();
+    QUrl url(text, QUrl::TolerantMode);
+    if ( url.scheme().isEmpty() )
+      if ( !text.startsWith("http://") )
+        text.prepend("http://");
+    webViewBrowser->load(QUrl(text, QUrl::TolerantMode));
+  }
 }
 
 void MiniWebBrowser::processPageActionDownloadImageToDisk()
