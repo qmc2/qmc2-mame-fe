@@ -78,7 +78,7 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="9"/>
+ <layoutdefault spacing="6" margin="6"/>
  <tabstops>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonCancel</tabstop>

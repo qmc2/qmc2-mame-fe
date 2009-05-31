@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>R. Reucher</author>
  <class>DetailSetup</class>
  <widget class="QDialog" name="DetailSetup">
   <property name="geometry">
@@ -222,6 +223,7 @@
    </item>
   </layout>
  </widget>
+ <layoutdefault spacing="6" margin="6"/>
  <tabstops>
   <tabstop>listWidgetAvailableDetails</tabstop>
   <tabstop>listWidgetActiveDetails</tabstop>

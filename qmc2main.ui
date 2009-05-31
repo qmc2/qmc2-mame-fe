@@ -283,12 +283,6 @@
             <string>&amp;Search</string>
            </attribute>
            <layout class="QGridLayout">
-            <property name="margin">
-             <number>9</number>
-            </property>
-            <property name="spacing">
-             <number>6</number>
-            </property>
             <item row="0" column="0">
              <widget class="QListWidget" name="listWidgetSearch">
               <property name="contextMenuPolicy">
@@ -313,12 +307,6 @@
             <string>Favo&amp;rites</string>
            </attribute>
            <layout class="QGridLayout">
-            <property name="margin">
-             <number>9</number>
-            </property>
-            <property name="spacing">
-             <number>6</number>
-            </property>
             <item row="0" column="0">
              <widget class="QListWidget" name="listWidgetFavorites">
               <property name="contextMenuPolicy">
@@ -343,12 +331,6 @@
             <string>&amp;Played</string>
            </attribute>
            <layout class="QGridLayout">
-            <property name="margin">
-             <number>9</number>
-            </property>
-            <property name="spacing">
-             <number>6</number>
-            </property>
             <item row="0" column="0">
              <widget class="QListWidget" name="listWidgetPlayed">
               <property name="contextMenuPolicy">
@@ -437,12 +419,6 @@
             <size>
              <width>4</width>
              <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>16777215</height>
             </size>
            </property>
            <property name="palette">
@@ -1061,12 +1037,6 @@
           <string>&amp;Front end log</string>
          </attribute>
          <layout class="QGridLayout">
-          <property name="margin">
-           <number>9</number>
-          </property>
-          <property name="spacing">
-           <number>6</number>
-          </property>
           <item row="0" column="0">
            <widget class="QTextBrowser" name="textBrowserFrontendLog">
             <property name="sizePolicy">
@@ -1100,12 +1070,6 @@
           <string>Emulator &amp;log</string>
          </attribute>
          <layout class="QGridLayout">
-          <property name="margin">
-           <number>9</number>
-          </property>
-          <property name="spacing">
-           <number>6</number>
-          </property>
           <item row="0" column="0">
            <widget class="QTextBrowser" name="textBrowserEmulatorLog">
             <property name="sizePolicy">
@@ -1139,12 +1103,6 @@
           <string>E&amp;mulator control</string>
          </attribute>
          <layout class="QGridLayout">
-          <property name="margin">
-           <number>9</number>
-          </property>
-          <property name="spacing">
-           <number>6</number>
-          </property>
           <item row="0" column="0">
            <widget class="QTreeWidget" name="treeWidgetEmulators">
             <property name="sizePolicy">
@@ -2598,7 +2556,7 @@
    </property>
   </action>
  </widget>
- <layoutdefault spacing="6" margin="9"/>
+ <layoutdefault spacing="6" margin="6"/>
  <tabstops>
   <tabstop>comboBoxSearch</tabstop>
   <tabstop>tabWidgetGamelist</tabstop>
