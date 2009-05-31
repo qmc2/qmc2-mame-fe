@@ -55,6 +55,7 @@
     <option name="crsshairpath" type="directory" default="crsshair">
       <description lang="us" text="Path to crosshair files"/>
       <description lang="de" text="Suchpfad für Fadenkreuz-Dateien"/>
+      <description lang="pl" text="Ścieżka do plików celowników"/>
     </option>
   </section>
   <section name="output_directories">
