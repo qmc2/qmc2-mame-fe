@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>499</width>
-    <height>616</height>
+    <height>596</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,12 +25,6 @@
        <string>&amp;Front end</string>
       </attribute>
       <layout class="QGridLayout">
-       <property name="margin">
-        <number>9</number>
-       </property>
-       <property name="spacing">
-        <number>6</number>
-       </property>
        <item row="0" column="0">
         <widget class="QTabWidget" name="tabWidgetFrontendSettings">
          <property name="currentIndex">
@@ -58,7 +52,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>455</width>
-                <height>491</height>
+                <height>471</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_90">
@@ -730,8 +724,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>455</width>
-                <height>491</height>
+                <width>204</width>
+                <height>484</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -1019,15 +1013,12 @@
                     </sizepolicy>
                    </property>
                    <property name="currentIndex">
-                    <number>0</number>
+                    <number>1</number>
                    </property>
                    <widget class="QWidget" name="pagePreviewDirectory">
                     <layout class="QGridLayout">
                      <property name="margin">
                       <number>0</number>
-                     </property>
-                     <property name="spacing">
-                      <number>6</number>
                      </property>
                      <item row="0" column="0">
                       <widget class="QLineEdit" name="lineEditPreviewDirectory">
@@ -1057,9 +1048,6 @@
                    </widget>
                    <widget class="QWidget" name="pagePreviewFile">
                     <layout class="QHBoxLayout">
-                     <property name="spacing">
-                      <number>6</number>
-                     </property>
                      <property name="margin">
                       <number>0</number>
                      </property>
@@ -1116,13 +1104,10 @@
                     </sizepolicy>
                    </property>
                    <property name="currentIndex">
-                    <number>0</number>
+                    <number>1</number>
                    </property>
                    <widget class="QWidget" name="pageFlyerDirectory">
                     <layout class="QHBoxLayout">
-                     <property name="spacing">
-                      <number>6</number>
-                     </property>
                      <property name="margin">
                       <number>0</number>
                      </property>
@@ -1154,9 +1139,6 @@
                    </widget>
                    <widget class="QWidget" name="pageFlyerFile">
                     <layout class="QHBoxLayout">
-                     <property name="spacing">
-                      <number>6</number>
-                     </property>
                      <property name="margin">
                       <number>0</number>
                      </property>
@@ -1213,13 +1195,10 @@
                     </sizepolicy>
                    </property>
                    <property name="currentIndex">
-                    <number>0</number>
+                    <number>1</number>
                    </property>
                    <widget class="QWidget" name="pageIconDirectory">
                     <layout class="QHBoxLayout">
-                     <property name="spacing">
-                      <number>6</number>
-                     </property>
                      <property name="margin">
                       <number>0</number>
                      </property>
@@ -1251,9 +1230,6 @@
                    </widget>
                    <widget class="QWidget" name="pageIconFile">
                     <layout class="QHBoxLayout">
-                     <property name="spacing">
-                      <number>6</number>
-                     </property>
                      <property name="margin">
                       <number>0</number>
                      </property>
@@ -1300,12 +1276,6 @@
                  </item>
                  <item row="15" column="0" colspan="3">
                   <layout class="QHBoxLayout" name="layout8">
-                   <property name="spacing">
-                    <number>6</number>
-                   </property>
-                   <property name="margin">
-                    <number>0</number>
-                   </property>
                    <item>
                     <widget class="QLabel" name="labelLegend3Pic">
                      <property name="sizePolicy">
@@ -1346,13 +1316,10 @@
                     </sizepolicy>
                    </property>
                    <property name="currentIndex">
-                    <number>0</number>
+                    <number>1</number>
                    </property>
                    <widget class="QWidget" name="pageCabinetDirectory">
                     <layout class="QHBoxLayout" name="_2">
-                     <property name="spacing">
-                      <number>6</number>
-                     </property>
                      <property name="margin">
                       <number>0</number>
                      </property>
@@ -1384,9 +1351,6 @@
                    </widget>
                    <widget class="QWidget" name="pageCabinetFile">
                     <layout class="QHBoxLayout" name="_3">
-                     <property name="spacing">
-                      <number>6</number>
-                     </property>
                      <property name="margin">
                       <number>0</number>
                      </property>
@@ -1443,13 +1407,10 @@
                     </sizepolicy>
                    </property>
                    <property name="currentIndex">
-                    <number>0</number>
+                    <number>1</number>
                    </property>
                    <widget class="QWidget" name="pageControllerDirectory">
                     <layout class="QHBoxLayout" name="_4">
-                     <property name="spacing">
-                      <number>6</number>
-                     </property>
                      <property name="margin">
                       <number>0</number>
                      </property>
@@ -1481,9 +1442,6 @@
                    </widget>
                    <widget class="QWidget" name="pageControllerFile">
                     <layout class="QHBoxLayout" name="_5">
-                     <property name="spacing">
-                      <number>6</number>
-                     </property>
                      <property name="margin">
                       <number>0</number>
                      </property>
@@ -1540,13 +1498,10 @@
                     </sizepolicy>
                    </property>
                    <property name="currentIndex">
-                    <number>0</number>
+                    <number>1</number>
                    </property>
                    <widget class="QWidget" name="pageMarqueeDirectory">
                     <layout class="QHBoxLayout" name="_10">
-                     <property name="spacing">
-                      <number>6</number>
-                     </property>
                      <property name="margin">
                       <number>0</number>
                      </property>
@@ -1578,9 +1533,6 @@
                    </widget>
                    <widget class="QWidget" name="pageMarqueeFile">
                     <layout class="QHBoxLayout" name="_11">
-                     <property name="spacing">
-                      <number>6</number>
-                     </property>
                      <property name="margin">
                       <number>0</number>
                      </property>
@@ -1637,13 +1589,10 @@
                     </sizepolicy>
                    </property>
                    <property name="currentIndex">
-                    <number>0</number>
+                    <number>1</number>
                    </property>
                    <widget class="QWidget" name="pageTitleDirectory">
                     <layout class="QHBoxLayout" name="_14">
-                     <property name="spacing">
-                      <number>6</number>
-                     </property>
                      <property name="margin">
                       <number>0</number>
                      </property>
@@ -1675,9 +1624,6 @@
                    </widget>
                    <widget class="QWidget" name="pageTitleFile">
                     <layout class="QHBoxLayout" name="_15">
-                     <property name="spacing">
-                      <number>6</number>
-                     </property>
                      <property name="margin">
                       <number>0</number>
                      </property>
@@ -1754,8 +1700,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>455</width>
-                <height>491</height>
+                <width>425</width>
+                <height>158</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2068,8 +2014,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>455</width>
-                <height>491</height>
+                <width>244</width>
+                <height>54</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2181,8 +2127,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>455</width>
-                <height>491</height>
+                <width>384</width>
+                <height>268</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -2626,8 +2572,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>455</width>
-                <height>491</height>
+                <width>385</width>
+                <height>368</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -2639,12 +2585,6 @@
                     <string>Zip tool</string>
                    </property>
                    <layout class="QGridLayout">
-                    <property name="margin">
-                     <number>9</number>
-                    </property>
-                    <property name="spacing">
-                     <number>6</number>
-                    </property>
                     <item row="0" column="0">
                      <widget class="QLabel" name="labelZipTool">
                       <property name="text">
@@ -2699,12 +2639,6 @@
                     <string>File removal tool</string>
                    </property>
                    <layout class="QGridLayout">
-                    <property name="margin">
-                     <number>9</number>
-                    </property>
-                    <property name="spacing">
-                     <number>6</number>
-                    </property>
                     <item row="0" column="0">
                      <widget class="QLabel" name="labelFileRemovalTool">
                       <property name="text">
@@ -2876,12 +2810,6 @@
        <string>E&amp;mulator</string>
       </attribute>
       <layout class="QGridLayout">
-       <property name="margin">
-        <number>9</number>
-       </property>
-       <property name="spacing">
-        <number>6</number>
-       </property>
        <item row="0" column="0">
         <widget class="QTabWidget" name="tabWidgetGlobalMAMESetup">
          <property name="currentIndex">
@@ -2913,8 +2841,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>455</width>
-                <height>491</height>
+                <width>197</width>
+                <height>267</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3141,12 +3069,6 @@
                  </item>
                  <item row="8" column="0" colspan="3">
                   <layout class="QHBoxLayout" name="layout17">
-                   <property name="spacing">
-                    <number>6</number>
-                   </property>
-                   <property name="margin">
-                    <number>0</number>
-                   </property>
                    <item>
                     <widget class="QLabel" name="labelLegend4Pic">
                      <property name="sizePolicy">
@@ -3222,12 +3144,6 @@
    </item>
    <item row="1" column="0">
     <layout class="QHBoxLayout" name="layout19">
-     <property name="spacing">
-      <number>6</number>
-     </property>
-     <property name="margin">
-      <number>0</number>
-     </property>
      <item>
       <widget class="QPushButton" name="pushButtonApply">
        <property name="toolTip">
@@ -3307,7 +3223,7 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="9"/>
+ <layoutdefault spacing="6" margin="6"/>
  <tabstops>
   <tabstop>tabWidgetOptions</tabstop>
   <tabstop>tabWidgetFrontendSettings</tabstop>

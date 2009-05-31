@@ -52,12 +52,6 @@
        <string>&amp;Previews</string>
       </attribute>
       <layout class="QGridLayout">
-       <property name="margin">
-        <number>9</number>
-       </property>
-       <property name="spacing">
-        <number>6</number>
-       </property>
        <item row="4" column="3">
         <spacer>
          <property name="orientation">
@@ -150,12 +144,6 @@
        <string>&amp;Flyers</string>
       </attribute>
       <layout class="QGridLayout">
-       <property name="margin">
-        <number>9</number>
-       </property>
-       <property name="spacing">
-        <number>6</number>
-       </property>
        <item row="3" column="3">
         <widget class="QCheckBox" name="checkBoxFlyersSelectGame">
          <property name="enabled">
@@ -251,12 +239,6 @@
        <string>&amp;Icons</string>
       </attribute>
       <layout class="QGridLayout">
-       <property name="margin">
-        <number>9</number>
-       </property>
-       <property name="spacing">
-        <number>6</number>
-       </property>
        <item row="5" column="3">
         <spacer>
          <property name="orientation">
@@ -355,7 +337,7 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="9"/>
+ <layoutdefault spacing="6" margin="6"/>
  <tabstops>
   <tabstop>tabWidgetImageChecker</tabstop>
   <tabstop>listWidgetPreviewsFound</tabstop>

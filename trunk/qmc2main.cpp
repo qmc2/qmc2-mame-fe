@@ -419,23 +419,32 @@ MainWindow::MainWindow(QWidget *parent)
               *marqueeLayout = new QHBoxLayout,
               *titleLayout = new QHBoxLayout;
 
+  int left, top, right, bottom;
+  gridLayout->getContentsMargins(&left, &top, &right, &bottom);
+
   qmc2Preview = new Preview(tabPreview);
   previewLayout->addWidget(qmc2Preview);
+  previewLayout->setContentsMargins(left, top, right, bottom);
   tabPreview->setLayout(previewLayout);
   qmc2Flyer = new Flyer(tabFlyer);
   flyerLayout->addWidget(qmc2Flyer);
+  flyerLayout->setContentsMargins(left, top, right, bottom);
   tabFlyer->setLayout(flyerLayout);
   qmc2Cabinet = new Cabinet(tabCabinet);
   cabinetLayout->addWidget(qmc2Cabinet);
+  cabinetLayout->setContentsMargins(left, top, right, bottom);
   tabCabinet->setLayout(cabinetLayout);
   qmc2Controller = new Controller(tabController);
   controllerLayout->addWidget(qmc2Controller);
+  controllerLayout->setContentsMargins(left, top, right, bottom);
   tabController->setLayout(controllerLayout);
   qmc2Marquee = new Marquee(tabMarquee);
   marqueeLayout->addWidget(qmc2Marquee);
+  marqueeLayout->setContentsMargins(left, top, right, bottom);
   tabMarquee->setLayout(marqueeLayout);
   qmc2Title = new Title(tabTitle);
   titleLayout->addWidget(qmc2Title);
+  titleLayout->setContentsMargins(left, top, right, bottom);
   tabTitle->setLayout(titleLayout);
 
   // restore layout
@@ -1737,8 +1746,11 @@ void MainWindow::on_comboBoxSearch_activated(QString pattern)
 #endif
 
   on_comboBoxSearch_textChanged_delayed();
-  if ( tabWidgetGamelist->currentWidget() != tabSearch )
+  if ( tabWidgetGamelist->currentWidget() != tabSearch ) {
+    tabWidgetGamelist->blockSignals(TRUE);
     tabWidgetGamelist->setCurrentWidget(tabSearch);
+    tabWidgetGamelist->blockSignals(FALSE);
+  }
   QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
 }
 
@@ -2187,6 +2199,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         tabDevices->setUpdatesEnabled(TRUE);
       }
       break;
+
 #elif defined(QMC2_SDLMAME) || defined(QMC2_MAME)
     case QMC2_MAWS_INDEX:
       if ( qmc2CurrentItem != qmc2LastMAWSItem ) {
@@ -2204,7 +2217,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         qmc2MAWSLookup->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
         qmc2MAWSLookup->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
         qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MAWS page for '%1'").arg(qmc2GamelistDescriptionMap[gameName]));
+        int left, top, right, bottom;
+        gridLayout->getContentsMargins(&left, &top, &right, &bottom);
         layout->addWidget(qmc2MAWSLookup);
+        layout->setContentsMargins(left, top, right, bottom);
         tabMAWS->setLayout(layout);
         QString mawsUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString().arg(gameName);
 
@@ -2267,6 +2283,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           qmc2EmulatorOptions = NULL;
         }
         QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+        int left, top, right, bottom;
+        gridLayout->getContentsMargins(&left, &top, &right, &bottom);
         QVBoxLayout *layout = new QVBoxLayout;
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
         qmc2EmulatorOptions = new EmulatorOptions("MAME/Configuration/" + gameName, configWidget);
@@ -2275,6 +2293,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
         qmc2EmulatorOptions->load();
         layout->addWidget(qmc2EmulatorOptions);
+        layout->setContentsMargins(left, top, right, bottom);
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_MAME) || defined(QMC2_MESS)
         QHBoxLayout *buttonLayout = new QHBoxLayout();
         pushButtonCurrentEmulatorOptionsExportToFile = new QPushButton(tr("Export to..."), this);
@@ -5156,6 +5175,8 @@ int main(int argc, char *argv[])
 
   // process global emulator configuration and create import/export popup menus
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("processing global emulator configuration"));
+  int left, top, right, bottom;
+  qmc2MainWindow->gridLayout->getContentsMargins(&left, &top, &right, &bottom);
   QVBoxLayout *layout = new QVBoxLayout;
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   qmc2GlobalEmulatorOptions = new EmulatorOptions("MAME/Configuration/Global", qmc2Options->tabGlobalConfiguration);
@@ -5165,6 +5186,7 @@ int main(int argc, char *argv[])
   qmc2GlobalEmulatorOptions->load();
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_MAME) || defined(QMC2_MESS)
   layout->addWidget(qmc2GlobalEmulatorOptions);
+  layout->setContentsMargins(left, top, right, bottom);
   QHBoxLayout *buttonLayout = new QHBoxLayout();
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile = new QPushButton(QObject::tr("Export to..."), qmc2Options);
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)

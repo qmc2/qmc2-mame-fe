@@ -19,6 +19,12 @@
     <layout class="QHBoxLayout">
      <item>
       <widget class="QLineEdit" name="lineEditGames">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="toolTip">
         <string>Shortname of game to be analyzed - wildcards allowed, use space as delimiter for multiple games</string>
        </property>
@@ -429,7 +435,7 @@
           <item row="1" column="0" colspan="3">
            <widget class="QTabWidget" name="tabWidgetFormats">
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="tabASCII">
              <attribute name="title">
@@ -676,7 +682,7 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="9"/>
+ <layoutdefault spacing="6" margin="6"/>
  <tabstops>
   <tabstop>lineEditGames</tabstop>
   <tabstop>pushButtonAnalyze</tabstop>

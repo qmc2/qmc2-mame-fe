@@ -184,6 +184,9 @@ void MiniWebBrowser::on_webViewBrowser_loadProgress(int progress)
     toolButtonBack->setEnabled(FALSE);
     toolButtonForward->setEnabled(FALSE);
     toolButtonHome->setEnabled(TRUE);
+  } else {
+    toolButtonBack->setEnabled(webViewBrowser->history()->canGoBack());
+    toolButtonForward->setEnabled(webViewBrowser->history()->canGoForward());
   }
 }
 
@@ -225,8 +228,10 @@ void MiniWebBrowser::on_webViewBrowser_statusBarMessage(const QString &message)
     labelStatus->setFont(f);
     labelStatus->setMaximumHeight(f.pointSize() + 4);
     labelStatus->setText(message + " ");
-  } else
+  } else {
+    labelStatus->clear();
     statusTimer.start(QMC2_BROWSER_STATUS_TIMEOUT);
+  }
 }
 
 void MiniWebBrowser::on_toolButtonHome_clicked()
@@ -305,8 +310,10 @@ void MiniWebBrowser::webViewBrowser_linkHovered(const QString &link, const QStri
     labelStatus->setFont(f);
     labelStatus->setMaximumHeight(f.pointSize() + 4);
     labelStatus->setText(link + " ");
-  } else
+  } else {
+    labelStatus->clear();
     statusTimer.start(QMC2_BROWSER_STATUS_TIMEOUT);
+  }
 }
 
 void MiniWebBrowser::webViewBrowser_statusBarVisibilityChangeRequested(bool visible)
@@ -325,6 +332,5 @@ void MiniWebBrowser::statusTimeout()
 #endif
 
   statusTimer.stop();
-  labelStatus->clear();
   labelStatus->setVisible(FALSE);
 }
