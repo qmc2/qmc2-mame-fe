@@ -50,6 +50,7 @@
     <option name="crsshairpath" type="directory" default="crsshair">
       <description lang="us" text="Path to crosshair files"/>
       <description lang="de" text="Suchpfad für Fadenkreuz-Dateien"/>
+      <description lang="pl" text="Ścieżka do plików celowników"/>
     </option>
   </section>
   <section name="output_directories">
@@ -568,6 +569,7 @@
     <option name="confirm_quit" type="bool" default="true">
       <description lang="us" text="Display quit confirmation box on exit"/>
       <description lang="de" text="Beim Beenden Bestätigungs-Box anzeigen"/>
+      <description lang="pl" text="Wyświetl okienko potwierdzenia zakończenia"/>
     </option>
   </section>
   <section name="configuration">
