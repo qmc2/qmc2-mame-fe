@@ -33,8 +33,6 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void on_toolButtonLoad_clicked();
 
     // page actions
-    void processPageActionDownloadImageToDisk();
-    void processPageActionDownloadLinkToDisk();
     void processPageActionDownloadRequested(const QNetworkRequest &);
     void processPageActionHandleUnsupportedContent(QNetworkReply *);
 
