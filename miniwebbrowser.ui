@@ -15,135 +15,134 @@
    <string>Mini Web Browser</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
-   <property name="horizontalSpacing">
-    <number>0</number>
-   </property>
-   <property name="verticalSpacing">
-    <number>2</number>
-   </property>
    <property name="margin">
     <number>0</number>
    </property>
    <item row="0" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QToolButton" name="toolButtonBack">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="toolTip">
-        <string>Go back</string>
-       </property>
-       <property name="statusTip">
-        <string>Go back</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/back.png</normaloff>:/data/img/back.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButtonForward">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="toolTip">
-        <string>Go forward</string>
-       </property>
-       <property name="statusTip">
-        <string>Go forward</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/forward.png</normaloff>:/data/img/forward.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButtonReload">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="toolTip">
-        <string>Reload current URL</string>
-       </property>
-       <property name="statusTip">
-        <string>Reload current URL</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButtonStop">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="toolTip">
-        <string>Stop loading of current URL</string>
-       </property>
-       <property name="statusTip">
-        <string>Stop loading of current URL</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/stop_browser.png</normaloff>:/data/img/stop_browser.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButtonHome">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="toolTip">
-        <string>Go home (first page)</string>
-       </property>
-       <property name="statusTip">
-        <string>Go home (first page)</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/home.png</normaloff>:/data/img/home.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEditURL">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Current URL</string>
-       </property>
-       <property name="statusTip">
-        <string>Current URL</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="toolButtonLoad">
-       <property name="toolTip">
-        <string>Load URL</string>
-       </property>
-       <property name="statusTip">
-        <string>Load URL</string>
-       </property>
-       <property name="icon">
-        <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QToolButton" name="toolButtonBack">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>Go back</string>
+     </property>
+     <property name="statusTip">
+      <string>Go back</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/back.png</normaloff>:/data/img/back.png</iconset>
+     </property>
+    </widget>
    </item>
-   <item row="1" column="0">
+   <item row="0" column="1">
+    <widget class="QToolButton" name="toolButtonForward">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>Go forward</string>
+     </property>
+     <property name="statusTip">
+      <string>Go forward</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/forward.png</normaloff>:/data/img/forward.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QToolButton" name="toolButtonReload">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>Reload current URL</string>
+     </property>
+     <property name="statusTip">
+      <string>Reload current URL</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QToolButton" name="toolButtonStop">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>Stop loading of current URL</string>
+     </property>
+     <property name="statusTip">
+      <string>Stop loading of current URL</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/stop_browser.png</normaloff>:/data/img/stop_browser.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QToolButton" name="toolButtonHome">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>Go home (first page)</string>
+     </property>
+     <property name="statusTip">
+      <string>Go home (first page)</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/home.png</normaloff>:/data/img/home.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="QComboBox" name="comboBoxURL">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Enter current URL</string>
+     </property>
+     <property name="statusTip">
+      <string>Enter current URL</string>
+     </property>
+     <property name="editable">
+      <bool>true</bool>
+     </property>
+     <property name="insertPolicy">
+      <enum>QComboBox::NoInsert</enum>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="6">
+    <widget class="QToolButton" name="toolButtonLoad">
+     <property name="toolTip">
+      <string>Load URL</string>
+     </property>
+     <property name="statusTip">
+      <string>Load URL</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="7">
     <layout class="QGridLayout" name="gridLayout">
      <property name="horizontalSpacing">
       <number>0</number>
@@ -226,7 +225,6 @@
   <tabstop>toolButtonReload</tabstop>
   <tabstop>toolButtonStop</tabstop>
   <tabstop>toolButtonHome</tabstop>
-  <tabstop>lineEditURL</tabstop>
   <tabstop>toolButtonLoad</tabstop>
  </tabstops>
  <resources>
@@ -294,22 +292,6 @@
     <hint type="destinationlabel">
      <x>156</x>
      <y>76</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>lineEditURL</sender>
-   <signal>returnPressed()</signal>
-   <receiver>toolButtonLoad</receiver>
-   <slot>animateClick()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>416</x>
-     <y>15</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>493</x>
-     <y>11</y>
     </hint>
    </hints>
   </connection>

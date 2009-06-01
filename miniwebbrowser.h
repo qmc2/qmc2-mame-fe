@@ -19,13 +19,14 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     ~MiniWebBrowser();
 
   public slots:
-    void on_lineEditURL_returnPressed();
+    void on_comboBoxURL_activated();
     void on_webViewBrowser_linkClicked(const QUrl);
     void on_webViewBrowser_urlChanged(const QUrl);
     void on_webViewBrowser_loadStarted();
     void on_webViewBrowser_loadFinished(bool);
     void on_webViewBrowser_loadProgress(int);
     void on_webViewBrowser_statusBarMessage(const QString &);
+    void on_webViewBrowser_iconChanged();
     void on_toolButtonHome_clicked();
     void on_toolButtonLoad_clicked();
 
