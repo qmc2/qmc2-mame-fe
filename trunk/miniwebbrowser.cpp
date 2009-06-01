@@ -23,6 +23,8 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   firstTimeLoadStarted = TRUE;
   firstTimeLoadProgress = TRUE;
   firstTimeLoadFinished = TRUE;
+ 
+  iconCache.setMaxCost(QMC2_BROWSER_ICONCACHE_SIZE);
 
   // we want to manipulate the link activation
   webViewBrowser->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
@@ -380,9 +382,19 @@ void MiniWebBrowser::on_webViewBrowser_iconChanged()
     QFontMetrics fm(qApp->font());
     QSize iconSize(fm.height() - 3, fm.height() - 3);
     comboBoxURL->setIconSize(iconSize);
-    QIcon pageIcon = webViewBrowser->settings()->iconForUrl(webViewBrowser->url());
-    if ( pageIcon.isNull() )
-      pageIcon = QIcon(QString::fromUtf8(":/data/img/browser.png"));
+    QIcon pageIcon;
+    QString urlStr = webViewBrowser->url().toString();
+    if ( iconCache.contains(urlStr) )
+      pageIcon = *iconCache[urlStr];
+    if ( pageIcon.isNull() ) {
+      pageIcon = webViewBrowser->settings()->iconForUrl(webViewBrowser->url());
+      if ( pageIcon.isNull() )
+        pageIcon = QIcon(QString::fromUtf8(":/data/img/browser.png"));
+      else {
+        // we simply assume that icons take up 64x64 = 4096 bytes :)
+        iconCache.insert(urlStr, new QIcon(pageIcon), 4096);
+      }
+    }
     comboBoxURL->setItemIcon(i, pageIcon);
     comboBoxURL->setCurrentIndex(i);
   }

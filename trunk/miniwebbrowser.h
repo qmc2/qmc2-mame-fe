@@ -2,6 +2,7 @@
 #define _MINIWEBBROWSER_H_
 
 #include <QTimer>
+#include <QCache>
 #include "ui_miniwebbrowser.h"
 
 class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
@@ -10,6 +11,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
 
   public:
     QUrl homeUrl;
+    QCache<QString, QIcon> iconCache;
     bool firstTimeLoadStarted,
          firstTimeLoadProgress,
          firstTimeLoadFinished;
