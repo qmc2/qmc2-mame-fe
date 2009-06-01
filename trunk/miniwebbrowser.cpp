@@ -1,5 +1,6 @@
 #include <QWebHistory>
 #include <QWebFrame>
+#include <QDir>
 
 #include "miniwebbrowser.h"
 #include "macros.h"
@@ -66,6 +67,7 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 #endif
 
   // setup browser settings
+  webViewBrowser->page()->settings()->setIconDatabasePath(QMC2_DOT_PATH);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, TRUE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, TRUE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavaEnabled, TRUE);
@@ -87,6 +89,9 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 
   // status bar timeout connection
   connect(&statusTimer, SIGNAL(timeout()), this, SLOT(statusTimeout()));
+
+  // "activate" the combo box on pressing return
+  connect(comboBoxURL->lineEdit(), SIGNAL(returnPressed()), this, SLOT(on_comboBoxURL_activated()));
 }
 
 MiniWebBrowser::~MiniWebBrowser()
@@ -97,20 +102,27 @@ MiniWebBrowser::~MiniWebBrowser()
 
 }
 
-void MiniWebBrowser::on_lineEditURL_returnPressed()
+void MiniWebBrowser::on_comboBoxURL_activated()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_lineEditURL_returnPressed()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_comboBoxURL_activated()");
 #endif
 
-  if ( !lineEditURL->text().isEmpty() ) {
-    QString text = lineEditURL->text().toLower();
+  if ( !comboBoxURL->lineEdit()->text().isEmpty() ) {
+    QString text = comboBoxURL->lineEdit()->text().toLower();
     QUrl url(text, QUrl::TolerantMode);
     if ( url.scheme().isEmpty() )
       if ( !text.startsWith("http://") )
         text.prepend("http://");
-    webViewBrowser->load(QUrl(text, QUrl::TolerantMode));
+    comboBoxURL->setEditText(text);
+    url = QUrl(text, QUrl::TolerantMode);
+    webViewBrowser->load(url);
+    int i = comboBoxURL->findText(text);
+    if ( i >= 0 )
+      comboBoxURL->setCurrentIndex(i);
   }
+
+  QTimer::singleShot(0, toolButtonLoad, SLOT(animateClick()));
 }
 
 void MiniWebBrowser::on_webViewBrowser_linkClicked(const QUrl url)
@@ -119,8 +131,10 @@ void MiniWebBrowser::on_webViewBrowser_linkClicked(const QUrl url)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_linkClicked(const QUrl url = %1)").arg(url.toString()));
 #endif
 
-  if ( url.isValid() )
+  if ( url.isValid() ) {
     webViewBrowser->load(url);
+    on_webViewBrowser_urlChanged(url);
+  }
 }
 
 void MiniWebBrowser::on_webViewBrowser_urlChanged(const QUrl url)
@@ -129,11 +143,24 @@ void MiniWebBrowser::on_webViewBrowser_urlChanged(const QUrl url)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_urlChanged(const QUrl url = %1)").arg(url.toString()));
 #endif
 
-  lineEditURL->setText(QString::fromUtf8(webViewBrowser->url().toEncoded()));
+  comboBoxURL->setEditText(QString::fromUtf8(webViewBrowser->url().toEncoded()));
 
   QString newTitle = webViewBrowser->page()->mainFrame()->title();
   if ( newTitle.isEmpty() ) newTitle = tr("No title");
   emit titleChanged(newTitle);
+
+  int i = comboBoxURL->findText(comboBoxURL->lineEdit()->text());
+  if ( i < 0 ) {
+    comboBoxURL->insertItem(0, comboBoxURL->lineEdit()->text());
+  } else {
+    QString itemText = comboBoxURL->itemText(i);
+    QIcon itemIcon = comboBoxURL->itemIcon(i);
+    comboBoxURL->removeItem(i);
+    comboBoxURL->insertItem(0, itemIcon, itemText);
+  }
+  comboBoxURL->setCurrentIndex(0);
+
+  QTimer::singleShot(0, this, SLOT(on_webViewBrowser_iconChanged()));
 }
 
 void MiniWebBrowser::on_webViewBrowser_loadStarted()
@@ -167,6 +194,8 @@ void MiniWebBrowser::on_webViewBrowser_loadStarted()
     toolButtonForward->setEnabled(webViewBrowser->history()->canGoForward());
     toolButtonHome->setEnabled(TRUE);
   }
+
+  QTimer::singleShot(0, this, SLOT(on_webViewBrowser_iconChanged()));
 }
 
 void MiniWebBrowser::on_webViewBrowser_loadProgress(int progress)
@@ -185,6 +214,7 @@ void MiniWebBrowser::on_webViewBrowser_loadProgress(int progress)
     toolButtonForward->setEnabled(FALSE);
     toolButtonHome->setEnabled(TRUE);
   } else {
+    QTimer::singleShot(0, this, SLOT(on_webViewBrowser_iconChanged()));
     toolButtonBack->setEnabled(webViewBrowser->history()->canGoBack());
     toolButtonForward->setEnabled(webViewBrowser->history()->canGoForward());
   }
@@ -212,6 +242,8 @@ void MiniWebBrowser::on_webViewBrowser_loadFinished(bool ok)
   toolButtonStop->setEnabled(FALSE);
   toolButtonReload->setEnabled(TRUE);
   toolButtonHome->setEnabled(TRUE);
+
+  QTimer::singleShot(250, this, SLOT(on_webViewBrowser_iconChanged()));
 }
 
 void MiniWebBrowser::on_webViewBrowser_statusBarMessage(const QString &message)
@@ -250,12 +282,13 @@ void MiniWebBrowser::on_toolButtonLoad_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_toolButtonLoad_clicked()");
 #endif
 
-  if ( !lineEditURL->text().isEmpty() ) {
-    QString text = lineEditURL->text().toLower();
+  if ( !comboBoxURL->lineEdit()->text().isEmpty() ) {
+    QString text = comboBoxURL->lineEdit()->text().toLower();
     QUrl url(text, QUrl::TolerantMode);
     if ( url.scheme().isEmpty() )
       if ( !text.startsWith("http://") )
         text.prepend("http://");
+    comboBoxURL->setEditText(text);
     webViewBrowser->load(QUrl(text, QUrl::TolerantMode));
   }
 }
@@ -334,3 +367,24 @@ void MiniWebBrowser::statusTimeout()
   statusTimer.stop();
   labelStatus->setVisible(FALSE);
 }
+
+void MiniWebBrowser::on_webViewBrowser_iconChanged()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_webViewBrowser_iconChanged()");
+#endif
+
+  int i = comboBoxURL->findText(comboBoxURL->lineEdit()->text());
+
+  if ( i >= 0 ) {
+    QFontMetrics fm(qApp->font());
+    QSize iconSize(fm.height() - 3, fm.height() - 3);
+    comboBoxURL->setIconSize(iconSize);
+    QIcon pageIcon = webViewBrowser->settings()->iconForUrl(webViewBrowser->url());
+    if ( pageIcon.isNull() )
+      pageIcon = QIcon(QString::fromUtf8(":/data/img/browser.png"));
+    comboBoxURL->setItemIcon(i, pageIcon);
+    comboBoxURL->setCurrentIndex(i);
+  }
+}
+

@@ -2254,11 +2254,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           if ( !qmc2MAWSCache.contains(gameName) ) {
             qmc2MAWSLookup->webViewBrowser->setHtml("<html><head></head><body><center><p><b>" +
                                     tr("Fetching MAWS page for '%1', please wait...").arg(qmc2GamelistDescriptionMap[gameName]) +
-                                    "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center></body></html>", QUrl(mawsUrl));
+                                    "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center></body></html>",
+                                    QUrl(mawsUrl));
             qmc2MAWSLookup->webViewBrowser->load(QUrl(mawsUrl));
           } else {
             qmc2MAWSLookup->webViewBrowser->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
-            qmc2MAWSLookup->webViewBrowser->stop();
           }
         }
         qmc2LastMAWSItem = qmc2CurrentItem;
@@ -3303,9 +3303,15 @@ void MainWindow::closeEvent(QCloseEvent *e)
     delete qmc2About;
   }
   if ( qmc2DocBrowser ) {
-    log(QMC2_LOG_FRONTEND, tr("destroying documentation browser"));
+    log(QMC2_LOG_FRONTEND, tr("destroying MiniWebBrowser"));
     delete qmc2DocBrowser;
   }
+#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+  if ( qmc2MAWSLookup ) {
+    log(QMC2_LOG_FRONTEND, tr("destroying MAWS lookup"));
+    delete qmc2MAWSLookup;
+  }
+#endif
   if ( qmc2ImageChecker ) {
     log(QMC2_LOG_FRONTEND, tr("destroying image checker"));
     qmc2ImageChecker->close();

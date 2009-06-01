@@ -29,6 +29,7 @@
 #include "keyseqscan.h"
 #include "romalyzer.h"
 #include "romstatusexport.h"
+#include "docbrowser.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #include "joyfuncscan.h"
@@ -85,6 +86,7 @@ extern Title *qmc2Title;
 extern Gamelist *qmc2Gamelist;
 extern ROMAlyzer *qmc2ROMAlyzer;
 extern ROMStatusExporter *qmc2ROMStatusExporter;
+extern DocBrowser *qmc2DocBrowser;
 extern int qmc2SortCriteria;
 extern Qt::SortOrder qmc2SortOrder;
 extern QMap<QString, QString> qmc2GamelistNameMap;
@@ -97,6 +99,7 @@ extern QMap<QString, QString> qmc2JoystickFunctionMap;
 extern KeyPressFilter *qmc2KeyPressFilter;
 extern QMap<QString, int> qmc2QtKeyMap;
 extern QMap<QString, QByteArray *> qmc2GameInfoDB;
+extern MiniWebBrowser *qmc2MAWSLookup;
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
 extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 #endif
@@ -363,7 +366,23 @@ void Options::apply()
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   checkBoxProcessEmuInfoDB->setIconSize(iconSize);
   checkBoxCompressEmuInfoDB->setIconSize(iconSize);
+  if ( qmc2MAWSLookup ) {
+    qmc2MAWSLookup->toolButtonBack->setIconSize(iconSize);
+    qmc2MAWSLookup->toolButtonForward->setIconSize(iconSize);
+    qmc2MAWSLookup->toolButtonReload->setIconSize(iconSize);
+    qmc2MAWSLookup->toolButtonStop->setIconSize(iconSize);
+    qmc2MAWSLookup->toolButtonHome->setIconSize(iconSize);
+    qmc2MAWSLookup->toolButtonLoad->setIconSize(iconSize);
+  }
 #endif
+  if ( qmc2DocBrowser ) {
+    qmc2DocBrowser->browser->toolButtonBack->setIconSize(iconSize);
+    qmc2DocBrowser->browser->toolButtonForward->setIconSize(iconSize);
+    qmc2DocBrowser->browser->toolButtonReload->setIconSize(iconSize);
+    qmc2DocBrowser->browser->toolButtonStop->setIconSize(iconSize);
+    qmc2DocBrowser->browser->toolButtonHome->setIconSize(iconSize);
+    qmc2DocBrowser->browser->toolButtonLoad->setIconSize(iconSize);
+  }
 #if QMC2_USE_PHONON_API
   qmc2MainWindow->toolButtonAudioPreviousTrack->setIconSize(iconSize);
   qmc2MainWindow->toolButtonAudioNextTrack->setIconSize(iconSize);
