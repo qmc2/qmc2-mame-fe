@@ -1,5 +1,7 @@
 #include <QWebHistory>
 #include <QWebFrame>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 #include <QDir>
 
 #include "miniwebbrowser.h"
@@ -32,8 +34,6 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   webViewBrowser->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
 
   // connect page actions we provide
-  connect(webViewBrowser->pageAction(QWebPage::DownloadImageToDisk), SIGNAL(triggered()), this, SLOT(processPageActionDownloadImageToDisk()));
-  connect(webViewBrowser->pageAction(QWebPage::DownloadLinkToDisk), SIGNAL(triggered()), this, SLOT(processPageActionDownloadLinkToDisk()));
   connect(webViewBrowser->page(), SIGNAL(downloadRequested(const QNetworkRequest &)), this, SLOT(processPageActionDownloadRequested(const QNetworkRequest &)));
   connect(webViewBrowser->page(), SIGNAL(unsupportedContent(QNetworkReply *)), this, SLOT(processPageActionHandleUnsupportedContent(QNetworkReply *)));
   connect(webViewBrowser->page(), SIGNAL(linkHovered(const QString &, const QString &, const QString &)), this, SLOT(webViewBrowser_linkHovered(const QString &, const QString &, const QString &)));
@@ -90,6 +90,9 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineStorageDatabaseEnabled, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineWebApplicationCacheEnabled, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::LocalStorageDatabaseEnabled, FALSE);
+
+  // we want to detect/handle unsupported content
+  webViewBrowser->page()->setForwardUnsupportedContent(TRUE);
 
   // status bar timeout connection
   connect(&statusTimer, SIGNAL(timeout()), this, SLOT(statusTimeout()));
@@ -297,40 +300,34 @@ void MiniWebBrowser::on_toolButtonLoad_clicked()
   }
 }
 
-void MiniWebBrowser::processPageActionDownloadImageToDisk()
+void MiniWebBrowser::on_webViewBrowser_iconChanged()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::processPageActionDownloadImageToDisk()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_webViewBrowser_iconChanged()");
 #endif
 
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "MiniWebBrowser::processPageActionDownloadImageToDisk(): "+ tr("sorry, this feature is not yet implemented"));
-}
+  int i = comboBoxURL->findText(comboBoxURL->lineEdit()->text());
 
-void MiniWebBrowser::processPageActionDownloadLinkToDisk()
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::processPageActionDownloadLinkToDisk()");
-#endif
-
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "MiniWebBrowser::processPageActionDownloadLinkToDisk(): "+ tr("sorry, this feature is not yet implemented"));
-}
-
-void MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &request)
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &request = ...)");
-#endif
-
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "MiniWebBrowser::processPageActionDownloadRequested(): "+ tr("sorry, this feature is not yet implemented"));
-}
-
-void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *reply)
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *reply = ...)");
-#endif
-
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "MiniWebBrowser::processPageActionHandleUnsupportedContent(): "+ tr("sorry, this feature is not yet implemented"));
+  if ( i >= 0 ) {
+    QFontMetrics fm(qApp->font());
+    QSize iconSize(fm.height() - 3, fm.height() - 3);
+    comboBoxURL->setIconSize(iconSize);
+    QIcon pageIcon;
+    QString urlStr = webViewBrowser->url().toString();
+    if ( iconCache.contains(urlStr) )
+      pageIcon = *iconCache[urlStr];
+    if ( pageIcon.isNull() ) {
+      pageIcon = webViewBrowser->settings()->iconForUrl(webViewBrowser->url());
+      if ( pageIcon.isNull() )
+        pageIcon = QIcon(QString::fromUtf8(":/data/img/browser.png"));
+      else {
+        // we simply assume that icons take up 64x64 = 4096 bytes :)
+        iconCache.insert(urlStr, new QIcon(pageIcon), 4096);
+      }
+    }
+    comboBoxURL->setItemIcon(i, pageIcon);
+    comboBoxURL->setCurrentIndex(i);
+  }
 }
 
 void MiniWebBrowser::webViewBrowser_linkHovered(const QString &link, const QString &title, const QString &textContent)
@@ -372,33 +369,33 @@ void MiniWebBrowser::statusTimeout()
   labelStatus->setVisible(FALSE);
 }
 
-void MiniWebBrowser::on_webViewBrowser_iconChanged()
+void MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &request)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_webViewBrowser_iconChanged()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &request = ...)");
 #endif
 
-  int i = comboBoxURL->findText(comboBoxURL->lineEdit()->text());
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: MiniWebBrowser::processPageActionDownloadRequested(): URL = %1").arg(request.url().toString()));
+}
 
-  if ( i >= 0 ) {
-    QFontMetrics fm(qApp->font());
-    QSize iconSize(fm.height() - 3, fm.height() - 3);
-    comboBoxURL->setIconSize(iconSize);
-    QIcon pageIcon;
-    QString urlStr = webViewBrowser->url().toString();
-    if ( iconCache.contains(urlStr) )
-      pageIcon = *iconCache[urlStr];
-    if ( pageIcon.isNull() ) {
-      pageIcon = webViewBrowser->settings()->iconForUrl(webViewBrowser->url());
-      if ( pageIcon.isNull() )
-        pageIcon = QIcon(QString::fromUtf8(":/data/img/browser.png"));
-      else {
-        // we simply assume that icons take up 64x64 = 4096 bytes :)
-        iconCache.insert(urlStr, new QIcon(pageIcon), 4096);
-      }
-    }
-    comboBoxURL->setItemIcon(i, pageIcon);
-    comboBoxURL->setCurrentIndex(i);
-  }
+void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *reply)
+{
+#ifdef QMC2_DEBUG
+  QMap <QNetworkAccessManager::Operation, QString> ops;
+  ops[QNetworkAccessManager::HeadOperation] = "QNetworkAccessManager::HeadOperation";
+  ops[QNetworkAccessManager::GetOperation] = "QNetworkAccessManager::GetOperation";
+  ops[QNetworkAccessManager::PutOperation] = "QNetworkAccessManager::PutOperation";
+  ops[QNetworkAccessManager::PostOperation] = "QNetworkAccessManager::PostOperation";
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *reply = [operation() = %1, url() = %2, ...])")
+                      .arg(ops[reply->operation()]).arg(reply->url().toString()));
+#endif
+  QMap <QNetworkAccessManager::Operation, QString> opsShort;
+  opsShort[QNetworkAccessManager::HeadOperation] = "HEAD";
+  opsShort[QNetworkAccessManager::GetOperation] = "GET";
+  opsShort[QNetworkAccessManager::PutOperation] = "PUT";
+  opsShort[QNetworkAccessManager::PostOperation] = "POST";
+
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: MiniWebBrowser::processPageActionHandleUnsupportedContent(): OP = %1, URL = %2")
+                      .arg(opsShort[reply->operation()]).arg(reply->url().toString()));
 }
 

@@ -4,14 +4,14 @@
 <context>
     <name></name>
     <message>
-        <location filename="../../macros.h" line="245"/>
-        <location filename="../../macros.h" line="251"/>
+        <location filename="../../macros.h" line="248"/>
+        <location filename="../../macros.h" line="254"/>
         <source>M.A.M.E. Catalog / Launcher II</source>
         <translation>M.A.M.E. Catalog / Launcher II</translation>
     </message>
     <message>
-        <location filename="../../macros.h" line="248"/>
-        <location filename="../../macros.h" line="254"/>
+        <location filename="../../macros.h" line="251"/>
+        <location filename="../../macros.h" line="257"/>
         <source>M.E.S.S. Catalog / Launcher II</source>
         <translation>M.E.S.S. Catalog / Launcher II</translation>
     </message>
@@ -6181,14 +6181,14 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="54"/>
+        <location filename="../../miniwebbrowser.cpp" line="60"/>
         <location filename="../../miniwebbrowser.ui" line="27"/>
         <location filename="../../miniwebbrowser.ui" line="30"/>
         <source>Go back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="56"/>
+        <location filename="../../miniwebbrowser.cpp" line="62"/>
         <location filename="../../miniwebbrowser.ui" line="44"/>
         <location filename="../../miniwebbrowser.ui" line="47"/>
         <source>Go forward</source>
@@ -6231,60 +6231,52 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="302"/>
-        <location filename="../../miniwebbrowser.cpp" line="311"/>
-        <location filename="../../miniwebbrowser.cpp" line="320"/>
-        <location filename="../../miniwebbrowser.cpp" line="329"/>
-        <source>sorry, this feature is not yet implemented</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../miniwebbrowser.cpp" line="44"/>
+        <location filename="../../miniwebbrowser.cpp" line="50"/>
         <source>Open link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="46"/>
+        <location filename="../../miniwebbrowser.cpp" line="52"/>
         <source>Save link as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="48"/>
+        <location filename="../../miniwebbrowser.cpp" line="54"/>
         <source>Copy link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="50"/>
+        <location filename="../../miniwebbrowser.cpp" line="56"/>
         <source>Save image as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="52"/>
+        <location filename="../../miniwebbrowser.cpp" line="58"/>
         <source>Copy image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="58"/>
+        <location filename="../../miniwebbrowser.cpp" line="64"/>
         <source>Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="60"/>
+        <location filename="../../miniwebbrowser.cpp" line="66"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="62"/>
+        <location filename="../../miniwebbrowser.cpp" line="68"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="65"/>
+        <location filename="../../miniwebbrowser.cpp" line="71"/>
         <source>Inspect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="149"/>
+        <location filename="../../miniwebbrowser.cpp" line="158"/>
         <source>No title</source>
         <translation type="unfinished"></translation>
     </message>
