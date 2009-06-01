@@ -11,7 +11,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
 
   public:
     QUrl homeUrl;
-    QCache<QString, QIcon> iconCache;
+    static QCache<QString, QIcon> iconCache;
     bool firstTimeLoadStarted,
          firstTimeLoadProgress,
          firstTimeLoadFinished;

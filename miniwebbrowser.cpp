@@ -8,6 +8,8 @@
 
 extern MainWindow *qmc2MainWindow;
 
+QCache<QString, QIcon> MiniWebBrowser::iconCache;
+
 MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   : QWidget(parent)
 {
