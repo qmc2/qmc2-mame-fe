@@ -21,6 +21,9 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 
   setupUi(this);
 
+  webViewBrowser = new BrowserWidget(frameBrowser);
+  gridLayoutBrowser->addWidget(webViewBrowser);
+
   labelStatus->hide();
   progressBar->hide();
 
@@ -38,6 +41,19 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   connect(webViewBrowser->page(), SIGNAL(unsupportedContent(QNetworkReply *)), this, SLOT(processPageActionHandleUnsupportedContent(QNetworkReply *)));
   connect(webViewBrowser->page(), SIGNAL(linkHovered(const QString &, const QString &, const QString &)), this, SLOT(webViewBrowser_linkHovered(const QString &, const QString &, const QString &)));
   connect(webViewBrowser->page(), SIGNAL(statusBarVisibilityChangeRequested(bool)), this, SLOT(webViewBrowser_statusBarVisibilityChangeRequested(bool)));
+  connect(webViewBrowser->page(), SIGNAL(frameCreated(QWebFrame *)), this, SLOT(webViewBrowser_frameCreated(QWebFrame *)));
+
+  connect(webViewBrowser, SIGNAL(linkClicked(const QUrl)), this, SLOT(webViewBrowser_linkClicked(const QUrl)));
+  connect(webViewBrowser, SIGNAL(urlChanged(const QUrl)), this, SLOT(webViewBrowser_urlChanged(const QUrl)));
+  connect(webViewBrowser, SIGNAL(loadStarted()), this, SLOT(webViewBrowser_loadStarted()));
+  connect(webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(webViewBrowser_loadFinished(bool)));
+  connect(webViewBrowser, SIGNAL(loadProgress(int)), this, SLOT(webViewBrowser_loadProgress(int)));
+  connect(webViewBrowser, SIGNAL(statusBarMessage(const QString &)), this, SLOT(webViewBrowser_statusBarMessage(const QString &)));
+  connect(webViewBrowser, SIGNAL(iconChanged()), this, SLOT(webViewBrowser_iconChanged()));
+  connect(toolButtonBack, SIGNAL(clicked()), webViewBrowser, SLOT(back()));
+  connect(toolButtonForward, SIGNAL(clicked()), webViewBrowser, SLOT(forward()));
+  connect(toolButtonReload, SIGNAL(clicked()), webViewBrowser, SLOT(reload()));
+  connect(toolButtonStop, SIGNAL(clicked()), webViewBrowser, SLOT(stop()));
 
   // hide page actions we don't provide
   webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(FALSE);
@@ -132,22 +148,54 @@ void MiniWebBrowser::on_comboBoxURL_activated()
   QTimer::singleShot(0, toolButtonLoad, SLOT(animateClick()));
 }
 
-void MiniWebBrowser::on_webViewBrowser_linkClicked(const QUrl url)
+void MiniWebBrowser::on_toolButtonHome_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_linkClicked(const QUrl url = %1)").arg(url.toString()));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_toolButtonHome_clicked()");
 #endif
 
-  if ( url.isValid() ) {
-    webViewBrowser->load(url);
-    on_webViewBrowser_urlChanged(url);
+  if ( homeUrl.isValid() )
+    webViewBrowser->load(homeUrl);
+}
+
+void MiniWebBrowser::on_toolButtonLoad_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_toolButtonLoad_clicked()");
+#endif
+
+  if ( !comboBoxURL->lineEdit()->text().isEmpty() ) {
+    QString text = comboBoxURL->lineEdit()->text().toLower();
+    QUrl url(text, QUrl::TolerantMode);
+    if ( url.scheme().isEmpty() )
+      if ( !text.startsWith("http://") )
+        text.prepend("http://");
+    comboBoxURL->setEditText(text);
+    webViewBrowser->load(QUrl(text, QUrl::TolerantMode));
   }
 }
 
-void MiniWebBrowser::on_webViewBrowser_urlChanged(const QUrl url)
+void MiniWebBrowser::webViewBrowser_linkClicked(const QUrl url)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_urlChanged(const QUrl url = %1)").arg(url.toString()));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_linkClicked(const QUrl url = %1)").arg(url.toString()));
+#endif
+
+  if ( url.isValid() ) {
+    QWebHitTestResult hitTest = webViewBrowser->page()->mainFrame()->hitTestContent(webViewBrowser->lastMouseClickPosition);
+    if ( hitTest.linkTargetFrame() ) {
+      hitTest.linkTargetFrame()->load(url);
+    } else {
+      webViewBrowser->load(url);
+      webViewBrowser_urlChanged(url);
+    }
+  }
+}
+
+void MiniWebBrowser::webViewBrowser_urlChanged(const QUrl url)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_urlChanged(const QUrl url = %1)").arg(url.toString()));
 #endif
 
   comboBoxURL->setEditText(QString::fromUtf8(webViewBrowser->url().toEncoded()));
@@ -167,13 +215,13 @@ void MiniWebBrowser::on_webViewBrowser_urlChanged(const QUrl url)
   }
   comboBoxURL->setCurrentIndex(0);
 
-  QTimer::singleShot(0, this, SLOT(on_webViewBrowser_iconChanged()));
+  QTimer::singleShot(0, this, SLOT(webViewBrowser_iconChanged()));
 }
 
-void MiniWebBrowser::on_webViewBrowser_loadStarted()
+void MiniWebBrowser::webViewBrowser_loadStarted()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_webViewBrowser_loadStarted()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::webViewBrowser_loadStarted()");
 #endif
 
   progressBar->reset();
@@ -202,13 +250,13 @@ void MiniWebBrowser::on_webViewBrowser_loadStarted()
     toolButtonHome->setEnabled(TRUE);
   }
 
-  QTimer::singleShot(0, this, SLOT(on_webViewBrowser_iconChanged()));
+  QTimer::singleShot(0, this, SLOT(webViewBrowser_iconChanged()));
 }
 
-void MiniWebBrowser::on_webViewBrowser_loadProgress(int progress)
+void MiniWebBrowser::webViewBrowser_loadProgress(int progress)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_loadProgress(int progress = %1)").arg(progress));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_loadProgress(int progress = %1)").arg(progress));
 #endif
 
   progressBar->setValue(progress);
@@ -221,16 +269,16 @@ void MiniWebBrowser::on_webViewBrowser_loadProgress(int progress)
     toolButtonForward->setEnabled(FALSE);
     toolButtonHome->setEnabled(TRUE);
   } else {
-    QTimer::singleShot(0, this, SLOT(on_webViewBrowser_iconChanged()));
+    QTimer::singleShot(0, this, SLOT(webViewBrowser_iconChanged()));
     toolButtonBack->setEnabled(webViewBrowser->history()->canGoBack());
     toolButtonForward->setEnabled(webViewBrowser->history()->canGoForward());
   }
 }
 
-void MiniWebBrowser::on_webViewBrowser_loadFinished(bool ok)
+void MiniWebBrowser::webViewBrowser_loadFinished(bool ok)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_loadFinished(bool ok = %1)").arg(ok));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_loadFinished(bool ok = %1)").arg(ok));
 #endif
 
   progressBar->reset();
@@ -250,13 +298,13 @@ void MiniWebBrowser::on_webViewBrowser_loadFinished(bool ok)
   toolButtonReload->setEnabled(TRUE);
   toolButtonHome->setEnabled(TRUE);
 
-  QTimer::singleShot(250, this, SLOT(on_webViewBrowser_iconChanged()));
+  QTimer::singleShot(250, this, SLOT(webViewBrowser_iconChanged()));
 }
 
-void MiniWebBrowser::on_webViewBrowser_statusBarMessage(const QString &message)
+void MiniWebBrowser::webViewBrowser_statusBarMessage(const QString &message)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::on_webViewBrowser_statusBarMessage(const QString &message = %1)").arg(message));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_statusBarMessage(const QString &message = %1)").arg(message));
 #endif
 
   if ( !message.isEmpty() ) {
@@ -273,37 +321,10 @@ void MiniWebBrowser::on_webViewBrowser_statusBarMessage(const QString &message)
   }
 }
 
-void MiniWebBrowser::on_toolButtonHome_clicked()
+void MiniWebBrowser::webViewBrowser_iconChanged()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_toolButtonHome_clicked()");
-#endif
-
-  if ( homeUrl.isValid() )
-    webViewBrowser->load(homeUrl);
-}
-
-void MiniWebBrowser::on_toolButtonLoad_clicked()
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_toolButtonLoad_clicked()");
-#endif
-
-  if ( !comboBoxURL->lineEdit()->text().isEmpty() ) {
-    QString text = comboBoxURL->lineEdit()->text().toLower();
-    QUrl url(text, QUrl::TolerantMode);
-    if ( url.scheme().isEmpty() )
-      if ( !text.startsWith("http://") )
-        text.prepend("http://");
-    comboBoxURL->setEditText(text);
-    webViewBrowser->load(QUrl(text, QUrl::TolerantMode));
-  }
-}
-
-void MiniWebBrowser::on_webViewBrowser_iconChanged()
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::on_webViewBrowser_iconChanged()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::webViewBrowser_iconChanged()");
 #endif
 
   int i = comboBoxURL->findText(comboBoxURL->lineEdit()->text());
@@ -357,6 +378,14 @@ void MiniWebBrowser::webViewBrowser_statusBarVisibilityChangeRequested(bool visi
 #endif
   
   labelStatus->setVisible(visible);
+}
+
+void MiniWebBrowser::webViewBrowser_frameCreated(QWebFrame *frame)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_frameCreated(QWebFrame *frame = %1)").arg((qulonglong)frame));
+#endif
+
 }
 
 void MiniWebBrowser::statusTimeout()
