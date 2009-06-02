@@ -49,7 +49,7 @@
 <p>First of all, don't worry. Regardless if an older version of Qt is already installed or not, you can use several versions in parallel. This includes self-compiled versions as in the following example. You only need to take care of some environment variables as described in the build instructions of <a href="readme.html#2.">readme.html</a>.
 </p>
 <p>If you need to build Qt 4 from source, please follow these steps (on X11 platforms):</p>
-<p>1) Download the latest source archive of Qt 4 from this URL: <a href="http://www.qtsoftware.com/downloads">http://www.qtsoftware.com/downloads</a> -- for example qt-x11-opensource-src-4.5.1.tar.gz.</p>
+<p>1) Download the latest source archive of Qt 4 from this URL: <a href="http://www.qtsoftware.com/downloads" target="_blank">http://www.qtsoftware.com/downloads</a> -- for example qt-x11-opensource-src-4.5.1.tar.gz.</p>
 <p>2) Extract this tar-ball to a directory where you are going to build it, then configure and build it completely:</p>
 <pre># mkdir -p src &amp;&amp; cd src<br># gzcat /tmp/qt-x11-opensource-src-4.5.1.tar.gz | tar xfv -<br># cd qt-x11-opensource-src-4.5.1<br># ./configure -platform linux-g++ -prefix /usr/local/lib/qt-4.5.1<br># make</pre>
 <p>Exchange the values for <span style="font-style: italic;">-platform</span> and <span style="font-style: italic;">-prefix</span> with things that fit your needs. The example is for a 32-bit Linux distribution, building Qt 4 on a 64-bit Linux system requires <i>-platform linux-g++-64</i>! See the available <i>make specs</i> in the Qt source (directory <i>mkspecs/</i>) for other platforms.</p>
@@ -58,10 +58,10 @@
 <p>This is VERY important for Qt 4 (whereas in case of Qt 3 this wasn't necessary)!</p>
 <p>Now, following the instructions of <a href="readme.html#2.">readme.html</a>, you are able to build and use QMC2!!</p>
 <p>Note that building Qt from source is recommended for QMC2, even if your distribution already comes with <i>sufficient</i> Qt 4 packages. Some distributions use buggy versions of Qt (performance issues, potential crashes), others do not include all the required features. Installing Qt as described here is guaranteed to work with QMC2 - provided that Qt itself builds cleanly :). On Linux at least, there should be no problem at all to build Qt from source. On <u>most</u> other platforms supported by Qt this is true as well.</p>
-<p>See here for official installation instructions (covering all platforms): <a href="http://doc.qtsoftware.com/4.5/installation.html">http://doc.qtsoftware.com/4.5/installation.html</a></p>
+<p>See here for official installation instructions (covering all platforms): <a href="http://doc.qtsoftware.com/4.5/installation.html" target="_blank">http://doc.qtsoftware.com/4.5/installation.html</a></p>
 <hr>
 <p><a name="A1.2"></a><b>Q1.2: Aren't there any binary packages on the net?</b></p>
-<p>Please see <a href="http://qmc2.arcadehits.net/download.html">http://qmc2.arcadehits.net/download.html</a> for more information.</p>
+<p>Please see <a href="http://qmc2.arcadehits.net/download.html" target="_blank">http://qmc2.arcadehits.net/download.html</a> for more information.</p>
 <hr>
 <p><a name="A1.3"></a><b>Q1.3: I want to be at the cutting edge of QMC2 development. How do I access your development code base?</b></p>
 <p>We are using <i>Subversion</i> (SVN) for the code repository during development.</p>
@@ -405,7 +405,7 @@ I had to go into the CompizConfig Settings Manager, General Options, Focus &amp;
 <p>Qt 4.3.2 is known to have a bug which slows down the process of hiding items in
 a QTreeWidget (or QTreeView).</p>
 <p>Use a different version of Qt! <i>Qt Software</i> promised to include the fix in Qt 4.3.3 and above (update: yes, the fix is included since!).
-A temporary fix for Qt 4.3.2 is available from the QMC2 home page (<a href="http://qmc2.arcadehits.net">http://qmc2.arcadehits.net</a>)</p>
+A temporary fix for Qt 4.3.2 is available from the QMC2 home page (<a href="http://qmc2.arcadehits.net" target="_blank">http://qmc2.arcadehits.net</a>)</p>
 <p><b>This answer is obsolete</b>: as of v0.2.b9, Qt 4.5+ is required -- upgrade please!</p>
 <hr>
 <p><a name="A3.3"></a><b>Q3.3: QMC2 crashes with a segmentation fault when I click the browse buttons of certain file settings (options dialog)</b></p>
@@ -424,6 +424,6 @@ A temporary fix for Qt 4.3.2 is available from the QMC2 home page (<a href="http
 <p><a name="A3.5"></a><b>Q3.5: On PPC Linux all embedded images / icons are <i>bluish</i></b></p>
 <p>This is a known bug of Qt on that platform. It only happens to PNG images that are embedded into the application in the form of a <i>Qt resource</i>. Unfortunately, QMC2 uses <b>only</b> PNG images and most of them are embedded (all static icons), so the bug may concern everyone running on a PPC Linux system!</p>
 <p>A bug report has already been filed at <i>Qt Software</i>'s bug tracking system and chances are it will sooner or later be fixed by the former <i>Trolls</i>... anyway, other than a somewhat unusual look'n'feel it doesn't really harm and QMC2 will run fine on this platfom :)!</p>
-<p>Note: according to this task-tracker entry, there's at least hope that it has already been fixed (for Qt 4.5.2, which isn't ready for prime time yet as of this writing): <a href="http://www.qtsoftware.com/developer/task-tracker/index_html?method=entry&id=196152">http://www.qtsoftware.com/developer/task-tracker/index_html?method=entry&amp;id=196152</a></p>
+<p>Note: according to this task-tracker entry, there's at least hope that it has already been fixed (for Qt 4.5.2, which isn't ready for prime time yet as of this writing): <a href="http://www.qtsoftware.com/developer/task-tracker/index_html?method=entry&id=196152" target="_blank">http://www.qtsoftware.com/developer/task-tracker/index_html?method=entry&amp;id=196152</a></p>
 </body>
 </html>
