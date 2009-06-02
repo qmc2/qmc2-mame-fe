@@ -2259,6 +2259,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
             qmc2MAWSLookup->webViewBrowser->load(QUrl(mawsUrl));
           } else {
             qmc2MAWSLookup->webViewBrowser->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
+            qmc2MAWSLookup->webViewBrowser->stop();
           }
         }
         qmc2LastMAWSItem = qmc2CurrentItem;
