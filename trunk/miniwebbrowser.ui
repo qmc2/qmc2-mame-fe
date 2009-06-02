@@ -190,20 +190,10 @@
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
        </property>
-       <layout class="QGridLayout" name="gridLayout_3">
+       <layout class="QGridLayout" name="gridLayoutBrowser">
         <property name="margin">
          <number>0</number>
         </property>
-        <item row="0" column="0">
-         <widget class="QWebView" name="webViewBrowser">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
        </layout>
       </widget>
      </item>
@@ -212,13 +202,6 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="6"/>
- <customwidgets>
-  <customwidget>
-   <class>QWebView</class>
-   <extends>QWidget</extends>
-   <header>QtWebKit/QWebView</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>toolButtonBack</tabstop>
   <tabstop>toolButtonForward</tabstop>
@@ -230,70 +213,5 @@
  <resources>
   <include location="qmc2.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>toolButtonBack</sender>
-   <signal>clicked()</signal>
-   <receiver>webViewBrowser</receiver>
-   <slot>back()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>26</x>
-     <y>25</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>53</x>
-     <y>71</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>toolButtonForward</sender>
-   <signal>clicked()</signal>
-   <receiver>webViewBrowser</receiver>
-   <slot>forward()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>58</x>
-     <y>25</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>90</x>
-     <y>61</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>toolButtonReload</sender>
-   <signal>clicked()</signal>
-   <receiver>webViewBrowser</receiver>
-   <slot>reload()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>86</x>
-     <y>19</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>122</x>
-     <y>69</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>toolButtonStop</sender>
-   <signal>clicked()</signal>
-   <receiver>webViewBrowser</receiver>
-   <slot>stop()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>122</x>
-     <y>25</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>156</x>
-     <y>76</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

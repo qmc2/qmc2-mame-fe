@@ -1,9 +1,30 @@
 #ifndef _MINIWEBBROWSER_H_
 #define _MINIWEBBROWSER_H_
 
+#include <QWebView>
+#include <QMouseEvent>
 #include <QTimer>
 #include <QCache>
 #include "ui_miniwebbrowser.h"
+
+class BrowserWidget : public QWebView
+{
+  Q_OBJECT
+
+  public:
+    QPoint lastMouseClickPosition;
+    BrowserWidget(QWidget *parent = NULL) : QWebView(parent)
+    {
+      lastMouseClickPosition = QPoint(-1, -1);
+    }
+
+  protected:
+    void mousePressEvent(QMouseEvent *e)
+    {
+      lastMouseClickPosition = e->pos();
+      QWebView::mousePressEvent(e);
+    }
+};
 
 class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
 {
@@ -16,19 +37,13 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
          firstTimeLoadProgress,
          firstTimeLoadFinished;
     QTimer statusTimer;
+    BrowserWidget *webViewBrowser;
 
     MiniWebBrowser(QWidget *parent = 0);
     ~MiniWebBrowser();
 
   public slots:
     void on_comboBoxURL_activated();
-    void on_webViewBrowser_linkClicked(const QUrl);
-    void on_webViewBrowser_urlChanged(const QUrl);
-    void on_webViewBrowser_loadStarted();
-    void on_webViewBrowser_loadFinished(bool);
-    void on_webViewBrowser_loadProgress(int);
-    void on_webViewBrowser_statusBarMessage(const QString &);
-    void on_webViewBrowser_iconChanged();
     void on_toolButtonHome_clicked();
     void on_toolButtonLoad_clicked();
 
@@ -37,8 +52,16 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void processPageActionHandleUnsupportedContent(QNetworkReply *);
 
     // other
+    void webViewBrowser_linkClicked(const QUrl);
+    void webViewBrowser_urlChanged(const QUrl);
+    void webViewBrowser_loadStarted();
+    void webViewBrowser_loadFinished(bool);
+    void webViewBrowser_loadProgress(int);
+    void webViewBrowser_statusBarMessage(const QString &);
+    void webViewBrowser_iconChanged();
     void webViewBrowser_linkHovered(const QString &, const QString &, const QString &);
     void webViewBrowser_statusBarVisibilityChangeRequested(bool);
+    void webViewBrowser_frameCreated(QWebFrame *);
     void statusTimeout();
 
   signals:
