@@ -344,7 +344,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
   // FIXME: remove this when the download manager is ready
-#if QMC2_WIP_CODE != 1 || defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if QMC2_WIP_CODE != 1
   tabWidgetLogsAndEmulators->removeTab(QMC2_DOWNLOADS_INDEX);
 #endif
 
@@ -366,7 +366,7 @@ MainWindow::MainWindow(QWidget *parent)
   menu_Tools->removeAction(actionCheckIcons);
   treeWidgetGamelist->headerItem()->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Machine / Attribute"));
   treeWidgetHierarchy->headerItem()->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Machine / Clones"));
-  tabWidgetGamelist->setTabText(QMC2_GAMELIST_INDEX, tr("Machi&ne list"));
+  tabWidgetGamelist->setTabText(QMC2_GAMELIST_INDEX, tr("M&achine list"));
   tabWidgetGameDetail->setTabText(QMC2_GAMEINFO_INDEX, tr("Machine &info"));
   textBrowserGameInfo->setToolTip(tr("Detailed machine info"));
   textBrowserGameInfo->setStatusTip(tr("Detailed machine info"));
@@ -3494,6 +3494,7 @@ void MainWindow::viewFullDetail()
   qApp->processEvents();
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
   tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/view_detail.png")));
+  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/view_detail.png")));
   treeWidgetGamelist->setFocus();
 }
 
@@ -3507,6 +3508,7 @@ void MainWindow::viewParentClones()
   qApp->processEvents();
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
   tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/view_tree.png")));
+  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/view_tree.png")));
   treeWidgetHierarchy->setFocus();
 }
 

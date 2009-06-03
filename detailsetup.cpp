@@ -21,7 +21,7 @@ DetailSetup::DetailSetup(QWidget *parent)
 #endif
 
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
-  shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Previe&w");
+  shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Pre&view");
   longTitleMap[QMC2_PREVIEW_INDEX] = tr("Game preview image");
   iconMap[QMC2_PREVIEW_INDEX] = QIcon(QString::fromUtf8(":/data/img/camera.png"));
   shortTitleMap[QMC2_FLYER_INDEX] = tr("Fl&yer");
@@ -42,13 +42,13 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_CONTROLLER_INDEX] = tr("C&ontroller");
   longTitleMap[QMC2_CONTROLLER_INDEX] = tr("Control panel image");
   iconMap[QMC2_CONTROLLER_INDEX] = QIcon(QString::fromUtf8(":/data/img/joystick.png"));
-  shortTitleMap[QMC2_MARQUEE_INDEX] = tr("&Marquee");
+  shortTitleMap[QMC2_MARQUEE_INDEX] = tr("Mar&quee");
   longTitleMap[QMC2_MARQUEE_INDEX] = tr("Marquee image");
   iconMap[QMC2_MARQUEE_INDEX] = QIcon(QString::fromUtf8(":/data/img/marquee.png"));
   shortTitleMap[QMC2_TITLE_INDEX] = tr("Titl&e");
   longTitleMap[QMC2_TITLE_INDEX] = tr("Title screen image");
   iconMap[QMC2_TITLE_INDEX] = QIcon(QString::fromUtf8(":/data/img/arcademode.png"));
-  shortTitleMap[QMC2_MAWS_INDEX] = tr("MAWS");
+  shortTitleMap[QMC2_MAWS_INDEX] = tr("MA&WS");
   longTitleMap[QMC2_MAWS_INDEX] = tr("MAWS page (web lookup)");
   iconMap[QMC2_MAWS_INDEX] = QIcon(QString::fromUtf8(":/data/img/internet.png"));
   availableDetailList << QMC2_PREVIEW_INDEX
@@ -73,7 +73,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_MAWS_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MAWS_INDEX);
   configurableDetailList << QMC2_MAWS_INDEX;
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
-  shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Previe&w");
+  shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Pre&view");
   longTitleMap[QMC2_PREVIEW_INDEX] = tr("Machine preview image");
   iconMap[QMC2_PREVIEW_INDEX] = QIcon(QString::fromUtf8(":/data/img/camera.png"));
   shortTitleMap[QMC2_FLYER_INDEX] = tr("Fl&yer");
