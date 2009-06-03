@@ -870,7 +870,7 @@
               <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
             </attribute>
             <attribute name="title">
-             <string>Previe&amp;w</string>
+             <string>Pre&amp;view</string>
             </attribute>
            </widget>
            <widget class="QWidget" name="tabFlyer">
@@ -963,7 +963,7 @@
               <normaloff>:/data/img/tape.png</normaloff>:/data/img/tape.png</iconset>
             </attribute>
             <attribute name="title">
-             <string>De&amp;vices</string>
+             <string>&amp;Devices</string>
             </attribute>
            </widget>
            <widget class="QWidget" name="tabCabinet">
@@ -990,7 +990,7 @@
               <normaloff>:/data/img/marquee.png</normaloff>:/data/img/marquee.png</iconset>
             </attribute>
             <attribute name="title">
-             <string>&amp;Marquee</string>
+             <string>Mar&amp;quee</string>
             </attribute>
            </widget>
            <widget class="QWidget" name="tabTitle">
@@ -1008,7 +1008,7 @@
               <normaloff>:/data/img/internet.png</normaloff>:/data/img/internet.png</iconset>
             </attribute>
             <attribute name="title">
-             <string>MAWS</string>
+             <string>MA&amp;WS</string>
             </attribute>
            </widget>
           </widget>
@@ -1171,7 +1171,7 @@
            <normaloff>:/data/img/cd.png</normaloff>:/data/img/cd.png</iconset>
          </attribute>
          <attribute name="title">
-          <string>Au&amp;dio player</string>
+          <string>MP&amp;3 player</string>
          </attribute>
          <layout class="QGridLayout">
           <item row="0" column="0">
@@ -1467,7 +1467,7 @@
            <normaloff>:/data/img/download.png</normaloff>:/data/img/download.png</iconset>
          </attribute>
          <attribute name="title">
-          <string>Downloads</string>
+          <string>Dow&amp;nloads</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
@@ -1645,11 +1645,15 @@
    </widget>
    <widget class="QMenu" name="menu_Game">
     <property name="title">
-     <string>G&amp;ame</string>
+     <string>&amp;Game</string>
     </property>
     <widget class="QMenu" name="menu_Check">
      <property name="title">
       <string>&amp;Check</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/warning.png</normaloff>:/data/img/warning.png</iconset>
      </property>
      <addaction name="actionCheckCurrentROM"/>
      <addaction name="actionAnalyseCurrentROM"/>
@@ -1657,6 +1661,10 @@
     <widget class="QMenu" name="menu_View">
      <property name="title">
       <string>&amp;View</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/view_detail.png</normaloff>:/data/img/view_detail.png</iconset>
      </property>
      <addaction name="actionViewFullDetail"/>
      <addaction name="actionViewParentClones"/>
