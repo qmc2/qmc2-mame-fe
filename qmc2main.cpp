@@ -1613,7 +1613,12 @@ void MainWindow::on_actionDocumentation_activated()
     searchPath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory").toString() +
                  "doc/html/" +
                  qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString();
+#if defined(Q_WS_WIN)
+    QDir searchDir(searchPath);
+    QUrl docUrl("file:///" + searchDir.absolutePath() + "/index.html");
+#else
     QUrl docUrl("file://" + searchPath + "/index.html");
+#endif
     qmc2DocBrowser->browser->webViewBrowser->load(docUrl);
   }
 
