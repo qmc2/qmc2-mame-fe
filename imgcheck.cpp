@@ -1220,10 +1220,6 @@ void ImageChecker::recursiveFileList(const QString &sDir, QStringList &fileNames
         qApp->processEvents();
       }
     } else
-#if defined(Q_WS_WIN)
-      fileNames << path.toLower();
-#else
       fileNames << path;
-#endif
   }
 } 
