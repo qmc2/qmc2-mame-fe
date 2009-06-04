@@ -91,6 +91,10 @@
 #define QMC2_EMUOPT_COLUMN_OPTION	0
 #define QMC2_EMUOPT_COLUMN_VALUE	1
 
+// logical column indizes in download manager
+#define QMC2_DOWNLOAD_COLUMN_STATUS	0
+#define QMC2_DOWNLOAD_COLUMN_PROGRESS	1
+
 // SDLMAME output notifier FIFO
 #define QMC2_SDLMAME_OUTPUT_FIFO	"/tmp/sdlmame_out"
 #define QMC2_SDLMESS_OUTPUT_FIFO	QMC2_SDLMAME_OUTPUT_FIFO

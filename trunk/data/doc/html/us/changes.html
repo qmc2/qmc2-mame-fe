@@ -32,12 +32,13 @@ inf: informational only
   <li>new: added new make option <i>AUDIT_WILDCARD</i> to enable/disable the use of wildcards ('*') on full audit calls if required (default: disabled)</li>
   <li>new: free reordering &amp; (de)activation of all available game/machine details</li>
   <li>new: all MAME variants now include an MAWS lookup feature as an additional game detail page (in-memory and disk-caching included)</li>
+  <li>new: integrated (mini) web browser based on QtWebKit with just a subset of browswer features (used by MAWS lookup and documentation browser)</li>
   <li>new: all (HTTP) network access can be routed directly or via a proxy</li>
-  <li>new: integrated (mini) web browser based on the QWebView class (limited features!)</li>
   <li>new: added new make option <i>BROWSER_EXTRAS</i> to enable/disable the use of browser extra features such as Qt's <i>Web Inspector</i> (default: disabled) -- warning: these extra features may be buggy!</li>
   <li>new: added new make option <i>WC_COMPRESSION</i> to enable/disable on-disk web-cache compression (default: enabled on UNIX and Mac, disabled on Windows for now)</li>
   <li>new: using the new mini web browser to display online documentation (includes support for external links)</li>
-  <li>new: save/restore layout of documentation browser, made an independent widget</li>
+  <li>new: save/restore layout of documentation browser (not its visibility), made it an independent widget</li>
+  <li>wip: download manager for use with web content, integrated into the main widget</li>
   <li>doc: changed all occurrances of external URLs to real href's (only <i>http://...</i> URLs supported)</li>
 </ul>
 <p><b>v0.2.b8, 23-APR-2009:</b></p>

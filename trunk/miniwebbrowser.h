@@ -33,6 +33,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
   public:
     QUrl homeUrl;
     static QCache<QString, QIcon> iconCache;
+    static QStringList supportedSchemes;
     bool firstTimeLoadStarted,
          firstTimeLoadProgress,
          firstTimeLoadFinished;

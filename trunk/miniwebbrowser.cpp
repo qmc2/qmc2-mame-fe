@@ -11,6 +11,7 @@
 extern MainWindow *qmc2MainWindow;
 
 QCache<QString, QIcon> MiniWebBrowser::iconCache;
+QStringList MiniWebBrowser::supportedSchemes;
 
 MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   : QWidget(parent)
@@ -18,6 +19,9 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::MiniWebBrowser(QWidget *parent = %1)").arg((qulonglong) parent));
 #endif
+
+  if ( MiniWebBrowser::supportedSchemes.isEmpty() )
+    MiniWebBrowser::supportedSchemes << "http" << "file";
 
   setupUi(this);
 
@@ -404,7 +408,7 @@ void MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &r
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &request = ...)");
 #endif
 
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: MiniWebBrowser::processPageActionDownloadRequested(): URL = %1").arg(request.url().toString()));
+  qmc2MainWindow->startDownload(webViewBrowser->page()->networkAccessManager()->get(request));
 }
 
 void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *reply)
@@ -415,8 +419,8 @@ void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *re
   ops[QNetworkAccessManager::GetOperation] = "QNetworkAccessManager::GetOperation";
   ops[QNetworkAccessManager::PutOperation] = "QNetworkAccessManager::PutOperation";
   ops[QNetworkAccessManager::PostOperation] = "QNetworkAccessManager::PostOperation";
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *reply = [operation() = %1, url() = %2, ...])")
-                      .arg(ops[reply->operation()]).arg(reply->url().toString()));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *reply = %1 [operation() = %2, url() = %3, ...])")
+                      .arg((qulonglong)reply).arg(ops[reply->operation()]).arg(reply->url().toString()));
 #endif
   QMap <QNetworkAccessManager::Operation, QString> opsShort;
   opsShort[QNetworkAccessManager::HeadOperation] = "HEAD";
@@ -424,7 +428,34 @@ void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *re
   opsShort[QNetworkAccessManager::PutOperation] = "PUT";
   opsShort[QNetworkAccessManager::PostOperation] = "POST";
 
+#if QMC2_WIP_CODE == 1
+  if ( !reply || reply->url().isEmpty() )
+    return;
+
+  QVariant header = reply->header(QNetworkRequest::ContentLengthHeader);
+  bool ok;
+  int size = header.toInt(&ok);
+  if ( ok && size == 0 )
+    return;
+
+  if ( MiniWebBrowser::supportedSchemes.contains(reply->url().scheme().toLower()) ) {
+    switch ( reply->operation() ) {
+      case QNetworkAccessManager::GetOperation:
+        qmc2MainWindow->startDownload(reply);
+        break;
+
+      default:
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: MiniWebBrowser::processPageActionHandleUnsupportedContent(): OP = %1, URL = %2")
+                            .arg(opsShort[reply->operation()]).arg(reply->url().toString()));
+        break;
+    }
+  } else {
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: MiniWebBrowser::processPageActionHandleUnsupportedContent(): OP = %1, URL = %2")
+                        .arg(opsShort[reply->operation()]).arg(reply->url().toString()));
+  }
+#else
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: MiniWebBrowser::processPageActionHandleUnsupportedContent(): OP = %1, URL = %2")
                       .arg(opsShort[reply->operation()]).arg(reply->url().toString()));
+#endif
 }
 
