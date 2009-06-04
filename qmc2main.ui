@@ -1486,12 +1486,29 @@
               <property name="selectionMode">
                <enum>QAbstractItemView::ExtendedSelection</enum>
               </property>
+              <property name="rootIsDecorated">
+               <bool>false</bool>
+              </property>
+              <property name="uniformRowHeights">
+               <bool>true</bool>
+              </property>
               <property name="allColumnsShowFocus">
                <bool>true</bool>
               </property>
               <property name="headerHidden">
                <bool>true</bool>
               </property>
+              <attribute name="headerMinimumSectionSize">
+               <number>0</number>
+              </attribute>
+              <attribute name="headerMinimumSectionSize">
+               <number>0</number>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>Status</string>
+               </property>
+              </column>
               <column>
                <property name="text">
                 <string>Progress</string>
@@ -1551,17 +1568,17 @@
              </widget>
             </item>
             <item row="1" column="3">
-             <widget class="QProgressBar" name="progressBarDownloadTotal">
-              <property name="toolTip">
-               <string>Total progress of running downloads</string>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
               </property>
-              <property name="statusTip">
-               <string>Total progress of running downloads</string>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
               </property>
-              <property name="value">
-               <number>0</number>
-              </property>
-             </widget>
+             </spacer>
             </item>
            </layout>
           </item>

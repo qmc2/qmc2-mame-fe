@@ -52,6 +52,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			fileeditwidget.cpp \
 			detailsetup.cpp \
 			miniwebbrowser.cpp \
+			downloaditem.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			arcade/arcadeview.cpp \
@@ -90,6 +91,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			fileeditwidget.h \
 			detailsetup.h \
 			miniwebbrowser.h \
+			downloaditem.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \

@@ -47,6 +47,7 @@
 #include "detailsetup.h"
 #include "miniwebbrowser.h"
 #include "unzip.h"
+#include "downloaditem.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #endif
@@ -4974,6 +4975,26 @@ void MainWindow::mawsLoadFinished(bool ok)
   }
 }
 #endif
+
+void MainWindow::startDownload(QNetworkReply *reply)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::startDownload(QNetworkReply *reply = ...)");
+#endif
+
+  if ( !reply )
+    return;
+
+  QFileInfo fi(reply->url().path());
+  QString proposedName = fi.baseName();
+  if ( !fi.completeSuffix().isEmpty() )
+    proposedName += "." + fi.completeSuffix();
+  QString filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store download"), proposedName, tr("All files (*)"));
+  if ( !filePath.isEmpty() )
+    DownloadItem *downloadItem = new DownloadItem(reply, filePath, treeWidgetDownloads);
+  else
+    reply->close();
+}
 
 void myQtMessageHandler(QtMsgType type, const char *msg)
 {

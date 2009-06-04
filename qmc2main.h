@@ -6,6 +6,7 @@
 #include <QSocketNotifier>
 #include <QTimer>
 #include <QTime>
+#include <QNetworkReply>
 #include "ui_qmc2main.h"
 #include "ui_options.h"
 #if QMC2_USE_PHONON_API
@@ -253,6 +254,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void processEvents() { qApp->processEvents(); }
     void on_treeWidgetGamelist_headerSectionClicked(int);
     void on_treeWidgetHierarchy_headerSectionClicked(int);
+    void startDownload(QNetworkReply *);
 
   protected:
     void closeEvent(QCloseEvent *);
