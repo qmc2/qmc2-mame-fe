@@ -1997,13 +1997,13 @@ void MainWindow::checkCurrentSearchSelection()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkCurrentSearchSelection()");
 #endif
 
-  listWidgetSearch->blockSignals(TRUE);
   listWidgetSearch->setCurrentIndex(QModelIndex());
   listWidgetSearch->clearSelection();
 
   if ( !qmc2CurrentItem )
     return;
 
+  listWidgetSearch->blockSignals(TRUE);
   QList<QListWidgetItem *> searchMatches = listWidgetSearch->findItems(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME), Qt::MatchExactly);
   if ( searchMatches.count() > 0 ) {
     QListWidgetItem *matchedItem = searchMatches[0];
@@ -2013,7 +2013,6 @@ void MainWindow::checkCurrentSearchSelection()
       qApp->processEvents();
     }
   }
-
   listWidgetSearch->blockSignals(FALSE);
 }
 
@@ -2023,13 +2022,14 @@ void MainWindow::checkCurrentFavoritesSelection()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkCurrentFavoritesSelection()");
 #endif
 
-  listWidgetFavorites->blockSignals(TRUE);
+
   listWidgetFavorites->setCurrentIndex(QModelIndex());
   listWidgetFavorites->clearSelection();
 
   if ( !qmc2CurrentItem )
     return;
 
+  listWidgetFavorites->blockSignals(TRUE);
   QList<QListWidgetItem *> favoritesMatches = listWidgetFavorites->findItems(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME), Qt::MatchExactly);
   if ( favoritesMatches.count() > 0 ) {
     QListWidgetItem *matchedItem = favoritesMatches[0];
@@ -2039,7 +2039,6 @@ void MainWindow::checkCurrentFavoritesSelection()
       qApp->processEvents();
     }
   }
-
   listWidgetFavorites->setFocus();
   listWidgetFavorites->blockSignals(FALSE);
 }
@@ -2050,13 +2049,13 @@ void MainWindow::checkCurrentPlayedSelection()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkCurrentPlayedSelection()");
 #endif
 
-  listWidgetPlayed->blockSignals(TRUE);
   listWidgetPlayed->setCurrentIndex(QModelIndex());
   listWidgetPlayed->clearSelection();
 
   if ( !qmc2CurrentItem )
     return;
 
+  listWidgetPlayed->blockSignals(TRUE);
   QList<QListWidgetItem *> playedMatches = listWidgetPlayed->findItems(qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME), Qt::MatchExactly);
   if ( playedMatches.count() > 0 ) {
     QListWidgetItem *matchedItem = playedMatches[0];
@@ -2066,7 +2065,6 @@ void MainWindow::checkCurrentPlayedSelection()
       qApp->processEvents();
     }
   }
-
   listWidgetPlayed->setFocus();
   listWidgetPlayed->blockSignals(FALSE);
 }
