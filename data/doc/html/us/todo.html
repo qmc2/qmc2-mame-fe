@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-color: lightyellow;" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.2.b9, 02-JUN-2009</h3>
+<h3>TODO - v0.2.b9, 04-JUN-2009</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>Certain GUI styles may cause display problems for the emulator configuration widgets</li>
@@ -16,6 +16,9 @@
   <li>On UNIX / X11 platforms, the QMC2 variant launcher will try to raise a probably already running <i>other</i> variant -- this feature is <b>very</b> dependent on the window manager which may decide to ignore XMapRaised()</li>
   <li>Variant launching does not work on Windows yet</i>
   <li>MAME/MESS output notifications are not supported on Windows yet</i>
+  <li>The MiniWebBrowser -- used for the MAWS lookup and the documentation browser -- has a fairly restrictive feature set which is tailored to the uses of QMC2.
+      It's not even <i>meant</i> to be a full-featured browser. Nonetheless, as of Qt 4.5.1, the browser works quite well on UNIX (no idea about Mac OS X yet) -- let alone some planned but missing features.
+      On Windows, however, the underlying QtWebKit API that comes with Qt 4.5.1 still has a number of obvious restrictions and bugs.</i>
 </ul>
 <p><b>Work in progress</b></p>
 <ul>
