@@ -1501,9 +1501,6 @@
               <attribute name="headerMinimumSectionSize">
                <number>0</number>
               </attribute>
-              <attribute name="headerMinimumSectionSize">
-               <number>0</number>
-              </attribute>
               <column>
                <property name="text">
                 <string>Status</string>
@@ -1529,7 +1526,7 @@
               </property>
               <property name="icon">
                <iconset resource="qmc2.qrc">
-                <normaloff>:/data/img/stop.png</normaloff>:/data/img/stop.png</iconset>
+                <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
               </property>
              </widget>
             </item>

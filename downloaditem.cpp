@@ -6,6 +6,8 @@
 
 extern MainWindow *qmc2MainWindow;
 
+#define QMC2_DEBUG
+
 DownloadItem::DownloadItem(QNetworkReply *reply, QString file, QTreeWidget *parent)
   : QTreeWidgetItem(parent)
 {
@@ -24,7 +26,7 @@ DownloadItem::DownloadItem(QNetworkReply *reply, QString file, QTreeWidget *pare
   progressWidget->setFont(f);
   progressWidget->setFormat(reply->url().toString());
   treeWidget->setItemWidget(this, QMC2_DOWNLOAD_COLUMN_PROGRESS, progressWidget);
-  setIcon(QMC2_DOWNLOAD_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/reload.png")));
+  setIcon(QMC2_DOWNLOAD_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/download.png")));
   treeWidget->resizeColumnToContents(QMC2_DOWNLOAD_COLUMN_STATUS);
   progressWidget->reset();
   progressWidget->setRange(-1, -1);
@@ -58,13 +60,14 @@ ItemDownloader::ItemDownloader(QNetworkReply *reply, QString file, QProgressBar 
   progressWidget = progress;
   downloadItem = parent;
 
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("download started: URL = %1, local path = %2, reply ID = %3")
+                      .arg(networkReply->url().toString()).arg(localPath).arg((qulonglong)networkReply));
+
   connect(networkReply, SIGNAL(readyRead()), this, SLOT(readyRead()));
   connect(networkReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(error(QNetworkReply::NetworkError)));
   connect(networkReply, SIGNAL(downloadProgress(qint64, qint64)), this, SLOT(downloadProgress(qint64, qint64)));
   connect(networkReply, SIGNAL(metaDataChanged()), this, SLOT(metaDataChanged()));
   connect(networkReply, SIGNAL(finished()), this, SLOT(finished()));
-
-  readyRead();
 }
 
 ItemDownloader::~ItemDownloader()
@@ -96,6 +99,9 @@ void ItemDownloader::error(QNetworkReply::NetworkError code)
   downloadItem->setIcon(QMC2_DOWNLOAD_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/warning.png")));
   downloadItem->treeWidget->resizeColumnToContents(QMC2_DOWNLOAD_COLUMN_STATUS);
   progressWidget->setEnabled(FALSE);
+
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("download aborted: reason = %1, URL = %2, local path = %3, reply ID = %4")
+                      .arg(networkReply->errorString()).arg(networkReply->url().toString()).arg(localPath).arg((qulonglong)networkReply));
 }
 
 void ItemDownloader::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
@@ -123,8 +129,10 @@ void ItemDownloader::finished()
 #endif
 
   progressWidget->setValue(progressWidget->maximum());
-  downloadItem->setIcon(QMC2_DOWNLOAD_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/yes.png")));
+  downloadItem->setIcon(QMC2_DOWNLOAD_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/ok.png")));
   downloadItem->treeWidget->resizeColumnToContents(QMC2_DOWNLOAD_COLUMN_STATUS);
   progressWidget->setEnabled(FALSE);
-}
 
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("download finished: URL = %1, local path = %2, reply ID = %3")
+                      .arg(networkReply->url().toString()).arg(localPath).arg((qulonglong)networkReply));
+}
