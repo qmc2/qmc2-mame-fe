@@ -222,6 +222,7 @@ qmc2/data/img/classic/.svn/prop-base/next.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/next-sail.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/no.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/north.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/ok.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/opengl.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/pencils.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/previous.png.svn-base
@@ -342,6 +343,7 @@ qmc2/data/img/classic/.svn/text-base/next.png.svn-base
 qmc2/data/img/classic/.svn/text-base/next-sail.png.svn-base
 qmc2/data/img/classic/.svn/text-base/no.png.svn-base
 qmc2/data/img/classic/.svn/text-base/north.png.svn-base
+qmc2/data/img/classic/.svn/text-base/ok.png.svn-base
 qmc2/data/img/classic/.svn/text-base/opengl.png.svn-base
 qmc2/data/img/classic/.svn/text-base/pencils.png.svn-base
 qmc2/data/img/classic/.svn/text-base/previous.png.svn-base
@@ -463,6 +465,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/next.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/next-sail.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/no.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/north.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/ok.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/opengl.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/pencils.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/previous.png.svn-base
@@ -583,6 +586,7 @@ qmc2/data/img/crazy-black/.svn/text-base/next.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/next-sail.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/no.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/north.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/ok.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/opengl.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/pencils.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/previous.png.svn-base
@@ -704,6 +708,7 @@ qmc2/data/img/crazy/.svn/prop-base/next.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/next-sail.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/no.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/north.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/ok.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/opengl.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/pencils.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/previous.png.svn-base
@@ -824,6 +829,7 @@ qmc2/data/img/crazy/.svn/text-base/next.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/next-sail.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/no.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/north.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/ok.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/opengl.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/pencils.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/previous.png.svn-base
@@ -945,6 +951,7 @@ qmc2/data/img/.svn/prop-base/next.png.svn-base
 qmc2/data/img/.svn/prop-base/next-sail.png.svn-base
 qmc2/data/img/.svn/prop-base/no.png.svn-base
 qmc2/data/img/.svn/prop-base/north.png.svn-base
+qmc2/data/img/.svn/prop-base/ok.png.svn-base
 qmc2/data/img/.svn/prop-base/opengl.png.svn-base
 qmc2/data/img/.svn/prop-base/pencils.png.svn-base
 qmc2/data/img/.svn/prop-base/previous.png.svn-base
@@ -1065,6 +1072,7 @@ qmc2/data/img/.svn/text-base/next.png.svn-base
 qmc2/data/img/.svn/text-base/next-sail.png.svn-base
 qmc2/data/img/.svn/text-base/no.png.svn-base
 qmc2/data/img/.svn/text-base/north.png.svn-base
+qmc2/data/img/.svn/text-base/ok.png.svn-base
 qmc2/data/img/.svn/text-base/opengl.png.svn-base
 qmc2/data/img/.svn/text-base/pencils.png.svn-base
 qmc2/data/img/.svn/text-base/previous.png.svn-base
@@ -1149,6 +1157,7 @@ qmc2/data/opt/.svn
 qmc2/data/prv/.svn
 qmc2/data/prv/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/.svn
+qmc2/data/svn-commit.tmp
 qmc2/data/tmp/.svn
 qmc2/data/tmp/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/ttl/.svn
@@ -1274,6 +1283,8 @@ qmc2/.svn/text-base/direditwidget.ui.svn-base
 qmc2/.svn/text-base/docbrowser.cpp.svn-base
 qmc2/.svn/text-base/docbrowser.h.svn-base
 qmc2/.svn/text-base/docbrowser.ui.svn-base
+qmc2/.svn/text-base/downloaditem.cpp.svn-base
+qmc2/.svn/text-base/downloaditem.h.svn-base
 qmc2/.svn/text-base/emuopt.cpp.svn-base
 qmc2/.svn/text-base/emuopt.h.svn-base
 qmc2/.svn/text-base/exclude.list.svn-base
