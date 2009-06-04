@@ -28,7 +28,7 @@
         <source>Project details</source>
         <translation>Szczegóły projektu</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../about.ui" line="112"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -489,7 +489,7 @@ p, li { white-space: pre-wrap; }
         <source>Smooth item scaling</source>
         <translation>Wygładzone skalowanie elementów</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="226"/>
         <source>°</source>
         <translation>°</translation>
@@ -1411,241 +1411,241 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.ui" line="15"/>
         <source>Detail setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia szczegółów</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="201"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Anuluj</translation>
+        <translation>&amp;Anuluj</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="36"/>
         <source>List of available details</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista dostępnych szczegółów</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="91"/>
         <source>List of active details and their order</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista dostępnych szczegółów i ich porządek</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="68"/>
         <source>Activate selected details</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktywuj wybrane szczegóły</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="106"/>
         <source>Deactivate selected details</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktywuj wybrane szczegóły</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="137"/>
         <source>Move selected details down</source>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń wybrane szczegóły w dół</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="120"/>
         <source>Move selected details up</source>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń wybrane szczegóły w górę</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="173"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="20"/>
         <source>WARNING: the game/machine detail setup isn&apos;t working yet!</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: ustawienia szczegółów gry/maszyny jeszcze nie działają!</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="24"/>
         <location filename="../../detailsetup.cpp" line="76"/>
         <source>Pre&amp;view</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Podgląd</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="25"/>
         <source>Game preview image</source>
-        <translation type="unfinished">Obraz podglądu gry</translation>
+        <translation>Obraz podglądu gry</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="27"/>
         <location filename="../../detailsetup.cpp" line="79"/>
         <source>Fl&amp;yer</source>
-        <translation type="unfinished">&amp;Ulotka</translation>
+        <translation>&amp;Ulotka</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="28"/>
         <source>Game flyer image</source>
-        <translation type="unfinished">Obraz ulotki gry</translation>
+        <translation>Obraz ulotki gry</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="30"/>
         <source>Game &amp;info</source>
-        <translation type="unfinished">&amp;Informacje o grze</translation>
+        <translation>&amp;Informacje o grze</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="31"/>
         <source>Game information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje o grze</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="33"/>
         <source>Em&amp;ulator info</source>
-        <translation type="unfinished">Informacje o &amp;emulatorze</translation>
+        <translation>Informacje o &amp;emulatorze</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="34"/>
         <source>Emulator information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje o emulatorze</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="36"/>
         <location filename="../../detailsetup.cpp" line="85"/>
         <source>&amp;Configuration</source>
-        <translation type="unfinished">&amp;Konfiguracja</translation>
+        <translation>&amp;Konfiguracja</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="37"/>
         <location filename="../../detailsetup.cpp" line="86"/>
         <source>Emulator configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja emulatora</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="39"/>
         <source>Ca&amp;binet</source>
-        <translation type="unfinished">Auto&amp;mat</translation>
+        <translation>Auto&amp;mat</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="40"/>
         <source>Arcade cabinet image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz automatu</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="42"/>
         <source>C&amp;ontroller</source>
-        <translation type="unfinished">K&amp;ontroler</translation>
+        <translation>K&amp;ontroler</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="43"/>
         <source>Control panel image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz panelu kontrolnego</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="45"/>
         <source>Mar&amp;quee</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;lansza tytułowa</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="46"/>
         <source>Marquee image</source>
-        <translation type="unfinished">Obraz planszy tytułowej</translation>
+        <translation>Obraz planszy tytułowej</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="48"/>
         <source>Titl&amp;e</source>
-        <translation type="unfinished">Ekran &amp;tytułowy</translation>
+        <translation>Ekran &amp;tytułowy</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="49"/>
         <source>Title screen image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz ekranu tytułowego</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="51"/>
         <source>MA&amp;WS</source>
-        <translation type="unfinished"></translation>
+        <translation>MA&amp;WS</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="77"/>
         <source>Machine preview image</source>
-        <translation type="unfinished">Obraz podglądu maszyny</translation>
+        <translation>Obraz podglądu maszyny</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="80"/>
         <source>Machine flyer image</source>
-        <translation type="unfinished">Obraz ulotki maszyny</translation>
+        <translation>Obraz ulotki maszyny</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="82"/>
         <source>Machine &amp;info</source>
-        <translation type="unfinished">&amp;Informacje o maszynie</translation>
+        <translation>&amp;Informacje o maszynie</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="83"/>
         <source>Machine information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje o maszynie</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="88"/>
         <source>De&amp;vices</source>
-        <translation type="unfinished">U&amp;rządzenia</translation>
+        <translation>U&amp;rządzenia</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="89"/>
         <source>Device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja urządzeń</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="30"/>
         <source>Available details</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostępne szczegóły</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="85"/>
         <source>Active details</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktywne szczegóły</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="170"/>
         <source>Apply detail setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastosuj ustawienia szczegółów i zamknij okno</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="198"/>
         <source>Cancel detail setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuluj ustawienia szczegółów i zamknij okno</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="184"/>
         <source>Apply detail setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastosuj ustawienia szczegółów</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="187"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished">&amp;Zastosuj</translation>
+        <translation>&amp;Zastosuj</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="52"/>
         <source>MAWS page (web lookup)</source>
-        <translation type="unfinished"></translation>
+        <translation>Strona MAWS (odwołanie do sieci)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="311"/>
         <source>INFO: the configuration tab can&apos;t be removed</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMACJA: karta konfiguracji nie może zostać usunięta</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="278"/>
         <source>MAWS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja MAWS</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="51"/>
         <source>Configure current detail</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja wybranego szczegółu</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="54"/>
         <source>Configure...</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja...</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="279"/>
         <source>MAWS URL pattern (use %1 as placeholder for game ID):</source>
-        <translation type="unfinished"></translation>
+        <translation>Wzór adresu URL MAWS (użyj %1 w miejsce identyfikatora gry):</translation>
     </message>
 </context>
 <context>
@@ -1662,7 +1662,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../docbrowser.cpp" line="79"/>
         <location filename="../../docbrowser.ui" line="15"/>
         <source>MiniWebBrowser</source>
-        <translation type="unfinished"></translation>
+        <translation>MiniWebBrowser</translation>
     </message>
 </context>
 <context>
@@ -3607,7 +3607,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../downloaditem.cpp" line="98"/>
         <source>Error #%1: </source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd numer %1:</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="103"/>
@@ -4105,17 +4105,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="966"/>
         <source>&amp;Devices</source>
-        <translation type="unfinished"></translation>
+        <translation>U&amp;rządzenia</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="993"/>
         <source>Mar&amp;quee</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;lansza tytułowa</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1011"/>
         <source>MA&amp;WS</source>
-        <translation type="unfinished"></translation>
+        <translation>MA&amp;WS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1049"/>
@@ -4137,12 +4137,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="1174"/>
         <source>MP&amp;3 player</source>
-        <translation type="unfinished"></translation>
+        <translation>Odtwarzacz MP&amp;3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1470"/>
         <source>Dow&amp;nloads</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;obierania</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1601"/>
@@ -4167,7 +4167,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="1698"/>
         <source>&amp;Display</source>
-        <translation type="unfinished"></translation>
+        <translation>Ekra&amp;n</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1733"/>
@@ -4484,7 +4484,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="370"/>
         <source>M&amp;achine list</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lista maszyn</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="453"/>
@@ -4996,7 +4996,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="873"/>
         <source>Pre&amp;view</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Podgląd</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1213"/>
@@ -5067,7 +5067,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="1662"/>
         <source>&amp;Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Gr&amp;a</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2341"/>
@@ -6052,70 +6052,71 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="754"/>
         <source>Detail setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia szczegółów</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3341"/>
         <source>destroying detail setup</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie ustawień szczegółów</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2260"/>
         <source>Fetching MAWS page for &apos;%1&apos;, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieranie strony MAWS dla &apos;%1&apos;, proszę czekać...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2223"/>
         <source>MAWS page for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Strona MAWS dla &apos;%1&apos;</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="1382"/>
         <source>freed %n byte(s) in %1</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>uwolniono %n bajt w %1</numerusform>
+            <numerusform>uwolniono %n bajty w %1</numerusform>
+            <numerusform>uwolniono %n bajtów w %1</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="1382"/>
         <source>%n entry(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n wpis</numerusform>
+            <numerusform>%n wpisy</numerusform>
+            <numerusform>%n wpisów</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1384"/>
         <source>MAWS in-memory cache cleared (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyszczono pamięciowy bufor MAWS (%1)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2571"/>
         <location filename="../../qmc2main.ui" line="2574"/>
         <source>Clear MAWS cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bufor MAWS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2577"/>
         <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+M</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="1400"/>
         <source>removed %n byte(s) in %1</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>usunięto %n bajt w %1</numerusform>
+            <numerusform>usunięto %n bajty w %1</numerusform>
+            <numerusform>usunięto %n bajtów w %1</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="1400"/>
         <source>%n file(s)</source>
-        <translation type="unfinished">
+        <translatorcomment>%n plików</translatorcomment>
+        <translation>
             <numerusform></numerusform>
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -6124,51 +6125,51 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1401"/>
         <source>MAWS on-disk cache cleared (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyszczono dyskowy bufor MAWS (%1)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1478"/>
         <location filename="../../qmc2main.ui" line="1481"/>
         <source>List of active/inactive downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista aktywnych/nieaktywnych pobierań</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1511"/>
         <source>Progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Postęp</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1519"/>
         <location filename="../../qmc2main.ui" line="1522"/>
         <source>Clear finished / stopped downloads from list</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń skończone / zatrzymane pobierania z listy</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1536"/>
         <location filename="../../qmc2main.ui" line="1539"/>
         <source>Reload selected downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież wybrane pobierania</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1553"/>
         <location filename="../../qmc2main.ui" line="1556"/>
         <source>Stop selected downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatrzymaj wybrane pobierania</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3311"/>
         <source>destroying MiniWebBrowser</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie MiniWebBrowser</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3316"/>
         <source>destroying MAWS lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie odwołania MAWS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4992"/>
         <source>Choose file to store download</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik do zapisania pobierania</translation>
     </message>
 </context>
 <context>
@@ -6202,107 +6203,107 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../miniwebbrowser.ui" line="15"/>
         <source>Mini Web Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Mini Przeglądarka Sieci</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="78"/>
         <location filename="../../miniwebbrowser.ui" line="27"/>
         <location filename="../../miniwebbrowser.ui" line="30"/>
         <source>Go back</source>
-        <translation type="unfinished"></translation>
+        <translation>Idź wstecz</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="80"/>
         <location filename="../../miniwebbrowser.ui" line="44"/>
         <location filename="../../miniwebbrowser.ui" line="47"/>
         <source>Go forward</source>
-        <translation type="unfinished">Idź naprzód</translation>
+        <translation>Idź naprzód</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="61"/>
         <location filename="../../miniwebbrowser.ui" line="64"/>
         <source>Reload current URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież bieżący adres URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="78"/>
         <location filename="../../miniwebbrowser.ui" line="81"/>
         <source>Stop loading of current URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatrzymaj ładowanie bieżącego adresu URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="115"/>
         <location filename="../../miniwebbrowser.ui" line="118"/>
         <source>Enter current URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Wpisz żądany adres URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="134"/>
         <location filename="../../miniwebbrowser.ui" line="137"/>
         <source>Load URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Idź do adresu URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="175"/>
         <location filename="../../miniwebbrowser.ui" line="178"/>
         <source>Current progress loading URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Postęp ładowania bieżącego adresu URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="95"/>
         <location filename="../../miniwebbrowser.ui" line="98"/>
         <source>Go home (first page)</source>
-        <translation type="unfinished"></translation>
+        <translation>Idź do strony domowej (pierwszej)</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="68"/>
         <source>Open link</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz element docelowy</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="70"/>
         <source>Save link as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz element docelowy jako...</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="72"/>
         <source>Copy link</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj adres odnośnika</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="74"/>
         <source>Save image as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz obraz jako...</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="76"/>
         <source>Copy image</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj adres obrazka</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="82"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="84"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatrzymaj</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="86"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Skopiuj</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="89"/>
         <source>Inspect</source>
-        <translation type="unfinished"></translation>
+        <translation>Zbadaj</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="208"/>
         <source>No title</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak tytułu</translation>
     </message>
 </context>
 <context>
@@ -8361,87 +8362,87 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="1760"/>
         <source>Choose MAWS cache directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz katalog bufora MAWS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3106"/>
         <source>MAWS cache directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog bufora MAWS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3113"/>
         <source>MAWS cache directory (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog bufora MAWS (zapis)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3120"/>
         <source>Browse MAWS cache directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż katalog bufora MAWS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2556"/>
         <source>&amp;Tools / Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Narzę&amp;dzia / Pośrednik</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2712"/>
         <source>Use HTTP proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Używaj pośrednika HTTP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2724"/>
         <source>Host / IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Serwer / IP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2731"/>
         <source>Hostname or IP address of the HTTP proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa serwera lub adres IP pośrednika HTTP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2738"/>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2745"/>
         <source>Port to access the HTTP proxy service</source>
-        <translation type="unfinished"></translation>
+        <translation>Port do dostępu do usługi pośrednika HTTP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2758"/>
         <source>User ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID użytkownika</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2765"/>
         <source>User ID to access the HTTP proxy service (empty = no authentication)</source>
-        <translation type="unfinished"></translation>
+        <translation>ID użytkownika dostępu do usługi pośrednika HTTP (puste = bez autoryzacji)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2772"/>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasło</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2709"/>
         <source>Enable / disable the use of an HTTP proxy on any web lookups</source>
-        <translation type="unfinished"></translation>
+        <translation>Korzystaj / nie korzystaj z pośrednika HTTP do jakichkolwiek odwołań do sieci</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2779"/>
         <source>Password to access the HTTP proxy service (empty = no authentication)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasło dostępu do usługi pośrednika HTTP (puste = bez autoryzacji)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2789"/>
         <source>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: the stored password is only &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;UWAGA: zapisane hasło jest &lt;u&gt;słabo&lt;u&gt; zaszyfrowane!&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="189"/>
         <source>Clear MAWS cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bufor MAWS</translation>
     </message>
 </context>
 <context>
@@ -10507,7 +10508,9 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <source>&lt;p&gt;&lt;b&gt;&lt;font size=&quot;+1&quot;&gt;Welcome to QMC2 - M.A.M.E./M.E.S.S. Catalog / Launcher II!&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;This appears to be your first start of QMC2 (as this user) because no valid configuration was found. To be able to use QMC2 as a front end for the emulator, you need to specify the path to the emulator&apos;s executable file below.&lt;/p&gt;
 &lt;p&gt;It&apos;s highly recommended that you also enter the ROM-path you are going to use (if different than the emulator&apos;s default path).&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;&lt;b&gt;&lt;font size=&quot;+1&quot;&gt;Witamy w QMC2 - M.A.M.E./M.E.S.S. Catalog / Launcher II!&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;To wygląda na Twoje pierwsze uruchomienie QMC2 (jako ten użytkownik), ponieważ nie znaleziono poprawnej konfiguracji. Aby móc korzystać z QMC2 jako interfejsu graficznego, musisz poniżej podać ścieżkę do pliku wykonywalnego emulatora.&lt;/p&gt;
+&lt;p&gt;Powinieneś także podać ścieżkę do ROM-ów, z której zamierzasz korzystać (jeśli różni się od domyślnej ścieżki emulatora).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="155"/>
@@ -10517,17 +10520,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../welcome.ui" line="210"/>
         <source>Emulator executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik wykonywalny emulatora</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="217"/>
         <source>ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do ROM-ów</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="224"/>
         <source>Sample path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do sampli</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="265"/>
