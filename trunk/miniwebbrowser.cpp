@@ -2,6 +2,7 @@
 #include <QWebFrame>
 #include <QNetworkRequest>
 #include <QNetworkReply>
+#include <QNetworkAccessManager>
 #include <QDir>
 
 #include "miniwebbrowser.h"
@@ -9,6 +10,7 @@
 #include "qmc2main.h"
 
 extern MainWindow *qmc2MainWindow;
+extern QNetworkAccessManager *qmc2NetworkAccessManager;
 
 QCache<QString, QIcon> MiniWebBrowser::iconCache;
 QStringList MiniWebBrowser::supportedSchemes;
@@ -36,6 +38,9 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   firstTimeLoadFinished = TRUE;
  
   iconCache.setMaxCost(QMC2_BROWSER_ICONCACHE_SIZE);
+
+  // we want the same global network access manager for all browsers
+  webViewBrowser->page()->setNetworkAccessManager(qmc2NetworkAccessManager);
 
   // we want to manipulate the link activation
   webViewBrowser->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
@@ -408,7 +413,7 @@ void MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &r
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &request = ...)");
 #endif
 
-  qmc2MainWindow->startDownload(webViewBrowser->page()->networkAccessManager()->get(request));
+  qmc2MainWindow->startDownload(qmc2NetworkAccessManager->get(request));
 }
 
 void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *reply)

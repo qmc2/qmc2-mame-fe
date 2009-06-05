@@ -95,6 +95,9 @@
 #define QMC2_DOWNLOAD_COLUMN_STATUS	0
 #define QMC2_DOWNLOAD_COLUMN_PROGRESS	1
 
+// how many milliseconds between download connection checks
+#define QMC2_DOWNLOAD_CHECK_TIMEOUT	1000
+
 // SDLMAME output notifier FIFO
 #define QMC2_SDLMAME_OUTPUT_FIFO	"/tmp/sdlmame_out"
 #define QMC2_SDLMESS_OUTPUT_FIFO	QMC2_SDLMAME_OUTPUT_FIFO

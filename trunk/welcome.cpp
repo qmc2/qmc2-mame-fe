@@ -203,7 +203,7 @@ bool Welcome::checkConfig()
   if ( startupConfig->value("GUI/CheckSingleInstance", TRUE).toBool() ) {
     if ( startupConfig->value(QString("InstanceRunning")).toBool() ) {
       switch ( QMessageBox::question(this, tr("Single-instance check"),
-                                           tr("It appears that another instance of %1 is already running.\n\nExit now, accept once or ignore completely?").arg(variant),
+                                           tr("It appears that another instance of %1 is already running.\nHowever, this can also be the leftover of a previous crash.\n\nExit now, accept once or ignore completely?").arg(variant),
                                            tr("&Exit"), tr("&Once"), tr("&Ignore"), 0, 0) ) {
          case 0:
            startupConfig->setValue("GUI/CheckSingleInstance", TRUE);

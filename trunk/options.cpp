@@ -414,6 +414,10 @@ void Options::apply()
     qmc2MESSDeviceConfigurator->pushButtonRemoveConfiguration->setIconSize(iconSize);
   }
 #endif
+  qmc2MainWindow->pushButtonClearFinishedDownloads->setIconSize(iconSize);
+  qmc2MainWindow->pushButtonReloadSelectedDownloads->setIconSize(iconSize);
+  qmc2MainWindow->pushButtonStopSelectedDownloads->setIconSize(iconSize);
+  qmc2MainWindow->treeWidgetDownloads->setIconSize(iconSize);
   qmc2MainWindow->pushButtonSelectRomFilter->setIconSize(iconSize);
 }
 
