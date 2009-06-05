@@ -19,6 +19,7 @@
 #include <QDateTime>
 #include <QMutex>
 #include <QtWebKit>
+#include <QNetworkAccessManager>
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS)
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -202,6 +203,7 @@ QString qmc2MessMachineName = "";
 QMutex qmc2LogMutex;
 QString qmc2FileEditStartPath = "";
 QString qmc2DirectoryEditStartPath = "";
+QNetworkAccessManager *qmc2NetworkAccessManager = NULL;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -885,6 +887,9 @@ MainWindow::MainWindow(QWidget *parent)
 
   // setup intial focus widget
   on_tabWidgetGamelist_currentChanged(tabWidgetGamelist->currentIndex());
+
+  // setup the global network access manager
+  qmc2NetworkAccessManager = new QNetworkAccessManager(this);
 
   QTimer::singleShot(0, this, SLOT(init()));
 }
@@ -3161,8 +3166,44 @@ void MainWindow::closeEvent(QCloseEvent *e)
     }
   }
 
+  QList<int> indexList;
+  int runningDownloads = 0;
+  QTreeWidgetItemIterator it(treeWidgetDownloads);
+  while ( *it ) {
+    indexList << treeWidgetDownloads->indexOfTopLevelItem(*it);
+    if ( (*it)->whatsThis(0) == "downloading" || (*it)->whatsThis(0) == "initializing" )
+      runningDownloads++;
+    it++;
+  }
+  if ( runningDownloads > 0 ) {
+    switch ( QMessageBox::question(this, tr("Confirm"), tr("There are one or more running downloads. Quit anyway?"),
+                                   QMessageBox::Yes, QMessageBox::No) ) {
+      case QMessageBox::Yes:
+        break;
+
+      case QMessageBox::No:
+        e->ignore();
+        return;
+        break;
+
+      default:
+        break;
+    }
+  }
+
   qmc2CleaningUp = TRUE;
   log(QMC2_LOG_FRONTEND, tr("cleaning up"));
+  
+  if ( runningDownloads > 0 )
+    log(QMC2_LOG_FRONTEND, tr("aborting running downloads"));
+  foreach (int i, indexList) {
+    DownloadItem *item = (DownloadItem *)treeWidgetDownloads->takeTopLevelItem(i);
+    if ( item ) {
+      if ( item->whatsThis(0) == "downloading" || item->whatsThis(0) == "initializing" )
+        item->itemDownloader->networkReply->abort();
+      delete item;
+    }
+  }
 
   if ( listWidgetFavorites->count() > 0 )
     qmc2Gamelist->saveFavorites();
@@ -3399,6 +3440,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
     ::unlink(QMC2_SDLMAME_OUTPUT_FIFO);
   }
 #endif
+
+  if ( qmc2NetworkAccessManager ) {
+    log(QMC2_LOG_FRONTEND, tr("destroying network access manager"));
+    delete qmc2NetworkAccessManager;
+  }
 
   log(QMC2_LOG_FRONTEND, tr("so long and thanks for all the fish"));
 
@@ -4979,7 +5025,7 @@ void MainWindow::mawsLoadFinished(bool ok)
 void MainWindow::startDownload(QNetworkReply *reply)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::startDownload(QNetworkReply *reply = ...)");
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::startDownload(QNetworkReply *reply = %1)").arg((qulonglong)reply));
 #endif
 
   if ( !reply )
@@ -4990,10 +5036,65 @@ void MainWindow::startDownload(QNetworkReply *reply)
   if ( !fi.completeSuffix().isEmpty() )
     proposedName += "." + fi.completeSuffix();
   QString filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store download"), proposedName, tr("All files (*)"));
-  if ( !filePath.isEmpty() )
+  if ( !filePath.isEmpty() ) {
     DownloadItem *downloadItem = new DownloadItem(reply, filePath, treeWidgetDownloads);
-  else
+    treeWidgetDownloads->scrollToItem(downloadItem);
+  } else
     reply->close();
+}
+
+void MainWindow::on_pushButtonClearFinishedDownloads_clicked()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonClearFinishedDownloads_clicked()");
+#endif
+
+  QList<int> indexList;
+
+  QTreeWidgetItemIterator it(treeWidgetDownloads);
+  while ( *it ) {
+    if ( (*it)->whatsThis(0) == "finished" || (*it)->whatsThis(0) == "aborted" )
+      indexList << treeWidgetDownloads->indexOfTopLevelItem(*it);
+    it++;
+  }
+
+  int i;
+  for (i = indexList.count(); i >= 0; i--) {
+    DownloadItem *item = (DownloadItem *)treeWidgetDownloads->takeTopLevelItem(indexList[i]);
+    if ( item )
+      delete item;
+  }
+}
+
+void MainWindow::on_pushButtonReloadSelectedDownloads_clicked()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonReloadSelectedDownloads_clicked()");
+#endif
+
+  QTreeWidgetItemIterator it(treeWidgetDownloads);
+  while ( *it ) {
+    if ( (*it)->isSelected() )
+      if ( (*it)->whatsThis(0) != "downloading" && (*it)->whatsThis(0) != "initializing" )
+        ((DownloadItem*)(*it))->itemDownloader->reload();
+    it++;
+  }
+}
+
+void MainWindow::on_pushButtonStopSelectedDownloads_clicked()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonStopSelectedDownloads_clicked()");
+#endif
+
+  QTreeWidgetItemIterator it(treeWidgetDownloads);
+  while ( *it ) {
+    if ( (*it)->isSelected() ) {
+      if ( (*it)->whatsThis(0) == "downloading" )
+        ((DownloadItem*)(*it))->itemDownloader->networkReply->abort();
+    }
+    it++;
+  }
 }
 
 void myQtMessageHandler(QtMsgType type, const char *msg)

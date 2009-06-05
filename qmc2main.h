@@ -255,6 +255,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_treeWidgetGamelist_headerSectionClicked(int);
     void on_treeWidgetHierarchy_headerSectionClicked(int);
     void startDownload(QNetworkReply *);
+    void on_pushButtonClearFinishedDownloads_clicked();
+    void on_pushButtonReloadSelectedDownloads_clicked();
+    void on_pushButtonStopSelectedDownloads_clicked();
 
   protected:
     void closeEvent(QCloseEvent *);

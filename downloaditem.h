@@ -7,6 +7,7 @@
 #include <QNetworkReply>
 #include <QString>
 #include <QFile>
+#include <QTimer>
 #include "macros.h"
 
 class ItemDownloader;
@@ -27,21 +28,28 @@ class ItemDownloader : public QObject
   Q_OBJECT
 
   public:
+    qint64 dataReceived;
+    int retryCount;
     QNetworkReply *networkReply;
     QProgressBar *progressWidget;
     QString localPath;
     QFile localFile;
     DownloadItem *downloadItem;
+    QTimer errorCheckTimer;
 
     ItemDownloader(QNetworkReply *, QString, QProgressBar *, DownloadItem *);
     ~ItemDownloader();
 
   public slots:
+    void init();
     void readyRead();
     void error(QNetworkReply::NetworkError);
     void downloadProgress(qint64, qint64);
     void metaDataChanged();
     void finished();
+    void managerFinished(QNetworkReply *);
+    void reload();
+    void checkError();
 };
 
 #endif
