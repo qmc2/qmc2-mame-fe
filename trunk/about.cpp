@@ -129,7 +129,7 @@ void About::showEvent(QShowEvent *e)
   labelTitle->setText(titleString);
 
   QString projectInfoString =
-          "<p><b>" + tr("Project homepage:") + "</b><br>http://qmc2.arcadehits.net/</p>" +
+          "<p><b>" + tr("Project homepage:") + "</b><br>http://qmc2.arcadehits.net/wordpress</p>" +
           "<p><b>" + tr("Development site:") + "</b><br>http://sourceforge.net/projects/qmc2</p>" +
           "<p><b>" + tr("QMC2 development mailing list:") + "</b><br>qmc2-devel@lists.sourceforge.net (" + tr("subscribers only") +")</p>" +
           "<p><b>" + tr("List subscription:") + "</b><br>https://lists.sourceforge.net/lists/listinfo/qmc2-devel</p>" +
