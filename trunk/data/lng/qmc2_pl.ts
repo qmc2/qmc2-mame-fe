@@ -3602,12 +3602,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../downloaditem.cpp" line="90"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można &apos;%1&apos; do zapisu</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="103"/>
         <source>download started: URL = %1, local path = %2, reply ID = %3</source>
-        <translation type="unfinished"></translation>
+        <translation>rozpoczęto pobieranie: adres URL = %1, lokalna ścieżka = %2, ID odpowiedzi = %3</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="161"/>
@@ -3617,12 +3617,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../downloaditem.cpp" line="167"/>
         <source>download aborted: reason = %1, URL = %2, local path = %3, reply ID = %4</source>
-        <translation type="unfinished"></translation>
+        <translation>przerwano pobieranie: powód = %1, adres URL = %2, lokalna ścieżka = %3, ID odpowiedzi = %4</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="207"/>
         <source>download finished: URL = %1, local path = %2, reply ID = %3</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono pobieranie: adres URL = %1, lokalna ścieżka = %2, ID odpowiedzi = %3</translation>
     </message>
 </context>
 <context>
@@ -4743,7 +4743,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3179"/>
         <source>There are one or more running downloads. Quit anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Jedno lub więcej pobierań wciąż jest aktywnych. Zakończyć mimo wszystko?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3195"/>
@@ -4753,7 +4753,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3198"/>
         <source>aborting running downloads</source>
-        <translation type="unfinished"></translation>
+        <translation>przerywanie aktywnych pobierań</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3232"/>
@@ -4803,7 +4803,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3445"/>
         <source>destroying network access manager</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie menedżera dostępu do sieci</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3449"/>
@@ -10614,7 +10614,10 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
 However, this can also be the leftover of a previous crash.
 
 Exit now, accept once or ignore completely?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wydaje się, że jest już uruchomiona inna instancja %1.
+Jednakowoż, może to być pozostałość po poprzedniej awarii.
+
+Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="47"/>
