@@ -82,6 +82,19 @@ void ItemDownloader::init()
   if ( !networkReply )
     return;
 
+  if ( localFile.isOpen() )
+    localFile.close();
+
+  localFile.setFileName(localPath);
+
+  if ( localFile.exists() )
+    localFile.remove();
+
+  if ( !localFile.open(QIODevice::WriteOnly) ) {
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open '%1' for writing").arg(localPath));
+    return;
+  }
+
   dataReceived = 0;
   retryCount++;
   progressWidget->reset();
@@ -136,7 +149,8 @@ void ItemDownloader::readyRead()
   dataReceived += buffer.length();
   retryCount = 0;
 
-  // FIXME: do something with the data...
+  if ( localFile.isOpen() )
+    localFile.write(buffer);
 }
 
 void ItemDownloader::error(QNetworkReply::NetworkError code)
@@ -158,6 +172,9 @@ void ItemDownloader::error(QNetworkReply::NetworkError code)
                       .arg(networkReply->errorString()).arg(networkReply->url().toString()).arg(localPath).arg((qulonglong)networkReply));
   downloadItem->setWhatsThis(0, "aborted");
   errorCheckTimer.stop();
+
+  if ( localFile.isOpen() )
+    localFile.close();
 }
 
 void ItemDownloader::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
@@ -184,6 +201,8 @@ void ItemDownloader::finished()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemDownloader::finished(): networkReply = %1").arg((qulonglong)networkReply));
 #endif
 
+  errorCheckTimer.stop();
+
   if ( downloadItem->whatsThis(0) != "aborted" && downloadItem->whatsThis(0) != "finished" ) {
     downloadItem->setWhatsThis(0, "finished");
     progressWidget->setValue(progressWidget->maximum());
@@ -194,9 +213,10 @@ void ItemDownloader::finished()
   }
   progressWidget->setEnabled(FALSE);
 
-  // close connection
+  // close connection and file
   networkReply->close();
-  errorCheckTimer.stop();
+  if ( localFile.isOpen() )
+    localFile.close();
 }
 
 void ItemDownloader::managerFinished(QNetworkReply *reply)
@@ -216,8 +236,6 @@ void ItemDownloader::reload()
 #endif
 
   networkReply->close();
-
-  // FIXME: remove existing parts of previous download
 
   networkReply = qmc2NetworkAccessManager->get(QNetworkRequest(networkReply->url()));
   errorCheckTimer.stop();

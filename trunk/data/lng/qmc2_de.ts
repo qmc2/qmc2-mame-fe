@@ -3575,22 +3575,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ItemDownloader</name>
     <message>
-        <location filename="../../downloaditem.cpp" line="94"/>
+        <location filename="../../downloaditem.cpp" line="90"/>
+        <source>FATAL: can&apos;t open &apos;%1&apos; for writing</source>
+        <translation>FATAL: kann &apos;%1&apos; nicht zum Schreiben öffnen</translation>
+    </message>
+    <message>
+        <location filename="../../downloaditem.cpp" line="103"/>
         <source>download started: URL = %1, local path = %2, reply ID = %3</source>
         <translation>Download gestartet: URL = %1, lokaler Pfad = %2, Reply ID = %3</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="151"/>
+        <location filename="../../downloaditem.cpp" line="161"/>
         <source>Error #%1: </source>
         <translation>Fehler #%1: </translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="157"/>
+        <location filename="../../downloaditem.cpp" line="167"/>
         <source>download aborted: reason = %1, URL = %2, local path = %3, reply ID = %4</source>
         <translation>Download abgebrochen: Grund = %1, URL = %2, lokaler Pfad = %3, Reply ID = %4</translation>
     </message>
     <message>
-        <location filename="../../downloaditem.cpp" line="192"/>
+        <location filename="../../downloaditem.cpp" line="207"/>
         <source>download finished: URL = %1, local path = %2, reply ID = %3</source>
         <translation>Download beendet: URL = %1, lokaler Pfad = %2, Reply ID = %3</translation>
     </message>
