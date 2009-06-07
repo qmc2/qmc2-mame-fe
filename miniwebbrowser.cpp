@@ -433,7 +433,6 @@ void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *re
   opsShort[QNetworkAccessManager::PutOperation] = "PUT";
   opsShort[QNetworkAccessManager::PostOperation] = "POST";
 
-#if QMC2_WIP_CODE == 1
   if ( !reply || reply->url().isEmpty() )
     return;
 
@@ -458,9 +457,5 @@ void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *re
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: MiniWebBrowser::processPageActionHandleUnsupportedContent(): OP = %1, URL = %2")
                         .arg(opsShort[reply->operation()]).arg(reply->url().toString()));
   }
-#else
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: MiniWebBrowser::processPageActionHandleUnsupportedContent(): OP = %1, URL = %2")
-                      .arg(opsShort[reply->operation()]).arg(reply->url().toString()));
-#endif
 }
 
