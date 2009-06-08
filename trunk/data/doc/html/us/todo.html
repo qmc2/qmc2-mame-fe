@@ -17,13 +17,12 @@
   <li>Variant launching does not work on Windows yet</i>
   <li>MAME/MESS output notifications are not supported on Windows yet</i>
   <li>The MiniWebBrowser -- used for the MAWS lookup and the documentation browser -- has a fairly restrictive feature set which is tailored to the uses of QMC2.
-      It's not even <i>meant</i> to be a full-featured browser. Nonetheless, as of Qt 4.5.1, the browser works quite well on UNIX (no idea about Mac OS X yet) -- let alone some planned but missing features.
+      It's not even <i>meant</i> to be a full-featured browser. Nonetheless, as of Qt 4.5.1, the browser works quite well on UNIX (no idea about Mac OS X yet).
       On Windows, however, the underlying QtWebKit API that comes with Qt 4.5.1 still has a number of obvious restrictions and bugs.</i>
 </ul>
 <p><b>Work in progress</b></p>
 <ul>
-  <li>Bug hunting: preparing for 0.2.b9 release as soon as (SDL)MAME 0.132 is out</li>
-  <li>Arcade mode: partially working, disabled by default (use "make WIP=1 ..." for a preview), completion planned for 0.2.b10</li>
+  <li>Arcade mode: partially working, disabled by default (use "make WIP=1 ..." for a preview), "completion" now planned for 0.2.b10</li>
 </ul>
 <p><b>Planned changes, new features and improvements for QMC2 0.2</b></p>
 <ul>
@@ -35,7 +34,7 @@
   <li>Add support for MAME/MESS output notifications on Windows</li>
   <li>Use QDial instead of QSlider for the audio player's volume control when Qt 4.6 is out (see here for the great new look of Qt 4.6's QDial: 
       <a href="http://labs.trolltech.com/blogs/2009/03/31/a-new-face-for-qdial/" target="_blank">http://labs.trolltech.com/blogs/2009/03/31/a-new-face-for-qdial/</a>)</li>
-  <li>Improve encryption for stored passwords</li>
+  <li>Improve the encryption for stored passwords (weak now, but a warning is presented)</li>
   <li>Support dynamic loading of Qt style sheets</li>
   <li>Add a joystick &amp; keyboard configurator for MAME and MESS</li>
   <li>MESS device configurator: add a <i>device configuration generator</i> (generates configs from available files in a given directory the user selects) --
