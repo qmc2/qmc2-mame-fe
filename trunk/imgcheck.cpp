@@ -210,8 +210,13 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
           labelPreviewsObsolete->setText(tr("Obsolete: %1").arg(listWidgetPreviewsObsolete->count()));
           obsoleteFiles.clear();
         }
+#if defined(Q_WS_WIN)
+        if ( !fileNames.contains(fileList[i], Qt::CaseInsensitive) )
+          obsoleteFiles << fileList[i];
+#else
         if ( !fileNames.contains(fileList[i]) )
           obsoleteFiles << fileList[i];
+#endif
         qApp->processEvents();
       }
       listWidgetPreviewsObsolete->addItems(obsoleteFiles);
@@ -529,8 +534,13 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
           labelFlyersObsolete->setText(tr("Obsolete: %1").arg(listWidgetFlyersObsolete->count()));
           obsoleteFiles.clear();
         }
+#if defined(Q_WS_WIN)
+        if ( !fileNames.contains(fileList[i], Qt::CaseInsensitive) )
+          obsoleteFiles << fileList[i];
+#else
         if ( !fileNames.contains(fileList[i]) )
           obsoleteFiles << fileList[i];
+#endif
         qApp->processEvents();
       }
       listWidgetFlyersObsolete->addItems(obsoleteFiles);
@@ -849,8 +859,13 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
           labelIconsObsolete->setText(tr("Obsolete: %1").arg(listWidgetIconsObsolete->count()));
           obsoleteFiles.clear();
         }
+#if defined(Q_WS_WIN)
+        if ( !fileNames.contains(fileList[i], Qt::CaseInsensitive) )
+          obsoleteFiles << fileList[i];
+#else
         if ( !fileNames.contains(fileList[i]) )
           obsoleteFiles << fileList[i];
+#endif
         qApp->processEvents();
       }
       listWidgetIconsObsolete->addItems(obsoleteFiles);
