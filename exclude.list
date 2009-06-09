@@ -103,6 +103,7 @@ qmc2/data/doc/html/pl/.svn/text-base/todo.html.svn-base
 qmc2/data/doc/html/.svn
 qmc2/data/doc/html/us/img/.svn
 qmc2/data/doc/html/us/img/.svn/prop-base/ballou.png.svn-base
+qmc2/data/doc/html/us/img/.svn/prop-base/doc-bg.jpg.svn-base
 qmc2/data/doc/html/us/img/.svn/prop-base/gradient1.png.svn-base
 qmc2/data/doc/html/us/img/.svn/prop-base/gradient2.png.svn-base
 qmc2/data/doc/html/us/img/.svn/prop-base/jonas.png.svn-base
@@ -119,6 +120,7 @@ qmc2/data/doc/html/us/img/.svn/prop-base/sphere_yellowgreen.png.svn-base
 qmc2/data/doc/html/us/img/.svn/prop-base/teddy.png.svn-base
 qmc2/data/doc/html/us/img/.svn/prop-base/vas.png.svn-base
 qmc2/data/doc/html/us/img/.svn/text-base/ballou.png.svn-base
+qmc2/data/doc/html/us/img/.svn/text-base/doc-bg.jpg.svn-base
 qmc2/data/doc/html/us/img/.svn/text-base/gradient1.png.svn-base
 qmc2/data/doc/html/us/img/.svn/text-base/gradient2.png.svn-base
 qmc2/data/doc/html/us/img/.svn/text-base/jonas.png.svn-base
@@ -1157,7 +1159,6 @@ qmc2/data/opt/.svn
 qmc2/data/prv/.svn
 qmc2/data/prv/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/.svn
-qmc2/data/svn-commit.tmp
 qmc2/data/tmp/.svn
 qmc2/data/tmp/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/ttl/.svn
