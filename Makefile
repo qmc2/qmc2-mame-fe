@@ -226,7 +226,7 @@ endif
 # version
 VERSION_MAJOR = 0
 VERSION_MINOR = 2
-VERSION_BETA  = 9
+VERSION_BETA  = 10
 
 # global QMC2 configuration file
 GLOBAL_QMC2_INI=$(shell echo $(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)/$(PROJECT).ini | $(SED) -e "s*//*/*g")
