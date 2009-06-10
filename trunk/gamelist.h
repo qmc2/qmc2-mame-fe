@@ -48,6 +48,7 @@ class Gamelist : public QObject
     int numNotFoundGames;
     int numUnknownGames;
     int numSearchGames;
+    QString emulatorType;
     QString emulatorVersion;
     bool verifyCurrentOnly;
     QTreeWidgetItem *checkedItem;
