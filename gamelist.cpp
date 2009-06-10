@@ -323,29 +323,36 @@ void Gamelist::load()
     if ( versionWords.count() > 1 ) {
       if ( versionWords[0] == "M.A.M.E." ) {
         emulatorVersion = versionWords[1].remove("v");
+        emulatorType = "MAME";
       } else {
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: selected executable file is not MAME"));
         emulatorVersion = tr("unknown");
+        emulatorType = versionWords[0];
       }
     } else {
       emulatorVersion = tr("unknown");
+      emulatorType = tr("unknown");
     }
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
     QStringList versionWords = versionLines.first().split(" ");
     if ( versionWords.count() > 1 ) {
       if ( versionWords[0] == "MESS" ) {
         emulatorVersion = versionWords[1].remove("v");
+        emulatorType = "MESS";
       } else {
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: selected executable file is not MESS"));
         emulatorVersion = tr("unknown");
+        emulatorType = versionWords[0];
       }
     } else {
       emulatorVersion = tr("unknown");
+      emulatorType = tr("unknown");
     }
 #endif
   } else {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create temporary file, please check emulator executable and permissions"));
     emulatorVersion = tr("unknown");
+    emulatorType = tr("unknown");
   }
 
   // supported games/machines
@@ -393,7 +400,7 @@ void Gamelist::load()
   qmc2MainWindow->labelGamelistStatus->setText(status());
 
   if ( emulatorVersion != tr("unknown") )
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator version: %1").arg(emulatorVersion));
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator info: type = %1, version = %2").arg(emulatorType).arg(emulatorVersion));
   else {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator version"));
     qmc2ReloadActive = FALSE;
