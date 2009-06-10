@@ -347,586 +347,615 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ArcadeSetupDialog</name>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="14"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="15"/>
         <source>Arcade setup</source>
         <translation>Configuration Arcade</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="24"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="25"/>
         <source>Graphics mode settings</source>
         <translation>Paramètres de mode graphique</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="57"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="58"/>
         <source>General</source>
         <translation>Général</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="671"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="672"/>
         <source>Arcade font (= system default if empty)</source>
         <translation>police arcade (= système par défaut si vide)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="681"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="682"/>
         <source>Browse arcade font</source>
         <translation>parcourir pour la police arcade</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="239"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="240"/>
         <source>Snapshot directory</source>
         <translation>Répertoire des captures</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="248"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="249"/>
         <source>Directory to store snapshots (write)</source>
         <translation>Répertoire pour stocker les captures (écriture)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="255"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="256"/>
         <source>Browse snapshot directory</source>
         <translation>Parcourir pour le répertoire de captures</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="71"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="170"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="847"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1068"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1289"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1510"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1731"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1952"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2173"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="72"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="171"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="848"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1069"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1290"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1511"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1732"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1953"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2174"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2395"/>
         <source>X:</source>
         <translation>X:</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="94"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="193"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="873"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1094"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1315"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1536"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1757"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1978"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2199"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="95"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="194"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="874"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1095"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1316"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1537"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1758"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1979"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2200"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2421"/>
         <source>Y:</source>
         <translation>Y:</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="270"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="271"/>
         <source>Display arcade scene in full screen mode or windowed</source>
         <translation>Afficher la scène arcade en plein écran ou en mode fenêtré</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="273"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="274"/>
         <source>Full screen</source>
         <translation>Plein écran</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="283"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="284"/>
         <source>Use window resolution in full screen mode (for slow systems)</source>
         <translation>Utilise la résolution de la fenêtre en plein écran (pour systèmes lents)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="286"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="287"/>
         <source>Use window resolution</source>
         <translation>Utilise la résolution de la fenêtre</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="157"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="158"/>
         <source>Aspect ratio</source>
         <translation>Rapport d&apos;aspect</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="293"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="294"/>
         <source>Show frames per second counter in the lower left corner</source>
         <translation>Afficher le compteur d&apos;images par seconde dans le coin bas/gauche</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="296"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="297"/>
         <source>Show FPS</source>
         <translation>Affiche les FPS</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="330"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="613"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="657"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="331"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="614"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="658"/>
         <source>Keep aspect ratio</source>
         <translation>Conserver le rapport d&apos;aspect</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="725"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="726"/>
         <source>Virtual resolution</source>
         <translation>Résolution virtuelle</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="753"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="754"/>
         <source>Virtual width of scene</source>
         <translation>Largeur virtuelle de la scène</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="786"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="787"/>
         <source>Virtual height of scene</source>
         <translation>Hauteur virtuelle de la scène</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="307"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="308"/>
         <source>Enable anti aliasing on primitive drawing</source>
         <translation>Active l&apos;anti-aliasing sur le primitive drawing</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="310"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="311"/>
         <source>Primitive AA</source>
         <translation>Primitive AA</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="317"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="318"/>
         <source>Scale items smoothly</source>
         <translation>Etire les objets en douceur</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="320"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="321"/>
         <source>Smooth item scaling</source>
         <translation>Etirement des objets en douceur</translation>
     </message>
     <message utf8="true">
-        <location filename="../../arcade/arcadesetupdialog.ui" line="226"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="227"/>
         <source>°</source>
         <translation>°</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="354"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="355"/>
         <source>OpenGL</source>
         <translation>OpenGL</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="368"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="369"/>
         <source>Enable direct rendering</source>
         <translation>Active le direct rendering</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="371"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="372"/>
         <source>Direct rendering</source>
         <translation>Direct rendering</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="378"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="379"/>
         <source>Enable enhanced OpenGL anti aliasing</source>
         <translation>Active l&apos;anti-aliasing OpenGL amélioré</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="381"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="382"/>
         <source>Anti aliasing</source>
         <translation>Anti-aliasing</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="388"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="389"/>
         <source>Synchronize buffer swaps with screen</source>
         <translation>Synchronise les échanges tampon avec l&apos;écran</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="391"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="392"/>
         <source>Sync to screen</source>
         <translation>Synchronise avec l&apos;écran</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="398"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="399"/>
         <source>Enable double buffering (avoids flicker)</source>
         <translation>Active le double buffering (évite l&apos;éclat)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="401"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="402"/>
         <source>Double buffering</source>
         <translation>Double buffering</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="408"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="409"/>
         <source>Enable depth buffering (Z-buffer)</source>
         <translation>Active le buffering de profondeur (Z-buffer)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="411"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="412"/>
         <source>Depth buffering</source>
         <translation>Buffering de profondeur</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="418"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="419"/>
         <source>Use RGBA color mode</source>
         <translation>Utilise le mode de couleurs RGBA</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="421"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="422"/>
         <source>RGBA</source>
         <translation>RGBA</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="431"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="432"/>
         <source>Alpha channel</source>
         <translation>Canal Alpha</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="438"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="439"/>
         <source>Enable multi sampling</source>
         <translation>Active le multi-sampling</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="441"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="442"/>
         <source>Multi sampling</source>
         <translation>Multi-sampling</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="448"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="449"/>
         <source>Enable OpenGL overlays</source>
         <translation>Active les overlays OpenGL</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="451"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="452"/>
         <source>Overlays</source>
         <translation>Overlays</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="458"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="459"/>
         <source>Enable accumulator buffer</source>
         <translation>Activer le tampon accumulateur</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="461"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="462"/>
         <source>Accumulator buffer</source>
         <translation>Tampon accumulateur</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="468"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="469"/>
         <source>Enable stencil buffer</source>
         <translation>Active le tampon stencil</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="471"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="472"/>
         <source>Stencil buffer</source>
         <translation>Tampon stencil</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="478"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="479"/>
         <source>Enable stereo buffer</source>
         <translation>Active le tampon stéréo</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="481"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="482"/>
         <source>Stereo buffer</source>
         <translation>Tampon stéréo</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="511"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="512"/>
         <source>Scene layout</source>
         <translation>Scène layout</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="517"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="518"/>
         <source>Layout name</source>
         <translation>Nom du layout</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="530"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="531"/>
         <source>Select the layout you want to edit / use</source>
         <translation>Choisir le layout à éditer / utiliser</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2393"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2365"/>
+        <source>Control display of MAWS lookup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2368"/>
+        <source>MAWS lookup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2602"/>
         <source>Apply settings</source>
         <translation>Appliquer les paramètres</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2396"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2605"/>
         <source>&amp;Apply</source>
         <translation>&amp;Appliquer</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2410"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2619"/>
         <source>Restore currently applied settings</source>
         <translation>Restaurer les paramètres appliqués en cours</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2413"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2622"/>
         <source>&amp;Restore</source>
         <translation>&amp;Restaurer</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2427"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2636"/>
         <source>Reset to default settings (click &lt;i&gt;Restore&lt;/i&gt; to restore currently applied settings!)</source>
         <translation>Remettre au paramètres par défaut (cliquer &lt;i&gt;Restaurer&lt;/i&gt; pour restaurer les paramètres appliqués en cours)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2430"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2639"/>
         <source>&amp;Default</source>
         <translation>Par &amp;défaut</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2454"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2663"/>
         <source>Close and apply settings</source>
         <translation>Fermer et appliquer les paramètres</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2457"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2666"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2464"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2673"/>
         <source>Close and discard changes</source>
         <translation>Fermer et annuler les changements</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2467"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2676"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="327"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="328"/>
         <source>Keep aspect ratio when resizing scene window</source>
         <translation>Conserver le rapport d&apos;aspect en redimensionnant la fenêtre</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="428"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="429"/>
         <source>Use alpha channel information for transparency</source>
         <translation>Utilise l&apos;information de canal Alpha pour la transparence</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="223"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="224"/>
         <source>Scene rotation angle in degrees</source>
         <translation>Ratation de la scène en degrés</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="543"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="544"/>
         <source>Items, placements and parameters</source>
         <translation>Objets, placement et paramètres</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="579"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="580"/>
         <source>Background image</source>
         <translation>Image de fond</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="623"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="624"/>
         <source>Foreground image</source>
         <translation>Image de premier plan</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="820"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="821"/>
         <source>Game list</source>
         <translation>Liste de jeux</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="832"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1053"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1274"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1495"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1716"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1937"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2158"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="833"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1054"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1275"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1496"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1717"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1938"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2159"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2380"/>
         <source>Geometry</source>
         <translation>Géométrie</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="857"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1078"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1299"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1520"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1741"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1962"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2183"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="858"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1079"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1300"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1521"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1742"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1963"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2184"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2405"/>
         <source>X coordinate of item position</source>
         <translation>Coordonnée X position de l&apos;objet</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="883"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1104"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1325"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1546"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1767"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1988"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2209"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="884"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1105"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1326"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1547"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1768"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1989"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2210"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2431"/>
         <source>Y coordinate of item position</source>
         <translation>Coordonnée Y position de l&apos;objet</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="117"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="740"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="899"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1120"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1341"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1562"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1783"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2004"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2225"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="118"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="741"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="900"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1121"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1342"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1563"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1784"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2005"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2226"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2447"/>
         <source>W:</source>
         <translation>W:</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="909"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1130"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1351"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1572"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1793"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2014"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2235"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="910"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1131"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1352"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1573"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1794"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2015"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2236"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2457"/>
         <source>Item width</source>
         <translation>Largeur d&apos;objet</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="140"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="773"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="925"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1146"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1367"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1588"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1809"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2030"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2251"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="141"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="774"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="926"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1147"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1368"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1589"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1810"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2031"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2252"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2473"/>
         <source>H:</source>
         <translation>H:</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="935"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1156"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1377"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1598"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1819"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2040"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2261"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="936"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1157"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1378"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1599"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1820"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2041"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2262"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2483"/>
         <source>Item height</source>
         <translation>Hauteur d&apos;objet</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="947"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1168"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1389"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1610"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1831"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2052"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2273"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="948"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1169"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1390"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1611"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1832"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2053"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2274"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2495"/>
         <source>Use background for this item</source>
         <translation>Utilise l&apos;image de fond pour cet objet</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="950"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1171"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1392"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1613"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1834"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2055"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2276"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="951"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1172"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1393"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1614"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1835"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2056"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2277"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2498"/>
         <source>Background</source>
         <translation>Arrière plan</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="965"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1186"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1407"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1628"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1849"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2070"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2291"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="966"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1187"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1408"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1629"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1850"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2071"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2292"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2513"/>
         <source>Select background color</source>
         <translation>Choisir la couleur de fond</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="979"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1200"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1421"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1642"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1863"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2084"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2305"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="980"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1201"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1422"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1643"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1864"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2085"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2306"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2527"/>
         <source>T:</source>
         <translation>T:</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="986"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1207"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1428"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1649"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1870"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2091"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2312"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="987"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1208"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1429"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1650"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1871"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2092"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2313"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2534"/>
         <source>Select background transparency</source>
         <translation>Choisir la transparence de l&apos;image de fond</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="989"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1210"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1431"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1652"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1873"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2094"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2315"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="990"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1211"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1432"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1653"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1874"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2095"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2316"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2537"/>
         <source>%</source>
         <translation>%</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="999"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1220"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1441"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1662"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1883"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2104"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2325"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1000"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1221"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1442"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1663"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1884"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2105"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2326"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2547"/>
         <source>Use texture bitmap for background</source>
         <translation>Utilise une texture bitmap pour le fond</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1002"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1223"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1444"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1665"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1886"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2107"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2328"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1003"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1224"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1445"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1666"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1887"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2108"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2329"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2550"/>
         <source>Texture</source>
         <translation>Texture</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1009"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1230"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1451"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1672"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1893"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2114"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2335"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1010"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1231"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1452"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1673"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1894"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2115"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2336"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2557"/>
         <source>Texture bitmap for background</source>
         <translation>Texture bitmap pour le fond</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1022"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1243"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1464"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1685"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1906"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2127"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2348"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1023"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1244"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1465"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1686"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1907"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2128"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2349"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2570"/>
         <source>Browse texture bitmap for background</source>
         <translation>Parcourir pour une texture bitmap pour le fond</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1041"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1042"/>
         <source>Preview image</source>
         <translation>Image d&apos;aperçu</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1262"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1263"/>
         <source>Flyer image</source>
         <translation>Flyer</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="664"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="665"/>
         <source>Arcade font</source>
         <translation>Police arcade</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="692"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="693"/>
         <source>Select font color</source>
         <translation>Sélectionner la couleur de police</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="695"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="696"/>
         <source>Font color</source>
         <translation>Couleur de police</translation>
     </message>
@@ -941,138 +970,138 @@ p, li { white-space: pre-wrap; }
         <translation>Contrôle de la liste de machine</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="576"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="577"/>
         <source>Use a background image</source>
         <translation>Utilise une image de fond</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="586"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="587"/>
         <source>Background image file (read)</source>
         <translation>Fichier image de fond (lecture)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="599"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="600"/>
         <source>Browse background image file</source>
         <translation>Parcourir pour le fichier image de fond</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="610"/>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="654"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="611"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="655"/>
         <source>Keep image&apos;s aspect ratio when scaling</source>
         <translation>Conserver le rapport d&apos;aspect de l&apos;image lors du redimensionnement</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="620"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="621"/>
         <source>Use a foreground image</source>
         <translation>Utilise une image de premier plan</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="630"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="631"/>
         <source>Foreground image file (read)</source>
         <translation>Fichier image de premier plan (lecture)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="643"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="644"/>
         <source>Browse foreground image file</source>
         <translation>Parcourir pour le fichier image de premier plan</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="817"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="818"/>
         <source>Control display of game list</source>
         <translation>Contrôle de la liste de jeux</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1038"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1039"/>
         <source>Control display of preview image</source>
         <translation>Contrôle de la liste de captures</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1259"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1260"/>
         <source>Control display of flyer image</source>
         <translation>Contrôle de la liste de flyers</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="78"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="79"/>
         <source>X coordinate of scene window position</source>
         <translation>Coordonnée X position de la fenêtre de scène</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="101"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="102"/>
         <source>Y coordinate of scene window position</source>
         <translation>Coordonnée Y position de la fenêtre de scène</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="124"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="125"/>
         <source>Width of scene window</source>
         <translation>Largeur de la fenêtre de scène</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="147"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="148"/>
         <source>Height of scene window</source>
         <translation>Hauteur de la fenêtre de scène</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="177"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="178"/>
         <source>X portion of scene aspect ratio (should be equal to screen&apos;s aspect ratio)</source>
         <translation>Portion X du rapport d&apos;aspect de scène (devrait être égal au rapport d&apos;aspect de l&apos;écran)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="200"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="201"/>
         <source>Y portion of scene aspect ratio (should be equal to screen&apos;s aspect ratio)</source>
         <translation>Portion Y du rapport d&apos;aspect de scène (devrait être égal au rapport d&apos;aspect de l&apos;écran)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="216"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="217"/>
         <source>Scene rotation</source>
         <translation>Rotation de scène</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="339"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="340"/>
         <source>Center arcade window on screen</source>
         <translation>Centrer la fenêtre sur l&apos;écran</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="342"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="343"/>
         <source>Center window</source>
         <translation>Centrer la fenêtre</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1480"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1481"/>
         <source>Control display of cabinet image</source>
         <translation>Contrôle de la liste des bornes (cabinets)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1483"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1484"/>
         <source>Cabinet image</source>
         <translation>Image de la borne (cabinet)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1701"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1702"/>
         <source>Control display of controller image</source>
         <translation>Contrôle de la liste des controlleurs (commandes)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1704"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1705"/>
         <source>Controller image</source>
         <translation>Image du controlleur</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1922"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1923"/>
         <source>Control display of marquee image</source>
         <translation>Contrôle de la liste des controlleurs (commandes)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="1925"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="1926"/>
         <source>Marquee image</source>
         <translation>Image du panneau limuneux de la borne (marquee)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2143"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2144"/>
         <source>Control display of title image</source>
         <translation>Contrôle de la liste de captures (titre)</translation>
     </message>
     <message>
-        <location filename="../../arcade/arcadesetupdialog.ui" line="2146"/>
+        <location filename="../../arcade/arcadesetupdialog.ui" line="2147"/>
         <source>Title image</source>
         <translation>Titre</translation>
     </message>
