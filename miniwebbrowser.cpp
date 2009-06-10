@@ -33,6 +33,16 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   labelStatus->hide();
   progressBar->hide();
 
+  QFontMetrics fm(qApp->font());
+  QSize iconSize(fm.height() - 3, fm.height() - 3);
+  
+  toolButtonBack->setIconSize(iconSize);
+  toolButtonForward->setIconSize(iconSize);
+  toolButtonReload->setIconSize(iconSize);
+  toolButtonStop->setIconSize(iconSize);
+  toolButtonHome->setIconSize(iconSize);
+  toolButtonLoad->setIconSize(iconSize);
+
   firstTimeLoadStarted = TRUE;
   firstTimeLoadProgress = TRUE;
   firstTimeLoadFinished = TRUE;
