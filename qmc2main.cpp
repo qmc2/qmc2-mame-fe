@@ -5030,10 +5030,19 @@ void MainWindow::startDownload(QNetworkReply *reply)
   QString proposedName = fi.baseName();
   if ( !fi.completeSuffix().isEmpty() )
     proposedName += "." + fi.completeSuffix();
+
+  if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath") )
+    proposedName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath").toString());
+
   QString filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store download"), proposedName, tr("All files (*)"));
   if ( !filePath.isEmpty() ) {
     DownloadItem *downloadItem = new DownloadItem(reply, filePath, treeWidgetDownloads);
     treeWidgetDownloads->scrollToItem(downloadItem);
+    QFileInfo fiFilePath(filePath);
+    QString storagePath = fiFilePath.absolutePath();
+    if ( !storagePath.endsWith("/") )
+      storagePath.append("/");
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath", storagePath);
   } else
     reply->close();
 }
