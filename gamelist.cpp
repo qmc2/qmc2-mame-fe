@@ -241,8 +241,8 @@ void Gamelist::load()
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   qmc2MainWindow->textBrowserEmuInfo->clear();
   qmc2LastEmuInfoItem = NULL;
-#if QT_VERSON >= 0x040500
   if ( qmc2MAWSLookup ) {
+    qmc2MAWSLookup->setVisible(FALSE);
     QLayout *vbl = qmc2MainWindow->tabMAWS->layout();
     if ( vbl )
       delete vbl;
@@ -250,7 +250,6 @@ void Gamelist::load()
     qmc2MAWSLookup = NULL;
   }
   qmc2LastMAWSItem = NULL;
-#endif
 #endif
   qmc2Preview->repaint();
   qmc2Flyer->repaint();
