@@ -20,7 +20,7 @@ DirectoryEditWidget::DirectoryEditWidget(QString dirPath, QWidget *parent)
 
   lineEditDirectory->setText(dirPath);
   QFontMetrics fm(QApplication::font());
-  QSize iconSize(fm.height() - 3, fm.height() - 3);
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
   pushButtonBrowse->setIconSize(iconSize);
 }
 

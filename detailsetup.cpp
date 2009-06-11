@@ -16,10 +16,6 @@ DetailSetup::DetailSetup(QWidget *parent)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DetailSetup::DetailSetup(QWidget *parent = %1)").arg((qulonglong) parent));
 #endif
 
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the game/machine detail setup isn't working yet!"));
-#endif
-
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
   shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Pre&view");
   longTitleMap[QMC2_PREVIEW_INDEX] = tr("Game preview image");
@@ -194,6 +190,27 @@ void DetailSetup::saveDetail()
 
   if ( appliedDetailList.contains(oldIndex) )
     qmc2MainWindow->tabWidgetGameDetail->setCurrentIndex(appliedDetailList.indexOf(oldIndex));
+}
+
+void DetailSetup::adjustIconSizes()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DetailSetup::adjustIconSizes()");
+#endif
+
+  QFontMetrics fm(qApp->font());
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
+
+  pushButtonConfigureDetail->setIconSize(iconSize);
+  pushButtonActivateDetails->setIconSize(iconSize);
+  pushButtonDeactivateDetails->setIconSize(iconSize);
+  pushButtonDetailsUp->setIconSize(iconSize);
+  pushButtonDetailsDown->setIconSize(iconSize);
+  pushButtonOk->setIconSize(iconSize);
+  pushButtonApply->setIconSize(iconSize);
+  pushButtonCancel->setIconSize(iconSize);
+  listWidgetAvailableDetails->setIconSize(iconSize);
+  listWidgetActiveDetails->setIconSize(iconSize);
 }
 
 void DetailSetup::on_listWidgetAvailableDetails_itemSelectionChanged()

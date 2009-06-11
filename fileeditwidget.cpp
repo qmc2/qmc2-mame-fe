@@ -21,7 +21,7 @@ FileEditWidget::FileEditWidget(QString filePath, QString filter, QWidget *parent
   lineEditFile->setText(filePath);
   browserFilter = filter;
   QFontMetrics fm(QApplication::font());
-  QSize iconSize(fm.height() - 3, fm.height() - 3);
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
   pushButtonBrowse->setIconSize(iconSize);
 }
 

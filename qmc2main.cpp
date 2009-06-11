@@ -1224,6 +1224,8 @@ void MainWindow::on_actionExportROMStatus_activated()
   if ( !qmc2ROMStatusExporter )
     qmc2ROMStatusExporter = new ROMStatusExporter(this);
 
+  qmc2ROMStatusExporter->adjustIconSizes();
+
   if ( qmc2ROMStatusExporter->isHidden() )
     qmc2ROMStatusExporter->show();
   else if ( qmc2ROMStatusExporter->isMinimized() )
@@ -4821,6 +4823,11 @@ void MainWindow::on_menuTabWidgetGameDetail_Setup_activated()
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetGameDetail_Setup_activated()"));
 #endif
+
+  if ( !qmc2DetailSetup )
+    return;
+
+  qmc2DetailSetup->adjustIconSizes();
 
   if ( qmc2DetailSetup->isHidden() )
     qmc2DetailSetup->show();

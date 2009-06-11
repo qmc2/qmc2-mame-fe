@@ -68,6 +68,27 @@ ROMStatusExporter::~ROMStatusExporter()
 
 }
 
+void ROMStatusExporter::adjustIconSizes()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMStatusExporter::adjustIconSizes()");
+#endif
+
+  QFontMetrics fm(qApp->font());
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
+
+  toolButtonBrowseASCIIFile->setIconSize(iconSize);
+  toolButtonBrowseCSVFile->setIconSize(iconSize);
+  toolButtonBrowseHTMLFile->setIconSize(iconSize);
+  toolButtonExportC->setIconSize(iconSize);
+  toolButtonExportM->setIconSize(iconSize);
+  toolButtonExportI->setIconSize(iconSize);
+  toolButtonExportN->setIconSize(iconSize);
+  toolButtonExportU->setIconSize(iconSize);
+  pushButtonClose->setIconSize(iconSize);
+  pushButtonExport->setIconSize(iconSize);
+}
+
 void ROMStatusExporter::closeEvent(QCloseEvent *e)
 {
 #ifdef QMC2_DEBUG

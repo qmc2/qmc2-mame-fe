@@ -34,8 +34,8 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   progressBar->hide();
 
   QFontMetrics fm(qApp->font());
-  QSize iconSize(fm.height() - 3, fm.height() - 3);
-  
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
+
   toolButtonBack->setIconSize(iconSize);
   toolButtonForward->setIconSize(iconSize);
   toolButtonReload->setIconSize(iconSize);
@@ -350,7 +350,7 @@ void MiniWebBrowser::webViewBrowser_iconChanged()
 
   if ( i >= 0 ) {
     QFontMetrics fm(qApp->font());
-    QSize iconSize(fm.height() - 3, fm.height() - 3);
+    QSize iconSize(fm.height() - 2, fm.height() - 2);
     comboBoxURL->setIconSize(iconSize);
     QIcon pageIcon;
     QString urlStr = webViewBrowser->url().toString();
