@@ -220,7 +220,7 @@ void EmulatorOptionDelegate::updateEditorGeometry(QWidget *editor, const QStyleO
 
   editor->setGeometry(option.rect);
   QFontMetrics fm(QApplication::font());
-  QSize iconSize(fm.height() - 3, fm.height() - 3);
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
   if ( editor->accessibleName() == "fileEditor" ) {
     FileEditWidget *fileEditWidget = static_cast<FileEditWidget *>(editor);
     fileEditWidget->pushButtonBrowse->setIconSize(iconSize);

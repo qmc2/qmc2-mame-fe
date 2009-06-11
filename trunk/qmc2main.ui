@@ -421,6 +421,12 @@
              <height>0</height>
             </size>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>4</width>
+             <height>16777215</height>
+            </size>
+           </property>
            <property name="palette">
             <palette>
              <active>

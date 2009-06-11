@@ -21,6 +21,9 @@ class ROMStatusExporter : public QDialog, public Ui::ROMStatusExporter
     void exportToHTML();
 
   public slots:
+    void adjustIconSizes();
+
+    // automatically connected slots
     void on_toolButtonBrowseASCIIFile_clicked();
     void on_toolButtonBrowseCSVFile_clicked();
     void on_toolButtonBrowseHTMLFile_clicked();

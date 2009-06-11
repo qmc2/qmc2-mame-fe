@@ -86,7 +86,7 @@ void MESSDeviceFileDelegate::updateEditorGeometry(QWidget *editor, const QStyleO
 
   editor->setGeometry(option.rect);
   QFontMetrics fm(QApplication::font());
-  QSize iconSize(fm.height() - 3, fm.height() - 3);
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
   FileEditWidget *fileEditWidget = static_cast<FileEditWidget *>(editor);
   fileEditWidget->pushButtonBrowse->setIconSize(iconSize);
 }
@@ -125,7 +125,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   vSplitter->setSizes(vSplitterSizes);
 
   QFontMetrics fm(QApplication::font());
-  QSize iconSize(fm.height() - 3, fm.height() - 3);
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
   pushButtonNewConfiguration->setIconSize(iconSize);
   pushButtonCloneConfiguration->setIconSize(iconSize);
   pushButtonSaveConfiguration->setIconSize(iconSize);

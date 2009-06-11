@@ -25,6 +25,7 @@ class DetailSetup : public QDialog, public Ui::DetailSetup
   public slots:
     void loadDetail();
     void saveDetail();
+    void adjustIconSizes();
 
     // automatically connected slots
     void on_listWidgetAvailableDetails_itemSelectionChanged(); 

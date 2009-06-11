@@ -30,6 +30,7 @@
 #include "romalyzer.h"
 #include "romstatusexport.h"
 #include "docbrowser.h"
+#include "detailsetup.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #include "joyfuncscan.h"
@@ -100,6 +101,7 @@ extern KeyPressFilter *qmc2KeyPressFilter;
 extern QMap<QString, int> qmc2QtKeyMap;
 extern QMap<QString, QByteArray *> qmc2GameInfoDB;
 extern MiniWebBrowser *qmc2MAWSLookup;
+extern DetailSetup *qmc2DetailSetup;
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
 extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 #endif
@@ -300,7 +302,7 @@ void Options::apply()
   f.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
   qApp->setFont(f);
   QFontMetrics fm(f);
-  QSize iconSize(fm.height() - 3, fm.height() - 3);
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
   qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSize);
   qmc2MainWindow->treeWidgetHierarchy->setIconSize(iconSize);
   qmc2MainWindow->treeWidgetEmulators->setIconSize(iconSize);
@@ -394,17 +396,8 @@ void Options::apply()
   qmc2MainWindow->toolButtonAudioAddTracks->setIconSize(iconSize);
   qmc2MainWindow->toolButtonAudioRemoveTracks->setIconSize(iconSize);
 #endif
-  if ( qmc2ROMStatusExporter ) {
-    qmc2ROMStatusExporter->toolButtonBrowseASCIIFile->setIconSize(iconSize);
-    qmc2ROMStatusExporter->toolButtonBrowseCSVFile->setIconSize(iconSize);
-    qmc2ROMStatusExporter->toolButtonExportC->setIconSize(iconSize);
-    qmc2ROMStatusExporter->toolButtonExportM->setIconSize(iconSize);
-    qmc2ROMStatusExporter->toolButtonExportI->setIconSize(iconSize);
-    qmc2ROMStatusExporter->toolButtonExportN->setIconSize(iconSize);
-    qmc2ROMStatusExporter->toolButtonExportU->setIconSize(iconSize);
-    qmc2ROMStatusExporter->pushButtonClose->setIconSize(iconSize);
-    qmc2ROMStatusExporter->pushButtonExport->setIconSize(iconSize);
-  }
+  if ( qmc2ROMStatusExporter )
+    QTimer::singleShot(0, qmc2ROMStatusExporter, SLOT(adjustIconSizes()));
 #if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
   if ( qmc2MESSDeviceConfigurator ) {
     qmc2MESSDeviceConfigurator->pushButtonConfiguration->setIconSize(iconSize);
@@ -419,6 +412,9 @@ void Options::apply()
   qmc2MainWindow->pushButtonStopSelectedDownloads->setIconSize(iconSize);
   qmc2MainWindow->treeWidgetDownloads->setIconSize(iconSize);
   qmc2MainWindow->pushButtonSelectRomFilter->setIconSize(iconSize);
+  if ( qmc2DetailSetup )
+    if ( qmc2DetailSetup->isVisible() )
+      QTimer::singleShot(0, qmc2DetailSetup, SLOT(adjustIconSizes()));
 }
 
 void Options::on_pushButtonOk_clicked()
@@ -1522,6 +1518,9 @@ void Options::applyDelayed()
     }
     firstTime = FALSE;
   }
+
+  // redraw detail if setup changed
+  qmc2MainWindow->on_tabWidgetGameDetail_currentChanged(qmc2MainWindow->tabWidgetGameDetail->currentIndex());
 
   // hide / show the menu bar
   qmc2MainWindow->menuBar()->setVisible(checkBoxShowMenuBar->isChecked());
