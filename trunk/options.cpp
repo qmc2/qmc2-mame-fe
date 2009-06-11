@@ -455,6 +455,7 @@ void Options::on_pushButtonApply_clicked()
 #endif
 
   static int oldCacheSize = 0;
+  static QString oldStyleName = "";
   QString s;
   int i;
   bool needRestart = FALSE,
@@ -533,7 +534,10 @@ void Options::on_pushButtonApply_clicked()
     if ( s == QObject::tr("Default") ) 
       s = "Default";
     config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", s);
-    qmc2MainWindow->setupStyle(s);
+    if ( s != oldStyleName ) {
+      qmc2MainWindow->setupStyle(s);
+      oldStyleName = s;
+    }
   }
 #if QMC2_JOYSTICK == 1
   if ( joystickTestWidget )
