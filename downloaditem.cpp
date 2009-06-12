@@ -104,6 +104,12 @@ void ItemDownloader::init()
   downloadItem->setIcon(QMC2_DOWNLOAD_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/download.png")));
   downloadItem->progressWidget->setEnabled(TRUE);
   downloadItem->setWhatsThis(0, "downloading");
+  downloadItem->setToolTip(QMC2_DOWNLOAD_COLUMN_PROGRESS,
+                           tr("Source URL: %1").arg(networkReply->url().toString()) + "\n" +
+                           tr("Local path: %2").arg(localPath) + "\n" +
+                           tr("Status: %1").arg(tr("initializing download")) + "\n" +
+                           tr("Total size: %1").arg(tr("unknown")) + "\n" +
+                           tr("Downloaded: %1 (%2%)").arg(0).arg(0));
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("download started: URL = %1, local path = %2, reply ID = %3")
                       .arg(networkReply->url().toString()).arg(localPath).arg((qulonglong)networkReply));
 
@@ -175,6 +181,13 @@ void ItemDownloader::error(QNetworkReply::NetworkError code)
 
   if ( localFile.isOpen() )
     localFile.close();
+
+  downloadItem->setToolTip(QMC2_DOWNLOAD_COLUMN_PROGRESS,
+                           tr("Source URL: %1").arg(networkReply->url().toString()) + "\n" +
+                           tr("Local path: %2").arg(localPath) + "\n" +
+                           tr("Status: %1").arg(tr("download aborted")) + "\n" +
+                           tr("Total size: %1").arg(progressWidget->maximum()) + "\n" +
+                           tr("Downloaded: %1 (%2%)").arg(progressWidget->value()).arg(((double)progressWidget->value()/(double)progressWidget->maximum()) * 100));
 }
 
 void ItemDownloader::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
@@ -185,6 +198,13 @@ void ItemDownloader::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 
   progressWidget->setRange(0, bytesTotal); // FIXME: may overflow?
   progressWidget->setValue(bytesReceived);
+
+  downloadItem->setToolTip(QMC2_DOWNLOAD_COLUMN_PROGRESS,
+                           tr("Source URL: %1").arg(networkReply->url().toString()) + "\n" +
+                           tr("Local path: %2").arg(localPath) + "\n" +
+                           tr("Status: %1").arg(tr("downloading")) + "\n" +
+                           tr("Total size: %1").arg(progressWidget->maximum()) + "\n" +
+                           tr("Downloaded: %1 (%2%)").arg(progressWidget->value()).arg(((double)progressWidget->value()/(double)progressWidget->maximum()) * 100));
 }
 
 void ItemDownloader::metaDataChanged()
@@ -210,6 +230,12 @@ void ItemDownloader::finished()
     downloadItem->treeWidget->resizeColumnToContents(QMC2_DOWNLOAD_COLUMN_STATUS);
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("download finished: URL = %1, local path = %2, reply ID = %3")
                         .arg(networkReply->url().toString()).arg(localPath).arg((qulonglong)networkReply));
+    downloadItem->setToolTip(QMC2_DOWNLOAD_COLUMN_PROGRESS,
+                             tr("Source URL: %1").arg(networkReply->url().toString()) + "\n" +
+                             tr("Local path: %2").arg(localPath) + "\n" +
+                             tr("Status: %1").arg(tr("download finished")) + "\n" +
+                             tr("Total size: %1").arg(progressWidget->maximum()) + "\n" +
+                             tr("Downloaded: %1 (%2%)").arg(progressWidget->value()).arg(((double)progressWidget->value()/(double)progressWidget->maximum()) * 100));
   }
   progressWidget->setEnabled(FALSE);
 

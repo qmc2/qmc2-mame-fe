@@ -611,9 +611,9 @@
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLabel" name="labelLegend2">
+                    <widget class="QLabel" name="labelLegendFrontendGUI">
                      <property name="toolTip">
-                      <string>Option requires a reload of the gamelist to take effect</string>
+                      <string>Option requires a reload of the entire game list to take effect</string>
                      </property>
                      <property name="text">
                       <string>reload required</string>
@@ -724,8 +724,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>204</width>
-                <height>484</height>
+                <width>439</width>
+                <height>485</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -1296,9 +1296,9 @@
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLabel" name="labelLegend3">
+                    <widget class="QLabel" name="labelLegendFrontendFilesAndDirectories">
                      <property name="toolTip">
-                      <string>Option requires a reload of the gamelist to take effect</string>
+                      <string>Option requires a reload of the entire game list to take effect</string>
                      </property>
                      <property name="text">
                       <string>reload required</string>
@@ -1700,8 +1700,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>425</width>
-                <height>158</height>
+                <width>455</width>
+                <height>471</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2014,8 +2014,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>244</width>
-                <height>54</height>
+                <width>455</width>
+                <height>471</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2127,8 +2127,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>384</width>
-                <height>268</height>
+                <width>455</width>
+                <height>471</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -2572,8 +2572,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>385</width>
-                <height>368</height>
+                <width>455</width>
+                <height>471</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -2841,8 +2841,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>197</width>
-                <height>267</height>
+                <width>455</width>
+                <height>471</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3089,9 +3089,9 @@
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLabel" name="labelLegend4">
+                    <widget class="QLabel" name="labelLegendEmulatorFilesAndDirectories">
                      <property name="toolTip">
-                      <string>Option requires a reload of the gamelist to take effect</string>
+                      <string>Option requires a reload of the entire game list to take effect</string>
                      </property>
                      <property name="text">
                       <string>reload required</string>
