@@ -97,6 +97,7 @@ class Options : public QDialog, public Ui::Options
     void on_pushButtonRestore_clicked();
     void on_pushButtonApply_clicked();
     void on_pushButtonDefault_clicked();
+    void on_toolButtonBrowseStyleSheet_clicked();
     void on_toolButtonBrowseTemporaryFile_clicked();
     void on_toolButtonBrowseFrontendLogFile_clicked();
     void on_toolButtonBrowseEmulatorLogFile_clicked();

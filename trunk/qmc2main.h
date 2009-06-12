@@ -239,6 +239,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void log(char, QString);
     void init();
     void setupStyle(QString);
+    void setupStyleSheet(QString);
     void viewFullDetail();
     void viewParentClones();
     void loadGameInfoDB();

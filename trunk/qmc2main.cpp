@@ -3482,6 +3482,10 @@ void MainWindow::init()
   // setup application style
   QString myStyle = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString();
   setupStyle(myStyle);
+  if ( qApp->styleSheet().isEmpty() ) {
+    QString myStyleSheet = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", "").toString();
+    setupStyleSheet(myStyleSheet);
+  }
   qmc2EarlyStartup = FALSE;
   on_actionReload_activated();
 }
@@ -3527,6 +3531,31 @@ void MainWindow::setupStyle(QString styleName)
     menuBar()->setPalette(newPalette);
     toolbar->setPalette(newPalette);
   }
+
+  qApp->processEvents();
+}
+
+void MainWindow::setupStyleSheet(QString styleSheetName)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::setupStyleSheet(QString &styleSheetName = %1").arg(styleSheetName));
+#endif
+
+  if ( !styleSheetName.isEmpty() ) {
+    QFile f(styleSheetName);
+    if ( f.open(QIODevice::ReadOnly) ) {
+      log(QMC2_LOG_FRONTEND, tr("loading style sheet '%1'").arg(styleSheetName));
+      QString currentDir = QDir::currentPath();
+      QDir::setCurrent(QFileInfo(f).absolutePath());
+      qApp->setStyleSheet(f.readAll());
+      qApp->processEvents();
+      f.close();
+      // FIXME: "cd -" won't work because of relative URLs
+      // QDir::setCurrent(currentDir);
+    } else
+      log(QMC2_LOG_FRONTEND, tr("FATAL: can't open style sheet file '%1', please check").arg(styleSheetName));
+  } else
+    qApp->setStyleSheet("");
 
   qApp->processEvents();
 }

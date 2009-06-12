@@ -312,6 +312,7 @@ void Options::apply()
   pushButtonApply->setIconSize(iconSize);
   pushButtonRestore->setIconSize(iconSize);
   pushButtonDefault->setIconSize(iconSize);
+  toolButtonBrowseStyleSheet->setIconSize(iconSize);
   toolButtonBrowseFont->setIconSize(iconSize);
   toolButtonBrowseTemporaryFile->setIconSize(iconSize);
   toolButtonBrowseFrontendLogFile->setIconSize(iconSize);
@@ -529,6 +530,12 @@ void Options::on_pushButtonApply_clicked()
   needRestart |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString() != s);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", s);
   if ( !qmc2EarlyStartup ) {
+    // style sheet
+    s = lineEditStyleSheet->text();
+    config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", s);
+    qmc2MainWindow->setupStyleSheet(s);
+
+    // style
     s = comboBoxStyle->currentText();
     if ( s == QObject::tr("Default") ) 
       s = "Default";
@@ -538,6 +545,7 @@ void Options::on_pushButtonApply_clicked()
       oldStyleName = s;
     }
   }
+
 #if QMC2_JOYSTICK == 1
   if ( joystickTestWidget )
     joystickTestWidget->cleanupPalette();
@@ -1212,6 +1220,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   comboBoxStyle->addItems(QStyleFactory::keys());
   QString myStyle = QObject::tr((const char *)config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", "Default").toString().toUtf8());
   comboBoxStyle->setCurrentIndex(comboBoxStyle->findText(myStyle, Qt::MatchFixedString));
+  lineEditStyleSheet->setText(config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", QString()).toString());
   lineEditFont->setText(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
   QFont f;
   f.fromString(lineEditFont->text());
@@ -1529,6 +1538,18 @@ void Options::applyDelayed()
   qmc2MainWindow->menuBar()->setVisible(checkBoxShowMenuBar->isChecked());
   qApp->processEvents();
   qmc2VariantSwitchReady = TRUE;
+}
+
+void Options::on_toolButtonBrowseStyleSheet_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseStyleSheet_clicked()");
+#endif
+
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose Qt style sheet file"), lineEditStyleSheet->text(), tr("Qt Style Sheets (*.qss)"));
+  if ( !s.isNull() )
+    lineEditStyleSheet->setText(s);
+  raise();
 }
 
 void Options::on_toolButtonBrowseTemporaryFile_clicked()
