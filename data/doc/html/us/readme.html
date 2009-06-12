@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b10, 12-JUN-2009</h3>
+<h3>README - v0.2.b10, 13-JUN-2009</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -403,8 +403,19 @@ of their parents.</p>
 <p>KDE styles are supported if they were made for KDE 4 (Qt 4)!</p>
 <p>Since v0.1.b11, support for style-specific custom color palettes (which can be setup with <i>qtconfig</i>) has been added. The default behavior of QMC2 is to use the default palette. You can disable this via the <i>StandardColorPalette</i> setting to use the customized color palette instead - if applicable (see <i>Front end</i> -&gt; <i>GUI</i> in the configuration dialog).</p>
 <p>Note that some add-on GUI styles may look ugly or be even buggy (as of this writing, some version of the Oxygen style for example is known to raise an X11 bug when the ROMAlyzer is opened initially). Don't ask for support if you know that this is the cause of your troubles! Please contact the style's developer(s) instead.</p>
-<p>Qt style sheets can be used in conjunction with any GUI style. Compatible style sheets are here for example: <a href="http://qmc2.arcadehits.net/wordpress/style-sheets/" target="_blank">http://qmc2.arcadehits.net/wordpress/style-sheets/</a>.</p>
-<p>See here for more information on Qt style sheets: <a href="http://doc.qtsoftware.com/4.5/stylesheet.html" target="_blank">http://doc.qtsoftware.com/4.5/stylesheet.html</a></p>
+<p><b>Qt style sheets</b></p>
+<p>Qt style sheets can be used in conjunction with any GUI style to gain more theme'ing power.</p>
+<p>Since v0.2.b10, QMC2 supports dynamic loading of style sheets from within the GUI.
+   It loads the style sheet before the GUI style is set up, so the GUI style may overload parts of the theme with its settings.
+   This means that not every combination might look as expected, others may fit better.</p>
+<p>Before you go on please be aware that <b>the GUI may become instable when a style sheet has been activated!</b>
+   We think we fixed most of the issues, but there may still be some we aren't aware of yet.
+   However, we <i>know</i> there are some QtWebKit related crashes that we can't fix ourselves.</p>
+<p>Compatible style sheets are here for example: <a href="http://qmc2.arcadehits.net/wordpress/style-sheets/" target="_blank">http://qmc2.arcadehits.net/wordpress/style-sheets/</a>.</p>
+<p>To install a style sheet, simply unpack the archive somewhere in your file system.
+   Then select the style sheet (.qss file) from within QMC2 to activate it.
+   See <i>Tools</i> -&gt; <i>Options</i> -&gt; <i>GUI</i> -&gt; <i>Style sheet</i>.</p>
+<p>Read more about Qt style sheets here: <a href="http://doc.qtsoftware.com/4.5/stylesheet.html" target="_blank">http://doc.qtsoftware.com/4.5/stylesheet.html</a></p>
 <h3><a name="6."></a>6. Short cuts, GUI control keys and joystick support</h3>
 <p>Several functions (or <i>actions</i> in Qt technical jargon :) can be accessed via short cut key-sequences. The following table lists all of them:</p>
 <table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
