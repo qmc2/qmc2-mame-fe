@@ -173,6 +173,9 @@ Options::Options(QWidget *parent)
   labelMAWSCacheDirectory->setVisible(FALSE);
   lineEditMAWSCacheDirectory->setVisible(FALSE);
   toolButtonBrowseMAWSCacheDirectory->setVisible(FALSE);
+  labelLegendFrontendGUI->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
+  labelLegendFrontendFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
+  labelLegendEmulatorFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
 #endif
 
   // shortcuts
