@@ -456,6 +456,7 @@ void Options::on_pushButtonApply_clicked()
 
   static int oldCacheSize = 0;
   static QString oldStyleName = "";
+  static QString oldStyleSheet = "";
   QString s;
   int i;
   bool needRestart = FALSE,
@@ -529,11 +530,18 @@ void Options::on_pushButtonApply_clicked()
   s = comboBoxLanguage->currentText().left(2).toLower();
   needRestart |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/Language").toString() != s);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Language", s);
+
+  s = lineEditStyleSheet->text();
+  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", s);
+  bool newStyleSheet = FALSE;
+  if ( s != oldStyleSheet ) {
+    oldStyleSheet = s;
+    newStyleSheet = TRUE;
+  }
   if ( !qmc2EarlyStartup ) {
     // style sheet
-    s = lineEditStyleSheet->text();
-    config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", s);
-    qmc2MainWindow->setupStyleSheet(s);
+    if ( newStyleSheet )
+      qmc2MainWindow->setupStyleSheet(s);
 
     // style
     s = comboBoxStyle->currentText();
