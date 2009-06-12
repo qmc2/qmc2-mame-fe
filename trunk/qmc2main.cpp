@@ -3506,7 +3506,7 @@ void MainWindow::setupStyle(QString styleName)
   QApplication::setStyle(newStyle);
 
   // work around for an annoying Qt bug...
-  if ( !qmc2EarlyStartup ) {
+  if ( !qmc2EarlyStartup && qApp->styleSheet().isEmpty() ) {
     menuBar()->setStyle(newStyle);
     toolbar->setStyle(newStyle);
   }
@@ -3523,7 +3523,7 @@ void MainWindow::setupStyle(QString styleName)
   QApplication::setPalette(newPalette);
 
   // work around for the same annoying Qt bug...
-  if ( !qmc2EarlyStartup ) {
+  if ( !qmc2EarlyStartup && qApp->styleSheet().isEmpty() ) {
     menuBar()->setPalette(newPalette);
     toolbar->setPalette(newPalette);
   }
