@@ -156,6 +156,7 @@ void Gamelist::enableWidgets(bool enable)
   // store widget enablement flag for later dialog setups
   qmc2WidgetsEnabled = enable;
 
+  qmc2Options->toolButtonBrowseStyleSheet->setEnabled(enable);
   qmc2Options->toolButtonBrowseFont->setEnabled(enable);
   qmc2Options->toolButtonBrowseTemporaryFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseFrontendLogFile->setEnabled(enable);

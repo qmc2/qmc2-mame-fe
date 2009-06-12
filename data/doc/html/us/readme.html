@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b10, 09-JUN-2009</h3>
+<h3>README - v0.2.b10, 12-JUN-2009</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -21,7 +21,7 @@
     <p><a href="#4.">Game/machine list statistics, ROM status and the ROMAlyzer</a></p>
   </li>
   <li>
-    <p><a href="#5.">GUI style plugins and style sheets</a></p>
+    <p><a href="#5.">GUI style plugins and Qt style sheets</a></p>
   </li>
   <li>
     <p><a href="#6.">Short cuts, GUI control keys and joystick support</a></p>
@@ -91,7 +91,7 @@ use with the MAME variant).
   <li>Game/machine favorites management and play-history</li>
   <li>Online HTML documentation and browser</li>
   <li>Designed to be used for multiple emulators (SDLMAME/SDLMESS on UNIX and Mac, MAME/MAMEUIFX32/MESS on Windows)</li>
-  <li>Built-in support for GUI styles (KDE 4 / Qt 4 style plugins are supported)</li>
+  <li>Built-in support for GUI styles and Qt style sheets (.qss)</li>
   <li>Automatic caching of analysed game/machine data to speed up processing</li>
   <li>Import &amp; export of emulator configuration files (i. e. mame.ini/mess.ini)</li>
   <li>All short cuts and GUI control keys can be remapped</li>
@@ -397,13 +397,13 @@ of their parents.</p>
   <li>ROM and CHD files will never be fully loaded into memory, only small blocks of data are read for hash calculation and dropped directly afterwards.</li>
   <li>Long ROMAlyzer runs can be paused / resumed (or interrupted) at nearly any time.</li>
 </ul>
-<h3><a name="5."></a>5. GUI style plugins and style sheets</h3>
+<h3><a name="5."></a>5. GUI style plugins and Qt style sheets</h3>
 <p>GUI styles can be switched on-the-fly by explicitly selecting available style plugins from the respective combo-box in the setup dialog (see <i>Front end</i> -&gt; <i>GUI</i>). If you installed additional style plugins to Qt, these will be available here as well.</p>
 <p>The <i>Default</i> GUI style is system's default style.</p>
 <p>KDE styles are supported if they were made for KDE 4 (Qt 4)!</p>
 <p>Since v0.1.b11, support for style-specific custom color palettes (which can be setup with <i>qtconfig</i>) has been added. The default behavior of QMC2 is to use the default palette. You can disable this via the <i>StandardColorPalette</i> setting to use the customized color palette instead - if applicable (see <i>Front end</i> -&gt; <i>GUI</i> in the configuration dialog).</p>
 <p>Note that some add-on GUI styles may look ugly or be even buggy (as of this writing, some version of the Oxygen style for example is known to raise an X11 bug when the ROMAlyzer is opened initially). Don't ask for support if you know that this is the cause of your troubles! Please contact the style's developer(s) instead.</p>
-<p>Qt style sheets can be used in conjunction with any GUI style. For now, the style sheet (a .qss file) can only be specified on the command line using the <i>-stylesheet</i> option. Note however that using a style sheet which changes the background brush of all QLabel's may render a few widgets <i>unusable</i> because their background colors cannot be changed dynamically after they have such a style sheet set. The most important one is the optional vertical game/machine status indicator (object name <i>labelGameStatus</i>).</p>
+<p>Qt style sheets can be used in conjunction with any GUI style. Compatible style sheets are here for example: <a href="http://qmc2.arcadehits.net/wordpress/style-sheets/" target="_blank">http://qmc2.arcadehits.net/wordpress/style-sheets/</a>.</p>
 <p>See here for more information on Qt style sheets: <a href="http://doc.qtsoftware.com/4.5/stylesheet.html" target="_blank">http://doc.qtsoftware.com/4.5/stylesheet.html</a></p>
 <h3><a name="6."></a>6. Short cuts, GUI control keys and joystick support</h3>
 <p>Several functions (or <i>actions</i> in Qt technical jargon :) can be accessed via short cut key-sequences. The following table lists all of them:</p>
