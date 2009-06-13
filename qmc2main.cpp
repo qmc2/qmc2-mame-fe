@@ -3554,8 +3554,11 @@ void MainWindow::setupStyleSheet(QString styleSheetName)
       // QDir::setCurrent(currentDir);
     } else
       log(QMC2_LOG_FRONTEND, tr("FATAL: can't open style sheet file '%1', please check").arg(styleSheetName));
-  } else
+  } else {
+    if ( !qApp->styleSheet().isEmpty() )
+      log(QMC2_LOG_FRONTEND, tr("removing current style sheet"));
     qApp->setStyleSheet("");
+  }
 
   qApp->processEvents();
 }
