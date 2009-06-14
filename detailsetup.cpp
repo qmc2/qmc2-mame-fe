@@ -47,6 +47,9 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_MAWS_INDEX] = tr("MA&WS");
   longTitleMap[QMC2_MAWS_INDEX] = tr("MAWS page (web lookup)");
   iconMap[QMC2_MAWS_INDEX] = QIcon(QString::fromUtf8(":/data/img/internet.png"));
+  shortTitleMap[QMC2_PCB_INDEX] = tr("&PCB");
+  longTitleMap[QMC2_PCB_INDEX] = tr("PCB image");
+  iconMap[QMC2_PCB_INDEX] = QIcon(QString::fromUtf8(":/data/img/circuit.png"));
   availableDetailList << QMC2_PREVIEW_INDEX
                       << QMC2_FLYER_INDEX
                       << QMC2_GAMEINFO_INDEX
@@ -56,7 +59,8 @@ DetailSetup::DetailSetup(QWidget *parent)
                       << QMC2_CONTROLLER_INDEX
                       << QMC2_MARQUEE_INDEX
                       << QMC2_TITLE_INDEX
-                      << QMC2_MAWS_INDEX;
+                      << QMC2_MAWS_INDEX
+                      << QMC2_PCB_INDEX;
   tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
   tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
   tabWidgetsMap[QMC2_GAMEINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_GAMEINFO_INDEX);
@@ -67,6 +71,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_MARQUEE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MARQUEE_INDEX);
   tabWidgetsMap[QMC2_TITLE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_TITLE_INDEX);
   tabWidgetsMap[QMC2_MAWS_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MAWS_INDEX);
+  tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
   configurableDetailList << QMC2_MAWS_INDEX;
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
   shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Pre&view");
@@ -84,16 +89,21 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_DEVICE_INDEX] = tr("De&vices");
   longTitleMap[QMC2_DEVICE_INDEX] = tr("Device configuration");
   iconMap[QMC2_DEVICE_INDEX] = QIcon(QString::fromUtf8(":/data/img/tape.png"));
+  shortTitleMap[QMC2_PCB_INDEX] = tr("&PCB");
+  longTitleMap[QMC2_PCB_INDEX] = tr("PCB image");
+  iconMap[QMC2_PCB_INDEX] = QIcon(QString::fromUtf8(":/data/img/circuit.png"));
   availableDetailList << QMC2_PREVIEW_INDEX
                       << QMC2_FLYER_INDEX
                       << QMC2_MACHINEINFO_INDEX
                       << QMC2_CONFIG_INDEX
-                      << QMC2_DEVICE_INDEX;
+                      << QMC2_DEVICE_INDEX
+                      << QMC2_PCB_INDEX;
   tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
   tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
   tabWidgetsMap[QMC2_MACHINEINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MACHINEINFO_INDEX);
   tabWidgetsMap[QMC2_CONFIG_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONFIG_INDEX);
   tabWidgetsMap[QMC2_DEVICE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_DEVICE_INDEX);
+  tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
 #endif
 
   setupUi(this);
@@ -144,13 +154,15 @@ void DetailSetup::loadDetail()
                      << QMC2_CONTROLLER_INDEX
                      << QMC2_MARQUEE_INDEX
                      << QMC2_TITLE_INDEX
-                     << QMC2_MAWS_INDEX;
+                     << QMC2_MAWS_INDEX
+                     << QMC2_PCB_INDEX;
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
     activeDetailList << QMC2_PREVIEW_INDEX
                      << QMC2_FLYER_INDEX
                      << QMC2_MACHINEINFO_INDEX
                      << QMC2_CONFIG_INDEX
-                     << QMC2_DEVICE_INDEX;
+                     << QMC2_DEVICE_INDEX
+                     << QMC2_PCB_INDEX;
 #endif
   } else {
     QStringList activeIndexList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ActiveDetails").toStringList();

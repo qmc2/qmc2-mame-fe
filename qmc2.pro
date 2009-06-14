@@ -43,6 +43,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			controller.cpp \
 			marquee.cpp \
 			title.cpp \
+			pcb.cpp \
 			emuopt.cpp \
 			joystick.cpp \
 			joyfuncscan.cpp \
@@ -82,6 +83,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			controller.h \
 			marquee.h \
 			title.h \
+			pcb.h \
 			emuopt.h \
 			joystick.h \
 			joyfuncscan.h \

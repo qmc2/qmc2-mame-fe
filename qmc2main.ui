@@ -1017,6 +1017,15 @@
              <string>MA&amp;WS</string>
             </attribute>
            </widget>
+           <widget class="QWidget" name="tabPCB">
+            <attribute name="icon">
+             <iconset resource="qmc2.qrc">
+              <normaloff>:/data/img/circuit.png</normaloff>:/data/img/circuit.png</iconset>
+            </attribute>
+            <attribute name="title">
+             <string>&amp;PCB</string>
+            </attribute>
+           </widget>
           </widget>
          </item>
         </layout>

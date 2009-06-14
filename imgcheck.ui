@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>537</width>
-    <height>314</height>
+    <width>501</width>
+    <height>326</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,288 +48,312 @@
       <number>0</number>
      </property>
      <widget class="QWidget" name="tabPreviews">
+      <attribute name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>&amp;Previews</string>
       </attribute>
-      <layout class="QGridLayout">
-       <item row="4" column="3">
-        <spacer>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
+      <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
-        <widget class="QLabel" name="labelPreviewsFound">
-         <property name="text">
-          <string>Found: 0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" rowspan="4">
-        <widget class="QListWidget" name="listWidgetPreviewsFound"/>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="labelPreviewsMissing">
-         <property name="text">
-          <string>Missing: 0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1" rowspan="4">
-        <widget class="QListWidget" name="listWidgetPreviewsMissing"/>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="labelPreviewsObsolete">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Obsolete: 0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2" rowspan="4">
-        <widget class="QListWidget" name="listWidgetPreviewsObsolete"/>
-       </item>
-       <item row="1" column="3">
-        <widget class="QPushButton" name="pushButtonPreviewsCheck">
-         <property name="toolTip">
-          <string>Check preview images / stop check</string>
-         </property>
-         <property name="text">
-          <string>&amp;Check previews</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="3">
-        <widget class="QPushButton" name="pushButtonPreviewsRemoveObsolete">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="toolTip">
-          <string>Remove obsolete preview images</string>
-         </property>
-         <property name="text">
-          <string>&amp;Remove obsolete</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="3">
-        <widget class="QCheckBox" name="checkBoxPreviewsSelectGame">
-         <property name="toolTip">
-          <string>Select game in game list if selected in check lists?</string>
-         </property>
-         <property name="text">
-          <string>Select &amp;game</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
+        <layout class="QGridLayout" name="gridLayout_1">
+         <item row="0" column="0" rowspan="2">
+          <widget class="QLabel" name="labelPreviewsFound">
+           <property name="text">
+            <string>Found: 0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" rowspan="2">
+          <widget class="QLabel" name="labelPreviewsMissing">
+           <property name="text">
+            <string>Missing: 0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" rowspan="2" colspan="2">
+          <widget class="QLabel" name="labelPreviewsObsolete">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Obsolete: 0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" rowspan="5">
+          <widget class="QListWidget" name="listWidgetPreviewsFound"/>
+         </item>
+         <item row="2" column="1" rowspan="5">
+          <widget class="QListWidget" name="listWidgetPreviewsMissing"/>
+         </item>
+         <item row="2" column="2" rowspan="5">
+          <widget class="QListWidget" name="listWidgetPreviewsObsolete"/>
+         </item>
+         <item row="6" column="3">
+          <spacer>
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="5" column="3">
+          <widget class="QCheckBox" name="checkBoxPreviewsSelectGame">
+           <property name="toolTip">
+            <string>Select game in game list if selected in check lists?</string>
+           </property>
+           <property name="text">
+            <string>Select &amp;game</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QPushButton" name="pushButtonPreviewsRemoveObsolete">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>Remove obsolete preview images</string>
+           </property>
+           <property name="text">
+            <string>&amp;Remove obsolete</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3" rowspan="2">
+          <widget class="QPushButton" name="pushButtonPreviewsCheck">
+           <property name="toolTip">
+            <string>Check preview images / stop check</string>
+           </property>
+           <property name="text">
+            <string>&amp;Check previews</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tabFlyers">
+      <attribute name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/thumbnail.png</normaloff>:/data/img/thumbnail.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>&amp;Flyers</string>
       </attribute>
-      <layout class="QGridLayout">
-       <item row="3" column="3">
-        <widget class="QCheckBox" name="checkBoxFlyersSelectGame">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="toolTip">
-          <string>Select game in game list if selected in check lists?</string>
-         </property>
-         <property name="text">
-          <string>Select &amp;game</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="3">
-        <widget class="QPushButton" name="pushButtonFlyersRemoveObsolete">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="toolTip">
-          <string>Remove obsolete flyer images</string>
-         </property>
-         <property name="text">
-          <string>&amp;Remove obsolete</string>
-         </property>
-        </widget>
-       </item>
+      <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
-        <widget class="QLabel" name="labelFlyersFound">
-         <property name="text">
-          <string>Found: 0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" rowspan="4">
-        <widget class="QListWidget" name="listWidgetFlyersFound"/>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="labelFlyersMissing">
-         <property name="text">
-          <string>Missing: 0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1" rowspan="4">
-        <widget class="QListWidget" name="listWidgetFlyersMissing"/>
-       </item>
-       <item row="1" column="2" rowspan="4">
-        <widget class="QListWidget" name="listWidgetFlyersObsolete"/>
-       </item>
-       <item row="1" column="3">
-        <widget class="QPushButton" name="pushButtonFlyersCheck">
-         <property name="toolTip">
-          <string>Check flyer images / stop check</string>
-         </property>
-         <property name="text">
-          <string>&amp;Check flyers</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="labelFlyersObsolete">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Obsolete: 0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="3">
-        <spacer>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="1" column="0" rowspan="5">
+          <widget class="QListWidget" name="listWidgetFlyersFound"/>
+         </item>
+         <item row="1" column="1" rowspan="5">
+          <widget class="QListWidget" name="listWidgetFlyersMissing"/>
+         </item>
+         <item row="1" column="2" rowspan="5">
+          <widget class="QListWidget" name="listWidgetFlyersObsolete"/>
+         </item>
+         <item row="4" column="3" rowspan="2">
+          <spacer>
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="2" colspan="2">
+          <widget class="QLabel" name="labelFlyersObsolete">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Obsolete: 0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="labelFlyersMissing">
+           <property name="text">
+            <string>Missing: 0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelFlyersFound">
+           <property name="text">
+            <string>Found: 0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QPushButton" name="pushButtonFlyersCheck">
+           <property name="toolTip">
+            <string>Check flyer images / stop check</string>
+           </property>
+           <property name="text">
+            <string>&amp;Check flyers</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QPushButton" name="pushButtonFlyersRemoveObsolete">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>Remove obsolete flyer images</string>
+           </property>
+           <property name="text">
+            <string>&amp;Remove obsolete</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QCheckBox" name="checkBoxFlyersSelectGame">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="toolTip">
+            <string>Select game in game list if selected in check lists?</string>
+           </property>
+           <property name="text">
+            <string>Select &amp;game</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tabIcons">
+      <attribute name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/icon.png</normaloff>:/data/img/icon.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>&amp;Icons</string>
       </attribute>
-      <layout class="QGridLayout">
-       <item row="5" column="3">
-        <spacer>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>51</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="3" column="3">
-        <widget class="QCheckBox" name="checkBoxIconsSelectGame">
-         <property name="toolTip">
-          <string>Select game in game list if selected in check lists?</string>
-         </property>
-         <property name="text">
-          <string>Select &amp;game</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="3">
-        <widget class="QCheckBox" name="checkBoxIconsClearCache">
-         <property name="toolTip">
-          <string>Clear cache before checking icons?</string>
-         </property>
-         <property name="text">
-          <string>C&amp;lear cache</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" rowspan="5">
-        <widget class="QListWidget" name="listWidgetIconsFound"/>
-       </item>
-       <item row="2" column="3">
-        <widget class="QPushButton" name="pushButtonIconsRemoveObsolete">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="toolTip">
-          <string>Remove obsolete icon images</string>
-         </property>
-         <property name="text">
-          <string>&amp;Remove obsolete</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="labelIconsMissing">
-         <property name="text">
-          <string>Missing: 0</string>
-         </property>
-        </widget>
-       </item>
+      <layout class="QGridLayout" name="gridLayout_6">
        <item row="0" column="0">
-        <widget class="QLabel" name="labelIconsFound">
-         <property name="text">
-          <string>Found: 0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2" rowspan="5">
-        <widget class="QListWidget" name="listWidgetIconsObsolete"/>
-       </item>
-       <item row="1" column="3">
-        <widget class="QPushButton" name="pushButtonIconsCheck">
-         <property name="toolTip">
-          <string>Check icon images / stop check</string>
-         </property>
-         <property name="text">
-          <string>&amp;Check icons</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="labelIconsObsolete">
-         <property name="text">
-          <string>Obsolete: 0</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1" rowspan="5">
-        <widget class="QListWidget" name="listWidgetIconsMissing"/>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelIconsFound">
+           <property name="text">
+            <string>Found: 0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="labelIconsMissing">
+           <property name="text">
+            <string>Missing: 0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2" colspan="2">
+          <widget class="QLabel" name="labelIconsObsolete">
+           <property name="text">
+            <string>Obsolete: 0</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" rowspan="5">
+          <widget class="QListWidget" name="listWidgetIconsFound"/>
+         </item>
+         <item row="1" column="1" rowspan="5">
+          <widget class="QListWidget" name="listWidgetIconsMissing"/>
+         </item>
+         <item row="1" column="2" rowspan="5">
+          <widget class="QListWidget" name="listWidgetIconsObsolete"/>
+         </item>
+         <item row="1" column="3">
+          <widget class="QPushButton" name="pushButtonIconsCheck">
+           <property name="toolTip">
+            <string>Check icon images / stop check</string>
+           </property>
+           <property name="text">
+            <string>&amp;Check icons</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QPushButton" name="pushButtonIconsRemoveObsolete">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>Remove obsolete icon images</string>
+           </property>
+           <property name="text">
+            <string>&amp;Remove obsolete</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QCheckBox" name="checkBoxIconsSelectGame">
+           <property name="toolTip">
+            <string>Select game in game list if selected in check lists?</string>
+           </property>
+           <property name="text">
+            <string>Select &amp;game</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QCheckBox" name="checkBoxIconsClearCache">
+           <property name="toolTip">
+            <string>Clear cache before checking icons?</string>
+           </property>
+           <property name="text">
+            <string>C&amp;lear cache</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="3">
+          <spacer>
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>51</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
@@ -361,7 +385,9 @@
   <tabstop>checkBoxIconsClearCache</tabstop>
   <tabstop>pushButtonHide</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="qmc2.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>pushButtonHide</sender>

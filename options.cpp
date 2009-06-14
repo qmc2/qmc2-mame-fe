@@ -22,6 +22,7 @@
 #include "controller.h"
 #include "marquee.h"
 #include "title.h"
+#include "pcb.h"
 #include "qmc2main.h"
 #include "gamelist.h"
 #include "macros.h"
@@ -53,6 +54,7 @@ extern bool qmc2ScaledCabinet;
 extern bool qmc2ScaledController;
 extern bool qmc2ScaledMarquee;
 extern bool qmc2ScaledTitle;
+extern bool qmc2ScaledPCB;
 extern bool qmc2SmoothScaling;
 extern bool qmc2RetryLoadingImages;
 extern bool qmc2ParentImageFallback;
@@ -66,6 +68,7 @@ extern bool qmc2UseCabinetFile;
 extern bool qmc2UseControllerFile;
 extern bool qmc2UseMarqueeFile;
 extern bool qmc2UseTitleFile;
+extern bool qmc2UsePCBFile;
 extern bool qmc2AutomaticReload;
 extern bool qmc2SuppressQtMessages;
 extern bool qmc2ShowGameName;
@@ -84,6 +87,7 @@ extern Cabinet *qmc2Cabinet;
 extern Controller *qmc2Controller;
 extern Marquee *qmc2Marquee;
 extern Title *qmc2Title;
+extern PCB *qmc2PCB;
 extern Gamelist *qmc2Gamelist;
 extern ROMAlyzer *qmc2ROMAlyzer;
 extern ROMStatusExporter *qmc2ROMStatusExporter;
@@ -340,6 +344,8 @@ void Options::apply()
   toolButtonBrowseMarqueeFile->setIconSize(iconSize);
   toolButtonBrowseTitleDirectory->setIconSize(iconSize);
   toolButtonBrowseTitleFile->setIconSize(iconSize);
+  toolButtonBrowsePCBDirectory->setIconSize(iconSize);
+  toolButtonBrowsePCBFile->setIconSize(iconSize);
   toolButtonShowC->setIconSize(iconSize);
   toolButtonShowM->setIconSize(iconSize);
   toolButtonShowI->setIconSize(iconSize);
@@ -470,6 +476,7 @@ void Options::on_pushButtonApply_clicked()
        needReopenControllerFile = FALSE,
        needReopenMarqueeFile = FALSE,
        needReopenTitleFile = FALSE,
+       needReopenPCBFile = FALSE,
        needReload = FALSE,
        needManualReload = FALSE;
 
@@ -521,6 +528,8 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ScaledMarquee", qmc2ScaledMarquee);
   qmc2ScaledTitle = checkBoxScaledTitle->isChecked();
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ScaledTitle", qmc2ScaledTitle);
+  qmc2ScaledPCB = checkBoxScaledPCB->isChecked();
+  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ScaledPCB", qmc2ScaledPCB);
   qmc2SmoothScaling = checkBoxSmoothScaling->isChecked();
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SmoothScaling", qmc2SmoothScaling);
   qmc2RetryLoadingImages = checkBoxRetryLoadingImages->isChecked();
@@ -643,6 +652,12 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/UseTitleFile", qmc2UseTitleFile);
   config->setValue("MAME/FilesAndDirectories/TitleDirectory", lineEditTitleDirectory->text());
   config->setValue("MAME/FilesAndDirectories/TitleFile", lineEditTitleFile->text());
+  needReopenPCBFile = (qmc2UsePCBFile != (stackedWidgetPCB->currentIndex() == 1));
+  needReopenPCBFile |= (config->value("MAME/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
+  qmc2UsePCBFile = (stackedWidgetTitle->currentIndex() == 1);
+  config->setValue("MAME/FilesAndDirectories/UsePCBFile", qmc2UsePCBFile);
+  config->setValue("MAME/FilesAndDirectories/PCBDirectory", lineEditPCBDirectory->text());
+  config->setValue("MAME/FilesAndDirectories/PCBFile", lineEditPCBFile->text());
   s = lineEditGameInfoDB->text();
   needManualReload |= (config->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
   invalidateGameInfoDB |= (config->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
@@ -694,6 +709,12 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/UseTitleFile", qmc2UseTitleFile);
   config->setValue("MESS/FilesAndDirectories/TitleDirectory", lineEditTitleDirectory->text());
   config->setValue("MESS/FilesAndDirectories/TitleFile", lineEditTitleFile->text());
+  needReopenPCBFile = (qmc2UsePCBFile != (stackedWidgetPCB->currentIndex() == 1));
+  needReopenPCBFile |= (config->value("MESS/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
+  qmc2UsePCBFile = (stackedWidgetTitle->currentIndex() == 1);
+  config->setValue("MESS/FilesAndDirectories/UsePCBFile", qmc2UsePCBFile);
+  config->setValue("MESS/FilesAndDirectories/PCBDirectory", lineEditPCBDirectory->text());
+  config->setValue("MESS/FilesAndDirectories/PCBFile", lineEditPCBFile->text());
   s = lineEditGameInfoDB->text();
   needManualReload |= (config->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
   invalidateGameInfoDB |= (config->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
@@ -1133,6 +1154,24 @@ void Options::on_pushButtonApply_clicked()
     qmc2Title->repaint();
   }
 
+  if ( qmc2PCB ) {
+    if ( needReopenPCBFile ) {
+      if ( qmc2UsePCBFile ) {
+#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+        qmc2PCB->pcbFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/PCBFile").toString().toAscii());
+        if ( qmc2PCB->pcbFile == NULL )
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/PCBFile").toString()));
+#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+        qmc2PCB->pcbFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/PCBFile").toString().toAscii());
+        if ( qmc2PCB->pcbFile == NULL )
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/TitleFile").toString()));
+#endif
+      } else
+        unzClose(qmc2PCB->pcbFile);
+    }
+    qmc2PCB->repaint();
+  }
+
   if ( needReopenIconFile ) {
     if ( qmc2UseIconFile ) {
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
@@ -1216,6 +1255,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxScaledMarquee->setChecked(qmc2ScaledMarquee);
   qmc2ScaledTitle = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledTitle", TRUE).toBool();
   checkBoxScaledTitle->setChecked(qmc2ScaledTitle);
+  qmc2ScaledPCB = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledPCB", TRUE).toBool();
+  checkBoxScaledPCB->setChecked(qmc2ScaledPCB);
   qmc2SmoothScaling = config->value(QMC2_FRONTEND_PREFIX + "GUI/SmoothScaling", FALSE).toBool();
   checkBoxSmoothScaling->setChecked(qmc2SmoothScaling);
   qmc2RetryLoadingImages = config->value(QMC2_FRONTEND_PREFIX + "GUI/RetryLoadingImages", TRUE).toBool();
@@ -1295,6 +1336,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   qmc2UseTitleFile = config->value("MAME/FilesAndDirectories/UseTitleFile", FALSE).toBool();
   stackedWidgetTitle->setCurrentIndex(qmc2UseTitleFile ? 1 : 0);
   radioButtonTitleSelect->setText(qmc2UseTitleFile ? tr("Title file") : tr("Title directory"));
+  lineEditPCBDirectory->setText(config->value("MAME/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
+  lineEditPCBFile->setText(config->value("MAME/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
+  qmc2UsePCBFile = config->value("MAME/FilesAndDirectories/UsePCBFile", FALSE).toBool();
+  stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
+  radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
   lineEditGameInfoDB->setText(config->value("MAME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
   lineEditEmuInfoDB->setText(config->value("MAME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
 #elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
@@ -1340,6 +1386,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   qmc2UseTitleFile = config->value("MESS/FilesAndDirectories/UseTitleFile", FALSE).toBool();
   stackedWidgetTitle->setCurrentIndex(qmc2UseTitleFile ? 1 : 0);
   radioButtonTitleSelect->setText(qmc2UseTitleFile ? tr("Title file") : tr("Title directory"));
+  lineEditPCBDirectory->setText(config->value("MESS/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
+  lineEditPCBFile->setText(config->value("MESS/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
+  qmc2UsePCBFile = config->value("MESS/FilesAndDirectories/UsePCBFile", FALSE).toBool();
+  stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
+  radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
   lineEditGameInfoDB->setText(config->value("MESS/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
 #endif
 
@@ -1666,6 +1717,20 @@ void Options::on_toolButtonBrowseTitleDirectory_clicked()
   if ( !s.isNull() ) {
     if ( !s.endsWith("/") ) s += "/";
     lineEditTitleDirectory->setText(s);
+  }
+  raise();
+}
+
+void Options::on_toolButtonBrowsePCBDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowsePCBDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose PCB directory"), lineEditPCBDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditPCBDirectory->setText(s);
   }
   raise();
 }
@@ -2011,6 +2076,17 @@ void Options::on_radioButtonTitleSelect_clicked()
   radioButtonTitleSelect->setText(!currentUseTitleFile ? tr("Title file") : tr("Title directory"));
 }
 
+void Options::on_radioButtonPCBSelect_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonPCBSelect_clicked()");
+#endif
+
+  bool currentUsePCBFile = (stackedWidgetPCB->currentIndex() == 1);
+  stackedWidgetPCB->setCurrentIndex(!currentUsePCBFile);
+  radioButtonPCBSelect->setText(!currentUsePCBFile ? tr("PCB file") : tr("PCB directory"));
+}
+
 void Options::on_toolButtonBrowsePreviewFile_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -2089,9 +2165,21 @@ void Options::on_toolButtonBrowseTitleFile_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseTitleFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed marquee file"), lineEditTitleFile->text(), tr("All files (*)"));
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed title file"), lineEditTitleFile->text(), tr("All files (*)"));
   if ( !s.isNull() )
     lineEditTitleFile->setText(s);
+  raise();
+}
+
+void Options::on_toolButtonBrowsePCBFile_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowsePCBFile_clicked()");
+#endif
+
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed PCB file"), lineEditPCBFile->text(), tr("All files (*)"));
+  if ( !s.isNull() )
+    lineEditPCBFile->setText(s);
   raise();
 }
 
