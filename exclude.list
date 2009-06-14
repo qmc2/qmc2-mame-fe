@@ -160,6 +160,7 @@ qmc2/data/img/classic/.svn/prop-base/browser.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/calculator.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/camera.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/cd.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/clock.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/configure.png.svn-base
@@ -283,6 +284,7 @@ qmc2/data/img/classic/.svn/text-base/browser.png.svn-base
 qmc2/data/img/classic/.svn/text-base/calculator.png.svn-base
 qmc2/data/img/classic/.svn/text-base/camera.png.svn-base
 qmc2/data/img/classic/.svn/text-base/cd.png.svn-base
+qmc2/data/img/classic/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/classic/.svn/text-base/clock.png.svn-base
 qmc2/data/img/classic/.svn/text-base/colors.png.svn-base
 qmc2/data/img/classic/.svn/text-base/configure.png.svn-base
@@ -406,6 +408,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/browser.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/calculator.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/camera.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/cd.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/clock.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/configure.png.svn-base
@@ -529,6 +532,7 @@ qmc2/data/img/crazy-black/.svn/text-base/browser.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/calculator.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/camera.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/cd.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/clock.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/colors.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/configure.png.svn-base
@@ -652,6 +656,7 @@ qmc2/data/img/crazy/.svn/prop-base/browser.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/calculator.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/camera.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/cd.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/clock.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/configure.png.svn-base
@@ -775,6 +780,7 @@ qmc2/data/img/crazy/.svn/text-base/browser.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/calculator.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/camera.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/cd.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/clock.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/colors.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/configure.png.svn-base
@@ -898,6 +904,7 @@ qmc2/data/img/.svn/prop-base/browser.png.svn-base
 qmc2/data/img/.svn/prop-base/calculator.png.svn-base
 qmc2/data/img/.svn/prop-base/camera.png.svn-base
 qmc2/data/img/.svn/prop-base/cd.png.svn-base
+qmc2/data/img/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/.svn/prop-base/clock.png.svn-base
 qmc2/data/img/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/.svn/prop-base/configure.png.svn-base
@@ -1021,6 +1028,7 @@ qmc2/data/img/.svn/text-base/browser.png.svn-base
 qmc2/data/img/.svn/text-base/calculator.png.svn-base
 qmc2/data/img/.svn/text-base/camera.png.svn-base
 qmc2/data/img/.svn/text-base/cd.png.svn-base
+qmc2/data/img/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/.svn/text-base/clock.png.svn-base
 qmc2/data/img/.svn/text-base/colors.png.svn-base
 qmc2/data/img/.svn/text-base/configure.png.svn-base
@@ -1168,6 +1176,8 @@ qmc2/data/opt/SDLMAME/.svn/text-base/template.xml.svn-base
 qmc2/data/opt/SDLMESS/.svn
 qmc2/data/opt/SDLMESS/.svn/text-base/template.xml.svn-base
 qmc2/data/opt/.svn
+qmc2/data/pcb/.svn
+qmc2/data/pcb/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/prv/.svn
 qmc2/data/prv/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/.svn
