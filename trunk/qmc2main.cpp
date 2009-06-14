@@ -38,6 +38,7 @@
 #include "controller.h"
 #include "marquee.h"
 #include "title.h"
+#include "pcb.h"
 #include "docbrowser.h"
 #include "about.h"
 #include "welcome.h"
@@ -82,6 +83,7 @@ Cabinet *qmc2Cabinet = NULL;
 Controller *qmc2Controller = NULL;
 Marquee *qmc2Marquee = NULL;
 Title *qmc2Title = NULL;
+PCB *qmc2PCB = NULL;
 About *qmc2About = NULL;
 DocBrowser *qmc2DocBrowser = NULL;
 Welcome *qmc2Welcome = NULL;
@@ -113,6 +115,7 @@ bool qmc2ScaledCabinet = TRUE;
 bool qmc2ScaledController = TRUE;
 bool qmc2ScaledMarquee = TRUE;
 bool qmc2ScaledTitle = TRUE;
+bool qmc2ScaledPCB = TRUE;
 bool qmc2SmoothScaling = FALSE;
 bool qmc2RetryLoadingImages = TRUE;
 bool qmc2ParentImageFallback = FALSE;
@@ -123,6 +126,7 @@ bool qmc2UseControllerFile = FALSE;
 bool qmc2UseIconFile = FALSE;
 bool qmc2UseMarqueeFile = FALSE;
 bool qmc2UseTitleFile = FALSE;
+bool qmc2UsePCBFile = FALSE;
 bool qmc2IconsPreloaded = FALSE;
 bool qmc2CheckItemVisibility = TRUE;
 bool qmc2AutomaticReload = FALSE;
@@ -415,7 +419,8 @@ MainWindow::MainWindow(QWidget *parent)
               *cabinetLayout = new QHBoxLayout,
               *controllerLayout = new QHBoxLayout,
               *marqueeLayout = new QHBoxLayout,
-              *titleLayout = new QHBoxLayout;
+              *titleLayout = new QHBoxLayout,
+              *pcbLayout = new QHBoxLayout;
 
   int left, top, right, bottom;
   gridLayout->getContentsMargins(&left, &top, &right, &bottom);
@@ -444,6 +449,10 @@ MainWindow::MainWindow(QWidget *parent)
   titleLayout->addWidget(qmc2Title);
   titleLayout->setContentsMargins(left, top, right, bottom);
   tabTitle->setLayout(titleLayout);
+  qmc2PCB = new PCB(tabPCB);
+  pcbLayout->addWidget(qmc2PCB);
+  pcbLayout->setContentsMargins(left, top, right, bottom);
+  tabPCB->setLayout(pcbLayout);
 
   // restore layout
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
@@ -1939,6 +1948,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
   qmc2Controller->repaint();
   qmc2Marquee->repaint();
   qmc2Title->repaint();
+  qmc2PCB->repaint();
 
   // show / hide game status indicator
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
@@ -2116,6 +2126,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       case QMC2_TITLE_INDEX: {
           QPainter pTitle(qmc2Title);
           qmc2Title->drawCenteredImage(0, &pTitle);
+        }
+
+      case QMC2_PCB_INDEX: {
+          QPainter pPCB(qmc2PCB);
+          qmc2PCB->drawCenteredImage(0, &pPCB);
         }
 
       default:
@@ -2565,6 +2580,7 @@ void MainWindow::on_treeWidgetGamelist_itemSelectionChanged_delayed()
       qmc2Controller->repaint();
       qmc2Marquee->repaint();
       qmc2Title->repaint();
+      qmc2PCB->repaint();
       on_tabWidgetGameDetail_currentChanged(tabWidgetGameDetail->currentIndex());
     }
   } else
@@ -3340,6 +3356,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
   if ( qmc2Title ) {
     log(QMC2_LOG_FRONTEND, tr("destroying title"));
     delete qmc2Title;
+  }
+  if ( qmc2PCB ) {
+    log(QMC2_LOG_FRONTEND, tr("destroying PCB"));
+    delete qmc2PCB;
   }
   if ( qmc2About ) {
     log(QMC2_LOG_FRONTEND, tr("destroying about dialog"));

@@ -43,6 +43,7 @@
 #define QMC2_MARQUEE_INDEX		8
 #define QMC2_TITLE_INDEX		9
 #define QMC2_MAWS_INDEX			10
+#define QMC2_PCB_INDEX			11
 
 // index positions of special front end tabs (lower right)
 #define QMC2_FRONTENDLOG_INDEX		0

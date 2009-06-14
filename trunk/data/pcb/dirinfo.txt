@@ -1,0 +1,2 @@
+The "pcb" directory is the default place to store images of PCBs (printed
+circuit boards).

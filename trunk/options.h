@@ -120,6 +120,8 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonBrowseMarqueeFile_clicked();
     void on_toolButtonBrowseTitleDirectory_clicked();
     void on_toolButtonBrowseTitleFile_clicked();
+    void on_toolButtonBrowsePCBDirectory_clicked();
+    void on_toolButtonBrowsePCBFile_clicked();
     void on_toolButtonBrowseExecutableFile_clicked();
     void on_toolButtonBrowseDataDirectory_clicked();
     void on_toolButtonBrowseGameInfoDB_clicked();
@@ -138,6 +140,7 @@ class Options : public QDialog, public Ui::Options
     void on_radioButtonControllerSelect_clicked();
     void on_radioButtonMarqueeSelect_clicked();
     void on_radioButtonTitleSelect_clicked();
+    void on_radioButtonPCBSelect_clicked();
     void on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item);
     void on_treeWidgetShortcuts_itemSelectionChanged();
     void on_pushButtonRedefineKeySequence_clicked();

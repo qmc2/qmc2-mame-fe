@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>571</width>
-    <height>624</height>
+    <width>534</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,8 +57,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>499</height>
+                <width>490</width>
+                <height>525</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -124,94 +124,7 @@
                    </item>
                   </widget>
                  </item>
-                 <item row="0" column="3">
-                  <widget class="QLabel" name="labelPixmapCacheSize">
-                   <property name="text">
-                    <string>Image cache size</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="4" colspan="3">
-                  <widget class="QSpinBox" name="spinBoxPixmapCacheSize">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Image cache size in MB</string>
-                   </property>
-                   <property name="suffix">
-                    <string> MB</string>
-                   </property>
-                   <property name="minimum">
-                    <number>1</number>
-                   </property>
-                   <property name="maximum">
-                    <number>1024</number>
-                   </property>
-                   <property name="value">
-                    <number>64</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="labelStyle">
-                   <property name="text">
-                    <string>GUI style</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1" colspan="2">
-                  <widget class="QComboBox" name="comboBoxStyle">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Application style (Default = use system's default style)</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="3">
-                  <widget class="QLabel" name="labelStyleSheet">
-                   <property name="text">
-                    <string>Style sheet</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1" colspan="2">
-                  <widget class="QSpinBox" name="spinBoxFrontendLogSize">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Maximum number of lines to keep in front end log browser</string>
-                   </property>
-                   <property name="specialValueText">
-                    <string>unlimited</string>
-                   </property>
-                   <property name="suffix">
-                    <string> lines</string>
-                   </property>
-                   <property name="minimum">
-                    <number>0</number>
-                   </property>
-                   <property name="maximum">
-                    <number>999999</number>
-                   </property>
-                   <property name="value">
-                    <number>0</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="0" colspan="3">
+                 <item row="5" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxSaveLayout">
                    <property name="toolTip">
                     <string>Save window layout at exit</string>
@@ -221,7 +134,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="4" column="3" colspan="4">
+                 <item row="5" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxSaveGameSelection">
                    <property name="toolTip">
                     <string>Save game selection at exit and before reloading the gamelist</string>
@@ -231,7 +144,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="0" colspan="3">
+                 <item row="6" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxRestoreLayout">
                    <property name="toolTip">
                     <string>Restore saved window layout at start</string>
@@ -241,7 +154,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="3" colspan="4">
+                 <item row="6" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxRestoreGameSelection">
                    <property name="toolTip">
                     <string>Restore saved game selection at start and after reloading the gamelist</string>
@@ -251,7 +164,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="0" colspan="3">
+                 <item row="7" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxScaledPreview">
                    <property name="toolTip">
                     <string>Scale image to fit frame size (otherwise use original size)</string>
@@ -261,7 +174,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="0" colspan="3">
+                 <item row="8" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxScaledCabinet">
                    <property name="toolTip">
                     <string>Scale image to fit frame size (otherwise use original size)</string>
@@ -271,7 +184,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="3" colspan="4">
+                 <item row="8" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxScaledController">
                    <property name="toolTip">
                     <string>Scale image to fit frame size (otherwise use original size)</string>
@@ -281,7 +194,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="0" colspan="3">
+                 <item row="9" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxScaledMarquee">
                    <property name="toolTip">
                     <string>Scale image to fit frame size (otherwise use original size)</string>
@@ -291,37 +204,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxSmoothScaling">
-                   <property name="toolTip">
-                    <string>Smooth image scaling (nicer, but slower)</string>
-                   </property>
-                   <property name="text">
-                    <string>Smooth scaling</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="9" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxRetryLoadingImages">
-                   <property name="toolTip">
-                    <string>Retry loading images which weren't found before?</string>
-                   </property>
-                   <property name="text">
-                    <string>Retry loading images</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="10" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxParentImageFallback">
-                   <property name="toolTip">
-                    <string>Fall back to the parent's image if an indivual image is missing but there's one for the parent</string>
-                   </property>
-                   <property name="text">
-                    <string>Parent image fallback</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="10" column="3" colspan="4">
+                 <item row="12" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxStandardColorPalette">
                    <property name="toolTip">
                     <string>Use standard or custom color palette?</string>
@@ -331,7 +214,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="0" colspan="3">
+                 <item row="13" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxStatusbar">
                    <property name="toolTip">
                     <string>Show status bar</string>
@@ -341,7 +224,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="3" colspan="4">
+                 <item row="13" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxToolbar">
                    <property name="toolTip">
                     <string>Show tool bar</string>
@@ -351,7 +234,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="0" colspan="3">
+                 <item row="14" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxShowMenuBar">
                    <property name="enabled">
                     <bool>true</bool>
@@ -364,17 +247,17 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="3" colspan="4">
+                 <item row="14" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxProgressTexts">
                    <property name="toolTip">
                     <string>Show short description of current processing in progress bar</string>
                    </property>
                    <property name="text">
-                    <string>Progress texts</string>
+                    <string>Show progress texts</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="13" column="0" colspan="3">
+                 <item row="15" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxKillEmulatorsOnExit">
                    <property name="toolTip">
                     <string>Kill emulators on exit?</string>
@@ -384,7 +267,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="13" column="3" colspan="4">
+                 <item row="15" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxCheckSingleInstance">
                    <property name="toolTip">
                     <string>Check for other instances of this QMC2 variant on startup</string>
@@ -394,7 +277,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="14" column="0" colspan="3">
+                 <item row="16" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxGameStatusIndicator">
                    <property name="toolTip">
                     <string>Show vertical game status indicator in game details</string>
@@ -404,7 +287,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="14" column="3" colspan="4">
+                 <item row="16" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxGameStatusIndicatorOnlyWhenRequired">
                    <property name="enabled">
                     <bool>false</bool>
@@ -417,7 +300,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="15" column="0" colspan="3">
+                 <item row="17" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxShowGameName">
                    <property name="toolTip">
                     <string>Show game's description at the bottom of any images</string>
@@ -427,7 +310,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="15" column="3" colspan="4">
+                 <item row="17" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxShowGameNameOnlyWhenRequired">
                    <property name="enabled">
                     <bool>false</bool>
@@ -443,7 +326,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="16" column="0" colspan="3">
+                 <item row="18" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxProcessEmuInfoDB">
                    <property name="toolTip">
                     <string>Load emulator information database (mameinfo.dat)</string>
@@ -457,7 +340,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="16" column="3" colspan="4">
+                 <item row="18" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxCompressEmuInfoDB">
                    <property name="enabled">
                     <bool>false</bool>
@@ -474,7 +357,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="17" column="0" colspan="3">
+                 <item row="19" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxProcessGameInfoDB">
                    <property name="toolTip">
                     <string>Load game information database (MAME history.dat)</string>
@@ -488,7 +371,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="17" column="3" colspan="4">
+                 <item row="19" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxCompressGameInfoDB">
                    <property name="enabled">
                     <bool>false</bool>
@@ -505,7 +388,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="19" column="0" colspan="3">
+                 <item row="21" column="0" colspan="3">
                   <layout class="QHBoxLayout" name="layout3">
                    <item>
                     <widget class="QLabel" name="labelLegend1Pic">
@@ -538,7 +421,7 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="19" column="3" colspan="4">
+                 <item row="21" column="3" colspan="4">
                   <layout class="QHBoxLayout" name="layout2">
                    <item>
                     <widget class="QLabel" name="labelLegend2Pic">
@@ -571,7 +454,7 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="8" column="3" colspan="4">
+                 <item row="9" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxScaledTitle">
                    <property name="toolTip">
                     <string>Scale image to fit frame size (otherwise use original size)</string>
@@ -581,20 +464,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="4" colspan="2">
-                  <widget class="QLineEdit" name="lineEditStyleSheet">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Qt style sheet file (*.qss, leave empty for no style sheet)</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="6" column="3" colspan="4">
+                 <item row="7" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxScaledFlyer">
                    <property name="toolTip">
                     <string>Scale image to fit frame size (otherwise use original size)</string>
@@ -604,73 +474,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="6">
-                  <widget class="QToolButton" name="toolButtonBrowseStyleSheet">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Browse Qt style sheet file</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="labelFrontendLogSize">
-                   <property name="text">
-                    <string>Front end log size</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="labelEmulatorLogSize">
-                   <property name="text">
-                    <string>Emulator log size</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1" colspan="2">
-                  <widget class="QSpinBox" name="spinBoxEmulatorLogSize">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Maximum number of lines to keep in emulator log browser</string>
-                   </property>
-                   <property name="specialValueText">
-                    <string>unlimited</string>
-                   </property>
-                   <property name="suffix">
-                    <string> lines</string>
-                   </property>
-                   <property name="minimum">
-                    <number>0</number>
-                   </property>
-                   <property name="maximum">
-                    <number>999999</number>
-                   </property>
-                   <property name="value">
-                    <number>0</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="3">
-                  <widget class="QLabel" name="labelFont">
-                   <property name="text">
-                    <string>Application font</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="4" colspan="2">
+                 <item row="2" column="1" colspan="5">
                   <widget class="QLineEdit" name="lineEditFont">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -703,7 +507,194 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="3" colspan="4">
+                 <item row="20" column="0" colspan="7">
+                  <spacer name="spacer4">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>436</width>
+                     <height>13</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="10" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxScaledPCB">
+                   <property name="toolTip">
+                    <string>Scale image to fit frame size (otherwise use original size)</string>
+                   </property>
+                   <property name="text">
+                    <string>Scaled PCB</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="3">
+                  <widget class="QLabel" name="labelEmulatorLogSize">
+                   <property name="text">
+                    <string>Emulator log size</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="4" colspan="3">
+                  <widget class="QSpinBox" name="spinBoxEmulatorLogSize">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Maximum number of lines to keep in emulator log browser</string>
+                   </property>
+                   <property name="specialValueText">
+                    <string>unlimited</string>
+                   </property>
+                   <property name="suffix">
+                    <string> lines</string>
+                   </property>
+                   <property name="minimum">
+                    <number>0</number>
+                   </property>
+                   <property name="maximum">
+                    <number>999999</number>
+                   </property>
+                   <property name="value">
+                    <number>0</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="labelFrontendLogSize">
+                   <property name="text">
+                    <string>Front end log size</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1" colspan="2">
+                  <widget class="QSpinBox" name="spinBoxFrontendLogSize">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Maximum number of lines to keep in front end log browser</string>
+                   </property>
+                   <property name="specialValueText">
+                    <string>unlimited</string>
+                   </property>
+                   <property name="suffix">
+                    <string> lines</string>
+                   </property>
+                   <property name="minimum">
+                    <number>0</number>
+                   </property>
+                   <property name="maximum">
+                    <number>999999</number>
+                   </property>
+                   <property name="value">
+                    <number>0</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="labelFont">
+                   <property name="text">
+                    <string>Application font</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="labelStyleSheet">
+                   <property name="text">
+                    <string>Style sheet</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1" colspan="5">
+                  <widget class="QLineEdit" name="lineEditStyleSheet">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Qt style sheet file (*.qss, leave empty for no style sheet)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="6">
+                  <widget class="QToolButton" name="toolButtonBrowseStyleSheet">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse Qt style sheet file</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="3">
+                  <widget class="QLabel" name="labelStyle">
+                   <property name="text">
+                    <string>GUI style</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="4" colspan="3">
+                  <widget class="QComboBox" name="comboBoxStyle">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Application style (Default = use system's default style)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="10" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxSmoothScaling">
+                   <property name="toolTip">
+                    <string>Smooth image scaling (nicer, but slower)</string>
+                   </property>
+                   <property name="text">
+                    <string>Smooth scaling</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="11" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxRetryLoadingImages">
+                   <property name="toolTip">
+                    <string>Retry loading images which weren't found before?</string>
+                   </property>
+                   <property name="text">
+                    <string>Retry loading images</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="11" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxParentImageFallback">
+                   <property name="toolTip">
+                    <string>Fall back to the parent's image if an indivual image is missing but there's one for the parent</string>
+                   </property>
+                   <property name="text">
+                    <string>Parent image fallback</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="12" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxMinimizeOnVariantLaunch">
                    <property name="toolTip">
                     <string>Minimize application windows when launching another variant</string>
@@ -713,15 +704,47 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="18" column="0" colspan="7">
-                  <spacer name="spacer4">
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="labelPixmapCacheSize">
+                   <property name="text">
+                    <string>Image cache size</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1" colspan="2">
+                  <widget class="QSpinBox" name="spinBoxPixmapCacheSize">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Image cache size in MB</string>
+                   </property>
+                   <property name="suffix">
+                    <string> MB</string>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>1024</number>
+                   </property>
+                   <property name="value">
+                    <number>64</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="3" colspan="4">
+                  <spacer name="horizontalSpacer">
                    <property name="orientation">
-                    <enum>Qt::Vertical</enum>
+                    <enum>Qt::Horizontal</enum>
                    </property>
                    <property name="sizeHint" stdset="0">
                     <size>
-                     <width>436</width>
-                     <height>13</height>
+                     <width>275</width>
+                     <height>18</height>
                     </size>
                    </property>
                   </spacer>
@@ -755,8 +778,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>499</height>
+                <width>490</width>
+                <height>525</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -1370,7 +1393,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="14" column="0" colspan="3">
+                 <item row="15" column="0" colspan="3">
                   <spacer name="spacer5">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -1383,7 +1406,7 @@
                    </property>
                   </spacer>
                  </item>
-                 <item row="15" column="0" colspan="3">
+                 <item row="16" column="0" colspan="3">
                   <layout class="QHBoxLayout" name="layout8">
                    <item>
                     <widget class="QLabel" name="labelLegend3Pic">
@@ -1828,6 +1851,109 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="14" column="0">
+                  <widget class="QRadioButton" name="radioButtonPCBSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying a PCB directory or a ZIP-compressed PCB file</string>
+                   </property>
+                   <property name="text">
+                    <string>PCB directory</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="14" column="1" colspan="2">
+                  <widget class="QStackedWidget" name="stackedWidgetPCB">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="currentIndex">
+                    <number>0</number>
+                   </property>
+                   <widget class="QWidget" name="pagePCBDirectory">
+                    <layout class="QHBoxLayout" name="_18">
+                     <property name="margin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLineEdit" name="lineEditPCBDirectory">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>PCB directory (read)</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QToolButton" name="toolButtonBrowsePCBDirectory">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Browse PCB directory</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="qmc2.qrc">
+                         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                   <widget class="QWidget" name="pagePCBFile">
+                    <layout class="QHBoxLayout" name="_19">
+                     <property name="margin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLineEdit" name="lineEditPCBFile">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>ZIP-compressed PCB file (read)</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QToolButton" name="toolButtonBrowsePCBFile">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Browse ZIP-compressed PCB file</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="qmc2.qrc">
+                         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -1857,8 +1983,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>499</height>
+                <width>490</width>
+                <height>525</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2225,8 +2351,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>499</height>
+                <width>490</width>
+                <height>525</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2338,8 +2464,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>499</height>
+                <width>490</width>
+                <height>525</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -2795,8 +2921,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>499</height>
+                <width>490</width>
+                <height>525</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3112,8 +3238,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>800</width>
-                <height>480</height>
+                <width>490</width>
+                <height>525</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3546,16 +3672,16 @@
  <tabstops>
   <tabstop>tabWidgetOptions</tabstop>
   <tabstop>tabWidgetFrontendSettings</tabstop>
+  <tabstop>scrollAreaGUI</tabstop>
   <tabstop>comboBoxLanguage</tabstop>
-  <tabstop>spinBoxPixmapCacheSize</tabstop>
   <tabstop>comboBoxStyle</tabstop>
   <tabstop>lineEditStyleSheet</tabstop>
   <tabstop>toolButtonBrowseStyleSheet</tabstop>
-  <tabstop>spinBoxFrontendLogSize</tabstop>
   <tabstop>lineEditFont</tabstop>
   <tabstop>toolButtonBrowseFont</tabstop>
+  <tabstop>spinBoxFrontendLogSize</tabstop>
   <tabstop>spinBoxEmulatorLogSize</tabstop>
-  <tabstop>checkBoxMinimizeOnVariantLaunch</tabstop>
+  <tabstop>spinBoxPixmapCacheSize</tabstop>
   <tabstop>checkBoxSaveLayout</tabstop>
   <tabstop>checkBoxSaveGameSelection</tabstop>
   <tabstop>checkBoxRestoreLayout</tabstop>
@@ -3566,9 +3692,11 @@
   <tabstop>checkBoxScaledController</tabstop>
   <tabstop>checkBoxScaledMarquee</tabstop>
   <tabstop>checkBoxScaledTitle</tabstop>
+  <tabstop>checkBoxScaledPCB</tabstop>
   <tabstop>checkBoxSmoothScaling</tabstop>
   <tabstop>checkBoxRetryLoadingImages</tabstop>
   <tabstop>checkBoxParentImageFallback</tabstop>
+  <tabstop>checkBoxMinimizeOnVariantLaunch</tabstop>
   <tabstop>checkBoxStandardColorPalette</tabstop>
   <tabstop>checkBoxStatusbar</tabstop>
   <tabstop>checkBoxToolbar</tabstop>
@@ -3584,6 +3712,7 @@
   <tabstop>checkBoxCompressEmuInfoDB</tabstop>
   <tabstop>checkBoxProcessGameInfoDB</tabstop>
   <tabstop>checkBoxCompressGameInfoDB</tabstop>
+  <tabstop>scrollAreaFrontendFilesAndDirectories</tabstop>
   <tabstop>lineEditTemporaryFile</tabstop>
   <tabstop>toolButtonBrowseTemporaryFile</tabstop>
   <tabstop>lineEditFrontendLogFile</tabstop>
@@ -3633,6 +3762,11 @@
   <tabstop>toolButtonBrowseTitleDirectory</tabstop>
   <tabstop>lineEditTitleFile</tabstop>
   <tabstop>toolButtonBrowseTitleFile</tabstop>
+  <tabstop>radioButtonPCBSelect</tabstop>
+  <tabstop>lineEditPCBDirectory</tabstop>
+  <tabstop>toolButtonBrowsePCBDirectory</tabstop>
+  <tabstop>lineEditPCBFile</tabstop>
+  <tabstop>toolButtonBrowsePCBFile</tabstop>
   <tabstop>toolButtonShowC</tabstop>
   <tabstop>toolButtonShowM</tabstop>
   <tabstop>toolButtonShowI</tabstop>
@@ -3691,13 +3825,11 @@
   <tabstop>pushButtonDefault</tabstop>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonCancel</tabstop>
-  <tabstop>scrollAreaGUI</tabstop>
-  <tabstop>scrollAreaFrontendFilesAndDirectories</tabstop>
+  <tabstop>scrollAreaEmulatorFilesAndDirectories</tabstop>
+  <tabstop>scrollAreaFrontendTools</tabstop>
   <tabstop>scrollAreaFrontendGamelist</tabstop>
   <tabstop>scrollAreaFrontendShortcuts</tabstop>
   <tabstop>scrollAreaFrontendJoystick</tabstop>
-  <tabstop>scrollAreaFrontendTools</tabstop>
-  <tabstop>scrollAreaEmulatorFilesAndDirectories</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
@@ -3710,8 +3842,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>403</x>
-     <y>568</y>
+     <x>475</x>
+     <y>732</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
@@ -3726,8 +3858,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>484</x>
-     <y>568</y>
+     <x>560</x>
+     <y>732</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -3746,8 +3878,8 @@
      <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>354</x>
-     <y>100</y>
+     <x>130</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -3762,8 +3894,8 @@
      <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>134</x>
-     <y>129</y>
+     <x>130</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -3778,8 +3910,8 @@
      <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>86</x>
-     <y>152</y>
+     <x>97</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -3794,8 +3926,8 @@
      <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>107</x>
-     <y>129</y>
+     <x>118</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -3806,12 +3938,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>155</x>
-     <y>217</y>
+     <x>130</x>
+     <y>102</y>
     </hint>
     <hint type="destinationlabel">
-     <x>226</x>
-     <y>217</y>
+     <x>130</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -3822,12 +3954,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>137</x>
-     <y>441</y>
+     <x>149</x>
+     <y>495</y>
     </hint>
     <hint type="destinationlabel">
-     <x>462</x>
-     <y>441</y>
+     <x>538</x>
+     <y>495</y>
     </hint>
    </hints>
   </connection>
@@ -3838,12 +3970,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>153</x>
-     <y>418</y>
+     <x>165</x>
+     <y>473</y>
     </hint>
     <hint type="destinationlabel">
-     <x>462</x>
-     <y>418</y>
+     <x>538</x>
+     <y>473</y>
     </hint>
    </hints>
   </connection>
@@ -3854,12 +3986,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>121</x>
-     <y>372</y>
+     <x>133</x>
+     <y>429</y>
     </hint>
     <hint type="destinationlabel">
-     <x>462</x>
-     <y>372</y>
+     <x>538</x>
+     <y>429</y>
     </hint>
    </hints>
   </connection>
@@ -3870,12 +4002,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>130</x>
-     <y>395</y>
+     <x>142</x>
+     <y>451</y>
     </hint>
     <hint type="destinationlabel">
-     <x>462</x>
-     <y>395</y>
+     <x>538</x>
+     <y>451</y>
     </hint>
    </hints>
   </connection>
