@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>501</width>
-    <height>326</height>
+    <width>471</width>
+    <height>313</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,7 +24,7 @@
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>321</width>
+         <width>40</width>
          <height>20</height>
         </size>
        </property>
@@ -57,22 +57,34 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
-        <layout class="QGridLayout" name="gridLayout_1">
-         <item row="0" column="0" rowspan="2">
+        <layout class="QGridLayout" name="gridLayout_99">
+         <item row="0" column="0">
           <widget class="QLabel" name="labelPreviewsFound">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
             <string>Found: 0</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="1" rowspan="2">
+         <item row="0" column="1">
           <widget class="QLabel" name="labelPreviewsMissing">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
             <string>Missing: 0</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="2" rowspan="2" colspan="2">
+         <item row="0" column="2">
           <widget class="QLabel" name="labelPreviewsObsolete">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -85,29 +97,26 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="0" rowspan="5">
+         <item row="1" column="0" rowspan="4">
           <widget class="QListWidget" name="listWidgetPreviewsFound"/>
          </item>
-         <item row="2" column="1" rowspan="5">
+         <item row="1" column="1" rowspan="4">
           <widget class="QListWidget" name="listWidgetPreviewsMissing"/>
          </item>
-         <item row="2" column="2" rowspan="5">
+         <item row="1" column="2" rowspan="4">
           <widget class="QListWidget" name="listWidgetPreviewsObsolete"/>
          </item>
-         <item row="6" column="3">
-          <spacer>
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
+         <item row="1" column="3" colspan="2">
+          <widget class="QPushButton" name="pushButtonPreviewsCheck">
+           <property name="toolTip">
+            <string>Check preview images / stop check</string>
            </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
+           <property name="text">
+            <string>&amp;Check previews</string>
            </property>
-          </spacer>
+          </widget>
          </item>
-         <item row="5" column="3">
+         <item row="3" column="3" colspan="2">
           <widget class="QCheckBox" name="checkBoxPreviewsSelectGame">
            <property name="toolTip">
             <string>Select game in game list if selected in check lists?</string>
@@ -120,7 +129,33 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="3">
+         <item row="4" column="3" colspan="2">
+          <spacer>
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="3" colspan="2">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="2" column="3" colspan="2">
           <widget class="QPushButton" name="pushButtonPreviewsRemoveObsolete">
            <property name="enabled">
             <bool>false</bool>
@@ -130,16 +165,6 @@
            </property>
            <property name="text">
             <string>&amp;Remove obsolete</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="3" rowspan="2">
-          <widget class="QPushButton" name="pushButtonPreviewsCheck">
-           <property name="toolTip">
-            <string>Check preview images / stop check</string>
-           </property>
-           <property name="text">
-            <string>&amp;Check previews</string>
            </property>
           </widget>
          </item>
@@ -180,7 +205,7 @@
            </property>
           </spacer>
          </item>
-         <item row="0" column="2" colspan="2">
+         <item row="0" column="2">
           <widget class="QLabel" name="labelFlyersObsolete">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -195,6 +220,12 @@
          </item>
          <item row="0" column="1">
           <widget class="QLabel" name="labelFlyersMissing">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
             <string>Missing: 0</string>
            </property>
@@ -202,6 +233,12 @@
          </item>
          <item row="0" column="0">
           <widget class="QLabel" name="labelFlyersFound">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
             <string>Found: 0</string>
            </property>
@@ -246,6 +283,19 @@
            </property>
           </widget>
          </item>
+         <item row="0" column="3">
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
         </layout>
        </item>
       </layout>
@@ -263,6 +313,12 @@
         <layout class="QGridLayout" name="gridLayout_5">
          <item row="0" column="0">
           <widget class="QLabel" name="labelIconsFound">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
             <string>Found: 0</string>
            </property>
@@ -270,13 +326,25 @@
          </item>
          <item row="0" column="1">
           <widget class="QLabel" name="labelIconsMissing">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
             <string>Missing: 0</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="2" colspan="2">
+         <item row="0" column="2">
           <widget class="QLabel" name="labelIconsObsolete">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
             <string>Obsolete: 0</string>
            </property>
@@ -348,7 +416,20 @@
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>51</height>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="3">
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
             </size>
            </property>
           </spacer>
@@ -396,12 +477,12 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>72</x>
-     <y>482</y>
+     <x>458</x>
+     <y>302</y>
     </hint>
     <hint type="destinationlabel">
      <x>132</x>
-     <y>317</y>
+     <y>312</y>
     </hint>
    </hints>
   </connection>
