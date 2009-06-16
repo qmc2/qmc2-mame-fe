@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>330</width>
+    <width>382</width>
     <height>375</height>
    </rect>
   </property>
@@ -33,7 +33,7 @@
       <item>
        <widget class="QLabel" name="labelGradient1">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -71,7 +71,7 @@
       <item>
        <widget class="QLabel" name="labelGradient2">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
