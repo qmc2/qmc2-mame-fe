@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.2.b10, 12-JUN-2009</h3>
+<h3>TODO - v0.2.b10, 16-JUN-2009</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>Certain GUI styles may cause display problems for the emulator configuration widgets</li>
@@ -21,6 +21,7 @@
       On Windows, however, the underlying QtWebKit API that comes with Qt 4.5.1 still has a number of obvious restrictions and bugs.</i>
   <li>When a style sheet is activated, there may be some instabilities, especially regarding the QtWebKit features (MAWS, MiniWebBrowser), but there may be more we're not yet aware of. You have been warned :)!</li>
   <li>Also, due to a Qt bug (as of 4.5.1) we have to change the current working directory (of the running application) to the style sheet's path to make sure relative URLs are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead!</li>
+  <li>Another known issue with style sheets is that changing fonts at run-time doesn't work (unsure, but may be a Qt bug -- tested with Qt 4.5.1)</li>
 </ul>
 <p><b>Work in progress</b></p>
 <ul>
