@@ -59,6 +59,10 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     bool audioFastBackwarding;
     bool audioSkippingTracks;
 #endif
+#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+    QToolButton *toolButtonMAWSQuickLinks;
+    QMenu *menuMAWSQuickLinks;
+#endif
 
     static QColor qmc2StatusColorGreen;
     static QColor qmc2StatusColorYellowGreen;
@@ -245,7 +249,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void loadGameInfoDB();
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
     void loadEmuInfoDB();
+    void mawsLoadStarted();
     void mawsLoadFinished(bool);
+    void mawsQuickLinksSetVisible(bool);
+    void createMawsQuickLinksMenu();
+    void setupMawsQuickLinks();
 #endif
     void createFifo(bool logFifoCreation = TRUE);
     void recreateFifo();

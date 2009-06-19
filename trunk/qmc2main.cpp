@@ -2245,6 +2245,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         tabMAWS->setLayout(layout);
         QString mawsUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString().arg(gameName);
 
+        menuMAWSQuickLinks = NULL;
+        toolButtonMAWSQuickLinks = NULL;
+
         // lookup in disk cache first
         bool foundInDiskCache = FALSE;
         QDir mawsCacheDir(qmc2Config->value("MAME/FilesAndDirectories/MAWSCacheDirectory").toString());
@@ -2281,10 +2284,12 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           } else {
             qmc2MAWSLookup->webViewBrowser->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
             qmc2MAWSLookup->webViewBrowser->stop();
+            QTimer::singleShot(0, this, SLOT(createMawsQuickLinksMenu()));
           }
         }
         qmc2LastMAWSItem = qmc2CurrentItem;
         connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(mawsLoadFinished(bool)));
+        connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(loadStarted()), this, SLOT(mawsLoadStarted()));
         tabMAWS->setUpdatesEnabled(TRUE);
       }
       break;
@@ -5009,6 +5014,20 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 }
 
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+void MainWindow::mawsLoadStarted()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::mawsLoadStarted()");
+#endif
+
+  if ( menuMAWSQuickLinks )
+    delete menuMAWSQuickLinks;
+  if ( toolButtonMAWSQuickLinks )
+    delete toolButtonMAWSQuickLinks;
+  menuMAWSQuickLinks = NULL;
+  toolButtonMAWSQuickLinks = NULL;
+}
+
 void MainWindow::mawsLoadFinished(bool ok)
 {
 #ifdef QMC2_DEBUG
@@ -5068,11 +5087,70 @@ void MainWindow::mawsLoadFinished(bool ok)
           mawsCacheFile.close();
         }
       }
+      QTimer::singleShot(0, this, SLOT(createMawsQuickLinksMenu()));
     }
 #ifdef QMC2_DEBUG
     else
       log(QMC2_LOG_FRONTEND, QString("DEBUG: MAWS cache: ignoring URL '%1'").arg(qmc2MAWSLookup->webViewBrowser->url().toString()));
 #endif
+  }
+}
+
+void MainWindow::createMawsQuickLinksMenu()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::createMawsQuickLinksMenu()");
+#endif
+
+  // FIXME: remove this when "MAWS quick links" work
+#if QMC2_WIP_CODE == 1
+  if ( !qmc2MAWSLookup )
+    return;
+
+  toolButtonMAWSQuickLinks = new QToolButton(qmc2MAWSLookup->webViewBrowser);
+  toolButtonMAWSQuickLinks->setIcon(QIcon(QString::fromUtf8(":/data/img/download.png")));
+  toolButtonMAWSQuickLinks->setPopupMode(QToolButton::InstantPopup);
+  toolButtonMAWSQuickLinks->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+  toolButtonMAWSQuickLinks->setToolButtonStyle(Qt::ToolButtonIconOnly);
+  toolButtonMAWSQuickLinks->setToolTip(tr("Quick download links for MAWS data usable by QMC2"));
+
+  connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(mouseOnView(bool)), this, SLOT(mawsQuickLinksSetVisible(bool)));
+  connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(paintFinished()), toolButtonMAWSQuickLinks, SLOT(update()));
+  connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(paintFinished()), qmc2MAWSLookup->webViewBrowser, SLOT(update()));
+
+  menuMAWSQuickLinks = new QMenu(toolButtonMAWSQuickLinks);
+  // FIXME: add quick link items/actions here...
+  menuMAWSQuickLinks->addAction(tr("No links"));
+  menuMAWSQuickLinks->addSeparator();
+  QAction *action = menuMAWSQuickLinks->addAction(tr("Setup..."), this, SLOT(setupMawsQuickLinks()));
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
+  toolButtonMAWSQuickLinks->setMenu(menuMAWSQuickLinks);
+#endif  
+}
+
+void MainWindow::setupMawsQuickLinks()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::setupMawsQuickLinks()");
+#endif
+
+  // FIXME: todo...
+}
+
+void MainWindow::mawsQuickLinksSetVisible(bool visible)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::mawsQuickLinksSetVisible(bool visible = %1)").arg(ok));
+#endif
+
+  if ( !qmc2MAWSLookup )
+    return;
+
+  if ( toolButtonMAWSQuickLinks && menuMAWSQuickLinks ) {
+    if ( visible )
+      toolButtonMAWSQuickLinks->setVisible(TRUE);
+    else if ( !menuMAWSQuickLinks->isVisible() )
+      toolButtonMAWSQuickLinks->setVisible(FALSE);
   }
 }
 #endif

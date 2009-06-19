@@ -18,11 +18,30 @@ class BrowserWidget : public QWebView
       lastMouseClickPosition = QPoint(-1, -1);
     }
 
+  signals:
+    void mouseOnView(bool);
+    void paintFinished();
+
   protected:
     void mousePressEvent(QMouseEvent *e)
     {
       lastMouseClickPosition = e->pos();
       QWebView::mousePressEvent(e);
+    }
+    void enterEvent(QEvent *e)
+    {
+      QWebView::enterEvent(e);
+      emit mouseOnView(TRUE);
+    }
+    void leaveEvent(QEvent *e)
+    {
+      QWebView::leaveEvent(e);
+      emit mouseOnView(FALSE);
+    }
+    void paintEvent(QPaintEvent *e)
+    {
+      QWebView::paintEvent(e);
+      emit paintFinished();
     }
 };
 
