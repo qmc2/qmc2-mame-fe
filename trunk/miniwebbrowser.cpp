@@ -22,12 +22,15 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::MiniWebBrowser(QWidget *parent = %1)").arg((qulonglong) parent));
 #endif
 
+  setObjectName("MiniWebBrowser");
+
   if ( MiniWebBrowser::supportedSchemes.isEmpty() )
     MiniWebBrowser::supportedSchemes << "http" << "file";
 
   setupUi(this);
 
   webViewBrowser = new BrowserWidget(frameBrowser);
+  webViewBrowser->setObjectName("webViewBrowser");
   gridLayoutBrowser->addWidget(webViewBrowser);
 
   labelStatus->hide();

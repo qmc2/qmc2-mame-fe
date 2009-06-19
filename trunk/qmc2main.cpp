@@ -1123,13 +1123,19 @@ void MainWindow::on_actionReload_activated()
   } else {
     qmc2StopParser = FALSE;
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool() && qmc2DetailSetup->appliedDetailList.contains(QMC2_GAMEINFO_INDEX) )
-      if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser )
+      if ( qmc2GameInfoDB.isEmpty() && !qmc2StopParser ) {
+        qmc2Gamelist->enableWidgets(FALSE);
         loadGameInfoDB();
+        qmc2Gamelist->enableWidgets(TRUE);
+      }
 
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() && qmc2DetailSetup->appliedDetailList.contains(QMC2_EMUINFO_INDEX) )
-      if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser )
+      if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser ) {
+        qmc2Gamelist->enableWidgets(FALSE);
         loadEmuInfoDB();
+        qmc2Gamelist->enableWidgets(TRUE);
+      }
 #endif
 
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection").toBool() && !qmc2StartingUp ) {
@@ -2276,9 +2282,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         if ( !foundInDiskCache ) {
           // now check in memory cache and fetch data if unavailable
           if ( !qmc2MAWSCache.contains(gameName) ) {
-            qmc2MAWSLookup->webViewBrowser->setHtml("<html><head></head><body><center><p><b>" +
+            QColor color = qmc2MAWSLookup->webViewBrowser->palette().color(QPalette::WindowText);
+            qmc2MAWSLookup->webViewBrowser->setHtml(
+                                    QString("<html><head></head><body><center><p><font color=\"#%1%2%3\"<b>").arg(color.red()).arg(color.green()).arg(color.blue()) +
                                     tr("Fetching MAWS page for '%1', please wait...").arg(qmc2GamelistDescriptionMap[gameName]) +
-                                    "</b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center></body></html>",
+                                    "</font></b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(mawsUrl) + "</p></center></body></html>",
                                     QUrl(mawsUrl));
             qmc2MAWSLookup->webViewBrowser->load(QUrl(mawsUrl));
           } else {
@@ -4224,6 +4232,7 @@ void MainWindow::on_actionAudioPlayTrack_triggered(bool checked)
     if ( ci->text() != audioPlayerCurrentTrack ) {
       progressBarAudioProgress->reset();
       audioPlayerCurrentTrack = ci->text();
+      listWidgetAudioPlaylist->scrollToItem(ci, QAbstractItemView::PositionAtTop);
       phononAudioPlayer->setCurrentSource(Phonon::MediaSource(audioPlayerCurrentTrack));
     }
     phononAudioPlayer->play();

@@ -19,6 +19,8 @@ inf: informational only
   <li>fix: clear MAWS lookup correctly when reloading game list</li>
   <li>fix: corrected icon size adjustment for mini web browser, detail setup and ROM status exporter</li>
   <li>fix: fixed a series of race conditions with activated Qt style sheets (however, there are still a few QtWebKit related style sheet issues we can't fix)</li>
+  <li>fix: audio player: when starting to play a new track, scroll playlist to the file currently played</li>
+  <li>fix: disable a number of widgets to avoid launching of modal dialogs when the emulator and/or game/machine info DBs are loaded (would interrupt the load progress)</li>
   <li>imp: log discovered emulator <i>type</i> (MAME or MESS) together with its version</li>
   <li>imp: download manager: remember / preselect last storage path when presenting the file name chooser, show download details in tool tip</li>
   <li>imp: about dialog: using QDesktopServices to launch default browser when following links</li>
@@ -26,6 +28,7 @@ inf: informational only
   <li>imp: ghost image enhanced (rounded corners with a semi-transparent shadow)</li>
   <li>new: built-in support for dynamic loading of Qt style sheets -- note: due to a Qt bug, for now we have to change the current working directory to the style sheet's directory to make sure relative paths (image URLs) are handled correctly</li>
   <li>new: support for PCB images as an additional game/machine detail</i>
+  <li>new: added new make option <i>FADER_SPEED</i> to select the speed of audio fading at build time (0: fastest/instantly, &gt;0: slower, default: 100)</li>
   <li>wip: MAWS quick download links (arcade art, snaps etc.)</li>
   <li>doc: adopted new homepage look to all docs</li>
 </ul>
