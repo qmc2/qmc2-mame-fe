@@ -195,6 +195,11 @@ ifndef WC_COMPRESSION
 WC_COMPRESSION = 1
 endif
 
+# FADER_SPEED: audio fading speed (0: fastest/instantly, >0: slower)
+ifndef FADER_SPEED
+FADER_SPEED = 100
+endif
+
 # >>> END OF MAKE OPTIONS <<<
 
 # emulator target fallback for mameuifx32
@@ -251,7 +256,7 @@ endif
 # This needs to work around Qmake's issues with spaces in values
 blank =
 space = $(blank) $(blank)
-DEFINES = DEFINES+=$(VERSIONDEFS) TARGET_OS_NAME=$(OSNAME) TARGET_OS_RELEASE=$(OSREL) TARGET_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_ARCADE_OPENGL=$(ARCADE_OPENGL) QMC2_WIP_CODE=$(WIP) QMC2_PHONON=$(PHONON)
+DEFINES = DEFINES+=$(VERSIONDEFS) TARGET_OS_NAME=$(OSNAME) TARGET_OS_RELEASE=$(OSREL) TARGET_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_ARCADE_OPENGL=$(ARCADE_OPENGL) QMC2_WIP_CODE=$(WIP) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED)
 
 # process make options
 ifeq '$(DEBUG)' '2'
@@ -588,6 +593,7 @@ config:
 	@echo "DISTCC_CXX=<cxx>       Command used for distributed c++            $(DISTCC_CXX)"
 	@echo "DISTCFG=<dist-cfg>     Use distribution-specific config (0, 1)     $(DISTCFG)"
 	@echo "EMULATOR=<emulator>    Target emulator (SDLMAME, SDLMESS)          $(EMULATOR)"
+	@echo "FADER_SPEED=<speed>    Audio fading speed (0: fastest, >0: slower) $(FADER_SPEED)"
 	@echo "FIND=<find>            UNIX command find                           $(FIND)"
 	@echo "GREP=<grep>            UNIX command grep                           $(GREP)"
 	@echo "IMGSET=<imgset>        Image set to be used                        $(IMGSET)"
