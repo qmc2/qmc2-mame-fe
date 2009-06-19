@@ -13,9 +13,11 @@ class BrowserWidget : public QWebView
 
   public:
     QPoint lastMouseClickPosition;
+    bool mouseCurrentlyOnView;
     BrowserWidget(QWidget *parent = NULL) : QWebView(parent)
     {
       lastMouseClickPosition = QPoint(-1, -1);
+      mouseCurrentlyOnView = FALSE;
     }
 
   signals:
@@ -31,11 +33,13 @@ class BrowserWidget : public QWebView
     void enterEvent(QEvent *e)
     {
       QWebView::enterEvent(e);
+      mouseCurrentlyOnView = TRUE;
       emit mouseOnView(TRUE);
     }
     void leaveEvent(QEvent *e)
     {
       QWebView::leaveEvent(e);
+      mouseCurrentlyOnView = FALSE;
       emit mouseOnView(FALSE);
     }
     void paintEvent(QPaintEvent *e)
