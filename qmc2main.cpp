@@ -5125,6 +5125,8 @@ void MainWindow::createMawsQuickLinksMenu()
   QAction *action = menuMAWSQuickLinks->addAction(tr("Setup..."), this, SLOT(setupMawsQuickLinks()));
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
   toolButtonMAWSQuickLinks->setMenu(menuMAWSQuickLinks);
+
+  mawsQuickLinksSetVisible(qmc2MAWSLookup->webViewBrowser->mouseCurrentlyOnView);
 #endif  
 }
 
