@@ -5137,6 +5137,7 @@ void MainWindow::setupMawsQuickLinks()
 #endif
 
   // FIXME: todo...
+  log(QMC2_LOG_FRONTEND, tr("sorry, this feature is not yet available!"));
 }
 
 void MainWindow::mawsQuickLinksSetVisible(bool visible)
