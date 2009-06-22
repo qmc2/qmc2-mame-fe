@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MawsQuickDownloadSetup</class>
+ <widget class="QDialog" name="MawsQuickDownloadSetup">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>402</width>
+    <height>271</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MAWS quick download setup</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="0" column="0">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelPreviews">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Previews</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1" colspan="2">
+      <widget class="QLineEdit" name="lineEditPreviewDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Path to store preview images</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QToolButton" name="toolButtonBrowsePreviewDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Browse path to store preview images</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelFlyers">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Flyers</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" colspan="2">
+      <widget class="QLineEdit" name="lineEditFlyerDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Path to store flyer images</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QToolButton" name="toolButtonBrowseFlyerDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Browse path to store flyer images</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelCabinets">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Cabinets</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1" colspan="2">
+      <widget class="QLineEdit" name="lineEditCabinetDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Path to store cabinet images</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <widget class="QToolButton" name="toolButtonBrowseCabinetDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Browse path to store cabinet images</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="labelControllers">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Controllers</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1" colspan="2">
+      <widget class="QLineEdit" name="lineEditControllerDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Path to store controller images</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="3">
+      <widget class="QToolButton" name="toolButtonBrowseControllerDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Browse path to store controller images</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="labelMarquees">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Marquees</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1" colspan="2">
+      <widget class="QLineEdit" name="lineEditMarqueeDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Path to store marquee images</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="3">
+      <widget class="QToolButton" name="toolButtonBrowseMarqueeDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Browse path to store marquee images</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="labelTitles">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Titles</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1" colspan="2">
+      <widget class="QLineEdit" name="lineEditTitleDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Path to store title images</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="3">
+      <widget class="QToolButton" name="toolButtonBrowseTitleDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Browse path to store title images</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="labelPCBs">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>PCBs</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1" colspan="2">
+      <widget class="QLineEdit" name="lineEditPCBDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Path to store PCB images</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="3">
+      <widget class="QToolButton" name="toolButtonBrowsePCBDirectory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Browse path to store PCB images</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0" colspan="4">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>100</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonOk">
+         <property name="toolTip">
+          <string>Apply MAWS quick download setup and close dialog</string>
+         </property>
+         <property name="text">
+          <string>&amp;Ok</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonCancel">
+         <property name="toolTip">
+          <string>Cancel MAWS quick download setup and close dialog</string>
+         </property>
+         <property name="text">
+          <string>&amp;Cancel</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/no.png</normaloff>:/data/img/no.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>100</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+     <item row="7" column="0" colspan="4">
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>0</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>lineEditPreviewDirectory</tabstop>
+  <tabstop>toolButtonBrowsePreviewDirectory</tabstop>
+  <tabstop>lineEditFlyerDirectory</tabstop>
+  <tabstop>toolButtonBrowseFlyerDirectory</tabstop>
+  <tabstop>lineEditCabinetDirectory</tabstop>
+  <tabstop>toolButtonBrowseCabinetDirectory</tabstop>
+  <tabstop>lineEditControllerDirectory</tabstop>
+  <tabstop>toolButtonBrowseControllerDirectory</tabstop>
+  <tabstop>lineEditMarqueeDirectory</tabstop>
+  <tabstop>toolButtonBrowseMarqueeDirectory</tabstop>
+  <tabstop>lineEditTitleDirectory</tabstop>
+  <tabstop>toolButtonBrowseTitleDirectory</tabstop>
+  <tabstop>lineEditPCBDirectory</tabstop>
+  <tabstop>toolButtonBrowsePCBDirectory</tabstop>
+  <tabstop>pushButtonOk</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+ </tabstops>
+ <resources>
+  <include location="qmc2.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>pushButtonOk</sender>
+   <signal>clicked()</signal>
+   <receiver>MawsQuickDownloadSetup</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>229</x>
+     <y>451</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>467</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>MawsQuickDownloadSetup</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>416</x>
+     <y>452</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>474</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

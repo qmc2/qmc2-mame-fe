@@ -40,6 +40,9 @@ class AutoPopupToolButton : public QToolButton
           QTimer::singleShot(0, menu(), SLOT(hide()));
     }
 
+  signals:
+    void paintFinished();
+
   protected:
     void enterEvent(QEvent *e)
     {
@@ -51,6 +54,11 @@ class AutoPopupToolButton : public QToolButton
     {
       QTimer::singleShot(1000, this, SLOT(hideMenu()));
       QToolButton::leaveEvent(e);
+    }
+    void paintEvent(QPaintEvent *e)
+    {
+      QToolButton::paintEvent(e);
+      emit paintFinished();
     }
 };
 #endif
