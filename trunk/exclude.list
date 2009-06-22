@@ -1345,6 +1345,9 @@ qmc2/.svn/text-base/macros.h.svn-base
 qmc2/.svn/text-base/Makefile.svn-base
 qmc2/.svn/text-base/marquee.cpp.svn-base
 qmc2/.svn/text-base/marquee.h.svn-base
+qmc2/.svn/text-base/mawsqdlsetup.cpp.svn-base
+qmc2/.svn/text-base/mawsqdlsetup.h.svn-base
+qmc2/.svn/text-base/mawsqdlsetup.ui.svn-base
 qmc2/.svn/text-base/messdevcfg.cpp.svn-base
 qmc2/.svn/text-base/messdevcfg.h.svn-base
 qmc2/.svn/text-base/messdevcfg.ui.svn-base
