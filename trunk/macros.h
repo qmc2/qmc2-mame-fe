@@ -216,6 +216,9 @@
 // MAWS ROM set base URL (default)
 #define QMC2_MAWS_BASE_URL		"http://maws.mameworld.info/maws/romset/%1"
 
+// MAWS image links base URL (default)
+#define QMC2_MAWS_IMGLINKS_BASE_URL	"http://maws.mameworld.info/maws/"
+
 // MAWS web cache size (in-memory, 8M fixed for now)
 #define QMC2_MAWS_CACHE_SIZE		8 * QMC2_ONE_MEGABYTE
 

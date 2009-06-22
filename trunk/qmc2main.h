@@ -24,6 +24,37 @@ class KeyPressFilter : public QObject
     bool eventFilter(QObject *, QEvent *);
 };
 
+#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+class AutoPopupToolButton : public QToolButton
+{
+  Q_OBJECT
+
+  public:
+    AutoPopupToolButton(QWidget *parent = 0) : QToolButton(parent) { ; }
+
+  public slots:
+    void hideMenu()
+    {
+      if ( menu() )
+        if ( menu()->activeAction() == NULL )
+          QTimer::singleShot(0, menu(), SLOT(hide()));
+    }
+
+  protected:
+    void enterEvent(QEvent *e)
+    {
+      if ( menu() )
+        QTimer::singleShot(0, this, SLOT(showMenu()));
+      QToolButton::enterEvent(e);
+    }
+    void leaveEvent(QEvent *e)
+    {
+      QTimer::singleShot(1000, this, SLOT(hideMenu()));
+      QToolButton::leaveEvent(e);
+    }
+};
+#endif
+
 class MainWindow : public QMainWindow, public Ui::MainWindow
 {
   Q_OBJECT
@@ -60,7 +91,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     bool audioSkippingTracks;
 #endif
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
-    QToolButton *toolButtonMAWSQuickLinks;
+    AutoPopupToolButton *toolButtonMAWSQuickLinks;
     QMenu *menuMAWSQuickLinks;
 #endif
 
@@ -254,6 +285,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void mawsQuickLinksSetVisible(bool);
     void createMawsQuickLinksMenu();
     void setupMawsQuickLinks();
+    void downloadMawsQuickLink();
 #endif
     void createFifo(bool logFifoCreation = TRUE);
     void recreateFifo();
@@ -263,7 +295,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void processEvents() { qApp->processEvents(); }
     void on_treeWidgetGamelist_headerSectionClicked(int);
     void on_treeWidgetHierarchy_headerSectionClicked(int);
-    void startDownload(QNetworkReply *);
+    void startDownload(QNetworkReply *, QString saveAsName = QString());
     void on_pushButtonClearFinishedDownloads_clicked();
     void on_pushButtonReloadSelectedDownloads_clicked();
     void on_pushButtonStopSelectedDownloads_clicked();
