@@ -5047,17 +5047,22 @@ void MainWindow::mawsLoadFinished(bool ok)
     QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
     // only cache the ROM set page, don't cache followed pages
     if ( qmc2MAWSLookup->webViewBrowser->url().toString() == qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString().arg(gameName) ) {
+      // modify the HTML to contain a "clean" MAWS copyright in the footer
       QString mawsHtml = qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml();
       mawsHtml.replace("href=\"#top\"", QString("href=\"%1#top\"").arg(qmc2MAWSLookup->webViewBrowser->url().path()));
       int startIndex = mawsHtml.indexOf("<div class=\"ifFoot\"");
       mawsHtml.remove(startIndex, mawsHtml.indexOf("</div>") + 6);
       mawsHtml.insert(startIndex, QString("<p><font size=\"-1\">Copyright &copy; 2004 - %1 <a href=\"%2\"><b>MAWS</b></a>, All Rights Reserved</font></p>").arg(QDate::currentDate().year()).arg(QMC2_MAWS_HOMEPAGE_URL));
+
+      // make sure to scroll to last last scroll position after exchanging the HTML
       QPoint scrollPos = qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->scrollPosition();
       qmc2MAWSLookup->webViewBrowser->setUpdatesEnabled(FALSE);
       qmc2MAWSLookup->webViewBrowser->setHtml(mawsHtml, QUrl(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString().arg(gameName)));
       qmc2MAWSLookup->webViewBrowser->stop();
       qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->setScrollPosition(scrollPos);
       qmc2MAWSLookup->webViewBrowser->setUpdatesEnabled(TRUE);
+
+      // store compressed page to in-memory cache
       QByteArray mawsData = qCompress(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
       if ( qmc2MAWSCache.contains(gameName) ) {
         qmc2MAWSCache.remove(gameName);
@@ -5116,7 +5121,9 @@ void MainWindow::createMawsQuickLinksMenu()
   if ( !qmc2MAWSLookup )
     return;
 
-  toolButtonMAWSQuickLinks = new QToolButton(qmc2MAWSLookup->webViewBrowser);
+  QString mawsHtml = qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().simplified();
+
+  toolButtonMAWSQuickLinks = new AutoPopupToolButton(qmc2MAWSLookup->webViewBrowser);
   toolButtonMAWSQuickLinks->setIcon(QIcon(QString::fromUtf8(":/data/img/download.png")));
   toolButtonMAWSQuickLinks->setPopupMode(QToolButton::InstantPopup);
   toolButtonMAWSQuickLinks->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
@@ -5128,10 +5135,54 @@ void MainWindow::createMawsQuickLinksMenu()
   connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(paintFinished()), qmc2MAWSLookup->webViewBrowser, SLOT(update()));
 
   menuMAWSQuickLinks = new QMenu(toolButtonMAWSQuickLinks);
-  // FIXME: add quick link items/actions here...
-  menuMAWSQuickLinks->addAction(tr("No links"));
+
+  // cabinet art quick links:
+  QAction *action;
+  QMenu *cabinetArtMenu = menuMAWSQuickLinks->addMenu(QIcon(QString::fromUtf8(":/data/img/arcadecabinet.png")), tr("Cabinet art"));
+  QMap<QString, QString> cabinetArtURLs;
+  int startIndex = mawsHtml.indexOf("cabinet art");
+  int endIndex = mawsHtml.indexOf("</table>", startIndex);
+  QString cabinetArtHtml = mawsHtml.mid(startIndex, endIndex - startIndex).remove(QRegExp("</tr>|<table>|</table>|<tbody>|</tbody>")); 
+  cabinetArtHtml.replace("<tr>", ":");
+  cabinetArtHtml.remove(0, cabinetArtHtml.indexOf(":") + 1);
+  cabinetArtHtml = cabinetArtHtml.simplified().trimmed();
+  QStringList cabinetArtLines = cabinetArtHtml.split(":");
+  int i;
+  for (i = 0; i < cabinetArtLines.count(); i++) {
+    QString cabArtLine = cabinetArtLines[i];
+    if ( cabArtLine.contains(">art</td>") ) {
+      continue;
+    } else {
+      startIndex = cabArtLine.indexOf("href=\"") + 6;
+      QString url = QMC2_MAWS_IMGLINKS_BASE_URL + cabArtLine.mid(startIndex, cabArtLine.indexOf("\"", startIndex + 1) - startIndex);
+      if ( cabArtLine.contains(">cabinet</td>") ) {
+        cabinetArtURLs[tr("Cabinet")] = url;
+      } else if ( cabArtLine.contains(">control panel</td>") ) {
+        cabinetArtURLs[tr("Controller")] = url;
+      } else if ( cabArtLine.contains(">PCB</td>") ) {
+        cabinetArtURLs[tr("PCB")] = url;
+      } else if ( cabArtLine.contains(">flyer</td>") ) {
+        cabinetArtURLs[tr("Flyer")] = url;
+      } else if ( cabArtLine.contains(">marquee</td>") ) {
+        cabinetArtURLs[tr("Marquee")] = url;
+      }
+    }
+  }
+  if ( cabinetArtURLs.isEmpty() ) {
+    cabinetArtMenu->setTitle(tr("No cabinet art"));
+    cabinetArtMenu->setEnabled(FALSE);
+  } else {
+    QMapIterator<QString, QString> it(cabinetArtURLs);
+    while ( it.hasNext() ) {
+      it.next();
+      action = cabinetArtMenu->addAction(it.key() + " - " + it.value(), this, SLOT(downloadMawsQuickLink()));
+    }
+  }
+
+  // FIXME: add quick links for more available data here...
+
   menuMAWSQuickLinks->addSeparator();
-  QAction *action = menuMAWSQuickLinks->addAction(tr("Setup..."), this, SLOT(setupMawsQuickLinks()));
+  action = menuMAWSQuickLinks->addAction(tr("Setup..."), this, SLOT(setupMawsQuickLinks()));
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
   toolButtonMAWSQuickLinks->setMenu(menuMAWSQuickLinks);
 
@@ -5146,7 +5197,7 @@ void MainWindow::setupMawsQuickLinks()
 #endif
 
   // FIXME: todo...
-  log(QMC2_LOG_FRONTEND, tr("sorry, this feature is not yet available!"));
+  log(QMC2_LOG_FRONTEND, "MainWindow::setupMawsQuickLinks(): " + tr("sorry, this feature is not yet available!"));
 }
 
 void MainWindow::mawsQuickLinksSetVisible(bool visible)
@@ -5165,12 +5216,36 @@ void MainWindow::mawsQuickLinksSetVisible(bool visible)
       toolButtonMAWSQuickLinks->setVisible(FALSE);
   }
 }
+
+void MainWindow::downloadMawsQuickLink()
+{
+  QAction *action = (QAction *)sender();
+
+  if ( !action || !qmc2CurrentItem )
+    return;
+
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::downloadMawsQuickLink()");
 #endif
 
-void MainWindow::startDownload(QNetworkReply *reply)
+  QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON) + ".png";
+
+  // FIXME: make it a categorized auto download (no "save as" dialog presented)
+  //        for now, we simply use the common download method...
+  QStringList actionWords = action->text().split(" - ");
+  if ( actionWords.count() > 1 ) {
+    menuMAWSQuickLinks->setVisible(FALSE);
+    toolButtonMAWSQuickLinks->setVisible(FALSE);
+    QNetworkRequest request(actionWords[1]);
+    startDownload(qmc2NetworkAccessManager->get(request), gameName);
+  }
+}
+#endif
+
+void MainWindow::startDownload(QNetworkReply *reply, QString saveAsName)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::startDownload(QNetworkReply *reply = %1)").arg((qulonglong)reply));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::startDownload(QNetworkReply *reply = %1, QString saveAsName = %2)").arg((qulonglong)reply).arg(saveAsName));
 #endif
 
   if ( !reply )
@@ -5178,7 +5253,9 @@ void MainWindow::startDownload(QNetworkReply *reply)
 
   QFileInfo fi(reply->url().path());
   QString proposedName = fi.baseName();
-  if ( !fi.completeSuffix().isEmpty() )
+  if ( !saveAsName.isEmpty() )
+    proposedName = saveAsName;
+  else if ( !fi.completeSuffix().isEmpty() )
     proposedName += "." + fi.completeSuffix();
 
   if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath") )
