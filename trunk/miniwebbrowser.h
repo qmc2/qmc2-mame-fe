@@ -22,7 +22,6 @@ class BrowserWidget : public QWebView
 
   signals:
     void mouseOnView(bool);
-    void paintFinished();
 
   protected:
     void mousePressEvent(QMouseEvent *e)
@@ -41,11 +40,6 @@ class BrowserWidget : public QWebView
       QWebView::leaveEvent(e);
       mouseCurrentlyOnView = FALSE;
       emit mouseOnView(FALSE);
-    }
-    void paintEvent(QPaintEvent *e)
-    {
-      QWebView::paintEvent(e);
-      emit paintFinished();
     }
 };
 

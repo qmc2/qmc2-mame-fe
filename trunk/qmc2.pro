@@ -23,6 +23,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			fileeditwidget.ui \
 			detailsetup.ui \
 			miniwebbrowser.ui \
+			mawsqdlsetup.ui \
 			arcade/arcadesetupdialog.ui
 		SOURCES += qmc2main.cpp \
 			options.cpp \
@@ -54,6 +55,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			detailsetup.cpp \
 			miniwebbrowser.cpp \
 			downloaditem.cpp \
+			mawsqdlsetup.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			arcade/arcadeview.cpp \
@@ -94,6 +96,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			detailsetup.h \
 			miniwebbrowser.h \
 			downloaditem.h \
+			mawsqdlsetup.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \

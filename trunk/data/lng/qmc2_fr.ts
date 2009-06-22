@@ -6381,6 +6381,139 @@ Faut-il les tuer à la sortie ?</translation>
     </message>
 </context>
 <context>
+    <name>MawsQuickDownloadSetup</name>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="14"/>
+        <source>MAWS quick download setup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="28"/>
+        <source>Previews</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="41"/>
+        <source>Path to store preview images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="54"/>
+        <source>Browse path to store preview images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="71"/>
+        <source>Flyers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="84"/>
+        <source>Path to store flyer images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="97"/>
+        <source>Browse path to store flyer images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="114"/>
+        <source>Cabinets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="127"/>
+        <source>Path to store cabinet images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="140"/>
+        <source>Browse path to store cabinet images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="157"/>
+        <source>Controllers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="170"/>
+        <source>Path to store controller images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="183"/>
+        <source>Browse path to store controller images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="200"/>
+        <source>Marquees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="213"/>
+        <source>Path to store marquee images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="226"/>
+        <source>Browse path to store marquee images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="243"/>
+        <source>Titles</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="256"/>
+        <source>Path to store title images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="269"/>
+        <source>Browse path to store title images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="286"/>
+        <source>PCBs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="299"/>
+        <source>Path to store PCB images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="312"/>
+        <source>Browse path to store PCB images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="338"/>
+        <source>Apply MAWS quick download setup and close dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="341"/>
+        <source>&amp;Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="352"/>
+        <source>Cancel MAWS quick download setup and close dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="355"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Annuler</translation>
+    </message>
+</context>
+<context>
     <name>MiniWebBrowser</name>
     <message>
         <location filename="../../miniwebbrowser.ui" line="15"/>

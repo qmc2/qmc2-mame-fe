@@ -6362,6 +6362,139 @@ Sollen diese beim Beenden geschlossen werden?</translation>
     </message>
 </context>
 <context>
+    <name>MawsQuickDownloadSetup</name>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="14"/>
+        <source>MAWS quick download setup</source>
+        <translation>MAWS Schnell-Download Einstellung</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="28"/>
+        <source>Previews</source>
+        <translation>Vorschaubilder</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="41"/>
+        <source>Path to store preview images</source>
+        <translation>Pfad zum Speichern von Vorschaubildern</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="54"/>
+        <source>Browse path to store preview images</source>
+        <translation>Pfad zum Speichern von Vorschaubildern auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="71"/>
+        <source>Flyers</source>
+        <translation>Flyer</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="84"/>
+        <source>Path to store flyer images</source>
+        <translation>Pfad zum Speichern von Flyer-Bildern</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="97"/>
+        <source>Browse path to store flyer images</source>
+        <translation>Pfad zum Speichern von Flyer-Bildern auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="114"/>
+        <source>Cabinets</source>
+        <translation>Gehäuse</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="127"/>
+        <source>Path to store cabinet images</source>
+        <translation>Pfad zum Speichern von Gehäusebildern</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="140"/>
+        <source>Browse path to store cabinet images</source>
+        <translation>Pfad zum Speichern von Gehäusebildern auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="157"/>
+        <source>Controllers</source>
+        <translation>Controller</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="170"/>
+        <source>Path to store controller images</source>
+        <translation>Pfad zum Speichern von Controller-Bildern</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="183"/>
+        <source>Browse path to store controller images</source>
+        <translation>Pfad zum Speichern von Controller-Bildern auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="200"/>
+        <source>Marquees</source>
+        <translation>Marquees</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="213"/>
+        <source>Path to store marquee images</source>
+        <translation>Pfad zum Speichern von Marquee-Bildern</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="226"/>
+        <source>Browse path to store marquee images</source>
+        <translation>Pfad zum Speichern von Marquee-Bildern auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="243"/>
+        <source>Titles</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="256"/>
+        <source>Path to store title images</source>
+        <translation>Pfad zum Speichern von Titel-Bildern</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="269"/>
+        <source>Browse path to store title images</source>
+        <translation>Pfad zum Speichern von Titel-Bildern auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="286"/>
+        <source>PCBs</source>
+        <translation>PCBs</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="299"/>
+        <source>Path to store PCB images</source>
+        <translation>Pfad zum Speichern von PCB-Bildern</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="312"/>
+        <source>Browse path to store PCB images</source>
+        <translation>Pfad zum Speichern von PCB-Bildern auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="338"/>
+        <source>Apply MAWS quick download setup and close dialog</source>
+        <translation>MAWS Schnell-Download Einstellung übernehmen und Dialog schließen</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="341"/>
+        <source>&amp;Ok</source>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="352"/>
+        <source>Cancel MAWS quick download setup and close dialog</source>
+        <translation>MAWS Schnell-Download Einstellung abbrechen und Dialog schließen</translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="355"/>
+        <source>&amp;Cancel</source>
+        <translation>Abbre&amp;chen</translation>
+    </message>
+</context>
+<context>
     <name>MiniWebBrowser</name>
     <message>
         <location filename="../../miniwebbrowser.ui" line="15"/>

@@ -50,6 +50,7 @@
 #include "miniwebbrowser.h"
 #include "unzip.h"
 #include "downloaditem.h"
+#include "mawsqdlsetup.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #endif
@@ -164,6 +165,7 @@ QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
 MiniWebBrowser *qmc2MAWSLookup = NULL;
 QTreeWidgetItem *qmc2LastMAWSItem = NULL;
 QCache<QString, QByteArray> qmc2MAWSCache;
+MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup = NULL;
 #endif
 QTreeWidgetItem *qmc2HierarchySelectedItem = NULL;
 QMenu *qmc2EmulatorMenu = NULL,
@@ -2041,7 +2043,6 @@ void MainWindow::checkCurrentFavoritesSelection()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkCurrentFavoritesSelection()");
 #endif
 
-
   listWidgetFavorites->setCurrentIndex(QModelIndex());
   listWidgetFavorites->clearSelection();
 
@@ -3386,6 +3387,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
   if ( qmc2MAWSLookup ) {
     log(QMC2_LOG_FRONTEND, tr("destroying MAWS lookup"));
     delete qmc2MAWSLookup;
+  }
+  if ( qmc2MawsQuickDownloadSetup ) {
+    log(QMC2_LOG_FRONTEND, tr("destroying MAWS quick download setup"));
+    qmc2MawsQuickDownloadSetup->close();
+    delete qmc2MawsQuickDownloadSetup;
   }
 #endif
   if ( qmc2ImageChecker ) {
@@ -5131,8 +5137,7 @@ void MainWindow::createMawsQuickLinksMenu()
   toolButtonMAWSQuickLinks->setToolTip(tr("Quick download links for MAWS data usable by QMC2"));
 
   connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(mouseOnView(bool)), this, SLOT(mawsQuickLinksSetVisible(bool)));
-  connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(paintFinished()), toolButtonMAWSQuickLinks, SLOT(update()));
-  connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(paintFinished()), qmc2MAWSLookup->webViewBrowser, SLOT(update()));
+  connect(toolButtonMAWSQuickLinks, SIGNAL(paintFinished()), qmc2MAWSLookup->webViewBrowser, SLOT(update()));
 
   menuMAWSQuickLinks = new QMenu(toolButtonMAWSQuickLinks);
 
@@ -5196,8 +5201,13 @@ void MainWindow::setupMawsQuickLinks()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::setupMawsQuickLinks()");
 #endif
 
-  // FIXME: todo...
-  log(QMC2_LOG_FRONTEND, "MainWindow::setupMawsQuickLinks(): " + tr("sorry, this feature is not yet available!"));
+  log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
+
+  if ( !qmc2MawsQuickDownloadSetup )
+    qmc2MawsQuickDownloadSetup = new MawsQuickDownloadSetup(this);
+
+  qmc2MawsQuickDownloadSetup->show();
+  qmc2MawsQuickDownloadSetup->raise();
 }
 
 void MainWindow::mawsQuickLinksSetVisible(bool visible)
