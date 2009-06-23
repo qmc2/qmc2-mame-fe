@@ -5141,8 +5141,14 @@ void MainWindow::createMawsQuickLinksMenu()
 
   menuMAWSQuickLinks = new QMenu(toolButtonMAWSQuickLinks);
 
-  // cabinet art quick links:
   QAction *action;
+
+  // icon quick link:
+  action =  menuMAWSQuickLinks->addAction(tr("Icon"), this, SLOT(storeMawsIcon()));
+  action->setIcon(qmc2MAWSLookup->comboBoxURL->itemIcon(qmc2MAWSLookup->comboBoxURL->currentIndex()));
+  menuMAWSQuickLinks->addSeparator();
+
+  // cabinet art quick links:
   QMenu *cabinetArtMenu = menuMAWSQuickLinks->addMenu(QIcon(QString::fromUtf8(":/data/img/arcadecabinet.png")), tr("Cabinet art"));
   QMap<QString, QString> cabinetArtURLs;
   int startIndex = mawsHtml.indexOf("cabinet art");
@@ -5183,10 +5189,10 @@ void MainWindow::createMawsQuickLinksMenu()
       action = cabinetArtMenu->addAction(it.key() + " - " + it.value(), this, SLOT(downloadMawsQuickLink()));
     }
   }
+  menuMAWSQuickLinks->addSeparator();
 
   // FIXME: add quick links for more available data here...
 
-  menuMAWSQuickLinks->addSeparator();
   action = menuMAWSQuickLinks->addAction(tr("Setup..."), this, SLOT(setupMawsQuickLinks()));
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
   toolButtonMAWSQuickLinks->setMenu(menuMAWSQuickLinks);
@@ -5238,16 +5244,53 @@ void MainWindow::downloadMawsQuickLink()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::downloadMawsQuickLink()");
 #endif
 
-  QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON) + ".png";
+  QString saveName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON) + ".png";
 
-  // FIXME: make it a categorized auto download (no "save as" dialog presented)
-  //        for now, we simply use the common download method...
+  // FIXME: change this to automatically select the right paths when the setup dialog is done
+  //        (for now, simply use the common download method...)
   QStringList actionWords = action->text().split(" - ");
   if ( actionWords.count() > 1 ) {
     menuMAWSQuickLinks->setVisible(FALSE);
     toolButtonMAWSQuickLinks->setVisible(FALSE);
     QNetworkRequest request(actionWords[1]);
-    startDownload(qmc2NetworkAccessManager->get(request), gameName);
+    startDownload(qmc2NetworkAccessManager->get(request), saveName);
+  }
+}
+
+void MainWindow::storeMawsIcon()
+{
+  QAction *action = (QAction *)sender();
+
+  if ( !action || !qmc2CurrentItem )
+    return;
+
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::storeMawsIcon()");
+#endif
+
+  menuMAWSQuickLinks->setVisible(FALSE);
+  toolButtonMAWSQuickLinks->setVisible(FALSE);
+
+  QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+  QString saveName = gameName + ".png";
+  
+  // FIXME: change this to automatically select the right path when the setup dialog is done
+  //        (for now, simply use a method similar to the above...)
+  if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath") )
+    saveName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath").toString());
+
+  QString filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store the icon"), saveName, tr("All files (*)"));
+  if ( !filePath.isEmpty() ) {
+    QPixmap iconPixmap = action->icon().pixmap(QSize(64, 64));
+    if ( iconPixmap.save(filePath) ) {
+      log(QMC2_LOG_FRONTEND, tr("icon image for '%1' stored as '%2'").arg(gameName).arg(filePath));
+      QFileInfo fiFilePath(filePath);
+      QString storagePath = fiFilePath.absolutePath();
+      if ( !storagePath.endsWith("/") )
+        storagePath.append("/");
+      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath", storagePath);
+    } else
+      log(QMC2_LOG_FRONTEND, tr("FATAL: icon image for '%1' couldn't be stored as '%2'").arg(gameName).arg(filePath));
   }
 }
 #endif
