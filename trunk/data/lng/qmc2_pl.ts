@@ -6561,7 +6561,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../mawsqdlsetup.ui" line="485"/>
         <location filename="../../mawsqdlsetup.ui" line="501"/>
         <location filename="../../mawsqdlsetup.ui" line="517"/>
-        <location filename="../../mawsqdlsetup.ui" line="546"/>
+        <location filename="../../mawsqdlsetup.ui" line="576"/>
         <source>Auto</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6601,17 +6601,55 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="543"/>
+        <location filename="../../mawsqdlsetup.ui" line="573"/>
         <source>Automatically download icon images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="559"/>
+        <location filename="../../mawsqdlsetup.ui" line="588"/>
+        <location filename="../../mawsqdlsetup.ui" line="638"/>
+        <source>Preferred collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="604"/>
+        <source>Select the preferred image collection for in-game previews (auto-download)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="608"/>
+        <location filename="../../mawsqdlsetup.ui" line="658"/>
+        <source>AntoPISA progettoSNAPS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="613"/>
+        <source>MAME World Snap Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="618"/>
+        <location filename="../../mawsqdlsetup.ui" line="663"/>
+        <source>CrashTest Snap Collection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="623"/>
+        <source>Enaitz Jar Snaps</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="654"/>
+        <source>Select the preferred image collection for titles (auto-download)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mawsqdlsetup.ui" line="543"/>
         <source>Path to store icon images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="572"/>
+        <location filename="../../mawsqdlsetup.ui" line="556"/>
         <source>Browse path to store icon images</source>
         <translation type="unfinished"></translation>
     </message>
