@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>462</width>
-    <height>302</height>
+    <height>360</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -59,7 +59,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
+     <item row="2" column="0">
       <widget class="QLabel" name="labelFlyers">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -72,7 +72,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="2" colspan="2">
+     <item row="2" column="2" colspan="2">
       <widget class="QLineEdit" name="lineEditFlyerDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -85,7 +85,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="4">
+     <item row="2" column="4">
       <widget class="QToolButton" name="toolButtonBrowseFlyerDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -102,7 +102,7 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
+     <item row="4" column="0">
       <widget class="QLabel" name="labelCabinets">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -115,7 +115,7 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="2" colspan="2">
+     <item row="4" column="2" colspan="2">
       <widget class="QLineEdit" name="lineEditCabinetDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -128,7 +128,7 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="4">
+     <item row="4" column="4">
       <widget class="QToolButton" name="toolButtonBrowseCabinetDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -145,7 +145,7 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
+     <item row="5" column="0">
       <widget class="QLabel" name="labelControllers">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -158,7 +158,7 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="2" colspan="2">
+     <item row="5" column="2" colspan="2">
       <widget class="QLineEdit" name="lineEditControllerDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -171,7 +171,7 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="4">
+     <item row="5" column="4">
       <widget class="QToolButton" name="toolButtonBrowseControllerDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -188,7 +188,7 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="0">
+     <item row="6" column="0">
       <widget class="QLabel" name="labelMarquees">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -201,7 +201,7 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="2" colspan="2">
+     <item row="6" column="2" colspan="2">
       <widget class="QLineEdit" name="lineEditMarqueeDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -214,7 +214,7 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="4">
+     <item row="6" column="4">
       <widget class="QToolButton" name="toolButtonBrowseMarqueeDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -231,7 +231,7 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="0">
+     <item row="7" column="0">
       <widget class="QLabel" name="labelTitles">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -244,7 +244,7 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="2" colspan="2">
+     <item row="7" column="2" colspan="2">
       <widget class="QLineEdit" name="lineEditTitleDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -257,7 +257,7 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="4">
+     <item row="7" column="4">
       <widget class="QToolButton" name="toolButtonBrowseTitleDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -274,7 +274,7 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="0">
+     <item row="9" column="0">
       <widget class="QLabel" name="labelPCBs">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -287,7 +287,7 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="2" colspan="2">
+     <item row="9" column="2" colspan="2">
       <widget class="QLineEdit" name="lineEditPCBDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -300,7 +300,7 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="4">
+     <item row="9" column="4">
       <widget class="QToolButton" name="toolButtonBrowsePCBDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -317,7 +317,7 @@
        </property>
       </widget>
      </item>
-     <item row="9" column="0" colspan="5">
+     <item row="11" column="0" colspan="5">
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <spacer name="horizontalSpacer">
@@ -393,7 +393,7 @@
        </item>
       </layout>
      </item>
-     <item row="8" column="0" colspan="5">
+     <item row="10" column="0" colspan="5">
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -409,7 +409,7 @@
      <item row="0" column="1">
       <widget class="QCheckBox" name="checkBoxAutoPreviews">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -422,10 +422,10 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
+     <item row="2" column="1">
       <widget class="QCheckBox" name="checkBoxAutoFlyers">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -438,10 +438,10 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item row="4" column="1">
       <widget class="QCheckBox" name="checkBoxAutoCabinets">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -454,10 +454,10 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
+     <item row="5" column="1">
       <widget class="QCheckBox" name="checkBoxAutoControllers">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -470,10 +470,10 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="1">
+     <item row="6" column="1">
       <widget class="QCheckBox" name="checkBoxAutoMarquees">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -486,10 +486,10 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="1">
+     <item row="7" column="1">
       <widget class="QCheckBox" name="checkBoxAutoTitles">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -502,10 +502,10 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="1">
+     <item row="9" column="1">
       <widget class="QCheckBox" name="checkBoxAutoPCBs">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -518,7 +518,7 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="3" column="0">
       <widget class="QLabel" name="labelIcons">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -531,23 +531,7 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QCheckBox" name="checkBoxAutoIcons">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Automatically download icon images</string>
-       </property>
-       <property name="text">
-        <string>Auto</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2" colspan="2">
+     <item row="3" column="2" colspan="2">
       <widget class="QLineEdit" name="lineEditIconDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -560,7 +544,7 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="4">
+     <item row="3" column="4">
       <widget class="QToolButton" name="toolButtonBrowseIconDirectory">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -577,6 +561,112 @@
        </property>
       </widget>
      </item>
+     <item row="3" column="1">
+      <widget class="QCheckBox" name="checkBoxAutoIcons">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Automatically download icon images</string>
+       </property>
+       <property name="text">
+        <string>Auto</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" colspan="3">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="labelPreferredPreviewCollection">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Preferred collection</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBoxPreferredPreviewCollection">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Select the preferred image collection for in-game previews (auto-download)</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>AntoPISA progettoSNAPS</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>MAME World Snap Collection</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>CrashTest Snap Collection</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Enaitz Jar Snaps</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="8" column="1" colspan="3">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="labelPreferredTitleCollection">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Preferred collection</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBoxPreferredTitleCollection">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Select the preferred image collection for titles (auto-download)</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>AntoPISA progettoSNAPS</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>CrashTest Snap Collection</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </item>
     </layout>
    </item>
   </layout>
@@ -585,6 +675,7 @@
   <tabstop>checkBoxAutoPreviews</tabstop>
   <tabstop>lineEditPreviewDirectory</tabstop>
   <tabstop>toolButtonBrowsePreviewDirectory</tabstop>
+  <tabstop>comboBoxPreferredPreviewCollection</tabstop>
   <tabstop>checkBoxAutoFlyers</tabstop>
   <tabstop>lineEditFlyerDirectory</tabstop>
   <tabstop>toolButtonBrowseFlyerDirectory</tabstop>
@@ -603,6 +694,7 @@
   <tabstop>checkBoxAutoTitles</tabstop>
   <tabstop>lineEditTitleDirectory</tabstop>
   <tabstop>toolButtonBrowseTitleDirectory</tabstop>
+  <tabstop>comboBoxPreferredTitleCollection</tabstop>
   <tabstop>checkBoxAutoPCBs</tabstop>
   <tabstop>lineEditPCBDirectory</tabstop>
   <tabstop>toolButtonBrowsePCBDirectory</tabstop>
@@ -620,8 +712,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>229</x>
-     <y>451</y>
+     <x>225</x>
+     <y>348</y>
     </hint>
     <hint type="destinationlabel">
      <x>224</x>
@@ -636,12 +728,76 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>416</x>
-     <y>452</y>
+     <x>310</x>
+     <y>348</y>
     </hint>
     <hint type="destinationlabel">
      <x>417</x>
      <y>474</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxAutoPreviews</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>labelPreferredPreviewCollection</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>109</x>
+     <y>28</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>110</x>
+     <y>47</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxAutoPreviews</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>comboBoxPreferredPreviewCollection</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>120</x>
+     <y>28</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>221</x>
+     <y>47</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxAutoTitles</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>labelPreferredTitleCollection</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>82</x>
+     <y>261</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxAutoTitles</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>comboBoxPreferredTitleCollection</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>107</x>
+     <y>242</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>210</x>
+     <y>264</y>
     </hint>
    </hints>
   </connection>
