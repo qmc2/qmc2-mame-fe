@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.2.b10, 16-JUN-2009</h3>
+<h3>TODO - v0.2.b10, 25-JUN-2009</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>Certain GUI styles may cause display problems for the emulator configuration widgets</li>
@@ -16,21 +16,21 @@
   <li>On UNIX / X11 platforms, the QMC2 variant launcher will try to raise a probably already running <i>other</i> variant -- this feature is <b>very</b> dependent on the window manager which may decide to ignore XMapRaised()</li>
   <li>Variant launching does not work on Windows yet</i>
   <li>MAME/MESS output notifications are not supported on Windows yet</i>
-  <li>The MiniWebBrowser -- used for the MAWS lookup and the documentation browser -- has a fairly restrictive feature set which is tailored to the uses of QMC2.
-      It's not even <i>meant</i> to be a full-featured browser. Nonetheless, as of Qt 4.5.1, the browser works quite well on UNIX (no idea about Mac OS X yet).
-      On Windows, however, the underlying QtWebKit API that comes with Qt 4.5.1 still has a number of obvious restrictions and bugs.</i>
-  <li>When a style sheet is activated, there may be some instabilities, especially regarding the QtWebKit features (MAWS, MiniWebBrowser), but there may be more we're not yet aware of. You have been warned :)!</li>
-  <li>Also, due to a Qt bug (as of 4.5.1) we have to change the current working directory (of the running application) to the style sheet's path to make sure relative URLs are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead!</li>
-  <li>Another known issue with style sheets is that changing fonts at run-time doesn't work (unsure, but may be a Qt bug -- tested with Qt 4.5.1)</li>
+  <li>The MiniWebBrowser -- used for the MAWS lookup and the documentation browser -- has a fairly restrictive set of features which is tailored to the uses of QMC2.
+      It's not even <i>meant</i> to be a full-featured browser. Nonetheless, as of Qt 4.5.2, the browser works quite well on UNIX (no idea about Mac OS X yet).
+      On Windows, however, the underlying QtWebKit API that comes with Qt 4.5.1 still has a number of obvious restrictions and bugs. We will test Qt 4.5.2 on Windows shortly.</i>
+  <li>Style sheets should only be activated if Qt 4.5.2+ is in use; Qt 4.5.1 works as well but has some QtWebKit related issues/crashes; Qt 4.5.0 shouldn't be used at all with style sheets</li>
+  <li>Also, due to a Qt bug (as of 4.5.2) we have to change the current working directory (of the running application) to the style sheet's path to make sure that relative URLs (in the .qss file) are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead!</li>
+  <li>Another known issue with style sheets is that changing fonts at run-time doesn't work (unsure, but may be a Qt bug -- tested with Qt 4.5.1 and 4.5.2)</li>
 </ul>
 <p><b>Work in progress</b></p>
 <ul>
+  <li>MAWS quick download (for image data usable by QMC2)</li>
   <li>Arcade mode: partially working, disabled by default (use "make WIP=1 ..." for a preview)</li>
 </ul>
 <p><b>Planned changes, new features and improvements for QMC2 0.2</b></p>
 <ul>
   <li>Fix web-cache compression on Windows (currently using no compression)</li>
-  <li>Add a feature to automatically update locally stored data (images, history.dat/mameinfo.dat entries etc.) with data fetched from MAWS</li>
   <li>Improve ROMAlyzer: support for loading of CHDs and recalculating their checksums, add CHD management functions (using <i>chdman</i> as backend)</li>
   <li>Add a <i>demo mode</i> for MAME variants which runs random games for a selectable period of time -- requested by some cabinet users :)</i>
   <li>Add support for variant launching on Windows</li>
