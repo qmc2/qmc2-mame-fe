@@ -62,6 +62,7 @@ ItemDownloader::ItemDownloader(QNetworkReply *reply, QString file, QProgressBar 
   progressWidget = progress;
   downloadItem = parent;
   retryCount = 0;
+
   init();
 }
 
@@ -136,8 +137,8 @@ void ItemDownloader::checkError()
   }
 
   if ( dataReceived == 0 ) {
-    if ( retryCount < 5 ) {
-      QTimer::singleShot(0, this, SLOT(reload()));
+    if ( retryCount < QMC2_DOWNLOAD_OPCANCEL_RETRY ) {
+      QTimer::singleShot((qrand() % 5 + 5) * QMC2_DOWNLOAD_RETRY_DELAY, this, SLOT(reload()));
     } else {
       error(QNetworkReply::TimeoutError);
       finished();
@@ -262,9 +263,8 @@ void ItemDownloader::reload()
 #endif
 
   networkReply->close();
-
-  networkReply = qmc2NetworkAccessManager->get(QNetworkRequest(networkReply->url()));
   errorCheckTimer.stop();
+  networkReply = qmc2NetworkAccessManager->get(QNetworkRequest(networkReply->url()));
   init();
 }
 

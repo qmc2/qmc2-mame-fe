@@ -96,9 +96,6 @@
 #define QMC2_DOWNLOAD_COLUMN_STATUS	0
 #define QMC2_DOWNLOAD_COLUMN_PROGRESS	1
 
-// how many milliseconds between download connection checks
-#define QMC2_DOWNLOAD_CHECK_TIMEOUT	1000
-
 // SDLMAME output notifier FIFO
 #define QMC2_SDLMAME_OUTPUT_FIFO	"/tmp/sdlmame_out"
 #define QMC2_SDLMESS_OUTPUT_FIFO	QMC2_SDLMAME_OUTPUT_FIFO
@@ -207,8 +204,17 @@
 // MiniWebBrowser: hide status bar after how many milliseconds (if no longer required)
 #define QMC2_BROWSER_STATUS_TIMEOUT	250
 
-// MiniWebBrowser: 
+// MiniWebBrowser: in-memory icon cache size
 #define QMC2_BROWSER_ICONCACHE_SIZE	QMC2_ONE_MEGABYTE
+
+// item downloader: number of retries on "operation canceled" errors
+#define QMC2_DOWNLOAD_OPCANCEL_RETRY	3
+
+// item downloader: number of milliseconds to wait before automatic retries
+#define QMC2_DOWNLOAD_RETRY_DELAY	1000
+
+// how many milliseconds between download connection checks
+#define QMC2_DOWNLOAD_CHECK_TIMEOUT	5000
 
 // MAWS homepage URL
 #define QMC2_MAWS_HOMEPAGE_URL		"http://maws.mameworld.info/"
@@ -221,6 +227,10 @@
 
 // MAWS web cache size (in-memory, 8M fixed for now)
 #define QMC2_MAWS_CACHE_SIZE		8 * QMC2_ONE_MEGABYTE
+
+// delay creation of MAWS quick download menu for how many milliseconds
+// (use same delay to start auto downloads)
+#define QMC2_MAWS_QDL_DELAY		200
 
 // maximum age of an MAWS disk-cache entry in seconds (24h for now)
 #define QMC2_MAWS_MAX_CACHE_AGE		86400

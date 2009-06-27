@@ -2293,7 +2293,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           } else {
             qmc2MAWSLookup->webViewBrowser->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
             qmc2MAWSLookup->webViewBrowser->stop();
-            QTimer::singleShot(0, this, SLOT(createMawsQuickLinksMenu()));
+            if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", TRUE).toBool() )
+              QTimer::singleShot(QMC2_MAWS_QDL_DELAY, this, SLOT(createMawsQuickLinksMenu()));
           }
         }
         qmc2LastMAWSItem = qmc2CurrentItem;
@@ -5107,7 +5108,8 @@ void MainWindow::mawsLoadFinished(bool ok)
           mawsCacheFile.close();
         }
       }
-      QTimer::singleShot(0, this, SLOT(createMawsQuickLinksMenu()));
+      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", TRUE).toBool() )
+        QTimer::singleShot(QMC2_MAWS_QDL_DELAY, this, SLOT(createMawsQuickLinksMenu()));
     }
 #ifdef QMC2_DEBUG
     else
@@ -5127,6 +5129,8 @@ void MainWindow::createMawsQuickLinksMenu()
   if ( !qmc2MAWSLookup )
     return;
 
+  mawsQDLActions.clear();
+
   QString mawsHtml = qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().simplified();
 
   toolButtonMAWSQuickLinks = new AutoPopupToolButton(qmc2MAWSLookup->webViewBrowser);
@@ -5144,8 +5148,9 @@ void MainWindow::createMawsQuickLinksMenu()
   QAction *action;
 
   // icon quick link:
-  action =  menuMAWSQuickLinks->addAction(tr("Icon"), this, SLOT(storeMawsIcon()));
+  action = menuMAWSQuickLinks->addAction(tr("Icon"), this, SLOT(storeMawsIcon()));
   action->setIcon(qmc2MAWSLookup->comboBoxURL->itemIcon(qmc2MAWSLookup->comboBoxURL->currentIndex()));
+  mawsQDLActions[tr("Icon")] = action;
   menuMAWSQuickLinks->addSeparator();
 
   // cabinet art quick links:
@@ -5187,17 +5192,20 @@ void MainWindow::createMawsQuickLinksMenu()
     while ( it.hasNext() ) {
       it.next();
       action = cabinetArtMenu->addAction(it.key() + " - " + it.value(), this, SLOT(downloadMawsQuickLink()));
+      mawsQDLActions[it.key()] = action;
     }
   }
   menuMAWSQuickLinks->addSeparator();
 
-  // FIXME: add quick links for more available data here...
+  // FIXME: add quick links for more available data here (previews & titles)...
 
   action = menuMAWSQuickLinks->addAction(tr("Setup..."), this, SLOT(setupMawsQuickLinks()));
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
   toolButtonMAWSQuickLinks->setMenu(menuMAWSQuickLinks);
 
   mawsQuickLinksSetVisible(qmc2MAWSLookup->webViewBrowser->mouseCurrentlyOnView);
+
+  QTimer::singleShot(QMC2_MAWS_QDL_DELAY, this, SLOT(startMawsAutoDownloads()));
 #endif  
 }
 
@@ -5206,8 +5214,6 @@ void MainWindow::setupMawsQuickLinks()
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::setupMawsQuickLinks()");
 #endif
-
-  log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
 
   if ( !qmc2MawsQuickDownloadSetup )
     qmc2MawsQuickDownloadSetup = new MawsQuickDownloadSetup(this);
@@ -5233,6 +5239,43 @@ void MainWindow::mawsQuickLinksSetVisible(bool visible)
   }
 }
 
+void MainWindow::startMawsAutoDownloads()
+{
+  if ( !qmc2CurrentItem || !menuMAWSQuickLinks )
+    return;
+
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::startMawsAutoDownloads()");
+#endif
+
+  QAction *action;
+
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadIcons", FALSE).toBool() ) {
+    action = mawsQDLActions[tr("Icon")];
+    if ( action ) action->trigger();
+  }
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadCabinets", FALSE).toBool() ) {
+    action = mawsQDLActions[tr("Cabinet")];
+    if ( action ) action->trigger();
+  }
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadControllers", FALSE).toBool() ) {
+    action = mawsQDLActions[tr("Controller")];
+    if ( action ) action->trigger();
+  }
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadFlyers", FALSE).toBool() ) {
+    action = mawsQDLActions[tr("Flyer")];
+    if ( action ) action->trigger();
+  }
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadMarquees", FALSE).toBool() ) {
+    action = mawsQDLActions[tr("Marquee")];
+    if ( action ) action->trigger();
+  }
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadPCBs", FALSE).toBool() ) {
+    action = mawsQDLActions[tr("PCB")];
+    if ( action ) action->trigger();
+  }
+}
+
 void MainWindow::downloadMawsQuickLink()
 {
   QAction *action = (QAction *)sender();
@@ -5245,15 +5288,25 @@ void MainWindow::downloadMawsQuickLink()
 #endif
 
   QString saveName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON) + ".png";
+  QString savePath;
 
-  // FIXME: change this to automatically select the right paths when the setup dialog is done
-  //        (for now, simply use the common download method...)
   QStringList actionWords = action->text().split(" - ");
   if ( actionWords.count() > 1 ) {
     menuMAWSQuickLinks->setVisible(FALSE);
-    toolButtonMAWSQuickLinks->setVisible(FALSE);
+    if ( actionWords[0] == tr("Cabinet") )
+      savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/CabinetDirectory").toString();
+    else if ( actionWords[0] == tr("Controller") )
+      savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/ControllerDirectory").toString();
+    else if ( actionWords[0] == tr("Flyer") )
+      savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/FlyerDirectory").toString();
+    else if ( actionWords[0] == tr("Marquee") )
+      savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/MarqueeDirectory").toString();
+    else if ( actionWords[0] == tr("PCB") )
+      savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PCBDirectory").toString();
+    else
+      return;
     QNetworkRequest request(actionWords[1]);
-    startDownload(qmc2NetworkAccessManager->get(request), saveName);
+    startDownload(qmc2NetworkAccessManager->get(request), saveName, savePath);
   }
 }
 
@@ -5269,17 +5322,22 @@ void MainWindow::storeMawsIcon()
 #endif
 
   menuMAWSQuickLinks->setVisible(FALSE);
-  toolButtonMAWSQuickLinks->setVisible(FALSE);
 
   QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
   QString saveName = gameName + ".png";
   
-  // FIXME: change this to automatically select the right path when the setup dialog is done
-  //        (for now, simply use a method similar to the above...)
-  if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath") )
-    saveName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath").toString());
+  QString filePath;
 
-  QString filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store the icon"), saveName, tr("All files (*)"));
+  if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/IconDirectory").toString().isEmpty() ) {
+    filePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/IconDirectory").toString();
+    if ( !filePath.endsWith("/") ) filePath.append("/");
+    filePath += saveName;
+  } else {
+    if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath") )
+      saveName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath").toString());
+    filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store the icon"), saveName, tr("All files (*)"));
+  }
+
   if ( !filePath.isEmpty() ) {
     QPixmap iconPixmap = action->icon().pixmap(QSize(64, 64));
     if ( iconPixmap.save(filePath) ) {
@@ -5295,10 +5353,10 @@ void MainWindow::storeMawsIcon()
 }
 #endif
 
-void MainWindow::startDownload(QNetworkReply *reply, QString saveAsName)
+void MainWindow::startDownload(QNetworkReply *reply, QString saveAsName, QString savePath)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::startDownload(QNetworkReply *reply = %1, QString saveAsName = %2)").arg((qulonglong)reply).arg(saveAsName));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::startDownload(QNetworkReply *reply = %1, QString saveAsName = %2, QString savePath = %3)").arg((qulonglong)reply).arg(saveAsName).arg(savePath));
 #endif
 
   if ( !reply )
@@ -5311,10 +5369,17 @@ void MainWindow::startDownload(QNetworkReply *reply, QString saveAsName)
   else if ( !fi.completeSuffix().isEmpty() )
     proposedName += "." + fi.completeSuffix();
 
-  if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath") )
-    proposedName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath").toString());
+  QString filePath;
 
-  QString filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store download"), proposedName, tr("All files (*)"));
+  if ( !saveAsName.isEmpty() && !savePath.isEmpty() ) {
+    if ( !savePath.endsWith("/") ) savePath.append("/");
+    filePath = savePath + saveAsName;
+  } else {
+    if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath") )
+      proposedName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "WebBrowser/LastStoragePath").toString());
+    filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store download"), proposedName, tr("All files (*)"));
+  }
+
   if ( !filePath.isEmpty() ) {
     DownloadItem *downloadItem = new DownloadItem(reply, filePath, treeWidgetDownloads);
     treeWidgetDownloads->scrollToItem(downloadItem);
