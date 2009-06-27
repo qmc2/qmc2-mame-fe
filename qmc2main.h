@@ -101,6 +101,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
     AutoPopupToolButton *toolButtonMAWSQuickLinks;
     QMenu *menuMAWSQuickLinks;
+    QMap<QString, QAction *> mawsQDLActions;
 #endif
 
     static QColor qmc2StatusColorGreen;
@@ -295,6 +296,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void setupMawsQuickLinks();
     void downloadMawsQuickLink();
     void storeMawsIcon();
+    void startMawsAutoDownloads();
 #endif
     void createFifo(bool logFifoCreation = TRUE);
     void recreateFifo();
@@ -304,7 +306,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void processEvents() { qApp->processEvents(); }
     void on_treeWidgetGamelist_headerSectionClicked(int);
     void on_treeWidgetHierarchy_headerSectionClicked(int);
-    void startDownload(QNetworkReply *, QString saveAsName = QString());
+    void startDownload(QNetworkReply *, QString saveAsName = QString(), QString savePath = QString());
     void on_pushButtonClearFinishedDownloads_clicked();
     void on_pushButtonReloadSelectedDownloads_clicked();
     void on_pushButtonStopSelectedDownloads_clicked();

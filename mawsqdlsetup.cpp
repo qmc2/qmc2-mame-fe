@@ -1,4 +1,5 @@
 #include <QSettings>
+#include <QFileDialog>
 
 #include "mawsqdlsetup.h"
 #include "macros.h"
@@ -16,6 +17,9 @@ MawsQuickDownloadSetup::MawsQuickDownloadSetup(QWidget *parent)
 
   setupUi(this);
   adjustSize();
+
+  // this just reads the current configuration, doesn't cancel the dialog
+  on_pushButtonCancel_clicked();
 }
 
 MawsQuickDownloadSetup::~MawsQuickDownloadSetup()
@@ -32,6 +36,22 @@ void MawsQuickDownloadSetup::on_pushButtonOk_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_pushButtonOk_clicked()");
 #endif
 
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadIcons", checkBoxAutoIcons->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/IconDirectory", lineEditIconDirectory->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadFlyers", checkBoxAutoFlyers->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/FlyerDirectory", lineEditFlyerDirectory->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadCabinets", checkBoxAutoCabinets->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/CabinetDirectory", lineEditCabinetDirectory->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadControllers", checkBoxAutoControllers->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/ControllerDirectory", lineEditControllerDirectory->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadMarquees", checkBoxAutoMarquees->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/MarqueeDirectory", lineEditMarqueeDirectory->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadPCBs", checkBoxAutoPCBs->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/PCBDirectory", lineEditPCBDirectory->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadPreviews", checkBoxAutoPreviews->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/PreviewDirectory", lineEditPreviewDirectory->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadTitles", checkBoxAutoTitles->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/TitleDirectory", lineEditTitleDirectory->text());
 }
 
 void MawsQuickDownloadSetup::on_pushButtonCancel_clicked()
@@ -40,4 +60,124 @@ void MawsQuickDownloadSetup::on_pushButtonCancel_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_pushButtonCancel_clicked()");
 #endif
 
+  checkBoxAutoIcons->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadIcons", FALSE).toBool());
+  lineEditIconDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
+  checkBoxAutoFlyers->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadFlyers", FALSE).toBool());
+  lineEditFlyerDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
+  checkBoxAutoCabinets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadCabinets", FALSE).toBool());
+  lineEditCabinetDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
+  checkBoxAutoControllers->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadControllers", FALSE).toBool());
+  lineEditControllerDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
+  checkBoxAutoMarquees->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadMarquees", FALSE).toBool());
+  lineEditMarqueeDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
+  checkBoxAutoPCBs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadPCBs", FALSE).toBool());
+  lineEditPCBDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
+  checkBoxAutoPreviews->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadPreviews", FALSE).toBool());
+  lineEditPreviewDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
+  checkBoxAutoTitles->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadTitles", FALSE).toBool());
+  lineEditTitleDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
+}
+
+void MawsQuickDownloadSetup::on_toolButtonBrowseIconDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowseIconDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose icon directory"), lineEditIconDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditIconDirectory->setText(s);
+  }
+}
+
+void MawsQuickDownloadSetup::on_toolButtonBrowseFlyerDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowseFlyerDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose flyer directory"), lineEditFlyerDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditFlyerDirectory->setText(s);
+  }
+}
+
+void MawsQuickDownloadSetup::on_toolButtonBrowseCabinetDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowseCabinetDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose cabinet directory"), lineEditCabinetDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditCabinetDirectory->setText(s);
+  }
+}
+
+void MawsQuickDownloadSetup::on_toolButtonBrowseControllerDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowseControllerDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose controller directory"), lineEditControllerDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditControllerDirectory->setText(s);
+  }
+}
+
+void MawsQuickDownloadSetup::on_toolButtonBrowseMarqueeDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowseMarqueeDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose marquee directory"), lineEditMarqueeDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditMarqueeDirectory->setText(s);
+  }
+}
+
+void MawsQuickDownloadSetup::on_toolButtonBrowsePCBDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowsePCBDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose PCB directory"), lineEditPCBDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditPCBDirectory->setText(s);
+  }
+}
+
+void MawsQuickDownloadSetup::on_toolButtonBrowsePreviewDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowsePreviewDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose preview directory"), lineEditPreviewDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditPreviewDirectory->setText(s);
+  }
+}
+
+void MawsQuickDownloadSetup::on_toolButtonBrowseTitleDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::on_toolButtonBrowseTitleDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose title directory"), lineEditTitleDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditTitleDirectory->setText(s);
+  }
 }

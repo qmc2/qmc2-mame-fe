@@ -14,6 +14,14 @@ class MawsQuickDownloadSetup : public QDialog, public Ui::MawsQuickDownloadSetup
   public slots:
     void on_pushButtonOk_clicked();
     void on_pushButtonCancel_clicked();
+    void on_toolButtonBrowseIconDirectory_clicked();
+    void on_toolButtonBrowseFlyerDirectory_clicked();
+    void on_toolButtonBrowseCabinetDirectory_clicked();
+    void on_toolButtonBrowseControllerDirectory_clicked();
+    void on_toolButtonBrowseMarqueeDirectory_clicked();
+    void on_toolButtonBrowsePCBDirectory_clicked();
+    void on_toolButtonBrowsePreviewDirectory_clicked();
+    void on_toolButtonBrowseTitleDirectory_clicked();
 };
 
 #endif
