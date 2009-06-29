@@ -5252,27 +5252,27 @@ void MainWindow::startMawsAutoDownloads()
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadIcons", FALSE).toBool() ) {
     action = mawsQDLActions[tr("Icon")];
-    if ( action ) action->trigger();
+    if ( action ) QTimer::singleShot(0, action, SLOT(trigger()));
   }
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadCabinets", FALSE).toBool() ) {
     action = mawsQDLActions[tr("Cabinet")];
-    if ( action ) action->trigger();
+    if ( action ) QTimer::singleShot(0, action, SLOT(trigger()));
   }
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadControllers", FALSE).toBool() ) {
     action = mawsQDLActions[tr("Controller")];
-    if ( action ) action->trigger();
+    if ( action ) QTimer::singleShot(0, action, SLOT(trigger()));
   }
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadFlyers", FALSE).toBool() ) {
     action = mawsQDLActions[tr("Flyer")];
-    if ( action ) action->trigger();
+    if ( action ) QTimer::singleShot(0, action, SLOT(trigger()));
   }
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadMarquees", FALSE).toBool() ) {
     action = mawsQDLActions[tr("Marquee")];
-    if ( action ) action->trigger();
+    if ( action ) QTimer::singleShot(0, action, SLOT(trigger()));
   }
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadPCBs", FALSE).toBool() ) {
     action = mawsQDLActions[tr("PCB")];
-    if ( action ) action->trigger();
+    if ( action ) QTimer::singleShot(0, action, SLOT(trigger()));
   }
 }
 
@@ -5293,15 +5293,16 @@ void MainWindow::downloadMawsQuickLink()
   QStringList actionWords = action->text().split(" - ");
   if ( actionWords.count() > 1 ) {
     menuMAWSQuickLinks->setVisible(FALSE);
-    if ( actionWords[0] == tr("Cabinet") )
+    QString imageType = actionWords[0];
+    if ( imageType == tr("Cabinet") )
       savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/CabinetDirectory").toString();
-    else if ( actionWords[0] == tr("Controller") )
+    else if ( imageType == tr("Controller") )
       savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/ControllerDirectory").toString();
-    else if ( actionWords[0] == tr("Flyer") )
+    else if ( imageType == tr("Flyer") )
       savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/FlyerDirectory").toString();
-    else if ( actionWords[0] == tr("Marquee") )
+    else if ( imageType == tr("Marquee") )
       savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/MarqueeDirectory").toString();
-    else if ( actionWords[0] == tr("PCB") )
+    else if ( imageType == tr("PCB") )
       savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PCBDirectory").toString();
     else
       return;
