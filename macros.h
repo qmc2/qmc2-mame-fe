@@ -210,11 +210,12 @@
 // item downloader: number of retries on "operation canceled" errors
 #define QMC2_DOWNLOAD_OPCANCEL_RETRY	3
 
-// item downloader: number of milliseconds to wait before automatic retries
+// item downloader: base number of milliseconds to wait before automatic retries
+// (the real wait time will be between 5 and 10 times QMC2_DOWNLOAD_RETRY_DELAY)
 #define QMC2_DOWNLOAD_RETRY_DELAY	1000
 
 // how many milliseconds between download connection checks
-#define QMC2_DOWNLOAD_CHECK_TIMEOUT	5000
+#define QMC2_DOWNLOAD_CHECK_TIMEOUT	10000
 
 // MAWS homepage URL
 #define QMC2_MAWS_HOMEPAGE_URL		"http://maws.mameworld.info/"
