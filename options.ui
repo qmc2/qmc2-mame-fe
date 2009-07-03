@@ -114,6 +114,11 @@
                    </item>
                    <item>
                     <property name="text">
+                     <string>GR (Greek)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
                      <string>PL (Polish)</string>
                     </property>
                    </item>
@@ -778,8 +783,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>490</width>
-                <height>525</height>
+                <width>202</width>
+                <height>508</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -1983,8 +1988,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>490</width>
-                <height>525</height>
+                <width>445</width>
+                <height>156</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2351,8 +2356,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>490</width>
-                <height>525</height>
+                <width>264</width>
+                <height>55</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2464,8 +2469,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>490</width>
-                <height>525</height>
+                <width>382</width>
+                <height>270</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -2921,8 +2926,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>490</width>
-                <height>525</height>
+                <width>385</width>
+                <height>363</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3238,8 +3243,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>490</width>
-                <height>525</height>
+                <width>195</width>
+                <height>260</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">

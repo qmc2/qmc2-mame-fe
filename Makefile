@@ -632,7 +632,7 @@ config:
 	@echo "WIP=<wip>              Enable unfinished code (0, 1)               $(WIP)"
 
 # process translations
-LANGUAGES = us de pl fr
+LANGUAGES = us de pl fr gr
 LBINARIES = $(addsuffix .qm, $(addprefix data/lng/qmc2_, $(LANGUAGES)))
 LREL = $(LRELEASE) $<
 ifeq '$(PRETTY)' '1'
@@ -651,6 +651,9 @@ data/lng/qmc2_pl.qm: data/lng/qmc2_pl.ts
 	$(LREL)
 
 data/lng/qmc2_fr.qm: data/lng/qmc2_fr.ts
+	$(LREL)
+
+data/lng/qmc2_gr.qm: data/lng/qmc2_gr.ts
 	$(LREL)
 
 # end of file

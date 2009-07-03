@@ -249,7 +249,7 @@ void ItemDownloader::finished()
 void ItemDownloader::managerFinished(QNetworkReply *reply)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemDownloader::managerFinished(QNetworkReply *reply = %1): networkReply = %2").arg((qulonglong)reply).arg((qulonglong)networkReply)));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ItemDownloader::managerFinished(QNetworkReply *reply = %1): networkReply = %2").arg((qulonglong)reply).arg((qulonglong)networkReply));
 #endif
 
   if ( reply == networkReply )
