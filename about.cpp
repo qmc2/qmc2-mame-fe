@@ -53,6 +53,7 @@ About::About(QWidget *parent)
     case QSysInfo::MV_10_3: macVersion = tr("Mac OS X 10.3"); break;
     case QSysInfo::MV_10_4: macVersion = tr("Mac OS X 10.4"); break;
     case QSysInfo::MV_10_5: macVersion = tr("Mac OS X 10.5"); break;
+    case QSysInfo::MV_10_6: macVersion = tr("Mac OS X 10.6"); break;
     default: macVersion = tr("Mac (unkown)"); break;
   }
 #elif defined(Q_WS_WIN)
@@ -62,6 +63,7 @@ About::About(QWidget *parent)
     case QSysInfo::WV_5_1: winVersion = tr("Windows XP (Windows 5.1)"); break;
     case QSysInfo::WV_5_2: winVersion = tr("Windows Server 2003, Windows Server 2003 R2, Windows Home Server or Windows XP Professional x64 Edition (Windows 5.2)"); break;
     case QSysInfo::WV_6_0: winVersion = tr("Windows Vista or Windows Server 2008 (Windows 6.0)"); break;
+    case QSysInfo::WV_6_1: winVersion = tr("Windows 7 (Windows 6.1)"); break;
     default: winVersion = tr("Windows (unknown)"); break;
   }
 #endif
