@@ -5225,7 +5225,7 @@ void MainWindow::setupMawsQuickLinks()
 void MainWindow::mawsQuickLinksSetVisible(bool visible)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::mawsQuickLinksSetVisible(bool visible = %1)").arg(ok));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::mawsQuickLinksSetVisible(bool visible = %1)").arg(visible));
 #endif
 
   if ( !qmc2MAWSLookup )
