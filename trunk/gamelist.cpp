@@ -1956,12 +1956,14 @@ void Gamelist::loadReadyReadStandardOutput()
       if ( needsSpace ) {
         bool found = FALSE;
         bool stop = FALSE;
-        for (i = singleXMLLine.length() - 2; i > 1 && !found && !stop; i--)
-          if ( singleXMLLine[i] == '\"' )
+        for (i = singleXMLLine.length() - 2; i > 1 && !found && !stop; i--) {
+          if ( singleXMLLine[i] == '\"' ) {
             if ( singleXMLLine[i - 1] == '=' )
               found = TRUE;
             else
               stop = TRUE;
+          }
+        }
         if ( !found )
           needsSpace = FALSE;
       }
