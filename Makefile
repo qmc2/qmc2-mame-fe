@@ -3,9 +3,10 @@
 # You can either edit the defaults below, specify them on the make command line,
 # or pre-define them as environment variables.
 
-# EMULATOR: specifies the target emulator to be used
-#           UNIX and Mac: SDLMAME or SDLMESS
-#           Windows:      MAME, MAMEUIFX32 or MESS
+# EMULATOR: specifies the target emulator to be used (important: you need to
+#           build each target separately; do a "make clean" between the builds)
+#           - UNIX and Mac: SDLMAME or SDLMESS
+#           - Windows: MAME, MAMEUIFX32 or MESS
 ifndef EMULATOR
 EMULATOR = SDLMAME
 endif
@@ -81,13 +82,13 @@ BINDIR = $(PREFIX)/bin
 endif
 endif
 
-# OSCFG: use global OS build configuration (1) or not (0)
+# OSCFG: use global OS build configuration (1, default) or not (0)
 ifndef OSCFG
 OSCFG = 1
 endif
 
 # DISTCFG: use distribution-specific build configuration (1) or just the OS
-#          name (0)
+#          name (0, default)
 ifndef DISTCFG
 DISTCFG = 0
 endif
@@ -98,54 +99,59 @@ ifndef IMGSET
 IMGSET = classic
 endif
 
-# JOYSTICK: compile with joystick support (1) or without (0)
+# JOYSTICK: compile with joystick support (1, default) or without (0)
 #           - requires SDL (Simple Directmedia Layer) development library
 ifndef JOYSTICK
 JOYSTICK = 1
 endif
 
-# OPENGL: enable OpenGL features (1) or use standard features only (0)
+# OPENGL: enable OpenGL features (1) or use standard features only (0, default)
 #         - requires OpenGL if enabled (hardware acceleration recommended)
 #         - currently only used to enable drawing of images through OpenGL
 ifndef OPENGL
 OPENGL = 0
 endif
 
-# ARCADE_OPENGL: enable (1) or disable (0) OpenGL support for arcade mode
-#         - requires OpenGL if enabled (hardware acceleration recommended)
+# ARCADE_OPENGL: enable (1, default) or disable (0) OpenGL support for arcade
+#                mode; if disabled, the pure software renderer will be used
+#                - requires OpenGL if enabled (HW acceleration is recommended)
 ifndef ARCADE_OPENGL
 ARCADE_OPENGL = 1
 endif
 
-# WIP: enable (1) or disable (0) unfinished code (WIP = work in progress)
+# WIP: enable (1) or disable (0, default) unfinished code (work in progress)
 ifndef WIP
 WIP = 0
 endif
 
-# PHONON: enable Phonon based features (1) or leave them out of the build (0)
-#         - requires libphonon / Qt 4.4
-#         - currently used by the built-in audio player
+# PHONON: enable Phonon based features (1, default) or leave them out of the
+#         build (0)
+#         - requires libphonon and a working backend (such as gstreamer)
+#         - currently only used by the built-in audio player
 ifndef PHONON
 PHONON = 1
 endif
 
-# CCACHE: enable (1) or disable (0) use of the ccache compiler cache utility
+# CCACHE: enable (1) or disable (0, default) the use of the ccache compiler
+#         cache utility (see also CCACHE_CC and CCACHE_CXX in arch/*.cfg)
 ifndef CCACHE
 CCACHE = 0
 endif
 
-# DISTCC: enable (1) or disable (0) use of any distributed compiler (distcc / icecc)
+# DISTCC: enable (1) or disable (0, default) the use of a distributed compiler
+# (such as distcc or icecc; see also DISTCC_CC and DISTCC_CXX in arch/*.cfg)
 ifndef DISTCC
 DISTCC = 0
 endif
 
-# PRETTY: enable (1) or disable (0) pretty compilation output
+# PRETTY: enable (1, default) or disable (0) pretty compilation output
 ifndef PRETTY
 PRETTY = 1
 endif
 
-# SDLLOCAL: enable (1) or disable (0) use of a "local" SDL library - also set
-#           SDLLOCAL_INC and SDLLOCAL_LIB if you enable this
+# SDLLOCAL: enable (1) or disable (0, default) the use of a "local" SDL library
+#           (make sure to also set SDLLOCAL_INC and SDLLOCAL_LIB if you enable
+#           this option!)
 ifndef SDLLOCAL
 SDLLOCAL = 0
 endif
@@ -171,31 +177,35 @@ ifndef QT_TRANSLATION
 QT_TRANSLATION = qmc2
 endif
 
-# VARIANT_LAUNCHER: enable (1) or disable (0) the "QMC2 variant launcher"
+# VARIANT_LAUNCHER: enable (1, default) or disable (0) QMC2 variant launching
 ifndef VARIANT_LAUNCHER
 VARIANT_LAUNCHER = 1
 endif
 
-# AUDIT_WILDCARD: use wildcards (i.e. "mame -listxml '*'") on full audit calls
-#                 (1) or not (0, default)
+# AUDIT_WILDCARD: use wildcards on full audit calls (i.e. "mame -listxml '*'");
+#                 set to 1 to enable "audit wildcard", 0 (default) disables it
 ifndef AUDIT_WILDCARD
 AUDIT_WILDCARD = 0
 endif
 
-# BROWSER_EXTRAS: enable (1) or disable (0, default) extra browser features
-#                 such as the Web Inspector (caution: may be buggy!)
+# BROWSER_EXTRAS: enable (1) or disable (0, default) extra browser features such
+#                 as QtWebKit's "Web Inspector" (caution: these features may be
+#                 buggy!)
 ifndef BROWSER_EXTRAS
 BROWSER_EXTRAS = 0
 endif
 
 # WC_COMPRESSION: enable (1, default) or disable (0) web-cache compression when
 #                 storing HTML data to disk (i.e. used by the MAWS web-cache --
-#                 and has nothing to do with a toilet :)
+#                 has nothing to do with a toilet :)
+#                 - this feature doesn't work on Windows yet and will be
+#                   disabled automatically on that platform
 ifndef WC_COMPRESSION
 WC_COMPRESSION = 1
 endif
 
-# FADER_SPEED: audio fading speed (0: fastest/instantly, >0: slower)
+# FADER_SPEED: select the audio fading speed (0: fastest/instantly, >0: slower,
+#              default: 100)
 ifndef FADER_SPEED
 FADER_SPEED = 100
 endif
