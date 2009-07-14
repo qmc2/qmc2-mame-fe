@@ -105,9 +105,9 @@ void About::showEvent(QShowEvent *e)
   int numLogicalCores = QThread::idealThreadCount();
 
   QString titleString =
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
           "<p><font size=\"+1\"><b>QMC2 - M.A.M.E. Catalog / Launcher II</b></font><br>" +
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
           "<p><font size=\"+1\"><b>QMC2 - M.E.S.S. Catalog / Launcher II</b></font><br>" +
 #endif
           tr("Qt 4 based multi-platform/multi-emulator front end") + "<br>" +

@@ -56,7 +56,7 @@ extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern QTreeWidgetItem *qmc2LastGameInfoItem;
 extern QTreeWidgetItem *qmc2LastMAWSItem;
 extern MiniWebBrowser *qmc2MAWSLookup;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
 extern QTreeWidgetItem *qmc2LastEmuInfoItem;
 #endif
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
@@ -73,7 +73,7 @@ extern QBitArray qmc2Filter;
 extern unzFile qmc2IconFile;
 extern QMap<QString, QIcon> qmc2IconMap;
 extern QStringList qmc2BiosROMs;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
 extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 #endif
 
@@ -122,11 +122,11 @@ Gamelist::Gamelist(QObject *parent)
                          << tr("quickload") << tr("floppydisk") << tr("serial") << tr("snapshot");
 
   if ( qmc2UseIconFile ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2IconFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/IconFile").toString().toAscii());
     if ( qmc2IconFile == NULL )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/IconFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2IconFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/IconFile").toString().toAscii());
     if ( qmc2IconFile == NULL )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/IconFile").toString()));
@@ -164,7 +164,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowsePreviewFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseDataDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseGameInfoDB->setEnabled(enable);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2Options->toolButtonBrowseEmuInfoDB->setEnabled(enable);
 #if QT_VERSON >= 0x040500
   qmc2Options->toolButtonBrowseMAWSCacheDirectory->setEnabled(enable);
@@ -239,7 +239,7 @@ void Gamelist::load()
   qmc2CurrentItem = NULL;
   qmc2LastDeviceConfigItem = NULL;
   qmc2LastGameInfoItem = NULL;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->textBrowserEmuInfo->clear();
   qmc2LastEmuInfoItem = NULL;
   if ( qmc2MAWSLookup ) {
@@ -276,9 +276,9 @@ void Gamelist::load()
   qmc2MainWindow->labelGamelistStatus->setText(status());
 
   // determine emulator version and supported games
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported games"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported machines"));
 #endif
 
@@ -297,9 +297,9 @@ void Gamelist::load()
   args << "-help";
 #endif
   qApp->processEvents();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   commandProc.start(qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString(), args);
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   commandProc.start(qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString(), args);
 #endif
   bool commandProcStarted = FALSE;
@@ -318,7 +318,7 @@ void Gamelist::load()
     qmc2TempVersion.close();
     qmc2TempVersion.remove();
     QStringList versionLines = s.split("\n");
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     QStringList versionWords = versionLines.first().split(" ");
     if ( versionWords.count() > 1 ) {
       if ( versionWords[0] == "M.A.M.E." ) {
@@ -333,7 +333,7 @@ void Gamelist::load()
       emulatorVersion = tr("unknown");
       emulatorType = tr("unknown");
     }
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     QStringList versionWords = versionLines.first().split(" ");
     if ( versionWords.count() > 1 ) {
       if ( versionWords[0] == "MESS" ) {
@@ -362,9 +362,9 @@ void Gamelist::load()
   args << "*";
 #endif
   qApp->processEvents();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   commandProc.start(qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString(), args);
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   commandProc.start(qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString(), args);
 #endif
   commandProcStarted = FALSE;
@@ -389,9 +389,9 @@ void Gamelist::load()
     numTotalGames = s.split("\n").count() - 2;
 #endif
     elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported games, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported machines, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 #endif
   } else {
@@ -409,15 +409,15 @@ void Gamelist::load()
   }
 
   if ( numTotalGames > 0 )
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported game(s)", "", numTotalGames));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported machine(s)", "", numTotalGames));
 #endif
   else {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine supported games"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine supported machines"));
 #endif
     qmc2ReloadActive = FALSE;
@@ -429,9 +429,9 @@ void Gamelist::load()
 
   // try reading XML output from cache
   bool xmlCacheOkay = FALSE;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   listXMLCache.setFileName(qmc2Config->value("MAME/FilesAndDirectories/ListXMLCache").toString());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   listXMLCache.setFileName(qmc2Config->value("MESS/FilesAndDirectories/ListXMLCache").toString());
 #endif
   listXMLCache.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -439,9 +439,9 @@ void Gamelist::load()
     QTextStream ts(&listXMLCache);
     QString singleXMLLine = ts.readLine();
     singleXMLLine = ts.readLine();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     if ( singleXMLLine.startsWith("MAME_VERSION") ) {
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     if ( singleXMLLine.startsWith("MESS_VERSION") ) {
 #endif
       QStringList words = singleXMLLine.split("\t");
@@ -453,9 +453,9 @@ void Gamelist::load()
     if ( xmlCacheOkay ) {
       QTime xmlElapsedTime;
       parseTimer.start();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML game list data from cache"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML machine list data from cache"));
 #endif
       if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -478,9 +478,9 @@ void Gamelist::load()
           if ( !lines[l].isEmpty() ) {
             singleXMLLine = lines[l];
             gamelistBuffer += singleXMLLine + "\n";
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
             gameCount += singleXMLLine.count("<game name=");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
             gameCount += singleXMLLine.count("<machine name=");
 #endif
           }
@@ -495,11 +495,11 @@ void Gamelist::load()
       }
       gamelistBuffer += "\n";
       xmlElapsedTime = xmlElapsedTime.addMSecs(parseTimer.elapsed());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML game list data from cache, elapsed time = %1)").arg(xmlElapsedTime.toString("mm:ss.zzz")));
       if ( singleXMLLine != "</mame>" ) {
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML game list cache is incomplete, invalidating XML game list cache"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML machine list data from cache, elapsed time = %1)").arg(xmlElapsedTime.toString("mm:ss.zzz")));
       if ( singleXMLLine != "</mess>" ) {
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML machine list cache is incomplete, invalidating XML machine list cache"));
@@ -526,18 +526,18 @@ void Gamelist::load()
     loadPlayHistory();
   } else {
     loadTimer.start();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML game list data and (re)creating cache"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML machine list data and (re)creating cache"));
 #endif
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
       qmc2MainWindow->progressBarGamelist->setFormat(tr("XML data - %p%"));
     else
       qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     command = qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     command = qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString();
 #endif
     args.clear();
@@ -548,18 +548,18 @@ void Gamelist::load()
 
     listXMLCache.open(QIODevice::WriteOnly | QIODevice::Text);
     if ( !listXMLCache.isOpen() ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open XML game list cache for writing, please check permissions"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open XML machine list cache for writing, please check permissions"));
 #endif
     } else {
       tsListXMLCache.setDevice(&listXMLCache);
       tsListXMLCache.reset();
       tsListXMLCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       tsListXMLCache << "MAME_VERSION\t" + emulatorVersion + "\n";
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       tsListXMLCache << "MESS_VERSION\t" + emulatorVersion + "\n";
 #endif
     }
@@ -624,19 +624,19 @@ void Gamelist::verify(bool currentOnly)
         break;
     }
   } else {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying ROM status for all games"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying ROM status for all machines"));
 #endif
   }
   
   QStringList args;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QString command = qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString();
   if ( qmc2Config->contains("MAME/Configuration/Global/rompath") )
     args << "-rompath" << qmc2Config->value("MAME/Configuration/Global/rompath").toString().replace("~", "$HOME");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QString command = qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString();
   if ( qmc2Config->contains("MESS/Configuration/Global/rompath") )
     args << "-rompath" << qmc2Config->value("MESS/Configuration/Global/rompath").toString().replace("~", "$HOME");
@@ -701,9 +701,9 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::parseGameDetail(QTreeWidgetItem *item = 0x" + QString::number((ulong)item, 16) + "): item->text(QMC2_GAMELIST_COLUMN_GAME) = \"" + item->text(QMC2_GAMELIST_COLUMN_GAME) + "\"");
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("retrieving game information for '%1'").arg(item->text(QMC2_GAMELIST_COLUMN_GAME)));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("retrieving machine information for '%1'").arg(item->text(QMC2_GAMELIST_COLUMN_GAME)));
 #endif
   qApp->processEvents();
@@ -724,9 +724,9 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
   element = xmlLines.at(gamePos - 1).simplified();
   insertAttributeItems(item, element, attributes, descriptions, TRUE);
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   while ( !xmlLines[gamePos].contains("</game>") ) {
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   while ( !xmlLines[gamePos].contains("</machine>") ) {
 #endif
     element = xmlLines[gamePos].simplified();
@@ -927,9 +927,9 @@ void Gamelist::parse()
   QTime elapsedTime;
   autoROMCheck = FALSE;
   qmc2MainWindow->progressBarGamelist->setRange(0, numTotalGames);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   romCache.setFileName(qmc2Config->value("MAME/FilesAndDirectories/ROMStateCacheFile").toString());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   romCache.setFileName(qmc2Config->value("MESS/FilesAndDirectories/ROMStateCacheFile").toString());
 #endif
   romCache.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -969,9 +969,9 @@ void Gamelist::parse()
 
   QTime processGamelistElapsedTimer;
   parseTimer.start();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("processing game list"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("processing machine list"));
 #endif
   qmc2MainWindow->treeWidgetGamelist->clear();
@@ -979,9 +979,9 @@ void Gamelist::parse()
   qmc2ParentMap.clear();
   qmc2MainWindow->progressBarGamelist->reset();
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   gamelistCache.setFileName(qmc2Config->value("MAME/FilesAndDirectories/GamelistCacheFile").toString());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   gamelistCache.setFileName(qmc2Config->value("MESS/FilesAndDirectories/GamelistCacheFile").toString());
 #endif
   gamelistCache.open(QIODevice::ReadOnly | QIODevice::Text);
@@ -998,28 +998,28 @@ void Gamelist::parse()
         line = tsGamelistCache.readLine();
       QStringList words = line.split("\t");
       if ( words.count() == 2 ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         if ( words[0] == "MAME_VERSION" ) {
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         if ( words[0] == "MESS_VERSION" ) {
 #endif
           reparseGamelist = (words[1] != emulatorVersion);
         }
       } else {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't determine emulator version of game list cache"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't determine emulator version of machine list cache"));
 #endif
       }
     }
 
     if ( !reparseGamelist && !qmc2StopParser ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading game data from game list cache"));
       if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
         qmc2MainWindow->progressBarGamelist->setFormat(tr("Game data - %p%"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading machine data from machine list cache"));
       if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
         qmc2MainWindow->progressBarGamelist->setFormat(tr("Machine data - %p%"));
@@ -1150,9 +1150,9 @@ void Gamelist::parse()
       }
 
       gameDataCacheElapsedTime = gameDataCacheElapsedTime.addMSecs(miscTimer.elapsed());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading game data from game list cache, elapsed time = %1)").arg(gameDataCacheElapsedTime.toString("mm:ss.zzz")));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
 	      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(gameDataCacheElapsedTime.toString("mm:ss.zzz")));
 	#endif
 	    }
@@ -1161,19 +1161,19 @@ void Gamelist::parse()
 	    gamelistCache.close();
 
 	  xmlLines.clear();
-	#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+	#if defined(QMC2_EMUTYPE_MAME)
 	  xmlLines = gamelistBuffer.remove(0, gamelistBuffer.indexOf("<mame build")).split("\n");
-	#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+	#elif defined(QMC2_EMUTYPE_MESS)
 	  xmlLines = gamelistBuffer.remove(0, gamelistBuffer.indexOf("<mess build")).split("\n");
 	#endif
 	  gamelistBuffer.clear();
 
 	  if ( reparseGamelist && !qmc2StopParser ) {
-	#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+	#if defined(QMC2_EMUTYPE_MAME)
 	    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing game data and (re)creating game list cache"));
 	    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 	      qmc2MainWindow->progressBarGamelist->setFormat(tr("Game data - %p%"));
-	#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+	#elif defined(QMC2_EMUTYPE_MESS)
 	    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing machine data and (re)creating machine list cache"));
 	    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 	      qmc2MainWindow->progressBarGamelist->setFormat(tr("Machine data - %p%"));
@@ -1182,18 +1182,18 @@ void Gamelist::parse()
       qmc2MainWindow->progressBarGamelist->setFormat("%p%");
     gamelistCache.open(QIODevice::WriteOnly | QIODevice::Text);
     if ( !gamelistCache.isOpen() ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open game list cache for writing, path = %1").arg(gamelistCache.fileName()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open machine list cache for writing, path = %1").arg(gamelistCache.fileName()));
 #endif
     } else {
       tsGamelistCache.setDevice(&gamelistCache);
       tsGamelistCache.reset();
       tsGamelistCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       tsGamelistCache << "MAME_VERSION\t" + emulatorVersion + "\n";
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       tsGamelistCache << "MESS_VERSION\t" + emulatorVersion + "\n";
 #endif
     }
@@ -1207,9 +1207,9 @@ void Gamelist::parse()
     for (lineCounter = 0; xmlLines.count() && !endParser; lineCounter++) {
       while ( !endParser && !xmlLines[lineCounter].contains("<description>") ) {
         lineCounter++;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         endParser = xmlLines[lineCounter].contains("</mame>") || qmc2StopParser;
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         endParser = xmlLines[lineCounter].contains("</mess>") || qmc2StopParser;
 #endif
       }
@@ -1237,9 +1237,9 @@ void Gamelist::parse()
             gameManufacturer = xmlLines[i].simplified().remove("<manufacturer>").remove("</manufacturer>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">");
             manufacturerFound = TRUE;
           }
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
           endGame = xmlLines[i].contains("</game>") || ( yearFound && manufacturerFound );
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
           endGame = xmlLines[i].contains("</machine>") || ( yearFound && manufacturerFound );
 #endif
           i++;
@@ -1413,7 +1413,7 @@ void Gamelist::parse()
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
       qmc2HierarchyItemMap[jValue] = hierarchySubItem;
       qmc2ParentMap[jValue] = iValue;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       // "fill up" emulator info data for clones
       if ( !qmc2EmuInfoDB.isEmpty() ) {
         QByteArray *p = qmc2EmuInfoDB[hierarchyItem->text(QMC2_GAMELIST_COLUMN_NAME)];
@@ -1471,9 +1471,9 @@ void Gamelist::parse()
   QString sortCirtieria = "?";
   switch ( qmc2SortCriteria ) {
     case QMC2_SORT_BY_DESCRIPTION:
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       sortCirtieria = QObject::tr("game description");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       sortCirtieria = QObject::tr("machine description");
 #endif
       break;
@@ -1487,16 +1487,16 @@ void Gamelist::parse()
       sortCirtieria = QObject::tr("manufacturer");
       break;
     case QMC2_SORT_BY_NAME:
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       sortCirtieria = QObject::tr("game name");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       sortCirtieria = QObject::tr("machine name");
 #endif
       break;
   }
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting game list by %1 in %2 order").arg(sortCirtieria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCirtieria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 #endif
   qApp->processEvents();
@@ -1522,15 +1522,15 @@ void Gamelist::parse()
     if ( ci->isSelected() ) {
       QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
     } else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       QTreeWidgetItem *glItem = qmc2GamelistItemByDescriptionMap[qmc2Config->value("MAME/SelectedGame").toString()];
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       QTreeWidgetItem *glItem = qmc2GamelistItemByDescriptionMap[qmc2Config->value("MESS/SelectedGame").toString()];
 #endif
       if ( glItem ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring game selection"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
 #endif
         qmc2MainWindow->treeWidgetGamelist->setCurrentItem(glItem);
@@ -1538,15 +1538,15 @@ void Gamelist::parse()
       }
     }
   } else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection").toBool() ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     QTreeWidgetItem *glItem = qmc2GamelistItemByDescriptionMap[qmc2Config->value("MAME/SelectedGame").toString()];
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     QTreeWidgetItem *glItem = qmc2GamelistItemByDescriptionMap[qmc2Config->value("MESS/SelectedGame").toString()];
 #endif
     if ( glItem ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring game selection"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("restoring machine selection"));
 #endif
       qmc2MainWindow->treeWidgetGamelist->setCurrentItem(glItem);
@@ -1557,28 +1557,28 @@ void Gamelist::parse()
   qmc2MainWindow->labelGamelistStatus->setText(status());
 
   processGamelistElapsedTimer = processGamelistElapsedTimer.addMSecs(parseTimer.elapsed());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (processing game list, elapsed time = %1)").arg(processGamelistElapsedTimer.toString("mm:ss.zzz")));
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n game(s) loaded", "", numGames));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (processing machine list, elapsed time = %1)").arg(processGamelistElapsedTimer.toString("mm:ss.zzz")));
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n machine(s) loaded", "", numGames));
 #endif
   if ( numGames != numTotalGames ) {
     if ( reparseGamelist && qmc2StopParser ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: game list not fully parsed, invalidating game list cache"));
       QFile f(qmc2Config->value("MAME/FilesAndDirectories/GamelistCacheFile").toString());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: machine list not fully parsed, invalidating machine list cache"));
       QFile f(qmc2Config->value("MESS/FilesAndDirectories/GamelistCacheFile").toString());
 #endif
       f.remove();
     } else if ( !qmc2StopParser) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: game list cache is out of date, invalidating game list cache"));
       QFile f(qmc2Config->value("MAME/FilesAndDirectories/GamelistCacheFile").toString());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: machine list cache is out of date, invalidating machine list cache"));
       QFile f(qmc2Config->value("MESS/FilesAndDirectories/GamelistCacheFile").toString());
 #endif
@@ -1692,10 +1692,10 @@ void Gamelist::save()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::save()");
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("saving game list"));
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (saving game list)"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("saving machine list"));
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (saving machine list)"));
 #endif
@@ -1710,9 +1710,9 @@ void Gamelist::loadFavorites()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading favorites"));
 
   qmc2MainWindow->listWidgetFavorites->clear();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QFile f(qmc2Config->value("MAME/FilesAndDirectories/FavoritesFile").toString());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QFile f(qmc2Config->value("MESS/FilesAndDirectories/FavoritesFile").toString());
 #endif
   if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
@@ -1746,9 +1746,9 @@ void Gamelist::saveFavorites()
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("saving favorites"));
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QFile f(qmc2Config->value("MAME/FilesAndDirectories/FavoritesFile").toString());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QFile f(qmc2Config->value("MESS/FilesAndDirectories/FavoritesFile").toString());
 #endif
   if ( f.open(QIODevice::WriteOnly | QIODevice::Text) ) {
@@ -1759,9 +1759,9 @@ void Gamelist::saveFavorites()
     }
     f.close();
   } else {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open favorites file for writing, path = %1").arg(qmc2Config->value("MAME/FilesAndDirectories/FavoritesFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open favorites file for writing, path = %1").arg(qmc2Config->value("MESS/FilesAndDirectories/FavoritesFile").toString()));
 #endif
   }
@@ -1778,9 +1778,9 @@ void Gamelist::loadPlayHistory()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading play history"));
 
   qmc2MainWindow->listWidgetPlayed->clear();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QFile f(qmc2Config->value("MAME/FilesAndDirectories/HistoryFile").toString());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QFile f(qmc2Config->value("MESS/FilesAndDirectories/HistoryFile").toString());
 #endif
   if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
@@ -1813,9 +1813,9 @@ void Gamelist::savePlayHistory()
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("saving play history"));
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QFile f(qmc2Config->value("MAME/FilesAndDirectories/HistoryFile").toString());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QFile f(qmc2Config->value("MESS/FilesAndDirectories/HistoryFile").toString());
 #endif
   if ( f.open(QIODevice::WriteOnly | QIODevice::Text) ) {
@@ -1826,9 +1826,9 @@ void Gamelist::savePlayHistory()
     }
     f.close();
   } else {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open play history file for writing, path = %1").arg(qmc2Config->value("MAME/FilesAndDirectories/HistoryFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open play history file for writing, path = %1").arg(qmc2Config->value("MESS/FilesAndDirectories/HistoryFile").toString()));
 #endif
   }
@@ -1878,7 +1878,7 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
   QTime elapsedTime;
   elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML game list data and (re)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 #elif defined(QMC2_SDLMAME) || defined(QMC2_MESS)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML machine list data and (re)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
@@ -1979,7 +1979,7 @@ void Gamelist::loadReadyReadStandardOutput()
     }
   }
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + s.count("<game name="));
 #elif defined(QMC2_SDLMAME) || defined(QMC2_MESS)
   qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + s.count("<machine name="));
@@ -2018,9 +2018,9 @@ void Gamelist::verifyStarted()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::verifyStarted()");
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   romCache.setFileName(qmc2Config->value("MAME/FilesAndDirectories/ROMStateCacheFile").toString());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   romCache.setFileName(qmc2Config->value("MESS/FilesAndDirectories/ROMStateCacheFile").toString());
 #endif
   romCache.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -2150,9 +2150,9 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
   if ( verifyCurrentOnly )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for '%1', elapsed time = %2)").arg(checkedItem->text(QMC2_GAMELIST_COLUMN_GAME)).arg(elapsedTime.toString("mm:ss.zzz")));
   else {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for all games, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for all machines, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 #endif
   }
@@ -2169,9 +2169,9 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
   }
 
   if ( qmc2SortCriteria == QMC2_SORT_BY_ROM_STATE ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting game list by %1 in %2 order").arg(tr("ROM state")).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(tr("ROM state")).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 #endif
     qApp->processEvents();
@@ -2463,9 +2463,9 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
       preloadTimer.start();
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("pre-caching icons from directory"));
       qApp->processEvents();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       QString icoDir = qmc2Config->value("MAME/FilesAndDirectories/IconDirectory").toString();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       QString icoDir = qmc2Config->value("MESS/FilesAndDirectories/IconDirectory").toString();
 #endif
       QDir iconDirectory(icoDir);

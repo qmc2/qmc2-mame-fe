@@ -9,6 +9,7 @@
 #include <QNetworkReply>
 #include "ui_qmc2main.h"
 #include "ui_options.h"
+#include "macros.h"
 #if QMC2_USE_PHONON_API
 #include "qmc2_phonon.h"
 #endif
@@ -24,7 +25,7 @@ class KeyPressFilter : public QObject
     bool eventFilter(QObject *, QEvent *);
 };
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
 class AutoPopupToolButton : public QToolButton
 {
   Q_OBJECT
@@ -98,7 +99,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     bool audioFastBackwarding;
     bool audioSkippingTracks;
 #endif
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     AutoPopupToolButton *toolButtonMAWSQuickLinks;
     QMenu *menuMAWSQuickLinks;
     QMap<QString, QAction *> mawsQDLActions;
@@ -136,7 +137,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_actionExportROMStatus_activated();
     void on_actionClearImageCache_activated();
     void on_actionClearIconCache_activated();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     void on_actionClearMAWSCache_activated();
 #endif
     void on_actionRecreateTemplateMap_activated();
@@ -287,7 +288,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void viewFullDetail();
     void viewParentClones();
     void loadGameInfoDB();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     void loadEmuInfoDB();
     void mawsLoadStarted();
     void mawsLoadFinished(bool);

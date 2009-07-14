@@ -74,13 +74,13 @@ void Welcome::on_pushButtonOkay_clicked()
   if ( !checkOkay ) {
     QFileInfo fileInfo(lineEditExecutableFile->text());
     if ( fileInfo.isExecutable() && fileInfo.isReadable() && fileInfo.isFile() ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       startupConfig->setValue("MAME/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
       if ( !lineEditROMPath->text().isEmpty() )
         startupConfig->setValue("MAME/Configuration/Global/rompath", lineEditROMPath->text());
       if ( !lineEditSamplePath->text().isEmpty() )
         startupConfig->setValue("MAME/Configuration/Global/samplepath", lineEditSamplePath->text());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       startupConfig->setValue("MESS/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
       if ( !lineEditROMPath->text().isEmpty() )
         startupConfig->setValue("MESS/Configuration/Global/rompath", lineEditROMPath->text());
@@ -128,7 +128,7 @@ void Welcome::on_toolButtonBrowseSamplePath_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseSamplePath_clicked()");
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QString s = QFileDialog::getExistingDirectory(this, tr("Choose sample path"), lineEditSamplePath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
   if ( !s.isNull() )
     lineEditSamplePath->setText(s);
@@ -226,9 +226,9 @@ bool Welcome::checkConfig()
 
   startupConfig->endGroup();
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   configOkay &= !startupConfig->value("MAME/FilesAndDirectories/ExecutableFile").toString().isEmpty();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   configOkay &= !startupConfig->value("MESS/FilesAndDirectories/ExecutableFile").toString().isEmpty();
 #endif
 

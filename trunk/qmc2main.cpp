@@ -54,7 +54,7 @@
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #endif
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
 #include "messdevcfg.h"
 #endif
 #if QMC2_USE_PHONON_API
@@ -95,7 +95,7 @@ ROMStatusExporter *qmc2ROMStatusExporter = NULL;
 DetailSetup *qmc2DetailSetup = NULL;
 ArcadeView *qmc2ArcadeView = NULL;
 ArcadeSetupDialog *qmc2ArcadeSetupDialog = NULL;
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
 MESSDeviceConfigurator *qmc2MESSDeviceConfigurator = NULL;
 #endif
 bool qmc2ReloadActive = FALSE;
@@ -133,7 +133,7 @@ bool qmc2CheckItemVisibility = TRUE;
 bool qmc2AutomaticReload = FALSE;
 bool qmc2SuppressQtMessages = FALSE;
 bool qmc2LoadingGameInfoDB = FALSE;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
 bool qmc2LoadingEmuInfoDB = FALSE;
 #endif
 bool qmc2WidgetsEnabled = TRUE;
@@ -160,7 +160,7 @@ QTreeWidgetItem *qmc2CurrentItem = NULL;
 QTreeWidgetItem *qmc2LastConfigItem = NULL;
 QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
 QTreeWidgetItem *qmc2LastGameInfoItem = NULL;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
 QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
 MiniWebBrowser *qmc2MAWSLookup = NULL;
 QTreeWidgetItem *qmc2LastMAWSItem = NULL;
@@ -186,7 +186,7 @@ QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
 QMap<QString, QString> qmc2CustomShortcutMap;
 QMap<QString, QString> qmc2JoystickFunctionMap;
 QMap<QString, QByteArray *> qmc2GameInfoDB;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
 QMap<QString, QByteArray *> qmc2EmuInfoDB;
 #endif
 int qmc2SortCriteria = QMC2_SORT_BY_DESCRIPTION;
@@ -203,7 +203,7 @@ QString qmc2DefaultStyle;
 QSocketNotifier *qmc2FifoNotifier = NULL;
 bool qmc2ShowGameName = FALSE;
 bool qmc2ShowGameNameOnlyWhenRequired = TRUE;
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
 QString qmc2MessMachineName = "";
 #endif
 QMutex qmc2LogMutex;
@@ -288,9 +288,9 @@ void MainWindow::log(char logOrigin, QString message)
       textBrowserEmulatorLog->append(msg);
       textBrowserEmulatorLog->horizontalScrollBar()->setValue(0);
       if ( !qmc2EmulatorLogFile ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value("MAME/FilesAndDirectories/LogFile", "data/log/mame.log").toString(), this)) == NULL ) {
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value("MESS/FilesAndDirectories/LogFile", "data/log/mess.log").toString(), this)) == NULL ) {
 #endif
           qmc2LogMutex.unlock();
@@ -360,10 +360,10 @@ MainWindow::MainWindow(QWidget *parent)
   actionLaunchQMC2MESS->setVisible(FALSE);
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   actionLaunchQMC2MAME->setVisible(FALSE);
   qmc2MAWSCache.setMaxCost(QMC2_MAWS_CACHE_SIZE);
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   actionLaunchQMC2MESS->setVisible(FALSE);
   actionClearMAWSCache->setVisible(FALSE);
   setWindowTitle(tr("M.E.S.S. Catalog / Launcher II"));
@@ -536,18 +536,18 @@ MainWindow::MainWindow(QWidget *parent)
   connect(action, SIGNAL(triggered()), this, SLOT(action_copyEmulatorCommand_triggered()));
 
   qmc2GameMenu = new QMenu(0);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Play selected game");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Start selected machine");
 #endif
   action = qmc2GameMenu->addAction(tr("&Play"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_activated()));
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Add current game to favorites");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Add current machine to favorites");
 #endif
   action = qmc2GameMenu->addAction(tr("To &favorites"));
@@ -555,18 +555,18 @@ MainWindow::MainWindow(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/favorites.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionToFavorites_activated()));
   qmc2GameMenu->addSeparator();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Check current game's ROM state");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Check current machine's ROM state");
 #endif
   action = qmc2GameMenu->addAction(tr("Check &ROM state"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/rom.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionCheckCurrentROM_activated()));
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Analyse current game's ROM set with ROMAlyzer");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Analyse current machine's ROM set with ROMAlyzer");
 #endif
   action = qmc2GameMenu->addAction(tr("&Analyse ROM..."));
@@ -575,18 +575,18 @@ MainWindow::MainWindow(QWidget *parent)
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_activated()));
 
   qmc2SearchMenu = new QMenu(0);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Play selected game");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Start selected machine");
 #endif
   action = qmc2SearchMenu->addAction(tr("&Play"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_activated()));
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Add current game to favorites");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Add current machine to favorites");
 #endif
   action = qmc2SearchMenu->addAction(tr("To &favorites"));
@@ -594,18 +594,18 @@ MainWindow::MainWindow(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/favorites.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionToFavorites_activated()));
   qmc2SearchMenu->addSeparator();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Check current game's ROM state");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Check current machine's ROM state");
 #endif
   action = qmc2SearchMenu->addAction(tr("Check &ROM state"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/rom.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionCheckCurrentROM_activated()));
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Analyse current game's ROM set with ROMAlyzer");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Analyse current machine's ROM set with ROMAlyzer");
 #endif
   action = qmc2SearchMenu->addAction(tr("&Analyse ROM..."));
@@ -614,9 +614,9 @@ MainWindow::MainWindow(QWidget *parent)
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_activated()));
 
   qmc2FavoritesMenu = new QMenu(0);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Play selected game");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Start selected machine");
 #endif
   action = qmc2FavoritesMenu->addAction(tr("&Play"));
@@ -624,18 +624,18 @@ MainWindow::MainWindow(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_activated()));
   qmc2FavoritesMenu->addSeparator();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Check current game's ROM state");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Check current machine's ROM state");
 #endif
   action = qmc2FavoritesMenu->addAction(tr("Check &ROM state"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/rom.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionCheckCurrentROM_activated()));
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Analyse current game's ROM set with ROMAlyzer");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Analyse current machine's ROM set with ROMAlyzer");
 #endif
   action = qmc2FavoritesMenu->addAction(tr("&Analyse ROM..."));
@@ -660,18 +660,18 @@ MainWindow::MainWindow(QWidget *parent)
   connect(action, SIGNAL(triggered()), this, SLOT(action_saveFavorites_triggered()));
 
   qmc2PlayedMenu = new QMenu(0);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Play selected game");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Start selected machine");
 #endif
   action = qmc2PlayedMenu->addAction(tr("&Play"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_activated()));
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Add current game to favorites");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Add current machine to favorites");
 #endif
   action = qmc2PlayedMenu->addAction(tr("To &favorites"));
@@ -679,18 +679,18 @@ MainWindow::MainWindow(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/favorites.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionToFavorites_activated()));
   qmc2PlayedMenu->addSeparator();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Check current game's ROM state");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Check current machine's ROM state");
 #endif
   action = qmc2PlayedMenu->addAction(tr("Check &ROM state"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/rom.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionCheckCurrentROM_activated()));
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   s = tr("Analyse current game's ROM set with ROMAlyzer");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   s = tr("Analyse current machine's ROM set with ROMAlyzer");
 #endif
   action = qmc2PlayedMenu->addAction(tr("&Analyse ROM..."));
@@ -886,7 +886,7 @@ MainWindow::MainWindow(QWidget *parent)
   treeWidgetGamelist->header()->setClickable(TRUE);
   treeWidgetHierarchy->header()->setClickable(TRUE);
 
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
   treeWidgetHierarchy->hideColumn(QMC2_MACHINELIST_COLUMN_ICON);
   qApp->processEvents();
 #endif
@@ -937,9 +937,9 @@ void MainWindow::on_actionPlay_activated()
     int i;
     for (i = 0; i < qmc2EmulatorOptions->optionsMap[sectionTitle].count(); i++) {
       EmulatorOption option = qmc2EmulatorOptions->optionsMap[sectionTitle][i];
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       QString globalOptionKey = "MAME/Configuration/Global/" + option.name;
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       QString globalOptionKey = "MESS/Configuration/Global/" + option.name;
 #endif
       switch ( option.type ) {
@@ -997,7 +997,7 @@ void MainWindow::on_actionPlay_activated()
 
   args << gameName;
 
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
   qmc2MessMachineName = gameName;
   if ( qmc2MESSDeviceConfigurator ) {
     QString configName = qmc2MESSDeviceConfigurator->lineEditConfigurationName->text();
@@ -1018,9 +1018,9 @@ void MainWindow::on_actionPlay_activated()
   }
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QString command = qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QString command = qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString();
 #endif
 
@@ -1131,7 +1131,7 @@ void MainWindow::on_actionReload_activated()
         qmc2Gamelist->enableWidgets(TRUE);
       }
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() && qmc2DetailSetup->appliedDetailList.contains(QMC2_EMUINFO_INDEX) )
       if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser ) {
         qmc2Gamelist->enableWidgets(FALSE);
@@ -1143,15 +1143,15 @@ void MainWindow::on_actionReload_activated()
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection").toBool() && !qmc2StartingUp ) {
       if ( qmc2CurrentItem ) {
         log(QMC2_LOG_FRONTEND, tr("saving game selection"));
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         qmc2Config->setValue("MAME/SelectedGame", qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         qmc2Config->setValue("MESS/SelectedGame", qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME));
 #endif
       } else
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         qmc2Config->remove("MAME/SelectedGame");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         qmc2Config->remove("MESS/SelectedGame");
 #endif
     }
@@ -1391,7 +1391,7 @@ void MainWindow::on_actionClearIconCache_activated()
   log(QMC2_LOG_FRONTEND, tr("icon cache cleared"));
 }
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
 void MainWindow::on_actionClearMAWSCache_activated()
 {
 #ifdef QMC2_DEBUG
@@ -2096,7 +2096,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 
   if ( !qmc2CurrentItem || qmc2EarlyReloadActive ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2LastGameInfoItem = qmc2LastEmuInfoItem = qmc2LastConfigItem = qmc2LastDeviceConfigItem = NULL;
 #else
     qmc2LastGameInfoItem = qmc2LastConfigItem = qmc2LastDeviceConfigItem = NULL;
@@ -2204,7 +2204,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
   }
 
   switch ( qmc2DetailSetup->appliedDetailList[currentIndex] ) {
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
     case QMC2_DEVICE_INDEX:
       if ( qmc2CurrentItem != qmc2LastDeviceConfigItem ) {
         tabDevices->setUpdatesEnabled(FALSE);
@@ -2228,7 +2228,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       }
       break;
 
-#elif defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#elif defined(QMC2_EMUTYPE_MAME)
     case QMC2_MAWS_INDEX:
       if ( qmc2CurrentItem != qmc2LastMAWSItem ) {
         tabMAWS->setUpdatesEnabled(FALSE);
@@ -2323,9 +2323,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         int left, top, right, bottom;
         gridLayout->getContentsMargins(&left, &top, &right, &bottom);
         QVBoxLayout *layout = new QVBoxLayout;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         qmc2EmulatorOptions = new EmulatorOptions("MAME/Configuration/" + gameName, configWidget);
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         qmc2EmulatorOptions = new EmulatorOptions("MESS/Configuration/" + gameName, configWidget);
 #endif
         qmc2EmulatorOptions->load();
@@ -2334,18 +2334,18 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_MAME) || defined(QMC2_MESS)
         QHBoxLayout *buttonLayout = new QHBoxLayout();
         pushButtonCurrentEmulatorOptionsExportToFile = new QPushButton(tr("Export to..."), this);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         pushButtonCurrentEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export game-specific MAME configuration"));
         pushButtonCurrentEmulatorOptionsExportToFile->setStatusTip(QObject::tr("Export game-specific MAME configuration"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         pushButtonCurrentEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export machine-specific MESS configuration"));
         pushButtonCurrentEmulatorOptionsExportToFile->setStatusTip(QObject::tr("Export machine-specific MESS configuration"));
 #endif
         pushButtonCurrentEmulatorOptionsImportFromFile = new QPushButton(QObject::tr("Import from..."), this);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         pushButtonCurrentEmulatorOptionsImportFromFile->setToolTip(QObject::tr("Import game-specific MAME configuration"));
         pushButtonCurrentEmulatorOptionsImportFromFile->setStatusTip(QObject::tr("Import game-specific MAME configuration"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         pushButtonCurrentEmulatorOptionsImportFromFile->setToolTip(QObject::tr("Import machine-specific MESS configuration"));
         pushButtonCurrentEmulatorOptionsImportFromFile->setStatusTip(QObject::tr("Import machine-specific MESS configuration"));
 #endif
@@ -2406,7 +2406,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       }
       break;
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     case QMC2_EMUINFO_INDEX:
       if ( qmc2CurrentItem != qmc2LastEmuInfoItem ) {
         tabEmuInfo->setUpdatesEnabled(FALSE);
@@ -2931,9 +2931,9 @@ void MainWindow::on_pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()");
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QString fileName = qmc2Config->value("MAME/Configuration/Global/inipath", QDir::homePath()).toString().replace("~", QDir::homePath()) + "/mame.ini";
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QString fileName = qmc2Config->value("MESS/Configuration/Global/inipath", QDir::homePath()).toString().replace("~", QDir::homePath()) + "/mess.ini";
 #else
   QString fileName;
@@ -2958,9 +2958,9 @@ void MainWindow::on_pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()");
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QString fileName = qmc2Config->value("MAME/Configuration/Global/inipath", QDir::homePath()).toString().replace("~", QDir::homePath()) + "/mame.ini";
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QString fileName = qmc2Config->value("MESS/Configuration/Global/inipath", QDir::homePath()).toString().replace("~", QDir::homePath()) + "/mess.ini";
 #else
   QString fileName;
@@ -2985,9 +2985,9 @@ void MainWindow::on_pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()");
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QStringList iniPaths = qmc2Config->value("MAME/Configuration/Global/inipath", QDir::homePath()).toString().split(";");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QStringList iniPaths = qmc2Config->value("MESS/Configuration/Global/inipath", QDir::homePath()).toString().split(";");
 #endif
   QString iniPath;
@@ -3020,9 +3020,9 @@ void MainWindow::on_pushButtonCurrentEmulatorOptionsSelectImportFile_clicked()
   if ( !qmc2CurrentItem )
     return;
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QStringList iniPaths = qmc2Config->value("MAME/Configuration/Global/inipath", QDir::homePath()).toString().split(";");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QStringList iniPaths = qmc2Config->value("MESS/Configuration/Global/inipath", QDir::homePath()).toString().split(";");
 #endif
   QString iniPath;
@@ -3137,7 +3137,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     return;
   }
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2ReloadActive ||
        qmc2VerifyActive ||
        qmc2FilterActive ||
@@ -3243,15 +3243,15 @@ void MainWindow::closeEvent(QCloseEvent *e)
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection").toBool() ) {
     if ( qmc2CurrentItem ) {
       log(QMC2_LOG_FRONTEND, tr("saving game selection"));
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2Config->setValue("MAME/SelectedGame", qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2Config->setValue("MESS/SelectedGame", qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME));
 #endif
     } else
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2Config->remove("MAME/SelectedGame");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2Config->remove("MESS/SelectedGame");
 #endif
   }
@@ -3274,9 +3274,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitter->sizes().at(0), hSplitter->sizes().at(1)));
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter", QSize(vSplitter->sizes().at(0), vSplitter->sizes().at(1)));
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", tabWidgetGamelist->currentIndex());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", tabWidgetGameDetail->currentIndex());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", tabWidgetGameDetail->currentIndex());
 #endif
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", tabWidgetLogsAndEmulators->currentIndex());
@@ -3321,7 +3321,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     delete qmc2ArcadeSetupDialog;
   }
 
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
   if ( qmc2MESSDeviceConfigurator ) {
     log(QMC2_LOG_FRONTEND, tr("saving current machine's device configurations"));
     qmc2MESSDeviceConfigurator->save();
@@ -3329,9 +3329,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #endif
 
   if ( qmc2EmulatorOptions ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     log(QMC2_LOG_FRONTEND, tr("destroying current game's emulator configuration"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     log(QMC2_LOG_FRONTEND, tr("destroying current machine's emulator configuration"));
 #endif
     qmc2EmulatorOptions->save();
@@ -3342,9 +3342,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
   //                              <- qmc2GlobalEmulatorOptions->setParent(0) fixes this (this is strange but true :)
   qmc2GlobalEmulatorOptions->pseudoDestructor();
   qmc2GlobalEmulatorOptions->setParent(0);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   log(QMC2_LOG_FRONTEND, tr("destroying game list"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   log(QMC2_LOG_FRONTEND, tr("destroying machine list"));
 #endif
   delete qmc2Gamelist;
@@ -3384,7 +3384,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     log(QMC2_LOG_FRONTEND, tr("destroying MiniWebBrowser"));
     delete qmc2DocBrowser;
   }
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2MAWSLookup ) {
     log(QMC2_LOG_FRONTEND, tr("destroying MAWS lookup"));
     delete qmc2MAWSLookup;
@@ -3421,9 +3421,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
     delete qmc2DetailSetup;
   }
   if ( !qmc2GameInfoDB.isEmpty() ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     log(QMC2_LOG_FRONTEND, tr("destroying game info DB"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     log(QMC2_LOG_FRONTEND, tr("destroying machine info DB"));
 #endif
     QMapIterator<QString, QByteArray *> it(qmc2GameInfoDB);
@@ -3439,7 +3439,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     deletedRecords.clear();
     qmc2GameInfoDB.clear();
   }
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   if ( !qmc2EmuInfoDB.isEmpty() ) {
     log(QMC2_LOG_FRONTEND, tr("destroying emulator info DB"));
     QMapIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
@@ -3732,9 +3732,9 @@ void MainWindow::loadGameInfoDB()
 
   qmc2LoadingGameInfoDB = TRUE;
   qmc2StopParser = FALSE;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   log(QMC2_LOG_FRONTEND, tr("loading game info DB"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   log(QMC2_LOG_FRONTEND, tr("loading machine info DB"));
 #endif
 
@@ -3755,9 +3755,9 @@ void MainWindow::loadGameInfoDB()
   qmc2GameInfoDB.clear();
 
   bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QString pathToGameInfoDB = qmc2Config->value("MAME/FilesAndDirectories/GameInfoDB").toString();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QString pathToGameInfoDB = qmc2Config->value("MESS/FilesAndDirectories/GameInfoDB").toString();
 #endif
   QFile gameInfoDB(pathToGameInfoDB);
@@ -3765,9 +3765,9 @@ void MainWindow::loadGameInfoDB()
   if ( gameInfoDB.isOpen() ) {
     qmc2MainWindow->progressBarGamelist->reset();
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       progressBarGamelist->setFormat(tr("Game Info - %p%"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       progressBarGamelist->setFormat(tr("Machine Info - %p%"));
 #endif
     else
@@ -3825,23 +3825,23 @@ void MainWindow::loadGameInfoDB()
                 qmc2GameInfoDB[gameWords[i]] = gameInfo;
             }
           } else {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
             log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in game info DB %1").arg(pathToGameInfoDB));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
             log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$end' in machine info DB %1").arg(pathToGameInfoDB));
 #endif
           }
         } else {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
           log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$bio' in game info DB %1").arg(pathToGameInfoDB));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
           log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$bio' in machine info DB %1").arg(pathToGameInfoDB));
 #endif
         }
       } else if ( !ts.atEnd() ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in game info DB %1").arg(pathToGameInfoDB));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in machine info DB %1").arg(pathToGameInfoDB));
 #endif
       }
@@ -3851,20 +3851,20 @@ void MainWindow::loadGameInfoDB()
     }
     gameInfoDB.close();
   } else {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     log(QMC2_LOG_FRONTEND, tr("WARNING: can't open game info DB %1").arg(pathToGameInfoDB));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     log(QMC2_LOG_FRONTEND, tr("WARNING: can't open machine info DB %1").arg(pathToGameInfoDB));
 #endif
   }
 
   gameInfoElapsedTime = gameInfoElapsedTime.addMSecs(gameInfoTimer.elapsed());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   log(QMC2_LOG_FRONTEND, tr("done (loading game info DB, elapsed time = %1)").arg(gameInfoElapsedTime.toString("mm:ss.zzz")));
   log(QMC2_LOG_FRONTEND, tr("%n game info record(s) loaded", "", qmc2GameInfoDB.count()));
   if ( qmc2StopParser ) {
     log(QMC2_LOG_FRONTEND, tr("invalidating game info DB"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   log(QMC2_LOG_FRONTEND, tr("done (loading machine info DB, elapsed time = %1)").arg(gameInfoElapsedTime.toString("mm:ss.zzz")));
   log(QMC2_LOG_FRONTEND, tr("%n machine info record(s) loaded", "", qmc2GameInfoDB.count()));
   if ( qmc2StopParser ) {
@@ -3887,7 +3887,7 @@ void MainWindow::loadGameInfoDB()
   qmc2MainWindow->progressBarGamelist->reset();
 }
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
 void MainWindow::loadEmuInfoDB()
 {
 #ifdef QMC2_DEBUG
@@ -5029,7 +5029,7 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
     pushButtonSelectRomFilter->setVisible(TRUE);
 }
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
 void MainWindow::mawsLoadStarted()
 {
 #ifdef QMC2_DEBUG
@@ -5570,9 +5570,9 @@ int main(int argc, char *argv[])
   // prepare application and resources
   QApplication qmc2App(argc, argv);
   Q_INIT_RESOURCE(qmc2);
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
   qmc2App.setWindowIcon(QIcon(QString::fromUtf8(":/data/img/mess.png")));
-#elif defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#elif defined(QMC2_EMUTYPE_MAME)
   qmc2App.setWindowIcon(QIcon(QString::fromUtf8(":/data/img/mame.png")));
 #endif
 
@@ -5599,9 +5599,9 @@ int main(int argc, char *argv[])
   qmc2DetailSetup = new DetailSetup(qmc2MainWindow);
   qmc2DetailSetup->saveDetail();
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", 0).toInt());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->tabWidgetGameDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", 0).toInt());
 #endif
   }
@@ -5618,9 +5618,9 @@ int main(int argc, char *argv[])
 
   // create & show greeting string
   QString greeting;
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
   greeting = QObject::tr("M.E.S.S. Catalog / Launcher II v") +
-#elif defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#elif defined(QMC2_EMUTYPE_MAME)
   greeting = QObject::tr("M.A.M.E. Catalog / Launcher II v") +
 #else
   greeting = QObject::tr("M.A.M.E. Catalog / Launcher II v") +
@@ -5662,9 +5662,9 @@ int main(int argc, char *argv[])
   int left, top, right, bottom;
   qmc2MainWindow->gridLayout->getContentsMargins(&left, &top, &right, &bottom);
   QVBoxLayout *layout = new QVBoxLayout;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2GlobalEmulatorOptions = new EmulatorOptions("MAME/Configuration/Global", qmc2Options->tabGlobalConfiguration);
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   qmc2GlobalEmulatorOptions = new EmulatorOptions("MESS/Configuration/Global", qmc2Options->tabGlobalConfiguration);
 #endif
   qmc2GlobalEmulatorOptions->load();
@@ -5673,18 +5673,18 @@ int main(int argc, char *argv[])
   layout->setContentsMargins(left, top, right, bottom);
   QHBoxLayout *buttonLayout = new QHBoxLayout();
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile = new QPushButton(QObject::tr("Export to..."), qmc2Options);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MAME configuration"));
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MAME configuration"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MESS configuration"));
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setToolTip(QObject::tr("Export global MESS configuration"));
 #endif
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile = new QPushButton(QObject::tr("Import from..."), qmc2Options);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setToolTip(QObject::tr("Import global MAME configuration"));
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setStatusTip(QObject::tr("Import global MAME configuration"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setToolTip(QObject::tr("Import global MESS configuration"));
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->setStatusTip(QObject::tr("Import global MESS configuration"));
 #endif
@@ -5697,17 +5697,17 @@ int main(int argc, char *argv[])
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile->show();
   // export/import menus
   qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile = new QMenu(qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mess.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsExportToFile_clicked()));
 #endif
   QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsSelectExportFile_clicked()));
   qmc2MainWindow->pushButtonGlobalEmulatorOptionsExportToFile->setMenu(qmc2MainWindow->selectMenuGlobalEmulatorOptionsExportToFile);
   qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile = new QMenu(qmc2MainWindow->pushButtonGlobalEmulatorOptionsImportFromFile);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mame.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), QObject::tr("<inipath>/mess.ini")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsImportFromFile_clicked()));
 #endif
   QObject::connect(qmc2MainWindow->selectMenuGlobalEmulatorOptionsImportFromFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), QObject::tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonGlobalEmulatorOptionsSelectImportFile_clicked()));

@@ -166,9 +166,9 @@ void ROMStatusExporter::exportToASCII()
   headerStrings << tr("Emulator")
                 << tr("Date")
                 << tr("Time")
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
                 << tr("Total games")
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
                 << tr("Total machines")
 #endif
                 << tr("Correct")
@@ -207,9 +207,9 @@ void ROMStatusExporter::exportToASCII()
   if ( checkBoxIncludeStatistics->isChecked() ) {
     ts << tr("Overall ROM Status") << "\n"
        << QString().leftJustified(tr("Overall ROM Status").length(), '-', TRUE) << "\n\n";
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     ts << tr("Total games") << " " << QString().leftJustified(maxLength - tr("Total games").length(), '.', TRUE) << " " << qmc2Gamelist->numGames << "\n";
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     ts << tr("Total machines") << " " << QString().leftJustified(maxLength - tr("Total machines").length(), '.', TRUE) << " " << qmc2Gamelist->numGames << "\n";
 #endif
     ts << tr("Correct") << " " << QString().leftJustified(maxLength - tr("Correct").length(), '.', TRUE) << " " << qmc2Gamelist->numCorrectGames << "\n";
@@ -485,9 +485,9 @@ void ROMStatusExporter::exportToCSV()
 
   if ( checkBoxIncludeStatistics->isChecked() ) {
     ts << del << tr("Overall ROM Status") << del << "\n" << del << del << "\n";
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     ts << del << tr("Total games") << del << sep << del << qmc2Gamelist->numGames << del << "\n";
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     ts << del << tr("Total machines") << del << sep << del << qmc2Gamelist->numGames << del << "\n";
 #endif
     ts << del << tr("Correct") << del << sep << del << qmc2Gamelist->numCorrectGames << del << "\n";
@@ -688,9 +688,9 @@ void ROMStatusExporter::exportToHTML()
        << "<p>\n"
        << "<table border=\"" << spinBoxHTMLBorderWidth->value() << "\">\n"
        << "<tr>\n"
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
        << "  <td nowrap>" << tr("Total games") << "</td><td nowrap>" << qmc2Gamelist->numGames << "</td>\n"
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
        << "  <td nowrap>" << tr("Total machines") << "</td><td nowrap>" << qmc2Gamelist->numGames << "</td>\n"
 #endif
        << "</tr>\n<tr>\n"

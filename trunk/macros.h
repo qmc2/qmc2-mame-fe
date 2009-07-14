@@ -251,7 +251,7 @@
 					(uchar)*((a) + 7))
 
 // additional pre-compile checks
-#define QMC2_USE_PHONON_API		(QT_VERSION >= 0x040400 && QMC2_PHONON == 1)
+#define QMC2_USE_PHONON_API		(QMC2_PHONON == 1)
 
 // audio player seek offset (in milliseconds)
 #define QMC2_AUDIOPLAYER_SEEK_OFFSET	1000
@@ -284,15 +284,19 @@
 #if defined(QMC2_SDLMAME)
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-sdlmame/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-sdlmame/")
+#define QMC2_EMUTYPE_MAME
 #elif defined(QMC2_SDLMESS)
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-sdlmess/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-sdlmess/")
+#define QMC2_EMUTYPE_MESS
 #elif defined(QMC2_MAME)
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-mame/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-mame/")
+#define QMC2_EMUTYPE_MAME
 #elif defined(QMC2_MESS)
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-mess/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-mess/")
+#define QMC2_EMUTYPE_MESS
 #endif
 
 // OS X uses ~/Library/Application Support/app rather than ~/.app

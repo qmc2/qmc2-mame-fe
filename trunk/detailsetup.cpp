@@ -16,7 +16,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DetailSetup::DetailSetup(QWidget *parent = %1)").arg((qulonglong) parent));
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Pre&view");
   longTitleMap[QMC2_PREVIEW_INDEX] = tr("Game preview image");
   iconMap[QMC2_PREVIEW_INDEX] = QIcon(QString::fromUtf8(":/data/img/camera.png"));
@@ -73,7 +73,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_MAWS_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MAWS_INDEX);
   tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
   configurableDetailList << QMC2_MAWS_INDEX;
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Pre&view");
   longTitleMap[QMC2_PREVIEW_INDEX] = tr("Machine preview image");
   iconMap[QMC2_PREVIEW_INDEX] = QIcon(QString::fromUtf8(":/data/img/camera.png"));
@@ -109,7 +109,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   setupUi(this);
   hide();
 
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
   // no configurable details for MESS variants yet
   pushButtonConfigureDetail->setVisible(FALSE);
 #endif
@@ -144,7 +144,7 @@ void DetailSetup::loadDetail()
   activeDetailList.clear();
   if ( !qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ActiveDetails") ) {
     // use default detail list
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     activeDetailList << QMC2_PREVIEW_INDEX
                      << QMC2_FLYER_INDEX
                      << QMC2_GAMEINFO_INDEX
@@ -156,7 +156,7 @@ void DetailSetup::loadDetail()
                      << QMC2_TITLE_INDEX
                      << QMC2_MAWS_INDEX
                      << QMC2_PCB_INDEX;
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     activeDetailList << QMC2_PREVIEW_INDEX
                      << QMC2_FLYER_INDEX
                      << QMC2_MACHINEINFO_INDEX
@@ -299,7 +299,7 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
     int pageIndex = longTitleMap.key(listWidgetAvailableDetails->selectedItems()[0]->text());
     if ( configurableDetailList.contains(pageIndex) ) {
       switch ( pageIndex ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         case QMC2_MAWS_INDEX:
           {
             bool ok;

@@ -41,21 +41,21 @@ Flyer::Flyer(QWidget *parent)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Flyer::Flyer(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   setToolTip(tr("Game flyer image"));
   setStatusTip(tr("Game flyer image"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   setToolTip(tr("Machine flyer image"));
   setStatusTip(tr("Machine flyer image"));
 #endif
 
   flyerFile = NULL;
   if ( qmc2UseFlyerFile ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     flyerFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/FlyerFile").toString().toAscii());
     if ( flyerFile == NULL )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open flyer file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/FlyerFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     flyerFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/FlyerFile").toString().toAscii());
     if ( flyerFile == NULL )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open flyer file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/FlyerFile").toString()));
@@ -166,9 +166,9 @@ bool Flyer::loadFlyer(QString gameName, QString onBehalfOf, bool checkOnly, QStr
     }
   } else {
     // use flyer directory
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     QString imagePath = qmc2Config->value("MAME/FilesAndDirectories/FlyerDirectory").toString() + gameName + ".png";
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     QString imagePath = qmc2Config->value("MESS/FilesAndDirectories/FlyerDirectory").toString() + gameName + ".png";
 #endif
 

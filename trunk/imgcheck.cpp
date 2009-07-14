@@ -104,9 +104,9 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
     qmc2MainWindow->progressBarGamelist->reset();
 
     if ( qmc2Gamelist->numTotalGames != qmc2Gamelist->numGames )
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: game list not fully loaded, check results may be misleading"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: machine list not fully loaded, check results may be misleading"));
 #endif
 
@@ -227,9 +227,9 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("check pass 2: obsolete files: reading directory structure"));
       qApp->processEvents();
       QStringList fileList;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       QString previewDir = qmc2Config->value("MAME/FilesAndDirectories/PreviewDirectory").toString();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       QString previewDir = qmc2Config->value("MESS/FilesAndDirectories/PreviewDirectory").toString();
 #endif
       recursiveFileList(previewDir, fileList);
@@ -305,9 +305,9 @@ void ImageChecker::on_pushButtonPreviewsRemoveObsolete_clicked()
     QStringList addArgs;
     for (i = 0; i < args.count(); i++) {
       if ( args[i] == "$ARCHIVE$" ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         args[i] = qmc2Config->value("MAME/FilesAndDirectories/PreviewFile").toString();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         args[i] = qmc2Config->value("MESS/FilesAndDirectories/PreviewFile").toString();
 #endif
 #if defined(Q_WS_WIN)
@@ -331,9 +331,9 @@ void ImageChecker::on_pushButtonPreviewsRemoveObsolete_clicked()
     unzClose(qmc2Preview->previewFile);
     ToolExecutor zipRemovalTool(this, command, args);
     zipRemovalTool.exec();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2Preview->previewFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/PreviewFile").toString().toAscii());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2Preview->previewFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/PreviewFile").toString().toAscii());
 #endif
     qmc2Preview->setUpdatesEnabled(TRUE);
@@ -355,15 +355,15 @@ void ImageChecker::on_pushButtonPreviewsRemoveObsolete_clicked()
         QList<QListWidgetItem *> items = listWidgetPreviewsObsolete->findItems("*", Qt::MatchWildcard); 
         for (j = 0; j < items.count(); j++) {
 #if defined(Q_WS_WIN)
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
           addArgs << qmc2Config->value("MAME/FilesAndDirectories/PreviewDirectory").toString().replace('/', '\\') + items[j]->text().replace('/', '\\');
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
           addArgs << qmc2Config->value("MESS/FilesAndDirectories/PreviewDirectory").toString().replace('/', '\\') + items[j]->text().replace('/', '\\');
 #endif
 #else
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
           addArgs << qmc2Config->value("MAME/FilesAndDirectories/PreviewDirectory").toString() + items[j]->text();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
           addArgs << qmc2Config->value("MESS/FilesAndDirectories/PreviewDirectory").toString() + items[j]->text();
 #endif
 #endif
@@ -428,9 +428,9 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
     qmc2MainWindow->progressBarGamelist->reset();
 
     if ( qmc2Gamelist->numTotalGames != qmc2Gamelist->numGames )
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: game list not fully loaded, check results may be misleading"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: machine list not fully loaded, check results may be misleading"));
 #endif
 
@@ -551,9 +551,9 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("check pass 2: obsolete files: reading directory structure"));
       qApp->processEvents();
       QStringList fileList;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       QString flyerDir = qmc2Config->value("MAME/FilesAndDirectories/FlyerDirectory").toString();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       QString flyerDir = qmc2Config->value("MESS/FilesAndDirectories/FlyerDirectory").toString();
 #endif
       recursiveFileList(flyerDir, fileList);
@@ -629,9 +629,9 @@ void ImageChecker::on_pushButtonFlyersRemoveObsolete_clicked()
     QStringList addArgs;
     for (i = 0; i < args.count(); i++) {
       if ( args[i] == "$ARCHIVE$" ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         args[i] = qmc2Config->value("MAME/FilesAndDirectories/FlyerFile").toString();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         args[i] = qmc2Config->value("MESS/FilesAndDirectories/FlyerFile").toString();
 #endif
 #if defined(Q_WS_WIN)
@@ -655,9 +655,9 @@ void ImageChecker::on_pushButtonFlyersRemoveObsolete_clicked()
     unzClose(qmc2Flyer->flyerFile);
     ToolExecutor zipRemovalTool(this, command, args);
     zipRemovalTool.exec();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2Flyer->flyerFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/FlyerFile").toString().toAscii());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2Flyer->flyerFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/FlyerFile").toString().toAscii());
 #endif
     qmc2Flyer->setUpdatesEnabled(TRUE);
@@ -679,15 +679,15 @@ void ImageChecker::on_pushButtonFlyersRemoveObsolete_clicked()
         QList<QListWidgetItem *> items = listWidgetFlyersObsolete->findItems("*", Qt::MatchWildcard); 
         for (j = 0; j < items.count(); j++) {
 #if defined(Q_WS_WIN)
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
           addArgs << qmc2Config->value("MAME/FilesAndDirectories/FlyerDirectory").toString().replace('/', '\\') + items[j]->text().replace('/', '\\');
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
           addArgs << qmc2Config->value("MESS/FilesAndDirectories/FlyerDirectory").toString().replace('/', '\\') + items[j]->text().replace('/', '\\');
 #endif
 #else
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
           addArgs << qmc2Config->value("MAME/FilesAndDirectories/FlyerDirectory").toString() + items[j]->text();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
           addArgs << qmc2Config->value("MESS/FilesAndDirectories/FlyerDirectory").toString() + items[j]->text();
 #endif
 #endif
@@ -754,9 +754,9 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
     qmc2MainWindow->progressBarGamelist->reset();
 
     if ( qmc2Gamelist->numTotalGames != qmc2Gamelist->numGames )
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: game list not fully loaded, check results may be misleading"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: machine list not fully loaded, check results may be misleading"));
 #endif
 
@@ -876,9 +876,9 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("check pass 2: obsolete files: reading directory structure"));
       qApp->processEvents();
       QStringList fileList;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       QString iconDir = qmc2Config->value("MAME/FilesAndDirectories/IconDirectory").toString();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       QString iconDir = qmc2Config->value("MESS/FilesAndDirectories/IconDirectory").toString();
 #endif
       recursiveFileList(iconDir, fileList);
@@ -954,9 +954,9 @@ void ImageChecker::on_pushButtonIconsRemoveObsolete_clicked()
     QStringList addArgs;
     for (i = 0; i < args.count(); i++) {
       if ( args[i] == "$ARCHIVE$" ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         args[i] = qmc2Config->value("MAME/FilesAndDirectories/IconFile").toString();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         args[i] = qmc2Config->value("MESS/FilesAndDirectories/IconFile").toString();
 #endif
 #if defined(Q_WS_WIN)
@@ -979,9 +979,9 @@ void ImageChecker::on_pushButtonIconsRemoveObsolete_clicked()
     unzClose(qmc2IconFile);
     ToolExecutor zipRemovalTool(this, command, args);
     zipRemovalTool.exec();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2IconFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/IconFile").toString().toAscii());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2IconFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/IconFile").toString().toAscii());
 #endif
   } else {
@@ -1002,15 +1002,15 @@ void ImageChecker::on_pushButtonIconsRemoveObsolete_clicked()
         QList<QListWidgetItem *> items = listWidgetIconsObsolete->findItems("*", Qt::MatchWildcard); 
         for (j = 0; j < items.count(); j++) {
 #if defined(Q_WS_WIN)
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
           addArgs << qmc2Config->value("MAME/FilesAndDirectories/IconDirectory").toString().replace('/', '\\') + items[j]->text().replace('/', '\\');
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
           addArgs << qmc2Config->value("MESS/FilesAndDirectories/IconDirectory").toString().replace('/', '\\') + items[j]->text().replace('/', '\\');
 #endif
 #else
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
           addArgs << qmc2Config->value("MAME/FilesAndDirectories/IconDirectory").toString() + items[j]->text();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
           addArgs << qmc2Config->value("MESS/FilesAndDirectories/IconDirectory").toString() + items[j]->text();
 #endif
 #endif

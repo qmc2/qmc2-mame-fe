@@ -21,7 +21,7 @@ ArcadeSetupDialog::ArcadeSetupDialog(QWidget *parent)
 
   setupUi(this);
 
-#if defined(QMC2_SDLMESS)
+#if defined(QMC2_EMUTYPE_MESS)
   groupBoxGamelist->setTitle(tr("Machine list"));
   groupBoxGamelist->setToolTip(tr("Control display of machine list"));
 #endif

@@ -41,21 +41,21 @@ PCB::PCB(QWidget *parent)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: PCB::PCB(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   setToolTip(tr("Game PCB image"));
   setStatusTip(tr("Game PCB image"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   setToolTip(tr("Machine PCB image"));
   setStatusTip(tr("Machine PCB image"));
 #endif
 
   pcbFile = NULL;
   if ( qmc2UsePCBFile ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     pcbFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/PCBFile").toString().toAscii());
     if ( pcbFile == NULL )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/PCBFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     pcbFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/PCBFile").toString().toAscii());
     if ( pcbFile == NULL )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/PCBFile").toString()));
@@ -166,9 +166,9 @@ bool PCB::loadPCB(QString gameName, QString onBehalfOf, bool checkOnly, QString 
     }
   } else {
     // use PCB directory
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     QString imagePath = qmc2Config->value("MAME/FilesAndDirectories/PCBDirectory").toString() + gameName + ".png";
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     QString imagePath = qmc2Config->value("MESS/FilesAndDirectories/PCBDirectory").toString() + gameName + ".png";
 #endif
 

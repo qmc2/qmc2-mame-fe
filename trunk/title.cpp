@@ -41,21 +41,21 @@ Title::Title(QWidget *parent)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Title::Title(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   setToolTip(tr("Game title image"));
   setStatusTip(tr("Game title image"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   setToolTip(tr("Machine title image"));
   setStatusTip(tr("Machine title image"));
 #endif
 
   titleFile = NULL;
   if ( qmc2UseTitleFile ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     titleFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/TitleFile").toString().toAscii());
     if ( titleFile == NULL )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open title file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/TitleFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     titleFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/TitleFile").toString().toAscii());
     if ( titleFile == NULL )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open title file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/TitleFile").toString()));
@@ -166,9 +166,9 @@ bool Title::loadTitle(QString gameName, QString onBehalfOf, bool checkOnly, QStr
     }
   } else {
     // use title directory
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     QString imagePath = qmc2Config->value("MAME/FilesAndDirectories/TitleDirectory").toString() + gameName + ".png";
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     QString imagePath = qmc2Config->value("MESS/FilesAndDirectories/TitleDirectory").toString() + gameName + ".png";
 #endif
 
