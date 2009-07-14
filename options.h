@@ -13,6 +13,7 @@
 #include <QSpinBox>
 #include <QScrollArea>
 #include "joystick.h"
+#include "macros.h"
 
 class JoystickCalibrationWidget : public QWidget
 {
@@ -125,7 +126,7 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonBrowseExecutableFile_clicked();
     void on_toolButtonBrowseDataDirectory_clicked();
     void on_toolButtonBrowseGameInfoDB_clicked();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     void on_toolButtonBrowseEmuInfoDB_clicked();
 #endif
     void on_toolButtonBrowseOptionsTemplateFile_clicked();

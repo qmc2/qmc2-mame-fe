@@ -332,12 +332,12 @@ void ROMAlyzer::analyze()
   qmc2ROMAlyzerActive = TRUE;
 
   QString myRomPath;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2Config->contains("MAME/Configuration/Global/rompath") )
     myRomPath = qmc2Config->value("MAME/Configuration/Global/rompath").toString();
   else
     myRomPath = "roms";
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   if ( qmc2Config->contains("MESS/Configuration/Global/rompath") )
     myRomPath = qmc2Config->value("MESS/Configuration/Global/rompath").toString();
   else
@@ -368,9 +368,9 @@ void ROMAlyzer::analyze()
   QTime analysisTimer, elapsedTime;
   analysisTimer.start();
   log(tr("analysis started"));
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   log(tr("determining list of games to analyze"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   log(tr("determining list of machines to analyze"));
 #endif
   if ( patternList.count() == 1 ) {
@@ -382,9 +382,9 @@ void ROMAlyzer::analyze()
 
   if ( analyzerList.empty() ) {
     // determine list of games to analyze
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     labelStatus->setText(tr("Searching games"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     labelStatus->setText(tr("Searching machines"));
 #endif
     progressBar->setRange(0, qmc2Gamelist->numGames);
@@ -407,10 +407,10 @@ void ROMAlyzer::analyze()
   }
 
   if ( !qmc2StopParser ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     log(tr("done (determining list of games to analyze)"));
     log(tr("%n game(s) to analyze", "", analyzerList.count()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     log(tr("done (determining list of machines to analyze)"));
     log(tr("%n machine(s) to analyze", "", analyzerList.count()));
 #endif
@@ -650,9 +650,9 @@ void ROMAlyzer::analyze()
       
       i++;
       log(tr("done (analyzing '%1')").arg(gameName));
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       log(tr("%n game(s) left", "", analyzerList.count() - i));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       log(tr("%n machine(s) left", "", analyzerList.count() - i));
 #endif
     }
@@ -682,14 +682,14 @@ QString &ROMAlyzer::getXmlData(QString gameName)
 
   xmlBuffer.clear();
   int i = 0;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QString s = "<game name=\"" + gameName + "\"";
   while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
   xmlBuffer = "<?xml version=\"1.0\"?>\n";
   while ( !qmc2Gamelist->xmlLines[i].contains("</game>") )
     xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
   xmlBuffer += "</game>\n";
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QString s = "<machine name=\"" + gameName + "\"";
   while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
   xmlBuffer = "<?xml version=\"1.0\"?>\n";
@@ -1139,9 +1139,9 @@ bool ROMAlyzerXmlHandler::startElement(const QString &namespaceURI, const QStrin
 
   QString s;
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   if ( qName == "game" ) {
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   if ( qName == "machine" ) {
 #endif
     parentItem->setText(QMC2_ROMALYZER_COLUMN_MERGE, attributes.value("romof"));
@@ -1190,9 +1190,9 @@ bool ROMAlyzerXmlHandler::endElement(const QString &namespaceURI, const QString 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::endElement(...)");
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   if ( qName == "game" ) {
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   if ( qName == "machine" ) {
 #endif
     QString s(parentItem->text(QMC2_ROMALYZER_COLUMN_GAME));

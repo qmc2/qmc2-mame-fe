@@ -36,7 +36,7 @@
 #include "joystick.h"
 #include "joyfuncscan.h"
 #endif
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
 #include "messdevcfg.h"
 #endif
 
@@ -106,13 +106,13 @@ extern QMap<QString, int> qmc2QtKeyMap;
 extern QMap<QString, QByteArray *> qmc2GameInfoDB;
 extern MiniWebBrowser *qmc2MAWSLookup;
 extern DetailSetup *qmc2DetailSetup;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
 extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 #endif
 #if QMC2_JOYSTICK == 1
 extern Joystick *qmc2Joystick;
 #endif
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 #endif
 
@@ -144,7 +144,7 @@ Options::Options(QWidget *parent)
   checkBoxMinimizeOnVariantLaunch->setVisible(FALSE);
 #endif
 
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
   toolButtonBrowseEmuInfoDB->setVisible(FALSE);
   checkBoxProcessEmuInfoDB->setVisible(FALSE);
   checkBoxCompressEmuInfoDB->setVisible(FALSE);
@@ -326,7 +326,7 @@ void Options::apply()
   toolButtonBrowseROMStateCacheFile->setIconSize(iconSize);
   toolButtonBrowseDataDirectory->setIconSize(iconSize);
   toolButtonBrowseGameInfoDB->setIconSize(iconSize);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   toolButtonBrowseEmuInfoDB->setIconSize(iconSize);
   toolButtonBrowseMAWSCacheDirectory->setIconSize(iconSize);
 #endif
@@ -375,7 +375,7 @@ void Options::apply()
   }
   checkBoxProcessGameInfoDB->setIconSize(iconSize);
   checkBoxCompressGameInfoDB->setIconSize(iconSize);
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   checkBoxProcessEmuInfoDB->setIconSize(iconSize);
   checkBoxCompressEmuInfoDB->setIconSize(iconSize);
   if ( qmc2MAWSLookup ) {
@@ -408,7 +408,7 @@ void Options::apply()
 #endif
   if ( qmc2ROMStatusExporter )
     QTimer::singleShot(0, qmc2ROMStatusExporter, SLOT(adjustIconSizes()));
-#if defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#if defined(QMC2_EMUTYPE_MESS)
   if ( qmc2MESSDeviceConfigurator ) {
     qmc2MESSDeviceConfigurator->pushButtonConfiguration->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->pushButtonNewConfiguration->setIconSize(iconSize);
@@ -506,7 +506,7 @@ void Options::on_pushButtonApply_clicked()
   needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() != b);
   invalidateGameInfoDB |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() != b);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB", checkBoxCompressGameInfoDB->isChecked());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   b = checkBoxProcessEmuInfoDB->isChecked();
   needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() != b);
   bool invalidateEmuInfoDB = (config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() != b);
@@ -609,7 +609,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", lineEditFrontendLogFile->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory", lineEditDataDirectory->text());
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   needReopenPreviewFile = (qmc2UsePreviewFile != (stackedWidgetPreview->currentIndex() == 1));
   needReopenPreviewFile |= (config->value("MAME/FilesAndDirectories/PreviewFile").toString() != lineEditPreviewFile->text());
   qmc2UsePreviewFile = (stackedWidgetPreview->currentIndex() == 1);
@@ -666,7 +666,7 @@ void Options::on_pushButtonApply_clicked()
   needManualReload |= (config->value("MAME/FilesAndDirectories/EmuInfoDB").toString() != s);
   invalidateEmuInfoDB |= (config->value("MAME/FilesAndDirectories/EmuInfoDB").toString() != s);
   config->setValue("MAME/FilesAndDirectories/EmuInfoDB", lineEditEmuInfoDB->text());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   needReopenPreviewFile = (qmc2UsePreviewFile != (stackedWidgetPreview->currentIndex() == 1));
   needReopenPreviewFile |= (config->value("MESS/FilesAndDirectories/PreviewFile").toString() != lineEditPreviewFile->text());
   qmc2UsePreviewFile = (stackedWidgetPreview->currentIndex() == 1);
@@ -828,9 +828,9 @@ void Options::on_pushButtonApply_clicked()
     if ( qmc2GlobalEmulatorOptions->changed ) {
       if ( qmc2EmulatorOptions ) {
         switch ( QMessageBox::question(this, tr("Confirm"), 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
                  tr("An open game-specific emulator configuration has been detected.\nUse local game-settings, overwrite with global settings or don't apply?"),
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
                  tr("An open machine-specific emulator configuration has been detected.\nUse local machine-settings, overwrite with global settings or don't apply?"),
 #endif
                  tr("&Local"), tr("&Overwrite"), tr("Do&n't apply"), 0, 2) ) {
@@ -860,7 +860,7 @@ void Options::on_pushButtonApply_clicked()
   }
 
   // Files and directories
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   needReload = config->value("MAME/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
   config->setValue("MAME/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
   config->setValue("MAME/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
@@ -873,7 +873,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/OptionsTemplateFile", s);
   config->setValue("MAME/FilesAndDirectories/FavoritesFile", lineEditFavoritesFile->text());
   config->setValue("MAME/FilesAndDirectories/HistoryFile", lineEditHistoryFile->text());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   needReload = config->value("MESS/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
   config->setValue("MESS/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
   config->setValue("MESS/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
@@ -909,7 +909,7 @@ void Options::on_pushButtonApply_clicked()
     qmc2GameInfoDB.clear();
   }
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   if ( invalidateEmuInfoDB ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("invalidating emulator info DB"));
     QMapIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
@@ -951,9 +951,9 @@ void Options::on_pushButtonApply_clicked()
       QString sortCriteria = "?";
       switch ( qmc2SortCriteria ) {
         case QMC2_SORT_BY_DESCRIPTION:
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
           sortCriteria = QObject::tr("game description");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
           sortCriteria = QObject::tr("machine description");
 #endif
           break;
@@ -967,16 +967,16 @@ void Options::on_pushButtonApply_clicked()
           sortCriteria = QObject::tr("manufacturer");
           break;
         case QMC2_SORT_BY_NAME:
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
           sortCriteria = QObject::tr("game name");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
           sortCriteria = QObject::tr("machine name");
 #endif
           break;
       }
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting game list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting machine list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
 #endif
       qApp->processEvents();
@@ -1049,11 +1049,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Preview ) {
     if ( needReopenPreviewFile ) {
       if ( qmc2UsePreviewFile ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         qmc2Preview->previewFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/PreviewFile").toString().toAscii());
         if ( qmc2Preview->previewFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open preview file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/PreviewFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         qmc2Preview->previewFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/PreviewFile").toString().toAscii());
         if ( qmc2Preview->previewFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open preview file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/PreviewFile").toString()));
@@ -1067,11 +1067,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Flyer ) {
     if ( needReopenFlyerFile ) {
       if ( qmc2UseFlyerFile ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         qmc2Flyer->flyerFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/FlyerFile").toString().toAscii());
         if ( qmc2Flyer->flyerFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open flyer file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/FlyerFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         qmc2Flyer->flyerFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/FlyerFile").toString().toAscii());
         if ( qmc2Flyer->flyerFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open flyer file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/FlyerFile").toString()));
@@ -1085,11 +1085,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Cabinet ) {
     if ( needReopenCabinetFile ) {
       if ( qmc2UseCabinetFile ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         qmc2Cabinet->cabinetFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/CabinetFile").toString().toAscii());
         if ( qmc2Cabinet->cabinetFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open cabinet file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/CabinetFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         qmc2Cabinet->cabinetFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/CabinetFile").toString().toAscii());
         if ( qmc2Cabinet->cabinetFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open cabinet file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/CabinetFile").toString()));
@@ -1103,11 +1103,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Controller ) {
     if ( needReopenControllerFile ) {
       if ( qmc2UseControllerFile ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         qmc2Controller->controllerFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/ControllerFile").toString().toAscii());
         if ( qmc2Controller->controllerFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open controller file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/ControllerFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         qmc2Controller->controllerFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/ControllerFile").toString().toAscii());
         if ( qmc2Controller->controllerFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open controller file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/ControllerFile").toString()));
@@ -1121,11 +1121,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Marquee ) {
     if ( needReopenMarqueeFile ) {
       if ( qmc2UseMarqueeFile ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         qmc2Marquee->marqueeFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/MarqueeFile").toString().toAscii());
         if ( qmc2Marquee->marqueeFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open marquee file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/MarqueeFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         qmc2Marquee->marqueeFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/MarqueeFile").toString().toAscii());
         if ( qmc2Marquee->marqueeFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open marquee file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/MarqueeFile").toString()));
@@ -1139,11 +1139,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2Title ) {
     if ( needReopenTitleFile ) {
       if ( qmc2UseTitleFile ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         qmc2Title->titleFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/TitleFile").toString().toAscii());
         if ( qmc2Title->titleFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open title file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/TitleFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         qmc2Title->titleFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/TitleFile").toString().toAscii());
         if ( qmc2Title->titleFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open title file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/TitleFile").toString()));
@@ -1157,11 +1157,11 @@ void Options::on_pushButtonApply_clicked()
   if ( qmc2PCB ) {
     if ( needReopenPCBFile ) {
       if ( qmc2UsePCBFile ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
         qmc2PCB->pcbFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/PCBFile").toString().toAscii());
         if ( qmc2PCB->pcbFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/PCBFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
         qmc2PCB->pcbFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/PCBFile").toString().toAscii());
         if ( qmc2PCB->pcbFile == NULL )
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open PCB file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/TitleFile").toString()));
@@ -1174,11 +1174,11 @@ void Options::on_pushButtonApply_clicked()
 
   if ( needReopenIconFile ) {
     if ( qmc2UseIconFile ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       qmc2IconFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/IconFile").toString().toAscii());
       if ( qmc2IconFile == NULL )
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/IconFile").toString()));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       qmc2IconFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/IconFile").toString().toAscii());
       if ( qmc2IconFile == NULL )
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open icon file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/IconFile").toString()));
@@ -1239,7 +1239,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxProgressTexts->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts", FALSE).toBool());
   checkBoxProcessGameInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB", TRUE).toBool());
   checkBoxCompressGameInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB", FALSE).toBool());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   checkBoxProcessEmuInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB", TRUE).toBool());
   checkBoxCompressEmuInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB", FALSE).toBool());
 #endif
@@ -1293,7 +1293,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   
   // Files / Directories
   lineEditDataDirectory->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory", QMC2_DEFAULT_DATA_PATH + "/").toString());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
 #if defined(QMC2_SDLMAME)
   lineEditTemporaryFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
   lineEditFrontendLogFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-sdlmame.log").toString());
@@ -1343,7 +1343,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
   lineEditGameInfoDB->setText(config->value("MAME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
   lineEditEmuInfoDB->setText(config->value("MAME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
 #if defined(QMC2_SDLMESS)
   lineEditTemporaryFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
   lineEditFrontendLogFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", userScopePath + "/qmc2-sdlmess.log").toString());
@@ -1505,7 +1505,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
     qmc2GlobalEmulatorOptions->load();
 
   // Files and directories
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   lineEditExecutableFile->setText(config->value("MAME/FilesAndDirectories/ExecutableFile", "").toString());
   lineEditEmulatorLogFile->setText(config->value("MAME/FilesAndDirectories/LogFile", userScopePath + "/mame.log").toString());
   lineEditListXMLCache->setText(config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
@@ -1523,7 +1523,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
   lineEditFavoritesFile->setText(config->value("MAME/FilesAndDirectories/FavoritesFile", userScopePath + "/mame.fav").toString());
   lineEditHistoryFile->setText(config->value("MAME/FilesAndDirectories/HistoryFile", userScopePath + "/mame.hst").toString());
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   lineEditExecutableFile->setText(config->value("MESS/FilesAndDirectories/ExecutableFile", "").toString());
   lineEditEmulatorLogFile->setText(config->value("MESS/FilesAndDirectories/LogFile", userScopePath + "/mess.log").toString());
   lineEditListXMLCache->setText(config->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString());
@@ -1907,7 +1907,7 @@ void Options::on_toolButtonBrowseGameInfoDB_clicked()
   raise();
 }
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
 void Options::on_toolButtonBrowseEmuInfoDB_clicked()
 {
 #ifdef QMC2_DEBUG

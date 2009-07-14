@@ -145,7 +145,7 @@ void SampleChecker::verify()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::verify()"));
 #endif
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2SampleCheckActive = TRUE;
   qmc2StopParser = FALSE;
 

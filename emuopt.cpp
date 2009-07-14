@@ -243,9 +243,9 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
   lineEditSearch = NULL;
   if ( !group.contains("Global") ) {
     emulatorOptions = NULL;
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     setStatusTip(tr("Game specific emulator configuration"));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     setStatusTip(tr("Machine specific emulator configuration"));
 #endif
   } else {
@@ -647,9 +647,9 @@ void EmulatorOptions::createTemplateMap()
   templateEmulator = tr("unknown");
   templateVersion = tr("unknown");
   templateFormat = tr("unknown");
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QString templateFile = qmc2Config->value("MAME/FilesAndDirectories/OptionsTemplateFile").toString();
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QString templateFile = qmc2Config->value("MESS/FilesAndDirectories/OptionsTemplateFile").toString();
 #endif
   if ( templateFile.isEmpty() )
@@ -787,9 +787,9 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
   static QBrush redBrush(QColor(255, 0, 0));
   static QBrush greenBrush(QColor(0, 255, 0));
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QStringList iniPaths = qmc2Config->value("MAME/Configuration/Global/inipath").toString().split(";");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QStringList iniPaths = qmc2Config->value("MESS/Configuration/Global/inipath").toString().split(";");
 #endif
   QStringList writableIniPaths;
@@ -838,9 +838,9 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
       return;
     }
     if ( qmc2GlobalEmulatorOptions == this ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       fileName = "/mame.ini";
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       fileName = "/mess.ini";
 #endif
     } else {
@@ -867,9 +867,9 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
     }
     QTime elapsedTime;
     miscTimer.start();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("exporting %1 MAME configuration to %2").arg(global ? tr("global") : tr("game-specific")).arg(fileName));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("exporting %1 MESS configuration to %2").arg(global ? tr("global") : tr("machine-specific")).arg(fileName));
 #endif
     QTextStream ts(&iniFile);
@@ -925,9 +925,9 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
     qmc2Config->endGroup();
     iniFile.close();
     elapsedTime = elapsedTime.addMSecs(miscTimer.elapsed());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (exporting %1 MAME configuration to %2, elapsed time = %3)").arg(global ? tr("global") : tr("game-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (exporting %1 MESS configuration to %2, elapsed time = %3)").arg(global ? tr("global") : tr("machine-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
 #endif
   }
@@ -942,9 +942,9 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
   static QBrush redBrush(QColor(255, 0, 0));
   static QBrush greenBrush(QColor(0, 255, 0));
 
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
   QStringList iniPaths = qmc2Config->value("MAME/Configuration/Global/inipath").toString().split(";");
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
   QStringList iniPaths = qmc2Config->value("MESS/Configuration/Global/inipath").toString().split(";");
 #endif
   QStringList readableIniPaths;
@@ -993,9 +993,9 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
       return;
     }
     if ( qmc2GlobalEmulatorOptions == this ) {
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
       fileName = "/mame.ini";
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
       fileName = "/mess.ini";
 #endif
     } else {
@@ -1023,9 +1023,9 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
     }
     QTime elapsedTime;
     miscTimer.start();
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("importing %1 MAME configuration from %2").arg(global ? tr("global") : tr("game-specific")). arg(fileName));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("importing %1 MESS configuration from %2").arg(global ? tr("global") : tr("machine-specific")). arg(fileName));
 #endif
     QTextStream ts(&iniFile);
@@ -1112,9 +1112,9 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
     }
     iniFile.close();
     elapsedTime = elapsedTime.addMSecs(miscTimer.elapsed());
-#if defined(QMC2_SDLMAME) || defined(QMC2_MAME)
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (importing %1 MAME configuration from %2, elapsed time = %3)").arg(global ? tr("global") : tr("game-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
-#elif defined(QMC2_SDLMESS) || defined(QMC2_MESS)
+#elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (importing %1 MESS configuration from %2, elapsed time = %3)").arg(global ? tr("global") : tr("machine-specific")).arg(fileName).arg(elapsedTime.toString("mm:ss.zzz")));
 #endif
   }
