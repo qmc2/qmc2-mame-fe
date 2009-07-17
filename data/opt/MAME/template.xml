@@ -51,6 +51,7 @@
       <description lang="us" text="Path to crosshair files"/>
       <description lang="de" text="Suchpfad für Fadenkreuz-Dateien"/>
       <description lang="pl" text="Ścieżka do plików celowników"/>
+      <description lang="fr" text="Répertoire pour les viseurs"/>
     </option>
   </section>
   <section name="output_directories">
@@ -230,6 +231,7 @@
       <description lang="us" text="Thread priority for the main game thread; range from -15 to 1"/>
       <description lang="de" text="Ausführpriorität des Main-Game-Threads; Bereich: -15 bis 1"/>
       <description lang="pl" text="Priorytet głównego wątku gry; zakres od -15 do 1"/>
+      <description lang="fr" text="Priorité de processus pour le jeu; rang de -15 à 1"/>
     </option>
   </section>
   <section name="rotation">
@@ -433,12 +435,13 @@
       <description lang="us" text="Enable lightgun input"/>
       <description lang="de" text="Lightgun-Eingabe aktivieren"/>
       <description lang="pl" text="Włącz wejście pistoletu świetlnego"/>
-      <description lang="fr" text="Autorise l'utilisation du pisolet a visée infra-rouge"/>
+      <description lang="fr" text="Autorise l'utilisation du pistolet a visée infra-rouge"/>
     </option>
     <option name="dual_lightgun" type="bool" default="false">
       <description lang="us" text="Enable dual lightgun input"/>
       <description lang="de" text="Duale Lightgun-Eingabe aktivieren"/>
       <description lang="pl" text="Włącz wejście podwójnego pistoletu świetlnego"/>
+      <description lang="fr" text="Autorise l'utilisation du Double pistolet a visée infra-rouge"/>
     </option>
     <option name="multikeyboard" type="bool" default="false">
       <description lang="us" text="Enable separate input from each keyboard device (if present)"/>
@@ -462,7 +465,7 @@
       <description lang="us" text="Convert lightgun button 2 into offscreen reload"/>
       <description lang="de" text="Lightgun Button 2 zu 'Offscreen Reload' konvertieren"/>
       <description lang="pl" text="Skonwertuj 2 przycisk pistoletu na przeładowanie 'poza ekranem'"/>
-      <description lang="fr" text="Convertir le bouton 2 du pisolet a visée infra-rouge en 'recharge hors écran'"/>      
+      <description lang="fr" text="Convertir le bouton 2 du pistolet a visée infra-rouge en 'recharge hors écran'"/>      
     </option>
     <option name="joystick_map" type="file" default="auto">
       <description lang="us" text="Explicit joystick map, or 'auto' to auto-select"/>
@@ -564,16 +567,19 @@
       <description lang="us" text="Specifies the font to use for debugging; defaults to 'Lucida Console'"/>
       <description lang="de" text="Legt die Schriftart für den Debugger fest; Standard-Schriftart: 'Lucida Console'"/>
       <description lang="pl" text="Ustala czcionkę dla debuggera, standard to 'Lucida Console'"/>
+      <description lang="fr" text="Specifier la police à utiliser pour le débogage; par défaut 'Lucida Console'"/>
     </option>
     <option name="debugger_font_size" type="int" default="9">
       <description lang="us" text="Specifies the font size to use for debugging; defaults to 9 pt"/>
       <description lang="de" text="Legt die Größe der Schriftart für den Debugger fest; Standard-Größe: 9 Pixel"/>
       <description lang="pl" text="Ustala rozmiar czcionki dla debuggera, standard to 9 punktów"/>
+      <description lang="fr" text="Specifier la taille de police à utiliser pour le débogage; par défaut 9 pt"/>
     </option>
     <option name="watchdog" type="int" default="0">
       <description lang="us" text="Force the program to terminate if no updates within specified number of seconds"/>
       <description lang="de" text="Programmabbruch erzwingen, wenn nach der angegebenen Anzahl von Sekunden kein Update passiert ist"/>
       <description lang="pl" text="Wymuś zakończenie programu jeśli nie będzie aktualizacji po ustalonej liczbie sekund"/>
+      <description lang="fr" text="Forcer le programme à quitter si rien ne se passe au bout du nombre de secondes spécifié"/>
     </option>
   </section>
   <section name="video">
@@ -591,6 +597,7 @@
       <description lang="us" text="Number of screens to create; usually, you want just one"/>
       <description lang="de" text="Anzahl zu erzeugender Screens; normalerweise wird nur einer benötigt"/>
       <description lang="pl" text="Liczba ekranów do utworzenia; zwykle wystarcza jeden"/>
+      <description lang="fr" text="Nombre d'écrans à créer; généralement, un seul est nécessaire"/>      
     </option>
     <option name="window" type="bool" default="false">
       <description lang="us" text="Enable window mode; otherwise, fullscreen mode is assumed"/>
@@ -632,6 +639,7 @@
       <description lang="us" text="Enable using the start of VBLANK for throttling instead of the game time"/>
       <description lang="de" text="Bei Drosselung an V-Sync anpassen anstelle der Spiel-Geschwindigkeit"/>
       <description lang="pl" text="Włącz użycie początku synchronizacji pionowej zamiast czasu gry do dławienia"/>
+      <description lang="fr" text="Active l'utilisation de V-BLANK comme accélérateur plutôt que le timer du jeu"/>
     </option>
   </section>
   <section name="directdraw">
@@ -643,6 +651,7 @@
       <description lang="us" text="Enable hardware stretching"/>
       <description lang="de" text="Hardware-beschleunigte Streckung"/>
       <description lang="pl" text="Włącz rozciąganie sprzętowe"/>
+		<description lang="fr" text="Active le redimensionnement matériel"/>
     </option>
   </section>
   <section name="direct3d">
@@ -654,11 +663,13 @@
       <description lang="us" text="Specify the preferred Direct3D version (8 or 9)"/>
       <description lang="de" text="Bevorzugte Direct3D Version festlegen (8 oder 9)"/>
       <description lang="pl" text="Określ preferowaną wersję Direct3D (8 albo 9)"/>
+      <description lang="fr" text="Specifier la version préférée de Direct3D (8 ou 9)"/>
     </option>
     <option name="filter" type="bool" default="true">
       <description lang="us" text="Enable bilinear filtering on screen output"/>
       <description lang="de" text="Bilineare Filterung bei Bildschirmausgabe anwenden"/>
       <description lang="pl" text="Włącz filtrowanie dwuliniowe wyjścia ekranowego"/>
+      <description lang="fr" text="Active le filtre bilinéraire sur l'écran de sortie"/>      
     </option>
   </section>
   <section name="per_window_video">
@@ -796,6 +807,7 @@
       <description lang="us" text="Enable triple buffering"/>
       <description lang="de" text="Dreifach-Pufferung aktivieren"/>
       <description lang="pl" text="Włącz potrójne buforowanie"/>
+      <description lang="fr" text="Active le triple buffering"/>      
     </option>
     <option name="switchres" type="bool" default="false">
       <description lang="us" text="Enable resolution switching"/>
@@ -807,16 +819,19 @@
       <description lang="us" text="Brightness value in full screen mode"/>
       <description lang="de" text="Helligkeits-Anpassung im Vollbildmodus"/>
       <description lang="pl" text="Wartość jasności w trybie pełnoekranowym"/>
+      <description lang="fr" text="Valeur de luminosité en mode plein écran"/>
     </option>
     <option name="full_screen_contrast" type="float" default="1.0">
       <description lang="us" text="Contrast value in full screen mode"/>
       <description lang="de" text="Kontrast-Anpassung im Vollbildmodus"/>
       <description lang="pl" text="Wartość kontrastu w trybie pełnoekranowym"/>
+      <description lang="fr" text="Valeur de contraste en mode plein écran"/>
     </option>
     <option name="full_screen_gamma" type="float" default="1.0">
       <description lang="us" text="Gamma value in full screen mode"/>
       <description lang="de" text="Gamma-Korrektur im Vollbildmodus"/>
       <description lang="pl" text="Wartość gamma w trybie pełnoekranowym"/>
+      <description lang="fr" text="Valeur de gamma en mode plein écran"/>
     </option>
   </section>
   <section name="automatic_device_selection">
