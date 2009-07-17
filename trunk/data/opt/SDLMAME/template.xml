@@ -51,6 +51,7 @@
       <description lang="us" text="Path to crosshair files"/>
       <description lang="de" text="Suchpfad für Fadenkreuz-Dateien"/>
       <description lang="pl" text="Ścieżka do plików celowników"/>
+      <description lang="fr" text="Répertoire pour les viseurs"/>
     </option>
   </section>
   <section name="output_directories">
@@ -175,6 +176,7 @@
     <option name="burnin" type="bool" default="false">
       <description lang="us" text="Create burn-in snapshots for each screen"/>
       <description lang="de" text="Burn-in Snapshots für jeden Screen erzeugen"/>
+      <description lang="fr" text="Créer des snapshots pour chaque écran"/>
     </option>
   </section>
   <section name="performance">
@@ -438,7 +440,7 @@
       <description lang="us" text="Enable lightgun input"/>
       <description lang="de" text="Lightgun-Eingabe aktivieren"/>
       <description lang="pl" text="Włącz wejście pistoletu świetlnego"/>
-      <description lang="fr" text="Autorise l'utilisation du pisolet a visée infra-rouge"/>
+      <description lang="fr" text="Autorise l'utilisation du pistolet a visée infra-rouge"/>
     </option>
     <option name="multikeyboard" type="bool" default="false">
       <description lang="us" text="Enable separate input from each keyboard device (if present)"/>
@@ -462,7 +464,7 @@
       <description lang="us" text="Convert lightgun button 2 into offscreen reload"/>
       <description lang="de" text="Lightgun Button 2 zu 'Offscreen Reload' konvertieren"/>
       <description lang="pl" text="Skonwertuj 2 przycisk pistoletu na przeładowanie 'poza ekranem'"/>
-      <description lang="fr" text="Convertir le bouton 2 du pisolet a visée infra-rouge en 'recharge hors écran'"/>      
+      <description lang="fr" text="Convertir le bouton 2 du pistolet a visée infra-rouge en 'recharge hors écran'"/>      
     </option>
     <option name="joystick_map" type="file" default="auto">
       <description lang="us" text="Explicit joystick map, or 'auto' to auto-select"/>
