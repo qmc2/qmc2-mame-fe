@@ -176,6 +176,7 @@
     <option name="burnin" type="bool" default="false">
       <description lang="us" text="Create burn-in snapshots for each screen"/>
       <description lang="de" text="Burn-in Snapshots für jeden Screen erzeugen"/>
+      <description lang="pl" text="Utwórz zrzuty ekranu symulujące wypalanie się luminoforu dla każdego ekranu"/>
       <description lang="fr" text="Créer des snapshots pour chaque écran"/>
     </option>
   </section>
