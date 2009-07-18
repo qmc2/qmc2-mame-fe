@@ -124,7 +124,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="138"/>
         <source>Bug tracking system:</source>
-        <translation type="unfinished"></translation>
+        <translation>System śledzenia błędów:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="143"/>
@@ -232,7 +232,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="56"/>
         <source>Mac OS X 10.6</source>
-        <translation type="unfinished"></translation>
+        <translation>Mac OS X 10.6</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="57"/>
@@ -267,7 +267,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="66"/>
         <source>Windows 7 (Windows 6.1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Windows 7 (Windows 6.1)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="67"/>
@@ -277,7 +277,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="136"/>
         <source>subscription required</source>
-        <translation type="unfinished"></translation>
+        <translation>wymagana subskrypcja</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="146"/>
@@ -1595,13 +1595,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../detailsetup.cpp" line="50"/>
         <location filename="../../detailsetup.cpp" line="92"/>
         <source>&amp;PCB</source>
-        <translation type="unfinished"></translation>
+        <translation>Pł&amp;ytka</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="51"/>
         <location filename="../../detailsetup.cpp" line="93"/>
         <source>PCB image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz płytki drukowanej</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="78"/>
@@ -1636,17 +1636,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="309"/>
         <source>MAWS configuration (1/2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja MAWS (1/2)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="311"/>
         <source>MAWS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja MAWS</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="325"/>
         <source>Enable MAWS quick download?</source>
-        <translation type="unfinished"></translation>
+        <translation>Włączyć szybkie pobieranie MAWS?</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="30"/>
@@ -1687,17 +1687,17 @@ p, li { white-space: pre-wrap; }
         <location filename="../../detailsetup.cpp" line="323"/>
         <location filename="../../detailsetup.cpp" line="328"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Tak</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="323"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="325"/>
         <source>MAWS configuration (2/2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja MAWS (2/2)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="357"/>
@@ -2218,7 +2218,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="419"/>
         <source>FATAL: couldn&apos;t determine supported games</source>
-        <translation>FATALNIE: nie udało ustalić się wspieranych gier</translation>
+        <translation>FATALNIE: nie udało się ustalić wspieranych gier</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="462"/>
@@ -3027,12 +3027,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="403"/>
         <source>emulator info: type = %1, version = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>informacje o emulatorze: typ = %1, wersja = %2</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="405"/>
         <source>FATAL: couldn&apos;t determine emulator type and version</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się ustalić typu i wersji emulatora</translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="415"/>
@@ -3685,7 +3685,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../downloaditem.cpp" line="204"/>
         <location filename="../../downloaditem.cpp" line="235"/>
         <source>Source URL: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Adres źródłowy: %1</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="110"/>
@@ -3693,7 +3693,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../downloaditem.cpp" line="205"/>
         <location filename="../../downloaditem.cpp" line="236"/>
         <source>Local path: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokalna ścieżka: %2</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="111"/>
@@ -3701,12 +3701,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../downloaditem.cpp" line="206"/>
         <location filename="../../downloaditem.cpp" line="237"/>
         <source>Status: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Stan: %1</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="111"/>
         <source>initializing download</source>
-        <translation type="unfinished"></translation>
+        <translation>inicjalizacja pobierania</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="112"/>
@@ -3714,12 +3714,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../downloaditem.cpp" line="207"/>
         <location filename="../../downloaditem.cpp" line="238"/>
         <source>Total size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Całkowity rozmiar: %1</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="112"/>
         <source>unknown</source>
-        <translation type="unfinished">nieznany</translation>
+        <translation>nieznany</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="113"/>
@@ -3727,7 +3727,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../downloaditem.cpp" line="208"/>
         <location filename="../../downloaditem.cpp" line="239"/>
         <source>Downloaded: %1 (%2%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobrano: %1 (%2%)</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="114"/>
@@ -3747,12 +3747,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../downloaditem.cpp" line="189"/>
         <source>download aborted</source>
-        <translation type="unfinished"></translation>
+        <translation>przerwano pobieranie</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="206"/>
         <source>downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>pobieranie</translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="232"/>
@@ -3762,7 +3762,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../downloaditem.cpp" line="237"/>
         <source>download finished</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono pobieranie</translation>
     </message>
 </context>
 <context>
@@ -4268,7 +4268,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="1026"/>
         <source>&amp;PCB</source>
-        <translation type="unfinished"></translation>
+        <translation>Pł&amp;ytka</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1064"/>
@@ -4932,7 +4932,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3376"/>
         <source>destroying PCB</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie płytki</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3380"/>
@@ -4942,7 +4942,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3393"/>
         <source>destroying MAWS quick download setup</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie ustawień szybkiego pobierania MAWS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3399"/>
@@ -6354,87 +6354,87 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3588"/>
         <source>loading style sheet &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ładowanie arkusza stylu &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3597"/>
         <source>FATAL: can&apos;t open style sheet file &apos;%1&apos;, please check</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można otworzyć pliku arkusza stylu &apos;%1&apos;, proszę sprawdzić</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3600"/>
         <source>removing current style sheet</source>
-        <translation type="unfinished"></translation>
+        <translation>usuwanie bieżącego arkusza stylu</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5141"/>
         <source>Quick download links for MAWS data usable by QMC2</source>
-        <translation type="unfinished"></translation>
+        <translation>Szybko pobieraj odnośniki do danych MAWS użytecznych dla QMC2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5202"/>
         <source>Setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5157"/>
         <source>Cabinet art</source>
-        <translation type="unfinished"></translation>
+        <translation>Oprawa graficzna automatu</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5175"/>
         <location filename="../../qmc2main.cpp" line="5258"/>
         <location filename="../../qmc2main.cpp" line="5297"/>
         <source>Cabinet</source>
-        <translation type="unfinished"></translation>
+        <translation>Automat</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5177"/>
         <location filename="../../qmc2main.cpp" line="5262"/>
         <location filename="../../qmc2main.cpp" line="5299"/>
         <source>Controller</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontroler</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5179"/>
         <location filename="../../qmc2main.cpp" line="5274"/>
         <location filename="../../qmc2main.cpp" line="5305"/>
         <source>PCB</source>
-        <translation type="unfinished"></translation>
+        <translation>Płytka drukowana</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5181"/>
         <location filename="../../qmc2main.cpp" line="5266"/>
         <location filename="../../qmc2main.cpp" line="5301"/>
         <source>Flyer</source>
-        <translation type="unfinished"></translation>
+        <translation>Ulotka</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5183"/>
         <location filename="../../qmc2main.cpp" line="5270"/>
         <location filename="../../qmc2main.cpp" line="5303"/>
         <source>Marquee</source>
-        <translation type="unfinished"></translation>
+        <translation>Plansza tytułowa</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5188"/>
         <source>No cabinet art</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak oprawy graficznej automatu</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5339"/>
         <source>Choose file to store the icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Proszę wybrać plik do zapisania ikony</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5345"/>
         <source>icon image for &apos;%1&apos; stored as &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>obraz ikony dla &apos;%1&apos; zapisany jako &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5352"/>
         <source>FATAL: icon image for &apos;%1&apos; couldn&apos;t be stored as &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: obraz ikony dla &apos;%1&apos; nie mógł zostać zapisany jako &apos;%2&apos;</translation>
     </message>
 </context>
 <context>
@@ -6468,147 +6468,147 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="14"/>
         <source>MAWS quick download setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia szybkiego pobierania MAWS</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="398"/>
         <source>Previews</source>
-        <translation type="unfinished"></translation>
+        <translation>Podglądy</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="427"/>
         <source>Path to store preview images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do przechowywania obrazów podglądów</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="440"/>
         <source>Browse path to store preview images</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż ścieżkę do przechowywania obrazów podglądów</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="32"/>
         <source>Flyers</source>
-        <translation type="unfinished"></translation>
+        <translation>Ulotki</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="20"/>
         <source>Icons and cabinet art</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikony i oprawa graficzna automatu</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="61"/>
         <source>Path to store flyer images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do przechowywania obrazów ulotek</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="74"/>
         <source>Browse path to store flyer images</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż ścieżkę do przechowywania obrazów ulotek</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="91"/>
         <source>Cabinets</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaty</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="120"/>
         <source>Path to store cabinet images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do przechowywania obrazów automatów</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="133"/>
         <source>Browse path to store cabinet images</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż ścieżkę do przechowywania obrazów automatów</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="150"/>
         <source>Controllers</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrolery</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="179"/>
         <source>Path to store controller images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do przechowywania obrazów kontrolerów</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="192"/>
         <source>Browse path to store controller images</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż ścieżkę do przechowywania obrazów kontrolerów</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="209"/>
         <source>Marquees</source>
-        <translation type="unfinished"></translation>
+        <translation>Plansze tytułowe</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="238"/>
         <source>Path to store marquee images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do przechowywania obrazów plansz tytułowych</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="251"/>
         <source>Browse path to store marquee images</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż ścieżkę do przechowywania obrazów plansz tytułowych</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="386"/>
         <source>Previews and titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Podglądy i ekrany tytułowe</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="507"/>
         <source>Titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Ekrany tytułowe</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="536"/>
         <source>Path to store title images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do przechowywania obrazów ekranów tytułowych</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="549"/>
         <source>Browse path to store title images</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż ścieżkę do przechowywania obrazów ekranów tytułowych</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="268"/>
         <source>PCBs</source>
-        <translation type="unfinished"></translation>
+        <translation>Płytki drukowane</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="297"/>
         <source>Path to store PCB images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do przechowywania obrazów płytek drukowanych</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="310"/>
         <source>Browse path to store PCB images</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż ścieżkę do przechowywania obrazów płytek drukowanych</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="627"/>
         <source>Apply MAWS quick download setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastosuj ustawienia szybkiego pobierania MAWS i zamknij okno dialogowe</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="630"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="641"/>
         <source>Cancel MAWS quick download setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuluj ustawienia szybkiego pobierania MAWS i zamknij okno dialogowe</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="644"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Anuluj</translation>
+        <translation>&amp;Anuluj</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="411"/>
         <source>Automatically download preview images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieraj obrazy podglądów automatycznie</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="48"/>
@@ -6620,135 +6620,135 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../mawsqdlsetup.ui" line="414"/>
         <location filename="../../mawsqdlsetup.ui" line="523"/>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Automat</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="45"/>
         <source>Automatically download flyer images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieraj obrazy ulotek automatycznie</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="104"/>
         <source>Automatically download cabinet images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieraj obrazy automatów automatycznie</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="163"/>
         <source>Automatically download controller images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieraj obrazy kontrolerów automatycznie</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="222"/>
         <source>Automatically download marquee images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieraj obrazy plansz tytułowych automatycznie</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="520"/>
         <source>Automatically download title images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieraj obrazy ekranów tytułowych automatycznie</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="281"/>
         <source>Automatically download PCB images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieraj obrazy płytek drukowanych automatycznie</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="373"/>
         <source>Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikony</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="327"/>
         <source>Automatically download icon images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieraj obrazy ikon automatycznie</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="456"/>
         <location filename="../../mawsqdlsetup.ui" line="565"/>
         <source>Preferred collection</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferowana kolekcja</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="472"/>
         <source>Select the preferred image collection for in-game previews (auto-download)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz preferowaną kolekcję obrazów dla podglądów gier (pobieranie automatyczne)</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="476"/>
         <location filename="../../mawsqdlsetup.ui" line="585"/>
         <source>AntoPISA progettoSNAPS</source>
-        <translation type="unfinished"></translation>
+        <translation>AntoPISA progettoSNAPS</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="481"/>
         <source>MAME World Snap Collection</source>
-        <translation type="unfinished"></translation>
+        <translation>MAME World Snap Collection</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="486"/>
         <location filename="../../mawsqdlsetup.ui" line="590"/>
         <source>CrashTest Snap Collection</source>
-        <translation type="unfinished"></translation>
+        <translation>CrashTest Snap Collection</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="491"/>
         <source>Enaitz Jar Snaps</source>
-        <translation type="unfinished"></translation>
+        <translation>Enaitz Jar Snaps</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="581"/>
         <source>Select the preferred image collection for titles (auto-download)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz preferowaną kolekcję obrazów dla ekranów tytułowych (pobieranie automatyczne)</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="343"/>
         <source>Path to store icon images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do przechowywania obrazów ikon</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="356"/>
         <source>Browse path to store icon images</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż ścieżkę do przechowywania obrazów ikon</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="87"/>
         <source>Choose icon directory</source>
-        <translation type="unfinished">Wybierz katalog ikon</translation>
+        <translation>Wybierz katalog ikon</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="100"/>
         <source>Choose flyer directory</source>
-        <translation type="unfinished">Wybierz katalog ulotek</translation>
+        <translation>Wybierz katalog ulotek</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="113"/>
         <source>Choose cabinet directory</source>
-        <translation type="unfinished">Wybierz katalog automatów</translation>
+        <translation>Wybierz katalog automatów</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="126"/>
         <source>Choose controller directory</source>
-        <translation type="unfinished">Wybierz katalog kontrolerów</translation>
+        <translation>Wybierz katalog kontrolerów</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="139"/>
         <source>Choose marquee directory</source>
-        <translation type="unfinished">Wybierz katalog plansz tytułowych</translation>
+        <translation>Wybierz katalog plansz tytułowych</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="152"/>
         <source>Choose PCB directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz katalog płytek drukowanych</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="165"/>
         <source>Choose preview directory</source>
-        <translation type="unfinished">Wybierz katalog podglądów</translation>
+        <translation>Wybierz katalog podglądów</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="178"/>
         <source>Choose title directory</source>
-        <translation type="unfinished">Wybierz katalog ekranów tytułowych</translation>
+        <translation>Wybierz katalog ekranów tytułowych</translation>
     </message>
 </context>
 <context>
@@ -7467,57 +7467,57 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../options.ui" line="117"/>
         <source>GR (Greek)</source>
-        <translation type="unfinished"></translation>
+        <translation>GR (grecki)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="261"/>
         <source>Show progress texts</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokazuj teksty postępu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="534"/>
         <source>Scaled PCB</source>
-        <translation type="unfinished"></translation>
+        <translation>Skalowana płytka drukowana</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="618"/>
         <source>Style sheet</source>
-        <translation type="unfinished"></translation>
+        <translation>Arkusz stylu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="631"/>
         <source>Qt style sheet file (*.qss, leave empty for no style sheet)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik arkusza stylu Qt (*.qss, proszę zostawić pusty dla żadnego)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="644"/>
         <source>Browse Qt style sheet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż plik arkusza stylu Qt</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1862"/>
         <source>Switch between specifying a PCB directory or a ZIP-compressed PCB file</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz pomiędzy określeniem katalogu płytek drukowanych a skompresowanym plikiem ZIP płytek drukowanych</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1900"/>
         <source>PCB directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog płytek drukowanych (odczyt)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1913"/>
         <source>Browse PCB directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż katalog płytek drukowanych</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1937"/>
         <source>ZIP-compressed PCB file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Skompresowany plik ZIP płytek drukowanych (odczyt)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1950"/>
         <source>Browse ZIP-compressed PCB file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż skompresowany plik ZIP płytek drukowanych</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3350"/>
@@ -7802,7 +7802,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../options.cpp" line="1163"/>
         <location filename="../../options.cpp" line="1167"/>
         <source>FATAL: can&apos;t open PCB file, please check access permissions for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można otworzyć pliku płytki drukowanej, proszę sprawdzić uprawnienia dostępu dla %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1180"/>
@@ -7841,7 +7841,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../options.cpp" line="1393"/>
         <location filename="../../options.cpp" line="2087"/>
         <source>PCB file</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik płytek drukowanych</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1343"/>
@@ -7849,17 +7849,17 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../options.cpp" line="2087"/>
         <location filename="../../options.ui" line="1865"/>
         <source>PCB directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog płytek drukowanych</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1608"/>
         <source>Choose Qt style sheet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik arkusza stylu Qt</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1608"/>
         <source>Qt Style Sheets (*.qss)</source>
-        <translation type="unfinished"></translation>
+        <translation>Akrusze stylu Qt (*.qss)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1620"/>
@@ -7910,7 +7910,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../options.cpp" line="1730"/>
         <source>Choose PCB directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz katalog płytek drukowanych</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1744"/>
@@ -7985,12 +7985,12 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../options.cpp" line="2168"/>
         <source>Choose ZIP-compressed title file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz skompresowany plik ZIP ekranów tytułowych</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2180"/>
         <source>Choose ZIP-compressed PCB file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz skompresowany plik ZIP płytek drukowanych</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2352"/>
@@ -8727,7 +8727,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../options.cpp" line="181"/>
         <location filename="../../options.cpp" line="182"/>
         <source>Option requires a reload of the entire machine list to take effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Opcja wymaga przeładowania całej listy maszyn do odniesienia skutku</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1091"/>
@@ -8801,7 +8801,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../options.ui" line="1438"/>
         <location filename="../../options.ui" line="3532"/>
         <source>Option requires a reload of the entire game list to take effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Opcja wymaga przeładowania całej listy gier do odniesienia skutku</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="188"/>
@@ -9112,24 +9112,24 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../pcb.cpp" line="45"/>
         <location filename="../../pcb.cpp" line="46"/>
         <source>Game PCB image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz płytki drukowanej gry</translation>
     </message>
     <message>
         <location filename="../../pcb.cpp" line="48"/>
         <location filename="../../pcb.cpp" line="49"/>
         <source>Machine PCB image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz płytki drukowanej maszyny</translation>
     </message>
     <message>
         <location filename="../../pcb.cpp" line="57"/>
         <location filename="../../pcb.cpp" line="61"/>
         <source>FATAL: can&apos;t open PCB file, please check access permissions for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można otworzyć pliku płytki drukowanej, proszę sprawdzić uprawnienia dostępu dla %1</translation>
     </message>
     <message>
         <location filename="../../pcb.cpp" line="89"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Oczekiwanie na dane...</translation>
+        <translation>Oczekiwanie na dane...</translation>
     </message>
 </context>
 <context>
