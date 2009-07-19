@@ -50,8 +50,10 @@ void MawsQuickDownloadSetup::on_pushButtonOk_clicked()
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/PCBDirectory", lineEditPCBDirectory->text());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadPreviews", checkBoxAutoPreviews->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/PreviewDirectory", lineEditPreviewDirectory->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/PreferredPreviewCollection", comboBoxPreferredPreviewCollection->currentText());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadTitles", checkBoxAutoTitles->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/TitleDirectory", lineEditTitleDirectory->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/PreferredTitleCollection", comboBoxPreferredTitleCollection->currentText());
 }
 
 void MawsQuickDownloadSetup::on_pushButtonCancel_clicked()
@@ -74,8 +76,14 @@ void MawsQuickDownloadSetup::on_pushButtonCancel_clicked()
   lineEditPCBDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
   checkBoxAutoPreviews->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadPreviews", FALSE).toBool());
   lineEditPreviewDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
+  int i = comboBoxPreferredPreviewCollection->findText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PreferredPreviewCollection", tr("AntoPISA progettoSNAPS")).toString());
+  if ( i >= 0 )
+    comboBoxPreferredPreviewCollection->setCurrentIndex(i);
   checkBoxAutoTitles->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadTitles", FALSE).toBool());
   lineEditTitleDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
+  i = comboBoxPreferredTitleCollection->findText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PreferredTitleCollection", tr("AntoPISA progettoSNAPS")).toString());
+  if ( i >= 0 )
+    comboBoxPreferredTitleCollection->setCurrentIndex(i);
 }
 
 void MawsQuickDownloadSetup::on_toolButtonBrowseIconDirectory_clicked()

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>440</width>
+    <width>428</width>
     <height>442</height>
    </rect>
   </property>
@@ -379,9 +379,6 @@
    </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBoxPreviewsAndTitles">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
      <property name="title">
       <string>Previews and titles</string>
      </property>
@@ -449,9 +446,6 @@
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
          <widget class="QLabel" name="labelPreferredPreviewCollection">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
           <property name="text">
            <string>Preferred collection</string>
           </property>
@@ -459,9 +453,6 @@
         </item>
         <item>
          <widget class="QComboBox" name="comboBoxPreferredPreviewCollection">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -558,9 +549,6 @@
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QLabel" name="labelPreferredTitleCollection">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
           <property name="text">
            <string>Preferred collection</string>
           </property>
@@ -568,9 +556,6 @@
         </item>
         <item>
          <widget class="QComboBox" name="comboBoxPreferredTitleCollection">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
             <horstretch>0</horstretch>

@@ -1615,17 +1615,12 @@ p, li { white-space: pre-wrap; }
         <translation>Geräte Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="309"/>
+        <location filename="../../detailsetup.cpp" line="307"/>
         <source>MAWS configuration (1/2)</source>
         <translation>MAWS Konfiguration (1/2)</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="311"/>
-        <source>MAWS configuration</source>
-        <translation>MAWS Konfiguration</translation>
-    </message>
-    <message>
-        <location filename="../../detailsetup.cpp" line="325"/>
+        <location filename="../../detailsetup.cpp" line="318"/>
         <source>Enable MAWS quick download?</source>
         <translation>MAWS Schnell-Download aktivieren?</translation>
     </message>
@@ -1665,23 +1660,23 @@ p, li { white-space: pre-wrap; }
         <translation>MAWS Seite (Web-Lookup)</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="323"/>
-        <location filename="../../detailsetup.cpp" line="328"/>
+        <location filename="../../detailsetup.cpp" line="316"/>
+        <location filename="../../detailsetup.cpp" line="321"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="323"/>
+        <location filename="../../detailsetup.cpp" line="316"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="325"/>
+        <location filename="../../detailsetup.cpp" line="318"/>
         <source>MAWS configuration (2/2)</source>
         <translation>MAWS Konfiguration (2/2)</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="357"/>
+        <location filename="../../detailsetup.cpp" line="349"/>
         <source>INFO: the configuration tab can&apos;t be removed</source>
         <translation>INFO: der Konfigurations-Tab kann nicht entfernt werden</translation>
     </message>
@@ -1696,7 +1691,7 @@ p, li { white-space: pre-wrap; }
         <translation>Konfigurieren...</translation>
     </message>
     <message>
-        <location filename="../../detailsetup.cpp" line="313"/>
+        <location filename="../../detailsetup.cpp" line="308"/>
         <source>MAWS URL pattern (use %1 as placeholder for game ID):</source>
         <translation>MAWS URL Schablone (%1 als Platzhalter für Spiele-ID verwenden):</translation>
     </message>
@@ -4620,9 +4615,9 @@ Sollen diese beim Beenden geschlossen werden?</translation>
         <translation>Icon / Wert</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.cpp" line="5149"/>
         <location filename="../../qmc2main.cpp" line="5151"/>
-        <location filename="../../qmc2main.cpp" line="5153"/>
-        <location filename="../../qmc2main.cpp" line="5254"/>
+        <location filename="../../qmc2main.cpp" line="5345"/>
         <location filename="../../qmc2main.ui" line="167"/>
         <source>Icon</source>
         <translation>Icon</translation>
@@ -4803,8 +4798,8 @@ Sollen diese beim Beenden geschlossen werden?</translation>
         <location filename="../../qmc2main.cpp" line="3000"/>
         <location filename="../../qmc2main.cpp" line="3036"/>
         <location filename="../../qmc2main.cpp" line="4259"/>
-        <location filename="../../qmc2main.cpp" line="5339"/>
-        <location filename="../../qmc2main.cpp" line="5381"/>
+        <location filename="../../qmc2main.cpp" line="5442"/>
+        <location filename="../../qmc2main.cpp" line="5484"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
@@ -6325,77 +6320,139 @@ Sollen diese beim Beenden geschlossen werden?</translation>
         <translation>Ausgewählte Downloads anhalten</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5381"/>
+        <location filename="../../qmc2main.cpp" line="5484"/>
         <source>Choose file to store download</source>
         <translation>Datei zum Speichern auswählen</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5141"/>
+        <location filename="../../qmc2main.cpp" line="5139"/>
         <source>Quick download links for MAWS data usable by QMC2</source>
         <translation>Schnell-Download Links für MAWS-Daten, die von QMC2 verwendet werden können</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5202"/>
+        <location filename="../../qmc2main.cpp" line="5294"/>
         <source>Setup...</source>
         <translation>Einstellen...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5157"/>
+        <location filename="../../qmc2main.cpp" line="5155"/>
         <source>Cabinet art</source>
         <translation>Gehäuse-Bilder</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5175"/>
-        <location filename="../../qmc2main.cpp" line="5258"/>
-        <location filename="../../qmc2main.cpp" line="5297"/>
+        <location filename="../../qmc2main.cpp" line="5173"/>
+        <location filename="../../qmc2main.cpp" line="5349"/>
+        <location filename="../../qmc2main.cpp" line="5396"/>
         <source>Cabinet</source>
         <translation>Gehäuse</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5177"/>
-        <location filename="../../qmc2main.cpp" line="5262"/>
-        <location filename="../../qmc2main.cpp" line="5299"/>
+        <location filename="../../qmc2main.cpp" line="5175"/>
+        <location filename="../../qmc2main.cpp" line="5353"/>
+        <location filename="../../qmc2main.cpp" line="5398"/>
         <source>Controller</source>
         <translation>Controller</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5179"/>
-        <location filename="../../qmc2main.cpp" line="5274"/>
-        <location filename="../../qmc2main.cpp" line="5305"/>
+        <location filename="../../qmc2main.cpp" line="5177"/>
+        <location filename="../../qmc2main.cpp" line="5365"/>
+        <location filename="../../qmc2main.cpp" line="5404"/>
         <source>PCB</source>
         <translation>PCB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5181"/>
-        <location filename="../../qmc2main.cpp" line="5266"/>
-        <location filename="../../qmc2main.cpp" line="5301"/>
+        <location filename="../../qmc2main.cpp" line="5179"/>
+        <location filename="../../qmc2main.cpp" line="5357"/>
+        <location filename="../../qmc2main.cpp" line="5400"/>
         <source>Flyer</source>
         <translation>Flyer</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5183"/>
-        <location filename="../../qmc2main.cpp" line="5270"/>
-        <location filename="../../qmc2main.cpp" line="5303"/>
+        <location filename="../../qmc2main.cpp" line="5181"/>
+        <location filename="../../qmc2main.cpp" line="5361"/>
+        <location filename="../../qmc2main.cpp" line="5402"/>
         <source>Marquee</source>
         <translation>Marquee</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5188"/>
+        <location filename="../../qmc2main.cpp" line="5186"/>
         <source>No cabinet art</source>
         <translation>Keine Gehäuse-Bilder</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5339"/>
+        <location filename="../../qmc2main.cpp" line="5199"/>
+        <source>Previews</source>
+        <translation>Vorschaubilder</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5206"/>
+        <location filename="../../qmc2main.cpp" line="5260"/>
+        <source>AntoPISA progettoSNAPS</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5206"/>
+        <location filename="../../qmc2main.cpp" line="5213"/>
+        <location filename="../../qmc2main.cpp" line="5220"/>
+        <location filename="../../qmc2main.cpp" line="5227"/>
+        <location filename="../../qmc2main.cpp" line="5245"/>
+        <location filename="../../qmc2main.cpp" line="5369"/>
+        <location filename="../../qmc2main.cpp" line="5406"/>
+        <source>preview</source>
+        <translation>Vorschau</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5213"/>
+        <source>MAME World Snap Collection</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5220"/>
+        <location filename="../../qmc2main.cpp" line="5267"/>
+        <source>CrashTest Snap Collection</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5227"/>
+        <source>Enaitz Jar Snaps</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5230"/>
+        <source>No previews</source>
+        <translation>Keine Vorschaubilder</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5253"/>
+        <source>Titles</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5260"/>
+        <location filename="../../qmc2main.cpp" line="5267"/>
+        <location filename="../../qmc2main.cpp" line="5286"/>
+        <location filename="../../qmc2main.cpp" line="5373"/>
+        <location filename="../../qmc2main.cpp" line="5408"/>
+        <source>title</source>
+        <translation>Titel</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5271"/>
+        <source>No titles</source>
+        <translation>Keine Titelbilder</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5442"/>
         <source>Choose file to store the icon</source>
         <translation>Datei zum Speichern des Icons auswählen</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5345"/>
+        <location filename="../../qmc2main.cpp" line="5448"/>
         <source>icon image for &apos;%1&apos; stored as &apos;%2&apos;</source>
         <translation>Icon für &apos;%1&apos; unter &apos;%2&apos; gespeichert</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5352"/>
+        <location filename="../../qmc2main.cpp" line="5455"/>
         <source>FATAL: icon image for &apos;%1&apos; couldn&apos;t be stored as &apos;%2&apos;</source>
         <translation>FATAL: konnte Icon für &apos;%1&apos; nicht unter &apos;%2&apos; speichern</translation>
     </message>
@@ -6434,17 +6491,17 @@ Sollen diese beim Beenden geschlossen werden?</translation>
         <translation>MAWS Schnell-Download Einstellung</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="398"/>
+        <location filename="../../mawsqdlsetup.ui" line="395"/>
         <source>Previews</source>
         <translation>Vorschaubilder</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="427"/>
+        <location filename="../../mawsqdlsetup.ui" line="424"/>
         <source>Path to store preview images</source>
         <translation>Pfad zum Speichern von Vorschaubildern</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="440"/>
+        <location filename="../../mawsqdlsetup.ui" line="437"/>
         <source>Browse path to store preview images</source>
         <translation>Pfad zum Speichern von Vorschaubildern auswählen</translation>
     </message>
@@ -6514,22 +6571,22 @@ Sollen diese beim Beenden geschlossen werden?</translation>
         <translation>Pfad zum Speichern von Marquee-Bildern auswählen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="386"/>
+        <location filename="../../mawsqdlsetup.ui" line="383"/>
         <source>Previews and titles</source>
         <translation>Vorschau- und Titel-Bilder</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="507"/>
+        <location filename="../../mawsqdlsetup.ui" line="498"/>
         <source>Titles</source>
         <translation>Titel</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="536"/>
+        <location filename="../../mawsqdlsetup.ui" line="527"/>
         <source>Path to store title images</source>
         <translation>Pfad zum Speichern von Titel-Bildern</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="549"/>
+        <location filename="../../mawsqdlsetup.ui" line="540"/>
         <source>Browse path to store title images</source>
         <translation>Pfad zum Speichern von Titel-Bildern auswählen</translation>
     </message>
@@ -6549,27 +6606,27 @@ Sollen diese beim Beenden geschlossen werden?</translation>
         <translation>Pfad zum Speichern von PCB-Bildern auswählen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="627"/>
+        <location filename="../../mawsqdlsetup.ui" line="612"/>
         <source>Apply MAWS quick download setup and close dialog</source>
         <translation>MAWS Schnell-Download Einstellung übernehmen und Dialog schließen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="630"/>
+        <location filename="../../mawsqdlsetup.ui" line="615"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="641"/>
+        <location filename="../../mawsqdlsetup.ui" line="626"/>
         <source>Cancel MAWS quick download setup and close dialog</source>
         <translation>MAWS Schnell-Download Einstellung abbrechen und Dialog schließen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="644"/>
+        <location filename="../../mawsqdlsetup.ui" line="629"/>
         <source>&amp;Cancel</source>
         <translation>Abbre&amp;chen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="411"/>
+        <location filename="../../mawsqdlsetup.ui" line="408"/>
         <source>Automatically download preview images</source>
         <translation>Vorschaubilder automatisch herunterladen</translation>
     </message>
@@ -6580,8 +6637,8 @@ Sollen diese beim Beenden geschlossen werden?</translation>
         <location filename="../../mawsqdlsetup.ui" line="225"/>
         <location filename="../../mawsqdlsetup.ui" line="284"/>
         <location filename="../../mawsqdlsetup.ui" line="330"/>
-        <location filename="../../mawsqdlsetup.ui" line="414"/>
-        <location filename="../../mawsqdlsetup.ui" line="523"/>
+        <location filename="../../mawsqdlsetup.ui" line="411"/>
+        <location filename="../../mawsqdlsetup.ui" line="514"/>
         <source>Auto</source>
         <translation>Auto</translation>
     </message>
@@ -6606,7 +6663,7 @@ Sollen diese beim Beenden geschlossen werden?</translation>
         <translation>Marquee-Bilder automatisch herunterladen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="520"/>
+        <location filename="../../mawsqdlsetup.ui" line="511"/>
         <source>Automatically download title images</source>
         <translation>Titel-Bilder automatisch herunterladen</translation>
     </message>
@@ -6626,40 +6683,42 @@ Sollen diese beim Beenden geschlossen werden?</translation>
         <translation>Icons automatisch herunterladen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="456"/>
-        <location filename="../../mawsqdlsetup.ui" line="565"/>
+        <location filename="../../mawsqdlsetup.ui" line="450"/>
+        <location filename="../../mawsqdlsetup.ui" line="553"/>
         <source>Preferred collection</source>
         <translation>Bevorzugte Kollektion</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="472"/>
+        <location filename="../../mawsqdlsetup.ui" line="463"/>
         <source>Select the preferred image collection for in-game previews (auto-download)</source>
         <translation>Bevorzugte Kollektion für Vorschaubilder auswählen (automatischer Download)</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="476"/>
-        <location filename="../../mawsqdlsetup.ui" line="585"/>
+        <location filename="../../mawsqdlsetup.cpp" line="79"/>
+        <location filename="../../mawsqdlsetup.cpp" line="84"/>
+        <location filename="../../mawsqdlsetup.ui" line="467"/>
+        <location filename="../../mawsqdlsetup.ui" line="570"/>
         <source>AntoPISA progettoSNAPS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="481"/>
+        <location filename="../../mawsqdlsetup.ui" line="472"/>
         <source>MAME World Snap Collection</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="486"/>
-        <location filename="../../mawsqdlsetup.ui" line="590"/>
+        <location filename="../../mawsqdlsetup.ui" line="477"/>
+        <location filename="../../mawsqdlsetup.ui" line="575"/>
         <source>CrashTest Snap Collection</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="491"/>
+        <location filename="../../mawsqdlsetup.ui" line="482"/>
         <source>Enaitz Jar Snaps</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.ui" line="581"/>
+        <location filename="../../mawsqdlsetup.ui" line="566"/>
         <source>Select the preferred image collection for titles (auto-download)</source>
         <translation>Bevorzugte Kollektion für Titel-Bilder auswählen (automatischer Download)</translation>
     </message>
@@ -6674,42 +6733,42 @@ Sollen diese beim Beenden geschlossen werden?</translation>
         <translation>Pfad zum Speichern von Icons auswählen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.cpp" line="87"/>
+        <location filename="../../mawsqdlsetup.cpp" line="95"/>
         <source>Choose icon directory</source>
         <translation>Icon Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.cpp" line="100"/>
+        <location filename="../../mawsqdlsetup.cpp" line="108"/>
         <source>Choose flyer directory</source>
         <translation>Flyer Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.cpp" line="113"/>
+        <location filename="../../mawsqdlsetup.cpp" line="121"/>
         <source>Choose cabinet directory</source>
         <translation>Gehäuse-Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.cpp" line="126"/>
+        <location filename="../../mawsqdlsetup.cpp" line="134"/>
         <source>Choose controller directory</source>
         <translation>Controller-Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.cpp" line="139"/>
+        <location filename="../../mawsqdlsetup.cpp" line="147"/>
         <source>Choose marquee directory</source>
         <translation>Marquee-Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.cpp" line="152"/>
+        <location filename="../../mawsqdlsetup.cpp" line="160"/>
         <source>Choose PCB directory</source>
         <translation>PCB Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.cpp" line="165"/>
+        <location filename="../../mawsqdlsetup.cpp" line="173"/>
         <source>Choose preview directory</source>
         <translation>Vorschau-Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../mawsqdlsetup.cpp" line="178"/>
+        <location filename="../../mawsqdlsetup.cpp" line="186"/>
         <source>Choose title directory</source>
         <translation>Titel-Verzeichnis auswählen</translation>
     </message>
@@ -9188,8 +9247,8 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../qmc2main.cpp" line="5624"/>
-        <location filename="../../qmc2main.cpp" line="5626"/>
+        <location filename="../../qmc2main.cpp" line="5728"/>
+        <location filename="../../qmc2main.cpp" line="5730"/>
         <source>M.A.M.E. Catalog / Launcher II v</source>
         <translation>M.A.M.E. Catalog / Launcher II v</translation>
     </message>
@@ -9253,25 +9312,25 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5675"/>
+        <location filename="../../qmc2main.cpp" line="5779"/>
         <source>Export to...</source>
         <translation>Exportieren nach...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2344"/>
-        <location filename="../../qmc2main.cpp" line="5683"/>
+        <location filename="../../qmc2main.cpp" line="5787"/>
         <source>Import from...</source>
         <translation>Importieren von...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5701"/>
-        <location filename="../../qmc2main.cpp" line="5709"/>
+        <location filename="../../qmc2main.cpp" line="5805"/>
+        <location filename="../../qmc2main.cpp" line="5813"/>
         <source>&lt;inipath&gt;/mame.ini</source>
         <translation>&lt;inipath&gt;/mame.ini</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5705"/>
-        <location filename="../../qmc2main.cpp" line="5713"/>
+        <location filename="../../qmc2main.cpp" line="5809"/>
+        <location filename="../../qmc2main.cpp" line="5817"/>
         <source>Select file...</source>
         <translation>Datei auswählen...</translation>
     </message>
@@ -9288,19 +9347,19 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Spiel-spezifische MAME Konfiguration importieren</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5677"/>
-        <location filename="../../qmc2main.cpp" line="5678"/>
+        <location filename="../../qmc2main.cpp" line="5781"/>
+        <location filename="../../qmc2main.cpp" line="5782"/>
         <source>Export global MAME configuration</source>
         <translation>Globale MAME Konfiguration exportieren</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5685"/>
-        <location filename="../../qmc2main.cpp" line="5686"/>
+        <location filename="../../qmc2main.cpp" line="5789"/>
+        <location filename="../../qmc2main.cpp" line="5790"/>
         <source>Import global MAME configuration</source>
         <translation>Globale MAME Konfiguration importieren</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5661"/>
+        <location filename="../../qmc2main.cpp" line="5765"/>
         <source>processing global emulator configuration</source>
         <translation>Verarbeite globale Emulator-Konfiguration</translation>
     </message>
@@ -9345,19 +9404,19 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Spielname</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5648"/>
+        <location filename="../../qmc2main.cpp" line="5752"/>
         <source>OpenGL features enabled</source>
         <translation>OpenGL Features aktiviert</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5680"/>
-        <location filename="../../qmc2main.cpp" line="5681"/>
+        <location filename="../../qmc2main.cpp" line="5784"/>
+        <location filename="../../qmc2main.cpp" line="5785"/>
         <source>Export global MESS configuration</source>
         <translation>Globale MESS Konfiguration exportieren</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5688"/>
-        <location filename="../../qmc2main.cpp" line="5689"/>
+        <location filename="../../qmc2main.cpp" line="5792"/>
+        <location filename="../../qmc2main.cpp" line="5793"/>
         <source>Import global MESS configuration</source>
         <translation>Globale MESS Konfiguration importieren</translation>
     </message>
@@ -9374,13 +9433,13 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Maschinen Name</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5657"/>
+        <location filename="../../qmc2main.cpp" line="5761"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
         <translation>SDL Joystick Unterstützung aktiviert - verwende SDL v%1.%2.%3</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5703"/>
-        <location filename="../../qmc2main.cpp" line="5711"/>
+        <location filename="../../qmc2main.cpp" line="5807"/>
+        <location filename="../../qmc2main.cpp" line="5815"/>
         <source>&lt;inipath&gt;/mess.ini</source>
         <translation>&lt;inipath&gt;/mess.ini</translation>
     </message>
@@ -9397,12 +9456,12 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Maschinen-spezifische MESS Konfiguration importieren</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5622"/>
+        <location filename="../../qmc2main.cpp" line="5726"/>
         <source>M.E.S.S. Catalog / Launcher II v</source>
         <translation>M.E.S.S. Catalog / Launcher II v</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5652"/>
+        <location filename="../../qmc2main.cpp" line="5756"/>
         <source>Phonon features enabled - using Phonon v%1</source>
         <translation>Phonon Features aktiviert - verwende Phonon v%1</translation>
     </message>
