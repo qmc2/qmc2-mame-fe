@@ -6419,13 +6419,13 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5199"/>
         <source>Previews</source>
-        <translation type="unfinished">Podglądy</translation>
+        <translation>Podglądy</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5206"/>
         <location filename="../../qmc2main.cpp" line="5260"/>
         <source>AntoPISA progettoSNAPS</source>
-        <translation type="unfinished">AntoPISA progettoSNAPS</translation>
+        <translation>AntoPISA progettoSNAPS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5206"/>
@@ -6436,33 +6436,33 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../qmc2main.cpp" line="5369"/>
         <location filename="../../qmc2main.cpp" line="5406"/>
         <source>preview</source>
-        <translation type="unfinished"></translation>
+        <translation>podgląd</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5213"/>
         <source>MAME World Snap Collection</source>
-        <translation type="unfinished">MAME World Snap Collection</translation>
+        <translation>MAME World Snap Collection</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5220"/>
         <location filename="../../qmc2main.cpp" line="5267"/>
         <source>CrashTest Snap Collection</source>
-        <translation type="unfinished">CrashTest Snap Collection</translation>
+        <translation>CrashTest Snap Collection</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5227"/>
         <source>Enaitz Jar Snaps</source>
-        <translation type="unfinished">Enaitz Jar Snaps</translation>
+        <translation>Enaitz Jar Snaps</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5230"/>
         <source>No previews</source>
-        <translation type="unfinished"></translation>
+        <translation>Bez podglądów</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5253"/>
         <source>Titles</source>
-        <translation type="unfinished">Ekrany tytułowe</translation>
+        <translation>Ekrany tytułowe</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5260"/>
@@ -6471,12 +6471,12 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../qmc2main.cpp" line="5373"/>
         <location filename="../../qmc2main.cpp" line="5408"/>
         <source>title</source>
-        <translation type="unfinished"></translation>
+        <translation>ekran tytułowy</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5271"/>
         <source>No titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Bez ekranów tytułowych</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5442"/>
