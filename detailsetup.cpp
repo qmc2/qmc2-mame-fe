@@ -304,20 +304,13 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
           {
             bool ok;
             QString baseUrl = QInputDialog::getText(this,
-// FIXME: remove this when MAWS quick download is ready
-#if QMC2_WIP_CODE == 1
                                                     tr("MAWS configuration (1/2)"),
-#else
-                                                    tr("MAWS configuration"),
-#endif
                                                     tr("MAWS URL pattern (use %1 as placeholder for game ID):").arg("%1"),
                                                     QLineEdit::Normal,
                                                     qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString(),
                                                     &ok);
             if ( ok && !baseUrl.isEmpty() )
               qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", baseUrl);
-// FIXME: remove this when MAWS quick download is ready
-#if QMC2_WIP_CODE == 1
             if ( ok ) {
               QStringList items;
               items << tr("Yes") << tr("No");
@@ -327,7 +320,6 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
               if ( ok && !mawsQuickDownload.isEmpty() )
                 qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", mawsQuickDownload == tr("Yes"));
             }
-#endif
           }
           break;
 #endif

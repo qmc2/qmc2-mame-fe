@@ -5124,8 +5124,6 @@ void MainWindow::createMawsQuickLinksMenu()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::createMawsQuickLinksMenu()");
 #endif
 
-  // FIXME: remove this when "MAWS quick links" work
-#if QMC2_WIP_CODE == 1
   if ( !qmc2MAWSLookup )
     return;
 
@@ -5195,10 +5193,104 @@ void MainWindow::createMawsQuickLinksMenu()
       mawsQDLActions[it.key()] = action;
     }
   }
+//  menuMAWSQuickLinks->addSeparator();
+
+  // preview quick links:
+  QMenu *previewMenu = menuMAWSQuickLinks->addMenu(QIcon(QString::fromUtf8(":/data/img/camera.png")), tr("Previews"));
+  QMap<QString, QString> previewURLs;
+  // AntoPISA progettoSNAPS
+  startIndex = mawsHtml.indexOf("document.snapshot.src='img/shots/progettosnaps/ingame");
+  if ( startIndex >= 0 ) {
+    endIndex = mawsHtml.indexOf("';", startIndex);
+    if ( endIndex > startIndex )
+      previewURLs[tr("AntoPISA progettoSNAPS") + " (" + tr("preview") + ")"] = QMC2_MAWS_IMGLINKS_BASE_URL + mawsHtml.mid(startIndex, endIndex - startIndex).split("'")[1];
+  }
+  // MAME World Snap Collection
+  startIndex = mawsHtml.indexOf("document.snapshot.src='img/shots/mwsnap/");
+  if ( startIndex >= 0 ) {
+    endIndex = mawsHtml.indexOf("';", startIndex);
+    if ( endIndex > startIndex )
+      previewURLs[tr("MAME World Snap Collection") + " (" + tr("preview") + ")"] = QMC2_MAWS_IMGLINKS_BASE_URL + mawsHtml.mid(startIndex, endIndex - startIndex).split("'")[1];
+  }
+  // CrashTest Snap Collection
+  startIndex = mawsHtml.indexOf("document.snapshot.src='img/shots/snap/");
+  if ( startIndex >= 0 ) {
+    endIndex = mawsHtml.indexOf("';", startIndex);
+    if ( endIndex > startIndex )
+      previewURLs[tr("CrashTest Snap Collection") + " (" + tr("preview") + ")"] = QMC2_MAWS_IMGLINKS_BASE_URL + mawsHtml.mid(startIndex, endIndex - startIndex).split("'")[1];
+  }
+  // Enaitz Jar Snaps
+  startIndex = mawsHtml.indexOf("document.snapshot.src='img/shots/ej/");
+  if ( startIndex >= 0 ) {
+    endIndex = mawsHtml.indexOf("';", startIndex);
+    if ( endIndex > startIndex )
+      previewURLs[tr("Enaitz Jar Snaps") + " (" + tr("preview") + ")"] = QMC2_MAWS_IMGLINKS_BASE_URL + mawsHtml.mid(startIndex, endIndex - startIndex).split("'")[1];
+  }
+  if ( previewURLs.isEmpty() ) {
+    previewMenu->setTitle(tr("No previews"));
+    previewMenu->setEnabled(FALSE);
+  } else {
+    QMapIterator<QString, QString> it(previewURLs);
+    QAction *fallbackAction = NULL;
+    while ( it.hasNext() ) {
+      bool firstItem = !it.hasPrevious();
+      it.next();
+      action = previewMenu->addAction(it.key() + " - " + it.value(), this, SLOT(downloadMawsQuickLink()));
+      mawsQDLActions[it.key()] = action;
+      if ( firstItem )
+        fallbackAction = action;
+    }
+    // use the first menu entry as a fallback action if the preferred image collection isn't available
+    if ( fallbackAction ) {
+      QString key = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PreferredPreviewCollection").toString() + " (" + tr("preview") + ")";
+      if ( !previewURLs.contains(key) )
+        mawsQDLActions[key] = fallbackAction;
+    }
+  }
+//  menuMAWSQuickLinks->addSeparator();
+
+  // title quick links:
+  QMenu *titleMenu = menuMAWSQuickLinks->addMenu(QIcon(QString::fromUtf8(":/data/img/arcademode.png")), tr("Titles"));
+  QMap<QString, QString> titleURLs;
+  // AntoPISA progettoSNAPS
+  startIndex = mawsHtml.indexOf("document.snapshot.src='img/shots/progettosnaps/titles");
+  if ( startIndex >= 0 ) {
+    endIndex = mawsHtml.indexOf("';", startIndex);
+    if ( endIndex > startIndex )
+      titleURLs[tr("AntoPISA progettoSNAPS") + " (" + tr("title") + ")"] = QMC2_MAWS_IMGLINKS_BASE_URL + mawsHtml.mid(startIndex, endIndex - startIndex).split("'")[1];
+  }
+  // CrashTest Snap Collection
+  startIndex = mawsHtml.indexOf("document.snapshot.src='img/shots/titles/");
+  if ( startIndex >= 0 ) {
+    endIndex = mawsHtml.indexOf("';", startIndex);
+    if ( endIndex > startIndex ) {
+      titleURLs[tr("CrashTest Snap Collection") + " (" + tr("title") + ")"] = QMC2_MAWS_IMGLINKS_BASE_URL + mawsHtml.mid(startIndex, endIndex - startIndex).split("'")[1];
+    }
+  }
+  if ( titleURLs.isEmpty() ) {
+    titleMenu->setTitle(tr("No titles"));
+    titleMenu->setEnabled(FALSE);
+  } else {
+    QMapIterator<QString, QString> it(titleURLs);
+    QAction *fallbackAction = NULL;
+    while ( it.hasNext() ) {
+      bool firstItem = !it.hasPrevious();
+      it.next();
+      action = titleMenu->addAction(it.key() + " - " + it.value(), this, SLOT(downloadMawsQuickLink()));
+      mawsQDLActions[it.key()] = action;
+      if ( firstItem )
+        fallbackAction = action;
+    }
+    // use the first menu entry as a fallback action if the preferred image collection isn't available
+    if ( fallbackAction ) {
+      QString key = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PreferredTitleCollection").toString() + " (" + tr("title") + ")";
+      if ( !titleURLs.contains(key) )
+        mawsQDLActions[key] = fallbackAction;
+    }
+  }
   menuMAWSQuickLinks->addSeparator();
 
-  // FIXME: add quick links for more available data here (previews & titles)...
-
+  // quick links setup:
   action = menuMAWSQuickLinks->addAction(tr("Setup..."), this, SLOT(setupMawsQuickLinks()));
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
   toolButtonMAWSQuickLinks->setMenu(menuMAWSQuickLinks);
@@ -5206,7 +5298,6 @@ void MainWindow::createMawsQuickLinksMenu()
   mawsQuickLinksSetVisible(qmc2MAWSLookup->webViewBrowser->mouseCurrentlyOnView);
 
   QTimer::singleShot(QMC2_MAWS_QDL_DELAY, this, SLOT(startMawsAutoDownloads()));
-#endif  
 }
 
 void MainWindow::setupMawsQuickLinks()
@@ -5274,6 +5365,14 @@ void MainWindow::startMawsAutoDownloads()
     action = mawsQDLActions[tr("PCB")];
     if ( action ) QTimer::singleShot(0, action, SLOT(trigger()));
   }
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadPreviews", FALSE).toBool() ) {
+    action = mawsQDLActions[qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PreferredPreviewCollection").toString() + " (" + tr("preview") + ")"];
+    if ( action ) QTimer::singleShot(0, action, SLOT(trigger()));
+  }
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/AutoDownloadTitles", FALSE).toBool() ) {
+    action = mawsQDLActions[qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PreferredTitleCollection").toString() + " (" + tr("title") + ")"];
+    if ( action ) QTimer::singleShot(0, action, SLOT(trigger()));
+  }
 }
 
 void MainWindow::downloadMawsQuickLink()
@@ -5304,6 +5403,10 @@ void MainWindow::downloadMawsQuickLink()
       savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/MarqueeDirectory").toString();
     else if ( imageType == tr("PCB") )
       savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PCBDirectory").toString();
+    else if ( imageType.endsWith(" (" + tr("preview") + ")") )
+      savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/PreviewDirectory").toString();
+    else if ( imageType.endsWith(" (" + tr("title") + ")") )
+      savePath = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/TitleDirectory").toString();
     else
       return;
     QNetworkRequest request(actionWords[1]);
@@ -5413,6 +5516,7 @@ void MainWindow::on_pushButtonClearFinishedDownloads_clicked()
     DownloadItem *item = (DownloadItem *)treeWidgetDownloads->takeTopLevelItem(indexList[i]);
     if ( item )
       delete item;
+    if ( i % 10 == 0 ) qApp->processEvents();
   }
 }
 
