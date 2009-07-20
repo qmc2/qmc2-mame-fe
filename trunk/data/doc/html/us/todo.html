@@ -17,8 +17,7 @@
   <li>Variant launching does not work on Windows yet</i>
   <li>MAME/MESS output notifications are not supported on Windows yet</i>
   <li>The MiniWebBrowser -- used for the MAWS lookup and the documentation browser -- has a fairly restrictive set of features which is tailored to the uses of QMC2.
-      It's not even <i>meant</i> to be a full-featured browser. Nonetheless, as of Qt 4.5.2, the browser works quite well on UNIX (no idea about Mac OS X yet).
-      On Windows, however, the underlying QtWebKit API that comes with Qt 4.5.1 still has a number of obvious restrictions and bugs. We will test Qt 4.5.2 on Windows shortly.</i>
+      It's not even <i>meant</i> to be a full-featured browser. Nonetheless, as of Qt 4.5.2, the browser works quite well on UNIX and Windows (no idea about Mac OS X yet).</li>
   <li>Style sheets should only be activated if Qt 4.5.2+ is in use; Qt 4.5.1 works as well but has some QtWebKit related issues/crashes; Qt 4.5.0 shouldn't be used at all with style sheets</li>
   <li>Also, due to a Qt bug (as of 4.5.2) we have to change the current working directory (of the running application) to the style sheet's path to make sure that relative URLs (in the .qss file) are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead!</li>
   <li>Another known issue with style sheets is that changing fonts at run-time doesn't work (unsure, but may be a Qt bug -- tested with Qt 4.5.1 and 4.5.2)</li>
