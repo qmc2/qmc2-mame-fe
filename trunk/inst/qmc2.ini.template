@@ -7,6 +7,7 @@ qmc2-sdlmame\FilesAndDirectories\CabinetDirectory=DATADIR/qmc2/cab/
 qmc2-sdlmame\FilesAndDirectories\ControllerDirectory=DATADIR/qmc2/ctl/
 qmc2-sdlmame\FilesAndDirectories\MarqueeDirectory=DATADIR/qmc2/mrq/
 qmc2-sdlmame\FilesAndDirectories\TitleDirectory=DATADIR/qmc2/ttl/
+qmc2-sdlmame\FilesAndDirectories\PCBDirectory=DATADIR/qmc2/pcb/
 qmc2-sdlmess\FilesAndDirectories\DataDirectory=DATADIR/qmc2/
 qmc2-sdlmess\FilesAndDirectories\PreviewDirectory=DATADIR/qmc2/prv/
 qmc2-sdlmess\FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
@@ -15,6 +16,7 @@ qmc2-sdlmess\FilesAndDirectories\CabinetDirectory=DATADIR/qmc2/cab/
 qmc2-sdlmess\FilesAndDirectories\ControllerDirectory=DATADIR/qmc2/ctl/
 qmc2-sdlmess\FilesAndDirectories\MarqueeDirectory=DATADIR/qmc2/mrq/
 qmc2-sdlmess\FilesAndDirectories\TitleDirectory=DATADIR/qmc2/ttl/
+qmc2-sdlmess\FilesAndDirectories\PCBDirectory=DATADIR/qmc2/pcb/
 
 [MAME]
 FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMAME/template.xml
