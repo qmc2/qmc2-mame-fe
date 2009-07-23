@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="SDLMESS" version="0.132" format="0.2.2">
+<template emulator="SDLMESS" version="0.133" format="0.2.2">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
@@ -176,6 +176,12 @@
       <description lang="de" text="Screenshot/Movie Ansicht festlegen oder 'internal' für interne Ansicht"/>
       <description lang="pl" text="Określ widok zrzutów ekranu/filmów lub 'internal' aby użyć wewnętrzych widoków zachowujących proporcje pikseli"/>
       <description lang="fr" text="Spécifier la vue de capture/vidéo ou 'internal' pour utiliser la vue 'interne'"/>    
+    </option>
+    <option name="burnin" type="bool" default="false">
+      <description lang="us" text="Create burn-in snapshots for each screen"/>
+      <description lang="de" text="Burn-in Snapshots für jeden Screen erzeugen"/>
+      <description lang="pl" text="Utwórz zrzuty ekranu symulujące wypalanie się luminoforu dla każdego ekranu"/>
+      <description lang="fr" text="Créer des snapshots pour chaque écran"/>
     </option>
   </section>
   <section name="performance">
