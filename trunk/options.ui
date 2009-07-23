@@ -783,8 +783,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>202</width>
-                <height>508</height>
+                <width>490</width>
+                <height>525</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -1988,8 +1988,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>445</width>
-                <height>156</height>
+                <width>490</width>
+                <height>525</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2304,7 +2304,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="4" column="0" colspan="4">
+                 <item row="4" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxDoubleClickActivation">
                    <property name="toolTip">
                     <string>Launch emulation on double-click events (may be annoying)</string>
@@ -2326,6 +2326,16 @@
                     </size>
                    </property>
                   </spacer>
+                 </item>
+                 <item row="4" column="2" colspan="2">
+                  <widget class="QCheckBox" name="checkBoxHideWhileLoading">
+                   <property name="toolTip">
+                    <string>Hide primary game list while loading (recommended, much faster)</string>
+                   </property>
+                   <property name="text">
+                    <string>Hide while loading</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -2356,8 +2366,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>264</width>
-                <height>55</height>
+                <width>490</width>
+                <height>525</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2469,8 +2479,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>382</width>
-                <height>270</height>
+                <width>490</width>
+                <height>525</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -2926,8 +2936,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>385</width>
-                <height>363</height>
+                <width>490</width>
+                <height>525</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3784,6 +3794,7 @@
   <tabstop>checkBoxSortOnline</tabstop>
   <tabstop>checkBoxAutoTriggerROMCheck</tabstop>
   <tabstop>checkBoxDoubleClickActivation</tabstop>
+  <tabstop>checkBoxHideWhileLoading</tabstop>
   <tabstop>pushButtonRedefineKeySequence</tabstop>
   <tabstop>pushButtonResetShortcut</tabstop>
   <tabstop>treeWidgetShortcuts</tabstop>

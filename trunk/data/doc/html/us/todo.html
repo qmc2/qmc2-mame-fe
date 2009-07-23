@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.2.b11, 23-JUL-2009</h3>
+<h3>TODO - v0.2.b11, 24-JUL-2009</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>Certain GUI styles may cause display problems for the emulator configuration widgets</li>
@@ -19,8 +19,9 @@
   <li>The MiniWebBrowser -- used for the MAWS lookup and the documentation browser -- has a fairly restrictive set of features which is tailored to the uses of QMC2.
       It's not even <i>meant</i> to be a full-featured browser. Nonetheless, as of Qt 4.5.2, the browser works quite well on UNIX and Windows (no idea about Mac OS X yet).</li>
   <li>Style sheets should only be activated if Qt 4.5.2+ is in use; Qt 4.5.1 works as well but has some QtWebKit related issues/crashes; Qt 4.5.0 shouldn't be used at all with style sheets</li>
-  <li>Also, due to a Qt bug (as of 4.5.2) we have to change the current working directory (of the running application) to the style sheet's path to make sure that relative URLs (in the .qss file) are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead!</li>
+  <li>Also, due to a Qt bug (as of 4.5.2) we have to change the current working directory (of the running application) to the style sheet's path to make sure that relative URLs (in the .qss file) are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead</li>
   <li>Another known issue with style sheets is that changing fonts at run-time doesn't work (unsure, but may be a Qt bug -- tested with Qt 4.5.1 and 4.5.2)</li>
+  <li>Depending on the complexity of a style / style sheet combination, it may slow down GUI operations (that's no bug, but you should note it)</li>
 </ul>
 <p><b>Work in progress</b></p>
 <ul>
