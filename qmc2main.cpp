@@ -337,6 +337,9 @@ MainWindow::MainWindow(QWidget *parent)
   // updated by detail setup
   tabWidgetGameDetail->setUpdatesEnabled(FALSE);
 
+  // hide "loading game list" label initially
+  labelLoadingGamelist->setVisible(FALSE);
+
 #if defined(Q_WS_WIN)
   actionLaunchQMC2MAME->setText(tr("QMC2 for MAME"));
   actionLaunchQMC2MAME->setToolTip(tr("Launch QMC2 for MAME"));
@@ -409,6 +412,7 @@ MainWindow::MainWindow(QWidget *parent)
   qmc2Options->checkBoxShowGameNameOnlyWhenRequired->setToolTip(tr("Show machine's description only when the machine list is not visible due to the current layout"));
   treeWidgetGamelist->headerItem()->setText(QMC2_GAMELIST_COLUMN_ICON, tr("Value"));
   actionCheckIcons->setVisible(FALSE);
+  labelLoadingGamelist->setText(tr("Loading machine list, please wait..."));
 #endif
 
   qmc2Gamelist = new Gamelist(this);

@@ -520,10 +520,22 @@ void Gamelist::load()
     return;
   }
 
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/HideWhileLoading", TRUE).toBool() ) {
+    // hide game list
+    qmc2MainWindow->treeWidgetGamelist->setVisible(FALSE);
+    qmc2MainWindow->labelLoadingGamelist->setVisible(TRUE);
+    qApp->processEvents();
+  }
+
   if ( xmlCacheOkay ) {
     parse();
     loadFavorites();
     loadPlayHistory();
+
+    // show game list
+    qmc2MainWindow->labelLoadingGamelist->setVisible(FALSE);
+    qmc2MainWindow->treeWidgetGamelist->setVisible(TRUE);
+    qApp->processEvents();
   } else {
     loadTimer.start();
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1872,6 +1884,11 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadFinished(int exitCode = " + QString::number(exitCode) + ", QProcess::ExitStatus exitStatus = " + QString::number(exitStatus) + "): proc = 0x" + QString::number((ulong)proc, 16));
 #endif
+
+  // show game list
+  qmc2MainWindow->labelLoadingGamelist->setVisible(FALSE);
+  qmc2MainWindow->treeWidgetGamelist->setVisible(TRUE);
+  qApp->processEvents();
 
   if ( exitStatus != QProcess::NormalExit && !qmc2StopParser )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: emulator audit call didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))));
