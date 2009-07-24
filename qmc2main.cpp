@@ -4384,6 +4384,7 @@ void MainWindow::audioFade(int faderFunction)
 #endif
 
   int currentVolume = sliderAudioVolume->value();
+  int updateCounter;
   double vol;
   double volStep = (double)currentVolume / (double)QMC2_AUDIOPLAYER_FADER_TIMEOUT;
   audioFastForwarding = audioFastBackwarding = audioSkippingTracks = FALSE;
@@ -4398,12 +4399,16 @@ void MainWindow::audioFade(int faderFunction)
       toolButtonAudioPlayTrack->setEnabled(FALSE);
       actionAudioStopTrack->setEnabled(FALSE);
       toolButtonAudioStopTrack->setEnabled(FALSE);
+      updateCounter = 0;
       for (vol = currentVolume; vol > 0.0; vol -= volStep) {
+        updateCounter++;
         sliderAudioVolume->setValue((int)vol);
-        qApp->processEvents();
+        if ( updateCounter % 10 == 0 )
+          qApp->processEvents();
         QTest::qSleep(1);
       }
       phononAudioPlayer->pause();
+      qApp->processEvents();
       actionAudioPauseTrack->setEnabled(TRUE);
       toolButtonAudioPauseTrack->setEnabled(TRUE);
       actionAudioPlayTrack->setEnabled(TRUE);
@@ -4425,11 +4430,15 @@ void MainWindow::audioFade(int faderFunction)
       toolButtonAudioStopTrack->setEnabled(FALSE);
       qApp->processEvents();
       phononAudioPlayer->play();
+      updateCounter = 0;
       for (vol = 0; vol <= currentVolume; vol += volStep) {
+        updateCounter++;
         sliderAudioVolume->setValue((int)vol);
-        qApp->processEvents();
+        if ( updateCounter % 10 == 0 )
+          qApp->processEvents();
         QTest::qSleep(1);
       }
+      qApp->processEvents();
       actionAudioPauseTrack->setEnabled(TRUE);
       toolButtonAudioPauseTrack->setEnabled(TRUE);
       actionAudioPlayTrack->setEnabled(TRUE);
@@ -5151,7 +5160,11 @@ void MainWindow::createMawsQuickLinksMenu()
 
   // icon quick link:
   action = menuMAWSQuickLinks->addAction(tr("Icon"), this, SLOT(storeMawsIcon()));
-  action->setIcon(qmc2MAWSLookup->comboBoxURL->itemIcon(qmc2MAWSLookup->comboBoxURL->currentIndex()));
+  QIcon icon = qmc2MAWSLookup->webViewBrowser->settings()->iconForUrl(qmc2MAWSLookup->webViewBrowser->url());
+  if ( !icon.isNull() )
+    action->setIcon(icon);
+  else
+    action->setIcon(QIcon(QString::fromUtf8(":/data/img/browser.png")));
   mawsQDLActions[tr("Icon")] = action;
   menuMAWSQuickLinks->addSeparator();
 
@@ -5197,7 +5210,6 @@ void MainWindow::createMawsQuickLinksMenu()
       mawsQDLActions[it.key()] = action;
     }
   }
-//  menuMAWSQuickLinks->addSeparator();
 
   // preview quick links:
   QMenu *previewMenu = menuMAWSQuickLinks->addMenu(QIcon(QString::fromUtf8(":/data/img/camera.png")), tr("Previews"));
@@ -5251,7 +5263,6 @@ void MainWindow::createMawsQuickLinksMenu()
         mawsQDLActions[key] = fallbackAction;
     }
   }
-//  menuMAWSQuickLinks->addSeparator();
 
   // title quick links:
   QMenu *titleMenu = menuMAWSQuickLinks->addMenu(QIcon(QString::fromUtf8(":/data/img/arcademode.png")), tr("Titles"));
