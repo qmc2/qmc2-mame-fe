@@ -2333,7 +2333,7 @@
     <string>Play previous track</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Alt+-</string>
+    <string>Ctrl+Alt+Left</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -2354,7 +2354,7 @@
     <string>Play next track</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Alt++</string>
+    <string>Ctrl+Alt+Right</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>

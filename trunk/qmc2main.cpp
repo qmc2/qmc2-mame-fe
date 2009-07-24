@@ -5626,8 +5626,8 @@ void prepareShortcuts()
   qmc2ShortcutMap["Meta+F"].second = qmc2MainWindow->actionArcadeShowFPS;
   qmc2ShortcutMap["Meta+F12"].second = qmc2MainWindow->actionArcadeTakeScreenshot;
 #if QMC2_USE_PHONON_API
-  qmc2ShortcutMap["Ctrl+Alt+-"].second = qmc2MainWindow->actionAudioPreviousTrack;
-  qmc2ShortcutMap["Ctrl+Alt++"].second = qmc2MainWindow->actionAudioNextTrack;
+  qmc2ShortcutMap["Ctrl+Alt+Left"].second = qmc2MainWindow->actionAudioPreviousTrack;
+  qmc2ShortcutMap["Ctrl+Alt+Right"].second = qmc2MainWindow->actionAudioNextTrack;
   qmc2ShortcutMap["Ctrl+Alt+B"].second = qmc2MainWindow->actionAudioFastBackward;
   qmc2ShortcutMap["Ctrl+Alt+F"].second = qmc2MainWindow->actionAudioFastForward;
   qmc2ShortcutMap["Ctrl+Alt+S"].second = qmc2MainWindow->actionAudioStopTrack;

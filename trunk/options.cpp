@@ -227,8 +227,8 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Meta+F"] = QPair<QString, QAction *>(tr("Show FPS (arcade mode)"), NULL);
   qmc2ShortcutMap["Meta+F12"] = QPair<QString, QAction *>(tr("Take snapshot (arcade mode)"), NULL);
 #if QMC2_USE_PHONON_API
-  qmc2ShortcutMap["Ctrl+Alt+-"] = QPair<QString, QAction *>(tr("Previous track (audio player)"), NULL);
-  qmc2ShortcutMap["Ctrl+Alt++"] = QPair<QString, QAction *>(tr("Next track (audio player)"), NULL);
+  qmc2ShortcutMap["Ctrl+Alt+Left"] = QPair<QString, QAction *>(tr("Previous track (audio player)"), NULL);
+  qmc2ShortcutMap["Ctrl+Alt+Right"] = QPair<QString, QAction *>(tr("Next track (audio player)"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+B"] = QPair<QString, QAction *>(tr("Fast backward (audio player)"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+F"] = QPair<QString, QAction *>(tr("Fast forward (audio player)"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+S"] = QPair<QString, QAction *>(tr("Stop track (audio player)"), NULL);
