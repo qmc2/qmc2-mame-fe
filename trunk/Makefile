@@ -205,9 +205,9 @@ WC_COMPRESSION = 1
 endif
 
 # FADER_SPEED: select the audio fading speed (0: fastest/instantly, >0: slower,
-#              default: 100)
+#              default: 500)
 ifndef FADER_SPEED
-FADER_SPEED = 100
+FADER_SPEED = 500
 endif
 
 # >>> END OF MAKE OPTIONS <<<
