@@ -5160,11 +5160,7 @@ void MainWindow::createMawsQuickLinksMenu()
 
   // icon quick link:
   action = menuMAWSQuickLinks->addAction(tr("Icon"), this, SLOT(storeMawsIcon()));
-  QIcon icon = qmc2MAWSLookup->webViewBrowser->settings()->iconForUrl(qmc2MAWSLookup->webViewBrowser->url());
-  if ( !icon.isNull() )
-    action->setIcon(icon);
-  else
-    action->setIcon(QIcon(QString::fromUtf8(":/data/img/browser.png")));
+  action->setIcon(qmc2MAWSLookup->comboBoxURL->itemIcon(qmc2MAWSLookup->comboBoxURL->currentIndex()));
   mawsQDLActions[tr("Icon")] = action;
   menuMAWSQuickLinks->addSeparator();
 
