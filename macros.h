@@ -217,7 +217,10 @@
 // how many milliseconds between download connection checks
 #define QMC2_DOWNLOAD_CHECK_TIMEOUT	10000
 
-// MAWS homepage URL
+// deölay how man milliseconds before automatically cleaning up finished downloads
+#define QMC2_DOWNLOAD_CLEANUP_DELAY	250
+
+// MAWS homepage URL (default)
 #define QMC2_MAWS_HOMEPAGE_URL		"http://maws.mameworld.info/"
 
 // MAWS ROM set base URL (default)
@@ -231,7 +234,7 @@
 
 // delay creation of MAWS quick download menu for how many milliseconds
 // (use same delay to start auto downloads)
-#define QMC2_MAWS_QDL_DELAY		200
+#define QMC2_MAWS_QDL_DELAY		250
 
 // maximum age of an MAWS disk-cache entry in seconds (24h for now)
 #define QMC2_MAWS_MAX_CACHE_AGE		86400

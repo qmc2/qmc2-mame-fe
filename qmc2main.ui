@@ -1509,7 +1509,7 @@
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
            <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="0" colspan="4">
+            <item row="0" column="0" colspan="5">
              <widget class="QTreeWidget" name="treeWidgetDownloads">
               <property name="toolTip">
                <string>List of active/inactive downloads</string>
@@ -1601,7 +1601,7 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="3">
+            <item row="1" column="4">
              <spacer name="horizontalSpacer">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -1613,6 +1613,16 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item row="1" column="3">
+             <widget class="QCheckBox" name="checkBoxRemoveFinishedDownloads">
+              <property name="toolTip">
+               <string>Automatically remove successfully finished downloads from this list</string>
+              </property>
+              <property name="text">
+               <string>Remove finished</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
