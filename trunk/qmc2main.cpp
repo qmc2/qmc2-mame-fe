@@ -847,7 +847,10 @@ MainWindow::MainWindow(QWidget *parent)
     on_actionAudioStopTrack_triggered();
 #endif
 
-  // setup ROM status filter selector menu & toggle actions / short cuts
+  // download manager widget
+  checkBoxRemoveFinishedDownloads->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", FALSE).toBool());
+
+  // setup ROM state filter selector menu & toggle actions / short cuts
   menuRomStatusFilter = new QMenu(pushButtonSelectRomFilter);
   actionRomStatusFilterC = menuRomStatusFilter->addAction(QIcon(QString::fromUtf8(":/data/img/sphere_green.png")), tr("&Correct"));
   actionRomStatusFilterC->setCheckable(TRUE);
@@ -3314,6 +3317,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Volume", sliderAudioVolume->value());
 #endif
 
+  // download manager widget
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", checkBoxRemoveFinishedDownloads->isChecked());
+
   if ( qmc2ArcadeView ) {
     log(QMC2_LOG_FRONTEND, tr("destroying arcade view"));
     qmc2ArcadeView->close();
@@ -4495,6 +4501,15 @@ void MainWindow::audioFade(int) { ; }
 void MainWindow::audioMetaDataChanged() { ; }
 #endif
 
+void MainWindow::on_checkBoxRemoveFinishedDownloads_stateChanged(int state)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_checkBoxRemoveFinishedDownloads_stateChanged(int state = ...)");
+#endif
+
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", checkBoxRemoveFinishedDownloads->isChecked());
+}
+
 void MainWindow::createFifo(bool logFifoCreation)
 {
 #ifdef QMC2_DEBUG
@@ -5513,6 +5528,13 @@ void MainWindow::on_pushButtonClearFinishedDownloads_clicked()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_pushButtonClearFinishedDownloads_clicked()");
 #endif
 
+  static bool downloadCleanupActive = FALSE;
+
+  if ( downloadCleanupActive )
+    return;
+
+  downloadCleanupActive = TRUE;
+
   QList<int> indexList;
 
   QTreeWidgetItemIterator it(treeWidgetDownloads);
@@ -5529,6 +5551,8 @@ void MainWindow::on_pushButtonClearFinishedDownloads_clicked()
       delete item;
     if ( i % 10 == 0 ) qApp->processEvents();
   }
+
+  downloadCleanupActive = FALSE;
 }
 
 void MainWindow::on_pushButtonReloadSelectedDownloads_clicked()

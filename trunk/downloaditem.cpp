@@ -1,12 +1,15 @@
 #include <QApplication>
 #include <QNetworkAccessManager>
+#include <QSettings>
 
 #include "qmc2main.h"
 #include "macros.h"
 #include "downloaditem.h"
 
+// external global variables
 extern MainWindow *qmc2MainWindow;
 extern QNetworkAccessManager *qmc2NetworkAccessManager;
+extern QSettings *qmc2Config;
 
 DownloadItem::DownloadItem(QNetworkReply *reply, QString file, QTreeWidget *parent)
   : QTreeWidgetItem(parent)
@@ -237,6 +240,8 @@ void ItemDownloader::finished()
                              tr("Status: %1").arg(tr("download finished")) + "\n" +
                              tr("Total size: %1").arg(progressWidget->maximum()) + "\n" +
                              tr("Downloaded: %1 (%2%)").arg(progressWidget->value()).arg(((double)progressWidget->value()/(double)progressWidget->maximum()) * 100));
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", FALSE).toBool() )
+      QTimer::singleShot(QMC2_DOWNLOAD_CLEANUP_DELAY, qmc2MainWindow, SLOT(on_pushButtonClearFinishedDownloads_clicked()));
   }
   progressWidget->setEnabled(FALSE);
 

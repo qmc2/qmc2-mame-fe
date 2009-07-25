@@ -217,6 +217,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void audioFade(int);
     void audioMetaDataChanged();
 
+    // download manager widget
+    void on_checkBoxRemoveFinishedDownloads_stateChanged(int);
+
     // ROM state filter toggles
     void on_romStateFilterC_toggled(bool);
     void on_romStateFilterM_toggled(bool);
