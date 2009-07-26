@@ -552,15 +552,14 @@ void Options::on_pushButtonApply_clicked()
     // style sheet
     if ( newStyleSheet )
       qmc2MainWindow->setupStyleSheet(s);
-
     // style
     s = comboBoxStyle->currentText();
-    if ( s == QObject::tr("Default") ) 
-      s = "Default";
+    if ( s == QObject::tr("Default") ) s = "Default";
     config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Style", s);
-    if ( s != oldStyleName ) {
+    if ( s != oldStyleName || newStyleSheet ) {
       qmc2MainWindow->setupStyle(s);
       oldStyleName = s;
+      qApp->processEvents();
     }
   }
 
