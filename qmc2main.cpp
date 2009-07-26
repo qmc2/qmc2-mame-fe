@@ -3529,7 +3529,6 @@ void MainWindow::init()
   createFifo();
   qApp->processEvents();
   qmc2GhostImagePixmap.load(":/data/img/ghost.png");
-  // setup application style
   QString myStyle = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString();
   setupStyle(myStyle);
   if ( qApp->styleSheet().isEmpty() ) {
@@ -3558,32 +3557,22 @@ void MainWindow::setupStyle(QString styleName)
     newStyle = QStyleFactory::create(qmc2DefaultStyle);
 
   QApplication::setStyle(newStyle);
-
-  // work around for an annoying Qt bug...
-  if ( !qmc2EarlyStartup && qApp->styleSheet().isEmpty() ) {
-    // FIXME: doing this when a style sheet has been set can crash (dunno why, though)
-    menuBar()->setStyle(newStyle);
-    toolbar->setStyle(newStyle);
-  }
-
   qApp->processEvents();
 
-  QPalette newPalette;
-
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette").toBool() )
-    newPalette = QApplication::style()->standardPalette();
-  else
-    newPalette = customPalette;
-
-  QApplication::setPalette(newPalette);
-
-  // work around for the same annoying Qt bug...
-  if ( !qmc2EarlyStartup ) {
-    menuBar()->setPalette(newPalette);
-    toolbar->setPalette(newPalette);
+  if ( qApp->styleSheet().isEmpty() ) { // custom palettes and style sheets are mutually exclusive
+    QPalette newPalette;
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette").toBool() )
+      newPalette = QApplication::style()->standardPalette();
+    else
+      newPalette = customPalette;
+    QApplication::setPalette(newPalette);
+    if ( !qmc2EarlyStartup ) {
+      // work around for an annoying Qt bug...
+      menuBar()->setPalette(newPalette);
+      toolbar->setPalette(newPalette);
+    }
+    qApp->processEvents();
   }
-
-  qApp->processEvents();
 }
 
 void MainWindow::setupStyleSheet(QString styleSheetName)
