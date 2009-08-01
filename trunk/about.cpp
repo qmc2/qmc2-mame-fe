@@ -135,7 +135,7 @@ void About::showEvent(QShowEvent *e)
           "<p><b>" + tr("Development site:") + "</b><br><a href=\"http://sourceforge.net/projects/qmc2\">http://sourceforge.net/projects/qmc2</a></p>" +
           "<p><b>" + tr("QMC2 development mailing list:") + "</b><br>qmc2-devel@lists.sourceforge.net (" + tr("subscription required") +")</p>" +
           "<p><b>" + tr("List subscription:") + "</b><br><a href=\"http://lists.sourceforge.net/lists/listinfo/qmc2-devel\">https://lists.sourceforge.net/lists/listinfo/qmc2-devel</a></p>" +
-          "<p><b>" + tr("Bug tracking system:") + "</b><br><a href=\"http://apps.sourceforge.net/mantisbt/qmc2/my_view_page.php\">http://apps.sourceforge.net/mantisbt/qmc2</a></p>";
+          "<p><b>" + tr("Bug tracking system:") + "</b><br><a href=\"http://sourceforge.net/apps/mantisbt/qmc2/my_view_page.php\">http://sourceforge.net/apps/mantisbt/qmc2</a></p>";
   labelProjectInfo->setText(projectInfoString);
 
   QString sysInfoString =
