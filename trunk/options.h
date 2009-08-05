@@ -146,6 +146,7 @@ class Options : public QDialog, public Ui::Options
     void on_treeWidgetShortcuts_itemSelectionChanged();
     void on_pushButtonRedefineKeySequence_clicked();
     void on_pushButtonResetShortcut_clicked();
+    void on_pushButtonDetailSetup_clicked();
 
     // joystick setup callbacks
 #if QMC2_JOYSTICK == 1

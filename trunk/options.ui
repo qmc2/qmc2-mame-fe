@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>534</width>
-    <height>650</height>
+    <width>551</width>
+    <height>656</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,8 +57,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>490</width>
-                <height>525</height>
+                <width>507</width>
+                <height>531</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -742,17 +742,14 @@
                   </widget>
                  </item>
                  <item row="4" column="3" colspan="4">
-                  <spacer name="horizontalSpacer">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                  <widget class="QPushButton" name="pushButtonDetailSetup">
+                   <property name="toolTip">
+                    <string>Open the detail setup dialog</string>
                    </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>275</width>
-                     <height>18</height>
-                    </size>
+                   <property name="text">
+                    <string>Detail setup...</string>
                    </property>
-                  </spacer>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -783,8 +780,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>490</width>
-                <height>525</height>
+                <width>507</width>
+                <height>531</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -1988,8 +1985,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>490</width>
-                <height>525</height>
+                <width>507</width>
+                <height>531</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2366,8 +2363,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>490</width>
-                <height>525</height>
+                <width>507</width>
+                <height>531</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2479,8 +2476,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>490</width>
-                <height>525</height>
+                <width>507</width>
+                <height>531</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -2936,8 +2933,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>490</width>
-                <height>525</height>
+                <width>507</width>
+                <height>531</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3697,6 +3694,7 @@
   <tabstop>spinBoxFrontendLogSize</tabstop>
   <tabstop>spinBoxEmulatorLogSize</tabstop>
   <tabstop>spinBoxPixmapCacheSize</tabstop>
+  <tabstop>pushButtonDetailSetup</tabstop>
   <tabstop>checkBoxSaveLayout</tabstop>
   <tabstop>checkBoxSaveGameSelection</tabstop>
   <tabstop>checkBoxRestoreLayout</tabstop>
