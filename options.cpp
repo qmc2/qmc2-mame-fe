@@ -152,6 +152,9 @@ Options::Options(QWidget *parent)
   labelEmuInfoDB->setVisible(FALSE);
   labelEmuInfoDBPic->setVisible(FALSE);
   labelGameInfoDB->setText(tr("Machine info DB"));
+  checkBoxProcessGameInfoDB->setText(tr("Load machine info DB"));
+  checkBoxProcessGameInfoDB->setToolTip(tr("Load machine information database (MESS sysinfo.dat)"));
+  checkBoxCompressGameInfoDB->setToolTip(tr("Use in-memory compression for machine info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)"));
   lineEditGameInfoDB->setToolTip(tr("Machine information database - MESS sysinfo.dat (read)"));
   toolButtonBrowseGameInfoDB->setToolTip(tr("Browse machine information database (MESS sysinfo.dat)"));
   tabWidgetFrontendSettings->setTabText(QMC2_OPTIONS_FE_MACHINELIST_INDEX, tr("Machine &list"));
@@ -2303,6 +2306,15 @@ void Options::on_pushButtonResetShortcut_clicked()
 
     pushButtonResetShortcut->setEnabled(FALSE);
   }
+}
+
+void Options::on_pushButtonDetailSetup_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonDetailSetup_clicked()");
+#endif
+
+  qmc2MainWindow->on_menuTabWidgetGameDetail_Setup_activated();
 }
 
 void Options::checkShortcuts()
