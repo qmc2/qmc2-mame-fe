@@ -1136,7 +1136,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="130"/>
         <source>ArcadeView: Resolution switching is not yet supported</source>
-        <translation>ArcadeView: Przełączanie rozdzielczości nie jest jeszcze wspierane</translation>
+        <translation>ArcadeView: Przełączanie rozdzielczości nie jest jeszcze obsługiwane</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="146"/>
@@ -4295,7 +4295,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="1620"/>
         <source>Automatically remove successfully finished downloads from this list</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwaj pobierania zakończone sukcesem automatycznie</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1648"/>
@@ -4642,7 +4642,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="415"/>
         <source>Loading machine list, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ładowanie listy maszyn, proszę czekać...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="465"/>
@@ -5186,7 +5186,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="157"/>
         <source>Loading game list, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ładowanie listy gier, proszę czekać...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1250"/>
@@ -5257,7 +5257,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="1623"/>
         <source>Remove finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwanie skończone</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1709"/>
@@ -5267,12 +5267,12 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2346"/>
         <source>Ctrl+Alt+Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+Lewo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2367"/>
         <source>Ctrl+Alt+Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Alt+Prawo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2388"/>
@@ -7576,12 +7576,12 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../options.ui" line="747"/>
         <source>Open the detail setup dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz okno dialogowe ustawień szczegółów</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="750"/>
         <source>Detail setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia szczegółów</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1859"/>
@@ -7611,12 +7611,12 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../options.ui" line="2330"/>
         <source>Hide primary game list while loading (recommended, much faster)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukryj główną listę gier podczas ładowania (zalecane, znacznie szybsze)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2333"/>
         <source>Hide while loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukryj podczas ładowania</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3357"/>
@@ -8824,17 +8824,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="155"/>
         <source>Load machine info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Ładuj bazę danych informacji o maszynach</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="156"/>
         <source>Load machine information database (MESS sysinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ładuj bazę danych informacji o maszynach (plik sysinfo.dat MESS)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="157"/>
         <source>Use in-memory compression for machine info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Używaj kompresji w pamięci dla bazy danych informacji o maszynach (troszkę wolniejsze, lecz zużywa dobitnie mniej pamięci; stopień kompresji to zwykle około 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="183"/>
@@ -8846,7 +8846,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="186"/>
         <source>Hide primary machine list while loading (recommended, much faster)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukryj główną listę maszyn podczas ładowania (zalecane, znacznie szybsze)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1095"/>
