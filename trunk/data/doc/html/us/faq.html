@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.2.b11, 04-AUG-2009</h3>
+<h3>FAQ - v0.2.b11, 08-SEP-2009</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (Linux) distribution comes with an older version of Qt. What should I do about that?</a></div></p>
@@ -19,7 +19,7 @@
 <p><div class="menuitem"><a href="#A1.5">Q1.5: My (Linux) distribution already comes with a binary Qt 4 package, but the build fails. It complains about a wrong version of qmake or can't find it. What's wrong?</a></div></p>
 <p><div class="menuitem"><a href="#A1.6">Q1.6: How do I know about the available make targets and build configuration options?</a></div></p>
 <p><div class="menuitem"><a href="#A1.7">Q1.7: Build and installation instructions for specific distributions</a></div></p>
-<p><div class="menusubitem"><a href="#A1.7.1">Q1.7.1: Ubuntu 8.04 and 8.10 (including derived Ubuntu editions)</a></div></p>
+<p><div class="menusubitem"><a href="#A1.7.1">Q1.7.1: Ubuntu 9,04 (including derived Ubuntu editions)</a></div></p>
 <p><div class="menusubitem"><a href="#A1.7.2">Q1.7.2: openSUSE 11.0 and 11.1</a></div></p>
 <p><div class="menusubitem"><a href="#A1.7.3">Q1.7.3: Fedora release 9 and 10</a></div></p>
 <p><div class="menuitem"><a href="#A1.8">Q1.8: The build fails due to compiler errors regarding the <i>accessibleName</i> property used in emuopt.cpp</a></div></p>
@@ -135,13 +135,12 @@ libqt4-sql-4.4.0-12.4</pre>
 <p>The following instructions generally work for code from the SVN repository as well as for stable QMC2 releases (which are distributed as source code tar-balls). The reason why the examples use SVN is simply that the code is more up to date :). Just leave out step 2 if you're going to use a released tar-ball instead (in this case you could also leave out the installation of the SVN client, of course).</p>
 <p>The details...</p>
 <hr>
-<p><a name="A1.7.1"></a><b>Q1.7.1: Ubuntu 8.04 and 8.10 (including derived Ubuntu editions)</b></p>
+<p><a name="A1.7.1"></a><b>Q1.7.1: Ubuntu 9.04 (including derived Ubuntu editions)</b></p>
 <p>To build and install QMC2 from source (SVN) on</p>
 <ul>
-<li>Ubuntu 8.04 (<i>Hardy Heron</i>, <i>Debian lenny/sid</i>)</li>
-<li>Ubuntu 8.10 (<i>Intrepid</i>, <i>Debian lenny/sid</i>)</li>
+<li>Ubuntu 9.04 (<i>Jaunty Jackalope</i>, <i>Debian 5,0</i>)</li>
 </ul>
-<p>using their provided Qt 4.4 packages please follow these steps:</p>
+<p>using the provided Qt 4.5 packages please follow these steps:</p>
 <p>1) Install the required packages (including their dependencies)</p>
 <pre>$ sudo apt-get install subversion g++ libqt4-dev libsdl-dev libphonon-dev rsync</pre>
 <p>2) Either check out the source code from SVN</p>
@@ -154,11 +153,6 @@ $ svn update</pre>
 <p>3) Build and install QMC2 with distribution-specific configuration turned on</p>
 <pre>$ make DISTCFG=1
 $ sudo make install DISTCFG=1</pre>
-On Hardy Heron, you may have to use
-<pre>$ make DISTCFG=1 PHONON=0
-$ sudo make install DISTCFG=1 PHONON=0</pre>
-<p>instead, which disables the Phonon features.</p>
-<p><b>FIXME: this answer is not up-to-date (Qt 4.5+ required now)!</b></p>
 <hr>
 <p><a name="A1.7.2"></a><b>Q1.7.2: openSUSE 11.0 and 11.1</b></p>
 <p>To build and install QMC2 from source (SVN) on openSUSE 11.0 or 11.1 using their provided Qt 4.4 packages, follow these steps:</p>

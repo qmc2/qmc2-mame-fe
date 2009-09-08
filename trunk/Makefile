@@ -446,7 +446,7 @@ else
 	@(cd "$(DESTDIR)/$(BINDIR)" && $(LN) -s "$(TARGET_NAME)" "$(PROJECT)")
 endif
 	@$(RSYNC) --exclude '*svn*' ./data/lng/qmc2_*.qm "$(GLOBAL_DATADIR)/$(PROJECT)/lng/"
-	@if [ "$(QT_TRANSLATION)" == "qmc2" ] ; then \
+	@if [ "$(QT_TRANSLATION)" = "qmc2" ] ; then \
 	  $(RSYNC) --exclude '*svn*' ./data/lng/qt_*.qm "$(GLOBAL_DATADIR)/$(PROJECT)/lng/" ; \
 	else \
 	  echo "Using Qt translation files from $(QT_TRANSLATION)" ; \
