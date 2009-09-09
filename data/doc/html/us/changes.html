@@ -19,7 +19,7 @@ inf: informational only
   <li>fix: corrected default short cuts for audio player functions <i>jump to previous/next track</i> (old short cuts were already used by X.Org X11 servers, now using <i>Ctrl+Alt+Left/Right</i>)</li>
   <li>fix: custom palettes and style sheets are mutually exclusive (this fixes minor palette issues with the menu- and tool-bars when switching styles / style sheets on-the-fly)</li>
   <li>fix: options dialog: adjusted some texts &amp; tool tips for MESS targets</li> 
-  <li>fix: corrected Q_INTERFACE warning for arcade/arcadeitem.h when using Qt 4.6+ (MOC warning)</li>
+  <li>fix: corrected MOC warning for arcade/arcadeitem.h related to a missing Q_INTERFACES() statement when using Qt 4.6+</li>
   <li>imp: SDLMESS/MESS templates updated to 0.133 (new option <i>burnin</i>, <i>crsshairpath</i> changed to <i>crosshairpath</i>)</li>
   <li>imp: SDLMAME template updated to 0.133u5 (no new options)</li>
   <li>imp: less CPU intense audio fading (also changed the default value for <i>FADER_SPEED</i> to 500)</li>
