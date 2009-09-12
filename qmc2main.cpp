@@ -340,6 +340,9 @@ MainWindow::MainWindow(QWidget *parent)
   // hide "loading game list" label initially
   labelLoadingGamelist->setVisible(FALSE);
 
+  // hide the memory indicator inistally
+  progressBarMemory->setVisible(FALSE);
+
 #if defined(Q_WS_WIN)
   actionLaunchQMC2MAME->setText(tr("QMC2 for MAME"));
   actionLaunchQMC2MAME->setToolTip(tr("Launch QMC2 for MAME"));
@@ -5573,6 +5576,26 @@ void MainWindow::on_pushButtonStopSelectedDownloads_clicked()
     }
     it++;
   }
+}
+
+void MainWindow::on_memoryUpdateTimer_timeout()
+{
+#if defined(QMC2_SHOWMEMINFO)
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_memoryUpdateTimer_timeout()");
+#endif
+
+  // get memory information
+  quint64 numPages, pageSize, freePages, totalSize, totalUsed, totalFree;
+  numPages = sysconf(_SC_PHYS_PAGES) / 1024;
+  pageSize = sysconf(_SC_PAGESIZE) / 1024;
+  freePages = sysconf( _SC_AVPHYS_PAGES) / 1024;
+  totalSize = numPages * pageSize;
+  totalFree = pageSize * freePages;
+  totalUsed = totalSize - totalFree;
+  progressBarMemory->setValue(100 * ((double)totalUsed/(double)totalSize));
+  progressBarMemory->setToolTip("<b>" + tr("Physical memory:") + "</b><br>" + tr("Total: %1 MB").arg(totalSize) + "<br>" + tr("Free: %1 MB").arg(totalFree) + "<br>" + tr("Used: %1 MB").arg(totalUsed));
+#endif
 }
 
 void myQtMessageHandler(QtMsgType type, const char *msg)

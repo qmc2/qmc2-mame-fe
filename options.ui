@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>551</width>
-    <height>656</height>
+    <width>500</width>
+    <height>489</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -56,9 +56,9 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>507</width>
-                <height>531</height>
+                <y>-205</y>
+                <width>456</width>
+                <height>553</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -393,7 +393,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="21" column="0" colspan="3">
+                 <item row="22" column="0" colspan="3">
                   <layout class="QHBoxLayout" name="layout3">
                    <item>
                     <widget class="QLabel" name="labelLegend1Pic">
@@ -426,7 +426,7 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="21" column="3" colspan="4">
+                 <item row="22" column="3" colspan="4">
                   <layout class="QHBoxLayout" name="layout2">
                    <item>
                     <widget class="QLabel" name="labelLegend2Pic">
@@ -512,7 +512,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="20" column="0" colspan="7">
+                 <item row="21" column="0" colspan="7">
                   <spacer name="spacer4">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -751,6 +751,16 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="20" column="0" colspan="7">
+                  <widget class="QCheckBox" name="checkBoxMemoryIndicator">
+                   <property name="toolTip">
+                    <string>Show indicator for current memory usage</string>
+                   </property>
+                   <property name="text">
+                    <string>Show memory  usage</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -780,8 +790,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>507</width>
-                <height>531</height>
+                <width>213</width>
+                <height>508</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -1985,8 +1995,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>507</width>
-                <height>531</height>
+                <width>445</width>
+                <height>156</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2363,8 +2373,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>507</width>
-                <height>531</height>
+                <width>264</width>
+                <height>55</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2476,8 +2486,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>507</width>
-                <height>531</height>
+                <width>382</width>
+                <height>270</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -2933,8 +2943,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>507</width>
-                <height>531</height>
+                <width>385</width>
+                <height>363</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3250,7 +3260,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>195</width>
+                <width>206</width>
                 <height>260</height>
                </rect>
               </property>
@@ -3725,6 +3735,7 @@
   <tabstop>checkBoxCompressEmuInfoDB</tabstop>
   <tabstop>checkBoxProcessGameInfoDB</tabstop>
   <tabstop>checkBoxCompressGameInfoDB</tabstop>
+  <tabstop>checkBoxMemoryIndicator</tabstop>
   <tabstop>scrollAreaFrontendFilesAndDirectories</tabstop>
   <tabstop>lineEditTemporaryFile</tabstop>
   <tabstop>toolButtonBrowseTemporaryFile</tabstop>
