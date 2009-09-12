@@ -104,6 +104,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QMenu *menuMAWSQuickLinks;
     QMap<QString, QAction *> mawsQDLActions;
 #endif
+#if defined(QMC2_SHOWMEMINFO)
+    QTimer memoryUpdateTimer;
+#endif
 
     static QColor qmc2StatusColorGreen;
     static QColor qmc2StatusColorYellowGreen;
@@ -246,6 +249,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_menuTabWidgetLogsAndEmulators_South_activated();
     void on_menuTabWidgetLogsAndEmulators_West_activated();
     void on_menuTabWidgetLogsAndEmulators_East_activated();
+
+    // memory indicator
+    void on_memoryUpdateTimer_timeout();
 
     // other
     void on_tabWidgetGameDetail_currentChanged(int);

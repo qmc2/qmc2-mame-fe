@@ -20,10 +20,6 @@
 #include "qmc2_phonon.h"
 #endif
 
-#if defined(_SC_PHYS_PAGES) && defined(_SC_PAGESIZE) && defined(_SC_AVPHYS_PAGES)
-#define QMC2_SHOWMEMINFO
-#endif
-
 #if defined(Q_WS_MAC) || defined(Q_WS_WIN)
 #include <QSysInfo>
 #endif
@@ -90,7 +86,7 @@ void About::showEvent(QShowEvent *e)
   quint64 numPages, pageSize, freePages, totalSize, totalUsed, totalFree;
   numPages = sysconf(_SC_PHYS_PAGES) / 1024;
   pageSize = sysconf(_SC_PAGESIZE) / 1024;
-  freePages = sysconf( _SC_AVPHYS_PAGES)/1024;
+  freePages = sysconf( _SC_AVPHYS_PAGES) / 1024;
   totalSize = numPages * pageSize;
   totalFree = pageSize * freePages;
   totalUsed = totalSize - totalFree;

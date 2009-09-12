@@ -312,4 +312,10 @@
 #define QMC2_DEFAULT_DATA_PATH		QString("data")
 #endif
 
+// determine if memory infomation can be read
+#if defined(_SC_PHYS_PAGES) && defined(_SC_PAGESIZE) && defined(_SC_AVPHYS_PAGES)
+#define QMC2_SHOWMEMINFO
+#define QMC2_MEMORY_UPDATE_TIME		500
+#endif
+
 #endif

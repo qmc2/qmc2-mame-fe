@@ -140,6 +140,10 @@ Options::Options(QWidget *parent)
 
   setupUi(this);
 
+#if !defined(QMC2_SHOWMEMINFO)
+  checkBoxMemoryIndicator->setVisible(FALSE);
+#endif
+
 #if !defined(QMC2_VARIANT_LAUNCHER)
   checkBoxMinimizeOnVariantLaunch->setVisible(FALSE);
 #endif
@@ -605,6 +609,20 @@ void Options::on_pushButtonApply_clicked()
   qmc2MainWindow->textBrowserEmulatorLog->document()->setMaximumBlockCount(spinBoxEmulatorLogSize->value());
 #if defined(QMC2_VARIANT_LAUNCHER)
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch", checkBoxMinimizeOnVariantLaunch->isChecked());
+#endif
+#if defined(QMC2_SHOWMEMINFO)
+  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", checkBoxMemoryIndicator->isChecked());
+  if ( checkBoxMemoryIndicator->isChecked() ) {
+    qmc2MainWindow->progressBarMemory->setRange(0, 100);
+    qmc2MainWindow->on_memoryUpdateTimer_timeout();
+    qmc2MainWindow->progressBarMemory->setVisible(TRUE);
+    connect(&qmc2MainWindow->memoryUpdateTimer, SIGNAL(timeout()), qmc2MainWindow, SLOT(on_memoryUpdateTimer_timeout()));
+    qmc2MainWindow->memoryUpdateTimer.start(QMC2_MEMORY_UPDATE_TIME);
+  } else {
+    qmc2MainWindow->memoryUpdateTimer.stop();
+    disconnect(&qmc2MainWindow->memoryUpdateTimer);
+    qmc2MainWindow->progressBarMemory->setVisible(FALSE);
+  }
 #endif
 
   // Files and directories
@@ -1293,6 +1311,9 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   spinBoxEmulatorLogSize->setValue(config->value(QMC2_FRONTEND_PREFIX + "GUI/EmulatorLogSize", 0).toInt());
 #if defined(QMC2_VARIANT_LAUNCHER)
   checkBoxMinimizeOnVariantLaunch->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch", FALSE).toBool());
+#endif
+#if defined(QMC2_SHOWMEMINFO)
+  checkBoxMemoryIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", FALSE).toBool());
 #endif
   
   // Files / Directories
