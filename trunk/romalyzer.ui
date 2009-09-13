@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>482</width>
+    <width>461</width>
     <height>368</height>
    </rect>
   </property>
@@ -595,6 +595,9 @@
    </item>
    <item row="2" column="0">
     <layout class="QHBoxLayout">
+     <property name="spacing">
+      <number>2</number>
+     </property>
      <item>
       <widget class="QPushButton" name="pushButtonClose">
        <property name="toolTip">
