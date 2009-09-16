@@ -11338,29 +11338,14 @@ Jetzt beenden, einmalig akzeptieren oder vollständig ignorieren?</translation>
         <translation>ROM Pfad auswählen</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="155"/>
-        <source>path to ROM images</source>
-        <translation>Pfad zu den ROM Abbildern</translation>
-    </message>
-    <message>
         <location filename="../../welcome.ui" line="162"/>
         <source>Browse ROM path</source>
         <translation>ROM Pfad auswählen</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="49"/>
-        <source>%1 executable file:</source>
-        <translation>Ausführbare %1 Programmdatei:</translation>
-    </message>
-    <message>
         <location filename="../../welcome.cpp" line="132"/>
         <source>Choose sample path</source>
         <translation>Sample Verzeichnis auswählen</translation>
-    </message>
-    <message>
-        <location filename="../../welcome.ui" line="179"/>
-        <source>path to samples</source>
-        <translation>Pfad zu den Samples</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="186"/>
@@ -11386,6 +11371,11 @@ Jetzt beenden, einmalig akzeptieren oder vollständig ignorieren?</translation>
         <location filename="../../welcome.cpp" line="47"/>
         <source>Unsupported emulator</source>
         <translation>Emulator nicht unterstützt</translation>
+    </message>
+    <message>
+        <location filename="../../welcome.cpp" line="49"/>
+        <source>%1 executable file</source>
+        <translation>Ausführbare Datei (%1)</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="206"/>
@@ -11415,6 +11405,16 @@ Jetzt beenden, einmalig akzeptieren oder vollständig ignorieren?</translation>
         <translation>&lt;p&gt;&lt;b&gt;&lt;font size=&quot;+1&quot;&gt;Willkommen zu QMC2 - M.A.M.E./M.E.S.S. Catalog / Launcher II!&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;Es sieht so aus als sei dies Dein erster Start von QMC2 (als dieser Benutzer), da keine gültige Konfiguration gefunden wurde. Um QMC2 als Frontend für einen Emulator nutzen zu können, muss der Pfad zum ausführbaren Emulator-Programm unten angeben werden.&lt;/p&gt;
 &lt;p&gt;Es wird dringend empfohlen, auch den ROM-Pfad anzugeben, den Du verwenden möchtest (sofern sich dieser vom Standard-Pfad des Emulators unterscheidet).&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="155"/>
+        <source>Path to ROM images</source>
+        <translation>Pfad zu ROM Dateien</translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="179"/>
+        <source>Path to samples</source>
+        <translation>Pfad zu Sample Dateien</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="210"/>

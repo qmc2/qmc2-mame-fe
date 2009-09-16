@@ -11341,11 +11341,6 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Witamy w QMC2</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="179"/>
-        <source>path to samples</source>
-        <translation>ścieżka do sampli</translation>
-    </message>
-    <message>
         <location filename="../../welcome.ui" line="186"/>
         <source>Browse sample path</source>
         <translation>Wskaż ścieżkę sampli</translation>
@@ -11366,8 +11361,13 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     </message>
     <message>
         <location filename="../../welcome.ui" line="155"/>
-        <source>path to ROM images</source>
-        <translation>ścieżka do obrazów ROM</translation>
+        <source>Path to ROM images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="179"/>
+        <source>Path to samples</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="210"/>
@@ -11403,11 +11403,6 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../welcome.ui" line="138"/>
         <source>Browse emulator executable file</source>
         <translation>Wskaż plik wykonywalny emulatora</translation>
-    </message>
-    <message>
-        <location filename="../../welcome.cpp" line="49"/>
-        <source>%1 executable file:</source>
-        <translation>%1 plik wykonywalny:</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="92"/>
@@ -11454,6 +11449,11 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
         <location filename="../../welcome.cpp" line="47"/>
         <source>Unsupported emulator</source>
         <translation>Niewspierany emulator</translation>
+    </message>
+    <message>
+        <location filename="../../welcome.cpp" line="49"/>
+        <source>%1 executable file</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="206"/>

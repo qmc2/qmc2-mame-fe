@@ -46,7 +46,7 @@ Welcome::Welcome(QWidget *parent)
 #else
     QString emulatorName = tr("Unsupported emulator");
 #endif
-    labelMAMEexecutable->setText(tr("%1 executable file:").arg(emulatorName));
+    labelMAMEexecutable->setText(tr("%1 executable file").arg(emulatorName));
     // ensure a black background for the logo image
     labelLogoPixmap->setPalette(QPalette(QColor(0, 0, 0)));
     show();

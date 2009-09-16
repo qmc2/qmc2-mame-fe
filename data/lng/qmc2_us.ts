@@ -11292,11 +11292,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>Welcome</name>
     <message>
-        <location filename="../../welcome.cpp" line="49"/>
-        <source>%1 executable file:</source>
-        <translation>%1 executable file:</translation>
-    </message>
-    <message>
         <location filename="../../welcome.cpp" line="92"/>
         <source>Error</source>
         <translation></translation>
@@ -11343,11 +11338,6 @@ Exit now, accept once or ignore completely?</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="179"/>
-        <source>path to samples</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../welcome.ui" line="186"/>
         <source>Browse sample path</source>
         <translation></translation>
@@ -11366,7 +11356,12 @@ Exit now, accept once or ignore completely?</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="155"/>
-        <source>path to ROM images</source>
+        <source>Path to ROM images</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="179"/>
+        <source>Path to samples</source>
         <translation></translation>
     </message>
     <message>
@@ -11408,6 +11403,11 @@ Exit now, accept once or ignore completely?</translation>
         <location filename="../../welcome.cpp" line="47"/>
         <source>Unsupported emulator</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.cpp" line="49"/>
+        <source>%1 executable file</source>
+        <translation>%1 executable file</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="206"/>

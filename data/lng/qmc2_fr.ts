@@ -11311,11 +11311,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>Welcome</name>
     <message>
-        <location filename="../../welcome.cpp" line="49"/>
-        <source>%1 executable file:</source>
-        <translation>%1 fichier exécutable:</translation>
-    </message>
-    <message>
         <location filename="../../welcome.cpp" line="92"/>
         <source>Error</source>
         <translation>Erreur</translation>
@@ -11359,11 +11354,6 @@ Exit now, accept once or ignore completely?</source>
         <translation>Bienvenue dans QMC2</translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="179"/>
-        <source>path to samples</source>
-        <translation>chemin vers les samples</translation>
-    </message>
-    <message>
         <location filename="../../welcome.ui" line="186"/>
         <source>Browse sample path</source>
         <translation>Parcourir pour le répertoire de samples</translation>
@@ -11372,11 +11362,6 @@ Exit now, accept once or ignore completely?</source>
         <location filename="../../welcome.ui" line="162"/>
         <source>Browse ROM path</source>
         <translation>Parcourir pour le répertoire de ROMS</translation>
-    </message>
-    <message>
-        <location filename="../../welcome.ui" line="155"/>
-        <source>path to ROM images</source>
-        <translation>chemin vers les images ROMS</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="265"/>
@@ -11404,6 +11389,11 @@ Exit now, accept once or ignore completely?</source>
         <translation>Emulateur non supporté</translation>
     </message>
     <message>
+        <location filename="../../welcome.cpp" line="49"/>
+        <source>%1 executable file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../welcome.cpp" line="206"/>
         <source>Single-instance check</source>
         <translation>Test d&apos;instance unique</translation>
@@ -11428,6 +11418,16 @@ Exit now, accept once or ignore completely?</source>
         <source>&lt;p&gt;&lt;b&gt;&lt;font size=&quot;+1&quot;&gt;Welcome to QMC2 - M.A.M.E./M.E.S.S. Catalog / Launcher II!&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;This appears to be your first start of QMC2 (as this user) because no valid configuration was found. To be able to use QMC2 as a front end for the emulator, you need to specify the path to the emulator&apos;s executable file below.&lt;/p&gt;
 &lt;p&gt;It&apos;s highly recommended that you also enter the ROM-path you are going to use (if different than the emulator&apos;s default path).&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="155"/>
+        <source>Path to ROM images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="179"/>
+        <source>Path to samples</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

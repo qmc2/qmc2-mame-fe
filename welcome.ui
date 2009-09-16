@@ -152,7 +152,7 @@
            </sizepolicy>
           </property>
           <property name="toolTip">
-           <string>path to ROM images</string>
+           <string>Path to ROM images</string>
           </property>
          </widget>
         </item>
@@ -176,7 +176,7 @@
            </sizepolicy>
           </property>
           <property name="toolTip">
-           <string>path to samples</string>
+           <string>Path to samples</string>
           </property>
          </widget>
         </item>
