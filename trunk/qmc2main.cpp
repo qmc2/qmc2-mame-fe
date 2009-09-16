@@ -1548,7 +1548,12 @@ void MainWindow::on_actionLaunchQMC2MAME_activated()
 
   if ( launched ) {
     log(QMC2_LOG_FRONTEND, tr("variant '%1' launched").arg(QMC2_VARIANT_SDLMAME_NAME));
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch").toBool() ) {
+
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ExitOnVariantLaunch").toBool() ) {
+      // we need to call this twice to make sure active processing gets stopped before QMC2 exits...
+      QTimer::singleShot(0, actionExitStop, SLOT(trigger()));
+      QTimer::singleShot(100, actionExitStop, SLOT(trigger()));
+    } else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch").toBool() ) {
       if ( qmc2Options )
         if ( qmc2Options->isVisible() )
           qmc2Options->showMinimized();
@@ -1603,7 +1608,12 @@ void MainWindow::on_actionLaunchQMC2MESS_activated()
 
   if ( launched ) {
     log(QMC2_LOG_FRONTEND, tr("variant '%1' launched").arg(QMC2_VARIANT_SDLMESS_NAME));
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch").toBool() ) {
+
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ExitOnVariantLaunch").toBool() ) {
+      // we need to call this twice to make sure active processing gets stopped before QMC2 exits...
+      QTimer::singleShot(0, actionExitStop, SLOT(trigger()));
+      QTimer::singleShot(100, actionExitStop, SLOT(trigger()));
+    } else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch").toBool() ) {
       if ( qmc2Options )
         if ( qmc2Options->isVisible() )
           qmc2Options->showMinimized();
