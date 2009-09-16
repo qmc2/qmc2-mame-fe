@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.2.b12, 15-SEP-2009</h3>
+<h3>FAQ - v0.2.b12, 16-SEP-2009</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (Linux) distribution comes with an older version of Qt. What should I do about that?</a></div></p>
@@ -85,7 +85,7 @@ At some point in time - when several new features were incorporated and the code
 SVN revision and publish it as the <i>final</i> release of a respective version. File releases should be more or less working fine and
 can be considered as <i>stable</i>, which does not necessarily mean that they are bug-free :).</p>
 <p>To always provide the community with good working combinations of QMC2 and MAME/MESS, we are striving hard to align QMC2 releases with stable MAME/MESS releases. Although we can't guarantee this in all cases, it's generally a nice approach for not-so-adventurous users and package maintainers.</p>
-<p>Because QMC2's roots are MAME based, we've decided to release a new stable version every time a new stable SDLMAME version gets released. The stable SDLMESS release usually follows within hours or days. As soon as that's available, we check the compatibility and post a patch for the SDLMESS variant of QMC2 if required.</p>
+<p>Because QMC2's roots are MAME based, we've decided to release a new stable version every time a new stable (SDL)MAME version gets released. The stable (SDL)MESS release usually follows within hours or days. As soon as that's available, we check the compatibility and post a patch for the (SDL)MESS variant of QMC2 if required.</p>
 <p>We try to keep the SVN repository up to date with the latest intermediate SDLMAME release.</p>
 <hr>
 <p><a name="A1.4"></a><b>Q1.4: Why aren't you using autoconf/automake (configure)?</b></p>
@@ -361,18 +361,17 @@ Try "mame | less" for example - the behavior will be the same.</p>
 <p>See also <a href="#A2.8">Q2.8</a>.</p>
 <hr>
 <p><a name="A2.11"></a><b>Q2.11: When I try to launch another QMC2 variant from a currently running one, nothing happens. What's up?</b></p>
-<p>To be able to use the so called <i>QMC2 variant launcher</i> all QMC2-binaries (including the <i>runonce</i> utility!) must be installed in a place which is part of your search path - make sure
-the environment variable <i>PATH</i> is setup correctly!</p>
+<p>To be able to use the so called <i>QMC2 variant launcher</i> all QMC2-binaries (including the <i>runonce</i> utility!) must be installed in a place which is part of your search path -- make sure the environment variable <i>PATH</i> is setup correctly!</p>
 <p>What the variant launcher effectively tries to do is to run the following command:</p>
 <pre>runonce qmc2-&lt;variant&gt; '&lt;variant-title&gt;' qmc2-&lt;variant&gt;</pre>
-<p>(&lt;variant&gt; = <i>sdlmame</i>, <i>sdlmess</i> -- &lt;variant-title&gt; = <i>M.A.M.E. Catalog / Launcher II</i>, <i>M.E.S.S. Catalog / Launcher II</i>)</p>
-<p>As long as this doesn't work from a shell/console there is few hope it will work from QMC2 - provided that in both situations the same PATH variable is used, of course.</p>
+<p>(&lt;variant&gt; = <i>mame</i>, <i>sdlmame</i>, <i>mess</i>, <i>sdlmess</i> -- &lt;variant-title&gt; = <i>M.A.M.E. Catalog / Launcher II</i>, <i>M.E.S.S. Catalog / Launcher II</i>)</p>
+<p>As long as this doesn't work from a shell/console there is few hope it will work from QMC2 -- provided that in both situations the same PATH variable is used, of course.</p>
 <p>The <i>runonce</i> utility is used to make sure that the called QMC2 variant will run only <i>once</i> (as the name suggests), and if it already runs, to raise its main window.
-Raising an application window from another program has some restrictions, though. It's highly dependent on the window manager and its setup - the window manager may simply ignore
+Raising an application window from another program has some restrictions, though. It's highly dependent on the window manager and its setup -- the window manager may simply ignore
 it completely, or it may interprete the involved signalling in a different way.</p>
 <p>On KDE for example, you'd have to use <i>focus under mouse</i> or <i>focus <b>strictly</b> under mouse</i> to make this work. Note that these settings may cause additional
    trouble in full screen mode if joystick support for the GUI has been enabled, because QMC2 may not lose its focus and would in turn react on joystick actions!</p>
-<p>On <i>Compiz Fusion</i>, there's even more to do (quoting a post on the qmc2-devel mailing list):</p>
+<p>On <i>Compiz Fusion</i>, there's even more to do (quoting a post to the qmc2-devel mailing list):</p>
 <p><i>
 It didn't work immediately, but I tracked that down to the fact that I was running Compiz Fusion as my window manager.
 I had to go into the CompizConfig Settings Manager, General Options, Focus &amp; Raise Behaviour and remove the word
