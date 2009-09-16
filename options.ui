@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>489</height>
+    <height>515</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -56,9 +56,9 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-205</y>
+                <y>0</y>
                 <width>456</width>
-                <height>553</height>
+                <height>571</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -209,17 +209,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxStandardColorPalette">
-                   <property name="toolTip">
-                    <string>Use standard or custom color palette?</string>
-                   </property>
-                   <property name="text">
-                    <string>Standard color palette</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="13" column="0" colspan="3">
+                 <item row="14" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxStatusbar">
                    <property name="toolTip">
                     <string>Show status bar</string>
@@ -229,7 +219,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="13" column="3" colspan="4">
+                 <item row="14" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxToolbar">
                    <property name="toolTip">
                     <string>Show tool bar</string>
@@ -239,7 +229,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="14" column="0" colspan="3">
+                 <item row="15" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxShowMenuBar">
                    <property name="enabled">
                     <bool>true</bool>
@@ -252,7 +242,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="14" column="3" colspan="4">
+                 <item row="15" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxProgressTexts">
                    <property name="toolTip">
                     <string>Show short description of current processing in progress bar</string>
@@ -262,7 +252,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="15" column="0" colspan="3">
+                 <item row="16" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxKillEmulatorsOnExit">
                    <property name="toolTip">
                     <string>Kill emulators on exit?</string>
@@ -272,7 +262,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="15" column="3" colspan="4">
+                 <item row="16" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxCheckSingleInstance">
                    <property name="toolTip">
                     <string>Check for other instances of this QMC2 variant on startup</string>
@@ -282,7 +272,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="16" column="0" colspan="3">
+                 <item row="17" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxGameStatusIndicator">
                    <property name="toolTip">
                     <string>Show vertical game status indicator in game details</string>
@@ -292,7 +282,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="16" column="3" colspan="4">
+                 <item row="17" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxGameStatusIndicatorOnlyWhenRequired">
                    <property name="enabled">
                     <bool>false</bool>
@@ -305,7 +295,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="17" column="0" colspan="3">
+                 <item row="18" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxShowGameName">
                    <property name="toolTip">
                     <string>Show game's description at the bottom of any images</string>
@@ -315,7 +305,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="17" column="3" colspan="4">
+                 <item row="18" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxShowGameNameOnlyWhenRequired">
                    <property name="enabled">
                     <bool>false</bool>
@@ -331,7 +321,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="18" column="0" colspan="3">
+                 <item row="19" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxProcessEmuInfoDB">
                    <property name="toolTip">
                     <string>Load emulator information database (mameinfo.dat)</string>
@@ -345,7 +335,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="18" column="3" colspan="4">
+                 <item row="19" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxCompressEmuInfoDB">
                    <property name="enabled">
                     <bool>false</bool>
@@ -362,7 +352,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="19" column="0" colspan="3">
+                 <item row="20" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxProcessGameInfoDB">
                    <property name="toolTip">
                     <string>Load game information database (MAME history.dat)</string>
@@ -376,7 +366,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="19" column="3" colspan="4">
+                 <item row="20" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxCompressGameInfoDB">
                    <property name="enabled">
                     <bool>false</bool>
@@ -751,13 +741,33 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="20" column="0" colspan="7">
+                 <item row="13" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxMemoryIndicator">
                    <property name="toolTip">
                     <string>Show indicator for current memory usage</string>
                    </property>
                    <property name="text">
                     <string>Show memory  usage</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="13" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxStandardColorPalette">
+                   <property name="toolTip">
+                    <string>Use standard or custom color palette?</string>
+                   </property>
+                   <property name="text">
+                    <string>Standard color palette</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="12" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxExitOnVariantLaunch">
+                   <property name="toolTip">
+                    <string>Exit this QMC2 variant when launching another?</string>
+                   </property>
+                   <property name="text">
+                    <string>Exit on variant launch</string>
                    </property>
                   </widget>
                  </item>
@@ -790,8 +800,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>213</width>
-                <height>508</height>
+                <width>456</width>
+                <height>509</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -1995,8 +2005,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>445</width>
-                <height>156</height>
+                <width>456</width>
+                <height>388</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2373,8 +2383,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>264</width>
-                <height>55</height>
+                <width>456</width>
+                <height>388</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2486,8 +2496,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>382</width>
-                <height>270</height>
+                <width>456</width>
+                <height>388</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -2943,8 +2953,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>385</width>
-                <height>363</height>
+                <width>456</width>
+                <height>388</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3260,8 +3270,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>206</width>
-                <height>260</height>
+                <width>840</width>
+                <height>420</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3720,6 +3730,8 @@
   <tabstop>checkBoxRetryLoadingImages</tabstop>
   <tabstop>checkBoxParentImageFallback</tabstop>
   <tabstop>checkBoxMinimizeOnVariantLaunch</tabstop>
+  <tabstop>checkBoxExitOnVariantLaunch</tabstop>
+  <tabstop>checkBoxMemoryIndicator</tabstop>
   <tabstop>checkBoxStandardColorPalette</tabstop>
   <tabstop>checkBoxStatusbar</tabstop>
   <tabstop>checkBoxToolbar</tabstop>
@@ -3735,7 +3747,6 @@
   <tabstop>checkBoxCompressEmuInfoDB</tabstop>
   <tabstop>checkBoxProcessGameInfoDB</tabstop>
   <tabstop>checkBoxCompressGameInfoDB</tabstop>
-  <tabstop>checkBoxMemoryIndicator</tabstop>
   <tabstop>scrollAreaFrontendFilesAndDirectories</tabstop>
   <tabstop>lineEditTemporaryFile</tabstop>
   <tabstop>toolButtonBrowseTemporaryFile</tabstop>
@@ -3867,8 +3878,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>475</x>
-     <y>732</y>
+     <x>507</x>
+     <y>771</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
@@ -3883,8 +3894,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>560</x>
-     <y>732</y>
+     <x>592</x>
+     <y>771</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -3903,8 +3914,8 @@
      <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>130</x>
-     <y>102</y>
+     <x>832</x>
+     <y>101</y>
     </hint>
    </hints>
   </connection>
@@ -3919,8 +3930,8 @@
      <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>130</x>
-     <y>102</y>
+     <x>235</x>
+     <y>130</y>
     </hint>
    </hints>
   </connection>
@@ -3935,8 +3946,8 @@
      <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>97</x>
-     <y>102</y>
+     <x>109</x>
+     <y>224</y>
     </hint>
    </hints>
   </connection>
@@ -3951,8 +3962,8 @@
      <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>118</x>
-     <y>102</y>
+     <x>117</x>
+     <y>130</y>
     </hint>
    </hints>
   </connection>
@@ -3963,12 +3974,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>130</x>
-     <y>102</y>
+     <x>154</x>
+     <y>220</y>
     </hint>
     <hint type="destinationlabel">
-     <x>130</x>
-     <y>102</y>
+     <x>234</x>
+     <y>220</y>
     </hint>
    </hints>
   </connection>
@@ -3979,12 +3990,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>149</x>
-     <y>495</y>
+     <x>161</x>
+     <y>596</y>
     </hint>
     <hint type="destinationlabel">
-     <x>538</x>
-     <y>495</y>
+     <x>570</x>
+     <y>596</y>
     </hint>
    </hints>
   </connection>
@@ -3995,12 +4006,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>165</x>
-     <y>473</y>
+     <x>177</x>
+     <y>573</y>
     </hint>
     <hint type="destinationlabel">
-     <x>538</x>
-     <y>473</y>
+     <x>570</x>
+     <y>573</y>
     </hint>
    </hints>
   </connection>
@@ -4011,12 +4022,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>133</x>
-     <y>429</y>
+     <x>145</x>
+     <y>527</y>
     </hint>
     <hint type="destinationlabel">
-     <x>538</x>
-     <y>429</y>
+     <x>570</x>
+     <y>527</y>
     </hint>
    </hints>
   </connection>
@@ -4027,12 +4038,44 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>142</x>
-     <y>451</y>
+     <x>154</x>
+     <y>550</y>
     </hint>
     <hint type="destinationlabel">
-     <x>538</x>
-     <y>451</y>
+     <x>570</x>
+     <y>550</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxMinimizeOnVariantLaunch</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxExitOnVariantLaunch</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>146</x>
+     <y>400</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>301</x>
+     <y>405</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxExitOnVariantLaunch</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxMinimizeOnVariantLaunch</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>459</x>
+     <y>395</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>219</x>
+     <y>394</y>
     </hint>
    </hints>
   </connection>

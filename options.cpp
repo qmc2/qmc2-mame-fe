@@ -146,6 +146,7 @@ Options::Options(QWidget *parent)
 
 #if !defined(QMC2_VARIANT_LAUNCHER)
   checkBoxMinimizeOnVariantLaunch->setVisible(FALSE);
+  checkBoxExitOnVariantLaunch->setVisible(FALSE);
 #endif
 
 #if defined(QMC2_EMUTYPE_MESS)
@@ -609,6 +610,7 @@ void Options::on_pushButtonApply_clicked()
   qmc2MainWindow->textBrowserEmulatorLog->document()->setMaximumBlockCount(spinBoxEmulatorLogSize->value());
 #if defined(QMC2_VARIANT_LAUNCHER)
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch", checkBoxMinimizeOnVariantLaunch->isChecked());
+  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ExitOnVariantLaunch", checkBoxExitOnVariantLaunch->isChecked());
 #endif
 #if defined(QMC2_SHOWMEMINFO)
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", checkBoxMemoryIndicator->isChecked());
@@ -1311,6 +1313,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   spinBoxEmulatorLogSize->setValue(config->value(QMC2_FRONTEND_PREFIX + "GUI/EmulatorLogSize", 0).toInt());
 #if defined(QMC2_VARIANT_LAUNCHER)
   checkBoxMinimizeOnVariantLaunch->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch", FALSE).toBool());
+  checkBoxExitOnVariantLaunch->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ExitOnVariantLaunch", FALSE).toBool());
 #endif
 #if defined(QMC2_SHOWMEMINFO)
   checkBoxMemoryIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", FALSE).toBool());
