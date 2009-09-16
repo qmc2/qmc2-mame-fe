@@ -11289,7 +11289,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../welcome.cpp" line="49"/>
-        <source>%1 executable file:</source>
+        <source>%1 executable file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -11373,18 +11373,18 @@ Exit now, accept once or ignore completely?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="155"/>
-        <source>path to ROM images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../welcome.ui" line="162"/>
         <source>Browse ROM path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../welcome.ui" line="155"/>
+        <source>Path to ROM images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../welcome.ui" line="179"/>
-        <source>path to samples</source>
+        <source>Path to samples</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
