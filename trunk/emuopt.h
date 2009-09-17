@@ -89,6 +89,7 @@ class EmulatorOptions : public QTreeWidget
     void load(bool overwrite = FALSE);
     void save();
     void createTemplateMap();
+    void checkTemplateMap();
     void createMap();
     void searchTimeout();
     void exportToIni(bool global, QString useFileName = QString());

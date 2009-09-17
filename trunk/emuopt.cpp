@@ -720,6 +720,15 @@ void EmulatorOptions::createTemplateMap()
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't determine template format"));
 }
 
+void EmulatorOptions::checkTemplateMap()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmulatorOptions::checkTemplateMap()");
+#endif
+
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "EmulatorOptions::checkTemplateMap(): sorry, this function is not yet implemented!");
+}
+
 void EmulatorOptions::keyPressEvent(QKeyEvent *e)
 {
 #ifdef QMC2_DEBUG
