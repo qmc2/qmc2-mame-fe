@@ -358,6 +358,11 @@ MainWindow::MainWindow(QWidget *parent)
   actionArcadeToggle->setVisible(FALSE);
 #endif
 
+  // FIXME: remove this when template checks are working
+#if QMC2_WIP_CODE != 1
+  actionCheckTemplateMap->setVisible(FALSE);
+#endif
+
   labelGameStatus->setVisible(FALSE);
   labelGameStatus->setPalette(qmc2StatusColorBlue);
 
