@@ -18,10 +18,15 @@
 # To make this script useful, you'll have to change the default values below for
 # both EMULATOR_PROGRAM and HELPER_PROGRAM.
 #
-# Copyright (C) 2008, R. Reucher
+# Copyright (C) 2008-2009, R. Reucher
 #
 # CHANGES
 # -------
+#
+# QMC2 0.2.b12, 17-SEP-2009:
+#
+# - added support for "-noreadconfig -showconfig" which is used by template
+#   checks
 #
 # QMC2 0.2.b6, 07-NOV-2008:
 #
@@ -37,26 +42,30 @@ EMULATOR_PROGRAM=/path/to/emulator/binary
 # call to the emulator in game mode
 HELPER_PROGRAM=/path/to/helper/program
 
-case "$1" in
-    -listxml|-help|-listfull)
+if [ "$@" = "-noreadconfig -showconfig" ]; then
 	exec $EMULATOR_PROGRAM $@
-        ;;
-    -rompath)
-	eval VERIFY_ROMS=\$$#
-	if [ "$VERIFY_ROMS" == "-verifyroms" ]; then
+else
+	case "$1" in
+		-listxml|-help|-listfull)
 		exec $EMULATOR_PROGRAM $@
-	else
-		eval VERIFY_ROMS=\$$(($# - 1))
-		if [ "$VERIFY_ROMS" == "-verifyroms" ]; then
+		;;
+	-rompath)
+		eval VERIFY_ROMS=\$$#
+		if [ "$VERIFY_ROMS" = "-verifyroms" ]; then
 			exec $EMULATOR_PROGRAM $@
 		else
-			echo "calling helper program: $HELPER_PROGRAM $@"
-			exec $HELPER_PROGRAM $@
+			eval VERIFY_ROMS=\$$(($# - 1))
+			if [ "$VERIFY_ROMS" = "-verifyroms" ]; then
+				exec $EMULATOR_PROGRAM $@
+			else
+				echo "calling helper program: $HELPER_PROGRAM $@"
+				exec $HELPER_PROGRAM $@
+			fi
 		fi
-	fi
-        ;;
-    *)
-	echo "calling helper program: $HELPER_PROGRAM $@"
-	exec $HELPER_PROGRAM $@
-        ;;
-esac
+		;;
+	*)
+		echo "calling helper program: $HELPER_PROGRAM $@"
+		exec $HELPER_PROGRAM $@
+		;;
+	esac
+fi
