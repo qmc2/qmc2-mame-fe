@@ -1441,6 +1441,16 @@ void MainWindow::on_actionRecreateTemplateMap_activated()
     qmc2GlobalEmulatorOptions->createTemplateMap();
 }
 
+void MainWindow::on_actionCheckTemplateMap_activated()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckTemplateMap_activated()");
+#endif
+
+  if ( qmc2GlobalEmulatorOptions != NULL )
+    qmc2GlobalEmulatorOptions->checkTemplateMap();
+}
+
 void MainWindow::on_actionOptions_activated()
 {
 #ifdef QMC2_DEBUG
@@ -5661,6 +5671,7 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+R"].second = qmc2MainWindow->actionReload;
   qmc2ShortcutMap["Ctrl+S"].second = qmc2MainWindow->actionCheckCurrentROM;
   qmc2ShortcutMap["Ctrl+T"].second = qmc2MainWindow->actionRecreateTemplateMap;
+  qmc2ShortcutMap["Ctrl+C"].second = qmc2MainWindow->actionCheckTemplateMap;
   qmc2ShortcutMap["Ctrl+X"].second = qmc2MainWindow->actionExitStop;
   qmc2ShortcutMap["Ctrl+Z"].second = qmc2MainWindow->actionROMAlyzer;
   qmc2ShortcutMap["Ctrl+Alt+C"].second = qmc2MainWindow->actionRomStatusFilterC;

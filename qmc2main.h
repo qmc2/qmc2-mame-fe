@@ -144,6 +144,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_actionClearMAWSCache_activated();
 #endif
     void on_actionRecreateTemplateMap_activated();
+    void on_actionCheckTemplateMap_activated();
     void on_actionOptions_activated();
 
     // display menu

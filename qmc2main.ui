@@ -1683,7 +1683,7 @@
      <x>0</x>
      <y>0</y>
      <width>581</width>
-     <height>26</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Help">
@@ -1712,6 +1712,7 @@
      <addaction name="actionClearMAWSCache"/>
      <addaction name="separator"/>
      <addaction name="actionRecreateTemplateMap"/>
+     <addaction name="actionCheckTemplateMap"/>
     </widget>
     <widget class="QMenu" name="menuAudio_player">
      <property name="title">
@@ -2665,6 +2666,20 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
+   </property>
+  </action>
+  <action name="actionCheckTemplateMap">
+   <property name="text">
+    <string>Check template map</string>
+   </property>
+   <property name="toolTip">
+    <string>Check template map against the configuration options of the currently selected emulator</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
  </widget>

@@ -212,6 +212,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload gamelist"), NULL);
   qmc2ShortcutMap["Ctrl+S"] = QPair<QString, QAction *>(tr("Check game's ROM state"), NULL);
   qmc2ShortcutMap["Ctrl+T"] = QPair<QString, QAction *>(tr("Recreate template map"), NULL);
+  qmc2ShortcutMap["Ctrl+C"] = QPair<QString, QAction *>(tr("Check template map"), NULL);
   qmc2ShortcutMap["Ctrl+X"] = QPair<QString, QAction *>(tr("Stop processing / exit QMC2"), NULL);
   qmc2ShortcutMap["Ctrl+Z"] = QPair<QString, QAction *>(tr("Open ROMAlyzer dialog"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+C"] = QPair<QString, QAction *>(tr("Toggle ROM state C"), NULL);
