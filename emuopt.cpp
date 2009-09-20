@@ -27,6 +27,7 @@ extern EmulatorOptions *qmc2EmulatorOptions;
 extern bool qmc2GuiReady;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern Gamelist *qmc2Gamelist;
+extern bool qmc2ReloadActive;
 
 QMap<QString, QList<EmulatorOption> > EmulatorOptions::templateMap;
 
@@ -726,7 +727,138 @@ void EmulatorOptions::checkTemplateMap()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmulatorOptions::checkTemplateMap()");
 #endif
 
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "EmulatorOptions::checkTemplateMap(): sorry, this function is not yet implemented!");
+  if ( qmc2ReloadActive ) {
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+    return;
+  }
+
+  int diffCount = 0;
+  QMap <QString, QString> emuOptions;
+
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("checking template configuration map against selected emulator"));
+
+  QStringList args;
+  QProcess commandProc;
+  commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile").toString());
+#if !defined(Q_WS_WIN)
+  commandProc.setStandardErrorFile("/dev/null");
+#endif
+
+  args << "-noreadconfig" << "-showconfig";
+  qApp->processEvents();
+#if defined(QMC2_EMUTYPE_MAME)
+  commandProc.start(qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString(), args);
+#elif defined(QMC2_EMUTYPE_MESS)
+  commandProc.start(qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString(), args);
+#endif
+  bool commandProcStarted = FALSE;
+  if ( commandProc.waitForStarted() ) {
+    commandProcStarted = TRUE;
+    bool commandProcRunning = (commandProc.state() == QProcess::Running);
+    while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
+      qApp->processEvents();
+      commandProcRunning = (commandProc.state() == QProcess::Running);
+    }
+  }
+
+  QFile qmc2Temp(qmc2Options->config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile").toString());
+  if ( commandProcStarted && qmc2Temp.open(QFile::ReadOnly) ) {
+    QTextStream ts(&qmc2Temp);
+    QString s = ts.readAll();
+    qmc2Temp.close();
+    qmc2Temp.remove();
+#if !defined(Q_WS_WIN)
+    QStringList sl = s.split("\n");
+#else
+    QStringList sl = s.split("\r\n");
+#endif
+    foreach (QString line, sl) {
+      QString l = line.simplified();
+      if ( l.isEmpty() ) continue;
+      if ( l.startsWith("#") ) continue;
+      if ( l.startsWith("<") ) continue;
+      if ( l.startsWith("readconfig") ) continue;
+      QStringList wl = l.split(" ");
+      if ( wl.count() == 2 )
+        emuOptions[wl[0]] = wl[1];
+      else if ( wl.count() == 1 )
+        emuOptions[wl[0]] = "";
+      else
+        continue;
+#ifdef QMC2_DEBUG
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: option [%1], default value [%2]").arg(wl[0]).arg(emuOptions[wl[0]]));
+#endif
+    }
+  } else {
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create temporary file, please check emulator executable and permissions"));
+  }
+  
+  QStringList templateOptions;
+  foreach (QString sectionTitle, optionsMap.keys()) {
+    EmulatorOption option;
+    int i;
+    for (i = 0; i < optionsMap[sectionTitle].count(); i++) {
+      option = optionsMap[sectionTitle][i];
+      templateOptions << option.name;
+      if ( emuOptions.contains(option.name) ) {
+        switch ( option.type ) {
+          case QMC2_EMUOPT_TYPE_INT:
+            if ( option.dvalue.toInt() != emuOptions[option.name].toInt() ) {
+              diffCount++;
+              qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'")
+                                                     .arg(option.name).arg(option.dvalue.toInt()).arg(emuOptions[option.name].toInt()).arg(tr("int")));
+            }
+            break;
+
+          case QMC2_EMUOPT_TYPE_FLOAT:
+            if ( option.dvalue.toDouble() != emuOptions[option.name].toDouble() ) {
+              diffCount++;
+              qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'")
+                                                     .arg(option.name).arg(option.dvalue.toDouble()).arg(emuOptions[option.name].toDouble()).arg(tr("float")));
+            }
+            break;
+
+          case QMC2_EMUOPT_TYPE_BOOL: {
+            QString emuOpt = "true";
+            if ( emuOptions[option.name] == "0" )
+              emuOpt = "false";
+            if ( option.dvalue != emuOpt ) {
+              diffCount++;
+              qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'")
+                                                     .arg(option.name).arg(option.dvalue).arg(emuOptions[option.name]).arg(tr("float")));
+            }
+            break;
+          }
+
+          case QMC2_EMUOPT_TYPE_FILE:
+          case QMC2_EMUOPT_TYPE_DIRECTORY:
+          case QMC2_EMUOPT_TYPE_STRING:
+          default:
+            if ( option.dvalue.replace("$HOME", "~") != emuOptions[option.name].replace("$HOME", "~") ) {
+              diffCount++;
+              qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator uses a different default value for option '%1' ('%2' vs. '%3'); assumed option type is '%4'")
+                                                     .arg(option.name).arg(option.dvalue).arg(emuOptions[option.name]).arg(tr("float")));
+            }
+            break;
+        }
+      } else if ( option.name != "readconfig" ) {
+        diffCount++;
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("template option '%1' is unknown to the emulator").arg(option.name));
+      }
+    }
+  }
+
+  QMapIterator<QString, QString> it(emuOptions);
+  while ( it.hasNext() ) {
+    it.next();
+    if ( !templateOptions.contains(it.key()) ) {
+      diffCount++;
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator option '%1' with default value '%2' is unknown to the template").arg(it.key()).arg(it.value()));
+    }
+  }
+
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (checking template configuration map against selected emulator)"));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("check results: %n differences", "", diffCount));
 }
 
 void EmulatorOptions::keyPressEvent(QKeyEvent *e)
