@@ -1683,7 +1683,7 @@
      <x>0</x>
      <y>0</y>
      <width>581</width>
-     <height>27</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Help">
@@ -2673,6 +2673,9 @@
     <string>Check template map</string>
    </property>
    <property name="toolTip">
+    <string>Check template map against the configuration options of the currently selected emulator</string>
+   </property>
+   <property name="statusTip">
     <string>Check template map against the configuration options of the currently selected emulator</string>
    </property>
    <property name="shortcut">
