@@ -5346,11 +5346,12 @@ Sollen diese beim Beenden geschlossen werden?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2676"/>
+        <location filename="../../qmc2main.ui" line="2679"/>
         <source>Check template map against the configuration options of the currently selected emulator</source>
         <translation>Abbildungsvorlage gegen die Konfigurationsoptionen des aktuell ausgewählten Emulators prüfen</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2679"/>
+        <location filename="../../qmc2main.ui" line="2682"/>
         <source>Ctrl+C</source>
         <translation></translation>
     </message>
