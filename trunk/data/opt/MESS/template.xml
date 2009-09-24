@@ -52,10 +52,11 @@
       <description lang="pl" text="Ścieżka do plików ułatwień"/>
       <description lang="fr" text="Répertoire des fichiers cheats"/>
     </option>
-    <option name="crsshairpath" type="directory" default="crsshair">
+    <option name="crosshairpath" type="directory" default="crosshair">
       <description lang="us" text="Path to crosshair files"/>
       <description lang="de" text="Suchpfad für Fadenkreuz-Dateien"/>
       <description lang="pl" text="Ścieżka do plików celowników"/>
+      <description lang="fr" text="Répertoire pour les viseurs"/>
     </option>
   </section>
   <section name="output_directories">
