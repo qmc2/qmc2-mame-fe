@@ -858,7 +858,7 @@ void EmulatorOptions::checkTemplateMap()
   }
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (checking template configuration map against selected emulator)"));
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("check results: %n differences", "", diffCount));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("check results: %n difference(s)", "", diffCount));
 }
 
 void EmulatorOptions::keyPressEvent(QKeyEvent *e)
