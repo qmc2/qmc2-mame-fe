@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>581</width>
-    <height>457</height>
+    <width>610</width>
+    <height>485</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1253,291 +1253,279 @@
          <attribute name="title">
           <string>MP&amp;3 player</string>
          </attribute>
-         <layout class="QGridLayout">
+         <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="0">
-           <widget class="QFrame" name="frame">
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+           <widget class="QListWidget" name="listWidgetAudioPlaylist">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+            <property name="contextMenuPolicy">
+             <enum>Qt::ActionsContextMenu</enum>
             </property>
-            <layout class="QGridLayout">
-             <item row="0" column="0">
-              <widget class="QListWidget" name="listWidgetAudioPlaylist">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="contextMenuPolicy">
-                <enum>Qt::ActionsContextMenu</enum>
-               </property>
-               <property name="toolTip">
-                <string>Playlist</string>
-               </property>
-               <property name="statusTip">
-                <string>Playlist</string>
-               </property>
-               <property name="selectionMode">
-                <enum>QAbstractItemView::ExtendedSelection</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <layout class="QHBoxLayout">
-               <item>
-                <widget class="QToolButton" name="toolButtonAudioPreviousTrack">
-                 <property name="toolTip">
-                  <string>Previous track</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Previous track</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/media_back.png</normaloff>:/data/img/media_back.png</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="toolButtonAudioNextTrack">
-                 <property name="toolTip">
-                  <string>Next track</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Next track</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/media_next.png</normaloff>:/data/img/media_next.png</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="toolButtonAudioFastBackward">
-                 <property name="toolTip">
-                  <string>Fast backward</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Fast backward</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/media_fastbackward.png</normaloff>:/data/img/media_fastbackward.png</iconset>
-                 </property>
-                 <property name="autoRepeat">
-                  <bool>true</bool>
-                 </property>
-                 <property name="autoRepeatDelay">
-                  <number>100</number>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="toolButtonAudioFastForward">
-                 <property name="toolTip">
-                  <string>Fast forward</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Fast forward</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/media_fastforward.png</normaloff>:/data/img/media_fastforward.png</iconset>
-                 </property>
-                 <property name="autoRepeat">
-                  <bool>true</bool>
-                 </property>
-                 <property name="autoRepeatDelay">
-                  <number>100</number>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="toolButtonAudioStopTrack">
-                 <property name="toolTip">
-                  <string>Stop track</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Stop track</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/media_stop.png</normaloff>:/data/img/media_stop.png</iconset>
-                 </property>
-                 <property name="checkable">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="toolButtonAudioPauseTrack">
-                 <property name="toolTip">
-                  <string>Pause track</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Pause track</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/media_pause.png</normaloff>:/data/img/media_pause.png</iconset>
-                 </property>
-                 <property name="checkable">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="toolButtonAudioPlayTrack">
-                 <property name="toolTip">
-                  <string>Play track</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Play track</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/media_play.png</normaloff>:/data/img/media_play.png</iconset>
-                 </property>
-                 <property name="checkable">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QProgressBar" name="progressBarAudioProgress">
-                 <property name="toolTip">
-                  <string>Progress indicator for current track</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Progress indicator for current track</string>
-                 </property>
-                 <property name="maximum">
-                  <number>100</number>
-                 </property>
-                 <property name="format">
-                  <string>%vs (%ms total)</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item row="2" column="0">
-              <layout class="QHBoxLayout">
-               <item>
-                <widget class="QToolButton" name="toolButtonAudioAddTracks">
-                 <property name="toolTip">
-                  <string>Browse for tracks to add to playlist</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Browse for tracks to add to playlist</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QToolButton" name="toolButtonAudioRemoveTracks">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="toolTip">
-                  <string>Remove selected tracks from playlist</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Remove selected tracks from playlist</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/stop.png</normaloff>:/data/img/stop.png</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkBoxAudioPlayOnStart">
-                 <property name="toolTip">
-                  <string>Start playing automatically when QMC2 has started</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Start playing automatically when QMC2 has started</string>
-                 </property>
-                 <property name="text">
-                  <string>Play on start</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkBoxAudioShuffle">
-                 <property name="toolTip">
-                  <string>Select random tracks from playlist</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Select random tracks from playlist</string>
-                 </property>
-                 <property name="text">
-                  <string>Shuffle</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkBoxAudioPause">
-                 <property name="toolTip">
-                  <string>Automatically pause audio playback when at least one emulator is running</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Automatically pause audio playback when at least one emulator is running</string>
-                 </property>
-                 <property name="text">
-                  <string>Pause</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkBoxAudioFade">
-                 <property name="toolTip">
-                  <string>Fade in and out on pause / resume</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Fade in and out on pause / resume</string>
-                 </property>
-                 <property name="text">
-                  <string>Fade in/out</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QSlider" name="sliderAudioVolume">
-                 <property name="toolTip">
-                  <string>Audio player volume</string>
-                 </property>
-                 <property name="statusTip">
-                  <string>Audio player volume</string>
-                 </property>
-                 <property name="maximum">
-                  <number>100</number>
-                 </property>
-                 <property name="sliderPosition">
-                  <number>50</number>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-            </layout>
+            <property name="toolTip">
+             <string>Playlist</string>
+            </property>
+            <property name="statusTip">
+             <string>Playlist</string>
+            </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::ExtendedSelection</enum>
+            </property>
            </widget>
+          </item>
+          <item row="1" column="0">
+           <layout class="QHBoxLayout" name="hlayout_2">
+            <item>
+             <widget class="QToolButton" name="toolButtonAudioPreviousTrack">
+              <property name="toolTip">
+               <string>Previous track</string>
+              </property>
+              <property name="statusTip">
+               <string>Previous track</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/media_back.png</normaloff>:/data/img/media_back.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButtonAudioNextTrack">
+              <property name="toolTip">
+               <string>Next track</string>
+              </property>
+              <property name="statusTip">
+               <string>Next track</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/media_next.png</normaloff>:/data/img/media_next.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButtonAudioFastBackward">
+              <property name="toolTip">
+               <string>Fast backward</string>
+              </property>
+              <property name="statusTip">
+               <string>Fast backward</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/media_fastbackward.png</normaloff>:/data/img/media_fastbackward.png</iconset>
+              </property>
+              <property name="autoRepeat">
+               <bool>true</bool>
+              </property>
+              <property name="autoRepeatDelay">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButtonAudioFastForward">
+              <property name="toolTip">
+               <string>Fast forward</string>
+              </property>
+              <property name="statusTip">
+               <string>Fast forward</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/media_fastforward.png</normaloff>:/data/img/media_fastforward.png</iconset>
+              </property>
+              <property name="autoRepeat">
+               <bool>true</bool>
+              </property>
+              <property name="autoRepeatDelay">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButtonAudioStopTrack">
+              <property name="toolTip">
+               <string>Stop track</string>
+              </property>
+              <property name="statusTip">
+               <string>Stop track</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/media_stop.png</normaloff>:/data/img/media_stop.png</iconset>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButtonAudioPauseTrack">
+              <property name="toolTip">
+               <string>Pause track</string>
+              </property>
+              <property name="statusTip">
+               <string>Pause track</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/media_pause.png</normaloff>:/data/img/media_pause.png</iconset>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButtonAudioPlayTrack">
+              <property name="toolTip">
+               <string>Play track</string>
+              </property>
+              <property name="statusTip">
+               <string>Play track</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/media_play.png</normaloff>:/data/img/media_play.png</iconset>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QProgressBar" name="progressBarAudioProgress">
+              <property name="toolTip">
+               <string>Progress indicator for current track</string>
+              </property>
+              <property name="statusTip">
+               <string>Progress indicator for current track</string>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="format">
+               <string>%vs (%ms total)</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="hlayout_3">
+            <item>
+             <widget class="QToolButton" name="toolButtonAudioAddTracks">
+              <property name="toolTip">
+               <string>Browse for tracks to add to playlist</string>
+              </property>
+              <property name="statusTip">
+               <string>Browse for tracks to add to playlist</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButtonAudioRemoveTracks">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>Remove selected tracks from playlist</string>
+              </property>
+              <property name="statusTip">
+               <string>Remove selected tracks from playlist</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/stop.png</normaloff>:/data/img/stop.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxAudioPlayOnStart">
+              <property name="toolTip">
+               <string>Start playing automatically when QMC2 has started</string>
+              </property>
+              <property name="statusTip">
+               <string>Start playing automatically when QMC2 has started</string>
+              </property>
+              <property name="text">
+               <string>Play on start</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxAudioShuffle">
+              <property name="toolTip">
+               <string>Select random tracks from playlist</string>
+              </property>
+              <property name="statusTip">
+               <string>Select random tracks from playlist</string>
+              </property>
+              <property name="text">
+               <string>Shuffle</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxAudioPause">
+              <property name="toolTip">
+               <string>Automatically pause audio playback when at least one emulator is running</string>
+              </property>
+              <property name="statusTip">
+               <string>Automatically pause audio playback when at least one emulator is running</string>
+              </property>
+              <property name="text">
+               <string>Pause</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxAudioFade">
+              <property name="toolTip">
+               <string>Fade in and out on pause / resume</string>
+              </property>
+              <property name="statusTip">
+               <string>Fade in and out on pause / resume</string>
+              </property>
+              <property name="text">
+               <string>Fade in/out</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSlider" name="sliderAudioVolume">
+              <property name="toolTip">
+               <string>Audio player volume</string>
+              </property>
+              <property name="statusTip">
+               <string>Audio player volume</string>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="sliderPosition">
+               <number>50</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -1549,51 +1537,51 @@
          <attribute name="title">
           <string>Dow&amp;nloads</string>
          </attribute>
-         <layout class="QGridLayout" name="gridLayout_4">
+         <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0">
-           <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="0" colspan="5">
-             <widget class="QTreeWidget" name="treeWidgetDownloads">
-              <property name="toolTip">
-               <string>List of active/inactive downloads</string>
-              </property>
-              <property name="statusTip">
-               <string>List of active/inactive downloads</string>
-              </property>
-              <property name="editTriggers">
-               <set>QAbstractItemView::NoEditTriggers</set>
-              </property>
-              <property name="selectionMode">
-               <enum>QAbstractItemView::ExtendedSelection</enum>
-              </property>
-              <property name="rootIsDecorated">
-               <bool>false</bool>
-              </property>
-              <property name="uniformRowHeights">
-               <bool>true</bool>
-              </property>
-              <property name="allColumnsShowFocus">
-               <bool>true</bool>
-              </property>
-              <property name="headerHidden">
-               <bool>true</bool>
-              </property>
-              <attribute name="headerMinimumSectionSize">
-               <number>0</number>
-              </attribute>
-              <column>
-               <property name="text">
-                <string>Status</string>
-               </property>
-              </column>
-              <column>
-               <property name="text">
-                <string>Progress</string>
-               </property>
-              </column>
-             </widget>
-            </item>
-            <item row="1" column="0">
+           <widget class="QTreeWidget" name="treeWidgetDownloads">
+            <property name="toolTip">
+             <string>List of active/inactive downloads</string>
+            </property>
+            <property name="statusTip">
+             <string>List of active/inactive downloads</string>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::ExtendedSelection</enum>
+            </property>
+            <property name="rootIsDecorated">
+             <bool>false</bool>
+            </property>
+            <property name="uniformRowHeights">
+             <bool>true</bool>
+            </property>
+            <property name="allColumnsShowFocus">
+             <bool>true</bool>
+            </property>
+            <property name="headerHidden">
+             <bool>true</bool>
+            </property>
+            <attribute name="headerMinimumSectionSize">
+             <number>0</number>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>Status</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Progress</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
              <widget class="QPushButton" name="pushButtonClearFinishedDownloads">
               <property name="toolTip">
                <string>Clear finished / stopped downloads from list</string>
@@ -1610,7 +1598,7 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="1">
+            <item>
              <widget class="QPushButton" name="pushButtonReloadSelectedDownloads">
               <property name="toolTip">
                <string>Reload selected downloads</string>
@@ -1627,7 +1615,7 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="2">
+            <item>
              <widget class="QPushButton" name="pushButtonStopSelectedDownloads">
               <property name="toolTip">
                <string>Stop selected downloads</string>
@@ -1644,20 +1632,7 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="4">
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="1" column="3">
+            <item>
              <widget class="QCheckBox" name="checkBoxRemoveFinishedDownloads">
               <property name="toolTip">
                <string>Automatically remove successfully finished downloads from this list</string>
@@ -1666,6 +1641,19 @@
                <string>Remove finished</string>
               </property>
              </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>258</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
            </layout>
           </item>
@@ -1682,8 +1670,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>581</width>
-     <height>29</height>
+     <width>610</width>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Help">
@@ -2719,6 +2707,11 @@
   <tabstop>checkBoxAudioPause</tabstop>
   <tabstop>checkBoxAudioFade</tabstop>
   <tabstop>sliderAudioVolume</tabstop>
+  <tabstop>treeWidgetDownloads</tabstop>
+  <tabstop>pushButtonClearFinishedDownloads</tabstop>
+  <tabstop>pushButtonReloadSelectedDownloads</tabstop>
+  <tabstop>pushButtonStopSelectedDownloads</tabstop>
+  <tabstop>checkBoxRemoveFinishedDownloads</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
