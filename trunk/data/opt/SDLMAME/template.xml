@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="SDLMAME" version="0.134u1" format="0.2.2">
+<template emulator="SDLMAME" version="0.134u2" format="0.2.2">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
