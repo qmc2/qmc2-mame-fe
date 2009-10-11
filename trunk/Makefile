@@ -642,14 +642,17 @@ config:
 	@echo "WIP=<wip>              Enable unfinished code (0, 1)               $(WIP)"
 
 # process translations
-LANGUAGES = us de pl fr gr
-LBINARIES = $(addsuffix .qm, $(addprefix data/lng/qmc2_, $(LANGUAGES)))
+QMC2_TRANSLATIONS = us de pl fr gr
+QT_TRANSLATIONS = de pl fr
+LBINARIES = $(addsuffix .qm, $(addprefix data/lng/qmc2_, $(QMC2_TRANSLATIONS))) $(addsuffix .qm, $(addprefix data/lng/qt_, $(QT_TRANSLATIONS)))
 LREL = $(LRELEASE) $<
 ifeq '$(PRETTY)' '1'
 LREL = @echo [LREL] $< && $(LRELEASE) $< > /dev/null
 endif
 
 lang: $(LBINARIES)
+
+# QMC2 translations
 
 data/lng/qmc2_us.qm: data/lng/qmc2_us.ts
 	$(LREL)
@@ -665,5 +668,22 @@ data/lng/qmc2_fr.qm: data/lng/qmc2_fr.ts
 
 data/lng/qmc2_gr.qm: data/lng/qmc2_gr.ts
 	$(LREL)
+
+# Qt translations
+
+#data/lng/qt_us.qm: data/lng/qt_us.ts
+#	$(LREL)
+
+data/lng/qt_de.qm: data/lng/qt_de.ts
+	$(LREL)
+
+data/lng/qt_pl.qm: data/lng/qt_pl.ts
+	$(LREL)
+
+data/lng/qt_fr.qm: data/lng/qt_fr.ts
+	$(LREL)
+
+#data/lng/qt_gr.qm: data/lng/qt_gr.ts
+#	$(LREL)
 
 # end of file

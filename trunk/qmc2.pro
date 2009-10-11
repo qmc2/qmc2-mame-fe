@@ -113,7 +113,10 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			data/lng/qmc2_de.ts \
 			data/lng/qmc2_pl.ts \
 			data/lng/qmc2_fr.ts \
-			data/lng/qmc2_gr.ts
+			data/lng/qmc2_gr.ts \
+			data/lng/qt_de.ts \
+			data/lng/qt_pl.ts \
+			data/lng/qt_fr.ts
 		RESOURCES += qmc2.qrc
 		QMAKE_MAKEFILE = Makefile.qmake
 		# produce pretty (silent) compile output
