@@ -4629,7 +4629,7 @@ void MainWindow::processFifoData()
   if ( data.isEmpty() ) {
     if ( qmc2ProcessManager->procMap.count() <= 0 ) {
       // last emulator exited... recreate & reconnect FIFO to circumvent endless loops due to NULL data
-      QTimer::singleShot(0, this, SLOT(recreateFifo()));
+      recreateFifo();
     }
     return;
   }
