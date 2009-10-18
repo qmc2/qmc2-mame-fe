@@ -5179,7 +5179,11 @@ void MainWindow::createMawsQuickLinksMenu()
   toolButtonMAWSQuickLinks->setToolTip(tr("Quick download links for MAWS data usable by QMC2"));
 
   connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(mouseOnView(bool)), this, SLOT(mawsQuickLinksSetVisible(bool)));
+#if QT_VERSION <= 0x040502
+  // for Qt versions <= 4.5.2 we need to force a background widget update
+  // (doing this with Qt 4.5.3+, where it seems to have been fixed in itself, causes major trouble, though!)
   connect(toolButtonMAWSQuickLinks, SIGNAL(paintFinished()), qmc2MAWSLookup->webViewBrowser, SLOT(update()));
+#endif
 
   menuMAWSQuickLinks = new QMenu(toolButtonMAWSQuickLinks);
 
