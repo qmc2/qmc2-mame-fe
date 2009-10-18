@@ -31,7 +31,12 @@ class AutoPopupToolButton : public QToolButton
   Q_OBJECT
 
   public:
-    AutoPopupToolButton(QWidget *parent = 0) : QToolButton(parent) { ; }
+    QTimer menuTimer;
+
+    AutoPopupToolButton(QWidget *parent = 0) : QToolButton(parent)
+    {
+      connect(&menuTimer, SIGNAL(timeout()), this, SLOT(hideMenu()));
+    }
 
   public slots:
     void hideMenu()
@@ -47,14 +52,14 @@ class AutoPopupToolButton : public QToolButton
   protected:
     void enterEvent(QEvent *e)
     {
-      if ( menu() )
-        QTimer::singleShot(0, this, SLOT(showMenu()));
       QToolButton::enterEvent(e);
+      QTimer::singleShot(0, this, SLOT(showMenu()));
+      menuTimer.stop();
     }
     void leaveEvent(QEvent *e)
     {
-      QTimer::singleShot(1000, this, SLOT(hideMenu()));
       QToolButton::leaveEvent(e);
+      menuTimer.start(1000);
     }
     void paintEvent(QPaintEvent *e)
     {
