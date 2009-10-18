@@ -3604,10 +3604,13 @@ void MainWindow::setupStyleSheet(QString styleSheetName)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::setupStyleSheet(QString &styleSheetName = %1").arg(styleSheetName));
 #endif
 
+  static QString oldStyleSheetName = "";
+  
   if ( !styleSheetName.isEmpty() ) {
     QFile f(styleSheetName);
     if ( f.open(QIODevice::ReadOnly) ) {
-      log(QMC2_LOG_FRONTEND, tr("loading style sheet '%1'").arg(styleSheetName));
+      if ( styleSheetName != oldStyleSheetName )
+        log(QMC2_LOG_FRONTEND, tr("loading style sheet '%1'").arg(styleSheetName));
       QString currentDir = QDir::currentPath();
       QDir::setCurrent(QFileInfo(f).absolutePath());
       qApp->setStyleSheet(f.readAll());
@@ -3622,6 +3625,8 @@ void MainWindow::setupStyleSheet(QString styleSheetName)
       log(QMC2_LOG_FRONTEND, tr("removing current style sheet"));
     qApp->setStyleSheet("");
   }
+
+  oldStyleSheetName = styleSheetName;
 
   qApp->processEvents();
 }
