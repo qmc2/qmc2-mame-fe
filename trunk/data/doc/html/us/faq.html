@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.2.b12, 13-OCT-2009</h3>
+<h3>FAQ - v0.2.b12, 19-OCT-2009</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (Linux) distribution comes with an older version of Qt. What should I do about that?</a></div></p>
@@ -38,6 +38,7 @@
 <p><div class="menuitem"><a href="#A2.9">Q2.9: In rare cases, QMC2 <i>hangs</i> during emulation or after the emulator has finished. That's a bug, right?</a></div></p>
 <p><div class="menuitem"><a href="#A2.10">Q2.10: I'm having trouble to set up the emulator configuration. Am I missing something?</a></div></p>
 <p><div class="menuitem"><a href="#A2.11">Q2.11: When I try to launch another QMC2 variant from a currently running one, nothing happens. What's up?</a></div></p>
+<p><div class="menuitem"><a href="#A2.12">Q2.12: The MAWS lookup feature is nice, but I would like to use another catalog. Is it possible?</a></div></p>
 <p><b>Miscellaneous FAQs, known bugs inside and outside of QMC2 etc.:</b></p>
 <p><div class="menuitem"><a href="#A3.1">Q3.1: QMC2 doesn't determine the ROM state. What's wrong?</a></div></p>
 <p><div class="menuitem"><a href="#A3.2">Q3.2: ROM state filtering takes veeeery long. What's up?</a></div></p>
@@ -379,6 +380,19 @@ I had to go into the CompizConfig Settings Manager, General Options, Focus &amp;
 </i></p>
 <p>Note that enabling the GUI option <i>Minimize on variant launch</i> may help to circumvent most (if not all) of these possible troubles!</p>
 <p>Any information on how to setup other window managers / desktop environments is greatly appreciated!</p>
+<hr>
+<p><a name="A2.12"></a><b>Q2.12: The MAWS lookup feature is nice, but I would like to use another catalog. Is it possible?</b></p>
+<p>Yes, within certain restrictions this is possible. All you need to do is change the <i>MAWS base URL</i> that QMC2 uses.</p>
+<p>This can be accomplished through the <i>detail setup</i> dialog which you can open from the game/machine detail context menu (right-click on the tab header) or via the normal setup dialog which contains a button to open the detail setup (see front end's GUI tab). Select <i>MAWS page (web lookup)</i> in the list of active details and click on <i>Configure...</i>. Then, edit the base URL according to your needs.</p>
+<p>The restrictions that apply are the following:</p>
+<ul>
+  <li>The URL that you need to use for an individual game/machine must contain the game's/machine's ID (its short name). The placeholder '<i>%1</i>' will be replaced with the ID when retrieving the page, and it <b>must</b> be included in the URL pattern.</li>
+  <li>The <i>MAWS quick download links</i> feature will only work for the original MAWS pages. Therefor, if you change the base URL, you should disable this feature (the second configuration question will allow you to disable it).</li>
+</ul>
+<p>A good alternative catalog based on the same data is <i>mini MAWS</i> for which the base URL would have to look like this:</p>
+<pre>http://maws.mameworld.info/minimaws/romset/%1</pre>
+<p>To use the original (full-blown) MAWS catalog, the URL pattern should look like this (which is the default):</p>
+<pre>http://maws.mameworld.info/maws/romset/%1</pre>
 <hr>
 <p><a name="A3.1"></a><b>Q3.1: QMC2 doesn't determine the ROM state. What's wrong?</b></p>
 <p>There are at least three possible scenarios:</p>
