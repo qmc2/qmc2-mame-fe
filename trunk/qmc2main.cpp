@@ -5099,20 +5099,24 @@ void MainWindow::mawsLoadFinished(bool ok)
     QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
     // only cache the ROM set page, don't cache followed pages
     if ( qmc2MAWSLookup->webViewBrowser->url().toString() == qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString().arg(gameName) ) {
-      // modify the HTML to contain a "clean" MAWS copyright in the footer
-      QString mawsHtml = qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml();
-      mawsHtml.replace("href=\"#top\"", QString("href=\"%1#top\"").arg(qmc2MAWSLookup->webViewBrowser->url().path()));
-      int startIndex = mawsHtml.indexOf("<div class=\"ifFoot\"");
-      mawsHtml.remove(startIndex, mawsHtml.indexOf("</div>") + 6);
-      mawsHtml.insert(startIndex, QString("<p><font size=\"-1\">Copyright &copy; 2004 - %1 <a href=\"%2\"><b>MAWS</b></a>, All Rights Reserved</font></p>").arg(QDate::currentDate().year()).arg(QMC2_MAWS_HOMEPAGE_URL));
 
-      // make sure to scroll to last last scroll position after exchanging the HTML
-      QPoint scrollPos = qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->scrollPosition();
-      qmc2MAWSLookup->webViewBrowser->setUpdatesEnabled(FALSE);
-      qmc2MAWSLookup->webViewBrowser->setHtml(mawsHtml, QUrl(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString().arg(gameName)));
-      qmc2MAWSLookup->webViewBrowser->stop();
-      qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->setScrollPosition(scrollPos);
-      qmc2MAWSLookup->webViewBrowser->setUpdatesEnabled(TRUE);
+      // the following "mods" will only be done on the original MAWS pages
+      if ( qmc2MAWSLookup->webViewBrowser->url().toString().startsWith(QMC2_MAWS_BASE_URL) ) {
+        // modify the HTML to contain a "clean" MAWS copyright in the footer
+        QString mawsHtml = qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml();
+        mawsHtml.replace("href=\"#top\"", QString("href=\"%1#top\"").arg(qmc2MAWSLookup->webViewBrowser->url().path()));
+        int startIndex = mawsHtml.indexOf("<div class=\"ifFoot\"");
+        mawsHtml.remove(startIndex, mawsHtml.indexOf("</div>") + 6);
+        mawsHtml.insert(startIndex, QString("<p><font size=\"-1\">Copyright &copy; 2004 - %1 <a href=\"%2\"><b>MAWS</b></a>, All Rights Reserved</font></p>").arg(QDate::currentDate().year()).arg(QMC2_MAWS_HOMEPAGE_URL));
+
+        // make sure to scroll to last last scroll position after exchanging the HTML
+        QPoint scrollPos = qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->scrollPosition();
+        qmc2MAWSLookup->webViewBrowser->setUpdatesEnabled(FALSE);
+        qmc2MAWSLookup->webViewBrowser->setHtml(mawsHtml, QUrl(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString().arg(gameName)));
+        qmc2MAWSLookup->webViewBrowser->stop();
+        qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->setScrollPosition(scrollPos);
+        qmc2MAWSLookup->webViewBrowser->setUpdatesEnabled(TRUE);
+      }
 
       // store compressed page to in-memory cache
       QByteArray mawsData = qCompress(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
