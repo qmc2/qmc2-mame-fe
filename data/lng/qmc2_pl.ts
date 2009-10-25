@@ -1893,17 +1893,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="731"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished">proszę poczekać za zakończenie przeładowywania i spróbować ponownie</translation>
+        <translation>proszę poczekać za zakończenie przeładowywania i spróbować ponownie</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="738"/>
         <source>checking template configuration map against selected emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>sprawdzanie mapy konfiguracji szablonu z wybranym emulatorem</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="793"/>
         <source>FATAL: can&apos;t create temporary file, please check emulator executable and permissions</source>
-        <translation type="unfinished">FATALNIE: nie można stworzyć pliku tymczasowego, proszę sprawdzić plik wykonywalny emulatora oraz uprawnienia</translation>
+        <translation>FATALNIE: nie można stworzyć pliku tymczasowego, proszę sprawdzić plik wykonywalny emulatora oraz uprawnienia</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="808"/>
@@ -1911,30 +1911,30 @@ p, li { white-space: pre-wrap; }
         <location filename="../../emuopt.cpp" line="827"/>
         <location filename="../../emuopt.cpp" line="839"/>
         <source>emulator uses a different default value for option &apos;%1&apos; (&apos;%2&apos; vs. &apos;%3&apos;); assumed option type is &apos;%4&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>emulator używa innej wartości domyślnej dla opcji &apos;%1&apos; (&apos;%2&apos; zamiast &apos;%3&apos;); przypuszczalny typ opcji to &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="846"/>
         <source>template option &apos;%1&apos; is unknown to the emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>opcja szablonu &apos;%1&apos; nie jest znana emulatorowi</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="856"/>
         <source>emulator option &apos;%1&apos; with default value &apos;%2&apos; is unknown to the template</source>
-        <translation type="unfinished"></translation>
+        <translation>opcja emulatora &apos;%1&apos; o domyślnej wartości &apos;%2&apos; nie jest znana szablonowi</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="860"/>
         <source>done (checking template configuration map against selected emulator)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (sprawdzanie mapy konfiguracji szablonu z wybranym emulatorem)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../emuopt.cpp" line="861"/>
         <source>check results: %n difference(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>wyniki sprawdzenia: %n różnica</numerusform>
+            <numerusform>wyniki sprawdzenia: %n różnice</numerusform>
+            <numerusform>wyniki sprawdzenia: %n różnic</numerusform>
         </translation>
     </message>
     <message>
@@ -2152,12 +2152,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="114"/>
         <source>supported</source>
-        <translation>wspierany</translation>
+        <translation type="unfinished">obsługiwany</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="114"/>
         <source>unsupported</source>
-        <translation>niewspierany</translation>
+        <translation type="unfinished">nieobsługiwany</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="115"/>
@@ -2243,7 +2243,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="282"/>
         <source>determining emulator version and supported games</source>
-        <translation>określanie wersji emulatora i wspieranych gier</translation>
+        <translation type="unfinished">określanie wersji emulatora i obsługiwanych gier</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="330"/>
@@ -2259,12 +2259,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="395"/>
         <source>done (determining emulator version and supported games, elapsed time = %1)</source>
-        <translation>ukończono (określanie wersji emulatora i wspieranych gier, miniony czas = %1)</translation>
+        <translation type="unfinished">ukończono (określanie wersji emulatora i obsługiwanych gier, miniony czas = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="421"/>
         <source>FATAL: couldn&apos;t determine supported games</source>
-        <translation>FATALNIE: nie udało się ustalić wspieranych gier</translation>
+        <translation>FATALNIE: nie udało się ustalić obsługiwanych gier</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="464"/>
@@ -2765,9 +2765,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="415"/>
         <source>%n supported game(s)</source>
         <translation>
-            <numerusform>%n wspierana gra</numerusform>
-            <numerusform>%n wspierane gry</numerusform>
-            <numerusform>%n wspieranych gier</numerusform>
+            <numerusform>%n obsługiwana gra</numerusform>
+            <numerusform>%n obsługiwane gry</numerusform>
+            <numerusform>%n obsługiwanych gier</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -3053,7 +3053,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="899"/>
         <source>Extension</source>
-        <translation>określanie wersji emulatora i wspieranych maszyn</translation>
+        <translation>Rozszerzenie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="880"/>
@@ -3063,12 +3063,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="284"/>
         <source>determining emulator version and supported machines</source>
-        <translation>określanie wersji emulatora i wspieranych maszyn</translation>
+        <translation>określanie wersji emulatora i obsługiwanych maszyn</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="397"/>
         <source>done (determining emulator version and supported machines, elapsed time = %1)</source>
-        <translation>ukończono (określanie wersji emulatora i wspieranych maszyn, miniony czas = %1)</translation>
+        <translation>ukończono (określanie wersji emulatora i obsługiwanych maszyn, miniony czas = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="405"/>
@@ -3084,15 +3084,15 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="417"/>
         <source>%n supported machine(s)</source>
         <translation>
-            <numerusform>%n wspierana maszyna</numerusform>
-            <numerusform>%n wspierane maszyny</numerusform>
-            <numerusform>%n wspieranych maszyn</numerusform>
+            <numerusform>%n obsługiwana maszyna</numerusform>
+            <numerusform>%n obsługiwane maszyny</numerusform>
+            <numerusform>%n obsługiwanych maszyn</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="423"/>
         <source>FATAL: couldn&apos;t determine supported machines</source>
-        <translation>FATALNIE: nie udało ustalić się wspieranych maszyn</translation>
+        <translation>FATALNIE: nie udało ustalić się obsługiwanych maszyn</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="459"/>
@@ -4203,7 +4203,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="99"/>
         <source>List of all supported games</source>
-        <translation>Lista wszystkich wspieranych gier</translation>
+        <translation>Lista wszystkich obsługiwanych gier</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="106"/>
@@ -4290,7 +4290,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.ui" line="440"/>
         <location filename="../../qmc2main.ui" line="443"/>
         <source>Indicator for current memory usage</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaźnik bieżącego zużycia pamięci</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="953"/>
@@ -4419,18 +4419,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="2673"/>
         <source>Check template map</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdź mapę szablonu</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2676"/>
         <location filename="../../qmc2main.ui" line="2679"/>
         <source>Check template map against the configuration options of the currently selected emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdź mapę szablonu z opcjami konfiguracji obecnie wybranego emulatora</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2682"/>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="551"/>
@@ -6589,22 +6589,22 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5617"/>
         <source>Physical memory:</source>
-        <translation type="unfinished">Pamięć fizyczna:</translation>
+        <translation>Pamięć fizyczna:</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5617"/>
         <source>Total: %1 MB</source>
-        <translation type="unfinished">Całkowita: %1 MB</translation>
+        <translation>Całkowita: %1 MB</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5617"/>
         <source>Free: %1 MB</source>
-        <translation type="unfinished">Wolna: %1 MB</translation>
+        <translation>Wolna: %1 MB</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5617"/>
         <source>Used: %1 MB</source>
-        <translation type="unfinished">W użyciu: %1 MB</translation>
+        <translation>W użyciu: %1 MB</translation>
     </message>
 </context>
 <context>
@@ -7679,17 +7679,17 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../options.ui" line="750"/>
         <source>Show memory  usage</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż zużycie pamięci</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="767"/>
         <source>Exit this QMC2 variant when launching another?</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakończyć ten wariant QMC2 przy uruchamianiu innego?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="770"/>
         <source>Exit on variant launch</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakończ przy uruchamianiu wariantu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1879"/>
@@ -7864,7 +7864,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../options.cpp" line="215"/>
         <source>Check template map</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdź mapę szablonu</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="216"/>
@@ -9048,7 +9048,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.ui" line="747"/>
         <source>Show indicator for current memory usage</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż wskaźnik bieżącego zużycia pamięci</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1489"/>
@@ -9529,25 +9529,25 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../gamelist.cpp" line="1489"/>
         <location filename="../../options.cpp" line="980"/>
         <source>game description</source>
-        <translation>opis gry</translation>
+        <translation>opisu gry</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1495"/>
         <location filename="../../options.cpp" line="986"/>
         <source>ROM state</source>
-        <translation>Stan ROM-u</translation>
+        <translation>stanu ROM-u</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1498"/>
         <location filename="../../options.cpp" line="989"/>
         <source>year</source>
-        <translation>rok</translation>
+        <translation>roku</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1501"/>
         <location filename="../../options.cpp" line="992"/>
         <source>manufacturer</source>
-        <translation>producent</translation>
+        <translation>producenta</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2260"/>
@@ -9639,13 +9639,13 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../gamelist.cpp" line="1491"/>
         <location filename="../../options.cpp" line="982"/>
         <source>machine description</source>
-        <translation>opis maszyny</translation>
+        <translation>opisu maszyny</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1507"/>
         <location filename="../../options.cpp" line="998"/>
         <source>machine name</source>
-        <translation>nazwa maszyny</translation>
+        <translation>nazwy maszyny</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5829"/>
@@ -10533,7 +10533,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="814"/>
         <source>only CHD v3 and v4 supported -- skipped</source>
-        <translation>wspierane są tylko CHD v3 i v4 -- pominięto</translation>
+        <translation>obsługiwane są tylko CHD v3 i v4 -- pominięto</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="741"/>
@@ -10543,12 +10543,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="824"/>
         <source>CHD loading not supported for CHD v3, using header checksums instead</source>
-        <translation>Ładowanie CHD niewspierane dla CHD v3, używanie zamiennie sum kontrolnych nagłówka</translation>
+        <translation>Ładowanie CHD nieobsługiwane dla CHD v3, używanie zamiennie sum kontrolnych nagłówka</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="837"/>
         <source>CHD loading not supported for CHD v4, using header checksums instead</source>
-        <translation>Ładowanie CHD niewspierane dla CHD v4, używanie zamiennie sum kontrolnych nagłówka</translation>
+        <translation>Ładowanie CHD nieobsługiwane dla CHD v4, używanie zamiennie sum kontrolnych nagłówka</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="925"/>
@@ -11434,12 +11434,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../welcome.ui" line="155"/>
         <source>Path to ROM images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do obrazów ROM-ów</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="179"/>
         <source>Path to samples</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do sampli</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="210"/>
@@ -11520,12 +11520,12 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../welcome.cpp" line="47"/>
         <source>Unsupported emulator</source>
-        <translation>Niewspierany emulator</translation>
+        <translation>Nieobsługiwany emulator</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="49"/>
         <source>%1 executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 plik wykonywalny</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="206"/>
