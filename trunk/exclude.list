@@ -60,6 +60,7 @@ qmc2/arch/.svn/text-base/Darwin.cfg.svn-base
 qmc2/arch/.svn/text-base/default.cfg.svn-base
 qmc2/arch/.svn/text-base/FreeBSD.cfg.svn-base
 qmc2/arch/.svn/text-base/Linux.cfg.svn-base
+qmc2/arch/.svn/text-base/NetBSD.cfg.svn-base
 qmc2/arch/.svn/text-base/SunOS.cfg.svn-base
 qmc2/data/cab/.svn
 qmc2/data/cab/.svn/text-base/dirinfo.txt.svn-base
