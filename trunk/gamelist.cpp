@@ -54,9 +54,9 @@ extern Title *qmc2Title;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern QTreeWidgetItem *qmc2LastGameInfoItem;
+#if defined(QMC2_EMUTYPE_MAME)
 extern QTreeWidgetItem *qmc2LastMAWSItem;
 extern MiniWebBrowser *qmc2MAWSLookup;
-#if defined(QMC2_EMUTYPE_MAME)
 extern QTreeWidgetItem *qmc2LastEmuInfoItem;
 #endif
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
@@ -166,9 +166,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseGameInfoDB->setEnabled(enable);
 #if defined(QMC2_EMUTYPE_MAME)
   qmc2Options->toolButtonBrowseEmuInfoDB->setEnabled(enable);
-#if QT_VERSON >= 0x040500
   qmc2Options->toolButtonBrowseMAWSCacheDirectory->setEnabled(enable);
-#endif
 #endif
   qmc2Options->toolButtonBrowseExecutableFile->setEnabled(enable);
   qmc2Options->lineEditExecutableFile->setEnabled(enable);

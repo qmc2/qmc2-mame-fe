@@ -156,13 +156,12 @@ void Welcome::setupLanguage()
   }
 
   QString directory = startupConfig->value("FilesAndDirectories/DataDirectory", "data/").toString() + "lng/";
-  qmc2Translator = new QTranslator(0);
-  qmc2Translator->load(directory + QString("qmc2_") + lang + ".qm");
-  qApp->installTranslator(qmc2Translator);
-
   qmc2QtTranslator = new QTranslator(0);
   qmc2QtTranslator->load(directory + QString("qt_") + lang + ".qm");
   qApp->installTranslator(qmc2QtTranslator);
+  qmc2Translator = new QTranslator(0);
+  qmc2Translator->load(directory + QString("qmc2_") + lang + ".qm");
+  qApp->installTranslator(qmc2Translator);
 }
 
 bool Welcome::checkConfig()
