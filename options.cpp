@@ -317,13 +317,8 @@ void Options::apply()
   // adjust icon sizes of buttons
   QFont f;
   f.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
-  if ( qApp->styleSheet().isEmpty() ) {
-    qApp->setFont(f);
-  } else {
-    // if a style sheet is in use, we need to circumvent a (potential) Qt bug...
-    foreach (QWidget *widget, QApplication::allWidgets())
-      widget->setFont(f);
-  }
+  foreach (QWidget *widget, QApplication::allWidgets())
+    widget->setFont(f);
   QFontMetrics fm(f);
   QSize iconSize(fm.height() - 2, fm.height() - 2);
   qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSize);
