@@ -116,6 +116,7 @@
 #define QMC2_OPTIONS_FE_TOOLS_INDEX		5
 #define QMC2_OPTIONS_EMU_CONFIG_INDEX		0
 #define QMC2_OPTIONS_EMU_FILES_INDEX		1
+#define QMC2_OPTIONS_EMU_ADDTLEMUS_INDEX	2
 
 // index positions of sort criteria combobox entries
 #define QMC2_SORTCRITERIA_DESCRIPTION		0
