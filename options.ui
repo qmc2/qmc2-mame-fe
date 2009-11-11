@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>515</height>
+    <width>445</width>
+    <height>489</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -3618,6 +3618,198 @@
            </item>
           </layout>
          </widget>
+         <widget class="QWidget" name="tabAdditionalEmulators">
+          <attribute name="title">
+           <string>Additional &amp;Emulators</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_0">
+           <property name="margin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QScrollArea" name="scrollAreaAdditionalEmulators">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents_8">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>401</width>
+                <height>364</height>
+               </rect>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_22">
+               <item row="0" column="0" colspan="5">
+                <widget class="QTableWidget" name="tableWidgetRegisteredEmulators">
+                 <property name="toolTip">
+                  <string>Registered emulators -- you may select one of these in the game/machine-specific emulator configuration</string>
+                 </property>
+                 <property name="editTriggers">
+                  <set>QAbstractItemView::NoEditTriggers</set>
+                 </property>
+                 <property name="selectionMode">
+                  <enum>QAbstractItemView::SingleSelection</enum>
+                 </property>
+                 <property name="selectionBehavior">
+                  <enum>QAbstractItemView::SelectRows</enum>
+                 </property>
+                 <property name="showGrid">
+                  <bool>false</bool>
+                 </property>
+                 <property name="sortingEnabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>false</bool>
+                 </property>
+                 <property name="cornerButtonEnabled">
+                  <bool>false</bool>
+                 </property>
+                 <attribute name="horizontalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderVisible">
+                  <bool>false</bool>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string>Name</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Executable</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Default arguments</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QToolButton" name="toolButtonAddEmulator">
+                 <property name="toolTip">
+                  <string>Add emulator registration (generates a unique name if required)</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qmc2.qrc">
+                   <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QToolButton" name="toolButtonSaveEmulator">
+                 <property name="toolTip">
+                  <string>Save/replace emulator registration (or add a new one if the name is unique)</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qmc2.qrc">
+                   <normaloff>:/data/img/filesave.png</normaloff>:/data/img/filesave.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2" colspan="2">
+                <spacer name="horizontalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="4">
+                <widget class="QToolButton" name="toolButtonRemoveEmulator">
+                 <property name="toolTip">
+                  <string>Deregister emulator</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qmc2.qrc">
+                   <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="2">
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>Name</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="3" colspan="2">
+                <widget class="QLineEdit" name="lineEditAdditionalEmulatorName">
+                 <property name="toolTip">
+                  <string>Registered emulator's name</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="QLabel" name="label_2">
+                 <property name="text">
+                  <string>Command</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="3">
+                <widget class="QLineEdit" name="lineEditAdditionalEmulatorExecutableFile">
+                 <property name="toolTip">
+                  <string>Command to execute emulator (path to executable file)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseAdditionalEmulatorExecutable">
+                 <property name="toolTip">
+                  <string>Browse emulator executable file</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qmc2.qrc">
+                   <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="3">
+                <widget class="QLabel" name="label_3">
+                 <property name="text">
+                  <string>Default arguments</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="3" colspan="2">
+                <widget class="QLineEdit" name="lineEditAdditionalEmulatorArguments">
+                 <property name="toolTip">
+                  <string>Default arguments -- use $ID$ as a placeholder for the game's/machine's unique short name</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>
@@ -3861,16 +4053,25 @@
   <tabstop>toolButtonBrowseROMStateCacheFile</tabstop>
   <tabstop>lineEditMAWSCacheDirectory</tabstop>
   <tabstop>toolButtonBrowseMAWSCacheDirectory</tabstop>
+  <tabstop>tableWidgetRegisteredEmulators</tabstop>
+  <tabstop>toolButtonAddEmulator</tabstop>
+  <tabstop>toolButtonSaveEmulator</tabstop>
+  <tabstop>toolButtonRemoveEmulator</tabstop>
+  <tabstop>lineEditAdditionalEmulatorName</tabstop>
+  <tabstop>lineEditAdditionalEmulatorExecutableFile</tabstop>
+  <tabstop>toolButtonBrowseAdditionalEmulatorExecutable</tabstop>
+  <tabstop>lineEditAdditionalEmulatorArguments</tabstop>
   <tabstop>pushButtonApply</tabstop>
   <tabstop>pushButtonRestore</tabstop>
   <tabstop>pushButtonDefault</tabstop>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonCancel</tabstop>
-  <tabstop>scrollAreaEmulatorFilesAndDirectories</tabstop>
-  <tabstop>scrollAreaFrontendTools</tabstop>
   <tabstop>scrollAreaFrontendGamelist</tabstop>
-  <tabstop>scrollAreaFrontendShortcuts</tabstop>
   <tabstop>scrollAreaFrontendJoystick</tabstop>
+  <tabstop>scrollAreaFrontendShortcuts</tabstop>
+  <tabstop>scrollAreaFrontendTools</tabstop>
+  <tabstop>scrollAreaEmulatorFilesAndDirectories</tabstop>
+  <tabstop>scrollAreaAdditionalEmulators</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>

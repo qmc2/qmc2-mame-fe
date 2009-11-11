@@ -140,6 +140,11 @@ Options::Options(QWidget *parent)
 
   setupUi(this);
 
+#if QMC2_WIP_CODE != 1
+  // FIXME: remove this when emulator registrations work
+  tabWidgetGlobalMAMESetup->removeTab(QMC2_OPTIONS_EMU_ADDTLEMUS_INDEX);
+#endif
+
 #if !defined(QMC2_SHOWMEMINFO)
   checkBoxMemoryIndicator->setVisible(FALSE);
 #endif
