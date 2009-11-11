@@ -317,6 +317,7 @@ void Options::apply()
   // adjust icon sizes of buttons
   QFont f;
   f.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+  qApp->setFont(f);
   foreach (QWidget *widget, QApplication::allWidgets())
     widget->setFont(f);
   QFontMetrics fm(f);
