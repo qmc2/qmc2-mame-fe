@@ -308,6 +308,7 @@ qmc2/data/img/classic/.svn/prop-base/west.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/work.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/zip.png.svn-base
+qmc2/data/img/classic/.svn/props/speeker.png.svn-work
 qmc2/data/img/classic/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/classic/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/classic/.svn/text-base/arcadeforeground.png.svn-base
@@ -557,6 +558,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/west.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/work.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/zip.png.svn-base
+qmc2/data/img/crazy-black/.svn/props/speeker.png.svn-work
 qmc2/data/img/crazy-black/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/arcadeforeground.png.svn-base
@@ -806,6 +808,7 @@ qmc2/data/img/crazy/.svn/prop-base/west.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/work.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/zip.png.svn-base
+qmc2/data/img/crazy/.svn/props/speeker.png.svn-work
 qmc2/data/img/crazy/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/arcadeforeground.png.svn-base
@@ -1055,6 +1058,7 @@ qmc2/data/img/.svn/prop-base/west.png.svn-base
 qmc2/data/img/.svn/prop-base/work.png.svn-base
 qmc2/data/img/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/.svn/prop-base/zip.png.svn-base
+qmc2/data/img/.svn/props/speeker.png.svn-work
 qmc2/data/img/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/.svn/text-base/arcadeforeground.png.svn-base
@@ -1187,6 +1191,7 @@ qmc2/data/lng/.svn/prop-base/qmc2_us.qm.svn-base
 qmc2/data/lng/.svn/prop-base/qt_de.qm.svn-base
 qmc2/data/lng/.svn/prop-base/qt_fr.qm.svn-base
 qmc2/data/lng/.svn/prop-base/qt_pl.qm.svn-base
+qmc2/data/lng/.svn/prop-base/qt_pt.qm.svn-base
 qmc2/data/lng/.svn/text-base/qmc2_de.qm.svn-base
 qmc2/data/lng/.svn/text-base/qmc2_de.ts.svn-base
 qmc2/data/lng/.svn/text-base/qmc2_fr.qm.svn-base
@@ -1195,6 +1200,8 @@ qmc2/data/lng/.svn/text-base/qmc2_gr.qm.svn-base
 qmc2/data/lng/.svn/text-base/qmc2_gr.ts.svn-base
 qmc2/data/lng/.svn/text-base/qmc2_pl.qm.svn-base
 qmc2/data/lng/.svn/text-base/qmc2_pl.ts.svn-base
+qmc2/data/lng/.svn/text-base/qmc2_pt.qm.svn-base
+qmc2/data/lng/.svn/text-base/qmc2_pt.ts.svn-base
 qmc2/data/lng/.svn/text-base/qmc2_us.qm.svn-base
 qmc2/data/lng/.svn/text-base/qmc2_us.ts.svn-base
 qmc2/data/lng/.svn/text-base/qt_de.qm.svn-base
@@ -1203,6 +1210,8 @@ qmc2/data/lng/.svn/text-base/qt_fr.qm.svn-base
 qmc2/data/lng/.svn/text-base/qt_fr.ts.svn-base
 qmc2/data/lng/.svn/text-base/qt_pl.qm.svn-base
 qmc2/data/lng/.svn/text-base/qt_pl.ts.svn-base
+qmc2/data/lng/.svn/text-base/qt_pt.qm.svn-base
+qmc2/data/lng/.svn/text-base/qt_pt.ts.svn-base
 qmc2/data/mrq/.svn
 qmc2/data/mrq/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/opt/MAME/.svn
@@ -1330,6 +1339,7 @@ qmc2/.svn/prop-base/toolexec.ui.svn-base
 qmc2/.svn/prop-base/welcome.cpp.svn-base
 qmc2/.svn/prop-base/welcome.h.svn-base
 qmc2/.svn/prop-base/welcome.ui.svn-base
+qmc2/.svn/props/speaker.png.svn-work
 qmc2/.svn/text-base/about.cpp.svn-base
 qmc2/.svn/text-base/about.h.svn-base
 qmc2/.svn/text-base/about.ui.svn-base
