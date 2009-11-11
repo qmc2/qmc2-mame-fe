@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="el_GR">
+<TS version="2.0">
 <context>
     <name></name>
     <message>
@@ -1929,7 +1929,6 @@ p, li { white-space: pre-wrap; }
         <source>check results: %n difference(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -2401,14 +2400,12 @@ p, li { white-space: pre-wrap; }
         <source>%n supported game(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="415"/>
         <source>%n supported machine(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -2912,7 +2909,6 @@ p, li { white-space: pre-wrap; }
         <source>%n cached ROM state(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -3042,7 +3038,6 @@ p, li { white-space: pre-wrap; }
         <source>%n game(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -3054,7 +3049,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1577"/>
         <source>%n machine(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -3313,7 +3307,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2526"/>
         <source>%n icon(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -4166,7 +4159,6 @@ p, li { white-space: pre-wrap; }
 </source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -4731,14 +4723,12 @@ Do you really want to check all ROM states now?</source>
         <source>freed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="1411"/>
         <source>%n entry(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -4752,14 +4742,12 @@ Do you really want to check all ROM states now?</source>
         <source>removed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="1429"/>
         <source>%n file(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -5053,14 +5041,12 @@ Should they be killed on exit?</source>
         <source>killing %n running emulator(s) on exit</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="3499"/>
         <source>keeping %n running emulator(s) alive</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -5159,7 +5145,6 @@ Should they be killed on exit?</source>
         <source>%n game info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -5176,7 +5161,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="3896"/>
         <source>%n machine info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -5224,7 +5208,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="4022"/>
         <source>%n emulator info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -5451,6 +5434,26 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="5535"/>
         <source>Choose file to store download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5630"/>
+        <source>Physical memory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5630"/>
+        <source>Total: %1 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5630"/>
+        <source>Free: %1 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="5630"/>
+        <source>Used: %1 MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5919,6 +5922,11 @@ Should they be killed on exit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../qmc2main.ui" line="1641"/>
+        <source>Remove finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../qmc2main.ui" line="1679"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
@@ -6336,34 +6344,13 @@ Should they be killed on exit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2399"/>
-        <source>Ctrl+Alt+Right</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qmc2main.ui" line="2661"/>
-        <source>Check template map</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qmc2main.ui" line="2664"/>
-        <location filename="../../qmc2main.ui" line="2667"/>
-        <source>Check template map against the configuration options of the currently selected emulator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qmc2main.ui" line="2670"/>
-        <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="2396"/>
         <source>Play next track</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1641"/>
-        <source>Remove finished</source>
+        <location filename="../../qmc2main.ui" line="2399"/>
+        <source>Ctrl+Alt+Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6542,23 +6529,19 @@ Should they be killed on exit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5630"/>
-        <source>Physical memory:</source>
+        <location filename="../../qmc2main.ui" line="2661"/>
+        <source>Check template map</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5630"/>
-        <source>Total: %1 MB</source>
+        <location filename="../../qmc2main.ui" line="2664"/>
+        <location filename="../../qmc2main.ui" line="2667"/>
+        <source>Check template map against the configuration options of the currently selected emulator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5630"/>
-        <source>Free: %1 MB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qmc2main.cpp" line="5630"/>
-        <source>Used: %1 MB</source>
+        <location filename="../../qmc2main.ui" line="2670"/>
+        <source>Ctrl+C</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -6590,6 +6573,14 @@ Should they be killed on exit?</source>
 </context>
 <context>
     <name>MawsQuickDownloadSetup</name>
+    <message>
+        <location filename="../../mawsqdlsetup.cpp" line="79"/>
+        <location filename="../../mawsqdlsetup.cpp" line="84"/>
+        <location filename="../../mawsqdlsetup.ui" line="467"/>
+        <location filename="../../mawsqdlsetup.ui" line="570"/>
+        <source>AntoPISA progettoSNAPS</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="95"/>
         <source>Choose icon directory</source>
@@ -6806,14 +6797,6 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="463"/>
         <source>Select the preferred image collection for in-game previews (auto-download)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../mawsqdlsetup.cpp" line="79"/>
-        <location filename="../../mawsqdlsetup.cpp" line="84"/>
-        <location filename="../../mawsqdlsetup.ui" line="467"/>
-        <location filename="../../mawsqdlsetup.ui" line="570"/>
-        <source>AntoPISA progettoSNAPS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7908,6 +7891,11 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../options.ui" line="127"/>
+        <source>PT (Portuguese)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../options.ui" line="132"/>
         <source>US (English)</source>
         <translation type="unfinished"></translation>
@@ -7984,24 +7972,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="762"/>
-        <source>Use standard or custom color palette?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="765"/>
-        <source>Standard color palette</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="220"/>
         <location filename="../../options.ui" line="223"/>
         <source>Show status bar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="127"/>
-        <source>PT (Portuguese)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8314,6 +8287,16 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.ui" line="755"/>
         <source>Show memory  usage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="762"/>
+        <source>Use standard or custom color palette?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="765"/>
+        <source>Standard color palette</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9755,7 +9738,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>%n game(s) to analyze</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -9767,7 +9749,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="415"/>
         <source>%n machine(s) to analyze</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -9815,7 +9796,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="467"/>
         <source>checking %n file(s) for &apos;%1&apos;</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -9874,7 +9854,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>interrupted (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -9922,7 +9901,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>done (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -9935,14 +9913,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>%n game(s) left</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="656"/>
         <source>%n machine(s) left</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -11449,13 +11425,13 @@ Exit now, accept once or ignore completely?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="162"/>
-        <source>Browse ROM path</source>
+        <location filename="../../welcome.ui" line="155"/>
+        <source>Path to ROM images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="155"/>
-        <source>Path to ROM images</source>
+        <location filename="../../welcome.ui" line="162"/>
+        <source>Browse ROM path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
