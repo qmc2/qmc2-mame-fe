@@ -194,6 +194,7 @@ Options::Options(QWidget *parent)
   labelLegendFrontendFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   labelLegendEmulatorFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   checkBoxHideWhileLoading->setToolTip(tr("Hide primary machine list while loading (recommended, much faster)"));
+  tableWidgetRegisteredEmulators->setToolTip(tr("Registered emulators -- you may select one of these in the machine-specific emulator configuration");
 #endif
 
   // shortcuts
@@ -299,6 +300,7 @@ Options::~Options()
 #if QMC2_JOYSTICK == 1
     config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/JoyMapHeaderState", treeWidgetJoystickMappings->header()->saveState());
 #endif
+    config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/RegisteredEmulatorsHeaderState", tableWidgetRegisteredEmulators->horizontalHeader()->saveState());
   }
 
 #if QMC2_JOYSTICK == 1
@@ -377,6 +379,12 @@ void Options::apply()
   toolButtonBrowseFileRemovalTool->setIconSize(iconSize);
   pushButtonRedefineKeySequence->setIconSize(iconSize);
   pushButtonResetShortcut->setIconSize(iconSize);
+  toolButtonAddEmulator->setIconSize(iconSize);
+  toolButtonSaveEmulator->setIconSize(iconSize);
+  toolButtonRemoveEmulator->setIconSize(iconSize);
+  toolButtonBrowseAdditionalEmulatorExecutable->setIconSize(iconSize);
+  tableWidgetRegisteredEmulators->resizeRowsToContents();
+
 #if QMC2_JOYSTICK == 1
   pushButtonRescanJoysticks->setIconSize(iconSize);
   pushButtonRemapJoystickFunction->setIconSize(iconSize);
@@ -918,6 +926,32 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/FavoritesFile", lineEditFavoritesFile->text());
   config->setValue("MESS/FilesAndDirectories/HistoryFile", lineEditHistoryFile->text());
 #endif
+
+  // Additional emulators
+  tableWidgetRegisteredEmulators->setSortingEnabled(FALSE);
+#if defined(QMC2_EMUTYPE_MAME)
+  config->remove("MAME/RegisteredEmulators");
+#elif defined(QMC2_EMUTYPE_MESS)
+  config->remove("MESS/RegisteredEmulators");
+#endif
+  for (i = 0; i < tableWidgetRegisteredEmulators->rowCount(); i++) {
+    if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_NAME) ) {
+      QString emuName, emuCommand, emuArgs;
+      emuName = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_NAME)->text();
+      if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_EXEC) )
+        emuCommand = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_EXEC)->text();
+      if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_ARGS) )
+        emuArgs = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_ARGS)->text();
+#if defined(QMC2_EMUTYPE_MAME)
+      config->setValue(QString("MAME/RegisteredEmulators/%1/Executable").arg(emuName), emuCommand);
+      config->setValue(QString("MAME/RegisteredEmulators/%1/Arguments").arg(emuName), emuArgs);
+#elif defined(QMC2_EMUTYPE_MESS)
+      config->setValue(QString("MESS/RegisteredEmulators/%1/Executable").arg(emuName), emuCommand);
+      config->setValue(QString("MESS/RegisteredEmulators/%1/Arguments").arg(emuName), emuArgs);
+#endif
+    }
+  }
+  tableWidgetRegisteredEmulators->setSortingEnabled(TRUE);
 
   // sync settings (write settings to disk) and apply
   config->sync();
@@ -1575,6 +1609,28 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditHistoryFile->setText(config->value("MESS/FilesAndDirectories/HistoryFile", userScopePath + "/mess.hst").toString());
 #endif
 
+  // Additional emulators
+  tableWidgetRegisteredEmulators->clearContents();
+#if defined(QMC2_EMUTYPE_MAME)
+  config->beginGroup("MAME/RegisteredEmulators");
+#elif defined(QMC2_EMUTYPE_MESS)
+  config->beginGroup("MESS/RegisteredEmulators");
+#endif
+  QStringList additionalEmulators = config->childGroups();
+  tableWidgetRegisteredEmulators->setSortingEnabled(FALSE);
+  foreach (QString emuName, additionalEmulators) {
+    QString emuCommand = config->value(QString("%1/Executable").arg(emuName)).toString();
+    QString emuArgs = config->value(QString("%1/Arguments").arg(emuName)).toString();
+    int row = tableWidgetRegisteredEmulators->rowCount();
+    tableWidgetRegisteredEmulators->insertRow(row);
+    tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(emuName));
+    tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(emuCommand));
+    tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(emuArgs));
+  }
+  config->endGroup();
+  tableWidgetRegisteredEmulators->setSortingEnabled(TRUE);
+  tableWidgetRegisteredEmulators->resizeRowsToContents();
+
   if ( useDefaultSettings ) {
     QString fn = config->fileName();
     delete config;
@@ -1623,6 +1679,7 @@ void Options::applyDelayed()
 #if QMC2_JOYSTICK == 1
       treeWidgetJoystickMappings->header()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/JoyMapHeaderState").toByteArray());
 #endif
+      tableWidgetRegisteredEmulators->horizontalHeader()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/RegisteredEmulatorsHeaderState").toByteArray());
     }
     firstTime = FALSE;
   }
@@ -2771,6 +2828,122 @@ void Options::checkJoystickMappings()
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: joystick map contains duplicates"));
   }
   lastJoystickMappingsState = joystickMappingsState;
+}
+
+void Options::on_toolButtonBrowseAdditionalEmulatorExecutable_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseAdditionalEmulatorExecutable_clicked()");
+#endif
+
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), lineEditAdditionalEmulatorExecutableFile->text(), tr("All files (*)"));
+  if ( !s.isNull() )
+    lineEditAdditionalEmulatorExecutableFile->setText(s);
+  raise();
+}
+
+void Options::on_toolButtonAddEmulator_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonAddEmulator_clicked()");
+#endif
+
+  tableWidgetRegisteredEmulators->setSortingEnabled(FALSE);
+  int row = tableWidgetRegisteredEmulators->rowCount();
+  tableWidgetRegisteredEmulators->insertRow(row);
+  tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(lineEditAdditionalEmulatorName->text()));
+  tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(lineEditAdditionalEmulatorExecutableFile->text()));
+  tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(lineEditAdditionalEmulatorArguments->text()));
+  on_lineEditAdditionalEmulatorName_textChanged(lineEditAdditionalEmulatorName->text());
+  tableWidgetRegisteredEmulators->setSortingEnabled(TRUE);
+}
+
+void Options::on_toolButtonSaveEmulator_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonSaveEmulator_clicked()");
+#endif
+
+  tableWidgetRegisteredEmulators->setSortingEnabled(FALSE);
+  QString name = lineEditAdditionalEmulatorName->text();
+  if ( !name.isEmpty() ) {
+    QList<QTableWidgetItem *> il = tableWidgetRegisteredEmulators->findItems(name, Qt::MatchExactly);
+    int row = il[QMC2_ADDTLEMUS_COLUMN_NAME]->row();
+    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME) )
+      tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->setText(name);
+    else
+      tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(lineEditAdditionalEmulatorName->text()));
+    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC) )
+      tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC)->setText(lineEditAdditionalEmulatorExecutableFile->text());
+    else
+      tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(lineEditAdditionalEmulatorExecutableFile->text()));
+    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS) )
+      tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS)->setText(lineEditAdditionalEmulatorArguments->text());
+    else
+      tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(lineEditAdditionalEmulatorArguments->text()));
+  }
+  tableWidgetRegisteredEmulators->setSortingEnabled(TRUE);
+}
+
+void Options::on_toolButtonRemoveEmulator_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonRemoveEmulator_clicked()");
+#endif
+
+  QList<QTableWidgetItem *> sl = tableWidgetRegisteredEmulators->selectedItems();
+  if ( !sl.isEmpty() ) {
+    tableWidgetRegisteredEmulators->removeRow(sl[QMC2_ADDTLEMUS_COLUMN_NAME]->row());
+  }
+}
+
+void Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()");
+#endif
+
+  QList<QTableWidgetItem *> sl = tableWidgetRegisteredEmulators->selectedItems();
+  if ( !sl.isEmpty() ) {
+    int row = sl[QMC2_ADDTLEMUS_COLUMN_NAME]->row();
+    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME) ) {
+      lineEditAdditionalEmulatorName->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->text());
+      toolButtonRemoveEmulator->setEnabled(TRUE);
+    } else {
+      lineEditAdditionalEmulatorName->clear();
+      toolButtonRemoveEmulator->setEnabled(FALSE);
+    }
+    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC) )
+      lineEditAdditionalEmulatorExecutableFile->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC)->text());
+    else
+      lineEditAdditionalEmulatorExecutableFile->clear();
+    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS) )
+      lineEditAdditionalEmulatorArguments->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS)->text());
+    else
+      lineEditAdditionalEmulatorArguments->clear();
+  } else {
+    lineEditAdditionalEmulatorName->clear();
+    lineEditAdditionalEmulatorExecutableFile->clear();
+    lineEditAdditionalEmulatorArguments->clear();
+    toolButtonRemoveEmulator->setEnabled(FALSE);
+  }
+}
+
+void Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &s)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &s = ...)");
+#endif
+
+  QString text = lineEditAdditionalEmulatorName->text();
+  if ( !text.isEmpty() ) {
+    QList<QTableWidgetItem *> il = tableWidgetRegisteredEmulators->findItems(text, Qt::MatchExactly);
+    toolButtonAddEmulator->setEnabled(il.isEmpty());
+    toolButtonSaveEmulator->setEnabled(!il.isEmpty());
+  } else {
+    toolButtonAddEmulator->setEnabled(FALSE);
+    toolButtonSaveEmulator->setEnabled(FALSE);
+  }
 }
 
 JoystickCalibrationWidget::JoystickCalibrationWidget(Joystick *joystick, QWidget *parent)

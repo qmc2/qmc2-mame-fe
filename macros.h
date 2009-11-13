@@ -96,6 +96,11 @@
 #define QMC2_DOWNLOAD_COLUMN_STATUS	0
 #define QMC2_DOWNLOAD_COLUMN_PROGRESS	1
 
+// logical column indizes in additional/registered emulator list
+#define QMC2_ADDTLEMUS_COLUMN_NAME	0
+#define QMC2_ADDTLEMUS_COLUMN_EXEC	1
+#define QMC2_ADDTLEMUS_COLUMN_ARGS	2
+
 // SDLMAME output notifier FIFO
 #define QMC2_SDLMAME_OUTPUT_FIFO	"/tmp/sdlmame_out"
 #define QMC2_SDLMESS_OUTPUT_FIFO	QMC2_SDLMAME_OUTPUT_FIFO

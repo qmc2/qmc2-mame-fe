@@ -147,6 +147,12 @@ class Options : public QDialog, public Ui::Options
     void on_pushButtonRedefineKeySequence_clicked();
     void on_pushButtonResetShortcut_clicked();
     void on_pushButtonDetailSetup_clicked();
+    void on_toolButtonBrowseAdditionalEmulatorExecutable_clicked();
+    void on_toolButtonAddEmulator_clicked();
+    void on_toolButtonSaveEmulator_clicked();
+    void on_toolButtonRemoveEmulator_clicked();
+    void on_tableWidgetRegisteredEmulators_itemSelectionChanged();
+    void on_lineEditAdditionalEmulatorName_textChanged(const QString &);
 
     // joystick setup callbacks
 #if QMC2_JOYSTICK == 1
