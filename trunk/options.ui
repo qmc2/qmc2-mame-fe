@@ -3647,7 +3647,7 @@
                <item row="0" column="0" colspan="5">
                 <widget class="QTableWidget" name="tableWidgetRegisteredEmulators">
                  <property name="toolTip">
-                  <string>Registered emulators -- you may select one of these in the game/machine-specific emulator configuration</string>
+                  <string>Registered emulators -- you may select one of these in the game-specific emulator configuration</string>
                  </property>
                  <property name="editTriggers">
                   <set>QAbstractItemView::NoEditTriggers</set>
@@ -3657,6 +3657,9 @@
                  </property>
                  <property name="selectionBehavior">
                   <enum>QAbstractItemView::SelectRows</enum>
+                 </property>
+                 <property name="textElideMode">
+                  <enum>Qt::ElideMiddle</enum>
                  </property>
                  <property name="showGrid">
                   <bool>false</bool>
@@ -3688,15 +3691,18 @@
                  </column>
                  <column>
                   <property name="text">
-                   <string>Default arguments</string>
+                   <string>Arguments</string>
                   </property>
                  </column>
                 </widget>
                </item>
                <item row="1" column="0">
                 <widget class="QToolButton" name="toolButtonAddEmulator">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="toolTip">
-                  <string>Add emulator registration (generates a unique name if required)</string>
+                  <string>Register emulator</string>
                  </property>
                  <property name="text">
                   <string/>
@@ -3709,8 +3715,11 @@
                </item>
                <item row="1" column="1">
                 <widget class="QToolButton" name="toolButtonSaveEmulator">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="toolTip">
-                  <string>Save/replace emulator registration (or add a new one if the name is unique)</string>
+                  <string>Replace emulator registration</string>
                  </property>
                  <property name="text">
                   <string/>
@@ -3736,6 +3745,9 @@
                </item>
                <item row="1" column="4">
                 <widget class="QToolButton" name="toolButtonRemoveEmulator">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="toolTip">
                   <string>Deregister emulator</string>
                  </property>
@@ -3749,7 +3761,7 @@
                 </widget>
                </item>
                <item row="2" column="0" colspan="2">
-                <widget class="QLabel" name="label">
+                <widget class="QLabel" name="labelAdditionalEmulatorName">
                  <property name="text">
                   <string>Name</string>
                  </property>
@@ -3763,16 +3775,16 @@
                 </widget>
                </item>
                <item row="3" column="0" colspan="2">
-                <widget class="QLabel" name="label_2">
+                <widget class="QLabel" name="labelAdditionalEmulatorExecutableFile">
                  <property name="text">
-                  <string>Command</string>
+                  <string>Executable</string>
                  </property>
                 </widget>
                </item>
                <item row="3" column="3">
                 <widget class="QLineEdit" name="lineEditAdditionalEmulatorExecutableFile">
                  <property name="toolTip">
-                  <string>Command to execute emulator (path to executable file)</string>
+                  <string>Command to execute the emulator (path to the executable file)</string>
                  </property>
                 </widget>
                </item>
@@ -3791,16 +3803,16 @@
                 </widget>
                </item>
                <item row="4" column="0" colspan="3">
-                <widget class="QLabel" name="label_3">
+                <widget class="QLabel" name="labelAdditionalEmulatorArguments">
                  <property name="text">
-                  <string>Default arguments</string>
+                  <string>Arguments</string>
                  </property>
                 </widget>
                </item>
                <item row="4" column="3" colspan="2">
                 <widget class="QLineEdit" name="lineEditAdditionalEmulatorArguments">
                  <property name="toolTip">
-                  <string>Default arguments -- use $ID$ as a placeholder for the game's/machine's unique short name</string>
+                  <string>Arguments passed to the emulator -- use $ID$ as a placeholder for the unique game/machine ID (its short name)</string>
                  </property>
                 </widget>
                </item>
@@ -4084,8 +4096,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>507</x>
-     <y>771</y>
+     <x>349</x>
+     <y>477</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
@@ -4100,8 +4112,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>592</x>
-     <y>771</y>
+     <x>434</x>
+     <y>477</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -4120,8 +4132,8 @@
      <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>832</x>
-     <y>101</y>
+     <x>130</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -4136,8 +4148,8 @@
      <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>235</x>
-     <y>130</y>
+     <x>130</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -4152,8 +4164,8 @@
      <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>109</x>
-     <y>224</y>
+     <x>120</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -4168,8 +4180,8 @@
      <y>92</y>
     </hint>
     <hint type="destinationlabel">
-     <x>117</x>
-     <y>130</y>
+     <x>128</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -4180,12 +4192,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>154</x>
-     <y>220</y>
+     <x>130</x>
+     <y>102</y>
     </hint>
     <hint type="destinationlabel">
-     <x>234</x>
-     <y>220</y>
+     <x>130</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -4196,12 +4208,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>161</x>
-     <y>596</y>
+     <x>173</x>
+     <y>576</y>
     </hint>
     <hint type="destinationlabel">
-     <x>570</x>
-     <y>596</y>
+     <x>467</x>
+     <y>576</y>
     </hint>
    </hints>
   </connection>
@@ -4212,12 +4224,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>177</x>
-     <y>573</y>
+     <x>189</x>
+     <y>554</y>
     </hint>
     <hint type="destinationlabel">
-     <x>570</x>
-     <y>573</y>
+     <x>467</x>
+     <y>554</y>
     </hint>
    </hints>
   </connection>
@@ -4228,12 +4240,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>145</x>
-     <y>527</y>
+     <x>157</x>
+     <y>510</y>
     </hint>
     <hint type="destinationlabel">
-     <x>570</x>
-     <y>527</y>
+     <x>467</x>
+     <y>510</y>
     </hint>
    </hints>
   </connection>
@@ -4244,12 +4256,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>154</x>
-     <y>550</y>
+     <x>166</x>
+     <y>532</y>
     </hint>
     <hint type="destinationlabel">
-     <x>570</x>
-     <y>550</y>
+     <x>467</x>
+     <y>532</y>
     </hint>
    </hints>
   </connection>
@@ -4264,8 +4276,8 @@
      <y>400</y>
     </hint>
     <hint type="destinationlabel">
-     <x>301</x>
-     <y>405</y>
+     <x>467</x>
+     <y>400</y>
     </hint>
    </hints>
   </connection>
