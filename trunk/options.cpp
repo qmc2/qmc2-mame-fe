@@ -194,7 +194,7 @@ Options::Options(QWidget *parent)
   labelLegendFrontendFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   labelLegendEmulatorFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   checkBoxHideWhileLoading->setToolTip(tr("Hide primary machine list while loading (recommended, much faster)"));
-  tableWidgetRegisteredEmulators->setToolTip(tr("Registered emulators -- you may select one of these in the machine-specific emulator configuration");
+  tableWidgetRegisteredEmulators->setToolTip(tr("Registered emulators -- you may select one of these in the machine-specific emulator configuration"));
 #endif
 
   // shortcuts
