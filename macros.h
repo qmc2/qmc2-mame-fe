@@ -223,7 +223,7 @@
 // how many milliseconds between download connection checks
 #define QMC2_DOWNLOAD_CHECK_TIMEOUT	10000
 
-// deölay how man milliseconds before automatically cleaning up finished downloads
+// how many milliseconds before automatically cleaning up finished downloads
 #define QMC2_DOWNLOAD_CLEANUP_DELAY	250
 
 // MAWS homepage URL (default)
@@ -241,6 +241,9 @@
 // delay creation of MAWS quick download menu for how many milliseconds
 // (use same delay to start auto downloads)
 #define QMC2_MAWS_QDL_DELAY		250
+
+// delay forced background widget updates for how many milliseconds
+#define QMC2_MAWS_BWU_DELAY		25
 
 // maximum age of an MAWS disk-cache entry in seconds (24h for now)
 #define QMC2_MAWS_MAX_CACHE_AGE		86400

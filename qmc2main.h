@@ -38,16 +38,19 @@ class AutoPopupToolButton : public QToolButton
       connect(&menuTimer, SIGNAL(timeout()), this, SLOT(hideMenu()));
     }
 
+  signals:
+    void paintFinished();
+    void menuHidden();
+
   public slots:
     void hideMenu()
     {
       if ( menu() )
-        if ( menu()->activeAction() == NULL )
+        if ( menu()->activeAction() == NULL ) {
           QTimer::singleShot(0, menu(), SLOT(hide()));
+          emit menuHidden();
+        }
     }
-
-  signals:
-    void paintFinished();
 
   protected:
     void enterEvent(QEvent *e)
@@ -308,6 +311,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void mawsLoadStarted();
     void mawsLoadFinished(bool);
     void mawsQuickLinksSetVisible(bool);
+    void mawsQuickLinksMenuHidden();
     void createMawsQuickLinksMenu();
     void setupMawsQuickLinks();
     void downloadMawsQuickLink();

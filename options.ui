@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>445</width>
+    <width>500</width>
     <height>489</height>
    </rect>
   </property>
@@ -3639,12 +3639,12 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>401</width>
+                <width>456</width>
                 <height>364</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22">
-               <item row="0" column="0" colspan="5">
+               <item row="0" column="0" colspan="6">
                 <widget class="QTableWidget" name="tableWidgetRegisteredEmulators">
                  <property name="toolTip">
                   <string>Registered emulators -- you may select one of these in the game-specific emulator configuration</string>
@@ -3713,24 +3713,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <widget class="QToolButton" name="toolButtonSaveEmulator">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="toolTip">
-                  <string>Replace emulator registration</string>
-                 </property>
-                 <property name="text">
-                  <string/>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/filesave.png</normaloff>:/data/img/filesave.png</iconset>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="2" colspan="2">
+               <item row="1" column="2" colspan="3">
                 <spacer name="horizontalSpacer">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -3743,7 +3726,7 @@
                  </property>
                 </spacer>
                </item>
-               <item row="1" column="4">
+               <item row="1" column="5">
                 <widget class="QToolButton" name="toolButtonRemoveEmulator">
                  <property name="enabled">
                   <bool>false</bool>
@@ -3760,35 +3743,35 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0" colspan="2">
+               <item row="2" column="0" colspan="4">
                 <widget class="QLabel" name="labelAdditionalEmulatorName">
                  <property name="text">
                   <string>Name</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="3" colspan="2">
+               <item row="2" column="4" colspan="2">
                 <widget class="QLineEdit" name="lineEditAdditionalEmulatorName">
                  <property name="toolTip">
                   <string>Registered emulator's name</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0" colspan="2">
+               <item row="3" column="0" colspan="4">
                 <widget class="QLabel" name="labelAdditionalEmulatorExecutableFile">
                  <property name="text">
                   <string>Executable</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="3">
+               <item row="3" column="4">
                 <widget class="QLineEdit" name="lineEditAdditionalEmulatorExecutableFile">
                  <property name="toolTip">
                   <string>Command to execute the emulator (path to the executable file)</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="4">
+               <item row="3" column="5">
                 <widget class="QToolButton" name="toolButtonBrowseAdditionalEmulatorExecutable">
                  <property name="toolTip">
                   <string>Browse emulator executable file</string>
@@ -3802,17 +3785,34 @@
                  </property>
                 </widget>
                </item>
-               <item row="4" column="0" colspan="3">
+               <item row="4" column="0" colspan="4">
                 <widget class="QLabel" name="labelAdditionalEmulatorArguments">
                  <property name="text">
                   <string>Arguments</string>
                  </property>
                 </widget>
                </item>
-               <item row="4" column="3" colspan="2">
+               <item row="4" column="4" colspan="2">
                 <widget class="QLineEdit" name="lineEditAdditionalEmulatorArguments">
                  <property name="toolTip">
                   <string>Arguments passed to the emulator -- use $ID$ as a placeholder for the unique game/machine ID (its short name)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QToolButton" name="toolButtonSaveEmulator">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>Replace emulator registration</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qmc2.qrc">
+                   <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
                  </property>
                 </widget>
                </item>
@@ -3913,7 +3913,6 @@
  <tabstops>
   <tabstop>tabWidgetOptions</tabstop>
   <tabstop>tabWidgetFrontendSettings</tabstop>
-  <tabstop>scrollAreaGUI</tabstop>
   <tabstop>comboBoxLanguage</tabstop>
   <tabstop>comboBoxStyle</tabstop>
   <tabstop>lineEditStyleSheet</tabstop>
@@ -3956,7 +3955,6 @@
   <tabstop>checkBoxCompressEmuInfoDB</tabstop>
   <tabstop>checkBoxProcessGameInfoDB</tabstop>
   <tabstop>checkBoxCompressGameInfoDB</tabstop>
-  <tabstop>scrollAreaFrontendFilesAndDirectories</tabstop>
   <tabstop>lineEditTemporaryFile</tabstop>
   <tabstop>toolButtonBrowseTemporaryFile</tabstop>
   <tabstop>lineEditFrontendLogFile</tabstop>
@@ -4078,9 +4076,11 @@
   <tabstop>pushButtonDefault</tabstop>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonCancel</tabstop>
+  <tabstop>scrollAreaGUI</tabstop>
   <tabstop>scrollAreaFrontendGamelist</tabstop>
-  <tabstop>scrollAreaFrontendJoystick</tabstop>
+  <tabstop>scrollAreaFrontendFilesAndDirectories</tabstop>
   <tabstop>scrollAreaFrontendShortcuts</tabstop>
+  <tabstop>scrollAreaFrontendJoystick</tabstop>
   <tabstop>scrollAreaFrontendTools</tabstop>
   <tabstop>scrollAreaEmulatorFilesAndDirectories</tabstop>
   <tabstop>scrollAreaAdditionalEmulators</tabstop>
