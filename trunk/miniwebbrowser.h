@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QCache>
 #include "ui_miniwebbrowser.h"
+#include "macros.h"
 
 class BrowserWidget : public QWebView
 {
@@ -14,10 +15,22 @@ class BrowserWidget : public QWebView
   public:
     QPoint lastMouseClickPosition;
     bool mouseCurrentlyOnView;
+    QTimer bwuDelayTimer;
+
     BrowserWidget(QWidget *parent = NULL) : QWebView(parent)
     {
+      bwuDelayTimer.setSingleShot(TRUE);
       lastMouseClickPosition = QPoint(-1, -1);
       mouseCurrentlyOnView = FALSE;
+    }
+
+  public slots:
+    void delayedUpdate()
+    {
+      if ( !bwuDelayTimer.isActive() ) {
+        QTimer::singleShot(QMC2_MAWS_BWU_DELAY, this, SLOT(update()));
+        bwuDelayTimer.start(QMC2_MAWS_BWU_DELAY);
+      }
     }
 
   signals:

@@ -5188,10 +5188,15 @@ void MainWindow::createMawsQuickLinksMenu()
   toolButtonMAWSQuickLinks->setToolTip(tr("Quick download links for MAWS data usable by QMC2"));
 
   connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(mouseOnView(bool)), this, SLOT(mawsQuickLinksSetVisible(bool)));
+  connect(toolButtonMAWSQuickLinks, SIGNAL(menuHidden()), this, SLOT(mawsQuickLinksMenuHidden()));
+
+  // we have to force a background widget update when the browser is scrolled to correctly redraw the MAWS QDL tool button
 #if QT_VERSION <= 0x040502
-  // for Qt versions <= 4.5.2 we need to force a background widget update
-  // (doing this with Qt 4.5.3+, where it seems to have been fixed in itself, causes major trouble, though!)
+  // for Qt versions <= 4.5.2 we can directly call update()
   connect(toolButtonMAWSQuickLinks, SIGNAL(paintFinished()), qmc2MAWSLookup->webViewBrowser, SLOT(update()));
+#else
+  // for Qt versions >= 4.5.3 we need to delay it
+  connect(toolButtonMAWSQuickLinks, SIGNAL(paintFinished()), qmc2MAWSLookup->webViewBrowser, SLOT(delayedUpdate()));
 #endif
 
   menuMAWSQuickLinks = new QMenu(toolButtonMAWSQuickLinks);
@@ -5379,6 +5384,19 @@ void MainWindow::mawsQuickLinksSetVisible(bool visible)
     else if ( !menuMAWSQuickLinks->isVisible() )
       toolButtonMAWSQuickLinks->setVisible(FALSE);
   }
+}
+
+void MainWindow::mawsQuickLinksMenuHidden()
+{
+//#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::mawsQuickLinksMenuHidden()");
+//#endif
+
+  if ( !qmc2MAWSLookup )
+    return;
+
+  if ( toolButtonMAWSQuickLinks && menuMAWSQuickLinks )
+    toolButtonMAWSQuickLinks->setVisible(qmc2MAWSLookup->webViewBrowser->mouseCurrentlyOnView);
 }
 
 void MainWindow::startMawsAutoDownloads()

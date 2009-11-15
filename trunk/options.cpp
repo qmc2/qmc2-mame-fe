@@ -1629,7 +1629,6 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   }
   config->endGroup();
   tableWidgetRegisteredEmulators->setSortingEnabled(TRUE);
-  tableWidgetRegisteredEmulators->resizeRowsToContents();
 
   if ( useDefaultSettings ) {
     QString fn = config->fileName();
@@ -1681,6 +1680,7 @@ void Options::applyDelayed()
 #endif
       tableWidgetRegisteredEmulators->horizontalHeader()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/RegisteredEmulatorsHeaderState").toByteArray());
     }
+    tableWidgetRegisteredEmulators->resizeRowsToContents();
     firstTime = FALSE;
   }
 
