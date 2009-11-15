@@ -232,6 +232,29 @@ void ProcessManager::error(QProcess::ProcessError processError)
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::error(QProcess::ProcessError processError = " + QString::number(processError) + "): proc = 0x" + QString::number((qulonglong)proc, 16));
 #endif
+
+  switch ( processError ) {
+    case QProcess::FailedToStart:
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: failed to start emulator #%1").arg(procMap[proc]));
+      procMap.remove(proc);
+      break;
+
+    case QProcess::Crashed:
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: emulator #%1 crashed").arg(procMap[proc]));
+      break;
+
+    case QProcess::WriteError:
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to write to emulator #%1").arg(procMap[proc]));
+      break;
+
+    case QProcess::ReadError:
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: failed to read from emulator #%1").arg(procMap[proc]));
+      break;
+
+    default:
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: unhandled error for emulator #%1, error code = %2").arg(procMap[proc]).arg(processError));
+      break;
+  }
 }
 
 void ProcessManager::stateChanged(QProcess::ProcessState processState)
@@ -241,4 +264,5 @@ void ProcessManager::stateChanged(QProcess::ProcessState processState)
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::stateChanged(QProcess::ProcessState processState = " + QString::number(processState) + "): proc = 0x" + QString::number((qulonglong)proc, 16));
 #endif
+
 }

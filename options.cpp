@@ -140,11 +140,6 @@ Options::Options(QWidget *parent)
 
   setupUi(this);
 
-#if QMC2_WIP_CODE != 1
-  // FIXME: remove this when emulator registrations work
-  tabWidgetGlobalMAMESetup->removeTab(QMC2_OPTIONS_EMU_ADDTLEMUS_INDEX);
-#endif
-
 #if !defined(QMC2_SHOWMEMINFO)
   checkBoxMemoryIndicator->setVisible(FALSE);
 #endif
@@ -2937,9 +2932,16 @@ void Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &s)
 
   QString text = lineEditAdditionalEmulatorName->text();
   if ( !text.isEmpty() ) {
-    QList<QTableWidgetItem *> il = tableWidgetRegisteredEmulators->findItems(text, Qt::MatchExactly);
-    toolButtonAddEmulator->setEnabled(il.isEmpty());
-    toolButtonSaveEmulator->setEnabled(!il.isEmpty());
+    if ( text == tr("Default") ) {
+      // this name isn't allowed!
+      toolButtonAddEmulator->setEnabled(FALSE);
+      toolButtonSaveEmulator->setEnabled(FALSE);
+      toolButtonRemoveEmulator->setEnabled(FALSE);
+    } else {
+      QList<QTableWidgetItem *> il = tableWidgetRegisteredEmulators->findItems(text, Qt::MatchExactly);
+      toolButtonAddEmulator->setEnabled(il.isEmpty());
+      toolButtonSaveEmulator->setEnabled(!il.isEmpty());
+    }
   } else {
     toolButtonAddEmulator->setEnabled(FALSE);
     toolButtonSaveEmulator->setEnabled(FALSE);
