@@ -940,6 +940,36 @@ void MainWindow::on_actionPlay_activated()
   qmc2LastConfigItem = NULL;
   on_tabWidgetGameDetail_currentChanged(qmc2DetailSetup->appliedDetailList.indexOf(QMC2_CONFIG_INDEX));
 
+  // check if a foreign emulator is to be used and if it CAN be used; if yes (both), start it instead of the default emulator...
+#if defined(QMC2_EMUTYPE_MAME)
+  qmc2Config->beginGroup("MAME/RegisteredEmulators");
+#elif defined(QMC2_EMUTYPE_MESS)
+  qmc2Config->beginGroup("MESS/RegisteredEmulators");
+#endif
+  QStringList registeredEmulators = qmc2Config->childGroups();
+  qmc2Config->endGroup();
+  bool foreignEmulator = FALSE;
+  if ( registeredEmulators.count() > 0 ) {
+    if ( qmc2Config->contains(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator") ) {
+      QString selectedEmulator = qmc2Config->value(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator").toString();
+      if ( !selectedEmulator.isEmpty() && registeredEmulators.contains(selectedEmulator) ) {
+        foreignEmulator = TRUE;
+#if defined(QMC2_EMUTYPE_MAME)
+        QString emuCommand = qmc2Config->value(QString("MAME/RegisteredEmulators/%1/Executable").arg(selectedEmulator)).toString();
+        QStringList emuArgs = qmc2Config->value(QString("MAME/RegisteredEmulators/%1/Arguments").arg(selectedEmulator)).toString().replace("$ID$", gameName).split(" ");
+#elif defined(QMC2_EMUTYPE_MESS)
+        QString emuCommand = qmc2Config->value(QString("MESS/RegisteredEmulators/%1/Executable").arg(selectedEmulator)).toString();
+        QStringList emuArgs = qmc2Config->value(QString("MESS/RegisteredEmulators/%1/Arguments").arg(selectedEmulator)).toString().replace("$ID$", gameName).split(" ");
+#endif
+        // start game/machine
+        qmc2ProcessManager->process(qmc2ProcessManager->start(emuCommand, emuArgs));
+      }
+    }
+  }
+
+  if ( foreignEmulator )
+    return;
+
   QStringList args;
   QString sectionTitle;
 
@@ -1034,10 +1064,10 @@ void MainWindow::on_actionPlay_activated()
   QString command = qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString();
 #endif
 
-  // start game
+  // start game/machine
   qmc2ProcessManager->process(qmc2ProcessManager->start(command, args));
 
-  // add game to played list
+  // add game/machine to played list
   listWidgetPlayed->blockSignals(TRUE);
   QList<QListWidgetItem *> matches = listWidgetPlayed->findItems(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME), Qt::MatchExactly);
   QListWidgetItem *playedItem;
@@ -2339,11 +2369,22 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       if ( qmc2CurrentItem != qmc2LastConfigItem ) {
         QWidget *configWidget = qmc2DetailSetup->tabWidgetsMap[QMC2_CONFIG_INDEX];
         configWidget->setUpdatesEnabled(FALSE);
+
+        QString selectedEmulator;
+
+        // save & cleanup existing game/machine specific emulator settings
         if ( qmc2EmulatorOptions ) {
+          selectedEmulator = comboBoxEmuSelector->currentText();
+          if ( selectedEmulator == tr("Default") || selectedEmulator.isEmpty() )
+            qmc2Config->remove(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator");
+          else
+            qmc2Config->setValue(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator", selectedEmulator);
           qmc2EmulatorOptions->save();
           QLayout *vbl = configWidget->layout();
           if ( vbl )
             delete vbl;
+          delete labelEmuSelector;
+          delete comboBoxEmuSelector;
           delete qmc2EmulatorOptions;
           delete pushButtonCurrentEmulatorOptionsExportToFile;
           delete pushButtonCurrentEmulatorOptionsImportFromFile;
@@ -2353,6 +2394,35 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         int left, top, right, bottom;
         gridLayout->getContentsMargins(&left, &top, &right, &bottom);
         QVBoxLayout *layout = new QVBoxLayout;
+
+        // emulator selector (default, or one of the registered emulators)
+#if defined(QMC2_EMUTYPE_MAME)
+        labelEmuSelector = new QLabel(tr("Emulator for this game"), configWidget);
+#elif defined(QMC2_EMUTYPE_MESS)
+        labelEmuSelector = new QLabel(tr("Emulator for this machine"), configWidget);
+#endif
+        labelEmuSelector->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Minimum);
+        comboBoxEmuSelector = new QComboBox(configWidget);
+        comboBoxEmuSelector->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
+        comboBoxEmuSelector->insertItem(0, tr("Default"));
+#if defined(QMC2_EMUTYPE_MAME)
+        qmc2Config->beginGroup("MAME/RegisteredEmulators");
+#elif defined(QMC2_EMUTYPE_MESS)
+        qmc2Config->beginGroup("MESS/RegisteredEmulators");
+#endif
+        QStringList registeredEmulators = qmc2Config->childGroups();
+        qmc2Config->endGroup();
+        if ( registeredEmulators.count() > 0 )
+          comboBoxEmuSelector->insertItems(1, registeredEmulators);
+        QHBoxLayout *emuSelectorLayout = new QHBoxLayout();
+        emuSelectorLayout->addWidget(labelEmuSelector);
+        labelEmuSelector->show();
+        emuSelectorLayout->addWidget(comboBoxEmuSelector);
+        comboBoxEmuSelector->show();
+        layout->addLayout(emuSelectorLayout);
+        connect(comboBoxEmuSelector, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(on_emuSelector_currentIndexChanged(const QString &)));
+
+        // (default) emulator options
 #if defined(QMC2_EMUTYPE_MAME)
         qmc2EmulatorOptions = new EmulatorOptions("MAME/Configuration/" + gameName, configWidget);
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -2361,6 +2431,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         qmc2EmulatorOptions->load();
         layout->addWidget(qmc2EmulatorOptions);
         layout->setContentsMargins(left, top, right, bottom);
+
+        // import/export buttons
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_MAME) || defined(QMC2_MESS)
         QHBoxLayout *buttonLayout = new QHBoxLayout();
         pushButtonCurrentEmulatorOptionsExportToFile = new QPushButton(tr("Export to..."), this);
@@ -2386,7 +2458,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         qmc2EmulatorOptions->show();
         pushButtonCurrentEmulatorOptionsExportToFile->show();
         pushButtonCurrentEmulatorOptionsImportFromFile->show();
-        // export/import menus
+
+        // import/export menus
         qmc2MainWindow->selectMenuCurrentEmulatorOptionsExportToFile = new QMenu(qmc2MainWindow->pushButtonCurrentEmulatorOptionsExportToFile);
         connect(qmc2MainWindow->selectMenuCurrentEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/work.png")), tr("<inipath>/%1.ini").arg(gameName)), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonCurrentEmulatorOptionsExportToFile_clicked()));
         connect(qmc2MainWindow->selectMenuCurrentEmulatorOptionsExportToFile->addAction(QIcon(QString::fromUtf8(":/data/img/fileopen.png")), tr("Select file...")), SIGNAL(triggered()), qmc2MainWindow, SLOT(on_pushButtonCurrentEmulatorOptionsSelectExportFile_clicked()));
@@ -2399,6 +2472,21 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         qmc2EmulatorOptions->resizeColumnToContents(0);
         qmc2EmulatorOptions->pseudoConstructor();
         qmc2LastConfigItem = qmc2CurrentItem;
+
+        // select the emulator to be used, if applicable
+        if ( registeredEmulators.count() > 0 ) {
+          if ( qmc2Config->contains(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator") ) {
+            selectedEmulator = qmc2Config->value(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator").toString();
+            if ( !selectedEmulator.isEmpty() && registeredEmulators.contains(selectedEmulator) ) {
+              int emuIndex = comboBoxEmuSelector->findText(selectedEmulator);
+              if ( emuIndex >= 0 )
+                comboBoxEmuSelector->setCurrentIndex(emuIndex);
+              else
+                comboBoxEmuSelector->setCurrentIndex(0);
+            }
+          }
+        }
+
         configWidget->setUpdatesEnabled(TRUE);
       }
       break;
@@ -2475,6 +2563,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       // if local emulator options exits and they are no longer needed, close & destroy them...
       if ( qmc2EmulatorOptions ) {
         QWidget *configWidget = qmc2DetailSetup->tabWidgetsMap[QMC2_CONFIG_INDEX];
+        QString selectedEmulator = comboBoxEmuSelector->currentText();
+        if ( selectedEmulator == tr("Default") || selectedEmulator.isEmpty() )
+          qmc2Config->remove(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator");
+        else
+          qmc2Config->setValue(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator", selectedEmulator);
         qmc2EmulatorOptions->save();
         QLayout *vbl = configWidget->layout();
         if ( vbl )
@@ -2486,6 +2579,26 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       }
       qmc2LastConfigItem = NULL;
       break;
+  }
+}
+
+void MainWindow::on_emuSelector_currentIndexChanged(const QString &text)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_emuSelector_currentIndexChanged(const QString &text = %1)").arg(text));
+#endif
+
+  if ( !qmc2EmulatorOptions )
+    return;
+
+  if ( text == tr("Default") ) {
+    qmc2EmulatorOptions->setEnabled(TRUE);
+    pushButtonCurrentEmulatorOptionsExportToFile->setEnabled(TRUE);
+    pushButtonCurrentEmulatorOptionsImportFromFile->setEnabled(TRUE);
+  } else {
+    qmc2EmulatorOptions->setEnabled(FALSE);
+    pushButtonCurrentEmulatorOptionsExportToFile->setEnabled(FALSE);
+    pushButtonCurrentEmulatorOptionsImportFromFile->setEnabled(FALSE);
   }
 }
 
@@ -3367,6 +3480,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #elif defined(QMC2_EMUTYPE_MESS)
     log(QMC2_LOG_FRONTEND, tr("destroying current machine's emulator configuration"));
 #endif
+    QString selectedEmulator = comboBoxEmuSelector->currentText();
+    if ( selectedEmulator == tr("Default") || selectedEmulator.isEmpty() )
+      qmc2Config->remove(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator");
+    else
+      qmc2Config->setValue(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator", selectedEmulator);
     qmc2EmulatorOptions->save();
     delete qmc2EmulatorOptions;
   }
@@ -5388,9 +5506,9 @@ void MainWindow::mawsQuickLinksSetVisible(bool visible)
 
 void MainWindow::mawsQuickLinksMenuHidden()
 {
-//#ifdef QMC2_DEBUG
+#ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::mawsQuickLinksMenuHidden()");
-//#endif
+#endif
 
   if ( !qmc2MAWSLookup )
     return;

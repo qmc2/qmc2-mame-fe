@@ -88,6 +88,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QMenu *selectMenuCurrentEmulatorOptionsExportToFile;
     QPushButton *pushButtonCurrentEmulatorOptionsImportFromFile;
     QMenu *selectMenuCurrentEmulatorOptionsImportFromFile;
+    QLabel *labelEmuSelector;
+    QComboBox *comboBoxEmuSelector;
     QMenu *menuRomStatusFilter;
     QMenu *menuTabWidgetGamelist;
     QMenu *menuTabWidgetGameDetail;
@@ -330,6 +332,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_pushButtonClearFinishedDownloads_clicked();
     void on_pushButtonReloadSelectedDownloads_clicked();
     void on_pushButtonStopSelectedDownloads_clicked();
+    void on_emuSelector_currentIndexChanged(const QString &);
 
   protected:
     void closeEvent(QCloseEvent *);
