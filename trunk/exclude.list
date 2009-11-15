@@ -212,6 +212,7 @@ qmc2/data/img/classic/.svn/prop-base/edit.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/edittrash.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/exit.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/exit_small.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/export_rom_status.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/favorites.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/fileclose.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/filefind.png.svn-base
@@ -342,6 +343,7 @@ qmc2/data/img/classic/.svn/text-base/edit.png.svn-base
 qmc2/data/img/classic/.svn/text-base/edittrash.png.svn-base
 qmc2/data/img/classic/.svn/text-base/exit.png.svn-base
 qmc2/data/img/classic/.svn/text-base/exit_small.png.svn-base
+qmc2/data/img/classic/.svn/text-base/export_rom_status.png.svn-base
 qmc2/data/img/classic/.svn/text-base/favorites.png.svn-base
 qmc2/data/img/classic/.svn/text-base/fileclose.png.svn-base
 qmc2/data/img/classic/.svn/text-base/filefind.png.svn-base
@@ -472,6 +474,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/edit.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/edittrash.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/exit.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/exit_small.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/export_rom_status.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/favorites.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/fileclose.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/filefind.png.svn-base
@@ -602,6 +605,7 @@ qmc2/data/img/crazy-black/.svn/text-base/edit.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/edittrash.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/exit.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/exit_small.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/export_rom_status.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/favorites.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/fileclose.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/filefind.png.svn-base
@@ -732,6 +736,7 @@ qmc2/data/img/crazy/.svn/prop-base/edit.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/edittrash.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/exit.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/exit_small.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/export_rom_status.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/favorites.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/fileclose.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/filefind.png.svn-base
@@ -862,6 +867,7 @@ qmc2/data/img/crazy/.svn/text-base/edit.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/edittrash.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/exit.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/exit_small.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/export_rom_status.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/favorites.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/fileclose.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/filefind.png.svn-base
@@ -992,6 +998,7 @@ qmc2/data/img/.svn/prop-base/edit.png.svn-base
 qmc2/data/img/.svn/prop-base/edittrash.png.svn-base
 qmc2/data/img/.svn/prop-base/exit.png.svn-base
 qmc2/data/img/.svn/prop-base/exit_small.png.svn-base
+qmc2/data/img/.svn/prop-base/export_rom_status.png.svn-base
 qmc2/data/img/.svn/prop-base/favorites.png.svn-base
 qmc2/data/img/.svn/prop-base/fileclose.png.svn-base
 qmc2/data/img/.svn/prop-base/filefind.png.svn-base
@@ -1122,6 +1129,7 @@ qmc2/data/img/.svn/text-base/edit.png.svn-base
 qmc2/data/img/.svn/text-base/edittrash.png.svn-base
 qmc2/data/img/.svn/text-base/exit.png.svn-base
 qmc2/data/img/.svn/text-base/exit_small.png.svn-base
+qmc2/data/img/.svn/text-base/export_rom_status.png.svn-base
 qmc2/data/img/.svn/text-base/favorites.png.svn-base
 qmc2/data/img/.svn/text-base/fileclose.png.svn-base
 qmc2/data/img/.svn/text-base/filefind.png.svn-base
