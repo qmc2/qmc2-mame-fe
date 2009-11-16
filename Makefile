@@ -210,6 +210,16 @@ ifndef FADER_SPEED
 FADER_SPEED = 500
 endif
 
+# CC_FLAGS: additional flags passed to the C compiler
+ifndef CC_FLAGS
+CC_FLAGS =
+endif
+
+# CXX_FLAGS: additional flags passed to the C++ compiler
+ifndef CXX_FLAGS
+CXX_FLAGS =
+endif
+
 # >>> END OF MAKE OPTIONS <<<
 
 # emulator target fallback for mameuifx32
@@ -357,6 +367,22 @@ CCACHE=0
 DISTCC=0
 endif
 
+# C++ flags
+ifdef QMAKE_CXX_FLAGS
+undef QMAKE_CXX_FLAGS
+endif
+ifneq '$(CXX_FLAGS)' ''
+QMAKE_CXX_FLAGS += QMAKE_CXXFLAGS=$(CXX_FLAGS)
+endif
+
+# C flags
+ifdef QMAKE_CC_FLAGS
+undef QMAKE_CC_FLAGS
+endif
+ifneq '$(CC_FLAGS)' ''
+QMAKE_CC_FLAGS += QMAKE_CFLAGS_RELEASE=$(CC_FLAGS)
+endif
+
 # targets/rules
 all: $(PROJECT)-bin 
 
@@ -400,7 +426,7 @@ endif
 $(QMAKEFILE): $(PROJECT).pro
 	@echo "Configuring build of QMC2 v$(VERSION)"
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
-	@$(QMAKE) -makefile VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) '$(DEFINES)' -o Makefile.qmake $< > /dev/null
+	@$(QMAKE) -makefile VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) '$(DEFINES)' -o Makefile.qmake $< > /dev/null
 else
 $(PROJECT)-bin: lang $(QMAKEFILE)
 ifeq '$(ARCH)' 'Darwin'
@@ -429,7 +455,7 @@ endif
 $(QMAKEFILE): $(PROJECT).pro
 	@echo "Configuring build of QMC2 v$(VERSION)"
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)") 
-	$(QMAKE) -makefile VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) '$(DEFINES)' -o Makefile.qmake $<
+	$(QMAKE) -makefile VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) '$(DEFINES)' -o Makefile.qmake $<
 endif
 
 install: bin
@@ -588,6 +614,8 @@ config:
 	@echo "BASENAME=<basename>    UNIX command basename                       $(BASENAME)"
 	@echo "BINDIR=<bindir>        Binary directory for installation           $(BINDIR)"
 	@echo "BROWSER_EXTRAS=<ena>   Enable browser extra features (0, 1)        $(BROWSER_EXTRAS)"
+	@echo "CC_FLAGS=<c_flags>     Additional flags passed to the C compiler   $(CC_FLAGS)"
+	@echo "CXX_FLAGS=<cxx_flags>  Additional flags passed to the C++ compiler $(CXX_FLAGS)"
 	@echo "CCACHE=<ccache>        Use a compiler cache (0, 1)                 $(CCACHE)"
 	@echo "CCACHE_CC=<cc>         Command used for cached cc                  $(CCACHE_CC)"
 	@echo "CCACHE_CXX=<cxx>       Command used for cached c++                 $(CCACHE_CXX)"
