@@ -253,6 +253,9 @@ VERSION_MAJOR = 0
 VERSION_MINOR = 2
 VERSION_BETA  = 13
 
+# project name
+PROJECT = qmc2
+
 # global QMC2 configuration file
 GLOBAL_QMC2_INI=$(shell echo $(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)/$(PROJECT).ini | $(SED) -e "s*//*/*g")
 
@@ -263,7 +266,6 @@ GLOBAL_DATADIR=$(shell echo $(DESTDIR)/$(DATADIR) | $(SED) -e "s*//*/*g")
 ifeq '$(QMAKEV)' '2'
 
 # for "make dist" and "make snap" target(s)
-PROJECT = qmc2
 ifneq '$(VERSION_BETA)' '0'
 VERSION     = $(VERSION_MAJOR).$(VERSION_MINOR).b$(VERSION_BETA)
 VERSIONDEFS = MAJOR=$(VERSION_MAJOR) MINOR=$(VERSION_MINOR) BETA=$(VERSION_BETA)
@@ -380,7 +382,7 @@ ifdef QMAKE_CC_FLAGS
 undef QMAKE_CC_FLAGS
 endif
 ifneq '$(CC_FLAGS)' ''
-QMAKE_CC_FLAGS += QMAKE_CFLAGS_RELEASE=$(CC_FLAGS)
+QMAKE_CC_FLAGS += QMAKE_CFLAGS_RELEASE=$(CC_FLAGS) QMAKE_CFLAGS_DEBUG=$(CC_FLAGS)
 endif
 
 # targets/rules
