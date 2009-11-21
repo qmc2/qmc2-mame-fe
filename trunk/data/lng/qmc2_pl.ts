@@ -6129,9 +6129,9 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../qmc2main.cpp" line="3896"/>
         <source>%n machine info record(s) loaded</source>
         <translation>
-            <numerusform>załadowano %n rekord informacji o grach</numerusform>
-            <numerusform>załadowano %n rekordy informacji o grach</numerusform>
-            <numerusform>załadowano %n rekordów informacji o grach</numerusform>
+            <numerusform>załadowano %n rekord informacji o maszynach</numerusform>
+            <numerusform>załadowano %n rekordy informacji o maszynach</numerusform>
+            <numerusform>załadowano %n rekordów informacji o maszynach</numerusform>
         </translation>
     </message>
     <message>
@@ -6385,8 +6385,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <source>%n file(s)</source>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -7644,7 +7642,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../options.ui" line="127"/>
         <source>PT (Portuguese)</source>
-        <translation type="unfinished"></translation>
+        <translation>PT (portugalski)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="256"/>
