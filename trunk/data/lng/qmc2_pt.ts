@@ -3353,42 +3353,42 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="65"/>
         <location filename="../../imgcheck.cpp" line="67"/>
         <source>Select machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar máquina</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="66"/>
         <location filename="../../imgcheck.cpp" line="68"/>
         <source>Select machine in machine list if selected in check lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar máquina na lista de máquinas se selecionada na lista de checagem?</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="95"/>
         <source>checking previews from ZIP archive</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificando previews do arquivo ZIP</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="97"/>
         <source>checking previews from directory</source>
-        <translation type="unfinished"></translation>
+        <translation>verificando previews do diretório</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="100"/>
         <source>Preview check - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificação de preview - %p%</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="108"/>
         <location filename="../../imgcheck.cpp" line="432"/>
         <location filename="../../imgcheck.cpp" line="758"/>
         <source>WARNING: game list not fully loaded, check results may be misleading</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: lista de jogos não completamente carregada, verificação de resultados podem ser enganosos</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="110"/>
         <location filename="../../imgcheck.cpp" line="434"/>
         <location filename="../../imgcheck.cpp" line="760"/>
         <source>WARNING: machine list not fully loaded, check results may be misleading</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: lista de máquinas não completamente carregada, verificação de resultados podem ser enganosos</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="114"/>
@@ -3401,7 +3401,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="765"/>
         <location filename="../../imgcheck.cpp" line="766"/>
         <source>&amp;Stop check</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Parar verificação</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="128"/>
@@ -3411,7 +3411,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.ui" line="243"/>
         <location filename="../../imgcheck.ui" line="323"/>
         <source>Found: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Encontrado: 0</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="130"/>
@@ -3421,7 +3421,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.ui" line="230"/>
         <location filename="../../imgcheck.ui" line="336"/>
         <source>Missing: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Faltando: 0</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="132"/>
@@ -3431,12 +3431,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.ui" line="217"/>
         <location filename="../../imgcheck.ui" line="349"/>
         <source>Obsolete: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Obsoleto: 0</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="137"/>
         <source>check pass 1: found and missing previews</source>
-        <translation type="unfinished"></translation>
+        <translation>primeira passagem de verificação: previews encontrados e faltantes</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="145"/>
@@ -3446,7 +3446,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="795"/>
         <location filename="../../imgcheck.cpp" line="817"/>
         <source>Found: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Encontrado: %1</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="147"/>
@@ -3456,14 +3456,14 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="797"/>
         <location filename="../../imgcheck.cpp" line="820"/>
         <source>Missing: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Faltando: %1</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="178"/>
         <location filename="../../imgcheck.cpp" line="502"/>
         <location filename="../../imgcheck.cpp" line="828"/>
         <source>check pass 2: obsolete files: reading ZIP directory</source>
-        <translation type="unfinished"></translation>
+        <translation>segunda passagem de verificação: arquivos obsoletos: lendo ZIP</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="210"/>
@@ -3479,31 +3479,31 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="892"/>
         <location filename="../../imgcheck.cpp" line="901"/>
         <source>Obsolete: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Obsoleto: %1</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="227"/>
         <location filename="../../imgcheck.cpp" line="551"/>
         <location filename="../../imgcheck.cpp" line="876"/>
         <source>check pass 2: obsolete files: reading directory structure</source>
-        <translation type="unfinished"></translation>
+        <translation>segunda passagem de verificação: arquivos obsoletos: lendo estrutura de diretórios</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="269"/>
         <source>done (checking previews from ZIP archive, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (verificando previews do ZIP, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="271"/>
         <source>done (checking previews from directory, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (verificando previews do diretório, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="272"/>
         <location filename="../../imgcheck.cpp" line="596"/>
         <location filename="../../imgcheck.cpp" line="921"/>
         <source>%1 found, %2 missing, %3 obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 encontrados, %2 faltando, %3 obsoletos</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="278"/>
@@ -3511,7 +3511,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="927"/>
         <location filename="../../imgcheck.ui" line="115"/>
         <source>&amp;Check previews</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Verificar previews</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="279"/>
@@ -3519,7 +3519,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="928"/>
         <location filename="../../imgcheck.ui" line="253"/>
         <source>&amp;Check flyers</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Verificar flyers</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="280"/>
@@ -3527,188 +3527,188 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="929"/>
         <location filename="../../imgcheck.ui" line="368"/>
         <source>&amp;Check icons</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Verificar ícones</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="419"/>
         <source>checking flyers from ZIP archive</source>
-        <translation type="unfinished"></translation>
+        <translation>verificando flyers do ZIP</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="421"/>
         <source>checking flyers from directory</source>
-        <translation type="unfinished"></translation>
+        <translation>verificando flyers do diretório</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="424"/>
         <source>Flyer check - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificação de flyer - %p%</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="461"/>
         <source>check pass 1: found and missing flyers</source>
-        <translation type="unfinished"></translation>
+        <translation>primeira passagem de verificação: flyers encontrados e faltantes</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="593"/>
         <source>done (checking flyers from ZIP archive, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (verificando flyers do ZIP, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="595"/>
         <source>done (checking flyers from directory, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (verificando flyers do diretório, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="745"/>
         <source>checking icons from ZIP archive</source>
-        <translation type="unfinished"></translation>
+        <translation>verificando ícones do ZIP</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="747"/>
         <source>checking icons from directory</source>
-        <translation type="unfinished"></translation>
+        <translation>verificando ícones do diretório</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="750"/>
         <source>Icon check - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificação de ícones - %p%</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="787"/>
         <source>check pass 1: found and missing icons</source>
-        <translation type="unfinished"></translation>
+        <translation>primeira passagem de verificação: ícones encontrados e faltantes</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="918"/>
         <source>done (checking icons from ZIP archive, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (verificando ícones do ZIP, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="920"/>
         <source>done (checking icons from directory, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (verificando ícones do diretório, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1061"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor aguarde finalizar o recarregamento e tente novamente</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1066"/>
         <source>please wait for ROMAlyzer to finish the current analysis and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere o ROMAlyzer terminar a análise atual e tente novamente</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1071"/>
         <source>please wait for ROM state filter to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere o filtro de estado de ROM terminar e tente novamente</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1076"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor aguarde a verificação de ROM terminar e tente novamente</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1081"/>
         <source>please wait for sample check to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere a verificação de exemplos terminar e tente novamente</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1086"/>
         <source>stopping image check upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>parando verificação de imagem devido à requisição do usuário</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="15"/>
         <source>Check images</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar imagens</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="36"/>
         <source>Close image check dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Fecha a janela de verificação de imagens</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="39"/>
         <source>C&amp;lose</source>
-        <translation type="unfinished"></translation>
+        <translation>F&amp;echar</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="56"/>
         <source>&amp;Previews</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="112"/>
         <source>Check preview images / stop check</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar imagens de preview / parar verificação</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="122"/>
         <location filename="../../imgcheck.ui" line="276"/>
         <location filename="../../imgcheck.ui" line="388"/>
         <source>Select game in game list if selected in check lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar jogo na lista quando selecionada na lista de checagem?</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="125"/>
         <location filename="../../imgcheck.ui" line="279"/>
         <location filename="../../imgcheck.ui" line="391"/>
         <source>Select &amp;game</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar &amp;jogo</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="164"/>
         <source>Remove obsolete preview images</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover imagens de exemplo obsoletas</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="167"/>
         <location filename="../../imgcheck.ui" line="266"/>
         <location filename="../../imgcheck.ui" line="381"/>
         <source>&amp;Remove obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Remover obsoleto</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="181"/>
         <source>&amp;Flyers</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="250"/>
         <source>Check flyer images / stop check</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar imagens de flyer / parar verificação</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="263"/>
         <source>Remove obsolete flyer images</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover imagens de flyer obsoletas</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="309"/>
         <source>&amp;Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ícones</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="365"/>
         <source>Check icon images / stop check</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar imagens de ícones / parar verificação</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="378"/>
         <source>Remove obsolete icon images</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover imagens de ícones obsoletas</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="401"/>
         <source>Clear cache before checking icons?</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache antes de verificar ícones?</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="404"/>
         <source>C&amp;lear cache</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Limpar cache</translation>
     </message>
 </context>
 <context>
@@ -6615,67 +6615,67 @@ Should they be killed on exit?</source>
         <location filename="../../mawsqdlsetup.ui" line="467"/>
         <location filename="../../mawsqdlsetup.ui" line="570"/>
         <source>AntoPISA progettoSNAPS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="95"/>
         <source>Choose icon directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório de ícones</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="108"/>
         <source>Choose flyer directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório de flyers</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="121"/>
         <source>Choose cabinet directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório de gabinetes</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="134"/>
         <source>Choose controller directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório de controles</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="147"/>
         <source>Choose marquee directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório de marquee</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="160"/>
         <source>Choose PCB directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório de PCB</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="173"/>
         <source>Choose preview directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório de previews</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="186"/>
         <source>Choose title directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório de títulos</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="14"/>
         <source>MAWS quick download setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuração do download rápido do MAWS</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="20"/>
         <source>Icons and cabinet art</source>
-        <translation type="unfinished"></translation>
+        <translation>Ícones e gabinetes</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="32"/>
         <source>Flyers</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="45"/>
         <source>Automatically download flyer images</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar automaticamente imagens de flyers</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="48"/>
@@ -6687,214 +6687,214 @@ Should they be killed on exit?</source>
         <location filename="../../mawsqdlsetup.ui" line="411"/>
         <location filename="../../mawsqdlsetup.ui" line="514"/>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Automático</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="61"/>
         <source>Path to store flyer images</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho para guardar imagens de flyers</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="74"/>
         <source>Browse path to store flyer images</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar caminho para guardar imagens de flyers</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="91"/>
         <source>Cabinets</source>
-        <translation type="unfinished"></translation>
+        <translation>Gabinetes</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="104"/>
         <source>Automatically download cabinet images</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar automaticamente imagens de gabinetes</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="120"/>
         <source>Path to store cabinet images</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho para guardar imagens de gabinetes</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="133"/>
         <source>Browse path to store cabinet images</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar caminho para guardar imagens de gabinetes</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="150"/>
         <source>Controllers</source>
-        <translation type="unfinished"></translation>
+        <translation>Controles</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="163"/>
         <source>Automatically download controller images</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar automaticamente imagens de controles</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="179"/>
         <source>Path to store controller images</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho para guardar imagens de controles</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="192"/>
         <source>Browse path to store controller images</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar caminho para guardar imagens de controles</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="209"/>
         <source>Marquees</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="222"/>
         <source>Automatically download marquee images</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar automaticamente imagens de marquee</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="238"/>
         <source>Path to store marquee images</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho para guardar imagens de marquee</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="251"/>
         <source>Browse path to store marquee images</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar caminho para guardar imagens de marquee</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="268"/>
         <source>PCBs</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="281"/>
         <source>Automatically download PCB images</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar automaticamente imagens de PCBs</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="297"/>
         <source>Path to store PCB images</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho para guardar imagens de PCBs</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="310"/>
         <source>Browse path to store PCB images</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar caminho para guardar imagens de PCBs</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="327"/>
         <source>Automatically download icon images</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar automaticamente imagens de ícones</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="343"/>
         <source>Path to store icon images</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho para guardar imagens de ícones</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="356"/>
         <source>Browse path to store icon images</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar caminho para guardar imagens de ícones</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="373"/>
         <source>Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Ícones</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="383"/>
         <source>Previews and titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Pewviews e títulos</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="395"/>
         <source>Previews</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="408"/>
         <source>Automatically download preview images</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar automaticamente imagens de preview</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="424"/>
         <source>Path to store preview images</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho para guardar imagens de preview</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="437"/>
         <source>Browse path to store preview images</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar caminho para guardar imagens de preview</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="450"/>
         <location filename="../../mawsqdlsetup.ui" line="553"/>
         <source>Preferred collection</source>
-        <translation type="unfinished"></translation>
+        <translation>Colecçao preferida</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="463"/>
         <source>Select the preferred image collection for in-game previews (auto-download)</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione a coleção de imagens preferidas para previews do jogo (download automático)</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="472"/>
         <source>MAME World Snap Collection</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="477"/>
         <location filename="../../mawsqdlsetup.ui" line="575"/>
         <source>CrashTest Snap Collection</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="482"/>
         <source>Enaitz Jar Snaps</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="498"/>
         <source>Titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Títulos</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="511"/>
         <source>Automatically download title images</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar automaticamente imagens de títulos</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="527"/>
         <source>Path to store title images</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho para guardar imagens de títulos</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="540"/>
         <source>Browse path to store title images</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar caminho para guardar imagens de títulos</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="566"/>
         <source>Select the preferred image collection for titles (auto-download)</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione a coleção de imagens preferidas para títulos (download automático)</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="612"/>
         <source>Apply MAWS quick download setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar configuração do download rápido do MAWS</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="615"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="626"/>
         <source>Cancel MAWS quick download setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancelar configuração do download rápido do MAWS</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="629"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cancelar</translation>
     </message>
 </context>
 <context>
@@ -6902,107 +6902,107 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="86"/>
         <source>Open link</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir link</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="88"/>
         <source>Save link as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar link como...</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="90"/>
         <source>Copy link</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar link</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="92"/>
         <source>Save image as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar imagem como...</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="94"/>
         <source>Copy image</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar imagem</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="96"/>
         <location filename="../../miniwebbrowser.ui" line="27"/>
         <location filename="../../miniwebbrowser.ui" line="30"/>
         <source>Go back</source>
-        <translation type="unfinished"></translation>
+        <translation>Anterior</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="98"/>
         <location filename="../../miniwebbrowser.ui" line="44"/>
         <location filename="../../miniwebbrowser.ui" line="47"/>
         <source>Go forward</source>
-        <translation type="unfinished"></translation>
+        <translation>Próximo</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="100"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Recarregar</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="102"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="104"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="107"/>
         <source>Inspect</source>
-        <translation type="unfinished"></translation>
+        <translation>Inspecionar</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="226"/>
         <source>No title</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem título</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="15"/>
         <source>Mini Web Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Mini navegador</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="61"/>
         <location filename="../../miniwebbrowser.ui" line="64"/>
         <source>Reload current URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Recarregar URL atual</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="78"/>
         <location filename="../../miniwebbrowser.ui" line="81"/>
         <source>Stop loading of current URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar o carregamento da URL atual</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="95"/>
         <location filename="../../miniwebbrowser.ui" line="98"/>
         <source>Go home (first page)</source>
-        <translation type="unfinished"></translation>
+        <translation>Página inicial (primeira página)</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="115"/>
         <location filename="../../miniwebbrowser.ui" line="118"/>
         <source>Enter current URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrar na URL atual</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="134"/>
         <location filename="../../miniwebbrowser.ui" line="137"/>
         <source>Load URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar URL</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="175"/>
         <location filename="../../miniwebbrowser.ui" line="178"/>
         <source>Current progress loading URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Progresso carregando URL</translation>
     </message>
 </context>
 <context>
@@ -9378,62 +9378,62 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../procmgr.cpp" line="52"/>
         <location filename="../../procmgr.cpp" line="54"/>
         <source>starting emulator #%1, command = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>iniciando emulador #%1, comando = %2</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="84"/>
         <source>terminating emulator #%1, PID = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>terminando emulador #%1, PID = %2</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="98"/>
         <source>WARNING: ProcessManager::terminate(ushort index = %1): trying to terminate a null process</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: ProcessManager::terminate(ushort index = %1): tentando terminar um processo nulo</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="107"/>
         <source>killing emulator #%1, PID = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>matando emulador #%1, PID = %2</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="121"/>
         <source>WARNING: ProcessManager::kill(ushort index = %1): trying to kill a null process</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: ProcessManager::kill(ushort index = %1): tentando matar um processo nulo</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="138"/>
         <source>stdout[#%1]:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="156"/>
         <source>stderr[#%1]:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="174"/>
         <source>WARNING: ProcessManager::finished(...): trying to remove a null item</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: ProcessManager::finished(...): tentando matar um item nulo</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="177"/>
         <source>emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador #%1 terminou, código de saída = %2, estado da saída = %3, emuladores restantes = %4</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="177"/>
         <source>normal</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="177"/>
         <source>crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>quebrado</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="216"/>
         <source>emulator #%1 started, PID = %2, running emulators = %3</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador #%1 iniciado, PID = %2, emuladores em execução = %3</translation>
     </message>
 </context>
 <context>
@@ -9442,63 +9442,63 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../gamelist.cpp" line="1487"/>
         <location filename="../../options.cpp" line="982"/>
         <source>game description</source>
-        <translation type="unfinished"></translation>
+        <translation>descrição do jogo</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1489"/>
         <location filename="../../options.cpp" line="984"/>
         <source>machine description</source>
-        <translation type="unfinished"></translation>
+        <translation>descrição da máquina</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1493"/>
         <location filename="../../options.cpp" line="988"/>
         <source>ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>estado da ROM</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1496"/>
         <location filename="../../options.cpp" line="991"/>
         <source>year</source>
-        <translation type="unfinished"></translation>
+        <translation>ano</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1499"/>
         <location filename="../../options.cpp" line="994"/>
         <source>manufacturer</source>
-        <translation type="unfinished"></translation>
+        <translation>fabricante</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1503"/>
         <location filename="../../options.cpp" line="998"/>
         <source>game name</source>
-        <translation type="unfinished"></translation>
+        <translation>nome do jogo</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1505"/>
         <location filename="../../options.cpp" line="1000"/>
         <source>machine name</source>
-        <translation type="unfinished"></translation>
+        <translation>nome da máquina</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2258"/>
         <source>correct</source>
-        <translation type="unfinished"></translation>
+        <translation>correto</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2271"/>
         <source>incorrect</source>
-        <translation type="unfinished"></translation>
+        <translation>incorreto</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2284"/>
         <source>mostly correct</source>
-        <translation type="unfinished"></translation>
+        <translation>maioria correto</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2297"/>
         <source>not found</source>
-        <translation type="unfinished"></translation>
+        <translation>não encontrado</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2310"/>
@@ -9507,155 +9507,155 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1207"/>
         <location filename="../../romalyzer.cpp" line="1219"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>desconhecido</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="568"/>
         <location filename="../../options.cpp" line="1295"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Padrão</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2368"/>
         <location filename="../../qmc2main.cpp" line="2369"/>
         <source>Export game-specific MAME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar configuração do MAME específica de jogo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2371"/>
         <location filename="../../qmc2main.cpp" line="2372"/>
         <source>Export machine-specific MESS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar configuração do MESS específica de máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2374"/>
         <location filename="../../qmc2main.cpp" line="5868"/>
         <source>Import from...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar de...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2376"/>
         <location filename="../../qmc2main.cpp" line="2377"/>
         <source>Import game-specific MAME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar configuração do MAME específica de jogo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2379"/>
         <location filename="../../qmc2main.cpp" line="2380"/>
         <source>Import machine-specific MESS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar configuração do MAME específica de máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5807"/>
         <source>M.E.S.S. Catalog / Launcher II v</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5809"/>
         <location filename="../../qmc2main.cpp" line="5811"/>
         <source>M.A.M.E. Catalog / Launcher II v</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5833"/>
         <source>OpenGL features enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Recursos OpenGL habilitados</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5837"/>
         <source>Phonon features enabled - using Phonon v%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Recursos Phonon habilitados - usando Phonon v%1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5842"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
-        <translation type="unfinished"></translation>
+        <translation>Suporte do SDL à joystick habilitado - usando SDL v%1.%2.%3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5846"/>
         <source>processing global emulator configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>processando configuração global do emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5860"/>
         <source>Export to...</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar para...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5862"/>
         <location filename="../../qmc2main.cpp" line="5863"/>
         <source>Export global MAME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar configuração global do MAME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5865"/>
         <location filename="../../qmc2main.cpp" line="5866"/>
         <source>Export global MESS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar configuração global do MESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5870"/>
         <location filename="../../qmc2main.cpp" line="5871"/>
         <source>Import global MAME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar configuração global do MAME</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5873"/>
         <location filename="../../qmc2main.cpp" line="5874"/>
         <source>Import global MESS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Importar configuração global do MESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5886"/>
         <location filename="../../qmc2main.cpp" line="5894"/>
         <source>&lt;inipath&gt;/mame.ini</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5888"/>
         <location filename="../../qmc2main.cpp" line="5896"/>
         <source>&lt;inipath&gt;/mess.ini</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5890"/>
         <location filename="../../qmc2main.cpp" line="5898"/>
         <source>Select file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar arquivo...</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="505"/>
         <location filename="../../romalyzer.cpp" line="1158"/>
         <source>CHD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1158"/>
         <source>ROM</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1162"/>
         <location filename="../../romalyzer.cpp" line="1204"/>
         <source>good</source>
-        <translation type="unfinished"></translation>
+        <translation>bom</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1166"/>
         <location filename="../../romalyzer.cpp" line="1213"/>
         <source>no dump</source>
-        <translation type="unfinished"></translation>
+        <translation>sem dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1170"/>
         <location filename="../../romalyzer.cpp" line="1216"/>
         <source>bad dump</source>
-        <translation type="unfinished"></translation>
+        <translation>dump ruim</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1210"/>
         <source>no / bad dump</source>
-        <translation type="unfinished"></translation>
+        <translation>sem dump / dump ruim</translation>
     </message>
 </context>
 <context>
@@ -10531,41 +10531,41 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.cpp" line="33"/>
         <source>Machine description</source>
-        <translation type="unfinished"></translation>
+        <translation>Descrição da máquina</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="34"/>
         <source>Machine name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome da máquina</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="133"/>
         <location filename="../../romstatusexport.cpp" line="430"/>
         <location filename="../../romstatusexport.cpp" line="616"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirmar</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="133"/>
         <location filename="../../romstatusexport.cpp" line="430"/>
         <location filename="../../romstatusexport.cpp" line="616"/>
         <source>Overwrite existing file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobrescrever arquivo existente?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="147"/>
         <source>exporting ROM status in ASCII format to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>exportando estado da ROM no formato ASCII para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="149"/>
         <source>WARNING: can&apos;t open ASCII export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir o arquivo de exportação para ASCII &apos;%1&apos; para escrita, por favor verifique as permissões</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="155"/>
         <source>exporting ROM status in ASCII format to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>exportando estado da ROM em formato ASCII para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="166"/>
@@ -10573,7 +10573,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="481"/>
         <location filename="../../romstatusexport.cpp" line="676"/>
         <source>Emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulador</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="167"/>
@@ -10581,7 +10581,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="482"/>
         <location filename="../../romstatusexport.cpp" line="678"/>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Data</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="168"/>
@@ -10589,7 +10589,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="483"/>
         <location filename="../../romstatusexport.cpp" line="680"/>
         <source>Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="170"/>
@@ -10597,7 +10597,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="489"/>
         <location filename="../../romstatusexport.cpp" line="692"/>
         <source>Total games</source>
-        <translation type="unfinished"></translation>
+        <translation>Total de jogos</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="172"/>
@@ -10605,7 +10605,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="491"/>
         <location filename="../../romstatusexport.cpp" line="694"/>
         <source>Total machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Total de máquinas</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="174"/>
@@ -10613,7 +10613,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="493"/>
         <location filename="../../romstatusexport.cpp" line="697"/>
         <source>Correct</source>
-        <translation type="unfinished"></translation>
+        <translation>Correto</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="175"/>
@@ -10621,7 +10621,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="494"/>
         <location filename="../../romstatusexport.cpp" line="699"/>
         <source>Mostly correct</source>
-        <translation type="unfinished"></translation>
+        <translation>Maioria correto</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="176"/>
@@ -10629,7 +10629,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="495"/>
         <location filename="../../romstatusexport.cpp" line="701"/>
         <source>Incorrect</source>
-        <translation type="unfinished"></translation>
+        <translation>Incorreto</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="177"/>
@@ -10637,7 +10637,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="496"/>
         <location filename="../../romstatusexport.cpp" line="703"/>
         <source>Not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Não encontrado</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="178"/>
@@ -10645,7 +10645,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="497"/>
         <location filename="../../romstatusexport.cpp" line="705"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Desconhecido</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="189"/>
@@ -10654,7 +10654,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="656"/>
         <location filename="../../romstatusexport.cpp" line="672"/>
         <source>ROM Status Export - created by QMC2 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportação de Estado da ROM - criado por QMC2 %1</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="200"/>
@@ -10665,7 +10665,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="670"/>
         <location filename="../../romstatusexport.cpp" line="795"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>desconhecido</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="208"/>
@@ -10673,7 +10673,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="487"/>
         <location filename="../../romstatusexport.cpp" line="687"/>
         <source>Overall ROM Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado geral da ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="222"/>
@@ -10681,12 +10681,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="500"/>
         <location filename="../../romstatusexport.cpp" line="711"/>
         <source>Detailed ROM Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado detalhado da ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="226"/>
         <source>sorting, filtering and analyzing export data</source>
-        <translation type="unfinished"></translation>
+        <translation>ordenando, filtrando e analisando exportação de dados</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="248"/>
@@ -10694,7 +10694,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="565"/>
         <location filename="../../romstatusexport.cpp" line="778"/>
         <source>correct</source>
-        <translation type="unfinished"></translation>
+        <translation>correto</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="255"/>
@@ -10702,7 +10702,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="569"/>
         <location filename="../../romstatusexport.cpp" line="782"/>
         <source>mostly correct</source>
-        <translation type="unfinished"></translation>
+        <translation>maioria correto</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="262"/>
@@ -10710,7 +10710,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="573"/>
         <location filename="../../romstatusexport.cpp" line="786"/>
         <source>incorrect</source>
-        <translation type="unfinished"></translation>
+        <translation>incorreto</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="269"/>
@@ -10718,40 +10718,40 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="577"/>
         <location filename="../../romstatusexport.cpp" line="790"/>
         <source>not found</source>
-        <translation type="unfinished"></translation>
+        <translation>não encontrado</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="327"/>
         <source>done (sorting, filtering and analyzing export data)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (ordenando, filtrando e analisando exportação de dados)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="328"/>
         <location filename="../../romstatusexport.cpp" line="540"/>
         <location filename="../../romstatusexport.cpp" line="752"/>
         <source>writing export data</source>
-        <translation type="unfinished"></translation>
+        <translation>escrevendo dados de exportação</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="330"/>
         <location filename="../../romstatusexport.cpp" line="542"/>
         <location filename="../../romstatusexport.cpp" line="756"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="331"/>
         <location filename="../../romstatusexport.cpp" line="543"/>
         <location filename="../../romstatusexport.cpp" line="756"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="332"/>
         <location filename="../../romstatusexport.cpp" line="544"/>
         <location filename="../../romstatusexport.cpp" line="756"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Descrição</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="333"/>
@@ -10759,7 +10759,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="756"/>
         <location filename="../../romstatusexport.ui" line="196"/>
         <source>Year</source>
-        <translation type="unfinished"></translation>
+        <translation>Ano</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="334"/>
@@ -10767,384 +10767,384 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="756"/>
         <location filename="../../romstatusexport.ui" line="201"/>
         <source>Manufacturer</source>
-        <translation type="unfinished"></translation>
+        <translation>Fabricante</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="405"/>
         <location filename="../../romstatusexport.cpp" line="591"/>
         <location filename="../../romstatusexport.cpp" line="807"/>
         <source>done (writing export data)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (escrevendo dados de exportação)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="409"/>
         <source>done (exporting ROM status in ASCII format to clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (exportando estado da ROM em formato ASCII para a área de transferência)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="412"/>
         <source>done (exporting ROM status in ASCII format to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (exportando estado da ROM no formato ASCII para &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="444"/>
         <source>exporting ROM status in CSV format to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>exportando estado da ROM no formato CSV para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="446"/>
         <source>WARNING: can&apos;t open CSV export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir o arquivo de exportação para CSV &apos;%1&apos; para escrita, por favor verifique as permissões</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="452"/>
         <source>exporting ROM status in CSV format to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>exportando estado da ROM no formato CSV para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="503"/>
         <location filename="../../romstatusexport.cpp" line="715"/>
         <source>sorting and filtering export data</source>
-        <translation type="unfinished"></translation>
+        <translation>ordenando e filtrando dados de exportação</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="539"/>
         <location filename="../../romstatusexport.cpp" line="751"/>
         <source>done (sorting and filtering export data)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (ordenando e filtrando dados de exportação)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="595"/>
         <source>done (exporting ROM status in CSV format to clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (exportando estado da ROM no formato CSV para a área de transferência)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="598"/>
         <source>done (exporting ROM status in CSV format to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (exportando estado da ROM no formato CSV para &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="630"/>
         <source>exporting ROM status in HTML format to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>exportando estado da ROM no formato HTML para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="632"/>
         <source>WARNING: can&apos;t open HTML export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível abrir o arquivo de exportação para HTML &apos;%1&apos; para escrita, por favor verifique as permissões</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="638"/>
         <source>exporting ROM status in HTML format to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>exportando estado da ROM no formato HTML para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="811"/>
         <source>done (exporting ROM status in HTML format to clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (exportando estado da ROM no formato HTML para a área de transferência)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="814"/>
         <source>done (exporting ROM status in HTML format to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (exportando estado da ROM no formato HTML para &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="827"/>
         <source>Choose ASCII export file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha arquivo de exportação em ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="827"/>
         <location filename="../../romstatusexport.cpp" line="839"/>
         <location filename="../../romstatusexport.cpp" line="851"/>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="839"/>
         <source>Choose CSV export file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha arquivo de exportação em CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="851"/>
         <source>Choose HTML export file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha arquivo de exportação em HTML</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="864"/>
         <source>gamelist is not ready, please wait</source>
-        <translation type="unfinished"></translation>
+        <translation>lista de jogos não está pronto, por favor espere</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="15"/>
         <source>ROM status export</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportação de estado da ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="23"/>
         <location filename="../../romstatusexport.ui" line="30"/>
         <source>Select output format</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o formato de saída</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="34"/>
         <source>ASCII</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="39"/>
         <source>CSV</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="44"/>
         <source>HTML</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="66"/>
         <source>Exported ROM states</source>
-        <translation type="unfinished"></translation>
+        <translation>Estados de ROM exportados</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="75"/>
         <source>Export ROM state C (correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar estado de ROM C (correto)?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="92"/>
         <source>Export ROM state M (mostly correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar estado de ROM M (maioria correto)?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="109"/>
         <source>Export ROM state I (incorrect)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar estado de ROM I (incorreto)?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="126"/>
         <source>Export ROM state N (not found)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar estado de ROM N (não encontrado)?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="143"/>
         <source>Export ROM state U (unknown)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar estado de ROM U (desconhecido)?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="175"/>
         <source>Sort criteria</source>
-        <translation type="unfinished"></translation>
+        <translation>Critério de ordenação</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="182"/>
         <source>Select sort criteria</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o critério de ordenação</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="186"/>
         <source>Game description</source>
-        <translation type="unfinished"></translation>
+        <translation>Descrição do jogo</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="191"/>
         <source>ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado da ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="206"/>
         <source>Game name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do jogo</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="214"/>
         <source>Sort order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordem</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="221"/>
         <source>Select sort order</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione a ordem</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="225"/>
         <source>Ascending</source>
-        <translation type="unfinished"></translation>
+        <translation>Ascendente</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="234"/>
         <source>Descending</source>
-        <translation type="unfinished"></translation>
+        <translation>Descendente</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="246"/>
         <source>Include some header information in export</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir cabeçalho na exportação</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="249"/>
         <source>Include header</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir cabeçalho</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="259"/>
         <source>Include statistical overview of the ROM state in export</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir estatística geral de estados da ROM na exportação</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="262"/>
         <source>Include ROM statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir estatísticas das ROMs</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="272"/>
         <source>Export to the system clipboard instead of a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar para a área de transferência ao invés de um arquivo</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="275"/>
         <source>Export to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="285"/>
         <source>Overwrite existing files without asking what to do</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobrescrever arquivos existentes sem perguntar</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="288"/>
         <source>Overwrite blindly</source>
-        <translation type="unfinished"></translation>
+        <translation>Não perguntar ao sobrescrever</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="310"/>
         <source>Browse ASCII export file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar pelo arquivo de exportação ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="313"/>
         <source>ASCII file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="327"/>
         <source>ASCII export file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de exportação ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="334"/>
         <source>Column width</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho da coluna</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="344"/>
         <source>Maximum column width for ASCII export (0 = unlimited)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho máximo da coluna para exportação ASCII (0 = ilimitado)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="347"/>
         <source>unlimited</source>
-        <translation type="unfinished"></translation>
+        <translation>ilimitado</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="397"/>
         <source>Browse CSV export file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar pelo arquivo de exportação CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="400"/>
         <source>CSV file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="414"/>
         <source>CSV export file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de exportação CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="421"/>
         <source>Separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Separador</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="456"/>
         <source>Field separator for CSV export</source>
-        <translation type="unfinished"></translation>
+        <translation>Separador de campo para exportação em CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="459"/>
         <source>;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="472"/>
         <source>Delimiter</source>
-        <translation type="unfinished"></translation>
+        <translation>Delimitador</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="494"/>
         <source>Text delimiter for CSV export</source>
-        <translation type="unfinished"></translation>
+        <translation>Delimitador de texto para exportação em CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="497"/>
         <source>&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="547"/>
         <source>Browse HTML export file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar pelo arquivo de exportação HTML</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="550"/>
         <source>HTML file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo HTML</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="564"/>
         <source>HTML export file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de exportação HTML</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="571"/>
         <source>Border width</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho da borda</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="581"/>
         <source>Border line width for tables (0 = no border)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho da borda para tabelas (0 = sem borda)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="631"/>
         <source>Export now!</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar agora!</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="634"/>
         <source>&amp;Export</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Exportar</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="645"/>
         <source>Close ROM status export</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar exportação de estado de ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="648"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fechar</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="659"/>
         <source>Export progress indicator</source>
-        <translation type="unfinished"></translation>
+        <translation>Indicador de progresso da exportação</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="665"/>
         <source>%p%</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -11152,153 +11152,153 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../sampcheck.cpp" line="156"/>
         <source>verifying samples</source>
-        <translation type="unfinished"></translation>
+        <translation>verificando exemplos</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="158"/>
         <location filename="../../sampcheck.ui" line="29"/>
         <source>Good: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Bom: 0</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="160"/>
         <location filename="../../sampcheck.ui" line="42"/>
         <source>Bad: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruim: 0</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="162"/>
         <location filename="../../sampcheck.ui" line="55"/>
         <source>Obsolete: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Obsoleto: 0</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="164"/>
         <source>check pass 1: sample status</source>
-        <translation type="unfinished"></translation>
+        <translation>checagem primeira passagem: estado dos exemplos</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="203"/>
         <source>WARNING: emulator audit call didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO:chamada para a auditoria do emulador não terminou corretamente -- código de saída = %1, estado de saída = %2</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="203"/>
         <source>normal</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="203"/>
         <source>crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>qeubrado</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="219"/>
         <source>check pass 2: obsolete sample sets</source>
-        <translation type="unfinished"></translation>
+        <translation>checagem segunda passagem: conjuntos de exemplos obsoletos</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="241"/>
         <source>Obsolete: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Obsoleto: %1</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="251"/>
         <source>done (verifying samples, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (verificando exemplos, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="252"/>
         <source>%1 good, %2 bad (or missing), %3 obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 bom, %2 ruim (ou faltando), %3 obsoleto</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="257"/>
         <location filename="../../sampcheck.ui" line="74"/>
         <source>&amp;Check samples</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Verificar exemplos</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="292"/>
         <location filename="../../sampcheck.cpp" line="343"/>
         <source>Good: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Bom: %1</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="298"/>
         <location filename="../../sampcheck.cpp" line="349"/>
         <source>Bad: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruim: %1</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="386"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere o fim do recarregamento e tente novamente</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="391"/>
         <source>please wait for ROM state filter to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere pelo filtro de estado de ROM terminar e tente novamente</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="396"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere a verificação de ROM terminar e tente novamente</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="401"/>
         <source>please wait for image check to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere a verificação de imagem terminar e tente novamente</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="406"/>
         <source>stopping sample check upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>parando verificação de exemplos devido à requisição do usuário</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="411"/>
         <source>&amp;Stop check</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Parar verificação</translation>
     </message>
     <message>
         <location filename="../../sampcheck.ui" line="15"/>
         <source>Check samples</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar exemplos</translation>
     </message>
     <message>
         <location filename="../../sampcheck.ui" line="71"/>
         <source>Check samples / stop check</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar exemplos / parar verificação</translation>
     </message>
     <message>
         <location filename="../../sampcheck.ui" line="84"/>
         <source>Remove obsolete sample sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover conjuntos obsoletos de exemplos</translation>
     </message>
     <message>
         <location filename="../../sampcheck.ui" line="87"/>
         <source>&amp;Remove obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Remover obsoleto</translation>
     </message>
     <message>
         <location filename="../../sampcheck.ui" line="94"/>
         <source>Select game in gamelist when selecting a sample set?</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar jogo na lista quando selecionar um conjunto de exemplos?</translation>
     </message>
     <message>
         <location filename="../../sampcheck.ui" line="97"/>
         <source>Select &amp;game</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar &amp;jogo</translation>
     </message>
     <message>
         <location filename="../../sampcheck.ui" line="120"/>
         <source>Close sample check dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Fecha a janela de verificação de exemplos</translation>
     </message>
     <message>
         <location filename="../../sampcheck.ui" line="123"/>
         <source>C&amp;lose</source>
-        <translation type="unfinished"></translation>
+        <translation>F&amp;echar</translation>
     </message>
 </context>
 <context>
