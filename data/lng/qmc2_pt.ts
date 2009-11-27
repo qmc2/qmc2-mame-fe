@@ -2246,27 +2246,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="118"/>
         <source>joy4way</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="118"/>
         <source>joy8way</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="118"/>
         <source>trackball</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="119"/>
         <source>joy2way</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="119"/>
         <source>doublejoy8way</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="119"/>
@@ -2276,7 +2276,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="119"/>
         <source>paddle</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="119"/>
@@ -2286,32 +2286,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="120"/>
         <source>stick</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="120"/>
         <source>vjoy2way</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="120"/>
         <source>lightgun</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="120"/>
         <source>doublejoy4way</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="120"/>
         <source>vdoublejoy2way</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="121"/>
         <source>doublejoy2way</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="121"/>
@@ -2824,7 +2824,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="843"/>
         <source>Cocktail</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="843"/>
@@ -3950,47 +3950,47 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../options.cpp" line="3069"/>
         <source>H%1: 0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3070"/>
         <source>Current value of hat %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor atual do hat %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3080"/>
         <source>T%1 DX: 0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3081"/>
         <source>Current X-delta of trackball %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Diferença X atual do trackball %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3091"/>
         <source>T%1 DY: 0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3092"/>
         <source>Current Y-delta of trackball %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Diferença Y atual do trackball %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3166"/>
         <source>H%1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3188"/>
         <source>T%1 DX: %2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3189"/>
         <source>T%1 DY: %2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -8947,7 +8947,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2640"/>
         <source>Number of coolie hats</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de coolie hats</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2654"/>
@@ -10008,7 +10008,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romalyzer.cpp" line="750"/>
         <location filename="../../romalyzer.cpp" line="933"/>
         <source> (merged)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="768"/>
@@ -10065,13 +10065,13 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romalyzer.cpp" line="779"/>
         <location filename="../../romalyzer.cpp" line="800"/>
         <source>  number of total hunks: %1</source>
-        <translation type="unfinished">  número total de :%1</translation>
+        <translation>  número total de blocos:%1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="781"/>
         <location filename="../../romalyzer.cpp" line="802"/>
         <source>  number of bytes per hunk: %1</source>
-        <translation type="unfinished">  número de bytes por :%1</translation>
+        <translation>  número de bytes por bloco :%1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="783"/>
@@ -10104,7 +10104,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="812"/>
         <source>  raw SHA1 checksum: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>  Checksum SHA1 bruto: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="814"/>
@@ -10229,7 +10229,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="94"/>
         <source>Merge</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="99"/>
