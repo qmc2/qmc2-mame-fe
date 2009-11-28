@@ -4837,12 +4837,12 @@ Você realmente quer verificar o estado de todas as ROMs agora?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2400"/>
         <source>Emulator for this game</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulador para este jogo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2402"/>
         <source>Emulator for this machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulador para esta máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2438"/>
@@ -7103,7 +7103,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../options.cpp" line="192"/>
         <source>Registered emulators -- you may select one of these in the machine-specific emulator configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Emuladores registrados -- você pode selecionar um desses na configuração de emulador específica de máquina</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="196"/>
@@ -9306,54 +9306,54 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="3623"/>
         <source>Additional &amp;Emulators</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Emuladores Adicionais</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3650"/>
         <source>Registered emulators -- you may select one of these in the game-specific emulator configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Emuladores registrados -- você pode selecionar um desses na configuração de emulador específica de jogo</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3684"/>
         <location filename="../../options.ui" line="3749"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3689"/>
         <location filename="../../options.ui" line="3763"/>
         <source>Executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Executável</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3705"/>
         <source>Register emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Registrar emulador</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3735"/>
         <source>Deregister emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Desregistrar emulador</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3756"/>
         <source>Registered emulator&apos;s name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do emulador registrado</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3770"/>
         <source>Command to execute the emulator (path to the executable file)</source>
-        <translation type="unfinished"></translation>
+        <translation>Comando para executar o emulador (caminho para o arquivo executável)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3798"/>
         <source>Arguments passed to the emulator -- use $ID$ as a placeholder for the unique game/machine ID (its short name)</source>
-        <translation type="unfinished"></translation>
+        <translation>Argumentos passados para o emulador -- use $ID$ como o ID para o nome do jogo/máquina (seu nome curto)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3808"/>
         <source>Replace emulator registration</source>
-        <translation type="unfinished"></translation>
+        <translation>Substituir registro do emulador</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3836"/>
@@ -9524,27 +9524,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../procmgr.cpp" line="238"/>
         <source>FATAL: failed to start emulator #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: falha ao iniciar o emulador #%1</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="243"/>
         <source>WARNING: emulator #%1 crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: emulador #%1 quebrou</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="247"/>
         <source>WARNING: failed to write to emulator #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha ao escrever para emulador #%1</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="251"/>
         <source>WARNING: failed to read from emulator #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: falha para ler do emulador #%1</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="255"/>
         <source>WARNING: unhandled error for emulator #%1, error code = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: erro não tratado para o emulador #%1, código de erro = %2</translation>
     </message>
 </context>
 <context>
