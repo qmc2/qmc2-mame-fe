@@ -22,6 +22,11 @@ class Preview : public QWidget
 
   public:
     unzFile previewFile;
+#if QT_VERSION < 0x040600
+    QPixmap *currentPreviewPixmap;
+#else
+    QPixmap currentPreviewPixmap;
+#endif
 
     Preview(QWidget *parent);
     ~Preview();

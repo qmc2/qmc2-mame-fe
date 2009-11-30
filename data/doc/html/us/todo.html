@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.2.b13, 29-NOV-2009</h3>
+<h3>TODO - v0.2.b13, 30-NOV-2009</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>Certain GUI styles may cause display problems for the emulator configuration widgets</li>
@@ -19,12 +19,12 @@
   <li>The MiniWebBrowser -- used for the MAWS lookup and the documentation browser -- has a fairly restrictive set of features which is tailored to the uses of QMC2.
       It's not even <i>meant</i> to be a full-featured browser. Nonetheless, as of Qt 4.5.2, the browser works quite well on UNIX and Windows (no idea about Mac OS X yet).</li>
   <li>Style sheets should only be activated if Qt 4.5.2+ is in use; Qt 4.5.1 works as well but has some QtWebKit related issues/crashes; Qt 4.5.0 shouldn't be used at all with style sheets</li>
-  <li>Also, due to a Qt bug (as of 4.5.2) we have to change the current working directory (of the running application) to the style sheet's path to make sure that relative URLs (in the .qss file) are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead</li>
+  <li>Also, due to a Qt bug (as of 4.5.3) we have to change the current working directory (of the running application) to the style sheet's path to make sure that relative URLs (in the .qss file) are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead</li>
   <li>Depending on the complexity of a style / style sheet combination, it may slow down GUI operations (that's no bug, but you should note it)</li>
+  <li>Qt 4.6 support is still experimental (and Qt 4.5 is recommended, so stay with it!); a known minor issue with Qt 4.6 is that the mini web browser will not correctly figure out the current <i>favicon</i>, another one is that looking up images in the pixmap cache is <i>a bit</i> slower (we'd need to reimplement the way cache keys are generated, but that's not easily feasible without breaking stable code, and it's not worthwhile doing so)</li>
 </ul>
 <p><b>Work in progress</b></p>
 <ul>
-  <li>Improve Qt 4.6 compatibility (there are some minor issues left using the technology preview or the latest beta of the upcoming new Qt version, but we think we'll be able to manage them until -- or shortly after -- its release, which is planned for Q4 2009)</li>
   <li>Arcade mode: partially working, disabled by default (use "make WIP=1 ..." for a preview)</li>
   <li>Greek translation (thanks to Giorgos Kostopoulos)</li>
 </ul>

@@ -22,6 +22,11 @@ class PCB : public QWidget
 
   public:
     unzFile pcbFile;
+#if QT_VERSION < 0x040600
+    QPixmap *currentPCBPixmap;
+#else
+    QPixmap currentPCBPixmap;
+#endif
 
     PCB(QWidget *parent = 0);
     ~PCB();

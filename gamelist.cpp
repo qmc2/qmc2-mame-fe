@@ -2389,9 +2389,14 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadIcon(QString gameName = %1, QTreeWidgetItem *item = %2, bool checkOnly = %3, QString *fileName = %4)").arg(gameName).arg((qulonglong)item).arg(checkOnly).arg((qulonglong)fileName));
 #endif
 
+#if QT_VERSION < 0x040600
   static QIcon icon;
-  static QPixmap pm;
   static char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
+  static QPixmap pm;
+#else
+  QIcon icon;
+  char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
+#endif
 
   if ( fileName )
     *fileName = gameName + ".png";
@@ -2450,8 +2455,14 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
                   for (i = 0; i < len; i++)
                     imageData += imageBuffer[i];
                 unzCloseCurrentFile(qmc2IconFile);
+#if QT_VERSION < 0x040600
                 if ( pm.loadFromData(imageData) )
                   qmc2IconMap[gameFileName.toLower().remove(".png")] = QIcon(pm);
+#else
+                QPixmap iconPixmap;
+                if ( iconPixmap.loadFromData(imageData) )
+                  qmc2IconMap[gameFileName.toLower().remove(".png")] = QIcon(iconPixmap);
+#endif
               }
             }
             if ( iconCount % qmc2GamelistResponsiveness == 0 ) {
@@ -2506,10 +2517,18 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 #ifdef QMC2_DEBUG
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: loading %1").arg(iconFiles[iconCount]));
 #endif
+#if QT_VERSION < 0x040600
         if ( pm.load(icoDir + iconFiles[iconCount]) )
           icon = QIcon(pm);
         else
           icon = QIcon();
+#else
+        QPixmap iconPixmap;
+        if ( iconPixmap.load(icoDir + iconFiles[iconCount]) )
+          icon = QIcon(iconPixmap);
+        else
+          icon = QIcon();
+#endif
         qmc2IconMap[iconFiles[iconCount].toLower().remove(".png")] = icon;
         if ( iconCount % qmc2GamelistResponsiveness == 0 ) {
           qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
