@@ -22,6 +22,11 @@ class Cabinet : public QWidget
 
   public:
     unzFile cabinetFile;
+#if QT_VERSION < 0x040600
+    QPixmap *currentCabinetPixmap;
+#else
+    QPixmap currentCabinetPixmap;
+#endif
 
     Cabinet(QWidget *parent = 0);
     ~Cabinet();

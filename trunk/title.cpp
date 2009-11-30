@@ -28,8 +28,6 @@ extern QSettings *qmc2Config;
 extern QMap<QString, QString> qmc2ParentMap;
 extern QMap<QString, QString> qmc2GamelistDescriptionMap;
 
-QPixmap *currentTitlePixmap;
-
 Title::Title(QWidget *parent)
 #if QMC2_OPENGL == 1
   : QGLWidget(parent)
@@ -96,19 +94,29 @@ void Title::paintEvent(QPaintEvent *e)
     topLevelItem = topLevelItem->parent();
 
   QString gameName = topLevelItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
-  static QPixmap cachedPixmap;
 
+#if QT_VERSION < 0x040600
+  static QPixmap cachedPixmap;
   if ( QPixmapCache::find("ttl_" + gameName, cachedPixmap) ) {
     currentTitlePixmap = &cachedPixmap;
   } else {
     qmc2CurrentItem = topLevelItem;
     loadTitle(gameName, gameName);
   }
-
   if ( qmc2ScaledTitle )
     drawScaledImage(currentTitlePixmap, &p);
   else
     drawCenteredImage(currentTitlePixmap, &p);
+#else
+  if ( !QPixmapCache::find("ttl_" + gameName, &currentTitlePixmap) ) {
+    qmc2CurrentItem = topLevelItem;
+    loadTitle(gameName, gameName);
+  }
+  if ( qmc2ScaledTitle )
+    drawScaledImage(&currentTitlePixmap, &p);
+  else
+    drawCenteredImage(&currentTitlePixmap, &p);
+#endif
 }
 
 bool Title::loadTitle(QString gameName, QString onBehalfOf, bool checkOnly, QString *fileName)
@@ -117,8 +125,13 @@ bool Title::loadTitle(QString gameName, QString onBehalfOf, bool checkOnly, QStr
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Title::loadTitle(QString gameName = %1, QString onBehalfOf = %2, bool checkOnly = %3, QString *fileName = %4)").arg(gameName).arg(onBehalfOf).arg(checkOnly).arg((qulonglong)fileName));
 #endif
 
+#if QT_VERSION < 0x040600
   static QPixmap pm;
   static char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
+#else
+  QPixmap pm;
+  char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
+#endif
 
   if ( fileName )
     *fileName = "";
@@ -152,7 +165,11 @@ bool Title::loadTitle(QString gameName, QString onBehalfOf, bool checkOnly, QStr
     if ( !checkOnly ) {
       if ( fileOk ) {
         QPixmapCache::insert("ttl_" + onBehalfOf, pm); 
+#if QT_VERSION < 0x040600
         currentTitlePixmap = &pm;
+#else
+        currentTitlePixmap = pm;
+#endif
       } else {
         QString parentName = qmc2ParentMap[gameName];
         if ( qmc2ParentImageFallback && !parentName.isEmpty() ) {
@@ -160,7 +177,11 @@ bool Title::loadTitle(QString gameName, QString onBehalfOf, bool checkOnly, QStr
         } else {
           if ( !qmc2RetryLoadingImages )
             QPixmapCache::insert("ttl_" + onBehalfOf, qmc2MainWindow->qmc2GhostImagePixmap);
+#if QT_VERSION < 0x040600
           currentTitlePixmap = &qmc2MainWindow->qmc2GhostImagePixmap;
+#else
+          currentTitlePixmap = qmc2MainWindow->qmc2GhostImagePixmap;
+#endif
         }
       }
     }
@@ -180,7 +201,11 @@ bool Title::loadTitle(QString gameName, QString onBehalfOf, bool checkOnly, QStr
     } else {
       if ( pm.load(imagePath) ) {
         QPixmapCache::insert("ttl_" + onBehalfOf, pm); 
+#if QT_VERSION < 0x040600
         currentTitlePixmap = &pm;
+#else
+        currentTitlePixmap = pm;
+#endif
         fileOk = TRUE;
       } else {
         QString parentName = qmc2ParentMap[gameName];
@@ -189,7 +214,11 @@ bool Title::loadTitle(QString gameName, QString onBehalfOf, bool checkOnly, QStr
         } else {
           if ( !qmc2RetryLoadingImages )
             QPixmapCache::insert("ttl_" + onBehalfOf, qmc2MainWindow->qmc2GhostImagePixmap);
+#if QT_VERSION < 0x040600
           currentTitlePixmap = &qmc2MainWindow->qmc2GhostImagePixmap;
+#else
+          currentTitlePixmap = qmc2MainWindow->qmc2GhostImagePixmap;
+#endif
           fileOk = FALSE;
         }
       }

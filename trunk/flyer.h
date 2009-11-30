@@ -22,6 +22,11 @@ class Flyer : public QWidget
 
   public:
     unzFile flyerFile;
+#if QT_VERSION < 0x040600
+    QPixmap *currentFlyerPixmap;
+#else
+    QPixmap currentFlyerPixmap;
+#endif
 
     Flyer(QWidget *parent = 0);
     ~Flyer();

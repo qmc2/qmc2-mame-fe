@@ -22,6 +22,11 @@ class Marquee : public QWidget
 
   public:
     unzFile marqueeFile;
+#if QT_VERSION < 0x040600
+    QPixmap *currentMarqueePixmap;
+#else
+    QPixmap currentMarqueePixmap;
+#endif
 
     Marquee(QWidget *parent = 0);
     ~Marquee();
