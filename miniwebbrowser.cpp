@@ -113,7 +113,11 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, TRUE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, TRUE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavaEnabled, TRUE);
+#if defined(QMC2_BROWSER_PLUGINS_ENABLED)
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, TRUE);
+#else
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, FALSE);
+#endif
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::PrivateBrowsingEnabled, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanAccessClipboard, FALSE);
@@ -360,13 +364,12 @@ void MiniWebBrowser::webViewBrowser_iconChanged()
     if ( iconCache.contains(urlStr) )
       pageIcon = *iconCache[urlStr];
     if ( pageIcon.isNull() ) {
-      pageIcon = webViewBrowser->settings()->iconForUrl(webViewBrowser->url());
+      pageIcon = QWebSettings::iconForUrl(webViewBrowser->url());
       if ( pageIcon.isNull() )
         pageIcon = QIcon(QString::fromUtf8(":/data/img/browser.png"));
-      else {
-        // we simply assume that icons take up 64x64 = 4096 bytes :)
+      else
+        // for the "cache cost" we simply assume that icons take up 64x64 = 4096 bytes
         iconCache.insert(urlStr, new QIcon(pageIcon), 4096);
-      }
     }
     comboBoxURL->setItemIcon(i, pageIcon);
     comboBoxURL->setCurrentIndex(i);
