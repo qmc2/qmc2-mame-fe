@@ -195,6 +195,11 @@ ifndef BROWSER_EXTRAS
 BROWSER_EXTRAS = 0
 endif
 
+# BROWSER_PLUGINS: enable (1) or disable (0, default) plugins in the web browser
+ifndef BROWSER_PLUGINS
+BROWSER_PLUGINS = 0
+endif
+
 # WC_COMPRESSION: enable (1, default) or disable (0) web-cache compression when
 #                 storing HTML data to disk (i.e. used by the MAWS web-cache --
 #                 has nothing to do with a toilet :)
@@ -296,6 +301,10 @@ endif
 
 ifeq '$(BROWSER_EXTRAS)' '1'
 DEFINES += QMC2_BROWSER_EXTRAS_ENABLED
+endif
+
+ifeq '$(BROWSER_PLUGINS)' '1'
+DEFINES += QMC2_BROWSER_PLUGINS_ENABLED
 endif
 
 ifeq '$(WC_COMPRESSION)' '1'
@@ -589,7 +598,7 @@ os-detect:
 
 ?: help
 help:
-	@echo "Usage: $ $(MAKE) [<targets>] [<options>]"
+	@echo "Usage: $(MAKE) [<targets>] [<configuration_options>]"
 	@echo ""
 	@echo "### Target ###  ### Description ###"
 	@echo "all (default)   Build QMC2, aliases: $(PROJECT), bin, $(PROJECT)-bin"
@@ -616,6 +625,7 @@ config:
 	@echo "BASENAME=<basename>    UNIX command basename                       $(BASENAME)"
 	@echo "BINDIR=<bindir>        Binary directory for installation           $(BINDIR)"
 	@echo "BROWSER_EXTRAS=<ena>   Enable browser extra features (0, 1)        $(BROWSER_EXTRAS)"
+	@echo "BROWSER_PLUGINS=<ena>  Enable browser plugins (0, 1)               $(BROWSER_PLUGINS)"
 	@echo "CC_FLAGS=<c_flags>     Additional flags passed to the C compiler   $(CC_FLAGS)"
 	@echo "CXX_FLAGS=<cxx_flags>  Additional flags passed to the C++ compiler $(CXX_FLAGS)"
 	@echo "CCACHE=<ccache>        Use a compiler cache (0, 1)                 $(CCACHE)"
@@ -668,7 +678,7 @@ config:
 	@echo "TR=<tr>                UNIX command tr                             $(TR)"
 	@echo "TIME=<time>            UNIX command time                           $(TIME)"
 	@echo "VARIANT_LAUNCHER=<vl>  Enable the QMC2 variant launcher (0, 1)     $(VARIANT_LAUNCHER)"
-	@echo "WC_COMPRESSION=<wcc>   Compress MAWS web-cache data (0, 1)         $(WIP)"
+	@echo "WC_COMPRESSION=<wcc>   Compress MAWS web-cache data (0, 1)         $(WC_COMPRESSION)"
 	@echo "WIP=<wip>              Enable unfinished code (0, 1)               $(WIP)"
 
 # process translations
