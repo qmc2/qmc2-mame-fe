@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b13, 02-DEC-2009</h3>
+<h3>CHANGES - v0.2.b13, 04-DEC-2009</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b13, 02-DEC-2009:</b></p>
+<p><b>v0.2.b13, 04-DEC-2009:</b></p>
 <ul>
   <li>fix: minor: use reverse order when loading translators (first load the Qt translations, then QMC2's translations -- Qt searches the loaded translations in reverse order, that is QMC2's translation will now be used with higher precendence)</li>
   <li>fix: disable MAWS cache directory browse button during reload</li>
@@ -27,6 +27,7 @@ inf: informational only
   <li>imp: added/replaced a number of embedded icons to/in the <i>classic</i> image set</li>
   <li>imp: improved the error handling of the process manager</li>
   <li>imp: build: added new make options <i>CC_FLAGS</i> and <i>CXX_FLAGS</i> to pass additional flags to the C/C++ compiler</li>
+  <li>imp: reparent the detail setup dialog to the widget it was called from (main widget or settings dialog)</li>
   <li>new: support for additional (<i>foreign</i>) emulators which can be used on a per-game/-machine basis</li>
   <li>new: Portuguese translation by <a href="credits.html#Marcelo">Marcelo Bossoni</a></li>
   <li>new: experimental support for Qt 4.6 (note that Qt 4.5 is still the <i>required</i> and <i>recommended</i> version)</li>

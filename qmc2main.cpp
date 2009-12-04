@@ -93,6 +93,7 @@ SampleChecker *qmc2SampleChecker = NULL;
 ROMAlyzer *qmc2ROMAlyzer = NULL;
 ROMStatusExporter *qmc2ROMStatusExporter = NULL;
 DetailSetup *qmc2DetailSetup = NULL;
+QWidget *qmc2DetailSetupParent = NULL;
 ArcadeView *qmc2ArcadeView = NULL;
 ArcadeSetupDialog *qmc2ArcadeSetupDialog = NULL;
 #if defined(QMC2_EMUTYPE_MESS)
@@ -5063,8 +5064,13 @@ void MainWindow::on_menuTabWidgetGameDetail_Setup_activated()
 
   if ( !qmc2DetailSetup )
     return;
-
+ 
   qmc2DetailSetup->adjustIconSizes();
+
+  // reparent detail setup dialog to the widget it was called from
+  qmc2DetailSetup->setParent(qmc2DetailSetupParent ? qmc2DetailSetupParent : this);
+  qmc2DetailSetup->setWindowFlags(Qt::Dialog);
+  qmc2DetailSetupParent = NULL;
 
   if ( qmc2DetailSetup->isHidden() )
     qmc2DetailSetup->show();
