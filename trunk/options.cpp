@@ -106,6 +106,7 @@ extern QMap<QString, int> qmc2QtKeyMap;
 extern QMap<QString, QByteArray *> qmc2GameInfoDB;
 extern MiniWebBrowser *qmc2MAWSLookup;
 extern DetailSetup *qmc2DetailSetup;
+extern QWidget *qmc2DetailSetupParent;
 #if defined(QMC2_EMUTYPE_MAME)
 extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 #endif
@@ -2398,6 +2399,7 @@ void Options::on_pushButtonDetailSetup_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonDetailSetup_clicked()");
 #endif
 
+  qmc2DetailSetupParent = this;
   qmc2MainWindow->on_menuTabWidgetGameDetail_Setup_activated();
 }
 
