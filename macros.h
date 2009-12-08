@@ -28,6 +28,7 @@
 #define QMC2_SEARCH_INDEX		1
 #define QMC2_FAVORITES_INDEX		2
 #define QMC2_PLAYED_INDEX		3
+#define QMC2_EMBED_INDEX		4
 
 // index positions of game detail (upper right)
 // (FIXME: also used for image checker tabs)
@@ -326,5 +327,8 @@
 #define QMC2_SHOWMEMINFO
 #define QMC2_MEMORY_UPDATE_TIME		500
 #endif
+
+// time in milli-seconds to wait before auto-embedding emulator window
+#define QMC2_EMBED_DELAY		250
 
 #endif

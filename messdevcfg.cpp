@@ -155,6 +155,13 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
   connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_activated()));
+#if defined(Q_WS_X11)
+  s = tr("Play selected game (embedded)");
+  action = deviceConfigurationListMenu->addAction(tr("Play &embedded"));
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
+  connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
+#endif
 }
 
 MESSDeviceConfigurator::~MESSDeviceConfigurator()

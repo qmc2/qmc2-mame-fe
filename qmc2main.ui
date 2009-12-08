@@ -56,12 +56,6 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
           <property name="contextMenuPolicy">
            <enum>Qt::CustomContextMenu</enum>
           </property>
@@ -370,6 +364,35 @@
               <property name="statusTip">
                <string>Games last played</string>
               </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabEmbeddedEmus">
+           <attribute name="icon">
+            <iconset resource="qmc2.qrc">
+             <normaloff>:/data/img/embed.png</normaloff>:/data/img/embed.png</iconset>
+           </attribute>
+           <attribute name="title">
+            <string>Embedded emulators</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="0" column="0">
+             <widget class="QTabWidget" name="tabWidgetEmbeddedEmulators">
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
+              <property name="tabsClosable">
+               <bool>true</bool>
+              </property>
+              <property name="movable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="tabEmulator">
+               <attribute name="title">
+                <string>Emulator</string>
+               </attribute>
+              </widget>
              </widget>
             </item>
            </layout>
@@ -1763,6 +1786,7 @@
      <addaction name="actionViewParentClones"/>
     </widget>
     <addaction name="actionPlay"/>
+    <addaction name="actionPlayEmbedded"/>
     <addaction name="actionToFavorites"/>
     <addaction name="separator"/>
     <addaction name="actionReload"/>
@@ -1829,7 +1853,9 @@
    <addaction name="actionExitStop"/>
    <addaction name="separator"/>
    <addaction name="actionPlay"/>
+   <addaction name="actionPlayEmbedded"/>
    <addaction name="actionToFavorites"/>
+   <addaction name="separator"/>
    <addaction name="actionReload"/>
    <addaction name="separator"/>
    <addaction name="actionCheckROMs"/>
@@ -2673,6 +2699,24 @@
     <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
+  <action name="actionPlayEmbedded">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/embed.png</normaloff>:/data/img/embed.png</iconset>
+   </property>
+   <property name="text">
+    <string>Play &amp;embedded</string>
+   </property>
+   <property name="toolTip">
+    <string>Play current game (embedded)</string>
+   </property>
+   <property name="statusTip">
+    <string>Play current game (embedded)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="6"/>
  <tabstops>
@@ -2683,6 +2727,7 @@
   <tabstop>listWidgetSearch</tabstop>
   <tabstop>listWidgetFavorites</tabstop>
   <tabstop>listWidgetPlayed</tabstop>
+  <tabstop>tabWidgetEmbeddedEmulators</tabstop>
   <tabstop>comboBoxViewSelect</tabstop>
   <tabstop>pushButtonSelectRomFilter</tabstop>
   <tabstop>tabWidgetGameDetail</tabstop>

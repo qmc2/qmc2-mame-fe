@@ -117,6 +117,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_SHOWMEMINFO)
     QTimer memoryUpdateTimer;
 #endif
+    QWidget *widgetEmbeddedEmus;
 
     static QColor qmc2StatusColorGreen;
     static QColor qmc2StatusColorYellowGreen;
@@ -130,6 +131,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
   public slots:
     // game menu
     void on_actionPlay_activated();
+    void on_actionPlayEmbedded_activated();
     void on_actionToFavorites_activated();
     void on_actionReload_activated();
     void on_actionExitStop_activated();
@@ -288,6 +290,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_pushButtonCurrentEmulatorOptionsSelectExportFile_clicked();
     void on_pushButtonCurrentEmulatorOptionsImportFromFile_clicked(QString useFileName = QString());
     void on_pushButtonCurrentEmulatorOptionsSelectImportFile_clicked();
+#if defined(Q_WS_X11)
+    void action_embedEmulator_triggered();
+    void on_tabWidgetEmbeddedEmulators_tabCloseRequested(int);
+    void closeEmbeddedEmuTab();
+#endif
     void action_terminateEmulator_triggered();
     void action_killEmulator_triggered();
     void action_copyEmulatorCommand_triggered();

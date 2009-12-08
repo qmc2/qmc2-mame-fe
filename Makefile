@@ -225,6 +225,11 @@ ifndef CXX_FLAGS
 CXX_FLAGS =
 endif
 
+# XWININFO: command used to run "xwininfo"
+ifndef XWININFO
+XWININFO = xwininfo
+endif
+
 # >>> END OF MAKE OPTIONS <<<
 
 # emulator target fallback for mameuifx32
@@ -283,7 +288,7 @@ endif
 # This needs to work around Qmake's issues with spaces in values
 blank =
 space = $(blank) $(blank)
-DEFINES = DEFINES+=$(VERSIONDEFS) TARGET_OS_NAME=$(OSNAME) TARGET_OS_RELEASE=$(OSREL) TARGET_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_ARCADE_OPENGL=$(ARCADE_OPENGL) QMC2_WIP_CODE=$(WIP) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED)
+DEFINES = DEFINES+=$(VERSIONDEFS) TARGET_OS_NAME=$(OSNAME) TARGET_OS_RELEASE=$(OSREL) TARGET_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_ARCADE_OPENGL=$(ARCADE_OPENGL) QMC2_WIP_CODE=$(WIP) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED) QMC2_XWININFO=$(XWININFO)
 
 # process make options
 ifeq '$(DEBUG)' '2'
@@ -680,6 +685,7 @@ config:
 	@echo "VARIANT_LAUNCHER=<vl>  Enable the QMC2 variant launcher (0, 1)     $(VARIANT_LAUNCHER)"
 	@echo "WC_COMPRESSION=<wcc>   Compress MAWS web-cache data (0, 1)         $(WC_COMPRESSION)"
 	@echo "WIP=<wip>              Enable unfinished code (0, 1)               $(WIP)"
+	@echo "XWININFO=<xwininfo>    X11 xwininfo command                        $(XWININFO)"
 
 # process translations
 QMC2_TRANSLATIONS = us de pl fr gr pt

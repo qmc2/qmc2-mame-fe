@@ -56,6 +56,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			miniwebbrowser.cpp \
 			downloaditem.cpp \
 			mawsqdlsetup.cpp \
+			embedder.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			arcade/arcadeview.cpp \
@@ -97,6 +98,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			miniwebbrowser.h \
 			downloaditem.h \
 			mawsqdlsetup.h \
+			embedder.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \

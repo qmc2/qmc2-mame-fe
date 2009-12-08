@@ -5,6 +5,7 @@
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern bool qmc2GuiReady;
+extern bool qmc2StartEmbedded;
 #if defined(QMC2_EMUTYPE_MESS)
 extern QString qmc2MessMachineName;
 #endif
@@ -222,6 +223,15 @@ void ProcessManager::started()
       QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionAudioPauseTrack_triggered()));
   } else if ( procMap.count() == 1 )
     musicWasPlaying = FALSE;
+#endif
+
+#if defined(Q_WS_X11)
+  if ( qmc2StartEmbedded ) {
+    qmc2MainWindow->treeWidgetEmulators->clearSelection();
+    procItem->setSelected(TRUE);
+    QTimer::singleShot(QMC2_EMBED_DELAY, qmc2MainWindow, SLOT(action_embedEmulator_triggered()));
+    qmc2StartEmbedded = FALSE;
+  }
 #endif
 }
 
