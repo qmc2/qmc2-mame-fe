@@ -2919,7 +2919,7 @@ void MainWindow::action_embedEmulator_triggered()
     }
 
     // run "xwininfo -root -all" to find the window ID (FIXME: doesn't work for multiple
-    // instances running the same game/machine! There's currently no way to solve it.)
+    // instances running the same game/machine! We see currently no way to solve it.)
     QString command = QString(XSTR(QMC2_XWININFO));
     QStringList args, winIdList;
     args << "-root" << "-all";
@@ -2963,6 +2963,12 @@ void MainWindow::action_embedEmulator_triggered()
 #elif defined(QMC2_EMUTYPE_MESS)
       tabWidgetEmbeddedEmulators->addTab(embedder, tr("MESS: [%1]").arg(gameName));
 #endif
+
+      // serious hack to change the "x" button's tool tip without sub-classing from QTabWidget ;)
+      QTabBar *tabBar = tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
+      if ( tabBar )
+        tabBar->tabButton(tabWidgetEmbeddedEmulators->indexOf(embedder), QTabBar::RightSide)->setToolTip(tr("Release emulator"));
+      
       tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
       tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
       embedder->setFocus();
