@@ -4,6 +4,7 @@
 #include <QtGui>
 #if defined(Q_WS_X11)
 #include <QX11EmbedContainer>
+#include "embedderopt.h"
 
 class Embedder : public QWidget
 {
@@ -11,8 +12,11 @@ class Embedder : public QWidget
 
   public:
     bool embedded;
+    bool optionsShown;
     quint64 winId;
     QX11EmbedContainer *embedContainer;
+    EmbedderOptions *embedderOptions;
+    QGridLayout *gridLayout;
 
     Embedder(quint64 wid, QWidget *parent = 0);
 
@@ -23,6 +27,7 @@ class Embedder : public QWidget
     void clientEmbedded();
     void clientClosed();
     void clientError(QX11EmbedContainer::Error);
+    void toggleOptions();
 
   protected:
     void closeEvent(QCloseEvent *);

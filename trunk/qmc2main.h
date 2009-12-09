@@ -293,6 +293,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(Q_WS_X11)
     void action_embedEmulator_triggered();
     void on_tabWidgetEmbeddedEmulators_tabCloseRequested(int);
+    void on_embedderOptions_toggled(bool);
     void closeEmbeddedEmuTab();
 #endif
     void action_terminateEmulator_triggered();
