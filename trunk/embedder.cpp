@@ -32,6 +32,7 @@ void Embedder::embed()
 
 void Embedder::release()
 {
+  embedContainer->clearFocus();
   embedContainer->discardClient();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator released, window ID = 0x%1").arg(QString::number(winId, 16)));
   embedded = false;

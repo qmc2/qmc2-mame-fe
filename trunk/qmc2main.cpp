@@ -1240,7 +1240,11 @@ void MainWindow::on_actionReload_activated()
   }
 
   if ( qmc2ReloadActive ) {
-    log(QMC2_LOG_FRONTEND, tr("gamelist reload already active"));
+#if defined(QMC2_EMUTYPE_MAME)
+    log(QMC2_LOG_FRONTEND, tr("game list reload is already active"));
+#elif defined(QMC2_EMUTYPE_MESS)
+    log(QMC2_LOG_FRONTEND, tr("machine list reload is already active"));
+#endif
   } else {
     qmc2StopParser = FALSE;
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool() && qmc2DetailSetup->appliedDetailList.contains(QMC2_GAMEINFO_INDEX) )
@@ -2447,11 +2451,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
     case QMC2_CONFIG_INDEX:
       if ( qmc2CurrentItem != qmc2LastConfigItem ) {
         QWidget *configWidget = qmc2DetailSetup->tabWidgetsMap[QMC2_CONFIG_INDEX];
+
         configWidget->setUpdatesEnabled(FALSE);
 
-        QString selectedEmulator;
-
         // save & cleanup existing game/machine specific emulator settings
+        QString selectedEmulator;
         if ( qmc2EmulatorOptions ) {
           selectedEmulator = comboBoxEmuSelector->currentText();
           if ( selectedEmulator == tr("Default") || selectedEmulator.isEmpty() )
@@ -2473,6 +2477,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         int left, top, right, bottom;
         gridLayout->getContentsMargins(&left, &top, &right, &bottom);
         QVBoxLayout *layout = new QVBoxLayout;
+        configWidget->setLayout(layout);
 
         // emulator selector (default, or one of the registered emulators)
 #if defined(QMC2_EMUTYPE_MAME)
@@ -2495,9 +2500,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           comboBoxEmuSelector->insertItems(1, registeredEmulators);
         QHBoxLayout *emuSelectorLayout = new QHBoxLayout();
         emuSelectorLayout->addWidget(labelEmuSelector);
-        labelEmuSelector->show();
         emuSelectorLayout->addWidget(comboBoxEmuSelector);
-        comboBoxEmuSelector->show();
         layout->addLayout(emuSelectorLayout);
         connect(comboBoxEmuSelector, SIGNAL(currentIndexChanged(const QString &)), this, SLOT(on_emuSelector_currentIndexChanged(const QString &)));
 
@@ -2533,10 +2536,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         buttonLayout->addWidget(pushButtonCurrentEmulatorOptionsExportToFile);
         buttonLayout->addWidget(pushButtonCurrentEmulatorOptionsImportFromFile);
         layout->addLayout(buttonLayout);
-        configWidget->setLayout(layout);
-        qmc2EmulatorOptions->show();
-        pushButtonCurrentEmulatorOptionsExportToFile->show();
-        pushButtonCurrentEmulatorOptionsImportFromFile->show();
 
         // import/export menus
         qmc2MainWindow->selectMenuCurrentEmulatorOptionsExportToFile = new QMenu(qmc2MainWindow->pushButtonCurrentEmulatorOptionsExportToFile);
@@ -2565,6 +2564,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
             }
           }
         }
+
+	// finally show the widgets...
+        labelEmuSelector->show();
+        comboBoxEmuSelector->show();
+        qmc2EmulatorOptions->show();
+        pushButtonCurrentEmulatorOptionsExportToFile->show();
+        pushButtonCurrentEmulatorOptionsImportFromFile->show();
 
         configWidget->setUpdatesEnabled(TRUE);
       }
@@ -2651,6 +2657,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         QLayout *vbl = configWidget->layout();
         if ( vbl )
           delete vbl;
+        delete labelEmuSelector;
+        delete comboBoxEmuSelector;
         delete qmc2EmulatorOptions;
         delete pushButtonCurrentEmulatorOptionsExportToFile;
         delete pushButtonCurrentEmulatorOptionsImportFromFile;

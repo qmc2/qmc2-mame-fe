@@ -269,6 +269,8 @@ void Gamelist::load()
     QLayout *vbl = qmc2MainWindow->tabConfiguration->layout();
     if ( vbl )
       delete vbl;
+    delete qmc2MainWindow->labelEmuSelector;
+    delete qmc2MainWindow->comboBoxEmuSelector;
     delete qmc2EmulatorOptions;
     delete qmc2MainWindow->pushButtonCurrentEmulatorOptionsExportToFile;
     delete qmc2MainWindow->pushButtonCurrentEmulatorOptionsImportFromFile;
