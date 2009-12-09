@@ -14,20 +14,14 @@
    <string>Embedder options</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidgetEmbedderOptions">
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tabSettings">
-      <attribute name="icon">
-       <iconset resource="qmc2.qrc">
-        <normaloff>:/data/img/configure.png</normaloff>:/data/img/configure.png</iconset>
-      </attribute>
-      <attribute name="title">
-       <string>Settings</string>
-      </attribute>
-     </widget>
      <widget class="QWidget" name="tabSnapshots">
       <attribute name="icon">
        <iconset resource="qmc2.qrc">
