@@ -24,6 +24,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			detailsetup.ui \
 			miniwebbrowser.ui \
 			mawsqdlsetup.ui \
+			embedderopt.ui \
 			arcade/arcadesetupdialog.ui
 		SOURCES += qmc2main.cpp \
 			options.cpp \
@@ -57,6 +58,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			downloaditem.cpp \
 			mawsqdlsetup.cpp \
 			embedder.cpp \
+			embedderopt.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			arcade/arcadeview.cpp \
@@ -99,6 +101,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			downloaditem.h \
 			mawsqdlsetup.h \
 			embedder.h \
+			embedderopt.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \

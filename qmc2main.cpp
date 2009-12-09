@@ -2964,10 +2964,22 @@ void MainWindow::action_embedEmulator_triggered()
       tabWidgetEmbeddedEmulators->addTab(embedder, tr("MESS: [%1]").arg(gameName));
 #endif
 
-      // serious hack to change the "x" button's tool tip without sub-classing from QTabWidget ;)
+      // serious hack to access the tab bar without sub-classing from QTabWidget ;)
       QTabBar *tabBar = tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
-      if ( tabBar )
-        tabBar->tabButton(tabWidgetEmbeddedEmulators->indexOf(embedder), QTabBar::RightSide)->setToolTip(tr("Release emulator"));
+      if ( tabBar ) {
+        int index = tabWidgetEmbeddedEmulators->indexOf(embedder);
+        tabBar->tabButton(index, QTabBar::RightSide)->setToolTip(tr("Release emulator"));
+#if QMC2_WIP_CODE == 1
+        QSize iconSize = tabBar->tabButton(index, QTabBar::RightSide)->size();
+        QToolButton *optionsButton = new QToolButton(0);
+        optionsButton->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
+        optionsButton->setToolTip(tr("Toggle embedder options"));
+        optionsButton->setFixedSize(iconSize);
+        optionsButton->setCheckable(TRUE);
+        connect(optionsButton, SIGNAL(toggled(bool)), this, SLOT(on_embedderOptions_toggled(bool)));
+        tabBar->setTabButton(index, QTabBar::LeftSide, optionsButton);
+#endif
+      }
       
       tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
       tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
@@ -2975,6 +2987,23 @@ void MainWindow::action_embedEmulator_triggered()
     } else
       log(QMC2_LOG_FRONTEND, tr("WARNING: no matching emulator found"));
   }
+}
+
+void MainWindow::on_embedderOptions_toggled(bool enabled)
+{
+  // serious hack to access the tab bar ;)
+  QToolButton *optionsButton = (QToolButton *)sender();
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_embedderOptions_toggled(bool enabled = %1)").arg(enabled));
+#endif
+
+  QTabBar *tabBar = (QTabBar *)optionsButton->parent();
+  Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(optionsButton->pos()));
+  if ( embedder )
+    embedder->toggleOptions();
+
+  if ( enabled )
+    tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->indexOf(embedder));
 }
 
 void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
