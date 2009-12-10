@@ -20,6 +20,7 @@ Embedder::Embedder(quint64 wid, QWidget *parent)
   embedded = false;
 
   embedContainer = new QX11EmbedContainer(this);
+  embedContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   gridLayout->addWidget(embedContainer, 1, 0);
 
   connect(embedContainer, SIGNAL(clientIsEmbedded()), SLOT(clientEmbedded()));
@@ -62,6 +63,7 @@ void Embedder::clientEmbedded()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator embedded, window ID = 0x%1").arg(QString::number(winId, 16)));
   // effectively transfer focus to the emulator
   embedContainer->setFocus();
+  setFocusProxy(embedContainer);
   embedded = true;
 }
 
@@ -90,6 +92,7 @@ void Embedder::clientError(QX11EmbedContainer::Error error)
 
     case QX11EmbedContainer::InvalidWindowID:
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: embedder: invalid window ID = 0x%1").arg(QString::number(winId, 16)));
+      emit closing();
       break;
 
     default:
@@ -121,6 +124,7 @@ void Embedder::toggleOptions()
   if ( optionsShown ) {
     if ( !embedderOptions ) {
       embedderOptions = new EmbedderOptions(this);
+      embedderOptions->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
       gridLayout->addWidget(embedderOptions, 0, 0);
     }
     embedderOptions->show();

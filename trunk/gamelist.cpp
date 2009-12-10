@@ -538,6 +538,14 @@ void Gamelist::load()
     // show game list
     qmc2MainWindow->labelLoadingGamelist->setVisible(FALSE);
     qmc2MainWindow->treeWidgetGamelist->setVisible(TRUE);
+
+    if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
+      if ( qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_DETAIL_INDEX )
+        qmc2MainWindow->treeWidgetGamelist->setFocus();
+      else
+        qmc2MainWindow->treeWidgetHierarchy->setFocus();
+    }
+
     qApp->processEvents();
   } else {
     loadTimer.start();
@@ -1917,6 +1925,12 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
   // show game list
   qmc2MainWindow->labelLoadingGamelist->setVisible(FALSE);
   qmc2MainWindow->treeWidgetGamelist->setVisible(TRUE);
+  if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
+    if ( qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_DETAIL_INDEX )
+      qmc2MainWindow->treeWidgetGamelist->setFocus();
+    else
+      qmc2MainWindow->treeWidgetHierarchy->setFocus();
+  }
   qApp->processEvents();
 }
 
