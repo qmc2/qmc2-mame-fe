@@ -1737,27 +1737,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="52"/>
         <source>emulator released, window ID = 0x%1</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador solto, ID da janela = 0x%1</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="62"/>
         <source>emulator embedded, window ID = 0x%1</source>
-        <translation type="unfinished"></translation>
+        <translation>emulator incorporado, ID da janela = 0x%1</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="74"/>
         <source>emulator closed, window ID = 0x%1</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador fechado, ID da janela = 0x%1</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="88"/>
         <source>WARNING: embedder: unknown error, window ID = 0x%1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: embedder: erro desconhecido, ID da janela = 0%1</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="92"/>
         <source>WARNING: embedder: invalid window ID = 0x%1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: embedder: ID da janela inválido = 0%1</translation>
     </message>
 </context>
 <context>
@@ -1765,22 +1765,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedderopt.ui" line="14"/>
         <source>Embedder options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opções do incorporador</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="31"/>
         <source>Snapshots</source>
-        <translation type="unfinished"></translation>
+        <translation>Capturas de tela</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="40"/>
         <source>Movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmes</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="49"/>
         <source>Netplay</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogo em rede</translation>
     </message>
 </context>
 <context>
@@ -4121,12 +4121,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="159"/>
         <source>Play selected game (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar jogo selecionado (incorporado)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="160"/>
         <source>Play &amp;embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar &amp;incorporado</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="232"/>
@@ -4341,7 +4341,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="400"/>
         <location filename="../../qmc2main.cpp" line="401"/>
         <source>Play current machine (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar máquina corrente (incorporado)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="402"/>
@@ -4452,12 +4452,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="541"/>
         <source>Embed emulator widget</source>
-        <translation type="unfinished"></translation>
+        <translation>Incorporar widget do emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="542"/>
         <source>&amp;Embed</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Incorporar</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="548"/>
@@ -4520,7 +4520,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="677"/>
         <location filename="../../qmc2main.cpp" line="734"/>
         <source>Play selected game (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar jogo selecionado (incorporado)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="579"/>
@@ -4528,7 +4528,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="679"/>
         <location filename="../../qmc2main.cpp" line="736"/>
         <source>Start selected machine (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar máquina selecionada (incorporado)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="581"/>
@@ -4537,7 +4537,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="738"/>
         <location filename="../../qmc2main.ui" line="2708"/>
         <source>Play &amp;embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar &amp;incorporado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="587"/>
@@ -4798,12 +4798,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="1244"/>
         <source>game list reload is already active</source>
-        <translation type="unfinished"></translation>
+        <translation>recarregamento da lista de jogos já está ativa</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1246"/>
         <source>machine list reload is already active</source>
-        <translation type="unfinished"></translation>
+        <translation>recarregamento da lista de máquinas já está ativa</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1268"/>
@@ -4979,48 +4979,48 @@ Você realmente quer verificar o estado de todas as ROMs agora?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2915"/>
         <source>emulator for &apos;%1&apos; is already embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador para %1 já está incorporado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2953"/>
         <source>WARNING: found more than one matching emulator windows, choosing window ID %1 for embedding</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: encontrados mais de uma janela para o emulador, escolhendo janela com ID %1 para incorporar</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2957"/>
         <location filename="../../qmc2main.ui" line="377"/>
         <source>Embedded emulators</source>
-        <translation type="unfinished"></translation>
+        <translation>Emuladores incorporados</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2958"/>
         <source>embedding emulator window for &apos;%1&apos;, window ID = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>incorporando janela do emulador para &apos;%1&apos;, ID da janela = %2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2962"/>
         <source>MAME: [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2964"/>
         <source>MESS: [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2971"/>
         <source>Release emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Soltar emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2976"/>
         <source>Toggle embedder options</source>
-        <translation type="unfinished"></translation>
+        <translation>Mudar opções do incorporador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2988"/>
         <source>WARNING: no matching emulator found</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: nenhum emulador correspondente encontrado</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3132"/>
@@ -5792,7 +5792,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="393"/>
         <source>Emulator</source>
-        <translation type="unfinished">Emulador</translation>
+        <translation>Emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="419"/>
@@ -6763,12 +6763,12 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.ui" line="2711"/>
         <location filename="../../qmc2main.ui" line="2714"/>
         <source>Play current game (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar jogo atual (incorporado)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2717"/>
         <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -7352,12 +7352,12 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../options.cpp" line="212"/>
         <source>Play (independent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar (independente)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="213"/>
         <source>Play (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar (incorporado)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="214"/>
