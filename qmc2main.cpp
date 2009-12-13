@@ -2956,7 +2956,7 @@ void MainWindow::action_embedEmulator_triggered()
       if ( tabWidgetGamelist->indexOf(widgetEmbeddedEmus) < 0 )
         tabWidgetGamelist->addTab(widgetEmbeddedEmus, QIcon(QString::fromUtf8(":/data/img/embed.png")), tr("Embedded emulators"));
       log(QMC2_LOG_FRONTEND, tr("embedding emulator window for '%1', window ID = %2").arg(gameName).arg(winIdList[0]));
-      Embedder *embedder = new Embedder(winIdList[0].toInt(0, 16), this);
+      Embedder *embedder = new Embedder(gameName, winIdList[0].toInt(0, 16), this);
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
 #if defined(QMC2_EMUTYPE_MAME)
       tabWidgetEmbeddedEmulators->addTab(embedder, tr("MAME: [%1]").arg(gameName));

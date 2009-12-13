@@ -6,16 +6,17 @@
 
 extern MainWindow *qmc2MainWindow;
 
-Embedder::Embedder(quint64 wid, QWidget *parent)
+Embedder::Embedder(QString name, WId wid, QWidget *parent)
     : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::Embedder(quint64 wid = %1, QWidget *parent = %2)").arg((qulonglong)wid).arg((qulonglong)parent));
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::Embedder(QString name = %1, WId wid = %2, QWidget *parent = %3)").arg(name).arg((qulonglong)wid).arg((qulonglong)parent));
 #endif
 
   gridLayout = new QGridLayout(this);
   setLayout(gridLayout);
 
+  gameName = name;
   winId = wid;
   embedded = false;
 
@@ -39,6 +40,7 @@ void Embedder::embed()
   log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::embed()"));
 #endif
 
+  nativeResolution = QPixmap::grabWindow(winId).size();
   embedContainer->embedClient(winId);
 }
 

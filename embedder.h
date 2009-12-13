@@ -13,16 +13,18 @@ class Embedder : public QWidget
   public:
     bool embedded;
     bool optionsShown;
-    quint64 winId;
+    WId winId;
     QX11EmbedContainer *embedContainer;
     EmbedderOptions *embedderOptions;
     QGridLayout *gridLayout;
+    QString gameName;
+    QSize nativeResolution;
 
-    Embedder(quint64 wid, QWidget *parent = 0);
+    Embedder(QString name, WId wid, QWidget *parent = 0);
 
   public slots:
     void embed();
-    void embed(quint64 wid) { winId = wid; embed(); }
+    void embed(WId wid) { winId = wid; embed(); }
     void release();
     void clientEmbedded();
     void clientClosed();
