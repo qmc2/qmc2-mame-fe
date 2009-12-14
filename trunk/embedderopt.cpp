@@ -52,6 +52,7 @@ void EmbedderOptions::on_toolButtonTakeSnapshot_clicked()
   QPixmap clippedPixmap = pm.copy(rect);
   QListWidgetItem *snapshotItem = new QListWidgetItem(QIcon(clippedPixmap), QString(), listWidgetSnapshots);
   snapshotMap[snapshotItem] = clippedPixmap;
+  listWidgetSnapshots->scrollToItem(snapshotItem);
 }
 
 void EmbedderOptions::on_toolButtonSaveSnapshot_clicked()
