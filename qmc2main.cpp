@@ -2958,11 +2958,7 @@ void MainWindow::action_embedEmulator_triggered()
       log(QMC2_LOG_FRONTEND, tr("embedding emulator window for '%1', window ID = %2").arg(gameName).arg(winIdList[0]));
       Embedder *embedder = new Embedder(gameName, winIdList[0].toInt(0, 16), this);
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
-#if defined(QMC2_EMUTYPE_MAME)
-      tabWidgetEmbeddedEmulators->addTab(embedder, tr("MAME: [%1]").arg(gameName));
-#elif defined(QMC2_EMUTYPE_MESS)
-      tabWidgetEmbeddedEmulators->addTab(embedder, tr("MESS: [%1]").arg(gameName));
-#endif
+      tabWidgetEmbeddedEmulators->addTab(embedder, QString("[%1] %2").arg(gameName).arg(qmc2GamelistDescriptionMap[gameName]));
 
       // serious hack to access the tab bar without sub-classing from QTabWidget ;)
       QTabBar *tabBar = tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
