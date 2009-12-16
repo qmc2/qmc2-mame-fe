@@ -103,18 +103,91 @@ void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
 SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
   : QWidget(parent, Qt::Window | Qt::CustomizeWindowHint | Qt::X11BypassWindowManagerHint)
 {
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::SnapshotViewer(QListWidgetItem *item = %1, QWidget *parent = %2)").arg((qulonglong)item).arg((qulonglong)parent));
+#endif
+
   myItem = item;
   setWindowTitle(tr("Snapshot viewer"));
+
+  contextMenu = new QMenu(this);
+  contextMenu->hide();
+  
+  QString s = tr("Use as preview");
+  QAction *action = contextMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/camera.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(useAsPreview()));
+
+  s = tr("Use as title");
+  action = contextMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/arcademode.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(useAsTitle()));
+
+  contextMenu->addSeparator();
+
+  s = tr("Copy to clipboard");
+  action = contextMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
 }
 
 void SnapshotViewer::leaveEvent(QEvent *)
 {
-  hide();
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::leaveEvent(QEvent *)");
+#endif
+
+  if ( contextMenu->isHidden() )
+    hide();
 }
 
-void SnapshotViewer::mousePressEvent(QMouseEvent *)
+void SnapshotViewer::mousePressEvent(QMouseEvent *e)
 {
-  myItem->setSelected(TRUE);
-  hide();
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::mousePressEvent(QMouseEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+  if ( e->button() != Qt::RightButton ) {
+    myItem->setSelected(TRUE);
+    hide();
+  }
+}
+
+void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::contextMenuEvent(QContextMenuEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+  contextMenu->move(mapToGlobal(e->pos()));
+  contextMenu->show();
+}
+
+void SnapshotViewer::useAsPreview()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::useAsPreview()");
+#endif
+
+}
+
+void SnapshotViewer::useAsTitle()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::useAsTitle()");
+#endif
+
+}
+
+void SnapshotViewer::copyToClipboard()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::copyToClipboard()");
+#endif
+
+  qApp->clipboard()->setPixmap(palette().brush(QPalette::Window).texture());
 }
 #endif

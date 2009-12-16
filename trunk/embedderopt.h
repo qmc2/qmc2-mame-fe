@@ -11,12 +11,19 @@ class SnapshotViewer : public QWidget
 
   public:
     QListWidgetItem *myItem;
+    QMenu *contextMenu;
 
     SnapshotViewer(QListWidgetItem *item, QWidget *parent = 0);
+
+  public slots:
+    void useAsPreview();
+    void useAsTitle();
+    void copyToClipboard();
 
   protected:
     void leaveEvent(QEvent *);
     void mousePressEvent(QMouseEvent *);
+    void contextMenuEvent(QContextMenuEvent *);
 };
 
 class EmbedderOptions : public QWidget, public Ui::EmbedderOptions
