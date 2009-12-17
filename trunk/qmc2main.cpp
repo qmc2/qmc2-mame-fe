@@ -2965,7 +2965,6 @@ void MainWindow::action_embedEmulator_triggered()
       if ( tabBar ) {
         int index = tabWidgetEmbeddedEmulators->indexOf(embedder);
         tabBar->tabButton(index, QTabBar::RightSide)->setToolTip(tr("Release emulator"));
-#if QMC2_WIP_CODE == 1
         QSize iconSize = tabBar->tabButton(index, QTabBar::RightSide)->size();
         QToolButton *optionsButton = new QToolButton(0);
         optionsButton->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
@@ -2974,7 +2973,6 @@ void MainWindow::action_embedEmulator_triggered()
         optionsButton->setCheckable(TRUE);
         connect(optionsButton, SIGNAL(toggled(bool)), this, SLOT(on_embedderOptions_toggled(bool)));
         tabBar->setTabButton(index, QTabBar::LeftSide, optionsButton);
-#endif
       }
       
       tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
