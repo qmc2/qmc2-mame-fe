@@ -3,8 +3,6 @@
 
 #if defined(Q_WS_X11)
 
-#define QMC2_DEBUG
-
 #ifdef QMC2_DEBUG
 #include "gamelist.h"
 #include "qmc2main.h"
@@ -24,6 +22,13 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
 
   Embedder *embedder = (Embedder *)parent;
   snapshotViewer = NULL;
+
+#if QMC2_WIP_CODE != 1
+  tabWidgetEmbedderOptions->removeTab(tabWidgetEmbedderOptions->indexOf(tabMovies));
+  tabWidgetEmbedderOptions->removeTab(tabWidgetEmbedderOptions->indexOf(tabNetplay));
+  toolButtonSaveSnapshot->hide();
+  toolButtonSaveSnapshotAs->hide();
+#endif
 }
 
 EmbedderOptions::~EmbedderOptions()
@@ -113,8 +118,12 @@ SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
   contextMenu = new QMenu(this);
   contextMenu->hide();
   
-  QString s = tr("Use as preview");
-  QAction *action = contextMenu->addAction(s);
+  QString s;
+  QAction *action;
+
+#if QMC2_WIP_CODE == 1
+  s = tr("Use as preview");
+  action = contextMenu->addAction(s);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/camera.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(useAsPreview()));
@@ -126,6 +135,7 @@ SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
   connect(action, SIGNAL(triggered()), this, SLOT(useAsTitle()));
 
   contextMenu->addSeparator();
+#endif
 
   s = tr("Copy to clipboard");
   action = contextMenu->addAction(s);
