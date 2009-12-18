@@ -213,6 +213,7 @@ QMutex qmc2LogMutex;
 QString qmc2FileEditStartPath = "";
 QString qmc2DirectoryEditStartPath = "";
 QNetworkAccessManager *qmc2NetworkAccessManager = NULL;
+int qmc2LastListIndex = 0;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -2953,7 +2954,10 @@ void MainWindow::action_embedEmulator_triggered()
       log(QMC2_LOG_FRONTEND, tr("WARNING: found more than one matching emulator windows, choosing window ID %1 for embedding").arg(winIdList[0]));
 
     if ( winIdList.count() > 0 ) {
-      if ( tabWidgetGamelist->indexOf(widgetEmbeddedEmus) < 0 )
+      int embeddedEmusIndex = tabWidgetGamelist->indexOf(widgetEmbeddedEmus);
+      if ( tabWidgetGamelist->currentIndex() != embeddedEmusIndex )
+        qmc2LastListIndex = tabWidgetGamelist->currentIndex();
+      if ( embeddedEmusIndex < 0 )
         tabWidgetGamelist->addTab(widgetEmbeddedEmus, QIcon(QString::fromUtf8(":/data/img/embed.png")), tr("Embedded emulators"));
       log(QMC2_LOG_FRONTEND, tr("embedding emulator window for '%1', window ID = %2").arg(gameName).arg(winIdList[0]));
       Embedder *embedder = new Embedder(gameName, winIdList[0].toInt(0, 16), this);
@@ -3015,7 +3019,7 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
 
   if ( tabWidgetEmbeddedEmulators->count() < 1 ) {
     if ( tabWidgetGamelist->currentIndex() == tabWidgetGamelist->indexOf(tabEmbeddedEmus) )
-      tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
+      tabWidgetGamelist->setCurrentIndex(qmc2LastListIndex);
     tabWidgetGamelist->removeTab(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
   }
 }
