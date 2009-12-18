@@ -12,6 +12,7 @@ class SnapshotViewer : public QWidget
   public:
     QListWidgetItem *myItem;
     QMenu *contextMenu;
+    QString fileName;
 
     SnapshotViewer(QListWidgetItem *item, QWidget *parent = 0);
 

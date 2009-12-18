@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>373</width>
-    <height>140</height>
+    <width>329</width>
+    <height>171</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,7 +31,53 @@
        <string>Snapshots</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QToolButton" name="toolButtonTakeSnapshot">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Take a snapshot of the current window content -- hold to take snapshots repeatedly (every 100ms)</string>
+         </property>
+         <property name="text">
+          <string>Take snapshot</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
+         </property>
+         <property name="autoRepeat">
+          <bool>true</bool>
+         </property>
+         <property name="autoRepeatDelay">
+          <number>200</number>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextBesideIcon</enum>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="1">
+        <widget class="QToolButton" name="toolButton">
+         <property name="toolTip">
+          <string>Clear snapshots</string>
+         </property>
+         <property name="text">
+          <string>Clear</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/stop.png</normaloff>:/data/img/stop.png</iconset>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextBesideIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
         <widget class="QListWidget" name="listWidgetSnapshots">
          <property name="mouseTracking">
           <bool>true</bool>
@@ -50,29 +96,6 @@
          </property>
          <property name="viewMode">
           <enum>QListView::IconMode</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QToolButton" name="toolButtonTakeSnapshot">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Take a snapshot of the current window content -- hold to take snapshots repeatedly (every 100ms)</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
-         </property>
-         <property name="autoRepeat">
-          <bool>true</bool>
-         </property>
-         <property name="autoRepeatDelay">
-          <number>200</number>
          </property>
         </widget>
        </item>
@@ -103,10 +126,28 @@
  <tabstops>
   <tabstop>tabWidgetEmbedderOptions</tabstop>
   <tabstop>toolButtonTakeSnapshot</tabstop>
+  <tabstop>toolButton</tabstop>
   <tabstop>listWidgetSnapshots</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>toolButton</sender>
+   <signal>clicked()</signal>
+   <receiver>listWidgetSnapshots</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>292</x>
+     <y>50</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>270</x>
+     <y>84</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

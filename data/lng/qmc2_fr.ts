@@ -1773,17 +1773,32 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="65"/>
+        <location filename="../../embedderopt.ui" line="43"/>
         <source>Take a snapshot of the current window content -- hold to take snapshots repeatedly (every 100ms)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="87"/>
+        <location filename="../../embedderopt.ui" line="46"/>
+        <source>Take snapshot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="66"/>
+        <source>Clear snapshots</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="69"/>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="110"/>
         <source>Movies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="96"/>
+        <location filename="../../embedderopt.ui" line="119"/>
         <source>Netplay</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11585,28 +11600,43 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>SnapshotViewer</name>
     <message>
-        <location filename="../../embedderopt.cpp" line="98"/>
+        <location filename="../../embedderopt.cpp" line="97"/>
         <source>Snapshot viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="107"/>
+        <location filename="../../embedderopt.cpp" line="106"/>
         <source>Use as preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="113"/>
+        <location filename="../../embedderopt.cpp" line="112"/>
         <source>Use as title</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="121"/>
+        <location filename="../../embedderopt.cpp" line="120"/>
         <source>Save as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="128"/>
+        <location filename="../../embedderopt.cpp" line="127"/>
         <source>Copy to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="205"/>
+        <source>Choose PNG file to store image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="205"/>
+        <source>PNG images (*.png)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="209"/>
+        <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
