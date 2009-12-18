@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>309</width>
+    <width>373</width>
     <height>140</height>
    </rect>
   </property>
@@ -32,43 +32,6 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="1">
-        <widget class="QToolButton" name="toolButtonTakeSnapshot">
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QToolButton" name="toolButtonSaveSnapshot">
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/filesave.png</normaloff>:/data/img/filesave.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QToolButton" name="toolButtonSaveSnapshotAs">
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>0</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="0" column="0" rowspan="4">
         <widget class="QListWidget" name="listWidgetSnapshots">
          <property name="mouseTracking">
           <bool>true</bool>
@@ -87,6 +50,29 @@
          </property>
          <property name="viewMode">
           <enum>QListView::IconMode</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QToolButton" name="toolButtonTakeSnapshot">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Take a snapshot of the current window content -- hold to take snapshots repeatedly (every 100ms)</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
+         </property>
+         <property name="autoRepeat">
+          <bool>true</bool>
+         </property>
+         <property name="autoRepeatDelay">
+          <number>200</number>
          </property>
         </widget>
        </item>
@@ -116,10 +102,8 @@
  </widget>
  <tabstops>
   <tabstop>tabWidgetEmbedderOptions</tabstop>
-  <tabstop>listWidgetSnapshots</tabstop>
   <tabstop>toolButtonTakeSnapshot</tabstop>
-  <tabstop>toolButtonSaveSnapshot</tabstop>
-  <tabstop>toolButtonSaveSnapshotAs</tabstop>
+  <tabstop>listWidgetSnapshots</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
