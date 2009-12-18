@@ -26,8 +26,6 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
 #if QMC2_WIP_CODE != 1
   tabWidgetEmbedderOptions->removeTab(tabWidgetEmbedderOptions->indexOf(tabMovies));
   tabWidgetEmbedderOptions->removeTab(tabWidgetEmbedderOptions->indexOf(tabNetplay));
-  toolButtonSaveSnapshot->hide();
-  toolButtonSaveSnapshotAs->hide();
 #endif
 }
 
@@ -58,22 +56,6 @@ void EmbedderOptions::on_toolButtonTakeSnapshot_clicked()
   QListWidgetItem *snapshotItem = new QListWidgetItem(QIcon(clippedPixmap), QString(), listWidgetSnapshots);
   snapshotMap[snapshotItem] = clippedPixmap;
   listWidgetSnapshots->scrollToItem(snapshotItem);
-}
-
-void EmbedderOptions::on_toolButtonSaveSnapshot_clicked()
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::on_toolButtonSaveSnapshot_clicked()");
-#endif
-
-}
-
-void EmbedderOptions::on_toolButtonSaveSnapshotAs_clicked()
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::on_toolButtonSaveSnapshotAs_clicked()");
-#endif
-
 }
 
 void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
@@ -135,6 +117,12 @@ SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
   connect(action, SIGNAL(triggered()), this, SLOT(useAsTitle()));
 
   contextMenu->addSeparator();
+
+  s = tr("Save as...");
+  action = contextMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(saveAs()));
 #endif
 
   s = tr("Copy to clipboard");
@@ -199,5 +187,13 @@ void SnapshotViewer::copyToClipboard()
 #endif
 
   qApp->clipboard()->setPixmap(palette().brush(QPalette::Window).texture());
+}
+
+void SnapshotViewer::saveAs()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::saveAs()");
+#endif
+
 }
 #endif

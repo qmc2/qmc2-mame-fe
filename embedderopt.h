@@ -19,6 +19,7 @@ class SnapshotViewer : public QWidget
     void useAsPreview();
     void useAsTitle();
     void copyToClipboard();
+    void saveAs();
 
   protected:
     void leaveEvent(QEvent *);
@@ -39,8 +40,6 @@ class EmbedderOptions : public QWidget, public Ui::EmbedderOptions
 
   public slots:
     void on_toolButtonTakeSnapshot_clicked();
-    void on_toolButtonSaveSnapshot_clicked();
-    void on_toolButtonSaveSnapshotAs_clicked();
     void on_listWidgetSnapshots_itemPressed(QListWidgetItem *);
 };
 #endif
