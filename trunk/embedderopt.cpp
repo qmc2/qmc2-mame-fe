@@ -3,13 +3,12 @@
 
 #if defined(Q_WS_X11)
 
-#ifdef QMC2_DEBUG
 #include "gamelist.h"
 #include "qmc2main.h"
 #include "macros.h"
 extern MainWindow *qmc2MainWindow;
 extern Gamelist *qmc2Gamelist;
-#endif
+extern QSettings *qmc2Config;
 
 EmbedderOptions::EmbedderOptions(QWidget *parent)
   : QWidget(parent)
@@ -117,13 +116,13 @@ SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
   connect(action, SIGNAL(triggered()), this, SLOT(useAsTitle()));
 
   contextMenu->addSeparator();
+#endif
 
   s = tr("Save as...");
   action = contextMenu->addAction(s);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(saveAs()));
-#endif
 
   s = tr("Copy to clipboard");
   action = contextMenu->addAction(s);
@@ -195,5 +194,23 @@ void SnapshotViewer::saveAs()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::saveAs()");
 #endif
 
+  if ( fileName.isEmpty() ) {
+    Embedder *embedder = (Embedder *)(parent()->parent());
+    fileName = embedder->gameName + ".png";
+    if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "SnapshotViewer/LastStoragePath") )
+      fileName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SnapshotViewer/LastStoragePath").toString());
+  }
+
+  hide();
+  fileName = QFileDialog::getSaveFileName(this, tr("Choose PNG file to store image"), fileName, tr("PNG images (*.png)"));
+
+  if ( !fileName.isEmpty() ) {
+    if ( !palette().brush(QPalette::Window).texture().save(fileName) )
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't save snapshot image to '%1'").arg(fileName));
+    QFileInfo fiFilePath(fileName);
+    QString storagePath = fiFilePath.absolutePath();
+    if ( !storagePath.endsWith("/") ) storagePath.append("/");
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SnapshotViewer/LastStoragePath", storagePath);
+  }
 }
 #endif

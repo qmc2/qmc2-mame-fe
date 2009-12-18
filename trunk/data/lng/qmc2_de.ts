@@ -1754,17 +1754,32 @@ p, li { white-space: pre-wrap; }
         <translation>Schnappschüsse</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="65"/>
+        <location filename="../../embedderopt.ui" line="43"/>
         <source>Take a snapshot of the current window content -- hold to take snapshots repeatedly (every 100ms)</source>
         <translation>Schnappschuss des aktuellen Fensterinhalts aufnehmen - halten, um wiederholend Schnappschüsse aufzunehmen (alle 100ms)</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="87"/>
+        <location filename="../../embedderopt.ui" line="46"/>
+        <source>Take snapshot</source>
+        <translation>Schnappschuss aufnehmen</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="66"/>
+        <source>Clear snapshots</source>
+        <translation>Schnappschüsse leeren</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="69"/>
+        <source>Clear</source>
+        <translation>Leeren</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.ui" line="110"/>
         <source>Movies</source>
         <translation>Filme</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.ui" line="96"/>
+        <location filename="../../embedderopt.ui" line="119"/>
         <source>Netplay</source>
         <translation>Netzwerk-Spiel</translation>
     </message>
@@ -11566,29 +11581,44 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
 <context>
     <name>SnapshotViewer</name>
     <message>
-        <location filename="../../embedderopt.cpp" line="98"/>
+        <location filename="../../embedderopt.cpp" line="97"/>
         <source>Snapshot viewer</source>
         <translation>Schnappschuss Anzeige</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="107"/>
+        <location filename="../../embedderopt.cpp" line="106"/>
         <source>Use as preview</source>
         <translation>Als Vorschaubild verwenden</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="113"/>
+        <location filename="../../embedderopt.cpp" line="112"/>
         <source>Use as title</source>
         <translation>Als Titelbild verwenden</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="121"/>
+        <location filename="../../embedderopt.cpp" line="120"/>
         <source>Save as...</source>
         <translation>Speichern unter...</translation>
     </message>
     <message>
-        <location filename="../../embedderopt.cpp" line="128"/>
+        <location filename="../../embedderopt.cpp" line="127"/>
         <source>Copy to clipboard</source>
         <translation>In Zwischenablage kopieren</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="205"/>
+        <source>Choose PNG file to store image</source>
+        <translation>PNG Datei zum Speichern des Bildes auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="205"/>
+        <source>PNG images (*.png)</source>
+        <translation>PNG Dateien (*.png)</translation>
+    </message>
+    <message>
+        <location filename="../../embedderopt.cpp" line="209"/>
+        <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
+        <translation>FATAL: konnte Schnappschuss für &apos;%1&apos; nicht speichern</translation>
     </message>
 </context>
 <context>
