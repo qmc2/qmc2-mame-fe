@@ -5,10 +5,14 @@
 
 #include "gamelist.h"
 #include "qmc2main.h"
+#include "preview.h"
+#include "title.h"
 #include "macros.h"
 extern MainWindow *qmc2MainWindow;
 extern Gamelist *qmc2Gamelist;
 extern QSettings *qmc2Config;
+extern Preview *qmc2Preview;
+extern Title *qmc2Title;
 
 EmbedderOptions::EmbedderOptions(QWidget *parent)
   : QWidget(parent)
@@ -55,6 +59,15 @@ void EmbedderOptions::on_toolButtonTakeSnapshot_clicked()
   QListWidgetItem *snapshotItem = new QListWidgetItem(QIcon(clippedPixmap), QString(), listWidgetSnapshots);
   snapshotMap[snapshotItem] = clippedPixmap;
   listWidgetSnapshots->scrollToItem(snapshotItem);
+}
+
+void EmbedderOptions::on_toolButtonClearSnapshots_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::on_toolButtonClearSnapshots_clicked()");
+#endif
+
+  snapshotMap.clear();
 }
 
 void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
@@ -169,6 +182,12 @@ void SnapshotViewer::useAsPreview()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::useAsPreview()");
 #endif
 
+  Embedder *embedder = (Embedder *)(parent()->parent());
+  QPixmapCache::remove(embedder->gameName);
+  QPixmapCache::insert(embedder->gameName, palette().brush(QPalette::Window).texture());
+  qmc2Preview->repaint();
+
+  // FIXME: we also need to save the image to the preview path or ZIP archive
 }
 
 void SnapshotViewer::useAsTitle()
@@ -177,6 +196,12 @@ void SnapshotViewer::useAsTitle()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::useAsTitle()");
 #endif
 
+  Embedder *embedder = (Embedder *)(parent()->parent());
+  QPixmapCache::remove("ttl_" + embedder->gameName);
+  QPixmapCache::insert("ttl_" + embedder->gameName, palette().brush(QPalette::Window).texture());
+  qmc2Title->repaint();
+
+  // FIXME: we also need to save the image to the title path or ZIP archive
 }
 
 void SnapshotViewer::copyToClipboard()
@@ -205,7 +230,7 @@ void SnapshotViewer::saveAs()
   fileName = QFileDialog::getSaveFileName(this, tr("Choose PNG file to store image"), fileName, tr("PNG images (*.png)"));
 
   if ( !fileName.isEmpty() ) {
-    if ( !palette().brush(QPalette::Window).texture().save(fileName) )
+    if ( !palette().brush(QPalette::Window).texture().save(fileName, "PNG") )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't save snapshot image to '%1'").arg(fileName));
     QFileInfo fiFilePath(fileName);
     QString storagePath = fiFilePath.absolutePath();
