@@ -1112,7 +1112,7 @@ void MainWindow::on_actionPlay_activated()
 
 #if defined(Q_WS_X11)
   if ( qmc2StartEmbedded )
-    args << "-window" << "-nomaximize";
+    args << "-window" << "-nomaximize" << "-keepaspect";
 #endif
 
   args << gameName;

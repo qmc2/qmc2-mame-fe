@@ -90,7 +90,7 @@
         </spacer>
        </item>
        <item row="0" column="3">
-        <widget class="QToolButton" name="toolButton">
+        <widget class="QToolButton" name="toolButtonClearSnapshots">
          <property name="toolTip">
           <string>Clear snapshots</string>
          </property>
@@ -133,7 +133,7 @@
  <tabstops>
   <tabstop>tabWidgetEmbedderOptions</tabstop>
   <tabstop>toolButtonTakeSnapshot</tabstop>
-  <tabstop>toolButton</tabstop>
+  <tabstop>toolButtonClearSnapshots</tabstop>
   <tabstop>listWidgetSnapshots</tabstop>
  </tabstops>
  <resources>
@@ -141,7 +141,7 @@
  </resources>
  <connections>
   <connection>
-   <sender>toolButton</sender>
+   <sender>toolButtonClearSnapshots</sender>
    <signal>clicked()</signal>
    <receiver>listWidgetSnapshots</receiver>
    <slot>clear()</slot>
