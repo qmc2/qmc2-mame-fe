@@ -2954,7 +2954,7 @@ void MainWindow::action_embedEmulator_triggered()
     }
 
     if ( winIdList.count() > 1 )
-      log(QMC2_LOG_FRONTEND, tr("WARNING: found more than one matching emulator windows, choosing window ID %1 for embedding").arg(winIdList[0]));
+      log(QMC2_LOG_FRONTEND, tr("WARNING: multiple emulator windows for '%1' found, choosing window ID %2 for embedding").arg(gameName).arg(winIdList[0]));
 
     if ( winIdList.count() > 0 ) {
       int embeddedEmusIndex = tabWidgetGamelist->indexOf(widgetEmbeddedEmus);
@@ -2986,7 +2986,7 @@ void MainWindow::action_embedEmulator_triggered()
       tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
       embedder->setFocus();
     } else
-      log(QMC2_LOG_FRONTEND, tr("WARNING: no matching emulator found"));
+      log(QMC2_LOG_FRONTEND, tr("WARNING: no matching emulator window for '%1' found").arg(gameName));
   }
 }
 
