@@ -1737,27 +1737,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="57"/>
         <source>emulator released, window ID = 0x%1</source>
-        <translation type="unfinished"></translation>
+        <translation>uwolniono emulator, ID okna = 0x%1</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="67"/>
         <source>emulator embedded, window ID = 0x%1</source>
-        <translation type="unfinished"></translation>
+        <translation>osadzono emulator, ID okna = 0x%1</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="80"/>
         <source>emulator closed, window ID = 0x%1</source>
-        <translation type="unfinished"></translation>
+        <translation>zamknięto emulator, ID okna = 0x%1</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="94"/>
         <source>WARNING: embedder: unknown error, window ID = 0x%1</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: osadzacz: nieznany błąd, ID okna = 0x%1</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="98"/>
         <source>WARNING: embedder: invalid window ID = 0x%1</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: osadzacz: niepoprawny ID okna = 0x%1</translation>
     </message>
 </context>
 <context>
@@ -1765,42 +1765,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedderopt.ui" line="14"/>
         <source>Embedder options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opcje osadzacza</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="31"/>
         <source>Snapshots</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrzuty ekranu</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="37"/>
         <source>Take a snapshot of the current window content -- hold to take snapshots repeatedly (every 100ms)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobierz zrzut obecnej zawartości okna -- przytrzymaj aby pobierać zrzuty wielokrotnie (co 100ms)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="40"/>
         <source>Take snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobierz zrzut ekranu</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="95"/>
         <source>Clear snapshots</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść zrzuty ekranu</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="98"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="117"/>
         <source>Movies</source>
-        <translation type="unfinished"></translation>
+        <translation>Filmy</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="126"/>
         <source>Netplay</source>
-        <translation type="unfinished"></translation>
+        <translation>Gra sieciowa</translation>
     </message>
 </context>
 <context>
@@ -2223,12 +2223,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="114"/>
         <source>supported</source>
-        <translation type="unfinished">obsługiwany</translation>
+        <translation>obsługiwana</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="114"/>
         <source>unsupported</source>
-        <translation type="unfinished">nieobsługiwany</translation>
+        <translation>nieobsługiwana</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="115"/>
@@ -2314,7 +2314,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="283"/>
         <source>determining emulator version and supported games</source>
-        <translation type="unfinished">określanie wersji emulatora i obsługiwanych gier</translation>
+        <translation>określanie wersji emulatora i obsługiwanych gier</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="331"/>
@@ -2330,7 +2330,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="396"/>
         <source>done (determining emulator version and supported games, elapsed time = %1)</source>
-        <translation type="unfinished">ukończono (określanie wersji emulatora i obsługiwanych gier, miniony czas = %1)</translation>
+        <translation>ukończono (określanie wersji emulatora i obsługiwanych gier, miniony czas = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="422"/>
@@ -4241,12 +4241,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="159"/>
         <source>Play selected game (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Graj w wybraną grę (osadzaj)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="160"/>
         <source>Play &amp;embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>Graj osad&amp;zając</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="493"/>
@@ -4370,7 +4370,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="393"/>
         <source>Emulator</source>
-        <translation type="unfinished">Emulator</translation>
+        <translation>Emulator</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="463"/>
@@ -4522,12 +4522,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.ui" line="2711"/>
         <location filename="../../qmc2main.ui" line="2714"/>
         <source>Play current game (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Graj w obecną grę (osadzając)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2717"/>
         <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="572"/>
@@ -4818,7 +4818,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="401"/>
         <location filename="../../qmc2main.cpp" line="402"/>
         <source>Play current machine (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Graj na obecnej maszynie (osadzając)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="431"/>
@@ -4833,12 +4833,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="542"/>
         <source>Embed emulator widget</source>
-        <translation type="unfinished"></translation>
+        <translation>Osadzaj widżet emulatora</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="543"/>
         <source>&amp;Embed</source>
-        <translation type="unfinished"></translation>
+        <translation>Osad&amp;zaj</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="549"/>
@@ -4874,7 +4874,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="678"/>
         <location filename="../../qmc2main.cpp" line="735"/>
         <source>Play selected game (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Graj w wybraną grę (osadzając)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="580"/>
@@ -4882,7 +4882,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="680"/>
         <location filename="../../qmc2main.cpp" line="737"/>
         <source>Start selected machine (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom wybraną maszynę (osadzając)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="582"/>
@@ -4891,7 +4891,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="739"/>
         <location filename="../../qmc2main.ui" line="2708"/>
         <source>Play &amp;embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>Graj osad&amp;zając</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="602"/>
@@ -5043,12 +5043,12 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2485"/>
         <source>Emulator for this game</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulator dla tej gry</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2487"/>
         <source>Emulator for this machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulator dla tej maszyny</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2521"/>
@@ -5070,28 +5070,28 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2916"/>
         <source>emulator for &apos;%1&apos; is already embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>emulator dla &apos;%1&apos; jest już osadzany</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2964"/>
         <location filename="../../qmc2main.ui" line="377"/>
         <source>Embedded emulators</source>
-        <translation type="unfinished"></translation>
+        <translation>Osadzone emulatory</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2965"/>
         <source>embedding emulator window for &apos;%1&apos;, window ID = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>osadzanie okna emulatora dla &apos;%1&apos;, ID okna  = %2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2974"/>
         <source>Release emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Uwolnij emulator</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2978"/>
         <source>Toggle embedder options</source>
-        <translation type="unfinished"></translation>
+        <translation>Przestaw opcje osadzacza</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3334"/>
@@ -6560,8 +6560,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -6646,22 +6644,22 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1245"/>
         <source>game list reload is already active</source>
-        <translation type="unfinished"></translation>
+        <translation>przeładowywanie listy gier jest już uruchomione</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1247"/>
         <source>machine list reload is already active</source>
-        <translation type="unfinished"></translation>
+        <translation>przeładowywanie listy maszyn jest już uruchomione</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2957"/>
         <source>WARNING: multiple emulator windows for &apos;%1&apos; found, choosing window ID %2 for embedding</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: znaleziono wiele okien emulatora dla &apos;%1&apos;, wybrano okno o ID %2 do osadzania</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2989"/>
         <source>WARNING: no matching emulator window for &apos;%1&apos; found</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie znaleziono odpowiedniego okna emulatora dla &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5605"/>
@@ -7748,7 +7746,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../options.ui" line="3027"/>
         <source>Zip tool argument list to remove entries from the ZIP archive (i. e. &quot;$ARCHIVE$ -d $FILELIST$&quot;)</source>
-        <translation>Argument narzędzia zip do usunięcia wpisów z archiwum ZIP (to jest &quot;$ARCHIVE$ -d $FILELIST$&quot;)</translation>
+        <translation>Parametr narzędzia zip do usunięcia wpisów z archiwum ZIP (to jest &quot;$ARCHIVE$ -d $FILELIST$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3037"/>
@@ -7758,7 +7756,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../options.ui" line="3093"/>
         <source>File removal tool argument list (i. e. &quot;-f -v $FILELIST$&quot;)</source>
-        <translation>Lista argumentów narzędzia usuwania plików (to jest &quot;-f -v $FILELIST$&quot;)</translation>
+        <translation>Lista parametrów narzędzia usuwania plików (to jest &quot;-f -v $FILELIST$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3014"/>
@@ -7766,7 +7764,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../options.ui" line="3694"/>
         <location filename="../../options.ui" line="3791"/>
         <source>Arguments</source>
-        <translation>Argumenty</translation>
+        <translation>Parametry</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3069"/>
@@ -7937,54 +7935,54 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../options.ui" line="3623"/>
         <source>Additional &amp;Emulators</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodatkowe &amp;emulatory</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3650"/>
         <source>Registered emulators -- you may select one of these in the game-specific emulator configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarejestrowane emulatory -- można wybrać jeden z nich w specyficznej dla gry konfiguracji emulatora</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3684"/>
         <location filename="../../options.ui" line="3749"/>
         <source>Name</source>
-        <translation type="unfinished">Nazwa</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3689"/>
         <location filename="../../options.ui" line="3763"/>
         <source>Executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik wykonywalny</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3705"/>
         <source>Register emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarejestruj emulator</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3735"/>
         <source>Deregister emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyrejestruj emulator</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3756"/>
         <source>Registered emulator&apos;s name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa zarejestrowanego emulatora</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3770"/>
         <source>Command to execute the emulator (path to the executable file)</source>
-        <translation type="unfinished"></translation>
+        <translation>Komenda uruchamiająca emulator (ścieżka do pliku wykonywalnego)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3798"/>
         <source>Arguments passed to the emulator -- use $ID$ as a placeholder for the unique game/machine ID (its short name)</source>
-        <translation type="unfinished"></translation>
+        <translation>Parametry przekazywane emulatorowi -- proszę użyć $ID$ jako zamiennika unikalnej krótkiej nazwy gry bądź maszyny</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3808"/>
         <source>Replace emulator registration</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastąp rejestrację emulatora</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3836"/>
@@ -9216,17 +9214,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="193"/>
         <source>Registered emulators -- you may select one of these in the machine-specific emulator configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarejestrowane emulatory -- można wybrać jeden z nich w specyficznej dla maszyny konfiguracji emulatora</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="212"/>
         <source>Play (independent)</source>
-        <translation type="unfinished"></translation>
+        <translation>Graj (niezależnie)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="213"/>
         <source>Play (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Graj (osadzaj)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1154"/>
@@ -9703,27 +9701,27 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../procmgr.cpp" line="248"/>
         <source>FATAL: failed to start emulator #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się uruchomić emulatora #%1</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="253"/>
         <source>WARNING: emulator #%1 crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: emulator #%1 uległ awarii</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="257"/>
         <source>WARNING: failed to write to emulator #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie udało się zapisać do emulatora #%1</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="261"/>
         <source>WARNING: failed to read from emulator #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie udało się odczytać z emulatora #%1</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="265"/>
         <source>WARNING: unhandled error for emulator #%1, error code = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nieobsługiwany błąd emulatora #%1, kod błędu = %2</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="139"/>
@@ -11628,42 +11626,42 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../embedderopt.cpp" line="110"/>
         <source>Snapshot viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeglądarka zrzutów ekranu</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="119"/>
         <source>Use as preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj jako podglądu</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="125"/>
         <source>Use as title</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj jako ekranu tytułowego</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="134"/>
         <source>Save as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz jako...</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="140"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj do schowka</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="230"/>
         <source>Choose PNG file to store image</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik PNG do zapisania obrazu</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="230"/>
         <source>PNG images (*.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrazy PNG (*.png)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="234"/>
         <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się zapisać zrzutu ekranu do &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
