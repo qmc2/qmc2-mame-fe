@@ -331,4 +331,7 @@
 // time in milli-seconds to wait before auto-embedding emulator window
 #define QMC2_EMBED_DELAY		250
 
+// maximum number of retries to find an emulator window via xwininfo (emulator may need longer to get ready)
+#define QMC2_MAX_XWININFO_RETRIES	3
+
 #endif
