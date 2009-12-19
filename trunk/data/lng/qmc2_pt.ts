@@ -7164,6 +7164,11 @@ Sair mesmo assim?</translation>
         <translation>Sem título</translation>
     </message>
     <message>
+        <location filename="../../miniwebbrowser.cpp" line="453"/>
+        <source>WARNING: invalid network reply and/or network error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../miniwebbrowser.ui" line="15"/>
         <source>Mini Web Browser</source>
         <translation>Mini navegador</translation>

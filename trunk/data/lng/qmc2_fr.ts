@@ -7205,6 +7205,11 @@ Faut-il les tuer à la sortie ?</translation>
         <source>No title</source>
         <translation>Sans titre</translation>
     </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="453"/>
+        <source>WARNING: invalid network reply and/or network error</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Options</name>

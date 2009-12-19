@@ -7186,6 +7186,11 @@ Should they be killed on exit?</translation>
         <source>No title</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="453"/>
+        <source>WARNING: invalid network reply and/or network error</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>Options</name>

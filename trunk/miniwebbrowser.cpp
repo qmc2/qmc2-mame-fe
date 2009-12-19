@@ -449,8 +449,10 @@ void MiniWebBrowser::processPageActionHandleUnsupportedContent(QNetworkReply *re
   opsShort[QNetworkAccessManager::PutOperation] = "PUT";
   opsShort[QNetworkAccessManager::PostOperation] = "POST";
 
-  if ( !reply || reply->url().isEmpty() )
+  if ( !reply || reply->url().isEmpty() || reply->url() == homeUrl ) {
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: invalid network reply and/or network error"));
     return;
+  }
 
   QVariant header = reply->header(QNetworkRequest::ContentLengthHeader);
   bool ok;

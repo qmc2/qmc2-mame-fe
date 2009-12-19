@@ -6560,6 +6560,8 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -7221,6 +7223,11 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../miniwebbrowser.cpp" line="230"/>
         <source>No title</source>
         <translation>Brak tytułu</translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="453"/>
+        <source>WARNING: invalid network reply and/or network error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

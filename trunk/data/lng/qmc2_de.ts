@@ -1738,7 +1738,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="98"/>
         <source>WARNING: embedder: invalid window ID = 0x%1</source>
-        <translation>WARNUNG: Einbettung:ungültige Fenster ID = 0x%1</translation>
+        <translation>WARNUNG: Einbettung: ungültige Fenster ID = 0x%1</translation>
     </message>
 </context>
 <context>
@@ -7185,6 +7185,11 @@ Sollen diese beim Beenden geschlossen werden?</translation>
         <location filename="../../miniwebbrowser.cpp" line="230"/>
         <source>No title</source>
         <translation>Ohne Titel</translation>
+    </message>
+    <message>
+        <location filename="../../miniwebbrowser.cpp" line="453"/>
+        <source>WARNING: invalid network reply and/or network error</source>
+        <translation>WARNUNG: ungültige Netzwerk Antwort und/oder Netzwerk Fehler</translation>
     </message>
 </context>
 <context>
