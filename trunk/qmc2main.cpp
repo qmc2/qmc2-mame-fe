@@ -2924,29 +2924,32 @@ void MainWindow::action_embedEmulator_triggered()
     QString command = QString(XSTR(QMC2_XWININFO));
     QStringList args, winIdList;
     args << "-root" << "-all";
-    QProcess commandProc;
-    bool commandProcStarted = FALSE;
-    commandProc.start(command, args);
-    if ( commandProc.waitForStarted() ) {
-      commandProcStarted = TRUE;
-      bool commandProcRunning = (commandProc.state() == QProcess::Running);
-      while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
-        qApp->processEvents();
-        commandProcRunning = (commandProc.state() == QProcess::Running);
+    int xwininfoRetries = 0;
+    while ( winIdList.count() < 1 && xwininfoRetries++ < QMC2_MAX_XWININFO_RETRIES ) {
+      QProcess commandProc;
+      bool commandProcStarted = FALSE;
+      commandProc.start(command, args);
+      if ( commandProc.waitForStarted() ) {
+        commandProcStarted = TRUE;
+        bool commandProcRunning = (commandProc.state() == QProcess::Running);
+        while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
+          qApp->processEvents();
+          commandProcRunning = (commandProc.state() == QProcess::Running);
+        }
       }
-    }
-    QStringList ssl = QString(commandProc.readAllStandardOutput()).split("\n");
+      QStringList ssl = QString(commandProc.readAllStandardOutput()).split("\n");
 #if defined(QMC2_EMUTYPE_MAME)
-    QString regExp = QString("*MAME:*%1*").arg(gameName);
+      QString regExp = QString("*MAME:*%1*").arg(gameName);
 #elif defined(QMC2_EMUTYPE_MESS)
-    QString regExp = QString("*MESS:*%1*").arg(gameName);
+      QString regExp = QString("*MESS:*%1*").arg(gameName);
 #else
-    QString regExp;
+      QString regExp;
 #endif
-    foreach (QString s, ssl) {
-      if ( s.contains(QRegExp(regExp, Qt::CaseSensitive, QRegExp::Wildcard)) ) {
-        s = s.trimmed().split(" ")[0];
-        winIdList << s;
+      foreach (QString s, ssl) {
+        if ( s.contains(QRegExp(regExp, Qt::CaseSensitive, QRegExp::Wildcard)) ) {
+          s = s.trimmed().split(" ")[0];
+          winIdList << s;
+        }
       }
     }
 
