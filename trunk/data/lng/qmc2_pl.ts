@@ -5504,7 +5504,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="1664"/>
         <source>Remove finished</source>
-        <translation>Usuwanie skończone</translation>
+        <translation>Usuwanie skończonych</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1764"/>
