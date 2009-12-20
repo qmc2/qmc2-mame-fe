@@ -398,8 +398,10 @@ MainWindow::MainWindow(QWidget *parent)
   treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, tr("Machine / Notifier"));
   actionPlay->setToolTip(tr("Play current machine"));
   actionPlay->setStatusTip(tr("Play current machine"));
+#if defined(Q_WS_X11)
   actionPlayEmbedded->setToolTip(tr("Play current machine (embedded)"));
   actionPlayEmbedded->setStatusTip(tr("Play current machine (embedded)"));
+#endif
   actionToFavorites->setToolTip(tr("Add current machine to favorites"));
   actionToFavorites->setStatusTip(tr("Add current machine to favorites"));
   actionReload->setToolTip(tr("Reload entire machine list"));
@@ -6072,7 +6074,9 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+N"].second = qmc2MainWindow->actionClearIconCache;
   qmc2ShortcutMap["Ctrl+O"].second = qmc2MainWindow->actionOptions;
   qmc2ShortcutMap["Ctrl+P"].second = qmc2MainWindow->actionPlay;
+#if defined(Q_WS_X11)
   qmc2ShortcutMap["Ctrl+Shift+P"].second = qmc2MainWindow->actionPlayEmbedded;
+#endif
   qmc2ShortcutMap["Ctrl+Q"].second = qmc2MainWindow->actionAboutQt;
   qmc2ShortcutMap["Ctrl+R"].second = qmc2MainWindow->actionReload;
   qmc2ShortcutMap["Ctrl+S"].second = qmc2MainWindow->actionCheckCurrentROM;
