@@ -499,6 +499,7 @@ MainWindow::MainWindow(QWidget *parent)
     vSplitter->setSizes(vSplitterSizes);
     tabWidgetGamelist->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt());
     tabWidgetLogsAndEmulators->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", 0).toInt());
+    on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex());
     int i;
     QVariantList defaultGamelistColumnWidths,
                  gamelistColumnWidths;
