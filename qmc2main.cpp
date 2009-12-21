@@ -2858,18 +2858,6 @@ void MainWindow::on_treeWidgetHierarchy_itemSelectionChanged()
   }
 }
 
-void MainWindow::on_textBrowserFrontendLog_textChanged()
-{
-  textBrowserFrontendLog->verticalScrollBar()->setSliderPosition(textBrowserFrontendLog->verticalScrollBar()->maximum());
-  textBrowserFrontendLog->horizontalScrollBar()->setSliderPosition(textBrowserFrontendLog->horizontalScrollBar()->minimum());
-}
-
-void MainWindow::on_textBrowserEmulatorLog_textChanged()
-{
-  textBrowserEmulatorLog->verticalScrollBar()->setSliderPosition(textBrowserEmulatorLog->verticalScrollBar()->maximum());
-  textBrowserEmulatorLog->horizontalScrollBar()->setSliderPosition(textBrowserEmulatorLog->horizontalScrollBar()->minimum());
-}
-
 void MainWindow::on_treeWidgetEmulators_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
