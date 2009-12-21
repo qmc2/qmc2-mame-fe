@@ -324,9 +324,14 @@ void Options::apply()
   QFont f;
   f.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
   qApp->setFont(f);
+  QFontMetrics fm(f);
   foreach (QWidget *widget, QApplication::allWidgets())
     widget->setFont(f);
-  QFontMetrics fm(f);
+  QFont logFont = f;
+  if ( !config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString().isEmpty() )
+    logFont.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
+  qmc2MainWindow->textBrowserFrontendLog->setFont(logFont);
+  qmc2MainWindow->textBrowserEmulatorLog->setFont(logFont);
   QSize iconSize(fm.height() - 2, fm.height() - 2);
   qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSize);
   qmc2MainWindow->treeWidgetHierarchy->setIconSize(iconSize);
@@ -390,6 +395,7 @@ void Options::apply()
   pushButtonRemoveJoystickMapping->setIconSize(iconSize);
 #endif
   if ( qmc2ROMAlyzer ) {
+    qmc2ROMAlyzer->textBrowserLog->setFont(logFont);
     qmc2ROMAlyzer->pushButtonAnalyze->setIconSize(iconSize);
     qmc2ROMAlyzer->pushButtonPause->setIconSize(iconSize);
     qmc2ROMAlyzer->pushButtonClose->setIconSize(iconSize);
@@ -590,7 +596,14 @@ void Options::on_pushButtonApply_clicked()
   if ( joystickTestWidget )
     joystickTestWidget->cleanupPalette();
 #endif
-  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Font", lineEditFont->text());
+  if ( !lineEditFont->text().isEmpty() )
+    config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Font", lineEditFont->text());
+  else
+    config->remove(QMC2_FRONTEND_PREFIX + "GUI/Font");
+  if ( !lineEditLogFont->text().isEmpty() )
+    config->setValue(QMC2_FRONTEND_PREFIX + "GUI/LogFont", lineEditLogFont->text());
+  else
+    config->remove(QMC2_FRONTEND_PREFIX + "GUI/LogFont");
   if ( spinBoxPixmapCacheSize->value() != oldCacheSize ) {
     oldCacheSize = spinBoxPixmapCacheSize->value();
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("image cache size set to %1 MB").arg(oldCacheSize));
@@ -1339,6 +1352,9 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   QFont f;
   f.fromString(lineEditFont->text());
   lineEditFont->setFont(f);
+  lineEditLogFont->setText(config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
+  f.fromString(lineEditLogFont->text());
+  lineEditLogFont->setFont(f);
   int pixmapCacheSize = config->value(QMC2_FRONTEND_PREFIX + "GUI/PixmapCacheSize", 64).toInt();
   spinBoxPixmapCacheSize->setValue(pixmapCacheSize);
   checkBoxKillEmulatorsOnExit->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/KillEmulatorsOnExit", TRUE).toBool());
@@ -2027,6 +2043,23 @@ void Options::on_toolButtonBrowseFont_clicked()
   if ( ok ) {
     lineEditFont->setFont(f);
     lineEditFont->setText(f.toString());
+  }
+  raise();
+}
+
+void Options::on_toolButtonBrowseLogFont_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseLogFont_clicked()");
+#endif
+
+  bool ok;
+  QFont currentFont;
+  currentFont.fromString(lineEditLogFont->text());
+  QFont f = QFontDialog::getFont(&ok, currentFont, 0);
+  if ( ok ) {
+    lineEditLogFont->setFont(f);
+    lineEditLogFont->setText(f.toString());
   }
   raise();
 }

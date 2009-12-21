@@ -158,6 +158,7 @@ void Gamelist::enableWidgets(bool enable)
 
   qmc2Options->toolButtonBrowseStyleSheet->setEnabled(enable);
   qmc2Options->toolButtonBrowseFont->setEnabled(enable);
+  qmc2Options->toolButtonBrowseLogFont->setEnabled(enable);
   qmc2Options->toolButtonBrowseTemporaryFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseFrontendLogFile->setEnabled(enable);
   qmc2Options->toolButtonBrowsePreviewDirectory->setEnabled(enable);
