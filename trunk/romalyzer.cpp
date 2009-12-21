@@ -97,6 +97,9 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   pushButtonSearchForward->setIconSize(iconSize);
   pushButtonSearchBackward->setIconSize(iconSize);
   pushButtonPause->setVisible(FALSE);
+  QFont logFont;
+  logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
+  textBrowserLog->setFont(logFont);
 
   // hide yet unsupported features for now...
   groupBoxExportOptions->setVisible(FALSE);
