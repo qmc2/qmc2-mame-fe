@@ -318,6 +318,9 @@ void MainWindow::log(char logOrigin, QString message)
   }
 
   qmc2LogMutex.unlock();
+
+  if ( !qmc2CleaningUp )
+    qApp->processEvents();
 }
 
 MainWindow::MainWindow(QWidget *parent)
@@ -3966,7 +3969,9 @@ void MainWindow::setupStyleSheet(QString styleSheetName)
 #endif
 
   static QString oldStyleSheetName = "";
-  
+
+  bool scrollBarMaximum = (textBrowserFrontendLog->verticalScrollBar()->value() == textBrowserFrontendLog->verticalScrollBar()->maximum());
+
   if ( !styleSheetName.isEmpty() ) {
     QFile f(styleSheetName);
     if ( f.open(QIODevice::ReadOnly) ) {
@@ -3975,7 +3980,6 @@ void MainWindow::setupStyleSheet(QString styleSheetName)
       QString currentDir = QDir::currentPath();
       QDir::setCurrent(QFileInfo(f).absolutePath());
       qApp->setStyleSheet(f.readAll());
-      qApp->processEvents();
       f.close();
       // FIXME: "cd -" won't work because of relative URLs
       // QDir::setCurrent(currentDir);
@@ -3990,6 +3994,9 @@ void MainWindow::setupStyleSheet(QString styleSheetName)
   oldStyleSheetName = styleSheetName;
 
   qApp->processEvents();
+
+  if ( scrollBarMaximum )
+    textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
 }
 
 void MainWindow::viewFullDetail()

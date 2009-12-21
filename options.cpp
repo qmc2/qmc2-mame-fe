@@ -13,6 +13,7 @@
 #include <QPair>
 #include <QLocale>
 #include <QNetworkProxy>
+#include <QScrollBar>
 
 #include "options.h"
 #include "emuopt.h"
@@ -330,6 +331,9 @@ void Options::apply()
   QFont logFont = f;
   if ( !config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString().isEmpty() )
     logFont.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
+
+  bool scrollBarMaximum = (qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->value() == qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->maximum());
+
   qmc2MainWindow->textBrowserFrontendLog->setFont(logFont);
   qmc2MainWindow->textBrowserEmulatorLog->setFont(logFont);
   QSize iconSize(fm.height() - 2, fm.height() - 2);
@@ -341,6 +345,7 @@ void Options::apply()
   pushButtonDefault->setIconSize(iconSize);
   toolButtonBrowseStyleSheet->setIconSize(iconSize);
   toolButtonBrowseFont->setIconSize(iconSize);
+  toolButtonBrowseLogFont->setIconSize(iconSize);
   toolButtonBrowseTemporaryFile->setIconSize(iconSize);
   toolButtonBrowseFrontendLogFile->setIconSize(iconSize);
   toolButtonBrowseFavoritesFile->setIconSize(iconSize);
@@ -452,6 +457,10 @@ void Options::apply()
   qmc2MainWindow->pushButtonStopSelectedDownloads->setIconSize(iconSize);
   qmc2MainWindow->treeWidgetDownloads->setIconSize(iconSize);
   qmc2MainWindow->pushButtonSelectRomFilter->setIconSize(iconSize);
+
+  if ( scrollBarMaximum )
+    qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->setValue(qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->maximum());
+
   if ( qmc2DetailSetup )
     if ( qmc2DetailSetup->isVisible() )
       QTimer::singleShot(0, qmc2DetailSetup, SLOT(adjustIconSizes()));
