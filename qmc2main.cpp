@@ -891,7 +891,10 @@ MainWindow::MainWindow(QWidget *parent)
   QStringList psl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList").toStringList();
   listWidgetAudioPlaylist->addItems(psl);
   QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->findItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", QString()).toString(), Qt::MatchExactly);
-  if ( sl.count() > 0 ) listWidgetAudioPlaylist->setCurrentItem(sl[0]);
+  if ( sl.count() > 0 ) {
+    listWidgetAudioPlaylist->setCurrentItem(sl[0]);
+    listWidgetAudioPlaylist->scrollToItem(sl[0], QAbstractItemView::PositionAtTop);
+  }
   checkBoxAudioPlayOnStart->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayOnStart", FALSE).toBool());
   checkBoxAudioShuffle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Shuffle", FALSE).toBool());
   checkBoxAudioPause->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Pause", TRUE).toBool());
