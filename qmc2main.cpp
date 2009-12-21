@@ -1613,6 +1613,9 @@ void MainWindow::on_actionFullscreenToggle_activated()
       actionFullscreenToggle->setChecked(TRUE);
   }
 
+  bool feLogScrollBarMaximum = (textBrowserFrontendLog->verticalScrollBar()->value() == textBrowserFrontendLog->verticalScrollBar()->maximum());
+  bool emuLogScrollBarMaximum = (textBrowserEmulatorLog->verticalScrollBar()->value() == textBrowserEmulatorLog->verticalScrollBar()->maximum());
+
   qApp->processEvents();
 
   if ( actionFullscreenToggle->isChecked() ) {
@@ -1650,6 +1653,12 @@ void MainWindow::on_actionFullscreenToggle_activated()
     }
   }
   raise();
+
+  if ( feLogScrollBarMaximum )
+    textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
+  if ( emuLogScrollBarMaximum )
+    textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
+
   qApp->processEvents();
 }
 
