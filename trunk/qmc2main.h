@@ -279,8 +279,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_treeWidgetHierarchy_itemDoubleClicked(QTreeWidgetItem *, int);
     void on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
     void on_treeWidgetHierarchy_itemSelectionChanged();
-    void on_textBrowserFrontendLog_textChanged();
-    void on_textBrowserEmulatorLog_textChanged();
     void on_stackedWidgetView_currentChanged(int);
     void on_pushButtonGlobalEmulatorOptionsExportToFile_clicked(QString useFileName = QString());
     void on_pushButtonGlobalEmulatorOptionsSelectExportFile_clicked();
