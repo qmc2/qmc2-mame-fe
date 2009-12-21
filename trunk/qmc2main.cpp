@@ -267,10 +267,10 @@ void MainWindow::log(char logOrigin, QString message)
 
   QString msg = timeString + ": " + message;
 
+  bool wasEmpty;
   switch ( logOrigin ) {
     case QMC2_LOG_FRONTEND:
       textBrowserFrontendLog->append(msg);
-      textBrowserFrontendLog->horizontalScrollBar()->setValue(0);
       if ( !qmc2FrontendLogFile )
         if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", "data/log/qmc2.log").toString(), this)) == NULL ) {
           qmc2LogMutex.unlock();
@@ -290,7 +290,6 @@ void MainWindow::log(char logOrigin, QString message)
 
     case QMC2_LOG_EMULATOR:
       textBrowserEmulatorLog->append(msg);
-      textBrowserEmulatorLog->horizontalScrollBar()->setValue(0);
       if ( !qmc2EmulatorLogFile ) {
 #if defined(QMC2_EMUTYPE_MAME)
         if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value("MAME/FilesAndDirectories/LogFile", "data/log/mame.log").toString(), this)) == NULL ) {
@@ -2132,6 +2131,39 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
     }
   } else
     labelGameStatus->setVisible(FALSE);
+}
+
+void MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int currentIndex)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int i = " + QString::number(currentIndex) + ")");
+#endif
+
+  static bool firstTimeViewingFrontendLog = TRUE;
+  static bool firstTimeViewingEmulatorLog = TRUE;
+
+  switch ( currentIndex ) {
+    case QMC2_FRONTENDLOG_INDEX:
+      if ( firstTimeViewingFrontendLog ) {
+        textBrowserFrontendLog->horizontalScrollBar()->setValue(0);
+        textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
+        firstTimeViewingFrontendLog = FALSE;
+        qApp->processEvents();
+      }
+      break;
+
+    case QMC2_EMULATORLOG_INDEX:
+      if ( firstTimeViewingEmulatorLog ) {
+        textBrowserEmulatorLog->horizontalScrollBar()->setValue(0);
+        textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
+        firstTimeViewingEmulatorLog = FALSE;
+        qApp->processEvents();
+      }
+      break;
+
+    default:
+      break;
+  }
 }
 
 void MainWindow::scrollToCurrentItem()
