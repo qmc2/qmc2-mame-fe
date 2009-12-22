@@ -185,7 +185,7 @@ void SnapshotViewer::useAsPreview()
   Embedder *embedder = (Embedder *)(parent()->parent());
   QPixmapCache::remove(embedder->gameName);
   QPixmapCache::insert(embedder->gameName, palette().brush(QPalette::Window).texture());
-  qmc2Preview->repaint();
+  qmc2Preview->update();
 
   // FIXME: we also need to save the image to the preview path or ZIP archive
 }
@@ -199,7 +199,7 @@ void SnapshotViewer::useAsTitle()
   Embedder *embedder = (Embedder *)(parent()->parent());
   QPixmapCache::remove("ttl_" + embedder->gameName);
   QPixmapCache::insert("ttl_" + embedder->gameName, palette().brush(QPalette::Window).texture());
-  qmc2Title->repaint();
+  qmc2Title->update();
 
   // FIXME: we also need to save the image to the title path or ZIP archive
 }

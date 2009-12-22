@@ -160,7 +160,7 @@ bool Flyer::loadFlyer(QString gameName, QString onBehalfOf, bool checkOnly, QStr
       fileOk = FALSE;
 
     if ( fileOk )
-      fileOk = pm.loadFromData(imageData);
+      fileOk = pm.loadFromData(imageData, "PNG");
 
     if ( !checkOnly ) {
       if ( fileOk ) {
@@ -197,9 +197,9 @@ bool Flyer::loadFlyer(QString gameName, QString onBehalfOf, bool checkOnly, QStr
       *fileName = gameName + ".png";
 
     if ( checkOnly ) {
-      fileOk = pm.load(imagePath);
+      fileOk = pm.load(imagePath, "PNG");
     } else {
-      if ( pm.load(imagePath) ) {
+      if ( pm.load(imagePath, "PNG") ) {
         QPixmapCache::insert("fly_" + onBehalfOf, pm); 
 #if QT_VERSION < 0x040600
         currentFlyerPixmap = &pm;

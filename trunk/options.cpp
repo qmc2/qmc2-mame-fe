@@ -1148,7 +1148,7 @@ void Options::on_pushButtonApply_clicked()
       } else
         unzClose(qmc2Preview->previewFile);
     }
-    qmc2Preview->repaint();
+    qmc2Preview->update();
   }
 
   if ( qmc2Flyer ) {
@@ -1166,7 +1166,7 @@ void Options::on_pushButtonApply_clicked()
       } else
         unzClose(qmc2Flyer->flyerFile);
     }
-    qmc2Flyer->repaint();
+    qmc2Flyer->update();
   }
 
   if ( qmc2Cabinet ) {
@@ -1184,7 +1184,7 @@ void Options::on_pushButtonApply_clicked()
       } else
         unzClose(qmc2Cabinet->cabinetFile);
     }
-    qmc2Cabinet->repaint();
+    qmc2Cabinet->update();
   }
 
   if ( qmc2Controller ) {
@@ -1202,7 +1202,7 @@ void Options::on_pushButtonApply_clicked()
       } else
         unzClose(qmc2Controller->controllerFile);
     }
-    qmc2Controller->repaint();
+    qmc2Controller->update();
   }
 
   if ( qmc2Marquee ) {
@@ -1220,7 +1220,7 @@ void Options::on_pushButtonApply_clicked()
       } else
         unzClose(qmc2Marquee->marqueeFile);
     }
-    qmc2Marquee->repaint();
+    qmc2Marquee->update();
   }
 
   if ( qmc2Title ) {
@@ -1238,7 +1238,7 @@ void Options::on_pushButtonApply_clicked()
       } else
         unzClose(qmc2Title->titleFile);
     }
-    qmc2Title->repaint();
+    qmc2Title->update();
   }
 
   if ( qmc2PCB ) {
@@ -1256,7 +1256,7 @@ void Options::on_pushButtonApply_clicked()
       } else
         unzClose(qmc2PCB->pcbFile);
     }
-    qmc2PCB->repaint();
+    qmc2PCB->update();
   }
 
   if ( needReopenIconFile ) {
