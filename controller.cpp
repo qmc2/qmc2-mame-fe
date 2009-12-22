@@ -160,7 +160,7 @@ bool Controller::loadController(QString gameName, QString onBehalfOf, bool check
       fileOk = FALSE;
 
     if ( fileOk )
-      fileOk = pm.loadFromData(imageData);
+      fileOk = pm.loadFromData(imageData, "PNG");
 
     if ( !checkOnly ) {
       if ( fileOk ) {
@@ -197,9 +197,9 @@ bool Controller::loadController(QString gameName, QString onBehalfOf, bool check
       *fileName = gameName + ".png";
 
     if ( checkOnly ) {
-      fileOk = pm.load(imagePath);
+      fileOk = pm.load(imagePath, "PNG");
     } else {
-      if ( pm.load(imagePath) ) {
+      if ( pm.load(imagePath, "PNG") ) {
         QPixmapCache::insert("ctl_" + onBehalfOf, pm); 
 #if QT_VERSION < 0x040600
         currentControllerPixmap = &pm;

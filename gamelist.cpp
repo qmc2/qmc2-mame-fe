@@ -23,6 +23,7 @@
 #include "controller.h"
 #include "marquee.h"
 #include "title.h"
+#include "pcb.h"
 #include "romstatusexport.h"
 #include "miniwebbrowser.h"
 #include "macros.h"
@@ -51,6 +52,7 @@ extern Cabinet *qmc2Cabinet;
 extern Controller *qmc2Controller;
 extern Marquee *qmc2Marquee;
 extern Title *qmc2Title;
+extern PCB *qmc2PCB;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern QTreeWidgetItem *qmc2LastGameInfoItem;
@@ -254,12 +256,15 @@ void Gamelist::load()
   }
   qmc2LastMAWSItem = NULL;
 #endif
-  qmc2Preview->repaint();
-  qmc2Flyer->repaint();
-  qmc2Cabinet->repaint();
-  qmc2Controller->repaint();
-  qmc2Marquee->repaint();
-  qmc2Title->repaint();
+
+  qmc2Preview->update();
+  qmc2Flyer->update();
+  qmc2Cabinet->update();
+  qmc2Controller->update();
+  qmc2Marquee->update();
+  qmc2Title->update();
+  qmc2PCB->update();
+
   qApp->processEvents();
   QTreeWidgetItem *dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetGamelist);
   dummyItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));

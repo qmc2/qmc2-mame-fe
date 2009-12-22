@@ -10,7 +10,7 @@ Embedder::Embedder(QString name, WId wid, QWidget *parent)
     : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::Embedder(QString name = %1, WId wid = %2, QWidget *parent = %3)").arg(name).arg((qulonglong)wid).arg((qulonglong)parent));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::Embedder(QString name = %1, WId wid = %2, QWidget *parent = %3)").arg(name).arg((qulonglong)wid).arg((qulonglong)parent));
 #endif
 
   gridLayout = new QGridLayout(this);
@@ -39,7 +39,7 @@ Embedder::Embedder(QString name, WId wid, QWidget *parent)
 void Embedder::embed()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::embed()"));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::embed()"));
 #endif
 
   nativeResolution = QPixmap::grabWindow(winId).size();
@@ -49,7 +49,7 @@ void Embedder::embed()
 void Embedder::release()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::release()"));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::release()"));
 #endif
 
   embedContainer->clearFocus();
@@ -61,7 +61,7 @@ void Embedder::release()
 void Embedder::clientEmbedded()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientEmbedded()"));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientEmbedded()"));
 #endif
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator embedded, window ID = 0x%1").arg(QString::number(winId, 16)));
@@ -74,7 +74,7 @@ void Embedder::clientEmbedded()
 void Embedder::clientClosed()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientClosed()"));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientClosed()"));
 #endif
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator closed, window ID = 0x%1").arg(QString::number(winId, 16)));
@@ -86,7 +86,7 @@ void Embedder::clientClosed()
 void Embedder::clientError(QX11EmbedContainer::Error error)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientError(QX11EmbedContainer::Error error = %1)").arg((int)error));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientError(QX11EmbedContainer::Error error = %1)").arg((int)error));
 #endif
 
   switch ( error ) {
@@ -107,7 +107,7 @@ void Embedder::clientError(QX11EmbedContainer::Error error)
 void Embedder::closeEvent(QCloseEvent *e)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   release();
@@ -121,7 +121,7 @@ void Embedder::closeEvent(QCloseEvent *e)
 void Embedder::toggleOptions()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::toggleOptions()"));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::toggleOptions()"));
 #endif
 
   optionsShown = !optionsShown;

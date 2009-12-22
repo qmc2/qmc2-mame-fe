@@ -162,7 +162,7 @@ bool Preview::loadPreview(QString gameName, QString onBehalfOf, bool checkOnly, 
       fileOk = FALSE;
 
     if ( fileOk )
-      fileOk = pm.loadFromData(imageData);
+      fileOk = pm.loadFromData(imageData, "PNG");
 
     if ( !checkOnly ) {
       if ( fileOk ) {
@@ -217,9 +217,9 @@ bool Preview::loadPreview(QString gameName, QString onBehalfOf, bool checkOnly, 
     }
 
     if ( checkOnly ) {
-      fileOk = pm.load(imagePath);
+      fileOk = pm.load(imagePath, "PNG");
     } else {
-      if ( pm.load(imagePath) ) {
+      if ( pm.load(imagePath, "PNG") ) {
         QPixmapCache::insert(onBehalfOf, pm); 
 #if QT_VERSION < 0x040600
         currentPreviewPixmap = &pm;
