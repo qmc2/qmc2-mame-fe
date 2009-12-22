@@ -52,10 +52,10 @@ void Embedder::release()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::release()"));
 #endif
 
+  embedded = false;
   embedContainer->clearFocus();
   embedContainer->discardClient();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator released, window ID = 0x%1").arg(QString::number(winId, 16)));
-  embedded = false;
 }
 
 void Embedder::clientEmbedded()
@@ -77,9 +77,9 @@ void Embedder::clientClosed()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientClosed()"));
 #endif
 
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator closed, window ID = 0x%1").arg(QString::number(winId, 16)));
+  if ( embedded ) 
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator closed, window ID = 0x%1").arg(QString::number(winId, 16)));
   embedded = false;
-
   emit closing();
 }
 
