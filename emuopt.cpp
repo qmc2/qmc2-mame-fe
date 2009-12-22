@@ -8,6 +8,7 @@
 #include <QSpinBox>
 #include <QLineEdit>
 #include <QTreeWidgetItem>
+#include <QScrollBar>
 
 #include <stdlib.h>
 #include "emuopt.h"
@@ -30,6 +31,11 @@ extern Gamelist *qmc2Gamelist;
 extern bool qmc2ReloadActive;
 
 QMap<QString, QList<EmulatorOption> > EmulatorOptions::templateMap;
+QMap<QString, bool> EmulatorOptions::optionExpansionMap;
+QMap<QString, bool> EmulatorOptions::sectionExpansionMap;
+QMap<QString, QTreeWidgetItem *> EmulatorOptions::sectionItemMap;
+int EmulatorOptions::horizontalScrollPosition = 0;
+int EmulatorOptions::verticalScrollPosition = 0;
 
 QString optionDescription = "";
 int optionType = QMC2_EMUOPT_TYPE_UNKNOWN;
@@ -320,8 +326,17 @@ void EmulatorOptions::load(bool overwrite)
     EmulatorOption option;
     bool ok;
     int i;
+    if ( qmc2GlobalEmulatorOptions != this ) {
+      QTreeWidgetItem *item = sectionItemMap[sectionTitle];
+      if ( item )
+        if ( sectionExpansionMap[sectionTitle] )
+          expandItem(item);
+    }
     for (i = 0; i < optionsMap[sectionTitle].count(); i++) {
       option = optionsMap[sectionTitle][i];
+      if ( qmc2GlobalEmulatorOptions != this )
+        if ( optionExpansionMap[option.name] )
+          expandItem(option.item);
       switch ( option.type ) {
         case QMC2_EMUOPT_TYPE_INT: {
           optionType = QMC2_EMUOPT_TYPE_INT;
@@ -403,6 +418,12 @@ void EmulatorOptions::load(bool overwrite)
     }
   }
   qmc2Config->endGroup();
+
+  if ( qmc2GlobalEmulatorOptions != this ) {
+    horizontalScrollBar()->setSliderPosition(horizontalScrollPosition);
+    verticalScrollBar()->setSliderPosition(verticalScrollPosition);
+  }
+
   loadActive = changed = FALSE;
 }
 
@@ -415,12 +436,24 @@ void EmulatorOptions::save()
   if ( loadActive )
     return;
 
+  if ( qmc2GlobalEmulatorOptions != this ) {
+    horizontalScrollPosition = horizontalScrollBar()->sliderPosition();
+    verticalScrollPosition = verticalScrollBar()->sliderPosition();
+  }
+
   qmc2Config->beginGroup(settingsGroup);
   QString sectionTitle;
   foreach (sectionTitle, optionsMap.keys()) {
     QString vs;
     int i;
+    if ( qmc2GlobalEmulatorOptions != this ) {
+      QTreeWidgetItem *item = sectionItemMap[sectionTitle];
+      if ( item )
+        sectionExpansionMap[sectionTitle] = item->isExpanded();
+    }
     for (i = 0; i < optionsMap[sectionTitle].count(); i++) {
+      if ( qmc2GlobalEmulatorOptions != this )
+        optionExpansionMap[optionsMap[sectionTitle][i].name] = optionsMap[sectionTitle][i].item->isExpanded();
       switch ( optionsMap[sectionTitle][i].type ) {
         case QMC2_EMUOPT_TYPE_INT: {
           int v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toInt();
@@ -524,9 +557,12 @@ void EmulatorOptions::createMap()
 #endif
 
   optionsMap.clear();
+  sectionItemMap.clear();
   QString sectionTitle;
+
   foreach ( sectionTitle, templateMap.keys() ) {
     QTreeWidgetItem *sectionItem = new QTreeWidgetItem(this);
+    sectionItemMap[sectionTitle] = sectionItem;
     sectionItem->setText(0, sectionTitle);
     optionsMap[sectionTitle] = templateMap[sectionTitle];
     int i;
@@ -644,6 +680,8 @@ void EmulatorOptions::createTemplateMap()
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("creating template configuration map"));
   
+  sectionExpansionMap.clear();
+  optionExpansionMap.clear();
   templateMap.clear();
   templateEmulator = tr("unknown");
   templateVersion = tr("unknown");

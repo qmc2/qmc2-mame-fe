@@ -75,6 +75,11 @@ class EmulatorOptions : public QTreeWidget
     QString templateFormat;
     QMap<QString, QList<EmulatorOption> > optionsMap;
     static QMap<QString, QList<EmulatorOption> > templateMap;
+    static QMap<QString, bool> sectionExpansionMap;
+    static QMap<QString, QTreeWidgetItem *> sectionItemMap;
+    static QMap<QString, bool> optionExpansionMap;
+    static int horizontalScrollPosition;
+    static int verticalScrollPosition;
     bool loadActive;
     bool changed;
 
