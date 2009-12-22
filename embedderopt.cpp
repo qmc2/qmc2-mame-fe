@@ -183,8 +183,9 @@ void SnapshotViewer::useAsPreview()
 #endif
 
   Embedder *embedder = (Embedder *)(parent()->parent());
+  EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
   QPixmapCache::remove(embedder->gameName);
-  QPixmapCache::insert(embedder->gameName, palette().brush(QPalette::Window).texture());
+  QPixmapCache::insert(embedder->gameName, embedderOptions->snapshotMap[myItem]);
   qmc2Preview->update();
 
   // FIXME: we also need to save the image to the preview path or ZIP archive
@@ -197,8 +198,9 @@ void SnapshotViewer::useAsTitle()
 #endif
 
   Embedder *embedder = (Embedder *)(parent()->parent());
+  EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
   QPixmapCache::remove("ttl_" + embedder->gameName);
-  QPixmapCache::insert("ttl_" + embedder->gameName, palette().brush(QPalette::Window).texture());
+  QPixmapCache::insert("ttl_" + embedder->gameName, embedderOptions->snapshotMap[myItem]);
   qmc2Title->update();
 
   // FIXME: we also need to save the image to the title path or ZIP archive
@@ -210,7 +212,8 @@ void SnapshotViewer::copyToClipboard()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::copyToClipboard()");
 #endif
 
-  qApp->clipboard()->setPixmap(palette().brush(QPalette::Window).texture());
+  EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
+  qApp->clipboard()->setPixmap(embedderOptions->snapshotMap[myItem]);
 }
 
 void SnapshotViewer::saveAs()
@@ -230,7 +233,8 @@ void SnapshotViewer::saveAs()
   fileName = QFileDialog::getSaveFileName(this, tr("Choose PNG file to store image"), fileName, tr("PNG images (*.png)"));
 
   if ( !fileName.isEmpty() ) {
-    if ( !palette().brush(QPalette::Window).texture().save(fileName, "PNG") )
+    EmbedderOptions *embedderOptions = (EmbedderOptions *)parent();
+    if ( !embedderOptions->snapshotMap[myItem].save(fileName, "PNG") )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't save snapshot image to '%1'").arg(fileName));
     QFileInfo fiFilePath(fileName);
     QString storagePath = fiFilePath.absolutePath();
