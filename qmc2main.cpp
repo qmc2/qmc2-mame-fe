@@ -319,7 +319,7 @@ void MainWindow::log(char logOrigin, QString message)
   qmc2LogMutex.unlock();
 
   if ( !qmc2CleaningUp )
-    qApp->processEvents();
+    processEvents();
 }
 
 MainWindow::MainWindow(QWidget *parent)
