@@ -5,6 +5,7 @@
 #include "macros.h"
 
 extern MainWindow *qmc2MainWindow;
+extern QSettings *qmc2Config;
 
 Embedder::Embedder(QString name, WId wid, QWidget *parent)
     : QWidget(parent)
@@ -138,6 +139,24 @@ void Embedder::toggleOptions()
     if ( embedderOptions )
       embedderOptions->hide();
   }
+}
+
+void Embedder::adjustIconSizes()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::adjustIconSizes()"));
+#endif
+
+  // serious hack to access the tab bar without sub-classing from QTabWidget ;)
+  QTabBar *tabBar = qmc2MainWindow->tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
+  int index = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
+
+  QFont f;
+  f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+  QFontMetrics fm(f);
+  QSize buttonSize(fm.height() + 2, fm.height() + 2);
+  tabBar->tabButton(index, QTabBar::LeftSide)->setFixedSize(buttonSize);
+  tabBar->tabButton(index, QTabBar::RightSide)->setFixedSize(buttonSize);
 }
 
 #endif

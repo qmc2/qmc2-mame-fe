@@ -70,6 +70,13 @@ ImageChecker::ImageChecker(QWidget *parent)
 #endif
 
   ignoreResizeAndMove = TRUE;
+
+  QFont f;
+  f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+  QFontMetrics fm(f);
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
+  QTabBar *tabBar = tabWidgetImageChecker->findChild<QTabBar *>();
+  if ( tabBar ) tabBar->setIconSize(iconSize);
 }
 
 ImageChecker::~ImageChecker()
