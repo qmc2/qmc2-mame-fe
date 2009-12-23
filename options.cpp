@@ -26,6 +26,7 @@
 #include "pcb.h"
 #include "qmc2main.h"
 #include "gamelist.h"
+#include "imgcheck.h"
 #include "macros.h"
 #include "unzip.h"
 #include "keyseqscan.h"
@@ -39,6 +40,10 @@
 #endif
 #if defined(QMC2_EMUTYPE_MESS)
 #include "messdevcfg.h"
+#endif
+#if defined(Q_WS_X11)
+#include "embedder.h"
+#include "embedderopt.h"
 #endif
 
 // external global variables
@@ -90,6 +95,7 @@ extern Marquee *qmc2Marquee;
 extern Title *qmc2Title;
 extern PCB *qmc2PCB;
 extern Gamelist *qmc2Gamelist;
+extern ImageChecker *qmc2ImageChecker;
 extern ROMAlyzer *qmc2ROMAlyzer;
 extern ROMStatusExporter *qmc2ROMStatusExporter;
 extern DocBrowser *qmc2DocBrowser;
@@ -337,6 +343,7 @@ void Options::apply()
   qmc2MainWindow->textBrowserFrontendLog->setFont(logFont);
   qmc2MainWindow->textBrowserEmulatorLog->setFont(logFont);
   QSize iconSize(fm.height() - 2, fm.height() - 2);
+  QSize iconSizeLarge = iconSize + QSize(4, 4);
   qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSize);
   qmc2MainWindow->treeWidgetHierarchy->setIconSize(iconSize);
   qmc2MainWindow->treeWidgetEmulators->setIconSize(iconSize);
@@ -392,6 +399,21 @@ void Options::apply()
   toolButtonSaveEmulator->setIconSize(iconSize);
   toolButtonRemoveEmulator->setIconSize(iconSize);
   toolButtonBrowseAdditionalEmulatorExecutable->setIconSize(iconSize);
+  checkBoxProcessEmuInfoDB->setIconSize(iconSize);
+  checkBoxCompressEmuInfoDB->setIconSize(iconSize);
+  checkBoxProcessGameInfoDB->setIconSize(iconSize);
+  checkBoxCompressGameInfoDB->setIconSize(iconSize);
+  QPixmap exitPixmap = QPixmap(QString::fromUtf8(":/data/img/exit.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+  QPixmap reloadPixmap = QPixmap(QString::fromUtf8(":/data/img/reload.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+  labelLanguagePic->setPixmap(exitPixmap);
+  labelLegend1Pic->setPixmap(exitPixmap);
+  labelLegend2Pic->setPixmap(reloadPixmap);
+  labelGameInfoDBPic->setPixmap(reloadPixmap);
+  labelEmuInfoDBPic->setPixmap(reloadPixmap);
+  labelLegend3Pic->setPixmap(reloadPixmap);
+  labelExecutableFilePic->setPixmap(reloadPixmap);
+  labelLegend4Pic->setPixmap(reloadPixmap);
+  
   tableWidgetRegisteredEmulators->resizeRowsToContents();
 
 #if QMC2_JOYSTICK == 1
@@ -408,6 +430,10 @@ void Options::apply()
     qmc2ROMAlyzer->pushButtonSearchForward->setIconSize(iconSize);
     qmc2ROMAlyzer->pushButtonSearchBackward->setIconSize(iconSize);
   }
+  if ( qmc2ImageChecker ) {
+    QTabBar *tabBar = qmc2ImageChecker->tabWidgetImageChecker->findChild<QTabBar *>();
+    if ( tabBar ) tabBar->setIconSize(iconSize);
+  }
   checkBoxProcessGameInfoDB->setIconSize(iconSize);
   checkBoxCompressGameInfoDB->setIconSize(iconSize);
 #if defined(QMC2_EMUTYPE_MAME)
@@ -420,6 +446,8 @@ void Options::apply()
     qmc2MAWSLookup->toolButtonStop->setIconSize(iconSize);
     qmc2MAWSLookup->toolButtonHome->setIconSize(iconSize);
     qmc2MAWSLookup->toolButtonLoad->setIconSize(iconSize);
+    if ( qmc2MainWindow->toolButtonMAWSQuickLinks )
+      qmc2MainWindow->toolButtonMAWSQuickLinks->setIconSize(iconSize);
   }
 #endif
   if ( qmc2DocBrowser ) {
@@ -457,9 +485,29 @@ void Options::apply()
   qmc2MainWindow->pushButtonStopSelectedDownloads->setIconSize(iconSize);
   qmc2MainWindow->treeWidgetDownloads->setIconSize(iconSize);
   qmc2MainWindow->pushButtonSelectRomFilter->setIconSize(iconSize);
+  qmc2MainWindow->comboBoxViewSelect->setIconSize(iconSize);
 
   if ( scrollBarMaximum )
     qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->setValue(qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->maximum());
+
+  QTabBar *tabBar = qmc2MainWindow->tabWidgetGamelist->findChild<QTabBar *>();
+  if ( tabBar ) tabBar->setIconSize(iconSize);
+  tabBar = qmc2MainWindow->tabWidgetGameDetail->findChild<QTabBar *>();
+  if ( tabBar ) tabBar->setIconSize(iconSize);
+  tabBar = qmc2MainWindow->tabWidgetLogsAndEmulators->findChild<QTabBar *>();
+  if ( tabBar ) tabBar->setIconSize(iconSize);
+
+  qmc2MainWindow->toolbar->setIconSize(iconSizeLarge);
+
+#if defined(Q_WS_X11)
+  int i;
+  for (i = 0; i < qmc2MainWindow->tabWidgetEmbeddedEmulators->count(); i++) {
+    Embedder *embedder = (Embedder *)qmc2MainWindow->tabWidgetEmbeddedEmulators->widget(i);
+    embedder->adjustIconSizes();
+    if ( embedder->embedderOptions )
+      embedder->embedderOptions->adjustIconSizes();
+  }
+#endif
 
   if ( qmc2DetailSetup )
     if ( qmc2DetailSetup->isVisible() )

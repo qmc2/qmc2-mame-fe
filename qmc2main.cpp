@@ -3009,14 +3009,13 @@ void MainWindow::action_embedEmulator_triggered()
       if ( tabBar ) {
         int index = tabWidgetEmbeddedEmulators->indexOf(embedder);
         tabBar->tabButton(index, QTabBar::RightSide)->setToolTip(tr("Release emulator"));
-        QSize iconSize = tabBar->tabButton(index, QTabBar::RightSide)->size();
         QToolButton *optionsButton = new QToolButton(0);
         optionsButton->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
         optionsButton->setToolTip(tr("Toggle embedder options"));
-        optionsButton->setFixedSize(iconSize);
         optionsButton->setCheckable(TRUE);
         connect(optionsButton, SIGNAL(toggled(bool)), this, SLOT(on_embedderOptions_toggled(bool)));
         tabBar->setTabButton(index, QTabBar::LeftSide, optionsButton);
+        embedder->adjustIconSizes();
       }
       
       tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
@@ -5593,10 +5592,16 @@ void MainWindow::createMawsQuickLinksMenu()
 
   mawsQDLActions.clear();
 
+  QFont f;
+  f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+  QFontMetrics fm(f);
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
+
   QString mawsHtml = qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().simplified();
 
   toolButtonMAWSQuickLinks = new AutoPopupToolButton(qmc2MAWSLookup->webViewBrowser);
   toolButtonMAWSQuickLinks->setIcon(QIcon(QString::fromUtf8(":/data/img/download.png")));
+  toolButtonMAWSQuickLinks->setIconSize(iconSize);
   toolButtonMAWSQuickLinks->setPopupMode(QToolButton::InstantPopup);
   toolButtonMAWSQuickLinks->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
   toolButtonMAWSQuickLinks->setToolButtonStyle(Qt::ToolButtonIconOnly);

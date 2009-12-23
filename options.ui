@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>518</width>
-    <height>489</height>
+    <width>572</width>
+    <height>708</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>458</width>
+                <width>512</width>
                 <height>584</height>
                </rect>
               </property>
@@ -69,7 +69,7 @@
                    <item>
                     <widget class="QLabel" name="labelLanguagePic">
                      <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                        <horstretch>0</horstretch>
                        <verstretch>0</verstretch>
                       </sizepolicy>
@@ -79,6 +79,9 @@
                      </property>
                      <property name="pixmap">
                       <pixmap resource="qmc2.qrc">:/data/img/exit_small.png</pixmap>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
                      </property>
                     </widget>
                    </item>
@@ -407,6 +410,9 @@
                      <property name="pixmap">
                       <pixmap resource="qmc2.qrc">:/data/img/exit_small.png</pixmap>
                      </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -439,6 +445,9 @@
                      </property>
                      <property name="pixmap">
                       <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
                      </property>
                     </widget>
                    </item>
@@ -845,8 +854,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>202</width>
-                <height>508</height>
+                <width>528</width>
+                <height>583</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -1042,7 +1051,7 @@
                    <item>
                     <widget class="QLabel" name="labelGameInfoDBPic">
                      <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                        <horstretch>0</horstretch>
                        <verstretch>0</verstretch>
                       </sizepolicy>
@@ -1052,6 +1061,9 @@
                      </property>
                      <property name="pixmap">
                       <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
                      </property>
                     </widget>
                    </item>
@@ -1099,7 +1111,7 @@
                    <item>
                     <widget class="QLabel" name="labelEmuInfoDBPic">
                      <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                        <horstretch>0</horstretch>
                        <verstretch>0</verstretch>
                       </sizepolicy>
@@ -1109,6 +1121,9 @@
                      </property>
                      <property name="pixmap">
                       <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
                      </property>
                     </widget>
                    </item>
@@ -1491,6 +1506,9 @@
                      </property>
                      <property name="pixmap">
                       <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
                      </property>
                     </widget>
                    </item>
@@ -2050,8 +2068,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>445</width>
-                <height>156</height>
+                <width>528</width>
+                <height>583</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2428,8 +2446,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>264</width>
-                <height>55</height>
+                <width>528</width>
+                <height>583</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2541,8 +2559,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>382</width>
-                <height>270</height>
+                <width>528</width>
+                <height>583</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -2998,8 +3016,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>385</width>
-                <height>363</height>
+                <width>528</width>
+                <height>583</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3315,8 +3333,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>195</width>
-                <height>260</height>
+                <width>528</width>
+                <height>583</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3327,7 +3345,7 @@
                    <item>
                     <widget class="QLabel" name="labelExecutableFilePic">
                      <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                        <horstretch>0</horstretch>
                        <verstretch>0</verstretch>
                       </sizepolicy>
@@ -3337,6 +3355,9 @@
                      </property>
                      <property name="pixmap">
                       <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
                      </property>
                     </widget>
                    </item>
@@ -3596,6 +3617,9 @@
                      <property name="pixmap">
                       <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
                      </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
+                     </property>
                     </widget>
                    </item>
                    <item>
@@ -3679,8 +3703,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>137</width>
-                <height>231</height>
+                <width>528</width>
+                <height>583</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22">

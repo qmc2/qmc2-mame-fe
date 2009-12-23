@@ -30,6 +30,8 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
   tabWidgetEmbedderOptions->removeTab(tabWidgetEmbedderOptions->indexOf(tabMovies));
   tabWidgetEmbedderOptions->removeTab(tabWidgetEmbedderOptions->indexOf(tabNetplay));
 #endif
+
+  adjustIconSizes();
 }
 
 EmbedderOptions::~EmbedderOptions()
@@ -40,6 +42,22 @@ EmbedderOptions::~EmbedderOptions()
 
   if ( snapshotViewer )
     delete snapshotViewer;
+}
+
+void EmbedderOptions::adjustIconSizes()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmbedderOptions::adjustIconSizes()");
+#endif
+
+  QFont f;
+  f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+  QFontMetrics fm(f);
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
+  toolButtonTakeSnapshot->setIconSize(iconSize);
+  toolButtonClearSnapshots->setIconSize(iconSize);
+  QTabBar *tabBar = tabWidgetEmbedderOptions->findChild<QTabBar *>();
+  if ( tabBar ) tabBar->setIconSize(iconSize);
 }
 
 void EmbedderOptions::on_toolButtonTakeSnapshot_clicked()

@@ -43,6 +43,7 @@ class EmbedderOptions : public QWidget, public Ui::EmbedderOptions
     void on_toolButtonTakeSnapshot_clicked();
     void on_toolButtonClearSnapshots_clicked();
     void on_listWidgetSnapshots_itemPressed(QListWidgetItem *);
+    void adjustIconSizes();
 };
 #endif
 
