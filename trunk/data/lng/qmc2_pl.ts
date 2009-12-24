@@ -6560,8 +6560,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -7227,7 +7225,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="453"/>
         <source>WARNING: invalid network reply and/or network error</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: niepoprawna odpowiedź sieci lub błąd sieci</translation>
     </message>
 </context>
 <context>
@@ -7902,17 +7900,17 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../options.ui" line="782"/>
         <source>Log font</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka dziennika</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="795"/>
         <source>Font used in logs (= application font if empty)</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka używana w dziennikach (taka sama jak aplikacji jeśli puste)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="811"/>
         <source>Browse font used in logs</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż czcionkę używaną w dziennikach</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1924"/>
