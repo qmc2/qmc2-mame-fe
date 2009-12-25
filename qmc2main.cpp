@@ -2621,6 +2621,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         pushButtonCurrentEmulatorOptionsImportFromFile->show();
 
         configWidget->setUpdatesEnabled(TRUE);
+
+        qmc2EmulatorOptions->horizontalScrollBar()->setSliderPosition(qmc2EmulatorOptions->horizontalScrollPosition);
+        qmc2EmulatorOptions->verticalScrollBar()->setSliderPosition(qmc2EmulatorOptions->verticalScrollPosition);
       }
       break;
 
