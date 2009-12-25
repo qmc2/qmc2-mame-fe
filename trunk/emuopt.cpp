@@ -417,12 +417,8 @@ void EmulatorOptions::load(bool overwrite)
       }
     }
   }
-  qmc2Config->endGroup();
 
-  if ( qmc2GlobalEmulatorOptions != this ) {
-    horizontalScrollBar()->setSliderPosition(horizontalScrollPosition);
-    verticalScrollBar()->setSliderPosition(verticalScrollPosition);
-  }
+  qmc2Config->endGroup();
 
   loadActive = changed = FALSE;
 }

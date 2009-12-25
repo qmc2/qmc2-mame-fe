@@ -487,9 +487,6 @@ void Options::apply()
   qmc2MainWindow->pushButtonSelectRomFilter->setIconSize(iconSize);
   qmc2MainWindow->comboBoxViewSelect->setIconSize(iconSize);
 
-  if ( scrollBarMaximum )
-    qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->setValue(qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->maximum());
-
   QTabBar *tabBar = qmc2MainWindow->tabWidgetGamelist->findChild<QTabBar *>();
   if ( tabBar ) tabBar->setIconSize(iconSize);
   tabBar = qmc2MainWindow->tabWidgetGameDetail->findChild<QTabBar *>();
@@ -512,6 +509,9 @@ void Options::apply()
   if ( qmc2DetailSetup )
     if ( qmc2DetailSetup->isVisible() )
       QTimer::singleShot(0, qmc2DetailSetup, SLOT(adjustIconSizes()));
+
+  if ( scrollBarMaximum )
+    qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->setValue(qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->maximum());
 }
 
 void Options::on_pushButtonOk_clicked()
