@@ -1496,7 +1496,7 @@ void MainWindow::on_actionAnalyseCurrentROM_activated()
     qmc2ROMAlyzer->showNormal();
 
   QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(raise()));
-  QTimer::singleShot(0, qmc2ROMAlyzer->pushButtonAnalyze, SLOT(animateClick()));
+  QTimer::singleShot(0, qmc2ROMAlyzer->pushButtonAnalyze, SLOT(click()));
 }
 
 void MainWindow::on_actionClearImageCache_activated()

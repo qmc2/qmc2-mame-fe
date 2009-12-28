@@ -3,7 +3,7 @@
 #include <QFileInfo>
 #include <QTextStream>
 #include <QHeaderView>
-#include <QComboBox>
+#include <QCheckBox>
 #include <QDoubleSpinBox>
 #include <QSpinBox>
 #include <QLineEdit>
@@ -42,7 +42,7 @@ int optionType = QMC2_EMUOPT_TYPE_UNKNOWN;
 EmulatorOptions *emulatorOptions = NULL;
 
 EmulatorOptionDelegate::EmulatorOptionDelegate(QObject *parent)
-  : QItemDelegate(parent)
+  : QStyledItemDelegate(parent)
 {
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptionDelegate::EmulatorOptionDelegate(QObject *parent = %1)").arg((qulonglong)parent));
@@ -61,7 +61,7 @@ void EmulatorOptionDelegate::dataChanged()
   }
 }
 
-QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &) const
+QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
   #define _MIN (-2 * 1024 * 1024)
   #define _MAX (2 * 1024 * 1024)
@@ -72,15 +72,13 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
 
   switch ( optionType ) {
     case QMC2_EMUOPT_TYPE_BOOL: {
-      QComboBox *comboBoxEditor = new QComboBox(parent);
-      comboBoxEditor->addItem(tr("false"));
-      comboBoxEditor->addItem(tr("true"));
-      comboBoxEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
-      comboBoxEditor->setAccessibleName("comboBoxEditor");
+      QCheckBox *checkBoxEditor = new QCheckBox(parent);
+      checkBoxEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
+      checkBoxEditor->setAccessibleName("checkBoxEditor");
       if ( !optionDescription.isEmpty() )
-        comboBoxEditor->setToolTip(optionDescription);
-      connect(comboBoxEditor, SIGNAL(activated(const QString &)), this, SLOT(dataChanged()));
-      return comboBoxEditor;
+        checkBoxEditor->setToolTip(optionDescription);
+      connect(checkBoxEditor, SIGNAL(toggled(bool)), this, SLOT(dataChanged()));
+      return checkBoxEditor;
     }
 
     case QMC2_EMUOPT_TYPE_INT: {
@@ -151,10 +149,10 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptionDelegate::setEditorData(QWidget *editor = %1, const QModelIndex &index)").arg((qulonglong)editor));
 #endif
 
-  if ( editor->accessibleName() == "comboBoxEditor" ) {
-    QString value = index.model()->data(index, Qt::EditRole).toString();
-    QComboBox *comboBox = static_cast<QComboBox *>(editor);
-    comboBox->setCurrentIndex(comboBox->findText(value));
+  if ( editor->accessibleName() == "checkBoxEditor" ) {
+    bool value = index.model()->data(index, Qt::EditRole).toBool();
+    QCheckBox *checkBoxEditor = static_cast<QCheckBox *>(editor);
+    checkBoxEditor->setChecked(value);
   } else if ( editor->accessibleName() == "spinBoxEditor" ) {
     int value = index.model()->data(index, Qt::EditRole).toInt();
     QSpinBox *spinBox = static_cast<QSpinBox *>(editor);
@@ -184,10 +182,12 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptionDelegate::setModelData(QWidget *editor = %1, QAbstractItemModel *model = %2, const QModelIndex &index)").arg((qulonglong)editor).arg((qulonglong)model));
 #endif
 
-  if ( editor->accessibleName() == "comboBoxEditor" ) {
+  if ( editor->accessibleName() == "checkBoxEditor" ) {
     optionType = QMC2_EMUOPT_TYPE_BOOL;
-    QComboBox *comboBox = static_cast<QComboBox*>(editor);
-    QString v = comboBox->currentText();
+    QCheckBox *checkBoxEditor = static_cast<QCheckBox*>(editor);
+    bool v = checkBoxEditor->isChecked();
+    model->setData(index, QColor(0, 0, 0, 0), Qt::ForegroundRole);
+    model->setData(index, QFont("Helvetiva", 1), Qt::FontRole);
     model->setData(index, v);
   } else if ( editor->accessibleName() == "spinBoxEditor" ) {
     optionType = QMC2_EMUOPT_TYPE_INT;
@@ -262,9 +262,9 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
   loadActive = changed = FALSE;
   settingsGroup = group;
   delegate = new EmulatorOptionDelegate(this);
-  setItemDelegate(delegate);
-  setAlternatingRowColors(TRUE);
   setColumnCount(2);  
+  setItemDelegateForColumn(1, delegate);
+  setAlternatingRowColors(TRUE);
   headerItem()->setText(0, tr("Option / Attribute"));
   headerItem()->setText(1, tr("Value"));
   header()->setClickable(FALSE);
@@ -376,23 +376,19 @@ void EmulatorOptions::load(bool overwrite)
 
         case QMC2_EMUOPT_TYPE_BOOL: {
           optionType = QMC2_EMUOPT_TYPE_BOOL;
-          QString v;
+          bool v;
           if ( qmc2GlobalEmulatorOptions != this ) {
             if ( overwrite )
-              v = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].value;
+              v = EmulatorOptionDelegate::stringToBool(qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].value);
             else
-              v = qmc2Config->value(option.name, qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].value).toString();
+              v = EmulatorOptionDelegate::stringToBool(qmc2Config->value(option.name, qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].value).toString());
           } else
-            v = qmc2Config->value(option.name, option.dvalue).toString();
-          if ( !v.isEmpty() ) {
-            optionsMap[sectionTitle][i].value = v;
-            if ( v == "true" )
-              v = tr("true");
-            else
-              v = tr("false");
-            optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, v);
-            optionsMap[sectionTitle][i].valid = TRUE;
-          }
+            v = EmulatorOptionDelegate::stringToBool(qmc2Config->value(option.name, option.dvalue).toString());
+          optionsMap[sectionTitle][i].value = EmulatorOptionDelegate::boolToString(v);
+          optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QColor(0, 0, 0, 0));
+          optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QFont("Helvetiva", 1));
+          optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, v);
+          optionsMap[sectionTitle][i].valid = TRUE;
           break;
         }
 
@@ -492,26 +488,18 @@ void EmulatorOptions::save()
         }
 
         case QMC2_EMUOPT_TYPE_BOOL: {
-          QString vs = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
-          QString gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
-          if ( vs == tr("true") )
-            vs = "true";
-          else
-            vs = "false";
-          if ( gv == tr("true") )
-            gv = "true";
-          else
-            gv = "false";
+          bool v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toBool();
+          bool gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toBool();
           if ( qmc2GlobalEmulatorOptions == this ) {
-            if ( vs != optionsMap[sectionTitle][i].dvalue ) {
-              optionsMap[sectionTitle][i].value = vs;
-              qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
+            if ( v != EmulatorOptionDelegate::stringToBool(optionsMap[sectionTitle][i].dvalue) ) {
+              optionsMap[sectionTitle][i].value = EmulatorOptionDelegate::boolToString(v);
+              qmc2Config->setValue(optionsMap[sectionTitle][i].name, EmulatorOptionDelegate::boolToString(v));
             } else {
               qmc2Config->remove(optionsMap[sectionTitle][i].name);
             }
-          } else if ( vs != gv && optionsMap[sectionTitle][i].valid ) {
-            optionsMap[sectionTitle][i].value = vs;
-            qmc2Config->setValue(optionsMap[sectionTitle][i].name, vs);
+          } else if ( v != gv && optionsMap[sectionTitle][i].valid ) {
+            optionsMap[sectionTitle][i].value = EmulatorOptionDelegate::boolToString(v);
+            qmc2Config->setValue(optionsMap[sectionTitle][i].name, EmulatorOptionDelegate::boolToString(v));
           } else {
             qmc2Config->remove(optionsMap[sectionTitle][i].name);
           }
@@ -1074,11 +1062,11 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
           }
 
           case QMC2_EMUOPT_TYPE_BOOL: {
-            QString v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
+            bool v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toBool();
             if ( qmc2GlobalEmulatorOptions == this )
-              ts << optionsMap[sectionTitle][i].name << " " << (v == tr("true") ? "1" : "0") << "\n";
+              ts << optionsMap[sectionTitle][i].name << " " << (v ? "1" : "0") << "\n";
             else
-              ts << optionsMap[sectionTitle][i].name << " " << (v == tr("true") ? "1" : "0") << "\n";
+              ts << optionsMap[sectionTitle][i].name << " " << (v ? "1" : "0") << "\n";
             break;
           }
 
@@ -1253,15 +1241,19 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 
               case QMC2_EMUOPT_TYPE_BOOL: {
                 if ( qmc2GlobalEmulatorOptions == this ) {
+                  qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QColor(0, 0, 0, 0));
+                  qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QFont("Helvetiva", 1));
                   if ( value == "0" )
-                    qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, tr("false"));
+                    qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, FALSE);
                   else
-                    qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, tr("true"));
+                    qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, TRUE);
                 } else {
+                  qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QColor(0, 0, 0, 0));
+                  qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QFont("Helvetiva", 1));
                   if ( value == "0" )
-                    qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, tr("false"));
+                    qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, FALSE);
                   else
-                    qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, tr("true"));
+                    qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, TRUE);
                 }
                 break;
               }

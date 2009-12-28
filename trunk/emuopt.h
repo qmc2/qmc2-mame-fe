@@ -1,9 +1,9 @@
 #ifndef _EMUOPT_H_
 #define _EMUOPT_H_
 
-#include <QItemDelegate>
+#include <QStyledItemDelegate>
 #include <QModelIndex>
-#include <QComboBox>
+#include <QCheckBox>
 #include <QTreeWidget>
 #include <QSettings>
 #include <QMap>
@@ -14,7 +14,7 @@
 
 #include "macros.h"
 
-class EmulatorOptionDelegate : public QItemDelegate
+class EmulatorOptionDelegate : public QStyledItemDelegate
 {
   Q_OBJECT
 
@@ -25,6 +25,26 @@ class EmulatorOptionDelegate : public QItemDelegate
     virtual void setEditorData(QWidget *, const QModelIndex &) const;
     virtual void setModelData(QWidget *, QAbstractItemModel *, const QModelIndex &) const;
     virtual void updateEditorGeometry(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const;
+
+    static QString boolToString(bool b)
+    {
+      QString result;
+      if ( b )
+        result = tr("true");
+      else
+        result = tr("false");
+      return result;
+    }
+
+    static bool stringToBool(QString s)
+    {
+      bool result;
+      if ( s == tr("true") )
+        result = TRUE;
+      else
+        result = FALSE;
+      return result;
+    }
 
   public slots:
     void dataChanged();
