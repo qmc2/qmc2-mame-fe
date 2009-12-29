@@ -556,7 +556,6 @@ void EmulatorOptions::createMap()
       QTreeWidgetItem *optionItem = new QTreeWidgetItem(sectionItem);
       optionsMap[sectionTitle][i].item = optionItem;
       optionItem->setText(0, emulatorOption.name);
-      optionItem->setText(1, emulatorOption.value);
       optionType = emulatorOption.type;
       QTreeWidgetItem *childItem;
       childItem = new QTreeWidgetItem(optionItem);
