@@ -10592,12 +10592,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="178"/>
         <source>Search string backward</source>
-        <translation>Procurar para tráz</translation>
+        <translation>Procurar para trás</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="181"/>
         <source>&amp;Backward</source>
-        <translation>&amp;Tráz</translation>
+        <translation>&amp;Trás</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="196"/>
