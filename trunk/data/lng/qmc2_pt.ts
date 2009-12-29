@@ -1775,22 +1775,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedderopt.ui" line="37"/>
         <source>Take a snapshot of the current window content -- hold to take snapshots repeatedly (every 100ms)</source>
-        <translation type="unfinished"></translation>
+        <translation>Capturar a tela do conteúdo atual da janela -- segure para tirar snapshots repetidamente (a cada 100ms)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="40"/>
         <source>Take snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Capturar tela</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="95"/>
         <source>Clear snapshots</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar snapshots</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="98"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="117"/>
@@ -6764,12 +6764,12 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2997"/>
         <source>WARNING: multiple emulator windows for &apos;%1&apos; found, choosing window ID %2 for embedding</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: multiplas janelas de emulador para &apos;%1&apos; encontradas, escolhendo janela com ID %2 para incorporar</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3028"/>
         <source>WARNING: no matching emulator window for &apos;%1&apos; found</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: nenhuma janela de emulador para &apos;%1&apos; encontrada</translation>
     </message>
 </context>
 <context>
@@ -7157,7 +7157,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="453"/>
         <source>WARNING: invalid network reply and/or network error</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: Resposta inválida da rede/ou erro de rede</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="15"/>
@@ -8558,17 +8558,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="791"/>
         <source>Log font</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonte do log</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="804"/>
         <source>Font used in logs (= application font if empty)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonte usada nos logs (= fonte da aplicação se vazio)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="820"/>
         <source>Browse font used in logs</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar fonte usada nos logs</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="838"/>
@@ -11612,42 +11612,42 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../embedderopt.cpp" line="128"/>
         <source>Snapshot viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizador de snapshots</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="137"/>
         <source>Use as preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar como preview</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="143"/>
         <source>Use as title</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar como título</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="152"/>
         <source>Save as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar como...</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="158"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar para área de transferência</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="251"/>
         <source>Choose PNG file to store image</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher arquivo PNG para salvar a imagem</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="251"/>
         <source>PNG images (*.png)</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagens PNG (*.png)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="256"/>
         <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível salvar imagem de snapshot para &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
