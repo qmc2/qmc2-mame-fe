@@ -609,6 +609,7 @@ void EmulatorOptions::createMap()
       }
       if ( !emulatorOption.description.isEmpty() ) {
         optionDescription = emulatorOption.description;
+        optionItem->setToolTip(0, optionDescription);
         childItem = new QTreeWidgetItem(optionItem);
         childItem->setText(0, tr("Description"));
         childItem->setText(1, emulatorOption.description);
