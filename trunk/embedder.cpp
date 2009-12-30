@@ -70,6 +70,9 @@ void Embedder::clientEmbedded()
   embedContainer->setFocus();
   setFocusProxy(embedContainer);
   embedded = true;
+
+  // this works around a Qt bug when the tool bar is vertical and obscured by the emulator window before embedding
+  QTimer::singleShot(0, qmc2MainWindow->toolbar, SLOT(update()));
 }
 
 void Embedder::clientClosed()
