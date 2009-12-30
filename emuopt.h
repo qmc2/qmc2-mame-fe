@@ -30,16 +30,16 @@ class EmulatorOptionDelegate : public QStyledItemDelegate
     {
       QString result;
       if ( b )
-        result = tr("true");
+        result = "true";
       else
-        result = tr("false");
+        result = "false";
       return result;
     }
 
     static bool stringToBool(QString s)
     {
       bool result;
-      if ( s == tr("true") )
+      if ( s == "true" )
         result = TRUE;
       else
         result = FALSE;

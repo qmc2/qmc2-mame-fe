@@ -324,10 +324,14 @@ void Options::apply()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::apply()");
 #endif
 
+  bool scrollBarMaximum = (qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->value() == qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->maximum());
+
   qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
   qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
 
-  // adjust icon sizes of buttons
+  qmc2MainWindow->textBrowserFrontendLog->setUpdatesEnabled(FALSE);
+  qmc2MainWindow->textBrowserEmulatorLog->setUpdatesEnabled(FALSE);
+
   QFont f;
   f.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
   qApp->setFont(f);
@@ -337,11 +341,9 @@ void Options::apply()
   QFont logFont = f;
   if ( !config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString().isEmpty() )
     logFont.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
-
-  bool scrollBarMaximum = (qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->value() == qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->maximum());
-
   qmc2MainWindow->textBrowserFrontendLog->setFont(logFont);
   qmc2MainWindow->textBrowserEmulatorLog->setFont(logFont);
+
   QSize iconSize(fm.height() - 2, fm.height() - 2);
   QSize iconSizeLarge = iconSize + QSize(4, 4);
   qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSize);
@@ -509,6 +511,9 @@ void Options::apply()
   if ( qmc2DetailSetup )
     if ( qmc2DetailSetup->isVisible() )
       QTimer::singleShot(0, qmc2DetailSetup, SLOT(adjustIconSizes()));
+
+  qmc2MainWindow->textBrowserFrontendLog->setUpdatesEnabled(TRUE);
+  qmc2MainWindow->textBrowserEmulatorLog->setUpdatesEnabled(TRUE);
 
   if ( scrollBarMaximum )
     qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->setValue(qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->maximum());
