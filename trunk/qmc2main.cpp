@@ -1053,7 +1053,7 @@ void MainWindow::on_actionPlay_activated()
   QStringList args;
   QString sectionTitle;
 
-  foreach ( sectionTitle, qmc2EmulatorOptions->optionsMap.keys() ) {
+  foreach (sectionTitle, qmc2EmulatorOptions->optionsMap.uniqueKeys()) {
     int i;
     for (i = 0; i < qmc2EmulatorOptions->optionsMap[sectionTitle].count(); i++) {
       EmulatorOption option = qmc2EmulatorOptions->optionsMap[sectionTitle][i];
@@ -1086,13 +1086,13 @@ void MainWindow::on_actionPlay_activated()
         }
 
         case QMC2_EMUOPT_TYPE_BOOL: {
-          QString dv = option.dvalue;
-          QString  v = option.value;
-          QString gv = qmc2Config->value(globalOptionKey, dv).toString();
+          bool dv = EmulatorOptionDelegate::stringToBool(option.dvalue);
+          bool v = EmulatorOptionDelegate::stringToBool(option.value);
+          bool gv = qmc2Config->value(globalOptionKey, dv).toBool();
           if ( !option.valid )
             v = gv;
           if ( v != dv ) {
-            if ( v == "true" )
+            if ( v )
               args << QString("-%1").arg(option.name);
             else
               args << QString("-no%1").arg(option.name);
@@ -1117,7 +1117,7 @@ void MainWindow::on_actionPlay_activated()
 
 #if defined(Q_WS_X11)
   if ( qmc2StartEmbedded )
-    args << "-window" << "-nomaximize" << "-keepaspect";
+    args << "-window" << "-nomaximize" << "-keepaspect" << "-rotate" << "-noror" << "-norol";
 #endif
 
   args << gameName;
@@ -4013,7 +4013,7 @@ void MainWindow::setupStyleSheet(QString styleSheetName)
 
   static QString oldStyleSheetName = "";
 
-  bool scrollBarMaximum = (textBrowserFrontendLog->verticalScrollBar()->value() == textBrowserFrontendLog->verticalScrollBar()->maximum());
+  bool scrollBarMaximum = (textBrowserFrontendLog->verticalScrollBar()->value() == textBrowserFrontendLog->verticalScrollBar()->maximum()) && textBrowserFrontendLog->verticalScrollBar()->isVisible();
 
   if ( !styleSheetName.isEmpty() ) {
     QFile f(styleSheetName);
