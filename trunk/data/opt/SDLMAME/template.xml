@@ -282,6 +282,7 @@
     <option name="numprocessors" type="string" default="auto">
       <description lang="us" text="Number of processors (or 'auto'); this overrides the number the system reports"/>
       <description lang="de" text="Anzahl der Prozessoren (oder 'auto'); überschreibt die vom System ausgelesene Prozessoranzahl"/>
+      <description lang="pl" text="Liczba procesorów (lub 'auto'); nadpisuje liczbę zgłaszaną przez system"/>
     </option>
   </section>
   <section name="rotation">
