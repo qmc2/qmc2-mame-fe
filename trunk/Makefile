@@ -261,7 +261,7 @@ endif
 # version
 VERSION_MAJOR = 0
 VERSION_MINOR = 2
-VERSION_BETA  = 13
+VERSION_BETA  = 14
 
 # project name
 PROJECT = qmc2
