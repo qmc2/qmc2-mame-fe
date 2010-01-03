@@ -118,6 +118,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QTimer memoryUpdateTimer;
 #endif
     QWidget *widgetEmbeddedEmus;
+    QToolButton *toolButtonEmbedderMaximizeToggle;
+    QList<int> hSplitterSizes;
 
     static QColor qmc2StatusColorGreen;
     static QColor qmc2StatusColorYellowGreen;
@@ -294,6 +296,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_tabWidgetEmbeddedEmulators_tabCloseRequested(int);
     void on_embedderOptions_toggled(bool);
     void closeEmbeddedEmuTab();
+    void on_toolButtonEmbedderMaximizeToggle_toggled(bool);
 #endif
     void action_terminateEmulator_triggered();
     void action_killEmulator_triggered();
