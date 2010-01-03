@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>610</width>
-    <height>485</height>
+    <width>599</width>
+    <height>457</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,25 +29,6 @@
         <property name="sizeConstraint">
          <enum>QLayout::SetNoConstraint</enum>
         </property>
-        <item>
-         <widget class="QComboBox" name="comboBoxSearch">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip">
-           <string>Search for games (not case-sensitive)</string>
-          </property>
-          <property name="statusTip">
-           <string>Search for games</string>
-          </property>
-          <property name="editable">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
         <item>
          <widget class="QTabWidget" name="tabWidgetGamelist">
           <property name="sizePolicy">
@@ -305,7 +286,7 @@
             <string>&amp;Search</string>
            </attribute>
            <layout class="QGridLayout">
-            <item row="0" column="0">
+            <item row="1" column="0">
              <widget class="QListWidget" name="listWidgetSearch">
               <property name="contextMenuPolicy">
                <enum>Qt::CustomContextMenu</enum>
@@ -315,6 +296,25 @@
               </property>
               <property name="statusTip">
                <string>Search result</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QComboBox" name="comboBoxSearch">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>Search for games (not case-sensitive)</string>
+              </property>
+              <property name="statusTip">
+               <string>Search for games</string>
+              </property>
+              <property name="editable">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -1693,7 +1693,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>610</width>
+     <width>599</width>
      <height>25</height>
     </rect>
    </property>
@@ -2720,16 +2720,16 @@
  </widget>
  <layoutdefault spacing="6" margin="6"/>
  <tabstops>
-  <tabstop>comboBoxSearch</tabstop>
   <tabstop>tabWidgetGamelist</tabstop>
   <tabstop>treeWidgetGamelist</tabstop>
   <tabstop>treeWidgetHierarchy</tabstop>
+  <tabstop>comboBoxViewSelect</tabstop>
+  <tabstop>pushButtonSelectRomFilter</tabstop>
+  <tabstop>comboBoxSearch</tabstop>
   <tabstop>listWidgetSearch</tabstop>
   <tabstop>listWidgetFavorites</tabstop>
   <tabstop>listWidgetPlayed</tabstop>
   <tabstop>tabWidgetEmbeddedEmulators</tabstop>
-  <tabstop>comboBoxViewSelect</tabstop>
-  <tabstop>pushButtonSelectRomFilter</tabstop>
   <tabstop>tabWidgetGameDetail</tabstop>
   <tabstop>textBrowserGameInfo</tabstop>
   <tabstop>textBrowserEmuInfo</tabstop>
