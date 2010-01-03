@@ -4,7 +4,6 @@
 #include <QSettings>
 #include "ui_options.h"
 
-#if QMC2_JOYSTICK == 1
 #include <QWidget>
 #include <QMap>
 #include <QLabel>
@@ -12,8 +11,10 @@
 #include <QCheckBox>
 #include <QSpinBox>
 #include <QScrollArea>
-#include "joystick.h"
 #include "macros.h"
+
+#if QMC2_JOYSTICK == 1
+#include "joystick.h"
 
 class JoystickCalibrationWidget : public QWidget
 {
