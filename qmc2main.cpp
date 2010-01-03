@@ -364,12 +364,20 @@ MainWindow::MainWindow(QWidget *parent)
   labelGameStatus->setVisible(FALSE);
   labelGameStatus->setPalette(qmc2StatusColorBlue);
 
+#if defined(Q_WS_X11)
+  toolButtonEmbedderMaximizeToggle = new QToolButton(tabWidgetEmbeddedEmulators);
+  toolButtonEmbedderMaximizeToggle->setIcon(QIcon(QString::fromUtf8(":/data/img/toggle_fullscreen.png")));
+  toolButtonEmbedderMaximizeToggle->setToolTip(tr("Toggle maximization of embedded emulator windows"));
+  toolButtonEmbedderMaximizeToggle->setCheckable(TRUE);
+  toolButtonEmbedderMaximizeToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", FALSE).toBool());
+  tabWidgetEmbeddedEmulators->setCornerWidget(toolButtonEmbedderMaximizeToggle, Qt::TopRightCorner);
+  connect(toolButtonEmbedderMaximizeToggle, SIGNAL(toggled(bool)), this, SLOT(on_toolButtonEmbedderMaximizeToggle_toggled(bool)));
+#else
+  actionPlayEmbedded->setVisible(FALSE);
+#endif
   tabWidgetEmbeddedEmulators->removeTab(0);
   widgetEmbeddedEmus = tabWidgetGamelist->widget(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
   tabWidgetGamelist->removeTab(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
-#if !defined(Q_WS_X11)
-  actionPlayEmbedded->setVisible(FALSE);
-#endif
 
 #if !defined(QMC2_VARIANT_LAUNCHER)
   actionLaunchQMC2MAME->setVisible(FALSE);
@@ -2082,6 +2090,11 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetGamelist_currentChanged(int i = " + QString::number(currentIndex) + ")");
 #endif
 
+#if defined(Q_WS_X11)
+  if ( hSplitterSizes.count() > 1 )
+    hSplitter->setSizes(hSplitterSizes);
+#endif
+
   switch ( currentIndex ) {
     case QMC2_GAMELIST_INDEX:
       QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
@@ -2103,6 +2116,20 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
     case QMC2_PLAYED_INDEX:
       QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
       break;
+
+#if defined(Q_WS_X11)
+    case QMC2_EMBED_INDEX: {
+        if ( toolButtonEmbedderMaximizeToggle->isChecked() ) {
+          hSplitterSizes = hSplitter->sizes();
+          QList<int> maximizedSizes;
+          maximizedSizes << 100 << 0;
+          hSplitter->setSizes(maximizedSizes);
+        }
+        Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->currentWidget();
+        if ( embedder ) embedder->resize(hSplitter->sizes()[0], embedder->height());
+      }
+      break;
+#endif
 
     default:
       break;
@@ -3060,8 +3087,11 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
   }
 
   if ( tabWidgetEmbeddedEmulators->count() < 1 ) {
-    if ( tabWidgetGamelist->currentIndex() == tabWidgetGamelist->indexOf(tabEmbeddedEmus) )
+    if ( tabWidgetGamelist->currentIndex() == tabWidgetGamelist->indexOf(tabEmbeddedEmus) ) {
       tabWidgetGamelist->setCurrentIndex(qmc2LastListIndex);
+      if ( toolButtonEmbedderMaximizeToggle->isChecked() )
+        hSplitter->setSizes(hSplitterSizes);
+    }
     tabWidgetGamelist->removeTab(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
   }
 }
@@ -3075,6 +3105,22 @@ void MainWindow::closeEmbeddedEmuTab()
 
   if ( !qmc2CleaningUp )
     on_tabWidgetEmbeddedEmulators_tabCloseRequested(tabWidgetEmbeddedEmulators->indexOf(embedder));
+}
+
+void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on = %1)").arg(on));
+#endif
+
+  if ( on ) {
+    hSplitterSizes = hSplitter->sizes();
+    QList<int> maximizedSizes;
+    maximizedSizes << 100 << 0;
+    hSplitter->setSizes(maximizedSizes);
+  } else {
+    hSplitter->setSizes(hSplitterSizes);
+  }
 }
 #endif
 
@@ -3703,7 +3749,16 @@ void MainWindow::closeEvent(QCloseEvent *e)
         qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size", size());
       }
     }
+
+#if defined(Q_WS_X11)
+    if ( toolButtonEmbedderMaximizeToggle->isChecked() && tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
+      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitterSizes[0], hSplitterSizes[1]));
+    else
+      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitter->sizes().at(0), hSplitter->sizes().at(1)));
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", toolButtonEmbedderMaximizeToggle->isChecked());
+#else
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitter->sizes().at(0), hSplitter->sizes().at(1)));
+#endif
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter", QSize(vSplitter->sizes().at(0), vSplitter->sizes().at(1)));
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", tabWidgetGamelist->currentIndex());
 #if defined(QMC2_EMUTYPE_MAME)
