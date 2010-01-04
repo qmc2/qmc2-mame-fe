@@ -812,8 +812,15 @@ void EmulatorOptions::checkTemplateMap()
       if ( l.startsWith("#") ) continue;
       if ( l.startsWith("<") ) continue;
       if ( l.startsWith("readconfig") ) continue;
-      // FIXME: this is too simple -- doesn't work for string values with spaces (like "Lucida Console" for debugger_font on Windows)
-      QStringList wl = l.split(" ");
+      QStringList wl;
+      QRegExp rx("(\\S+|\\\".*\\\")");
+      int pos = 0;
+      while ( (pos = rx.indexIn(l, pos)) != -1 ) {
+        QString s = rx.cap(1);
+        s = s.remove("\"");
+        wl << s;
+        pos += rx.matchedLength();
+      }
       if ( wl.count() == 2 )
         emuOptions[wl[0]] = wl[1];
       else if ( wl.count() == 1 )
