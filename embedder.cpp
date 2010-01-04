@@ -15,7 +15,6 @@ Embedder::Embedder(QString name, WId wid, QWidget *parent)
 #endif
 
   gridLayout = new QGridLayout(this);
-  setLayout(gridLayout);
 
   gameName = name;
   winId = wid;
@@ -25,7 +24,9 @@ Embedder::Embedder(QString name, WId wid, QWidget *parent)
   embedContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   gridLayout->addWidget(embedContainer, 1, 0);
   gridLayout->setRowStretch(0, 0);
-  gridLayout->setRowStretch(1, 4);
+  gridLayout->setRowStretch(1, 1);
+  gridLayout->setColumnStretch(0, 1);
+  setLayout(gridLayout);
 
   connect(embedContainer, SIGNAL(clientIsEmbedded()), SLOT(clientEmbedded()));
   connect(embedContainer, SIGNAL(clientClosed()), SLOT(clientClosed()));
@@ -136,9 +137,11 @@ void Embedder::toggleOptions()
       gridLayout->addWidget(embedderOptions, 0, 0);
     }
     gridLayout->setRowStretch(0, 1);
+    gridLayout->setRowStretch(1, 4);
     embedderOptions->show();
   } else {
     gridLayout->setRowStretch(0, 0);
+    gridLayout->setRowStretch(1, 1);
     if ( embedderOptions )
       embedderOptions->hide();
   }
