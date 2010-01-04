@@ -337,8 +337,8 @@ MainWindow::MainWindow(QWidget *parent)
 
   setupUi(this);
 
-  // updated by detail setup
-  tabWidgetGameDetail->setUpdatesEnabled(FALSE);
+  // updated later when all initialization is finished
+  setUpdatesEnabled(FALSE);
 
   // hide "loading game list" label initially
   labelLoadingGamelist->setVisible(FALSE);
@@ -4021,6 +4021,7 @@ void MainWindow::init()
     setupStyleSheet(myStyleSheet);
   }
   qmc2EarlyStartup = FALSE;
+  setUpdatesEnabled(TRUE);
   on_actionReload_activated();
 }
 
