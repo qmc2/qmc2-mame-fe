@@ -754,6 +754,8 @@ void EmulatorOptions::checkTemplateMap()
     return;
   }
 
+  QString userScopePath = QMC2_DOT_PATH;
+
   int diffCount = 0;
   QMap <QString, QString> emuOptions;
 
@@ -783,7 +785,17 @@ void EmulatorOptions::checkTemplateMap()
     }
   }
 
-  QFile qmc2Temp(qmc2Options->config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile").toString());
+#if defined(QMC2_SDLMAME)
+  QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
+#elif defined(QMC2_MAME)
+  QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
+#elif defined(QMC2_SDLMESS)
+  QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
+#elif defined(QMC2_MESS)
+  QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
+#else
+  QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
+#endif
   if ( commandProcStarted && qmc2Temp.open(QFile::ReadOnly) ) {
     QTextStream ts(&qmc2Temp);
     QString s = ts.readAll();

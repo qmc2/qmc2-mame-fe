@@ -222,6 +222,8 @@ void Gamelist::load()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::load()");
 #endif
 
+  QString userScopePath = QMC2_DOT_PATH;
+
   qmc2ReloadActive = qmc2EarlyReloadActive = TRUE;
   qmc2StopParser = FALSE;
   qmc2GamelistItemMap.clear();
@@ -298,7 +300,18 @@ void Gamelist::load()
 
   // emulator version
   QProcess commandProc;
-  commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile").toString());
+#if defined(QMC2_SDLMAME)
+  commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
+#elif defined(QMC2_MAME)
+  commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
+#elif defined(QMC2_SDLMESS)
+  commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
+#elif defined(QMC2_MESS)
+  commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
+#else
+  commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
+#endif
+
 #if !defined(Q_WS_WIN)
   commandProc.setStandardErrorFile("/dev/null");
 #endif
@@ -320,7 +333,18 @@ void Gamelist::load()
       commandProcRunning = (commandProc.state() == QProcess::Running);
     }
   }
-  QFile qmc2TempVersion(qmc2Options->config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile").toString());
+
+#if defined(QMC2_SDLMAME)
+  QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
+#elif defined(QMC2_MAME)
+  QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
+#elif defined(QMC2_SDLMESS)
+  QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
+#elif defined(QMC2_MESS)
+  QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
+#else
+  QFile qmc2TempVersion(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
+#endif
   if ( commandProcStarted && qmc2TempVersion.open(QFile::ReadOnly) ) {
     QTextStream ts(&qmc2TempVersion);
     QString s = ts.readAll();
@@ -386,7 +410,17 @@ void Gamelist::load()
     }
   }
 
-  QFile qmc2Temp(qmc2Options->config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile").toString());
+#if defined(QMC2_SDLMAME)
+  QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmame.tmp").toString());
+#elif defined(QMC2_MAME)
+  QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mame.tmp").toString());
+#elif defined(QMC2_SDLMESS)
+  QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
+#elif defined(QMC2_MESS)
+  QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-mess.tmp").toString());
+#else
+  QFile qmc2Temp(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-unknown.tmp").toString());
+#endif
   if ( commandProcStarted && qmc2Temp.open(QFile::ReadOnly) ) {
     QTextStream ts(&qmc2Temp);
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_MAME) || defined(QMC2_MESS)
@@ -439,9 +473,9 @@ void Gamelist::load()
   // try reading XML output from cache
   bool xmlCacheOkay = FALSE;
 #if defined(QMC2_EMUTYPE_MAME)
-  listXMLCache.setFileName(qmc2Config->value("MAME/FilesAndDirectories/ListXMLCache").toString());
+  listXMLCache.setFileName(qmc2Config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
 #elif defined(QMC2_EMUTYPE_MESS)
-  listXMLCache.setFileName(qmc2Config->value("MESS/FilesAndDirectories/ListXMLCache").toString());
+  listXMLCache.setFileName(qmc2Config->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString());
 #endif
   listXMLCache.open(QIODevice::ReadOnly | QIODevice::Text);
   if ( listXMLCache.isOpen() ) {
