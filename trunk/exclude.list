@@ -1329,6 +1329,12 @@ qmc2/minizip/.svn/text-base/ioapi.h.svn-base
 qmc2/minizip/.svn/text-base/README.minizip.svn-base
 qmc2/minizip/.svn/text-base/unzip.c.svn-base
 qmc2/minizip/.svn/text-base/unzip.h.svn-base
+qmc2/pkg-specs/Debian/.svn
+qmc2/pkg-specs/Fedora/.svn
+qmc2/pkg-specs/openSUSE/.svn
+qmc2/pkg-specs/openSUSE/.svn/text-base/qmc2-0.2.b14-openSUSE-11.2.spec.svn-base
+qmc2/pkg-specs/.svn
+qmc2/pkg-specs/YDL/.svn
 qmc2/runonce/.svn
 qmc2/runonce/.svn/text-base/README.runonce.svn-base
 qmc2/runonce/.svn/text-base/runonce.c.svn-base
