@@ -1340,6 +1340,7 @@ qmc2/pkg-specs/Debian/.svn/text-base/docs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/qmc2.doc-base.EX.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/rules.svn-base
 qmc2/pkg-specs/Fedora/.svn
+qmc2/pkg-specs/Fedora/.svn/text-base/README.fedora-spec.svn-base
 qmc2/pkg-specs/openSUSE/.svn
 qmc2/pkg-specs/openSUSE/.svn/text-base/qmc2-0.2.b14-openSUSE-11.2.spec.svn-base
 qmc2/pkg-specs/.svn
