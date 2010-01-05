@@ -1,0 +1,32 @@
+qmc2 (0.2b13-5) karmic; urgency=low
+
+  * Added rsync to build dependencies
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Sun, 05 Jan 2010 00:00:09 -0200
+
+
+qmc2 (0.2b13-4) karmic; urgency=low
+
+  * Fix install rule
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Sun, 05 Jan 2010 00:00:09 -0200
+
+qmc2 (0.2b13-3) karmic; urgency=low
+
+  * Adding missing build dep
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Sun, 05 Jan 2010 00:00:09 -0200
+
+
+qmc2 (0.2b13-2) karmic; urgency=low
+
+  * Fix make directive to include DISTCFG=1 and use Ubuntu specific paths
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Sun, 05 Jan 2010 00:00:09 -0200
+
+
+qmc2 (0.2b13-1) karmic; urgency=low
+
+  * Initial release
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Sun, 03 Jan 2010 23:47:09 -0200
