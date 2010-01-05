@@ -1,0 +1,5 @@
+The Fedora spec is maintained by Julian Sikorski (belegdol) for rpmfusion.org.
+It's included - together with a patch to the global ini - in the source RPM.
+
+Get the latest version here:
+http://download1.rpmfusion.org/nonfree/fedora/development/source/SRPMS/repoview/qmc2.html
