@@ -1,38 +1,40 @@
-qmc2 (0.2b14-1) karmic; urgency=low
+qmc2 (0.2b13-6) karmic; urgency=low
 
-  * Update to b14 release
+  * Added sdlmame as dependency
 
- -- Marcelo Marzola Bossoni <mmbossoni|at|gmail|dot|com>  Tue, 05 Jan 2010 20:30:00 -0200
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Tue, 05 Jan 2010 20:30:00 -0200
+
 
 qmc2 (0.2b13-5) karmic; urgency=low
 
   * Added rsync to build dependencies
 
- -- Marcelo Marzola Bossoni <mmbossoni|at|gmail|dot|com>  Mon, 04 Jan 2010 00:00:09 -0200
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Mon, 04 Jan 2010 00:00:09 -0200
 
 
 qmc2 (0.2b13-4) karmic; urgency=low
 
   * Fix install rule
 
- -- Marcelo Marzola Bossoni <mmbossoni|at|gmail|dot|com>  Mon, 04 Jan 2010 00:00:09 -0200
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Mon, 04 Jan 2010 00:00:09 -0200
+
 
 qmc2 (0.2b13-3) karmic; urgency=low
 
   * Adding missing build dep
 
- -- Marcelo Marzola Bossoni <mmbossoni|at|gmail|dot|com>  Mon, 04 Jan 2010 00:00:09 -0200
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Mon, 04 Jan 2010 00:00:09 -0200
 
 
 qmc2 (0.2b13-2) karmic; urgency=low
 
   * Fix make directive to include DISTCFG=1 and use Ubuntu specific paths
 
- -- Marcelo Marzola Bossoni <mmbossoni|at|gmail|dot|com>  Mon, 04 Jan 2010 00:00:09 -0200
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Mon, 04 Jan 2010 00:00:09 -0200
 
 
 qmc2 (0.2b13-1) karmic; urgency=low
 
   * Initial release
 
- -- Marcelo Marzola Bossoni <mmbossoni|at|gmail|dot|com>  Sun, 03 Jan 2010 23:47:09 -0200
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Sun, 03 Jan 2010 23:47:09 -0200
