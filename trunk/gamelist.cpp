@@ -1657,7 +1657,7 @@ void Gamelist::parse()
   qmc2StartingUp = FALSE;
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck").toBool() ) {
     if ( autoROMCheck )
-      QTimer::singleShot(0, qmc2MainWindow->actionCheckROMs, SLOT(trigger()));
+      QTimer::singleShot(QMC2_AUTOROMCHECK_DELAY, qmc2MainWindow->actionCheckROMs, SLOT(trigger()));
     else
       filter();
   } else

@@ -193,6 +193,9 @@
 // responsiveness while loading an additional information source
 #define QMC2_INFOSOURCE_RESPONSIVENESS	50
 
+// delay in milliseconds before an automatic ROM check gets triggered
+#define QMC2_AUTOROMCHECK_DELAY		250
+
 // emulator option types
 #define QMC2_EMUOPT_TYPE_UNKNOWN	0
 #define QMC2_EMUOPT_TYPE_BOOL		1
