@@ -193,9 +193,6 @@
 // responsiveness while reading the ROM state cache
 #define QMC2_ROMCACHE_RESPONSIVENESS	500
 
-// responsiveness while loading an additional information source
-#define QMC2_INFOSOURCE_RESPONSIVENESS	500
-
 // delay in milliseconds before an automatic ROM check gets triggered
 #define QMC2_AUTOROMCHECK_DELAY		250
 
@@ -339,5 +336,12 @@
 
 // maximum number of retries to find an emulator window via xwininfo (emulator may need longer to get ready)
 #define QMC2_MAX_XWININFO_RETRIES	3
+
+// responsiveness while loading an additional information source
+#if defined(QMC2_EMUTYPE_MESS)
+#define QMC2_INFOSOURCE_RESPONSIVENESS	500
+#else
+#define QMC2_INFOSOURCE_RESPONSIVENESS	5000
+#endif
 
 #endif
