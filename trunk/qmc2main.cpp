@@ -4012,7 +4012,6 @@ void MainWindow::init()
 #endif
 
   createFifo();
-  qApp->processEvents();
   qmc2GhostImagePixmap.load(":/data/img/ghost.png");
   QString myStyle = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString();
   setupStyle(myStyle);
@@ -4262,9 +4261,9 @@ void MainWindow::loadGameInfoDB()
     qmc2MainWindow->progressBarGamelist->reset();
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 #if defined(QMC2_EMUTYPE_MAME)
-      progressBarGamelist->setFormat(tr("Game Info - %p%"));
+      progressBarGamelist->setFormat(tr("Game info - %p%"));
 #elif defined(QMC2_EMUTYPE_MESS)
-      progressBarGamelist->setFormat(tr("Machine Info - %p%"));
+      progressBarGamelist->setFormat(tr("Machine info - %p%"));
 #endif
     else
       progressBarGamelist->setFormat("%p%");
@@ -4424,7 +4423,7 @@ void MainWindow::loadEmuInfoDB()
   if ( emuInfoDB.isOpen() ) {
     qmc2MainWindow->progressBarGamelist->reset();
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-      progressBarGamelist->setFormat(tr("Emu Info - %p%"));
+      progressBarGamelist->setFormat(tr("Emu info - %p%"));
     else
       progressBarGamelist->setFormat("%p%");
     progressBarGamelist->setRange(0, emuInfoDB.size());
