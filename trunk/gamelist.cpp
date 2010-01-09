@@ -1006,6 +1006,7 @@ void Gamelist::parse()
     else
       qmc2MainWindow->progressBarGamelist->setFormat("%p%");
     qmc2MainWindow->progressBarGamelist->reset();
+    qApp->processEvents();
     tsRomCache.setDevice(&romCache);
     tsRomCache.reset();
     int cachedGamesCounter = 0;
@@ -1015,9 +1016,11 @@ void Gamelist::parse()
         QStringList words = line.split(" ");
         qmc2GamelistStatusMap[words[0]] = words[1];
         cachedGamesCounter++;
-        qmc2MainWindow->progressBarGamelist->setValue(cachedGamesCounter);
       }
-      qApp->processEvents();
+      if ( cachedGamesCounter % QMC2_ROMCACHE_RESPONSIVENESS == 0 ) {
+        qmc2MainWindow->progressBarGamelist->setValue(cachedGamesCounter);
+        qApp->processEvents();
+      }
     }
     numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numNotFoundGames = 0;
     elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
@@ -1028,6 +1031,7 @@ void Gamelist::parse()
       autoROMCheck = TRUE;
     }
     romCache.close();
+    qApp->processEvents();
   }
 
   QTime processGamelistElapsedTimer;
@@ -1195,8 +1199,8 @@ void Gamelist::parse()
             numGames++;
           }
 
-          qmc2MainWindow->progressBarGamelist->setValue(numGames);
           if ( numGames % qmc2GamelistResponsiveness == 0 ) {
+            qmc2MainWindow->progressBarGamelist->setValue(numGames);
             qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
             qmc2MainWindow->labelGamelistStatus->setText(status());
             if ( qmc2Options->config->value(QMC2_FRONTEND_PREFIX + "Gamelist/SortOnline").toBool() )
@@ -1211,36 +1215,38 @@ void Gamelist::parse()
         else
           readBuffer = lines.last();
       }
+      qmc2MainWindow->progressBarGamelist->setValue(numGames);
+      qApp->processEvents();
 
       gameDataCacheElapsedTime = gameDataCacheElapsedTime.addMSecs(miscTimer.elapsed());
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading game data from game list cache, elapsed time = %1)").arg(gameDataCacheElapsedTime.toString("mm:ss.zzz")));
 #elif defined(QMC2_EMUTYPE_MESS)
-	      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(gameDataCacheElapsedTime.toString("mm:ss.zzz")));
-	#endif
-	    }
-	  } 
-	  if ( gamelistCache.isOpen() )
-	    gamelistCache.close();
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading machine data from machine list cache, elapsed time = %1)").arg(gameDataCacheElapsedTime.toString("mm:ss.zzz")));
+#endif
+    }
+  } 
+  if ( gamelistCache.isOpen() )
+    gamelistCache.close();
 
-	  xmlLines.clear();
-	#if defined(QMC2_EMUTYPE_MAME)
-	  xmlLines = gamelistBuffer.remove(0, gamelistBuffer.indexOf("<mame build")).split("\n");
-	#elif defined(QMC2_EMUTYPE_MESS)
-	  xmlLines = gamelistBuffer.remove(0, gamelistBuffer.indexOf("<mess build")).split("\n");
-	#endif
-	  gamelistBuffer.clear();
+  xmlLines.clear();
+#if defined(QMC2_EMUTYPE_MAME)
+  xmlLines = gamelistBuffer.remove(0, gamelistBuffer.indexOf("<mame build")).split("\n");
+#elif defined(QMC2_EMUTYPE_MESS)
+  xmlLines = gamelistBuffer.remove(0, gamelistBuffer.indexOf("<mess build")).split("\n");
+#endif
+  gamelistBuffer.clear();
 
-	  if ( reparseGamelist && !qmc2StopParser ) {
-	#if defined(QMC2_EMUTYPE_MAME)
-	    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing game data and (re)creating game list cache"));
-	    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-	      qmc2MainWindow->progressBarGamelist->setFormat(tr("Game data - %p%"));
-	#elif defined(QMC2_EMUTYPE_MESS)
-	    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing machine data and (re)creating machine list cache"));
-	    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
-	      qmc2MainWindow->progressBarGamelist->setFormat(tr("Machine data - %p%"));
-	#endif
+  if ( reparseGamelist && !qmc2StopParser ) {
+#if defined(QMC2_EMUTYPE_MAME)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing game data and (re)creating game list cache"));
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+      qmc2MainWindow->progressBarGamelist->setFormat(tr("Game data - %p%"));
+#elif defined(QMC2_EMUTYPE_MESS)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("parsing machine data and (re)creating machine list cache"));
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+      qmc2MainWindow->progressBarGamelist->setFormat(tr("Machine data - %p%"));
+#endif
     else
       qmc2MainWindow->progressBarGamelist->setFormat("%p%");
     gamelistCache.open(QIODevice::WriteOnly | QIODevice::Text);
