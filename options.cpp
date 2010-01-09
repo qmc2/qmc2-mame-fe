@@ -1329,7 +1329,11 @@ void Options::on_pushButtonApply_clicked()
   }
 
   if ( needReload ) {
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("triggering automatic reload of gamelist"));
+#if defined(QMC2_EMUTYPE_MAME)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("triggering automatic reload of game list"));
+#elif defined(QMC2_EMUTYPE_MESS)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("triggering automatic reload of machine list"));
+#endif
     qmc2AutomaticReload = TRUE;
     QTimer::singleShot(0, qmc2MainWindow->actionReload, SLOT(trigger()));
   }
