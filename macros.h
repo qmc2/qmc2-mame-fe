@@ -193,6 +193,9 @@
 // responsiveness while reading the ROM state cache
 #define QMC2_ROMCACHE_RESPONSIVENESS	500
 
+// responsiveness while pre-caching icons
+#define QMC2_ICONCACHE_RESPONSIVENESS	250
+
 // delay in milliseconds before an automatic ROM check gets triggered
 #define QMC2_AUTOROMCHECK_DELAY		250
 

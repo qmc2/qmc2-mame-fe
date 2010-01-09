@@ -2502,7 +2502,7 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
           do {
             char unzFileName[QMC2_MAX_PATH_LENGTH];
             iconCount++;
-            if ( iconCount % 25 == 0 ) {
+            if ( iconCount % QMC2_ICONCACHE_RESPONSIVENESS == 0 ) {
               qmc2MainWindow->progressBarGamelist->setValue(iconCount);
               qApp->processEvents();
             }
