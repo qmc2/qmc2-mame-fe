@@ -343,7 +343,7 @@ MainWindow::MainWindow(QWidget *parent)
   // hide "loading game list" label initially
   labelLoadingGamelist->setVisible(FALSE);
 
-  // hide the memory indicator inistally
+  // hide memory indicator initially
   progressBarMemory->setVisible(FALSE);
 
 #if defined(Q_WS_WIN)
@@ -4019,8 +4019,9 @@ void MainWindow::init()
     QString myStyleSheet = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", "").toString();
     setupStyleSheet(myStyleSheet);
   }
-  qmc2EarlyStartup = FALSE;
+  progressBarMemory->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", FALSE).toBool());
   setUpdatesEnabled(TRUE);
+  qmc2EarlyStartup = FALSE;
   textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
   textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
   on_actionReload_activated();
