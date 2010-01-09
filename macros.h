@@ -187,11 +187,14 @@
 // ROM state filter responsiveness (update gamelist after how many milliseconds?)
 #define QMC2_STATEFILTER_RESPONSIVENESS	1000
 
-// responsiveness while reading the XML gamelist cache
-#define QMC2_XMLCACHE_RESPONSIVENESS	50
+// responsiveness while reading the XML game/machine list cache
+#define QMC2_XMLCACHE_RESPONSIVENESS	500
+
+// responsiveness while reading the ROM state cache
+#define QMC2_ROMCACHE_RESPONSIVENESS	500
 
 // responsiveness while loading an additional information source
-#define QMC2_INFOSOURCE_RESPONSIVENESS	50
+#define QMC2_INFOSOURCE_RESPONSIVENESS	500
 
 // delay in milliseconds before an automatic ROM check gets triggered
 #define QMC2_AUTOROMCHECK_DELAY		250

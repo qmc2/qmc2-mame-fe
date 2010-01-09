@@ -4022,6 +4022,8 @@ void MainWindow::init()
   }
   qmc2EarlyStartup = FALSE;
   setUpdatesEnabled(TRUE);
+  textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
+  textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
   on_actionReload_activated();
 }
 
@@ -4274,17 +4276,19 @@ void MainWindow::loadGameInfoDB()
       QString singleLine = ts.readLine();
       while ( !singleLine.simplified().startsWith("$info=") && !ts.atEnd() ) {
         singleLine = ts.readLine();
-        progressBarGamelist->setValue(gameInfoDB.pos());
-        if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 )
+        if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+          progressBarGamelist->setValue(gameInfoDB.pos());
           qApp->processEvents();
+        }
       }
       if ( singleLine.simplified().startsWith("$info=") ) {
         QStringList gameWords = singleLine.simplified().mid(6).split(",");
         while ( !singleLine.simplified().startsWith("$bio") && !ts.atEnd() ) {
           singleLine = ts.readLine();
-          progressBarGamelist->setValue(gameInfoDB.pos());
-          if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 )
+          if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+            progressBarGamelist->setValue(gameInfoDB.pos());
             qApp->processEvents();
+          }
         }
         if ( singleLine.simplified().startsWith("$bio") ) {
           QString gameInfoString;
@@ -4299,9 +4303,10 @@ void MainWindow::loadGameInfoDB()
                 firstLine = FALSE;
               }
             }
-            progressBarGamelist->setValue(gameInfoDB.pos());
-            if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 )
+            if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+              progressBarGamelist->setValue(gameInfoDB.pos());
               qApp->processEvents();
+            }
           }
           if ( singleLine.simplified().startsWith("$end") ) {
             // convert "two (or more) empty lines" to a paragraph delimiter
@@ -4339,10 +4344,12 @@ void MainWindow::loadGameInfoDB()
         log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in machine info DB %1").arg(pathToGameInfoDB));
 #endif
       }
-      progressBarGamelist->setValue(gameInfoDB.pos());
-      if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 )
+      if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+        progressBarGamelist->setValue(gameInfoDB.pos());
         qApp->processEvents();
+      }
     }
+    progressBarGamelist->setValue(gameInfoDB.pos());
     gameInfoDB.close();
   } else {
 #if defined(QMC2_EMUTYPE_MAME)
@@ -4428,17 +4435,19 @@ void MainWindow::loadEmuInfoDB()
       QString singleLine = ts.readLine();
       while ( !singleLine.simplified().startsWith("$info=") && !ts.atEnd() ) {
         singleLine = ts.readLine();
-        progressBarGamelist->setValue(emuInfoDB.pos());
-        if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 )
+        if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+          progressBarGamelist->setValue(emuInfoDB.pos());
           qApp->processEvents();
+        }
       }
       if ( singleLine.simplified().startsWith("$info=") ) {
         QStringList gameWords = singleLine.simplified().mid(6).split(",");
         while ( !singleLine.simplified().startsWith("$mame") && !ts.atEnd() ) {
           singleLine = ts.readLine();
-          progressBarGamelist->setValue(emuInfoDB.pos());
-          if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 )
+          if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+            progressBarGamelist->setValue(emuInfoDB.pos());
             qApp->processEvents();
+          }
         }
         if ( singleLine.simplified().startsWith("$mame") ) {
           QString emuInfoString;
@@ -4446,9 +4455,10 @@ void MainWindow::loadEmuInfoDB()
             singleLine = ts.readLine();
             if ( !singleLine.simplified().startsWith("$end") )
               emuInfoString.append(singleLine + "<br>");
-            progressBarGamelist->setValue(emuInfoDB.pos());
-            if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 )
+            if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+              progressBarGamelist->setValue(emuInfoDB.pos());
               qApp->processEvents();
+            }
           }
           if ( singleLine.simplified().startsWith("$end") ) {
             // convert "two (or more) empty lines" to a paragraph delimiter
@@ -4476,10 +4486,12 @@ void MainWindow::loadEmuInfoDB()
       } else if ( !ts.atEnd() ) {
         log(QMC2_LOG_FRONTEND, tr("WARNING: missing '$info' in emulator info DB %1").arg(pathToEmuInfoDB));
       }
-      progressBarGamelist->setValue(emuInfoDB.pos());
-      if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 )
+      if ( recordsProcessed++ % QMC2_INFOSOURCE_RESPONSIVENESS == 0 ) {
+        progressBarGamelist->setValue(emuInfoDB.pos());
         qApp->processEvents();
+      }
     }
+    progressBarGamelist->setValue(emuInfoDB.pos());
     emuInfoDB.close();
   } else
     log(QMC2_LOG_FRONTEND, tr("WARNING: can't open emulator info DB %1").arg(pathToEmuInfoDB));
