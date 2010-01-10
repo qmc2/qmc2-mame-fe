@@ -188,7 +188,7 @@
 #define QMC2_STATEFILTER_RESPONSIVENESS	1000
 
 // responsiveness while reading the XML game/machine list cache
-#define QMC2_XMLCACHE_RESPONSIVENESS	500
+#define QMC2_XMLCACHE_RESPONSIVENESS	100
 
 // responsiveness while reading the ROM state cache
 #define QMC2_ROMCACHE_RESPONSIVENESS	500

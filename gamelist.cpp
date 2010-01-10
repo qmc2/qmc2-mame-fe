@@ -508,6 +508,7 @@ void Gamelist::load()
       qmc2MainWindow->progressBarGamelist->setRange(0, numTotalGames);
       qmc2MainWindow->progressBarGamelist->reset();
       int i = 0;
+      int gameCount = 0;
       QString readBuffer;
       while ( !ts.atEnd() || !readBuffer.isEmpty() ) {
         readBuffer += ts.read(QMC2_FILE_BUFFER_SIZE);
@@ -516,7 +517,6 @@ void Gamelist::load()
         int l, lc = lines.count();
         if ( !endsWithNewLine )
           lc -= 1;
-        int gameCount = 0;
         for (l = 0; l < lc; l++) {
           if ( !lines[l].isEmpty() ) {
             singleXMLLine = lines[l];
@@ -527,14 +527,15 @@ void Gamelist::load()
             gameCount += singleXMLLine.count("<machine name=");
 #endif
           }
-          if ( i++ % QMC2_XMLCACHE_RESPONSIVENESS == 0 )
-            qApp->processEvents();
         }
-        qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + gameCount);
+
         if ( endsWithNewLine )
           readBuffer.clear();
         else
           readBuffer = lines.last();
+
+        if ( i++ % QMC2_XMLCACHE_RESPONSIVENESS == 0 )
+          qmc2MainWindow->progressBarGamelist->setValue(gameCount);
       }
       gamelistBuffer += "\n";
       xmlElapsedTime = xmlElapsedTime.addMSecs(parseTimer.elapsed());
