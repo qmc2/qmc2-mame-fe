@@ -4286,7 +4286,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="370"/>
         <source>Toggle maximization of embedded emulator windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar/desativar maximização das janelas de emuladores incorporados</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="393"/>
@@ -6753,17 +6753,17 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4264"/>
         <source>Game info - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação do jogo - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4266"/>
         <source>Machine info - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação da máquina - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4426"/>
         <source>Emu info - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação do emulador - %p%</translation>
     </message>
 </context>
 <context>
@@ -7736,12 +7736,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="1333"/>
         <source>triggering automatic reload of game list</source>
-        <translation type="unfinished"></translation>
+        <translation>ativando recarregamento automático da lista de jogos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1335"/>
         <source>triggering automatic reload of machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>ativando recarregamento automático da lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1460"/>
