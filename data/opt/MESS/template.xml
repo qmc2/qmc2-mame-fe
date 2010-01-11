@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="MESS" version="0.135" format="0.2.2">
+<template emulator="MESS" version="0.136" format="0.2.2">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
@@ -277,6 +277,12 @@
       <description lang="pl" text="Włącz wielowątkowość; ta opcja włącza renderowanie i rozmywanie w oddzielnym wątku"/>
       <description lang="fr" text="Active le multi-tâche; ceci sépare le rendu et le blitting sur deux tâches séparées"/>
       <description lang="pt" text="Habilitar multi-processamento; isso habilita renderização e blitting em threads separadas"/>
+    </option>
+    <option name="numprocessors" type="string" default="auto">
+      <description lang="us" text="Number of processors (or 'auto'); this overrides the number the system reports"/>
+      <description lang="de" text="Anzahl der Prozessoren (oder 'auto'); überschreibt die vom System ausgelesene Prozessoranzahl"/>
+      <description lang="pl" text="Liczba procesorów (lub 'auto'); nadpisuje liczbę zgłaszaną przez system"/>
+      <description lang="pt" text="Número de processadores (ou 'auto'); sobrescreve o número reportado pelo sistema"/>
     </option>
   </section>
   <section name="rotation">
