@@ -61,6 +61,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			embedderopt.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
+			minizip/zip.c \
 			arcade/arcadeview.cpp \
 			arcade/arcadeitem.cpp \
 			arcade/arcademenuitem.cpp \
@@ -105,6 +106,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \
+			minizip/zip.h \
 			arcade/arcadeview.h \
 			arcade/arcadeitem.h \
 			arcade/arcademenuitem.h \
