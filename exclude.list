@@ -1329,6 +1329,8 @@ qmc2/minizip/.svn/text-base/ioapi.h.svn-base
 qmc2/minizip/.svn/text-base/README.minizip.svn-base
 qmc2/minizip/.svn/text-base/unzip.c.svn-base
 qmc2/minizip/.svn/text-base/unzip.h.svn-base
+qmc2/minizip/.svn/text-base/zip.c.svn-base
+qmc2/minizip/.svn/text-base/zip.h.svn-base
 qmc2/pkg-specs/Debian/.svn
 qmc2/pkg-specs/Debian/.svn/prop-base/rules.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/changelog.svn-base
