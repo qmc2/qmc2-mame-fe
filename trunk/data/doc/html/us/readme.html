@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b14, 02-JAN-2010</h3>
+<h3>README - v0.2.b14, 11-JAN-2010</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -410,13 +410,13 @@ of their parents.</p>
 <p>Since v0.2.b10, QMC2 supports dynamic loading of style sheets from within the GUI.
    It loads the style sheet before the GUI style is set up, so the GUI style may overload parts of the theme with its settings.
    This means that not every combination might look as expected, others may fit better.</p>
-<p>Before you go on please be aware that <b>the GUI may become instable when a style sheet has been activated!</b>
-   We think we fixed most of the issues, but there may still be some we aren't aware of yet.
-   However, we <i>know</i> there are some QtWebKit related crashes that we can't fix ourselves. Update: most of them have been fixed in Qt 4.5.2.</p>
-<p>Compatible style sheets are here for example: <a href="http://qmc2.arcadehits.net/wordpress/style-sheets/" target="_blank">http://qmc2.arcadehits.net/wordpress/style-sheets/</a>.</p>
+<p>When using style sheets, make sure you're using <b>at least Qt 4.5.2</b>! Older versions may crash due to QtWebKit related issues.</p>
+<p>Compatible style sheets can be found here: <a href="http://qmc2.arcadehits.net/wordpress/style-sheets/" target="_blank">http://qmc2.arcadehits.net/wordpress/style-sheets/</a>.</p>
 <p>To install a style sheet, simply unpack the archive somewhere in your file system.
    Then select the style sheet (.qss file) from within QMC2 to activate it.
    See <i>Tools</i> -&gt; <i>Options</i> -&gt; <i>GUI</i> -&gt; <i>Style sheet</i>.</p>
+<p>Note that due to a pending Qt bug (as of Qt 4.5.3 and 4.6.0) we have to change the current working directory of the running application to the style sheet's
+   path to make sure that relative URLs (in the .qss file) are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead!</p>
 <p>Read more about Qt style sheets here: <a href="http://qt.nokia.com/doc/4.5/stylesheet.html" target="_blank">http://qt.nokia.com/doc/4.5/stylesheet.html</a></p>
 <h3><a name="6."></a>6. Short cuts, GUI control keys and joystick support</h3>
 <p>Several functions (or <i>actions</i> in Qt technical jargon :) can be accessed via short cut key-sequences. The following table lists all of them:</p>
@@ -627,11 +627,18 @@ some additional events, but it doesn't hurt.</p>
 <p>Key events for joystick mappings will always be sent to the widget which currently has focus, but <u>only</u> if the widget is one of
 QMC2. All other cases will be ignored, which means that it does not influence the emulator (or vice versa), although QMC2 still recognizes
 the joystick movements, button presses etc... it will just not react on them while the emulator (or any other application) has focus.</p>
-<p>The only exception to this rule is when QMC2 is currently in joystick test- or calibration-mode. However, this can safely be used concurrently to a running emulator which uses the same stick (i. e. for debugging).</p>
+<p>However, there are two exceptions to this rule:</p>
+<ul>
+<li>For embedded emulators, mixing/sharing the joystick control between QMC2 and an emulator is not supported (well, <i>not recommended</i>,
+because there WILL be influences on both sides -- it's virtually impossible to cleanly avoid those focus related issues, because SDLMAME and
+SDLMESS are no XEmbed client applications).</li>
+<li>When QMC2 is in joystick test- or calibration-mode, it will not only receive all joystick events, but also react on them with widget updates.
+This is not really a problem and could be used for debugging purposes, but should normally be avoided because it eats some CPU cycles for no real use.</li>
+</ul>
 <h3><a name="7."></a>7. External tools and tool argument syntax</h3>
 <p>External tools like <i>zip</i> (on all platforms), <i>rm</i> (on UNIX and Mac) or <i>del</i> (on Windows) are used for specific operations which weren't natively built into QMC2.</p>
 <p>For example, to remove obsolete image files from ZIP archives, QMC2 uses an external zip-tool and passes the files to be removed on the argument list when the zip-tool is started. We recommend to use Info-ZIP's zip 2.32+/3.0+ which is what we've tested. But it could be any zip program that supports the deletion of multiple entries from ZIP archives at once.</p>
-<p>Similarly, a second tool is needed for the deletion of files within filesystems (when images are stored directory based, for example). We recommend the common <i>rm</i> command on UNIX and Mac OS X, and the simple shell command <i>del</i> on Windows. This tool also needs to support the deletion of multiple files in one step.</p> 
+<p>Similarly, a second tool is needed for the deletion of files within file systems (when images are stored directory based, that is). We recommend the common <i>rm</i> command on UNIX and Mac OS X, and the simple shell command <i>del</i> on Windows. This tool also needs to support the deletion of multiple files in one step.</p> 
 <p>Tools can have a single function or they can have multiple functions. For each function, an argument list has to be specified which defines the correct syntax for the command. Macros (like <i>$MACRONAME$</i>) can be used as placeholders and will be filled with real data before execution.</p>
 <p>The following macros exist:</p>
 <table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
