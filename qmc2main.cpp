@@ -4024,7 +4024,7 @@ void MainWindow::init()
   qmc2EarlyStartup = FALSE;
   textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
   textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
-  on_actionReload_activated();
+  QTimer::singleShot(0, this, SLOT(on_actionReload_activated()));
 }
 
 void MainWindow::setupStyle(QString styleName)
