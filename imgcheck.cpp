@@ -849,9 +849,8 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
               qmc2MainWindow->progressBarGamelist->setValue(i);
               qApp->processEvents();
             }
-            if ( unzGetCurrentFileInfo(qmc2IconFile, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK ) {
+            if ( unzGetCurrentFileInfo(qmc2IconFile, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK )
               fileList << unzFileName;
-            }
           } while ( unzGoToNextFile(qmc2IconFile) != UNZ_END_OF_LIST_OF_FILE );
         }
         qmc2MainWindow->progressBarGamelist->setRange(0, fileList.count());

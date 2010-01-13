@@ -2468,6 +2468,9 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
     // use cached icon
     if ( !checkOnly )
       item->setIcon(QMC2_GAMELIST_COLUMN_ICON, qmc2IconMap.value(gameName));
+    else
+      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+
     return TRUE;
   } else if ( qmc2IconsPreloaded ) {
     // icon wasn't found
@@ -2475,7 +2478,9 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
       icon = QIcon();
       qmc2IconMap[gameName] = icon;
       item->setIcon(QMC2_GAMELIST_COLUMN_ICON, icon);
-    }
+    } else
+      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+
     return FALSE;
   }
 
@@ -2545,6 +2550,10 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from ZIP archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", iconCount));
       qmc2IconsPreloaded = TRUE;
+
+      if ( checkOnly )
+        qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+
       return loadIcon(gameName, item, checkOnly);
     }
   } else {
@@ -2608,9 +2617,16 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from directory, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", iconCount));
       qmc2IconsPreloaded = TRUE;
+
+      if ( checkOnly )
+        qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+
       return loadIcon(gameName, item, checkOnly);
     }
   }
+
+  if ( checkOnly )
+    qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
 
   return FALSE;
 }
