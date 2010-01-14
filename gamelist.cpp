@@ -1704,7 +1704,9 @@ void Gamelist::filter()
     qmc2MainWindow->progressBarGamelist->setFormat(tr("State filter - %p%"));
   else
     qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+
   qmc2MainWindow->progressBarGamelist->setRange(0, numGames - 1);
+
   bool showC = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowC").toBool();
   bool showM = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowM").toBool();
   bool showI = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowI").toBool();
@@ -1713,9 +1715,10 @@ void Gamelist::filter()
 
   QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
   int i = 0;
+  int filterResponse = numGames / QMC2_STATEFILTER_UPDATES;
+  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(FALSE);
   while ( it.hasNext() && !qmc2StopParser ) {
-    i++;
-    if ( i % QMC2_STATEFILTER_RESPONSIVENESS == 0 || i == numGames - 1 ) {
+    if ( i++ % filterResponse == 0 ) {
       qmc2MainWindow->progressBarGamelist->setValue(i);
       qApp->processEvents();
     }
@@ -1746,7 +1749,9 @@ void Gamelist::filter()
       }
     }
   }
-
+  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+  qmc2MainWindow->progressBarGamelist->setValue(numGames - 1);
+  qApp->processEvents();
   qmc2MainWindow->scrollToCurrentItem();
   enableWidgets(TRUE);
   qmc2FilterActive = FALSE;
