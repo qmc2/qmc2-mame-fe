@@ -23,6 +23,7 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
 
   setupUi(this);
 
+  screenGeometry = qApp->desktop()->screenGeometry(parent);
   Embedder *embedder = (Embedder *)parent;
   snapshotViewer = NULL;
 
@@ -98,10 +99,18 @@ void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
     snapshotViewer = new SnapshotViewer(item, this);
   snapshotViewer->myItem = item;
   QPixmap pm = snapshotMap[item];
-  QRect rect = listWidgetSnapshots->visualItemRect(item);
-  rect.moveTo(listWidgetSnapshots->mapToGlobal(rect.topLeft()));
+  QSize halfSize = pm.size();
+  halfSize.scale(halfSize.width() / 2, halfSize.height() / 2, Qt::KeepAspectRatio);
+  pm = pm.scaled(halfSize, Qt::KeepAspectRatio);
   snapshotViewer->resize(pm.size());
-  snapshotViewer->move(rect.topLeft());
+  QRect rect = listWidgetSnapshots->visualItemRect(item);
+  rect.translate(4, 2);
+  QPoint pos = listWidgetSnapshots->mapToGlobal(rect.topLeft());
+  if ( pos.x() + snapshotViewer->width() > screenGeometry.width() ) {
+    pos = listWidgetSnapshots->mapToGlobal(rect.topRight());
+    pos.setX(pos.x() - snapshotViewer->width());
+  }
+  snapshotViewer->move(pos);
   QPalette pal = snapshotViewer->palette();
   QPainter p;
   p.begin(&pm);
