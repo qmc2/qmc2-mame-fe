@@ -1749,14 +1749,14 @@ void Gamelist::filter()
       }
     }
   }
-  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
   qmc2MainWindow->progressBarGamelist->setValue(numGames - 1);
   qApp->processEvents();
   qmc2MainWindow->scrollToCurrentItem();
-  enableWidgets(TRUE);
+  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
   qmc2FilterActive = FALSE;
   elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (applying ROM state filter, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
+  enableWidgets(TRUE);
   qmc2StatesTogglesEnabled = TRUE;
   QTimer::singleShot(0, qmc2MainWindow->progressBarGamelist, SLOT(reset()));
 }
