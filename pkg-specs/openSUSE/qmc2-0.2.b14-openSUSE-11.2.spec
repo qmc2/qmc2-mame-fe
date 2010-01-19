@@ -28,13 +28,13 @@ mv %{name} sdlmess
 
 %build
 pushd sdlmess
-make QMAKE=%{_prefix}/bin/qmake %{?_smp_mflags} CTIME=0 DISTCFG=1\
+make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0
 popd
 
 pushd sdlmame
-make QMAKE=%{_prefix}/bin/qmake %{?_smp_mflags} CTIME=0 DISTCFG=1\
+make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0
 popd
