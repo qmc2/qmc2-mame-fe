@@ -28,13 +28,13 @@ mv %{name} sdlmess
 
 %build
 pushd sdlmess
-QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
+QMAKE=%{_prefix}/bin/qmake make %{?_smp_mflags} CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMESS
 popd
 
 pushd sdlmame
-QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
+QMAKE=%{_prefix}/bin/qmake make %{?_smp_mflags} CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMAME
 popd
@@ -43,7 +43,7 @@ popd
 rm -rf $RPM_BUILD_ROOT
 
 pushd sdlmess
-QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+QMAKE=%{_prefix}/bin/qmake make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMESS
 popd
@@ -52,7 +52,7 @@ popd
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/qmc2/qmc2.ini
 
 pushd sdlmame
-QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+QMAKE=%{_prefix}/bin/qmake make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMAME
 popd
@@ -82,7 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/qmc2-sdlmess.desktop
 
 %changelog
-* Tue Jan 05 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b14-1
+* Tue Jan 19 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b14-1
 - Updated spec to 0.2.b14 (SVN)
 
 * Sat Jan 02 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b13-1

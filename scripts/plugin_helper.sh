@@ -18,7 +18,7 @@
 # To make this script useful, you'll have to change the default values below for
 # both EMULATOR_PROGRAM and HELPER_PROGRAM.
 #
-# Copyright (C) 2008-2009, R. Reucher
+# Copyright (C) 2008-2010, R. Reucher
 #
 # CHANGES
 # -------
@@ -46,7 +46,7 @@ if [ "$@" = "-noreadconfig -showconfig" ]; then
 	exec $EMULATOR_PROGRAM $@
 else
 	case "$1" in
-		-listxml|-help|-listfull)
+	-listxml|-help|-listfull)
 		exec $EMULATOR_PROGRAM $@
 		;;
 	-rompath)

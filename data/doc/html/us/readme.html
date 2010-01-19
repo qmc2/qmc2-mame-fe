@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b14, 11-JAN-2010</h3>
+<h3>README - v0.2.b14, 19-JAN-2010</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -160,31 +160,34 @@ use with the MAME variant).
   </tbody>
 </table>
 <p><b>Building the QMC2 binary on UNIX and Mac OS X</b></p>
-<p>Uncompress and untar the source distribution archive:
-</p>
-<pre>$ bzip2 -d qmc2-&lt;version&gt;.tar.bz2<br>$ tar xvf qmc2-&lt;version&gt;.tar</pre>
-<p>Make sure that the environment is setup correctly:</p>
-<pre>$ cd qmc2<br>$ export QTDIR=/your/qt4/installation/directory</pre>
-<p>At this point, you may have to create (or adjust) an OS-dependent configuration file, if your
-platform should not be in the list of tested operating environments;
-see <a href="#8.">section 8.</a> for more details.</p>
-<p>Now you are ready to run the build process:</p>
+<p>Uncompress and untar the source distribution archive, then cd into the source directory:</p>
+<pre>$ bzip2 -d qmc2-&lt;version&gt;.tar.bz2<br>$ tar xvf qmc2-&lt;version&gt;.tar<br>$ cd qmc2</pre>
+<p>At this point, you may have to create (or adjust) an OS-dependent configuration file, if your platform should not be in the list of tested operating environments;
+if applicable, see <a href="#8.">section 8.</a> for more details.</p>
+<p>Usually, you should be able to just start the build process by calling <i>make</i>, which (among other things) will call <i>qmake</i> to create a tailored makefile (<i>Makefile.qmake</i>) for the target system:</p>
 <pre>$ make</pre>
-<p>If you have an SMP system, you should better run make in jobserver
-mode, this is completely safe and much faster. For example:</p>
+<p>The default build configuration assumes that the <i>qmake</i> command is part of your search path for executable files (see the PATH environment variable).
+If you want/need to use a different qmake (i.e. to use a separately installed Qt version), you have to specify <i>QMAKE=&lt;path-to-qmake&gt;</i> on the make command line. For example:</p>
+<pre>$ make QMAKE=/usr/local/lib/qt-4.5.3/bin/qmake</pre>
+<p>If you have an SMP system, you may want to run make in job-server mode. This is completely safe and usually much faster:</p>
 <pre>$ make -j3</pre>
-<p>(replace "3" with "#CPUs + 1")</p>
-<p>QMC2 is generally prepared to support multiple emulators. You have to choose which target emulator you're going to use.
-SDLMAME is the default emulator. For other potential emulators, please use the following make command:</p>
+<p><font size="-1">(replace "3" with "#CPUs + 1")</font></p>
+<p>QMC2 is generally prepared to support multiple emulators. However, you have to choose which target emulator you're going to build it for.
+SDLMAME is the default emulator on UNIX and Mac OS X. To build QMC2 for other potential emulators, use the <i>EMULATOR</i> make option:</p>
 <pre>$ make [-jX] EMULATOR=&lt;emulator-name&gt;</pre>
-<p>Joystick support is optional (but enabled by default) and requires SDL - the <i>Simple Directmedia Layer</i>. If you would like to disable it, for example because SDL is not supported on your OS (huh?), you could use the <i>JOYSTICK</i> make command line option to do so:</p>
+<p>Joystick support is optional (but enabled by default) and requires SDL - the <i>Simple Directmedia Layer</i>. If you would like to disable it,
+for example because SDL is not supported on your OS (huh?), you could use the <i>JOYSTICK</i> make command line option to do so:</p>
 <pre>$ make [-jX] JOYSTICK=0</pre>
-<p>The QMC2 build system will automatically enable the use of Qt's Phonon integration for some multimedia functionality (like the built-in audio player). This feature is fully optional though and as it requires a working Phonon environment - especially a working backend API such as <i>gstreamer</i> - you can disable it at compile time. Use the <i>PHONON</i> make command line option to accomplish that:</p>
+<p>The QMC2 build system will automatically enable the use of Qt's Phonon integration for some multimedia functionality (like the built-in audio player).
+This feature is completely optional though, and as it requires a working Phonon environment -- especially a working backend API such as <i>gstreamer</i> --
+you can disable it at compile time. Use the <i>PHONON</i> make command line option to accomplish that:</p>
 <pre>$ make [-jX] PHONON=0</pre>
 <p>Note that nearly all (*) of the supported make command line options can be freely combined when <i>make</i> is called. See</p>
 <pre>$ make help</pre>
 <p>for more information.</p>
 <p>(*) The only exceptions are <i>DISTCC</i> and <i>CCACHE</i> which cannot be enabled at the same time.
+However, on a <i>correctly</i> set up <a href="http://en.opensuse.org/Icecream" target="_blank">icecream</a> cluster, you
+can omit the DISTCC option and thus use CCACHE at the same time.</p>
 <p><b>IMPORTANT NOTE</b></p>
 <p>Pease <b>never ever run <i>qmake</i> standalone</b> -- when qmake is called directly, important settings may be missing in the resulting <i>Makefile.qmake</i> file. If you see strange errors like undeclared MAJOR / MINOR variables, this simply means you've run qmake yourself -- prior to version 0.2.b6 this even destroyed QMC2's <i>Makefile</i>, but that's at least avoided now by forcing qmake's output to be stored as <i>Makefile.qmake</i> in the project definition.<p>
 <p>We've been asked about this so many times that we thought it would be necessary to make it absolutely clear that <b>everything is controlled by make rules and thus you should only call make and nothing else!</b></p>
@@ -208,22 +211,22 @@ become cleaner and more automatic when time permits):</p>
 <ol>
   <li>Install all software requirements mentioned above.</li>
   <li>Extract all contents from the QMC2 source distribution archive into a directory.</li>
-  <li>For correct embedding of <i>static</i> images that QMC2 uses (mostly icons) it's necessary to copy <b>all</b> image files from <i>data/img/classic/</i> to <i>data/img/</i>, overwriting the existing symbolic links (this is due to the fact that we are relinking the images on UNIX and Mac, but on Windows this doesn't work). If you'd like to exchange some images with those in other image sets (see sub-directories below <i>data/img/</i>, i. e. <i>crazy/</i> or <i>crazy-black/</i>), copy these files over the ones that are in <i>data/img/</i> now.</li>
-  <li>Edit the batch script <i>scripts/generate-vcprojects.bat</i> and adjust the path variables at the beginning of the script.</li>
-  <li>Make sure the current working directory is the top-level path of where you extracted the QMC2 sources and run <i>scripts/generate-vcprojects.bat</i>. This will create two additional sub-directories (<i>debug/</i> and <i>release/</i>) and  generate two VC++ project files: <i>qmc2-mame.vcproj</i> and <i>qmc2-mess.vcproj</i>.</li>
-  <li>Open one (or both) project files in Visual C++ 2008 Express (double-clicking the .vcproj files should also work).</li>
+  <li>For correct embedding of <i>static</i> images that QMC2 uses (mostly icons) it's necessary to copy <b>all</b> image files from <i>data\img\classic\</i> to <i>data\img\</i>, overwriting the existing symbolic links (this is due to the fact that we are relinking the images on UNIX and Mac, but on Windows this doesn't work). If you'd like to exchange some images with those in other image sets (see sub-directories below <i>data\img\</i>, i. e. <i>crazy\</i> or <i>crazy-black\</i>), copy these files over the ones that are in <i>data\img\</i> now.</li>
+  <li>Edit the batch script <i>scripts\generate-vcprojects.bat</i> and adjust the path variables at the beginning of the script.</li>
+  <li>Make sure the current working directory is the top-level path of where you extracted the QMC2 sources and run <i>scripts\generate-vcprojects.bat</i>. This will create two additional sub-directories (<i>debug\</i> and <i>release\</i>) and  generate two VC++ project files: <i>qmc2-mame.vcproj</i> and <i>qmc2-mess.vcproj</i>.</li>
+  <li>Open one (or both) of the project files in Visual C++ 2008 Express (double-clicking the .vcproj files should also work).</li>
   <li>Edit the project settings within VC++ to produce <i>Release</i> instead of <i>Debug</i> (default) output.</li>
   <li>Edit the project settings within VC++ to use <i>/SUBSYSTEM:WINDOWS</i> instead of <i>/SUBSYSTEM:CONSOLE</i> (you normally don't want a console window).</li>
-  <li>Select <i>Build</i> from the project's context menu to create the front end executable, which you will find in the <i>release/</i> sub-directory after it has been successfully built.</li>
+  <li>Select <i>Build</i> from the project's context menu to create the front end executable, which you will find in the <i>release\</i> sub-directory after it has been successfully built.</li>
   <li>If you're going to build both variants, don't forget to <i>clean up</i> the project before you start the second build process!</li>
 </ol>
 <p><b>Installation on Windows</b></p>
 <p>Provided that all necessary DLLs are included in paths pointed to by <i>%LIBPATH%</i>, an installation isn't really required on Windows. As on UNIX and Mac, you can simply start the executable
-(<i>release/qmc2-&lt;emulator&gt;.exe</i>), just make sure the current working directory is the top-level QMC2 source path to make it find its data files automatically (most -- if not all -- default paths are relative to the build directory).</p>
+(<i>release\qmc2-&lt;emulator&gt;.exe</i>), just make sure the current working directory is the top-level QMC2 source path to make it find its data files automatically (most -- if not all -- default paths are relative to the build directory).</p>
 <p>If you would like to create binary packages, all you'd have to do is copy the relevant files (binaries/DLLs and data) into a directory which you package as an archive afterwards (using zip or rar, for example).
 The <i>installation</i> at a user's end would then just be to extract this archive. That's it! There's nothing like a script to support you in that, though.</p>
-<p>The <a href="credits.html">QMC2-dev team</a> is releasing Win32 binary packages of this sort since v0.2.b8 (only final versions, though).</p>
-<p>The required DLLs include: <i>phonon4.dll</i>, <i>phonon_backend\phonon_ds94.dll</i>, <i>QtCore4.dll</i>, <i>QtGui4.dll</i>, <i>QtOpenGL4.dll</i>, <i>QtTest4.dll</i>, <i>QtXml4.dll</i>, <i>SDL.dll</i> and <i>zlib1.dll</i>.</p>
+<p>Besides the VC runtime DLLs, the required DLLs include: <i>phonon4.dll</i>, <i>phonon_backend\phonon_ds94.dll</i>, <i>QtCore4.dll</i>, <i>QtGui4.dll</i>, <i>QtOpenGL4.dll</i>, <i>QtTest4.dll</i>, <i>QtXml4.dll</i>, <i>QtNetwork4.dll</i>, <i>QtWebKit4.dll</i>, <i>SDL.dll</i> and <i>zlib1.dll</i>.</p>
+<p>The <a href="credits.html">QMC2-dev team</a> is releasing binary packages for Win32 in exactly this way since v0.2.b8 (only final versions, though). These official packages also include an installer for the VC runtime DLLs (<i>vcredist\vcredist_x86.exe</i>).</p>
 <h3><a name="3."></a>3. Command line arguments and configuration</h3>
 <p>Usage:</p>
 <pre>$ qmc2[-<i>emulator</i>] [qt4_arguments]</pre>
