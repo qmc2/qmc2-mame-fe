@@ -69,6 +69,10 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   
   setupUi(this);
 
+#if QMC2_WIP_CODE != 1
+  groupBoxCHDManager->hide();
+#endif
+
 #if defined(QMC2_SDLMESS)
   treeWidgetChecksums->headerItem()->setText(0, tr("Machine / File"));
   checkBoxSelectGame->setText(tr("Select machine"));
@@ -100,9 +104,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   QFont logFont;
   logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
   textBrowserLog->setFont(logFont);
-
-  // hide yet unsupported features for now...
-  groupBoxExportOptions->setVisible(FALSE);
 
   connect(&animTimer, SIGNAL(timeout()), this, SLOT(animationTimeout()));
 }
