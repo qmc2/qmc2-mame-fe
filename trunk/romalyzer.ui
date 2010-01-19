@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>461</width>
-    <height>368</height>
+    <width>552</width>
+    <height>390</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -150,6 +150,12 @@
        </item>
        <item row="1" column="0">
         <widget class="QLineEdit" name="lineEditSearchString">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Search string</string>
          </property>
@@ -196,386 +202,6 @@
        <string>Settings</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBoxFlags">
-         <property name="title">
-          <string>Analysis / report flags</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <layout class="QGridLayout" name="gridLayout_1">
-            <item row="0" column="0">
-             <widget class="QCheckBox" name="checkBoxAppendReport">
-              <property name="toolTip">
-               <string>If set, analysis output is appended (otherwise the report is cleared before the analysis)</string>
-              </property>
-              <property name="text">
-               <string>Append to report</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QCheckBox" name="checkBoxAutoScroll">
-              <property name="toolTip">
-               <string>Automatically scroll to the currently analyzed game</string>
-              </property>
-              <property name="text">
-               <string>Auto scroll</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QCheckBox" name="checkBoxExpandFiles">
-              <property name="toolTip">
-               <string>Automatically expand file info</string>
-              </property>
-              <property name="text">
-               <string>Expand file info</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QCheckBox" name="checkBoxExpandChecksums">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="toolTip">
-               <string>Automatically expand checksums</string>
-              </property>
-              <property name="text">
-               <string>Expand checksums</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QCheckBox" name="checkBoxCalculateCRC">
-              <property name="toolTip">
-               <string>Calculate CRC-32 checksum</string>
-              </property>
-              <property name="text">
-               <string>Calculate CRC</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="QCheckBox" name="checkBoxCalculateMD5">
-              <property name="toolTip">
-               <string>Calculate MD5 hash</string>
-              </property>
-              <property name="text">
-               <string>Calculate MD5</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QCheckBox" name="checkBoxCalculateSHA1">
-              <property name="toolTip">
-               <string>Calculate SHA1 hash</string>
-              </property>
-              <property name="text">
-               <string>Calculate SHA1</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="3" rowspan="5">
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="labelMaxFileSize">
-              <property name="text">
-               <string>Maximum file size</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QSpinBox" name="spinBoxMaxFileSize">
-              <property name="toolTip">
-               <string>Maximum file size to load, skip file if too big (0 = no limit)</string>
-              </property>
-              <property name="specialValueText">
-               <string>unlimited</string>
-              </property>
-              <property name="suffix">
-               <string> MB</string>
-              </property>
-              <property name="minimum">
-               <number>0</number>
-              </property>
-              <property name="maximum">
-               <number>999999</number>
-              </property>
-              <property name="value">
-               <number>0</number>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="labelMaxLogSize">
-              <property name="text">
-               <string>Maximum log size</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QSpinBox" name="spinBoxMaxLogSize">
-              <property name="toolTip">
-               <string>Maximum number of lines in log (0 = no limit)</string>
-              </property>
-              <property name="specialValueText">
-               <string>unlimited</string>
-              </property>
-              <property name="suffix">
-               <string> lines</string>
-              </property>
-              <property name="minimum">
-               <number>0</number>
-              </property>
-              <property name="maximum">
-               <number>999999</number>
-              </property>
-              <property name="value">
-               <number>0</number>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="2">
-             <widget class="QCheckBox" name="checkBoxSelectGame">
-              <property name="toolTip">
-               <string>Select game in game list if selected in analysis report?</string>
-              </property>
-              <property name="text">
-               <string>Select game</string>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QGroupBox" name="groupBoxExportOptions">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Export options</string>
-         </property>
-         <layout class="QGridLayout">
-          <item row="0" column="0">
-           <widget class="QCheckBox" name="checkBoxExportIncludeEmuInfo">
-            <property name="toolTip">
-             <string>Include emulator information in export</string>
-            </property>
-            <property name="text">
-             <string>Include emulator info</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QCheckBox" name="checkBoxExportIncludeFrontendInfo">
-            <property name="toolTip">
-             <string>Include frontend (QMC2) information in export</string>
-            </property>
-            <property name="text">
-             <string>Include frontend info</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="0" colspan="3">
-           <widget class="QTabWidget" name="tabWidgetFormats">
-            <property name="currentIndex">
-             <number>2</number>
-            </property>
-            <widget class="QWidget" name="tabASCII">
-             <attribute name="title">
-              <string>ASCII</string>
-             </attribute>
-             <layout class="QGridLayout">
-              <item row="0" column="0">
-               <widget class="QLabel" name="labelASCIMaxColumnWidth">
-                <property name="text">
-                 <string>Maximum column width</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QSpinBox" name="spinBoxExportASCIIMaxColumnWidth">
-                <property name="toolTip">
-                 <string>Maximum column width (truncate if larger, 0 = no limit)</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <spacer>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>0</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="labelASCIMaxColumnWidth_2">
-                <property name="text">
-                 <string>Spaces between columns</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="spinBoxExportASCIISpaceBetweenColumns">
-                <property name="toolTip">
-                 <string>Spaces between columns</string>
-                </property>
-                <property name="minimum">
-                 <number>1</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="tabCSV">
-             <attribute name="title">
-              <string>CSV</string>
-             </attribute>
-             <layout class="QGridLayout">
-              <item row="0" column="0">
-               <widget class="QLabel" name="labelASCIMaxColumnWidth_3">
-                <property name="text">
-                 <string>Field separator character</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEditExportCSVFieldSeparator">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="toolTip">
-                 <string>CSV field separator character (default: ;)</string>
-                </property>
-                <property name="text">
-                 <string>;</string>
-                </property>
-                <property name="maxLength">
-                 <number>1</number>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <spacer>
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>0</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="labelASCIMaxColumnWidth_4">
-                <property name="text">
-                 <string>Text delimiter character</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEditExportCSVTextDelimiter">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="toolTip">
-                 <string>CSV text delimiter character (default: &quot;)</string>
-                </property>
-                <property name="text">
-                 <string>&quot;</string>
-                </property>
-                <property name="maxLength">
-                 <number>1</number>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="tabHTML">
-             <attribute name="title">
-              <string>HTML</string>
-             </attribute>
-            </widget>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
        <item row="2" column="0">
         <spacer>
          <property name="orientation">
@@ -588,6 +214,323 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBoxCHDManager">
+         <property name="title">
+          <string>Enable CHD manager (may be slow)</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelCHDManagerExecutableFile">
+            <property name="text">
+             <string>CHD manager (chdman)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEditCHDManagerExecutableFile">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>CHD manager executable file (read and execute)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QToolButton" name="toolButtonBrowseCHDManagerExecutableFile">
+            <property name="toolTip">
+             <string>Browse CHD manager executable file</string>
+            </property>
+            <property name="icon">
+             <iconset resource="qmc2.qrc">
+              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelTemporaryWorkingDirectory">
+            <property name="text">
+             <string>Temporary working directory</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lineEditTemporaryWorkingDirectory">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Directory to use for temporary storage (make sure it has enough room to store the biggest CHDs)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QToolButton" name="toolButtonBrowseTemporaryWorkingDirectory">
+            <property name="toolTip">
+             <string>Browse directory to use for temporary storage</string>
+            </property>
+            <property name="icon">
+             <iconset resource="qmc2.qrc">
+              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QCheckBox" name="checkBoxVerifyCHDs">
+              <property name="toolTip">
+               <string>Verify CHDs through 'chdman -verify'</string>
+              </property>
+              <property name="text">
+               <string>Verify CHDs</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxFixCHDs">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="toolTip">
+               <string>Also try to fix CHDs using 'chdman -verifyfix'</string>
+              </property>
+              <property name="text">
+               <string>Fix CHDs</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxUpdateCHDs">
+              <property name="toolTip">
+               <string>Try to update CHDs if their header indicates an older version ('chdman -update')</string>
+              </property>
+              <property name="text">
+               <string>Update CHDs</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBoxFlags">
+         <property name="title">
+          <string>Analysis / report flags</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_1">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelMaxFileSize">
+            <property name="text">
+             <string>Maximum file size</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="spinBoxMaxFileSize">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Maximum file size to load, skip file if too big (0 = no limit)</string>
+            </property>
+            <property name="specialValueText">
+             <string>unlimited</string>
+            </property>
+            <property name="suffix">
+             <string> MB</string>
+            </property>
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>999999</number>
+            </property>
+            <property name="value">
+             <number>0</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelMaxLogSize">
+            <property name="text">
+             <string>Maximum log size</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QSpinBox" name="spinBoxMaxLogSize">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Maximum number of lines in log (0 = no limit)</string>
+            </property>
+            <property name="specialValueText">
+             <string>unlimited</string>
+            </property>
+            <property name="suffix">
+             <string> lines</string>
+            </property>
+            <property name="minimum">
+             <number>0</number>
+            </property>
+            <property name="maximum">
+             <number>999999</number>
+            </property>
+            <property name="value">
+             <number>0</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="checkBoxAppendReport">
+            <property name="toolTip">
+             <string>If set, analysis output is appended (otherwise the report is cleared before the analysis)</string>
+            </property>
+            <property name="text">
+             <string>Append to report</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="checkBoxAutoScroll">
+            <property name="toolTip">
+             <string>Automatically scroll to the currently analyzed game</string>
+            </property>
+            <property name="text">
+             <string>Auto scroll</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QCheckBox" name="checkBoxCalculateCRC">
+            <property name="toolTip">
+             <string>Calculate CRC-32 checksum</string>
+            </property>
+            <property name="text">
+             <string>Calculate CRC</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QCheckBox" name="checkBoxCalculateMD5">
+            <property name="toolTip">
+             <string>Calculate MD5 hash</string>
+            </property>
+            <property name="text">
+             <string>Calculate MD5</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="checkBoxExpandFiles">
+            <property name="toolTip">
+             <string>Automatically expand file info</string>
+            </property>
+            <property name="text">
+             <string>Expand file info</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QCheckBox" name="checkBoxExpandChecksums">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>Automatically expand checksums</string>
+            </property>
+            <property name="text">
+             <string>Expand checksums</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QCheckBox" name="checkBoxCalculateSHA1">
+            <property name="toolTip">
+             <string>Calculate SHA1 hash</string>
+            </property>
+            <property name="text">
+             <string>Calculate SHA1</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QCheckBox" name="checkBoxSelectGame">
+            <property name="toolTip">
+             <string>Select game in game list if selected in analysis report?</string>
+            </property>
+            <property name="text">
+             <string>Select game</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4" rowspan="3">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -696,23 +639,24 @@
   <tabstop>lineEditSearchString</tabstop>
   <tabstop>pushButtonSearchForward</tabstop>
   <tabstop>pushButtonSearchBackward</tabstop>
+  <tabstop>spinBoxMaxFileSize</tabstop>
+  <tabstop>spinBoxMaxLogSize</tabstop>
   <tabstop>checkBoxAppendReport</tabstop>
   <tabstop>checkBoxAutoScroll</tabstop>
   <tabstop>checkBoxCalculateCRC</tabstop>
+  <tabstop>checkBoxCalculateMD5</tabstop>
   <tabstop>checkBoxExpandFiles</tabstop>
   <tabstop>checkBoxExpandChecksums</tabstop>
   <tabstop>checkBoxCalculateSHA1</tabstop>
-  <tabstop>spinBoxMaxFileSize</tabstop>
-  <tabstop>checkBoxCalculateMD5</tabstop>
-  <tabstop>spinBoxMaxLogSize</tabstop>
   <tabstop>checkBoxSelectGame</tabstop>
-  <tabstop>checkBoxExportIncludeEmuInfo</tabstop>
-  <tabstop>checkBoxExportIncludeFrontendInfo</tabstop>
-  <tabstop>tabWidgetFormats</tabstop>
-  <tabstop>spinBoxExportASCIIMaxColumnWidth</tabstop>
-  <tabstop>spinBoxExportASCIISpaceBetweenColumns</tabstop>
-  <tabstop>lineEditExportCSVFieldSeparator</tabstop>
-  <tabstop>lineEditExportCSVTextDelimiter</tabstop>
+  <tabstop>groupBoxCHDManager</tabstop>
+  <tabstop>lineEditCHDManagerExecutableFile</tabstop>
+  <tabstop>toolButtonBrowseCHDManagerExecutableFile</tabstop>
+  <tabstop>lineEditTemporaryWorkingDirectory</tabstop>
+  <tabstop>toolButtonBrowseTemporaryWorkingDirectory</tabstop>
+  <tabstop>checkBoxVerifyCHDs</tabstop>
+  <tabstop>checkBoxFixCHDs</tabstop>
+  <tabstop>checkBoxUpdateCHDs</tabstop>
   <tabstop>pushButtonClose</tabstop>
  </tabstops>
  <resources>
@@ -727,7 +671,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>84</x>
-     <y>478</y>
+     <y>386</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
@@ -742,12 +686,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>65</x>
-     <y>169</y>
+     <x>87</x>
+     <y>154</y>
     </hint>
     <hint type="destinationlabel">
-     <x>69</x>
-     <y>191</y>
+     <x>213</x>
+     <y>154</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxVerifyCHDs</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxFixCHDs</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>62</x>
+     <y>300</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>168</x>
+     <y>296</y>
     </hint>
    </hints>
   </connection>
