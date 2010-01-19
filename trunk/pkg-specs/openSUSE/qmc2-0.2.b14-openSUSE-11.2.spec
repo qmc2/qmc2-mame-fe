@@ -28,33 +28,33 @@ mv %{name} sdlmess
 
 %build
 pushd sdlmess
-QMAKE=%{_prefix}/bin/qmake make %{?_smp_mflags} CTIME=0 DISTCFG=1\
+make QMAKE=%{_prefix}/bin/qmake %{?_smp_mflags} CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMESS
+    EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0
 popd
 
 pushd sdlmame
-QMAKE=%{_prefix}/bin/qmake make %{?_smp_mflags} CTIME=0 DISTCFG=1\
+make QMAKE=%{_prefix}/bin/qmake %{?_smp_mflags} CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMAME
+    EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0
 popd
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 pushd sdlmess
-QMAKE=%{_prefix}/bin/qmake make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMESS
+    EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0
 popd
 
 # remove the old qmc2.ini since we only need one
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/qmc2/qmc2.ini
 
 pushd sdlmame
-QMAKE=%{_prefix}/bin/qmake make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMAME
+    EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0
 popd
 
 # validate the desktop files
