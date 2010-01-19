@@ -506,7 +506,7 @@ void ROMAlyzer::analyze()
           if ( effectiveFile != QMC2_ROMALYZER_FILE_NOT_FOUND ) {
             if ( zipped )
               childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/zip.png")));
-            else if ( childItem->text(QMC2_ROMALYZER_COLUMN_TYPE) == QObject::tr("CHD") )
+            else if ( childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).split(" ")[0] == QObject::tr("CHD") )
               childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/disk2.png")));
             else
               childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
@@ -722,8 +722,9 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
 
   bool calcMD5 = checkBoxCalculateMD5->isChecked();
   bool calcSHA1 = checkBoxCalculateSHA1->isChecked();
-  bool isCHD = type == tr("CHD");
+  bool isCHD = type.split(" ")[0] == tr("CHD");
   bool sizeLimited = spinBoxMaxFileSize->value() > 0;
+  bool chdManagerEnabled = FALSE;
   QProgressBar *progressWidget;
   QWidget *oldItemWidget;
   qint64 totalSize, myProgress, sizeLeft, len;
@@ -767,66 +768,71 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
           if ( calcMD5 )
             md5Hash.reset();
           if ( isCHD ) {
-            bool chdVersionOkay = TRUE;
             if ( (len = romFile.read(buffer, QMC2_CHD_HEADER_V3_LENGTH)) > 0 ) {
               log(tr("CHD header information:"));
               QByteArray chdTag(buffer + QMC2_CHD_HEADER_TAG_OFFSET, QMC2_CHD_HEADER_TAG_LENGTH);
               log(tr("  tag: %1").arg(chdTag.constData()));
               quint32 chdVersion = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_VERSION_OFFSET);
               log(tr("  version: %1").arg(chdVersion));
-              if ( chdVersion == 3 ) {
-                quint32 chdCompression = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_COMPRESSION_OFFSET);
-                log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
-		quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
-                log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
-                quint32 chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_TOTALHUNKS_OFFSET);
-                log(tr("  number of total hunks: %1").arg(chdTotalHunks));
-                quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_HUNKBYTES_OFFSET);
-                log(tr("  number of bytes per hunk: %1").arg(chdHunkBytes));
-                quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V3_LOGICALBYTES_OFFSET);
-                log(tr("  logical size: %1 bytes (%2)").arg(chdLogicalBytes).arg(humanReadable(chdLogicalBytes)));
-                QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
-                log(tr("  MD5 checksum: %1").arg(QString(md5Data.toHex())));
-                QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
-                log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
-                if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
-                  QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTMD5_OFFSET), QMC2_CHD_HEADER_V3_PARENTMD5_LENGTH);
-                  log(tr("  parent CHD's MD5 checksum: %1").arg(QString(md5Data.toHex())));
-                  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V3_PARENTSHA1_LENGTH);
-                  log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+              myItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, tr("CHD v%1").arg(chdVersion));
+              switch ( chdVersion ) {
+                case 3: {
+                  quint32 chdCompression = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_COMPRESSION_OFFSET);
+                  log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
+                  quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
+                  log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
+                  quint32 chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_TOTALHUNKS_OFFSET);
+                  log(tr("  number of total hunks: %1").arg(chdTotalHunks));
+                  quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_HUNKBYTES_OFFSET);
+                  log(tr("  number of bytes per hunk: %1").arg(chdHunkBytes));
+                  quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V3_LOGICALBYTES_OFFSET);
+                  log(tr("  logical size: %1 bytes (%2)").arg(chdLogicalBytes).arg(humanReadable(chdLogicalBytes)));
+                  QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
+                  log(tr("  MD5 checksum: %1").arg(QString(md5Data.toHex())));
+                  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
+                  log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+                  if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
+                    QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTMD5_OFFSET), QMC2_CHD_HEADER_V3_PARENTMD5_LENGTH);
+                    log(tr("  parent CHD's MD5 checksum: %1").arg(QString(md5Data.toHex())));
+                    QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V3_PARENTSHA1_LENGTH);
+                    log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+                  }
                 }
-              } else if ( chdVersion == 4 ) {
-                quint32 chdCompression = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_COMPRESSION_OFFSET);
-                log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
-		quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
-                log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
-                quint32 chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_TOTALHUNKS_OFFSET);
-                log(tr("  number of total hunks: %1").arg(chdTotalHunks));
-                quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_HUNKBYTES_OFFSET);
-                log(tr("  number of bytes per hunk: %1").arg(chdHunkBytes));
-                quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V4_LOGICALBYTES_OFFSET);
-                log(tr("  logical size: %1 bytes (%2)").arg(chdLogicalBytes).arg(humanReadable(chdLogicalBytes)));
-                QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-                log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
-                if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
-                  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V4_PARENTSHA1_LENGTH);
-                  log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+                break;
+
+              case 4: {
+                  quint32 chdCompression = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_COMPRESSION_OFFSET);
+                  log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
+                  quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
+                  log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
+                  quint32 chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_TOTALHUNKS_OFFSET);
+                  log(tr("  number of total hunks: %1").arg(chdTotalHunks));
+                  quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_HUNKBYTES_OFFSET);
+                  log(tr("  number of bytes per hunk: %1").arg(chdHunkBytes));
+                  quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V4_LOGICALBYTES_OFFSET);
+                  log(tr("  logical size: %1 bytes (%2)").arg(chdLogicalBytes).arg(humanReadable(chdLogicalBytes)));
+                  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+                  log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+                  if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
+                    QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V4_PARENTSHA1_LENGTH);
+                    log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+                  }
+                  QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+                  log(tr("  raw SHA1 checksum: %1").arg(QString(rawsha1Data.toHex())));
                 }
-                QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
-                log(tr("  raw SHA1 checksum: %1").arg(QString(rawsha1Data.toHex())));
-              } else {
-                log(tr("only CHD v3 and v4 supported -- skipped"));
-                effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
-                chdVersionOkay = FALSE;
-                romFile.close();
-                continue;
+                break;
+
+               default:
+                 log(tr("only CHD v3 and v4 headers supported -- rest of header information skipped"));
+                 break;
               }
-              if ( chdVersionOkay ) {
-                if ( calcSHA1 || calcMD5 ) {
+              if ( calcSHA1 || calcMD5 ) {
+                if ( chdManagerEnabled ) {
+                  log(tr("CHD verification through 'chdman' is not yet supported"));
+                } else {
                   switch ( chdVersion ) {
                     case 3:
-                      log(tr("CHD loading not supported for CHD v3, using header checksums instead"));
-                      effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
+                      log(tr("using header checksums for CHD verification"));
                       if ( calcSHA1 ) {
                         QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
                         *sha1Str = QString(sha1Data.toHex());
@@ -838,12 +844,16 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                       break;
 
                     case 4:
-                      log(tr("CHD loading not supported for CHD v4, using header checksums instead"));
-                      effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
+                      log(tr("using header checksums for CHD verification"));
                       if ( calcSHA1 ) {
                         QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
                         *sha1Str = QString(sha1Data.toHex());
                       }
+                      break;
+
+                    default:
+                      log(tr("no header checksums available for CHD verification"));
+                      effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
                       break;
                   }
                 }
