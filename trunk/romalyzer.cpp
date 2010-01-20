@@ -5,6 +5,7 @@
 #include <QScrollBar>
 #include <QTest>
 #include <QMap>
+#include <QFileDialog>
 
 #include "romalyzer.h"
 #include "qmc2main.h"
@@ -69,10 +70,6 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   
   setupUi(this);
 
-#if QMC2_WIP_CODE != 1
-  groupBoxCHDManager->hide();
-#endif
-
 #if defined(QMC2_SDLMESS)
   treeWidgetChecksums->headerItem()->setText(0, tr("Machine / File"));
   checkBoxSelectGame->setText(tr("Select machine"));
@@ -88,6 +85,8 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   }
 
   chdCompressionTypes << tr("none") << tr("zlib") << tr("zlib+") << tr("A/V codec");
+  chdManagerRunning = chdManagerMD5Success = chdManagerSHA1Success = FALSE;
+  chdManagerCurrentHunk = chdManagerTotalHunks = 0;
 
   // adjust icon sizes of buttons
   QFont f;
@@ -217,7 +216,7 @@ void ROMAlyzer::animationTimeout()
       break;
   }
   if ( animSeq > 2 )
-      animSeq = -1;
+    animSeq = -1;
 }
 
 void ROMAlyzer::closeEvent(QCloseEvent *e)
@@ -240,6 +239,12 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame", checkBoxSelectGame->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxFileSize", spinBoxMaxFileSize->value());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", spinBoxMaxLogSize->value());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCHDManager", groupBoxCHDManager->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", lineEditCHDManagerExecutableFile->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", lineEditTemporaryWorkingDirectory->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", checkBoxVerifyCHDs->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", checkBoxFixCHDs->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", checkBoxUpdateCHDs->isChecked());
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/ReportHeaderState", treeWidgetChecksums->header()->saveState());
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/AnalysisTab", tabWidgetAnalysis->currentIndex());
@@ -283,6 +288,12 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   checkBoxSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame", TRUE).toBool());
   spinBoxMaxFileSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxFileSize", 0).toInt());
   spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", 0).toInt());
+  groupBoxCHDManager->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCHDManager", FALSE).toBool());
+  lineEditCHDManagerExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", "").toString());
+  lineEditTemporaryWorkingDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", "").toString());
+  checkBoxVerifyCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", TRUE).toBool());
+  checkBoxFixCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", FALSE).toBool());
+  checkBoxUpdateCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", FALSE).toBool());
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Visible", TRUE);
 
@@ -475,7 +486,7 @@ void ROMAlyzer::analyze()
       int notFoundCounter = 0;
       bool gameOkay = TRUE;
       for (fileCounter = 0; fileCounter < xmlHandler.fileCounter && !qmc2StopParser; fileCounter++) {
-        progressBar->setValue(fileCounter + 1);
+        progressBar->setValue(fileCounter);
         qApp->processEvents();
         QByteArray data;
         bool zipped = FALSE;
@@ -493,6 +504,8 @@ void ROMAlyzer::analyze()
                                                  &zipped, &merged, fileCounter); 
         if ( qmc2StopParser )
           continue;
+
+        progressBar->setValue(fileCounter + 1);
 
         if ( effectiveFile.isEmpty() ) {
           childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
@@ -724,7 +737,10 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
   bool calcSHA1 = checkBoxCalculateSHA1->isChecked();
   bool isCHD = type.split(" ")[0] == tr("CHD");
   bool sizeLimited = spinBoxMaxFileSize->value() > 0;
-  bool chdManagerEnabled = FALSE;
+  bool chdManagerVerifyCHDs = checkBoxVerifyCHDs->isChecked();
+  bool chdManagerFixCHDs = checkBoxFixCHDs->isChecked();
+  bool chdManagerUpdateCHDs = checkBoxUpdateCHDs->isChecked();
+  bool chdManagerEnabled = groupBoxCHDManager->isChecked() && (chdManagerVerifyCHDs || chdManagerUpdateCHDs);
   QProgressBar *progressWidget;
   QWidget *oldItemWidget;
   qint64 totalSize, myProgress, sizeLeft, len;
@@ -755,12 +771,16 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
           log(tr("loading '%1'%2").arg(filePath).arg(*mergeUsed ? tr(" (merged)") : ""));
           progressBarFileIO->setRange(0, totalSize);
           progressBarFileIO->setValue(0);
-          if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD && !isCHD ) {
-            progressWidget = new QProgressBar(0);
-            progressWidget->setRange(0, totalSize);
-            progressWidget->setValue(0);
-            oldItemWidget = treeWidgetChecksums->itemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
-            treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, progressWidget);
+          if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD ) {
+            bool needProgressWidget = TRUE;
+            if ( isCHD && !chdManagerEnabled ) needProgressWidget = FALSE;
+            if ( needProgressWidget ) {
+              progressWidget = new QProgressBar(0);
+              progressWidget->setRange(0, totalSize);
+              progressWidget->setValue(0);
+              oldItemWidget = treeWidgetChecksums->itemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
+              treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, progressWidget);
+            }
           }
           sizeLeft = totalSize;
           if ( calcSHA1 )
@@ -768,6 +788,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
           if ( calcMD5 )
             md5Hash.reset();
           if ( isCHD ) {
+            quint32 chdTotalHunks;
             if ( (len = romFile.read(buffer, QMC2_CHD_HEADER_V3_LENGTH)) > 0 ) {
               log(tr("CHD header information:"));
               QByteArray chdTag(buffer + QMC2_CHD_HEADER_TAG_OFFSET, QMC2_CHD_HEADER_TAG_LENGTH);
@@ -781,7 +802,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                   log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
                   quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
                   log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
-                  quint32 chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_TOTALHUNKS_OFFSET);
+                  chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_TOTALHUNKS_OFFSET);
                   log(tr("  number of total hunks: %1").arg(chdTotalHunks));
                   quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_HUNKBYTES_OFFSET);
                   log(tr("  number of bytes per hunk: %1").arg(chdHunkBytes));
@@ -805,7 +826,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                   log(tr("  compression: %1").arg(chdCompressionTypes[chdCompression]));
                   quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
                   log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
-                  quint32 chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_TOTALHUNKS_OFFSET);
+                  chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_TOTALHUNKS_OFFSET);
                   log(tr("  number of total hunks: %1").arg(chdTotalHunks));
                   quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_HUNKBYTES_OFFSET);
                   log(tr("  number of bytes per hunk: %1").arg(chdHunkBytes));
@@ -826,9 +847,139 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                  log(tr("only CHD v3 and v4 headers supported -- rest of header information skipped"));
                  break;
               }
-              if ( calcSHA1 || calcMD5 ) {
+              if ( calcSHA1 || calcMD5 || chdManagerEnabled ) {
+                QString chdFilePath = fi.absoluteFilePath();
+                QString chdTempFilePath = lineEditTemporaryWorkingDirectory->text() + fi.baseName() + "-chdman-update.chd";
                 if ( chdManagerEnabled ) {
-                  log(tr("CHD verification through 'chdman' is not yet supported"));
+                  romFile.close();
+                  chdManagerCurrentHunk = 0;
+                  chdManagerTotalHunks = chdTotalHunks;
+                  if ( progressWidget ) {
+                    progressWidget->setRange(0, chdTotalHunks);
+                    progressWidget->setValue(0);
+                  }
+                  progressBarFileIO->setRange(0, chdTotalHunks);
+                  progressBarFileIO->setValue(0);
+                  int step;
+                  for (step = 0; step < 2 && !qmc2StopParser; step++) {
+                    QStringList args;
+                    QString oldFormat;
+                    if ( progressWidget ) oldFormat = progressWidget->format();
+                    switch ( step ) {
+                      case 0:
+                        if ( chdManagerVerifyCHDs ) {
+                          progressWidget->setFormat(tr("Verify - %p%"));
+                          if ( chdManagerFixCHDs ) {
+                            log(tr("CHD manager: verifying and fixing CHD"));
+                            args << "-verifyfix" << chdFilePath;
+                          } else {
+                            log(tr("CHD manager: verifying CHD"));
+                            args << "-verify" << chdFilePath;
+                          }
+                        } else
+                          continue;
+                        break;
+
+                      case 1:
+                        if ( chdManagerUpdateCHDs ) {
+                          if ( chdVersion < QMC2_CHD_CURRENT_VERSION ) {
+                            progressWidget->setFormat(tr("Update - %p%"));
+                            log(tr("CHD manager: updating CHD (v%1 -> v%2)").arg(chdVersion).arg(QMC2_CHD_CURRENT_VERSION));
+                            args << "-update" << chdFilePath << chdTempFilePath;
+                          } else if ( !chdManagerVerifyCHDs ) {
+                            switch ( chdVersion ) {
+                              case 3:
+                                log(tr("CHD manager: using header checksums for CHD verification"));
+                                if ( calcSHA1 ) {
+                                  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
+                                  *sha1Str = QString(sha1Data.toHex());
+                                }
+                                if ( calcMD5 ) {
+                                  QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
+                                  *md5Str = QString(md5Data.toHex());
+                                }
+                                break;
+
+                              case 4:
+                                log(tr("CHD manager: using header checksums for CHD verification"));
+                                if ( calcSHA1 ) {
+                                  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+                                  *sha1Str = QString(sha1Data.toHex());
+                                }
+                                break;
+
+                              default:
+                                log(tr("CHD manager: no header checksums available for CHD verification"));
+                                effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
+                                break;
+                            }
+                            continue;
+                          } else
+                            continue;
+                        } else
+                          continue;
+                        break;
+                    }
+                    QString command = lineEditCHDManagerExecutableFile->text();
+                    QProcess *chdManagerProc = new QProcess(this);
+                    connect(chdManagerProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(chdManagerError(QProcess::ProcessError)));
+                    connect(chdManagerProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(chdManagerFinished(int, QProcess::ExitStatus)));
+                    connect(chdManagerProc, SIGNAL(readyReadStandardOutput()), this, SLOT(chdManagerReadyReadStandardOutput()));
+                    connect(chdManagerProc, SIGNAL(readyReadStandardError()), this, SLOT(chdManagerReadyReadStandardError()));
+                    connect(chdManagerProc, SIGNAL(started()), this, SLOT(chdManagerStarted()));
+                    connect(chdManagerProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(chdManagerStateChanged(QProcess::ProcessState)));
+                    chdManagerProc->start(command, args);
+                    chdManagerRunning = TRUE;
+                    chdManagerMD5Success = chdManagerSHA1Success = FALSE;
+                    // wait for CHD manager to finish...
+                    while ( chdManagerRunning && !qmc2StopParser ) {
+                      QTest::qWait(QMC2_ROMALYZER_PAUSE_TIMEOUT);
+                      if ( qmc2StopParser ) {
+                        log(tr("CHD manager: terminating external process"));
+                        chdManagerProc->terminate();
+                        chdManagerProc->waitForFinished();
+                      } else {
+                        if ( progressWidget ) {
+                          if ( chdManagerTotalHunks != progressWidget->maximum() )
+                            progressWidget->setRange(0, chdManagerTotalHunks);
+                          if ( chdManagerCurrentHunk != progressWidget->value() )
+                            progressWidget->setValue(chdManagerCurrentHunk);
+                        }
+                        if ( chdManagerTotalHunks !=  progressBarFileIO->maximum() )
+                          progressBarFileIO->setRange(0, chdManagerTotalHunks);
+                        if ( chdManagerCurrentHunk != progressBarFileIO->value() )
+                          progressBarFileIO->setValue(chdManagerCurrentHunk);
+                      }
+                    }
+                    chdManagerRunning = FALSE;
+                    if ( !qmc2StopParser ) {
+                      if ( chdManagerMD5Success && calcMD5 )
+                        *md5Str = myItem->text(QMC2_ROMALYZER_COLUMN_MD5);
+                      if ( chdManagerSHA1Success && calcSHA1 )
+                        *sha1Str = myItem->text(QMC2_ROMALYZER_COLUMN_SHA1);
+                      if ( step == 1 && (chdManagerMD5Success || chdManagerSHA1Success) ) {
+                        log(tr("CHD manager: replacing CHD"));
+                        progressWidget->setFormat(tr("Copy"));
+                        progressWidget->setRange(-1, -1);
+                        progressWidget->setValue(-1);
+                        QFile::remove(chdFilePath);
+                        if ( QFile::rename(chdTempFilePath, chdFilePath) ) {
+                          log(tr("CHD manager: CHD replaced"));
+                          myItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, tr("CHD v%1").arg(QMC2_CHD_CURRENT_VERSION));
+                        } else
+                          log(tr("CHD manager: FATAL: failed to replace CHD -- updated CHD preserved as '%1', please copy it to '%2' manually!").arg(chdTempFilePath).arg(chdFilePath));
+                      }
+                    }
+                    if ( QFile::exists(chdTempFilePath) ) {
+                      log(tr("CHD manager: cleaning up"));
+                      QFile::remove(chdTempFilePath);
+                    }
+                    if ( progressWidget ) {
+                      progressWidget->setFormat(oldFormat);
+                      progressWidget->reset();
+                    }
+                    progressBarFileIO->reset();
+                  }
                 } else {
                   switch ( chdVersion ) {
                     case 3:
@@ -1117,6 +1268,158 @@ void ROMAlyzer::log(QString message)
 
   textBrowserLog->append(msg);
   qApp->processEvents();
+}
+
+void ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()");
+#endif
+
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD manager executable file"), lineEditCHDManagerExecutableFile->text(), tr("All files (*)"));
+  if ( !s.isNull() )
+    lineEditCHDManagerExecutableFile->setText(s);
+  raise();
+}
+
+void ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose temporary working directory"), lineEditTemporaryWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditTemporaryWorkingDirectory->setText(s);
+  }
+  raise();
+}
+
+void ROMAlyzer::chdManagerStarted()
+{
+  QProcess *proc = (QProcess *)sender();
+
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerStarted(), proc = %1").arg((qulonglong)proc));
+#endif
+
+  chdManagerRunning = TRUE;
+  chdManagerCurrentHunk = 0;
+  log(tr("CHD manager: external process started"));
+}
+
+void ROMAlyzer::chdManagerFinished(int exitCode, QProcess::ExitStatus exitStatus)
+{
+  QProcess *proc = (QProcess *)sender();
+
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2), proc = %3").arg(exitCode).arg((int)exitStatus).arg((qulonglong)proc));
+#endif
+
+  chdManagerRunning = FALSE;
+  QString statusString = tr("unknown");
+  switch ( exitStatus ) {
+    case QProcess::NormalExit: statusString = tr("normal"); break;
+    case QProcess::CrashExit: statusString = tr("crashed"); break;
+  }
+  log(tr("CHD manager: external process finished (exit code = %1, exit status = %2)").arg(exitCode).arg(statusString));
+}
+
+void ROMAlyzer::chdManagerReadyReadStandardOutput()
+{
+  QProcess *proc = (QProcess *)sender();
+
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerReadyReadStandardOutput(), proc = %1").arg((qulonglong)proc));
+#endif
+
+  QString output = proc->readAllStandardOutput();
+  QStringList sl = output.split("\n");
+  foreach (QString s, sl) {
+    s = s.trimmed();
+    if ( !s.isEmpty() ) {
+      log(tr("CHD manager: stdout: %1").arg(s));
+      if ( s.contains("MD5 verification successful") )
+        chdManagerMD5Success = TRUE;
+      if ( s.contains("SHA1 verification successful") )
+        chdManagerSHA1Success = TRUE;
+    }
+  }
+}
+
+void ROMAlyzer::chdManagerReadyReadStandardError()
+{
+  QProcess *proc = (QProcess *)sender();
+
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerReadyReadStandardError(), proc = %1").arg((qulonglong)proc));
+#endif
+
+  QString output = proc->readAllStandardError();
+  QStringList sl = output.split("\n");
+  foreach (QString s, sl) {
+    s = s.trimmed();
+    if ( !s.isEmpty() ) {
+      log(tr("CHD manager: stderr: %1").arg(s));
+      if ( s.contains(QRegExp("hunk \\d+/\\d+\\.\\.\\.")) ) {
+        QRegExp rx("(\\d+)/(\\d+)");
+        int pos = rx.indexIn(s);
+        if ( pos > -1 ) {
+          chdManagerCurrentHunk = rx.cap(1).toInt();
+          chdManagerTotalHunks = rx.cap(2).toInt();
+        }
+      } else {
+        if ( s.contains("Input MD5 verified") )
+          chdManagerMD5Success = TRUE;
+        if ( s.contains("Input SHA1 verified") )
+          chdManagerSHA1Success = TRUE;
+      }
+    }
+  }
+}
+
+void ROMAlyzer::chdManagerError(QProcess::ProcessError processError)
+{
+  QProcess *proc = (QProcess *)sender();
+
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerError(QProcess::ProcessError processError = %1), proc = %2").arg((int)processError).arg((qulonglong)proc));
+#endif
+
+  switch ( processError ) {
+    case QProcess::FailedToStart:
+      log(tr("CHD manager: failed to start"));
+      break;
+
+    case QProcess::Crashed:
+      log(tr("CHD manager: crashed"));
+      break;
+
+    case QProcess::WriteError:
+      log(tr("CHD manager: write error"));
+      break;
+
+    case QProcess::ReadError:
+      log(tr("CHD manager: read error"));
+      break;
+
+    default:
+      log(tr("CHD manager: unknown error %1").arg(processError));
+      break;
+  }
+
+  chdManagerRunning = FALSE;
+}
+
+void ROMAlyzer::chdManagerStateChanged(QProcess::ProcessState processState)
+{
+  QProcess *proc = (QProcess *)sender();
+
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerStateChanged(QProcess::ProcessState processState = %1), proc = %2").arg((int)processState).arg((qulonglong)proc));
+#endif
+
 }
 
 ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, bool scroll)

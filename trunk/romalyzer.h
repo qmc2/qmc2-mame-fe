@@ -7,6 +7,8 @@
 #include <QStringList>
 #include <QTimer>
 #include <QTime>
+#include <QProcess>
+
 #include "ui_romalyzer.h"
 
 #define QMC2_ROMALYZER_COLUMN_GAME		0
@@ -36,6 +38,7 @@
 #define QMC2_ROMALYZER_FILE_BUFFER_SIZE		QMC2_FILE_BUFFER_SIZE
 #define QMC2_ROMALYZER_PROGRESS_THRESHOLD	QMC2_ONE_MEGABYTE
 
+#define QMC2_CHD_CURRENT_VERSION		4
 #define QMC2_CHD_HEADER_TAG_OFFSET		0
 #define QMC2_CHD_HEADER_TAG_LENGTH		8
 #define QMC2_CHD_HEADER_VERSION_OFFSET		12
@@ -106,6 +109,11 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     int animSeq;
     QStringList romPaths;
     QStringList chdCompressionTypes;
+    bool chdManagerRunning;
+    bool chdManagerMD5Success;
+    bool chdManagerSHA1Success;
+    quint64 chdManagerCurrentHunk;
+    quint64 chdManagerTotalHunks;
 
     ROMAlyzer(QWidget *);
     ~ROMAlyzer();
@@ -127,12 +135,22 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void on_lineEditGames_textChanged(QString);
     void on_treeWidgetChecksums_itemSelectionChanged();
     void on_spinBoxMaxLogSize_valueChanged(int);
+    void on_toolButtonBrowseCHDManagerExecutableFile_clicked();
+    void on_toolButtonBrowseTemporaryWorkingDirectory_clicked();
 
     // miscellaneous slots
     void animationTimeout();
     void analyze();
     void selectItem(QString);
     void enableSearchEdit() { lineEditSearchString->setEnabled(TRUE); }
+
+    // CHD manager process control
+    void chdManagerStarted();
+    void chdManagerFinished(int, QProcess::ExitStatus);
+    void chdManagerReadyReadStandardOutput();
+    void chdManagerReadyReadStandardError();
+    void chdManagerError(QProcess::ProcessError);
+    void chdManagerStateChanged(QProcess::ProcessState);
 
   protected:
     void closeEvent(QCloseEvent *);
