@@ -868,7 +868,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                     switch ( step ) {
                       case 0:
                         if ( chdManagerVerifyCHDs ) {
-                          progressWidget->setFormat(tr("Verify - %p%"));
+                          if ( progressWidget ) progressWidget->setFormat(tr("Verify - %p%"));
                           if ( chdManagerFixCHDs ) {
                             log(tr("CHD manager: verifying and fixing CHD"));
                             args << "-verifyfix" << chdFilePath;
@@ -883,7 +883,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                       case 1:
                         if ( chdManagerUpdateCHDs ) {
                           if ( chdVersion < QMC2_CHD_CURRENT_VERSION ) {
-                            progressWidget->setFormat(tr("Update - %p%"));
+                            if ( progressWidget ) progressWidget->setFormat(tr("Update - %p%"));
                             log(tr("CHD manager: updating CHD (v%1 -> v%2)").arg(chdVersion).arg(QMC2_CHD_CURRENT_VERSION));
                             args << "-update" << chdFilePath << chdTempFilePath;
                           } else if ( !chdManagerVerifyCHDs ) {
@@ -959,9 +959,11 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                         *sha1Str = myItem->text(QMC2_ROMALYZER_COLUMN_SHA1);
                       if ( step == 1 && (chdManagerMD5Success || chdManagerSHA1Success) ) {
                         log(tr("CHD manager: replacing CHD"));
-                        progressWidget->setFormat(tr("Copy"));
-                        progressWidget->setRange(-1, -1);
-                        progressWidget->setValue(-1);
+                        if ( progressWidget ) {
+                          progressWidget->setFormat(tr("Copy"));
+                          progressWidget->setRange(-1, -1);
+                          progressWidget->setValue(-1);
+                        }
                         QFile::remove(chdFilePath);
                         if ( QFile::rename(chdTempFilePath, chdFilePath) ) {
                           log(tr("CHD manager: CHD replaced"));
