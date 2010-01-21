@@ -1,61 +1,99 @@
 # >>> START OF MAKE OPTIONS <<<
+#
+# You can either edit the default values below or (recommended) specify them on
+# the 'make' command line (non-string options could alternatively be defined as
+# environment variables).
+#
+# Please don't change anything below the line containing END OF MAKE OPTIONS!
+#
 
-# You can either edit the defaults below, specify them on the make command line,
-# or pre-define them as environment variables.
-
-# EMULATOR: specifies the target emulator to be used (important: you need to
-#           build each target separately; do a "make clean" between the builds)
-#           - UNIX and Mac: SDLMAME or SDLMESS
-#           - Windows: MAME, MAMEUIFX32 or MESS
+# >>> EMULATOR <<<
+#
+# Specifies the target emulator to be used (important: you need to build QMC2
+# for each target emulator separately; do a "make clean" between the builds!)
+#
+# Supported emulators:
+#
+# UNIX and Mac OS X .... SDLMAME or SDLMESS
+# Windows .............. MAME, MAMEUIFX32 or MESS
+#
 ifndef EMULATOR
 EMULATOR = SDLMAME
 endif
 
-# PREFIX: prefix directory for installation target
+# >>> PREFIX <<<
+#
+# The prefix directory used by the 'make install' target.
+#
 ifndef PREFIX
 PREFIX = /usr/local
 endif
 
-# QUIET: compile and link in "quiet mode" (1) or show all g++ command lines (0)?
+# >>> QUIET <<<
+#
+# Compile and link QMC2 'quietly' (1) or show all command lines completely (0)?
+#
+# See also PRETTY below!
+#
 ifndef QUIET
 QUIET = 0
 endif
 
-# CTIME: measure compilation time? 1 means yes, 0 means no.
+# >>> CTIME <<<
+#
+# Decides if compilation time is measured (1) or not (0).
+#
+# Of course, you could as well use 'time make ...' :).
+#
 ifndef CTIME
 CTIME = 0
 endif
 
-# DEBUG: choose debugging options
-#        0 = generate no debugging code at all (default)
-#        1 = add symbols for debugger, show compiler warnings
-#        2 = add symbols for debugger, show compiler warnings and include QMC2's
-#            debugging code (not recommended)
+# >>> DEBUG <<<
+#
+# Choose debugging options:
+#
+# 0 .... Generate no debugging code at all (default, recommended)
+# 1 .... Add symbols for the debugger, show compiler warnings (ok)
+# 2 .... Add symbols for the debugger, show compiler warnings and include QMC2's
+#        debugging code (not recommended, only for developers or if explicitly
+#        asked to do so by a developer)
+#
 ifndef DEBUG
 DEBUG = 0
 endif
 
-# ARCH: target system's OS name - this should normally not be changed, only if
-#       you want to compile a specific OS's code branch or if the "uname"
-#       command doesn't tell the correct OS name of your system (see also OSREL
-#       and MACHINE)
+# >>> ARCH <<<
+#
+# Target system's OS name -- this should generally not be changed, only if you
+# want to compile a specific OS's code branch or if the 'uname' command doesn't
+# tell the correct OS name of your system (see also OSREL and MACHINE!).
+#
 ifndef ARCH
 ARCH = $(shell uname)
 endif
 
-# OSREL: target system's OS-release - please only change this if you know what
-#        you are doing :).
+# >>> OSREL <<<
+#
+# Target system's OS-release -- please only change this if you really know what
+# you're doing :)!
+#
 ifndef OSREL
 OSREL = $(shell uname -r)
 endif
 
-# MACHINE: target system's machine type - please only change this if you know
-#          what you are doing :).
+# >>> MACHINE <<<
+#
+# Target system's machine/CPU type -- please only change this if you really know
+# what you're doing :)!
 ifndef MACHINE
 MACHINE = $(shell uname -m)
 endif
 
-# DATADIR: data directory
+# >>> DATADIR <<<
+#
+# The data directory used by the 'make install' target.
+#
 ifndef DATADIR
 ifeq '$(ARCH)' 'Darwin'
 DATADIR = /Library/Application Support
@@ -64,7 +102,10 @@ DATADIR = $(PREFIX)/share
 endif
 endif
 
-# SYSCONFDIR: system configuration directory
+# >>> SYSCONFDIR <<<
+#
+# The system configuration directory used by the 'make install' target.
+#
 ifndef SYSCONFDIR
 ifeq '$(ARCH)' 'Darwin'
 SYSCONFDIR = /Library/Application Support
@@ -73,7 +114,11 @@ SYSCONFDIR = /etc
 endif
 endif
 
-# BINDIR: directory containing binaries/application bundles
+# >>> BINDIR <<<
+#
+# The directory where binaries / application bundles will be installed to (used
+# by the 'make install' target).
+#
 ifndef BINDIR
 ifeq '$(ARCH)' 'Darwin'
 BINDIR = /Applications
@@ -82,155 +127,269 @@ BINDIR = $(PREFIX)/bin
 endif
 endif
 
-# OSCFG: use global OS build configuration (1, default) or not (0)
+# >>> OSCFG <<<
+#
+# Use the global OS build configuration file (1) or not (0)?
+#
 ifndef OSCFG
 OSCFG = 1
 endif
 
-# DISTCFG: use distribution-specific build configuration (1) or just the OS
-#          name (0, default)
+# >>> DISTCFG <<<
+#
+# Use the distribution-specific build configuration (1) or not (0)?
+#
 ifndef DISTCFG
 DISTCFG = 0
 endif
 
-# IMGSET: select image set (default "classic", see data/img/<image-set-dirs>/
-#         for available image sets)
+# >>> IMGSET <<<
+#
+# Select the image set to be used (see data/img/<image-set-dirs>/).
+#
 ifndef IMGSET
 IMGSET = classic
 endif
 
-# JOYSTICK: compile with joystick support (1, default) or without (0)
-#           - requires SDL (Simple Directmedia Layer) development library
+# >>> JOYSTICK <<<
+#
+# Enabled joystick support (1) or not (0).
+#
+# Requires the SDL (Simple Directmedia Layer) development library!
+#
 ifndef JOYSTICK
 JOYSTICK = 1
 endif
 
-# OPENGL: enable OpenGL features (1) or use standard features only (0, default)
-#         - requires OpenGL if enabled (hardware acceleration recommended)
-#         - currently only used to enable drawing of images through OpenGL
+# >>> OPENGL <<<
+#
+# Enable OpenGL based features (1) or use standard features only (0).
+#
+# Requires OpenGL if enabled (hardware acceleration recommended).
+#
+# Note that this is currently only used to enable drawing of images through
+# OpenGL, which may actually be a bit slower than the standard 2D paint engine.
+# This was just added as an experiment -- though a successful one :).
+#
 ifndef OPENGL
 OPENGL = 0
 endif
 
-# ARCADE_OPENGL: enable (1, default) or disable (0) OpenGL support for arcade
-#                mode; if disabled, the pure software renderer will be used
-#                - requires OpenGL if enabled (HW acceleration is recommended)
+# >>> ARCADE_OPENGL <<<
+#
+# Enable (1) or disable (0) OpenGL support for the 'arcade mode'.
+#
+# Requires OpenGL if enabled (hardware acceleration recommended).
+#
+# In contrast to the other OpenGL features (see OPENGL above), this is really
+# useful! If you disable it, the pure software renderer will be used (which is
+# remarkably slower).
+#
+# Note that the arcade mode is still a 'work in progress' (see WIP below) and is
+# thus disabled by default. So if you don't enable WIP as well, this option will
+# be ignored.
+#
 ifndef ARCADE_OPENGL
 ARCADE_OPENGL = 1
 endif
 
-# WIP: enable (1) or disable (0, default) unfinished code (work in progress)
+# >>> WIP <<<
+#
+# Enable (1) or disable (0) unfinished 'work in progress' code.
+#
+# Note that WIP code may be far from complete, may not work as expected, can
+# crash easily or probably will not even compile correctly. We try to make WIP
+# code 'as clean as possible', but there's no guarantee for nothing :).
+#
 ifndef WIP
 WIP = 0
 endif
 
-# PHONON: enable Phonon based features (1, default) or leave them out of the
-#         build (0)
-#         - requires libphonon and a working backend (such as gstreamer)
-#         - currently only used by the built-in audio player
+# >>> PHONON <<<
+#
+# Enable Phonon based features (1) or leave them out of the build (0).
+#
+# Requires libphonon and a working Phonon backend (such as gstreamer).
+#
+# Phonon is currently only used by the built-in MP3 player.
+#
 ifndef PHONON
 PHONON = 1
 endif
 
-# CCACHE: enable (1) or disable (0, default) the use of the ccache compiler
-#         cache utility (see also CCACHE_CC and CCACHE_CXX in arch/*.cfg)
+# >>> CCACHE <<<
+#
+# Enable (1) or disable (0) the use of the 'ccache' compiler cache utility.
+#
+# See also CCACHE_CC and CCACHE_CXX in arch/*.cfg!
+#
 ifndef CCACHE
 CCACHE = 0
 endif
 
-# DISTCC: enable (1) or disable (0, default) the use of a distributed compiler
-# (such as distcc or icecc; see also DISTCC_CC and DISTCC_CXX in arch/*.cfg)
+# >>> DISTCC <<<
+#
+# Enable (1) or disable (0) the use of a distributed compiler.
+#
+# Distributed compilers we've tested successfully are 'distcc' and 'icecc'.
+#
+# See also DISTCC_CC and DISTCC_CXX in arch/*.cfg!
+#
 ifndef DISTCC
 DISTCC = 0
 endif
 
-# PRETTY: enable (1, default) or disable (0) pretty compilation output
+# >>> PRETTY <<<
+#
+# Enable (1) or disable (0) 'pretty' compilation output.
+#
 ifndef PRETTY
 PRETTY = 1
 endif
 
-# SDLLOCAL: enable (1) or disable (0, default) the use of a "local" SDL library
-#           (make sure to also set SDLLOCAL_INC and SDLLOCAL_LIB if you enable
-#           this option!)
+# >>> SDLLOCAL <<<
+#
+# Enable (1) or disable (0) the use of a 'local' SDL library installation.
+#
+# Make sure to also set SDLLOCAL_INC and SDLLOCAL_LIB if you enable this!
+#
 ifndef SDLLOCAL
 SDLLOCAL = 0
 endif
 
-# SDLLOCAL_INC: base include directory of the "local" SDL headers
+# >>> SDLLOCAL_INC <<<
+#
+# Base include directory of the 'local' SDL headers.
+#
 ifndef SDLLOCAL_INC
 SDLLOCAL_INC = /usr/local/include
 endif
 
-# SDLLOCAL_LIB: base library directory of the "local" SDL library
+# >>> SDLLOCAL_LIB <<<
+#
+# Base library directory of the 'local' SDL installation.
+#
 ifndef SDLLOCAL_LIB
 SDLLOCAL_LIB = /usr/local/lib
 endif
 
-# QT_TRANSLATION: only used by the install target ("make install"):
-#                 if set to "qmc2" (default), the Qt translation files which are
-#                 redistributed with QMC2 will be installed and used; if you
-#                 would like to use different "qt_<lang>.qm" files, set this to
-#                 the absolute path where those translation files are installed
-#                 (without the trailing "/") - the install target will then
-#                 create symbolic links instead of installing files
+# >>> QT_TRANSLATION <<<
+#
+# This is used by the 'make install' target to define the Qt translations QMC2
+# should use.
+#
+# If this is set to 'qmc2' (the default), the Qt translation files which are
+# redistributed with QMC2 will be installed and used. If you would like to use
+# different 'qt_<lang>.qm' files, set this to the absolute path where those
+# translation files are installed (without the trailing '/') -- the install
+# target will then create symbolic links instead of installing files.
+#
 ifndef QT_TRANSLATION
 QT_TRANSLATION = qmc2
 endif
 
-# VARIANT_LAUNCHER: enable (1, default) or disable (0) QMC2 variant launching
+# >>> VARIANT_LAUNCHER <<<
+#
+# Enable (1) or disable (0) QMC2's 'variant launching'.
+#
 ifndef VARIANT_LAUNCHER
 VARIANT_LAUNCHER = 1
 endif
 
-# AUDIT_WILDCARD: use wildcards on full audit calls (i.e. "mame -listxml '*'");
-#                 set to 1 to enable "audit wildcard", 0 (default) disables it
+# >>> AUDIT_WILDCARD <<<
+#
+# Use wildcards (1) on 'full audit' calls (i.e. 'mame -listxml *') or not (0)?
+#
+# You normally don't need to enable this! It has been added for a single user's
+# strangely behaving system where this fixed his issues :)...
+#
 ifndef AUDIT_WILDCARD
 AUDIT_WILDCARD = 0
 endif
 
-# BROWSER_EXTRAS: enable (1) or disable (0, default) extra browser features such
-#                 as QtWebKit's "Web Inspector" (caution: these features may be
-#                 buggy!)
+# >>> BROWSER_EXTRAS <<<
+#
+# Enable (1) or disable (0) extra browser features such as QtWebKit's 'Web
+# Inspector'.
+#
+# Caution: these features may be buggy and can easily make QMC2 crash!
+#
 ifndef BROWSER_EXTRAS
 BROWSER_EXTRAS = 0
 endif
 
-# BROWSER_PLUGINS: enable (1) or disable (0, default) plugins in the web browser
+# >>> BROWSER_PLUGINS <<<
+#
+# Enable (1) or disable (0) Netscape/Mozilla plugins in the 'MiniWebBrowser'?
+#
+# Caution: browser plugins may be buggy and can cause crashes!
+#
 ifndef BROWSER_PLUGINS
 BROWSER_PLUGINS = 0
 endif
 
-# WC_COMPRESSION: enable (1, default) or disable (0) web-cache compression when
-#                 storing HTML data to disk (i.e. used by the MAWS web-cache --
-#                 has nothing to do with a toilet :)
-#                 - this feature doesn't work on Windows yet and will be
-#                   disabled automatically on that platform
+# >>> WC_COMPRESSION <<<
+#
+# Enable (1) or disable (0) web-cache compression when storing HTML pages on
+# disk?
+#
+# This is used by the MAWS web-cache -- and has nothing to do with a toilet :).
+#
+# Note that web-cache compression doesn't work on Windows yet and will thus be
+# automatically disabled on that platform, no matter what value this option has
+# been set to.
+#
 ifndef WC_COMPRESSION
 WC_COMPRESSION = 1
 endif
 
-# FADER_SPEED: select the audio fading speed (0: fastest/instantly, >0: slower,
-#              default: 500)
+# >>> FADER_SPEED <<<
+#
+# Select the audio fading speed of the MP3 player.
+#
+# FADER_SPEED = 0 .... Pause/resume instantly (fastest)
+# FADER_SPEED > 0 .... Fading pause/resume (slower)
+#
 ifndef FADER_SPEED
 FADER_SPEED = 500
 endif
 
-# CC_FLAGS: additional flags passed to the C compiler
+# >>> CC_FLAGS <<<
+#
+# Specify additional flags passed to the C compiler.
+#
 ifndef CC_FLAGS
 CC_FLAGS =
 endif
 
-# CXX_FLAGS: additional flags passed to the C++ compiler
+# >>> CXX_FLAGS <<<
+#
+# Specify additional flags passed to the C++ compiler.
+#
 ifndef CXX_FLAGS
 CXX_FLAGS =
 endif
 
-# XWININFO: command used to run "xwininfo"
+# >>> XWININFO <<<
+#
+# Specify the command to be used to run 'xwininfo'.
+#
+# This is used by the emulator embedder which is only available on Qt platforms
+# that utilize X11.
+#
 ifndef XWININFO
 XWININFO = xwininfo
 endif
 
 # >>> END OF MAKE OPTIONS <<<
+
+# project name
+PROJECT = qmc2
+
+# version
+VERSION_MAJOR = 0
+VERSION_MINOR = 2
+VERSION_BETA  = 14
 
 # emulator target fallback for mameuifx32
 ifeq '$(EMULATOR)' 'MAMEUIFX32'
@@ -253,29 +412,19 @@ include $(DISTCFGFILE)
 endif
 endif
 
-# QMAKEV: qmake version (major release)
-ifndef QMAKEV
-QMAKEV = $(shell echo `$(QMAKE) -v` | $(AWK) '{print $$3}' | $(COLRM) 2)
-endif
-
-# version
-VERSION_MAJOR = 0
-VERSION_MINOR = 2
-VERSION_BETA  = 14
-
-# project name
-PROJECT = qmc2
-
 # global QMC2 configuration file
 GLOBAL_QMC2_INI=$(shell echo $(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)/$(PROJECT).ini | $(SED) -e "s*//*/*g")
 
 # global data directory
 GLOBAL_DATADIR=$(shell echo $(DESTDIR)/$(DATADIR) | $(SED) -e "s*//*/*g")
 
-# check Qt version
+# qmake version check (major release)
+ifndef QMAKEV
+QMAKEV = $(shell echo `$(QMAKE) -v` | $(AWK) '{print $$3}' | $(COLRM) 2)
+endif
 ifeq '$(QMAKEV)' '2'
 
-# for "make dist" and "make snap" target(s)
+# version strings used by 'make dist' and 'make snap'
 ifneq '$(VERSION_BETA)' '0'
 VERSION     = $(VERSION_MAJOR).$(VERSION_MINOR).b$(VERSION_BETA)
 VERSIONDEFS = MAJOR=$(VERSION_MAJOR) MINOR=$(VERSION_MINOR) BETA=$(VERSION_BETA)
@@ -284,10 +433,11 @@ VERSION     = $(VERSION_MAJOR).$(VERSION_MINOR)
 VERSIONDEFS = MAJOR=$(VERSION_MAJOR) MINOR=$(VERSION_MINOR)
 endif
 
-# pre-compiler definitions (passed to qmake)
-# This needs to work around Qmake's issues with spaces in values
+# work around for qmake's issues with spaces in values
 blank =
 space = $(blank) $(blank)
+
+# pre-compiler definitions (passed to qmake)
 DEFINES = DEFINES+=$(VERSIONDEFS) TARGET_OS_NAME=$(OSNAME) TARGET_OS_RELEASE=$(OSREL) TARGET_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_ARCADE_OPENGL=$(ARCADE_OPENGL) QMC2_WIP_CODE=$(WIP) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED) QMC2_XWININFO=$(XWININFO)
 
 # process make options
@@ -334,10 +484,10 @@ endif
 # setup TARGET's application icon and generic name
 ifeq '$(EMULATOR)' 'SDLMESS'
 EMUICO = mess.png
-GENERICNAME= M.E.S.S. Catalog / Launcher II
+GENERICNAME = M.E.S.S. Catalog / Launcher II
 else
 EMUICO = mame.png
-GENERICNAME= M.A.M.E. Catalog / Launcher II
+GENERICNAME = M.A.M.E. Catalog / Launcher II
 endif
 
 TARGET_NAME = $(PROJECT)-$(shell echo $(EMULATOR) | $(TR) [A-Z] [a-z])
@@ -378,9 +528,9 @@ ifeq '$(DISTCC)' '1'
 QMAKE_CXX_COMPILER += QMAKE_CXX=$(DISTCC_CXX) QMAKE_CC=$(DISTCC_CC)
 endif
 else
-$(warning WARNING: you can't mix DISTCC and CCACHE, sorry -- disabling both)
-CCACHE=0
-DISTCC=0
+$(warning ### WARNING: you can't mix DISTCC and CCACHE -- disabling both ###)
+CCACHE = 0
+DISTCC = 0
 endif
 
 # C++ flags
