@@ -108,6 +108,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     bool audioFastForwarding;
     bool audioFastBackwarding;
     bool audioSkippingTracks;
+    Phonon::State audioState;
 #endif
 #if defined(QMC2_EMUTYPE_MAME)
     AutoPopupToolButton *toolButtonMAWSQuickLinks;

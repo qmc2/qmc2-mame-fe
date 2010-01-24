@@ -893,6 +893,7 @@ MainWindow::MainWindow(QWidget *parent)
   tabWidgetLogsAndEmulators->removeTab(tabWidgetLogsAndEmulators->indexOf(tabAudioPlayer));
   menu_Tools->removeAction(menuAudio_player->menuAction());
 #else
+  audioState = Phonon::StoppedState;
   phononAudioPlayer = new Phonon::MediaObject(this);
   phononAudioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
   Phonon::createPath(phononAudioPlayer, phononAudioOutput);
@@ -922,10 +923,11 @@ MainWindow::MainWindow(QWidget *parent)
   connect(phononAudioPlayer, SIGNAL(finished()), this, SLOT(audioFinished()));
   connect(phononAudioPlayer, SIGNAL(metaDataChanged()), this, SLOT(audioMetaDataChanged()));
   audioFastForwarding = audioFastBackwarding = audioSkippingTracks = FALSE;
-  if ( checkBoxAudioPlayOnStart->isChecked() )
-    on_actionAudioPlayTrack_triggered();
-  else
-    on_actionAudioStopTrack_triggered();
+  if ( checkBoxAudioPlayOnStart->isChecked() ) {
+    audioState = Phonon::PlayingState;
+    QTimer::singleShot(0, this, SLOT(on_actionAudioPlayTrack_triggered()));
+  } else
+    QTimer::singleShot(0, this, SLOT(on_actionAudioStopTrack_triggered()));
 #endif
 
   // download manager widget
@@ -4532,7 +4534,12 @@ void MainWindow::on_actionAudioPreviousTrack_triggered(bool checked)
   audioSkippingTracks = TRUE;
 
   if ( listWidgetAudioPlaylist->count() > 0 ) {
-    QListWidgetItem *ci = listWidgetAudioPlaylist->currentItem();
+    QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->selectedItems();
+    QListWidgetItem *ci = NULL;
+    if ( sl.count() > 0 )
+      ci = sl[0];
+    if ( !ci )
+      ci = listWidgetAudioPlaylist->currentItem();
     int row;
     if ( ci )
       row = listWidgetAudioPlaylist->currentRow() - 1;
@@ -4543,14 +4550,13 @@ void MainWindow::on_actionAudioPreviousTrack_triggered(bool checked)
     listWidgetAudioPlaylist->clearSelection();
     listWidgetAudioPlaylist->setCurrentRow(row);
     ci = listWidgetAudioPlaylist->currentItem();
-    Phonon::State audioState = phononAudioPlayer->state();
     switch ( audioState ) {
       case Phonon::PlayingState:
-        on_actionAudioPlayTrack_triggered();
+        QTimer::singleShot(0, this, SLOT(on_actionAudioPlayTrack_triggered()));
         break;
 
       default:
-        on_actionAudioStopTrack_triggered();
+	QTimer::singleShot(0, this, SLOT(on_actionAudioStopTrack_triggered()));
         break;
     }
   }
@@ -4577,7 +4583,12 @@ void MainWindow::on_actionAudioNextTrack_triggered(bool checked)
   audioSkippingTracks = TRUE;
 
   if ( listWidgetAudioPlaylist->count() > 0 ) {
-    QListWidgetItem *ci = listWidgetAudioPlaylist->currentItem();
+    QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->selectedItems();
+    QListWidgetItem *ci = NULL;
+    if ( sl.count() > 0 )
+      ci = sl[0];  
+    if ( !ci )
+      ci = listWidgetAudioPlaylist->currentItem();
     int row;
     if ( ci )
       row = listWidgetAudioPlaylist->currentRow() + 1;
@@ -4588,14 +4599,13 @@ void MainWindow::on_actionAudioNextTrack_triggered(bool checked)
     listWidgetAudioPlaylist->clearSelection();
     listWidgetAudioPlaylist->setCurrentRow(row);
     ci = listWidgetAudioPlaylist->currentItem();
-    Phonon::State audioState = phononAudioPlayer->state();
     switch ( audioState ) {
       case Phonon::PlayingState:
-        on_actionAudioPlayTrack_triggered();
+        QTimer::singleShot(0, this, SLOT(on_actionAudioPlayTrack_triggered()));
         break;
 
       default:
-        on_actionAudioStopTrack_triggered();
+	QTimer::singleShot(0, this, SLOT(on_actionAudioStopTrack_triggered()));
         break;
     }
   }
@@ -4694,9 +4704,9 @@ void MainWindow::on_actionAudioStopTrack_triggered(bool checked)
   actionAudioPauseTrack->setChecked(FALSE);
   actionAudioPlayTrack->setChecked(FALSE);
   audioFastForwarding = audioFastBackwarding = audioSkippingTracks = FALSE;
-
   phononAudioPlayer->stop();
   progressBarAudioProgress->reset();
+  audioState = Phonon::StoppedState;
 }
 
 void MainWindow::on_actionAudioPauseTrack_triggered(bool checked)
@@ -4709,11 +4719,11 @@ void MainWindow::on_actionAudioPauseTrack_triggered(bool checked)
   actionAudioStopTrack->setChecked(FALSE);
   actionAudioPlayTrack->setChecked(FALSE);
   audioFastForwarding = audioFastBackwarding = audioSkippingTracks = FALSE;
-
-  if ( checkBoxAudioFade->isChecked() && phononAudioPlayer->state() == Phonon::PlayingState )
+  if ( checkBoxAudioFade->isChecked() && audioState == Phonon::PlayingState )
     audioFade(QMC2_AUDIOPLAYER_FADER_PAUSE);
   else
     phononAudioPlayer->pause();
+  audioState = Phonon::PausedState;
 }
 
 void MainWindow::on_actionAudioPlayTrack_triggered(bool checked)
@@ -4723,10 +4733,8 @@ void MainWindow::on_actionAudioPlayTrack_triggered(bool checked)
 #endif
 
   static QString audioPlayerCurrentTrack;
-
   audioFastForwarding = audioFastBackwarding = FALSE;
-
-  if ( phononAudioPlayer->state() == Phonon::PausedState ) {
+  if ( audioState == Phonon::PausedState ) {
     if ( qmc2ProcessManager->sentPlaySignal && qmc2ProcessManager->procMap.count() > 0 ) {
       qmc2ProcessManager->musicWasPlaying = TRUE;
     } else if ( checkBoxAudioFade->isChecked() ) {
@@ -4738,10 +4746,16 @@ void MainWindow::on_actionAudioPlayTrack_triggered(bool checked)
       actionAudioPauseTrack->setChecked(FALSE);
     }
     qmc2ProcessManager->sentPlaySignal = FALSE;
+    audioState = Phonon::PlayingState;
   } else if ( listWidgetAudioPlaylist->count() > 0 ) {
-    QListWidgetItem *ci = listWidgetAudioPlaylist->currentItem();
-    if ( !ci ) listWidgetAudioPlaylist->setCurrentRow(0);
-    ci = listWidgetAudioPlaylist->currentItem();
+    QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->selectedItems();
+    QListWidgetItem *ci = NULL;
+    if ( sl.count() > 0 )
+      ci = sl[0];
+    if ( !ci ) {
+      listWidgetAudioPlaylist->setCurrentRow(0);
+      ci = listWidgetAudioPlaylist->currentItem();
+    }
     if ( ci->text() != audioPlayerCurrentTrack ) {
       progressBarAudioProgress->reset();
       audioPlayerCurrentTrack = ci->text();
@@ -4752,6 +4766,7 @@ void MainWindow::on_actionAudioPlayTrack_triggered(bool checked)
     actionAudioPlayTrack->setChecked(TRUE);
     actionAudioStopTrack->setChecked(FALSE);
     actionAudioPauseTrack->setChecked(FALSE);
+    audioState = Phonon::PlayingState;
   } else
     on_actionAudioStopTrack_triggered(TRUE);
 }
@@ -4792,15 +4807,16 @@ void MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged()
   else
     toolButtonAudioRemoveTracks->setEnabled(FALSE);
 
-  if ( sl.count() == 1 && !audioSkippingTracks && !qmc2EarlyStartup ) {
-    Phonon::State audioState = phononAudioPlayer->state();
+  audioFastForwarding = audioFastBackwarding = audioSkippingTracks = FALSE;
+
+  if ( sl.count() > 0 && !audioSkippingTracks && !qmc2EarlyStartup ) {
     switch ( audioState ) {
       case Phonon::PlayingState:
-        on_actionAudioPlayTrack_triggered();
+        QTimer::singleShot(0, this, SLOT(on_actionAudioPlayTrack_triggered()));
         break;
 
       default:
-        on_actionAudioStopTrack_triggered();
+	QTimer::singleShot(0, this, SLOT(on_actionAudioStopTrack_triggered()));
         break;
     }
   }
@@ -4842,9 +4858,9 @@ void MainWindow::audioFinished()
   static QStringList shuffleSelectionList;
 
   if ( audioFastBackwarding )
-    on_actionAudioPreviousTrack_triggered();
+    QTimer::singleShot(0, this, SLOT(on_actionAudioPreviousTrack_triggered()));
   else if ( audioFastForwarding )
-    on_actionAudioNextTrack_triggered();
+    QTimer::singleShot(0, this, SLOT(on_actionAudioNextTrack_triggered()));
   else if ( checkBoxAudioShuffle->isChecked() ) {
     if ( shuffleSelectionList.count() >= listWidgetAudioPlaylist->count() )
       shuffleSelectionList.clear();
@@ -4855,9 +4871,10 @@ void MainWindow::audioFinished()
     }
     shuffleSelectionList << listWidgetAudioPlaylist->item(newTrackIndex)->text();
     listWidgetAudioPlaylist->setCurrentRow(newTrackIndex);
-    on_actionAudioPlayTrack_triggered();
-  } else
-    on_actionAudioNextTrack_triggered();
+    QTimer::singleShot(0, this, SLOT(on_actionAudioPlayTrack_triggered()));
+  } else {
+    QTimer::singleShot(0, this, SLOT(on_actionAudioNextTrack_triggered()));
+  }
 }
 
 void MainWindow::audioTick(qint64 newTime)
@@ -4910,6 +4927,7 @@ void MainWindow::audioFade(int faderFunction)
         QTest::qSleep(1);
       }
       phononAudioPlayer->pause();
+      audioState = Phonon::PausedState;
       qApp->processEvents();
       actionAudioPauseTrack->setEnabled(TRUE);
       toolButtonAudioPauseTrack->setEnabled(TRUE);
@@ -4932,6 +4950,7 @@ void MainWindow::audioFade(int faderFunction)
       toolButtonAudioStopTrack->setEnabled(FALSE);
       qApp->processEvents();
       phononAudioPlayer->play();
+      audioState = Phonon::PlayingState;
       updateCounter = 0;
       for (vol = 0; vol <= currentVolume; vol += volStep) {
         updateCounter++;
