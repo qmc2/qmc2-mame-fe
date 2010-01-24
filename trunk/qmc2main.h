@@ -127,6 +127,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     static QColor qmc2StatusColorBlue;
     static QColor qmc2StatusColorGrey;
 
+    int sortCriteriaLogicalIndex();
+
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 

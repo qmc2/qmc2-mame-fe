@@ -1136,8 +1136,8 @@ void Options::on_pushButtonApply_clicked()
         }
       }
       qApp->processEvents();
-      qmc2MainWindow->treeWidgetGamelist->sortItems(0, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetHierarchy->sortItems(0, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+      qmc2MainWindow->treeWidgetHierarchy->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
       QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
     }
   }

@@ -6140,6 +6140,31 @@ void MainWindow::on_memoryUpdateTimer_timeout()
 #endif
 }
 
+int MainWindow::sortCriteriaLogicalIndex() {
+  switch ( qmc2SortCriteria ) {
+    case QMC2_SORT_BY_DESCRIPTION:
+    case QMC2_SORT_BY_ROM_STATE:
+      return QMC2_GAMELIST_COLUMN_GAME;
+      break;
+
+    case QMC2_SORT_BY_YEAR:
+      return QMC2_GAMELIST_COLUMN_YEAR;
+      break;
+
+    case QMC2_SORT_BY_MANUFACTURER:
+      return QMC2_GAMELIST_COLUMN_MANU;
+      break;
+
+    case QMC2_SORT_BY_NAME:
+      return QMC2_GAMELIST_COLUMN_NAME;
+      break;
+
+    default:
+      return QMC2_GAMELIST_COLUMN_GAME;
+      break;
+  }
+}
+
 void myQtMessageHandler(QtMsgType type, const char *msg)
 {
   if ( qmc2SuppressQtMessages )
