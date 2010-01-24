@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.2.b14, 10-JAN-2010</h3>
+<h3>FAQ - v0.2.b14, 24-JAN-2010</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (Linux) distribution comes with an older version of Qt. What should I do about that?</a></div></p>
@@ -45,6 +45,7 @@
 <p><div class="menuitem"><a href="#A3.3">Q3.3: QMC2 crashes with a segmentation fault when I click the browse buttons of certain file settings (options dialog)</a></div></p>
 <p><div class="menuitem"><a href="#A3.4">Q3.4: What does this <i>QtWarningMsg: QPixmap::scaled: Pixmap is a null pixmap</i> message in the front end log mean?</a></div></p>
 <p><div class="menuitem"><a href="#A3.5">Q3.5: On PPC Linux all embedded images / icons are <i>bluish</i></a></div></p>
+<p><div class="menuitem"><a href="#A3.6">Q3.6: When KDE4's effects are enabled (compositing manager), QMC2 'flickers' when in full screen</a></div></p>
 <hr>
 <h3>Answers</h3>
 <p><a name="A1.1"></a><b>Q1.1: QMC2 needs Qt 4.5+, but my (Linux) distribution comes with an older version of Qt. What should I do about that?</b></p>
@@ -449,5 +450,14 @@ A temporary fix for Qt 4.3.2 is available from the QMC2 home page (<a href="http
 <p><a name="A3.5"></a><b>Q3.5: On PPC Linux all embedded images / icons are <i>bluish</i></b></p>
 <p>This is a known bug of Qt on that platform. Please upgrade to Qt 4.5.2 (or above) where it has been fixed!</p>
 <p>See also: <a href="http://qt.nokia.com/developer/task-tracker/index_html?method=entry&id=196152" target="_blank">http://qt.nokia.com/developer/task-tracker/index_html?method=entry&amp;id=196152</a></p>
+<hr>
+<p><a name="A3.6"></a><b>Q3.6: When KDE4's effects are enabled (compositing manager), QMC2 'flickers' when in full screen</b></p>
+<p>Change your <i>kwinrc</i> and disable <i>UnredirectFullscreen</i>:</p>
+<pre>$ vi ~/.kde4/share/config/kwinrc
+...
+[Compositing]
+UnredirectFullscreen=false
+...</pre>
+<p>See also: <a href="http://staff.blog.ui.ac.id/jp/2009/06/10/flicker-on-compositing-enabled-kde4/" target="_blank">http://staff.blog.ui.ac.id/jp/2009/06/10/flicker-on-compositing-enabled-kde4/</a></p>
 </body>
 </html>
