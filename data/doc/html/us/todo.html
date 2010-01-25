@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.2.b14, 20-JAN-2010</h3>
+<h3>TODO - v0.2.b14, 25-JAN-2010</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>Certain GUI styles may cause display problems for the emulator configuration widgets</li>
@@ -38,6 +38,7 @@
   <li>Fix web-cache compression on Windows (currently using no compression) -- bug tracker ID #4</li>
   <li>Add a standalone or built-in template translator</li>
   <li>Add support for even more game/machine images (hiscore, howto, ...)</li>
+  <li>Consider to migrate all data currently stored in 'flat files' (caches) to a database -- SQLite would be used per default (built-in), but basically it should be possible to use any DBMS that's supported by Qt -- also, this should reduce the overall memory footprint and would allow us to easily store user data as well (comments, rankings, etc.)</li>
   <li>Allow changing the layout of the main widget's sub-sections (game/machine lists, game/machine details and logs/controls)</li>
   <li>Improve the image checker to also support all additional image data (consider a complete rewrite of the image checker)</li>
   <li>Add a <i>demo mode</i> for MAME variants which runs random games for a selectable period of time -- requested by some cabinet users :)</li>
@@ -53,7 +54,6 @@
   <li>Add support for preview movies</li>
   <li>Provide freely configurable additional information sources (with individual markup and formatting settings), not only <i>history.dat</i> &amp; <i>mameinfo.dat</i></li>
   <li>Create an improved setup wizard with QWizard</li>
-  <li>Add support for an emulator benchmark feature, probably including a server / DB application to store &amp; compare benchmarks from different users and systems</li>
   <li>Add a preview image / movie generator</li>
   <li>Consider adding support for nplayers and catver files for MAME (+ support sorting by game type)</li>
 </ul>
