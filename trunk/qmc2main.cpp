@@ -2973,6 +2973,7 @@ void MainWindow::action_embedEmulator_triggered()
       gameList << item->text(QMC2_EMUCONTROL_COLUMN_GAME);
     }
 
+  bool success = TRUE;
   foreach(QString gameName, gameList) {
     if ( gameName.isEmpty() )
       continue;
@@ -3053,8 +3054,26 @@ void MainWindow::action_embedEmulator_triggered()
       tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
       tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
       embedder->setFocus();
-    } else
+    } else {
+      success = FALSE;
       log(QMC2_LOG_FRONTEND, tr("WARNING: no matching emulator window for '%1' found").arg(gameName));
+    }
+  }
+
+  if ( !success ) {
+    switch ( QMessageBox::question(this, tr("Embedding failed"),
+                                   tr("Couldn't find the window ID of one or more\nemulator(s) within a reasonable timeout.\n\nRetry embedding?"),
+                                   QMessageBox::Yes, QMessageBox::No, QMessageBox::NoButton) ) {
+      case QMessageBox::No:
+        break;
+
+      case QMessageBox::Yes:
+        QTimer::singleShot(0, this, SLOT(action_embedEmulator_triggered()));
+        break;
+
+      default:
+        break;
+    }
   }
 }
 
