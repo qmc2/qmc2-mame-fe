@@ -1,5 +1,6 @@
 greaterThan(QT_MAJOR_VERSION, 3) {
 	greaterThan(QT_MINOR_VERSION, 4) {
+		# general project settings
 		isEmpty(TARGET):TARGET = qmc2
 		CONFIG += qtestlib
 		QT += xml webkit network
@@ -124,6 +125,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			data/lng/qmc2_pt.ts
 		RESOURCES += qmc2.qrc
 		QMAKE_MAKEFILE = Makefile.qmake
+
 		# produce pretty (silent) compile output
 		greaterThan(QMC2_PRETTY_COMPILE, 0) { 
 			!isEmpty(QMAKE_CXX):QMAKE_CXX = @echo [C++ ] $< && $$QMAKE_CXX
@@ -133,6 +135,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			!isEmpty(QMAKE_UIC):QMAKE_UIC = @echo [UIC ] $< && $$QMAKE_UIC
 			!isEmpty(QMAKE_RCC):QMAKE_RCC = @echo [RCC ] $< && $$QMAKE_RCC
 		}
+
+		# platform specific stuff
 		macx {
 			OBJECTIVE_SOURCES += SDLMain_tmpl.m
 			HEADERS += SDLMain_tmpl.h

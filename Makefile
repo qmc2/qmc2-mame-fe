@@ -381,6 +381,20 @@ ifndef XWININFO
 XWININFO = xwininfo
 endif
 
+# >>> DATABASE <<<
+#
+# Enable (1) or disable (0) the use of any optional features that make use of
+# relational databases. Supported DB types include those that Qt supports in its
+# SQL module.
+#
+# Currently the only thing that will be enabled by this option is Qt's SQL
+# module itself, but nothing useful will be accomplished yet by setting this
+# option to 1 -- it's reserved for later use!
+#
+ifndef DATABASE
+DATABASE = 0
+endif
+
 # >>> END OF MAKE OPTIONS <<<
 
 # project name
@@ -466,6 +480,10 @@ ifeq '$(WC_COMPRESSION)' '1'
 DEFINES += QMC2_WC_COMPRESSION_ENABLED
 endif
 
+ifeq '$(DATABASE)' '1'
+DEFINES += QMC2_DATABASE_ENABLED
+endif
+
 # setup SDL library and include paths
 ifdef SDL_LIBS
 undef SDL_LIBS
@@ -513,6 +531,10 @@ endif
 
 ifeq '$(PHONON)' '1'
 QT_CONF += QT+=phonon
+endif
+
+ifeq '$(DATABASE)' '1'
+QT_CONF += QT+=sql
 endif
 
 # setup use of CCACHE or DISTCC (if applicable)
@@ -790,6 +812,7 @@ config:
 	@echo "COLRM=<colrm>          UNIX command colrm                          $(COLRM)"
 	@echo "CP=<cp>                UNIX command cp                             $(CP)"
 	@echo "CTIME=<ctime-measure>  Measure compilation & linkage time (0, 1)   $(CTIME)"
+	@echo "DATABASE=<database>    Enable database features (0, 1)             $(DATABASE)"
 	@echo "DATADIR=<data-dir>     Data directory for installation             $(DATADIR)"
 	@echo "DATE=<date>            UNIX command date                           $(DATE)"
 	@echo "DEBUG=<debug-level>    Choose debugging level (0, 1, 2)            $(DEBUG)"
