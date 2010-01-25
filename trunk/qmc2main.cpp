@@ -4101,6 +4101,7 @@ void MainWindow::setupStyleSheet(QString styleSheetName)
         log(QMC2_LOG_FRONTEND, tr("loading style sheet '%1'").arg(styleSheetName));
       QString currentDir = QDir::currentPath();
       QDir::setCurrent(QFileInfo(f).absolutePath());
+      qApp->setStyleSheet("");
       qApp->setStyleSheet(f.readAll());
       f.close();
       // FIXME: "cd -" won't work because of relative URLs
