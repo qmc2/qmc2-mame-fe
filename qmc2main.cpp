@@ -1183,6 +1183,13 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_hSplitter_splitterMoved(int pos = %1, int index = %2)").arg(pos).arg(index));
 #endif
 
+#if defined(Q_WS_X11)
+  if ( tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || (tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX && !toolButtonEmbedderMaximizeToggle->isChecked()) )
+    hSplitterSizes = hSplitter->sizes();
+  else if ( tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX && toolButtonEmbedderMaximizeToggle->isChecked() )
+    toolButtonEmbedderMaximizeToggle->setChecked(FALSE);
+#endif
+
   // show / hide game status indicator
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
