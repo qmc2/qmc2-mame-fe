@@ -326,6 +326,7 @@ MainWindow::MainWindow(QWidget *parent)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::MainWindow(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
 #endif
 
+  screenGeometry = qApp->desktop()->screenGeometry(parent);
   qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), TRUE);
 
   // remember the default style
@@ -2950,7 +2951,7 @@ void MainWindow::on_treeWidgetEmulators_customContextMenuRequested(const QPoint 
   QTreeWidgetItem *item = treeWidgetEmulators->itemAt(p);
   if ( item ) {
     treeWidgetEmulators->setItemSelected(item, TRUE);
-    qmc2EmulatorMenu->move(treeWidgetEmulators->viewport()->mapToGlobal(p));
+    qmc2EmulatorMenu->move(adjustedWidgetPosition(treeWidgetEmulators->viewport()->mapToGlobal(p), qmc2EmulatorMenu));
     qmc2EmulatorMenu->show();
   }
 }
@@ -3322,7 +3323,7 @@ void MainWindow::on_listWidgetSearch_customContextMenuRequested(const QPoint &p)
   QListWidgetItem *item = listWidgetSearch->itemAt(p);
   if ( item ) {
     listWidgetSearch->setItemSelected(item, TRUE);
-    qmc2SearchMenu->move(listWidgetSearch->viewport()->mapToGlobal(p));
+    qmc2SearchMenu->move(adjustedWidgetPosition(listWidgetSearch->viewport()->mapToGlobal(p), qmc2SearchMenu));
     qmc2SearchMenu->show();
   }
 }
@@ -3336,7 +3337,7 @@ void MainWindow::on_listWidgetFavorites_customContextMenuRequested(const QPoint 
   QListWidgetItem *item = listWidgetFavorites->itemAt(p);
   if ( item ) {
     listWidgetFavorites->setItemSelected(item, TRUE);
-    qmc2FavoritesMenu->move(listWidgetFavorites->viewport()->mapToGlobal(p));
+    qmc2FavoritesMenu->move(adjustedWidgetPosition(listWidgetFavorites->viewport()->mapToGlobal(p), qmc2FavoritesMenu));
     qmc2FavoritesMenu->show();
   }
 }
@@ -3350,7 +3351,7 @@ void MainWindow::on_listWidgetPlayed_customContextMenuRequested(const QPoint &p)
   QListWidgetItem *item = listWidgetPlayed->itemAt(p);
   if ( item ) {
     listWidgetPlayed->setItemSelected(item, TRUE);
-    qmc2PlayedMenu->move(listWidgetPlayed->viewport()->mapToGlobal(p));
+    qmc2PlayedMenu->move(adjustedWidgetPosition(listWidgetPlayed->viewport()->mapToGlobal(p), qmc2PlayedMenu));
     qmc2PlayedMenu->show();
   }
 }
@@ -3368,7 +3369,7 @@ void MainWindow::on_treeWidgetGamelist_customContextMenuRequested(const QPoint &
     return;
   if ( item ) {
     treeWidgetGamelist->setItemSelected(item, TRUE);
-    qmc2GameMenu->move(treeWidgetGamelist->viewport()->mapToGlobal(p));
+    qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetGamelist->viewport()->mapToGlobal(p), qmc2GameMenu));
     qmc2GameMenu->show();
   }
 }
@@ -3386,7 +3387,7 @@ void MainWindow::on_treeWidgetHierarchy_customContextMenuRequested(const QPoint 
     return;
   if ( item ) {
     treeWidgetHierarchy->setItemSelected(item, TRUE);
-    qmc2GameMenu->move(treeWidgetHierarchy->viewport()->mapToGlobal(p));
+    qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetHierarchy->viewport()->mapToGlobal(p), qmc2GameMenu));
     qmc2GameMenu->show();
   }
 }
@@ -5414,7 +5415,7 @@ void MainWindow::on_tabWidgetGamelist_customContextMenuRequested(const QPoint &p
 #endif
 
   if ( !tabWidgetGamelist->currentWidget()->childrenRect().contains(p, TRUE) ) {
-    menuTabWidgetGamelist->move(tabWidgetGamelist->mapToGlobal(p));
+    menuTabWidgetGamelist->move(adjustedWidgetPosition(tabWidgetGamelist->mapToGlobal(p), menuTabWidgetGamelist));
     menuTabWidgetGamelist->show();
   }
 }
@@ -5495,11 +5496,11 @@ void MainWindow::on_tabWidgetGameDetail_customContextMenuRequested(const QPoint 
 
   if ( tabWidgetGameDetail->currentWidget() ) {
     if ( !tabWidgetGameDetail->currentWidget()->childrenRect().contains(p, TRUE) ) {
-      menuTabWidgetGameDetail->move(tabWidgetGameDetail->mapToGlobal(p));
+      menuTabWidgetGameDetail->move(adjustedWidgetPosition(tabWidgetGameDetail->mapToGlobal(p), menuTabWidgetGameDetail));
       menuTabWidgetGameDetail->show();
     }
   } else {
-    menuTabWidgetGameDetail->move(tabWidgetGameDetail->mapToGlobal(p));
+    menuTabWidgetGameDetail->move(adjustedWidgetPosition(tabWidgetGameDetail->mapToGlobal(p), menuTabWidgetGameDetail));
     menuTabWidgetGameDetail->show();
   }
 }
@@ -5555,7 +5556,7 @@ void MainWindow::on_tabWidgetLogsAndEmulators_customContextMenuRequested(const Q
 #endif
 
   if ( !tabWidgetLogsAndEmulators->currentWidget()->childrenRect().contains(p, TRUE) ) {
-    menuTabWidgetLogsAndEmulators->move(tabWidgetLogsAndEmulators->mapToGlobal(p));
+    menuTabWidgetLogsAndEmulators->move(adjustedWidgetPosition(tabWidgetLogsAndEmulators->mapToGlobal(p), menuTabWidgetLogsAndEmulators));
     menuTabWidgetLogsAndEmulators->show();
   }
 }
@@ -6209,6 +6210,26 @@ int MainWindow::sortCriteriaLogicalIndex() {
       return QMC2_GAMELIST_COLUMN_GAME;
       break;
   }
+}
+
+QPoint MainWindow::adjustedWidgetPosition(QPoint p, QWidget *w)
+{
+  static QPoint adjustedPosition;
+  static QList<QWidget *> adjustedWidgets;
+
+  if ( !adjustedWidgets.contains(w) ) {
+    w->move(p);
+    w->show();
+    adjustedWidgets.append(w);
+  }
+
+  adjustedPosition = p;
+  if ( p.x() + w->width() > screenGeometry.width() )
+    adjustedPosition.setX(screenGeometry.width() - w->width());
+  if ( p.y() + w->height() > screenGeometry.height() )
+    adjustedPosition.setY(screenGeometry.height() - w->height());
+
+  return adjustedPosition;
 }
 
 void myQtMessageHandler(QtMsgType type, const char *msg)

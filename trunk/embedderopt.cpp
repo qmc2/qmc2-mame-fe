@@ -23,7 +23,6 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
 
   setupUi(this);
 
-  screenGeometry = qApp->desktop()->screenGeometry(parent);
   Embedder *embedder = (Embedder *)parent;
   snapshotViewer = NULL;
 
@@ -106,7 +105,7 @@ void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
   QRect rect = listWidgetSnapshots->visualItemRect(item);
   rect.translate(4, 2);
   QPoint pos = listWidgetSnapshots->mapToGlobal(rect.topLeft());
-  if ( pos.x() + snapshotViewer->width() > screenGeometry.width() ) {
+  if ( pos.x() + snapshotViewer->width() > qmc2MainWindow->screenGeometry.width() ) {
     pos = listWidgetSnapshots->mapToGlobal(rect.topRight());
     pos.setX(pos.x() - snapshotViewer->width());
   }
@@ -199,7 +198,7 @@ void SnapshotViewer::contextMenuEvent(QContextMenuEvent *e)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::contextMenuEvent(QContextMenuEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  contextMenu->move(mapToGlobal(e->pos()));
+  contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
   contextMenu->show();
 }
 

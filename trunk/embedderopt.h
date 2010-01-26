@@ -35,7 +35,6 @@ class EmbedderOptions : public QWidget, public Ui::EmbedderOptions
   public:
     QMap<QListWidgetItem *, QPixmap> snapshotMap;
     SnapshotViewer *snapshotViewer;
-    QRect screenGeometry;
 
     EmbedderOptions(QWidget *parent = 0);
     ~EmbedderOptions();
