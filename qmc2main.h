@@ -121,6 +121,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QWidget *widgetEmbeddedEmus;
     QToolButton *toolButtonEmbedderMaximizeToggle;
     QList<int> hSplitterSizes;
+    QRect screenGeometry;
 
     static QColor qmc2StatusColorGreen;
     static QColor qmc2StatusColorYellowGreen;
@@ -129,6 +130,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     static QColor qmc2StatusColorGrey;
 
     int sortCriteriaLogicalIndex();
+    QPoint adjustedWidgetPosition(QPoint, QWidget *);
 
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
