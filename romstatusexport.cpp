@@ -130,7 +130,9 @@ void ROMStatusExporter::exportToASCII()
   QTextStream ts;
   if ( !checkBoxExportToClipboard->isChecked() ) {
     if ( !checkBoxOverwriteBlindly->isChecked() && exportFile.exists() ) {
-      switch ( QMessageBox::question(this, tr("Confirm"), tr("Overwrite existing file?"), QMessageBox::Yes, QMessageBox::No) ) {
+      switch ( QMessageBox::question(this, tr("Confirm"),
+                                     tr("Overwrite existing file?"),
+                                     QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
         case QMessageBox::Yes:
           break;
 
@@ -427,7 +429,9 @@ void ROMStatusExporter::exportToCSV()
   QTextStream ts;
   if ( !checkBoxExportToClipboard->isChecked() ) {
     if ( !checkBoxOverwriteBlindly->isChecked() && exportFile.exists() ) {
-      switch ( QMessageBox::question(this, tr("Confirm"), tr("Overwrite existing file?"), QMessageBox::Yes, QMessageBox::No) ) {
+      switch ( QMessageBox::question(this, tr("Confirm"),
+                                     tr("Overwrite existing file?"),
+                                     QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
         case QMessageBox::Yes:
           break;
 
@@ -613,7 +617,9 @@ void ROMStatusExporter::exportToHTML()
   QTextStream ts;
   if ( !checkBoxExportToClipboard->isChecked() ) {
     if ( !checkBoxOverwriteBlindly->isChecked() && exportFile.exists() ) {
-      switch ( QMessageBox::question(this, tr("Confirm"), tr("Overwrite existing file?"), QMessageBox::Yes, QMessageBox::No) ) {
+      switch ( QMessageBox::question(this, tr("Confirm"),
+                                     tr("Overwrite existing file?"),
+                                     QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
         case QMessageBox::Yes:
           break;
 
