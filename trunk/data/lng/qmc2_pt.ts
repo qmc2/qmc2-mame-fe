@@ -1677,12 +1677,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.ui" line="120"/>
         <source>Move selected detail up</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover detalhe selecionado para cima</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="137"/>
         <source>Move selected detail down</source>
-        <translation type="unfinished"></translation>
+        <translation>Mover detalhe selecionado para baixo</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="170"/>
@@ -5010,7 +5010,7 @@ Você realmente quer verificar o estado de todas as ROMs agora?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3075"/>
         <source>Embedding failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Incorporação falhou</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3255"/>
@@ -6776,17 +6776,20 @@ Sair mesmo assim?</translation>
 emulator(s) within a reasonable timeframe.
 
 Retry embedding?</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível encontrar o ID da janela para um ou mais
+emulador(es) dentro de um limite de tempo razoável.
+
+Tentar novamente?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3086"/>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3086"/>
         <source>Sorry, the emulator meanwhile died a sorrowful death :(.</source>
-        <translation type="unfinished"></translation>
+        <translation>Desculpe, o emulador teve uma morte triste :(.</translation>
     </message>
 </context>
 <context>
@@ -9991,93 +9994,93 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="1281"/>
         <source>Choose CHD manager executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o executável do gerenciador de CHDs</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1281"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos os arquivos (*)</translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1293"/>
         <source>Choose temporary working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório de trabalho temporário</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1311"/>
         <source>CHD manager: external process started</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: processo externo iniciado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1323"/>
         <source>unknown</source>
-        <translation type="unfinished">desconhecido</translation>
+        <translation>desconhecido</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1325"/>
         <source>normal</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1326"/>
         <source>crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>quebrado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1328"/>
         <source>CHD manager: external process finished (exit code = %1, exit status = %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: processo externo finalizado (código de saída = %1, estado da saída = %2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1344"/>
         <source>CHD manager: stdout: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1366"/>
         <source>CHD manager: stderr: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1394"/>
         <source>CHD manager: failed to start</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: falhou ao iniciar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1398"/>
         <source>CHD manager: crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: quebrado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1402"/>
         <source>CHD manager: write error</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: erro de escrita</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1406"/>
         <source>CHD manager: read error</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: erro de leitura</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1410"/>
         <source>CHD manager: unknown error %1</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: erro desconhecido %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="847"/>
         <source>only CHD v3 and v4 headers supported -- rest of header information skipped</source>
-        <translation type="unfinished"></translation>
+        <translation>suportados cabeçalhos CHD v3 e v4 somente -- pulando resto da informação do cabeçalho</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="988"/>
         <location filename="../../romalyzer.cpp" line="1000"/>
         <source>using header checksums for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>usando checksums do cabeçalho para verificação do CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1008"/>
         <source>no header checksums available for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>nenhum checksum do cabeçalho para verificação do CHD disponível</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="74"/>
@@ -10440,7 +10443,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romalyzer.cpp" line="798"/>
         <location filename="../../romalyzer.cpp" line="970"/>
         <source>CHD v%1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="802"/>
@@ -10526,68 +10529,68 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="871"/>
         <source>Verify - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar - %p%</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="873"/>
         <source>CHD manager: verifying and fixing CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: verificando e corrigindo CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="876"/>
         <source>CHD manager: verifying CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: verificando CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="886"/>
         <source>Update - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar - %p%</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="887"/>
         <source>CHD manager: updating CHD (v%1 -&gt; v%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: atualizando CHD (v%1 -&gt; v%2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="892"/>
         <location filename="../../romalyzer.cpp" line="904"/>
         <source>CHD manager: using header checksums for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: usando checksums do cabeçalho para verificação do CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="912"/>
         <source>CHD manager: no header checksums available for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: nenhum checksum do cabeçalho para verificação do CHD disponível</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="938"/>
         <source>CHD manager: terminating external process</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: terminando processo externo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="961"/>
         <source>CHD manager: replacing CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: trocando CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="963"/>
         <source>Copy</source>
-        <translation type="unfinished">Copiar</translation>
+        <translation>Copiar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="969"/>
         <source>CHD manager: CHD replaced</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: CHD trocado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="972"/>
         <source>CHD manager: FATAL: failed to replace CHD -- updated CHD preserved as &apos;%1&apos;, please copy it to &apos;%2&apos; manually!</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: FATAL: falha para trocar CHD -- CHD atualizado preservado como &apos;%1&apos;, por favor copie-o manualmente para &apos;%2&apos;!</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="976"/>
         <source>CHD manager: cleaning up</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: limpando</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1015"/>
@@ -10777,67 +10780,67 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="224"/>
         <source>Enable CHD manager (may be slow)</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar CHD manager (pode ser lento)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="236"/>
         <source>CHD manager (chdman)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="249"/>
         <source>CHD manager executable file (read and execute)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo executável do gerenciador de CHD (ler e executar)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="256"/>
         <source>Browse CHD manager executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar pelo arquivo executável do gerenciador de CHDs</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="267"/>
         <source>Temporary working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório temporário de trabalho</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="280"/>
         <source>Directory to use for temporary storage (make sure it has enough room to store the biggest CHDs)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório usado temporariamente para guardar arquivos (tenha certeza de ter espaço suficiente para CHDs grandes)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="287"/>
         <source>Browse directory to use for temporary storage</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar diretório para usar como localização temporária</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="300"/>
         <source>Verify CHDs through &apos;chdman -verify&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Verfica CHDs atravéz do comando &apos;chdman -verify&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="303"/>
         <source>Verify CHDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar CHDs</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="313"/>
         <source>Also try to fix CHDs using &apos;chdman -verifyfix&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Também tentar corrigir os CHDs usando o comando &apos;chdman -verifyfix&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="316"/>
         <source>Fix CHDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Corrigir CHDs</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="323"/>
         <source>Try to update CHDs if their header indicates an older version (&apos;chdman -update&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tenta atualizar os CHDs se seus cabeçaçhos indicarem uma versão antiga (&apos;chdman -update&apos;)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="326"/>
         <source>Update CHDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizar CHDs</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="351"/>
