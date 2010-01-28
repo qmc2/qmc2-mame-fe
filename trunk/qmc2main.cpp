@@ -2116,7 +2116,10 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 
     case QMC2_SEARCH_INDEX:
       QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
-      listWidgetSearch->setFocus();
+      if ( listWidgetSearch->count() > 0 )
+        listWidgetSearch->setFocus();
+      else
+	comboBoxSearch->setFocus();
       break;
 
     case QMC2_FAVORITES_INDEX:
