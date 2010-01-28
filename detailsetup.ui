@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>582</width>
-    <height>318</height>
+    <width>564</width>
+    <height>303</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -117,7 +117,7 @@
               <bool>false</bool>
              </property>
              <property name="toolTip">
-              <string>Move selected details up</string>
+              <string>Move selected detail up</string>
              </property>
              <property name="icon">
               <iconset resource="qmc2.qrc">
@@ -134,7 +134,7 @@
               <bool>false</bool>
              </property>
              <property name="toolTip">
-              <string>Move selected details down</string>
+              <string>Move selected detail down</string>
              </property>
              <property name="icon">
               <iconset resource="qmc2.qrc">
