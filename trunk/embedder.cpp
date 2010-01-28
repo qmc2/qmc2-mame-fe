@@ -95,18 +95,16 @@ void Embedder::clientError(QX11EmbedContainer::Error error)
 #endif
 
   switch ( error ) {
-    case QX11EmbedContainer::Unknown:
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: embedder: unknown error, window ID = 0x%1").arg(QString::number(winId, 16)));
-      break;
-
     case QX11EmbedContainer::InvalidWindowID:
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: embedder: invalid window ID = 0x%1").arg(QString::number(winId, 16)));
-      emit closing();
       break;
 
+    case QX11EmbedContainer::Unknown:
     default:
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: embedder: unknown error, window ID = 0x%1").arg(QString::number(winId, 16)));
       break;
   }
+  emit closing();
 }
 
 void Embedder::closeEvent(QCloseEvent *e)

@@ -2100,6 +2100,8 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetGamelist_currentChanged(int i = " + QString::number(currentIndex) + ")");
 #endif
 
+  static int lastTabWidgetGamelistIndex = -1;
+
 #if defined(Q_WS_X11)
   if ( hSplitterSizes.count() > 1 )
     hSplitter->setSizes(hSplitterSizes);
@@ -2107,7 +2109,12 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 
   switch ( currentIndex ) {
     case QMC2_GAMELIST_INDEX:
+#if defined(Q_WS_X11)
+      if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
+        QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
+#else
       QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
+#endif
       if ( stackedWidgetView->currentIndex() == QMC2_VIEW_DETAIL_INDEX )
         treeWidgetGamelist->setFocus();
       else
@@ -2115,7 +2122,12 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       break;
 
     case QMC2_SEARCH_INDEX:
+#if defined(Q_WS_X11)
+      if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
+        QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
+#else
       QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
+#endif
       if ( listWidgetSearch->count() > 0 )
         listWidgetSearch->setFocus();
       else
@@ -2123,11 +2135,21 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       break;
 
     case QMC2_FAVORITES_INDEX:
+#if defined(Q_WS_X11)
+      if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
+        QTimer::singleShot(0, this, SLOT(checkCurrentFavoritesSelection()));
+#else
       QTimer::singleShot(0, this, SLOT(checkCurrentFavoritesSelection()));
+#endif
       break;
 
     case QMC2_PLAYED_INDEX:
+#if defined(Q_WS_X11)
+      if ( lastTabWidgetGamelistIndex != QMC2_EMBED_INDEX )
+        QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
+#else
       QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
+#endif
       break;
 
 #if defined(Q_WS_X11)
@@ -2169,6 +2191,8 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
     }
   } else
     labelGameStatus->setVisible(FALSE);
+
+  lastTabWidgetGamelistIndex = currentIndex;
 }
 
 void MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int currentIndex)
