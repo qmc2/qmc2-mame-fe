@@ -1361,7 +1361,7 @@ void MainWindow::on_actionCheckROMs_activated()
       switch ( QMessageBox::question(this,
                                      tr("Confirm"),
                                      tr("The ROM verification process may be very time-consuming.\nIt will overwrite existing cached data.\n\nDo you really want to check all ROM states now?"),
-                                     QMessageBox::Yes, QMessageBox::No, QMessageBox::NoButton) ) {
+                                     QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
           case QMessageBox::Yes:
             qmc2Gamelist->verify();
             break;
@@ -3071,15 +3071,20 @@ void MainWindow::action_embedEmulator_triggered()
     }
   }
 
-  if ( !success ) {
+  sl = treeWidgetEmulators->selectedItems();
+  if ( !success && sl.count() > 0 ) {
     switch ( QMessageBox::question(this, tr("Embedding failed"),
-                                   tr("Couldn't find the window ID of one or more\nemulator(s) within a reasonable timeout.\n\nRetry embedding?"),
-                                   QMessageBox::Yes, QMessageBox::No, QMessageBox::NoButton) ) {
+                                   tr("Couldn't find the window ID of one or more\nemulator(s) within a reasonable timeframe.\n\nRetry embedding?"),
+                                   QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) ) {
       case QMessageBox::No:
         break;
 
       case QMessageBox::Yes:
-        QTimer::singleShot(0, this, SLOT(action_embedEmulator_triggered()));
+        sl = treeWidgetEmulators->selectedItems();
+        if ( sl.count() > 0 )
+          QTimer::singleShot(0, this, SLOT(action_embedEmulator_triggered()));
+	else
+          QMessageBox::information(this, tr("Information"), tr("Sorry, the emulator meanwhile died a sorrowful death :(."));
         break;
 
       default:
@@ -3248,7 +3253,7 @@ void MainWindow::action_clearAllFavorites_triggered()
 
   switch ( QMessageBox::question(this, tr("Confirm"),
                                  tr("Are you sure you want to clear the favorites list?"),
-                                 QMessageBox::Yes, QMessageBox::No, QMessageBox::NoButton) ) {
+                                 QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
     case QMessageBox::No:
       return;
       break;
@@ -3293,7 +3298,7 @@ void MainWindow::action_clearAllPlayed_triggered()
 
   switch ( QMessageBox::question(this, tr("Confirm"),
                                  tr("Are you sure you want to clear the play history?"),
-                                 QMessageBox::Yes, QMessageBox::No, QMessageBox::NoButton) ) {
+                                 QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
     case QMessageBox::No:
       return;
       break;
@@ -3672,7 +3677,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
 
   if ( !qmc2Options->applied ) {
-    switch ( QMessageBox::question(this, tr("Confirm"), tr("Your configuration changes have not been applied yet.\nReally quit?"), QMessageBox::Yes, QMessageBox::No, QMessageBox::NoButton) ) {
+    switch ( QMessageBox::question(this, tr("Confirm"),
+                                   tr("Your configuration changes have not been applied yet.\nReally quit?"),
+				   QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
       case QMessageBox::No:
         e->ignore();
         return;
@@ -3685,7 +3692,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
  
   bool doKillEmulators = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/KillEmulatorsOnExit").toBool();
   if ( qmc2ProcessManager->procMap.count() > 0 && !doKillEmulators ) {
-    switch ( QMessageBox::question(this, tr("Confirm"), tr("There are one or more emulators still running.\nShould they be killed on exit?"), QMessageBox::Yes, QMessageBox::No, QMessageBox::Cancel) ) {
+    switch ( QMessageBox::question(this, tr("Confirm"),
+                                   tr("There are one or more emulators still running.\nShould they be killed on exit?"),
+                                   QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, QMessageBox::Cancel) ) {
       case QMessageBox::Yes:
         doKillEmulators = TRUE;
         break;
@@ -3714,8 +3723,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
     it++;
   }
   if ( runningDownloads > 0 ) {
-    switch ( QMessageBox::question(this, tr("Confirm"), tr("There are one or more running downloads. Quit anyway?"),
-                                   QMessageBox::Yes, QMessageBox::No) ) {
+    switch ( QMessageBox::question(this, tr("Confirm"),
+                                   tr("There are one or more running downloads. Quit anyway?"),
+                                   QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
       case QMessageBox::Yes:
         break;
 
