@@ -338,6 +338,10 @@ MainWindow::MainWindow(QWidget *parent)
 
   setupUi(this);
 
+  // save splitter widgets at index 0 for later comparison
+  hSplitterWidget0 = hSplitter->widget(0);
+  vSplitterWidget0 = vSplitter->widget(0);
+
   // updated later when all initialization is finished
   setUpdatesEnabled(FALSE);
 
@@ -493,6 +497,10 @@ MainWindow::MainWindow(QWidget *parent)
     QList<int> hSplitterSizes, vSplitterSizes;
     QSize hSplitterSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter").toSize();
     QSize vSplitterSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter").toSize();
+    bool hSplitterFlipped = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitterFlipped", FALSE).toBool();
+    bool vSplitterFlipped = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterFlipped", FALSE).toBool();
+    bool hSplitterSwapped = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitterSwapped", FALSE).toBool();
+    bool vSplitterSwapped = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSwapped", FALSE).toBool();
     if ( hSplitterSize.width() > 0 || hSplitterSize.height() > 0 )
       hSplitterSizes << hSplitterSize.width() << hSplitterSize.height();
     else
@@ -501,8 +509,14 @@ MainWindow::MainWindow(QWidget *parent)
       vSplitterSizes << vSplitterSize.width() << vSplitterSize.height();
     else
       vSplitterSizes << 100 << 100;
+    if ( hSplitterSwapped ) hSplitterSizes.swap(0, 1);
+    if ( vSplitterSwapped ) vSplitterSizes.swap(0, 1);
     hSplitter->setSizes(hSplitterSizes);
     vSplitter->setSizes(vSplitterSizes);
+    if ( hSplitterFlipped ) on_menuHorizontalSplitter_FlipOrientation_activated();
+    if ( vSplitterFlipped ) on_menuVerticalSplitter_FlipOrientation_activated();
+    if ( hSplitterSwapped ) on_menuHorizontalSplitter_SwapLayouts_activated();
+    if ( vSplitterSwapped ) on_menuVerticalSplitter_SwapWidgets_activated();
     tabWidgetGamelist->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt());
     tabWidgetLogsAndEmulators->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", 0).toInt());
     on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex());
@@ -869,6 +883,27 @@ MainWindow::MainWindow(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetLogsAndEmulators_East_activated()));
+
+  // splitter context menus (FIXME: no icons yet)
+  menuHorizontalSplitter = new QMenu(0);
+  s = tr("Flip splitter orientation");
+  action = menuHorizontalSplitter->addAction(tr("&Flip splitter orientation"));
+  action->setToolTip(s); action->setStatusTip(s);
+  connect(action, SIGNAL(triggered()), this, SLOT(on_menuHorizontalSplitter_FlipOrientation_activated()));
+  s = tr("Swap splitter's sub-layouts");
+  action = menuHorizontalSplitter->addAction(tr("&Swap splitter's sub-layouts"));
+  action->setToolTip(s); action->setStatusTip(s);
+  connect(action, SIGNAL(triggered()), this, SLOT(on_menuHorizontalSplitter_SwapLayouts_activated()));
+
+  menuVerticalSplitter = new QMenu(0);
+  s = tr("Flip splitter orientation");
+  action = menuVerticalSplitter->addAction(tr("&Flip splitter orientation"));
+  action->setToolTip(s); action->setStatusTip(s);
+  connect(action, SIGNAL(triggered()), this, SLOT(on_menuVerticalSplitter_FlipOrientation_activated()));
+  s = tr("Swap splitter's sub-widgets");
+  action = menuVerticalSplitter->addAction(tr("&Swap splitter's sub-widgets"));
+  action->setToolTip(s); action->setStatusTip(s);
+  connect(action, SIGNAL(triggered()), this, SLOT(on_menuVerticalSplitter_SwapWidgets_activated()));
 
   // other actions
   connect(actionViewFullDetail, SIGNAL(triggered()), this, SLOT(viewFullDetail()));
@@ -2157,7 +2192,10 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
         if ( toolButtonEmbedderMaximizeToggle->isChecked() ) {
           hSplitterSizes = hSplitter->sizes();
           QList<int> maximizedSizes;
-          maximizedSizes << 100 << 0;
+          if ( hSplitter->widget(0) == hSplitterWidget0 )
+            maximizedSizes << screenGeometry.width() << 0;
+          else
+            maximizedSizes << 0 << screenGeometry.width();
           hSplitter->setSizes(maximizedSizes);
         }
         Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->currentWidget();
@@ -3177,7 +3215,10 @@ void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
   if ( on ) {
     hSplitterSizes = hSplitter->sizes();
     QList<int> maximizedSizes;
-    maximizedSizes << 100 << 0;
+    if ( hSplitter->widget(0) == hSplitterWidget0 )
+      maximizedSizes << screenGeometry.width() << 0;
+    else
+      maximizedSizes << 0 << screenGeometry.width();
     hSplitter->setSizes(maximizedSizes);
   } else {
     hSplitter->setSizes(hSplitterSizes);
@@ -3825,7 +3866,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #else
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitter->sizes().at(0), hSplitter->sizes().at(1)));
 #endif
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitterFlipped", hSplitter->orientation() != Qt::Horizontal);
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitterSwapped", hSplitter->widget(0) != hSplitterWidget0);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter", QSize(vSplitter->sizes().at(0), vSplitter->sizes().at(1)));
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterFlipped", vSplitter->orientation() != Qt::Vertical);
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSwapped", vSplitter->widget(0) != vSplitterWidget0);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", tabWidgetGamelist->currentIndex());
 #if defined(QMC2_EMUTYPE_MAME)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", tabWidgetGameDetail->currentIndex());
@@ -5596,6 +5641,68 @@ void MainWindow::on_tabWidgetLogsAndEmulators_customContextMenuRequested(const Q
     menuTabWidgetLogsAndEmulators->move(adjustedWidgetPosition(tabWidgetLogsAndEmulators->mapToGlobal(p), menuTabWidgetLogsAndEmulators));
     menuTabWidgetLogsAndEmulators->show();
   }
+}
+
+void MainWindow::on_hSplitter_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_hSplitter_customContextMenuRequested(const QPoint &p = ...)");
+#endif
+
+  menuHorizontalSplitter->move(adjustedWidgetPosition(hSplitter->mapToGlobal(p), menuHorizontalSplitter));
+  menuHorizontalSplitter->show();
+}
+
+void MainWindow::on_vSplitter_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_vSplitter_customContextMenuRequested(const QPoint &p = ...)");
+#endif
+
+  menuVerticalSplitter->move(adjustedWidgetPosition(vSplitter->mapToGlobal(p), menuVerticalSplitter));
+  menuVerticalSplitter->show();
+}
+
+void MainWindow::on_menuHorizontalSplitter_FlipOrientation_activated()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_menuHorizontalSplitter_FlipOrientation_activated()");
+#endif
+
+  if ( hSplitter->orientation() == Qt::Horizontal )
+    hSplitter->setOrientation(Qt::Vertical);
+  else
+    hSplitter->setOrientation(Qt::Horizontal);
+}
+
+void MainWindow::on_menuHorizontalSplitter_SwapLayouts_activated()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_menuHorizontalSplitter_SwapLayouts_activated()");
+#endif
+
+  hSplitter->insertWidget(0, hSplitter->widget(1));
+}
+
+void MainWindow::on_menuVerticalSplitter_FlipOrientation_activated()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_menuVerticalSplitter_FlipOrientation_activated()");
+#endif
+
+  if ( vSplitter->orientation() == Qt::Horizontal )
+    vSplitter->setOrientation(Qt::Vertical);
+  else
+    vSplitter->setOrientation(Qt::Horizontal);
+}
+
+void MainWindow::on_menuVerticalSplitter_SwapWidgets_activated()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_menuVerticalSplitter_SwapWidgets_activated()");
+#endif
+
+  vSplitter->insertWidget(0, vSplitter->widget(1));
 }
 
 void MainWindow::on_treeWidgetHierarchy_headerSectionClicked(int logicalIndex)
