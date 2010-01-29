@@ -94,6 +94,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QMenu *menuTabWidgetGamelist;
     QMenu *menuTabWidgetGameDetail;
     QMenu *menuTabWidgetLogsAndEmulators;
+    QMenu *menuHorizontalSplitter;
+    QMenu *menuVerticalSplitter;
     QAction *actionRomStatusFilterC;
     QAction *actionRomStatusFilterM;
     QAction *actionRomStatusFilterI;
@@ -122,6 +124,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QToolButton *toolButtonEmbedderMaximizeToggle;
     QList<int> hSplitterSizes;
     QRect screenGeometry;
+    QWidget *hSplitterWidget0;
+    QWidget *vSplitterWidget0;
 
     static QColor qmc2StatusColorGreen;
     static QColor qmc2StatusColorYellowGreen;
@@ -204,6 +208,14 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_tabWidgetGamelist_customContextMenuRequested(const QPoint &);
     void on_tabWidgetGameDetail_customContextMenuRequested(const QPoint &);
     void on_tabWidgetLogsAndEmulators_customContextMenuRequested(const QPoint &);
+    void on_hSplitter_customContextMenuRequested(const QPoint &);
+    void on_vSplitter_customContextMenuRequested(const QPoint &);
+
+    // splitter flip/swap callbacks
+    void on_menuHorizontalSplitter_FlipOrientation_activated();
+    void on_menuHorizontalSplitter_SwapLayouts_activated();
+    void on_menuVerticalSplitter_FlipOrientation_activated();
+    void on_menuVerticalSplitter_SwapWidgets_activated();
 
     // joystick functions
 #if QMC2_JOYSTICK == 1
