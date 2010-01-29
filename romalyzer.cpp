@@ -74,6 +74,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   treeWidgetChecksums->headerItem()->setText(0, tr("Machine / File"));
   checkBoxSelectGame->setText(tr("Select machine"));
   checkBoxSelectGame->setToolTip(tr("Select machine in machine list if selected in analysis report?"));
+  checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed machine"));
 #endif
 
   treeWidgetChecksums->header()->setSortIndicatorShown(FALSE);
