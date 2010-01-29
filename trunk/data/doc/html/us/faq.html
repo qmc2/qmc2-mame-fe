@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.2.b14, 24-JAN-2010</h3>
+<h3>FAQ - v0.2.b14, 29-JAN-2010</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (Linux) distribution comes with an older version of Qt. What should I do about that?</a></div></p>
@@ -274,15 +274,25 @@ Password:
 <p><a name="A2.1"></a><b>Q2.1: When the game/machine list reloads, the insertion of games/machines is fairly slow. Is there a way to somehow speed it up?</b></p>
 <p>The short answer is yes :).</p>
 <p>There are several ways to speed this up. The easiest and most efficient way is to <i>hide</i> the game/machine list while reload is active 
-(simply click on the <i>Search</i> tab for example and you'll get a tremendous speed-up). It's probably best to display the hierarchical parent/clone view when loading the game/machine list. The item insertion to this view takes place at once after the full game/machine status has been determined; this is <u>much</u> faster than the online insertion into the <i>master</i> game/machine list.</p>
+(simply click on the <i>Search</i> tab for example and you'll get a tremendous speed-up). It's probably best to display the hierarchical parent/clone view when
+loading the game/machine list. The item insertion to this view takes place at once after the full game/machine status has been determined; this is <u>much</u>
+faster than the online insertion into the <i>master</i> game/machine list.</p>
 <p>The second thing to check is if you are sorting the game/machine list while reload is active (see <i>Front end</i> / <i>Gamelist</i> option
 <i>Sort online</i>); if so, disable it.</p>
-<p>On the same configuration-page there is an option called <i>Responsiveness</i> which lets you decide after how many game/machine-insertions an update to the (master) game/machine list is made. Increasing this number may gain a remarkable speed up, but you will have to play with it because it directly interferes with the interactivity of the GUI - though only during game/machine list reloads. Setting this value higher than the total number of supported games/machines will gain the maximum possible performance and usually reduces the time for game/machine list processing to less than 2 seconds - at the expense of a more or less unresponsive GUI during reload, of course.</p>
+   There have been </p>
+<p>On the same configuration-page there is an option called 'responsiveness' which lets you decide after how many game/machine-insertions an update to the
+   (master) game/machine list is made. Increasing this number may gain a slight speed up, but you will have to play with it because it directly interferes with
+   the interactivity of the GUI - though only during game/machine list reloads. Setting this value higher than the total number of supported games/machines will
+   gain the maximum possible performance and usually reduces the time for game/machine list processing to less than 2 seconds - at the expense of a more or less
+   unresponsive GUI during reload, of course.</p>
 <p>Since QMC2 v0.1.b11 the analysed data from a game/machine list reload is automagically cached and will be reused as
 long as the emulator version doesn't change. The result is a <u>tremendous</u> speed up for this process, which will be even
 greater if you set the responsiveness parameter a bit higher (250 - 500, for example).</p>
 <p>Also note that complex GUI styles / style sheets can have some impact on performance -- as far as we've tested, the fastest styles (among the default set of styles) appear to be <i>windows</i> and <i>plastique</i> (without a style sheet).</p>
-<p><b>As of version 0.2.b11, this FAQ is somewhat obsolete:</b> per default QMC2 now hides the primary game/machine list when it's reloaded (during item insertion). Simply use the defaults and you should be set.</p>
+<p><b>As of version 0.2.b11, this FAQ is somewhat obsolete:</b> per default QMC2 now hides the primary game/machine list when it's reloaded (during item insertion).
+   Simply use the defaults and you should be set.</p>
+<p><b>As of version 0.2.b14, this FAQ is even more obsolete:</b>: the influence of the discussed 'responsiveness' parameter is no longer very remarkable!
+   There have been some nice optimizations that should make it fast enough for everyone with just the defaults.</p>
 <hr>
 <p><a name="A2.2"></a><b>Q2.2: How do I use the search feature?</b></p>
 <p>The game/machine search is a normal Qt based wildcard search that adds implicit globs (*) around each word which can be negated by using ^ for the start of a word or $ for using the end of the word.</p>
