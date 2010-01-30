@@ -2137,6 +2137,9 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 
   static int lastTabWidgetGamelistIndex = -1;
 
+  if ( !isActiveWindow() )
+    activateWindow();
+
 #if defined(Q_WS_X11)
   if ( hSplitterSizes.count() > 1 )
     hSplitter->setSizes(hSplitterSizes);
