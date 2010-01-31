@@ -3118,11 +3118,37 @@ void MainWindow::action_embedEmulator_triggered()
       if ( tabBar ) {
         int index = tabWidgetEmbeddedEmulators->indexOf(embedder);
         tabBar->tabButton(index, QTabBar::RightSide)->setToolTip(tr("Release emulator"));
-        QToolButton *optionsButton = new QToolButton(0);
+
+        QToolButton *optionsButton = new QToolButton(tabBar);
+        optionsButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+	optionsButton->setText(" ");
         optionsButton->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
-        optionsButton->setToolTip(tr("Toggle embedder options"));
+        optionsButton->setToolTip(tr("Toggle embedder options (hold down for menu)"));
         optionsButton->setCheckable(TRUE);
         connect(optionsButton, SIGNAL(toggled(bool)), this, SLOT(on_embedderOptions_toggled(bool)));
+
+	QMenu *optionsMenu = new QMenu(optionsButton);
+        QString s;
+        QAction *action;
+        s = tr("To favorites");
+        action = optionsMenu->addAction(tr("To &favorites"));
+        action->setIcon(QIcon(QString::fromUtf8(":/data/img/favorites.png")));
+        action->setToolTip(s); action->setStatusTip(s);
+        connect(action, SIGNAL(triggered()), this, SLOT(on_embedderOptionsMenu_ToFavorites_activated()));
+        optionsMenu->addSeparator();
+        s = tr("Terminate emulator");
+        action = optionsMenu->addAction(tr("&Terminate emulator"));
+        action->setIcon(QIcon(QString::fromUtf8(":/data/img/terminate.png")));
+        action->setToolTip(s); action->setStatusTip(s);
+        connect(action, SIGNAL(triggered()), this, SLOT(on_embedderOptionsMenu_TerminateEmulator_activated()));
+        s = tr("Kill emulator");
+        action = optionsMenu->addAction(tr("&Kill emulator"));
+        action->setIcon(QIcon(QString::fromUtf8(":/data/img/kill.png")));
+        action->setToolTip(s); action->setStatusTip(s);
+        connect(action, SIGNAL(triggered()), this, SLOT(on_embedderOptionsMenu_KillEmulator_activated()));
+
+	optionsButton->setMenu(optionsMenu);
+
         tabBar->setTabButton(index, QTabBar::LeftSide, optionsButton);
         embedder->adjustIconSizes();
       }
@@ -3225,6 +3251,71 @@ void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
     hSplitter->setSizes(maximizedSizes);
   } else {
     hSplitter->setSizes(hSplitterSizes);
+  }
+}
+
+void MainWindow::on_embedderOptionsMenu_KillEmulator_activated()
+{
+  // serious hack to access the corresponding embedder ;)
+  QAction *action = (QAction *)sender();
+  QMenu *menu = (QMenu *)action->parent();
+  QToolButton *toolButton = (QToolButton *)menu->parent();
+  QTabBar *tabBar = (QTabBar *)toolButton->parent();
+  Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_embedderOptionsMenu_KillEmulator_activated()");
+#endif
+
+  QList<QTreeWidgetItem *> il = treeWidgetEmulators->findItems("*", Qt::MatchWildcard);
+  int i;
+  for (i = 0; i < il.count(); i++) {
+    QTreeWidgetItem *item = il[i];
+    while ( item->parent() ) item = item->parent();
+    if ( item->text(QMC2_EMUCONTROL_COLUMN_GAME) == embedder->gameName )
+      qmc2ProcessManager->kill(item->text(QMC2_EMUCONTROL_COLUMN_NUMBER).toInt());
+  }
+}
+
+void MainWindow::on_embedderOptionsMenu_TerminateEmulator_activated()
+{
+  // serious hack to access the corresponding embedder ;)
+  QAction *action = (QAction *)sender();
+  QMenu *menu = (QMenu *)action->parent();
+  QToolButton *toolButton = (QToolButton *)menu->parent();
+  QTabBar *tabBar = (QTabBar *)toolButton->parent();
+  Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_embedderOptionsMenu_TerminateEmulator_activated()");
+#endif
+
+  QList<QTreeWidgetItem *> il = treeWidgetEmulators->findItems("*", Qt::MatchWildcard);
+  int i;
+  for (i = 0; i < il.count(); i++) {
+    QTreeWidgetItem *item = il[i];
+    while ( item->parent() ) item = item->parent();
+    if ( item->text(QMC2_EMUCONTROL_COLUMN_GAME) == embedder->gameName )
+      qmc2ProcessManager->terminate(item->text(QMC2_EMUCONTROL_COLUMN_NUMBER).toInt());
+  }
+}
+
+void MainWindow::on_embedderOptionsMenu_ToFavorites_activated()
+{
+  // serious hack to access the corresponding embedder ;)
+  QAction *action = (QAction *)sender();
+  QMenu *menu = (QMenu *)action->parent();
+  QToolButton *toolButton = (QToolButton *)menu->parent();
+  QTabBar *tabBar = (QTabBar *)toolButton->parent();
+  Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_embedderOptionsMenu_ToFavorites_activated()");
+#endif
+
+  QString gameDescription = qmc2GamelistDescriptionMap[embedder->gameName];
+  QList<QListWidgetItem *> matches = listWidgetFavorites->findItems(gameDescription, Qt::MatchExactly);
+  if ( matches.count() <= 0 ) {
+    QListWidgetItem *item = new QListWidgetItem(listWidgetFavorites);
+    item->setText(gameDescription);
+    listWidgetFavorites->sortItems();
   }
 }
 #endif
