@@ -113,7 +113,8 @@ void Embedder::closeEvent(QCloseEvent *e)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  release();
+  if ( embedded )
+    release();
 
   if ( embedderOptions )
     delete embedderOptions;
@@ -158,9 +159,13 @@ void Embedder::adjustIconSizes()
   QFont f;
   f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
   QFontMetrics fm(f);
-  QSize buttonSize(fm.height() + 2, fm.height() + 2);
-  tabBar->tabButton(index, QTabBar::LeftSide)->setFixedSize(buttonSize);
-  tabBar->tabButton(index, QTabBar::RightSide)->setFixedSize(buttonSize);
+  QToolButton *optionsButton = (QToolButton *)tabBar->tabButton(index, QTabBar::LeftSide);
+  QToolButton *releaseButton = (QToolButton *)tabBar->tabButton(index, QTabBar::RightSide);
+  int baseSize = fm.height() + 2;
+  QSize optionsButtonSize(2 * baseSize, baseSize);
+  QSize releaseButtonSize(baseSize, baseSize);
+  optionsButton->setFixedSize(optionsButtonSize);
+  releaseButton->setFixedSize(releaseButtonSize);
 }
 
 #endif
