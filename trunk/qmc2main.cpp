@@ -2137,9 +2137,6 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 
   static int lastTabWidgetGamelistIndex = -1;
 
-  if ( !isActiveWindow() )
-    activateWindow();
-
 #if defined(Q_WS_X11)
   if ( hSplitterSizes.count() > 1 )
     hSplitter->setSizes(hSplitterSizes);
@@ -2153,10 +2150,13 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 #else
       QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
 #endif
-      if ( stackedWidgetView->currentIndex() == QMC2_VIEW_DETAIL_INDEX )
+      if ( stackedWidgetView->currentIndex() == QMC2_VIEW_DETAIL_INDEX ) {
+        treeWidgetGamelist->activateWindow();
         treeWidgetGamelist->setFocus();
-      else
+      } else {
+        treeWidgetHierarchy->activateWindow();
         treeWidgetHierarchy->setFocus();
+      }
       break;
 
     case QMC2_SEARCH_INDEX:
@@ -2166,10 +2166,13 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 #else
       QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
 #endif
-      if ( listWidgetSearch->count() > 0 )
+      if ( listWidgetSearch->count() > 0 ) {
+        listWidgetSearch->activateWindow();
         listWidgetSearch->setFocus();
-      else
+      } else {
+        comboBoxSearch->activateWindow();
 	comboBoxSearch->setFocus();
+      }
       break;
 
     case QMC2_FAVORITES_INDEX:
@@ -2179,6 +2182,10 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 #else
       QTimer::singleShot(0, this, SLOT(checkCurrentFavoritesSelection()));
 #endif
+      if ( listWidgetFavorites->count() > 0 ) {
+        listWidgetFavorites->activateWindow();
+        listWidgetFavorites->setFocus();
+      }
       break;
 
     case QMC2_PLAYED_INDEX:
@@ -2188,6 +2195,10 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 #else
       QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
 #endif
+      if ( listWidgetPlayed->count() > 0 ) {
+        listWidgetPlayed->activateWindow();
+        listWidgetPlayed->setFocus();
+      }
       break;
 
 #if defined(Q_WS_X11)
@@ -2202,7 +2213,11 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
           hSplitter->setSizes(maximizedSizes);
         }
         Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->currentWidget();
-        if ( embedder ) embedder->resize(hSplitter->sizes()[0], embedder->height());
+        if ( embedder ) {
+          embedder->resize(hSplitter->sizes()[0], embedder->height());
+          embedder->activateWindow();
+          embedder->setFocus();
+        }
       }
       break;
 #endif
