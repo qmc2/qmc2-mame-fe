@@ -345,6 +345,9 @@ MainWindow::MainWindow(QWidget *parent)
   // updated later when all initialization is finished
   setUpdatesEnabled(FALSE);
 
+  // disable the menu-bar's default context menu (may be irritating)
+  menuBar()->setContextMenuPolicy(Qt::PreventContextMenu);
+
   // hide "loading game list" label initially
   labelLoadingGamelist->setVisible(FALSE);
 
