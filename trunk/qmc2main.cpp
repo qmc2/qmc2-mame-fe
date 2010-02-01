@@ -1705,14 +1705,14 @@ void MainWindow::on_actionFullscreenToggle_activated()
       showNormal();
     }
   }
+
+  activateWindow();
   raise();
 
   if ( feLogScrollBarMaximum )
     textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
   if ( emuLogScrollBarMaximum )
     textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
-
-  qApp->processEvents();
 }
 
 void MainWindow::on_actionLaunchQMC2MAME_activated()
