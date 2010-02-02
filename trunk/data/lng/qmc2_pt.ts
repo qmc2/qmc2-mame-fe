@@ -4723,33 +4723,33 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="889"/>
         <location filename="../../qmc2main.cpp" line="899"/>
         <source>Flip splitter orientation</source>
-        <translation type="unfinished"></translation>
+        <translation>Mudar orientação do divisor</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="890"/>
         <location filename="../../qmc2main.cpp" line="900"/>
         <source>&amp;Flip splitter orientation</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Mudar orientação do divisor</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="893"/>
         <source>Swap splitter&apos;s sub-layouts</source>
-        <translation type="unfinished"></translation>
+        <translation>Trocar sub-layouts do divisor</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="894"/>
         <source>&amp;Swap splitter&apos;s sub-layouts</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Trocar sub-layouts do divisor</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="903"/>
         <source>Swap splitter&apos;s sub-widgets</source>
-        <translation type="unfinished"></translation>
+        <translation>Trocar sub-widgets do divisor</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="904"/>
         <source>&amp;Swap splitter&apos;s sub-widgets</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Trocar sub-widgets do divisor</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="974"/>
@@ -6822,32 +6822,32 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3126"/>
         <source>Toggle embedder options (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar/desativar opções do incorporador (segure para exibir o menu)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3133"/>
         <source>To favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Para favoritos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3138"/>
         <source>Terminate emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Exterminar emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3139"/>
         <source>&amp;Terminate emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Exterminar emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3144"/>
         <source>Kill emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Matar emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3145"/>
         <source>&amp;Kill emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Matar emulador</translation>
     </message>
 </context>
 <context>
@@ -10158,7 +10158,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="77"/>
         <source>Automatically scroll to the currently analyzed machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Ir automaticamente para a máquina analisada atualmente</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="88"/>
