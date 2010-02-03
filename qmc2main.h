@@ -123,7 +123,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QWidget *widgetEmbeddedEmus;
     QToolButton *toolButtonEmbedderMaximizeToggle;
     QList<int> hSplitterSizes;
-    QRect screenGeometry;
+    QRect desktopGeometry;
     QWidget *hSplitterWidget0;
     QWidget *vSplitterWidget0;
 

@@ -326,8 +326,9 @@ MainWindow::MainWindow(QWidget *parent)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::MainWindow(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
 #endif
 
-  screenGeometry = qApp->desktop()->screenGeometry(parent);
   qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), TRUE);
+
+  desktopGeometry = qApp->desktop()->geometry();
 
   // remember the default style
   qmc2DefaultStyle = QApplication::style()->objectName();
@@ -2210,9 +2211,9 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
           hSplitterSizes = hSplitter->sizes();
           QList<int> maximizedSizes;
           if ( hSplitter->widget(0) == hSplitterWidget0 )
-            maximizedSizes << screenGeometry.width() << 0;
+            maximizedSizes << desktopGeometry.width() << 0;
           else
-            maximizedSizes << 0 << screenGeometry.width();
+            maximizedSizes << 0 << desktopGeometry.width();
           hSplitter->setSizes(maximizedSizes);
         }
         Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->currentWidget();
@@ -3263,9 +3264,9 @@ void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
     hSplitterSizes = hSplitter->sizes();
     QList<int> maximizedSizes;
     if ( hSplitter->widget(0) == hSplitterWidget0 )
-      maximizedSizes << screenGeometry.width() << 0;
+      maximizedSizes << desktopGeometry.width() << 0;
     else
-      maximizedSizes << 0 << screenGeometry.width();
+      maximizedSizes << 0 << desktopGeometry.width();
     hSplitter->setSizes(maximizedSizes);
   } else {
     hSplitter->setSizes(hSplitterSizes);
@@ -6480,10 +6481,10 @@ QPoint MainWindow::adjustedWidgetPosition(QPoint p, QWidget *w)
   }
 
   adjustedPosition = p;
-  if ( p.x() + w->width() > screenGeometry.width() )
-    adjustedPosition.setX(screenGeometry.width() - w->width());
-  if ( p.y() + w->height() > screenGeometry.height() )
-    adjustedPosition.setY(screenGeometry.height() - w->height());
+  if ( p.x() + w->width() > desktopGeometry.width() )
+    adjustedPosition.setX(desktopGeometry.width() - w->width());
+  if ( p.y() + w->height() > desktopGeometry.height() )
+    adjustedPosition.setY(desktopGeometry.height() - w->height());
 
   return adjustedPosition;
 }
