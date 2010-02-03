@@ -1682,6 +1682,13 @@ void MainWindow::on_actionFullscreenToggle_activated()
         qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size", size());
         qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Maximized", FALSE);
       }
+    } else {
+      if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size") )
+        resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Size").toSize());
+      if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position") )
+        move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Position").toPoint());
+      if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry") )
+        restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry").toByteArray());
     }
     showFullScreen();
   } else {
@@ -1702,7 +1709,7 @@ void MainWindow::on_actionFullscreenToggle_activated()
       }
     } else {
       resize(640, 480);
-      move((qApp->desktop()->width() - width()) / 2, (qApp->desktop()->height() - height()) / 2);
+      move((qApp->desktop()->availableGeometry().width() - width()) / 2, (qApp->desktop()->availableGeometry().height() - height()) / 2);
       showNormal();
     }
   }
