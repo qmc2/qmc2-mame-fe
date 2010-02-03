@@ -2960,7 +2960,10 @@ void MainWindow::on_treeWidgetGamelist_currentItemChanged(QTreeWidgetItem *curre
       qmc2CurrentItem = current;
   }
   qmc2CheckItemVisibility = TRUE;
-  updateTimer.start(qmc2UpdateDelay);
+  if ( qmc2UpdateDelay > 0 )
+    updateTimer.start(qmc2UpdateDelay);
+  else
+    on_treeWidgetGamelist_itemSelectionChanged_delayed();
 }
 
 void MainWindow::on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
@@ -2970,7 +2973,10 @@ void MainWindow::on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *curr
 #endif
 
   qmc2CheckItemVisibility = FALSE;
-  updateTimer.start(qmc2UpdateDelay);
+  if ( qmc2UpdateDelay > 0 )
+    updateTimer.start(qmc2UpdateDelay);
+  else
+    on_treeWidgetGamelist_itemSelectionChanged_delayed();
 }
 
 void MainWindow::on_treeWidgetGamelist_itemSelectionChanged()
@@ -2979,7 +2985,10 @@ void MainWindow::on_treeWidgetGamelist_itemSelectionChanged()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetGamelist_itemSelectionChanged()");
 #endif
 
-  updateTimer.start(qmc2UpdateDelay);
+  if ( qmc2UpdateDelay > 0 )
+    updateTimer.start(qmc2UpdateDelay);
+  else
+    on_treeWidgetGamelist_itemSelectionChanged_delayed();
 }
 
 void MainWindow::on_treeWidgetGamelist_itemSelectionChanged_delayed()
