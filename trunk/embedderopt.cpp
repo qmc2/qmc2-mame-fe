@@ -105,7 +105,7 @@ void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
   QRect rect = listWidgetSnapshots->visualItemRect(item);
   rect.translate(4, 2);
   QPoint pos = listWidgetSnapshots->mapToGlobal(rect.topLeft());
-  if ( pos.x() + snapshotViewer->width() > qmc2MainWindow->screenGeometry.width() ) {
+  if ( pos.x() + snapshotViewer->width() > qmc2MainWindow->desktopGeometry.width() ) {
     pos = listWidgetSnapshots->mapToGlobal(rect.topRight());
     pos.setX(pos.x() - snapshotViewer->width());
   }
