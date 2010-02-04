@@ -1700,7 +1700,7 @@
      <x>0</x>
      <y>0</y>
      <width>599</width>
-     <height>24</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Help">
@@ -1760,6 +1760,8 @@
     <addaction name="actionExportROMStatus"/>
     <addaction name="separator"/>
     <addaction name="actionOptions"/>
+    <addaction name="separator"/>
+    <addaction name="actionDemoMode"/>
     <addaction name="separator"/>
     <addaction name="menuAudio_player"/>
     <addaction name="separator"/>
@@ -2721,6 +2723,23 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+P</string>
+   </property>
+  </action>
+  <action name="actionDemoMode">
+   <property name="text">
+    <string>&amp;Demo mode...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open the demo mode dialog</string>
+   </property>
+   <property name="statusTip">
+    <string>Open the demo mode dialog</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+D</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
  </widget>

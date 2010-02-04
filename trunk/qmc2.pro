@@ -26,6 +26,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			miniwebbrowser.ui \
 			mawsqdlsetup.ui \
 			embedderopt.ui \
+			demomode.ui \
 			arcade/arcadesetupdialog.ui
 		SOURCES += qmc2main.cpp \
 			options.cpp \
@@ -60,6 +61,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			mawsqdlsetup.cpp \
 			embedder.cpp \
 			embedderopt.cpp \
+			demomode.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -104,6 +106,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			mawsqdlsetup.h \
 			embedder.h \
 			embedderopt.h \
+			demomode.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \
