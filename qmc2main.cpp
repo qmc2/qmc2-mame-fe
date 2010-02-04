@@ -52,6 +52,7 @@
 #include "downloaditem.h"
 #include "mawsqdlsetup.h"
 #include "embedder.h"
+#include "demomode.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #endif
@@ -100,6 +101,7 @@ ArcadeSetupDialog *qmc2ArcadeSetupDialog = NULL;
 #if defined(QMC2_EMUTYPE_MESS)
 MESSDeviceConfigurator *qmc2MESSDeviceConfigurator = NULL;
 #endif
+DemoModeDialog *qmc2DemoModeDialog = NULL;
 bool qmc2ReloadActive = FALSE;
 bool qmc2ImageCheckActive = FALSE;
 bool qmc2SampleCheckActive = FALSE;
@@ -192,6 +194,8 @@ QMap<QString, QByteArray *> qmc2GameInfoDB;
 #if defined(QMC2_EMUTYPE_MAME)
 QMap<QString, QByteArray *> qmc2EmuInfoDB;
 #endif
+QString qmc2DemoGame;
+QStringList qmc2DemoArgs;
 int qmc2SortCriteria = QMC2_SORT_BY_DESCRIPTION;
 Qt::SortOrder qmc2SortOrder = Qt::AscendingOrder;
 QBitArray qmc2Filter;
@@ -399,6 +403,7 @@ MainWindow::MainWindow(QWidget *parent)
 #elif defined(QMC2_EMUTYPE_MESS)
   actionLaunchQMC2MESS->setVisible(FALSE);
   actionClearMAWSCache->setVisible(FALSE);
+  actionDemoMode->setVisible(FALSE);
   setWindowTitle(tr("M.E.S.S. Catalog / Launcher II"));
   menu_Tools->removeAction(actionCheckIcons);
   treeWidgetGamelist->headerItem()->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Machine / Attribute"));
@@ -1056,10 +1061,23 @@ void MainWindow::on_actionPlay_activated()
   if ( qmc2EarlyReloadActive )
     return;
 
+#if defined(QMC2_EMUTYPE_MAME)
+  if ( !qmc2CurrentItem && qmc2DemoGame.isEmpty() )
+#else
   if ( !qmc2CurrentItem )
+#endif
     return;
 
-  QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+  QString gameName;
+
+#if defined(QMC2_EMUTYPE_MAME)
+  if ( !qmc2DemoGame.isEmpty() )
+    gameName = qmc2DemoGame;
+  else
+    gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+#else
+  gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+#endif
 
   if ( qmc2BiosROMs.contains(gameName) ) {
     // ROM is a BIOS and cannot be run...
@@ -1170,6 +1188,11 @@ void MainWindow::on_actionPlay_activated()
     args << "-window" << "-nomaximize" << "-keepaspect" << "-rotate" << "-noror" << "-norol";
 #endif
 
+#if defined(QMC2_EMUTYPE_MAME)
+  if ( !qmc2DemoGame.isEmpty() )
+    args << qmc2DemoArgs;
+#endif
+
   args << gameName;
 
 #if defined(QMC2_EMUTYPE_MESS)
@@ -1202,19 +1225,29 @@ void MainWindow::on_actionPlay_activated()
   // start game/machine
   qmc2ProcessManager->process(qmc2ProcessManager->start(command, args));
 
-  // add game/machine to played list
-  listWidgetPlayed->blockSignals(TRUE);
-  QList<QListWidgetItem *> matches = listWidgetPlayed->findItems(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME), Qt::MatchExactly);
-  QListWidgetItem *playedItem;
-  if ( matches.count() > 0 ) {
-    playedItem = listWidgetPlayed->takeItem(listWidgetPlayed->row(matches[0]));
+#if defined(QMC2_EMUTYPE_MAME)
+  if ( qmc2DemoGame.isEmpty() ) {
+#endif
+    // add game/machine to played list
+    listWidgetPlayed->blockSignals(TRUE);
+    QList<QListWidgetItem *> matches = listWidgetPlayed->findItems(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME), Qt::MatchExactly);
+    QListWidgetItem *playedItem;
+    if ( matches.count() > 0 ) {
+      playedItem = listWidgetPlayed->takeItem(listWidgetPlayed->row(matches[0]));
+    } else {
+      playedItem = new QListWidgetItem();
+      playedItem->setText(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME));
+    }
+    listWidgetPlayed->insertItem(0, playedItem);
+    listWidgetPlayed->setCurrentItem(playedItem);
+    listWidgetPlayed->blockSignals(FALSE);
+#if defined(QMC2_EMUTYPE_MAME)
   } else {
-    playedItem = new QListWidgetItem();
-    playedItem->setText(qmc2GamelistItemMap[gameName]->text(QMC2_GAMELIST_COLUMN_GAME));
+    if ( qmc2DemoModeDialog ) {
+      connect(qmc2ProcessManager->process(qmc2ProcessManager->procCount - 1), SIGNAL(finished(int, QProcess::ExitStatus)), qmc2DemoModeDialog, SLOT(emuFinished(int, QProcess::ExitStatus)));
+    }
   }
-  listWidgetPlayed->insertItem(0, playedItem);
-  listWidgetPlayed->setCurrentItem(playedItem);
-  listWidgetPlayed->blockSignals(FALSE);
+#endif
 }
 
 void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
@@ -1435,6 +1468,25 @@ void MainWindow::on_actionExportROMStatus_activated()
     qmc2ROMStatusExporter->showNormal();
 
   QTimer::singleShot(0, qmc2ROMStatusExporter, SLOT(raise()));
+}
+
+void MainWindow::on_actionDemoMode_activated()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionDemoMode_activated()");
+#endif
+
+  if ( !qmc2DemoModeDialog )
+    qmc2DemoModeDialog = new DemoModeDialog(this);
+
+  qmc2DemoModeDialog->adjustIconSizes();
+
+  if ( qmc2DemoModeDialog->isHidden() )
+    qmc2DemoModeDialog->show();
+  else if ( qmc2DemoModeDialog->isMinimized() )
+    qmc2DemoModeDialog->showNormal();
+
+  QTimer::singleShot(0, qmc2DemoModeDialog, SLOT(raise()));
 }
 
 void MainWindow::on_actionCheckSamples_activated()
@@ -4155,6 +4207,13 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2DetailSetup->close();
     delete qmc2DetailSetup;
   }
+#if defined(QMC2_EMUTYPE_MAME)
+  if ( qmc2DemoModeDialog ) {
+    log(QMC2_LOG_FRONTEND, tr("destroying demo mode dialog"));
+    qmc2DemoModeDialog->close();
+    delete qmc2DemoModeDialog;
+  }
+#endif
   if ( !qmc2GameInfoDB.isEmpty() ) {
 #if defined(QMC2_EMUTYPE_MAME)
     log(QMC2_LOG_FRONTEND, tr("destroying game info DB"));
@@ -6550,6 +6609,9 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+H"].second = qmc2MainWindow->actionDocumentation;
   qmc2ShortcutMap["Ctrl+I"].second = qmc2MainWindow->actionClearImageCache;
   qmc2ShortcutMap["Ctrl+Shift+A"].second = qmc2MainWindow->actionArcadeSetup;
+#if defined(QMC2_EMUTYPE_MAME)
+  qmc2ShortcutMap["Ctrl+Shift+D"].second = qmc2MainWindow->actionDemoMode;
+#endif
   qmc2ShortcutMap["Ctrl+M"].second = qmc2MainWindow->actionClearMAWSCache;
   qmc2ShortcutMap["Ctrl+N"].second = qmc2MainWindow->actionClearIconCache;
   qmc2ShortcutMap["Ctrl+O"].second = qmc2MainWindow->actionOptions;

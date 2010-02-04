@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.2.b14, 01-FEB-2010</h3>
+<h3>TODO - v0.2.b14, 04-FEB-2010</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>Certain GUI styles may cause display problems for the emulator configuration widgets</li>
@@ -28,6 +28,7 @@
 </ul>
 <p><b>Work in progress</b></p>
 <ul>
+  <li>Adding a <i>demo mode</i> for MAME variants which runs random games for a selectable period of time -- requested by some cabinet users :)</li>
   <li>Embedder options: additional functions for the snapshot tool (directly use snapshots as preview- or title-images), add a movie generator, ...</li>
   <li>Arcade mode: partially working, disabled by default (use "make WIP=1 ..." for a preview)</li>
   <li>Greek translation (thanks to Giorgos Kostopoulos)</li>
@@ -40,7 +41,6 @@
   <li>Add support for even more game/machine images (hiscore, howto, ...)</li>
   <li>Consider to migrate all data currently stored in 'flat files' (caches) to a database -- SQLite would be used per default (built-in), but basically it should be possible to use any DBMS that's supported by Qt -- also, this should reduce the overall memory footprint and would allow us to easily store user data as well (comments, rankings, etc.)</li>
   <li>Improve the image checker to also support all additional image data (consider a complete rewrite of the image checker)</li>
-  <li>Add a <i>demo mode</i> for MAME variants which runs random games for a selectable period of time -- requested by some cabinet users :)</li>
   <li>Add support for variant launching on Windows</li>
   <li>Add support for MAME/MESS output notifications on Windows</li>
   <li>Consider using QDial instead of QSlider for the audio player's volume control when Qt 4.6 is ready for prime time (see here for the great new look of Qt 4.6's QDial: 

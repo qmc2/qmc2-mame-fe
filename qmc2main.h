@@ -161,6 +161,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_actionCheckIcons_activated();
     void on_actionROMAlyzer_activated();
     void on_actionExportROMStatus_activated();
+    void on_actionDemoMode_activated();
     void on_actionClearImageCache_activated();
     void on_actionClearIconCache_activated();
 #if defined(QMC2_EMUTYPE_MAME)
