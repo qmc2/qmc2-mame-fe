@@ -9,6 +9,7 @@
 
 extern MainWindow *qmc2MainWindow;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
+extern QMap<QString, QString> qmc2GamelistDescriptionMap;
 extern QStringList qmc2BiosROMs;
 extern QString qmc2DemoGame;
 extern QStringList qmc2DemoArgs;
@@ -159,6 +160,7 @@ void DemoModeDialog::startNextEmu()
       qmc2DemoArgs << "-nomaximize";
   }
   qmc2DemoGame = selectedGames[qrand() % selectedGames.count()];
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulation in demo mode for '%1'").arg(qmc2GamelistDescriptionMap[qmc2DemoGame]));
 #if defined(Q_WS_X11)
   if ( checkBoxEmbedded->isChecked() && !checkBoxFullScreen->isChecked() )
     QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
