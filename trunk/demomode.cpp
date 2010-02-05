@@ -25,6 +25,7 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
 
   setupUi(this);
   demoModeRunning = FALSE;
+  emuProcess = NULL;
 #if !defined(Q_WS_X11)
   checkBoxEmbedded->setVisible(FALSE);
 #endif
@@ -98,6 +99,10 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
     pushButtonRunDemo->setToolTip(tr("Run demo now"));
     qmc2DemoGame = "";
     qmc2DemoArgs.clear();
+    if ( emuProcess ) {
+      emuProcess->terminate();
+      emuProcess = NULL;
+    }
   } else {
     if ( qmc2ReloadActive ) {
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
@@ -138,6 +143,15 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
   }
 }
 
+void DemoModeDialog::emuStarted()
+{
+  emuProcess = (QProcess *)sender();
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::emuStarted()");
+#endif
+
+}
+
 void DemoModeDialog::emuFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
 #ifdef QMC2_DEBUG
@@ -150,6 +164,7 @@ void DemoModeDialog::emuFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
   qmc2DemoArgs.clear();
   qmc2DemoGame.clear();
+  emuProcess = NULL;
 
   if ( demoModeRunning )
     QTimer::singleShot(spinBoxPauseSeconds->value() * 1000, this, SLOT(startNextEmu()));
@@ -166,6 +181,7 @@ void DemoModeDialog::startNextEmu()
 
   qmc2DemoArgs.clear();
   qmc2DemoArgs << "-str" << QString::number(spinBoxSecondsToRun->value());
+  emuProcess = NULL;
   if ( checkBoxFullScreen->isChecked() ) {
     qmc2DemoArgs << "-nowindow";
   } else {

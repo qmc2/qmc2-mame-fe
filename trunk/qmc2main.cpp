@@ -1244,7 +1244,11 @@ void MainWindow::on_actionPlay_activated()
 #if defined(QMC2_EMUTYPE_MAME)
   } else {
     if ( qmc2DemoModeDialog ) {
-      connect(qmc2ProcessManager->process(qmc2ProcessManager->procCount - 1), SIGNAL(finished(int, QProcess::ExitStatus)), qmc2DemoModeDialog, SLOT(emuFinished(int, QProcess::ExitStatus)));
+      QProcess *proc = qmc2ProcessManager->process(qmc2ProcessManager->procCount - 1);
+      if ( proc ) {
+        connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), qmc2DemoModeDialog, SLOT(emuFinished(int, QProcess::ExitStatus)));
+        connect(proc, SIGNAL(started()), qmc2DemoModeDialog, SLOT(emuStarted()));
+      }
     }
   }
 #endif
