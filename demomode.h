@@ -10,6 +10,7 @@ class DemoModeDialog : public QDialog, public Ui::DemoModeDialog
 
   public:
     QStringList selectedGames;
+    QProcess *emuProcess;
     bool demoModeRunning;
 
     DemoModeDialog(QWidget *parent = 0);
@@ -19,6 +20,7 @@ class DemoModeDialog : public QDialog, public Ui::DemoModeDialog
     void adjustIconSizes();
     void on_pushButtonRunDemo_clicked();
     void emuFinished(int, QProcess::ExitStatus);
+    void emuStarted();
     void startNextEmu();
 
   protected:
