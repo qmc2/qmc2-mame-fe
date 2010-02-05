@@ -2726,6 +2726,10 @@
    </property>
   </action>
   <action name="actionDemoMode">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/dice.png</normaloff>:/data/img/dice.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Demo mode...</string>
    </property>

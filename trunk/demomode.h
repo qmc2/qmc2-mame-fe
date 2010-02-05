@@ -24,6 +24,7 @@ class DemoModeDialog : public QDialog, public Ui::DemoModeDialog
   protected:
     void closeEvent(QCloseEvent *);
     void hideEvent(QHideEvent *) { closeEvent(NULL); };
+    void showEvent(QShowEvent *);
 };
 
 #endif

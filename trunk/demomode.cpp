@@ -51,6 +51,17 @@ DemoModeDialog::~DemoModeDialog()
 
 }
 
+void DemoModeDialog::showEvent(QShowEvent *)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DemoModeDialog::showEvent(QShowEvent *e = %1)").arg((qulonglong) e));
+#endif
+
+  // try to "grab" the input focus...
+  activateWindow();
+  setFocus();
+}
+
 void DemoModeDialog::closeEvent(QCloseEvent *e)
 {
 #ifdef QMC2_DEBUG
@@ -133,8 +144,13 @@ void DemoModeDialog::emuFinished(int exitCode, QProcess::ExitStatus exitStatus)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DemoModeDialog::emuFinished(int exitCode = ..., QProcess::ExitStatus exitStatus = ...)");
 #endif
 
+  // try to "grab" the input focus...
+  activateWindow();
+  setFocus();
+
   qmc2DemoArgs.clear();
-  qmc2DemoGame = "";
+  qmc2DemoGame.clear();
+
   if ( demoModeRunning )
     QTimer::singleShot(spinBoxPauseSeconds->value() * 1000, this, SLOT(startNextEmu()));
 }

@@ -11,12 +11,13 @@
         <file>data/img/camera.png</file>
         <file>data/img/cd.png</file>
         <file>data/img/circuit.png</file>
-        <file>data/img/classic/qmc2_logo_big.png</file>
-        <file>data/img/classic/qmc2_logo_small.png</file>
+        <file>data/img/qmc2_logo_big.png</file>
+        <file>data/img/qmc2_logo_small.png</file>
         <file>data/img/clock.png</file>
         <file>data/img/colors.png</file>
         <file>data/img/configure.png</file>
         <file>data/img/controller.png</file>
+        <file>data/img/dice.png</file>
         <file>data/img/disk.png</file>
         <file>data/img/disk2.png</file>
         <file>data/img/down.png</file>
