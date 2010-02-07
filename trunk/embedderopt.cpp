@@ -31,6 +31,9 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
   tabWidgetEmbedderOptions->removeTab(tabWidgetEmbedderOptions->indexOf(tabNetplay));
 #endif
 
+  // restore settings
+  checkBoxNativeSnapshotResolution->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", TRUE).toBool());
+
   adjustIconSizes();
 }
 
@@ -75,7 +78,10 @@ void EmbedderOptions::on_toolButtonTakeSnapshot_clicked()
   rect.moveCenter(pm.rect().center());
   QPixmap clippedPixmap = pm.copy(rect);
   QListWidgetItem *snapshotItem = new QListWidgetItem(QIcon(clippedPixmap), QString(), listWidgetSnapshots);
-  snapshotMap[snapshotItem] = clippedPixmap;
+  if ( checkBoxNativeSnapshotResolution->isChecked() )
+    snapshotMap[snapshotItem] = clippedPixmap.scaled(embedder->nativeResolution, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+  else
+    snapshotMap[snapshotItem] = clippedPixmap;
   listWidgetSnapshots->scrollToItem(snapshotItem);
 }
 
@@ -94,13 +100,16 @@ void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
+  Embedder *embedder = (Embedder *)parent();
   if ( !snapshotViewer )
     snapshotViewer = new SnapshotViewer(item, this);
   snapshotViewer->myItem = item;
   QPixmap pm = snapshotMap[item];
   QSize halfSize = pm.size();
-  halfSize.scale(halfSize.width() / 2, halfSize.height() / 2, Qt::KeepAspectRatio);
-  pm = pm.scaled(halfSize, Qt::KeepAspectRatio);
+  if ( halfSize.width() > embedder->nativeResolution.width() ) {
+    halfSize.scale(halfSize.width() / 2, halfSize.height() / 2, Qt::KeepAspectRatio);
+    pm = pm.scaled(halfSize, Qt::KeepAspectRatio);
+  }
   snapshotViewer->resize(pm.size());
   QRect rect = listWidgetSnapshots->visualItemRect(item);
   rect.translate(4, 2);
@@ -123,6 +132,15 @@ void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
   snapshotViewer->setPalette(pal);
   snapshotViewer->showNormal();
   snapshotViewer->raise();
+}
+
+void EmbedderOptions::on_checkBoxNativeSnapshotResolution_toggled(bool enabled)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::on_checkBoxNativeSnapshotResolution_toggled(bool enabled = %1)").arg(enabled));
+#endif
+
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", enabled);
 }
 
 SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
