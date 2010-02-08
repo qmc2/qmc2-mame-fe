@@ -1450,142 +1450,142 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="96"/>
         <source>demo mode stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>modo demonstração parado</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="98"/>
         <location filename="../../demomode.ui" line="276"/>
         <source>Run &amp;demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar &amp;demonstração</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="99"/>
         <location filename="../../demomode.ui" line="273"/>
         <source>Run demo now</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar demonstração agora</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="108"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere finalizar o recarregamento e tente novamente</translation>
     </message>
     <message numerus="yes">
         <location filename="../../demomode.cpp" line="138"/>
         <source>demo mode started -- %n game(s) selected by filter</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>modo demonstração iniciado -- %n jogo selecionado pelo filtro</numerusform>
+            <numerusform>modo demonstração iniciado -- %n jogos selecionados pelo filtro</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="140"/>
         <source>Stop &amp;demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar &amp;demonstração</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="141"/>
         <source>Stop demo now</source>
-        <translation type="unfinished"></translation>
+        <translation>Parar demonstração agora</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="195"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>iniciando emulação em modo demonstração para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="14"/>
         <source>Demo mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo demonstração</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="26"/>
         <source>ROM state filter</source>
-        <translation type="unfinished">Filtro de estado da ROM</translation>
+        <translation>Filtro de estado da ROM</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="44"/>
         <source>Select ROM state C (correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar estado de ROM C (correto)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="67"/>
         <source>Select ROM state M (mostly correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar estado de ROM M (maioria correto)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="90"/>
         <source>Select ROM state I (incorrect)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar estado de ROM I (incorreto)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="110"/>
         <source>Select ROM state N (not found)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar estado de ROM (não encontrado)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="130"/>
         <source>Select ROM state U (unknown)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar estado de ROM D (desconhecido)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="152"/>
         <source>Seconds to run</source>
-        <translation type="unfinished"></translation>
+        <translation>Segundos de execução</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="159"/>
         <source>Number of seconds to run an emulator in demo mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de segundos para executar um emulador em modo demonstração</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="178"/>
         <source>Pause (seconds)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pausar (segundos)</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="185"/>
         <source>Number of seconds to pause between emulator runs</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de segundos de pausa entre execuções do emulador</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="203"/>
         <source>Start emulators in full screen mode (otherwise use windowed mode)</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar emuladores em modo tela cheia (senão use modo janela)</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="206"/>
         <source>Full screen</source>
-        <translation type="unfinished">Tela cheia</translation>
+        <translation>Tela cheia</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="219"/>
         <source>Maximize emulators when in windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximizar emuladores quando em modo janela</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="222"/>
         <source>Maximized</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximizado</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="232"/>
         <source>Embed windowed emulators</source>
-        <translation type="unfinished"></translation>
+        <translation>Embutir emuladores em modo janela</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="235"/>
         <source>Embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>Embutido</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="244"/>
         <source>Close this dialog (and stop running demo)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar essa janela (e parar demonstração em execução)</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="247"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Fechar</translation>
+        <translation>&amp;Fechar</translation>
     </message>
 </context>
 <context>
@@ -1885,7 +1885,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="69"/>
         <source>emulator embedded, window ID = 0x%1</source>
-        <translation>emulator incorporado, ID da janela = 0x%1</translation>
+        <translation>emulator embutido, ID da janela = 0x%1</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="86"/>
@@ -1908,7 +1908,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedderopt.ui" line="14"/>
         <source>Embedder options</source>
-        <translation>Opções do incorporador</translation>
+        <translation>Opções para embutir</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="31"/>
@@ -1938,12 +1938,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedderopt.ui" line="112"/>
         <source>Scale snapshots to the native resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>Redimensionar capturas de tela para a resolução nativa</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="115"/>
         <source>Native resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>Resolução nativa</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="127"/>
@@ -4274,12 +4274,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="159"/>
         <source>Play selected game (embedded)</source>
-        <translation>Jogar jogo selecionado (incorporado)</translation>
+        <translation>Jogar jogo selecionado (embutido)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="160"/>
         <source>Play &amp;embedded</source>
-        <translation>Jogar &amp;incorporado</translation>
+        <translation>Jogar &amp;embutido</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="232"/>
@@ -4439,7 +4439,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="383"/>
         <source>Toggle maximization of embedded emulator windows</source>
-        <translation>Ativar/desativar maximização das janelas de emuladores incorporados</translation>
+        <translation>Ativar/desativar maximização das janelas de emuladores embutidos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="407"/>
@@ -4499,7 +4499,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="423"/>
         <location filename="../../qmc2main.cpp" line="424"/>
         <source>Play current machine (embedded)</source>
-        <translation>Jogar máquina corrente (incorporado)</translation>
+        <translation>Jogar máquina corrente (embutido)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="426"/>
@@ -4610,12 +4610,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="576"/>
         <source>Embed emulator widget</source>
-        <translation>Incorporar widget do emulador</translation>
+        <translation>Embutir widget do emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="577"/>
         <source>&amp;Embed</source>
-        <translation>&amp;Incorporar</translation>
+        <translation>&amp;Embutir</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="583"/>
@@ -4678,7 +4678,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="712"/>
         <location filename="../../qmc2main.cpp" line="769"/>
         <source>Play selected game (embedded)</source>
-        <translation>Jogar jogo selecionado (incorporado)</translation>
+        <translation>Jogar jogo selecionado (embutido)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="614"/>
@@ -4686,7 +4686,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="714"/>
         <location filename="../../qmc2main.cpp" line="771"/>
         <source>Start selected machine (embedded)</source>
-        <translation>Iniciar máquina selecionada (incorporado)</translation>
+        <translation>Iniciar máquina selecionada (embutido)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="616"/>
@@ -4695,7 +4695,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="773"/>
         <location filename="../../qmc2main.ui" line="2716"/>
         <source>Play &amp;embedded</source>
-        <translation>Jogar &amp;incorporado</translation>
+        <translation>Jogar &amp;embutido</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="622"/>
@@ -5170,18 +5170,18 @@ Você realmente quer verificar o estado de todas as ROMs agora?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3153"/>
         <source>emulator for &apos;%1&apos; is already embedded</source>
-        <translation>emulador para %1 já está incorporado</translation>
+        <translation>emulador para %1 já está embutido</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3201"/>
         <location filename="../../qmc2main.ui" line="380"/>
         <source>Embedded emulators</source>
-        <translation>Emuladores incorporados</translation>
+        <translation>Emuladores embutidos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3202"/>
         <source>embedding emulator window for &apos;%1&apos;, window ID = %2</source>
-        <translation>incorporando janela do emulador para &apos;%1&apos;, ID da janela = %2</translation>
+        <translation>embutindo janela do emulador para &apos;%1&apos;, ID da janela = %2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3211"/>
@@ -5191,7 +5191,7 @@ Você realmente quer verificar o estado de todas as ROMs agora?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3258"/>
         <source>Embedding failed</source>
-        <translation>Incorporação falhou</translation>
+        <translation>Embutir falhou</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3505"/>
@@ -5395,7 +5395,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4216"/>
         <source>destroying demo mode dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo janela de modo demonstração</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4223"/>
@@ -6924,7 +6924,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.ui" line="2719"/>
         <location filename="../../qmc2main.ui" line="2722"/>
         <source>Play current game (embedded)</source>
-        <translation>Jogar jogo atual (incorporado)</translation>
+        <translation>Jogar jogo atual (embutido)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2725"/>
@@ -6934,23 +6934,23 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2734"/>
         <source>&amp;Demo mode...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Modo demonstração...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2737"/>
         <location filename="../../qmc2main.ui" line="2740"/>
         <source>Open the demo mode dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir a janela do modo demonstração</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2743"/>
         <source>Ctrl+Shift+D</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3194"/>
         <source>WARNING: multiple emulator windows for &apos;%1&apos; found, choosing window ID %2 for embedding</source>
-        <translation>AVISO: multiplas janelas de emulador para &apos;%1&apos; encontradas, escolhendo janela com ID %2 para incorporar</translation>
+        <translation>AVISO: multiplas janelas de emulador para &apos;%1&apos; encontradas, escolhendo janela com ID %2 para embutir</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3252"/>
@@ -6996,7 +6996,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3217"/>
         <source>Toggle embedder options (hold down for menu)</source>
-        <translation>Ativar/desativar opções do incorporador (segure para exibir o menu)</translation>
+        <translation>Ativar/desativar opções para embutir (segure para exibir o menu)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3224"/>
@@ -7595,7 +7595,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="217"/>
         <source>Demo mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo demonstração</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="219"/>
@@ -7620,7 +7620,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="224"/>
         <source>Play (embedded)</source>
-        <translation>Jogar (incorporado)</translation>
+        <translation>Jogar (embutido)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="226"/>
