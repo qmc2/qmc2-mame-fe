@@ -1085,8 +1085,14 @@ void MainWindow::on_actionPlay_activated()
     return;
   }
 
-  qmc2LastConfigItem = NULL;
-  on_tabWidgetGameDetail_currentChanged(qmc2DetailSetup->appliedDetailList.indexOf(QMC2_CONFIG_INDEX));
+#if defined(QMC2_EMUTYPE_MAME)
+  if ( qmc2DemoGame.isEmpty() ) {
+#endif
+    qmc2LastConfigItem = NULL;
+    on_tabWidgetGameDetail_currentChanged(qmc2DetailSetup->appliedDetailList.indexOf(QMC2_CONFIG_INDEX));
+#if defined(QMC2_EMUTYPE_MAME)
+  }
+#endif
 
   // check if a foreign emulator is to be used and if it CAN be used; if yes (both), start it instead of the default emulator...
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1097,7 +1103,11 @@ void MainWindow::on_actionPlay_activated()
   QStringList registeredEmulators = qmc2Config->childGroups();
   qmc2Config->endGroup();
   bool foreignEmulator = FALSE;
+#if defined(QMC2_EMUTYPE_MAME)
+  if ( registeredEmulators.count() > 0 && qmc2DemoGame.isEmpty() ) {
+#else
   if ( registeredEmulators.count() > 0 ) {
+#endif
     if ( qmc2Config->contains(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator") ) {
       QString selectedEmulator = qmc2Config->value(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator").toString();
       if ( !selectedEmulator.isEmpty() && registeredEmulators.contains(selectedEmulator) ) {
@@ -1120,11 +1130,22 @@ void MainWindow::on_actionPlay_activated()
 
   QStringList args;
   QString sectionTitle;
+  EmulatorOptions *emuOptions = qmc2EmulatorOptions;
 
-  foreach (sectionTitle, qmc2EmulatorOptions->optionsMap.uniqueKeys()) {
+#if defined(QMC2_EMUTYPE_MAME)
+  EmulatorOptions *demoOpts = NULL;
+  if ( !qmc2DemoGame.isEmpty() ) {
+    demoOpts = new EmulatorOptions("MAME/Configuration/" + gameName, 0);
+    demoOpts->hide();
+    demoOpts->load();
+    emuOptions = demoOpts;
+  }
+#endif
+
+  foreach (sectionTitle, emuOptions->optionsMap.uniqueKeys()) {
     int i;
-    for (i = 0; i < qmc2EmulatorOptions->optionsMap[sectionTitle].count(); i++) {
-      EmulatorOption option = qmc2EmulatorOptions->optionsMap[sectionTitle][i];
+    for (i = 0; i < emuOptions->optionsMap[sectionTitle].count(); i++) {
+      EmulatorOption option = emuOptions->optionsMap[sectionTitle][i];
 #if defined(QMC2_EMUTYPE_MAME)
       QString globalOptionKey = "MAME/Configuration/Global/" + option.name;
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -1249,6 +1270,8 @@ void MainWindow::on_actionPlay_activated()
         connect(proc, SIGNAL(finished(int, QProcess::ExitStatus)), qmc2DemoModeDialog, SLOT(emuFinished(int, QProcess::ExitStatus)));
         connect(proc, SIGNAL(started()), qmc2DemoModeDialog, SLOT(emuStarted()));
       }
+      if ( demoOpts )
+        delete demoOpts;
     }
   }
 #endif
