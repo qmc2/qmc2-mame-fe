@@ -1,0 +1,44 @@
+#!/bin/bash
+# WARNING: This is just a "make things easier" script. It is not intended to 
+# overwrite any general script. 
+# 
+# @param: version of release (f.i. 0.2b14)
+# 
+# This script creates a debian package from the source folder
+
+if [ $# -ne 2 ]
+then
+  echo "use: $0 release_version src_line
+  where src_line is
+    0 for trunk
+    1 for stable tags"
+else
+  RELEASE_FOLDER=qmc2-$1
+  #entering basis (have trunk and tags folder)
+  cd ../../../
+  if [ $2 -eq 0 ]
+  then
+    mkdir ${RELEASE_FOLDER}
+    cp -a trunk/* ${RELEASE_FOLDER}/
+  else
+    if [ -e tags/$1 ]
+    then
+      mkdir ${RELEASE_FOLDER}
+      cp -a tags/$1/* ${RELEASE_FOLDER}/
+    else
+      echo "Source folder does not exist. Exiting..."
+      exit 1
+    fi
+  fi
+
+   #create orig file
+  mkdir ${RELEASE_FOLDER}.orig
+  cp -a ${RELEASE_FOLDER}/* ${RELEASE_FOLDER}.orig/  
+
+  #copy content on pkg-spec/Debian folder to debian folder inside release dir
+  mkdir ${RELEASE_FOLDER}/debian
+  cp -a ${RELEASE_FOLDER}/pkg-specs/Debian/* ${RELEASE_FOLDER}/debian/
+
+  cd ${RELEASE_FOLDER}
+  debuild -j3
+fi
