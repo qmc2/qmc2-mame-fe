@@ -1,3 +1,10 @@
+qmc2 (0.2.b14) karmic; urgency=low
+
+  * New Upstream Release
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Wed, 10 Feb 2010 20:30:00 -0200
+
+
 qmc2 (0.2b13-6) karmic; urgency=low
 
   * Added sdlmame as dependency
