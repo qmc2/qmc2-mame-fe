@@ -659,11 +659,13 @@
     <option name="natural" type="bool" default="false">
       <description lang="us" text="Specifies whether to use a natural keyboard or not"/>
       <description lang="de" text="Gibt an, ob ein 'Natural Keyboard' verwendet wird oder nicht"/>
+      <description lang="pl" text="Decyduje, czy ma być używana naturalna klawiatura"/>
       <description lang="pt" text="Especificar se deve ser usado teclado natural ou não"/>
     </option>
     <option name="uimodekey" type="string" default="auto">
       <description lang="us" text="Specifies the key used to toggle between full and partial UI mode"/>
       <description lang="de" text="Gibt an, welche Taste für das Umschalten zwischen vollem und partiellem UI Modus verwendet wird"/>
+      <description lang="pl" text="Ustawia klawisz przełączający pomiędzy pełnym a częściowym trybem interfejsu użytkownika"/>
       <description lang="pt" text="Especificar a tecla usada para alternar entre interface total ou parcial"/>
     </option>
   </section>
@@ -795,6 +797,7 @@
     <option name="debug_internal" type="bool" default="false">
       <description lang="us" text="Use the internal debugger for debugging"/>
       <description lang="de" text="Internen Debugger verwenden"/>
+      <description lang="pl" text="Używaj wewnętrznego debuggera"/>
       <description lang="pt" text="Usar o depurador interno"/>
     </option>
   </section>
