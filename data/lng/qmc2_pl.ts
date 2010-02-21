@@ -1474,8 +1474,6 @@ p, li { white-space: pre-wrap; }
         <source>demo mode started -- %n game(s) selected by filter</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -1790,12 +1788,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.ui" line="120"/>
         <source>Move selected detail up</source>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń wybrany szczegół w górę</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="137"/>
         <source>Move selected detail down</source>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń wybrany szczegół w dół</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="170"/>
@@ -1939,12 +1937,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedderopt.ui" line="112"/>
         <source>Scale snapshots to the native resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>Skaluj zrzuty ekranu do rozdzielczości natywnej</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="115"/>
         <source>Native resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozdzielczość natywna</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="127"/>
@@ -4666,18 +4664,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="2734"/>
         <source>&amp;Demo mode...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryb de&amp;monstracyjny...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2737"/>
         <location filename="../../qmc2main.ui" line="2740"/>
         <source>Open the demo mode dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz okno dialogowe trybu demonstracyjnego</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2743"/>
         <source>Ctrl+Shift+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+D</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="606"/>
@@ -5279,7 +5277,7 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3258"/>
         <source>Embedding failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Osadzanie nie powiodło się</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3706"/>
@@ -5397,7 +5395,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4216"/>
         <source>destroying demo mode dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie okna dialogowego trybu demonstracyjnego</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4258"/>
@@ -6351,12 +6349,12 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4100"/>
         <source>destroying arcade view</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie widoku salonowego</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1813"/>
         <source>&amp;Arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryb &amp;salonowy</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="869"/>
@@ -6368,7 +6366,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../qmc2main.ui" line="2334"/>
         <location filename="../../qmc2main.ui" line="2337"/>
         <source>Setup arcade mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia trybu salonowego</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2343"/>
@@ -6378,7 +6376,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4105"/>
         <source>destroying arcade setup dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie okna dialogowego trybu salonowego</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4137"/>
@@ -6393,7 +6391,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5929"/>
         <source>ArcadeView is not currently active, can&apos;t take screen shot</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeView nie jest obecnie aktywny, nie można pobrać zrzutu ekranu</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2646"/>
@@ -6738,8 +6736,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -6844,12 +6840,12 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3224"/>
         <source>To favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Do ulubionych</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3230"/>
         <source>Terminate emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakończ emulator</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3231"/>
@@ -6859,7 +6855,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3235"/>
         <source>Kill emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Zabij emulator</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3236"/>
@@ -8123,7 +8119,7 @@ Retry embedding?</source>
     <message>
         <location filename="../../options.ui" line="754"/>
         <source>Detail setup...</source>
-        <translation>Ustawienia szczegółów</translation>
+        <translation>Ustawienia szczegółów...</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="764"/>
@@ -8345,7 +8341,7 @@ Retry embedding?</source>
     <message>
         <location filename="../../options.cpp" line="217"/>
         <source>Demo mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryb demonstracyjny</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="220"/>
@@ -9320,22 +9316,22 @@ Retry embedding?</source>
     <message>
         <location filename="../../options.cpp" line="250"/>
         <source>Toggle arcade mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz tryb salonowy</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="251"/>
         <source>Show FPS (arcade mode)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż FPS (tryb salonowy)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="252"/>
         <source>Take snapshot (arcade mode)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobierz zrzut ekranu (tryb salonowy)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="215"/>
         <source>Setup arcade mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia trybu salonowego</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="174"/>
@@ -9504,12 +9500,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="1336"/>
         <source>triggering automatic reload of game list</source>
-        <translation type="unfinished"></translation>
+        <translation>uruchamianie automatycznego przeładowania listy gier</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1338"/>
         <source>triggering automatic reload of machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>uruchamianie automatycznego przeładowania listy maszyn</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1478"/>
