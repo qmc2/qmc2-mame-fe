@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.2.b14, 01-FEB-2010</h3>
+<h3>FAQ - v0.2.b14, 02-MAR-2010</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (Linux) distribution comes with an older version of Qt. What should I do about that?</a></div></p>
@@ -39,6 +39,7 @@
 <p><div class="menuitem"><a href="#A2.10">Q2.10: I'm having trouble to set up the emulator configuration. Am I missing something?</a></div></p>
 <p><div class="menuitem"><a href="#A2.11">Q2.11: When I try to launch another QMC2 variant from a currently running one, nothing happens. What's up?</a></div></p>
 <p><div class="menuitem"><a href="#A2.12">Q2.12: The MAWS lookup feature is nice, but I would like to use a different catalog. Is it possible?</a></div></p>
+<p><div class="menuitem"><a href="#A2.13">Q2.13: I want to use other emulators for specific games. Does QMC2 support that?</a></div></p>
 <p><b>Miscellaneous FAQs, known bugs inside and outside of QMC2 etc.:</b></p>
 <p><div class="menuitem"><a href="#A3.1">Q3.1: QMC2 doesn't determine the ROM state. What's wrong?</a></div></p>
 <p><div class="menuitem"><a href="#A3.2">Q3.2: ROM state filtering takes veeeery long. What's up?</a></div></p>
@@ -415,6 +416,16 @@ I had to go into the CompizConfig Settings Manager, General Options, Focus &amp;
 <p>To use the original (full-blown) MAWS catalog, the URL pattern should look like this (which is the default):</p>
 <pre>http://maws.mameworld.info/maws/romset/%1</pre>
 <p>These are just some examples; there are a lot more on the net. However, even though this is quite flexible, not all available catalogs are working correctly with this feature. You've been warned :)! The ones mentioned above have been tested successfully, though.</p>
+<hr>
+<p><a name="A2.13"></a><b>Q2.13: I want to use other emulators for specific games. Does QMC2 support that?</b></p>
+<p>Yes. Since version 0.2.b13 we support so called <i>foreign</i> emulators on a per game/machine basis. That is, we assume MAME-/MESS-like emulators which use the same game/machine
+   IDs and ROM sets. It is mainly meant to drive older versions of MAME or MESS, specifically XMAME support has been revived through this new feature (though it's basically not limited
+   to MAME or MESS variants).</p>
+<p>Note, however, that QMC2's default emulator needs to be one of the officially supported set and that the configuration of foreign emulators is totally up to the user, who
+   needs to register each emulator with its command line options -- including a placeholder for the game/machine ID! If you omit the ID placeholder (<i>$ID$</i>) in the emulator
+   registration, this mechanism will simply not work.</p>
+<p>To add/modify foreign emulators, go to the <i>additional emulators</i> tab in the emulator section of the global setup. Then simply select one of these in the game-/machine-specific
+   emulator configuration and you're done.</p>
 <hr>
 <p><a name="A3.1"></a><b>Q3.1: QMC2 doesn't determine the ROM state. What's wrong?</b></p>
 <p>There are at least three possible scenarios:</p>
