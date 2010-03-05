@@ -4605,12 +4605,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="455"/>
         <source>Search for machines (not case-sensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por máquinas (não sensível à caixa)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="456"/>
         <source>Search for machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por máquinas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="506"/>
