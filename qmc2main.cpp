@@ -452,6 +452,8 @@ MainWindow::MainWindow(QWidget *parent)
   treeWidgetGamelist->headerItem()->setText(QMC2_GAMELIST_COLUMN_ICON, tr("Value"));
   actionCheckIcons->setVisible(FALSE);
   labelLoadingGamelist->setText(tr("Loading machine list, please wait..."));
+  comboBoxSearch->setToolTip(tr("Search for machines (not case-sensitive)"));
+  comboBoxSearch->setStatusTip(tr("Search for machines"));
 #endif
 
   qmc2Gamelist = new Gamelist(this);
