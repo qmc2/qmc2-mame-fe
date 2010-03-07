@@ -370,6 +370,14 @@ ifndef CXX_FLAGS
 CXX_FLAGS =
 endif
 
+# >>> L_FLAGS <<<
+#
+# Specify additional flags passed to the linker.
+#
+ifndef L_FLAGS
+L_FLAGS =
+endif
+
 # >>> XWININFO <<<
 #
 # Specify the command to be used to run 'xwininfo'.
@@ -555,7 +563,7 @@ CCACHE = 0
 DISTCC = 0
 endif
 
-# C++ flags
+# Optional C++ compiler flags
 ifdef QMAKE_CXX_FLAGS
 undef QMAKE_CXX_FLAGS
 endif
@@ -563,12 +571,20 @@ ifneq '$(CXX_FLAGS)' ''
 QMAKE_CXX_FLAGS += QMAKE_CXXFLAGS=$(CXX_FLAGS)
 endif
 
-# C flags
+# Optional C compiler flags
 ifdef QMAKE_CC_FLAGS
 undef QMAKE_CC_FLAGS
 endif
 ifneq '$(CC_FLAGS)' ''
 QMAKE_CC_FLAGS += QMAKE_CFLAGS_RELEASE=$(CC_FLAGS) QMAKE_CFLAGS_DEBUG=$(CC_FLAGS)
+endif
+
+# Optional linker flags
+ifdef QMAKE_L_FLAGS
+undef QMAKE_L_FLAGS
+endif
+ifneq '$(L_FLAGS)' ''
+QMAKE_L_FLAGS += QMAKE_LFLAGS=$(L_FLAGS)
 endif
 
 # targets/rules
@@ -614,7 +630,7 @@ endif
 $(QMAKEFILE): $(PROJECT).pro
 	@echo "Configuring build of QMC2 v$(VERSION)"
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
-	@$(QMAKE) -makefile VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) '$(DEFINES)' -o Makefile.qmake $< > /dev/null
+	@$(QMAKE) -makefile VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) '$(DEFINES)' -o Makefile.qmake $< > /dev/null
 else
 $(PROJECT)-bin: lang $(QMAKEFILE)
 ifeq '$(ARCH)' 'Darwin'
@@ -643,7 +659,7 @@ endif
 $(QMAKEFILE): $(PROJECT).pro
 	@echo "Configuring build of QMC2 v$(VERSION)"
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)") 
-	$(QMAKE) -makefile VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) '$(DEFINES)' -o Makefile.qmake $<
+	$(QMAKE) -makefile VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) '$(DEFINES)' -o Makefile.qmake $<
 endif
 
 install: bin
@@ -826,6 +842,7 @@ config:
 	@echo "GREP=<grep>            UNIX command grep                           $(GREP)"
 	@echo "IMGSET=<imgset>        Image set to be used                        $(IMGSET)"
 	@echo "JOYSTICK=<joystick>    Compile with SDL joystick support (0, 1)    $(JOYSTICK)"
+	@echo "L_FLAGS=<l_flags>      Additional flags passed to the linker       $(L_FLAGS)"
 	@echo "LN=<ln>                UNIX command ln                             $(LN)"
 	@echo "LRELEASE=<lrelease>    Qt language release (lrelease) command      $(LRELEASE)"
 	@echo "LUPDATE=<lupdate>      Qt language update (lupdate) command        $(LUPDATE)"
