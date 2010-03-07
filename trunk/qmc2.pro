@@ -148,7 +148,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			QMAKE_INFO_PLIST = macx/Info.plist
 		} else {
 			!win32 {
-				LIBS += -lSDL
+				LIBS += -lSDL -lz -lX11
 			}
 		}
 		win32 {
