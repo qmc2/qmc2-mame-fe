@@ -359,7 +359,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="15"/>
         <source>Arcade setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia salonu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="25"/>
@@ -374,12 +374,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="648"/>
         <source>Arcade font (= system default if empty)</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka salonu (= domyślna systemowa jeśli puste)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="658"/>
         <source>Browse arcade font</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż czcionkę salonu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="295"/>
@@ -427,7 +427,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="216"/>
         <source>Display arcade scene in full screen mode or windowed</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetlaj salon w trybie pełnoekranowym lub w oknie</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="219"/>
@@ -474,12 +474,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="711"/>
         <source>Virtual width of scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Wirtualna szerokość salonu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="744"/>
         <source>Virtual height of scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Wirtualna wysokość salonu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="253"/>
@@ -529,17 +529,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="356"/>
         <source>Anti aliasing</source>
-        <translation></translation>
+        <translation>Antyaliasing</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="363"/>
         <source>Synchronize buffer swaps with screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchronizacja aktualizacji bufora z ekranem</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="366"/>
         <source>Sync to screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchronizuj z ekranem</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="373"/>
@@ -589,22 +589,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="423"/>
         <source>Enable OpenGL overlays</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz nakładki OpenGL</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="426"/>
         <source>Overlays</source>
-        <translation type="unfinished"></translation>
+        <translation>Nakładki</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="433"/>
         <source>Enable accumulator buffer</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz bufor akumulatora</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="436"/>
         <source>Accumulator buffer</source>
-        <translation type="unfinished"></translation>
+        <translation>Bufor akumulatora</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="443"/>
@@ -619,17 +619,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="453"/>
         <source>Enable stereo buffer</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz bufor stereo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="456"/>
         <source>Stereo buffer</source>
-        <translation type="unfinished"></translation>
+        <translation>Bufor stereo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="486"/>
         <source>Scene layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Układ salonu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="492"/>
@@ -644,12 +644,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2303"/>
         <source>Control display of MAWS lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz kontrolny danych MAWS</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2306"/>
         <source>MAWS lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>Dane MAWS</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2584"/>
@@ -704,7 +704,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="273"/>
         <source>Keep aspect ratio when resizing scene window</source>
-        <translation type="unfinished"></translation>
+        <translation>Zachowaj proporcje podczas zmiany rozmiaru okna salonu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="403"/>
@@ -714,7 +714,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2537"/>
         <source>Scene rotation angle in degrees</source>
-        <translation type="unfinished"></translation>
+        <translation>Kąt obrotu salonu w stopniach</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="518"/>
@@ -870,7 +870,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2244"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2465"/>
         <source>T:</source>
-        <translation type="unfinished"></translation>
+        <translation>P:</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="925"/>
@@ -957,7 +957,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="641"/>
         <source>Arcade font</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka salonu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="669"/>
@@ -977,7 +977,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.cpp" line="26"/>
         <source>Control display of machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz kontrolny listy maszyn</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="553"/>
@@ -1018,57 +1018,57 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="756"/>
         <source>Control display of game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz kontrolny listy gier</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="977"/>
         <source>Control display of preview image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz kontrolny podglądu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1198"/>
         <source>Control display of flyer image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz kontrolny ulotki</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="79"/>
         <source>X coordinate of scene window position</source>
-        <translation type="unfinished"></translation>
+        <translation>Odcięta pozycji okna salonu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="102"/>
         <source>Y coordinate of scene window position</source>
-        <translation type="unfinished"></translation>
+        <translation>Rzędna pozycji okna salonu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="125"/>
         <source>Width of scene window</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerokość okna salonu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="148"/>
         <source>Height of scene window</source>
-        <translation type="unfinished"></translation>
+        <translation>Wysokość okna salonu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="178"/>
         <source>X portion of scene aspect ratio (should be equal to screen&apos;s aspect ratio)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozioma część proporcji salonu (powinna być równa proporcji ekranu)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="201"/>
         <source>Y portion of scene aspect ratio (should be equal to screen&apos;s aspect ratio)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pionowa część proporcji salonu (powinna być równa proporcji ekranu)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2530"/>
         <source>Scene rotation</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrót salonu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="285"/>
         <source>Center arcade window on screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyśrodkuj okno salonu na ekranie</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="288"/>
@@ -1078,7 +1078,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1419"/>
         <source>Control display of cabinet image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz kontrolny automatu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1422"/>
@@ -1088,7 +1088,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1640"/>
         <source>Control display of controller image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz kontrolny kontrolera</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1643"/>
@@ -1098,7 +1098,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1861"/>
         <source>Control display of marquee image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz kontrolny planszy tytułowej</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1864"/>
@@ -1108,7 +1108,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2082"/>
         <source>Control display of title image</source>
-        <translation type="unfinished"></translation>
+        <translation>Obraz kontrolny ekranu tytułowego</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2085"/>
@@ -1243,7 +1243,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="201"/>
         <source>ArcadeView: This system does not appear to support OpenGL overlays -- disabling OpenGL overlays</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeView: Ten system nie wydaje się obsługiwać nakładek OpenGL -- wyłączanie nakładek OpenGL</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="204"/>
@@ -1253,7 +1253,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="207"/>
         <source>ArcadeView: This system does not appear to support OpenGL multi sampling -- disabling MultiSample</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeView: Ten system nie wydaje się obsługiwać multisamplingu -- wyłączanie multisamplingu</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="210"/>
@@ -1293,7 +1293,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="231"/>
         <source>ArcadeView: X11: Compositing manager: %1</source>
-        <translation>ArcadeView: X11: Menedżer kompozycji: %1</translation>
+        <translation>ArcadeView: X11: Menedżer składania: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="231"/>
@@ -1323,7 +1323,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="241"/>
         <source>ArcadeView: Virtual resolution doesn&apos;t fit aspect ratio -- scene coordinates may be stretched or compressed</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeView: Wirtualna rozdzielczość nie zgadza się z proporcjami ekranu -- współrzędne salonu mogą być rozciągniętę bądź ściśnięte</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="242"/>
@@ -1385,7 +1385,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="238"/>
         <source>ArcadeView: Scene rotation angle: %1 degrees</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeView: Kąt obrotu salonu: %1 stopni</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="127"/>
@@ -1450,143 +1450,143 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="96"/>
         <source>demo mode stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>tryb demonstracyjny zatrzymany</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="98"/>
         <location filename="../../demomode.ui" line="276"/>
         <source>Run &amp;demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom &amp;demonstrację</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="99"/>
         <location filename="../../demomode.ui" line="273"/>
         <source>Run demo now</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom demonstrację teraz</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="108"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished">proszę poczekać za zakończenie przeładowywania i spróbować ponownie</translation>
+        <translation>proszę poczekać za zakończenie przeładowywania i spróbować ponownie</translation>
     </message>
     <message numerus="yes">
         <location filename="../../demomode.cpp" line="138"/>
         <source>demo mode started -- %n game(s) selected by filter</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>tryb demonstracyjny uruchomiono -- %n gra wybrana za pomocą filtra</numerusform>
+            <numerusform>tryb demonstracyjny uruchomiono -- %n gry wybrane za pomocą filtra</numerusform>
+            <numerusform>tryb demonstracyjny uruchomiono -- %n gier wybranych za pomocą filtra</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="140"/>
         <source>Stop &amp;demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatrzymaj &amp;demonstrację</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="141"/>
         <source>Stop demo now</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatrzymaj demonstrację teraz</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="195"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>uruchamianie emulacji w trybie demonstracyjnym dla &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="14"/>
         <source>Demo mode</source>
-        <translation type="unfinished">Tryb demonstracyjny</translation>
+        <translation>Tryb demonstracyjny</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="26"/>
         <source>ROM state filter</source>
-        <translation type="unfinished">Filtr stanu ROM-ów</translation>
+        <translation>Filtr stanu ROM-ów</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="44"/>
         <source>Select ROM state C (correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybrać stan ROM-ów P (poprawny)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="67"/>
         <source>Select ROM state M (mostly correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybrać stan ROM-ów Wp (w większości poprawny)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="90"/>
         <source>Select ROM state I (incorrect)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybrać stan ROM-ów Np (niepoprawny)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="110"/>
         <source>Select ROM state N (not found)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybrać stan ROM-ów Nz (nieznaleziony)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="130"/>
         <source>Select ROM state U (unknown)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybrać stan ROM-ów Nn (nieznany)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="152"/>
         <source>Seconds to run</source>
-        <translation type="unfinished"></translation>
+        <translation>Sekundy uruchomienia</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="159"/>
         <source>Number of seconds to run an emulator in demo mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Liczba sekund, przez którą emulator ma być uruchomiony w trybie demonstracyjnym</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="178"/>
         <source>Pause (seconds)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pauza (sekundy)</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="185"/>
         <source>Number of seconds to pause between emulator runs</source>
-        <translation type="unfinished"></translation>
+        <translation>Liczba sekund oczekiwania pomiędzy kolejnymi uruchomieniami emulatora</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="203"/>
         <source>Start emulators in full screen mode (otherwise use windowed mode)</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchamiaj emulatory w trybie pełnoekranowym (w przeciwnym wypadku używaj okna)</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="206"/>
         <source>Full screen</source>
-        <translation type="unfinished">Pełny ekran</translation>
+        <translation>Pełny ekran</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="219"/>
         <source>Maximize emulators when in windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksymalizuj okna emulatora</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="222"/>
         <source>Maximized</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksymalizacja</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="232"/>
         <source>Embed windowed emulators</source>
-        <translation type="unfinished"></translation>
+        <translation>Osadzaj okna emulatora</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="235"/>
         <source>Embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>Osadzone</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="244"/>
         <source>Close this dialog (and stop running demo)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij to okno dialogowe (i zakończ pokazywanie demonstracji)</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="247"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Zamknij</translation>
+        <translation>&amp;Zamknij</translation>
     </message>
 </context>
 <context>
@@ -3062,37 +3062,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="835"/>
         <source>Pixel clock</source>
-        <translation type="unfinished"></translation>
+        <translation>Zegar pikseli</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="835"/>
         <source>H-Total</source>
-        <translation type="unfinished"></translation>
+        <translation>Poz. całkowite</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="835"/>
         <source>H-Bend</source>
-        <translation type="unfinished"></translation>
+        <translation>Odchylanie poz. </translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="835"/>
         <source>HB-Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Początek odch. poz.</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="835"/>
         <source>V-Total</source>
-        <translation type="unfinished"></translation>
+        <translation>Pion. całkowite</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="835"/>
         <source>V-Bend</source>
-        <translation type="unfinished"></translation>
+        <translation>Odchylanie pion.</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="835"/>
         <source>VB-Start</source>
-        <translation type="unfinished"></translation>
+        <translation>Początek odch. pion.</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="826"/>
@@ -4963,7 +4963,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="383"/>
         <source>Toggle maximization of embedded emulator windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz maksymalizację osadzonych okien emulatora</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="411"/>
@@ -4984,12 +4984,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="455"/>
         <source>Search for machines (not case-sensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Szukaj maszyn (wielkość liter nie ma znaczenia)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="456"/>
         <source>Search for machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Szukaj maszyn</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="506"/>
@@ -5119,33 +5119,33 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="900"/>
         <location filename="../../qmc2main.cpp" line="910"/>
         <source>Flip splitter orientation</source>
-        <translation type="unfinished"></translation>
+        <translation>Przestaw orientację</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="901"/>
         <location filename="../../qmc2main.cpp" line="911"/>
         <source>&amp;Flip splitter orientation</source>
-        <translation type="unfinished"></translation>
+        <translation>Przestaw &amp;orientację</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="904"/>
         <source>Swap splitter&apos;s sub-layouts</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamień podukłady</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="905"/>
         <source>&amp;Swap splitter&apos;s sub-layouts</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamień &amp;podukłady</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="914"/>
         <source>Swap splitter&apos;s sub-widgets</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamień podwidżety</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="915"/>
         <source>&amp;Swap splitter&apos;s sub-widgets</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamień &amp;podwidżety</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1086"/>
@@ -5412,12 +5412,12 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4283"/>
         <source>destroying process manager</source>
-        <translation>niszczenie menedżera procesów</translation>
+        <translation>niszczenie zarządcy procesów</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4305"/>
         <source>destroying network access manager</source>
-        <translation>niszczenie menedżera dostępu do sieci</translation>
+        <translation>niszczenie zarządcy dostępu do sieci</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4309"/>
@@ -6429,12 +6429,12 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2670"/>
         <source>Save a screen shot from the current arcade scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz zrzut ekranu obecnego salonu</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2673"/>
         <source>Take screen shot from arcade scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobierz zrzut ekranu salonu</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2676"/>
@@ -6444,13 +6444,13 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2358"/>
         <source>&amp;Toggle arcade</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz &amp;salon</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2361"/>
         <location filename="../../qmc2main.ui" line="2364"/>
         <source>Toggle arcade mode</source>
-        <translation type="unfinished">Przełącz tryb salonowy</translation>
+        <translation>Przełącz tryb salonowy</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4250"/>
@@ -6748,8 +6748,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -6849,7 +6847,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3242"/>
         <source>Toggle embedder options (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz opcje osadzacza (przytrzymaj dla menu)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3249"/>
@@ -6864,17 +6862,17 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3256"/>
         <source>&amp;Terminate emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Za&amp;kończ emulator</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3260"/>
         <source>Kill emulator</source>
-        <translation>Zabij emulator</translation>
+        <translation>Usuń emulator</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3261"/>
         <source>&amp;Kill emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Usuń emulator</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3277"/>
@@ -6887,32 +6885,35 @@ Czy mają być zabite przy wyjściu?</translation>
 emulator(s) within a reasonable timeframe.
 
 Retry embedding?</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się odnaleźć ID okna jednego lub większej
+liczby emulatorów w sensownym czasie.
+
+Ponowić próbę osadzania?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3294"/>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacja</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3294"/>
         <source>Sorry, the emulator meanwhile died a sorrowful death :(.</source>
-        <translation type="unfinished"></translation>
+        <translation>Przykro mi, w międzyczasie emulator zginął bolesną śmiercią :(.</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4594"/>
         <source>Game info - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje o grze - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4596"/>
         <source>Machine info - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje o maszynie - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4756"/>
         <source>Emu info - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Informacje o emulatorze - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6130"/>
@@ -10259,77 +10260,77 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="1282"/>
         <source>Choose CHD manager executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik wykonywalny zarządcy CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1282"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Wszystkie pliki (*)</translation>
+        <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1294"/>
         <source>Choose temporary working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz tymczasowy katalog roboczy</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1312"/>
         <source>CHD manager: external process started</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: uruchomiono zewnętrzny proces</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1324"/>
         <source>unknown</source>
-        <translation type="unfinished">nieznany</translation>
+        <translation>nieznany</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1326"/>
         <source>normal</source>
-        <translation type="unfinished">normalny</translation>
+        <translation>normalny</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1327"/>
         <source>crashed</source>
-        <translation type="unfinished">przestał działać</translation>
+        <translation>przestał działać</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1329"/>
         <source>CHD manager: external process finished (exit code = %1, exit status = %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: zewnętrzny proces zakończono (kod wyjścia = %1, stan wyjścia = %2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1345"/>
         <source>CHD manager: stdout: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: stdout: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1367"/>
         <source>CHD manager: stderr: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: stderr: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1395"/>
         <source>CHD manager: failed to start</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: uruchamianie nie powiodło się</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1399"/>
         <source>CHD manager: crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: przestał działać</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1403"/>
         <source>CHD manager: write error</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: błąd zapisu</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1407"/>
         <source>CHD manager: read error</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: błąd odczytu</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1411"/>
         <source>CHD manager: unknown error %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: nieznany błąd %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="15"/>
@@ -10630,68 +10631,68 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="872"/>
         <source>Verify - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Weryfikacja - %p%</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="874"/>
         <source>CHD manager: verifying and fixing CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: weryfikacja i naprawa CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="877"/>
         <source>CHD manager: verifying CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: weryfikacja CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="887"/>
         <source>Update - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizacja - %p%</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="888"/>
         <source>CHD manager: updating CHD (v%1 -&gt; v%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: aktualizacja CHD ( wersja %1 -&gt; wersja %2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="893"/>
         <location filename="../../romalyzer.cpp" line="905"/>
         <source>CHD manager: using header checksums for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: używanie sum kontrolnych nagłówka do weryfikacji CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="913"/>
         <source>CHD manager: no header checksums available for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: brak sum kontrolnych dostępnych do weryfikacji CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="939"/>
         <source>CHD manager: terminating external process</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: kończenie zewnętrznego procesu</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="962"/>
         <source>CHD manager: replacing CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: zastępowanie CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="964"/>
         <source>Copy</source>
-        <translation type="unfinished">Skopiuj</translation>
+        <translation>Kopiowanie</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="970"/>
         <source>CHD manager: CHD replaced</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: CHD zastąpiono</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="973"/>
         <source>CHD manager: FATAL: failed to replace CHD -- updated CHD preserved as &apos;%1&apos;, please copy it to &apos;%2&apos; manually!</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: FATALNIE: nie udało się zastąpić CHD -- zaktualizowany CHD zachowany jako &apos;%1, proszę skopiować go do &apos;%2&apos; ręcznie!</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="977"/>
         <source>CHD manager: cleaning up</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD: czyszczenie</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1052"/>
@@ -10884,7 +10885,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="77"/>
         <source>Automatically scroll to the currently analyzed machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Przewiń automatycznie do obecnie analizowanej maszyny</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="88"/>
@@ -10920,7 +10921,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romalyzer.cpp" line="799"/>
         <location filename="../../romalyzer.cpp" line="971"/>
         <source>CHD v%1</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD wersja %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="803"/>
@@ -10954,18 +10955,18 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="848"/>
         <source>only CHD v3 and v4 headers supported -- rest of header information skipped</source>
-        <translation type="unfinished"></translation>
+        <translation>obsługiwane są jedynie CHD w wersjach 3 i 4 -- pominięto resztę informacji z nagłówka</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="989"/>
         <location filename="../../romalyzer.cpp" line="1001"/>
         <source>using header checksums for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>używanie sum kontrolnych nagłówka do weryfikacji CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1009"/>
         <source>no header checksums available for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>brak sum kontrolnych dostępnych do weryfikacji CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1016"/>
@@ -11027,67 +11028,67 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.ui" line="224"/>
         <source>Enable CHD manager (may be slow)</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz zarządcę CHD (może być wolne)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="236"/>
         <source>CHD manager (chdman)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarządca CHD (chdman)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="249"/>
         <source>CHD manager executable file (read and execute)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik wykonywalny zarządcy CHD (odczyt i uruchamianie)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="256"/>
         <source>Browse CHD manager executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż plik wykonywalny zarządcy CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="267"/>
         <source>Temporary working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Tymczasowy katalog roboczy</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="280"/>
         <source>Directory to use for temporary storage (make sure it has enough room to store the biggest CHDs)</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog do użycia jako tymczasowy magazyn (upewnij się, że ma wystarczająco miejsca do zapisania największych CHD)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="287"/>
         <source>Browse directory to use for temporary storage</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż katalog, który ma być używany jako tymczasowy magazyn</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="300"/>
         <source>Verify CHDs through &apos;chdman -verify&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Weryfikuj CHD za pomocą &apos;chdman -verify&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="303"/>
         <source>Verify CHDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Weryfikuj CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="313"/>
         <source>Also try to fix CHDs using &apos;chdman -verifyfix&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Również próbuj naprawiać CHD za pomocą &apos;chdman -verifyfix&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="316"/>
         <source>Fix CHDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Naprawiaj CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="323"/>
         <source>Try to update CHDs if their header indicates an older version (&apos;chdman -update&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Próbuj aktualizować CHD, jeżeli ich nagłówek wskazuje na starszą wersję (&apos;chdman -update&apos;)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="326"/>
         <source>Update CHDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizuj CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="392"/>
