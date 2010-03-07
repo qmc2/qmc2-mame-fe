@@ -1,9 +1,9 @@
 TEMPLATE = app
 SOURCES += runonce.c
 CONFIG += qt warn_off release
-LIBS += -lXmu
+LIBS += -lXmu -lX11
 macx {
-	LIBS += -lX11 -L/usr/X11R6/lib
+	LIBS += -L/usr/X11R6/lib
 	CONFIG -= app_bundle
 	CONFIG += x86 ppc
 }
