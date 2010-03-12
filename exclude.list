@@ -605,6 +605,7 @@ qmc2/data/img/classic/.svn/prop-base/work.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/world.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/zip.png.svn-base
+qmc2/data/img/classic/.svn/props/speeker.png.svn-work
 qmc2/data/img/classic/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/classic/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/classic/.svn/text-base/arcadeforeground.png.svn-base
@@ -872,6 +873,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/work.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/world.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/zip.png.svn-base
+qmc2/data/img/crazy-black/.svn/props/speeker.png.svn-work
 qmc2/data/img/crazy-black/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/arcadeforeground.png.svn-base
@@ -1139,6 +1141,7 @@ qmc2/data/img/crazy/.svn/prop-base/work.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/world.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/zip.png.svn-base
+qmc2/data/img/crazy/.svn/props/speeker.png.svn-work
 qmc2/data/img/crazy/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/arcadeforeground.png.svn-base
@@ -1673,6 +1676,7 @@ qmc2/data/img/.svn/prop-base/work.png.svn-base
 qmc2/data/img/.svn/prop-base/world.png.svn-base
 qmc2/data/img/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/.svn/prop-base/zip.png.svn-base
+qmc2/data/img/.svn/props/speeker.png.svn-work
 qmc2/data/img/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/.svn/text-base/arcadeforeground.png.svn-base
@@ -1885,7 +1889,7 @@ qmc2/pkg-specs/Debian/.svn/text-base/rules.svn-base
 qmc2/pkg-specs/Fedora/.svn
 qmc2/pkg-specs/Fedora/.svn/text-base/README.fedora-spec.svn-base
 qmc2/pkg-specs/openSUSE/.svn
-qmc2/pkg-specs/openSUSE/.svn/text-base/qmc2-0.2.b14-openSUSE-11.2.spec.svn-base
+qmc2/pkg-specs/openSUSE/.svn/text-base/qmc2-0.2.b15-openSUSE-11.2.spec.svn-base
 qmc2/pkg-specs/.svn
 qmc2/pkg-specs/YDL/.svn
 qmc2/pkg-specs/YDL/.svn/text-base/README.ydl-spec.svn-base
@@ -1982,6 +1986,7 @@ qmc2/.svn/prop-base/toolexec.ui.svn-base
 qmc2/.svn/prop-base/welcome.cpp.svn-base
 qmc2/.svn/prop-base/welcome.h.svn-base
 qmc2/.svn/prop-base/welcome.ui.svn-base
+qmc2/.svn/props/speaker.png.svn-work
 qmc2/.svn/text-base/about.cpp.svn-base
 qmc2/.svn/text-base/about.h.svn-base
 qmc2/.svn/text-base/about.ui.svn-base
