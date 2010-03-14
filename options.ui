@@ -57,8 +57,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>512</width>
-                <height>584</height>
+                <width>523</width>
+                <height>619</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -854,8 +854,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>528</width>
-                <height>583</height>
+                <width>540</width>
+                <height>601</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2068,8 +2068,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>528</width>
-                <height>583</height>
+                <width>540</width>
+                <height>601</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2394,7 +2394,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="0" colspan="4">
+                 <item row="6" column="0" colspan="4">
                   <spacer name="verticalSpacer">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -2414,6 +2414,16 @@
                    </property>
                    <property name="text">
                     <string>Hide while loading</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxPlayOnSublistActivation">
+                   <property name="toolTip">
+                    <string>Launch emulation directly when an item is activated in the search-, favorites- or played-lists (instead of jumping to the master list)</string>
+                   </property>
+                   <property name="text">
+                    <string>Play on sub-list activation</string>
                    </property>
                   </widget>
                  </item>
@@ -2446,8 +2456,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>528</width>
-                <height>583</height>
+                <width>540</width>
+                <height>601</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2559,8 +2569,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>528</width>
-                <height>583</height>
+                <width>540</width>
+                <height>601</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3016,8 +3026,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>528</width>
-                <height>583</height>
+                <width>540</width>
+                <height>601</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3333,8 +3343,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>528</width>
-                <height>583</height>
+                <width>189</width>
+                <height>247</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3703,8 +3713,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>528</width>
-                <height>583</height>
+                <width>127</width>
+                <height>193</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22">
@@ -4088,6 +4098,7 @@
   <tabstop>checkBoxAutoTriggerROMCheck</tabstop>
   <tabstop>checkBoxDoubleClickActivation</tabstop>
   <tabstop>checkBoxHideWhileLoading</tabstop>
+  <tabstop>checkBoxPlayOnSublistActivation</tabstop>
   <tabstop>pushButtonRedefineKeySequence</tabstop>
   <tabstop>pushButtonResetShortcut</tabstop>
   <tabstop>treeWidgetShortcuts</tabstop>

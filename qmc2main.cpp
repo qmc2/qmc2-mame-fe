@@ -2151,13 +2151,17 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
   QTreeWidgetItem *matchItem = qmc2GamelistItemByDescriptionMap[item->text()];
   if ( matchItem ) {
     qmc2CheckItemVisibility = FALSE;
-    tabWidgetGamelist->setCurrentIndex(0);
     treeWidgetGamelist->clearSelection();
     treeWidgetGamelist->setCurrentItem(matchItem);
     treeWidgetGamelist->scrollToItem(matchItem, QAbstractItemView::PositionAtTop);
     qmc2CurrentItem = matchItem;
-    if ( !qmc2ReloadActive )
-      treeWidgetGamelist->expandItem(matchItem);
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation").toBool() ) {
+      QTimer::singleShot(0, this, SLOT(on_actionPlay_activated()));
+    } else {
+      tabWidgetGamelist->setCurrentIndex(0);
+      if ( !qmc2ReloadActive )
+        treeWidgetGamelist->expandItem(matchItem);
+    }
   }
   else
     log(QMC2_LOG_FRONTEND, tr("ERROR: no match found (?)"));
