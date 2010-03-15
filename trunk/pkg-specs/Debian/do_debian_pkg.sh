@@ -21,6 +21,8 @@ else
     mkdir ${RELEASE_FOLDER}
     cp -a trunk/* ${RELEASE_FOLDER}/
   else
+    #return 1 more dir
+    cd ../
     if [ -e tags/$1 ]
     then
       mkdir ${RELEASE_FOLDER}
@@ -30,6 +32,12 @@ else
       exit 1
     fi
   fi
+  
+  #remove the .svn files
+  for i in `find . -name .svn`
+  do
+    rm -rf $i
+  done
 
    #create orig file
   mkdir ${RELEASE_FOLDER}.orig
