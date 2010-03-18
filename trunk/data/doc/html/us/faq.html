@@ -9,10 +9,10 @@
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.2.b15, 12-MAR-2010</h3>
+<h3>FAQ - v0.2.b15, 18-MAR-2010</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
-<p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (Linux) distribution comes with an older version of Qt. What should I do about that?</a></div></p>
+<p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (UNIX/Linux, Mac OS X) distribution comes with an older (or no) version of Qt. What should I do about that?</a></div></p>
 <p><div class="menuitem"><a href="#A1.2">Q1.2: Aren't there any binary packages on the net?</a></div></p>
 <p><div class="menuitem"><a href="#A1.3">Q1.3: I want to be at the cutting edge of QMC2 development. How do I access your development code base?</a></div></p>
 <p><div class="menuitem"><a href="#A1.4">Q1.4: Why aren't you using autoconf/automake (configure)?</a></div></p>
@@ -49,9 +49,9 @@
 <p><div class="menuitem"><a href="#A3.6">Q3.6: When KDE4's effects are enabled (compositing manager), QMC2 'flickers' when in full screen</a></div></p>
 <hr>
 <h3>Answers</h3>
-<p><a name="A1.1"></a><b>Q1.1: QMC2 needs Qt 4.5+, but my (Linux) distribution comes with an older version of Qt. What should I do about that?</b></p>
-<p>First of all, don't worry. Regardless if an older version of Qt is already installed or not, you can use several versions in parallel. This includes self-compiled versions as in the following example. You only need to take care of some environment variables as described in the build instructions of <a href="readme.html#2.">readme.html</a>.
-</p>
+<p><a name="A1.1"></a><b>Q1.1: QMC2 needs Qt 4.5+, but my (UNIX/Linux, Mac OS X) distribution comes with an older (or no) version of Qt. What should I do about that?</b></p>
+<p>First of all, don't worry. Regardless if an older version of Qt is already installed or not, you can use several versions in parallel. This includes self-compiled versions as in the following example.
+You only need to take care of the <i>QMAKE</i> make option as described in the build instructions of <a href="readme.html#2.">readme.html</a>.</p>
 <p>If you need to build Qt 4 from source, please follow these steps (on X11 platforms):</p>
 <p>1) Download the latest source archive of Qt 4 from this URL: <a href="http://qt.nokia.com/downloads" target="_blank">http://qt.nokia.com/downloads</a> -- for example qt-x11-opensource-src-4.5.3.tar.gz.</p>
 <p>2) Extract this tar-ball to a directory where you are going to build it, then configure and build it completely:</p>
@@ -62,6 +62,9 @@
 <p>This is VERY important for Qt 4 (whereas in case of Qt 3 this wasn't necessary)!</p>
 <p>Now, following the instructions of <a href="readme.html#2.">readme.html</a>, you are able to build and use QMC2!!</p>
 <p>Note that building Qt from source is recommended for QMC2, even if your distribution already comes with <i>sufficient</i> Qt 4 packages. Some distributions use buggy versions of Qt (performance issues, potential crashes), others do not include all the required features. Installing Qt as described here is guaranteed to work with QMC2 - provided that Qt itself builds cleanly :). On Linux at least, there should be no problem at all to build Qt from source. On <u>most</u> other platforms supported by Qt this is true as well.</p>
+<p>On Mac OS X (Cocoa), this can be done in pretty much the same way. You just need to use the <i>mac</i> version of Qt 4.5.x (for Qt 4.6.x, all platforms are unified in the <i>everywhere</i> releases). Then use a Qt configuration like this:</p>
+<pre># ./configure -debug-and-release -cocoa -no-exceptions -fast -opensource -prefix /Users/joeuser/libs/qt-4.5.3</pre>
+<p>When that's finished, run <i>make && make install</i> as usual to build and install Qt locally.</p>
 <p>See here for official installation instructions (covering all platforms): <a href="http://qt.nokia.com/doc/4.5/installation.html" target="_blank">http://qt.nokia.com/doc/4.5/installation.html</a></p>
 <hr>
 <p><a name="A1.2"></a><b>Q1.2: Aren't there any binary packages on the net?</b></p>
