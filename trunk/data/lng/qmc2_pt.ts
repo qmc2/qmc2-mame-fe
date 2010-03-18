@@ -9321,12 +9321,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2423"/>
         <source>Launch emulation directly when an item is activated in the search-, favorites- or played-lists (instead of jumping to the master list)</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar emulação diretamente quando um item é ativado na lista de busca, favoritos ou jogados (ao invés de pular para a lista principal)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2426"/>
         <source>Play on sub-list activation</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar com ativação na sub-lista</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2440"/>
