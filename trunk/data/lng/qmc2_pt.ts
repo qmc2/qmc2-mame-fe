@@ -3168,12 +3168,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1085"/>
         <source>INFORMATION: the game list cache will now be updated due to a new format</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMAÇÃO: o cache de lista de jogos será atualizado devido ao novo formato</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1087"/>
         <source>INFORMATION: the machine list cache will now be updated due to a new format</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMAÇÃO: o cache de lista de máquinas será atualizado devido ao novo formato</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1095"/>
@@ -3201,13 +3201,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1148"/>
         <location filename="../../gamelist.cpp" line="1349"/>
         <source>ROM, CHD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1152"/>
         <location filename="../../gamelist.cpp" line="1351"/>
         <source>CHD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1240"/>
@@ -5918,7 +5918,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.ui" line="109"/>
         <location filename="../../qmc2main.ui" line="201"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipos de ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="149"/>
@@ -9256,7 +9256,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2262"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipos de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2270"/>
@@ -10065,7 +10065,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../gamelist.cpp" line="1596"/>
         <location filename="../../options.cpp" line="1122"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipos de ROM</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1575"/>
@@ -11456,7 +11456,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romstatusexport.cpp" line="789"/>
         <location filename="../../romstatusexport.ui" line="211"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipos de ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="251"/>
