@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="MESS" version="0.136" format="0.2.2">
+<template emulator="MESS" version="0.137" format="0.2.2">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
@@ -577,6 +577,18 @@
       <description lang="fr" text="Choisir le plafond des axes du joystick pour lequel les contrôles sont ignorés (0.0 centre, 1.0 fin)"/>
       <description lang="pt" text="Fim do intervalo de saturação do eixo do joystick onde mudanças são ignoradas (0.0 centro, 1.0 fim)"/>
     </option>
+    <option name="natural" type="bool" default="false">
+      <description lang="us" text="Specifies whether to use a natural keyboard or not"/>
+      <description lang="de" text="Gibt an, ob ein 'Natural Keyboard' verwendet wird oder nicht"/>
+      <description lang="pl" text="Decyduje, czy ma być używana naturalna klawiatura"/>
+      <description lang="pt" text="Especificar se deve ser usado teclado natural ou não"/>
+    </option>
+    <option name="uimodekey" type="string" default="auto">
+      <description lang="us" text="Specifies the key used to toggle between full and partial UI mode"/>
+      <description lang="de" text="Gibt an, welche Taste für das Umschalten zwischen vollem und partiellem UI Modus verwendet wird"/>
+      <description lang="pl" text="Ustawia klawisz przełączający pomiędzy pełnym a częściowym trybem interfejsu użytkownika"/>
+      <description lang="pt" text="Especificar a tecla usada para alternar entre interface total ou parcial"/>
+    </option>
   </section>
   <section name="misc">
     <description lang="us" text="Miscellaneous"/>
@@ -611,13 +623,6 @@
       <description lang="pl" text="Rozmiar pamięci RAM (jeśli wspierany przez sterownik)"/>
       <description lang="fr" text="Taille de RAM (si supporté par le driver)"/>
       <description lang="pt" text="Tamanho da RAM (se suportado pelo driver)"/>
-    </option>
-    <option name="skip_warnings" type="bool" default="false">
-      <description lang="us" text="Skip displaying the warnings screen"/>
-      <description lang="de" text="Anzeige des Warnungs-Screens ausschalten"/>
-      <description lang="pl" text="Pomiń wyświetlanie ekranu ostrzeżeń"/>
-      <description lang="fr" text="Passe l'affichage des écrans d'avertissement"/>
-      <description lang="pt" text="Pular tela de warning"/>
     </option>
     <option name="natural" type="bool" default="false">
       <description lang="us" text="Specifies whether to use a natural keyboard or not"/>
@@ -695,6 +700,12 @@
       <description lang="pl" text="Skrypt dla debuggera"/>
       <description lang="fr" text="Script pour le debogger"/>
       <description lang="pt" text="Script para o debugger"/>
+    </option>
+    <option name="debug_internal" type="bool" default="false">
+      <description lang="us" text="Use the internal debugger for debugging"/>
+      <description lang="de" text="Internen Debugger verwenden"/>
+      <description lang="pl" text="Używaj wewnętrznego debuggera"/>
+      <description lang="pt" text="Usar o depurador interno"/>
     </option>
   </section>
   <section name="video">
