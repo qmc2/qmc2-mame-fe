@@ -5660,6 +5660,13 @@ void MainWindow::on_treeWidgetGamelist_headerSectionClicked(int logicalIndex)
         qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_GAMENAME);
       break;
 
+    case QMC2_GAMELIST_COLUMN_RTYPES:
+      if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_ROMTYPES )
+        qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
+      else
+        qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_ROMTYPES);
+      break;
+
     default:
       break;
   }
@@ -6569,6 +6576,10 @@ int MainWindow::sortCriteriaLogicalIndex() {
 
     case QMC2_SORT_BY_NAME:
       return QMC2_GAMELIST_COLUMN_NAME;
+      break;
+
+    case QMC2_SORT_BY_ROMTYPES:
+      return QMC2_GAMELIST_COLUMN_RTYPES;
       break;
 
     default:

@@ -2257,6 +2257,11 @@
                      <string>Game name</string>
                     </property>
                    </item>
+                   <item>
+                    <property name="text">
+                     <string>ROM types</string>
+                    </property>
+                   </item>
                   </widget>
                  </item>
                  <item row="1" column="2">
@@ -2456,8 +2461,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>540</width>
-                <height>601</height>
+                <width>265</width>
+                <height>45</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2569,8 +2574,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>540</width>
-                <height>601</height>
+                <width>376</width>
+                <height>246</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3026,8 +3031,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>540</width>
-                <height>601</height>
+                <width>373</width>
+                <height>332</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">

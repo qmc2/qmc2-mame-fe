@@ -206,6 +206,11 @@
           <string>Game name</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>ROM types</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="2" column="0">

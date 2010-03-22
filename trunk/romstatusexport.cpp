@@ -227,11 +227,12 @@ void ROMStatusExporter::exportToASCII()
   // create a sorted multi-map as export data...
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting, filtering and analyzing export data"));
 
-  int maxDescriptionColumnWidth = 0;
-  int maxNameColumnWidth = 0;
-  int maxStateColumnWidth = 0;
-  int maxManufacturerColumnWidth = 0;
-  int maxYearColumnWidth = 0;
+  int maxDescriptionColumnWidth = tr("Description").length();
+  int maxNameColumnWidth = tr("Name").length();
+  int maxStateColumnWidth = tr("Status").length();
+  int maxManufacturerColumnWidth = tr("Manufacturer").length();
+  int maxYearColumnWidth = tr("Year").length();
+  int maxRomTypesColumnWidth = tr("ROM types").length();
 
   QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
   QMultiMap<QString, QTreeWidgetItem *> exportMap;
@@ -301,6 +302,10 @@ void ROMStatusExporter::exportToASCII()
         exportMap.insert(it.key(), it.value());
         break;
 
+      case QMC2_SORT_BY_ROMTYPES:
+        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_RTYPES), it.value());
+        break;
+
       default:
         break;
     }
@@ -315,6 +320,8 @@ void ROMStatusExporter::exportToASCII()
       maxYearColumnWidth = it.value()->text(QMC2_GAMELIST_COLUMN_YEAR).length();
     if ( translatedState.length() > maxStateColumnWidth )
       maxStateColumnWidth = translatedState.length();
+    if ( it.value()->text(QMC2_GAMELIST_COLUMN_RTYPES).length() > maxRomTypesColumnWidth )
+      maxRomTypesColumnWidth = it.value()->text(QMC2_GAMELIST_COLUMN_RTYPES).length();
   }
 
   // truncate column widths if applicable...
@@ -324,6 +331,7 @@ void ROMStatusExporter::exportToASCII()
     maxManufacturerColumnWidth = MIN(maxManufacturerColumnWidth, spinBoxASCIIColumnWidth->value());
     maxYearColumnWidth = MIN(maxYearColumnWidth, spinBoxASCIIColumnWidth->value());
     maxStateColumnWidth = MIN(maxStateColumnWidth, spinBoxASCIIColumnWidth->value());
+    maxRomTypesColumnWidth = MIN(maxRomTypesColumnWidth, spinBoxASCIIColumnWidth->value());
   }
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (sorting, filtering and analyzing export data)"));
@@ -333,12 +341,16 @@ void ROMStatusExporter::exportToASCII()
      << tr("Status").leftJustified(maxStateColumnWidth, ' ', TRUE) << "  "
      << tr("Description").leftJustified(maxDescriptionColumnWidth, ' ', TRUE) << "  "
      << tr("Year").leftJustified(maxYearColumnWidth, ' ', TRUE) << "  "
-     << tr("Manufacturer").leftJustified(maxManufacturerColumnWidth, ' ', TRUE) << "\n";
+     << tr("Manufacturer").leftJustified(maxManufacturerColumnWidth, ' ', TRUE) << "  "
+     << tr("ROM types").leftJustified(maxRomTypesColumnWidth, ' ', TRUE)
+     << "\n";
   ts << QString("-").leftJustified(maxNameColumnWidth, '-', TRUE) << "  "
      << QString("-").leftJustified(maxStateColumnWidth, '-', TRUE) << "  "
      << QString("-").leftJustified(maxDescriptionColumnWidth, '-', TRUE) << "  "
      << QString("-").leftJustified(maxYearColumnWidth, '-', TRUE) << "  "
-     << QString("-").leftJustified(maxManufacturerColumnWidth, '-', TRUE) << "\n";
+     << QString("-").leftJustified(maxManufacturerColumnWidth, '-', TRUE) << "  "
+     << QString("-").leftJustified(maxRomTypesColumnWidth, '-', TRUE)
+     << "\n";
 
   QMapIterator<QString, QTreeWidgetItem *> itExport(exportMap);
   i = 0;
@@ -398,9 +410,14 @@ void ROMStatusExporter::exportToASCII()
       ts << s.leftJustified(maxYearColumnWidth, ' ', TRUE) << "  ";
     s = itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU);
     if ( showMoreChars && s.length() > maxManufacturerColumnWidth )
-      ts << s.left(maxManufacturerColumnWidth - 3).leftJustified(maxManufacturerColumnWidth, '.', TRUE) << "\n";
+      ts << s.left(maxManufacturerColumnWidth - 3).leftJustified(maxManufacturerColumnWidth, '.', TRUE) << "  ";
     else
-      ts << s.leftJustified(maxManufacturerColumnWidth, ' ', TRUE) << "\n";
+      ts << s.leftJustified(maxManufacturerColumnWidth, ' ', TRUE) << "  ";
+    s = itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES);
+    if ( showMoreChars && s.length() > maxRomTypesColumnWidth )
+      ts << s.left(maxRomTypesColumnWidth - 3).leftJustified(maxRomTypesColumnWidth, '.', TRUE) << "\n";
+    else
+      ts << s.leftJustified(maxRomTypesColumnWidth, ' ', TRUE) << "\n";
   }
 
   progressBarExport->reset();
@@ -535,6 +552,10 @@ void ROMStatusExporter::exportToCSV()
         exportMap.insert(it.key(), it.value());
         break;
 
+      case QMC2_SORT_BY_ROMTYPES:
+        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_RTYPES), it.value());
+        break;
+
       default:
         break;
     }
@@ -547,7 +568,8 @@ void ROMStatusExporter::exportToCSV()
      << del << tr("Status") << del << sep
      << del << tr("Description") << del << sep
      << del << tr("Year") << del << sep
-     << del << tr("Manufacturer") << del << "\n" << del << del << "\n";
+     << del << tr("Manufacturer") << del << sep
+     << del << tr("ROM types") << del << "\n" << del << del << "\n";
 
   QMapIterator<QString, QTreeWidgetItem *> itExport(exportMap);
   i = 0;
@@ -588,7 +610,8 @@ void ROMStatusExporter::exportToCSV()
     }
     ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME) << del << sep;
     ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR) << del << sep;
-    ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU) << del << "\n";
+    ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU) << del << sep;
+    ts << del << itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES) << del << "\n";
   }
 
   progressBarExport->reset();
@@ -749,6 +772,10 @@ void ROMStatusExporter::exportToHTML()
         exportMap.insert(it.key(), it.value());
         break;
 
+      case QMC2_SORT_BY_ROMTYPES:
+        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_RTYPES), it.value());
+        break;
+
       default:
         break;
     }
@@ -759,7 +786,7 @@ void ROMStatusExporter::exportToHTML()
 
   ts << "<table border=\"" << spinBoxHTMLBorderWidth->value() << "\">\n"
      << "<tr>\n"
-     << "  <td nowrap><b>" << tr("Name") << "</b></td><td nowrap><b>" << tr("Status") << "</b></td><td nowrap><b>" << tr("Description") << "</b></td><td nowrap><b>" << tr("Year") << "</b></td><td nowrap><b>" << tr("Manufacturer") << "</b></td nowrap>\n"
+     << "  <td nowrap><b>" << tr("Name") << "</b></td><td nowrap><b>" << tr("Status") << "</b></td><td nowrap><b>" << tr("Description") << "</b></td><td nowrap><b>" << tr("Year") << "</b></td><td nowrap><b>" << tr("Manufacturer") << "</b></td><td nowrap><b>" << tr("ROM types") << "</td></b>\n"
      << "</tr>\n";
 
   QMapIterator<QString, QTreeWidgetItem *> itExport(exportMap);
@@ -803,7 +830,8 @@ void ROMStatusExporter::exportToHTML()
     }
     ts << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME) << "</td>"
        << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR) << "</td>"
-       << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU) << "</td>\n"
+       << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU) << "</td>"
+       << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES) << "</td>\n"
        << "</tr>\n";
   }
 

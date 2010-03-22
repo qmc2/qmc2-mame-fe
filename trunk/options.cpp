@@ -1118,6 +1118,9 @@ void Options::on_pushButtonApply_clicked()
           sortCriteria = QObject::tr("machine name");
 #endif
           break;
+        case QMC2_SORT_BY_ROMTYPES:
+          sortCriteria = QObject::tr("ROM types");
+          break;
       }
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting game list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
@@ -1171,6 +1174,13 @@ void Options::on_pushButtonApply_clicked()
     case QMC2_SORT_BY_NAME:
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_NAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_NAME, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+      break;
+
+    case QMC2_SORT_BY_ROMTYPES:
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RTYPES, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RTYPES, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
       break;
