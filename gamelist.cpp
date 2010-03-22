@@ -1065,7 +1065,7 @@ void Gamelist::parse()
       while ( line.startsWith("#") && !tsGamelistCache.atEnd() )
         line = tsGamelistCache.readLine();
       QStringList words = line.split("\t");
-      if ( words.count() == 2 ) {
+      if ( words.count() >= 2 ) {
 #if defined(QMC2_EMUTYPE_MAME)
         if ( words[0] == "MAME_VERSION" ) {
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -1079,6 +1079,14 @@ void Gamelist::parse()
 #elif defined(QMC2_EMUTYPE_MESS)
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't determine emulator version of machine list cache"));
 #endif
+      }
+      if ( words.count() < 4 ) {
+#if defined(QMC2_EMUTYPE_MAME)
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the game list cache will now be updated due to a new format"));
+#elif defined(QMC2_EMUTYPE_MESS)
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the machine list cache will now be updated due to a new format"));
+#endif
+	reparseGamelist = TRUE;
       }
     }
 
@@ -1117,10 +1125,12 @@ void Gamelist::parse()
             QString gameYear = words[3];
             QString gameCloneOf = words[4];
             bool isBIOS = (words[5] == "1");
+            bool hasROMs = (words[6] == "1");
+            bool hasCHDs = (words[7] == "1");
 
 #ifdef QMC2_DEBUG
-            qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: gameName = %1, gameDescription = %2, gameManufacturer = %3, gameYear = %4, gameCloneOf = %5, isBIOS = %6").
-                            arg(gameName).arg(gameDescription).arg(gameManufacturer).arg(gameYear).arg(gameCloneOf).arg(isBIOS));
+            qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: gameName = %1, gameDescription = %2, gameManufacturer = %3, gameYear = %4, gameCloneOf = %5, isBIOS = %6, hasROMs = %7, hasCHDs = %8").
+                            arg(gameName).arg(gameDescription).arg(gameManufacturer).arg(gameYear).arg(gameCloneOf).arg(isBIOS).arg(hasROMs).arg(hasCHDs));
 #endif
 
             GamelistItem *gameDescriptionItem = new GamelistItem(qmc2MainWindow->treeWidgetGamelist);
@@ -1134,6 +1144,12 @@ void Gamelist::parse()
             gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_YEAR, gameYear);
             gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_MANU, gameManufacturer);
             gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_NAME, gameName);
+	    if ( hasROMs && hasCHDs )
+              gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM, CHD"));
+            else if ( hasROMs )
+              gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM"));
+            else if ( hasCHDs )
+              gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("CHD"));
             switch ( qmc2GamelistStatusMap[gameName][0].toAscii() ) {
               case 'C': 
                 numCorrectGames++;
@@ -1260,11 +1276,12 @@ void Gamelist::parse()
     } else {
       tsGamelistCache.setDevice(&gamelistCache);
       tsGamelistCache.reset();
+      QString glcVersion("2");
       tsGamelistCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
 #if defined(QMC2_EMUTYPE_MAME)
-      tsGamelistCache << "MAME_VERSION\t" + emulatorVersion + "\n";
+      tsGamelistCache << "MAME_VERSION\t" + emulatorVersion + "\tGLC_VERSION\t" + glcVersion + "\n";
 #elif defined(QMC2_EMUTYPE_MESS)
-      tsGamelistCache << "MESS_VERSION\t" + emulatorVersion + "\n";
+      tsGamelistCache << "MESS_VERSION\t" + emulatorVersion + "\tGLC_VERSION\t" + glcVersion + "\n";
 #endif
     }
 
@@ -1294,11 +1311,11 @@ void Gamelist::parse()
         QString gameDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">");
         GamelistItem *gameDescriptionItem = new GamelistItem(qmc2MainWindow->treeWidgetGamelist);
 
-        // find year and manufacturer
+        // find year & manufacturer and determine ROM/CHD requirements
         bool endGame = FALSE;
         int i = lineCounter;
         QString gameYear = "?", gameManufacturer = "?";
-        bool yearFound = FALSE, manufacturerFound = FALSE;
+        bool yearFound = FALSE, manufacturerFound = FALSE, hasROMs = FALSE, hasCHDs = FALSE;
         while ( !endGame ) {
           if ( xmlLines[i].contains("<year>") ) {
             gameYear = xmlLines[i].simplified().remove("<year>").remove("</year>");
@@ -1306,11 +1323,15 @@ void Gamelist::parse()
           } else if ( xmlLines[i].contains("<manufacturer>") ) {
             gameManufacturer = xmlLines[i].simplified().remove("<manufacturer>").remove("</manufacturer>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">");
             manufacturerFound = TRUE;
-          }
+          } else if ( xmlLines[i].contains("<rom name") ) {
+            hasROMs = TRUE;
+	  } else if ( xmlLines[i].contains("<disk name") ) {
+            hasCHDs = TRUE;
+	  }
 #if defined(QMC2_EMUTYPE_MAME)
-          endGame = xmlLines[i].contains("</game>") || ( yearFound && manufacturerFound );
+          endGame = xmlLines[i].contains("</game>") || ( yearFound && manufacturerFound && hasROMs && hasCHDs );
 #elif defined(QMC2_EMUTYPE_MESS)
-          endGame = xmlLines[i].contains("</machine>") || ( yearFound && manufacturerFound );
+          endGame = xmlLines[i].contains("</machine>") || ( yearFound && manufacturerFound && hasROMs && hasCHDs );
 #endif
           i++;
         }
@@ -1324,6 +1345,12 @@ void Gamelist::parse()
         gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_YEAR, gameYear);
         gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_MANU, gameManufacturer);
         gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_NAME, gameName);
+	if ( hasROMs && hasCHDs )
+          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM, CHD"));
+        else if ( hasCHDs )
+          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("CHD"));
+        else
+          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM"));
         switch ( qmc2GamelistStatusMap[gameName][0].toAscii() ) {
           case 'C': 
             numCorrectGames++;
@@ -1389,7 +1416,8 @@ void Gamelist::parse()
 
         if ( gamelistCache.isOpen() )
           tsGamelistCache << gameName << "\t" << gameDescription << "\t" << gameManufacturer << "\t"
-                          << gameYear << "\t" << gameCloneOf << "\t" << isBIOS << "\n";
+                          << gameYear << "\t" << gameCloneOf << "\t" << isBIOS << "\t"
+			  << (hasROMs ? "1" : "0") << "\t" << (hasCHDs ? "1": "0") << "\n";
 
         numGames++;
       }
@@ -1424,6 +1452,7 @@ void Gamelist::parse()
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
+    hierarchyItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
     qmc2HierarchyItemMap[iValue] = hierarchyItem;
     switch ( qmc2GamelistStatusMap[iValue][0].toAscii() ) {
       case 'C': 
@@ -1481,6 +1510,7 @@ void Gamelist::parse()
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
+      hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
       qmc2HierarchyItemMap[jValue] = hierarchySubItem;
       qmc2ParentMap[jValue] = iValue;
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1562,6 +1592,8 @@ void Gamelist::parse()
 #elif defined(QMC2_EMUTYPE_MESS)
       sortCirtieria = QObject::tr("machine name");
 #endif
+    case QMC2_SORT_BY_ROMTYPES:
+      sortCirtieria = QObject::tr("ROM types");
       break;
   }
 #if defined(QMC2_EMUTYPE_MAME)
@@ -2661,6 +2693,10 @@ bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
 
     case QMC2_SORT_BY_NAME:
       return (text(QMC2_GAMELIST_COLUMN_NAME).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_NAME).toUpper());
+      break;
+
+    case QMC2_SORT_BY_ROMTYPES:
+      return (text(QMC2_GAMELIST_COLUMN_RTYPES).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_RTYPES).toUpper());
       break;
 
     default:
