@@ -75,6 +75,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   checkBoxSelectGame->setText(tr("Select machine"));
   checkBoxSelectGame->setToolTip(tr("Select machine in machine list if selected in analysis report?"));
   checkBoxAutoScroll->setToolTip(tr("Automatically scroll to the currently analyzed machine"));
+  lineEditGames->setToolTip(tr("Shortname of machine to be analyzed - wildcards allowed, use space as delimiter for multiple machines"));
 #endif
 
   treeWidgetChecksums->header()->setSortIndicatorShown(FALSE);

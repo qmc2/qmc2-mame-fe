@@ -203,6 +203,9 @@
 // delay in milliseconds before an automatic ROM check gets triggered
 #define QMC2_AUTOROMCHECK_DELAY		250
 
+// interval in milliseconds between activity checks
+#define QMC2_ACTIVITY_CHECK_INTERVAL	1000
+
 // emulator option types
 #define QMC2_EMUOPT_TYPE_UNKNOWN	0
 #define QMC2_EMUOPT_TYPE_BOOL		1

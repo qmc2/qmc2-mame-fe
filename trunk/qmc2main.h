@@ -126,6 +126,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QRect desktopGeometry;
     QWidget *hSplitterWidget0;
     QWidget *vSplitterWidget0;
+    QTimer activityCheckTimer;
+    bool activityState;
 
     static QColor qmc2StatusColorGreen;
     static QColor qmc2StatusColorYellowGreen;
@@ -364,6 +366,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_pushButtonReloadSelectedDownloads_clicked();
     void on_pushButtonStopSelectedDownloads_clicked();
     void on_emuSelector_currentIndexChanged(const QString &);
+    void checkActivity();
 
   protected:
     void closeEvent(QCloseEvent *);
