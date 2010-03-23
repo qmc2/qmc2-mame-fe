@@ -205,6 +205,8 @@ qmc2/data/fly/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/ico/.svn
 qmc2/data/ico/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/img/circles/.svn
+qmc2/data/img/circles/.svn/prop-base/activity_green.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/activity_red.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/arcadebackground.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/arcadecabinet.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/arcadeforeground.png.svn-base
@@ -338,6 +340,8 @@ qmc2/data/img/circles/.svn/prop-base/work.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/world.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/zip.png.svn-base
+qmc2/data/img/circles/.svn/text-base/activity_green.png.svn-base
+qmc2/data/img/circles/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/circles/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/circles/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/circles/.svn/text-base/arcadeforeground.png.svn-base
@@ -472,6 +476,8 @@ qmc2/data/img/circles/.svn/text-base/world.png.svn-base
 qmc2/data/img/circles/.svn/text-base/yes.png.svn-base
 qmc2/data/img/circles/.svn/text-base/zip.png.svn-base
 qmc2/data/img/classic/.svn
+qmc2/data/img/classic/.svn/prop-base/activity_green.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/activity_red.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/arcadebackground.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/arcadecabinet.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/arcadeforeground.png.svn-base
@@ -606,6 +612,8 @@ qmc2/data/img/classic/.svn/prop-base/world.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/zip.png.svn-base
 qmc2/data/img/classic/.svn/props/speeker.png.svn-work
+qmc2/data/img/classic/.svn/text-base/activity_green.png.svn-base
+qmc2/data/img/classic/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/classic/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/classic/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/classic/.svn/text-base/arcadeforeground.png.svn-base
@@ -740,6 +748,8 @@ qmc2/data/img/classic/.svn/text-base/world.png.svn-base
 qmc2/data/img/classic/.svn/text-base/yes.png.svn-base
 qmc2/data/img/classic/.svn/text-base/zip.png.svn-base
 qmc2/data/img/crazy-black/.svn
+qmc2/data/img/crazy-black/.svn/prop-base/activity_green.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/activity_red.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/arcadebackground.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/arcadecabinet.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/arcadeforeground.png.svn-base
@@ -874,6 +884,8 @@ qmc2/data/img/crazy-black/.svn/prop-base/world.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/zip.png.svn-base
 qmc2/data/img/crazy-black/.svn/props/speeker.png.svn-work
+qmc2/data/img/crazy-black/.svn/text-base/activity_green.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/arcadeforeground.png.svn-base
@@ -1008,6 +1020,8 @@ qmc2/data/img/crazy-black/.svn/text-base/world.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/yes.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/zip.png.svn-base
 qmc2/data/img/crazy/.svn
+qmc2/data/img/crazy/.svn/prop-base/activity_green.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/activity_red.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/arcadebackground.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/arcadecabinet.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/arcadeforeground.png.svn-base
@@ -1142,6 +1156,8 @@ qmc2/data/img/crazy/.svn/prop-base/world.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/zip.png.svn-base
 qmc2/data/img/crazy/.svn/props/speeker.png.svn-work
+qmc2/data/img/crazy/.svn/text-base/activity_green.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/arcadeforeground.png.svn-base
@@ -1276,6 +1292,8 @@ qmc2/data/img/crazy/.svn/text-base/world.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/yes.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/zip.png.svn-base
 qmc2/data/img/cubes/.svn
+qmc2/data/img/cubes/.svn/prop-base/activity_green.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/activity_red.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/arcadebackground.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/arcadecabinet.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/arcadeforeground.png.svn-base
@@ -1409,6 +1427,8 @@ qmc2/data/img/cubes/.svn/prop-base/work.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/world.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/zip.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/activity_green.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/arcadeforeground.png.svn-base
@@ -1543,6 +1563,8 @@ qmc2/data/img/cubes/.svn/text-base/world.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/yes.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/zip.png.svn-base
 qmc2/data/img/.svn
+qmc2/data/img/.svn/prop-base/activity_green.png.svn-base
+qmc2/data/img/.svn/prop-base/activity_red.png.svn-base
 qmc2/data/img/.svn/prop-base/arcadebackground.png.svn-base
 qmc2/data/img/.svn/prop-base/arcadecabinet.png.svn-base
 qmc2/data/img/.svn/prop-base/arcadeforeground.png.svn-base
@@ -1677,6 +1699,8 @@ qmc2/data/img/.svn/prop-base/world.png.svn-base
 qmc2/data/img/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/.svn/prop-base/zip.png.svn-base
 qmc2/data/img/.svn/props/speeker.png.svn-work
+qmc2/data/img/.svn/text-base/activity_green.png.svn-base
+qmc2/data/img/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/.svn/text-base/arcadeforeground.png.svn-base
