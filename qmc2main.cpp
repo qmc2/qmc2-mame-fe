@@ -922,6 +922,8 @@ MainWindow::MainWindow(QWidget *parent)
   connect(comboBoxViewSelect, SIGNAL(currentIndexChanged(int)), stackedWidgetView, SLOT(setCurrentIndex(int)));
   connect(&searchTimer, SIGNAL(timeout()), this, SLOT(on_comboBoxSearch_textChanged_delayed()));
   connect(&updateTimer, SIGNAL(timeout()), this, SLOT(on_treeWidgetGamelist_itemSelectionChanged_delayed()));
+  connect(&activityCheckTimer, SIGNAL(timeout()), this, SLOT(checkActivity()));
+  activityState = FALSE;
 
   comboBoxViewSelect->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", QMC2_GAMELIST_INDEX).toInt());
   if ( comboBoxViewSelect->currentIndex() == QMC2_VIEW_DETAIL_INDEX )
@@ -4357,6 +4359,7 @@ void MainWindow::init()
   textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
   textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
   QTimer::singleShot(0, this, SLOT(on_actionReload_activated()));
+  activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 }
 
 void MainWindow::setupStyle(QString styleName)
@@ -6557,6 +6560,46 @@ void MainWindow::on_memoryUpdateTimer_timeout()
   progressBarMemory->setValue(100 * ((double)totalUsed/(double)totalSize));
   progressBarMemory->setToolTip("<b>" + tr("Physical memory:") + "</b><br>" + tr("Total: %1 MB").arg(totalSize) + "<br>" + tr("Free: %1 MB").arg(totalFree) + "<br>" + tr("Used: %1 MB").arg(totalUsed));
 #endif
+}
+
+void MainWindow::checkActivity()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkActivity()");
+#endif
+
+  static bool isActiveState = FALSE;
+
+#if defined(QMC2_EMUTYPE_MAME)
+  if ( qmc2ReloadActive ||
+       qmc2VerifyActive ||
+       qmc2FilterActive ||
+       qmc2ImageCheckActive ||
+       qmc2SampleCheckActive ||
+       qmc2ROMAlyzerActive ||
+       qmc2LoadingGameInfoDB ||
+       qmc2LoadingEmuInfoDB )
+#else
+  if ( qmc2ReloadActive ||
+       qmc2VerifyActive ||
+       qmc2FilterActive ||
+       qmc2ImageCheckActive ||
+       qmc2ROMAlyzerActive ||
+       qmc2LoadingGameInfoDB )
+#endif
+  {
+    activityState = !activityState;
+    if ( activityState )
+      actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/activity_green.png")));
+    else
+      actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/activity_red.png")));
+    toolbar->repaint();
+    isActiveState = TRUE;
+  } else {
+    if ( isActiveState )
+      actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/exit.png")));
+    isActiveState = FALSE;
+  }
 }
 
 int MainWindow::sortCriteriaLogicalIndex() {

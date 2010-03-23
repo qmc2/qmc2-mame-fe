@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/" >
+        <file>data/img/activity_green.png</file>
+        <file>data/img/activity_red.png</file>
         <file>data/img/arcadebackground.png</file>
         <file>data/img/arcadeforeground.png</file>
         <file>data/img/arcadecabinet.png</file>
