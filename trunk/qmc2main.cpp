@@ -6600,6 +6600,7 @@ void MainWindow::checkActivity()
       actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/exit.png")));
     isActiveState = FALSE;
   }
+  activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 }
 
 int MainWindow::sortCriteriaLogicalIndex() {
