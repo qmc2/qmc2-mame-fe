@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.2.b15, 18-MAR-2010</h3>
+<h3>FAQ - v0.2.b15, 23-MAR-2010</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (UNIX/Linux, Mac OS X) distribution comes with an older (or no) version of Qt. What should I do about that?</a></div></p>
@@ -306,18 +306,20 @@ greater if you set the responsiveness parameter a bit higher (250 - 500, for exa
 <p>Be sure to spend some time experimenting with the search feature, you will find that with practice you can navigate to any game/machine you want with very few keystrokes.</p>
 <hr>
 <p><a name="A2.3"></a><b>Q2.3: What are the typical CPU &amp; memory requirements?</b></p>
-<p>Any modern x86 or x86_64 system should be okay for QMC2 and SDLMAME or SDLMESS. It may look different on other platforms, though. We've got positive reports for the ppc / ppc64 architecture as well (for example on a PS3).</p>
-<p>Regarding memory requirements, QMC2 typically uses ~160 MB sustained resident memory in case of SDLMAME (a bit less when <i>Phonon</i> features are disabled). When reloading the game/machine list, QMC2 additonally needs ~50 MB as a temporary buffer.</p>
-<p>The numbers are much smaller in case of QMC2 for SDLMESS because there are just several hundred machines to be managed (in contrast to several thousands in case of MAME); the typical memory consumption here is ~40 MB (+ ~5 MB as a temporary buffer).</p>
+<p>Any modern x86 or x86_64 system should be okay for QMC2 and (SDL)MAME or (SDL)MESS. It may look different on other platforms, though. We've got positive reports for the ppc / ppc64 architecture as well (for example on a PS3).</p>
+<p>Regarding memory requirements, a full-blown setup of QMC2 may use up to ~210 MB of memory in case of (SDL)MAME -- a bit less when certain features are disabled. When reloading the game/machine list, QMC2 additonally needs ~50 MB as a temporary buffer.</p>
+<p>The numbers are much smaller in case of QMC2 for (SDL)MESS because there are much less machines to be managed (in contrast to several thousands in case of MAME); the typical memory consumption here is ~70 MB (+ ~5 MB as a temporary buffer).</p>
 <p>Generally speaking, the amount of memory used by QMC2 mostly depends on these things:</p>
 <ul>
 <li>Number of games/machines the emulator supports</li>
 <li>Sizes of the image and icon caches</li>
 <li>Sizes of all loaded additional information sources such as the game/machine &amp; emulator info DBs (optionally with in-memory compression)</li>
+<li>Qt version and feature set</li>
 </ul>
 <p>So don't be surprised if it looks different for you!</p>
-<p>When using the ROMAlyzer to analyze ROMs and CHDs of <b>all</b> games/machines, resident memory consumption can grow up to ~480 MB (MAME) / ~55 MB (MESS). However, with regard to the analysis of individual files, the ROMAlyzer will load only small chunks of data (up to 64 KB per chunk) to recalculate checksums -- this won't hurt.</p>
-<p>All numbers were measured with QMC2 0.2.b7 and SDLMAME 0.129u4 / SDLMESS 0.129 (7800 games / 738 machines, game/machine &amp; emulator info DBs loaded with in-memory compression, Phonon features enabled).</p>
+<p>When using the ROMAlyzer to analyze ROMs and CHDs of <b>all</b> games/machines, resident memory consumption can grow up to ~500 MB (MAME) / ~100 MB (MESS).
+   However, with regard to the analysis of individual files, the ROMAlyzer will load only small chunks of data (up to 64 KB per chunk) to recalculate checksums -- this won't hurt.</p>
+<p>All numbers were measured with QMC2 0.2.b15 and (SDL)MAME 0.137 / (SDL)MESS 0.137 (8604 games / 1260 machines, game/machine &amp; emulator info DBs loaded with in-memory compression, Phonon features enabled, many icons loaded).</p>
 <hr>
 <p><a name="A2.4"></a><b>Q2.4: What image formats are supported for in-game screenshots (previews), flyers, icons etc.?</b></p>
 <p><i>Portable Network Graphics</i> (PNG) is the <b>only</b> image format supported by QMC2!</p>
