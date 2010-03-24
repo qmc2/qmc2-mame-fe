@@ -10403,7 +10403,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="78"/>
         <source>Shortname of machine to be analyzed - wildcards allowed, use space as delimiter for multiple machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome curto da máquina a ser analisada - wildcards permitidos, use espaço como delimitador para múltiplos jogos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="89"/>
