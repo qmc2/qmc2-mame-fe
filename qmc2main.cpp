@@ -193,6 +193,8 @@ QMap<QString, QString> qmc2JoystickFunctionMap;
 QMap<QString, QByteArray *> qmc2GameInfoDB;
 #if defined(QMC2_EMUTYPE_MAME)
 QMap<QString, QByteArray *> qmc2EmuInfoDB;
+QMap<QString, QString> qmc2CategoryMap;
+QMap<QString, QString> qmc2VersionMap;
 #endif
 QString qmc2DemoGame;
 QStringList qmc2DemoArgs;
@@ -534,14 +536,14 @@ MainWindow::MainWindow(QWidget *parent)
     int i;
     QVariantList defaultGamelistColumnWidths,
                  gamelistColumnWidths;
-    defaultGamelistColumnWidths << 300 << 50 << 50 << 100;
+    defaultGamelistColumnWidths << 300 << 50 << 50 << 100 << 50 << 50 << 100 << 50;
     gamelistColumnWidths = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistColumnWidths", defaultGamelistColumnWidths).toList();
     for (i = 0; i < gamelistColumnWidths.count(); i++)
       treeWidgetGamelist->header()->resizeSection(i, gamelistColumnWidths[i].toInt());
     treeWidgetGamelist->header()->setDefaultAlignment(Qt::AlignLeft);
     QVariantList defaultHierarchyColumnWidths,
                  hierarchyColumnWidths;
-    defaultHierarchyColumnWidths << 300 << 50 << 50 << 100;
+    defaultHierarchyColumnWidths << 300 << 50 << 50 << 100 << 50 << 50 << 100 << 50;
     hierarchyColumnWidths = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyColumnWidths", defaultHierarchyColumnWidths).toList();
     for (i = 0; i < hierarchyColumnWidths.count(); i++)
       treeWidgetHierarchy->header()->resizeSection(i, hierarchyColumnWidths[i].toInt());
@@ -4345,6 +4347,13 @@ void MainWindow::init()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::init()");
 #endif
 
+#if defined(QMC2_EMUTYPE_MESS)
+  treeWidgetGamelist->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
+  treeWidgetGamelist->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+  treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
+  treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+#endif
+
   createFifo();
   qmc2GhostImagePixmap.load(":/data/img/ghost.png");
   QString myStyle = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString();
@@ -5670,6 +5679,22 @@ void MainWindow::on_treeWidgetGamelist_headerSectionClicked(int logicalIndex)
         qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_ROMTYPES);
       break;
 
+#if defined(QMC2_EMUTYPE_MAME)
+    case QMC2_GAMELIST_COLUMN_CATEGORY:
+      if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_CATEGORY )
+        qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
+      else
+        qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_CATEGORY);
+      break;
+
+    case QMC2_GAMELIST_COLUMN_VERSION:
+      if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_VERSION )
+        qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
+      else
+        qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_VERSION);
+      break;
+#endif
+
     default:
       break;
   }
@@ -6625,6 +6650,16 @@ int MainWindow::sortCriteriaLogicalIndex() {
     case QMC2_SORT_BY_ROMTYPES:
       return QMC2_GAMELIST_COLUMN_RTYPES;
       break;
+
+#if defined(QMC2_EMUTYPE_MAME)
+    case QMC2_SORT_BY_CATEGORY:
+      return QMC2_GAMELIST_COLUMN_CATEGORY;
+      break;
+
+    case QMC2_SORT_BY_VERSION:
+      return QMC2_GAMELIST_COLUMN_VERSION;
+      break;
+#endif
 
     default:
       return QMC2_GAMELIST_COLUMN_GAME;

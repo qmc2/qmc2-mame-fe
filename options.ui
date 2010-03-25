@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>572</width>
-    <height>708</height>
+    <width>490</width>
+    <height>471</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>523</width>
+                <width>450</width>
                 <height>619</height>
                </rect>
               </property>
@@ -854,8 +854,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>540</width>
-                <height>601</height>
+                <width>441</width>
+                <height>518</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -1166,7 +1166,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="0">
+                 <item row="8" column="0">
                   <widget class="QRadioButton" name="radioButtonPreviewSelect">
                    <property name="toolTip">
                     <string>Switch between specifying a preview directory or a ZIP-compressed preview file</string>
@@ -1182,7 +1182,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="1" colspan="2">
+                 <item row="8" column="1" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetPreview">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1269,7 +1269,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="8" column="0">
+                 <item row="9" column="0">
                   <widget class="QRadioButton" name="radioButtonFlyerSelect">
                    <property name="toolTip">
                     <string>Switch between specifying a flyer directory or a ZIP-compressed flyer file</string>
@@ -1285,7 +1285,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="1" colspan="2">
+                 <item row="9" column="1" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetFlyer">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1372,7 +1372,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="9" column="0">
+                 <item row="10" column="0">
                   <widget class="QRadioButton" name="radioButtonIconSelect">
                    <property name="toolTip">
                     <string>Switch between specifying an icon directory or a ZIP-compressed icon file</string>
@@ -1388,7 +1388,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="1" colspan="2">
+                 <item row="10" column="1" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetIcon">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1475,7 +1475,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="15" column="0" colspan="3">
+                 <item row="16" column="0" colspan="3">
                   <spacer name="spacer5">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -1488,7 +1488,7 @@
                    </property>
                   </spacer>
                  </item>
-                 <item row="16" column="0" colspan="3">
+                 <item row="17" column="0" colspan="3">
                   <layout class="QHBoxLayout" name="layout8">
                    <item>
                     <widget class="QLabel" name="labelLegend3Pic">
@@ -1524,7 +1524,7 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="10" column="1" colspan="2">
+                 <item row="11" column="1" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetCabinet">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1611,7 +1611,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="10" column="0">
+                 <item row="11" column="0">
                   <widget class="QRadioButton" name="radioButtonCabinetSelect">
                    <property name="toolTip">
                     <string>Switch between specifying a cabinet directory or a ZIP-compressed cabinet file</string>
@@ -1627,7 +1627,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="11" column="1" colspan="2">
+                 <item row="12" column="1" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetController">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1714,7 +1714,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="11" column="0">
+                 <item row="12" column="0">
                   <widget class="QRadioButton" name="radioButtonControllerSelect">
                    <property name="toolTip">
                     <string>Switch between specifying a controller directory or a ZIP-compressed controller file</string>
@@ -1730,7 +1730,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="12" column="1" colspan="2">
+                 <item row="13" column="1" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetMarquee">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1817,7 +1817,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="12" column="0">
+                 <item row="13" column="0">
                   <widget class="QRadioButton" name="radioButtonMarqueeSelect">
                    <property name="toolTip">
                     <string>Switch between specifying a marquee directory or a ZIP-compressed marquee file</string>
@@ -1833,7 +1833,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="13" column="1" colspan="2">
+                 <item row="14" column="1" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetTitle">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -1920,7 +1920,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="13" column="0">
+                 <item row="14" column="0">
                   <widget class="QRadioButton" name="radioButtonTitleSelect">
                    <property name="toolTip">
                     <string>Switch between specifying a title directory or a ZIP-compressed title file</string>
@@ -1936,7 +1936,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="14" column="0">
+                 <item row="15" column="0">
                   <widget class="QRadioButton" name="radioButtonPCBSelect">
                    <property name="toolTip">
                     <string>Switch between specifying a PCB directory or a ZIP-compressed PCB file</string>
@@ -1952,7 +1952,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="14" column="1" colspan="2">
+                 <item row="15" column="1" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetPCB">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -2039,6 +2039,50 @@
                    </widget>
                   </widget>
                  </item>
+                 <item row="7" column="0">
+                  <widget class="QCheckBox" name="checkBoxUseCatverIni">
+                   <property name="toolTip">
+                    <string>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</string>
+                   </property>
+                   <property name="text">
+                    <string>Use catver.ini</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="1">
+                  <widget class="QLineEdit" name="lineEditCatverIniFile">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Path to catver.ini (read)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="2">
+                  <widget class="QToolButton" name="toolButtonBrowseCatverIniFile">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse path to catver.ini</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -2068,8 +2112,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>540</width>
-                <height>601</height>
+                <width>458</width>
+                <height>364</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2461,8 +2505,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>265</width>
-                <height>45</height>
+                <width>458</width>
+                <height>364</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2574,8 +2618,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>376</width>
-                <height>246</height>
+                <width>458</width>
+                <height>364</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3031,8 +3075,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>373</width>
-                <height>332</height>
+                <width>458</width>
+                <height>364</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -4050,6 +4094,9 @@
   <tabstop>toolButtonBrowseGameInfoDB</tabstop>
   <tabstop>lineEditEmuInfoDB</tabstop>
   <tabstop>toolButtonBrowseEmuInfoDB</tabstop>
+  <tabstop>checkBoxUseCatverIni</tabstop>
+  <tabstop>lineEditCatverIniFile</tabstop>
+  <tabstop>toolButtonBrowseCatverIniFile</tabstop>
   <tabstop>radioButtonPreviewSelect</tabstop>
   <tabstop>lineEditPreviewDirectory</tabstop>
   <tabstop>toolButtonBrowsePreviewDirectory</tabstop>

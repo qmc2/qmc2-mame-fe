@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b15, 12-MAR-2010</h3>
+<h3>README - v0.2.b15, 25-MAR-2010</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -74,14 +74,16 @@ use with the MAME variant).
   <li>Cool editor for configuration of global and game/machine-specific emulator options, including a search function</li>
   <li>Support for all emulation-related extra information available through the emulator (displayed in a tree)</li>
   <li>Fast search function with automatic wildcard pattern matching</li>
-  <li>Selectable sort criteria and order for game/machine list (description, name/ID, ROM state, year and manufacturer)</li>
+  <li>All emulator targets: selectable sort criteria and order for game/machine lists (description, name/ID, ROM state, year, manufacturer and ROM types)</li>
+  <li>MAME targets only: two additional sort criteria (category and version) when catver.ini support is enabled</i>
   <li>Straightforward process management to control emulator processes</li>
   <li>Clear and full logging (separate front end and emulator logs)</li>
   <li>Cached ROM state verification, indicated as colored spheres in front of each game/machine description</li>
   <li>Verification of sample sets</li>
   <li>Game/machine image checks (icons, previews &amp; flyers)
   <li>Online display of current game/machine list and search result statistics</li>
-  <li>Two game/machine list views: <i>full detail</i> and <i>parent/clone hierarchy</i></li>
+  <li>All emulator targets: two different views of the game/machine list: <i>full detail</i> and <i>parent/clone hierarchy</i></li>
+  <li>MAME targets only: two additional views (<i>category</i> and <i>version</i>) when catver.ini support is enabled</i>
   <li>The GUI will always remain interactive even if heavy background processing is running</li>
   <li>Time-consuming background tasks can be stopped on demand at (nearly) any time</li>
   <li>Optional auto-save/restore of window layout and game/machine selection</li>
@@ -109,7 +111,7 @@ use with the MAME variant).
   <li>Freely adjust the order and visibility of available game/machine details</li>
   <li>MAWS web lookup for all MAME variants, including automatic caching of all successfully loaded MAWS ROM set pages</li>
   <li>MAWS quick download: when visiting a game's MAWS page, automatically download available image data usable by QMC2</li>
-  <li>X11 only: optional/on-demand embedding of emulator windows</li>
+  <li>X11 platforms only: optional/on-demand embedding of emulator windows</li>
   <li>Freely adjustable layout of the main widget's major sub-widgets</li>
 </ul>
 <h3><a name="2."></a>2. Build and installation instructions</h3>
@@ -571,7 +573,11 @@ of their parents.</p>
     </tr>
     <tr>
       <td style="vertical-align: top;">F7 (reserved)</td>
-      <td style="vertical-align: top;">MAME only: view games by category</td>
+      <td style="vertical-align: top;">MAME targets only: view games by category</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">F8 (reserved)</td>
+      <td style="vertical-align: top;">MAME targets only: view games by version they were added to the emulator</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">F11</td>

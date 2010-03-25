@@ -8,6 +8,7 @@
 #include <QFile>
 #include <QTreeWidget>
 #include <QTextStream>
+#include "macros.h"
 
 class Gamelist : public QObject
 {
@@ -61,6 +62,9 @@ class Gamelist : public QObject
     void load();
     void verify(bool currentOnly = FALSE);
     void save();
+#if defined(QMC2_EMUTYPE_MAME)
+    void loadCatverIni();
+#endif
     void loadFavorites();
     void saveFavorites();
     void loadPlayHistory();

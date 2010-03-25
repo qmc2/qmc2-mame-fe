@@ -193,11 +193,17 @@ Options::Options(QWidget *parent)
   labelMAWSCacheDirectory->setVisible(FALSE);
   lineEditMAWSCacheDirectory->setVisible(FALSE);
   toolButtonBrowseMAWSCacheDirectory->setVisible(FALSE);
+  checkBoxUseCatverIni->setVisible(FALSE);
+  lineEditCatverIniFile->setVisible(FALSE);
+  toolButtonBrowseCatverIniFile->setVisible(FALSE);
   labelLegendFrontendGUI->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   labelLegendFrontendFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   labelLegendEmulatorFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   checkBoxHideWhileLoading->setToolTip(tr("Hide primary machine list while loading (recommended, much faster)"));
   tableWidgetRegisteredEmulators->setToolTip(tr("Registered emulators -- you may select one of these in the machine-specific emulator configuration"));
+#elif defined(QMC2_EMUTYPE_MAME)
+  comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
+  comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
 #endif
 
   // shortcuts
@@ -369,6 +375,8 @@ void Options::apply()
 #if defined(QMC2_EMUTYPE_MAME)
   toolButtonBrowseEmuInfoDB->setIconSize(iconSize);
   toolButtonBrowseMAWSCacheDirectory->setIconSize(iconSize);
+  checkBoxUseCatverIni->setIconSize(iconSize);
+  toolButtonBrowseCatverIniFile->setIconSize(iconSize);
 #endif
   toolButtonBrowsePreviewDirectory->setIconSize(iconSize);
   toolButtonBrowsePreviewFile->setIconSize(iconSize);
@@ -783,6 +791,33 @@ void Options::on_pushButtonApply_clicked()
   needManualReload |= (config->value("MAME/FilesAndDirectories/EmuInfoDB").toString() != s);
   invalidateEmuInfoDB |= (config->value("MAME/FilesAndDirectories/EmuInfoDB").toString() != s);
   config->setValue("MAME/FilesAndDirectories/EmuInfoDB", lineEditEmuInfoDB->text());
+  config->setValue("MAME/FilesAndDirectories/CatverIni", lineEditCatverIniFile->text());
+  bool catverUsed = checkBoxUseCatverIni->isChecked();
+  needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", FALSE).toBool() != catverUsed );
+  config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", catverUsed);
+  if ( catverUsed ) {
+    qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+    qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_GAMELIST_COLUMN_VERSION);
+    qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+    qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_GAMELIST_COLUMN_VERSION);
+    if ( comboBoxSortCriteria->count() - 1 < QMC2_SORTCRITERIA_CATEGORY ) {
+      comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
+      comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
+      qmc2MainWindow->treeWidgetGamelist->resizeColumnToContents(qmc2MainWindow->treeWidgetGamelist->header()->logicalIndex(QMC2_GAMELIST_COLUMN_VERSION));
+      qmc2MainWindow->treeWidgetHierarchy->resizeColumnToContents(qmc2MainWindow->treeWidgetHierarchy->header()->logicalIndex(QMC2_GAMELIST_COLUMN_VERSION));
+    }
+  } else {
+    qmc2MainWindow->treeWidgetGamelist->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
+    qmc2MainWindow->treeWidgetGamelist->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+    qmc2MainWindow->treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
+    qmc2MainWindow->treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+    if ( comboBoxSortCriteria->count() > QMC2_SORTCRITERIA_VERSION ) {
+      comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_VERSION);
+      comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_CATEGORY);
+      qmc2MainWindow->treeWidgetGamelist->resizeColumnToContents(qmc2MainWindow->treeWidgetGamelist->header()->logicalIndex(QMC2_GAMELIST_COLUMN_RTYPES));
+      qmc2MainWindow->treeWidgetHierarchy->resizeColumnToContents(qmc2MainWindow->treeWidgetHierarchy->header()->logicalIndex(QMC2_GAMELIST_COLUMN_RTYPES));
+    }
+  }
 #elif defined(QMC2_EMUTYPE_MESS)
   needReopenPreviewFile = (qmc2UsePreviewFile != (stackedWidgetPreview->currentIndex() == 1));
   needReopenPreviewFile |= (config->value("MESS/FilesAndDirectories/PreviewFile").toString() != lineEditPreviewFile->text());
@@ -980,7 +1015,7 @@ void Options::on_pushButtonApply_clicked()
 
   // Files and directories
 #if defined(QMC2_EMUTYPE_MAME)
-  needReload = config->value("MAME/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
+  needReload |= config->value("MAME/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
   config->setValue("MAME/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
   config->setValue("MAME/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
   config->setValue("MAME/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
@@ -993,7 +1028,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/FavoritesFile", lineEditFavoritesFile->text());
   config->setValue("MAME/FilesAndDirectories/HistoryFile", lineEditHistoryFile->text());
 #elif defined(QMC2_EMUTYPE_MESS)
-  needReload = config->value("MESS/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
+  needReload |= config->value("MESS/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
   config->setValue("MESS/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
   config->setValue("MESS/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
   config->setValue("MESS/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
@@ -1121,6 +1156,14 @@ void Options::on_pushButtonApply_clicked()
         case QMC2_SORT_BY_ROMTYPES:
           sortCriteria = QObject::tr("ROM types");
           break;
+#if defined(QMC2_EMUTYPE_MAME)
+        case QMC2_SORT_BY_CATEGORY:
+          sortCriteria = QObject::tr("category");
+          break;
+        case QMC2_SORT_BY_VERSION:
+          sortCriteria = QObject::tr("version");
+          break;
+#endif
       }
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting game list by %1 in %2 order").arg(sortCriteria).arg(qmc2SortOrder == Qt::AscendingOrder ? tr("ascending") : tr("descending")));
@@ -1184,6 +1227,22 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
       break;
+
+#if defined(QMC2_EMUTYPE_MAME)
+    case QMC2_SORT_BY_CATEGORY:
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_CATEGORY, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_CATEGORY, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+      break;
+
+    case QMC2_SORT_BY_VERSION:
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_VERSION, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_VERSION, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+      break;
+#endif
 
     default:
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(FALSE);
@@ -1509,6 +1568,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
   lineEditGameInfoDB->setText(config->value("MAME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
   lineEditEmuInfoDB->setText(config->value("MAME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
+  lineEditCatverIniFile->setText(config->value("MAME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
+  checkBoxUseCatverIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", FALSE).toBool());
 #elif defined(QMC2_EMUTYPE_MESS)
 #if defined(QMC2_SDLMESS)
   lineEditTemporaryFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
@@ -2108,6 +2169,18 @@ void Options::on_toolButtonBrowseEmuInfoDB_clicked()
   QString s = QFileDialog::getOpenFileName(this, tr("Choose emulator info DB"), lineEditEmuInfoDB->text(), tr("All files (*)"));
   if ( !s.isNull() )
     lineEditEmuInfoDB->setText(s);
+  raise();
+}
+
+void Options::on_toolButtonBrowseCatverIniFile_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseCatverIniFile_clicked()");
+#endif
+
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose catver.ini file"), lineEditCatverIniFile->text(), tr("All files (*)"));
+  if ( !s.isNull() )
+    lineEditCatverIniFile->setText(s);
   raise();
 }
 #endif
