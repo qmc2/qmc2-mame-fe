@@ -3215,7 +3215,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1171"/>
         <location filename="../../gamelist.cpp" line="1384"/>
         <source>?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1261"/>
@@ -3585,27 +3585,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="2736"/>
         <source>loading catver.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando catver.ini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2742"/>
         <source>Catver.ini - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2780"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: impossível abrir &apos;%1&apos; para leitura -- arquivo catver.ini não disponível</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2789"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando catver.ini, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2790"/>
         <source>%1 category / %2 version records loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 categoria / %2 versão de registros carregados</translation>
     </message>
 </context>
 <context>
@@ -5957,13 +5957,13 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.ui" line="114"/>
         <location filename="../../qmc2main.ui" line="222"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Categoria</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="119"/>
         <location filename="../../qmc2main.ui" line="227"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versão</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="165"/>
@@ -7621,13 +7621,13 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="205"/>
         <location filename="../../options.cpp" line="804"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Categoria</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="206"/>
         <location filename="../../options.cpp" line="805"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Versão</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="210"/>
@@ -8385,7 +8385,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="2181"/>
         <source>Choose catver.ini file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo catver.ini</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2377"/>
@@ -9249,22 +9249,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2045"/>
         <source>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar o uso do arquivo catver.ini -- obtenha a versão mais nova de http://www.progettoemma.net/?catlist</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2048"/>
         <source>Use catver.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar catver.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2065"/>
         <source>Path to catver.ini (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho para catver.ini (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2078"/>
         <source>Browse path to catver.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar caminha para catver.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2096"/>
@@ -10148,13 +10148,13 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../gamelist.cpp" line="1649"/>
         <location filename="../../options.cpp" line="1161"/>
         <source>category</source>
-        <translation type="unfinished"></translation>
+        <translation>categoria</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1652"/>
         <location filename="../../options.cpp" line="1164"/>
         <source>version</source>
-        <translation type="unfinished"></translation>
+        <translation>versão</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1645"/>
