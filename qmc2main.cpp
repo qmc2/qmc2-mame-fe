@@ -195,6 +195,8 @@ QMap<QString, QByteArray *> qmc2GameInfoDB;
 QMap<QString, QByteArray *> qmc2EmuInfoDB;
 QMap<QString, QString> qmc2CategoryMap;
 QMap<QString, QString> qmc2VersionMap;
+QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
+QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 #endif
 QString qmc2DemoGame;
 QStringList qmc2DemoArgs;
@@ -431,6 +433,10 @@ MainWindow::MainWindow(QWidget *parent)
   actionReload->setStatusTip(tr("Reload entire machine list"));
   actionViewFullDetail->setToolTip(tr("View machine list with full detail"));
   actionViewFullDetail->setStatusTip(tr("View machine list with full detail"));
+  actionViewByCategory->setEnabled(FALSE);
+  actionViewByCategory->setVisible(FALSE);
+  actionViewByVersion->setEnabled(FALSE);
+  actionViewByVersion->setVisible(FALSE);
   actionCheckCurrentROM->setToolTip(tr("Check current machine's ROM state"));
   actionCheckCurrentROM->setStatusTip(tr("Check current machine's ROM state"));
   actionAnalyseCurrentROM->setToolTip(tr("Analyse current machine with ROMAlyzer"));
@@ -921,17 +927,15 @@ MainWindow::MainWindow(QWidget *parent)
   // other actions
   connect(actionViewFullDetail, SIGNAL(triggered()), this, SLOT(viewFullDetail()));
   connect(actionViewParentClones, SIGNAL(triggered()), this, SLOT(viewParentClones()));
+#if defined(QMC2_EMUTYPE_MAME)
+  connect(actionViewByCategory, SIGNAL(triggered()), this, SLOT(viewByCategory()));
+  connect(actionViewByVersion, SIGNAL(triggered()), this, SLOT(viewByVersion()));
+#endif
   connect(comboBoxViewSelect, SIGNAL(currentIndexChanged(int)), stackedWidgetView, SLOT(setCurrentIndex(int)));
   connect(&searchTimer, SIGNAL(timeout()), this, SLOT(on_comboBoxSearch_textChanged_delayed()));
   connect(&updateTimer, SIGNAL(timeout()), this, SLOT(on_treeWidgetGamelist_itemSelectionChanged_delayed()));
   connect(&activityCheckTimer, SIGNAL(timeout()), this, SLOT(checkActivity()));
   activityState = FALSE;
-
-  comboBoxViewSelect->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", QMC2_GAMELIST_INDEX).toInt());
-  if ( comboBoxViewSelect->currentIndex() == QMC2_VIEW_DETAIL_INDEX )
-    tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/view_detail.png")));
-  else
-    tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/view_tree.png")));
 
   // restore toolbar state
   restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolbarState", QByteArray()).toByteArray());
@@ -2250,12 +2254,26 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 #else
       QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
 #endif
-      if ( stackedWidgetView->currentIndex() == QMC2_VIEW_DETAIL_INDEX ) {
-        treeWidgetGamelist->activateWindow();
-        treeWidgetGamelist->setFocus();
-      } else {
-        treeWidgetHierarchy->activateWindow();
-        treeWidgetHierarchy->setFocus();
+      switch ( stackedWidgetView->currentIndex() ) {
+	      case QMC2_VIEW_TREE_INDEX:
+		      treeWidgetHierarchy->activateWindow();
+		      treeWidgetHierarchy->setFocus();
+		      break;
+#if defined(QMC2_EMUTYPE_MAME)
+	      case QMC2_VIEW_CATEGORY_INDEX:
+		      treeWidgetCategoryView->activateWindow();
+		      treeWidgetCategoryView->setFocus();
+		      break;
+	      case QMC2_VIEW_VERSION_INDEX:
+		      treeWidgetVersionView->activateWindow();
+		      treeWidgetVersionView->setFocus();
+		      break;
+#endif
+	      case QMC2_VIEW_DETAIL_INDEX:
+	      default:
+		      treeWidgetGamelist->activateWindow();
+		      treeWidgetGamelist->setFocus();
+		      break;
       }
       break;
 
@@ -2408,6 +2426,30 @@ void MainWindow::scrollToCurrentItem()
           treeWidgetHierarchy->scrollToItem(ci, QAbstractItemView::PositionAtTop);
         }
         break;
+
+#if defined(QMC2_EMUTYPE_MAME)
+      case QMC2_VIEWCATEGORY_INDEX:
+	/*
+        ci = qmc2CategoryItemMap[ci->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)];
+        if ( ci ) {
+          treeWidgetCategoryView->clearSelection();
+          treeWidgetCategoryView->setCurrentItem(ci);
+          treeWidgetCategoryView->scrollToItem(ci, QAbstractItemView::PositionAtTop);
+        }
+	*/
+        break;
+
+      case QMC2_VIEWVERSION_INDEX:
+	/*
+        ci = qmc2VersionItemMap[ci->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)];
+        if ( ci ) {
+          treeWidgetVersionView->clearSelection();
+          treeWidgetVersionView->setCurrentItem(ci);
+          treeWidgetVersionView->scrollToItem(ci, QAbstractItemView::PositionAtTop);
+        }
+	*/
+        break;
+#endif
 
       case QMC2_VIEWGAMELIST_INDEX:
       default:
@@ -3716,6 +3758,38 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
       }
       break;
 
+#if defined(QMC2_EMUTYPE_MAME)
+    case QMC2_VIEWCATEGORY_INDEX:
+      /*
+      if ( !qmc2ReloadActive ) {
+        QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+        QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
+        treeWidgetCategoryView->clearSelection();
+        if ( categoryItem ) {
+          treeWidgetCategoryView->setCurrentItem(categoryItem);
+          treeWidgetCategoryView->scrollToItem(categoryItem, QAbstractItemView::PositionAtTop);
+          categoryItem->setSelected(TRUE);
+        }
+      }
+      */
+      break;
+
+    case QMC2_VIEWVERSION_INDEX:
+      /*
+      if ( !qmc2ReloadActive ) {
+        QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+        QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
+        treeWidgetVersionView->clearSelection();
+        if ( versionItem ) {
+          treeWidgetVersionView->setCurrentItem(versionItem);
+          treeWidgetVersionView->scrollToItem(versionItem, QAbstractItemView::PositionAtTop);
+          versionItem->setSelected(TRUE);
+        }
+      }
+      */
+      break;
+#endif
+
     case QMC2_VIEWGAMELIST_INDEX:
     default:
       scrollToCurrentItem();
@@ -4454,8 +4528,8 @@ void MainWindow::viewFullDetail()
   comboBoxViewSelect->setCurrentIndex(QMC2_VIEWGAMELIST_INDEX);
   qApp->processEvents();
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
-  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/view_detail.png")));
-  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/view_detail.png")));
+  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
+  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/flat.png")));
   treeWidgetGamelist->setFocus();
 }
 
@@ -4468,10 +4542,40 @@ void MainWindow::viewParentClones()
   comboBoxViewSelect->setCurrentIndex(QMC2_VIEWHIERARCHY_INDEX);
   qApp->processEvents();
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
-  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/view_tree.png")));
-  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/view_tree.png")));
+  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
+  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/clone.png")));
   treeWidgetHierarchy->setFocus();
 }
+
+#if defined(QMC2_EMUTYPE_MAME)
+void MainWindow::viewByCategory()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewByCategory()");
+#endif
+
+  comboBoxViewSelect->setCurrentIndex(QMC2_VIEWCATEGORY_INDEX);
+  qApp->processEvents();
+  tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
+  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
+  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
+  treeWidgetCategoryView->setFocus();
+}
+
+void MainWindow::viewByVersion()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewByVersion()");
+#endif
+
+  comboBoxViewSelect->setCurrentIndex(QMC2_VIEWVERSION_INDEX);
+  qApp->processEvents();
+  tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
+  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
+  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
+  treeWidgetVersionView->setFocus();
+}
+#endif
 
 bool KeyPressFilter::eventFilter(QObject *object, QEvent *event)
 {
@@ -6760,6 +6864,10 @@ void prepareShortcuts()
 #endif
   qmc2ShortcutMap["F5"].second = qmc2MainWindow->actionViewFullDetail;
   qmc2ShortcutMap["F6"].second = qmc2MainWindow->actionViewParentClones;
+#if defined(QMC2_EMUTYPE_MAME)
+  qmc2ShortcutMap["F7"].second = qmc2MainWindow->actionViewByCategory;
+  qmc2ShortcutMap["F8"].second = qmc2MainWindow->actionViewByVersion;
+#endif
   qmc2ShortcutMap["F11"].second = qmc2MainWindow->actionFullscreenToggle;
   qmc2ShortcutMap["F12"].second = qmc2MainWindow->actionArcadeToggle;
   qmc2ShortcutMap["Meta+F"].second = qmc2MainWindow->actionArcadeShowFPS;

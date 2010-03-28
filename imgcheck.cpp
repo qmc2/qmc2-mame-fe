@@ -37,6 +37,10 @@ extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
+#if defined(QMC2_EMUTYPE_MAME)
+extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
+extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
+#endif
 extern QMap<QString, QIcon> qmc2IconMap;
 extern Options *qmc2Options;
 extern Gamelist *qmc2Gamelist;
@@ -1125,6 +1129,32 @@ void ImageChecker::selectItem(QString gameName)
       }
       break;
     }
+#if defined(QMC2_EMUTYPE_MAME)
+    case QMC2_VIEWCATEGORY_INDEX: {
+      /*
+      QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
+      if ( categoryItem ) {
+        qmc2MainWindow->treeWidgetCategoryView->clearSelection();
+        qmc2MainWindow->treeWidgetCategoryView->setCurrentItem(categoryItem);
+        qmc2MainWindow->treeWidgetCategoryView->scrollToItem(categoryItem, QAbstractItemView::PositionAtTop);
+        categoryItem->setSelected(TRUE);
+      }
+      */
+      break;
+    }
+    case QMC2_VIEWVERSION_INDEX: {
+      /*
+      QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
+      if ( versionItem ) {
+        qmc2MainWindow->treeWidgetVersionView->clearSelection();
+        qmc2MainWindow->treeWidgetVersionView->setCurrentItem(versionItem);
+        qmc2MainWindow->treeWidgetVersionView->scrollToItem(versionItem, QAbstractItemView::PositionAtTop);
+        versionItem->setSelected(TRUE);
+      }
+      */
+      break;
+    }
+#endif
   }
 }
 

@@ -352,6 +352,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void downloadMawsQuickLink();
     void storeMawsIcon();
     void startMawsAutoDownloads();
+    void viewByCategory();
+    void viewByVersion();
 #endif
     void createFifo(bool logFifoCreation = TRUE);
     void recreateFifo();

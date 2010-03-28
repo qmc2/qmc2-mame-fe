@@ -49,24 +49,88 @@
           <widget class="QWidget" name="tabGamelist">
            <attribute name="icon">
             <iconset resource="qmc2.qrc">
-             <normaloff>:/data/img/view_detail.png</normaloff>:/data/img/view_detail.png</iconset>
+             <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
            </attribute>
            <attribute name="title">
             <string>&amp;Game list</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_2">
+            <item row="1" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="sizeConstraint">
+               <enum>QLayout::SetNoConstraint</enum>
+              </property>
+              <item>
+               <widget class="QComboBox" name="comboBoxViewSelect">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Switch between detailed game list and parent / clone hierarchy</string>
+                </property>
+                <property name="statusTip">
+                 <string>Switch between detailed game list and parent / clone hierarchy</string>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Game list with full detail (filtered)</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qmc2.qrc">
+                   <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Parent / clone hierarchy (not filtered)</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qmc2.qrc">
+                   <normaloff>:/data/img/clone.png</normaloff>:/data/img/clone.png</iconset>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonSelectRomFilter">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Toggle individual ROM states</string>
+                </property>
+                <property name="statusTip">
+                 <string>Toggle individual ROM states</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="qmc2.qrc">
+                  <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
             <item row="0" column="0">
              <widget class="QStackedWidget" name="stackedWidgetView">
               <property name="currentIndex">
                <number>0</number>
               </property>
               <widget class="QWidget" name="gamelistPage">
-               <layout class="QGridLayout">
+               <layout class="QGridLayout" name="gridLayoutGamelistPage">
                 <property name="margin">
                  <number>0</number>
-                </property>
-                <property name="spacing">
-                 <number>6</number>
                 </property>
                 <item row="0" column="0">
                  <widget class="QTreeWidget" name="treeWidgetGamelist">
@@ -172,12 +236,9 @@
                </layout>
               </widget>
               <widget class="QWidget" name="hierarchyPage">
-               <layout class="QGridLayout">
+               <layout class="QGridLayout" name="gridLayoutHierarchyPage">
                 <property name="margin">
                  <number>0</number>
-                </property>
-                <property name="spacing">
-                 <number>6</number>
                 </property>
                 <item row="0" column="0">
                  <widget class="QTreeWidget" name="treeWidgetHierarchy">
@@ -251,74 +312,207 @@
                 </item>
                </layout>
               </widget>
+              <widget class="QWidget" name="categoryPage">
+               <layout class="QGridLayout" name="gridLayoutCategoryPage">
+                <property name="margin">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QTreeWidget" name="treeWidgetCategoryView">
+                  <property name="contextMenuPolicy">
+                   <enum>Qt::CustomContextMenu</enum>
+                  </property>
+                  <property name="statusTip">
+                   <string>List of games viewed by category</string>
+                  </property>
+                  <property name="columnCount">
+                   <number>7</number>
+                  </property>
+                  <column>
+                   <property name="text">
+                    <string>Category / Game</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Icon</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Year</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Manufacturer</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Name</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>ROM types</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Version</string>
+                   </property>
+                  </column>
+                  <item>
+                   <property name="text">
+                    <string>Waiting for data...</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="labelCreatingCategoryView">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Ignored" vsizetype="MinimumExpanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Sunken</enum>
+                  </property>
+                  <property name="text">
+                   <string>&lt;p align=&quot;center&quot;&gt;Creating category view, please wait...&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:bold; color:#ff0000;&quot;&gt;NOTE: THIS DOESN'T WORK YET!&lt;/span&gt;&lt;/p&gt;</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="versionPage">
+               <layout class="QGridLayout" name="gridLayoutVersionPage">
+                <property name="margin">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QTreeWidget" name="treeWidgetVersionView">
+                  <property name="contextMenuPolicy">
+                   <enum>Qt::CustomContextMenu</enum>
+                  </property>
+                  <property name="statusTip">
+                   <string>List of games viewed by version they were added to the emulator</string>
+                  </property>
+                  <property name="columnCount">
+                   <number>7</number>
+                  </property>
+                  <column>
+                   <property name="text">
+                    <string>Version / Game</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Icon</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Year</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Manufacturer</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Name</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>ROM types</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Category</string>
+                   </property>
+                  </column>
+                  <item>
+                   <property name="text">
+                    <string>Waiting for data...</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="labelCreatingVersionView">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Ignored" vsizetype="MinimumExpanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Sunken</enum>
+                  </property>
+                  <property name="text">
+                   <string>&lt;p align=&quot;center&quot;&gt;Creating version view, please wait...&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:bold; color:#ff0000;&quot;&gt;NOTE: THIS DOESN'T WORK YET!&lt;/span&gt;&lt;/p&gt;</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
              </widget>
-            </item>
-            <item row="1" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_2">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <property name="sizeConstraint">
-               <enum>QLayout::SetNoConstraint</enum>
-              </property>
-              <item>
-               <widget class="QComboBox" name="comboBoxViewSelect">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="toolTip">
-                 <string>Switch between detailed game list and parent / clone hierarchy</string>
-                </property>
-                <property name="statusTip">
-                 <string>Switch between detailed game list and parent / clone hierarchy</string>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>Game list with full detail (filtered)</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/view_detail.png</normaloff>:/data/img/view_detail.png</iconset>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>Parent / clone hierarchy (not filtered)</string>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qmc2.qrc">
-                   <normaloff>:/data/img/view_tree.png</normaloff>:/data/img/view_tree.png</iconset>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButtonSelectRomFilter">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="toolTip">
-                 <string>Toggle individual ROM states</string>
-                </property>
-                <property name="statusTip">
-                 <string>Toggle individual ROM states</string>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset resource="qmc2.qrc">
-                  <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
-                </property>
-               </widget>
-              </item>
-             </layout>
             </item>
            </layout>
           </widget>
@@ -1830,10 +2024,12 @@
      </property>
      <property name="icon">
       <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/view_detail.png</normaloff>:/data/img/view_detail.png</iconset>
+       <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
      </property>
      <addaction name="actionViewFullDetail"/>
      <addaction name="actionViewParentClones"/>
+     <addaction name="actionViewByCategory"/>
+     <addaction name="actionViewByVersion"/>
     </widget>
     <addaction name="actionPlay"/>
     <addaction name="actionPlayEmbedded"/>
@@ -2194,7 +2390,7 @@
   <action name="actionViewFullDetail">
    <property name="icon">
     <iconset resource="qmc2.qrc">
-     <normaloff>:/data/img/view_detail.png</normaloff>:/data/img/view_detail.png</iconset>
+     <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
    </property>
    <property name="text">
     <string>Full detail</string>
@@ -2215,7 +2411,7 @@
   <action name="actionViewParentClones">
    <property name="icon">
     <iconset resource="qmc2.qrc">
-     <normaloff>:/data/img/view_tree.png</normaloff>:/data/img/view_tree.png</iconset>
+     <normaloff>:/data/img/clone.png</normaloff>:/data/img/clone.png</iconset>
    </property>
    <property name="text">
     <string>Parent / clones</string>
@@ -2225,9 +2421,6 @@
    </property>
    <property name="statusTip">
     <string>View parent / clone hierarchy</string>
-   </property>
-   <property name="whatsThis">
-    <string/>
    </property>
    <property name="shortcut">
     <string>F6</string>
@@ -2788,12 +2981,56 @@
     <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
+  <action name="actionViewByCategory">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/category.png</normaloff>:/data/img/category.png</iconset>
+   </property>
+   <property name="text">
+    <string>By category</string>
+   </property>
+   <property name="toolTip">
+    <string>View games by category</string>
+   </property>
+   <property name="statusTip">
+    <string>View games by category</string>
+   </property>
+   <property name="shortcut">
+    <string>F7</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionViewByVersion">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/version.png</normaloff>:/data/img/version.png</iconset>
+   </property>
+   <property name="text">
+    <string>By version</string>
+   </property>
+   <property name="toolTip">
+    <string>View games by version they were added to the emulator</string>
+   </property>
+   <property name="statusTip">
+    <string>View games by version they were added to the emulator</string>
+   </property>
+   <property name="shortcut">
+    <string>F8</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="6"/>
  <tabstops>
   <tabstop>tabWidgetGamelist</tabstop>
   <tabstop>treeWidgetGamelist</tabstop>
   <tabstop>treeWidgetHierarchy</tabstop>
+  <tabstop>treeWidgetCategoryView</tabstop>
+  <tabstop>treeWidgetVersionView</tabstop>
   <tabstop>comboBoxViewSelect</tabstop>
   <tabstop>pushButtonSelectRomFilter</tabstop>
   <tabstop>comboBoxSearch</tabstop>
