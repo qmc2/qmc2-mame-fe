@@ -59,6 +59,8 @@
 // index positions of gamelist view selector
 #define QMC2_VIEW_DETAIL_INDEX		0
 #define QMC2_VIEW_TREE_INDEX		1
+#define QMC2_VIEW_CATEGORY_INDEX	2
+#define QMC2_VIEW_VERSION_INDEX		3
 
 // logical column indizes in gamelists
 #define QMC2_GAMELIST_COLUMN_GAME	0
@@ -113,6 +115,8 @@
 // index positions of game list view stack
 #define QMC2_VIEWGAMELIST_INDEX		0
 #define QMC2_VIEWHIERARCHY_INDEX	1
+#define QMC2_VIEWCATEGORY_INDEX		2
+#define QMC2_VIEWVERSION_INDEX		3	
 
 // index positions of tabs in the options dialog
 #define QMC2_OPTIONS_FRONTEND_INDEX		0

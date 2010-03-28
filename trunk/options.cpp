@@ -252,6 +252,10 @@ Options::Options(QWidget *parent)
 #endif
   qmc2ShortcutMap["F5"] = QPair<QString, QAction *>(tr("Gamelist with full detail"), NULL);
   qmc2ShortcutMap["F6"] = QPair<QString, QAction *>(tr("Parent / clone hierarchy"), NULL);
+#if defined(QMC2_EMUTYPE_MAME)
+  qmc2ShortcutMap["F7"] = QPair<QString, QAction *>(tr("View games by category"), NULL);
+  qmc2ShortcutMap["F8"] = QPair<QString, QAction *>(tr("View games by version"), NULL);
+#endif
   qmc2ShortcutMap["F11"] = QPair<QString, QAction *>(tr("Toggle full screen"), NULL);
   qmc2ShortcutMap["F12"] = QPair<QString, QAction *>(tr("Toggle arcade mode"), NULL);
   qmc2ShortcutMap["Meta+F"] = QPair<QString, QAction *>(tr("Show FPS (arcade mode)"), NULL);
@@ -800,22 +804,40 @@ void Options::on_pushButtonApply_clicked()
     qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_GAMELIST_COLUMN_VERSION);
     qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
     qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_GAMELIST_COLUMN_VERSION);
+    qmc2MainWindow->actionViewByCategory->setVisible(TRUE);
+    qmc2MainWindow->actionViewByCategory->setEnabled(TRUE);
+    qmc2MainWindow->actionViewByVersion->setVisible(TRUE);
+    qmc2MainWindow->actionViewByVersion->setEnabled(TRUE);
     if ( comboBoxSortCriteria->count() - 1 < QMC2_SORTCRITERIA_CATEGORY ) {
       comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
       comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
       qmc2MainWindow->treeWidgetGamelist->resizeColumnToContents(qmc2MainWindow->treeWidgetGamelist->header()->logicalIndex(QMC2_GAMELIST_COLUMN_VERSION));
       qmc2MainWindow->treeWidgetHierarchy->resizeColumnToContents(qmc2MainWindow->treeWidgetHierarchy->header()->logicalIndex(QMC2_GAMELIST_COLUMN_VERSION));
     }
+    if ( qmc2MainWindow->comboBoxViewSelect->count() - 1 < QMC2_VIEWCATEGORY_INDEX ) {
+      qmc2MainWindow->comboBoxViewSelect->insertItem(QMC2_VIEWCATEGORY_INDEX, tr("View games by category (filtered)"));
+      qmc2MainWindow->comboBoxViewSelect->setItemIcon(QMC2_VIEWCATEGORY_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
+      qmc2MainWindow->comboBoxViewSelect->insertItem(QMC2_VIEWVERSION_INDEX, tr("View games by emulator version (filtered)"));
+      qmc2MainWindow->comboBoxViewSelect->setItemIcon(QMC2_VIEWVERSION_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
+    }
   } else {
     qmc2MainWindow->treeWidgetGamelist->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
     qmc2MainWindow->treeWidgetGamelist->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
     qmc2MainWindow->treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
     qmc2MainWindow->treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+    qmc2MainWindow->actionViewByCategory->setVisible(FALSE);
+    qmc2MainWindow->actionViewByCategory->setEnabled(FALSE);
+    qmc2MainWindow->actionViewByVersion->setVisible(FALSE);
+    qmc2MainWindow->actionViewByVersion->setEnabled(FALSE);
     if ( comboBoxSortCriteria->count() > QMC2_SORTCRITERIA_VERSION ) {
       comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_VERSION);
       comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_CATEGORY);
       qmc2MainWindow->treeWidgetGamelist->resizeColumnToContents(qmc2MainWindow->treeWidgetGamelist->header()->logicalIndex(QMC2_GAMELIST_COLUMN_RTYPES));
       qmc2MainWindow->treeWidgetHierarchy->resizeColumnToContents(qmc2MainWindow->treeWidgetHierarchy->header()->logicalIndex(QMC2_GAMELIST_COLUMN_RTYPES));
+    }
+    if ( qmc2MainWindow->comboBoxViewSelect->count() > QMC2_VIEWVERSION_INDEX ) {
+      qmc2MainWindow->comboBoxViewSelect->removeItem(QMC2_VIEWVERSION_INDEX);
+      qmc2MainWindow->comboBoxViewSelect->removeItem(QMC2_VIEWCATEGORY_INDEX);
     }
   }
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -973,6 +995,27 @@ void Options::on_pushButtonApply_clicked()
                                          lineEditHTTPProxyPassword->text().isEmpty() ? QString() : lineEditHTTPProxyPassword->text()));
   } else {
       QNetworkProxy::setApplicationProxy(QNetworkProxy(QNetworkProxy::NoProxy));
+  }
+
+  if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/GamelistView").toInt() >= qmc2MainWindow->comboBoxViewSelect->count() )
+    config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", QMC2_GAMELIST_INDEX);
+
+  qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", QMC2_GAMELIST_INDEX).toInt());
+  switch ( qmc2MainWindow->comboBoxViewSelect->currentIndex() ) {
+	  case QMC2_VIEW_DETAIL_INDEX:
+		  qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
+		  break;
+	  case QMC2_VIEW_TREE_INDEX:
+		  qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
+		  break;
+#if defined(QMC2_EMUTYPE_MAME)
+	  case QMC2_VIEW_CATEGORY_INDEX:
+		  qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
+		  break;
+	  case QMC2_VIEW_VERSION_INDEX:
+		  qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
+		  break;
+#endif
   }
 
   // Emulator

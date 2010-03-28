@@ -79,6 +79,8 @@ extern QStringList qmc2BiosROMs;
 extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 extern QMap<QString, QString> qmc2CategoryMap;
 extern QMap<QString, QString> qmc2VersionMap;
+extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
+extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 #endif
 
 // local global variables
@@ -590,10 +592,25 @@ void Gamelist::load()
     qmc2MainWindow->treeWidgetGamelist->setVisible(TRUE);
 
     if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
-      if ( qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_DETAIL_INDEX )
-        qmc2MainWindow->treeWidgetGamelist->setFocus();
-      else
-        qmc2MainWindow->treeWidgetHierarchy->setFocus();
+      switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
+	      case QMC2_VIEW_DETAIL_INDEX:
+		      qmc2MainWindow->treeWidgetGamelist->setFocus();
+		      break;
+	      case QMC2_VIEW_TREE_INDEX:
+		      qmc2MainWindow->treeWidgetHierarchy->setFocus();
+		      break;
+#if defined(QMC2_EMUTYPE_MAME)
+	      case QMC2_VIEW_CATEGORY_INDEX:
+		      qmc2MainWindow->treeWidgetCategoryView->setFocus();
+		      break;
+	      case QMC2_VIEW_VERSION_INDEX:
+		      qmc2MainWindow->treeWidgetVersionView->setFocus();
+		      break;
+#endif
+	      default:
+		      qmc2MainWindow->treeWidgetGamelist->setFocus();
+		      break;
+      }
     }
 
     qApp->processEvents();
@@ -2066,12 +2083,29 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
   // show game list
   qmc2MainWindow->labelLoadingGamelist->setVisible(FALSE);
   qmc2MainWindow->treeWidgetGamelist->setVisible(TRUE);
+
   if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
-    if ( qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_DETAIL_INDEX )
-      qmc2MainWindow->treeWidgetGamelist->setFocus();
-    else
-      qmc2MainWindow->treeWidgetHierarchy->setFocus();
+	  switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
+		  case QMC2_VIEW_DETAIL_INDEX:
+			  qmc2MainWindow->treeWidgetGamelist->setFocus();
+		      	  break;
+    		  case QMC2_VIEW_TREE_INDEX:
+			  qmc2MainWindow->treeWidgetHierarchy->setFocus();
+			  break;
+#if defined(QMC2_EMUTYPE_MAME)
+    		  case QMC2_VIEW_CATEGORY_INDEX:
+			  qmc2MainWindow->treeWidgetCategoryView->setFocus();
+    			  break;
+    		  case QMC2_VIEW_VERSION_INDEX:
+    			  qmc2MainWindow->treeWidgetVersionView->setFocus();
+    			  break;
+#endif
+    		  default:
+    			  qmc2MainWindow->treeWidgetGamelist->setFocus();
+    			  break;
+    	  }
   }
+
   qApp->processEvents();
 }
 
