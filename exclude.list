@@ -216,9 +216,11 @@ qmc2/data/img/circles/.svn/prop-base/broom.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/browser.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/calculator.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/camera.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/category.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/cd.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/clock.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/clone.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/controller.png.svn-base
@@ -248,6 +250,7 @@ qmc2/data/img/circles/.svn/prop-base/filesaveas.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/filesave.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/filter.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/find.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/flat.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/fonts.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/forward.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/ghost.png.svn-base
@@ -328,6 +331,7 @@ qmc2/data/img/circles/.svn/prop-base/undo.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/unknown.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/unlock.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/up.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/version.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/view_detail.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/viewmagfit.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/viewmag-.png.svn-base
@@ -351,9 +355,11 @@ qmc2/data/img/circles/.svn/text-base/broom.png.svn-base
 qmc2/data/img/circles/.svn/text-base/browser.png.svn-base
 qmc2/data/img/circles/.svn/text-base/calculator.png.svn-base
 qmc2/data/img/circles/.svn/text-base/camera.png.svn-base
+qmc2/data/img/circles/.svn/text-base/category.png.svn-base
 qmc2/data/img/circles/.svn/text-base/cd.png.svn-base
 qmc2/data/img/circles/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/circles/.svn/text-base/clock.png.svn-base
+qmc2/data/img/circles/.svn/text-base/clone.png.svn-base
 qmc2/data/img/circles/.svn/text-base/colors.png.svn-base
 qmc2/data/img/circles/.svn/text-base/configure.png.svn-base
 qmc2/data/img/circles/.svn/text-base/controller.png.svn-base
@@ -383,6 +389,7 @@ qmc2/data/img/circles/.svn/text-base/filesaveas.png.svn-base
 qmc2/data/img/circles/.svn/text-base/filesave.png.svn-base
 qmc2/data/img/circles/.svn/text-base/filter.png.svn-base
 qmc2/data/img/circles/.svn/text-base/find.png.svn-base
+qmc2/data/img/circles/.svn/text-base/flat.png.svn-base
 qmc2/data/img/circles/.svn/text-base/fonts.png.svn-base
 qmc2/data/img/circles/.svn/text-base/forward.png.svn-base
 qmc2/data/img/circles/.svn/text-base/ghost.png.svn-base
@@ -463,6 +470,7 @@ qmc2/data/img/circles/.svn/text-base/undo.png.svn-base
 qmc2/data/img/circles/.svn/text-base/unknown.png.svn-base
 qmc2/data/img/circles/.svn/text-base/unlock.png.svn-base
 qmc2/data/img/circles/.svn/text-base/up.png.svn-base
+qmc2/data/img/circles/.svn/text-base/version.png.svn-base
 qmc2/data/img/circles/.svn/text-base/view_detail.png.svn-base
 qmc2/data/img/circles/.svn/text-base/viewmagfit.png.svn-base
 qmc2/data/img/circles/.svn/text-base/viewmag-.png.svn-base
@@ -487,9 +495,11 @@ qmc2/data/img/classic/.svn/prop-base/broom.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/browser.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/calculator.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/camera.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/category.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/cd.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/clock.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/clone.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/controller.png.svn-base
@@ -519,6 +529,7 @@ qmc2/data/img/classic/.svn/prop-base/filesaveas.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/filesave.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/filter.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/find.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/flat.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/fonts.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/forward.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/ghost.png.svn-base
@@ -599,6 +610,7 @@ qmc2/data/img/classic/.svn/prop-base/undo.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/unknown.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/unlock.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/up.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/version.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/view_detail.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/viewmagfit.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/viewmag-.png.svn-base
@@ -623,9 +635,11 @@ qmc2/data/img/classic/.svn/text-base/broom.png.svn-base
 qmc2/data/img/classic/.svn/text-base/browser.png.svn-base
 qmc2/data/img/classic/.svn/text-base/calculator.png.svn-base
 qmc2/data/img/classic/.svn/text-base/camera.png.svn-base
+qmc2/data/img/classic/.svn/text-base/category.png.svn-base
 qmc2/data/img/classic/.svn/text-base/cd.png.svn-base
 qmc2/data/img/classic/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/classic/.svn/text-base/clock.png.svn-base
+qmc2/data/img/classic/.svn/text-base/clone.png.svn-base
 qmc2/data/img/classic/.svn/text-base/colors.png.svn-base
 qmc2/data/img/classic/.svn/text-base/configure.png.svn-base
 qmc2/data/img/classic/.svn/text-base/controller.png.svn-base
@@ -655,6 +669,7 @@ qmc2/data/img/classic/.svn/text-base/filesaveas.png.svn-base
 qmc2/data/img/classic/.svn/text-base/filesave.png.svn-base
 qmc2/data/img/classic/.svn/text-base/filter.png.svn-base
 qmc2/data/img/classic/.svn/text-base/find.png.svn-base
+qmc2/data/img/classic/.svn/text-base/flat.png.svn-base
 qmc2/data/img/classic/.svn/text-base/fonts.png.svn-base
 qmc2/data/img/classic/.svn/text-base/forward.png.svn-base
 qmc2/data/img/classic/.svn/text-base/ghost.png.svn-base
@@ -735,6 +750,7 @@ qmc2/data/img/classic/.svn/text-base/undo.png.svn-base
 qmc2/data/img/classic/.svn/text-base/unknown.png.svn-base
 qmc2/data/img/classic/.svn/text-base/unlock.png.svn-base
 qmc2/data/img/classic/.svn/text-base/up.png.svn-base
+qmc2/data/img/classic/.svn/text-base/version.png.svn-base
 qmc2/data/img/classic/.svn/text-base/view_detail.png.svn-base
 qmc2/data/img/classic/.svn/text-base/viewmagfit.png.svn-base
 qmc2/data/img/classic/.svn/text-base/viewmag-.png.svn-base
@@ -759,9 +775,11 @@ qmc2/data/img/crazy-black/.svn/prop-base/broom.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/browser.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/calculator.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/camera.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/category.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/cd.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/clock.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/clone.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/controller.png.svn-base
@@ -791,6 +809,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/filesaveas.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/filesave.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/filter.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/find.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/flat.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/fonts.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/forward.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/ghost.png.svn-base
@@ -871,6 +890,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/undo.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/unknown.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/unlock.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/up.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/version.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/view_detail.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/viewmagfit.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/viewmag-.png.svn-base
@@ -895,9 +915,11 @@ qmc2/data/img/crazy-black/.svn/text-base/broom.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/browser.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/calculator.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/camera.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/category.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/cd.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/clock.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/clone.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/colors.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/configure.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/controller.png.svn-base
@@ -927,6 +949,7 @@ qmc2/data/img/crazy-black/.svn/text-base/filesaveas.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/filesave.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/filter.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/find.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/flat.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/fonts.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/forward.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/ghost.png.svn-base
@@ -1007,6 +1030,7 @@ qmc2/data/img/crazy-black/.svn/text-base/undo.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/unknown.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/unlock.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/up.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/version.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/view_detail.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/viewmagfit.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/viewmag-.png.svn-base
@@ -1031,9 +1055,11 @@ qmc2/data/img/crazy/.svn/prop-base/broom.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/browser.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/calculator.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/camera.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/category.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/cd.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/clock.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/clone.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/controller.png.svn-base
@@ -1063,6 +1089,7 @@ qmc2/data/img/crazy/.svn/prop-base/filesaveas.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/filesave.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/filter.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/find.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/flat.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/fonts.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/forward.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/ghost.png.svn-base
@@ -1143,6 +1170,7 @@ qmc2/data/img/crazy/.svn/prop-base/undo.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/unknown.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/unlock.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/up.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/version.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/view_detail.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/viewmagfit.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/viewmag-.png.svn-base
@@ -1167,9 +1195,11 @@ qmc2/data/img/crazy/.svn/text-base/broom.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/browser.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/calculator.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/camera.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/category.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/cd.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/clock.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/clone.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/colors.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/configure.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/controller.png.svn-base
@@ -1199,6 +1229,7 @@ qmc2/data/img/crazy/.svn/text-base/filesaveas.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/filesave.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/filter.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/find.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/flat.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/fonts.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/forward.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/ghost.png.svn-base
@@ -1279,6 +1310,7 @@ qmc2/data/img/crazy/.svn/text-base/undo.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/unknown.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/unlock.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/up.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/version.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/view_detail.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/viewmagfit.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/viewmag-.png.svn-base
@@ -1303,9 +1335,11 @@ qmc2/data/img/cubes/.svn/prop-base/broom.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/browser.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/calculator.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/camera.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/category.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/cd.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/clock.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/clone.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/controller.png.svn-base
@@ -1335,6 +1369,7 @@ qmc2/data/img/cubes/.svn/prop-base/filesaveas.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/filesave.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/filter.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/find.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/flat.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/fonts.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/forward.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/ghost.png.svn-base
@@ -1415,6 +1450,7 @@ qmc2/data/img/cubes/.svn/prop-base/undo.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/unknown.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/unlock.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/up.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/version.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/view_detail.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/viewmagfit.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/viewmag-.png.svn-base
@@ -1438,9 +1474,11 @@ qmc2/data/img/cubes/.svn/text-base/broom.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/browser.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/calculator.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/camera.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/category.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/cd.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/clock.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/clone.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/colors.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/configure.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/controller.png.svn-base
@@ -1470,6 +1508,7 @@ qmc2/data/img/cubes/.svn/text-base/filesaveas.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/filesave.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/filter.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/find.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/flat.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/fonts.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/forward.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/ghost.png.svn-base
@@ -1550,6 +1589,7 @@ qmc2/data/img/cubes/.svn/text-base/undo.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/unknown.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/unlock.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/up.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/version.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/view_detail.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/viewmagfit.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/viewmag-.png.svn-base
@@ -1574,9 +1614,11 @@ qmc2/data/img/.svn/prop-base/broom.png.svn-base
 qmc2/data/img/.svn/prop-base/browser.png.svn-base
 qmc2/data/img/.svn/prop-base/calculator.png.svn-base
 qmc2/data/img/.svn/prop-base/camera.png.svn-base
+qmc2/data/img/.svn/prop-base/category.png.svn-base
 qmc2/data/img/.svn/prop-base/cd.png.svn-base
 qmc2/data/img/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/.svn/prop-base/clock.png.svn-base
+qmc2/data/img/.svn/prop-base/clone.png.svn-base
 qmc2/data/img/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/.svn/prop-base/controller.png.svn-base
@@ -1606,6 +1648,7 @@ qmc2/data/img/.svn/prop-base/filesaveas.png.svn-base
 qmc2/data/img/.svn/prop-base/filesave.png.svn-base
 qmc2/data/img/.svn/prop-base/filter.png.svn-base
 qmc2/data/img/.svn/prop-base/find.png.svn-base
+qmc2/data/img/.svn/prop-base/flat.png.svn-base
 qmc2/data/img/.svn/prop-base/fonts.png.svn-base
 qmc2/data/img/.svn/prop-base/forward.png.svn-base
 qmc2/data/img/.svn/prop-base/ghost.png.svn-base
@@ -1686,6 +1729,7 @@ qmc2/data/img/.svn/prop-base/undo.png.svn-base
 qmc2/data/img/.svn/prop-base/unknown.png.svn-base
 qmc2/data/img/.svn/prop-base/unlock.png.svn-base
 qmc2/data/img/.svn/prop-base/up.png.svn-base
+qmc2/data/img/.svn/prop-base/version.png.svn-base
 qmc2/data/img/.svn/prop-base/view_detail.png.svn-base
 qmc2/data/img/.svn/prop-base/viewmagfit.png.svn-base
 qmc2/data/img/.svn/prop-base/viewmag-.png.svn-base
@@ -1710,9 +1754,11 @@ qmc2/data/img/.svn/text-base/broom.png.svn-base
 qmc2/data/img/.svn/text-base/browser.png.svn-base
 qmc2/data/img/.svn/text-base/calculator.png.svn-base
 qmc2/data/img/.svn/text-base/camera.png.svn-base
+qmc2/data/img/.svn/text-base/category.png.svn-base
 qmc2/data/img/.svn/text-base/cd.png.svn-base
 qmc2/data/img/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/.svn/text-base/clock.png.svn-base
+qmc2/data/img/.svn/text-base/clone.png.svn-base
 qmc2/data/img/.svn/text-base/colors.png.svn-base
 qmc2/data/img/.svn/text-base/configure.png.svn-base
 qmc2/data/img/.svn/text-base/controller.png.svn-base
@@ -1742,6 +1788,7 @@ qmc2/data/img/.svn/text-base/filesaveas.png.svn-base
 qmc2/data/img/.svn/text-base/filesave.png.svn-base
 qmc2/data/img/.svn/text-base/filter.png.svn-base
 qmc2/data/img/.svn/text-base/find.png.svn-base
+qmc2/data/img/.svn/text-base/flat.png.svn-base
 qmc2/data/img/.svn/text-base/fonts.png.svn-base
 qmc2/data/img/.svn/text-base/forward.png.svn-base
 qmc2/data/img/.svn/text-base/ghost.png.svn-base
@@ -1822,6 +1869,7 @@ qmc2/data/img/.svn/text-base/undo.png.svn-base
 qmc2/data/img/.svn/text-base/unknown.png.svn-base
 qmc2/data/img/.svn/text-base/unlock.png.svn-base
 qmc2/data/img/.svn/text-base/up.png.svn-base
+qmc2/data/img/.svn/text-base/version.png.svn-base
 qmc2/data/img/.svn/text-base/view_detail.png.svn-base
 qmc2/data/img/.svn/text-base/viewmagfit.png.svn-base
 qmc2/data/img/.svn/text-base/viewmag-.png.svn-base
