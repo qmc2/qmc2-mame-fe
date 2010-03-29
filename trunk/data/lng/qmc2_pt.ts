@@ -6019,32 +6019,32 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="326"/>
         <source>List of games viewed by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de jogos vistos por categoria</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="333"/>
         <source>Category / Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Categoria / Jogo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="406"/>
         <source>&lt;p align=&quot;center&quot;&gt;Creating category view, please wait...&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:bold; color:#ff0000;&quot;&gt;NOTE: THIS DOESN&apos;T WORK YET!&lt;/span&gt;&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p align=&quot;center&quot;&gt;Criando visão de categoria, por favor espere...&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:bold; color:#ff0000;&quot;&gt;NOTA: ISSO AINDA NÃO FUNCIONA!&lt;/span&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="426"/>
         <source>List of games viewed by version they were added to the emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de jogos vistos pela versão que foram adicionados ao emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="433"/>
         <source>Version / Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Versão / Jogo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="506"/>
         <source>&lt;p align=&quot;center&quot;&gt;Creating version view, please wait...&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:bold; color:#ff0000;&quot;&gt;NOTE: THIS DOESN&apos;T WORK YET!&lt;/span&gt;&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p align=&quot;center&quot;&gt;Criando visão de versão, por favor espere...&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:bold; color:#ff0000;&quot;&gt;NOTA: ISSO AINDA NÃO FUNCIONA!&lt;/span&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="525"/>
@@ -7079,34 +7079,34 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2990"/>
         <source>By category</source>
-        <translation type="unfinished"></translation>
+        <translation>Por categoria</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2993"/>
         <location filename="../../qmc2main.ui" line="2996"/>
         <source>View games by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver jogos por categoria</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2999"/>
         <source>F7</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3011"/>
         <source>By version</source>
-        <translation type="unfinished"></translation>
+        <translation>Por versão</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3014"/>
         <location filename="../../qmc2main.ui" line="3017"/>
         <source>View games by version they were added to the emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver jogos pela versão que foram adicionados ao emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3020"/>
         <source>F8</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3269"/>
@@ -7888,12 +7888,12 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="256"/>
         <source>View games by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver jogos por categoria</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="257"/>
         <source>View games by version</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver jogos por versão</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="259"/>
@@ -8038,12 +8038,12 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="818"/>
         <source>View games by category (filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver jogos por categoria (filtrado)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="820"/>
         <source>View games by emulator version (filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver jogos pela versão do emulador (filtrado)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="967"/>
