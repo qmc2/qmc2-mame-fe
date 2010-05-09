@@ -17,6 +17,7 @@
       <description lang="us" text="Path to hash files"/>
       <description lang="de" text="Suchpfad für Prüfsummen-Dateien"/>
       <description lang="pl" text="Ścieżka do plików skrótów"/>
+      <description lang="fr" text="Répertoires des fichiers hash"/>
       <description lang="pt" text="Caminho para os arquivos de hash"/>
     </option>
     <option name="samplepath" type="directory" default="samples">
@@ -282,6 +283,7 @@
       <description lang="us" text="Number of processors (or 'auto'); this overrides the number the system reports"/>
       <description lang="de" text="Anzahl der Prozessoren (oder 'auto'); überschreibt die vom System ausgelesene Prozessoranzahl"/>
       <description lang="pl" text="Liczba procesorów (lub 'auto'); nadpisuje liczbę zgłaszaną przez system"/>
+      <description lang="fr" text="Nombre de of processeurs (ou 'auto'); écrase le nombre de processeurs indiqués par le système"/>
       <description lang="pt" text="Número de processadores (ou 'auto'); sobrescreve o número reportado pelo sistema"/>
     </option>
   </section>
@@ -581,12 +583,14 @@
       <description lang="us" text="Specifies whether to use a natural keyboard or not"/>
       <description lang="de" text="Gibt an, ob ein 'Natural Keyboard' verwendet wird oder nicht"/>
       <description lang="pl" text="Decyduje, czy ma być używana naturalna klawiatura"/>
+      <description lang="fr" text="Spécifier l'utilisation du clavier naturel ou pas"/>
       <description lang="pt" text="Especificar se deve ser usado teclado natural ou não"/>
     </option>
     <option name="uimodekey" type="string" default="auto">
       <description lang="us" text="Specifies the key used to toggle between full and partial UI mode"/>
       <description lang="de" text="Gibt an, welche Taste für das Umschalten zwischen vollem und partiellem UI Modus verwendet wird"/>
       <description lang="pl" text="Ustawia klawisz przełączający pomiędzy pełnym a częściowym trybem interfejsu użytkownika"/>
+      <description lang="fr" text="Spécifier la touche à utiliser pour basculer entre l'interface complète ou partielle"/>
       <description lang="pt" text="Especificar a tecla usada para alternar entre interface total ou parcial"/>
     </option>
   </section>
@@ -691,20 +695,21 @@
       <description lang="us" text="Enable/disable debugger"/>
       <description lang="de" text="Debugger aktivieren/deaktivieren"/>
       <description lang="pl" text="Włącz/Wyłącz debugger"/>
-      <description lang="fr" text="Active/désactive le debogger"/>
+      <description lang="fr" text="Active/désactive le débogueur"/>
       <description lang="pt" text="Habilitar/desativar debugger"/>
     </option>
     <option name="debugscript" type="file" default="">
       <description lang="us" text="Script for debugger"/>
       <description lang="de" text="Skript für Debugger"/>
       <description lang="pl" text="Skrypt dla debuggera"/>
-      <description lang="fr" text="Script pour le debogger"/>
+      <description lang="fr" text="Script pour le débogueur"/>
       <description lang="pt" text="Script para o debugger"/>
     </option>
     <option name="debug_internal" type="bool" default="false">
       <description lang="us" text="Use the internal debugger for debugging"/>
       <description lang="de" text="Internen Debugger verwenden"/>
       <description lang="pl" text="Używaj wewnętrznego debuggera"/>
+      <description lang="fr" text="Utiliser le débogueur interne pour débuguer"/>
       <description lang="pt" text="Usar o depurador interno"/>
     </option>
   </section>
@@ -794,12 +799,14 @@
       <description lang="us" text="Specify the preferred Direct3D version (8 or 9)"/>
       <description lang="de" text="Bevorzugte Direct3D Version festlegen (8 oder 9)"/>
       <description lang="pl" text="Określ preferowaną wersję Direct3D (8 albo 9)"/>
+      <description lang="fr" text="Spécifier la version préférée de Direct3D (8 ou 9)"/>
       <description lang="pt" text="Especificar a versão preferencial do Direct3D (8 ou 9)"/>
     </option>
     <option name="filter" type="bool" default="true">
       <description lang="us" text="Enable bilinear filtering on screen output"/>
       <description lang="de" text="Bilineare Filterung bei Bildschirmausgabe anwenden"/>
       <description lang="pl" text="Włącz filtrowanie dwuliniowe wyjścia ekranowego"/>
+      <description lang="fr" text="Active le filtre bilinéaire"/>
       <description lang="pt" text="Ativar filtro bilinear"/>
     </option>
   </section>
@@ -960,6 +967,7 @@
       <description lang="us" text="Enable triple buffering"/>
       <description lang="de" text="Dreifach-Pufferung aktivieren"/>
       <description lang="pl" text="Włącz potrójne buforowanie"/>
+      <description lang="fr" text="Active le triple buffering"/>
       <description lang="pt" text="Habilitar buffer triplo"/>
     </option>
     <option name="switchres" type="bool" default="false">
@@ -973,18 +981,21 @@
       <description lang="us" text="Brightness value in full screen mode"/>
       <description lang="de" text="Helligkeits-Anpassung im Vollbildmodus"/>
       <description lang="pl" text="Wartość jasności w trybie pełnoekranowym"/>
+      <description lang="fr" text="Valeur de luminosité en plein écran"/>
       <description lang="pt" text="Valor do brilho em tela cheia"/>
     </option>
     <option name="full_screen_contrast" type="float" default="1.0">
       <description lang="us" text="Contrast value in full screen mode"/>
       <description lang="de" text="Kontrast-Anpassung im Vollbildmodus"/>
       <description lang="pl" text="Wartość kontrastu w trybie pełnoekranowym"/>
+      <description lang="fr" text="Valeur de contraste en plein écran"/>
       <description lang="pt" text="Valor do contraste em tela cheia"/>
     </option>
     <option name="full_screen_gamma" type="float" default="1.0">
       <description lang="us" text="Gamma value in full screen mode"/>
       <description lang="de" text="Gamma-Korrektur im Vollbildmodus"/>
       <description lang="pl" text="Wartość gamma w trybie pełnoekranowym"/>
+      <description lang="fr" text="Valeur de gamma en plein écran"/>
       <description lang="pt" text="Valor do gamma em tela cheia"/>
     </option>
   </section>
