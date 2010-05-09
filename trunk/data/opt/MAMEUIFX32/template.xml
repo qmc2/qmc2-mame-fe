@@ -660,12 +660,14 @@
       <description lang="us" text="Specifies whether to use a natural keyboard or not"/>
       <description lang="de" text="Gibt an, ob ein 'Natural Keyboard' verwendet wird oder nicht"/>
       <description lang="pl" text="Decyduje, czy ma być używana naturalna klawiatura"/>
+      <description lang="fr" text="Spécifier l'utilisation du clavier naturel ou pas"/>
       <description lang="pt" text="Especificar se deve ser usado teclado natural ou não"/>
     </option>
     <option name="uimodekey" type="string" default="auto">
       <description lang="us" text="Specifies the key used to toggle between full and partial UI mode"/>
       <description lang="de" text="Gibt an, welche Taste für das Umschalten zwischen vollem und partiellem UI Modus verwendet wird"/>
       <description lang="pl" text="Ustawia klawisz przełączający pomiędzy pełnym a częściowym trybem interfejsu użytkownika"/>
+      <description lang="fr" text="Spécifier la touche à utiliser pour basculer entre l'interface complète ou partielle"/>
       <description lang="pt" text="Especificar a tecla usada para alternar entre interface total ou parcial"/>
     </option>
   </section>
@@ -763,14 +765,14 @@
       <description lang="us" text="Enable/disable debugger"/>
       <description lang="de" text="Debugger aktivieren/deaktivieren"/>
       <description lang="pl" text="Włącz/Wyłącz debugger"/>
-      <description lang="fr" text="Active/désactive le debogger"/>
+      <description lang="fr" text="Active/désactive le débogueur"/>
       <description lang="pt" text="Habilitar/desativar debugger"/>
     </option>
     <option name="debugscript" type="file" default="">
       <description lang="us" text="Script for debugger"/>
       <description lang="de" text="Skript für Debugger"/>
       <description lang="pl" text="Skrypt dla debuggera"/>
-      <description lang="fr" text="Script pour le debogger"/>
+      <description lang="fr" text="Script pour le débogueur"/>
       <description lang="pt" text="Script para o debugger"/>
     </option>
     <option name="debugger_font" type="string" default="Lucida Console">
@@ -798,6 +800,7 @@
       <description lang="us" text="Use the internal debugger for debugging"/>
       <description lang="de" text="Internen Debugger verwenden"/>
       <description lang="pl" text="Używaj wewnętrznego debuggera"/>
+      <description lang="fr" text="Utiliser le débogueur interne pour débuguer"/>
       <description lang="pt" text="Usar o depurador interno"/>
     </option>
   </section>
