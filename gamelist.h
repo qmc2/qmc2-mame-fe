@@ -64,6 +64,8 @@ class Gamelist : public QObject
     void save();
 #if defined(QMC2_EMUTYPE_MAME)
     void loadCatverIni();
+    void createCategoryView();
+    void createVersionView();
 #endif
     void loadFavorites();
     void saveFavorites();

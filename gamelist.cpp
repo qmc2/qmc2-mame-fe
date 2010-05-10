@@ -245,6 +245,10 @@ void Gamelist::load()
   numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numSearchGames = -1;
   qmc2MainWindow->treeWidgetGamelist->clear();
   qmc2MainWindow->treeWidgetHierarchy->clear();
+#if defined(QMC2_EMUTYPE_MAME)
+  qmc2MainWindow->treeWidgetCategoryView->clear();
+  qmc2MainWindow->treeWidgetVersionView->clear();
+#endif
   qmc2MainWindow->listWidgetSearch->clear();
   qmc2MainWindow->textBrowserGameInfo->clear();
   qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorBlue);
@@ -278,6 +282,12 @@ void Gamelist::load()
   dummyItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
   dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetHierarchy);
   dummyItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
+#if defined(QMC2_EMUTYPE_MAME)
+  dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetCategoryView);
+  dummyItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
+  dummyItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetVersionView);
+  dummyItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Waiting for data..."));
+#endif
   if ( qmc2EmulatorOptions ) {
     qmc2EmulatorOptions->save();
     QLayout *vbl = qmc2MainWindow->tabConfiguration->layout();
@@ -2822,6 +2832,14 @@ void Gamelist::loadCatverIni()
   elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading catver.ini, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%1 category / %2 version records loaded").arg(qmc2CategoryMap.count()).arg(qmc2VersionMap.count()));
+}
+
+void Gamelist::createCategoryView()
+{
+}
+
+void Gamelist::createVersionView()
+{
 }
 #endif
 

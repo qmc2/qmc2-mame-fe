@@ -361,6 +361,10 @@ void Options::apply()
   QSize iconSizeLarge = iconSize + QSize(4, 4);
   qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSize);
   qmc2MainWindow->treeWidgetHierarchy->setIconSize(iconSize);
+#if defined(QMC2_EMUTYPE_MAME)
+  qmc2MainWindow->treeWidgetCategoryView->setIconSize(iconSize);
+  qmc2MainWindow->treeWidgetVersionView->setIconSize(iconSize);
+#endif
   qmc2MainWindow->treeWidgetEmulators->setIconSize(iconSize);
   pushButtonApply->setIconSize(iconSize);
   pushButtonRestore->setIconSize(iconSize);
@@ -1163,8 +1167,11 @@ void Options::on_pushButtonApply_clicked()
     bool doResort = TRUE;
 
     if ( qmc2VerifyActive ) {
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("re-sort of gamelist impossible at this time"));
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
+#if defined(QMC2_EMUTYPE_MAME)
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("re-sort of game list impossible at this time, please wait for ROM verification to finish and try again"));
+#elif defined(QMC2_EMUTYPE_MESS)
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("re-sort of machine list impossible at this time, please wait for ROM verification to finish and try again"));
+#endif
       qmc2SortCriteria = oldSortCriteria;
       qmc2SortOrder = oldSortOrder;
       doResort = FALSE;
@@ -1241,6 +1248,12 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_GAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+#if defined(QMC2_EMUTYPE_MAME)
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_GAME, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_GAME, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
+#endif
       break;
 
     case QMC2_SORT_BY_YEAR:
@@ -1248,6 +1261,12 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_YEAR, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+#if defined(QMC2_EMUTYPE_MAME)
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_YEAR, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_YEAR, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
+#endif
       break;
 
     case QMC2_SORT_BY_MANUFACTURER:
@@ -1255,6 +1274,12 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_MANU, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+#if defined(QMC2_EMUTYPE_MAME)
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_MANU, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_MANU, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
+#endif
       break;
 
     case QMC2_SORT_BY_NAME:
@@ -1262,6 +1287,12 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_NAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+#if defined(QMC2_EMUTYPE_MAME)
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_NAME, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_NAME, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
+#endif
       break;
 
     case QMC2_SORT_BY_ROMTYPES:
@@ -1269,6 +1300,12 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RTYPES, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+#if defined(QMC2_EMUTYPE_MAME)
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RTYPES, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RTYPES, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
+#endif
       break;
 
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1277,6 +1314,10 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_CATEGORY, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_CATEGORY, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_CATEGORY, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
       break;
 
     case QMC2_SORT_BY_VERSION:
@@ -1284,12 +1325,20 @@ void Options::on_pushButtonApply_clicked()
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_VERSION, qmc2SortOrder);
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_VERSION, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_VERSION, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
       break;
 #endif
 
     default:
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(FALSE);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(FALSE);
+#if defined(QMC2_EMUTYPE_MAME)
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(FALSE);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(FALSE);
+#endif
       break;
   }
 

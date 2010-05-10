@@ -363,6 +363,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void processEvents() { qApp->processEvents(); }
     void on_treeWidgetGamelist_headerSectionClicked(int);
     void on_treeWidgetHierarchy_headerSectionClicked(int);
+#if defined(QMC2_EMUTYPE_MAME)
+    void on_treeWidgetCategoryView_headerSectionClicked(int);
+    void on_treeWidgetVersionView_headerSectionClicked(int);
+#endif
+
     void startDownload(QNetworkReply *, QString saveAsName = QString(), QString savePath = QString());
     void on_pushButtonClearFinishedDownloads_clicked();
     void on_pushButtonReloadSelectedDownloads_clicked();
