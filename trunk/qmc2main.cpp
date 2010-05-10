@@ -556,6 +556,10 @@ MainWindow::MainWindow(QWidget *parent)
     treeWidgetHierarchy->header()->setDefaultAlignment(Qt::AlignLeft);
     treeWidgetGamelist->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState").toByteArray());
     treeWidgetHierarchy->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState").toByteArray());
+#if defined(QMC2_EMUTYPE_MAME)
+    treeWidgetCategoryView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState").toByteArray());
+    treeWidgetVersionView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState").toByteArray());
+#endif
     treeWidgetEmulators->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState").toByteArray());
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Visible").toBool() ) {
       on_actionCheckPreviews_activated();
@@ -1030,6 +1034,14 @@ MainWindow::MainWindow(QWidget *parent)
   connect(treeWidgetHierarchy->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetHierarchy_headerSectionClicked(int)));
   treeWidgetGamelist->header()->setClickable(TRUE);
   treeWidgetHierarchy->header()->setClickable(TRUE);
+#if defined(QMC2_EMUTYPE_MAME)
+  treeWidgetCategoryView->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
+  treeWidgetVersionView->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
+  connect(treeWidgetCategoryView->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetCategoryView_headerSectionClicked(int)));
+  connect(treeWidgetVersionView->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetVersionView_headerSectionClicked(int)));
+  treeWidgetCategoryView->header()->setClickable(TRUE);
+  treeWidgetVersionView->header()->setClickable(TRUE);
+#endif
 
 #if defined(QMC2_EMUTYPE_MESS)
   treeWidgetHierarchy->hideColumn(QMC2_MACHINELIST_COLUMN_ICON);
@@ -3731,6 +3743,8 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_tackedWidgetView_currentChanged(int index = %1)").arg(index));
 #endif
 
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", index);
+
   if ( !qmc2CurrentItem )
     return;
 
@@ -4183,6 +4197,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyColumnWidths", hierarchyColumnWidths);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState", treeWidgetGamelist->header()->saveState());
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState", treeWidgetHierarchy->header()->saveState());
+#if defined(QMC2_EMUTYPE_MAME)
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState", treeWidgetCategoryView->header()->saveState());
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState", treeWidgetVersionView->header()->saveState());
+#endif
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState", treeWidgetEmulators->header()->saveState());
   }
 
@@ -5746,6 +5764,10 @@ void MainWindow::on_treeWidgetGamelist_headerSectionClicked(int logicalIndex)
 
   qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(FALSE);
   qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(FALSE);
+#if defined(QMC2_EMUTYPE_MAME)
+  qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(FALSE);
+  qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(FALSE);
+#endif
 
   switch ( logicalIndex ) {
     case QMC2_GAMELIST_COLUMN_GAME:
@@ -6073,6 +6095,26 @@ void MainWindow::on_treeWidgetHierarchy_headerSectionClicked(int logicalIndex)
 
   on_treeWidgetGamelist_headerSectionClicked(logicalIndex);
 }
+
+#if defined(QMC2_EMUTYPE_MAME)
+void MainWindow::on_treeWidgetCategoryView_headerSectionClicked(int logicalIndex)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
+#endif
+
+  on_treeWidgetGamelist_headerSectionClicked(logicalIndex);
+}
+
+void MainWindow::on_treeWidgetVersionView_headerSectionClicked(int logicalIndex)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetVersionView_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
+#endif
+
+  on_treeWidgetGamelist_headerSectionClicked(logicalIndex);
+}
+#endif
 
 void MainWindow::on_actionArcadeShowFPS_toggled(bool on)
 {
