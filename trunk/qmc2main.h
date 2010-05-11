@@ -354,6 +354,18 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void startMawsAutoDownloads();
     void viewByCategory();
     void viewByVersion();
+    void on_treeWidgetCategoryView_headerSectionClicked(int);
+    void on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *, int);
+    void on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *, int);
+    void on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
+    void on_treeWidgetCategoryView_itemSelectionChanged();
+    void on_treeWidgetCategoryView_customContextMenuRequested(const QPoint &);
+    void on_treeWidgetVersionView_headerSectionClicked(int);
+    void on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *, int);
+    void on_treeWidgetVersionView_itemDoubleClicked(QTreeWidgetItem *, int);
+    void on_treeWidgetVersionView_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
+    void on_treeWidgetVersionView_itemSelectionChanged();
+    void on_treeWidgetVersionView_customContextMenuRequested(const QPoint &);
 #endif
     void createFifo(bool logFifoCreation = TRUE);
     void recreateFifo();
@@ -363,10 +375,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void processEvents() { qApp->processEvents(); }
     void on_treeWidgetGamelist_headerSectionClicked(int);
     void on_treeWidgetHierarchy_headerSectionClicked(int);
-#if defined(QMC2_EMUTYPE_MAME)
-    void on_treeWidgetCategoryView_headerSectionClicked(int);
-    void on_treeWidgetVersionView_headerSectionClicked(int);
-#endif
 
     void startDownload(QNetworkReply *, QString saveAsName = QString(), QString savePath = QString());
     void on_pushButtonClearFinishedDownloads_clicked();
