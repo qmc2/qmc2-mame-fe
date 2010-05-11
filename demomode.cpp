@@ -112,6 +112,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
     foreach (QString game, qmc2GamelistItemMap.keys()) {
       if ( qmc2BiosROMs.contains(game) ) continue;
       QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
+      if ( !gameItem ) continue;
       switch ( gameItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
         case QMC2_ROMSTATE_CHAR_C:
           if ( toolButtonSelectC->isChecked() ) selectedGames << game;
