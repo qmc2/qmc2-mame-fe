@@ -170,6 +170,9 @@
 // button animation timeout (similar to animateClick() w/o signal emission)
 #define QMC2_BUTTON_ANIMATION_TIMEOUT	50
 
+// general polling interval for operations that need to wait until game/machine list reload has finished
+#define QMC2_RELOAD_POLL_INTERVAL	250
+
 // gamelist sort criteria
 #define QMC2_SORT_BY_DESCRIPTION	0
 #define QMC2_SORT_BY_ROM_STATE		1

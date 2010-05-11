@@ -56,11 +56,6 @@ extern PCB *qmc2PCB;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern QTreeWidgetItem *qmc2LastGameInfoItem;
-#if defined(QMC2_EMUTYPE_MAME)
-extern QTreeWidgetItem *qmc2LastMAWSItem;
-extern MiniWebBrowser *qmc2MAWSLookup;
-extern QTreeWidgetItem *qmc2LastEmuInfoItem;
-#endif
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemByDescriptionMap;
@@ -76,6 +71,9 @@ extern unzFile qmc2IconFile;
 extern QMap<QString, QIcon> qmc2IconMap;
 extern QStringList qmc2BiosROMs;
 #if defined(QMC2_EMUTYPE_MAME)
+extern QTreeWidgetItem *qmc2LastMAWSItem;
+extern MiniWebBrowser *qmc2MAWSLookup;
+extern QTreeWidgetItem *qmc2LastEmuInfoItem;
 extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 extern QMap<QString, QString> qmc2CategoryMap;
 extern QMap<QString, QString> qmc2VersionMap;
@@ -246,6 +244,8 @@ void Gamelist::load()
   qmc2MainWindow->treeWidgetGamelist->clear();
   qmc2MainWindow->treeWidgetHierarchy->clear();
 #if defined(QMC2_EMUTYPE_MAME)
+  qmc2CategoryItemMap.clear();
+  qmc2VersionItemMap.clear();
   qmc2MainWindow->treeWidgetCategoryView->clear();
   qmc2MainWindow->treeWidgetVersionView->clear();
 #endif
@@ -301,6 +301,17 @@ void Gamelist::load()
     qmc2EmulatorOptions = NULL;
   }
   qmc2MainWindow->labelGamelistStatus->setText(status());
+
+#if defined(QMC2_EMUTYPE_MAME)
+  switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
+    case QMC2_VIEW_CATEGORY_INDEX:
+      QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByCategory()));
+      break;
+    case QMC2_VIEW_VERSION_INDEX:
+      QTimer::singleShot(0, qmc2MainWindow, SLOT(viewByVersion()));
+      break;
+  }
+#endif
 
   // determine emulator version and supported games
 #if defined(QMC2_EMUTYPE_MAME)
@@ -2772,6 +2783,10 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 #if defined(QMC2_EMUTYPE_MAME)
 void Gamelist::loadCatverIni()
 {
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadCatverIni()");
+#endif
+
   qmc2CategoryMap.clear();
   qmc2VersionMap.clear();
 
@@ -2836,10 +2851,115 @@ void Gamelist::loadCatverIni()
 
 void Gamelist::createCategoryView()
 {
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::createCategoryView()");
+#endif
+
+	qmc2CategoryItemMap.clear();
+	qmc2MainWindow->treeWidgetCategoryView->hide();
+	qmc2MainWindow->labelCreatingCategoryView->show();
+
+	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_CATEGORY_INDEX ) {
+		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createCategoryView()));
+		return;
+	} else if ( qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEW_CATEGORY_INDEX )
+		return;
+
+	qApp->processEvents();
+
+	if ( !qmc2StopParser ) {
+		qmc2MainWindow->treeWidgetCategoryView->clear();
+		// FIXME: create category view here...
+	}
+
+	qmc2MainWindow->labelCreatingCategoryView->hide();
+	qmc2MainWindow->treeWidgetCategoryView->show();
 }
 
 void Gamelist::createVersionView()
 {
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::createVersionView()");
+#endif
+
+	qmc2VersionItemMap.clear();
+	qmc2MainWindow->treeWidgetVersionView->hide();
+	qmc2MainWindow->labelCreatingVersionView->show();
+
+	if ( qmc2ReloadActive && !qmc2StopParser && qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEW_VERSION_INDEX ) {
+		QTimer::singleShot(QMC2_RELOAD_POLL_INTERVAL, this, SLOT(createVersionView()));
+		return;
+	} else if ( qmc2MainWindow->stackedWidgetView->currentIndex() != QMC2_VIEW_VERSION_INDEX )
+		return;
+
+	qApp->processEvents();
+
+	if ( !qmc2StopParser ) {
+		qmc2MainWindow->treeWidgetVersionView->clear();
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+			qmc2MainWindow->progressBarGamelist->setFormat(tr("Version view - %p%"));
+		else
+			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+		qmc2MainWindow->progressBarGamelist->setRange(0, qmc2VersionMap.count());
+		qmc2MainWindow->progressBarGamelist->reset();
+		QMapIterator<QString, QString> it(qmc2VersionMap);
+		int counter = 0;
+		while ( it.hasNext() ) {
+			it.next();
+			qmc2MainWindow->progressBarGamelist->setValue(counter++);
+			QString gameName = it.key();
+			QString version = it.value();
+			if ( gameName.isEmpty() )
+				continue;
+			if ( version.isEmpty() )
+				version = tr("?");
+			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
+			if ( baseItem ) {
+				QList<QTreeWidgetItem *> matchItems = qmc2MainWindow->treeWidgetVersionView->findItems(version, Qt::MatchExactly);
+				QTreeWidgetItem *versionItem = NULL;
+				if ( matchItems.count() > 0 )
+					versionItem = matchItems[0];
+				if ( versionItem == NULL ) {
+					versionItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetVersionView);
+					versionItem->setText(QMC2_GAMELIST_COLUMN_GAME, version);
+				}
+				QTreeWidgetItem *gameItem = new QTreeWidgetItem(versionItem);
+				gameItem->setText(QMC2_GAMELIST_COLUMN_GAME, baseItem->text(QMC2_GAMELIST_COLUMN_GAME));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_VERSION, baseItem->text(QMC2_GAMELIST_COLUMN_VERSION));
+				switch ( qmc2GamelistStatusMap[gameName][0].toAscii() ) {
+					case 'C':
+						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2CorrectBIOSImageIcon : qmc2CorrectImageIcon);
+						break;
+					case 'M':
+						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2MostlyCorrectBIOSImageIcon : qmc2MostlyCorrectImageIcon);
+						break;
+					case 'I':
+						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2IncorrectBIOSImageIcon : qmc2IncorrectImageIcon);
+						break;
+					case 'N':
+						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2NotFoundBIOSImageIcon : qmc2NotFoundImageIcon);
+						break;
+					default:
+						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2UnknownBIOSImageIcon : qmc2UnknownImageIcon);
+						break;
+				}
+				loadIcon(gameName, gameItem);
+				qmc2VersionItemMap[gameName] = gameItem;
+			}
+		}
+		qmc2MainWindow->treeWidgetVersionView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+		qmc2MainWindow->progressBarGamelist->reset();
+	}
+
+	qmc2MainWindow->labelCreatingVersionView->hide();
+	qmc2MainWindow->treeWidgetVersionView->show();
+
+	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 }
 #endif
 

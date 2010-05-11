@@ -100,6 +100,7 @@ ArcadeView *qmc2ArcadeView = NULL;
 ArcadeSetupDialog *qmc2ArcadeSetupDialog = NULL;
 #if defined(QMC2_EMUTYPE_MESS)
 MESSDeviceConfigurator *qmc2MESSDeviceConfigurator = NULL;
+QString qmc2MessMachineName = "";
 #endif
 DemoModeDialog *qmc2DemoModeDialog = NULL;
 bool qmc2ReloadActive = FALSE;
@@ -137,9 +138,6 @@ bool qmc2CheckItemVisibility = TRUE;
 bool qmc2AutomaticReload = FALSE;
 bool qmc2SuppressQtMessages = FALSE;
 bool qmc2LoadingGameInfoDB = FALSE;
-#if defined(QMC2_EMUTYPE_MAME)
-bool qmc2LoadingEmuInfoDB = FALSE;
-#endif
 bool qmc2WidgetsEnabled = TRUE;
 bool qmc2ExportingROMStatus = FALSE;
 bool qmc2StatesTogglesEnabled = TRUE;
@@ -166,11 +164,19 @@ QTreeWidgetItem *qmc2LastConfigItem = NULL;
 QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
 QTreeWidgetItem *qmc2LastGameInfoItem = NULL;
 #if defined(QMC2_EMUTYPE_MAME)
+bool qmc2LoadingEmuInfoDB = FALSE;
 QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
 MiniWebBrowser *qmc2MAWSLookup = NULL;
 QTreeWidgetItem *qmc2LastMAWSItem = NULL;
 QCache<QString, QByteArray> qmc2MAWSCache;
 MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup = NULL;
+QMap<QString, QByteArray *> qmc2EmuInfoDB;
+QMap<QString, QString> qmc2CategoryMap;
+QMap<QString, QString> qmc2VersionMap;
+QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
+QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
+QTreeWidgetItem *qmc2CategoryViewSelectedItem = NULL;
+QTreeWidgetItem *qmc2VersionViewSelectedItem = NULL;
 #endif
 QTreeWidgetItem *qmc2HierarchySelectedItem = NULL;
 QMenu *qmc2EmulatorMenu = NULL,
@@ -191,13 +197,6 @@ QMap<QString, QPair<QString, QAction *> > qmc2ShortcutMap;
 QMap<QString, QString> qmc2CustomShortcutMap;
 QMap<QString, QString> qmc2JoystickFunctionMap;
 QMap<QString, QByteArray *> qmc2GameInfoDB;
-#if defined(QMC2_EMUTYPE_MAME)
-QMap<QString, QByteArray *> qmc2EmuInfoDB;
-QMap<QString, QString> qmc2CategoryMap;
-QMap<QString, QString> qmc2VersionMap;
-QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
-QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
-#endif
 QString qmc2DemoGame;
 QStringList qmc2DemoArgs;
 int qmc2SortCriteria = QMC2_SORT_BY_DESCRIPTION;
@@ -214,9 +213,6 @@ QString qmc2DefaultStyle;
 QSocketNotifier *qmc2FifoNotifier = NULL;
 bool qmc2ShowGameName = FALSE;
 bool qmc2ShowGameNameOnlyWhenRequired = TRUE;
-#if defined(QMC2_EMUTYPE_MESS)
-QString qmc2MessMachineName = "";
-#endif
 QMutex qmc2LogMutex;
 QString qmc2FileEditStartPath = "";
 QString qmc2DirectoryEditStartPath = "";
@@ -2452,14 +2448,12 @@ void MainWindow::scrollToCurrentItem()
         break;
 
       case QMC2_VIEWVERSION_INDEX:
-	/*
         ci = qmc2VersionItemMap[ci->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)];
         if ( ci ) {
           treeWidgetVersionView->clearSelection();
           treeWidgetVersionView->setCurrentItem(ci);
           treeWidgetVersionView->scrollToItem(ci, QAbstractItemView::PositionAtTop);
         }
-	*/
         break;
 #endif
 
@@ -2472,7 +2466,7 @@ void MainWindow::scrollToCurrentItem()
         treeWidgetGamelist->scrollToItem(ci, QAbstractItemView::PositionAtTop);
         break;
     }
-    if ( !qmc2ReloadActive )
+    if ( !qmc2ReloadActive && ci )
       ci->setSelected(TRUE);
   }
 }
@@ -3789,7 +3783,6 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
       break;
 
     case QMC2_VIEWVERSION_INDEX:
-      /*
       if ( !qmc2ReloadActive ) {
         QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
         QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
@@ -3800,7 +3793,6 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
           versionItem->setSelected(TRUE);
         }
       }
-      */
       break;
 #endif
 
@@ -4577,6 +4569,12 @@ void MainWindow::viewByCategory()
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
   tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
   menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
+  QTreeWidgetItem *item = treeWidgetCategoryView->topLevelItem(0);
+  if ( item ) {
+    if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+      QTimer::singleShot(0, qmc2Gamelist, SLOT(createCategoryView()));
+  } else
+    QTimer::singleShot(0, qmc2Gamelist, SLOT(createCategoryView()));
   treeWidgetCategoryView->setFocus();
 }
 
@@ -4585,12 +4583,17 @@ void MainWindow::viewByVersion()
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewByVersion()");
 #endif
-
   comboBoxViewSelect->setCurrentIndex(QMC2_VIEWVERSION_INDEX);
   qApp->processEvents();
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
   tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
   menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
+  QTreeWidgetItem *item = treeWidgetVersionView->topLevelItem(0);
+  if ( item ) {
+    if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+      QTimer::singleShot(0, qmc2Gamelist, SLOT(createVersionView()));
+  } else
+    QTimer::singleShot(0, qmc2Gamelist, SLOT(createVersionView()));
   treeWidgetVersionView->setFocus();
 }
 #endif
@@ -6106,6 +6109,53 @@ void MainWindow::on_treeWidgetCategoryView_headerSectionClicked(int logicalIndex
   on_treeWidgetGamelist_headerSectionClicked(logicalIndex);
 }
 
+void MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item, int column)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
+#endif
+
+}
+
+void MainWindow::on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
+#endif
+
+}
+
+void MainWindow::on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *current = %1, QTreeWidgetItem *previous = %2)").arg((qulonglong)current).arg((qulonglong)previous));
+#endif
+
+}
+
+void MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()"));
+#endif
+
+}
+
+void MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoint &p = ...)");
+#endif
+	QTreeWidgetItem *item = treeWidgetCategoryView->itemAt(p);
+	if ( !item )
+		return;
+	if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") || item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
+		return;
+	treeWidgetCategoryView->setItemSelected(item, TRUE);
+	qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetCategoryView->viewport()->mapToGlobal(p), qmc2GameMenu));
+	qmc2GameMenu->show();
+}
+
 void MainWindow::on_treeWidgetVersionView_headerSectionClicked(int logicalIndex)
 {
 #ifdef QMC2_DEBUG
@@ -6113,6 +6163,87 @@ void MainWindow::on_treeWidgetVersionView_headerSectionClicked(int logicalIndex)
 #endif
 
   on_treeWidgetGamelist_headerSectionClicked(logicalIndex);
+}
+
+void MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item, int column)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
+#endif
+
+	if ( !item )
+		return;
+	if ( item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
+		return;
+	qmc2StartEmbedded = FALSE;
+	if ( !qmc2IgnoreItemActivation )
+		on_actionPlay_activated();
+	qmc2IgnoreItemActivation = FALSE;
+}
+
+void MainWindow::on_treeWidgetVersionView_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetVersionView_itemDoubleClicked(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
+#endif
+
+	if ( !item )
+		return;
+	if ( item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
+		return;
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
+		qmc2IgnoreItemActivation = TRUE;
+}
+
+void MainWindow::on_treeWidgetVersionView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetVersionView_currentItemChanged(QTreeWidgetItem *current = %1, QTreeWidgetItem *previous = %2)").arg((qulonglong)current).arg((qulonglong)previous));
+#endif
+
+	if ( !current )
+		return;
+	if ( current->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
+		return;
+	qmc2CheckItemVisibility = FALSE;
+	if ( qmc2UpdateDelay > 0 )
+		updateTimer.start(qmc2UpdateDelay);
+	else
+		on_treeWidgetGamelist_itemSelectionChanged_delayed();
+}
+
+void MainWindow::on_treeWidgetVersionView_itemSelectionChanged()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetVersionView_itemSelectionChanged()"));
+#endif
+
+	qmc2VersionViewSelectedItem = NULL;
+	QList<QTreeWidgetItem *>selected = treeWidgetVersionView->selectedItems();
+	if ( selected.count() > 0 ) {
+		QTreeWidgetItem *item = selected.at(0);
+		QString gameDescription = item->text(QMC2_GAMELIST_COLUMN_GAME);
+		if ( gameDescription == tr("Waiting for data...") || item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
+			return;
+		qmc2VersionViewSelectedItem = qmc2GamelistItemByDescriptionMap[gameDescription];
+		qmc2CheckItemVisibility = FALSE;
+		treeWidgetGamelist->setCurrentItem(qmc2VersionViewSelectedItem);
+	}
+}
+
+void MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoint &p = ...)");
+#endif
+	QTreeWidgetItem *item = treeWidgetVersionView->itemAt(p);
+	if ( !item )
+		return;
+	if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") || item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
+		return;
+	treeWidgetVersionView->setItemSelected(item, TRUE);
+	qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetVersionView->viewport()->mapToGlobal(p), qmc2GameMenu));
+	qmc2GameMenu->show();
 }
 #endif
 
@@ -6159,14 +6290,16 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 		  break;
 #if defined(QMC2_EMUTYPE_MAME)
 	  case QMC2_VIEWVERSION_INDEX:
-		  pushButtonSelectRomFilter->setVisible(TRUE);
+		  pushButtonSelectRomFilter->setVisible(FALSE);
 		  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
 		  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
+		  viewByVersion();
 		  break;
 	  case QMC2_VIEWCATEGORY_INDEX:
-		  pushButtonSelectRomFilter->setVisible(TRUE);
+		  pushButtonSelectRomFilter->setVisible(FALSE);
 		  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
 		  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
+		  viewByCategory();
 		  break;
 #endif
 	  default:

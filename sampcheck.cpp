@@ -534,7 +534,6 @@ void SampleChecker::selectItem(QString gameName)
       break;
     }
     case QMC2_VIEWVERSION_INDEX: {
-      /*
       QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
       if ( versionItem ) {
         qmc2MainWindow->treeWidgetVersionView->clearSelection();
@@ -542,7 +541,6 @@ void SampleChecker::selectItem(QString gameName)
         qmc2MainWindow->treeWidgetVersionView->scrollToItem(versionItem, QAbstractItemView::PositionAtTop);
         versionItem->setSelected(TRUE);
       }
-      */
       break;
     }
 #endif
