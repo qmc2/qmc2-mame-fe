@@ -1230,7 +1230,6 @@ void ROMAlyzer::selectItem(QString gameName)
     }
 #if defined(QMC2_EMUTYPE_MAME)
     case QMC2_VIEWCATEGORY_INDEX: {
-      /*
       QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
       if ( categoryItem ) {
         qmc2MainWindow->treeWidgetCategoryView->clearSelection();
@@ -1238,7 +1237,6 @@ void ROMAlyzer::selectItem(QString gameName)
         qmc2MainWindow->treeWidgetCategoryView->scrollToItem(categoryItem, QAbstractItemView::PositionAtTop);
         categoryItem->setSelected(TRUE);
       }
-      */
       break;
     }
     case QMC2_VIEWVERSION_INDEX: {

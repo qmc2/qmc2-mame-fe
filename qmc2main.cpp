@@ -2437,14 +2437,12 @@ void MainWindow::scrollToCurrentItem()
 
 #if defined(QMC2_EMUTYPE_MAME)
       case QMC2_VIEWCATEGORY_INDEX:
-	/*
         ci = qmc2CategoryItemMap[ci->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)];
         if ( ci ) {
           treeWidgetCategoryView->clearSelection();
           treeWidgetCategoryView->setCurrentItem(ci);
           treeWidgetCategoryView->scrollToItem(ci, QAbstractItemView::PositionAtTop);
         }
-	*/
         break;
 
       case QMC2_VIEWVERSION_INDEX:
@@ -3768,7 +3766,6 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 
 #if defined(QMC2_EMUTYPE_MAME)
     case QMC2_VIEWCATEGORY_INDEX:
-      /*
       if ( !qmc2ReloadActive ) {
         QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
         QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
@@ -3779,7 +3776,6 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
           categoryItem->setSelected(TRUE);
         }
       }
-      */
       break;
 
     case QMC2_VIEWVERSION_INDEX:
@@ -6103,42 +6099,76 @@ void MainWindow::on_treeWidgetHierarchy_headerSectionClicked(int logicalIndex)
 void MainWindow::on_treeWidgetCategoryView_headerSectionClicked(int logicalIndex)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
 #endif
 
-  on_treeWidgetGamelist_headerSectionClicked(logicalIndex);
+	on_treeWidgetGamelist_headerSectionClicked(logicalIndex);
 }
 
 void MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item, int column)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
+	if ( !item )
+		return;
+	if ( item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
+		return;
+	qmc2StartEmbedded = FALSE;
+	if ( !qmc2IgnoreItemActivation )
+		on_actionPlay_activated();
+	qmc2IgnoreItemActivation = FALSE;
 }
 
 void MainWindow::on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *item, int column)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
+	if ( !item )
+		return;
+	if ( item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
+		return;
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
+		qmc2IgnoreItemActivation = TRUE;
 }
 
 void MainWindow::on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *current = %1, QTreeWidgetItem *previous = %2)").arg((qulonglong)current).arg((qulonglong)previous));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_currentItemChanged(QTreeWidgetItem *current = %1, QTreeWidgetItem *previous = %2)").arg((qulonglong)current).arg((qulonglong)previous));
 #endif
 
+	if ( !current )
+		return;
+	if ( current->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
+		return;
+	qmc2CheckItemVisibility = FALSE;
+	if ( qmc2UpdateDelay > 0 )
+		updateTimer.start(qmc2UpdateDelay);
+	else
+		on_treeWidgetGamelist_itemSelectionChanged_delayed();
 }
 
 void MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()"));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_itemSelectionChanged()"));
 #endif
 
+	qmc2CategoryViewSelectedItem = NULL;
+	QList<QTreeWidgetItem *>selected = treeWidgetCategoryView->selectedItems();
+	if ( selected.count() > 0 ) {
+		QTreeWidgetItem *item = selected.at(0);
+		QString gameDescription = item->text(QMC2_GAMELIST_COLUMN_GAME);
+		if ( gameDescription == tr("Waiting for data...") || item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
+			return;
+		qmc2CategoryViewSelectedItem = qmc2GamelistItemByDescriptionMap[gameDescription];
+		qmc2CheckItemVisibility = FALSE;
+		treeWidgetGamelist->setCurrentItem(qmc2CategoryViewSelectedItem);
+	}
 }
 
 void MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoint &p)
@@ -6146,6 +6176,7 @@ void MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoi
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoint &p = ...)");
 #endif
+
 	QTreeWidgetItem *item = treeWidgetCategoryView->itemAt(p);
 	if ( !item )
 		return;
@@ -6159,10 +6190,10 @@ void MainWindow::on_treeWidgetCategoryView_customContextMenuRequested(const QPoi
 void MainWindow::on_treeWidgetVersionView_headerSectionClicked(int logicalIndex)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetVersionView_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetVersionView_headerSectionClicked(int logicalIndex = %1)").arg(logicalIndex));
 #endif
 
-  on_treeWidgetGamelist_headerSectionClicked(logicalIndex);
+	on_treeWidgetGamelist_headerSectionClicked(logicalIndex);
 }
 
 void MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item, int column)
@@ -6236,6 +6267,7 @@ void MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoin
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetVersionView_customContextMenuRequested(const QPoint &p = ...)");
 #endif
+
 	QTreeWidgetItem *item = treeWidgetVersionView->itemAt(p);
 	if ( !item )
 		return;

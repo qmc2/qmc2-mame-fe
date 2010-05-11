@@ -2869,11 +2869,70 @@ void Gamelist::createCategoryView()
 
 	if ( !qmc2StopParser ) {
 		qmc2MainWindow->treeWidgetCategoryView->clear();
-		// FIXME: create category view here...
+		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+			qmc2MainWindow->progressBarGamelist->setFormat(tr("Category view - %p%"));
+		else
+			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
+		qmc2MainWindow->progressBarGamelist->setRange(0, qmc2CategoryMap.count());
+		qmc2MainWindow->progressBarGamelist->reset();
+		QMapIterator<QString, QString> it(qmc2CategoryMap);
+		int counter = 0;
+		while ( it.hasNext() ) {
+			it.next();
+			qmc2MainWindow->progressBarGamelist->setValue(counter++);
+			QString gameName = it.key();
+			QString category = it.value();
+			if ( gameName.isEmpty() )
+				continue;
+			if ( category.isEmpty() )
+				category = tr("?");
+			QTreeWidgetItem *baseItem = qmc2GamelistItemMap[gameName];
+			if ( baseItem ) {
+				QList<QTreeWidgetItem *> matchItems = qmc2MainWindow->treeWidgetCategoryView->findItems(category, Qt::MatchExactly);
+				QTreeWidgetItem *categoryItem = NULL;
+				if ( matchItems.count() > 0 )
+					categoryItem = matchItems[0];
+				if ( categoryItem == NULL ) {
+					categoryItem = new QTreeWidgetItem(qmc2MainWindow->treeWidgetCategoryView);
+					categoryItem->setText(QMC2_GAMELIST_COLUMN_GAME, category);
+				}
+				QTreeWidgetItem *gameItem = new QTreeWidgetItem(categoryItem);
+				gameItem->setText(QMC2_GAMELIST_COLUMN_GAME, baseItem->text(QMC2_GAMELIST_COLUMN_GAME));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_VERSION, baseItem->text(QMC2_GAMELIST_COLUMN_VERSION));
+				switch ( qmc2GamelistStatusMap[gameName][0].toAscii() ) {
+					case 'C':
+						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2CorrectBIOSImageIcon : qmc2CorrectImageIcon);
+						break;
+					case 'M':
+						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2MostlyCorrectBIOSImageIcon : qmc2MostlyCorrectImageIcon);
+						break;
+					case 'I':
+						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2IncorrectBIOSImageIcon : qmc2IncorrectImageIcon);
+						break;
+					case 'N':
+						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2NotFoundBIOSImageIcon : qmc2NotFoundImageIcon);
+						break;
+					default:
+						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2UnknownBIOSImageIcon : qmc2UnknownImageIcon);
+						break;
+				}
+				loadIcon(gameName, gameItem);
+				qmc2CategoryItemMap[gameName] = gameItem;
+			}
+		}
+		qmc2MainWindow->treeWidgetCategoryView->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
+		qmc2MainWindow->progressBarGamelist->reset();
 	}
 
 	qmc2MainWindow->labelCreatingCategoryView->hide();
 	qmc2MainWindow->treeWidgetCategoryView->show();
+
+	QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
 }
 
 void Gamelist::createVersionView()
