@@ -670,7 +670,9 @@ void ROMAlyzer::analyze()
       }
       if ( qmc2StopParser )
         break;
-      
+
+      treeWidgetChecksums->update();
+
       i++;
       log(tr("done (analyzing '%1')").arg(gameName));
 #if defined(QMC2_EMUTYPE_MAME)
