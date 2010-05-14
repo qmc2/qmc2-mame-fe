@@ -488,6 +488,7 @@ void Options::apply()
   qmc2MainWindow->toolButtonAudioPauseTrack->setIconSize(iconSize);
   qmc2MainWindow->toolButtonAudioPlayTrack->setIconSize(iconSize);
   qmc2MainWindow->toolButtonAudioAddTracks->setIconSize(iconSize);
+  qmc2MainWindow->toolButtonAudioAddURL->setIconSize(iconSize);
   qmc2MainWindow->toolButtonAudioRemoveTracks->setIconSize(iconSize);
 #endif
   if ( qmc2ROMStatusExporter )
