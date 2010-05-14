@@ -910,8 +910,13 @@ void EmulatorOptions::keyPressEvent(QKeyEvent *e)
 #endif
 
   if ( e->key() == Qt::Key_Escape ) {
-    if ( lineEditSearch )
-      searchTimeout();
+    if ( lineEditSearch ) {
+      if ( lineEditSearch->isVisible() )
+        searchTimeout();
+      else
+        QAbstractItemView::keyPressEvent(e);
+    } else
+      QAbstractItemView::keyPressEvent(e);
     return;
   }
 
