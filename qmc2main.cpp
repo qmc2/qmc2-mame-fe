@@ -5246,6 +5246,18 @@ void MainWindow::on_toolButtonAudioAddTracks_clicked()
     listWidgetAudioPlaylist->addItems(sl);
 }
 
+void MainWindow::on_toolButtonAudioAddURL_clicked()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioAddURL_clicked()");
+#endif
+
+	bool ok;
+	QString streamUrl = QInputDialog::getText(this, tr("Add URL"), tr("Enter valid MP3 stream URL:"), QLineEdit::Normal, "", &ok);
+	if ( ok && !streamUrl.isEmpty() )
+		listWidgetAudioPlaylist->addItem(streamUrl);
+}
+
 void MainWindow::on_toolButtonAudioRemoveTracks_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -5468,6 +5480,7 @@ void MainWindow::on_actionAudioStopTrack_triggered(bool) { ; }
 void MainWindow::on_actionAudioPauseTrack_triggered(bool) { ; }
 void MainWindow::on_actionAudioPlayTrack_triggered(bool) { ; }
 void MainWindow::on_toolButtonAudioAddTracks_clicked() { ; }
+void MainWindow::on_toolButtonAudioAddURL_clicked() { ; }
 void MainWindow::on_toolButtonAudioRemoveTracks_clicked() { ; }
 void MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged() { ; }
 void MainWindow::on_sliderAudioVolume_valueChanged(int) { ; }

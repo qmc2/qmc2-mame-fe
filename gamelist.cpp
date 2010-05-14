@@ -214,6 +214,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseAdditionalEmulatorExecutable->setEnabled(enable);
 #if QMC2_USE_PHONON_API
   qmc2MainWindow->toolButtonAudioAddTracks->setEnabled(enable);
+  qmc2MainWindow->toolButtonAudioAddURL->setEnabled(enable);
 #endif
   if ( qmc2ROMStatusExporter )
     qmc2ROMStatusExporter->pushButtonExport->setEnabled(enable);

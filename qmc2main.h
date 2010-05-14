@@ -244,6 +244,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_actionAudioPauseTrack_triggered(bool checked = FALSE);
     void on_actionAudioPlayTrack_triggered(bool checked = FALSE);
     void on_toolButtonAudioAddTracks_clicked();
+    void on_toolButtonAudioAddURL_clicked();
     void on_toolButtonAudioRemoveTracks_clicked();
     void on_listWidgetAudioPlaylist_itemSelectionChanged();
     void on_sliderAudioVolume_valueChanged(int);

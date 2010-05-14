@@ -1713,6 +1713,20 @@
              </widget>
             </item>
             <item>
+             <widget class="QToolButton" name="toolButtonAudioAddURL">
+              <property name="toolTip">
+               <string>Enter URL to add to playlist</string>
+              </property>
+              <property name="statusTip">
+               <string>Enter URL to add to playlist</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/url.png</normaloff>:/data/img/url.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QToolButton" name="toolButtonAudioRemoveTracks">
               <property name="enabled">
                <bool>false</bool>
@@ -3070,6 +3084,7 @@
   <tabstop>toolButtonAudioPauseTrack</tabstop>
   <tabstop>toolButtonAudioPlayTrack</tabstop>
   <tabstop>toolButtonAudioAddTracks</tabstop>
+  <tabstop>toolButtonAudioAddURL</tabstop>
   <tabstop>toolButtonAudioRemoveTracks</tabstop>
   <tabstop>checkBoxAudioPlayOnStart</tabstop>
   <tabstop>checkBoxAudioShuffle</tabstop>
