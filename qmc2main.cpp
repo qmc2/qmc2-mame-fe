@@ -5196,6 +5196,10 @@ void MainWindow::on_actionAudioPlayTrack_triggered(bool checked)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioPlayTrack_triggered(bool checked = ...)");
 #endif
 
+  // if this is a URL media source, force a reconnect to the stream...
+  if ( phononAudioPlayer->currentSource().type() == Phonon::MediaSource::Url )
+    phononAudioPlayer->setCurrentSource(phononAudioPlayer->currentSource().url());
+
   static QString audioPlayerCurrentTrack;
   audioFastForwarding = audioFastBackwarding = FALSE;
   if ( audioState == Phonon::PausedState ) {
