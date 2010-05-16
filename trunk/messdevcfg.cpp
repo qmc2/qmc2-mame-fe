@@ -506,7 +506,7 @@ void MESSDeviceConfigurator::actionGenerateDeviceConfigurations_triggered()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::actionGenerateDeviceConfigurations_triggered()");
 #endif
 
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorry, this feature is not yet available!"));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: sorry, the MESS device configuration generator isn't working yet"));
 }
 
 void MESSDeviceConfigurator::closeEvent(QCloseEvent *e)

@@ -1372,6 +1372,15 @@
              <string>&amp;PCB</string>
             </attribute>
            </widget>
+           <widget class="QWidget" name="tabSoftwareList">
+            <attribute name="icon">
+             <iconset resource="qmc2.qrc">
+              <normaloff>:/data/img/pacman.png</normaloff>:/data/img/pacman.png</iconset>
+            </attribute>
+            <attribute name="title">
+             <string>Softwar&amp;e list</string>
+            </attribute>
+           </widget>
           </widget>
          </item>
         </layout>

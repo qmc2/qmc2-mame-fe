@@ -92,18 +92,23 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_PCB_INDEX] = tr("&PCB");
   longTitleMap[QMC2_PCB_INDEX] = tr("PCB image");
   iconMap[QMC2_PCB_INDEX] = QIcon(QString::fromUtf8(":/data/img/circuit.png"));
+  shortTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Softwar&e list");
+  longTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Software list");
+  iconMap[QMC2_SOFTWARE_LIST_INDEX] = QIcon(QString::fromUtf8(":/data/img/pacman.png"));
   availableDetailList << QMC2_PREVIEW_INDEX
                       << QMC2_FLYER_INDEX
                       << QMC2_MACHINEINFO_INDEX
                       << QMC2_CONFIG_INDEX
                       << QMC2_DEVICE_INDEX
-                      << QMC2_PCB_INDEX;
+                      << QMC2_PCB_INDEX
+                      << QMC2_SOFTWARE_LIST_INDEX;
   tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
   tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
   tabWidgetsMap[QMC2_MACHINEINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MACHINEINFO_INDEX);
   tabWidgetsMap[QMC2_CONFIG_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONFIG_INDEX);
   tabWidgetsMap[QMC2_DEVICE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_DEVICE_INDEX);
   tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
+  tabWidgetsMap[QMC2_SOFTWARE_LIST_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SOFTWARE_LIST_INDEX);
 #endif
 
   setupUi(this);
@@ -162,7 +167,8 @@ void DetailSetup::loadDetail()
                      << QMC2_MACHINEINFO_INDEX
                      << QMC2_CONFIG_INDEX
                      << QMC2_DEVICE_INDEX
-                     << QMC2_PCB_INDEX;
+                     << QMC2_PCB_INDEX
+                     << QMC2_SOFTWARE_LIST_INDEX;
 #endif
   } else {
     QStringList activeIndexList = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ActiveDetails").toStringList();

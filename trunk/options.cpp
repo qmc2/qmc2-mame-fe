@@ -40,6 +40,7 @@
 #endif
 #if defined(QMC2_EMUTYPE_MESS)
 #include "messdevcfg.h"
+#include "messswlist.h"
 #endif
 #if defined(Q_WS_X11)
 #include "embedder.h"
@@ -122,6 +123,7 @@ extern Joystick *qmc2Joystick;
 #endif
 #if defined(QMC2_EMUTYPE_MESS)
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
+extern MESSSoftwareList *qmc2MESSSoftwareList;
 #endif
 
 Options::Options(QWidget *parent)

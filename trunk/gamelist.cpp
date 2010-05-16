@@ -54,8 +54,10 @@ extern Marquee *qmc2Marquee;
 extern Title *qmc2Title;
 extern PCB *qmc2PCB;
 extern QTreeWidgetItem *qmc2CurrentItem;
-extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern QTreeWidgetItem *qmc2LastGameInfoItem;
+#if defined(QMC2_EMUTYPE_MESS)
+extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
+#endif
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemByDescriptionMap;
@@ -254,7 +256,9 @@ void Gamelist::load()
   qmc2MainWindow->textBrowserGameInfo->clear();
   qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorBlue);
   qmc2CurrentItem = NULL;
+#if defined(QMC2_EMUTYPE_MESS)
   qmc2LastDeviceConfigItem = NULL;
+#endif
   qmc2LastGameInfoItem = NULL;
 #if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->textBrowserEmuInfo->clear();
