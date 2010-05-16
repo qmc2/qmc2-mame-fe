@@ -58,6 +58,7 @@
 #endif
 #if defined(QMC2_EMUTYPE_MESS)
 #include "messdevcfg.h"
+#include "messswlist.h"
 #endif
 #if QMC2_USE_PHONON_API
 #include <QTest>
@@ -100,7 +101,10 @@ ArcadeView *qmc2ArcadeView = NULL;
 ArcadeSetupDialog *qmc2ArcadeSetupDialog = NULL;
 #if defined(QMC2_EMUTYPE_MESS)
 MESSDeviceConfigurator *qmc2MESSDeviceConfigurator = NULL;
+MESSSoftwareList *qmc2MESSSoftwareList = NULL;
 QString qmc2MessMachineName = "";
+QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
+QTreeWidgetItem *qmc2LastSoftwareListItem = NULL;
 #endif
 DemoModeDialog *qmc2DemoModeDialog = NULL;
 bool qmc2ReloadActive = FALSE;
@@ -161,7 +165,6 @@ quint64 qmc2EmulatorLogMessageRepeatCount = 0;
 bool qmc2StopParser = FALSE;
 QTreeWidgetItem *qmc2CurrentItem = NULL;
 QTreeWidgetItem *qmc2LastConfigItem = NULL;
-QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
 QTreeWidgetItem *qmc2LastGameInfoItem = NULL;
 #if defined(QMC2_EMUTYPE_MAME)
 bool qmc2LoadingEmuInfoDB = FALSE;
@@ -2554,9 +2557,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 
   if ( !qmc2CurrentItem || qmc2EarlyReloadActive ) {
 #if defined(QMC2_EMUTYPE_MAME)
-    qmc2LastGameInfoItem = qmc2LastEmuInfoItem = qmc2LastConfigItem = qmc2LastDeviceConfigItem = NULL;
+    qmc2LastGameInfoItem = qmc2LastEmuInfoItem = qmc2LastConfigItem = NULL;
 #else
-    qmc2LastGameInfoItem = qmc2LastConfigItem = qmc2LastDeviceConfigItem = NULL;
+    qmc2LastGameInfoItem = qmc2LastConfigItem = qmc2LastDeviceConfigItem = qmc2LastSoftwareListItem = NULL;
 #endif
 #if QMC2_OPENGL == 1
     // images painted through OpenGL need extra "clear()'s", otherwise garbage is displayed
@@ -2682,6 +2685,29 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         qmc2MESSDeviceConfigurator->show();
         qmc2LastDeviceConfigItem = qmc2CurrentItem;
         tabDevices->setUpdatesEnabled(TRUE);
+      }
+      break;
+
+    case QMC2_SOFTWARE_LIST_INDEX:
+      if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: sorry, the MESS software list isn't working yet"));
+        tabSoftwareList->setUpdatesEnabled(FALSE);
+        if ( qmc2MESSSoftwareList ) {
+          QLayout *vbl = tabSoftwareList->layout();
+          if ( vbl )
+            delete vbl;
+          delete qmc2MESSSoftwareList;
+          qmc2MESSSoftwareList = NULL;
+        }
+        QString machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
+        QVBoxLayout *layout = new QVBoxLayout;
+        qmc2MESSSoftwareList = new MESSSoftwareList(machineName, tabSoftwareList);
+        qmc2MESSSoftwareList->load();
+        layout->addWidget(qmc2MESSSoftwareList);
+        tabSoftwareList->setLayout(layout);
+        qmc2MESSSoftwareList->show();
+        qmc2LastSoftwareListItem = qmc2CurrentItem;
+        tabSoftwareList->setUpdatesEnabled(TRUE);
       }
       break;
 

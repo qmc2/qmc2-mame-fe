@@ -30,7 +30,7 @@
 #define QMC2_PLAYED_INDEX		3
 #define QMC2_EMBED_INDEX		4
 
-// index positions of game detail (upper right)
+// index positions of all game/machine details (upper right)
 // (FIXME: also used for image checker tabs)
 #define QMC2_PREVIEW_INDEX		0
 #define QMC2_FLYER_INDEX		1
@@ -45,6 +45,7 @@
 #define QMC2_TITLE_INDEX		9
 #define QMC2_MAWS_INDEX			10
 #define QMC2_PCB_INDEX			11
+#define QMC2_SOFTWARE_LIST_INDEX	12
 
 // index positions of special front end tabs (lower right)
 #define QMC2_FRONTENDLOG_INDEX		0
