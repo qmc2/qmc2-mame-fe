@@ -31,6 +31,7 @@ class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 
 	public slots:
 		bool load();
+		bool save();
 
 		// callback functions
 

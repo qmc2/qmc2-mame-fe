@@ -62,18 +62,17 @@ bool MESSSoftwareList::load()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::load()");
 #endif
 
-	/*
-	QString xmlBuffer = getXmlData(messMachineName);
-	QXmlInputSource xmlInputSource;
-	xmlInputSource.setData(xmlBuffer);
-	MESSSoftwareListXmlHandler xmlHandler(treeWidgetSoftwareList);
-	QXmlSimpleReader xmlReader;
-	xmlReader.setContentHandler(&xmlHandler);
-	xmlReader.parse(xmlInputSource);
-	*/
-
 	// FIXME: load software list here...
+	return TRUE;
+}
 
+bool MESSSoftwareList::save()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::save()");
+#endif
+
+	// FIXME: save favorites here...
 	return TRUE;
 }
 

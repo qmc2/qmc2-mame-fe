@@ -51,11 +51,17 @@
            <property name="toolTip">
             <string>Name of device configuration</string>
            </property>
+           <property name="statusTip">
+            <string>Name of device configuration</string>
+           </property>
           </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButtonNewConfiguration">
            <property name="toolTip">
+            <string>Create a new device configuration</string>
+           </property>
+           <property name="statusTip">
             <string>Create a new device configuration</string>
            </property>
            <property name="text">
@@ -72,6 +78,9 @@
            <property name="toolTip">
             <string>Clone current device configuration</string>
            </property>
+           <property name="statusTip">
+            <string>Clone current device configuration</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -86,6 +95,9 @@
            <property name="toolTip">
             <string>Remove current device configuration from list of available configurations</string>
            </property>
+           <property name="statusTip">
+            <string>Remove current device configuration from list of available configurations</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -98,6 +110,9 @@
          <item>
           <widget class="QPushButton" name="pushButtonSaveConfiguration">
            <property name="toolTip">
+            <string>Save current device configuration to list of available configurations</string>
+           </property>
+           <property name="statusTip">
             <string>Save current device configuration to list of available configurations</string>
            </property>
            <property name="text">
@@ -120,6 +135,9 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
+          <string>Device setup of current configuration</string>
+         </property>
+         <property name="statusTip">
           <string>Device setup of current configuration</string>
          </property>
          <property name="alternatingRowColors">
@@ -183,6 +201,9 @@
           <enum>Qt::CustomContextMenu</enum>
          </property>
          <property name="toolTip">
+          <string>List of available device configurations</string>
+         </property>
+         <property name="statusTip">
           <string>List of available device configurations</string>
          </property>
          <property name="sortingEnabled">

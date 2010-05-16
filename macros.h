@@ -57,13 +57,13 @@
 // column to add game icon in game list
 #define QMC2_ICON_INDEX			2
 
-// index positions of gamelist view selector
+// index positions of game/machine list view selector
 #define QMC2_VIEW_DETAIL_INDEX		0
 #define QMC2_VIEW_TREE_INDEX		1
 #define QMC2_VIEW_CATEGORY_INDEX	2
 #define QMC2_VIEW_VERSION_INDEX		3
 
-// logical column indizes in gamelists
+// logical column indizes in game/machine lists
 #define QMC2_GAMELIST_COLUMN_GAME	0
 #define QMC2_GAMELIST_COLUMN_ICON	1
 #define QMC2_GAMELIST_COLUMN_YEAR	2
@@ -79,7 +79,7 @@
 #define QMC2_MACHINELIST_COLUMN_NAME	QMC2_GAMELIST_COLUMN_NAME
 #define QMC2_MACHINELIST_COLUMN_RTYPES	QMC2_GAMELIST_COLUMN_RTYPES
 
-// logical column indizes in emulator control panel
+// logical column indizes in the emulator control panel
 #define QMC2_EMUCONTROL_COLUMN_NUMBER	0
 #define QMC2_EMUCONTROL_COLUMN_GAME	1
 #define QMC2_EMUCONTROL_COLUMN_MACHINE	QMC2_EMUCONTROL_COLUMN_GAME
@@ -89,12 +89,23 @@
 #define QMC2_EMUCONTROL_COLUMN_PID	5
 #define QMC2_EMUCONTROL_COLUMN_COMMAND	6
 
-// logical column indizes of MESS device configurator
+// logical column indizes of the MESS device configurator
 #define QMC2_DEVCONFIG_COLUMN_NAME	0
 #define QMC2_DEVCONFIG_COLUMN_TYPE	1
 #define QMC2_DEVCONFIG_COLUMN_TAG	2
 #define QMC2_DEVCONFIG_COLUMN_EXT	3
 #define QMC2_DEVCONFIG_COLUMN_FILE	4
+
+// page indizes for the MESS software list tool box
+#define QMC2_SWLIST_KNOWN_SW_PAGE	0
+#define QMC2_SWLIST_FAVORITES_PAGE	1
+#define QMC2_SWLIST_SEARCH_PAGE		2
+
+// logical column indizes of the MESS software lists
+#define QMC2_SWLIST_COLUMN_TITLE	0
+#define QMC2_SWLIST_COLUMN_NAME		1
+#define QMC2_SWLIST_COLUMN_PUBLISHER	2
+#define QMC2_SWLIST_COLUMN_YEAR		3
 
 // logical column indizes in emulator options
 #define QMC2_EMUOPT_COLUMN_OPTION	0

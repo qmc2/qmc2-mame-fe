@@ -7,15 +7,240 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>520</width>
-    <height>496</height>
+    <width>497</width>
+    <height>346</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MESS software list</string>
   </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QToolBox" name="toolBoxSoftwareList">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <property name="tabSpacing">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="pageKnownSoftware">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>497</width>
+        <height>274</height>
+       </rect>
+      </property>
+      <attribute name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/flat.png</normaloff>:/data/img/flat.png</iconset>
+      </attribute>
+      <attribute name="label">
+       <string>Known software</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Complete list of known software for the current machine</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QTreeWidget" name="treeWidgetKnownSoftware">
+         <property name="toolTip">
+          <string>List of known software for the current machine</string>
+         </property>
+         <property name="statusTip">
+          <string>List of known software for the current machine</string>
+         </property>
+         <property name="uniformRowHeights">
+          <bool>true</bool>
+         </property>
+         <property name="allColumnsShowFocus">
+          <bool>true</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string>Title</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Publisher</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Year</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageFavoriteSoftware">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>497</width>
+        <height>274</height>
+       </rect>
+      </property>
+      <attribute name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/favorites.png</normaloff>:/data/img/favorites.png</iconset>
+      </attribute>
+      <attribute name="label">
+       <string>Favorites</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>View / manage your favorite software list for the current machine</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QTreeWidget" name="treeWidgetFavoriteSoftware">
+         <property name="toolTip">
+          <string>Favorite software for the current machine</string>
+         </property>
+         <property name="statusTip">
+          <string>Favorite software for the current machine</string>
+         </property>
+         <property name="uniformRowHeights">
+          <bool>true</bool>
+         </property>
+         <property name="allColumnsShowFocus">
+          <bool>true</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string>Title</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Publisher</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Year</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageSearchSoftware">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>497</width>
+        <height>274</height>
+       </rect>
+      </property>
+      <attribute name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/search.png</normaloff>:/data/img/search.png</iconset>
+      </attribute>
+      <attribute name="label">
+       <string>Search</string>
+      </attribute>
+      <attribute name="toolTip">
+       <string>Search within the list of known software for the current machine</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QComboBox" name="comboBoxSearch">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Search for known software (not case-sensitive)</string>
+         </property>
+         <property name="statusTip">
+          <string>Search for known software (not case-sensitive)</string>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QTreeWidget" name="treeWidgetSearchResults">
+         <property name="toolTip">
+          <string>Search results</string>
+         </property>
+         <property name="statusTip">
+          <string>Search results</string>
+         </property>
+         <property name="uniformRowHeights">
+          <bool>true</bool>
+         </property>
+         <property name="allColumnsShowFocus">
+          <bool>true</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string>Title</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Publisher</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Year</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <layoutdefault spacing="6" margin="6"/>
- <resources/>
+ <tabstops>
+  <tabstop>treeWidgetKnownSoftware</tabstop>
+  <tabstop>treeWidgetFavoriteSoftware</tabstop>
+  <tabstop>comboBoxSearch</tabstop>
+  <tabstop>treeWidgetSearchResults</tabstop>
+ </tabstops>
+ <resources>
+  <include location="qmc2.qrc"/>
+ </resources>
  <connections/>
 </ui>
