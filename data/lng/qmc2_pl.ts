@@ -2779,12 +2779,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1133"/>
         <source>INFORMATION: the game list cache will now be updated due to a new format</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMACJA: bufor listy gier zostanie teraz zaktualizowany ze względu na nowy format</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1135"/>
         <source>INFORMATION: the machine list cache will now be updated due to a new format</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMACJA: bufor listy maszyn zostanie teraz zaktualizowany ze względu na nowy format</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1149"/>
@@ -2796,13 +2796,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1200"/>
         <location filename="../../gamelist.cpp" line="1413"/>
         <source>ROM, CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>ROM, CHD</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1204"/>
         <location filename="../../gamelist.cpp" line="1415"/>
         <source>CHD</source>
-        <translation type="unfinished">CHD</translation>
+        <translation>CHD</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1210"/>
@@ -2810,7 +2810,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2963"/>
         <location filename="../../gamelist.cpp" line="3053"/>
         <source>?</source>
-        <translation type="unfinished"></translation>
+        <translation>?</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1696"/>
@@ -3005,37 +3005,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="2867"/>
         <source>loading catver.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>wczytywanie catver.ini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2873"/>
         <source>Catver.ini - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Catver.ini - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2911"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie można otworzyć &apos;%1&apos; do odczytu -- dane catver.ini niedostępne</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2920"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (wczytywanie catver.ini, miniony czas = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2921"/>
         <source>%1 category / %2 version records loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>wczytano %1 rekordów kategorii / %2 wersji</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2946"/>
         <source>Category view - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Widok kategorii - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3036"/>
         <source>Version view - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Widok wersji - %p%</translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="484"/>
@@ -4653,7 +4653,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.ui" line="1718"/>
         <location filename="../../qmc2main.ui" line="1721"/>
         <source>Enter URL to add to playlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź adres URL do dodania do listy odtwarzania</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1833"/>
@@ -4773,34 +4773,34 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="3020"/>
         <source>By category</source>
-        <translation type="unfinished"></translation>
+        <translation>Według kategorii</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3023"/>
         <location filename="../../qmc2main.ui" line="3026"/>
         <source>View games by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetlaj gry według kategorii</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3029"/>
         <source>F7</source>
-        <translation type="unfinished"></translation>
+        <translation>F7</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3041"/>
         <source>By version</source>
-        <translation type="unfinished"></translation>
+        <translation>Według wersji</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3044"/>
         <location filename="../../qmc2main.ui" line="3047"/>
         <source>View games by version they were added to the emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetlaj gry według wersji, w której zostały dodane do emulatora</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3050"/>
         <source>F8</source>
-        <translation type="unfinished"></translation>
+        <translation>F8</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="616"/>
@@ -5102,7 +5102,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="458"/>
         <source>Loading machine list, please wait...</source>
-        <translation>Ładowanie listy maszyn, proszę czekać...</translation>
+        <translation>Wczytywanie listy maszyn, proszę czekać...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="459"/>
@@ -5754,7 +5754,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../qmc2main.ui" line="358"/>
         <location filename="../../qmc2main.ui" line="466"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodzaje ROM-ów</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="178"/>
@@ -5762,7 +5762,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../qmc2main.ui" line="363"/>
         <location filename="../../qmc2main.ui" line="471"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoria</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="183"/>
@@ -5770,7 +5770,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../qmc2main.ui" line="368"/>
         <location filename="../../qmc2main.ui" line="476"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="229"/>
@@ -5780,22 +5780,22 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="326"/>
         <source>List of games viewed by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista gier wyświetlana według kategorii</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="333"/>
         <source>Category / Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoria / Gra</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="434"/>
         <source>List of games viewed by version they were added to the emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista gier wyświetlana według wersji, w której zostały dodane do emulatora</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="441"/>
         <source>Version / Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja / Gra</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1565"/>
@@ -6083,12 +6083,12 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="414"/>
         <source>Creating category view, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tworzenie widoku kategorii, proszę czekać...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="522"/>
         <source>Creating version view, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Tworzenie widoku wersji, proszę czekać...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2450"/>
@@ -6927,8 +6927,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -7099,12 +7097,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5256"/>
         <source>Add URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj adres URL</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5256"/>
         <source>Enter valid MP3 stream URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź poprawny adres URL strumienia MP3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6515"/>
@@ -8385,27 +8383,27 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2045"/>
         <source>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz korzystanie z catver.ini -- najnowszą wersję można pobrać z http://www.progettoemma.net/?catlist</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2048"/>
         <source>Use catver.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Używaj catver.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2065"/>
         <source>Path to catver.ini (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do catver.ini (odczyt)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2078"/>
         <source>Browse path to catver.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż ścieżkę do catver.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2306"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodzaje ROM-ów</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2462"/>
@@ -8420,12 +8418,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2472"/>
         <source>Launch emulation directly when an item is activated in the search-, favorites- or played-lists (instead of jumping to the master list)</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchamiaj emulację bezpośrednio po aktywacji elementu w liście wyników wyszukiwania, ulubionych bądź granych (zamiast przeskakiwać do listy głównej)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2475"/>
         <source>Play on sub-list activation</source>
-        <translation type="unfinished"></translation>
+        <translation>Graj po aktywacji w listach podległych</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3502"/>
@@ -8632,12 +8630,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="256"/>
         <source>View games by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetlaj gry według kategorii</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="257"/>
         <source>View games by version</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetlaj gey według wersji</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="276"/>
@@ -8737,7 +8735,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="1174"/>
         <source>re-sort of machine list impossible at this time, please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>ponownie posortowanie listy maszyn jest obecnie niemożliwe, proszę poczekać na ukończenie weryfikacji ROM-ów i spróbować ponownie</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1220"/>
@@ -8938,7 +8936,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="2278"/>
         <source>Choose catver.ini file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik catver.ini</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2474"/>
@@ -9731,13 +9729,13 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../options.cpp" line="205"/>
         <location filename="../../options.cpp" line="817"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoria</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="206"/>
         <location filename="../../options.cpp" line="818"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="228"/>
@@ -9752,17 +9750,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="823"/>
         <source>View games by category (not filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetlaj gry według kategorii (niefiltrowane)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="825"/>
         <source>View games by emulator version (not filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetlaj gry według wersji emulatora (niefiltrowane)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1172"/>
         <source>re-sort of game list impossible at this time, please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>ponownie posortowanie listy gier jest obecnie niemożliwe, proszę poczekać na ukończenie weryfikacji ROM-ów i spróbować ponownie</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1402"/>
@@ -10303,19 +10301,19 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../gamelist.cpp" line="1688"/>
         <location filename="../../options.cpp" line="1212"/>
         <source>category</source>
-        <translation type="unfinished"></translation>
+        <translation>kategoria</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1691"/>
         <location filename="../../options.cpp" line="1215"/>
         <source>version</source>
-        <translation type="unfinished"></translation>
+        <translation>wersja</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1684"/>
         <location filename="../../options.cpp" line="1208"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodzaje ROM-ów</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="669"/>
@@ -11172,7 +11170,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="82"/>
         <source>Shortname of machine to be analyzed - wildcards allowed, use space as delimiter for multiple machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Krótka nazwa maszyny do zanalizowania - dozwolone dzikie karty, spacja oddziela różne maszyny</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="93"/>
@@ -11971,7 +11969,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romstatusexport.cpp" line="789"/>
         <location filename="../../romstatusexport.ui" line="211"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodzaje ROM-ów</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="428"/>
