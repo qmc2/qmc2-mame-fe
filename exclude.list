@@ -331,6 +331,7 @@ qmc2/data/img/circles/.svn/prop-base/undo.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/unknown.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/unlock.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/up.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/url.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/version.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/view_detail.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/viewmagfit.png.svn-base
@@ -470,6 +471,7 @@ qmc2/data/img/circles/.svn/text-base/undo.png.svn-base
 qmc2/data/img/circles/.svn/text-base/unknown.png.svn-base
 qmc2/data/img/circles/.svn/text-base/unlock.png.svn-base
 qmc2/data/img/circles/.svn/text-base/up.png.svn-base
+qmc2/data/img/circles/.svn/text-base/url.png.svn-base
 qmc2/data/img/circles/.svn/text-base/version.png.svn-base
 qmc2/data/img/circles/.svn/text-base/view_detail.png.svn-base
 qmc2/data/img/circles/.svn/text-base/viewmagfit.png.svn-base
@@ -610,6 +612,7 @@ qmc2/data/img/classic/.svn/prop-base/undo.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/unknown.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/unlock.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/up.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/url.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/version.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/view_detail.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/viewmagfit.png.svn-base
@@ -750,6 +753,7 @@ qmc2/data/img/classic/.svn/text-base/undo.png.svn-base
 qmc2/data/img/classic/.svn/text-base/unknown.png.svn-base
 qmc2/data/img/classic/.svn/text-base/unlock.png.svn-base
 qmc2/data/img/classic/.svn/text-base/up.png.svn-base
+qmc2/data/img/classic/.svn/text-base/url.png.svn-base
 qmc2/data/img/classic/.svn/text-base/version.png.svn-base
 qmc2/data/img/classic/.svn/text-base/view_detail.png.svn-base
 qmc2/data/img/classic/.svn/text-base/viewmagfit.png.svn-base
@@ -890,6 +894,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/undo.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/unknown.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/unlock.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/up.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/url.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/version.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/view_detail.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/viewmagfit.png.svn-base
@@ -1030,6 +1035,7 @@ qmc2/data/img/crazy-black/.svn/text-base/undo.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/unknown.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/unlock.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/up.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/url.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/version.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/view_detail.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/viewmagfit.png.svn-base
@@ -1170,6 +1176,7 @@ qmc2/data/img/crazy/.svn/prop-base/undo.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/unknown.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/unlock.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/up.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/url.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/version.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/view_detail.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/viewmagfit.png.svn-base
@@ -1310,6 +1317,7 @@ qmc2/data/img/crazy/.svn/text-base/undo.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/unknown.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/unlock.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/up.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/url.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/version.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/view_detail.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/viewmagfit.png.svn-base
@@ -1450,6 +1458,7 @@ qmc2/data/img/cubes/.svn/prop-base/undo.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/unknown.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/unlock.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/up.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/url.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/version.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/view_detail.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/viewmagfit.png.svn-base
@@ -1589,6 +1598,7 @@ qmc2/data/img/cubes/.svn/text-base/undo.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/unknown.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/unlock.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/up.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/url.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/version.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/view_detail.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/viewmagfit.png.svn-base
@@ -1729,6 +1739,7 @@ qmc2/data/img/.svn/prop-base/undo.png.svn-base
 qmc2/data/img/.svn/prop-base/unknown.png.svn-base
 qmc2/data/img/.svn/prop-base/unlock.png.svn-base
 qmc2/data/img/.svn/prop-base/up.png.svn-base
+qmc2/data/img/.svn/prop-base/url.png.svn-base
 qmc2/data/img/.svn/prop-base/version.png.svn-base
 qmc2/data/img/.svn/prop-base/view_detail.png.svn-base
 qmc2/data/img/.svn/prop-base/viewmagfit.png.svn-base
@@ -1869,6 +1880,7 @@ qmc2/data/img/.svn/text-base/undo.png.svn-base
 qmc2/data/img/.svn/text-base/unknown.png.svn-base
 qmc2/data/img/.svn/text-base/unlock.png.svn-base
 qmc2/data/img/.svn/text-base/up.png.svn-base
+qmc2/data/img/.svn/text-base/url.png.svn-base
 qmc2/data/img/.svn/text-base/version.png.svn-base
 qmc2/data/img/.svn/text-base/view_detail.png.svn-base
 qmc2/data/img/.svn/text-base/viewmagfit.png.svn-base
@@ -1961,7 +1973,7 @@ qmc2/pkg-specs/Debian/.svn/text-base/rules.svn-base
 qmc2/pkg-specs/Fedora/.svn
 qmc2/pkg-specs/Fedora/.svn/text-base/README.fedora-spec.svn-base
 qmc2/pkg-specs/openSUSE/.svn
-qmc2/pkg-specs/openSUSE/.svn/text-base/qmc2-0.2.b15-openSUSE-11.2.spec.svn-base
+qmc2/pkg-specs/openSUSE/.svn/text-base/qmc2-0.2.b16-openSUSE-11.2.spec.svn-base
 qmc2/pkg-specs/.svn
 qmc2/pkg-specs/YDL/.svn
 qmc2/pkg-specs/YDL/.svn/text-base/README.ydl-spec.svn-base
