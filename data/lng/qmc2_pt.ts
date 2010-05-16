@@ -3614,12 +3614,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="2946"/>
         <source>Category view - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Visão de categoria - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3036"/>
         <source>Version view - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Visão de versão - %p%</translation>
     </message>
 </context>
 <context>
@@ -5684,12 +5684,12 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5256"/>
         <source>Add URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar URL</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5256"/>
         <source>Enter valid MP3 stream URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre com uma URL de stream MP3 válido:</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5462"/>
@@ -5936,12 +5936,12 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="414"/>
         <source>Creating category view, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Criando visão de categoria. por favor espere...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="522"/>
         <source>Creating version view, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Criando visão de versão. por favor espere...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="566"/>
@@ -6367,7 +6367,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.ui" line="1718"/>
         <location filename="../../qmc2main.ui" line="1721"/>
         <source>Enter URL to add to playlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre com a URL para adicionar à playlist</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1735"/>
@@ -8076,12 +8076,12 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="823"/>
         <source>View games by category (not filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver jogos por categoria (não filtrado)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="825"/>
         <source>View games by emulator version (not filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver jogos pela versão do emulador (não filtrado)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="972"/>
@@ -8145,12 +8145,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="1172"/>
         <source>re-sort of game list impossible at this time, please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>reordenação da lista de jogos é impossível no momento, por favor espere a verificação da ROM terminar e tente novamente</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1174"/>
         <source>re-sort of machine list impossible at this time, please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>reordenação da lista de máquinas é impossível no momento, por favor espere a verificação da ROM terminar e tente novamente</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1220"/>
