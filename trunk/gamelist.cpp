@@ -28,6 +28,10 @@
 #include "miniwebbrowser.h"
 #include "macros.h"
 #include "unzip.h"
+#if defined(QMC2_EMUTYPE_MESS)
+#include "messdevcfg.h"
+#include "messswlist.h"
+#endif
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -57,6 +61,9 @@ extern QTreeWidgetItem *qmc2CurrentItem;
 extern QTreeWidgetItem *qmc2LastGameInfoItem;
 #if defined(QMC2_EMUTYPE_MESS)
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
+extern QTreeWidgetItem *qmc2LastSoftwareListItem;
+extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
+extern MESSSoftwareList *qmc2MESSSoftwareList;
 #endif
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
@@ -257,7 +264,26 @@ void Gamelist::load()
   qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorBlue);
   qmc2CurrentItem = NULL;
 #if defined(QMC2_EMUTYPE_MESS)
+  if ( qmc2MESSDeviceConfigurator ) {
+    qmc2MESSDeviceConfigurator->save();
+    qmc2MESSDeviceConfigurator->setVisible(FALSE);
+    QLayout *vbl = qmc2MainWindow->tabDevices->layout();
+    if ( vbl )
+      delete vbl;
+    delete qmc2MESSDeviceConfigurator;
+    qmc2MESSDeviceConfigurator = NULL;
+  }
   qmc2LastDeviceConfigItem = NULL;
+  if ( qmc2MESSSoftwareList ) {
+    qmc2MESSSoftwareList->save();
+    qmc2MESSSoftwareList->setVisible(FALSE);
+    QLayout *vbl = qmc2MainWindow->tabSoftwareList->layout();
+    if ( vbl )
+      delete vbl;
+    delete qmc2MESSSoftwareList;
+    qmc2MESSSoftwareList = NULL;
+  }
+  qmc2LastSoftwareListItem = NULL;
 #endif
   qmc2LastGameInfoItem = NULL;
 #if defined(QMC2_EMUTYPE_MAME)
