@@ -1401,7 +1401,7 @@
         <widget class="QWidget" name="tabFrontendLog">
          <attribute name="icon">
           <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/editpaste.png</normaloff>:/data/img/editpaste.png</iconset>
+           <normaloff>:/data/img/notes.png</normaloff>:/data/img/notes.png</iconset>
          </attribute>
          <attribute name="title">
           <string>&amp;Front end log</string>
@@ -1434,7 +1434,7 @@
         <widget class="QWidget" name="tabEmulatorLog">
          <attribute name="icon">
           <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/editpaste.png</normaloff>:/data/img/editpaste.png</iconset>
+           <normaloff>:/data/img/notes.png</normaloff>:/data/img/notes.png</iconset>
          </attribute>
          <attribute name="title">
           <string>Emulator &amp;log</string>
@@ -1467,7 +1467,7 @@
         <widget class="QWidget" name="tabEmulators">
          <attribute name="icon">
           <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/calculator.png</normaloff>:/data/img/calculator.png</iconset>
+           <normaloff>:/data/img/process.png</normaloff>:/data/img/process.png</iconset>
          </attribute>
          <attribute name="title">
           <string>E&amp;mulator control</string>
@@ -1538,7 +1538,7 @@
         <widget class="QWidget" name="tabAudioPlayer">
          <attribute name="icon">
           <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/cd.png</normaloff>:/data/img/cd.png</iconset>
+           <normaloff>:/data/img/music.png</normaloff>:/data/img/music.png</iconset>
          </attribute>
          <attribute name="title">
           <string>MP&amp;3 player</string>
