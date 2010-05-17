@@ -248,6 +248,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_toolButtonAudioRemoveTracks_clicked();
     void on_listWidgetAudioPlaylist_itemSelectionChanged();
     void on_sliderAudioVolume_valueChanged(int);
+    void on_dialAudioVolume_valueChanged(int);
     void on_actionAudioRaiseVolume_triggered(bool checked = FALSE);
     void on_actionAudioLowerVolume_triggered(bool checked = FALSE);
     void audioFinished();

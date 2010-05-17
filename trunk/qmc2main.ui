@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>594</width>
-    <height>411</height>
+    <width>699</width>
+    <height>447</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1406,7 +1406,7 @@
          <attribute name="title">
           <string>&amp;Front end log</string>
          </attribute>
-         <layout class="QGridLayout">
+         <layout class="QGridLayout" name="gridLayoutFrontendLog">
           <item row="0" column="0">
            <widget class="QTextBrowser" name="textBrowserFrontendLog">
             <property name="sizePolicy">
@@ -1439,7 +1439,7 @@
          <attribute name="title">
           <string>Emulator &amp;log</string>
          </attribute>
-         <layout class="QGridLayout">
+         <layout class="QGridLayout" name="gridLayoutEmulatorLog">
           <item row="0" column="0">
            <widget class="QTextBrowser" name="textBrowserEmulatorLog">
             <property name="sizePolicy">
@@ -1472,7 +1472,7 @@
          <attribute name="title">
           <string>E&amp;mulator control</string>
          </attribute>
-         <layout class="QGridLayout">
+         <layout class="QGridLayout" name="gridLayoutEmulatorControl">
           <item row="0" column="0">
            <widget class="QTreeWidget" name="treeWidgetEmulators">
             <property name="sizePolicy">
@@ -1543,8 +1543,11 @@
          <attribute name="title">
           <string>MP&amp;3 player</string>
          </attribute>
-         <layout class="QGridLayout" name="gridLayout_5">
-          <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayoutAudioPlayer">
+          <property name="horizontalSpacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="0" colspan="2">
            <widget class="QListWidget" name="listWidgetAudioPlaylist">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
@@ -1567,7 +1570,7 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <layout class="QHBoxLayout" name="hlayout_2">
+           <layout class="QHBoxLayout" name="horizontalLayoutAudioPlayer2">
             <item>
              <widget class="QToolButton" name="toolButtonAudioPreviousTrack">
               <property name="toolTip">
@@ -1705,8 +1708,27 @@
             </item>
            </layout>
           </item>
+          <item row="1" column="1" rowspan="2">
+           <widget class="QDial" name="dialAudioVolume">
+            <property name="toolTip">
+             <string>Audio player volume</string>
+            </property>
+            <property name="statusTip">
+             <string>Audio player volume</string>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>50</number>
+            </property>
+            <property name="notchesVisible">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="0">
-           <layout class="QHBoxLayout" name="hlayout_3">
+           <layout class="QHBoxLayout" name="horizontalLayoutAudioPlayer1">
             <item>
              <widget class="QToolButton" name="toolButtonAudioAddTracks">
               <property name="toolTip">
@@ -1841,8 +1863,8 @@
          <attribute name="title">
           <string>Dow&amp;nloads</string>
          </attribute>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayoutDownloads">
+          <item row="0" column="0" colspan="5">
            <widget class="QTreeWidget" name="treeWidgetDownloads">
             <property name="toolTip">
              <string>List of active/inactive downloads</string>
@@ -1884,82 +1906,78 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
-             <widget class="QPushButton" name="pushButtonClearFinishedDownloads">
-              <property name="toolTip">
-               <string>Clear finished / stopped downloads from list</string>
-              </property>
-              <property name="statusTip">
-               <string>Clear finished / stopped downloads from list</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="qmc2.qrc">
-                <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonReloadSelectedDownloads">
-              <property name="toolTip">
-               <string>Reload selected downloads</string>
-              </property>
-              <property name="statusTip">
-               <string>Reload selected downloads</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="qmc2.qrc">
-                <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonStopSelectedDownloads">
-              <property name="toolTip">
-               <string>Stop selected downloads</string>
-              </property>
-              <property name="statusTip">
-               <string>Stop selected downloads</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="qmc2.qrc">
-                <normaloff>:/data/img/stop_browser.png</normaloff>:/data/img/stop_browser.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxRemoveFinishedDownloads">
-              <property name="toolTip">
-               <string>Automatically remove successfully finished downloads from this list</string>
-              </property>
-              <property name="text">
-               <string>Remove finished</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>258</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
+           <widget class="QPushButton" name="pushButtonClearFinishedDownloads">
+            <property name="toolTip">
+             <string>Clear finished / stopped downloads from list</string>
+            </property>
+            <property name="statusTip">
+             <string>Clear finished / stopped downloads from list</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="qmc2.qrc">
+              <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="pushButtonReloadSelectedDownloads">
+            <property name="toolTip">
+             <string>Reload selected downloads</string>
+            </property>
+            <property name="statusTip">
+             <string>Reload selected downloads</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="qmc2.qrc">
+              <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="pushButtonStopSelectedDownloads">
+            <property name="toolTip">
+             <string>Stop selected downloads</string>
+            </property>
+            <property name="statusTip">
+             <string>Stop selected downloads</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="qmc2.qrc">
+              <normaloff>:/data/img/stop_browser.png</normaloff>:/data/img/stop_browser.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QCheckBox" name="checkBoxRemoveFinishedDownloads">
+            <property name="toolTip">
+             <string>Automatically remove successfully finished downloads from this list</string>
+            </property>
+            <property name="text">
+             <string>Remove finished</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>407</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
@@ -1974,7 +1992,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>594</width>
+     <width>699</width>
      <height>22</height>
     </rect>
    </property>
