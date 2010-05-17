@@ -812,6 +812,9 @@ void EmulatorOptions::checkTemplateMap()
       if ( l.startsWith("#") ) continue;
       if ( l.startsWith("<") ) continue;
       if ( l.startsWith("readconfig") ) continue;
+#if defined(QMC2_EMUTYPE_MESS)
+      if ( l.startsWith("newui") ) continue;
+#endif
       QStringList wl;
       QRegExp rx("(\\S+|\\\".*\\\")");
       int pos = 0;

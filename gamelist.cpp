@@ -64,6 +64,10 @@ extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern QTreeWidgetItem *qmc2LastSoftwareListItem;
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 extern MESSSoftwareList *qmc2MESSSoftwareList;
+extern QMap<QString, QString> messXmlDataCache;
+extern QMap<QString, QString> messMachineSoftwareListMap;
+extern QMap<QString, QString> messSoftwareListXmlDataCache;
+extern QString messSwlBuffer;
 #endif
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
@@ -184,6 +188,9 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseCatverIniFile->setEnabled(enable);
   qmc2Options->checkBoxUseCatverIni->setEnabled(enable);
 #endif
+#if defined(QMC2_EMUTYPE_MESS)
+  qmc2Options->toolButtonBrowseSoftwareListCache->setEnabled(enable);
+#endif
   qmc2Options->toolButtonBrowseExecutableFile->setEnabled(enable);
   qmc2Options->lineEditExecutableFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseEmulatorLogFile->setEnabled(enable);
@@ -274,6 +281,7 @@ void Gamelist::load()
     qmc2MESSDeviceConfigurator = NULL;
   }
   qmc2LastDeviceConfigItem = NULL;
+  messXmlDataCache.clear();
   if ( qmc2MESSSoftwareList ) {
     qmc2MESSSoftwareList->save();
     qmc2MESSSoftwareList->setVisible(FALSE);
@@ -284,6 +292,9 @@ void Gamelist::load()
     qmc2MESSSoftwareList = NULL;
   }
   qmc2LastSoftwareListItem = NULL;
+  messMachineSoftwareListMap.clear();
+  messSoftwareListXmlDataCache.clear();
+  messSwlBuffer.clear();
 #endif
   qmc2LastGameInfoItem = NULL;
 #if defined(QMC2_EMUTYPE_MAME)

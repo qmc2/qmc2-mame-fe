@@ -206,6 +206,9 @@ Options::Options(QWidget *parent)
 #elif defined(QMC2_EMUTYPE_MAME)
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
+  labelSoftwareListCache->setVisible(FALSE);
+  lineEditSoftwareListCache->setVisible(FALSE);
+  toolButtonBrowseSoftwareListCache->setVisible(FALSE);
 #endif
 
   // shortcuts
@@ -387,6 +390,9 @@ void Options::apply()
   toolButtonBrowseMAWSCacheDirectory->setIconSize(iconSize);
   checkBoxUseCatverIni->setIconSize(iconSize);
   toolButtonBrowseCatverIniFile->setIconSize(iconSize);
+#endif
+#if defined(QMC2_EMUTYPE_MESS)
+  toolButtonBrowseSoftwareListCache->setIconSize(iconSize);
 #endif
   toolButtonBrowsePreviewDirectory->setIconSize(iconSize);
   toolButtonBrowsePreviewFile->setIconSize(iconSize);
@@ -1084,6 +1090,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
   config->setValue("MESS/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
   config->setValue("MESS/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
+  config->setValue("MESS/FilesAndDirectories/SoftwareListCache", lineEditSoftwareListCache->text());
   s = lineEditOptionsTemplateFile->text();
   needRecreateTemplateMap = needRecreateTemplateMap || (config->value("MESS/FilesAndDirectories/OptionsTemplateFile").toString() != s );
   config->setValue("MESS/FilesAndDirectories/OptionsTemplateFile", s);
@@ -1857,6 +1864,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditListXMLCache->setText(config->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString());
   lineEditGamelistCacheFile->setText(config->value("MESS/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mess.glc").toString());
   lineEditROMStateCacheFile->setText(config->value("MESS/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mess.rsc").toString());
+  lineEditSoftwareListCache->setText(config->value("MESS/FilesAndDirectories/SoftwareListCache", userScopePath + "/mess.swl").toString());
 #if defined(QMC2_SDLMESS)
   lineEditOptionsTemplateFile->setText(config->value("MESS/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMESS/template.xml").toString());
 #elif defined(QMC2_MESS)
@@ -2219,6 +2227,19 @@ void Options::on_toolButtonBrowseMAWSCacheDirectory_clicked()
   }
   raise();
 }
+
+void Options::on_toolButtonBrowseSoftwareListCache_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareListCache_clicked()");
+#endif
+
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose software list cache file"), lineEditSoftwareListCache->text(), tr("All files (*)"));
+  if ( !s.isNull() )
+    lineEditSoftwareListCache->setText(s);
+  raise();
+}
+
 
 void Options::on_toolButtonBrowseFrontendLogFile_clicked()
 {
