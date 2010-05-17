@@ -159,7 +159,7 @@
       </property>
       <attribute name="icon">
        <iconset resource="qmc2.qrc">
-        <normaloff>:/data/img/search.png</normaloff>:/data/img/search.png</iconset>
+        <normaloff>:/data/img/hint.png</normaloff>:/data/img/hint.png</iconset>
       </attribute>
       <attribute name="label">
        <string>Search</string>
