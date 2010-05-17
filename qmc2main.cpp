@@ -5211,6 +5211,7 @@ void MainWindow::on_actionAudioStopTrack_triggered(bool checked)
   actionAudioPlayTrack->setChecked(FALSE);
   audioFastForwarding = audioFastBackwarding = audioSkippingTracks = FALSE;
   phononAudioPlayer->stop();
+  progressBarAudioProgress->setRange(0, 100);
   progressBarAudioProgress->reset();
   audioState = Phonon::StoppedState;
 }
