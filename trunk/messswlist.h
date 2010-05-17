@@ -1,6 +1,7 @@
 #ifndef _MESSSWLIST_H_
 #define _MESSSWLIST_H_
 
+#include <QProcess>
 #include <QXmlDefaultHandler>
 #include "ui_messswlist.h"
 
@@ -24,6 +25,9 @@ class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 	Q_OBJECT
 	
 	public:
+		QProcess *loadProc;
+		QString messMachineName;
+
 		MESSSoftwareList(QString, QWidget *);
 		~MESSSoftwareList();
 
@@ -34,6 +38,14 @@ class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 		bool save();
 
 		// callback functions
+
+		// process management
+		void loadStarted();
+		void loadFinished(int, QProcess::ExitStatus);
+		void loadReadyReadStandardOutput();
+		void loadReadyReadStandardError();
+		void loadError(QProcess::ProcessError);
+		void loadStateChanged(QProcess::ProcessState);
 
 	protected:
 		void closeEvent(QCloseEvent *);
