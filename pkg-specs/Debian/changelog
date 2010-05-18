@@ -1,3 +1,24 @@
+qmc2 (0.2.b16+ppa1~lucid0) lucid; urgency=low
+
+  * New Upstream Release
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Wed, 17 May 2010 22:30:00 -0300
+
+
+qmc2 (0.2.b15+ppa1~lucid0) lucid; urgency=low
+
+  * New Upstream Release (port for lucid)
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Wed, 17 May 2010 21:30:00 -0300
+
+
+qmc2 (0.2.b15+ppa1~karmic0) karmic; urgency=low
+
+  * New Upstream Release
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Wed, 17 May 2010 21:30:00 -0300
+
+
 qmc2 (0.2.b14) karmic; urgency=low
 
   * New Upstream Release
