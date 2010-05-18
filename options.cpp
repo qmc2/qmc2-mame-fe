@@ -1165,7 +1165,11 @@ void Options::on_pushButtonApply_clicked()
 #endif
 
   if ( needManualReload )
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please reload gamelist for some changes to take effect"));
+#if defined(QMC2_EMUTYPE_MAME)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please reload game list for some changes to take effect"));
+#elif defined(QMC2_EMUTYPE_MESS)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please reload machine list for some changes to take effect"));
+#endif
 
   if ( needRestart )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please restart QMC2 for some changes to take effect"));
@@ -2313,7 +2317,10 @@ void Options::on_toolButtonBrowseFont_clicked()
 
   bool ok;
   QFont currentFont;
-  currentFont.fromString(lineEditFont->text());
+  if ( lineEditFont->text().isEmpty() )
+    currentFont = qApp->font();
+  else
+    currentFont.fromString(lineEditFont->text());
   QFont f = QFontDialog::getFont(&ok, currentFont, 0);
   if ( ok ) {
     lineEditFont->setFont(f);
@@ -2330,7 +2337,10 @@ void Options::on_toolButtonBrowseLogFont_clicked()
 
   bool ok;
   QFont currentFont;
-  currentFont.fromString(lineEditLogFont->text());
+  if ( lineEditLogFont->text().isEmpty() )
+    currentFont = qApp->font();
+  else
+    currentFont.fromString(lineEditLogFont->text());
   QFont f = QFontDialog::getFont(&ok, currentFont, 0);
   if ( ok ) {
     lineEditLogFont->setFont(f);
