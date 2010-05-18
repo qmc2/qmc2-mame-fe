@@ -30,16 +30,16 @@ Welcome::Welcome(QWidget *parent)
     setupUi(this);
 
 #if defined(QMC2_SDLMAME)
-    QString emulatorName = "SDLMAME";
+    QString emulatorName = tr("SDLMAME");
 #elif defined(QMC2_SDLMESS)
-    QString emulatorName = "SDLMESS";
+    QString emulatorName = tr("SDLMESS");
     labelSamplePath->setVisible(FALSE);
     lineEditSamplePath->setVisible(FALSE);
     toolButtonBrowseSamplePath->setVisible(FALSE);
 #elif defined(QMC2_MAME)
-    QString emulatorName = "MAME";
+    QString emulatorName = tr("MAME");
 #elif defined(QMC2_MESS)
-    QString emulatorName = "MESS";
+    QString emulatorName = tr("MESS");
     labelSamplePath->setVisible(FALSE);
     lineEditSamplePath->setVisible(FALSE);
     toolButtonBrowseSamplePath->setVisible(FALSE);

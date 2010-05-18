@@ -3764,9 +3764,6 @@
                    <property name="toolTip">
                     <string>Browse MESS software list cache file</string>
                    </property>
-                   <property name="text">
-                    <string>...</string>
-                   </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
