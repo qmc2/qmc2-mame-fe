@@ -191,13 +191,13 @@ void ROMStatusExporter::exportToASCII()
     ts << tr("ROM Status Export - created by QMC2 %1").arg(qmc2Version) << "\n"
        << QString().leftJustified(tr("ROM Status Export - created by QMC2 %1").arg(qmc2Version).length(), '-', TRUE) << "\n\n";
 #if defined(QMC2_SDLMAME)
-    QString emulatorTarget = "SDLMAME";
+    QString emulatorTarget = tr("SDLMAME");
 #elif defined(QMC2_SDLMESS)
-    QString emulatorTarget = "SDLMESS";
+    QString emulatorTarget = tr("SDLMESS");
 #elif defined(QMC2_MAME)
-    QString emulatorTarget = "MAME";
+    QString emulatorTarget = tr("MAME");
 #elif defined(QMC2_MESS)
-    QString emulatorTarget = "MESS";
+    QString emulatorTarget = tr("MESS");
 #else
     QString emulatorTarget = tr("unknown");
 #endif
@@ -489,13 +489,13 @@ void ROMStatusExporter::exportToCSV()
 #endif
     ts << del << tr("ROM Status Export - created by QMC2 %1").arg(qmc2Version) << del << "\n" << del << del << "\n";
 #if defined(QMC2_SDLMAME)
-    QString emulatorTarget = "SDLMAME";
+    QString emulatorTarget = tr("SDLMAME");
 #elif defined(QMC2_SDLMESS)
-    QString emulatorTarget = "SDLMESS";
+    QString emulatorTarget = tr("SDLMESS");
 #elif defined(QMC2_MAME)
-    QString emulatorTarget = "MAME";
+    QString emulatorTarget = tr("MAME");
 #elif defined(QMC2_MESS)
-    QString emulatorTarget = "MESS";
+    QString emulatorTarget = tr("MESS");
 #else
     QString emulatorTarget = tr("unknown");
 #endif
@@ -688,13 +688,13 @@ void ROMStatusExporter::exportToHTML()
 
   if ( checkBoxIncludeHeader->isChecked() ) {
 #if defined(QMC2_SDLMAME)
-    QString emulatorTarget = "SDLMAME";
+    QString emulatorTarget = tr("SDLMAME");
 #elif defined(QMC2_SDLMESS)
-    QString emulatorTarget = "SDLMESS";
+    QString emulatorTarget = tr("SDLMESS");
 #elif defined(QMC2_MAME)
-    QString emulatorTarget = "MAME";
+    QString emulatorTarget = tr("MAME");
 #elif defined(QMC2_MESS)
-    QString emulatorTarget = "MESS";
+    QString emulatorTarget = tr("MESS");
 #else
     QString emulatorTarget = tr("unknown");
 #endif
