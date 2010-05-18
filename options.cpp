@@ -2318,7 +2318,11 @@ void Options::on_toolButtonBrowseFont_clicked()
   bool ok;
   QFont currentFont;
   if ( lineEditFont->text().isEmpty() )
-    currentFont = qApp->font();
+#if defined(Q_WS_MAC)
+    currentFont.fromString("Arial,10,-1,5,50,0,0,0,0,0");
+#else
+    currentFont = QApplication::font();
+#endif
   else
     currentFont.fromString(lineEditFont->text());
   QFont f = QFontDialog::getFont(&ok, currentFont, 0);
@@ -2338,7 +2342,11 @@ void Options::on_toolButtonBrowseLogFont_clicked()
   bool ok;
   QFont currentFont;
   if ( lineEditLogFont->text().isEmpty() )
-    currentFont = qApp->font();
+#if defined(Q_WS_MAC)
+    currentFont.fromString("Courier New,10,-1,5,50,0,0,0,0,0");
+#else
+    currentFont = QApplication::font();
+#endif
   else
     currentFont.fromString(lineEditLogFont->text());
   QFont f = QFontDialog::getFont(&ok, currentFont, 0);
