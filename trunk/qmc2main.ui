@@ -2030,7 +2030,7 @@
      </property>
      <property name="icon">
       <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/cd.png</normaloff>:/data/img/cd.png</iconset>
+       <normaloff>:/data/img/music.png</normaloff>:/data/img/music.png</iconset>
      </property>
      <addaction name="actionAudioPlayTrack"/>
      <addaction name="actionAudioPauseTrack"/>
