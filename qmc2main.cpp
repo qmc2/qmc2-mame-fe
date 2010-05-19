@@ -959,8 +959,8 @@ MainWindow::MainWindow(QWidget *parent)
   menu_Tools->removeAction(menuAudio_player->menuAction());
 #else
   audioState = Phonon::StoppedState;
-  phononAudioPlayer = new Phonon::MediaObject(this);
-  phononAudioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+  phononAudioPlayer = new Phonon::MediaObject(0);
+  phononAudioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, 0);
   Phonon::createPath(phononAudioPlayer, phononAudioOutput);
   QStringList psl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList").toStringList();
   listWidgetAudioPlaylist->addItems(psl);
@@ -1072,6 +1072,11 @@ MainWindow::~MainWindow()
 {
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::~MainWindow()");
+#endif
+
+#if QMC2_USE_PHONON_API
+  phononAudioPlayer->deleteLater();
+  phononAudioOutput->deleteLater();
 #endif
 }
 
