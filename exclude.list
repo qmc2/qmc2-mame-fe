@@ -2122,6 +2122,9 @@ qmc2/.svn/props/speaker.png.svn-work
 qmc2/.svn/text-base/about.cpp.svn-base
 qmc2/.svn/text-base/about.h.svn-base
 qmc2/.svn/text-base/about.ui.svn-base
+qmc2/.svn/text-base/audioeffects.cpp.svn-base
+qmc2/.svn/text-base/audioeffects.h.svn-base
+qmc2/.svn/text-base/audioeffects.ui.svn-base
 qmc2/.svn/text-base/cabinet.cpp.svn-base
 qmc2/.svn/text-base/cabinet.h.svn-base
 qmc2/.svn/text-base/controller.cpp.svn-base
