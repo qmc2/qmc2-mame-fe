@@ -107,6 +107,12 @@
 #define QMC2_SWLIST_COLUMN_PUBLISHER	2
 #define QMC2_SWLIST_COLUMN_YEAR		3
 
+// logical column indizes of the audio effect list
+#define QMC2_AUDIOEFFECT_COLUMN_NAME	0
+#define QMC2_AUDIOEFFECT_COLUMN_DESC	1
+#define QMC2_AUDIOEFFECT_COLUMN_ENABLE	2
+#define QMC2_AUDIOEFFECT_COLUMN_SETUP	3
+
 // logical column indizes in emulator options
 #define QMC2_EMUOPT_COLUMN_OPTION	0
 #define QMC2_EMUOPT_COLUMN_VALUE	1
