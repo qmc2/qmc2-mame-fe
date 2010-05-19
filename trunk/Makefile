@@ -631,6 +631,10 @@ $(QMAKEFILE): $(PROJECT).pro
 	@echo "Configuring build of QMC2 v$(VERSION)"
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
 	@$(QMAKE) -makefile VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) '$(DEFINES)' -o Makefile.qmake $< > /dev/null
+ifeq '$(ARCH)' 'Darwin'
+	@$(SED) -e "s*-c \$(QMAKE_COMP_QMAKE_OBJECTIVE_CFLAGS)*cc -c \$(QMAKE_COMP_QMAKE_OBJECTIVE_CFLAGS)*g" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
+	@$(MV) ./Makefile.qmake.xcodeproj/qt_preprocess.mak.new ./Makefile.qmake.xcodeproj/qt_preprocess.mak
+endif
 else
 $(PROJECT)-bin: lang $(QMAKEFILE)
 ifeq '$(ARCH)' 'Darwin'
@@ -660,6 +664,10 @@ $(QMAKEFILE): $(PROJECT).pro
 	@echo "Configuring build of QMC2 v$(VERSION)"
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)") 
 	$(QMAKE) -makefile VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) '$(DEFINES)' -o Makefile.qmake $<
+ifeq '$(ARCH)' 'Darwin'
+	@$(SED) -e "s*-c \$(QMAKE_COMP_QMAKE_OBJECTIVE_CFLAGS)*cc -c \$(QMAKE_COMP_QMAKE_OBJECTIVE_CFLAGS)*g" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
+	@$(MV) ./Makefile.qmake.xcodeproj/qt_preprocess.mak.new ./Makefile.qmake.xcodeproj/qt_preprocess.mak
+endif
 endif
 
 install: bin
