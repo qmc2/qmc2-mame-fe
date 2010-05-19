@@ -1775,6 +1775,20 @@
              </widget>
             </item>
             <item>
+             <widget class="QToolButton" name="toolButtonAudioSetupEffects">
+              <property name="toolTip">
+               <string>Setup available audio effects</string>
+              </property>
+              <property name="statusTip">
+               <string>Setup available audio effects</string>
+              </property>
+              <property name="icon">
+               <iconset resource="qmc2.qrc">
+                <normaloff>:/data/img/effect.png</normaloff>:/data/img/effect.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QCheckBox" name="checkBoxAudioPlayOnStart">
               <property name="toolTip">
                <string>Start playing automatically when QMC2 has started</string>
@@ -3113,6 +3127,7 @@
   <tabstop>toolButtonAudioAddTracks</tabstop>
   <tabstop>toolButtonAudioAddURL</tabstop>
   <tabstop>toolButtonAudioRemoveTracks</tabstop>
+  <tabstop>toolButtonAudioSetupEffects</tabstop>
   <tabstop>checkBoxAudioPlayOnStart</tabstop>
   <tabstop>checkBoxAudioShuffle</tabstop>
   <tabstop>checkBoxAudioPause</tabstop>
@@ -3123,6 +3138,7 @@
   <tabstop>pushButtonReloadSelectedDownloads</tabstop>
   <tabstop>pushButtonStopSelectedDownloads</tabstop>
   <tabstop>checkBoxRemoveFinishedDownloads</tabstop>
+  <tabstop>dialAudioVolume</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>

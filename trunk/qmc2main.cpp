@@ -384,6 +384,11 @@ MainWindow::MainWindow(QWidget *parent)
   actionArcadeToggle->setVisible(FALSE);
 #endif
 
+  // FIXME: remove this when audio effects are ready
+#if QMC2_WIP_CODE != 1
+  toolButtonAudioSetupEffects->setVisible(FALSE);
+#endif
+
   labelGameStatus->setVisible(FALSE);
   labelGameStatus->setPalette(qmc2StatusColorBlue);
 
@@ -959,8 +964,8 @@ MainWindow::MainWindow(QWidget *parent)
   menu_Tools->removeAction(menuAudio_player->menuAction());
 #else
   audioState = Phonon::StoppedState;
-  phononAudioPlayer = new Phonon::MediaObject(this);
-  phononAudioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
+  phononAudioPlayer = new Phonon::MediaObject;
+  phononAudioOutput = new Phonon::AudioOutput(Phonon::MusicCategory);
   Phonon::createPath(phononAudioPlayer, phononAudioOutput);
   QStringList psl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList").toStringList();
   listWidgetAudioPlaylist->addItems(psl);
@@ -5306,6 +5311,14 @@ void MainWindow::on_toolButtonAudioAddURL_clicked()
 		listWidgetAudioPlaylist->addItem(streamUrl);
 }
 
+void MainWindow::on_toolButtonAudioSetupEffects_clicked()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioSetupEffects_clicked()");
+#endif
+
+}
+
 void MainWindow::on_toolButtonAudioRemoveTracks_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -5567,6 +5580,7 @@ void MainWindow::on_actionAudioPlayTrack_triggered(bool) { ; }
 void MainWindow::on_toolButtonAudioAddTracks_clicked() { ; }
 void MainWindow::on_toolButtonAudioAddURL_clicked() { ; }
 void MainWindow::on_toolButtonAudioRemoveTracks_clicked() { ; }
+void MainWindow::on_toolButtonAudioSetupEffects_clicked() { ; }
 void MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged() { ; }
 void MainWindow::on_sliderAudioVolume_valueChanged(int) { ; }
 void MainWindow::on_dialAudioVolume_valueChanged(int) { ; }
