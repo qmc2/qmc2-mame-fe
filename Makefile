@@ -632,7 +632,8 @@ $(QMAKEFILE): $(PROJECT).pro
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
 	@$(QMAKE) -makefile VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) '$(DEFINES)' -o Makefile.qmake $< > /dev/null
 ifeq '$(ARCH)' 'Darwin'
-	@$(SED) -e "s*-c \$(QMAKE_COMP_QMAKE_OBJECTIVE_CFLAGS)*cc -c \$(QMAKE_COMP_QMAKE_OBJECTIVE_CFLAGS)*g" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
+	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
+	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 	@$(MV) ./Makefile.qmake.xcodeproj/qt_preprocess.mak.new ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 endif
 else
@@ -665,7 +666,8 @@ $(QMAKEFILE): $(PROJECT).pro
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)") 
 	$(QMAKE) -makefile VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) '$(DEFINES)' -o Makefile.qmake $<
 ifeq '$(ARCH)' 'Darwin'
-	@$(SED) -e "s*-c \$(QMAKE_COMP_QMAKE_OBJECTIVE_CFLAGS)*cc -c \$(QMAKE_COMP_QMAKE_OBJECTIVE_CFLAGS)*g" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
+	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
+	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 	@$(MV) ./Makefile.qmake.xcodeproj/qt_preprocess.mak.new ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 endif
 endif
@@ -859,6 +861,7 @@ config:
 	@echo "MAKE=<make>            GNU make command                            $(MAKE)"
 	@echo "MAKESILENT=<make-s>    GNU make command (silent mode)              $(MAKESILENT)"
 	@echo "MKDIR=<mkdir>          UNIX command mkdir                          $(MKDIR)"
+	@echo "MV=<mv>                UNIX command mv                             $(MV)"
 	@echo "OPENGL=<opengl>        Enable miscellaneous OpenGL features (0, 1) $(OPENGL)"
 	@echo "OSCFG=<os-cfg>         Use global OS configuration (0, 1)          $(OSCFG)"
 	@echo "OSNAME=<os-name>       Target system's OS name                     $(OSNAME)"
