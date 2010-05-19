@@ -858,6 +858,9 @@ config:
 	@echo "LN=<ln>                UNIX command ln                             $(LN)"
 	@echo "LRELEASE=<lrelease>    Qt language release (lrelease) command      $(LRELEASE)"
 	@echo "LUPDATE=<lupdate>      Qt language update (lupdate) command        $(LUPDATE)"
+ifeq '$(ARCH)' 'Darwin'
+	@echo "MACDEPLOYQT=<mdplqt>   Qt's Mac OS X deployment tool               $(MACDEPLOYQT)"
+endif
 	@echo "MACHINE=<machine>      Target system's machine type                $(MACHINE)"
 	@echo "MAKE=<make>            GNU make command                            $(MAKE)"
 	@echo "MAKESILENT=<make-s>    GNU make command (silent mode)              $(MAKESILENT)"
