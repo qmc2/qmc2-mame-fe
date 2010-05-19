@@ -677,8 +677,8 @@ install: bin
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)" "$(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)"
 ifeq '$(ARCH)' 'Darwin'
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
+	@$(MACDEPLOYQT) $(TARGET_NAME).app
 	@$(RSYNC) --exclude '*svn*' "./$(TARGET_NAME).app" "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
-	@$(RSYNC) --exclude '*svn*' "./runonce/runonce" "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
 else
 	@$(RM) -f "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
 	@$(RSYNC) --exclude '*svn*' "./$(TARGET_NAME)" "$(DESTDIR)/$(BINDIR)"
@@ -754,7 +754,8 @@ ifeq '$(ARCH)' 'Darwin'
 	@$(RM) $(wildcard $(dir $(QMAKEFILE))*.mode* $(dir $(QMAKEFILE))*.pbxuser) > /dev/null
 	@# This shouldn't be necessary, but qmake doesn't add a proper clean target to the project
 	@$(RM) $(patsubst %.ui,ui_%.h,$(wildcard *.ui) $(notdir $(wildcard */*.ui))) > /dev/null
-	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp > /dev/null
+	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp macx/Info.plist Info.plist Makefile.qmake.xcodeproj/* > /dev/null
+	@$(RMDIR) Makefile.qmake.xcodeproj > /dev/null
 else
 	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE) > /dev/null
 	@$(MAKE) -f $(QMAKEFILE) distclean > /dev/null
