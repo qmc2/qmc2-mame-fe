@@ -1,3 +1,5 @@
+#include "macros.h"
+
 #if QMC2_USE_PHONON_API == 1
 
 #ifndef _AUDIOEFFECTS_H
