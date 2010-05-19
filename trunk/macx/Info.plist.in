@@ -29,7 +29,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>10.3.9</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2009 QMC2 dev-team</string>
+	<string>Copyright © 2010 QMC2 dev-team</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

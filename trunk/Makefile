@@ -725,7 +725,8 @@ ifeq '$(ARCH)' 'Darwin'
 	@$(RM) $(wildcard $(dir $(QMAKEFILE))*.mode* $(dir $(QMAKEFILE))*.pbxuser)
 	@# This shouldn't be necessary, but qmake doesn't add a proper clean target to the project
 	@$(RM) $(patsubst %.ui,ui_%.h,$(wildcard *.ui) $(notdir $(wildcard */*.ui)))
-	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp
+	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp macx/Info.plist Info.plist Makefile.qmake.xcodeproj/*
+	@$(RMDIR) Makefile.qmake.xcodeproj
 else
 	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE)
 	@$(MAKE) -f $(QMAKEFILE) distclean
