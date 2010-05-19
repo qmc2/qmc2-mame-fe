@@ -107,6 +107,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if QMC2_USE_PHONON_API
     Phonon::MediaObject *phononAudioPlayer;
     Phonon::AudioOutput *phononAudioOutput;
+    Phonon::Path phononAudioPath;
     bool audioFastForwarding;
     bool audioFastBackwarding;
     bool audioSkippingTracks;

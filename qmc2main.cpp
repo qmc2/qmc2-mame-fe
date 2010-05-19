@@ -62,6 +62,7 @@
 #endif
 #if QMC2_USE_PHONON_API
 #include <QTest>
+#include "audioeffects.h"
 #endif
 #include "arcade/arcadeview.h"
 #include "arcade/arcadesetupdialog.h"
@@ -105,6 +106,9 @@ MESSSoftwareList *qmc2MESSSoftwareList = NULL;
 QString qmc2MessMachineName = "";
 QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
 QTreeWidgetItem *qmc2LastSoftwareListItem = NULL;
+#endif
+#if QMC2_USE_PHONON_API
+AudioEffectDialog *qmc2AudioEffectDialog = NULL;
 #endif
 DemoModeDialog *qmc2DemoModeDialog = NULL;
 bool qmc2ReloadActive = FALSE;
@@ -966,7 +970,7 @@ MainWindow::MainWindow(QWidget *parent)
   audioState = Phonon::StoppedState;
   phononAudioPlayer = new Phonon::MediaObject;
   phononAudioOutput = new Phonon::AudioOutput(Phonon::MusicCategory);
-  Phonon::createPath(phononAudioPlayer, phononAudioOutput);
+  phononAudioPath = Phonon::createPath(phononAudioPlayer, phononAudioOutput);
   QStringList psl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList").toStringList();
   listWidgetAudioPlaylist->addItems(psl);
   QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->findItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", QString()).toString(), Qt::MatchExactly);
@@ -1895,6 +1899,11 @@ void MainWindow::on_actionLaunchQMC2MAME_activated()
       if ( qmc2DocBrowser )
         if ( qmc2DocBrowser->isVisible() )
           qmc2DocBrowser->showMinimized();
+#if QMC2_USE_PHONON_API
+      if ( qmc2AudioEffectDialog )
+	if ( qmc2AudioEffectDialog->isVisible() )
+	  qmc2AudioEffectDialog->showMinimized();
+#endif
       showMinimized();
     }
   } else
@@ -1955,6 +1964,11 @@ void MainWindow::on_actionLaunchQMC2MESS_activated()
       if ( qmc2DocBrowser )
         if ( qmc2DocBrowser->isVisible() )
           qmc2DocBrowser->showMinimized();
+#if QMC2_USE_PHONON_API
+      if ( qmc2AudioEffectDialog )
+	if ( qmc2AudioEffectDialog->isVisible() )
+	  qmc2AudioEffectDialog->showMinimized();
+#endif
       showMinimized();
     }
   } else
@@ -4379,6 +4393,15 @@ void MainWindow::closeEvent(QCloseEvent *e)
     delete qmc2DemoModeDialog;
   }
 #endif
+
+#if QMC2_USE_PHONON_API
+  if ( qmc2AudioEffectDialog ) {
+    log(QMC2_LOG_FRONTEND, tr("destroying audio effects dialog"));
+    qmc2AudioEffectDialog->close();
+    delete qmc2AudioEffectDialog;
+  }
+#endif
+
   if ( !qmc2GameInfoDB.isEmpty() ) {
 #if defined(QMC2_EMUTYPE_MAME)
     log(QMC2_LOG_FRONTEND, tr("destroying game info DB"));
@@ -5317,6 +5340,11 @@ void MainWindow::on_toolButtonAudioSetupEffects_clicked()
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioSetupEffects_clicked()");
 #endif
 
+	if ( !qmc2AudioEffectDialog )
+		qmc2AudioEffectDialog = new AudioEffectDialog(this);
+
+	qmc2AudioEffectDialog->show();
+	qmc2AudioEffectDialog->raise();
 }
 
 void MainWindow::on_toolButtonAudioRemoveTracks_clicked()
