@@ -17,9 +17,11 @@ class AudioEffectDialog : public QDialog, public Ui::AudioEffectDialog
 	Q_OBJECT
 
 	public:
+		bool ignoreHideEvent;
 		QList<Phonon::EffectDescription> effectDescriptions;
 		QMap<QString, Phonon::Effect *> effectMap;
 		QMap<QString, Phonon::EffectWidget *> effectWidgetMap;
+		QMap<QString, QCheckBox *> effectEnablerMap;
 		QMap<QToolButton *, QTreeWidgetItem *> toolButtonItemMap;
 		QMap<QCheckBox *, QTreeWidgetItem *> checkBoxItemMap;
 
@@ -29,6 +31,7 @@ class AudioEffectDialog : public QDialog, public Ui::AudioEffectDialog
 	public slots:
 		void toolButtonClicked();
 		void checkBoxToggled(bool);
+		void saveEffectSettings();
 
 	protected:
 		void closeEvent(QCloseEvent *);

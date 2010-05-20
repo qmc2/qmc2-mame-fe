@@ -388,11 +388,6 @@ MainWindow::MainWindow(QWidget *parent)
   actionArcadeToggle->setVisible(FALSE);
 #endif
 
-  // FIXME: remove this when audio effects are ready
-#if QMC2_WIP_CODE != 1
-  toolButtonAudioSetupEffects->setVisible(FALSE);
-#endif
-
   labelGameStatus->setVisible(FALSE);
   labelGameStatus->setPalette(qmc2StatusColorBlue);
 
@@ -4505,6 +4500,10 @@ void MainWindow::init()
   treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
 #endif
 
+#if QMC2_USE_PHONON_API
+  on_toolButtonAudioSetupEffects_clicked();
+#endif
+
   createFifo();
   qmc2GhostImagePixmap.load(":/data/img/ghost.png");
   QString myStyle = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Style", tr("Default")).toString();
@@ -5340,11 +5339,17 @@ void MainWindow::on_toolButtonAudioSetupEffects_clicked()
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_toolButtonAudioSetupEffects_clicked()");
 #endif
 
+	static bool audioSetupEffectsFirstCall = true;
+
 	if ( !qmc2AudioEffectDialog )
 		qmc2AudioEffectDialog = new AudioEffectDialog(this);
 
-	qmc2AudioEffectDialog->show();
-	qmc2AudioEffectDialog->raise();
+	if ( !audioSetupEffectsFirstCall ) {
+		qmc2AudioEffectDialog->show();
+		qmc2AudioEffectDialog->raise();
+	}
+
+	audioSetupEffectsFirstCall = false;
 }
 
 void MainWindow::on_toolButtonAudioRemoveTracks_clicked()
