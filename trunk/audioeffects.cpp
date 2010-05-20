@@ -20,6 +20,10 @@ AudioEffectDialog::AudioEffectDialog(QWidget *parent)
 
 	setupUi(this);
 
+	ignoreHideEvent = true;
+	hide();
+	ignoreHideEvent = false;
+
 	effectDescriptions = Phonon::BackendCapabilities::availableAudioEffects();
 	foreach (Phonon::EffectDescription description, effectDescriptions) {
 		QTreeWidgetItem *effectItem = new QTreeWidgetItem(treeWidgetAudioEffects);
@@ -27,6 +31,7 @@ AudioEffectDialog::AudioEffectDialog(QWidget *parent)
 		effectItem->setText(QMC2_AUDIOEFFECT_COLUMN_DESC, description.description());
 		QCheckBox *effectEnabler = new QCheckBox(this);
 		checkBoxItemMap[effectEnabler] = effectItem;
+		effectEnablerMap[description.name()] = effectEnabler;
 		connect(effectEnabler, SIGNAL(toggled(bool)), this, SLOT(checkBoxToggled(bool)));
 		effectEnabler->setToolTip(tr("Enable effect '%1'").arg(description.name()));
 		treeWidgetAudioEffects->setItemWidget(effectItem, QMC2_AUDIOEFFECT_COLUMN_ENABLE, effectEnabler);
@@ -43,10 +48,22 @@ AudioEffectDialog::AudioEffectDialog(QWidget *parent)
 		}
 	}
 	treeWidgetAudioEffects->sortItems(QMC2_AUDIOEFFECT_COLUMN_NAME, Qt::AscendingOrder);
-	treeWidgetAudioEffects->resizeColumnToContents(QMC2_AUDIOEFFECT_COLUMN_NAME);
-	treeWidgetAudioEffects->resizeColumnToContents(QMC2_AUDIOEFFECT_COLUMN_DESC);
 	treeWidgetAudioEffects->resizeColumnToContents(QMC2_AUDIOEFFECT_COLUMN_ENABLE);
 	treeWidgetAudioEffects->resizeColumnToContents(QMC2_AUDIOEFFECT_COLUMN_SETUP);
+
+	QStringList enabledEffects = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EnabledEffects").toStringList();
+	QStringList validatedEffects;
+	foreach (QString effectName, enabledEffects) {
+		QCheckBox *checkBox = effectEnablerMap[effectName];
+		if ( checkBox ) {
+			checkBox->setChecked(true);
+			validatedEffects << effectName;
+		}
+	}
+	if ( validatedEffects.count() > 0 )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EnabledEffects", validatedEffects);
+	else
+		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EnabledEffects");
 }
 
 AudioEffectDialog::~AudioEffectDialog()
@@ -54,6 +71,8 @@ AudioEffectDialog::~AudioEffectDialog()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: AudioEffectDialog::~AudioEffectDialog()");
 #endif
+
+	saveEffectSettings();
 
 	foreach (Phonon::EffectWidget *widget, effectWidgetMap)
 		if ( widget ) {
@@ -64,6 +83,29 @@ AudioEffectDialog::~AudioEffectDialog()
 	foreach (Phonon::Effect *effect, effectMap)
 		if ( effect )
 			delete effect;
+}
+
+void AudioEffectDialog::saveEffectSettings()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: AudioEffectDialog::saveEffectSettings()");
+#endif
+
+	QStringList enabledEffects;
+	
+	foreach (QCheckBox *checkBox, effectEnablerMap) {
+		if ( checkBox )
+			if ( checkBox->isChecked() ) {
+				QTreeWidgetItem *item = checkBoxItemMap[checkBox];
+				if ( item )
+					enabledEffects << item->text(QMC2_AUDIOEFFECT_COLUMN_NAME);
+			}
+	}
+
+	if ( enabledEffects.count() > 0 )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EnabledEffects", enabledEffects);
+	else
+		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EnabledEffects");
 }
 
 void AudioEffectDialog::toolButtonClicked()
@@ -148,6 +190,8 @@ void AudioEffectDialog::checkBoxToggled(bool checked)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: audio player: can't remove effect '%1'").arg(effectName));
 		}
 	}
+
+	saveEffectSettings();
 }
 
 void AudioEffectDialog::closeEvent(QCloseEvent *e)
@@ -178,6 +222,11 @@ void AudioEffectDialog::hideEvent(QHideEvent *e)
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: AudioEffectDialog::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
 #endif
+
+	if ( ignoreHideEvent ) {
+		e->accept();
+		return;
+	}
 
 	foreach (Phonon::EffectWidget *widget, effectWidgetMap)
 		if ( widget )
