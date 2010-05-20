@@ -156,10 +156,7 @@ void AudioEffectDialog::closeEvent(QCloseEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: AudioEffectDialog::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-	hideEvent(NULL);
-
-	if ( e )
-		e->accept();
+	e->accept();
 }
 
 void AudioEffectDialog::showEvent(QShowEvent *e)
@@ -173,8 +170,7 @@ void AudioEffectDialog::showEvent(QShowEvent *e)
 		treeWidgetAudioEffects->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EffectListHeaderState").toByteArray());
 	}
 
-	if ( e )
-		e->accept();
+	e->accept();
 }
 
 void AudioEffectDialog::hideEvent(QHideEvent *e)
@@ -192,8 +188,7 @@ void AudioEffectDialog::hideEvent(QHideEvent *e)
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EffectListHeaderState", treeWidgetAudioEffects->header()->saveState());
 	}
 
-	if ( e )
-		e->accept();
+	e->accept();
 }
 
 #endif
