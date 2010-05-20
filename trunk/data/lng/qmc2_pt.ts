@@ -1400,69 +1400,69 @@ p, li { white-space: pre-wrap; }
         <location filename="../../audioeffects.cpp" line="134"/>
         <location filename="../../audioeffects.cpp" line="139"/>
         <source>Enable effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar efeito &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="39"/>
         <source>Setup effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar efeito &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="126"/>
         <location filename="../../audioeffects.cpp" line="147"/>
         <source>Disable effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Desabilitar efeito &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="135"/>
         <source>WARNING: audio player: can&apos;t insert effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: tocador de áudio: impossível inserir efeito &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="148"/>
         <source>WARNING: audio player: can&apos;t remove effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: tocador de áudio: impossível remover efeito &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="14"/>
         <source>Audio effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Efeitos de áudio</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="36"/>
         <source>Close audio effects dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar janela de efeitos de áudio</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="39"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="59"/>
         <location filename="../../audioeffects.ui" line="62"/>
         <source>List of available audio effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de efeitos de áudio disponíveis</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="81"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="86"/>
         <source>Description</source>
-        <translation type="unfinished">Descrição</translation>
+        <translation>Descrição</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="91"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="96"/>
         <source>Setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar</translation>
     </message>
 </context>
 <context>
@@ -1811,12 +1811,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="95"/>
         <source>Softwar&amp;e list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de Softwar&amp;e</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="96"/>
         <source>Software list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de Software</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="313"/>
@@ -4550,89 +4550,89 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messswlist.ui" line="15"/>
         <source>MESS software list</source>
-        <translation type="unfinished"></translation>
+        <translation>lista de software MESS</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="43"/>
         <source>Known software</source>
-        <translation type="unfinished"></translation>
+        <translation>Softwares conhecidos</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="46"/>
         <source>Complete list of known software for the current machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista completa de softwares conhecidos para a máquina atual</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="55"/>
         <location filename="../../messswlist.ui" line="58"/>
         <source>List of known software for the current machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de softwares conhecidos para a máquina atual</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="68"/>
         <location filename="../../messswlist.ui" line="129"/>
         <location filename="../../messswlist.ui" line="209"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Título</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="73"/>
         <location filename="../../messswlist.ui" line="134"/>
         <location filename="../../messswlist.ui" line="214"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="78"/>
         <location filename="../../messswlist.ui" line="139"/>
         <location filename="../../messswlist.ui" line="219"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Editor</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="83"/>
         <location filename="../../messswlist.ui" line="144"/>
         <location filename="../../messswlist.ui" line="224"/>
         <source>Year</source>
-        <translation type="unfinished">Ano</translation>
+        <translation>Ano</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="104"/>
         <source>Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Favoritos</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="107"/>
         <source>View / manage your favorite software list for the current machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver / gerenciar sua lista de softwares favoritos para a máquina atual</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="116"/>
         <location filename="../../messswlist.ui" line="119"/>
         <source>Favorite software for the current machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de softwares favoritos para a máquina atual</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="165"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="168"/>
         <source>Search within the list of known software for the current machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar dentro da lista de softwares conhecidos para a máquina atual</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="183"/>
         <location filename="../../messswlist.ui" line="186"/>
         <source>Search for known software (not case-sensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Procura por softwares conhecidos (não sensível à caixa)</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="196"/>
         <location filename="../../messswlist.ui" line="199"/>
         <source>Search results</source>
-        <translation type="unfinished"></translation>
+        <translation>Resultados da busca</translation>
     </message>
 </context>
 <context>
@@ -6604,13 +6604,13 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="1381"/>
         <source>Softwar&amp;e list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de Softwar&amp;e</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1780"/>
         <location filename="../../qmc2main.ui" line="1783"/>
         <source>Setup available audio effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurar efeitos de áudio disponíveis</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1878"/>
@@ -7412,7 +7412,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4399"/>
         <source>destroying audio effects dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo janela de efeitos de áudio</translation>
     </message>
 </context>
 <context>
@@ -8327,12 +8327,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="1169"/>
         <source>please reload game list for some changes to take effect</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor recarregue a lista de jogos para as alterações terem efeito</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1171"/>
         <source>please reload machine list for some changes to take effect</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor recarregue a lista de máquinas para as alterações terem efeito</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1175"/>
@@ -8697,7 +8697,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="2241"/>
         <source>Choose software list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo de cache da lista de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2254"/>
@@ -9818,12 +9818,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="3539"/>
         <source>XML game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache da lista de jogos (XML)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3576"/>
         <source>Game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache da lista de jogos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2912"/>
@@ -10238,17 +10238,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="3739"/>
         <source>Software list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache da lista de Software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3752"/>
         <source>MESS software list cache (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache da lista de software do MESS (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3765"/>
         <source>Browse MESS software list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar pelo arquivo de cache da lista de software do MESS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3783"/>
@@ -11874,28 +11874,28 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romstatusexport.cpp" line="492"/>
         <location filename="../../romstatusexport.cpp" line="691"/>
         <source>SDLMAME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="196"/>
         <location filename="../../romstatusexport.cpp" line="494"/>
         <location filename="../../romstatusexport.cpp" line="693"/>
         <source>SDLMESS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="198"/>
         <location filename="../../romstatusexport.cpp" line="496"/>
         <location filename="../../romstatusexport.cpp" line="695"/>
         <source>MAME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="200"/>
         <location filename="../../romstatusexport.cpp" line="498"/>
         <location filename="../../romstatusexport.cpp" line="697"/>
         <source>MESS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="202"/>
@@ -12678,22 +12678,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../welcome.cpp" line="33"/>
         <source>SDLMAME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="35"/>
         <source>SDLMESS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="40"/>
         <source>MAME</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="42"/>
         <source>MESS</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="47"/>
