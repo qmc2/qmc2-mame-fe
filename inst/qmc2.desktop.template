@@ -1,5 +1,5 @@
 [Desktop Entry]
-Encoding=UTF-8
+Type=Application
 Name=QMC2 (EMULATOR)
 GenericName=GENERICNAME
 Comment=EMULATOR front end
@@ -8,5 +8,4 @@ Comment[de]=EMULATOR Frontend
 Exec=TARGET
 Icon=DATADIR/qmc2/img/EMUICO
 Terminal=false
-Type=Application
 Categories=Game;Emulator;
