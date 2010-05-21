@@ -400,7 +400,7 @@ Try "mame | less" for example - the behavior will be the same.</p>
 <p>For example, if you set <i>flicker</i> to 1.0 (default: 0.0) in the global settings, and to 2.0 in the game/machine-specific settings, <i>-flicker 2.0</i> will be passed to the emulator. Any game/machine for which the flicker value hasn't been explicitly set will be called with <i>-flicker 1.0</i>.</p>
 <p><b>How is the configuration stored?</b></p>
 <p>All emulator settings are stored in QMC2's configuration file (usually ~/.qmc2/qmc2.ini or <i>~/Library/Application Support/qmc2/qmc2.ini</i> on Mac OS X) - see the section for your emulator (for example the <i>[MAME]</i> section). Only options which were changed from their defaults get stored. QMC2 uses long option names which are compatible between command line and configuration files (i. e. <i>scalemode</i> and not <i>sm</i>).</p>
-<p>You can pre-configure system-wide overwrites for any template-based defaults by storing them in <i>/etc/qmc2/qmc2.ini</i>.</p>
+<p>You can pre-configure system-wide overwrites for any template-based defaults by storing them in <i>/etc/qmc2/qmc2.ini</i> on UNIX, or <i>Library/Application Support/qmc2/qmc2.ini</i> on Mac OS X. System-wide pre-configuration is not supported (and not required) on Windows.</p>
 <p>See also <a href="#A2.8">Q2.8</a>.</p>
 <hr>
 <p><a name="A2.11"></a><b>Q2.11: When I try to launch another QMC2 variant from a currently running one, nothing happens. What's up?</b></p>
