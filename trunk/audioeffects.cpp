@@ -35,6 +35,7 @@ AudioEffectDialog::AudioEffectDialog(QWidget *parent)
 		treeWidgetAudioEffects->setItemWidget(effectItem, QMC2_AUDIOEFFECT_COLUMN_ENABLE, effectEnabler);
 		effectMap[description.name()] = new Phonon::Effect(description);
 		effectWidgetMap[description.name()] = new  Phonon::EffectWidget(effectMap[description.name()]);
+		effectWidgetMap[description.name()]->setWindowFlags(Qt::Dialog);
 		if ( effectMap[description.name()]->parameters().count() > 0 ) {
 			QToolButton *effectSetupButton = new QToolButton(this);
 			toolButtonItemMap[effectSetupButton] = effectItem;
