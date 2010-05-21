@@ -635,6 +635,10 @@
       <description lang="fr" text="Spécifier l'utilisation du clavier naturel ou pas"/>
       <description lang="pt" text="Especificar a utilização de um teclado natural ou não"/>
     </option>
+    <option name="newui" type="bool" default="false">
+      <description lang="us" text="Use the new MESS UI"/>
+      <description lang="de" text="Neues MESS UI verwenden"/>
+    </option>
   </section>
   <section name="configuration">
     <description lang="us" text="Configuration"/>
