@@ -2020,6 +2020,15 @@ qmc2/pkg-specs/Debian/.svn/text-base/do_debian_pkg.sh.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/rules.svn-base
 qmc2/pkg-specs/Fedora/.svn
 qmc2/pkg-specs/Fedora/.svn/text-base/README.fedora-spec.svn-base
+qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn
+qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/01qmc-contents.xml.svn-base
+qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/01qmc.xml.svn-base
+qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/02qmc-contents.xml.svn-base
+qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/02qmc.xml.svn-base
+qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/03qmc-contents.xml.svn-base
+qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/03qmc.xml.svn-base
+qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/index.xml.svn-base
+qmc2/pkg-specs/Mac OS X/.svn
 qmc2/pkg-specs/openSUSE/.svn
 qmc2/pkg-specs/openSUSE/.svn/text-base/qmc2-0.2.b16-openSUSE-11.2.spec.svn-base
 qmc2/pkg-specs/.svn
