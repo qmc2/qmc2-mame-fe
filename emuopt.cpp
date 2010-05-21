@@ -812,7 +812,8 @@ void EmulatorOptions::checkTemplateMap()
       if ( l.startsWith("#") ) continue;
       if ( l.startsWith("<") ) continue;
       if ( l.startsWith("readconfig") ) continue;
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_SDLMESS)
+      // this is a 'non-SDL Windows MESS'-only option and is ignored for all SDLMESS builds
       if ( l.startsWith("newui") ) continue;
 #endif
       QStringList wl;
