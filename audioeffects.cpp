@@ -134,6 +134,7 @@ void AudioEffectDialog::toolButtonClicked()
 	if ( widget ) {
 		widget->move(mapToGlobal(toolButton->frameGeometry().center()));
 		widget->show();
+		widget->raise();
 	}
 }
 

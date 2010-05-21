@@ -1654,6 +1654,9 @@ void MainWindow::on_actionAnalyseCurrentROM_activated()
   if ( !qmc2CurrentItem )
     return;
 
+  if ( qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+    return;
+
   if ( qmc2ROMAlyzerActive ) {
     log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
     return;
