@@ -39,6 +39,7 @@ AudioEffectDialog::AudioEffectDialog(QWidget *parent)
 		if ( effectMap[description.name()]->parameters().count() > 0 ) {
 			QToolButton *effectSetupButton = new QToolButton(this);
 			toolButtonItemMap[effectSetupButton] = effectItem;
+			effectSetupButtonMap[description.name()] = effectSetupButton;
 			connect(effectSetupButton, SIGNAL(clicked(bool)), this, SLOT(toolButtonClicked()));
 			effectSetupButton->setToolTip(tr("Setup effect '%1'").arg(description.name()));
 			effectSetupButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
@@ -238,6 +239,20 @@ void AudioEffectDialog::hideEvent(QHideEvent *e)
 	}
 
 	e->accept();
+}
+
+void AudioEffectDialog::adjustIconSizes()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: AudioEffectDialog::adjustIconSizes()");
+#endif
+
+	QFontMetrics fm(qApp->font());
+	QSize iconSize(fm.height() - 2, fm.height() - 2);
+
+	foreach (QToolButton *toolButton, effectSetupButtonMap)
+		if ( toolButton )
+			toolButton->setIconSize(iconSize);
 }
 
 #endif
