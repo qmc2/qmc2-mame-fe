@@ -46,6 +46,9 @@
 #include "embedder.h"
 #include "embedderopt.h"
 #endif
+#if QMC2_USE_PHONON_API
+#include "audioeffects.h"
+#endif
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -124,6 +127,9 @@ extern Joystick *qmc2Joystick;
 #if defined(QMC2_EMUTYPE_MESS)
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 extern MESSSoftwareList *qmc2MESSSoftwareList;
+#endif
+#if QMC2_USE_PHONON_API
+extern AudioEffectDialog *qmc2AudioEffectDialog;
 #endif
 
 Options::Options(QWidget *parent)
@@ -498,6 +504,9 @@ void Options::apply()
   qmc2MainWindow->toolButtonAudioAddTracks->setIconSize(iconSize);
   qmc2MainWindow->toolButtonAudioAddURL->setIconSize(iconSize);
   qmc2MainWindow->toolButtonAudioRemoveTracks->setIconSize(iconSize);
+  qmc2MainWindow->toolButtonAudioSetupEffects->setIconSize(iconSize);
+  if ( qmc2AudioEffectDialog )
+    QTimer::singleShot(0, qmc2AudioEffectDialog, SLOT(adjustIconSizes()));
 #endif
   if ( qmc2ROMStatusExporter )
     QTimer::singleShot(0, qmc2ROMStatusExporter, SLOT(adjustIconSizes()));
