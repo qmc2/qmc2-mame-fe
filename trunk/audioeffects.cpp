@@ -9,8 +9,6 @@
 extern QSettings *qmc2Config;
 extern MainWindow *qmc2MainWindow;
 
-#define QMC2_DEBUG
-
 AudioEffectDialog::AudioEffectDialog(QWidget *parent)
   : QDialog(parent)
 {
