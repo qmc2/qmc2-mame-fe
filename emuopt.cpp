@@ -715,6 +715,8 @@ void EmulatorOptions::createTemplateMap()
 #endif
           } else if ( elementType == "option" ) {
             bool ignore = false;
+	    if ( attributes.hasAttribute("ignore") )
+              ignore = attributes.value("ignore") == "true";
             if ( attributes.hasAttribute(QString("ignore.%1").arg(XSTR(TARGET_OS_NAME))) )
               ignore = attributes.value(QString("ignore.%1").arg(XSTR(TARGET_OS_NAME))) == "true";
             if ( !ignore ) {
