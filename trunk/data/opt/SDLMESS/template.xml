@@ -1168,7 +1168,7 @@
       <description lang="fr" text="Autoriser le changement de résolution d'écran"/>
       <description lang="pt" text="Habilitar troca de resolução"/>
     </option>
-    <option name="useallheads" type="bool" default="false">
+    <option name="useallheads" type="bool" default="false" ignore.Darwin="true">
       <description lang="us" text="Split full screen image across monitors"/>
       <description lang="de" text="Vollbildschirm-Darstellung über alle Monitore verteilen"/>
       <description lang="pl" text="Rozdziel obraz pełnoekranowy na wszystkie monitory"/>

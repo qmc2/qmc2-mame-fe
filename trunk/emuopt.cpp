@@ -714,17 +714,28 @@ void EmulatorOptions::createTemplateMap()
                                 arg(elementType).arg(name).arg(sectionTitle));
 #endif
           } else if ( elementType == "option" ) {
-            QString type = attributes.value("type").toString();
-            QString defaultValue;
-            if ( attributes.hasAttribute(QString("default.%1").arg(XSTR(TARGET_OS_NAME))) )
-              defaultValue = attributes.value(QString("default.%1").arg(XSTR(TARGET_OS_NAME))).toString();
-            else
-              defaultValue = attributes.value("default").toString();
-            QString optionDescription = readDescription(&xmlReader, lang, &readNext);
-            templateMap[sectionTitle].append(EmulatorOption(name, "", type, defaultValue, optionDescription, QString::null, NULL, FALSE));
+            bool ignore = false;
+            if ( attributes.hasAttribute(QString("ignore.%1").arg(XSTR(TARGET_OS_NAME))) )
+              ignore = attributes.value(QString("ignore.%1").arg(XSTR(TARGET_OS_NAME))) == "true";
+            if ( !ignore ) {
+              QString type = attributes.value("type").toString();
+              QString defaultValue;
+              if ( attributes.hasAttribute(QString("default.%1").arg(XSTR(TARGET_OS_NAME))) )
+                defaultValue = attributes.value(QString("default.%1").arg(XSTR(TARGET_OS_NAME))).toString();
+              else
+                defaultValue = attributes.value("default").toString();
+              QString optionDescription = readDescription(&xmlReader, lang, &readNext);
+              templateMap[sectionTitle].append(EmulatorOption(name, "", type, defaultValue, optionDescription, QString::null, NULL, FALSE));
 #ifdef QMC2_DEBUG
-            qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: elementType = [%1], name = [%2], type = [%3], default = [%4], description = [%5]").
-                                arg(elementType).arg(name).arg(type).arg(defaultValue).arg(optionDescription));
+              qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: elementType = [%1], name = [%2], type = [%3], default = [%4], description = [%5]").
+                                  arg(elementType).arg(name).arg(type).arg(defaultValue).arg(optionDescription));
+#endif
+	    }
+#ifdef QMC2_DEBUG
+            else {
+              qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ignored: elementType = [%1], name = [%2], type = [%3], default = [%4], description = [%5]").
+                                  arg(elementType).arg(name).arg(type).arg(defaultValue).arg(optionDescription));
+            }
 #endif
           } else if ( elementType == "template" ) {
             templateEmulator = attributes.value("emulator").toString();
