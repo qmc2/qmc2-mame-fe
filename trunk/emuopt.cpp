@@ -1232,9 +1232,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
       qApp->processEvents();
       QString lineTrimmed = ts.readLine().trimmed();
       lineCounter++;
-
-      printf("lineTrimmed=\"%s\"\n", (const char *)lineTrimmed.toAscii());
-
       if ( !lineTrimmed.isEmpty() && !lineTrimmed.startsWith("#") && !lineTrimmed.startsWith("<UNADORNED") ) {
         QStringList words = lineTrimmed.split(QRegExp("\\s+"));
         if ( words.count() > 0 ) {
@@ -1257,9 +1254,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 
           if ( optionPosFound != -1 && words.count() > 1 ) {
             QString value = lineTrimmed.mid(lineTrimmed.indexOf(words[1], words[0].length()));
-
-            printf("value=\"%s\"\n", (const char *)value.toAscii());
-
             switch ( optionsMap[sectionTitleFound][optionPosFound].type ) {
               case QMC2_EMUOPT_TYPE_INT: {
                 if ( qmc2GlobalEmulatorOptions == this )
