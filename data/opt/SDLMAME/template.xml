@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="SDLMAME" version="0.138" format="0.2.2">
+<template emulator="SDLMAME" version="0.138" format="0.2.3">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
@@ -34,7 +34,7 @@
       <description lang="fr" text="Répertoire des paramètres des controleurs"/>
       <description lang="pt" text="Caminho para as definições de controles"/>
     </option>
-    <option name="inipath" type="directory" default="~/.mame;.;ini">
+    <option name="inipath" type="directory" default="~/.mame;.;ini" default.Darwin=".;ini">
       <description lang="us" text="Path to ini files"/>
       <description lang="de" text="Suchpfad für INI-Dateien"/>
       <description lang="pl" text="Ścieżka do plików ini"/>
@@ -1322,7 +1322,7 @@
       <description lang="fr" text="pilote SDL audio à utiliser ('alsa', 'arts', ... ou 'auto' pour réglage par défaut)"/>
       <description lang="pt" text="Driver de áudio do SDL à utilizar ('alsa', 'arts', ... ou 'auto' para usar o padrão)"/>
     </option>
-    <option name="gl_lib" type="file" default="auto">
+    <option name="gl_lib" type="file" default="auto" default.Darwin="/System/Library/Frameworks/OpenGL.framework/Libraries/libGL.dylib">
       <description lang="us" text="Alternative libGL.so to use; 'auto' for system default"/>
       <description lang="de" text="Alternativ einzusetzende libGL.so; 'auto' für System Standard"/>
       <description lang="pl" text="Alternatywny libGL.so; 'auto' dla domyślnego systemowego"/>

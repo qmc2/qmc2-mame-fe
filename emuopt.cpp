@@ -715,7 +715,11 @@ void EmulatorOptions::createTemplateMap()
 #endif
           } else if ( elementType == "option" ) {
             QString type = attributes.value("type").toString();
-            QString defaultValue = attributes.value("default").toString();
+            QString defaultValue;
+            if ( attributes.hasAttribute(QString("default.%1").arg(XSTR(ARCH))) )
+              defaultValue = attributes.value(QString("default.%1").arg(XSTR(ARCH))).toString();
+            else
+              defaultValue = attributes.value("default").toString();
             QString optionDescription = readDescription(&xmlReader, lang, &readNext);
             templateMap[sectionTitle].append(EmulatorOption(name, "", type, defaultValue, optionDescription, QString::null, NULL, FALSE));
 #ifdef QMC2_DEBUG
