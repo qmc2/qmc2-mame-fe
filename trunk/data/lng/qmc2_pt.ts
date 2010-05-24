@@ -4637,67 +4637,67 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messswlist.cpp" line="119"/>
         <source>loading XML software list data from cache</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando lista de software (XML) do cache</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="124"/>
         <source>SWL cache - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache SWL - %p%</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="151"/>
         <source>done (loading XML software list data from cache, elapsed time = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando lista de software (XML) do cache, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="158"/>
         <source>ERROR: the file name for the MESS software list cache is empty -- please correct this and reload the machine list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: o nome do arquivo para o cache da lista de software do MESS está vazio -- por favor corrija o problema e recarregue a lista de máquinas a seguir</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="165"/>
         <source>loading XML software list data and (re)creating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando lista de software (XML) do cache e (re)criando cache</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="168"/>
         <source>SWL data - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Dados SWL - %p%</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="173"/>
         <source>ERROR: can&apos;t open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: impossível abrir o arquivo de cache da lista de software do MESS para escrita. path = %1 -- por favor verifique/corrija as permissões de acesso e recarregue a lista de máquina a seguir</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="291"/>
         <source>WARNING: the external process called to load the MESS software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o processo externo chamado para carregar as listas de software do MESS não terminaram corretamente -- código da saída = %1, estado de saída = %2</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="291"/>
         <source>normal</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="291"/>
         <source>crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>quebrado</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="294"/>
         <source>done (loading XML software list data and (re)creating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando dados da lista de software (XML) e (re)criando cache, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="344"/>
         <source>WARNING: your currently selected MESS emulator doesn&apos;t support software lists -- MESS 0.138+ required</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: seu emulador MESS atualmente selecionado não suporta listas de software -- requerido MESS 0.138 ou superior</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="360"/>
         <source>WARNING: the external process called to load the MESS software lists caused an error -- processError = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o processo externo chamado para carregar as listas de software do MESS causou um erro -- Erro do Processo = %1</translation>
     </message>
 </context>
 <context>
