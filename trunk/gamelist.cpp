@@ -68,6 +68,7 @@ extern QMap<QString, QString> messXmlDataCache;
 extern QMap<QString, QString> messMachineSoftwareListMap;
 extern QMap<QString, QString> messSoftwareListXmlDataCache;
 extern QString messSwlBuffer;
+extern bool messSwlSupported;
 #endif
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
@@ -292,6 +293,7 @@ void Gamelist::load()
     qmc2MESSSoftwareList = NULL;
   }
   qmc2LastSoftwareListItem = NULL;
+  messSwlSupported = true;
   messMachineSoftwareListMap.clear();
   messSoftwareListXmlDataCache.clear();
   messSwlBuffer.clear();
@@ -744,7 +746,7 @@ void Gamelist::verify(bool currentOnly)
   enableWidgets(FALSE);
 
   verifiedList.clear();
-  verifyLastLine = "";
+  verifyLastLine.clear();
   verifyTimer.start();
   numVerifyRoms = 0;
   if ( verifyCurrentOnly ) {
@@ -2517,7 +2519,7 @@ void Gamelist::verifyReadyReadStandardOutput()
   QStringList lines = s.split("\n");
 
   if ( s.endsWith("\n") ) {
-    verifyLastLine = "";
+    verifyLastLine.clear();
   } else {
     verifyLastLine = lines.last();
     lines.removeLast();

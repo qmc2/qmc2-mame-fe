@@ -106,6 +106,7 @@ MESSSoftwareList *qmc2MESSSoftwareList = NULL;
 QString qmc2MessMachineName = "";
 QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
 QTreeWidgetItem *qmc2LastSoftwareListItem = NULL;
+bool qmc2MessSWListAlreadyLoading = FALSE;
 #endif
 #if QMC2_USE_PHONON_API
 AudioEffectDialog *qmc2AudioEffectDialog = NULL;
@@ -2720,24 +2721,28 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 
     case QMC2_SOFTWARE_LIST_INDEX:
       if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: sorry, the MESS software list isn't working yet"));
-        tabSoftwareList->setUpdatesEnabled(FALSE);
-        if ( qmc2MESSSoftwareList ) {
-          QLayout *vbl = tabSoftwareList->layout();
-          if ( vbl )
-            delete vbl;
-          delete qmc2MESSSoftwareList;
-          qmc2MESSSoftwareList = NULL;
-        }
-        QString machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
-        QVBoxLayout *layout = new QVBoxLayout;
-        qmc2MESSSoftwareList = new MESSSoftwareList(machineName, tabSoftwareList);
-        qmc2MESSSoftwareList->load();
-        layout->addWidget(qmc2MESSSoftwareList);
-        tabSoftwareList->setLayout(layout);
-        qmc2MESSSoftwareList->show();
-        qmc2LastSoftwareListItem = qmc2CurrentItem;
-        tabSoftwareList->setUpdatesEnabled(TRUE);
+	if ( !qmc2MessSWListAlreadyLoading ) {
+          qmc2MessSWListAlreadyLoading = true;
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESS software lists are still under development and aren't working correctly yet!"));
+          tabSoftwareList->setUpdatesEnabled(FALSE);
+          if ( qmc2MESSSoftwareList ) {
+            QLayout *vbl = tabSoftwareList->layout();
+            if ( vbl )
+              delete vbl;
+            delete qmc2MESSSoftwareList;
+            qmc2MESSSoftwareList = NULL;
+          }
+          QString machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
+          QVBoxLayout *layout = new QVBoxLayout;
+          qmc2MESSSoftwareList = new MESSSoftwareList(machineName, tabSoftwareList);
+          qmc2MESSSoftwareList->load();
+          layout->addWidget(qmc2MESSSoftwareList);
+          tabSoftwareList->setLayout(layout);
+          qmc2MESSSoftwareList->show();
+          qmc2LastSoftwareListItem = qmc2CurrentItem;
+          tabSoftwareList->setUpdatesEnabled(TRUE);
+          qmc2MessSWListAlreadyLoading = false;
+	}
       }
       break;
 
