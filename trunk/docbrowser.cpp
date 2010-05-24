@@ -31,6 +31,10 @@ DocBrowser::DocBrowser(QWidget *parent)
   move(widgetPos);
 
   connect(browser, SIGNAL(titleChanged(QString &)), this, SLOT(titleChanged(QString &)));
+
+#if defined(Q_WS_MAC)
+  setParent(qmc2MainWindow, Qt::Dialog);
+#endif
 }
 
 DocBrowser::~DocBrowser()

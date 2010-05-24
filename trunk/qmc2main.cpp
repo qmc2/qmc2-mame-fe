@@ -1663,7 +1663,7 @@ void MainWindow::on_actionAnalyseCurrentROM_activated()
   }
 
   if ( !qmc2ROMAlyzer )
-    qmc2ROMAlyzer = new ROMAlyzer(0);
+    qmc2ROMAlyzer = new ROMAlyzer(this);
 
   qmc2ROMAlyzer->lineEditGames->setText(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON));
 
@@ -4494,6 +4494,13 @@ void MainWindow::init()
 {
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::init()");
+#endif
+
+#if defined(Q_WS_MAC)
+  bool isShown = qmc2Options->isVisible();
+  qmc2Options->setParent(this, Qt::Dialog);
+  if ( isShown )
+    qmc2Options->show();
 #endif
 
 #if defined(QMC2_EMUTYPE_MESS)
