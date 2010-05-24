@@ -2,6 +2,9 @@
 #define _MESSSWLIST_H_
 
 #include <QProcess>
+#include <QTime>
+#include <QFile>
+#include <QTextStream>
 #include <QXmlDefaultHandler>
 #include "ui_messswlist.h"
 
@@ -26,7 +29,11 @@ class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 	
 	public:
 		QProcess *loadProc;
+		QTime loadTimer;
+		bool validData;
+		QFile fileSWLCache;
 		QString messMachineName;
+		QTextStream tsSWLCache;
 
 		MESSSoftwareList(QString, QWidget *);
 		~MESSSoftwareList();
