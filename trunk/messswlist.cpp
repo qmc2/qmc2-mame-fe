@@ -99,6 +99,7 @@ bool MESSSoftwareList::load()
 	bool swlCacheOkay = true;
 	validData = messSwlSupported;
 	QString swlCachePath = qmc2Config->value("MESS/FilesAndDirectories/SoftwareListCache").toString();
+	qApp->processEvents();
 	if ( messSwlBuffer.isEmpty() && messSwlSupported ) {
 		validData = false;
 		swlCacheOkay = false;
@@ -125,8 +126,8 @@ bool MESSSoftwareList::load()
 					else
 						qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 					QFileInfo fi(swlCachePath);
-					qmc2MainWindow->progressBarGamelist->setRange(0, fi.size() / QMC2_FILE_BUFFER_SIZE);
-					qmc2MainWindow->progressBarGamelist->reset();
+					qmc2MainWindow->progressBarGamelist->setRange(0, fi.size());
+					qmc2MainWindow->progressBarGamelist->setValue(0);
 					QString readBuffer;
 					while ( !ts.atEnd() || !readBuffer.isEmpty() ) {
 						readBuffer += ts.read(QMC2_FILE_BUFFER_SIZE);
@@ -147,6 +148,7 @@ bool MESSSoftwareList::load()
 							readBuffer = lines.last();
 						qmc2MainWindow->progressBarGamelist->setValue(messSwlBuffer.length());
 					}
+					qmc2MainWindow->progressBarGamelist->reset();
 					elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML software list data from cache, elapsed time = %1").arg(elapsedTime.toString("mm:ss.zzz")));
 					validData = true;
@@ -174,6 +176,7 @@ bool MESSSoftwareList::load()
 			return false;
 		}
 
+		messSwlBuffer.clear();
 		messSwlLastLine.clear();
 
 		tsSWLCache.setDevice(&fileSWLCache);
@@ -324,8 +327,10 @@ void MESSSoftwareList::loadReadyReadStandardOutput()
 	foreach (QString line, lines) {
 		line = line.trimmed();
 		if ( !line.isEmpty() )
-			if ( !line.startsWith("<!") && !line.startsWith("<?xml") && !line.startsWith("]>") )
+			if ( !line.startsWith("<!") && !line.startsWith("<?xml") && !line.startsWith("]>") ) {
 				tsSWLCache << line << "\n";
+				messSwlBuffer += line + "\n";
+			}
 	}
 }
 
