@@ -38,6 +38,7 @@ class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 		MESSSoftwareList(QString, QWidget *);
 		~MESSSoftwareList();
 
+		QString &getListXmlData(QString);
 		QString &getXmlData(QString);
 
 	public slots:
