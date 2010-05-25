@@ -4643,67 +4643,100 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messswlist.cpp" line="119"/>
+        <location filename="../../messswlist.cpp" line="120"/>
+        <source>Known software (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messswlist.cpp" line="121"/>
+        <source>Favorites (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messswlist.cpp" line="122"/>
+        <source>Search (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messswlist.cpp" line="131"/>
+        <location filename="../../messswlist.cpp" line="262"/>
+        <source>Known software (no data available)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messswlist.cpp" line="132"/>
+        <location filename="../../messswlist.cpp" line="263"/>
+        <source>Favorites (no data available)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messswlist.cpp" line="133"/>
+        <location filename="../../messswlist.cpp" line="264"/>
+        <source>Search (no data available)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messswlist.cpp" line="166"/>
         <source>loading XML software list data from cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messswlist.cpp" line="124"/>
+        <location filename="../../messswlist.cpp" line="171"/>
         <source>SWL cache - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messswlist.cpp" line="151"/>
+        <location filename="../../messswlist.cpp" line="199"/>
         <source>done (loading XML software list data from cache, elapsed time = %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messswlist.cpp" line="158"/>
+        <location filename="../../messswlist.cpp" line="206"/>
         <source>ERROR: the file name for the MESS software list cache is empty -- please correct this and reload the machine list afterwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messswlist.cpp" line="165"/>
+        <location filename="../../messswlist.cpp" line="213"/>
         <source>loading XML software list data and (re)creating cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messswlist.cpp" line="168"/>
+        <location filename="../../messswlist.cpp" line="216"/>
         <source>SWL data - %p%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messswlist.cpp" line="173"/>
+        <location filename="../../messswlist.cpp" line="221"/>
         <source>ERROR: can&apos;t open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messswlist.cpp" line="291"/>
+        <location filename="../../messswlist.cpp" line="344"/>
         <source>WARNING: the external process called to load the MESS software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messswlist.cpp" line="291"/>
+        <location filename="../../messswlist.cpp" line="344"/>
         <source>normal</source>
         <translation type="unfinished">normalny</translation>
     </message>
     <message>
-        <location filename="../../messswlist.cpp" line="291"/>
+        <location filename="../../messswlist.cpp" line="344"/>
         <source>crashed</source>
         <translation type="unfinished">przestał działać</translation>
     </message>
     <message>
-        <location filename="../../messswlist.cpp" line="294"/>
+        <location filename="../../messswlist.cpp" line="347"/>
         <source>done (loading XML software list data and (re)creating cache, elapsed time = %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messswlist.cpp" line="344"/>
+        <location filename="../../messswlist.cpp" line="399"/>
         <source>WARNING: your currently selected MESS emulator doesn&apos;t support software lists -- MESS 0.138+ required</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messswlist.cpp" line="360"/>
+        <location filename="../../messswlist.cpp" line="415"/>
         <source>WARNING: the external process called to load the MESS software lists caused an error -- processError = %1</source>
         <translation type="unfinished"></translation>
     </message>
