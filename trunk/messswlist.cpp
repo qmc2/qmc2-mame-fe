@@ -34,6 +34,14 @@ MESSSoftwareList::MESSSoftwareList(QString machineName, QWidget *parent)
 	messMachineName = machineName;
 	loadProc = NULL;
 	validData = false;
+
+	toolBoxSoftwareList->setEnabled(false);
+
+	// restore widget states
+	treeWidgetKnownSoftware->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/KnownSoftwareHeaderState").toByteArray());
+	treeWidgetFavoriteSoftware->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/FavoriteSoftwareHeaderState").toByteArray());
+	treeWidgetSearchResults->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/SearchResultsHeaderState").toByteArray());
+	toolBoxSoftwareList->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/PageIndex").toInt());
 }
 
 MESSSoftwareList::~MESSSoftwareList()
@@ -42,6 +50,11 @@ MESSSoftwareList::~MESSSoftwareList()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::~MESSSoftwareList()");
 #endif
 
+	// save widget states
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/KnownSoftwareHeaderState", treeWidgetKnownSoftware->header()->saveState());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/FavoriteSoftwareHeaderState", treeWidgetFavoriteSoftware->header()->saveState());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/SearchResultsHeaderState", treeWidgetSearchResults->header()->saveState());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/PageIndex", toolBoxSoftwareList->currentIndex());
 }
 
 QString &MESSSoftwareList::getListXmlData(QString machineName)
@@ -104,12 +117,20 @@ QString &MESSSoftwareList::getXmlData(QString machineName)
 	xmlBuffer.clear();
 
 	if ( !machineSoftwareList.isEmpty() && machineSoftwareList != "NO_SOFTWARE_LIST" ) {
+		toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (%1)").arg(machineSoftwareList));
+		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (%1)").arg(machineSoftwareList));
+		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(machineSoftwareList));
+		toolBoxSoftwareList->setEnabled(true);
 		xmlBuffer = messSoftwareListXmlDataCache[machineSoftwareList];
 		if ( xmlBuffer.isEmpty() ) {
 			// FIXME: retrieve the software list XML data for the current machine here...
 
 			messSoftwareListXmlDataCache[machineSoftwareList] = xmlBuffer;
 		}
+	} else {
+		toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (no data available)"));
+		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (no data available)"));
+		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (no data available)"));
 	}
 
 	return xmlBuffer;
@@ -237,8 +258,12 @@ bool MESSSoftwareList::load()
 				validData = false;
 		}
 
-		if ( !validData )
+		if ( !validData ) {
+			toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (no data available)"));
+			toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (no data available)"));
+			toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (no data available)"));
 			return false;
+		}
 	}
 
 #ifdef QMC2_DEBUG
