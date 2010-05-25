@@ -24,6 +24,7 @@ class Welcome : public QDialog, public Ui::Welcome
     void on_toolButtonBrowseExecutableFile_clicked();
     void on_toolButtonBrowseROMPath_clicked();
     void on_toolButtonBrowseSamplePath_clicked();
+    void on_toolButtonBrowseHashPath_clicked();
     void setupLanguage();
 };
 
