@@ -12,6 +12,7 @@ extern QSettings *qmc2Config;
 extern Gamelist *qmc2Gamelist;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
+extern QMap<QString, QString> messXmlDataCache;
 
 QMap<QString, QString> messMachineSoftwareListMap;
 QMap<QString, QString> messSoftwareListXmlDataCache;
@@ -41,6 +42,30 @@ MESSSoftwareList::~MESSSoftwareList()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::~MESSSoftwareList()");
 #endif
 
+}
+
+QString &MESSSoftwareList::getListXmlData(QString machineName)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::getListXmlData(QString machineName = %1)").arg(machineName));
+#endif
+
+	static QString listXmlBuffer;
+
+	listXmlBuffer = messXmlDataCache[machineName];
+
+	if ( listXmlBuffer.isEmpty() ) {
+		int i = 0;
+		QString s = "<machine name=\"" + machineName + "\"";
+		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
+		listXmlBuffer = "<?xml version=\"1.0\"?>\n";
+		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
+			listXmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
+		listXmlBuffer += "</machine>\n";
+		messXmlDataCache[machineName] = listXmlBuffer;
+	}
+
+	return listXmlBuffer;
 }
 
 QString &MESSSoftwareList::getXmlData(QString machineName)
