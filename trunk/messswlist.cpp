@@ -145,7 +145,6 @@ bool MESSSoftwareList::load()
 	bool swlCacheOkay = true;
 	validData = messSwlSupported;
 	QString swlCachePath = qmc2Config->value("MESS/FilesAndDirectories/SoftwareListCache").toString();
-	qApp->processEvents();
 	if ( messSwlBuffer.isEmpty() && messSwlSupported ) {
 		validData = false;
 		swlCacheOkay = false;
