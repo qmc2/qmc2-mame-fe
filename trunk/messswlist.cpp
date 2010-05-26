@@ -14,7 +14,7 @@ extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
 extern QMap<QString, QString> messXmlDataCache;
 
-QMap<QString, QString> messMachineSoftwareListMap;
+QMap<QString, QStringList> messMachineSoftwareListMap;
 QMap<QString, QString> messSoftwareListXmlDataCache;
 QString messSwlBuffer;
 QString messSwlLastLine;
@@ -57,6 +57,22 @@ MESSSoftwareList::~MESSSoftwareList()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/PageIndex", toolBoxSoftwareList->currentIndex());
 }
 
+QString &MESSSoftwareList::stringListToString(QStringList stringList)
+{
+	static QString conversionBuffer;
+
+	conversionBuffer.clear();
+
+	for (int i = 0; i < stringList.count(); i++) {
+		if ( i == stringList.count() - 1 )
+			conversionBuffer += stringList[i];
+		else
+			conversionBuffer += stringList[i] + ", ";
+	}
+
+	return conversionBuffer;
+}
+
 QString &MESSSoftwareList::getListXmlData(QString machineName)
 {
 #ifdef QMC2_DEBUG
@@ -89,7 +105,7 @@ QString &MESSSoftwareList::getXmlData(QString machineName)
 
 	static QString xmlBuffer;
 
-	QString machineSoftwareList = messMachineSoftwareListMap[machineName];
+	QStringList machineSoftwareList = messMachineSoftwareListMap[machineName];
 	if ( machineSoftwareList.isEmpty() ) {
 		int i = 0;
 		QString s = "<machine name=\"" + machineName + "\"";
@@ -99,34 +115,36 @@ QString &MESSSoftwareList::getXmlData(QString machineName)
 			if ( line.startsWith("<softwarelist name=\"") ) {
 				int startIndex = line.indexOf("\"") + 1;
 				int endIndex = line.indexOf("\"", startIndex);
-				machineSoftwareList = line.mid(startIndex, endIndex - startIndex); 
+				machineSoftwareList << line.mid(startIndex, endIndex - startIndex); 
 			}
 		}
 		if ( machineSoftwareList.isEmpty() )
-			machineSoftwareList = "NO_SOFTWARE_LIST";
+			machineSoftwareList << "NO_SOFTWARE_LIST";
 		messMachineSoftwareListMap[machineName] = machineSoftwareList;
 #ifdef QMC2_DEBUG
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: messMachineSoftwareListMap[%1] = %2").arg(machineName).arg(machineSoftwareList));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: messMachineSoftwareListMap[%1] = %2").arg(machineName).arg(stringListToString(machineSoftwareList)));
 #endif
 	}
 #ifdef QMC2_DEBUG
 	else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: messMachineSoftwareListMap[%1] = %2 (cached)").arg(machineName).arg(messMachineSoftwareListMap[machineName]));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: messMachineSoftwareListMap[%1] = %2 (cached)").arg(machineName).arg(stringListToString(messMachineSoftwareListMap[machineName])));
 #endif
 
 	xmlBuffer.clear();
 
-	if ( !machineSoftwareList.isEmpty() && machineSoftwareList != "NO_SOFTWARE_LIST" ) {
-		toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (%1)").arg(machineSoftwareList));
-		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (%1)").arg(machineSoftwareList));
-		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(machineSoftwareList));
+	if ( !machineSoftwareList.isEmpty() && !machineSoftwareList.contains("NO_SOFTWARE_LIST") ) {
+		toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (%1)").arg(stringListToString(machineSoftwareList)));
+		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (%1)").arg(stringListToString(machineSoftwareList)));
+		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(stringListToString(machineSoftwareList)));
 		toolBoxSoftwareList->setEnabled(true);
+		/*
 		xmlBuffer = messSoftwareListXmlDataCache[machineSoftwareList];
 		if ( xmlBuffer.isEmpty() ) {
 			// FIXME: retrieve the software list XML data for the current machine here...
 
 			messSoftwareListXmlDataCache[machineSoftwareList] = xmlBuffer;
 		}
+		*/
 	} else {
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (no data available)"));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (no data available)"));
