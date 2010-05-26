@@ -41,6 +41,7 @@ MESSSoftwareList::MESSSoftwareList(QString machineName, QWidget *parent)
 	toolButtonRemoveFromFavorites->setIconSize(iconSize);
 	toolButtonPlay->setIconSize(iconSize);
 	toolButtonPlayEmbedded->setIconSize(iconSize);
+	toolButtonReload->setIconSize(iconSize);
 
 	toolBoxSoftwareList->setEnabled(false);
 	toolButtonAddToFavorites->setEnabled(false);
@@ -134,6 +135,16 @@ QString &MESSSoftwareList::getXmlData(QString machineName)
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (%1)").arg(swlString));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(swlString));
 		toolBoxSoftwareList->setEnabled(true);
+
+		// load available device configurations, if any...
+		qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1").arg(messMachineName));
+		QStringList configurationList = qmc2Config->childGroups();
+		qmc2Config->endGroup();
+		if ( !configurationList.isEmpty() ) {
+			comboBoxDeviceConfiguration->insertItems(1, configurationList);
+			comboBoxDeviceConfiguration->setEnabled(true);
+		}
+
 		/*
 		xmlBuffer = messSoftwareListXmlDataCache[machineSoftwareList];
 		if ( xmlBuffer.isEmpty() ) {
@@ -442,6 +453,59 @@ void MESSSoftwareList::loadStateChanged(QProcess::ProcessState processState)
 
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::loadStateChanged(QProcess::ProcessState processState = %1)").arg(processState));
+#endif
+
+}
+
+void MESSSoftwareList::on_toolButtonReload_clicked(bool checked)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonReload_clicked(bool checked = %1)").arg(checked));
+#endif
+
+	treeWidgetKnownSoftware->clear();
+	treeWidgetFavoriteSoftware->clear();
+	treeWidgetSearchResults->clear();
+	toolBoxSoftwareList->setEnabled(false);
+	toolButtonAddToFavorites->setEnabled(false);
+	toolButtonRemoveFromFavorites->setEnabled(false);
+	toolButtonPlay->setEnabled(false);
+	toolButtonPlayEmbedded->setEnabled(false);
+	comboBoxDeviceConfiguration->setEnabled(false);
+	comboBoxDeviceConfiguration->clear();
+	comboBoxDeviceConfiguration->insertItem(0, tr("No additional devices"));
+
+	QTimer::singleShot(0, this, SLOT(load()));
+}
+
+void MESSSoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonAddToFavorites_clicked(bool checked = %1)").arg(checked));
+#endif
+
+}
+
+void MESSSoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked = %1)").arg(checked));
+#endif
+
+}
+
+void MESSSoftwareList::on_toolButtonPlay_clicked(bool checked)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonPlay_clicked(bool checked = %1)").arg(checked));
+#endif
+
+}
+
+void MESSSoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked = %1)").arg(checked));
 #endif
 
 }

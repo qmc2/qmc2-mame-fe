@@ -372,10 +372,6 @@ void Options::apply()
   QSize iconSizeLarge = iconSize + QSize(4, 4);
   qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSize);
   qmc2MainWindow->treeWidgetHierarchy->setIconSize(iconSize);
-#if defined(QMC2_EMUTYPE_MAME)
-  qmc2MainWindow->treeWidgetCategoryView->setIconSize(iconSize);
-  qmc2MainWindow->treeWidgetVersionView->setIconSize(iconSize);
-#endif
   qmc2MainWindow->treeWidgetEmulators->setIconSize(iconSize);
   pushButtonApply->setIconSize(iconSize);
   pushButtonRestore->setIconSize(iconSize);
@@ -392,13 +388,12 @@ void Options::apply()
   toolButtonBrowseDataDirectory->setIconSize(iconSize);
   toolButtonBrowseGameInfoDB->setIconSize(iconSize);
 #if defined(QMC2_EMUTYPE_MAME)
+  qmc2MainWindow->treeWidgetCategoryView->setIconSize(iconSize);
+  qmc2MainWindow->treeWidgetVersionView->setIconSize(iconSize);
   toolButtonBrowseEmuInfoDB->setIconSize(iconSize);
   toolButtonBrowseMAWSCacheDirectory->setIconSize(iconSize);
   checkBoxUseCatverIni->setIconSize(iconSize);
   toolButtonBrowseCatverIniFile->setIconSize(iconSize);
-#endif
-#if defined(QMC2_EMUTYPE_MESS)
-  toolButtonBrowseSoftwareListCache->setIconSize(iconSize);
 #endif
   toolButtonBrowsePreviewDirectory->setIconSize(iconSize);
   toolButtonBrowsePreviewFile->setIconSize(iconSize);
@@ -511,6 +506,7 @@ void Options::apply()
   if ( qmc2ROMStatusExporter )
     QTimer::singleShot(0, qmc2ROMStatusExporter, SLOT(adjustIconSizes()));
 #if defined(QMC2_EMUTYPE_MESS)
+  toolButtonBrowseSoftwareListCache->setIconSize(iconSize);
   if ( qmc2MESSDeviceConfigurator ) {
     qmc2MESSDeviceConfigurator->pushButtonConfiguration->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->pushButtonNewConfiguration->setIconSize(iconSize);
@@ -523,6 +519,7 @@ void Options::apply()
     qmc2MESSSoftwareList->toolButtonRemoveFromFavorites->setIconSize(iconSize);
     qmc2MESSSoftwareList->toolButtonPlay->setIconSize(iconSize);
     qmc2MESSSoftwareList->toolButtonPlayEmbedded->setIconSize(iconSize);
+    qmc2MESSSoftwareList->toolButtonReload->setIconSize(iconSize);
   }
 #endif
   qmc2MainWindow->pushButtonClearFinishedDownloads->setIconSize(iconSize);
