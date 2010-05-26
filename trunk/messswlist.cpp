@@ -57,22 +57,6 @@ MESSSoftwareList::~MESSSoftwareList()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/PageIndex", toolBoxSoftwareList->currentIndex());
 }
 
-QString &MESSSoftwareList::stringListToString(QStringList stringList)
-{
-	static QString conversionBuffer;
-
-	conversionBuffer.clear();
-
-	for (int i = 0; i < stringList.count(); i++) {
-		if ( i == stringList.count() - 1 )
-			conversionBuffer += stringList[i];
-		else
-			conversionBuffer += stringList[i] + ", ";
-	}
-
-	return conversionBuffer;
-}
-
 QString &MESSSoftwareList::getListXmlData(QString machineName)
 {
 #ifdef QMC2_DEBUG
@@ -122,20 +106,21 @@ QString &MESSSoftwareList::getXmlData(QString machineName)
 			machineSoftwareList << "NO_SOFTWARE_LIST";
 		messMachineSoftwareListMap[machineName] = machineSoftwareList;
 #ifdef QMC2_DEBUG
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: messMachineSoftwareListMap[%1] = %2").arg(machineName).arg(stringListToString(machineSoftwareList)));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: messMachineSoftwareListMap[%1] = %2").arg(machineName).arg(machineSoftwareList.join(", ")));
 #endif
 	}
 #ifdef QMC2_DEBUG
 	else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: messMachineSoftwareListMap[%1] = %2 (cached)").arg(machineName).arg(stringListToString(messMachineSoftwareListMap[machineName])));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: messMachineSoftwareListMap[%1] = %2 (cached)").arg(machineName).arg(messMachineSoftwareListMap[machineName].join(", ")));
 #endif
 
 	xmlBuffer.clear();
 
 	if ( !machineSoftwareList.isEmpty() && !machineSoftwareList.contains("NO_SOFTWARE_LIST") ) {
-		toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (%1)").arg(stringListToString(machineSoftwareList)));
-		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (%1)").arg(stringListToString(machineSoftwareList)));
-		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(stringListToString(machineSoftwareList)));
+		QString swlString = machineSoftwareList.join(", ");
+		toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (%1)").arg(swlString));
+		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (%1)").arg(swlString));
+		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(swlString));
 		toolBoxSoftwareList->setEnabled(true);
 		/*
 		xmlBuffer = messSoftwareListXmlDataCache[machineSoftwareList];
