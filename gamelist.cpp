@@ -65,7 +65,7 @@ extern QTreeWidgetItem *qmc2LastSoftwareListItem;
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 extern MESSSoftwareList *qmc2MESSSoftwareList;
 extern QMap<QString, QString> messXmlDataCache;
-extern QMap<QString, QString> messMachineSoftwareListMap;
+extern QMap<QString, QStringList> messMachineSoftwareListMap;
 extern QMap<QString, QString> messSoftwareListXmlDataCache;
 extern QString messSwlBuffer;
 extern bool messSwlSupported;
