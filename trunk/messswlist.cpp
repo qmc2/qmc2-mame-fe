@@ -35,7 +35,19 @@ MESSSoftwareList::MESSSoftwareList(QString machineName, QWidget *parent)
 	loadProc = NULL;
 	validData = false;
 
+	QFontMetrics fm(QApplication::font());
+	QSize iconSize(fm.height() - 2, fm.height() - 2);
+	toolButtonAddToFavorites->setIconSize(iconSize);
+	toolButtonRemoveFromFavorites->setIconSize(iconSize);
+	toolButtonPlay->setIconSize(iconSize);
+	toolButtonPlayEmbedded->setIconSize(iconSize);
+
 	toolBoxSoftwareList->setEnabled(false);
+	toolButtonAddToFavorites->setEnabled(false);
+	toolButtonRemoveFromFavorites->setEnabled(false);
+	toolButtonPlay->setEnabled(false);
+	toolButtonPlayEmbedded->setEnabled(false);
+	comboBoxDeviceConfiguration->setEnabled(false);
 
 	// restore widget states
 	treeWidgetKnownSoftware->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/KnownSoftwareHeaderState").toByteArray());

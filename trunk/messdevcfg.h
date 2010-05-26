@@ -31,6 +31,7 @@ class MESSDeviceConfiguratorXmlHandler : public QXmlDefaultHandler
     QTreeWidget *parentTreeWidget;
     QString deviceType;
     QString deviceTag;
+    QString deviceBriefName;
     QStringList deviceInstances;
     QStringList deviceExtensions;
 

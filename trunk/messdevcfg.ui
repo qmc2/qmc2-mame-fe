@@ -156,6 +156,11 @@
          </column>
          <column>
           <property name="text">
+           <string>Brief name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
            <string>Type</string>
           </property>
          </column>

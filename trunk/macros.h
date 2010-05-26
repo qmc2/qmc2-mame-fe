@@ -91,10 +91,11 @@
 
 // logical column indizes of the MESS device configurator
 #define QMC2_DEVCONFIG_COLUMN_NAME	0
-#define QMC2_DEVCONFIG_COLUMN_TYPE	1
-#define QMC2_DEVCONFIG_COLUMN_TAG	2
-#define QMC2_DEVCONFIG_COLUMN_EXT	3
-#define QMC2_DEVCONFIG_COLUMN_FILE	4
+#define QMC2_DEVCONFIG_COLUMN_BRIEF	1
+#define QMC2_DEVCONFIG_COLUMN_TYPE	2
+#define QMC2_DEVCONFIG_COLUMN_TAG	3
+#define QMC2_DEVCONFIG_COLUMN_EXT	4
+#define QMC2_DEVCONFIG_COLUMN_FILE	5
 
 // page indizes for the MESS software list tool box
 #define QMC2_SWLIST_KNOWN_SW_PAGE	0
@@ -106,6 +107,7 @@
 #define QMC2_SWLIST_COLUMN_NAME		1
 #define QMC2_SWLIST_COLUMN_PUBLISHER	2
 #define QMC2_SWLIST_COLUMN_YEAR		3
+#define QMC2_SWLIST_COLUMN_DEVICECFG	4 // used only in 'favorites'
 
 // logical column indizes of the audio effect list
 #define QMC2_AUDIOEFFECT_COLUMN_NAME	0

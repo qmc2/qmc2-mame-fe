@@ -567,8 +567,10 @@ bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &namespaceURI,
     deviceTag = attributes.value("tag");
     deviceInstances.clear();
     deviceExtensions.clear();
+    deviceBriefName.clear();
   } else if ( qName == "instance" ) {
     deviceInstances << attributes.value("name");
+    deviceBriefName = attributes.value("briefname");
   } else if ( qName == "extension" ) {
     deviceExtensions << attributes.value("name");
   }
@@ -586,6 +588,7 @@ bool MESSDeviceConfiguratorXmlHandler::endElement(const QString &namespaceURI, c
     foreach (QString instance, deviceInstances) {
       QTreeWidgetItem *deviceItem = new QTreeWidgetItem(parentTreeWidget);
       deviceItem->setText(QMC2_DEVCONFIG_COLUMN_NAME, instance);
+      deviceItem->setText(QMC2_DEVCONFIG_COLUMN_BRIEF, deviceBriefName);
       deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TYPE, deviceType);
       deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TAG, deviceTag);
       deviceItem->setText(QMC2_DEVCONFIG_COLUMN_EXT, deviceExtensions.join("/"));
