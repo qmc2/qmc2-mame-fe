@@ -309,15 +309,22 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
         case QMC2_MAWS_INDEX:
           {
             bool ok;
-            QString baseUrl = QInputDialog::getText(this,
+	    QStringList suggestedUrls;
+            suggestedUrls << QMC2_MAWS_BASE_URL
+                          << "http://maws.mameworld.info/minimaws/romset/%1";
+            if ( !suggestedUrls.contains(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString()) )
+              suggestedUrls << qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString();
+            int current = suggestedUrls.indexOf(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString());
+            QString baseUrl = QInputDialog::getItem(this,
                                                     tr("MAWS configuration (1/2)"),
                                                     tr("MAWS URL pattern (use %1 as placeholder for game ID):").arg("%1"),
-                                                    QLineEdit::Normal,
-                                                    qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString(),
+                                                    suggestedUrls,
+                                                    current < 0 ? 0 : current,
+                                                    true,
                                                     &ok);
             if ( ok && !baseUrl.isEmpty() )
               qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", baseUrl);
-            if ( ok ) {
+            if ( ok && baseUrl == QMC2_MAWS_BASE_URL ) {
               QStringList items;
               items << tr("Yes") << tr("No");
               bool mawsQuickDownloadEnabled = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", TRUE).toBool();

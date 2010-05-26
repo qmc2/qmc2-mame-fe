@@ -518,6 +518,12 @@ void Options::apply()
     qmc2MESSDeviceConfigurator->pushButtonSaveConfiguration->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->pushButtonRemoveConfiguration->setIconSize(iconSize);
   }
+  if ( qmc2MESSSoftwareList ) {
+    qmc2MESSSoftwareList->toolButtonAddToFavorites->setIconSize(iconSize);
+    qmc2MESSSoftwareList->toolButtonRemoveFromFavorites->setIconSize(iconSize);
+    qmc2MESSSoftwareList->toolButtonPlay->setIconSize(iconSize);
+    qmc2MESSSoftwareList->toolButtonPlayEmbedded->setIconSize(iconSize);
+  }
 #endif
   qmc2MainWindow->pushButtonClearFinishedDownloads->setIconSize(iconSize);
   qmc2MainWindow->pushButtonReloadSelectedDownloads->setIconSize(iconSize);
