@@ -324,14 +324,17 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
                                                     &ok);
             if ( ok && !baseUrl.isEmpty() )
               qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", baseUrl);
-            if ( ok && baseUrl == QMC2_MAWS_BASE_URL ) {
-              QStringList items;
-              items << tr("Yes") << tr("No");
-              bool mawsQuickDownloadEnabled = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", TRUE).toBool();
-              QString mawsQuickDownload = QInputDialog::getItem(this, tr("MAWS configuration (2/2)"), tr("Enable MAWS quick download?"),
-                                                                items, mawsQuickDownloadEnabled ? 0 : 1, FALSE, &ok);
-              if ( ok && !mawsQuickDownload.isEmpty() )
-                qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", mawsQuickDownload == tr("Yes"));
+            if ( ok ) {
+              if ( baseUrl == QMC2_MAWS_BASE_URL ) {
+                QStringList items;
+                items << tr("Yes") << tr("No");
+                bool mawsQuickDownloadEnabled = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", TRUE).toBool();
+                QString mawsQuickDownload = QInputDialog::getItem(this, tr("MAWS configuration (2/2)"), tr("Enable MAWS quick download?"),
+                                                                  items, mawsQuickDownloadEnabled ? 0 : 1, FALSE, &ok);
+                if ( ok && !mawsQuickDownload.isEmpty() )
+                  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", mawsQuickDownload == tr("Yes"));
+              } else
+                qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", FALSE);
             }
           }
           break;
