@@ -46,6 +46,11 @@ class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 		bool save();
 
 		// callback functions
+		void on_toolButtonReload_clicked(bool);
+		void on_toolButtonAddToFavorites_clicked(bool);
+		void on_toolButtonRemoveFromFavorites_clicked(bool);
+		void on_toolButtonPlay_clicked(bool);
+		void on_toolButtonPlayEmbedded_clicked(bool);
 
 		// process management
 		void loadStarted();
