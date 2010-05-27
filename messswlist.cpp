@@ -40,8 +40,14 @@ MESSSoftwareList::MESSSoftwareList(QString machineName, QWidget *parent)
 	toolButtonAddToFavorites->setIconSize(iconSize);
 	toolButtonRemoveFromFavorites->setIconSize(iconSize);
 	toolButtonPlay->setIconSize(iconSize);
-	toolButtonPlayEmbedded->setIconSize(iconSize);
 	toolButtonReload->setIconSize(iconSize);
+#if defined(Q_WS_X11)
+	toolButtonPlayEmbedded->setIconSize(iconSize);
+#else
+	toolButtonPlayEmbedded->setVisible(false);
+	gridLayout->removeWidget(toolButtonPlay);
+	gridLayout->addWidget(toolButtonPlay, 0, 4, 1, 2);
+#endif
 
 	toolBoxSoftwareList->setEnabled(false);
 	toolButtonAddToFavorites->setEnabled(false);
