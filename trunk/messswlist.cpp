@@ -463,6 +463,8 @@ void MESSSoftwareList::on_toolButtonReload_clicked(bool checked)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonReload_clicked(bool checked = %1)").arg(checked));
 #endif
 
+	save();
+
 	treeWidgetKnownSoftware->clear();
 	treeWidgetFavoriteSoftware->clear();
 	treeWidgetSearchResults->clear();
