@@ -518,7 +518,9 @@ void Options::apply()
     qmc2MESSSoftwareList->toolButtonAddToFavorites->setIconSize(iconSize);
     qmc2MESSSoftwareList->toolButtonRemoveFromFavorites->setIconSize(iconSize);
     qmc2MESSSoftwareList->toolButtonPlay->setIconSize(iconSize);
+#if defined(Q_WS_X11)
     qmc2MESSSoftwareList->toolButtonPlayEmbedded->setIconSize(iconSize);
+#endif
     qmc2MESSSoftwareList->toolButtonReload->setIconSize(iconSize);
   }
 #endif
