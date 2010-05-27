@@ -525,6 +525,8 @@ void MESSDeviceConfigurator::hideEvent(QHideEvent *e)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
 #endif
 
+  save();
+
   if ( e )
     e->accept();
 }
