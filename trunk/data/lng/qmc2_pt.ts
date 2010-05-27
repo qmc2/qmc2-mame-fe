@@ -4516,7 +4516,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.ui" line="159"/>
         <source>Brief name</source>
-        <translation type="unfinished">Nome resumido</translation>
+        <translation>Nome resumido</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="164"/>
@@ -4620,7 +4620,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messswlist.ui" line="152"/>
         <source>Device configuration</source>
-        <translation type="unfinished">Configurações de dispositivo</translation>
+        <translation>Configurações de dispositivo</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="173"/>
@@ -4648,75 +4648,75 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messswlist.ui" line="330"/>
         <location filename="../../messswlist.ui" line="333"/>
         <source>Reload all information</source>
-        <translation type="unfinished"></translation>
+        <translation>Recarregar todas as informações</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="350"/>
         <location filename="../../messswlist.ui" line="353"/>
         <source>Select a pre-defined device configuration to be added to the software setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar uma configuração de dispositivo pré definida para ser adicionada à configuração do software</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="357"/>
         <source>No additional devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum dispositivo adicional</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="250"/>
         <location filename="../../messswlist.ui" line="253"/>
         <source>Add the currently selected software and device setup to the favorites list</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar software atualmente selecionado e configuração de dispositivo à lista de favoritos</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="270"/>
         <location filename="../../messswlist.ui" line="273"/>
         <source>Remove the currently selected favorite setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover a configuração favorita atualmente selecionada</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="290"/>
         <location filename="../../messswlist.ui" line="293"/>
         <source>Play the selected software configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar a configuração de software selecionada</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="310"/>
         <location filename="../../messswlist.ui" line="313"/>
         <source>Play the selected software configuration (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar a configuração de software selecionada (embutida)</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="134"/>
         <source>Known software (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Software conhecidos (%1)</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="135"/>
         <source>Favorites (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Favoritos (%1)</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="136"/>
         <source>Search (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Busca (%1)</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="157"/>
         <location filename="../../messswlist.cpp" line="287"/>
         <source>Known software (no data available)</source>
-        <translation type="unfinished"></translation>
+        <translation>Software conhecidos (nenhum dado disponível)</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="158"/>
         <location filename="../../messswlist.cpp" line="288"/>
         <source>Favorites (no data available)</source>
-        <translation type="unfinished"></translation>
+        <translation>Favoritos (nenhum dado disponível)</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="159"/>
         <location filename="../../messswlist.cpp" line="289"/>
         <source>Search (no data available)</source>
-        <translation type="unfinished"></translation>
+        <translation>Busca (nenhum dado disponível)</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="191"/>
@@ -12888,7 +12888,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../welcome.cpp" line="154"/>
         <source>Choose hash path</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o caminho para os hashes</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="228"/>
@@ -12936,7 +12936,14 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator&apos;s executable file below.&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator&apos;s global configuration at any time later).&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;It&apos;s strongly recommended that you specify the ROM path you are going to use at least!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;Bem-vindo ao QMC2!&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Essa parece ser sua primeira execução do QMC2 pois nenhuma configuração válida foi encontrada. Para poder usar o QMC2 como front end para um emulador, você precisa especificar o caminho para o arquivo executável do emulador abaixo.&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Os campos abaixo ao do arquivo executável são opcionais, mas você deveria especificar todos os que você conseguir agora para evitar problemas ou confusão mais tarde (claro que você pode mudar esses caminhos nas configurações globais do emulador a qualquer tempo).&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;É fortemente recomendado que você especifique pelo menos o caminho de onde se encontram as ROMs que você irá usar!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="551"/>
@@ -12986,17 +12993,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../welcome.ui" line="651"/>
         <source>Hash path</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho dos hashes</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="658"/>
         <source>Path to hash files</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho para os arquivos de hash</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="665"/>
         <source>Browse hash path</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar pelo caminho dos arquivos de hash</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="703"/>
