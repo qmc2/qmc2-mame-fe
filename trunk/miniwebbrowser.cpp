@@ -111,16 +111,24 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   // setup browser settings
   webViewBrowser->page()->settings()->setIconDatabasePath(QMC2_DOT_PATH);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, TRUE);
+#if defined(QMC2_BROWSER_JAVASCRIPT_ENABLED)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, TRUE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanAccessClipboard, FALSE);
+#else
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, FALSE);
+#endif
+#if defined(QMC2_BROWSER_JAVA_ENABLED)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavaEnabled, TRUE);
+#else
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavaEnabled, FALSE);
+#endif
 #if defined(QMC2_BROWSER_PLUGINS_ENABLED)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, TRUE);
 #else
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, FALSE);
 #endif
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::PrivateBrowsingEnabled, FALSE);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, FALSE);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanAccessClipboard, FALSE);
 #if defined(QMC2_BROWSER_EXTRAS_ENABLED)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, TRUE);
 #else
