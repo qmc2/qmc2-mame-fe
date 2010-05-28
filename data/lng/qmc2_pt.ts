@@ -8843,7 +8843,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="2246"/>
         <source>Choose working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório de trabalho</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2260"/>
@@ -10409,17 +10409,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="3776"/>
         <source>Working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório de trabalho</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3789"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório de trabalho que é usado quando o emulador é executado (se vazio, o diretório de trabalho do QMC2 é usado)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3802"/>
         <source>Browse working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar diretório de trabalho</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3820"/>
@@ -10581,12 +10581,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../procmgr.cpp" line="53"/>
         <source>WARNING: ProcessManager::start(): the specified working directory &apos;%1&apos; is not a directory -- ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: ProcessManager::start(): o diretório de trabalho especificado &apos;%1&apos; não é um diretório -- ignorado</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="56"/>
         <source>WARNING: ProcessManager::start(): the specified working directory &apos;%1&apos; does not exist -- ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: ProcessManager::start(): o diretório de trabalho especificado &apos;%1&apos; não existe -- ignorado</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="66"/>
