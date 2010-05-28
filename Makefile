@@ -153,7 +153,7 @@ endif
 
 # >>> JOYSTICK <<<
 #
-# Enabled joystick support (1) or not (0).
+# Enable joystick support (1) or not (0).
 #
 # Requires the SDL (Simple Directmedia Layer) development library!
 #
@@ -209,7 +209,8 @@ endif
 #
 # Enable Phonon based features (1) or leave them out of the build (0).
 #
-# Requires libphonon and a working Phonon backend (such as gstreamer).
+# Requires libphonon and a working Phonon backend (such as gstreamer or xine on
+# Linux, DirectX 9+ on Windows and QuickTime 7+ on Mac OS X).
 #
 # Phonon is currently only used by the built-in MP3 player.
 #
@@ -326,6 +327,22 @@ endif
 #
 ifndef BROWSER_PLUGINS
 BROWSER_PLUGINS = 0
+endif
+
+# >>> BROWSER_JAVA <<<
+#
+# Enable (1) or disable (0) Java in the 'MiniWebBrowser'?
+#
+ifndef BROWSER_JAVA
+BROWSER_JAVA = 1
+endif
+
+# >>> BROWSER_JAVASCRIPT <<<
+#
+# Enable (1) or disable (0) JavaScript in the 'MiniWebBrowser'?
+#
+ifndef BROWSER_JAVASCRIPT
+BROWSER_JAVASCRIPT = 1
 endif
 
 # >>> WC_COMPRESSION <<<
@@ -482,6 +499,14 @@ endif
 
 ifeq '$(BROWSER_PLUGINS)' '1'
 DEFINES += QMC2_BROWSER_PLUGINS_ENABLED
+endif
+
+ifeq '$(BROWSER_JAVA)' '1'
+DEFINES += QMC2_BROWSER_JAVA_ENABLED
+endif
+
+ifeq '$(BROWSER_JAVASCRIPT)' '1'
+DEFINES += QMC2_BROWSER_JAVASCRIPT_ENABLED
 endif
 
 ifeq '$(WC_COMPRESSION)' '1'
@@ -822,76 +847,78 @@ help:
 config:
 	@echo "Current build configuration:"
 	@echo ""
-	@echo "### Option ###         ### Description ###                         ### Value ###" 
-	@echo "ARCADE_OPENGL=<aogl>   Enable use of OpenGL for arcade mode (0, 1) $(ARCADE_OPENGL)"
-	@echo "ARCH=<arch-name>       Target system's OS / architecture name      $(ARCH)"
-	@echo "AUDIT_WILDCARD=<vl>    Use wildcards on full audit calls (0, 1)    $(AUDIT_WILDCARD)"
-	@echo "AWK=<awk>              UNIX command awk                            $(AWK)"
-	@echo "BASENAME=<basename>    UNIX command basename                       $(BASENAME)"
-	@echo "BINDIR=<bindir>        Binary directory for installation           $(BINDIR)"
-	@echo "BROWSER_EXTRAS=<ena>   Enable browser extra features (0, 1)        $(BROWSER_EXTRAS)"
-	@echo "BROWSER_PLUGINS=<ena>  Enable browser plugins (0, 1)               $(BROWSER_PLUGINS)"
-	@echo "CC_FLAGS=<c_flags>     Additional flags passed to the C compiler   $(CC_FLAGS)"
-	@echo "CXX_FLAGS=<cxx_flags>  Additional flags passed to the C++ compiler $(CXX_FLAGS)"
-	@echo "CCACHE=<ccache>        Use a compiler cache (0, 1)                 $(CCACHE)"
-	@echo "CCACHE_CC=<cc>         Command used for cached cc                  $(CCACHE_CC)"
-	@echo "CCACHE_CXX=<cxx>       Command used for cached c++                 $(CCACHE_CXX)"
-	@echo "CD=<cd>                UNIX command cd                             $(CD)"
-	@echo "COLRM=<colrm>          UNIX command colrm                          $(COLRM)"
-	@echo "CP=<cp>                UNIX command cp                             $(CP)"
-	@echo "CTIME=<ctime-measure>  Measure compilation & linkage time (0, 1)   $(CTIME)"
-	@echo "DATABASE=<database>    Enable database features (0, 1)             $(DATABASE)"
-	@echo "DATADIR=<data-dir>     Data directory for installation             $(DATADIR)"
-	@echo "DATE=<date>            UNIX command date                           $(DATE)"
-	@echo "DEBUG=<debug-level>    Choose debugging level (0, 1, 2)            $(DEBUG)"
-	@echo "DISTCC=<distcc>        Use a distributed compiler (0, 1)           $(DISTCC)"
-	@echo "DISTCC_CC=<cc>         Command used for distributed cc             $(DISTCC_CC)"
-	@echo "DISTCC_CXX=<cxx>       Command used for distributed c++            $(DISTCC_CXX)"
-	@echo "DISTCFG=<dist-cfg>     Use distribution-specific config (0, 1)     $(DISTCFG)"
-	@echo "EMULATOR=<emulator>    Target emulator (SDLMAME, SDLMESS)          $(EMULATOR)"
-	@echo "FADER_SPEED=<speed>    Audio fading speed (0: fastest, >0: slower) $(FADER_SPEED)"
-	@echo "FIND=<find>            UNIX command find                           $(FIND)"
-	@echo "GREP=<grep>            UNIX command grep                           $(GREP)"
-	@echo "IMGSET=<imgset>        Image set to be used                        $(IMGSET)"
-	@echo "JOYSTICK=<joystick>    Compile with SDL joystick support (0, 1)    $(JOYSTICK)"
-	@echo "L_FLAGS=<l_flags>      Additional flags passed to the linker       $(L_FLAGS)"
-	@echo "LN=<ln>                UNIX command ln                             $(LN)"
-	@echo "LRELEASE=<lrelease>    Qt language release (lrelease) command      $(LRELEASE)"
-	@echo "LUPDATE=<lupdate>      Qt language update (lupdate) command        $(LUPDATE)"
+	@echo "### Option ###       ### Description ###                          ### Value ###" 
+	@echo "ARCADE_OPENGL        Enable use of OpenGL for arcade mode (0, 1)  $(ARCADE_OPENGL)"
+	@echo "ARCH                 Target system's OS / architecture name       $(ARCH)"
+	@echo "AUDIT_WILDCARD       Use wildcards on full audit calls (0, 1)     $(AUDIT_WILDCARD)"
+	@echo "AWK                  UNIX command awk                             $(AWK)"
+	@echo "BASENAME             UNIX command basename                        $(BASENAME)"
+	@echo "BINDIR               Binary directory for installation            $(BINDIR)"
+	@echo "BROWSER_EXTRAS       Enable browser extra features (0, 1)         $(BROWSER_EXTRAS)"
+	@echo "BROWSER_JAVA         Enable Java in web browsers (0, 1)           $(BROWSER_JAVA)"
+	@echo "BROWSER_JAVASCRIPT   Enable JavaScript in web browsers (0, 1)     $(BROWSER_JAVASCRIPT)"
+	@echo "BROWSER_PLUGINS      Enable browser plugins (0, 1)                $(BROWSER_PLUGINS)"
+	@echo "CC_FLAGS             Additional flags passed to the C compiler    $(CC_FLAGS)"
+	@echo "CXX_FLAGS            Additional flags passed to the C++ compiler  $(CXX_FLAGS)"
+	@echo "CCACHE               Use a compiler cache (0, 1)                  $(CCACHE)"
+	@echo "CCACHE_CC            Command used for cached cc                   $(CCACHE_CC)"
+	@echo "CCACHE_CXX           Command used for cached c++                  $(CCACHE_CXX)"
+	@echo "CD                   UNIX command cd                              $(CD)"
+	@echo "COLRM                UNIX command colrm                           $(COLRM)"
+	@echo "CP                   UNIX command cp                              $(CP)"
+	@echo "CTIME                Measure compilation & linkage time (0, 1)    $(CTIME)"
+	@echo "DATABASE             Enable database features (0, 1)              $(DATABASE)"
+	@echo "DATADIR              Data directory for installation              $(DATADIR)"
+	@echo "DATE                 UNIX command date                            $(DATE)"
+	@echo "DEBUG                Choose debugging level (0, 1, 2)             $(DEBUG)"
+	@echo "DISTCC               Use a distributed compiler (0, 1)            $(DISTCC)"
+	@echo "DISTCC_CC            Command used for distributed cc              $(DISTCC_CC)"
+	@echo "DISTCC_CXX           Command used for distributed c++             $(DISTCC_CXX)"
+	@echo "DISTCFG              Use distribution-specific config (0, 1)      $(DISTCFG)"
+	@echo "EMULATOR             Target emulator (SDLMAME, SDLMESS)           $(EMULATOR)"
+	@echo "FADER_SPEED          Audio fading speed (0: fastest, >0: slower)  $(FADER_SPEED)"
+	@echo "FIND                 UNIX command find                            $(FIND)"
+	@echo "GREP                 UNIX command grep                            $(GREP)"
+	@echo "IMGSET               Image set to be used                         $(IMGSET)"
+	@echo "JOYSTICK             Compile with SDL joystick support (0, 1)     $(JOYSTICK)"
+	@echo "L_FLAGS              Additional flags passed to the linker        $(L_FLAGS)"
+	@echo "LN                   UNIX command ln                              $(LN)"
+	@echo "LRELEASE             Qt language release (lrelease) command       $(LRELEASE)"
+	@echo "LUPDATE              Qt language update (lupdate) command         $(LUPDATE)"
 ifeq '$(ARCH)' 'Darwin'
-	@echo "MACDEPLOYQT=<mdplqt>   Qt's Mac OS X deployment tool               $(MACDEPLOYQT)"
+	@echo "MACDEPLOYQT          Qt's Mac OS X deployment tool                $(MACDEPLOYQT)"
 endif
-	@echo "MACHINE=<machine>      Target system's machine type                $(MACHINE)"
-	@echo "MAKE=<make>            GNU make command                            $(MAKE)"
-	@echo "MAKESILENT=<make-s>    GNU make command (silent mode)              $(MAKESILENT)"
-	@echo "MKDIR=<mkdir>          UNIX command mkdir                          $(MKDIR)"
-	@echo "MV=<mv>                UNIX command mv                             $(MV)"
-	@echo "OPENGL=<opengl>        Enable miscellaneous OpenGL features (0, 1) $(OPENGL)"
-	@echo "OSCFG=<os-cfg>         Use global OS configuration (0, 1)          $(OSCFG)"
-	@echo "OSNAME=<os-name>       Target system's OS name                     $(OSNAME)"
-	@echo "OSREL=<os-release>     Target system's OS release                  $(OSREL)"
-	@echo "PHONON=<phonon>        Enable Phonon based features (0, 1)         $(PHONON)"
-	@echo "PREFIX=<prefix-dir>    Prefix directory for install target         $(PREFIX)"
-	@echo "PRETTY=<pretty>        Use qmake hacks for pretty compile output   $(PRETTY)"
-	@echo "QMAKE=<qmake>          Qt make (qmake) command                     $(QMAKE)"
-	@echo "QMAKEFILE=<qmake>      Qt generated Makefile name                  $(QMAKEFILE)"
-	@echo "QT_TRANSLATION=<trans> Specify path to Qt translations or 'qmc2'   $(QT_TRANSLATION)"
-	@echo "QUIET=<quiet-mode>     Suppress output of compile/link (0, 1)      $(QUIET)"
-	@echo "RM=<rm>                UNIX command rm                             $(RM)"
-	@echo "RMDIR=<rmdir>          UNIX command rmdir                          $(RMDIR)"
-	@echo "RSYNC=<rsync>          UNIX command rsync                          $(RSYNC)"
-	@echo "SDLLOCAL=<sdllocal>    Enable use of a 'local' SDL library (0, 1)  $(SDLLOCAL)"
-	@echo "SDLLOCAL_INC=<sdlinc>  Base include directory of the 'local' SDL   $(SDLLOCAL_INC)"
-	@echo "SDLLOCAL_LIB=<sdllib>  Base library directory of the 'local' SDL   $(SDLLOCAL_LIB)"
-	@echo "SED=<sed>              UNIX command sed                            $(SED)"
-	@echo "SYSCONFDIR=<conf-dir>  System configuration directory              $(SYSCONFDIR)"
-	@echo "TAR=<tar>              UNIX command tar                            $(TAR)"
-	@echo "TR=<tr>                UNIX command tr                             $(TR)"
-	@echo "TIME=<time>            UNIX command time                           $(TIME)"
-	@echo "VARIANT_LAUNCHER=<vl>  Enable the QMC2 variant launcher (0, 1)     $(VARIANT_LAUNCHER)"
-	@echo "WC_COMPRESSION=<wcc>   Compress MAWS web-cache data (0, 1)         $(WC_COMPRESSION)"
-	@echo "WIP=<wip>              Enable unfinished code (0, 1)               $(WIP)"
-	@echo "XWININFO=<xwininfo>    X11 xwininfo command                        $(XWININFO)"
+	@echo "MACHINE              Target system's machine type                 $(MACHINE)"
+	@echo "MAKE                 GNU make command                             $(MAKE)"
+	@echo "MAKESILENT           GNU make command (silent mode)               $(MAKESILENT)"
+	@echo "MKDIR                UNIX command mkdir                           $(MKDIR)"
+	@echo "MV                   UNIX command mv                              $(MV)"
+	@echo "OPENGL               Enable miscellaneous OpenGL features (0, 1)  $(OPENGL)"
+	@echo "OSCFG                Use global OS configuration (0, 1)           $(OSCFG)"
+	@echo "OSNAME               Target system's OS name                      $(OSNAME)"
+	@echo "OSREL                Target system's OS release                   $(OSREL)"
+	@echo "PHONON               Enable Phonon based features (0, 1)          $(PHONON)"
+	@echo "PREFIX               Prefix directory for install target          $(PREFIX)"
+	@echo "PRETTY               Use qmake hacks for pretty compile output    $(PRETTY)"
+	@echo "QMAKE                Qt make (qmake) command                      $(QMAKE)"
+	@echo "QMAKEFILE            Qt generated Makefile name                   $(QMAKEFILE)"
+	@echo "QT_TRANSLATION       Specify path to Qt translations or 'qmc2'    $(QT_TRANSLATION)"
+	@echo "QUIET                Suppress output of compile/link (0, 1)       $(QUIET)"
+	@echo "RM                   UNIX command rm                              $(RM)"
+	@echo "RMDIR                UNIX command rmdir                           $(RMDIR)"
+	@echo "RSYNC                UNIX command rsync                           $(RSYNC)"
+	@echo "SDLLOCAL             Enable use of a 'local' SDL library (0, 1)   $(SDLLOCAL)"
+	@echo "SDLLOCAL_INC         Base include directory of the 'local' SDL    $(SDLLOCAL_INC)"
+	@echo "SDLLOCAL_LIB         Base library directory of the 'local' SDL    $(SDLLOCAL_LIB)"
+	@echo "SED                  UNIX command sed                             $(SED)"
+	@echo "SYSCONFDIR           System configuration directory               $(SYSCONFDIR)"
+	@echo "TAR                  UNIX command tar                             $(TAR)"
+	@echo "TR                   UNIX command tr                              $(TR)"
+	@echo "TIME                 UNIX command time                            $(TIME)"
+	@echo "VARIANT_LAUNCHER     Enable the QMC2 variant launcher (0, 1)      $(VARIANT_LAUNCHER)"
+	@echo "WC_COMPRESSION       Compress MAWS web-cache data (0, 1)          $(WC_COMPRESSION)"
+	@echo "WIP                  Enable unfinished code (0, 1)                $(WIP)"
+	@echo "XWININFO             X11 xwininfo command                         $(XWININFO)"
 
 # process translations
 QMC2_TRANSLATIONS = us de pl fr gr pt
