@@ -1278,12 +1278,14 @@ void MainWindow::on_actionPlay_activated()
 
 #if defined(QMC2_EMUTYPE_MAME)
   QString command = qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString();
+  QString workingDirectory = qmc2Config->value("MAME/FilesAndDirectories/WorkingDirectory").toString();
 #elif defined(QMC2_EMUTYPE_MESS)
   QString command = qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString();
+  QString workingDirectory = qmc2Config->value("MESS/FilesAndDirectories/WorkingDirectory").toString();
 #endif
 
   // start game/machine
-  qmc2ProcessManager->process(qmc2ProcessManager->start(command, args));
+  qmc2ProcessManager->process(qmc2ProcessManager->start(command, args, TRUE, workingDirectory));
 
 #if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2DemoGame.isEmpty() ) {

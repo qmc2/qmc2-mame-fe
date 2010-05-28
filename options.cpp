@@ -418,6 +418,7 @@ void Options::apply()
   toolButtonShowU->setIconSize(iconSize);
   comboBoxSortOrder->setIconSize(iconSize);
   toolButtonBrowseExecutableFile->setIconSize(iconSize);
+  toolButtonBrowseWorkingDirectory->setIconSize(iconSize);
   toolButtonBrowseEmulatorLogFile->setIconSize(iconSize);
   toolButtonBrowseOptionsTemplateFile->setIconSize(iconSize);
   toolButtonBrowseListXMLCache->setIconSize(iconSize);
@@ -1087,6 +1088,7 @@ void Options::on_pushButtonApply_clicked()
 #if defined(QMC2_EMUTYPE_MAME)
   needReload |= config->value("MAME/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
   config->setValue("MAME/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
+  config->setValue("MAME/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
   config->setValue("MAME/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
   config->setValue("MAME/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
   config->setValue("MAME/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
@@ -1100,6 +1102,7 @@ void Options::on_pushButtonApply_clicked()
 #elif defined(QMC2_EMUTYPE_MESS)
   needReload |= config->value("MESS/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
   config->setValue("MESS/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
+  config->setValue("MESS/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
   config->setValue("MESS/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
   config->setValue("MESS/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
   config->setValue("MESS/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
@@ -1860,6 +1863,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   // Files and directories
 #if defined(QMC2_EMUTYPE_MAME)
   lineEditExecutableFile->setText(config->value("MAME/FilesAndDirectories/ExecutableFile", "").toString());
+  lineEditWorkingDirectory->setText(config->value("MAME/FilesAndDirectories/WorkingDirectory", "").toString());
   lineEditEmulatorLogFile->setText(config->value("MAME/FilesAndDirectories/LogFile", userScopePath + "/mame.log").toString());
   lineEditListXMLCache->setText(config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
   lineEditGamelistCacheFile->setText(config->value("MAME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mame.glc").toString());
@@ -1878,6 +1882,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditHistoryFile->setText(config->value("MAME/FilesAndDirectories/HistoryFile", userScopePath + "/mame.hst").toString());
 #elif defined(QMC2_EMUTYPE_MESS)
   lineEditExecutableFile->setText(config->value("MESS/FilesAndDirectories/ExecutableFile", "").toString());
+  lineEditWorkingDirectory->setText(config->value("MESS/FilesAndDirectories/WorkingDirectory", "").toString());
   lineEditEmulatorLogFile->setText(config->value("MESS/FilesAndDirectories/LogFile", userScopePath + "/mess.log").toString());
   lineEditListXMLCache->setText(config->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString());
   lineEditGamelistCacheFile->setText(config->value("MESS/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mess.glc").toString());
@@ -2229,6 +2234,20 @@ void Options::on_toolButtonBrowseROMStateCacheFile_clicked()
   QString s = QFileDialog::getOpenFileName(this, tr("Choose ROM state cache file"), lineEditROMStateCacheFile->text(), tr("All files (*)"));
   if ( !s.isNull() )
     lineEditROMStateCacheFile->setText(s);
+  raise();
+}
+
+void Options::on_toolButtonBrowseWorkingDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseWorkingDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), lineEditWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditWorkingDirectory->setText(s);
+  }
   raise();
 }
 

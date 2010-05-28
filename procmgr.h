@@ -23,7 +23,7 @@ class ProcessManager : public QObject
     ProcessManager(QWidget *parent = 0);
     ~ProcessManager();
 
-    int start(QString &, QStringList &, bool autoConnect = TRUE);
+    int start(QString &, QStringList &, bool autoConnect = TRUE, QString workDir = QString());
     QProcess *process(ushort);
     QString readStandardOutput(QProcess *);
     QString readStandardOutput(ushort);

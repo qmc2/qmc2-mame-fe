@@ -1,4 +1,5 @@
 #include <QHeaderView>
+#include <QFileInfo>
 #include "procmgr.h"
 #include "qmc2main.h"
 
@@ -31,18 +32,30 @@ ProcessManager::~ProcessManager()
 
 }
 
-int ProcessManager::start(QString &command, QStringList &arguments, bool autoConnect)
+int ProcessManager::start(QString &command, QStringList &arguments, bool autoConnect, QString workDir)
 {
 #ifdef QMC2_DEBUG
   QString logMsg = "DEBUG: ProcessManager::start(QString &command = \"" + command + "\", QStringList &arguments = \"";
   int argCount;
   for (argCount = 0; argCount < arguments.count(); argCount++)
     logMsg += QString(argCount > 0 ? " " + arguments[argCount] : arguments[argCount]);
-  logMsg += "\", bool autoConnect = " + QString(autoConnect ? "TRUE" : "FALSE") + ")";
+  logMsg += "\", bool autoConnect = " + QString(autoConnect ? "TRUE" : "FALSE") ", QString workDir = " + workDir + ")";
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, logMsg);
 #endif
 
   QProcess *proc = new QProcess(this);
+  if ( !workDir.isEmpty() ) {
+    QFileInfo fi(workDir);
+    if ( fi.exists() ) {
+      if ( fi.isDir () ) {
+        proc->setWorkingDirectory(workDir);
+      } else {
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ProcessManager::start(): the specified working directory '%1' is not a directory -- ignored").arg(workDir));
+      }
+    } else {
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ProcessManager::start(): the specified working directory '%1' does not exist -- ignored").arg(workDir));
+    }
+  }
   if ( autoConnect ) {
     lastCommand = command;
     int i;

@@ -194,6 +194,7 @@ void Gamelist::enableWidgets(bool enable)
 #endif
   qmc2Options->toolButtonBrowseExecutableFile->setEnabled(enable);
   qmc2Options->lineEditExecutableFile->setEnabled(enable);
+  qmc2Options->toolButtonBrowseWorkingDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseEmulatorLogFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseOptionsTemplateFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseListXMLCache->setEnabled(enable);

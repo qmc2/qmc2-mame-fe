@@ -132,6 +132,7 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonBrowseEmuInfoDB_clicked();
     void on_toolButtonBrowseCatverIniFile_clicked();
 #endif
+    void on_toolButtonBrowseWorkingDirectory_clicked();
     void on_toolButtonBrowseOptionsTemplateFile_clicked();
     void on_toolButtonBrowseListXMLCache_clicked();
     void on_toolButtonBrowseFont_clicked();
