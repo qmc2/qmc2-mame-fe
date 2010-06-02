@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>444</width>
+    <width>500</width>
     <height>471</height>
    </rect>
   </property>
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>450</width>
+                <width>451</width>
                 <height>619</height>
                </rect>
               </property>
@@ -854,8 +854,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>198</width>
-                <height>517</height>
+                <width>395</width>
+                <height>518</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2113,7 +2113,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>458</width>
-                <height>183</height>
+                <height>347</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2466,7 +2466,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="0" colspan="4">
+                 <item row="5" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxPlayOnSublistActivation">
                    <property name="toolTip">
                     <string>Launch emulation directly when an item is activated in the search-, favorites- or played-lists (instead of jumping to the master list)</string>
@@ -2475,6 +2475,19 @@
                     <string>Play on sub-list activation</string>
                    </property>
                   </widget>
+                 </item>
+                 <item row="5" column="2" colspan="2">
+                  <spacer name="horizontalSpacer2">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
                  </item>
                 </layout>
                </item>
@@ -3392,8 +3405,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>412</width>
-                <height>364</height>
+                <width>189</width>
+                <height>307</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
