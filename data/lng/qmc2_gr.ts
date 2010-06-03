@@ -6376,11 +6376,6 @@ Should they be killed on exit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="608"/>
-        <source>&amp;Played</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="617"/>
         <location filename="../../qmc2main.ui" line="620"/>
         <source>Games last played</source>
@@ -6700,6 +6695,11 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.ui" line="1852"/>
         <location filename="../../qmc2main.ui" line="1855"/>
         <source>Audio player volume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.ui" line="608"/>
+        <source>Pl&amp;ayed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
