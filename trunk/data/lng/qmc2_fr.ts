@@ -5466,11 +5466,6 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Jeux favoris</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="608"/>
-        <source>&amp;Played</source>
-        <translation>&amp;Joués</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="617"/>
         <location filename="../../qmc2main.ui" line="620"/>
         <source>Games last played</source>
@@ -6118,6 +6113,11 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.ui" line="441"/>
         <source>Version / Game</source>
         <translation>Version / Jeu</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.ui" line="608"/>
+        <source>Pl&amp;ayed</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1577"/>

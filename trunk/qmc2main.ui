@@ -125,7 +125,7 @@
             <item row="0" column="0">
              <widget class="QStackedWidget" name="stackedWidgetView">
               <property name="currentIndex">
-               <number>0</number>
+               <number>3</number>
               </property>
               <widget class="QWidget" name="gamelistPage">
                <layout class="QGridLayout" name="gridLayoutGamelistPage">
@@ -605,7 +605,7 @@
              <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
            </attribute>
            <attribute name="title">
-            <string>&amp;Played</string>
+            <string>Pl&amp;ayed</string>
            </attribute>
            <layout class="QGridLayout">
             <item row="0" column="0">

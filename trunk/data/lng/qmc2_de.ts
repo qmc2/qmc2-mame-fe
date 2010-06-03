@@ -4816,11 +4816,6 @@ p, li { white-space: pre-wrap; }
         <translation>Favorisierte Spiele</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="608"/>
-        <source>&amp;Played</source>
-        <translation>Ges&amp;pielt</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="617"/>
         <location filename="../../qmc2main.ui" line="620"/>
         <source>Games last played</source>
@@ -5939,6 +5934,11 @@ Einbettung wiederholen?</translation>
         <location filename="../../qmc2main.ui" line="441"/>
         <source>Version / Game</source>
         <translation>Version / Spiel</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.ui" line="608"/>
+        <source>Pl&amp;ayed</source>
+        <translation>Ges&amp;pielt</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="648"/>

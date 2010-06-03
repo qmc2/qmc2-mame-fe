@@ -6431,11 +6431,6 @@ Sair mesmo assim?</translation>
         <translation>Jogos favoritos</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="608"/>
-        <source>&amp;Played</source>
-        <translation>&amp;Jogados</translation>
-    </message>
-    <message>
         <location filename="../../qmc2main.ui" line="617"/>
         <location filename="../../qmc2main.ui" line="620"/>
         <source>Games last played</source>
@@ -6756,6 +6751,11 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.ui" line="1855"/>
         <source>Audio player volume</source>
         <translation>Volume do tocador de música</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.ui" line="608"/>
+        <source>Pl&amp;ayed</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1381"/>
