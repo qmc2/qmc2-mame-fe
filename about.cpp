@@ -24,6 +24,8 @@
 #include <QSysInfo>
 #endif
 
+#include <QLibraryInfo>
+
 // external global variables
 extern MainWindow *qmc2MainWindow;
 extern Gamelist *qmc2Gamelist;
@@ -59,7 +61,7 @@ About::About(QWidget *parent)
     case QSysInfo::WV_5_1: winVersion = tr("Windows XP (Windows 5.1)"); break;
     case QSysInfo::WV_5_2: winVersion = tr("Windows Server 2003, Windows Server 2003 R2, Windows Home Server or Windows XP Professional x64 Edition (Windows 5.2)"); break;
     case QSysInfo::WV_6_0: winVersion = tr("Windows Vista or Windows Server 2008 (Windows 6.0)"); break;
-    case QSysInfo::WV_6_1: winVersion = tr("Windows 7 (Windows 6.1)"); break;
+    case QSysInfo::WV_6_1: winVersion = tr("Windows 7 or Windows Server 2008 R2 (Windows 6.1)"); break;
     default: winVersion = tr("Windows (unknown)"); break;
   }
 #endif
@@ -134,7 +136,7 @@ void About::showEvent(QShowEvent *e)
           "<p><b>" + tr("Bug tracking system:") + "</b><br><a href=\"http://sourceforge.net/apps/mantisbt/qmc2/my_view_page.php\">http://sourceforge.net/apps/mantisbt/qmc2</a></p>";
   labelProjectInfo->setText(projectInfoString);
 
-  QString sysInfoString =
+  QString sysInfoString = QString("<html><body>") +
 #if !defined(Q_WS_WIN)
           "<p><b>" + tr("Build OS:") + "</b><br>" + XSTR(TARGET_OS_NAME) + " " + XSTR(TARGET_OS_RELEASE) + " " + XSTR(TARGET_MACHINE) + "</p>" +
 #endif
@@ -145,7 +147,7 @@ void About::showEvent(QShowEvent *e)
 #endif
           "<p><b>" + tr("Emulator version:") + "</b><br>" + qmc2Gamelist->emulatorVersion + "</p>" +
           "<p><b>" + tr("Template information:") + "</b><br>" + tr("Emulator:") + " " + qmc2GlobalEmulatorOptions->templateEmulator + "<br>" + tr("Version:") + " " + qmc2GlobalEmulatorOptions->templateVersion + "<br>" + tr("Format:") + " " + qmc2GlobalEmulatorOptions->templateFormat + "</p>" +
-          "<p><b>" + tr("Qt version:") + "</b><br>" + tr("Compile-time:") + " " + QT_VERSION_STR + "<br>" + tr("Run-time:") + " " + qVersion() + "</p>" +
+          "<p><b>" + tr("Qt version:") + "</b><br>" + tr("Compile-time:") + " " + QT_VERSION_STR + "<br>" + tr("Run-time:") + " " + qVersion() + "<br>" + tr("Build key:") + " " + QLibraryInfo::buildKey() + "</p>" +
 #if QMC2_USE_PHONON_API
           "<p><b>" + tr("Phonon version:") + "</b><br>" + tr("Run-time:") + " " + QString("%1").arg(Phonon::phononVersion()) + "</p>" +
 #endif
@@ -161,8 +163,8 @@ void About::showEvent(QShowEvent *e)
   envVars.sort();
   foreach (QString ev, envVars)
     sysInfoString += "<br>" + ev;
-  sysInfoString += "</p>";
-  textBrowserSystemInformation->setText(sysInfoString);
+  sysInfoString += "</p></body></html>";
+  textBrowserSystemInformation->setHtml(sysInfoString);
 
   // ensure a black background for the logo image
   labelLogoPixmap->setPalette(QPalette(QColor(0, 0, 0)));
