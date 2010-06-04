@@ -5314,8 +5314,14 @@ void MainWindow::on_actionAudioPlayTrack_triggered(bool checked)
     if ( sl.count() > 0 )
       ci = sl[0];
     if ( !ci ) {
-      listWidgetAudioPlaylist->setCurrentRow(0);
-      ci = listWidgetAudioPlaylist->currentItem();
+      if ( !qmc2AudioLastIndividualTrack.isEmpty() ) {
+        audioScrollToCurrentItem();
+        ci = listWidgetAudioPlaylist->currentItem();
+      }
+      if ( !ci ) {
+        listWidgetAudioPlaylist->setCurrentRow(0);
+        ci = listWidgetAudioPlaylist->currentItem();
+      }
     }
     if ( ci->text() != audioPlayerCurrentTrack ) {
       progressBarAudioProgress->reset();
@@ -5402,9 +5408,10 @@ void MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged()
   audioFastForwarding = audioFastBackwarding = audioSkippingTracks = FALSE;
 
   if ( sl.count() == 1 && !audioSkippingTracks && !qmc2EarlyStartup ) {
+    QListWidgetItem *ci = listWidgetAudioPlaylist->currentItem();
     switch ( audioState ) {
       case Phonon::PlayingState:
-        if ( qmc2AudioLastIndividualTrack != sl[0]->text() )
+        if ( qmc2AudioLastIndividualTrack != sl[0]->text() && ci == sl[0] )
           QTimer::singleShot(0, this, SLOT(on_actionAudioPlayTrack_triggered()));
         break;
 
@@ -5412,7 +5419,10 @@ void MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged()
 	QTimer::singleShot(0, this, SLOT(on_actionAudioStopTrack_triggered()));
         break;
     }
-    qmc2AudioLastIndividualTrack = sl[0]->text();
+    if ( ci ) {
+      if ( ci->text() == sl[0]->text() )
+        qmc2AudioLastIndividualTrack = sl[0]->text();
+    }
   } else if ( sl.count() <= 0 )
     QTimer::singleShot(0, this, SLOT(audioScrollToCurrentItem()));
 }
@@ -5426,9 +5436,9 @@ void MainWindow::audioScrollToCurrentItem()
   if ( !qmc2AudioLastIndividualTrack.isEmpty() ) {
     QList<QListWidgetItem *> itemList = listWidgetAudioPlaylist->findItems(qmc2AudioLastIndividualTrack, Qt::MatchExactly);
     if ( itemList.count() > 0 ) {
-      listWidgetAudioPlaylist->setCurrentItem(itemList[0]);
-      listWidgetAudioPlaylist->scrollToItem(itemList[0], QAbstractItemView::PositionAtCenter);
-      itemList[0]->setSelected(TRUE);
+      QListWidgetItem *item = itemList[0];
+      listWidgetAudioPlaylist->scrollToItem(item, QAbstractItemView::PositionAtCenter);
+      listWidgetAudioPlaylist->setCurrentItem(item, QItemSelectionModel::Clear | QItemSelectionModel::SelectCurrent);
     }
   }
 }
