@@ -1026,9 +1026,9 @@ void Options::on_pushButtonApply_clicked()
   }
 
   if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/GamelistView").toInt() >= qmc2MainWindow->comboBoxViewSelect->count() )
-    config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", QMC2_GAMELIST_INDEX);
+    config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", QMC2_VIEW_DETAIL_INDEX);
 
-  qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", QMC2_GAMELIST_INDEX).toInt());
+  qmc2MainWindow->comboBoxViewSelect->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", QMC2_VIEW_DETAIL_INDEX).toInt());
   switch ( qmc2MainWindow->comboBoxViewSelect->currentIndex() ) {
 	  case QMC2_VIEW_DETAIL_INDEX:
 		  qmc2MainWindow->tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
