@@ -258,6 +258,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void audioTotalTimeChanged(qint64);
     void audioFade(int);
     void audioMetaDataChanged();
+    void audioBufferStatus(int);
 
     // download manager widget
     void on_checkBoxRemoveFinishedDownloads_stateChanged(int);
