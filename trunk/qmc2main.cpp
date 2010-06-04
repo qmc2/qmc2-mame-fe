@@ -110,6 +110,7 @@ bool qmc2MessSWListAlreadyLoading = FALSE;
 #endif
 #if QMC2_USE_PHONON_API
 AudioEffectDialog *qmc2AudioEffectDialog = NULL;
+QString qmc2AudioLastIndividualTrack = "";
 #endif
 DemoModeDialog *qmc2DemoModeDialog = NULL;
 bool qmc2ReloadActive = FALSE;
@@ -967,12 +968,15 @@ MainWindow::MainWindow(QWidget *parent)
   phononAudioPlayer = new Phonon::MediaObject;
   phononAudioOutput = new Phonon::AudioOutput(Phonon::MusicCategory);
   phononAudioPath = Phonon::createPath(phononAudioPlayer, phononAudioOutput);
+  listWidgetAudioPlaylist->setTextElideMode(Qt::ElideMiddle);
+  listWidgetAudioPlaylist->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
   QStringList psl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayList").toStringList();
   listWidgetAudioPlaylist->addItems(psl);
   QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->findItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", QString()).toString(), Qt::MatchExactly);
   if ( sl.count() > 0 ) {
     listWidgetAudioPlaylist->setCurrentItem(sl[0]);
     listWidgetAudioPlaylist->scrollToItem(sl[0], QAbstractItemView::PositionAtTop);
+    qmc2AudioLastIndividualTrack = sl[0]->text();
   }
   checkBoxAudioPlayOnStart->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayOnStart", FALSE).toBool());
   checkBoxAudioShuffle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Shuffle", FALSE).toBool());
@@ -5389,8 +5393,6 @@ void MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged()");
 #endif
 
-  static QString audioLastIndividualTrack;
-
   QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->selectedItems();
   if ( sl.count() > 0 )
     toolButtonAudioRemoveTracks->setEnabled(TRUE);
@@ -5402,15 +5404,31 @@ void MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged()
   if ( sl.count() == 1 && !audioSkippingTracks && !qmc2EarlyStartup ) {
     switch ( audioState ) {
       case Phonon::PlayingState:
-        if ( audioLastIndividualTrack != sl[0]->text() ) {
-          audioLastIndividualTrack = sl[0]->text();
+        if ( qmc2AudioLastIndividualTrack != sl[0]->text() )
           QTimer::singleShot(0, this, SLOT(on_actionAudioPlayTrack_triggered()));
-        }
         break;
 
       default:
 	QTimer::singleShot(0, this, SLOT(on_actionAudioStopTrack_triggered()));
         break;
+    }
+    qmc2AudioLastIndividualTrack = sl[0]->text();
+  } else if ( sl.count() <= 0 )
+    QTimer::singleShot(0, this, SLOT(audioScrollToCurrentItem()));
+}
+
+void MainWindow::audioScrollToCurrentItem()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::audioScrollToCurrentItem()");
+#endif
+
+  if ( !qmc2AudioLastIndividualTrack.isEmpty() ) {
+    QList<QListWidgetItem *> itemList = listWidgetAudioPlaylist->findItems(qmc2AudioLastIndividualTrack, Qt::MatchExactly);
+    if ( itemList.count() > 0 ) {
+      listWidgetAudioPlaylist->setCurrentItem(itemList[0]);
+      listWidgetAudioPlaylist->scrollToItem(itemList[0], QAbstractItemView::PositionAtCenter);
+      itemList[0]->setSelected(TRUE);
     }
   }
 }
@@ -5668,6 +5686,7 @@ void MainWindow::audioTotalTimeChanged(qint64) { ; }
 void MainWindow::audioFade(int) { ; }
 void MainWindow::audioMetaDataChanged() { ; }
 void MainWindow::audioBufferStatus(int) { ; }
+void MainWindow::audioScrollToCurrentItem() { ; }
 #endif
 
 void MainWindow::on_checkBoxRemoveFinishedDownloads_stateChanged(int state)
