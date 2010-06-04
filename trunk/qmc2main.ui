@@ -125,7 +125,7 @@
             <item row="0" column="0">
              <widget class="QStackedWidget" name="stackedWidgetView">
               <property name="currentIndex">
-               <number>3</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="gamelistPage">
                <layout class="QGridLayout" name="gridLayoutGamelistPage">

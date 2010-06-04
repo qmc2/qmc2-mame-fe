@@ -148,11 +148,13 @@ void About::showEvent(QShowEvent *e)
           "<p><b>" + tr("Emulator version:") + "</b><br>" + qmc2Gamelist->emulatorVersion + "</p>" +
           "<p><b>" + tr("Template information:") + "</b><br>" + tr("Emulator:") + " " + qmc2GlobalEmulatorOptions->templateEmulator + "<br>" + tr("Version:") + " " + qmc2GlobalEmulatorOptions->templateVersion + "<br>" + tr("Format:") + " " + qmc2GlobalEmulatorOptions->templateFormat + "</p>" +
           "<p><b>" + tr("Qt version:") + "</b><br>" + tr("Compile-time:") + " " + QT_VERSION_STR + "<br>" + tr("Run-time:") + " " + qVersion() + "<br>" + tr("Build key:") + " " + QLibraryInfo::buildKey() + "</p>" +
-#if QMC2_USE_PHONON_API
-          "<p><b>" + tr("Phonon version:") + "</b><br>" + tr("Run-time:") + " " + QString("%1").arg(Phonon::phononVersion()) + "</p>" +
-#endif
 #if QMC2_JOYSTICK == 1
           "<p><b>" + tr("SDL version:") + "</b><br>" + tr("Compile-time:") + " " + QString("%1.%2.%3").arg(sdlVersionCompile.major).arg(sdlVersionCompile.minor).arg(sdlVersionCompile.patch) + "<br>" + tr("Run-time:") + " " + QString("%1.%2.%3").arg(sdlVersionLinked->major).arg(sdlVersionLinked->minor).arg(sdlVersionLinked->patch) + "</p>" +
+#endif
+#if QMC2_USE_PHONON_API
+          "<p><b>" + tr("Phonon version:") + "</b><br>" + tr("Run-time:") + " " + QString("%1").arg(Phonon::phononVersion()) + "</p><p><b>" + tr("Phonon backend / supported MIME types:") + "</b>";
+          foreach (QString mimeType, Phonon::BackendCapabilities::availableMimeTypes()) sysInfoString += "<br>" + mimeType;
+	  sysInfoString += QString("</p>") +
 #endif
 #if defined(QMC2_SHOWMEMINFO)
           "<p><b>" + tr("Physical memory:") + "</b><br>" + tr("Total: %1 MB").arg(totalSize) + "<br>" + tr("Free: %1 MB").arg(totalFree) + "<br>" + tr("Used: %1 MB").arg(totalUsed) + "</p>"
