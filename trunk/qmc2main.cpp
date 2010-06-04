@@ -997,6 +997,7 @@ MainWindow::MainWindow(QWidget *parent)
   connect(phononAudioPlayer, SIGNAL(totalTimeChanged(qint64)), this, SLOT(audioTotalTimeChanged(qint64)));
   connect(phononAudioPlayer, SIGNAL(finished()), this, SLOT(audioFinished()));
   connect(phononAudioPlayer, SIGNAL(metaDataChanged()), this, SLOT(audioMetaDataChanged()));
+  connect(phononAudioPlayer, SIGNAL(bufferStatus(int)), this, SLOT(audioBufferStatus(int)));
   audioFastForwarding = audioFastBackwarding = audioSkippingTracks = FALSE;
   if ( checkBoxAudioPlayOnStart->isChecked() ) {
     audioState = Phonon::PlayingState;
@@ -5487,6 +5488,7 @@ void MainWindow::audioTick(qint64 newTime)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::audioTick(qint64 newTime = %1)").arg(newTime));
 #endif
 
+  progressBarAudioProgress->setFormat(tr("%vs (%ms total)"));
   progressBarAudioProgress->setValue(newTime/1000);
 }
 
@@ -5496,6 +5498,7 @@ void MainWindow::audioTotalTimeChanged(qint64 newTotalTime)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::audioTotalTimeChanged(qint64 newTotalTime = %1)").arg(newTotalTime));
 #endif
 
+  progressBarAudioProgress->setFormat(tr("%vs (%ms total)"));
   progressBarAudioProgress->setRange(0, newTotalTime/1000);
   progressBarAudioProgress->setValue(phononAudioPlayer->currentTime()/1000);
 }
@@ -5613,6 +5616,24 @@ void MainWindow::audioMetaDataChanged()
     lastTrackInfo = trackInfo;
   }
 }
+
+void MainWindow::audioBufferStatus(int percentFilled)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::audioBufferStatus(int percentFilled = %1)").arg(percentFilled));
+#endif
+
+  progressBarAudioProgress->setRange(0, 100);
+  progressBarAudioProgress->setFormat(tr("Buffering %p%"));
+  progressBarAudioProgress->setValue(percentFilled);
+  if ( percentFilled >= 100 ) {
+    if ( audioState == Phonon::StoppedState )
+      progressBarAudioProgress->setRange(0, 100);
+    else
+      progressBarAudioProgress->setRange(0, 0);
+    progressBarAudioProgress->reset();
+  }
+}
 #else
 void MainWindow::on_actionAudioPreviousTrack_triggered(bool) { ; }
 void MainWindow::on_toolButtonAudioPreviousTrack_resetButton() { ; }
@@ -5641,6 +5662,7 @@ void MainWindow::audioTick(qint64) { ; }
 void MainWindow::audioTotalTimeChanged(qint64) { ; }
 void MainWindow::audioFade(int) { ; }
 void MainWindow::audioMetaDataChanged() { ; }
+void MainWindow::audioBufferStatus(int) { ; }
 #endif
 
 void MainWindow::on_checkBoxRemoveFinishedDownloads_stateChanged(int state)
