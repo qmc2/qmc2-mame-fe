@@ -5389,6 +5389,8 @@ void MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged()");
 #endif
 
+  static QString audioLastIndividualTrack;
+
   QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->selectedItems();
   if ( sl.count() > 0 )
     toolButtonAudioRemoveTracks->setEnabled(TRUE);
@@ -5397,10 +5399,13 @@ void MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged()
 
   audioFastForwarding = audioFastBackwarding = audioSkippingTracks = FALSE;
 
-  if ( sl.count() > 0 && !audioSkippingTracks && !qmc2EarlyStartup ) {
+  if ( sl.count() == 1 && !audioSkippingTracks && !qmc2EarlyStartup ) {
     switch ( audioState ) {
       case Phonon::PlayingState:
-        QTimer::singleShot(0, this, SLOT(on_actionAudioPlayTrack_triggered()));
+        if ( audioLastIndividualTrack != sl[0]->text() ) {
+          audioLastIndividualTrack = sl[0]->text();
+          QTimer::singleShot(0, this, SLOT(on_actionAudioPlayTrack_triggered()));
+        }
         break;
 
       default:
