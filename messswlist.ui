@@ -204,6 +204,11 @@
            <string>Year</string>
           </property>
          </column>
+         <column>
+          <property name="text">
+           <string>List</string>
+          </property>
+         </column>
         </widget>
        </item>
       </layout>
@@ -213,8 +218,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>447</width>
-        <height>277</height>
+        <width>575</width>
+        <height>383</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -267,6 +272,11 @@
          </column>
          <column>
           <property name="text">
+           <string>List</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
            <string>Device configuration</string>
           </property>
          </column>
@@ -279,8 +289,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>447</width>
-        <height>277</height>
+        <width>575</width>
+        <height>383</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -348,6 +358,11 @@
          <column>
           <property name="text">
            <string>Year</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>List</string>
           </property>
          </column>
         </widget>
