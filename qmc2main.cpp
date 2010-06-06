@@ -919,25 +919,29 @@ MainWindow::MainWindow(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetLogsAndEmulators_East_activated()));
 
-  // splitter context menus (FIXME: no icons yet)
+  // splitter context menus
   menuHorizontalSplitter = new QMenu(0);
   s = tr("Flip splitter orientation");
   action = menuHorizontalSplitter->addAction(tr("&Flip splitter orientation"));
   action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/flip.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_menuHorizontalSplitter_FlipOrientation_activated()));
   s = tr("Swap splitter's sub-layouts");
   action = menuHorizontalSplitter->addAction(tr("&Swap splitter's sub-layouts"));
   action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/swap.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_menuHorizontalSplitter_SwapLayouts_activated()));
 
   menuVerticalSplitter = new QMenu(0);
   s = tr("Flip splitter orientation");
   action = menuVerticalSplitter->addAction(tr("&Flip splitter orientation"));
   action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/flip.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_menuVerticalSplitter_FlipOrientation_activated()));
   s = tr("Swap splitter's sub-widgets");
   action = menuVerticalSplitter->addAction(tr("&Swap splitter's sub-widgets"));
   action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/swap.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_menuVerticalSplitter_SwapWidgets_activated()));
 
   // other actions
