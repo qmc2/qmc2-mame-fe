@@ -71,7 +71,7 @@
     <message>
         <location filename="../../about.cpp" line="64"/>
         <source>Windows 7 or Windows Server 2008 R2 (Windows 6.1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Windows 7 ou Windows Server 2008 R2 (Windows 6.1)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="65"/>
@@ -190,7 +190,7 @@
     <message>
         <location filename="../../about.cpp" line="150"/>
         <source>Build key:</source>
-        <translation type="unfinished"></translation>
+        <translation>Chave de compilação:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="155"/>
@@ -205,7 +205,7 @@
     <message>
         <location filename="../../about.cpp" line="155"/>
         <source>Phonon backend / supported MIME types:</source>
-        <translation type="unfinished"></translation>
+        <translation>Backend Phonon / tipos MIME suportados</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="160"/>
@@ -4616,7 +4616,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messswlist.ui" line="275"/>
         <location filename="../../messswlist.ui" line="365"/>
         <source>List</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="230"/>
@@ -6041,7 +6041,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5664"/>
         <source>Buffering %p%</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5728"/>
@@ -6768,7 +6768,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="608"/>
         <source>Pl&amp;ayed</source>
-        <translation type="unfinished"></translation>
+        <translation>J&amp;ogados</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1381"/>
@@ -6779,7 +6779,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.ui" line="1562"/>
         <location filename="../../qmc2main.ui" line="1565"/>
         <source>Playlist (move items by dragging &amp; dropping them)</source>
-        <translation type="unfinished"></translation>
+        <translation>Playlist (mova os itens arranstando e soltando)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1786"/>
