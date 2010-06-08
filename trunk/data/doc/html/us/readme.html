@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b16, 03-JUN-2010</h3>
+<h3>README - v0.2.b16, 08-JUN-2010</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -124,9 +124,9 @@ use with the MAME variant).
       <td style="vertical-align: top; background-color: #ab967e; font-weight: bold;">Where to get</td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">All: Qt 4.5.0+ (Qt 4.5.3+ recommended)<br>Mac OS X: Qt 4.6.2+ (Cocoa) recommended</td>
+      <td style="vertical-align: top;">All: Qt 4.5.0+ (Qt 4.5.3+ recommended)<br>Mac OS X: Qt 4.6.3+ (Cocoa) recommended</td>
       <td style="vertical-align: top;"><a href="http://qt.nokia.com/downloads" target="_blank">http://qt.nokia.com/downloads</a><br>
-                                       <a href="http://download.qt.nokia.com/qt/source/qt-mac-cocoa-opensource-4.6.2.dmg">http://download.qt.nokia.com/qt/source/qt-mac-cocoa-opensource-4.6.2.dmg</a></td>
+                                       <a href="http://download.qt.nokia.com/qt/source/qt-mac-cocoa-opensource-4.6.3.dmg">http://download.qt.nokia.com/qt/source/qt-mac-cocoa-opensource-4.6.3.dmg</a></td>
     </tr>
     <tr>
       <td style="vertical-align: top;">UNIX &amp; Mac OS X: GNU make 3.8+</td>
@@ -427,8 +427,10 @@ of their parents.</p>
 <p>To install a style sheet, simply unpack the archive somewhere in your file system.
    Then select the style sheet (.qss file) from within QMC2 to activate it.
    See <i>Tools</i> -&gt; <i>Options</i> -&gt; <i>GUI</i> -&gt; <i>Style sheet</i>.</p>
-<p>Note that due to a pending Qt bug (as of Qt 4.5.3 and 4.6.0) we have to change the current working directory of the running application to the style sheet's
-   path to make sure that relative URLs (in the .qss file) are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead!</p>
+<p>Note that due to a pending Qt bug we have to change the current working directory of the running application to the style sheet's
+   path to make sure that relative URLs (in the .qss file) are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead!<b>
+   <b>Update:</b> since version 0.2.b16 we support the specification of the <i>working directory</i> that's used when the emulator is launched in play- or demo-mode;
+   we strongly recommend to set this option as it cleanly works around this issue.</p>
 <p>Read more about Qt style sheets here: <a href="http://qt.nokia.com/doc/4.5/stylesheet.html" target="_blank">http://qt.nokia.com/doc/4.5/stylesheet.html</a></p>
 <h3><a name="6."></a>6. Short cuts, GUI control keys and joystick support</h3>
 <p>Several functions (or <i>actions</i> in Qt technical jargon :) can be accessed via short cut key-sequences. The following table lists all of them:</p>
