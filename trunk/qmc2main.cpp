@@ -1822,7 +1822,21 @@ void MainWindow::on_actionFullscreenToggle_activated()
       if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry") )
         restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry").toByteArray());
     }
+#if QT_VERSION >= 0x040600
+    // we need to tweak full screen startup for Qt 4.6+ to ensure that raising the window works
+    if ( qmc2EarlyStartup ) {
+      setUpdatesEnabled(TRUE);
+      showNormal();
+      raise();
+    }
     showFullScreen();
+    if ( qmc2EarlyStartup ) {
+      qApp->processEvents();
+      setUpdatesEnabled(FALSE);
+    }
+#else
+    showFullScreen();
+#endif
   } else {
     hide();
     qApp->processEvents();
