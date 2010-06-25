@@ -2744,6 +2744,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       }
       break;
 
+#if QMC2_WIP_CODE == 1
     case QMC2_SOFTWARE_LIST_INDEX:
       if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
 	if ( !qmc2MessSWListAlreadyLoading ) {
@@ -2770,6 +2771,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	}
       }
       break;
+#endif
 
 #elif defined(QMC2_EMUTYPE_MAME)
     case QMC2_MAWS_INDEX:
