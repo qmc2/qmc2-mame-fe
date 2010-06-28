@@ -8,6 +8,6 @@ Homepage: http://qmc2.arcadehits.net
 
 Package: qmc2
 Architecture: any
-Depends: libqtgui4 (>= 4.5.2), libqt4-phonon, sdlmame
+Depends: libqtgui4 (>= 4.5.2), libqt4-phonon, sdlmame | sdlmess
 Description: M.A.M.E./M.E.S.S. Catalog / Launcher II
  QMC2 is a Qt 4 based multi-platform GUI front end for several MAME and MESS variants.
