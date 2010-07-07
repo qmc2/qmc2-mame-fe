@@ -629,6 +629,10 @@
       <description lang="fr" text="Active le chargement des fichiers de configuration"/>
       <description lang="pt" text="Habilitar carregamento de arquivos de configurações"/>
     </option>
+    <option name="writeconfig" type="bool" default="false">
+      <description lang="us" text="Write configuration to (driver).ini on exit"/>
+      <description lang="de" text="Konfiguration beim Beenden in (driver).ini speichern"/>
+    </option>
   </section>
   <section name="debugging">
     <description lang="us" text="Debugging"/>
