@@ -632,6 +632,9 @@
     <option name="writeconfig" type="bool" default="false">
       <description lang="us" text="Write configuration to (driver).ini on exit"/>
       <description lang="de" text="Konfiguration beim Beenden in (driver).ini speichern"/>
+      <description lang="pl" text="Zapisuje konfigurację do (sterownik).ini po zakończeniu"/>
+      <description lang="fr" text="Ecrire la configuration dans (driver).ini en quittant"/>
+      <description lang="pt" text="Escrever configurações para (dispositivo).ini ao sair"/>
     </option>
   </section>
   <section name="debugging">
