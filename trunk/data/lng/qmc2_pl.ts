@@ -157,12 +157,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="150"/>
         <source>Build key:</source>
-        <translation type="unfinished"></translation>
+        <translation>Klucz builda:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="155"/>
         <source>Phonon backend / supported MIME types:</source>
-        <translation type="unfinished"></translation>
+        <translation>Backend phonona / obsługiwane typy MIME:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="163"/>
@@ -177,7 +177,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="64"/>
         <source>Windows 7 or Windows Server 2008 R2 (Windows 6.1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Windows 7 albo Windows Server 2008 R2 (Windows 6.1)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="160"/>
@@ -1410,69 +1410,69 @@ p, li { white-space: pre-wrap; }
         <location filename="../../audioeffects.cpp" line="177"/>
         <location filename="../../audioeffects.cpp" line="182"/>
         <source>Enable effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz efekt &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="44"/>
         <source>Setup effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguruj efekt &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="169"/>
         <location filename="../../audioeffects.cpp" line="190"/>
         <source>Disable effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyłącz efekt &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="178"/>
         <source>WARNING: audio player: can&apos;t insert effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: odtwarzacz dźwięku nie może dodać efektu &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="191"/>
         <source>WARNING: audio player: can&apos;t remove effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: odtwarzacz dźwięku nie może usunąć efektu &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="14"/>
         <source>Audio effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Efekty dźwięku</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="36"/>
         <source>Close audio effects dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij okno efektów dźwięku</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="39"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="59"/>
         <location filename="../../audioeffects.ui" line="62"/>
         <source>List of available audio effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista dostępnych efektów dźwięku</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="81"/>
         <source>Name</source>
-        <translation type="unfinished">Nazwa</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="86"/>
         <source>Description</source>
-        <translation type="unfinished">Opis</translation>
+        <translation>Opis</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="91"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="96"/>
         <source>Setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienia</translation>
     </message>
 </context>
 <context>
@@ -1857,7 +1857,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="96"/>
         <source>Software list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista oprogramowania</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="319"/>
@@ -4443,7 +4443,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.ui" line="159"/>
         <source>Brief name</source>
-        <translation type="unfinished">Skrócona nazwa</translation>
+        <translation>Skrócona nazwa</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="194"/>
@@ -4995,7 +4995,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.ui" line="1562"/>
         <location filename="../../qmc2main.ui" line="1565"/>
         <source>Playlist (move items by dragging &amp; dropping them)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista odtwarzania (elementy można przesuwać metodą przeciągnij i upuść)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1755"/>
@@ -5007,7 +5007,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.ui" line="1786"/>
         <location filename="../../qmc2main.ui" line="1789"/>
         <source>Setup available audio effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw dostępne efekty dźwięku</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1884"/>
@@ -6154,7 +6154,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="608"/>
         <source>Pl&amp;ayed</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Grane</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1583"/>
@@ -7284,8 +7284,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -7441,7 +7439,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4413"/>
         <source>destroying audio effects dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie okna dialogowego efektów dźwięku</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4827"/>
@@ -7466,12 +7464,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5363"/>
         <source>Enter valid MP3 stream URL:</source>
-        <translation>Wprowadź poprawny adres URL strumienia MP3</translation>
+        <translation>Wprowadź poprawny adres URL strumienia MP3:</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5664"/>
         <source>Buffering %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Buforowanie %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6725"/>
@@ -8792,42 +8790,42 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="3552"/>
         <source>XML game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Bufor XML listy gier</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3589"/>
         <source>Game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Bufor listy gier</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3752"/>
         <source>Software list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Bufor listy oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3765"/>
         <source>MESS software list cache (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bufor listy oprogramowania MESS (zapis)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3778"/>
         <source>Browse MESS software list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż plik bufora listy oprogramowania MESS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3789"/>
         <source>Working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog roboczy</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3802"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog roboczy używany podczas pracy emulatora (jeśli pusty, będzie używany bieżący katalog roboczy QMC2)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3815"/>
         <source>Browse working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż katalog roboczy</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3833"/>
@@ -9134,12 +9132,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="1186"/>
         <source>please reload game list for some changes to take effect</source>
-        <translation type="unfinished"></translation>
+        <translation>proszę przeładować listę gier aby pewne zmiany mogły odnieść skutek</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1188"/>
         <source>please reload machine list for some changes to take effect</source>
-        <translation type="unfinished"></translation>
+        <translation>proszę przeładować listę maszyn aby pewne zmiany mogły odnieść skutek</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1204"/>
@@ -9341,12 +9339,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="2246"/>
         <source>Choose working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz katalog roboczy</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2274"/>
         <source>Choose software list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik bufora listy oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2299"/>
@@ -10692,12 +10690,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../procmgr.cpp" line="53"/>
         <source>WARNING: ProcessManager::start(): the specified working directory &apos;%1&apos; is not a directory -- ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: ProcessManager::start(): wskazany katalog roboczy &apos;%1&apos; nie jest katalogiem -- zignorowano</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="56"/>
         <source>WARNING: ProcessManager::start(): the specified working directory &apos;%1&apos; does not exist -- ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: ProcessManager::start(): wskazany katalog roboczy &apos;%1&apos; nie istnieje -- zignorowano</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="170"/>
@@ -12392,28 +12390,28 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romstatusexport.cpp" line="492"/>
         <location filename="../../romstatusexport.cpp" line="691"/>
         <source>SDLMAME</source>
-        <translation type="unfinished"></translation>
+        <translation>SDLMAME</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="196"/>
         <location filename="../../romstatusexport.cpp" line="494"/>
         <location filename="../../romstatusexport.cpp" line="693"/>
         <source>SDLMESS</source>
-        <translation type="unfinished"></translation>
+        <translation>SDLMESS</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="198"/>
         <location filename="../../romstatusexport.cpp" line="496"/>
         <location filename="../../romstatusexport.cpp" line="695"/>
         <source>MAME</source>
-        <translation type="unfinished"></translation>
+        <translation>MAME</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="200"/>
         <location filename="../../romstatusexport.cpp" line="498"/>
         <location filename="../../romstatusexport.cpp" line="697"/>
         <source>MESS</source>
-        <translation type="unfinished"></translation>
+        <translation>MESS</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="235"/>
@@ -12951,17 +12949,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../welcome.ui" line="651"/>
         <source>Hash path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do skrótów</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="658"/>
         <source>Path to hash files</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do plików skrótów</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="665"/>
         <source>Browse hash path</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż ścieżkę skrótów</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="710"/>
@@ -12983,7 +12981,14 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator&apos;s executable file below.&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator&apos;s global configuration at any time later).&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;It&apos;s strongly recommended that you specify the ROM path you are going to use at least!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;Welcome to QMC2!&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Nie znaleziono poprawnej konfiguracji, co wskazuje na to, iż jest to pierwsze uruchomienie QMC2. Aby używać QMC2 jako interfejsu graficznego do emulatora, należy podać ścieżkę do jego pliku wykonywalnego poniżej.&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ścieżki poniżej pliku wykonywalnego są opcjonalne, jednakże powinno się podać teraz jak najwięcej z nich aby później uniknąć problemów i niejasności (ścieżki można potem oczywiście zmienić w globalnej konfiguracji emulatora).&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Zdecydowanie zalecane jest podanie co najmniej ścieżki ROM-ów, z której zamierza się korzystać!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="551"/>
@@ -13044,22 +13049,22 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../welcome.cpp" line="33"/>
         <source>SDLMAME</source>
-        <translation type="unfinished"></translation>
+        <translation>SDLMAME</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="38"/>
         <source>SDLMESS</source>
-        <translation type="unfinished"></translation>
+        <translation>SDLMESS</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="43"/>
         <source>MAME</source>
-        <translation type="unfinished"></translation>
+        <translation>MAME</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="48"/>
         <source>MESS</source>
-        <translation type="unfinished"></translation>
+        <translation>MESS</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="55"/>
@@ -13069,7 +13074,7 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../welcome.cpp" line="154"/>
         <source>Choose hash path</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz ścieżkę skrótów</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="228"/>
