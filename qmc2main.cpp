@@ -4501,6 +4501,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
   delete qmc2KeyPressFilter;
   delete qmc2Options;
+  qInstallMsgHandler(0);
   e->accept();
 }
 
