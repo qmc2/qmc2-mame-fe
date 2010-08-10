@@ -621,7 +621,7 @@ $(PROJECT): $(PROJECT)-bin
 
 # Put the version and SCM revision in the Info.plist for OS X
 %.plist: %.plist.in
-	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(shell svnversion | $(SED) -e 's/[M:S].*//'))/g' < $< > $@
+	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(shell svnversion | $(SED) -e 's/[MS]//g' -e 's/^[[:digit:]]*://'))/g' < $< > $@
 
 ifeq '$(ARCH)' 'Darwin'
 $(QMAKEFILE): macx/Info.plist
