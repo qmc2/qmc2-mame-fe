@@ -420,6 +420,16 @@ ifndef DATABASE
 DATABASE = 0
 endif
 
+# >>> MAC_UNIVERSAL <<<
+#
+# Enable (1) or disable (0) the creation of a Mac OS X universal binary
+#
+# This is only used on Mac OS X and disabled by default.
+#
+ifndef MAC_UNIVERSAL
+MAC_UNIVERSAL = 0
+endif
+
 # >>> END OF MAKE OPTIONS <<<
 
 # project name
@@ -484,6 +494,10 @@ ifeq '$(DEBUG)' '2'
 DEFINES += QMC2_DEBUG
 endif
 DEFINES += QMC2_$(EMULATOR)
+
+ifeq '$(ARCH)' 'Darwin'
+DEFINES += QMC2_MAC_UNIVERSAL=$(MAC_UNIVERSAL)
+endif
 
 ifeq '$(VARIANT_LAUNCHER)' '1'
 DEFINES += QMC2_VARIANT_LAUNCHER
@@ -891,6 +905,7 @@ config:
 	@echo "LUPDATE              Qt language update (lupdate) command         $(LUPDATE)"
 ifeq '$(ARCH)' 'Darwin'
 	@echo "MACDEPLOYQT          Qt's Mac OS X deployment tool                $(MACDEPLOYQT)"
+	@echo "MAC_UNIVERSAL        Build a universal application bundle (0, 1)  $(MAC_UNIVERSAL)"
 endif
 	@echo "MACHINE              Target system's machine type                 $(MACHINE)"
 	@echo "MAKE                 GNU make command                             $(MAKE)"
