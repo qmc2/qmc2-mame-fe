@@ -711,13 +711,20 @@ ifeq '$(ARCH)' 'Darwin'
 endif
 endif
 
+ifeq '$(ARCH)' 'Darwin'
+$(TARGET_NAME).app/Contents/Resources/qt.conf:
+	@$(MACDEPLOYQT) $(TARGET_NAME).app
+macdeployqt: $(TARGET_NAME).app/Contents/Resources/qt.conf
+
+install: bin macdeployqt
+else
 install: bin
+endif
 	@echo "Installing QMC2 v$(VERSION)"
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)" "$(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)"
 ifeq '$(ARCH)' 'Darwin'
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
 	@$(CHMOD) a+rx "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
-	@$(MACDEPLOYQT) $(TARGET_NAME).app
 	@$(RSYNC) --exclude '*svn*' "./$(TARGET_NAME).app" "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
 else
 	@$(RM) -f "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
