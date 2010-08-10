@@ -702,6 +702,7 @@ install: bin
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)" "$(DESTDIR)/$(DATADIR)/$(PROJECT)" "$(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)"
 ifeq '$(ARCH)' 'Darwin'
 	@$(MKDIR) "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
+	@$(CHMOD) a+rx "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
 	@$(MACDEPLOYQT) $(TARGET_NAME).app
 	@$(RSYNC) --exclude '*svn*' "./$(TARGET_NAME).app" "$(DESTDIR)/$(BINDIR)/$(PROJECT)"
 else
@@ -742,6 +743,7 @@ endif
 ifneq '$(ARCH)' 'Darwin'
 	@echo "Installing $(TARGET_NAME).desktop to $(GLOBAL_DATADIR)/applications"
 	@$(MKDIR) $(GLOBAL_DATADIR)/applications
+	@$(CHMOD) a+rx $(GLOBAL_DATADIR)/applications
 	@$(SED) -e "s*DATADIR*$(DATADIR)*g; s*EMULATOR*$(EMULATOR)*g; s*TARGET*$(TARGET_NAME)*g; s*EMUICO*$(EMUICO)*g; s*GENERICNAME*$(GENERICNAME)*g" < ./inst/$(PROJECT).desktop.template > $(GLOBAL_DATADIR)/applications/$(TARGET_NAME).desktop
 endif
 	@echo "Installation complete"
@@ -864,6 +866,8 @@ config:
 	@echo "CCACHE_CC            Command used for cached cc                   $(CCACHE_CC)"
 	@echo "CCACHE_CXX           Command used for cached c++                  $(CCACHE_CXX)"
 	@echo "CD                   UNIX command cd                              $(CD)"
+	@echo "CHMOD                UNIX command chmod                           $(CHMOD)"
+	@echo "CHOWN                UNIX command chown                           $(CHOWN)"
 	@echo "COLRM                UNIX command colrm                           $(COLRM)"
 	@echo "CP                   UNIX command cp                              $(CP)"
 	@echo "CTIME                Measure compilation & linkage time (0, 1)    $(CTIME)"
