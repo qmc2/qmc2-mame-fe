@@ -5,7 +5,9 @@ LIBS += -lXmu -lX11
 macx {
 	LIBS += -L/usr/X11R6/lib
 	CONFIG -= app_bundle
-	CONFIG += x86 ppc
+	greaterThan(QMC2_MAC_UNIVERSAL, 0) {
+		CONFIG += x86 ppc
+	}
 }
 
 QMAKE_MAKEFILE = Makefile.qmake

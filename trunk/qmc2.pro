@@ -150,7 +150,9 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			OBJECTIVE_SOURCES += SDLMain_tmpl.m
 			HEADERS += SDLMain_tmpl.h
 			LIBS += -framework SDL -framework Cocoa -lz
-			#CONFIG += x86 ppc
+			greaterThan(QMC2_MAC_UNIVERSAL, 0) {
+				CONFIG += x86 ppc
+			}
 			QMAKE_INFO_PLIST = macx/Info.plist
 		} else {
 			!win32 {

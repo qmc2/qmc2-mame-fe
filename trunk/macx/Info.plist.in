@@ -27,7 +27,7 @@
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.3.9</string>
+	<string>10.4</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2006 - 2010 R. Reucher, Germany</string>
 	<key>NSPrincipalClass</key>
