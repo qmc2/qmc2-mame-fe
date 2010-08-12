@@ -160,7 +160,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			}
 		}
 		win32 {
-			CONFIG += embed_manifest_exe
+			CONFIG += embed_manifest_exe windows
 			contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
 			contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
 		}
