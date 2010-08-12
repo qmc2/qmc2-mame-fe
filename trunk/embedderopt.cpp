@@ -101,8 +101,10 @@ void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
 #endif
 
   Embedder *embedder = (Embedder *)parent();
-  if ( !snapshotViewer )
+  if ( !snapshotViewer ) {
     snapshotViewer = new SnapshotViewer(item, this);
+    qApp->processEvents();
+  }
   snapshotViewer->myItem = item;
   QPixmap pm = snapshotMap[item];
   QSize halfSize = pm.size();
