@@ -630,6 +630,7 @@ MainWindow::MainWindow(QWidget *parent)
   s = tr("Start selected machine");
 #endif
   action = qmc2GameMenu->addAction(tr("&Play"));
+  contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_activated()));
@@ -640,6 +641,7 @@ MainWindow::MainWindow(QWidget *parent)
   s = tr("Start selected machine (embedded)");
 #endif
   action = qmc2GameMenu->addAction(tr("Play &embedded"));
+  contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_activated()));
@@ -680,6 +682,7 @@ MainWindow::MainWindow(QWidget *parent)
   s = tr("Start selected machine");
 #endif
   action = qmc2SearchMenu->addAction(tr("&Play"));
+  contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_activated()));
@@ -690,6 +693,7 @@ MainWindow::MainWindow(QWidget *parent)
   s = tr("Start selected machine (embedded)");
 #endif
   action = qmc2SearchMenu->addAction(tr("Play &embedded"));
+  contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_activated()));
@@ -730,6 +734,7 @@ MainWindow::MainWindow(QWidget *parent)
   s = tr("Start selected machine");
 #endif
   action = qmc2FavoritesMenu->addAction(tr("&Play"));
+  contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_activated()));
@@ -740,6 +745,7 @@ MainWindow::MainWindow(QWidget *parent)
   s = tr("Start selected machine (embedded)");
 #endif
   action = qmc2FavoritesMenu->addAction(tr("Play &embedded"));
+  contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_activated()));
@@ -787,6 +793,7 @@ MainWindow::MainWindow(QWidget *parent)
   s = tr("Start selected machine");
 #endif
   action = qmc2PlayedMenu->addAction(tr("&Play"));
+  contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_activated()));
@@ -797,6 +804,7 @@ MainWindow::MainWindow(QWidget *parent)
   s = tr("Start selected machine (embedded)");
 #endif
   action = qmc2PlayedMenu->addAction(tr("Play &embedded"));
+  contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_activated()));
@@ -2231,6 +2239,9 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
     treeWidgetGamelist->scrollToItem(matchItem, QAbstractItemView::PositionAtTop);
     qmc2CurrentItem = matchItem;
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation").toBool() ) {
+      if ( qmc2DemoModeDialog )
+	      if ( qmc2DemoModeDialog->demoModeRunning )
+		      return;
       QTimer::singleShot(0, this, SLOT(on_actionPlay_activated()));
     } else {
       tabWidgetGamelist->setCurrentIndex(0);
@@ -3100,6 +3111,10 @@ void MainWindow::on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *item, int 
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
+  if ( qmc2DemoModeDialog )
+	  if ( qmc2DemoModeDialog->demoModeRunning )
+		  return;
+
   qmc2StartEmbedded = FALSE;
   if ( !qmc2IgnoreItemActivation )
     on_actionPlay_activated();
@@ -3111,6 +3126,10 @@ void MainWindow::on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *item, int
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
+
+  if ( qmc2DemoModeDialog )
+	  if ( qmc2DemoModeDialog->demoModeRunning )
+		  return;
 
   qmc2StartEmbedded = FALSE;
   if ( !qmc2IgnoreItemActivation )
@@ -6351,6 +6370,9 @@ void MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item, 
 	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
+	if ( qmc2DemoModeDialog )
+		if ( qmc2DemoModeDialog->demoModeRunning )
+			return;
 	if ( !item )
 		return;
 	if ( item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
@@ -6371,6 +6393,9 @@ void MainWindow::on_treeWidgetCategoryView_itemDoubleClicked(QTreeWidgetItem *it
 		return;
 	if ( item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
 		return;
+	if ( qmc2DemoModeDialog )
+		if ( qmc2DemoModeDialog->demoModeRunning )
+			qmc2IgnoreItemActivation = TRUE;
 	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() )
 		qmc2IgnoreItemActivation = TRUE;
 }
@@ -6442,6 +6467,9 @@ void MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item, i
 	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
+	if ( qmc2DemoModeDialog )
+		if ( qmc2DemoModeDialog->demoModeRunning )
+			return;
 	if ( !item )
 		return;
 	if ( item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
@@ -7258,6 +7286,12 @@ QPoint MainWindow::adjustedWidgetPosition(QPoint p, QWidget *w)
     adjustedPosition.setY(desktopGeometry.height() - w->height());
 
   return adjustedPosition;
+}
+
+void MainWindow::enableContextMenuPlayActions(bool enable)
+{
+	foreach(QAction *action, contextMenuPlayActions)
+		action->setEnabled(enable);
 }
 
 void myQtMessageHandler(QtMsgType type, const char *msg)
