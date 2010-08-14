@@ -14,6 +14,7 @@ extern QStringList qmc2BiosROMs;
 extern QString qmc2DemoGame;
 extern QStringList qmc2DemoArgs;
 extern bool qmc2ReloadActive;
+extern bool qmc2VerifyActive;
 extern QSettings *qmc2Config;
 
 DemoModeDialog::DemoModeDialog(QWidget *parent)
@@ -103,9 +104,14 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
       emuProcess->terminate();
       emuProcess = NULL;
     }
+    qmc2MainWindow->actionCheckROMs->setEnabled(true);
   } else {
     if ( qmc2ReloadActive ) {
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+      return;
+    }
+    if ( qmc2VerifyActive ) {
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
       return;
     }
     selectedGames.clear();
@@ -140,6 +146,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
     demoModeRunning = TRUE;
     pushButtonRunDemo->setText(tr("Stop &demo"));
     pushButtonRunDemo->setToolTip(tr("Stop demo now"));
+    qmc2MainWindow->actionCheckROMs->setEnabled(false);
     QTimer::singleShot(0, this, SLOT(startNextEmu()));
   }
 }
