@@ -105,6 +105,11 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
       emuProcess = NULL;
     }
     qmc2MainWindow->actionCheckROMs->setEnabled(true);
+    qmc2MainWindow->actionPlay->setEnabled(true);
+#if defined(Q_WS_X11)
+    qmc2MainWindow->actionPlayEmbedded->setEnabled(true);
+#endif
+    qmc2MainWindow->enableContextMenuPlayActions(true);
   } else {
     if ( qmc2ReloadActive ) {
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
@@ -147,6 +152,11 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
     pushButtonRunDemo->setText(tr("Stop &demo"));
     pushButtonRunDemo->setToolTip(tr("Stop demo now"));
     qmc2MainWindow->actionCheckROMs->setEnabled(false);
+    qmc2MainWindow->actionPlay->setEnabled(false);
+#if defined(Q_WS_X11)
+    qmc2MainWindow->actionPlayEmbedded->setEnabled(false);
+#endif
+    qmc2MainWindow->enableContextMenuPlayActions(false);
     QTimer::singleShot(0, this, SLOT(startNextEmu()));
   }
 }

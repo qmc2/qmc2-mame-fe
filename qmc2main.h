@@ -101,6 +101,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QAction *actionRomStatusFilterI;
     QAction *actionRomStatusFilterN;
     QAction *actionRomStatusFilterU;
+    QList<QAction *> contextMenuPlayActions;
 #if QMC2_JOYSTICK == 1
     int joyIndex;
 #endif
@@ -388,6 +389,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_pushButtonStopSelectedDownloads_clicked();
     void on_emuSelector_currentIndexChanged(const QString &);
     void checkActivity();
+    void enableContextMenuPlayActions(bool);
 
   protected:
     void closeEvent(QCloseEvent *);
