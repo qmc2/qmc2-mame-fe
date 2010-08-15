@@ -22,6 +22,8 @@ class DemoModeDialog : public QDialog, public Ui::DemoModeDialog
     void emuFinished(int, QProcess::ExitStatus);
     void emuStarted();
     void startNextEmu();
+    void setStatus(QString);
+    void clearStatus() { setStatus(QString()); }
 
   protected:
     void closeEvent(QCloseEvent *);
