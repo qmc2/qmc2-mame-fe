@@ -1511,34 +1511,34 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DemoModeDialog</name>
     <message>
-        <location filename="../../demomode.cpp" line="97"/>
+        <location filename="../../demomode.cpp" line="99"/>
         <source>demo mode stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="99"/>
+        <location filename="../../demomode.cpp" line="101"/>
         <location filename="../../demomode.ui" line="276"/>
         <source>Run &amp;demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="100"/>
+        <location filename="../../demomode.cpp" line="102"/>
         <location filename="../../demomode.ui" line="273"/>
         <source>Run demo now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="115"/>
+        <location filename="../../demomode.cpp" line="118"/>
         <source>please wait for reload to finish and try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="119"/>
+        <location filename="../../demomode.cpp" line="122"/>
         <source>please wait for ROM verification to finish and try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../demomode.cpp" line="150"/>
+        <location filename="../../demomode.cpp" line="153"/>
         <source>demo mode started -- %n game(s) selected by filter</source>
         <translation type="unfinished">
             <numerusform></numerusform>
@@ -1546,17 +1546,17 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="152"/>
+        <location filename="../../demomode.cpp" line="155"/>
         <source>Stop &amp;demo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="153"/>
+        <location filename="../../demomode.cpp" line="156"/>
         <source>Stop demo now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="213"/>
+        <location filename="../../demomode.cpp" line="219"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>

@@ -31,6 +31,8 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
   checkBoxEmbedded->setVisible(FALSE);
 #endif
 
+  clearStatus();
+
   toolButtonSelectC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectC", TRUE).toBool());
   toolButtonSelectM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectM", TRUE).toBool());
   toolButtonSelectI->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectI", FALSE).toBool());
@@ -110,6 +112,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
     qmc2MainWindow->actionPlayEmbedded->setEnabled(true);
 #endif
     qmc2MainWindow->enableContextMenuPlayActions(true);
+    clearStatus();
   } else {
     if ( qmc2ReloadActive ) {
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
@@ -184,8 +187,10 @@ void DemoModeDialog::emuFinished(int exitCode, QProcess::ExitStatus exitStatus)
   qmc2DemoGame.clear();
   emuProcess = NULL;
 
-  if ( demoModeRunning )
+  if ( demoModeRunning ) {
+    clearStatus();
     QTimer::singleShot(spinBoxPauseSeconds->value() * 1000, this, SLOT(startNextEmu()));
+  }
 }
 
 void DemoModeDialog::startNextEmu()
@@ -210,7 +215,9 @@ void DemoModeDialog::startNextEmu()
       qmc2DemoArgs << "-nomaximize";
   }
   qmc2DemoGame = selectedGames[qrand() % selectedGames.count()];
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulation in demo mode for '%1'").arg(qmc2GamelistDescriptionMap[qmc2DemoGame]));
+  QString gameDescription = qmc2GamelistDescriptionMap[qmc2DemoGame];
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulation in demo mode for '%1'").arg(gameDescription));
+  setStatus(gameDescription);
 #if defined(Q_WS_X11)
   if ( checkBoxEmbedded->isChecked() && !checkBoxFullScreen->isChecked() )
     QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
@@ -237,4 +244,16 @@ void DemoModeDialog::adjustIconSizes()
   toolButtonSelectU->setIconSize(iconSize);
 
   adjustSize();
+}
+
+void DemoModeDialog::setStatus(QString statusString)
+{
+	if ( statusString.isEmpty() ) {
+		labelDemoStatus->clear();
+		labelDemoStatus->hide();
+	} else {
+		labelDemoStatus->setText("<font size=\"+1\"><b>" + statusString + "</b></font>");
+		labelDemoStatus->show();
+	}
+	adjustSize();
 }

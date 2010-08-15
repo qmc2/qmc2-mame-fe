@@ -1530,34 +1530,34 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DemoModeDialog</name>
     <message>
-        <location filename="../../demomode.cpp" line="97"/>
+        <location filename="../../demomode.cpp" line="99"/>
         <source>demo mode stopped</source>
         <translation>tryb demonstracyjny zatrzymany</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="99"/>
+        <location filename="../../demomode.cpp" line="101"/>
         <location filename="../../demomode.ui" line="276"/>
         <source>Run &amp;demo</source>
         <translation>Uruchom &amp;demonstrację</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="100"/>
+        <location filename="../../demomode.cpp" line="102"/>
         <location filename="../../demomode.ui" line="273"/>
         <source>Run demo now</source>
         <translation>Uruchom demonstrację teraz</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="115"/>
+        <location filename="../../demomode.cpp" line="118"/>
         <source>please wait for reload to finish and try again</source>
         <translation>proszę poczekać za zakończenie przeładowywania i spróbować ponownie</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="119"/>
+        <location filename="../../demomode.cpp" line="122"/>
         <source>please wait for ROM verification to finish and try again</source>
         <translation type="unfinished">proszę poczekać za zakończenie weryfikacji ROM-ów i spróbować ponownie</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../demomode.cpp" line="150"/>
+        <location filename="../../demomode.cpp" line="153"/>
         <source>demo mode started -- %n game(s) selected by filter</source>
         <translation>
             <numerusform>tryb demonstracyjny uruchomiono -- %n gra wybrana za pomocą filtra</numerusform>
@@ -1566,17 +1566,17 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="152"/>
+        <location filename="../../demomode.cpp" line="155"/>
         <source>Stop &amp;demo</source>
         <translation>Zatrzymaj &amp;demonstrację</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="153"/>
+        <location filename="../../demomode.cpp" line="156"/>
         <source>Stop demo now</source>
         <translation>Zatrzymaj demonstrację teraz</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="213"/>
+        <location filename="../../demomode.cpp" line="219"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
         <translation>uruchamianie emulacji w trybie demonstracyjnym dla &apos;%1&apos;</translation>
     </message>
