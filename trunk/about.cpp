@@ -153,7 +153,10 @@ void About::showEvent(QShowEvent *e)
 #endif
 #if QMC2_USE_PHONON_API
           "<p><b>" + tr("Phonon version:") + "</b><br>" + tr("Run-time:") + " " + QString("%1").arg(Phonon::phononVersion()) + "</p><p><b>" + tr("Phonon backend / supported MIME types:") + "</b>";
-          foreach (QString mimeType, Phonon::BackendCapabilities::availableMimeTypes()) sysInfoString += "<br>" + mimeType;
+          QStringList mimeTypes = Phonon::BackendCapabilities::availableMimeTypes();
+          mimeTypes.sort();
+          foreach (QString mimeType, mimeTypes)
+            sysInfoString += "<br>" + mimeType;
 	  sysInfoString += QString("</p>") +
 #endif
 #if defined(QMC2_SHOWMEMINFO)
