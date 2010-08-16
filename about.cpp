@@ -154,6 +154,7 @@ void About::showEvent(QShowEvent *e)
 #if QMC2_USE_PHONON_API
           "<p><b>" + tr("Phonon version:") + "</b><br>" + tr("Run-time:") + " " + QString("%1").arg(Phonon::phononVersion()) + "</p><p><b>" + tr("Phonon backend / supported MIME types:") + "</b>";
           QStringList mimeTypes = Phonon::BackendCapabilities::availableMimeTypes();
+	  mimeTypes.removeDuplicates();
           mimeTypes.sort();
           foreach (QString mimeType, mimeTypes)
             sysInfoString += "<br>" + mimeType;
