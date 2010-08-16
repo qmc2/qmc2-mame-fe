@@ -2559,6 +2559,7 @@ void Gamelist::verifyReadyReadStandardOutput()
               }
               romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
               hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
+	      if ( romItem == qmc2CurrentItem ) qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorGreen);
             } else if ( words.last() == "bad" ) {
               romState = "I";
               romStateLong = QObject::tr("incorrect");
@@ -2580,6 +2581,7 @@ void Gamelist::verifyReadyReadStandardOutput()
               }
               romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_I);
               hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_I);
+	      if ( romItem == qmc2CurrentItem ) qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorRed);
             } else if ( words.last() == "available" ) {
               romState = "M";
               romStateLong = QObject::tr("mostly correct");
@@ -2601,6 +2603,7 @@ void Gamelist::verifyReadyReadStandardOutput()
               }
               romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_M);
               hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_M);
+	      if ( romItem == qmc2CurrentItem ) qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorYellowGreen);
             } else if ( words.last() == "missing" || words.last() == "found!" ) {
               romState = "N";
               romStateLong = QObject::tr("not found");
@@ -2622,6 +2625,7 @@ void Gamelist::verifyReadyReadStandardOutput()
               }
               romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
               hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
+	      if ( romItem == qmc2CurrentItem ) qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorGrey);
             } else {
               romState = "U";
               romStateLong = QObject::tr("unknown");
@@ -2643,6 +2647,7 @@ void Gamelist::verifyReadyReadStandardOutput()
               }
               romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_U);
               hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_U);
+	      if ( romItem == qmc2CurrentItem ) qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorBlue);
             }
 #endif
           } else {
