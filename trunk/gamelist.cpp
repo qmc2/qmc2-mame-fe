@@ -1032,6 +1032,40 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       descriptions << tr("MD5") << tr("SHA1") << tr("Merge") << tr("Region") << tr("Index") << tr("Status");
       insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
     }
+    if ( element.contains("<adjuster ") ) {
+      childItem = new QTreeWidgetItem(item);
+      childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Adjuster"));
+      childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
+      attributes.clear();
+      attributes << "default";
+      descriptions.clear();
+      descriptions << tr("Default");
+      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
+    }
+    if ( element.contains("<softwarelist ") ) {
+      childItem = new QTreeWidgetItem(item);
+      childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Software list"));
+      childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
+    }
+    if ( element.contains("<category ") ) {
+      childItem = new QTreeWidgetItem(item);
+      childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Category"));
+      childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name", TRUE));
+
+      gamePos++;
+      while ( xmlLines[gamePos].contains("<item ") ) {
+        QString subElement = xmlLines[gamePos].simplified();
+        QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
+        secondChildItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Item"));
+        secondChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "name", TRUE));
+        attributes.clear();
+        attributes << "default";
+        descriptions.clear();
+        descriptions << tr("Default");
+        insertAttributeItems(secondChildItem, subElement, attributes, descriptions, TRUE);
+        gamePos++;
+      }
+    }
     if ( element.contains("<device ") ) {
       childItem = new QTreeWidgetItem(item);
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Device"));
