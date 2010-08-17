@@ -73,8 +73,6 @@ ImageChecker::ImageChecker(QWidget *parent)
   tabWidgetImageChecker->removeTab(QMC2_ICON_INDEX);
 #endif
 
-  ignoreResizeAndMove = TRUE;
-
   QFont f;
   f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
   QFontMetrics fm(f);
@@ -1160,12 +1158,10 @@ void ImageChecker::restoreLayout()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ImageChecker::restoreLayout()");
 #endif
 
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
+  if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Position") )
     move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Position", pos()).toPoint());
+  if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Size") )
     resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Size", size()).toSize());
-  }
-
-  ignoreResizeAndMove = FALSE;
 }
 
 void ImageChecker::closeEvent(QCloseEvent *e)
@@ -1180,8 +1176,12 @@ void ImageChecker::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ImageChecker/Icons/SelectGame", checkBoxIconsSelectGame->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ImageChecker/Icons/ClearCache", checkBoxIconsClearCache->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ImageChecker/CurrentTab", tabWidgetImageChecker->currentIndex());
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() && !qmc2CleaningUp )
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Visible", FALSE);
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Position", pos());
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Size", size());
+    if ( !qmc2CleaningUp )
+      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Visible", FALSE);
+  }
 
   if ( e )
     e->accept();
@@ -1203,9 +1203,8 @@ void ImageChecker::showEvent(QShowEvent *e)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  restoreLayout();
-
-  ignoreResizeAndMove = TRUE;
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() )
+    restoreLayout();
 
   // restore settings
   checkBoxPreviewsSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/Previews/SelectGame", TRUE).toBool());
@@ -1218,34 +1217,6 @@ void ImageChecker::showEvent(QShowEvent *e)
 
   if ( e )
     e->accept();
-}
-
-void ImageChecker::moveEvent(QMoveEvent *e)
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::moveEvent(QMoveEvent *e = %1)").arg((qulonglong)e));
-#endif
-
-  if ( !ignoreResizeAndMove )
-    if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-        qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Position", pos());
-
-  e->accept();
-}
-
-void ImageChecker::resizeEvent(QResizeEvent *e)
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ImageChecker::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
-#endif
-
-  if ( !ignoreResizeAndMove )
-    if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-        qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Size", size());
-
-  e->accept();
 }
 
 void ImageChecker::recursiveFileList(const QString &sDir, QStringList &fileNames)

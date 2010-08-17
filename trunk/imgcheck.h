@@ -14,8 +14,6 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
   Q_OBJECT
 
   public:
-    bool ignoreResizeAndMove;
-
     ImageChecker(QWidget *parent = 0);
     ~ImageChecker();
 
@@ -50,8 +48,6 @@ class ImageChecker : public QDialog, public Ui::ImageChecker
     void closeEvent(QCloseEvent *);
     void showEvent(QShowEvent *);
     void hideEvent(QHideEvent *);
-    void moveEvent(QMoveEvent *);
-    void resizeEvent(QResizeEvent *);
 };
 
 #endif
