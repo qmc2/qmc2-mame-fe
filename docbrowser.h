@@ -12,7 +12,6 @@ class DocBrowser : public QDialog, public Ui::DocBrowser
     QPoint widgetPos;
     QSize widgetSize;
     bool widgetPosValid;
-    bool ignoreResizeAndMove;
     MiniWebBrowser *browser;
 
     DocBrowser(QWidget *parent = 0);

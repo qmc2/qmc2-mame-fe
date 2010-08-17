@@ -43,7 +43,7 @@ SampleChecker::SampleChecker(QWidget *parent)
 
   setupUi(this);
 
-  ignoreResizeAndMove = TRUE;
+  checkBoxSamplesSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SampleChecker/SelectGame", TRUE).toBool());
   verifyProc = NULL;
 }
 
@@ -63,14 +63,10 @@ void SampleChecker::restoreLayout()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::restoreLayout()");
 #endif
 
-  // restore settings
-  checkBoxSamplesSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SampleChecker/SelectGame", TRUE).toBool());
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
+  if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Position") )
     move(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Position", pos()).toPoint());
+  if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Size") )
     resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Size", size()).toSize());
-  }
-
-  ignoreResizeAndMove = FALSE;
 }
 
 void SampleChecker::closeEvent(QCloseEvent *e)
@@ -81,9 +77,13 @@ void SampleChecker::closeEvent(QCloseEvent *e)
 
   // save settings
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SampleChecker/SelectGame", checkBoxSamplesSelectGame->isChecked());
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() && !qmc2CleaningUp )
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible", FALSE);
 
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Position", pos());
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Size", size());
+    if ( !qmc2CleaningUp )
+      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible", FALSE);
+  }
   if ( e )
     e->accept();
 }
@@ -104,43 +104,14 @@ void SampleChecker::showEvent(QShowEvent *e)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::showEvent(QShowEvent *e = %1").arg((qulonglong)e));
 #endif
 
-  restoreLayout();
-
-  ignoreResizeAndMove = TRUE;
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() )
+    restoreLayout();
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible", TRUE);
 
   if ( e )
     e->accept();
-}
-
-void SampleChecker::moveEvent(QMoveEvent *e)
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::moveEvent(QMoveEvent *e = %1").arg((qulonglong)e));
-#endif
-
-  if ( !ignoreResizeAndMove )
-    if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-        qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Position", pos());
-
-  e->accept();
-}
-
-void SampleChecker::resizeEvent(QResizeEvent *e)
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::resizeEvent(QResizeEvent *e = %1").arg((qulonglong)e));
-#endif
-
-  if ( !ignoreResizeAndMove )
-    if ( !qmc2CleaningUp && !qmc2EarlyStartup )
-      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-        qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Size", size());
-
-  e->accept();
 }
 
 void SampleChecker::verify()

@@ -15,7 +15,6 @@ class SampleChecker : public QDialog, public Ui::SampleChecker
     QProcess *verifyProc;
     QTime verifyTimer;
     QStringList sampleSets;
-    bool ignoreResizeAndMove;
     QString stdoutLastLine, stderrLastLine;
 
     SampleChecker(QWidget *parent = 0);
@@ -46,8 +45,6 @@ class SampleChecker : public QDialog, public Ui::SampleChecker
     void closeEvent(QCloseEvent *);
     void showEvent(QShowEvent *);
     void hideEvent(QHideEvent *);
-    void moveEvent(QMoveEvent *);
-    void resizeEvent(QResizeEvent *);
 };
 
 #endif
