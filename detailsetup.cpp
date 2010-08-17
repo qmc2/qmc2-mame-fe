@@ -322,11 +322,11 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
           {
             bool ok;
 	    QStringList suggestedUrls;
+	    QString currentUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString();
             suggestedUrls << QMC2_MAWS_BASE_URL
                           << "http://maws.mameworld.info/minimaws/romset/%1";
-            if ( !suggestedUrls.contains(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString()) )
-              suggestedUrls << qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString();
-            int current = suggestedUrls.indexOf(qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString());
+            if ( !suggestedUrls.contains(currentUrl) ) suggestedUrls << currentUrl;
+            int current = suggestedUrls.indexOf(currentUrl);
             QString baseUrl = QInputDialog::getItem(this,
                                                     tr("MAWS configuration (1/2)"),
                                                     tr("MAWS URL pattern (use %1 as placeholder for game ID):").arg("%1"),
@@ -334,8 +334,7 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
                                                     current < 0 ? 0 : current,
                                                     true,
                                                     &ok);
-            if ( ok && !baseUrl.isEmpty() )
-              qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", baseUrl);
+
             if ( ok ) {
               if ( baseUrl == QMC2_MAWS_BASE_URL ) {
                 QStringList items;
@@ -347,6 +346,12 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
                   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", mawsQuickDownload == tr("Yes"));
               } else
                 qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", FALSE);
+
+              if ( ok && !baseUrl.isEmpty() ) {
+                qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", baseUrl);
+                if ( currentUrl != qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString() )
+                  QTimer::singleShot(0, qmc2MainWindow->actionClearMAWSCache, SLOT(trigger())); 
+	      }
             }
           }
           break;
