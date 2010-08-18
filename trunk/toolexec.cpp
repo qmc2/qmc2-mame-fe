@@ -1,9 +1,12 @@
+#include <QSettings>
+
 #include "toolexec.h"
 #include "qmc2main.h"
 #include "macros.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
+extern QSettings *qmc2Config;
 
 ToolExecutor::ToolExecutor(QWidget *parent, QString &command, QStringList &args)
   : QDialog(parent)
@@ -13,6 +16,13 @@ ToolExecutor::ToolExecutor(QWidget *parent, QString &command, QStringList &args)
 #endif
 
   setupUi(this);
+
+  QFont f;
+  f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+  QFont logFont = f;
+  if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString().isEmpty() )
+    logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
+  textBrowserToolOutput->setFont(logFont);
 
   toolCommand = command;
   toolArgs = args;
@@ -54,6 +64,8 @@ void ToolExecutor::toolStarted()
 #endif
 
   textBrowserToolOutput->append(tr("### tool started, output below ###"));
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput").toBool() )
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("tool control: ") + tr("### tool started, output below ###"));
 }
 
 void ToolExecutor::toolFinished(int exitCode, QProcess::ExitStatus exitStatus)
@@ -63,7 +75,12 @@ void ToolExecutor::toolFinished(int exitCode, QProcess::ExitStatus exitStatus)
 #endif
 
   textBrowserToolOutput->append(tr("### tool finished, exit code = %1, exit status = %2 ###").arg(exitCode).arg(exitStatus));
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput").toBool() )
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("tool control: ") + tr("### tool finished, exit code = %1, exit status = %2 ###").arg(exitCode).arg(exitStatus));
   pushButtonOk->setEnabled(TRUE);
+
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CloseToolDialog", false).toBool() )
+    QTimer::singleShot(0, this, SLOT(accept()));
 }
 
 void ToolExecutor::toolReadyReadStandardOutput()
@@ -75,8 +92,11 @@ void ToolExecutor::toolReadyReadStandardOutput()
   QString s = toolProc->readAllStandardOutput();
   QStringList sl = s.split("\n");
   foreach (s, sl)
-    if ( !s.isEmpty() )
+    if ( !s.isEmpty() ) {
       textBrowserToolOutput->append(s);
+      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput").toBool() )
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("tool output: ") + tr("stdout: %1").arg(s));
+    }
 }
 
 void ToolExecutor::toolReadyReadStandardError()
@@ -88,8 +108,11 @@ void ToolExecutor::toolReadyReadStandardError()
   QString s = toolProc->readAllStandardError();
   QStringList sl = s.split("\n");
   foreach (s, sl)
-    if ( !s.isEmpty() )
+    if ( !s.isEmpty() ) {
       textBrowserToolOutput->append(s);
+      if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput").toBool() )
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("tool output: ") + tr("stderr: %1").arg(s));
+    }
 }
 
 void ToolExecutor::toolError(QProcess::ProcessError processError)
@@ -99,6 +122,11 @@ void ToolExecutor::toolError(QProcess::ProcessError processError)
 #endif
 
   textBrowserToolOutput->append(tr("### tool error, process error = %1 ###").arg(processError));
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput").toBool() )
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("tool control: ") + tr("### tool error, process error = %1 ###").arg(processError));
+
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CloseToolDialog", false).toBool() )
+    QTimer::singleShot(0, this, SLOT(accept()));
 }
 
 void ToolExecutor::toolStateChanged(QProcess::ProcessState processState)

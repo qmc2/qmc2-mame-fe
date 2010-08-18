@@ -267,6 +267,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["F7"] = QPair<QString, QAction *>(tr("View games by category"), NULL);
   qmc2ShortcutMap["F8"] = QPair<QString, QAction *>(tr("View games by version"), NULL);
 #endif
+  qmc2ShortcutMap["F9"] = QPair<QString, QAction *>(tr("Run external ROM tool"), NULL);
   qmc2ShortcutMap["F11"] = QPair<QString, QAction *>(tr("Toggle full screen"), NULL);
   qmc2ShortcutMap["F12"] = QPair<QString, QAction *>(tr("Toggle arcade mode"), NULL);
   qmc2ShortcutMap["Meta+F"] = QPair<QString, QAction *>(tr("Show FPS (arcade mode)"), NULL);
@@ -424,6 +425,7 @@ void Options::apply()
   toolButtonBrowseListXMLCache->setIconSize(iconSize);
   toolButtonBrowseZipTool->setIconSize(iconSize);
   toolButtonBrowseFileRemovalTool->setIconSize(iconSize);
+  toolButtonBrowseRomTool->setIconSize(iconSize);
   pushButtonRedefineKeySequence->setIconSize(iconSize);
   pushButtonResetShortcut->setIconSize(iconSize);
   toolButtonAddEmulator->setIconSize(iconSize);
@@ -1010,6 +1012,10 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/ZipToolRemovalArguments", lineEditZipToolRemovalArguments->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool", lineEditFileRemovalTool->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments", lineEditFileRemovalToolArguments->text());
+  config->setValue(QMC2_FRONTEND_PREFIX + "Tools/RomTool", lineEditRomTool->text());
+  config->setValue(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", lineEditRomToolArguments->text());
+  config->setValue(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput", checkBoxCopyToolOutput->isChecked());
+  config->setValue(QMC2_FRONTEND_PREFIX + "Tools/CloseToolDialog", checkBoxCloseToolDialog->isChecked());
   config->setValue("Network/HTTPProxy/Enable", groupBoxHTTPProxy->isChecked());
   config->setValue("Network/HTTPProxy/Host", lineEditHTTPProxyHost->text());
   config->setValue("Network/HTTPProxy/Port", spinBoxHTTPProxyPort->value());
@@ -1848,6 +1854,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditFileRemovalTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalTool", "rm").toString());
   lineEditFileRemovalToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments", "-f -v $FILELIST$").toString());
 #endif
+  lineEditRomTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool", "").toString());
+  lineEditRomToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", "$ID$ $DESCRIPTION$").toString());
+  checkBoxCopyToolOutput->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput", true).toBool());
+  checkBoxCloseToolDialog->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Tools/CloseToolDialog", false).toBool());
+
   groupBoxHTTPProxy->setChecked(config->value("Network/HTTPProxy/Enable", FALSE).toBool());
   lineEditHTTPProxyHost->setText(config->value("Network/HTTPProxy/Host", "").toString());
   spinBoxHTTPProxyPort->setValue(config->value("Network/HTTPProxy/Port", 80).toInt());
@@ -2156,7 +2167,7 @@ void Options::on_toolButtonBrowseEmulatorLogFile_clicked()
 void Options::on_toolButtonBrowseListXMLCache_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonListXMLCache_clicked()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseListXMLCache_clicked()");
 #endif
 
   QString s = QFileDialog::getOpenFileName(this, tr("Choose XML gamelist cache file"), lineEditListXMLCache->text(), tr("All files (*)"));
@@ -2168,7 +2179,7 @@ void Options::on_toolButtonBrowseListXMLCache_clicked()
 void Options::on_toolButtonBrowseZipTool_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonZipTool_clicked()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseZipTool_clicked()");
 #endif
 
   QString s = QFileDialog::getOpenFileName(this, tr("Choose zip tool"), lineEditZipTool->text(), tr("All files (*)"));
@@ -2180,12 +2191,24 @@ void Options::on_toolButtonBrowseZipTool_clicked()
 void Options::on_toolButtonBrowseFileRemovalTool_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonFileRemovalTool_clicked()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseFileRemovalTool_clicked()");
 #endif
 
   QString s = QFileDialog::getOpenFileName(this, tr("Choose file removal tool"), lineEditFileRemovalTool->text(), tr("All files (*)"));
   if ( !s.isNull() )
     lineEditFileRemovalTool->setText(s);
+  raise();
+}
+
+void Options::on_toolButtonBrowseRomTool_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseRomTool_clicked()");
+#endif
+
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose ROM tool"), lineEditRomTool->text(), tr("All files (*)"));
+  if ( !s.isNull() )
+    lineEditRomTool->setText(s);
   raise();
 }
 

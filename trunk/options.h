@@ -139,6 +139,7 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonBrowseLogFont_clicked();
     void on_toolButtonBrowseZipTool_clicked();
     void on_toolButtonBrowseFileRemovalTool_clicked();
+    void on_toolButtonBrowseRomTool_clicked();
     void on_radioButtonPreviewSelect_clicked();
     void on_radioButtonFlyerSelect_clicked();
     void on_radioButtonIconSelect_clicked();

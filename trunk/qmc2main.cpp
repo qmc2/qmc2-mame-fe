@@ -64,6 +64,7 @@
 #include <QTest>
 #include "audioeffects.h"
 #endif
+#include "toolexec.h"
 #include "arcade/arcadeview.h"
 #include "arcade/arcadesetupdialog.h"
 
@@ -1663,6 +1664,29 @@ void MainWindow::on_actionROMAlyzer_activated()
     qmc2ROMAlyzer->showNormal();
 
   QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(raise()));
+}
+
+void MainWindow::on_actionRunRomTool_activated()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionRunRomTool_activated()");
+#endif
+
+  if ( !qmc2CurrentItem )
+    return;
+
+  if ( qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
+    return;
+
+  QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool").toString();
+  QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments").toString().split(" ");
+  QString gameID = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+  QString gameDescription = qmc2GamelistDescriptionMap[gameID];
+  QStringList newArgs;
+  foreach (QString argument, args)
+    newArgs << argument.replace("$ID$", gameID).replace("$DESCRIPTION$", gameDescription);
+  ToolExecutor romTool(this, command, newArgs);
+  romTool.exec();
 }
 
 void MainWindow::on_actionAnalyseCurrentROM_activated()
@@ -7370,6 +7394,7 @@ void prepareShortcuts()
   qmc2ShortcutMap["F7"].second = qmc2MainWindow->actionViewByCategory;
   qmc2ShortcutMap["F8"].second = qmc2MainWindow->actionViewByVersion;
 #endif
+  qmc2ShortcutMap["F9"].second = qmc2MainWindow->actionRunRomTool;
   qmc2ShortcutMap["F11"].second = qmc2MainWindow->actionFullscreenToggle;
   qmc2ShortcutMap["F12"].second = qmc2MainWindow->actionArcadeToggle;
   qmc2ShortcutMap["Meta+F"].second = qmc2MainWindow->actionArcadeShowFPS;
