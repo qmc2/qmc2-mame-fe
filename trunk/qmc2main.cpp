@@ -6794,7 +6794,7 @@ void MainWindow::createMawsQuickLinksMenu()
   QMenu *previewMenu = menuMAWSQuickLinks->addMenu(QIcon(QString::fromUtf8(":/data/img/camera.png")), tr("Previews"));
   QMap<QString, QString> previewURLs;
   // AntoPISA progettoSNAPS
-  startIndex = mawsHtml.indexOf("document.snapshot.src='img/shots/progettosnaps/ingame");
+  startIndex = mawsHtml.indexOf("document.snapshot.src='../img/ps/snap/");
   if ( startIndex >= 0 ) {
     endIndex = mawsHtml.indexOf("';", startIndex);
     if ( endIndex > startIndex )
@@ -6847,7 +6847,7 @@ void MainWindow::createMawsQuickLinksMenu()
   QMenu *titleMenu = menuMAWSQuickLinks->addMenu(QIcon(QString::fromUtf8(":/data/img/arcademode.png")), tr("Titles"));
   QMap<QString, QString> titleURLs;
   // AntoPISA progettoSNAPS
-  startIndex = mawsHtml.indexOf("document.snapshot.src='img/shots/progettosnaps/titles");
+  startIndex = mawsHtml.indexOf("document.snapshot.src='../img/ps/titles/");
   if ( startIndex >= 0 ) {
     endIndex = mawsHtml.indexOf("';", startIndex);
     if ( endIndex > startIndex )
