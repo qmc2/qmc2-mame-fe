@@ -152,6 +152,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_actionExitStop_activated();
     void on_actionCheckCurrentROM_activated();
     void on_actionAnalyseCurrentROM_activated();
+    void on_actionRunRomTool_activated();
 
     // arcade menu
     void on_actionArcadeToggle_activated();

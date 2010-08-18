@@ -2094,6 +2094,8 @@
      </property>
      <addaction name="actionCheckCurrentROM"/>
      <addaction name="actionAnalyseCurrentROM"/>
+     <addaction name="separator"/>
+     <addaction name="actionRunRomTool"/>
     </widget>
     <widget class="QMenu" name="menu_View">
      <property name="title">
@@ -3095,6 +3097,27 @@
    </property>
    <property name="shortcut">
     <string>F8</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionRunRomTool">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/process.png</normaloff>:/data/img/process.png</iconset>
+   </property>
+   <property name="text">
+    <string>Run external ROM tool...</string>
+   </property>
+   <property name="toolTip">
+    <string>Run tool to process ROM data externally</string>
+   </property>
+   <property name="statusTip">
+    <string>Run tool to process ROM data externally</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>

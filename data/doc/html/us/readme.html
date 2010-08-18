@@ -530,6 +530,10 @@ of their parents.</p>
       <td style="vertical-align: top;">MAME targets only: view games by version they were added to the emulator</td>
     </tr>
     <tr>
+      <td style="vertical-align: top;">F9</td>
+      <td style="vertical-align: top;">Run external (and generic) ROM tool on the currently selected game/machine</td>
+    </tr>
+    <tr>
       <td style="vertical-align: top;">F11</td>
       <td style="vertical-align: top;">Toggle between full screen and windowed mode</td>
     </tr>
@@ -633,10 +637,21 @@ This is not really a problem and could be used for debugging purposes, but shoul
       <td style="vertical-align: top;">... the currently processed list of files ("file1 file2 ..." - fully qualified)</td>
       <td style="vertical-align: top;">Zip tool<br>File removal tool</td>
     </tr>
+    <tr>
+      <td style="vertical-align: top;">$ID$</td>
+      <td style="vertical-align: top;">... the ID of the currently selected game/machine</td>
+      <td style="vertical-align: top;">ROM tool</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$DESCRIPTION$</td>
+      <td style="vertical-align: top;">... the long name (or description) of the currently selected game/machine</td>
+      <td style="vertical-align: top;">ROM tool</td>
+    </tr>
   </tbody>
 </table>
 <p>Everything else will be passed as literal text at the position where it's specified (see <i>Front end</i> -&gt; <i>Tools</i> in setup dialog).</p>
-<p>When external tools are started by QMC2, a simple tool-executor dialog will pop up to display the command and its output.</p>
+<p>When external tools are started by QMC2, a simple tool-executor dialog will pop up to display the command and its output.
+   However, you can also choose to run tools in the background (the tool's output will then go to the front end log instead).</p>
 <h3><a name="8."></a>8. Multi-platform support</h3>
 <p>As the front end code has been designed with portability in mind, QMC2 should work on any UNIX or UNIX-like
 platform, on Mac OS X and meanwhile also on Windows, provided Qt 4 and (SDL)MAME/MESS (or whatever emulator may be used)

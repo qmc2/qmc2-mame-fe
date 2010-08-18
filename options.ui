@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>471</height>
+    <width>564</width>
+    <height>570</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>451</width>
+                <width>515</width>
                 <height>619</height>
                </rect>
               </property>
@@ -854,7 +854,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>395</width>
+                <width>515</width>
                 <height>518</height>
                </rect>
               </property>
@@ -2112,8 +2112,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>458</width>
-                <height>347</height>
+                <width>532</width>
+                <height>463</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2518,8 +2518,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>265</width>
-                <height>45</height>
+                <width>532</width>
+                <height>463</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2631,8 +2631,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>376</width>
-                <height>246</height>
+                <width>532</width>
+                <height>463</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3069,7 +3069,7 @@
          </widget>
          <widget class="QWidget" name="tabFrontendTools">
           <attribute name="title">
-           <string>&amp;Tools / Proxy</string>
+           <string>Proxy / &amp;Tools</string>
           </attribute>
           <layout class="QGridLayout" name="gridLayout_19">
            <property name="margin">
@@ -3088,14 +3088,14 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>373</width>
-                <height>332</height>
+                <width>532</width>
+                <height>463</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_4">
-                 <item row="0" column="0">
+                 <item row="1" column="0" colspan="2">
                   <widget class="QGroupBox" name="groupBoxZipTool">
                    <property name="title">
                     <string>Zip tool</string>
@@ -3161,7 +3161,7 @@
                    </layout>
                   </widget>
                  </item>
-                 <item row="1" column="0">
+                 <item row="2" column="0" colspan="2">
                   <widget class="QGroupBox" name="groupBoxFileRemovalTool">
                    <property name="title">
                     <string>File removal tool</string>
@@ -3227,7 +3227,7 @@
                    </layout>
                   </widget>
                  </item>
-                 <item row="3" column="0">
+                 <item row="5" column="0" colspan="2">
                   <spacer name="spacer10">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -3240,7 +3240,93 @@
                    </property>
                   </spacer>
                  </item>
-                 <item row="2" column="0">
+                 <item row="3" column="0" colspan="2">
+                  <widget class="QGroupBox" name="groupBoxRomTool">
+                   <property name="title">
+                    <string>ROM tool</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="labelRomTool">
+                      <property name="text">
+                       <string>Command</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QLineEdit" name="lineEditRomTool">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="toolTip">
+                       <string>External ROM tool (it's completely up to you...)</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="2">
+                     <widget class="QToolButton" name="toolButtonBrowseRomTool">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="toolTip">
+                       <string>Browse ROM tool</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="qmc2.qrc">
+                        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="labelRomArguments">
+                      <property name="text">
+                       <string>Arguments</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1" colspan="2">
+                     <widget class="QLineEdit" name="lineEditRomToolArguments">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="toolTip">
+                       <string>ROM tool argument list (i. e. &quot;$ID$ $DESCRIPTION$&quot;)</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QCheckBox" name="checkBoxCopyToolOutput">
+                   <property name="toolTip">
+                    <string>Copy the tool's output to the front end log (keeping it for debugging)</string>
+                   </property>
+                   <property name="text">
+                    <string>Copy tool output to front end log</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QCheckBox" name="checkBoxCloseToolDialog">
+                   <property name="toolTip">
+                    <string>Automatically close the tool-executor dialog when the external process finished</string>
+                   </property>
+                   <property name="text">
+                    <string>Close dialog automatically</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0" colspan="2">
                   <widget class="QGroupBox" name="groupBoxHTTPProxy">
                    <property name="enabled">
                     <bool>true</bool>
@@ -3405,8 +3491,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>189</width>
-                <height>307</height>
+                <width>1640</width>
+                <height>480</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3849,8 +3935,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>127</width>
-                <height>193</height>
+                <width>1640</width>
+                <height>480</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22">
@@ -4253,17 +4339,22 @@
   <tabstop>pushButtonRemapJoystickFunction</tabstop>
   <tabstop>pushButtonRemoveJoystickMapping</tabstop>
   <tabstop>treeWidgetJoystickMappings</tabstop>
+  <tabstop>groupBoxHTTPProxy</tabstop>
+  <tabstop>lineEditHTTPProxyHost</tabstop>
+  <tabstop>spinBoxHTTPProxyPort</tabstop>
+  <tabstop>lineEditHTTPProxyUserID</tabstop>
+  <tabstop>lineEditHTTPProxyPassword</tabstop>
   <tabstop>lineEditZipTool</tabstop>
   <tabstop>toolButtonBrowseZipTool</tabstop>
   <tabstop>lineEditZipToolRemovalArguments</tabstop>
   <tabstop>lineEditFileRemovalTool</tabstop>
   <tabstop>toolButtonBrowseFileRemovalTool</tabstop>
   <tabstop>lineEditFileRemovalToolArguments</tabstop>
-  <tabstop>groupBoxHTTPProxy</tabstop>
-  <tabstop>lineEditHTTPProxyHost</tabstop>
-  <tabstop>spinBoxHTTPProxyPort</tabstop>
-  <tabstop>lineEditHTTPProxyUserID</tabstop>
-  <tabstop>lineEditHTTPProxyPassword</tabstop>
+  <tabstop>lineEditRomTool</tabstop>
+  <tabstop>toolButtonBrowseRomTool</tabstop>
+  <tabstop>lineEditRomToolArguments</tabstop>
+  <tabstop>checkBoxCopyToolOutput</tabstop>
+  <tabstop>checkBoxCloseToolDialog</tabstop>
   <tabstop>tabWidgetGlobalMAMESetup</tabstop>
   <tabstop>lineEditExecutableFile</tabstop>
   <tabstop>toolButtonBrowseExecutableFile</tabstop>

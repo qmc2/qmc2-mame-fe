@@ -227,6 +227,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->treeWidgetJoystickMappings->setEnabled(enable);
   qmc2Options->toolButtonBrowseZipTool->setEnabled(enable);
   qmc2Options->toolButtonBrowseFileRemovalTool->setEnabled(enable);
+  qmc2Options->toolButtonBrowseRomTool->setEnabled(enable);
   qmc2Options->toolButtonBrowseAdditionalEmulatorExecutable->setEnabled(enable);
 #if QMC2_USE_PHONON_API
   qmc2MainWindow->toolButtonAudioAddTracks->setEnabled(enable);
