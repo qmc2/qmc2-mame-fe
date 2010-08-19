@@ -388,4 +388,7 @@
 #define QMC2_INFOSOURCE_RESPONSIVENESS	5000
 #endif
 
+// maximum delay before finally killing the external tool (if required to)
+#define QMC2_TOOL_KILL_WAIT		2000
+
 #endif

@@ -22,6 +22,7 @@ inf: informational only
   <li>fix: the game/machine status indicator wasn't correctly updated when the ROM status of the currently selected game/machine changed during a ROM check</li>
   <li>fix: consider the MAWS cache as invalid when the MAWS base URL is changed (cleared now)</li>
   <li>fix: corrected widget layout restoration for image- and sample-check dialogs</li>
+  <li>fix: when the tool-executor dialog gets closed while the external program is still running, the process must be killed</li>
   <li>imp: SDLMESS/MESS templates updated to 0.139 (no new options, corrected default value for option <i>writeconfig</i>)</li>
   <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.139u1 (no new or changed options)</li>
   <li>imp: Mac OS X build: determine correct SCM revision used for <i>CFBundleVersion</i> in Info.plist, call <i>macdeployqt</i> only when necessary, use correct permissions on directories for system-wide installation</li>
