@@ -26,6 +26,7 @@ class ToolExecutor : public QDialog, public Ui::ToolExecutor
     void toolStateChanged(QProcess::ProcessState);
 
   protected:
+    void closeEvent(QCloseEvent *);
 };
 
 #endif

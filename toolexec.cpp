@@ -136,3 +136,20 @@ void ToolExecutor::toolStateChanged(QProcess::ProcessState processState)
 #endif
 
 }
+
+void ToolExecutor::closeEvent(QCloseEvent *e)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ToolExecutor::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+  if ( toolProc->state() != QProcess::NotRunning ) {
+    toolProc->terminate();
+    toolProc->waitForFinished(QMC2_TOOL_KILL_WAIT);
+    if ( toolProc->state() != QProcess::NotRunning )
+      toolProc->kill();
+  }
+
+  if ( e )
+    e->accept();
+}
