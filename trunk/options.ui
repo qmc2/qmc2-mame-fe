@@ -3245,7 +3245,7 @@
                    <property name="title">
                     <string>ROM tool</string>
                    </property>
-                   <layout class="QGridLayout" name="gridLayout">
+                   <layout class="QGridLayout" name="gridLayout_98">
                     <item row="0" column="0">
                      <widget class="QLabel" name="labelRomTool">
                       <property name="text">
