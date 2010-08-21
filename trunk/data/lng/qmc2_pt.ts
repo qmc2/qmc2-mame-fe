@@ -205,7 +205,7 @@
     <message>
         <location filename="../../about.cpp" line="155"/>
         <source>Phonon backend / supported MIME types:</source>
-        <translation>Backend Phonon / tipos MIME suportados</translation>
+        <translation>Backend Phonon / tipos MIME suportados:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="164"/>
@@ -1554,7 +1554,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="122"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere a verificação de ROM terminar e tente novamente</translation>
     </message>
     <message numerus="yes">
         <location filename="../../demomode.cpp" line="153"/>
@@ -3183,22 +3183,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1038"/>
         <source>Adjuster</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajustador</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1048"/>
         <source>Software list</source>
-        <translation type="unfinished">Lista de Software</translation>
+        <translation>Lista de Software</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1053"/>
         <source>Category</source>
-        <translation type="unfinished">Categoria</translation>
+        <translation>Categoria</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1060"/>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1072"/>
@@ -7539,18 +7539,18 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3111"/>
         <source>Run external ROM tool...</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar ferramenta de ROM externa...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3114"/>
         <location filename="../../qmc2main.ui" line="3117"/>
         <source>Run tool to process ROM data externally</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar ferramenta para processar dados da ROM externamente</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3120"/>
         <source>F9</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3403"/>
@@ -8347,7 +8347,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="270"/>
         <source>Run external ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar ferramenta de ROM externa</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="271"/>
@@ -8897,7 +8897,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="2209"/>
         <source>Choose ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha a ferramenta de ROM</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2221"/>
@@ -10053,47 +10053,47 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="3072"/>
         <source>Proxy / &amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy / &amp;Ferramentas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3246"/>
         <source>ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferramenta de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3265"/>
         <source>External ROM tool (it&apos;s completely up to you...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferramenta de ROM externa (a decisão é toda sua...)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3278"/>
         <source>Browse ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar ferramenta de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3302"/>
         <source>ROM tool argument list (i. e. &quot;$ID$ $DESCRIPTION$&quot;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de argumentos da ferramenta de ROM (p. e. &quot;$ID $DESCRIÇÃO$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3312"/>
         <source>Copy the tool&apos;s output to the front end log (keeping it for debugging)</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar a saída da ferramenta para o log do programa (mantenha para verificação)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3315"/>
         <source>Copy tool output to front end log</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar a saída da ferramenta para o log do frontend</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3322"/>
         <source>Automatically close the tool-executor dialog when the external process finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar automaticamente o diálog de execução da ferramenta quando o processo externo terminar</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3325"/>
         <source>Close dialog automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar diálogo automaticamente</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3638"/>
@@ -12940,7 +12940,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../toolexec.cpp" line="79"/>
         <location filename="../../toolexec.cpp" line="126"/>
         <source>tool control: </source>
-        <translation type="unfinished"></translation>
+        <translation>controle da ferramenta: </translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="77"/>
@@ -12952,17 +12952,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../toolexec.cpp" line="98"/>
         <location filename="../../toolexec.cpp" line="114"/>
         <source>tool output: </source>
-        <translation type="unfinished"></translation>
+        <translation>saída da ferramenta: </translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="98"/>
         <source>stdout: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>saída: %1</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="114"/>
         <source>stderr: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>erro: %1</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="124"/>
