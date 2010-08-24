@@ -178,7 +178,13 @@
          <property name="statusTip">
           <string>List of known software for the current machine</string>
          </property>
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
          <property name="uniformRowHeights">
+          <bool>true</bool>
+         </property>
+         <property name="sortingEnabled">
           <bool>true</bool>
          </property>
          <property name="allColumnsShowFocus">
@@ -218,8 +224,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>575</width>
-        <height>383</height>
+        <width>305</width>
+        <height>192</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -244,7 +250,13 @@
          <property name="statusTip">
           <string>Favorite software for the current machine</string>
          </property>
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
          <property name="uniformRowHeights">
+          <bool>true</bool>
+         </property>
+         <property name="sortingEnabled">
           <bool>true</bool>
          </property>
          <property name="allColumnsShowFocus">
@@ -289,8 +301,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>575</width>
-        <height>383</height>
+        <width>305</width>
+        <height>192</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -334,7 +346,13 @@
          <property name="statusTip">
           <string>Search results</string>
          </property>
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
          <property name="uniformRowHeights">
+          <bool>true</bool>
+         </property>
+         <property name="sortingEnabled">
           <bool>true</bool>
          </property>
          <property name="allColumnsShowFocus">

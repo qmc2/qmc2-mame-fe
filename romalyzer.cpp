@@ -1588,4 +1588,3 @@ bool ROMAlyzerXmlHandler::characters(const QString &str)
   currentText += str;
   return TRUE;
 }
-
