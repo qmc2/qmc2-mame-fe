@@ -61,6 +61,10 @@ MESSSoftwareList::MESSSoftwareList(QString machineName, QWidget *parent)
 	treeWidgetFavoriteSoftware->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/FavoriteSoftwareHeaderState").toByteArray());
 	treeWidgetSearchResults->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/SearchResultsHeaderState").toByteArray());
 	toolBoxSoftwareList->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/PageIndex").toInt());
+
+	connect(treeWidgetKnownSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetKnownSoftware_headerSectionClicked(int)));
+	connect(treeWidgetFavoriteSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetFavoriteSoftware_headerSectionClicked(int)));
+	connect(treeWidgetSearchResults->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetSearchResults_headerSectionClicked(int)));
 }
 
 MESSSoftwareList::~MESSSoftwareList()
@@ -549,7 +553,39 @@ void MESSSoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked)
 
 }
 
-// FIXME: this is just the framework...
+void MESSSoftwareList::treeWidgetKnownSoftware_headerSectionClicked(int index)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_treeWidgetKnownSoftware_headerSectionClicked(int index = %1)").arg(index));
+#endif
+
+	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
+	if ( selectedItems.count() > 0 )
+		treeWidgetKnownSoftware->scrollToItem(selectedItems[0]);
+}
+
+void MESSSoftwareList::treeWidgetFavoriteSoftware_headerSectionClicked(int index)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_treeWidgetFavoriteSoftware_headerSectionClicked(int index = %1)").arg(index));
+#endif
+
+	QList<QTreeWidgetItem *> selectedItems = treeWidgetFavoriteSoftware->selectedItems();
+	if ( selectedItems.count() > 0 )
+		treeWidgetFavoriteSoftware->scrollToItem(selectedItems[0]);
+}
+
+void MESSSoftwareList::treeWidgetSearchResults_headerSectionClicked(int index)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_treeWidgetSearchResults_headerSectionClicked(int index = %1)").arg(index));
+#endif
+
+	QList<QTreeWidgetItem *> selectedItems = treeWidgetSearchResults->selectedItems();
+	if ( selectedItems.count() > 0 )
+		treeWidgetSearchResults->scrollToItem(selectedItems[0]);
+}
+
 MESSSoftwareListXmlHandler::MESSSoftwareListXmlHandler(QTreeWidget *parent)
 {
 #ifdef QMC2_DEBUG
