@@ -20,8 +20,6 @@ QString messSwlBuffer;
 QString messSwlLastLine;
 bool messSwlSupported = true;
 
-//#define QMC2_DEBUG
-
 MESSSoftwareList::MESSSoftwareList(QString machineName, QWidget *parent)
 	: QWidget(parent)
 {
@@ -48,6 +46,9 @@ MESSSoftwareList::MESSSoftwareList(QString machineName, QWidget *parent)
 	gridLayout->removeWidget(toolButtonPlay);
 	gridLayout->addWidget(toolButtonPlay, 0, 4, 1, 2);
 #endif
+	toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/flat.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+	toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_FAVORITES_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/favorites.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+	toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_SEARCH_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/hint.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 
 	toolBoxSoftwareList->setEnabled(false);
 	toolButtonAddToFavorites->setEnabled(false);
@@ -606,7 +607,7 @@ MESSSoftwareListXmlHandler::~MESSSoftwareListXmlHandler()
 bool MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
 {
 #ifdef QMC2_DEBUG
-	// qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
 #endif
 
 	if ( qName == "softwarelist" ) {
@@ -626,7 +627,7 @@ bool MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI, const
 bool MESSSoftwareListXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
 {
 #ifdef QMC2_DEBUG
-	// qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::endElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2)").arg(localName).arg(qName));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::endElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2)").arg(localName).arg(qName));
 #endif
 
 	if ( qName == "description" ) {
@@ -646,7 +647,7 @@ bool MESSSoftwareListXmlHandler::endElement(const QString &namespaceURI, const Q
 bool MESSSoftwareListXmlHandler::characters(const QString &str)
 {
 #ifdef QMC2_DEBUG
-	// qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::characters(const QString &str = ...)"));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::characters(const QString &str = ...)"));
 #endif
 
 	currentText += str;
