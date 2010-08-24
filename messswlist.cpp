@@ -617,6 +617,9 @@ bool MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI, const
 		softwareItem = new QTreeWidgetItem(parentTreeWidget);
 		softwareItem->setText(QMC2_SWLIST_COLUMN_NAME, softwareName);
 		softwareItem->setText(QMC2_SWLIST_COLUMN_LIST, softwareListName);
+	} else if ( qName == "part" ) {
+		softwareDevice = attributes.value("name");
+		softwareItem->setText(QMC2_SWLIST_COLUMN_DEVICE, softwareDevice);
 	} else if ( qName == "description" || qName == "year" || qName == "publisher" ) {
 		currentText.clear();
 	}
@@ -650,6 +653,6 @@ bool MESSSoftwareListXmlHandler::characters(const QString &str)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::characters(const QString &str = ...)"));
 #endif
 
-	currentText += str;
+	currentText += QString::fromUtf8(str.toAscii());
 	return true;
 }

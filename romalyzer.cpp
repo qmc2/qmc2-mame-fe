@@ -1585,6 +1585,6 @@ bool ROMAlyzerXmlHandler::characters(const QString &str)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzerXmlHandler::characters(...)");
 #endif
 
-  currentText += str;
+  currentText += QString::fromUtf8(str.toAscii());
   return TRUE;
 }
