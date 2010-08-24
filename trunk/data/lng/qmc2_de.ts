@@ -12946,7 +12946,7 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <location filename="../../toolexec.cpp" line="66"/>
         <location filename="../../toolexec.cpp" line="68"/>
         <source>### tool started, output below ###</source>
-        <translation>###  Werkzeug gestartet, Ausgabe folge ###</translation>
+        <translation>###  Werkzeug gestartet, Ausgabe folgt ###</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="68"/>
