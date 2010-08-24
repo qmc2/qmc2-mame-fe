@@ -8,11 +8,17 @@
 #include <QXmlDefaultHandler>
 #include "ui_messswlist.h"
 
-/*
 class MESSSoftwareListXmlHandler : public QXmlDefaultHandler
 {
 	public:
 		QTreeWidget *parentTreeWidget;
+		QTreeWidgetItem *softwareItem;
+		QString softwareListName;
+		QString softwareName;
+		QString softwareTitle;
+		QString softwarePublisher;
+		QString softwareYear;
+		QString currentText;
 
 		MESSSoftwareListXmlHandler(QTreeWidget *);
 		~MESSSoftwareListXmlHandler();
@@ -21,7 +27,6 @@ class MESSSoftwareListXmlHandler : public QXmlDefaultHandler
 		bool endElement(const QString &, const QString &, const QString &);
 		bool characters(const QString &);
 };
-*/
 
 class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 {
@@ -34,11 +39,12 @@ class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 		QFile fileSWLCache;
 		QString messMachineName;
 		QTextStream tsSWLCache;
+		QStringList messSwlLines;
 
 		MESSSoftwareList(QString, QWidget *);
 		~MESSSoftwareList();
 
-		QString &getListXmlData(QString);
+		QString &getSoftwareListXmlData(QString);
 		QString &getXmlData(QString);
 
 	public slots:

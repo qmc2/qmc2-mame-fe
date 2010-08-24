@@ -20,7 +20,7 @@ QString messSwlBuffer;
 QString messSwlLastLine;
 bool messSwlSupported = true;
 
-#define QMC2_DEBUG
+//#define QMC2_DEBUG
 
 MESSSoftwareList::MESSSoftwareList(QString machineName, QWidget *parent)
 	: QWidget(parent)
@@ -76,28 +76,28 @@ MESSSoftwareList::~MESSSoftwareList()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/PageIndex", toolBoxSoftwareList->currentIndex());
 }
 
-QString &MESSSoftwareList::getListXmlData(QString machineName)
+QString &MESSSoftwareList::getSoftwareListXmlData(QString listName)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::getListXmlData(QString machineName = %1)").arg(machineName));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::getSoftwareListXmlData(QString listName = %1)").arg(listName));
 #endif
 
-	static QString listXmlBuffer;
+	static QString softwareListXmlBuffer;
 
-	listXmlBuffer = messXmlDataCache[machineName];
+	softwareListXmlBuffer = messSoftwareListXmlDataCache[listName];
 
-	if ( listXmlBuffer.isEmpty() ) {
+	if ( softwareListXmlBuffer.isEmpty() ) {
 		int i = 0;
-		QString s = "<machine name=\"" + machineName + "\"";
-		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-		listXmlBuffer = "<?xml version=\"1.0\"?>\n";
-		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
-			listXmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
-		listXmlBuffer += "</machine>\n";
-		messXmlDataCache[machineName] = listXmlBuffer;
+		QString s = "<softwarelist name=\"" + listName + "\"";
+		while ( !messSwlLines[i].contains(s) ) i++;
+		softwareListXmlBuffer = "<?xml version=\"1.0\"?>\n";
+		while ( !messSwlLines[i].contains("</softwarelist>") )
+			softwareListXmlBuffer += messSwlLines[i++].simplified() + "\n";
+		softwareListXmlBuffer += "</softwarelist>";
+		messSoftwareListXmlDataCache[listName] = softwareListXmlBuffer;
 	}
 
-	return listXmlBuffer;
+	return softwareListXmlBuffer;
 }
 
 QString &MESSSoftwareList::getXmlData(QString machineName)
@@ -150,15 +150,6 @@ QString &MESSSoftwareList::getXmlData(QString machineName)
 			comboBoxDeviceConfiguration->insertItems(1, configurationList);
 			comboBoxDeviceConfiguration->setEnabled(true);
 		}
-
-		/*
-		xmlBuffer = messSoftwareListXmlDataCache[machineSoftwareList];
-		if ( xmlBuffer.isEmpty() ) {
-			// FIXME: retrieve the software list XML data for the current machine here...
-
-			messSoftwareListXmlDataCache[machineSoftwareList] = xmlBuffer;
-		}
-		*/
 	} else {
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (no data available)"));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (no data available)"));
@@ -177,7 +168,20 @@ bool MESSSoftwareList::load()
 	bool swlCacheOkay = true;
 	validData = messSwlSupported;
 	QString swlCachePath = qmc2Config->value("MESS/FilesAndDirectories/SoftwareListCache").toString();
+
+	treeWidgetKnownSoftware->clear();
+	treeWidgetFavoriteSoftware->clear();
+	treeWidgetSearchResults->clear();
+
+	treeWidgetKnownSoftware->setSortingEnabled(false);
+	treeWidgetKnownSoftware->header()->setSortIndicatorShown(false);
+	treeWidgetFavoriteSoftware->setSortingEnabled(false);
+	treeWidgetFavoriteSoftware->header()->setSortIndicatorShown(false);
+	treeWidgetSearchResults->setSortingEnabled(false);
+	treeWidgetSearchResults->header()->setSortIndicatorShown(false);
+
 	if ( messSwlBuffer.isEmpty() && messSwlSupported ) {
+		messSwlLines.clear();
 		validData = false;
 		swlCacheOkay = false;
 		if ( !swlCachePath.isEmpty() ) {
@@ -303,7 +307,34 @@ bool MESSSoftwareList::load()
 
 	QString xmlData = getXmlData(messMachineName);
 
-	// FIXME: parse the XML data and build the software list entries here...
+	QStringList machineSoftwareList = messMachineSoftwareListMap[messMachineName];
+	if ( !machineSoftwareList.contains("NO_SOFTWARE_LIST") ) {
+		messSwlLines = messSwlBuffer.split("\n");
+		foreach (QString swList, machineSoftwareList) {
+			QString softwareListXml = getSoftwareListXmlData(swList);
+#ifdef QMC2_DEBUG
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::load(): XML data for software list '%1' follows:\n%2").arg(swList).arg(softwareListXml));
+#endif
+			QXmlInputSource xmlInputSource;
+			xmlInputSource.setData(softwareListXml);
+			MESSSoftwareListXmlHandler xmlHandler(treeWidgetKnownSoftware);
+			QXmlSimpleReader xmlReader;
+			xmlReader.setContentHandler(&xmlHandler);
+			if ( !xmlReader.parse(xmlInputSource) )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list '%1'").arg(swList));
+#ifdef QMC2_DEBUG
+			else
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::load(): successfully parsed the XML data for software list '%1'").arg(swList));
+#endif
+		}
+	}
+
+	treeWidgetKnownSoftware->setSortingEnabled(true);
+	treeWidgetKnownSoftware->header()->setSortIndicatorShown(true);
+	treeWidgetFavoriteSoftware->setSortingEnabled(true);
+	treeWidgetFavoriteSoftware->header()->setSortIndicatorShown(true);
+	treeWidgetSearchResults->setSortingEnabled(true);
+	treeWidgetSearchResults->header()->setSortIndicatorShown(true);
 
 	return true;
 }
@@ -516,4 +547,72 @@ void MESSSoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked = %1)").arg(checked));
 #endif
 
+}
+
+// FIXME: this is just the framework...
+MESSSoftwareListXmlHandler::MESSSoftwareListXmlHandler(QTreeWidget *parent)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::MESSSoftwareListXmlHandler(QTreeWidget *parent = %1)").arg((qulonglong)parent));
+#endif
+
+	parentTreeWidget = parent;
+}
+
+MESSSoftwareListXmlHandler::~MESSSoftwareListXmlHandler()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareListXmlHandler::~MESSSoftwareListXmlHandler()");
+#endif
+
+}
+
+bool MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
+{
+#ifdef QMC2_DEBUG
+	// qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
+#endif
+
+	if ( qName == "softwarelist" ) {
+		softwareListName = attributes.value("name");
+	} else if ( qName == "software" ) {
+		softwareName = attributes.value("name");
+		softwareItem = new QTreeWidgetItem(parentTreeWidget);
+		softwareItem->setText(QMC2_SWLIST_COLUMN_NAME, softwareName);
+		softwareItem->setText(QMC2_SWLIST_COLUMN_LIST, softwareListName);
+	} else if ( qName == "description" || qName == "year" || qName == "publisher" ) {
+		currentText.clear();
+	}
+
+	return true;
+}
+
+bool MESSSoftwareListXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
+{
+#ifdef QMC2_DEBUG
+	// qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::endElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2)").arg(localName).arg(qName));
+#endif
+
+	if ( qName == "description" ) {
+		softwareTitle = currentText;
+		softwareItem->setText(QMC2_SWLIST_COLUMN_TITLE, softwareTitle);
+	} else if ( qName == "year" ) {
+		softwareYear = currentText;
+		softwareItem->setText(QMC2_SWLIST_COLUMN_YEAR, softwareYear);
+	} else if ( qName == "publisher" ) {
+		softwarePublisher = currentText;
+		softwareItem->setText(QMC2_SWLIST_COLUMN_PUBLISHER, softwarePublisher);
+	}
+
+	return true;
+}
+
+bool MESSSoftwareListXmlHandler::characters(const QString &str)
+{
+#ifdef QMC2_DEBUG
+	// qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::characters(const QString &str = ...)"));
+#endif
+
+	currentText += str;
+	return true;
 }

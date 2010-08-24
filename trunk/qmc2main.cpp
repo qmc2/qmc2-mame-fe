@@ -2784,7 +2784,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
 	if ( !qmc2MessSWListAlreadyLoading ) {
           qmc2MessSWListAlreadyLoading = true;
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESS software lists are still under development and aren't working correctly yet!"));
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("WIP: MESS software lists are still under development and aren't working correctly yet!"));
           tabSoftwareList->setUpdatesEnabled(FALSE);
           if ( qmc2MESSSoftwareList ) {
             QLayout *vbl = tabSoftwareList->layout();
@@ -4358,6 +4358,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
   if ( qmc2MESSDeviceConfigurator ) {
     log(QMC2_LOG_FRONTEND, tr("saving current machine's device configurations"));
     qmc2MESSDeviceConfigurator->save();
+  }
+  if ( qmc2MESSSoftwareList ) {
+    log(QMC2_LOG_FRONTEND, tr("saving current machine's favorite software"));
+    qmc2MESSSoftwareList->save();
+    delete qmc2MESSSoftwareList;
   }
 #endif
 
