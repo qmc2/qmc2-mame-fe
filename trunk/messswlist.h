@@ -65,6 +65,10 @@ class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 		void loadReadyReadStandardError();
 		void loadError(QProcess::ProcessError);
 		void loadStateChanged(QProcess::ProcessState);
+ 
+		void treeWidgetKnownSoftware_headerSectionClicked(int);
+		void treeWidgetFavoriteSoftware_headerSectionClicked(int);
+		void treeWidgetSearchResults_headerSectionClicked(int);
 
 	protected:
 		void closeEvent(QCloseEvent *);
