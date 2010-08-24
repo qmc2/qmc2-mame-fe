@@ -1370,7 +1370,9 @@ void Gamelist::parse()
             qmc2GamelistDescriptionMap[gameName] = gameDescription;
             qmc2GamelistNameMap[gameDescription] = gameName;
 
+#if defined(QMC2_EMUTYPE_MAME)
             loadIcon(gameName, gameDescriptionItem);
+#endif
 
             numGames++;
           }
@@ -1583,7 +1585,9 @@ void Gamelist::parse()
         qmc2GamelistDescriptionMap[gameName] = gameDescription;
         qmc2GamelistNameMap[gameDescription] = gameName;
 
+#if defined(QMC2_EMUTYPE_MAME)
         loadIcon(gameName, gameDescriptionItem);
+#endif
 
         if ( gamelistCache.isOpen() )
           tsGamelistCache << gameName << "\t" << gameDescription << "\t" << gameManufacturer << "\t"
@@ -1677,7 +1681,9 @@ void Gamelist::parse()
         break;
     }
 
+#if defined(QMC2_EMUTYPE_MAME)
     loadIcon(iValue, hierarchyItem);
+#endif
 
     int j;
     for (j = 0; j < i.value().count(); j++) {
@@ -1751,7 +1757,9 @@ void Gamelist::parse()
           break;
       }
 
+#if defined(QMC2_EMUTYPE_MAME)
       loadIcon(jValue, hierarchySubItem);
+#endif
     }
   }
 
