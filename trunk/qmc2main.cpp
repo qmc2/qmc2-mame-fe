@@ -4923,9 +4923,9 @@ void MainWindow::loadGameInfoDB()
             singleLine = ts.readLine();
             if ( !singleLine.simplified().startsWith("$end") ) {
               if ( !firstLine ) {
-                gameInfoString.append(singleLine + "<br>");
-              } else if ( firstLine && !singleLine.isEmpty() ) {
-                gameInfoString.append("<b>" + singleLine + "</b><br>");
+                  gameInfoString.append(singleLine.trimmed() + "<br>");
+              } else if ( !singleLine.isEmpty() ) {
+                gameInfoString.append("<b>" + singleLine.trimmed() + "</b><br>");
                 firstLine = FALSE;
               }
             }
@@ -4936,7 +4936,7 @@ void MainWindow::loadGameInfoDB()
           }
           if ( singleLine.simplified().startsWith("$end") ) {
             // convert "two (or more) empty lines" to a paragraph delimiter
-            gameInfoString = gameInfoString.replace("<br><br><br>", "<p>").replace("<br><br>", "<p>");
+            gameInfoString = gameInfoString.replace("<br><br><br><br>", "<p>").replace("<br><br><br>", "<p>").replace("<br><br>", "<p>");
             if ( gameInfoString.endsWith("<p>") )
               gameInfoString.remove(gameInfoString.length() - 3, gameInfoString.length() - 1);
             QByteArray *gameInfo;
