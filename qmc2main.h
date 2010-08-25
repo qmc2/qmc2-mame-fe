@@ -130,6 +130,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QWidget *vSplitterWidget0;
     QTimer activityCheckTimer;
     bool activityState;
+    QString urlSectionRegExp;
 
     static QColor qmc2StatusColorGreen;
     static QColor qmc2StatusColorYellowGreen;

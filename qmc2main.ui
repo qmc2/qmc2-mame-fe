@@ -1258,10 +1258,10 @@
                 <string>Detailed game information</string>
                </property>
                <property name="textInteractionFlags">
-                <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
                </property>
-               <property name="openLinks">
-                <bool>false</bool>
+               <property name="openExternalLinks">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -1291,10 +1291,10 @@
                 <string>Detailed emulator information</string>
                </property>
                <property name="textInteractionFlags">
-                <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+                <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
                </property>
-               <property name="openLinks">
-                <bool>false</bool>
+               <property name="openExternalLinks">
+                <bool>true</bool>
                </property>
               </widget>
              </item>

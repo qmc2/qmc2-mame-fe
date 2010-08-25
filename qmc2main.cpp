@@ -1088,6 +1088,10 @@ MainWindow::MainWindow(QWidget *parent)
   // setup the global network access manager
   qmc2NetworkAccessManager = new QNetworkAccessManager(this);
 
+  // URL replacement regexp
+  QString urlChar = QLatin1String("\\+\\-\\w\\./#@&;:=\\?~%_,\\!\\$\\*\\(\\)");
+  urlSectionRegExp = QString("[%1]+").arg(urlChar);
+
   QTimer::singleShot(0, this, SLOT(init()));
 }
 
@@ -3035,9 +3039,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           if ( updateInfo ) {
             if ( newGameInfo ) {
               if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() )
-                textBrowserGameInfo->setHtml(QString(qUncompress(*newGameInfo)));
+                textBrowserGameInfo->setHtml(QString(qUncompress(*newGameInfo)).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
               else
-                textBrowserGameInfo->setHtml(QString(*newGameInfo));
+                textBrowserGameInfo->setHtml(QString(*newGameInfo).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
             } else
               textBrowserGameInfo->setHtml("<b>" + qmc2GamelistDescriptionMap[gameName] + "</b><p>" + tr("No data available"));
           }
@@ -3069,9 +3073,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           if ( updateInfo ) {
             if ( newEmuInfo ) {
               if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool() )
-                textBrowserEmuInfo->setHtml(QString(qUncompress(*newEmuInfo)));
+                textBrowserEmuInfo->setHtml(QString(qUncompress(*newEmuInfo)).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
               else
-                textBrowserEmuInfo->setHtml(QString(*newEmuInfo));
+                textBrowserEmuInfo->setHtml(QString(*newEmuInfo).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
             } else
               textBrowserEmuInfo->setHtml(tr("No data available"));
           }
