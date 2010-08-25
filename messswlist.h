@@ -58,6 +58,9 @@ class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 		void on_toolButtonRemoveFromFavorites_clicked(bool);
 		void on_toolButtonPlay_clicked(bool);
 		void on_toolButtonPlayEmbedded_clicked(bool);
+		void on_treeWidgetKnownSoftware_itemSelectionChanged();
+		void on_treeWidgetFavoriteSoftware_itemSelectionChanged();
+		void on_treeWidgetSearchResults_itemSelectionChanged();
 
 		// process management
 		void loadStarted();
