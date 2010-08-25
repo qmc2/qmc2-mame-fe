@@ -1301,6 +1301,8 @@ void Gamelist::parse()
               gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM"));
             else if ( hasCHDs )
               gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("CHD"));
+            else
+              gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, "--");
 #if defined(QMC2_EMUTYPE_MAME)
             if ( useCatverIni ) {
               QString categoryString = qmc2CategoryMap[gameName];
@@ -1512,10 +1514,12 @@ void Gamelist::parse()
         gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_NAME, gameName);
 	if ( hasROMs && hasCHDs )
           gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM, CHD"));
+        else if ( hasROMs )
+          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM"));
         else if ( hasCHDs )
           gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("CHD"));
         else
-          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("ROM"));
+          gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, "--");
 #if defined(QMC2_EMUTYPE_MAME)
         if ( useCatverIni ) {
           QString categoryString = qmc2CategoryMap[gameName];
