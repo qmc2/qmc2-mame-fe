@@ -587,6 +587,40 @@ void MESSSoftwareList::treeWidgetSearchResults_headerSectionClicked(int index)
 		treeWidgetSearchResults->scrollToItem(selectedItems[0]);
 }
 
+void MESSSoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()");
+#endif
+
+	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
+	bool enable = (selectedItems.count() > 0);
+	toolButtonPlay->setEnabled(enable);
+	toolButtonPlayEmbedded->setEnabled(enable);
+	toolButtonAddToFavorites->setEnabled(enable);
+}
+
+void MESSSoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()");
+#endif
+
+	QList<QTreeWidgetItem *> selectedItems = treeWidgetFavoriteSoftware->selectedItems();
+	bool enable = (selectedItems.count() > 0);
+	toolButtonPlay->setEnabled(enable);
+	toolButtonPlayEmbedded->setEnabled(enable);
+	toolButtonRemoveFromFavorites->setEnabled(enable);
+}
+
+void MESSSoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()");
+#endif
+
+}
+
 MESSSoftwareListXmlHandler::MESSSoftwareListXmlHandler(QTreeWidget *parent)
 {
 #ifdef QMC2_DEBUG
