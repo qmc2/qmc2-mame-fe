@@ -3034,6 +3034,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           if ( qmc2LastGameInfoItem )
             if ( qmc2LastGameInfoItem->child(0) ) {
               QByteArray *oldGameInfo = qmc2GameInfoDB[qmc2LastGameInfoItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)];
+              if ( !oldGameInfo ) {
+                // fall back to parent's game/machine info, if applicable
+		oldGameInfo = qmc2GameInfoDB[qmc2ParentMap[qmc2LastGameInfoItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)]];
+              }
               updateInfo = (newGameInfo != oldGameInfo || !oldGameInfo);
             }
           if ( updateInfo ) {
@@ -3068,6 +3072,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           if ( qmc2LastEmuInfoItem )
             if ( qmc2LastEmuInfoItem->child(0) ) {
               QByteArray *oldEmuInfo = qmc2EmuInfoDB[qmc2LastEmuInfoItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)];
+              if ( !oldEmuInfo ) {
+                // fall back to parent's emulator info, if applicable
+		oldEmuInfo = qmc2EmuInfoDB[qmc2ParentMap[qmc2LastEmuInfoItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON)]];
+              }
               updateInfo = (newEmuInfo != oldEmuInfo || !oldEmuInfo);
             }
           if ( updateInfo ) {
