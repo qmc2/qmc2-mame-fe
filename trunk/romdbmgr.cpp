@@ -30,6 +30,11 @@ ROMDatabaseManager::~ROMDatabaseManager()
 
 bool ROMDatabaseManager::openConnection(int driver, QString user, QString password, QString database, QString host, int port)
 {
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMDatabaseManager::openConnection(int driver = %1, QString user = %2, QString password = ..., QString database = %3, QString host = %4, int port = %5)")
+			.arg(driver).arg(user).arg(database).arg(host).arg(port));
+#endif
+
 	switch ( driver ) {
 		/* FIXME: we only support MySQL for now
 		case QMC2_DB_DRIVER_SQLLITE:
@@ -55,12 +60,21 @@ bool ROMDatabaseManager::openConnection(int driver, QString user, QString passwo
 
 void ROMDatabaseManager::closeConnection()
 {
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMDatabaseManager::closeConnection()");
+#endif
+
 	if ( db.isOpen() )
 		db.close();
 }
 
 bool ROMDatabaseManager::checkConnection(int driver, QString user, QString password, QString database, QString host, int port)
 {
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMDatabaseManager::checkConnection(int driver = %1, QString user = %2, QString password = ..., QString database = %3, QString host = %4, int port = %5)")
+			.arg(driver).arg(user).arg(database).arg(host).arg(port));
+#endif
+
 	bool checkResult = openConnection(driver, user, password, database, host, port);
 	closeConnection();
 	return checkResult;

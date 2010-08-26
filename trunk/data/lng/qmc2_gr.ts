@@ -11952,6 +11952,11 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../romalyzer.ui" line="567"/>
+        <source>Database server port (0 = default)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../romalyzer.ui" line="655"/>
         <source>Upload</source>
         <translation type="unfinished"></translation>
@@ -12070,11 +12075,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="554"/>
         <source>Port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../romalyzer.ui" line="567"/>
-        <source>Database server port (or default)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

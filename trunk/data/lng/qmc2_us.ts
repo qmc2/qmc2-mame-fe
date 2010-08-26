@@ -11181,11 +11181,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="567"/>
-        <source>Database server port (or default)</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../romalyzer.ui" line="570"/>
         <source>default</source>
         <translation></translation>
@@ -12010,6 +12005,11 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="408"/>
         <source> lines</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="567"/>
+        <source>Database server port (0 = default)</source>
         <translation></translation>
     </message>
     <message>
