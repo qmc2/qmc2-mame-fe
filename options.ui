@@ -854,7 +854,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>515</width>
+                <width>198</width>
                 <height>518</height>
                </rect>
               </property>
@@ -2112,8 +2112,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>532</width>
-                <height>463</height>
+                <width>458</width>
+                <height>184</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2518,8 +2518,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>532</width>
-                <height>463</height>
+                <width>265</width>
+                <height>45</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2631,8 +2631,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>532</width>
-                <height>463</height>
+                <width>376</width>
+                <height>246</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3436,7 +3436,7 @@
                     <item row="3" column="1" colspan="3">
                      <widget class="QLabel" name="labelWeakEncryptionWarning">
                       <property name="text">
-                       <string>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: the stored password is only &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</string>
+                       <string>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</string>
                       </property>
                      </widget>
                     </item>
@@ -3491,8 +3491,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1640</width>
-                <height>480</height>
+                <width>189</width>
+                <height>308</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3935,8 +3935,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1640</width>
-                <height>480</height>
+                <width>127</width>
+                <height>193</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22">

@@ -9176,6 +9176,11 @@ Re-essayer l&apos;embarquement?</translation>
         <translation>Parcourir pour l&apos;outil de suppression de fichier</translation>
     </message>
     <message>
+        <location filename="../../options.ui" line="3439"/>
+        <source>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../options.ui" line="3460"/>
         <source>E&amp;mulator</source>
         <translation>E&amp;mulateur</translation>
@@ -10652,11 +10657,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>Mot de passe pour accéder au service de proxy HTTP (vide = pas d&apos;authentification)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3439"/>
-        <source>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: the stored password is only &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</source>
-        <translation>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;ATTENTION: le mot de passe enregistré est seulement &lt;u&gt;hebdomadairement&lt;/u&gt; encrypté!&lt;/b&gt;&lt;/font&gt;</translation>
-    </message>
-    <message>
         <location filename="../../options.cpp" line="236"/>
         <source>Clear MAWS cache</source>
         <translation>Vider le cache de MAWS</translation>
@@ -10880,9 +10880,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../gamelist.cpp" line="2678"/>
         <location filename="../../gamelist.cpp" line="2703"/>
-        <location filename="../../romalyzer.cpp" line="1595"/>
-        <location filename="../../romalyzer.cpp" line="1628"/>
-        <location filename="../../romalyzer.cpp" line="1640"/>
+        <location filename="../../romalyzer.cpp" line="1597"/>
+        <location filename="../../romalyzer.cpp" line="1630"/>
+        <location filename="../../romalyzer.cpp" line="1642"/>
         <source>unknown</source>
         <translation>inconnu</translation>
     </message>
@@ -10951,36 +10951,36 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>Choisir le fichier...</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1579"/>
+        <location filename="../../romalyzer.cpp" line="1581"/>
         <source>ROM</source>
         <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="566"/>
-        <location filename="../../romalyzer.cpp" line="1579"/>
+        <location filename="../../romalyzer.cpp" line="1581"/>
         <source>CHD</source>
         <translation>CHD</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1583"/>
-        <location filename="../../romalyzer.cpp" line="1625"/>
+        <location filename="../../romalyzer.cpp" line="1585"/>
+        <location filename="../../romalyzer.cpp" line="1627"/>
         <source>good</source>
         <translation>bon</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1587"/>
-        <location filename="../../romalyzer.cpp" line="1634"/>
+        <location filename="../../romalyzer.cpp" line="1589"/>
+        <location filename="../../romalyzer.cpp" line="1636"/>
         <source>no dump</source>
         <translation>pas de dump</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1591"/>
-        <location filename="../../romalyzer.cpp" line="1637"/>
+        <location filename="../../romalyzer.cpp" line="1593"/>
+        <location filename="../../romalyzer.cpp" line="1639"/>
         <source>bad dump</source>
         <translation>mauvais dump</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1631"/>
+        <location filename="../../romalyzer.cpp" line="1633"/>
         <source>no / bad dump</source>
         <translation>pas de / mauvais dump</translation>
     </message>
@@ -11057,11 +11057,21 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <name>ROMAlyzer</name>
     <message>
         <location filename="../../romalyzer.cpp" line="1508"/>
+        <source>Connection check -- success!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1514"/>
+        <source>Connection check -- failed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1509"/>
         <source>database connection check successful</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1513"/>
+        <location filename="../../romalyzer.cpp" line="1515"/>
         <source>database connection check failed, errorNumber = %1, errorText = &apos;%2&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11225,7 +11235,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="465"/>
         <location filename="../../romalyzer.cpp" line="731"/>
-        <location filename="../../romalyzer.ui" line="768"/>
+        <location filename="../../romalyzer.ui" line="777"/>
         <source>Idle</source>
         <translation>Idle</translation>
     </message>
@@ -11743,17 +11753,27 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>Calculer le CRC</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="678"/>
+        <location filename="../../romalyzer.ui" line="649"/>
         <source>Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="713"/>
+        <location filename="../../romalyzer.ui" line="728"/>
+        <source>Connection check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="735"/>
+        <source>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="633"/>
         <source>Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="726"/>
+        <location filename="../../romalyzer.ui" line="626"/>
         <source>Name of the database on the server</source>
         <translation type="unfinished"></translation>
     </message>
@@ -11828,117 +11848,112 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="547"/>
+        <location filename="../../romalyzer.ui" line="613"/>
         <source>Server / IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="560"/>
+        <location filename="../../romalyzer.ui" line="606"/>
         <source>Name or IP address of the database server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="612"/>
+        <location filename="../../romalyzer.ui" line="547"/>
         <source>Driver</source>
         <translation type="unfinished">Pilote</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="645"/>
+        <location filename="../../romalyzer.ui" line="554"/>
         <source>Port</source>
         <translation type="unfinished">Port</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="652"/>
+        <location filename="../../romalyzer.ui" line="561"/>
         <source>Database server port (or default)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="655"/>
+        <location filename="../../romalyzer.ui" line="564"/>
         <source>default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="567"/>
+        <location filename="../../romalyzer.ui" line="679"/>
         <source>Username</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="580"/>
+        <location filename="../../romalyzer.ui" line="692"/>
         <source>Username used to access the database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="587"/>
+        <location filename="../../romalyzer.ui" line="699"/>
         <source>Password</source>
         <translation type="unfinished">Mot de passe</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="600"/>
+        <location filename="../../romalyzer.ui" line="712"/>
         <source>Password used to access the database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="665"/>
+        <location filename="../../romalyzer.ui" line="669"/>
         <source>Automatically download missing / bad files from the database (if they are available in the repository)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="668"/>
+        <location filename="../../romalyzer.ui" line="672"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="675"/>
+        <location filename="../../romalyzer.ui" line="646"/>
         <source>Automatically upload good files to the database (if they are missing in the repository)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="628"/>
+        <location filename="../../romalyzer.ui" line="583"/>
         <source>SQL driver to use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="632"/>
+        <location filename="../../romalyzer.ui" line="587"/>
         <source>MySQL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="637"/>
+        <location filename="../../romalyzer.ui" line="592"/>
         <source>SQLite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="698"/>
+        <location filename="../../romalyzer.ui" line="722"/>
         <source>Check the connection to the database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="704"/>
-        <source>Check connection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../romalyzer.ui" line="745"/>
+        <location filename="../../romalyzer.ui" line="754"/>
         <source>Close ROMAlyzer</source>
         <translation>Fermer ROMAlyzer</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="748"/>
+        <location filename="../../romalyzer.ui" line="757"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="765"/>
+        <location filename="../../romalyzer.ui" line="774"/>
         <source>Current ROMAlyzer status</source>
         <translation>Statut courant de ROMAlyzer</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="784"/>
+        <location filename="../../romalyzer.ui" line="793"/>
         <source>Analysis progress indicator</source>
         <translation>Indication de progression d&apos;analyse</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="803"/>
+        <location filename="../../romalyzer.ui" line="812"/>
         <source>File I/O progress indicator</source>
         <translation>Indicateur de progression de fichier E/S</translation>
     </message>

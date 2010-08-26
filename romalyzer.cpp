@@ -1505,11 +1505,13 @@ void ROMAlyzer::on_pushButtonDatabaseCheckConnection_clicked()
 		QPalette pal = pushButtonDatabaseCheckConnection->palette();
 		pal.setColor(QPalette::Button, QColor(0, 255, 0));
 		pushButtonDatabaseCheckConnection->setPalette(pal);
+		pushButtonDatabaseCheckConnection->setText(tr("Connection check -- success!"));
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("database connection check successful"));
 	} else {
 		QPalette pal = pushButtonDatabaseCheckConnection->palette();
 		pal.setColor(QPalette::Button, QColor(255, 0, 0));
 		pushButtonDatabaseCheckConnection->setPalette(pal);
+		pushButtonDatabaseCheckConnection->setText(tr("Connection check -- failed!"));
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("database connection check failed, errorNumber = %1, errorText = '%2'").arg(dbManager->errorNumber()).arg(dbManager->errorText()));
 	}
 }
