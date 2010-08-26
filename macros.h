@@ -396,4 +396,7 @@
 #define QMC2_DB_DRIVER_MYSQL		0
 #define QMC2_DB_DRIVER_SQLITE		1
 
+// DB server default ports
+#define QMC2_DB_DFLT_PORT_MYSQL		3306
+
 #endif

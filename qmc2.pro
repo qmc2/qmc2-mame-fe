@@ -66,6 +66,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			embedderopt.cpp \
 			demomode.cpp \
 			audioeffects.cpp \
+			romdbmgr.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -113,6 +114,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			embedderopt.h \
 			demomode.h \
 			audioeffects.h \
+			romdbmgr.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \

@@ -409,8 +409,11 @@ endif
 # >>> DATABASE <<<
 #
 # Enable (1) or disable (0) the use of any optional features that make use of
-# relational databases. Supported DB types include those that Qt supports in its
-# SQL module.
+# relational databases. The only supported DB type is MySQL (SQLite is planned
+# as well).
+#
+# WARNING: this is a WIP feature under development right now - use at your own
+# risk! 
 #
 ifndef DATABASE
 DATABASE = 0

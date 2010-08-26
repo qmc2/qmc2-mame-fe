@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>532</width>
-    <height>468</height>
+    <width>572</width>
+    <height>488</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -561,26 +561,6 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
-           <widget class="QLabel" name="labelDatabasePort">
-            <property name="text">
-             <string>Port</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QSpinBox" name="spinBoxDatabasePort">
-            <property name="toolTip">
-             <string>Database server port (or default)</string>
-            </property>
-            <property name="specialValueText">
-             <string>default</string>
-            </property>
-            <property name="maximum">
-             <number>65535</number>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelDatabaseUser">
             <property name="text">
@@ -627,6 +607,59 @@
           <item row="2" column="0" colspan="4">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
+             <widget class="QLabel" name="labelDatabaseDriver">
+              <property name="text">
+               <string>Driver</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxDatabaseDriver">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>SQL driver to use</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>MySQL</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>SQLite</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelDatabasePort">
+              <property name="text">
+               <string>Port</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBoxDatabasePort">
+              <property name="toolTip">
+               <string>Database server port (or default)</string>
+              </property>
+              <property name="specialValueText">
+               <string>default</string>
+              </property>
+              <property name="maximum">
+               <number>65535</number>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QCheckBox" name="checkBoxDatabaseDownload">
               <property name="toolTip">
                <string>Automatically download missing / bad files from the database (if they are available in the repository)</string>
@@ -660,39 +693,12 @@
              </spacer>
             </item>
             <item>
-             <widget class="QLabel" name="labelDatabaseDriver">
-              <property name="text">
-               <string>Database driver</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboBoxDatabaseDriver">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="toolTip">
-               <string>SQL driver to use</string>
-              </property>
-              <item>
-               <property name="text">
-                <string>MySQL</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>SQLite</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item>
              <widget class="QPushButton" name="pushButtonDatabaseCheckConnection">
               <property name="toolTip">
                <string>Check the connection to the database</string>
+              </property>
+              <property name="autoFillBackground">
+               <bool>true</bool>
               </property>
               <property name="text">
                <string>Check connection</string>
@@ -700,6 +706,26 @@
              </widget>
             </item>
            </layout>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="labelDatabaseName">
+            <property name="text">
+             <string>Database</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLineEdit" name="lineEditDatabaseName">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Name of the database on the server</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -831,12 +857,13 @@
   <tabstop>checkBoxUpdateCHDs</tabstop>
   <tabstop>groupBoxDatabase</tabstop>
   <tabstop>lineEditDatabaseServer</tabstop>
-  <tabstop>spinBoxDatabasePort</tabstop>
+  <tabstop>lineEditDatabaseName</tabstop>
   <tabstop>lineEditDatabaseUser</tabstop>
   <tabstop>lineEditDatabasePassword</tabstop>
+  <tabstop>comboBoxDatabaseDriver</tabstop>
+  <tabstop>spinBoxDatabasePort</tabstop>
   <tabstop>checkBoxDatabaseDownload</tabstop>
   <tabstop>checkBoxDatabaseUpload</tabstop>
-  <tabstop>comboBoxDatabaseDriver</tabstop>
   <tabstop>pushButtonDatabaseCheckConnection</tabstop>
   <tabstop>pushButtonClose</tabstop>
  </tabstops>
@@ -852,7 +879,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>86</x>
-     <y>492</y>
+     <y>480</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
