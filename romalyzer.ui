@@ -564,7 +564,7 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Database server port (or default)</string>
+             <string>Database server port (0 = default)</string>
             </property>
             <property name="specialValueText">
              <string>default</string>

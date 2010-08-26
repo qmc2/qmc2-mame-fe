@@ -11223,11 +11223,6 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation type="unfinished">Port</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="567"/>
-        <source>Database server port (or default)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../romalyzer.ui" line="570"/>
         <source>default</source>
         <translation type="unfinished"></translation>
@@ -12058,6 +12053,11 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romalyzer.ui" line="408"/>
         <source> lines</source>
         <translation> linii</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="567"/>
+        <source>Database server port (0 = default)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="655"/>

@@ -11185,11 +11185,6 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Port</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="567"/>
-        <source>Database server port (or default)</source>
-        <translation>Port der Datenbank am Server (oder Standard)</translation>
-    </message>
-    <message>
         <location filename="../../romalyzer.ui" line="570"/>
         <source>default</source>
         <translation>Standard</translation>
@@ -12015,6 +12010,11 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <location filename="../../romalyzer.ui" line="408"/>
         <source> lines</source>
         <translation> Zeilen</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.ui" line="567"/>
+        <source>Database server port (0 = default)</source>
+        <translation>Port des Datenbank-Servers (0 = Standard)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="655"/>

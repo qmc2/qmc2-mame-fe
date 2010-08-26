@@ -11982,6 +11982,11 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Expandir checksums</translation>
     </message>
     <message>
+        <location filename="../../romalyzer.ui" line="567"/>
+        <source>Database server port (0 = default)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../romalyzer.ui" line="655"/>
         <source>Upload</source>
         <translation type="unfinished"></translation>
@@ -12101,11 +12106,6 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romalyzer.ui" line="554"/>
         <source>Port</source>
         <translation type="unfinished">Porta</translation>
-    </message>
-    <message>
-        <location filename="../../romalyzer.ui" line="567"/>
-        <source>Database server port (or default)</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="570"/>
