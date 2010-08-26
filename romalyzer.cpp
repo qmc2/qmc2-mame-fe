@@ -258,8 +258,14 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", checkBoxUpdateCHDs->isChecked());
 
 #if defined(QMC2_DATABASE_ENABLED)
-  // FIXME: add missing DB settings
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableDatabase", groupBoxDatabase->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseServer", lineEditDatabaseServer->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePort", spinBoxDatabasePort->value());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUser", lineEditDatabaseUser->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", qCompress(lineEditDatabasePassword->text().toLatin1()));
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDownload", checkBoxDatabaseDownload->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUpload", checkBoxDatabaseUpload->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDriver", comboBoxDatabaseDriver->currentIndex());
 #endif
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
@@ -313,8 +319,14 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   checkBoxUpdateCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", FALSE).toBool());
 
 #if defined(QMC2_DATABASE_ENABLED)
-  // FIXME: add missing DB settings
   groupBoxDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableDatabase", FALSE).toBool());
+  lineEditDatabaseServer->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseServer", "").toString());
+  spinBoxDatabasePort->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePort", 0).toInt());
+  lineEditDatabaseUser->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUser", "").toString());
+  lineEditDatabasePassword->setText(QString(qUncompress(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", "").toByteArray())));
+  checkBoxDatabaseDownload->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDownload", TRUE).toBool());
+  checkBoxDatabaseUpload->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUpload", FALSE).toBool());
+  comboBoxDatabaseDriver->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDriver", QMC2_DB_DRIVER_MYSQL).toInt());
 #endif
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
