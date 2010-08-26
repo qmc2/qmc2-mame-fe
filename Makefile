@@ -412,10 +412,6 @@ endif
 # relational databases. Supported DB types include those that Qt supports in its
 # SQL module.
 #
-# Currently the only thing that will be enabled by this option is Qt's SQL
-# module itself, but nothing useful will be accomplished yet by setting this
-# option to 1 -- it's reserved for later use!
-#
 ifndef DATABASE
 DATABASE = 0
 endif
