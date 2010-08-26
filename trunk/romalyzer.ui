@@ -540,7 +540,7 @@
          <property name="checkable">
           <bool>true</bool>
          </property>
-         <layout class="QGridLayout" name="gridLayout">
+         <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
            <widget class="QLabel" name="labelDatabaseServer">
             <property name="text">
@@ -618,6 +618,9 @@
             </property>
             <property name="toolTip">
              <string>Password used to access the database</string>
+            </property>
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
             </property>
            </widget>
           </item>

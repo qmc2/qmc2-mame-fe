@@ -392,4 +392,8 @@
 // maximum delay before finally killing the external tool (if required to)
 #define QMC2_TOOL_KILL_WAIT		2000
 
+// supported DB drivers
+#define QMC2_DB_DRIVER_MYSQL		0
+#define QMC2_DB_DRIVER_SQLITE		1
+
 #endif
