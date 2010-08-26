@@ -115,6 +115,9 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 #if !defined(QMC2_DATABASE_ENABLED)
   groupBoxDatabase->setChecked(false);
   groupBoxDatabase->setVisible(false);
+  dbManager = NULL;
+#else
+  dbManager = new ROMDatabaseManager(this);
 #endif
 }
 
@@ -124,6 +127,10 @@ ROMAlyzer::~ROMAlyzer()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::~ROMAlyzer()");
 #endif
 
+#if defined(QMC2_DATABASE_ENABLED)
+  if ( dbManager )
+    delete dbManager;
+#endif
 }
 
 void ROMAlyzer::on_pushButtonClose_clicked()
@@ -260,6 +267,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
 #if defined(QMC2_DATABASE_ENABLED)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableDatabase", groupBoxDatabase->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseServer", lineEditDatabaseServer->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", lineEditDatabaseName->text());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePort", spinBoxDatabasePort->value());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUser", lineEditDatabaseUser->text());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", qCompress(lineEditDatabasePassword->text().toLatin1()));
@@ -321,6 +329,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 #if defined(QMC2_DATABASE_ENABLED)
   groupBoxDatabase->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableDatabase", FALSE).toBool());
   lineEditDatabaseServer->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseServer", "").toString());
+  lineEditDatabaseName->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseName", "qmc2romdb").toString());
   spinBoxDatabasePort->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePort", 0).toInt());
   lineEditDatabaseUser->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUser", "").toString());
   lineEditDatabasePassword->setText(QString(qUncompress(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", "").toByteArray())));
@@ -1472,6 +1481,40 @@ void ROMAlyzer::chdManagerError(QProcess::ProcessError processError)
 
   chdManagerRunning = FALSE;
 }
+
+#if defined(QMC2_DATABASE_ENABLED)
+
+void ROMAlyzer::on_pushButtonDatabaseCheckConnection_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonDatabaseCheckConnection_clicked()");
+#endif
+
+	if ( !dbManager )
+		return;
+
+	if ( dbManager->isConnected() )
+		return;
+
+	if ( dbManager->checkConnection(comboBoxDatabaseDriver->currentIndex(),
+				lineEditDatabaseUser->text(),
+				lineEditDatabasePassword->text(),
+				lineEditDatabaseName->text(),
+				lineEditDatabaseServer->text(),
+				spinBoxDatabasePort->value()) ) {
+		QPalette pal = pushButtonDatabaseCheckConnection->palette();
+		pal.setColor(QPalette::Button, QColor(0, 255, 0));
+		pushButtonDatabaseCheckConnection->setPalette(pal);
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("database connection check successful"));
+	} else {
+		QPalette pal = pushButtonDatabaseCheckConnection->palette();
+		pal.setColor(QPalette::Button, QColor(255, 0, 0));
+		pushButtonDatabaseCheckConnection->setPalette(pal);
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("database connection check failed, errorNumber = %1, errorText = '%2'").arg(dbManager->errorNumber()).arg(dbManager->errorText()));
+	}
+}
+
+#endif
 
 void ROMAlyzer::chdManagerStateChanged(QProcess::ProcessState processState)
 {

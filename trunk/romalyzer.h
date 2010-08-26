@@ -8,6 +8,7 @@
 #include <QTimer>
 #include <QTime>
 #include <QProcess>
+#include "romdbmgr.h"
 
 #include "ui_romalyzer.h"
 
@@ -114,6 +115,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     bool chdManagerSHA1Success;
     quint64 chdManagerCurrentHunk;
     quint64 chdManagerTotalHunks;
+    ROMDatabaseManager *dbManager;
 
     ROMAlyzer(QWidget *);
     ~ROMAlyzer();
@@ -137,6 +139,9 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void on_spinBoxMaxLogSize_valueChanged(int);
     void on_toolButtonBrowseCHDManagerExecutableFile_clicked();
     void on_toolButtonBrowseTemporaryWorkingDirectory_clicked();
+#if defined(QMC2_DATABASE_ENABLED)
+    void on_pushButtonDatabaseCheckConnection_clicked();
+#endif
 
     // miscellaneous slots
     void animationTimeout();
