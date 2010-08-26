@@ -2243,6 +2243,8 @@ qmc2/.svn/text-base/qmc2.qrc.svn-base
 qmc2/.svn/text-base/romalyzer.cpp.svn-base
 qmc2/.svn/text-base/romalyzer.h.svn-base
 qmc2/.svn/text-base/romalyzer.ui.svn-base
+qmc2/.svn/text-base/romdbmgr.cpp.svn-base
+qmc2/.svn/text-base/romdbmgr.h.svn-base
 qmc2/.svn/text-base/romstatusexport.cpp.svn-base
 qmc2/.svn/text-base/romstatusexport.h.svn-base
 qmc2/.svn/text-base/romstatusexport.ui.svn-base
