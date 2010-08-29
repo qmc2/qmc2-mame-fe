@@ -38,12 +38,14 @@ bool ROMDatabaseManager::openConnection(int driver, QString user, QString passwo
 	switch ( driver ) {
 		/* FIXME: we only support MySQL for now
 		case QMC2_DB_DRIVER_SQLLITE:
+			if ( !QSqlDatabase::contains("QMC2_ROMDB_SQLITE") )
+				db = QSqlDatabase::addDatabase("QSQLITE", "QMC2_ROMDB_SQLITE");
 			break;
 		*/
 		case QMC2_DB_DRIVER_MYSQL:
 		default:
-			if ( !QSqlDatabase::contains("QMC2_ROMDB") )
-				db = QSqlDatabase::addDatabase("QMYSQL", "QMC2_ROMDB");
+			if ( !QSqlDatabase::contains("QMC2_ROMDB_MYSQL") )
+				db = QSqlDatabase::addDatabase("QMYSQL", "QMC2_ROMDB_MYSQL");
 			if ( port <= 0 )
 				port = QMC2_DB_DFLT_PORT_MYSQL;
 			break;
