@@ -4643,7 +4643,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messswlist.ui" line="292"/>
         <location filename="../../messswlist.ui" line="393"/>
         <source>Device</source>
-        <translation type="unfinished">Dispositivo</translation>
+        <translation>Dispositivo</translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="220"/>
@@ -4808,7 +4808,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messswlist.cpp" line="329"/>
         <source>FATAL: error while parsing XML data for software list &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: erro durante a análise dos dados do XML para a lista de software &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="411"/>
@@ -5761,7 +5761,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4375"/>
         <source>saving current machine&apos;s favorite software</source>
-        <translation type="unfinished"></translation>
+        <translation>salvando softwares favoritos da máquina atual</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4383"/>
@@ -10421,7 +10421,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="3439"/>
         <source>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;AVISO: senhas salvas são &lt;u&gt;fracamente&lt;/u&gt; encriptadas!&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3460"/>
@@ -11058,22 +11058,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="1508"/>
         <source>Connection check -- succeeded!</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificação de conexão -- sucesso!</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1514"/>
         <source>Connection check -- failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificação de conexão -- falha!</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1509"/>
         <source>database connection check successful</source>
-        <translation type="unfinished"></translation>
+        <translation>verificação de conexão da base de dados concluída</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1515"/>
         <source>database connection check failed, errorNumber = %1, errorText = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>falha durante a verificação de conexão da base de dados, número do erro = %1, texto do erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1349"/>
@@ -11984,32 +11984,32 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="567"/>
         <source>Database server port (0 = default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta do servidor de banco de dados (0 = padrão)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="655"/>
         <source>Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Enviar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="737"/>
         <source>Connection check</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificação de conexão</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="750"/>
         <source>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;AVISO: senhas salvas são &lt;u&gt;fracamente&lt;/u&gt; encriptadas!&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="639"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de dados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="632"/>
         <source>Name of the database on the server</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome da base de dados no servidor</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="447"/>
@@ -12085,87 +12085,87 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="538"/>
         <source>Enable ROM database support (repository access may be slow)</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar suporte à base de dados de ROM (acesso ao repositório pode ser lento)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="619"/>
         <source>Server / IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Servidor / IP</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="612"/>
         <source>Name or IP address of the database server</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome ou endereço IP do servidor de banco de dados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="547"/>
         <source>Driver</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="554"/>
         <source>Port</source>
-        <translation type="unfinished">Porta</translation>
+        <translation>Porta</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="570"/>
         <source>default</source>
-        <translation type="unfinished"></translation>
+        <translation>padrão</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="688"/>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome de usuário</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="701"/>
         <source>Username used to access the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome de usuário para acessar a base de dados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="708"/>
         <source>Password</source>
-        <translation type="unfinished">Senha</translation>
+        <translation>Senha</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="721"/>
         <source>Password used to access the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha utilizada para acessar a base de dados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="678"/>
         <source>Automatically download missing / bad files from the database (if they are available in the repository)</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar automaticamente arquivos faltantes / ruins da base de dados (se elas estiverem disponíveis no repositório)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="681"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="652"/>
         <source>Automatically upload good files to the database (if they are missing in the repository)</source>
-        <translation type="unfinished"></translation>
+        <translation>Enviar automaticamente arquivos bons para a base de dados (se elas não existirem no repositório)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="589"/>
         <source>SQL driver to use</source>
-        <translation type="unfinished"></translation>
+        <translation>Driver SQL para usar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="593"/>
         <source>MySQL</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="598"/>
         <source>SQLite</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="731"/>
         <source>Check the connection to the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar a conexão com a base de dados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="772"/>
