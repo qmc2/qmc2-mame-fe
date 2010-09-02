@@ -33,6 +33,8 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
 
   clearStatus();
 
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() )
+    restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Geometry").toByteArray());
   toolButtonSelectC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectC", TRUE).toBool());
   toolButtonSelectM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectM", TRUE).toBool());
   toolButtonSelectI->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectI", FALSE).toBool());
@@ -87,6 +89,8 @@ void DemoModeDialog::closeEvent(QCloseEvent *e)
 #endif
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", spinBoxSecondsToRun->value());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", spinBoxPauseSeconds->value());
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Geometry", saveGeometry());
 }
 
 void DemoModeDialog::on_pushButtonRunDemo_clicked()
