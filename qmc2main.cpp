@@ -4975,8 +4975,10 @@ void MainWindow::loadGameInfoDB()
             }
           }
           if ( singleLine.simplified().startsWith("$end") ) {
-            // convert "two (or more) empty lines" to a paragraph delimiter
-            gameInfoString = gameInfoString.replace("<br><br><br><br>", "<p>").replace("<br><br><br>", "<p>").replace("<br><br>", "<p>");
+            // reduce the number of line breaks
+            gameInfoString.replace("<br><br><br><br>", "<p>");
+            gameInfoString.replace("<br><br><br>", "<p>");
+            gameInfoString.replace("<br><br>", "<p>");
             if ( gameInfoString.endsWith("<p>") )
               gameInfoString.remove(gameInfoString.length() - 3, gameInfoString.length() - 1);
             QByteArray *gameInfo;
@@ -7501,11 +7503,11 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 			if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
 			if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
 			if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
-			if ( preOn )
-				wikiText += wikiLine.mid(2) + "\n";
-			else if ( codeOn )
-				wikiText += wikiLine + "\n";
-			else
+			if ( preOn ) {
+				wikiText += wikiLine.mid(2).replace("<", "&lt;").replace(">", "&gt;") + "\n";
+			} else if ( codeOn ) {
+				wikiText += wikiLine.replace("<", "&lt;").replace(">", "&gt;").replace(">", "&gt;") + "\n";
+			} else
 				wikiText += "<p>" + wikiLine + "</p>";
 		}
 	}
