@@ -7420,6 +7420,7 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 		}
 		if ( wikiLine.isEmpty() )
 			continue;
+		wikiLine.replace("<", "&lt;").replace(">", "&gt;");
 		if ( wikiLine.startsWith("//") && wikiLine.endsWith("//") ) {
 			wikiLine.replace(0, 2, "<i>");
 			wikiLine.replace(wikiLine.length() - 2, 2, "</i>");
@@ -7438,11 +7439,11 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 			}
 		}
 		wikiLine.replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
-		if ( wikiLine.startsWith("<b>======") && wikiLine.endsWith("======</b>") ) {
+		if ( wikiLine.startsWith("&lt;b&gt;======") && wikiLine.endsWith("======&lt;/b&gt;") ) {
 			if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
 			if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
 			if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
-			wikiText += "<h2>" + wikiLine.mid(10, wikiLine.length() - 20) + "</h2>";
+			wikiText += "<h2>" + wikiLine.mid(15, wikiLine.length() - 31) + "</h2>";
 		} else if ( wikiLine.startsWith("=====") && wikiLine.endsWith("=====") ) {
 			if ( tableOpen ) { wikiText += "</table><p>"; tableOpen = false; }
 			if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
@@ -7504,9 +7505,9 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 			if ( ulLevel > 0 ) { for (int i = 0; i < ulLevel; i++) wikiText += "</ul>"; ulLevel = 0; wikiText += "<p>"; }
 			if ( olLevel > 0 ) { for (int i = 0; i < olLevel; i++) wikiText += "</ol>"; olLevel = 0; wikiText += "<p>"; }
 			if ( preOn ) {
-				wikiText += wikiLine.mid(2).replace("<", "&lt;").replace(">", "&gt;") + "\n";
+				wikiText += wikiLine.mid(2) + "\n";
 			} else if ( codeOn ) {
-				wikiText += wikiLine.replace("<", "&lt;").replace(">", "&gt;").replace(">", "&gt;") + "\n";
+				wikiText += wikiLine + "\n";
 			} else
 				wikiText += "<p>" + wikiLine + "</p>";
 		}
