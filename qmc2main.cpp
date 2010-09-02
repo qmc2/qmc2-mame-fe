@@ -7379,7 +7379,7 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 	wikiText.clear();
 	foreach (QString wikiLine, wikiLines) {
 		// DEBUG
-		printf("wikiLine = [%s]\n", (const char *)wikiLine.toAscii()); fflush(stdout);
+		//printf("wikiLine = [%s]\n", (const char *)wikiLine.toAscii()); fflush(stdout);
 		// DEBUG
 		QString wikiLineTrimmed = wikiLine.trimmed();
 		if ( wikiLine.indexOf(QRegExp("\\s*<code>")) == 0 ) {
