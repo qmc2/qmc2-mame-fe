@@ -1121,6 +1121,9 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
     }
     gamePos++;
   }
+#if QT_VERSION >= 0x040700
+  qmc2MainWindow->treeWidgetGamelist->scrollToItem(item);
+#endif
 }
 
 void Gamelist::parse()
