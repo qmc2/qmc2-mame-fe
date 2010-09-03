@@ -313,7 +313,8 @@ endif
 # Enable (1) or disable (0) extra browser features such as QtWebKit's 'Web
 # Inspector'.
 #
-# Caution: these features may be buggy and can easily make QMC2 crash!
+# Caution: these features may be buggy and can easily make QMC2 crash! However,
+# when Qt 4.6+ is used, the extra browser features should work fine.
 #
 ifndef BROWSER_EXTRAS
 BROWSER_EXTRAS = 0
@@ -323,7 +324,8 @@ endif
 #
 # Enable (1) or disable (0) Netscape/Mozilla plugins in the 'MiniWebBrowser'?
 #
-# Caution: browser plugins may be buggy and can cause crashes!
+# Caution: browser plugins may be buggy and can cause crashes! However, when
+# Qt 4.7+ is used, browser plugins should work fine.
 #
 ifndef BROWSER_PLUGINS
 BROWSER_PLUGINS = 0
