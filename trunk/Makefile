@@ -948,7 +948,7 @@ endif
 	@echo "XWININFO             X11 xwininfo command                         $(XWININFO)"
 
 # process translations
-QMC2_TRANSLATIONS = us de pl fr gr pt
+QMC2_TRANSLATIONS = us de pl fr pt
 QT_TRANSLATIONS = de pl fr pt
 LBINARIES = $(addsuffix .qm, $(addprefix data/lng/qmc2_, $(QMC2_TRANSLATIONS))) $(addsuffix .qm, $(addprefix data/lng/qt_, $(QT_TRANSLATIONS)))
 LREL = $(LRELEASE) $<
@@ -972,9 +972,6 @@ data/lng/qmc2_pl.qm: data/lng/qmc2_pl.ts
 data/lng/qmc2_fr.qm: data/lng/qmc2_fr.ts
 	$(LREL)
 
-data/lng/qmc2_gr.qm: data/lng/qmc2_gr.ts
-	$(LREL)
-
 data/lng/qmc2_pt.qm: data/lng/qmc2_pt.ts
 	$(LREL)
 
@@ -991,9 +988,6 @@ data/lng/qt_pl.qm: data/lng/qt_pl.ts
 
 data/lng/qt_fr.qm: data/lng/qt_fr.ts
 	$(LREL)
-
-#data/lng/qt_gr.qm: data/lng/qt_gr.ts
-#	$(LREL)
 
 data/lng/qt_pt.qm: data/lng/qt_pt.ts
 	$(LREL)
