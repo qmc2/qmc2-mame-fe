@@ -94,18 +94,9 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   chdManagerRunning = chdManagerMD5Success = chdManagerSHA1Success = FALSE;
   chdManagerCurrentHunk = chdManagerTotalHunks = 0;
 
-  // adjust icon sizes of buttons
-  QFont f;
-  f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
-  qApp->setFont(f);
-  QFontMetrics fm(f);
-  QSize iconSize(fm.height() - 3, fm.height() - 3);
-  pushButtonAnalyze->setIconSize(iconSize);
-  pushButtonPause->setIconSize(iconSize);
-  pushButtonClose->setIconSize(iconSize);
-  pushButtonSearchForward->setIconSize(iconSize);
-  pushButtonSearchBackward->setIconSize(iconSize);
+  adjustIconSizes();
   pushButtonPause->setVisible(FALSE);
+
   QFont logFont;
   logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
   textBrowserLog->setFont(logFont);
@@ -132,6 +123,29 @@ ROMAlyzer::~ROMAlyzer()
   if ( dbManager )
     delete dbManager;
 #endif
+}
+
+void ROMAlyzer::adjustIconSizes()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::adjustIconSizes()"));
+#endif
+
+  QFont f;
+  f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+  QFontMetrics fm(f);
+  QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
+  pushButtonAnalyze->setIconSize(iconSize);
+  pushButtonPause->setIconSize(iconSize);
+  pushButtonClose->setIconSize(iconSize);
+  pushButtonSearchForward->setIconSize(iconSize);
+  pushButtonSearchBackward->setIconSize(iconSize);
+  toolButtonBrowseCHDManagerExecutableFile->setIconSize(iconSize);
+  toolButtonBrowseTemporaryWorkingDirectory->setIconSize(iconSize);
+#if defined(QMC2_DATABASE_ENABLED)
+  toolButtonBrowseDatabaseOutputPath->setIconSize(iconSize);
+#endif
+  treeWidgetChecksums->setIconSize(iconSize);
 }
 
 void ROMAlyzer::on_pushButtonClose_clicked()

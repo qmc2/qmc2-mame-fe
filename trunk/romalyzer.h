@@ -153,6 +153,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void analyze();
     void selectItem(QString);
     void enableSearchEdit() { lineEditSearchString->setEnabled(TRUE); }
+    void adjustIconSizes();
 #if defined(QMC2_DATABASE_ENABLED)
     void resetDatabaseConnectionCheckButton();
 #endif
