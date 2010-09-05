@@ -171,7 +171,6 @@ void Welcome::setupLanguage()
       case QLocale::French: lang = "fr"; break;
       case QLocale::German: lang = "de"; break;
       case QLocale::Polish: lang = "pl"; break;
-      case QLocale::Greek: lang = "gr"; break;
       case QLocale::Portuguese: lang = "pt"; break;
       default: lang = "us"; break;
     }
