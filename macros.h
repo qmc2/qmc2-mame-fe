@@ -399,4 +399,7 @@
 // DB server default ports
 #define QMC2_DB_DFLT_PORT_MYSQL		3306
 
+// DB connection check button reset delay
+#define QMC2_DB_RESET_CCB_DELAY		1000
+
 #endif

@@ -116,6 +116,10 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     quint64 chdManagerCurrentHunk;
     quint64 chdManagerTotalHunks;
     ROMDatabaseManager *dbManager;
+#if defined(QMC2_DATABASE_ENABLED)
+    QPalette savedCheckButtonPalette;
+    bool connectionCheckRunning;
+#endif
 
     ROMAlyzer(QWidget *);
     ~ROMAlyzer();
@@ -141,6 +145,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void on_toolButtonBrowseTemporaryWorkingDirectory_clicked();
 #if defined(QMC2_DATABASE_ENABLED)
     void on_pushButtonDatabaseCheckConnection_clicked();
+    void on_toolButtonBrowseDatabaseOutputPath_clicked();
 #endif
 
     // miscellaneous slots
@@ -148,6 +153,9 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void analyze();
     void selectItem(QString);
     void enableSearchEdit() { lineEditSearchString->setEnabled(TRUE); }
+#if defined(QMC2_DATABASE_ENABLED)
+    void resetDatabaseConnectionCheckButton();
+#endif
 
     // CHD manager process control
     void chdManagerStarted();
