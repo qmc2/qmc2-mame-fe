@@ -456,17 +456,7 @@ void Options::apply()
 #endif
   if ( qmc2ROMAlyzer ) {
     qmc2ROMAlyzer->textBrowserLog->setFont(logFont);
-    qmc2ROMAlyzer->pushButtonAnalyze->setIconSize(iconSize);
-    qmc2ROMAlyzer->pushButtonPause->setIconSize(iconSize);
-    qmc2ROMAlyzer->pushButtonClose->setIconSize(iconSize);
-    qmc2ROMAlyzer->treeWidgetChecksums->setIconSize(iconSize);
-    qmc2ROMAlyzer->pushButtonSearchForward->setIconSize(iconSize);
-    qmc2ROMAlyzer->pushButtonSearchBackward->setIconSize(iconSize);
-    qmc2ROMAlyzer->toolButtonBrowseCHDManagerExecutableFile->setIconSize(iconSize);
-    qmc2ROMAlyzer->toolButtonBrowseTemporaryWorkingDirectory->setIconSize(iconSize);
-#if defined(QMC2_DATABASE_ENABLED)
-    qmc2ROMAlyzer->toolButtonBrowseDatabaseOutputPath->setIconSize(iconSize);
-#endif
+    QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(adjustIconSizes()));
   }
   if ( qmc2ImageChecker ) {
     QTabBar *tabBar = qmc2ImageChecker->tabWidgetImageChecker->findChild<QTabBar *>();
