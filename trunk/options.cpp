@@ -462,6 +462,11 @@ void Options::apply()
     qmc2ROMAlyzer->treeWidgetChecksums->setIconSize(iconSize);
     qmc2ROMAlyzer->pushButtonSearchForward->setIconSize(iconSize);
     qmc2ROMAlyzer->pushButtonSearchBackward->setIconSize(iconSize);
+    qmc2ROMAlyzer->toolButtonBrowseCHDManagerExecutableFile->setIconSize(iconSize);
+    qmc2ROMAlyzer->toolButtonBrowseTemporaryWorkingDirectory->setIconSize(iconSize);
+#if defined(QMC2_DATABASE_ENABLED)
+    qmc2ROMAlyzer->toolButtonBrowseDatabaseOutputPath->setIconSize(iconSize);
+#endif
   }
   if ( qmc2ImageChecker ) {
     QTabBar *tabBar = qmc2ImageChecker->tabWidgetImageChecker->findChild<QTabBar *>();

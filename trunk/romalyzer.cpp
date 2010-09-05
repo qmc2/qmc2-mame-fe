@@ -116,6 +116,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   groupBoxDatabase->setChecked(false);
   groupBoxDatabase->setVisible(false);
   dbManager = NULL;
+  connectionCheckRunning = false;
 #else
   dbManager = new ROMDatabaseManager(this);
 #endif
@@ -273,7 +274,9 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", qCompress(lineEditDatabasePassword->text().toLatin1()));
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDownload", checkBoxDatabaseDownload->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUpload", checkBoxDatabaseUpload->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOverwrite", checkBoxDatabaseOverwrite->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDriver", comboBoxDatabaseDriver->currentIndex());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOutputPath", lineEditDatabaseOutputPath->text());
 #endif
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() ) {
@@ -339,7 +342,9 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   lineEditDatabasePassword->setText(QString(qUncompress(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabasePassword", "").toByteArray())));
   checkBoxDatabaseDownload->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDownload", TRUE).toBool());
   checkBoxDatabaseUpload->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseUpload", FALSE).toBool());
+  checkBoxDatabaseOverwrite->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOverwrite", FALSE).toBool());
   comboBoxDatabaseDriver->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseDriver", QMC2_DB_DRIVER_MYSQL).toInt());
+  lineEditDatabaseOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/DatabaseOutputPath", "").toString());
 #endif
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
@@ -1496,6 +1501,84 @@ void ROMAlyzer::chdManagerStateChanged(QProcess::ProcessState processState)
 
 }
 
+#if defined(QMC2_DATABASE_ENABLED)
+void ROMAlyzer::on_pushButtonDatabaseCheckConnection_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonDatabaseCheckConnection_clicked()");
+#endif
+
+	if ( !dbManager || connectionCheckRunning )
+		return;
+
+	if ( dbManager->isConnected() )
+		return;
+
+	connectionCheckRunning = true;
+	savedCheckButtonPalette = pushButtonDatabaseCheckConnection->palette();
+	pushButtonDatabaseCheckConnection->setEnabled(false);
+
+	if ( dbManager->checkConnection(comboBoxDatabaseDriver->currentIndex(),
+				lineEditDatabaseUser->text(),
+				lineEditDatabasePassword->text(),
+				lineEditDatabaseName->text(),
+				lineEditDatabaseServer->text(),
+				spinBoxDatabasePort->value()) ) {
+		if ( qApp->styleSheet().isEmpty() ) {
+			pushButtonDatabaseCheckConnection->setStyleSheet("");
+			QPalette pal = pushButtonDatabaseCheckConnection->palette();
+			pal.setColor(QPalette::Button, QColor(0, 255, 0));
+			pushButtonDatabaseCheckConnection->setPalette(pal);
+		} else
+			pushButtonDatabaseCheckConnection->setStyleSheet("background: #00ff00; color: black");
+		pushButtonDatabaseCheckConnection->setText(tr("Connection check -- succeeded!"));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("database connection check successful"));
+	} else {
+		if ( qApp->styleSheet().isEmpty() ) {
+			pushButtonDatabaseCheckConnection->setStyleSheet("");
+			QPalette pal = pushButtonDatabaseCheckConnection->palette();
+			pal.setColor(QPalette::Button, QColor(255, 0, 0));
+			pushButtonDatabaseCheckConnection->setPalette(pal);
+		} else
+			pushButtonDatabaseCheckConnection->setStyleSheet("background: #ff0000; color: black");
+		pushButtonDatabaseCheckConnection->setText(tr("Connection check -- failed!"));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("database connection check failed -- errorNumber = %1, errorText = '%2'").arg(dbManager->errorNumber()).arg(dbManager->errorText()));
+	}
+
+	pushButtonDatabaseCheckConnection->setEnabled(true);
+	QTimer::singleShot(QMC2_DB_RESET_CCB_DELAY, this, SLOT(resetDatabaseConnectionCheckButton()));
+}
+
+void ROMAlyzer::resetDatabaseConnectionCheckButton()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::resetDatabaseConnectionCheckButton()");
+#endif
+
+	pushButtonDatabaseCheckConnection->setStyleSheet("");
+	pushButtonDatabaseCheckConnection->setPalette(savedCheckButtonPalette);
+	pushButtonDatabaseCheckConnection->setText(tr("Connection check"));
+
+	connectionCheckRunning = false;
+}
+
+void ROMAlyzer::on_toolButtonBrowseDatabaseOutputPath_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseDatabaseOutputPath_clicked()");
+#endif
+
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose local DB output path"), lineEditDatabaseOutputPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+
+	if ( !s.isNull() ) {
+		if ( !s.endsWith("/") ) s += "/";
+		lineEditDatabaseOutputPath->setText(s);
+	}
+
+	raise();
+}
+#endif
+
 ROMAlyzerXmlHandler::ROMAlyzerXmlHandler(QTreeWidgetItem *parent, bool expand, bool scroll)
 {
 #ifdef QMC2_DEBUG
@@ -1630,37 +1713,3 @@ bool ROMAlyzerXmlHandler::characters(const QString &str)
   currentText += QString::fromUtf8(str.toAscii());
   return TRUE;
 }
-
-#if defined(QMC2_DATABASE_ENABLED)
-void ROMAlyzer::on_pushButtonDatabaseCheckConnection_clicked()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonDatabaseCheckConnection_clicked()");
-#endif
-
-	if ( !dbManager )
-		return;
-
-	if ( dbManager->isConnected() )
-		return;
-
-	if ( dbManager->checkConnection(comboBoxDatabaseDriver->currentIndex(),
-				lineEditDatabaseUser->text(),
-				lineEditDatabasePassword->text(),
-				lineEditDatabaseName->text(),
-				lineEditDatabaseServer->text(),
-				spinBoxDatabasePort->value()) ) {
-		QPalette pal = pushButtonDatabaseCheckConnection->palette();
-		pal.setColor(QPalette::Button, QColor(0, 255, 0));
-		pushButtonDatabaseCheckConnection->setPalette(pal);
-		pushButtonDatabaseCheckConnection->setText(tr("Connection check -- succeeded!"));
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("database connection check successful"));
-	} else {
-		QPalette pal = pushButtonDatabaseCheckConnection->palette();
-		pal.setColor(QPalette::Button, QColor(255, 0, 0));
-		pushButtonDatabaseCheckConnection->setPalette(pal);
-		pushButtonDatabaseCheckConnection->setText(tr("Connection check -- failed!"));
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("database connection check failed -- errorNumber = %1, errorText = '%2'").arg(dbManager->errorNumber()).arg(dbManager->errorText()));
-	}
-}
-#endif

@@ -26,6 +26,7 @@
 #include "pcb.h"
 #include "romstatusexport.h"
 #include "miniwebbrowser.h"
+#include "romalyzer.h"
 #include "macros.h"
 #include "unzip.h"
 #if defined(QMC2_EMUTYPE_MESS)
@@ -39,6 +40,7 @@ extern Options *qmc2Options;
 extern QSettings *qmc2Config;
 extern EmulatorOptions *qmc2EmulatorOptions;
 extern ROMStatusExporter *qmc2ROMStatusExporter;
+extern ROMAlyzer *qmc2ROMAlyzer;
 extern bool qmc2ReloadActive;
 extern bool qmc2EarlyReloadActive;
 extern bool qmc2StopParser;
@@ -235,6 +237,13 @@ void Gamelist::enableWidgets(bool enable)
 #endif
   if ( qmc2ROMStatusExporter )
     qmc2ROMStatusExporter->pushButtonExport->setEnabled(enable);
+  if ( qmc2ROMAlyzer ) {
+    qmc2ROMAlyzer->toolButtonBrowseCHDManagerExecutableFile->setEnabled(enable);
+    qmc2ROMAlyzer->toolButtonBrowseTemporaryWorkingDirectory->setEnabled(enable);
+#if defined(QMC2_DATABASE_ENABLED)
+    qmc2ROMAlyzer->toolButtonBrowseDatabaseOutputPath->setEnabled(enable);
+#endif
+  }
   qmc2MainWindow->pushButtonSelectRomFilter->setEnabled(enable);
 }
 
