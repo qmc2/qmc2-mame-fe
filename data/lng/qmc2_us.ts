@@ -8350,7 +8350,7 @@ Retry embedding?</source>
     </message>
     <message>
         <location filename="../../options.cpp" line="2971"/>
-        <location filename="../../options.ui" line="2595"/>
+        <location filename="../../options.ui" line="2590"/>
         <source>Default</source>
         <translation></translation>
     </message>
@@ -8417,7 +8417,7 @@ Retry embedding?</source>
         <location filename="../../options.cpp" line="1669"/>
         <location filename="../../options.cpp" line="1721"/>
         <location filename="../../options.cpp" line="2488"/>
-        <location filename="../../options.ui" line="1175"/>
+        <location filename="../../options.ui" line="1170"/>
         <source>Preview directory</source>
         <translation></translation>
     </message>
@@ -8432,7 +8432,7 @@ Retry embedding?</source>
         <location filename="../../options.cpp" line="1674"/>
         <location filename="../../options.cpp" line="1726"/>
         <location filename="../../options.cpp" line="2499"/>
-        <location filename="../../options.ui" line="1278"/>
+        <location filename="../../options.ui" line="1273"/>
         <source>Flyer directory</source>
         <translation></translation>
     </message>
@@ -8447,7 +8447,7 @@ Retry embedding?</source>
         <location filename="../../options.cpp" line="1679"/>
         <location filename="../../options.cpp" line="1731"/>
         <location filename="../../options.cpp" line="2510"/>
-        <location filename="../../options.ui" line="1381"/>
+        <location filename="../../options.ui" line="1376"/>
         <source>Icon directory</source>
         <translation></translation>
     </message>
@@ -8462,7 +8462,7 @@ Retry embedding?</source>
         <location filename="../../options.cpp" line="1704"/>
         <location filename="../../options.cpp" line="1756"/>
         <location filename="../../options.cpp" line="2565"/>
-        <location filename="../../options.ui" line="1945"/>
+        <location filename="../../options.ui" line="1940"/>
         <source>PCB directory</source>
         <translation></translation>
     </message>
@@ -8643,7 +8643,7 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="135"/>
+        <location filename="../../options.ui" line="130"/>
         <source>US (English)</source>
         <translation></translation>
     </message>
@@ -8653,902 +8653,897 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="732"/>
+        <location filename="../../options.ui" line="727"/>
         <source>Image cache size in MB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="735"/>
+        <location filename="../../options.ui" line="730"/>
         <source> MB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="719"/>
+        <location filename="../../options.ui" line="714"/>
         <source>Image cache size</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="615"/>
+        <location filename="../../options.ui" line="610"/>
         <source>Application font</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="256"/>
+        <location filename="../../options.ui" line="251"/>
         <source>Show short description of current processing in progress bar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="679"/>
+        <location filename="../../options.ui" line="674"/>
         <source>Smooth image scaling (nicer, but slower)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="682"/>
+        <location filename="../../options.ui" line="677"/>
         <source>Smooth scaling</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="689"/>
+        <location filename="../../options.ui" line="684"/>
         <source>Retry loading images which weren&apos;t found before?</source>
         <translation>Retry loading images which weren&apos;t found before?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="692"/>
+        <location filename="../../options.ui" line="687"/>
         <source>Retry loading images</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="153"/>
+        <location filename="../../options.ui" line="148"/>
         <source>Save game selection at exit and before reloading the gamelist</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="156"/>
+        <location filename="../../options.ui" line="151"/>
         <source>Save game selection</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="183"/>
-        <location filename="../../options.ui" line="193"/>
-        <location filename="../../options.ui" line="203"/>
-        <location filename="../../options.ui" line="213"/>
-        <location filename="../../options.ui" line="469"/>
-        <location filename="../../options.ui" line="479"/>
-        <location filename="../../options.ui" line="535"/>
+        <location filename="../../options.ui" line="178"/>
+        <location filename="../../options.ui" line="188"/>
+        <location filename="../../options.ui" line="198"/>
+        <location filename="../../options.ui" line="208"/>
+        <location filename="../../options.ui" line="464"/>
+        <location filename="../../options.ui" line="474"/>
+        <location filename="../../options.ui" line="530"/>
         <source>Scale image to fit frame size (otherwise use original size)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="186"/>
+        <location filename="../../options.ui" line="181"/>
         <source>Scaled preview</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="266"/>
+        <location filename="../../options.ui" line="261"/>
         <source>Kill emulators on exit?</source>
         <translation>Kill emulators on exit?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="269"/>
+        <location filename="../../options.ui" line="264"/>
         <source>Kill emulators</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="143"/>
+        <location filename="../../options.ui" line="138"/>
         <source>Save window layout at exit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="146"/>
+        <location filename="../../options.ui" line="141"/>
         <source>Save layout</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="771"/>
+        <location filename="../../options.ui" line="766"/>
         <source>Use standard or custom color palette?</source>
         <translation>Use standard or custom color palette?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="774"/>
+        <location filename="../../options.ui" line="769"/>
         <source>Standard color palette</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="482"/>
+        <location filename="../../options.ui" line="477"/>
         <source>Scaled flyer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="163"/>
+        <location filename="../../options.ui" line="158"/>
         <source>Restore saved window layout at start</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="166"/>
+        <location filename="../../options.ui" line="161"/>
         <source>Restore layout</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="173"/>
+        <location filename="../../options.ui" line="168"/>
         <source>Restore saved game selection at start and after reloading the gamelist</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="176"/>
+        <location filename="../../options.ui" line="171"/>
         <source>Restore game selection</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="659"/>
+        <location filename="../../options.ui" line="654"/>
         <source>GUI style</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="495"/>
+        <location filename="../../options.ui" line="490"/>
         <source>Application font (= system default if empty)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="511"/>
+        <location filename="../../options.ui" line="506"/>
         <source>Browse application font</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="838"/>
-        <location filename="../../options.ui" line="3475"/>
+        <location filename="../../options.ui" line="833"/>
+        <location filename="../../options.ui" line="3470"/>
         <source>F&amp;iles / Directories</source>
         <translation>F&amp;iles / Directories</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1041"/>
+        <location filename="../../options.ui" line="1036"/>
         <source>Browse frontend data directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1028"/>
+        <location filename="../../options.ui" line="1023"/>
         <source>Frontend data directory (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1015"/>
+        <location filename="../../options.ui" line="1010"/>
         <source>Data directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1378"/>
+        <location filename="../../options.ui" line="1373"/>
         <source>Switch between specifying an icon directory or a ZIP-compressed icon file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1275"/>
+        <location filename="../../options.ui" line="1270"/>
         <source>Switch between specifying a flyer directory or a ZIP-compressed flyer file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1172"/>
+        <location filename="../../options.ui" line="1167"/>
         <source>Switch between specifying a preview directory or a ZIP-compressed preview file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3701"/>
+        <location filename="../../options.ui" line="3696"/>
         <source>Browse gamelist cache file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3688"/>
+        <location filename="../../options.ui" line="3683"/>
         <source>Gamelist cache file (write)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3738"/>
+        <location filename="../../options.ui" line="3733"/>
         <source>Browse ROM state cache file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3725"/>
+        <location filename="../../options.ui" line="3720"/>
         <source>ROM state cache file (write)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3712"/>
+        <location filename="../../options.ui" line="3707"/>
         <source>ROM state cache</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="991"/>
+        <location filename="../../options.ui" line="986"/>
         <source>Play history file (write)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="867"/>
+        <location filename="../../options.ui" line="862"/>
         <source>Temporary file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="941"/>
+        <location filename="../../options.ui" line="936"/>
         <source>Favorites file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="978"/>
+        <location filename="../../options.ui" line="973"/>
         <source>Play history file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1004"/>
+        <location filename="../../options.ui" line="999"/>
         <source>Browse play history file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="954"/>
+        <location filename="../../options.ui" line="949"/>
         <source>Game favorites file (write)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="967"/>
+        <location filename="../../options.ui" line="962"/>
         <source>Browse game favorites file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="880"/>
+        <location filename="../../options.ui" line="875"/>
         <source>Temporary work file (write)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="893"/>
+        <location filename="../../options.ui" line="888"/>
         <source>Browse temporary work file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1416"/>
+        <location filename="../../options.ui" line="1411"/>
         <source>Icon directory (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1429"/>
+        <location filename="../../options.ui" line="1424"/>
         <source>Browse icon directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1453"/>
+        <location filename="../../options.ui" line="1448"/>
         <source>ZIP-compressed icon file (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1466"/>
+        <location filename="../../options.ui" line="1461"/>
         <source>Browse ZIP-compressed icon file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1313"/>
+        <location filename="../../options.ui" line="1308"/>
         <source>Flyer directory (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1326"/>
+        <location filename="../../options.ui" line="1321"/>
         <source>Browse flyer directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1350"/>
+        <location filename="../../options.ui" line="1345"/>
         <source>ZIP-compressed flyer file (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1363"/>
+        <location filename="../../options.ui" line="1358"/>
         <source>Browse ZIP-compressed flyer file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1210"/>
+        <location filename="../../options.ui" line="1205"/>
         <source>Preview directory (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1223"/>
+        <location filename="../../options.ui" line="1218"/>
         <source>Browse preview directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1247"/>
+        <location filename="../../options.ui" line="1242"/>
         <source>ZIP-compressed preview file (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1260"/>
+        <location filename="../../options.ui" line="1255"/>
         <source>Browse ZIP-compressed preview file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2432"/>
+        <location filename="../../options.ui" line="2427"/>
         <source>Auto-trigger ROM check</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2384"/>
+        <location filename="../../options.ui" line="2379"/>
         <source>Update delay</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2368"/>
+        <location filename="../../options.ui" line="2363"/>
         <source>immediate</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2403"/>
+        <location filename="../../options.ui" line="2398"/>
         <source> ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2352"/>
+        <location filename="../../options.ui" line="2347"/>
         <source>Responsiveness</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2327"/>
+        <location filename="../../options.ui" line="2322"/>
         <source>Select sort order</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2331"/>
+        <location filename="../../options.ui" line="2326"/>
         <source>Ascending</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2340"/>
+        <location filename="../../options.ui" line="2335"/>
         <source>Descending</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2277"/>
+        <location filename="../../options.ui" line="2272"/>
         <source>Select sort criteria</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2281"/>
+        <location filename="../../options.ui" line="2276"/>
         <source>Game description</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2286"/>
+        <location filename="../../options.ui" line="2281"/>
         <source>ROM state</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2291"/>
+        <location filename="../../options.ui" line="2286"/>
         <source>Year</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2296"/>
+        <location filename="../../options.ui" line="2291"/>
         <source>Manufacturer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2314"/>
+        <location filename="../../options.ui" line="2309"/>
         <source>Sort order</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2264"/>
+        <location filename="../../options.ui" line="2259"/>
         <source>Sort criteria</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2125"/>
+        <location filename="../../options.ui" line="2120"/>
         <source>ROM state filter</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2140"/>
+        <location filename="../../options.ui" line="2135"/>
         <source>Show ROM state C (correct)?</source>
         <translation>Show ROM state C (correct)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2163"/>
+        <location filename="../../options.ui" line="2158"/>
         <source>Show ROM state M (mostly correct)?</source>
         <translation>Show ROM state M (mostly correct)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2186"/>
+        <location filename="../../options.ui" line="2181"/>
         <source>Show ROM state I (incorrect)?</source>
         <translation>Show ROM state I (incorrect)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2209"/>
+        <location filename="../../options.ui" line="2204"/>
         <source>Show ROM state N (not found)?</source>
         <translation>Show ROM state N (not found)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2232"/>
+        <location filename="../../options.ui" line="2227"/>
         <source>Show ROM state U (unknown)?</source>
         <translation>Show ROM state U (unknown)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2502"/>
+        <location filename="../../options.ui" line="2497"/>
         <source>&amp;Shortcuts / Keys</source>
         <translation>&amp;Shortcuts / Keys</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2551"/>
+        <location filename="../../options.ui" line="2546"/>
         <source>Reset key sequence to default</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2554"/>
+        <location filename="../../options.ui" line="2549"/>
         <source>Reset</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2534"/>
-        <location filename="../../options.ui" line="2537"/>
+        <location filename="../../options.ui" line="2529"/>
+        <location filename="../../options.ui" line="2532"/>
         <source>Redefine key sequence</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2571"/>
+        <location filename="../../options.ui" line="2566"/>
         <source>Active shortcut definitions; double-click to redefine key sequence</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2600"/>
+        <location filename="../../options.ui" line="2595"/>
         <source>Custom</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3101"/>
+        <location filename="../../options.ui" line="3096"/>
         <source>Zip tool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3133"/>
+        <location filename="../../options.ui" line="3128"/>
         <source>Browse for zip tool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3157"/>
+        <location filename="../../options.ui" line="3152"/>
         <source>Zip tool argument list to remove entries from the ZIP archive (i. e. &quot;$ARCHIVE$ -d $FILELIST$&quot;)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3167"/>
+        <location filename="../../options.ui" line="3162"/>
         <source>File removal tool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3223"/>
+        <location filename="../../options.ui" line="3218"/>
         <source>File removal tool argument list (i. e. &quot;-f -v $FILELIST$&quot;)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3144"/>
-        <location filename="../../options.ui" line="3210"/>
-        <location filename="../../options.ui" line="3289"/>
-        <location filename="../../options.ui" line="3990"/>
-        <location filename="../../options.ui" line="4087"/>
+        <location filename="../../options.ui" line="3139"/>
+        <location filename="../../options.ui" line="3205"/>
+        <location filename="../../options.ui" line="3284"/>
+        <location filename="../../options.ui" line="3985"/>
+        <location filename="../../options.ui" line="4082"/>
         <source>Arguments</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3199"/>
+        <location filename="../../options.ui" line="3194"/>
         <source>Browse for file removal tool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3439"/>
+        <location filename="../../options.ui" line="3434"/>
         <source>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3460"/>
+        <location filename="../../options.ui" line="3455"/>
         <source>E&amp;mulator</source>
         <translation>E&amp;mulator</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3470"/>
+        <location filename="../../options.ui" line="3465"/>
         <source>&amp;Global configuration</source>
         <translation>&amp;Global configuration</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3664"/>
+        <location filename="../../options.ui" line="3659"/>
         <source>Browse XML gamelist cache file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3651"/>
+        <location filename="../../options.ui" line="3646"/>
         <source>Cache file for the output of mame -listxml / -lx (write)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3590"/>
+        <location filename="../../options.ui" line="3585"/>
         <source>Browse emulator log file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3577"/>
+        <location filename="../../options.ui" line="3572"/>
         <source>Emulator log file (write)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3564"/>
+        <location filename="../../options.ui" line="3559"/>
         <source>Emulator log file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3553"/>
-        <location filename="../../options.ui" line="4073"/>
+        <location filename="../../options.ui" line="3548"/>
+        <location filename="../../options.ui" line="4068"/>
         <source>Browse emulator executable file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3525"/>
+        <location filename="../../options.ui" line="3520"/>
         <source>Executable file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3627"/>
+        <location filename="../../options.ui" line="3622"/>
         <source>Browse options template file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3614"/>
+        <location filename="../../options.ui" line="3609"/>
         <source>Options template file (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="120"/>
-        <source>GR (Greek)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="130"/>
+        <location filename="../../options.ui" line="125"/>
         <source>PT (Portuguese)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="259"/>
+        <location filename="../../options.ui" line="254"/>
         <source>Show progress texts</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="538"/>
+        <location filename="../../options.ui" line="533"/>
         <source>Scaled PCB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="622"/>
+        <location filename="../../options.ui" line="617"/>
         <source>Style sheet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="635"/>
+        <location filename="../../options.ui" line="630"/>
         <source>Qt style sheet file (*.qss, leave empty for no style sheet)</source>
         <translation>Qt style sheet file (*.qss, leave empty for no style sheet)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="648"/>
+        <location filename="../../options.ui" line="643"/>
         <source>Browse Qt style sheet file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="751"/>
+        <location filename="../../options.ui" line="746"/>
         <source>Open the detail setup dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="754"/>
+        <location filename="../../options.ui" line="749"/>
         <source>Detail setup...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="764"/>
+        <location filename="../../options.ui" line="759"/>
         <source>Show memory  usage</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="781"/>
+        <location filename="../../options.ui" line="776"/>
         <source>Exit this QMC2 variant when launching another?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="784"/>
+        <location filename="../../options.ui" line="779"/>
         <source>Exit on variant launch</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="791"/>
+        <location filename="../../options.ui" line="786"/>
         <source>Log font</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="804"/>
+        <location filename="../../options.ui" line="799"/>
         <source>Font used in logs (= application font if empty)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="820"/>
+        <location filename="../../options.ui" line="815"/>
         <source>Browse font used in logs</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1942"/>
+        <location filename="../../options.ui" line="1937"/>
         <source>Switch between specifying a PCB directory or a ZIP-compressed PCB file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1980"/>
+        <location filename="../../options.ui" line="1975"/>
         <source>PCB directory (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1993"/>
+        <location filename="../../options.ui" line="1988"/>
         <source>Browse PCB directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2017"/>
+        <location filename="../../options.ui" line="2012"/>
         <source>ZIP-compressed PCB file (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2030"/>
+        <location filename="../../options.ui" line="2025"/>
         <source>Browse ZIP-compressed PCB file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2045"/>
+        <location filename="../../options.ui" line="2040"/>
         <source>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2048"/>
+        <location filename="../../options.ui" line="2043"/>
         <source>Use catver.ini</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2065"/>
+        <location filename="../../options.ui" line="2060"/>
         <source>Path to catver.ini (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2078"/>
+        <location filename="../../options.ui" line="2073"/>
         <source>Browse path to catver.ini</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2306"/>
+        <location filename="../../options.ui" line="2301"/>
         <source>ROM types</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2462"/>
+        <location filename="../../options.ui" line="2457"/>
         <source>Hide primary game list while loading (recommended, much faster)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2465"/>
+        <location filename="../../options.ui" line="2460"/>
         <source>Hide while loading</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2472"/>
+        <location filename="../../options.ui" line="2467"/>
         <source>Launch emulation directly when an item is activated in the search-, favorites- or played-lists (instead of jumping to the master list)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2475"/>
+        <location filename="../../options.ui" line="2470"/>
         <source>Play on sub-list activation</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3072"/>
+        <location filename="../../options.ui" line="3067"/>
         <source>Proxy / &amp;Tools</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3246"/>
+        <location filename="../../options.ui" line="3241"/>
         <source>ROM tool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3265"/>
+        <location filename="../../options.ui" line="3260"/>
         <source>External ROM tool (it&apos;s completely up to you...)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3278"/>
+        <location filename="../../options.ui" line="3273"/>
         <source>Browse ROM tool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3302"/>
+        <location filename="../../options.ui" line="3297"/>
         <source>ROM tool argument list (i. e. &quot;$ID$ $DESCRIPTION$&quot;)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3312"/>
+        <location filename="../../options.ui" line="3307"/>
         <source>Copy the tool&apos;s output to the front end log (keeping it for debugging)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3315"/>
+        <location filename="../../options.ui" line="3310"/>
         <source>Copy tool output to front end log</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3322"/>
+        <location filename="../../options.ui" line="3317"/>
         <source>Automatically close the tool-executor dialog when the external process finished</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3325"/>
+        <location filename="../../options.ui" line="3320"/>
         <source>Close dialog automatically</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3601"/>
+        <location filename="../../options.ui" line="3596"/>
         <source>Options template file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3638"/>
+        <location filename="../../options.ui" line="3633"/>
         <source>XML game list cache</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3675"/>
+        <location filename="../../options.ui" line="3670"/>
         <source>Game list cache</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3838"/>
+        <location filename="../../options.ui" line="3833"/>
         <source>Software list cache</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3851"/>
+        <location filename="../../options.ui" line="3846"/>
         <source>MESS software list cache (write)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3864"/>
+        <location filename="../../options.ui" line="3859"/>
         <source>Browse MESS software list cache file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3875"/>
+        <location filename="../../options.ui" line="3870"/>
         <source>Working directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3888"/>
+        <location filename="../../options.ui" line="3883"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3901"/>
+        <location filename="../../options.ui" line="3896"/>
         <source>Browse working directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3919"/>
+        <location filename="../../options.ui" line="3914"/>
         <source>Additional &amp;Emulators</source>
         <translation>Additional &amp;Emulators</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3946"/>
+        <location filename="../../options.ui" line="3941"/>
         <source>Registered emulators -- you may select one of these in the game-specific emulator configuration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3980"/>
-        <location filename="../../options.ui" line="4045"/>
+        <location filename="../../options.ui" line="3975"/>
+        <location filename="../../options.ui" line="4040"/>
         <source>Name</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3985"/>
-        <location filename="../../options.ui" line="4059"/>
+        <location filename="../../options.ui" line="3980"/>
+        <location filename="../../options.ui" line="4054"/>
         <source>Executable</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4001"/>
+        <location filename="../../options.ui" line="3996"/>
         <source>Register emulator</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4031"/>
+        <location filename="../../options.ui" line="4026"/>
         <source>Deregister emulator</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4052"/>
+        <location filename="../../options.ui" line="4047"/>
         <source>Registered emulator&apos;s name</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4066"/>
+        <location filename="../../options.ui" line="4061"/>
         <source>Command to execute the emulator (path to the executable file)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4094"/>
+        <location filename="../../options.ui" line="4089"/>
         <source>Arguments passed to the emulator -- use $ID$ as a placeholder for the unique game/machine ID (its short name)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4104"/>
+        <location filename="../../options.ui" line="4099"/>
         <source>Replace emulator registration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4132"/>
+        <location filename="../../options.ui" line="4127"/>
         <source>Apply settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4135"/>
+        <location filename="../../options.ui" line="4130"/>
         <source>&amp;Apply</source>
         <translation>&amp;Apply</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4146"/>
+        <location filename="../../options.ui" line="4141"/>
         <source>Restore currently applied settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4149"/>
+        <location filename="../../options.ui" line="4144"/>
         <source>&amp;Restore</source>
         <translation>&amp;Restore</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4160"/>
+        <location filename="../../options.ui" line="4155"/>
         <source>Reset to default settings (click &lt;i&gt;Restore&lt;/i&gt; to restore currently applied settings!)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4163"/>
+        <location filename="../../options.ui" line="4158"/>
         <source>&amp;Default</source>
         <translation>&amp;Default</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4187"/>
+        <location filename="../../options.ui" line="4182"/>
         <source>Close and apply settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4190"/>
+        <location filename="../../options.ui" line="4185"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4197"/>
+        <location filename="../../options.ui" line="4192"/>
         <source>Close and discard changes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4200"/>
+        <location filename="../../options.ui" line="4195"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancel</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="125"/>
+        <location filename="../../options.ui" line="120"/>
         <source>PL (Polish)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3120"/>
+        <location filename="../../options.ui" line="3115"/>
         <source>External zip tool, i.e. &quot;zip&quot; (read and execute)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3186"/>
+        <location filename="../../options.ui" line="3181"/>
         <source>External file removal tool, i.e. &quot;rm&quot; (read and execute)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3540"/>
+        <location filename="../../options.ui" line="3535"/>
         <source>Emulator executable file (read and execute)</source>
         <translation></translation>
     </message>
@@ -9568,42 +9563,42 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2301"/>
+        <location filename="../../options.ui" line="2296"/>
         <source>Game name</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2615"/>
+        <location filename="../../options.ui" line="2610"/>
         <source>&amp;Joystick</source>
         <translation>&amp;Joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2644"/>
+        <location filename="../../options.ui" line="2639"/>
         <source>Enable GUI control via joystick</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2647"/>
+        <location filename="../../options.ui" line="2642"/>
         <source>Enable joystick control</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2663"/>
+        <location filename="../../options.ui" line="2658"/>
         <source>Rescan available joysticks</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2666"/>
+        <location filename="../../options.ui" line="2661"/>
         <source>Rescan joysticks</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2686"/>
+        <location filename="../../options.ui" line="2681"/>
         <source>Select joystick</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2696"/>
+        <location filename="../../options.ui" line="2691"/>
         <source>List of available joysticks - select the one you want to use for GUI control</source>
         <translation></translation>
     </message>
@@ -9612,157 +9607,157 @@ Retry embedding?</source>
         <location filename="../../options.cpp" line="3021"/>
         <location filename="../../options.cpp" line="3074"/>
         <location filename="../../options.cpp" line="3161"/>
-        <location filename="../../options.ui" line="2700"/>
+        <location filename="../../options.ui" line="2695"/>
         <source>No joysticks found</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2711"/>
+        <location filename="../../options.ui" line="2706"/>
         <source>Joystick information and settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2728"/>
+        <location filename="../../options.ui" line="2723"/>
         <source>Number of joystick axes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2731"/>
-        <location filename="../../options.ui" line="2752"/>
-        <location filename="../../options.ui" line="2773"/>
-        <location filename="../../options.ui" line="2794"/>
+        <location filename="../../options.ui" line="2726"/>
+        <location filename="../../options.ui" line="2747"/>
+        <location filename="../../options.ui" line="2768"/>
+        <location filename="../../options.ui" line="2789"/>
         <source>0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2742"/>
+        <location filename="../../options.ui" line="2737"/>
         <source>Buttons:</source>
         <translation>Buttons:</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2749"/>
+        <location filename="../../options.ui" line="2744"/>
         <source>Number of joystick buttons</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2763"/>
+        <location filename="../../options.ui" line="2758"/>
         <source>Hats:</source>
         <translation>Hats:</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2770"/>
+        <location filename="../../options.ui" line="2765"/>
         <source>Number of coolie hats</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2784"/>
+        <location filename="../../options.ui" line="2779"/>
         <source>Trackballs:</source>
         <translation>Trackballs:</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2791"/>
+        <location filename="../../options.ui" line="2786"/>
         <source>Number of trackballs</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2910"/>
+        <location filename="../../options.ui" line="2905"/>
         <source>Calibrate joystick axes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2932"/>
+        <location filename="../../options.ui" line="2927"/>
         <source>Test all joystick functions</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2721"/>
+        <location filename="../../options.ui" line="2716"/>
         <source>Axes:</source>
         <translation>Axes:</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2820"/>
+        <location filename="../../options.ui" line="2815"/>
         <source>Automatically repeat joystick functions after specified delay</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2823"/>
+        <location filename="../../options.ui" line="2818"/>
         <source>Auto repeat after</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2839"/>
+        <location filename="../../options.ui" line="2834"/>
         <source>Repeat all joystick functions after how many milliseconds?</source>
         <translation>Repeat all joystick functions after how many milliseconds?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2842"/>
-        <location filename="../../options.ui" line="2887"/>
+        <location filename="../../options.ui" line="2837"/>
+        <location filename="../../options.ui" line="2882"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2868"/>
+        <location filename="../../options.ui" line="2863"/>
         <source>Event timeout</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2884"/>
+        <location filename="../../options.ui" line="2879"/>
         <source>Process joystick events after how many milliseconds?</source>
         <translation>Process joystick events after how many milliseconds?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2590"/>
-        <location filename="../../options.ui" line="3046"/>
+        <location filename="../../options.ui" line="2585"/>
+        <location filename="../../options.ui" line="3041"/>
         <source>Function / Key</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2913"/>
+        <location filename="../../options.ui" line="2908"/>
         <source>Calibrate</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2935"/>
+        <location filename="../../options.ui" line="2930"/>
         <source>Test</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2957"/>
+        <location filename="../../options.ui" line="2952"/>
         <source>Map</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2993"/>
+        <location filename="../../options.ui" line="2988"/>
         <source>Remap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3010"/>
+        <location filename="../../options.ui" line="3005"/>
         <source>Remove</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3027"/>
+        <location filename="../../options.ui" line="3022"/>
         <source>Active joystick mappings; double-click to remap joystick function</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3051"/>
+        <location filename="../../options.ui" line="3046"/>
         <source>Joystick function</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2954"/>
+        <location filename="../../options.ui" line="2949"/>
         <source>Map joystick functions to GUI functions</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2990"/>
+        <location filename="../../options.ui" line="2985"/>
         <source>Remap a joystick function to the selected GUI function</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3007"/>
+        <location filename="../../options.ui" line="3002"/>
         <source>Remove joystick mapping from selected GUI function</source>
         <translation></translation>
     </message>
@@ -9787,33 +9782,33 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1073"/>
+        <location filename="../../options.ui" line="1068"/>
         <source>Game info DB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1088"/>
+        <location filename="../../options.ui" line="1083"/>
         <source>Game information database - MAME history.dat (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1101"/>
+        <location filename="../../options.ui" line="1096"/>
         <source>Browse game information database (MAME history.dat)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="369"/>
+        <location filename="../../options.ui" line="364"/>
         <source>Load game info DB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="355"/>
-        <location filename="../../options.ui" line="386"/>
+        <location filename="../../options.ui" line="350"/>
+        <location filename="../../options.ui" line="381"/>
         <source>Compress data</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="383"/>
+        <location filename="../../options.ui" line="378"/>
         <source>Use in-memory compression for game info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
         <translation></translation>
     </message>
@@ -9823,15 +9818,15 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="405"/>
-        <location filename="../../options.ui" line="421"/>
+        <location filename="../../options.ui" line="400"/>
+        <location filename="../../options.ui" line="416"/>
         <source>Option requires a restart of QMC2 to take effect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="441"/>
-        <location filename="../../options.ui" line="1502"/>
-        <location filename="../../options.ui" line="3770"/>
+        <location filename="../../options.ui" line="436"/>
+        <location filename="../../options.ui" line="1497"/>
+        <location filename="../../options.ui" line="3765"/>
         <source>Option requires a reload of the gamelist to take effect</source>
         <translation></translation>
     </message>
@@ -9841,29 +9836,29 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="366"/>
+        <location filename="../../options.ui" line="361"/>
         <source>Load game information database (MAME history.dat)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="424"/>
+        <location filename="../../options.ui" line="419"/>
         <source>restart required</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="460"/>
-        <location filename="../../options.ui" line="1521"/>
-        <location filename="../../options.ui" line="3789"/>
+        <location filename="../../options.ui" line="455"/>
+        <location filename="../../options.ui" line="1516"/>
+        <location filename="../../options.ui" line="3784"/>
         <source>reload required</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2397"/>
+        <location filename="../../options.ui" line="2392"/>
         <source>Delay update of any game details (preview, flyer, info, configuration, ...) by how many milliseconds?</source>
         <translation>Delay update of any game details (preview, flyer, info, configuration, ...) by how many milliseconds?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2400"/>
+        <location filename="../../options.ui" line="2395"/>
         <source>none</source>
         <translation></translation>
     </message>
@@ -9878,54 +9873,54 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="335"/>
+        <location filename="../../options.ui" line="330"/>
         <source>Load emulator information database (mameinfo.dat)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="338"/>
+        <location filename="../../options.ui" line="333"/>
         <source>Load emu info DB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="352"/>
+        <location filename="../../options.ui" line="347"/>
         <source>Use in-memory compression for emulator info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1133"/>
+        <location filename="../../options.ui" line="1128"/>
         <source>Emu info DB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1148"/>
+        <location filename="../../options.ui" line="1143"/>
         <source>Emulator information database - mameinfo.dat (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1161"/>
+        <location filename="../../options.ui" line="1156"/>
         <source>Browse emulator information database (mameinfo.dat)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="561"/>
-        <location filename="../../options.ui" line="596"/>
+        <location filename="../../options.ui" line="556"/>
+        <location filename="../../options.ui" line="591"/>
         <source>unlimited</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="564"/>
-        <location filename="../../options.ui" line="599"/>
+        <location filename="../../options.ui" line="559"/>
+        <location filename="../../options.ui" line="594"/>
         <source> lines</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="545"/>
+        <location filename="../../options.ui" line="540"/>
         <source>Emulator log size</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="558"/>
+        <location filename="../../options.ui" line="553"/>
         <source>Maximum number of lines to keep in emulator log browser</source>
         <translation></translation>
     </message>
@@ -9985,65 +9980,65 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="699"/>
+        <location filename="../../options.ui" line="694"/>
         <source>Fall back to the parent&apos;s image if an indivual image is missing but there&apos;s one for the parent</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="702"/>
+        <location filename="../../options.ui" line="697"/>
         <source>Parent image fallback</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="286"/>
+        <location filename="../../options.ui" line="281"/>
         <source>Show vertical game status indicator in game details</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="289"/>
+        <location filename="../../options.ui" line="284"/>
         <source>Game status indicator</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="299"/>
+        <location filename="../../options.ui" line="294"/>
         <source>Show the game status indicator only when the game list is not visible due to the current layout</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="302"/>
-        <location filename="../../options.ui" line="328"/>
+        <location filename="../../options.ui" line="297"/>
+        <location filename="../../options.ui" line="323"/>
         <source>Only when required</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="312"/>
+        <location filename="../../options.ui" line="307"/>
         <source>Show game name</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="325"/>
+        <location filename="../../options.ui" line="320"/>
         <source>Show game&apos;s description only when the game list is not visible due to the current layout</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="246"/>
+        <location filename="../../options.ui" line="241"/>
         <source>Show the menu bar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="249"/>
+        <location filename="../../options.ui" line="244"/>
         <source>Show menu bar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="223"/>
-        <location filename="../../options.ui" line="226"/>
+        <location filename="../../options.ui" line="218"/>
+        <location filename="../../options.ui" line="221"/>
         <source>Show status bar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="233"/>
-        <location filename="../../options.ui" line="236"/>
+        <location filename="../../options.ui" line="228"/>
+        <location filename="../../options.ui" line="231"/>
         <source>Show tool bar</source>
         <translation></translation>
     </message>
@@ -10073,12 +10068,12 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="276"/>
+        <location filename="../../options.ui" line="271"/>
         <source>Check for other instances of this QMC2 variant on startup</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="279"/>
+        <location filename="../../options.ui" line="274"/>
         <source>Check single instance</source>
         <translation></translation>
     </message>
@@ -10108,12 +10103,12 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="709"/>
+        <location filename="../../options.ui" line="704"/>
         <source>Minimize application windows when launching another variant</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="712"/>
+        <location filename="../../options.ui" line="707"/>
         <source>Minimize on variant launch</source>
         <translation></translation>
     </message>
@@ -10163,12 +10158,12 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2419"/>
+        <location filename="../../options.ui" line="2414"/>
         <source>Sort game list while reloading (slower)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2365"/>
+        <location filename="../../options.ui" line="2360"/>
         <source>Number of item insertions between game list updates during reload (higher means faster, but makes the GUI less responsive)</source>
         <translation></translation>
     </message>
@@ -10178,12 +10173,12 @@ Retry embedding?</source>
         <translation>&amp;Front end</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="672"/>
+        <location filename="../../options.ui" line="667"/>
         <source>Application style (Default = use system&apos;s default style)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2429"/>
+        <location filename="../../options.ui" line="2424"/>
         <source>Automatically trigger a ROM check if necessary</source>
         <translation></translation>
     </message>
@@ -10198,24 +10193,24 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3107"/>
-        <location filename="../../options.ui" line="3173"/>
-        <location filename="../../options.ui" line="3252"/>
+        <location filename="../../options.ui" line="3102"/>
+        <location filename="../../options.ui" line="3168"/>
+        <location filename="../../options.ui" line="3247"/>
         <source>Command</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2422"/>
+        <location filename="../../options.ui" line="2417"/>
         <source>Sort while loading</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2439"/>
+        <location filename="../../options.ui" line="2434"/>
         <source>Launch emulation on double-click events (may be annoying)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2442"/>
+        <location filename="../../options.ui" line="2437"/>
         <source>Double-click activation</source>
         <translation></translation>
     </message>
@@ -10298,7 +10293,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="1684"/>
         <location filename="../../options.cpp" line="1736"/>
         <location filename="../../options.cpp" line="2521"/>
-        <location filename="../../options.ui" line="1620"/>
+        <location filename="../../options.ui" line="1615"/>
         <source>Cabinet directory</source>
         <translation></translation>
     </message>
@@ -10313,7 +10308,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="1689"/>
         <location filename="../../options.cpp" line="1741"/>
         <location filename="../../options.cpp" line="2532"/>
-        <location filename="../../options.ui" line="1723"/>
+        <location filename="../../options.ui" line="1718"/>
         <source>Controller directory</source>
         <translation></translation>
     </message>
@@ -10338,79 +10333,79 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="309"/>
+        <location filename="../../options.ui" line="304"/>
         <source>Show game&apos;s description at the bottom of any images</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="457"/>
-        <location filename="../../options.ui" line="1518"/>
-        <location filename="../../options.ui" line="3786"/>
+        <location filename="../../options.ui" line="452"/>
+        <location filename="../../options.ui" line="1513"/>
+        <location filename="../../options.ui" line="3781"/>
         <source>Option requires a reload of the entire game list to take effect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="196"/>
+        <location filename="../../options.ui" line="191"/>
         <source>Scaled cabinet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="206"/>
+        <location filename="../../options.ui" line="201"/>
         <source>Scaled controller</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="761"/>
+        <location filename="../../options.ui" line="756"/>
         <source>Show indicator for current memory usage</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1552"/>
+        <location filename="../../options.ui" line="1547"/>
         <source>Cabinet directory (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1565"/>
+        <location filename="../../options.ui" line="1560"/>
         <source>Browse cabinet directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1589"/>
+        <location filename="../../options.ui" line="1584"/>
         <source>ZIP-compressed cabinet file (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1602"/>
+        <location filename="../../options.ui" line="1597"/>
         <source>Browse ZIP-compressed cabinet file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1617"/>
+        <location filename="../../options.ui" line="1612"/>
         <source>Switch between specifying a cabinet directory or a ZIP-compressed cabinet file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1655"/>
+        <location filename="../../options.ui" line="1650"/>
         <source>Controller directory (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1668"/>
+        <location filename="../../options.ui" line="1663"/>
         <source>Browse controller directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1692"/>
+        <location filename="../../options.ui" line="1687"/>
         <source>ZIP-compressed controller file (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1705"/>
+        <location filename="../../options.ui" line="1700"/>
         <source>Browse ZIP-compressed controller file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1720"/>
+        <location filename="../../options.ui" line="1715"/>
         <source>Switch between specifying a controller directory or a ZIP-compressed controller file</source>
         <translation></translation>
     </message>
@@ -10437,7 +10432,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="1694"/>
         <location filename="../../options.cpp" line="1746"/>
         <location filename="../../options.cpp" line="2543"/>
-        <location filename="../../options.ui" line="1826"/>
+        <location filename="../../options.ui" line="1821"/>
         <source>Marquee directory</source>
         <translation></translation>
     </message>
@@ -10452,7 +10447,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="1699"/>
         <location filename="../../options.cpp" line="1751"/>
         <location filename="../../options.cpp" line="2554"/>
-        <location filename="../../options.ui" line="1929"/>
+        <location filename="../../options.ui" line="1924"/>
         <source>Title directory</source>
         <translation></translation>
     </message>
@@ -10472,62 +10467,62 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="216"/>
+        <location filename="../../options.ui" line="211"/>
         <source>Scaled marquee</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="472"/>
+        <location filename="../../options.ui" line="467"/>
         <source>Scaled title</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1758"/>
+        <location filename="../../options.ui" line="1753"/>
         <source>Marquee directory (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1771"/>
+        <location filename="../../options.ui" line="1766"/>
         <source>Browse marquee directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1795"/>
+        <location filename="../../options.ui" line="1790"/>
         <source>ZIP-compressed marquee file (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1808"/>
+        <location filename="../../options.ui" line="1803"/>
         <source>Browse ZIP-compressed marquee file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1823"/>
+        <location filename="../../options.ui" line="1818"/>
         <source>Switch between specifying a marquee directory or a ZIP-compressed marquee file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1861"/>
+        <location filename="../../options.ui" line="1856"/>
         <source>Title directory (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1874"/>
+        <location filename="../../options.ui" line="1869"/>
         <source>Browse title directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1898"/>
+        <location filename="../../options.ui" line="1893"/>
         <source>ZIP-compressed title file (read)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1911"/>
+        <location filename="../../options.ui" line="1906"/>
         <source>Browse ZIP-compressed title file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1926"/>
+        <location filename="../../options.ui" line="1921"/>
         <source>Switch between specifying a title directory or a ZIP-compressed title file</source>
         <translation></translation>
     </message>
@@ -10537,32 +10532,32 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>Machine &amp;list</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2096"/>
+        <location filename="../../options.ui" line="2091"/>
         <source>Game &amp;list</source>
         <translation>Game &amp;list</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="580"/>
+        <location filename="../../options.ui" line="575"/>
         <source>Front end log size</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="593"/>
+        <location filename="../../options.ui" line="588"/>
         <source>Maximum number of lines to keep in front end log browser</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="904"/>
+        <location filename="../../options.ui" line="899"/>
         <source>Front end log file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="917"/>
+        <location filename="../../options.ui" line="912"/>
         <source>Front end log file (write)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="930"/>
+        <location filename="../../options.ui" line="925"/>
         <source>Browse front end log file</source>
         <translation></translation>
     </message>
@@ -10577,67 +10572,67 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3798"/>
+        <location filename="../../options.ui" line="3793"/>
         <source>MAWS cache directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3811"/>
+        <location filename="../../options.ui" line="3806"/>
         <source>MAWS cache directory (write)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3824"/>
+        <location filename="../../options.ui" line="3819"/>
         <source>Browse MAWS cache directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3338"/>
+        <location filename="../../options.ui" line="3333"/>
         <source>Use HTTP proxy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3350"/>
+        <location filename="../../options.ui" line="3345"/>
         <source>Host / IP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3363"/>
+        <location filename="../../options.ui" line="3358"/>
         <source>Hostname or IP address of the HTTP proxy server</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3370"/>
+        <location filename="../../options.ui" line="3365"/>
         <source>Port</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3383"/>
+        <location filename="../../options.ui" line="3378"/>
         <source>Port to access the HTTP proxy service</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3396"/>
+        <location filename="../../options.ui" line="3391"/>
         <source>User ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3409"/>
+        <location filename="../../options.ui" line="3404"/>
         <source>User ID to access the HTTP proxy service (empty = no authentication)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3416"/>
+        <location filename="../../options.ui" line="3411"/>
         <source>Password</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3335"/>
+        <location filename="../../options.ui" line="3330"/>
         <source>Enable / disable the use of an HTTP proxy on any web lookups</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3429"/>
+        <location filename="../../options.ui" line="3424"/>
         <source>Password to access the HTTP proxy service (empty = no authentication)</source>
         <translation></translation>
     </message>
@@ -13196,7 +13191,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="229"/>
+        <location filename="../../welcome.cpp" line="228"/>
         <source>It appears that another instance of %1 is already running.
 However, this can also be the leftover of a previous crash.
 
@@ -13304,22 +13299,22 @@ p, li { white-space: pre-wrap; }
         <translation>%1 executable file</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="228"/>
+        <location filename="../../welcome.cpp" line="227"/>
         <source>Single-instance check</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="230"/>
+        <location filename="../../welcome.cpp" line="229"/>
         <source>&amp;Exit</source>
         <translation>&amp;Exit</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="230"/>
+        <location filename="../../welcome.cpp" line="229"/>
         <source>&amp;Once</source>
         <translation>&amp;Once</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="230"/>
+        <location filename="../../welcome.cpp" line="229"/>
         <source>&amp;Ignore</source>
         <translation>&amp;Ignore</translation>
     </message>

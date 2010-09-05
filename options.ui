@@ -117,11 +117,6 @@
                    </item>
                    <item>
                     <property name="text">
-                     <string>GR (Greek)</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
                      <string>PL (Polish)</string>
                     </property>
                    </item>
