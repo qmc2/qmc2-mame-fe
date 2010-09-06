@@ -30,13 +30,15 @@ mv %{name} sdlmess
 pushd sdlmess
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0
+    EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
+    CXX_FLAGS=-O3 CC_FLAGS=-O3
 popd
 
 pushd sdlmame
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0
+    EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
+    CXX_FLAGS=-O3 CC_FLAGS=-O3
 popd
 
 %install
@@ -45,7 +47,8 @@ rm -rf $RPM_BUILD_ROOT
 pushd sdlmess
 make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0
+    EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
+    CXX_FLAGS=-O3 CC_FLAGS=-O3
 popd
 
 # remove the old qmc2.ini since we only need one
@@ -54,7 +57,8 @@ rm -f $RPM_BUILD_ROOT%{_sysconfdir}/qmc2/qmc2.ini
 pushd sdlmame
 make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0
+    EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
+    CXX_FLAGS=-O3 CC_FLAGS=-O3
 popd
 
 # validate the desktop files
@@ -82,5 +86,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/qmc2-sdlmess.desktop
 
 %changelog
+* Mon Sep 06 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b17-1
+- Added compiler optimization flags (-O3)
+
 * Fri Jul 30 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b17-1
 - created spec file for openSUSE 11.3 (copy from the spec for 11.2)
