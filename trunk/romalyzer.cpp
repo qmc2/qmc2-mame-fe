@@ -1530,6 +1530,7 @@ void ROMAlyzer::on_pushButtonDatabaseCheckConnection_clicked()
 
 	connectionCheckRunning = true;
 	savedCheckButtonPalette = pushButtonDatabaseCheckConnection->palette();
+	bool hadFocus = pushButtonDatabaseCheckConnection->hasFocus();
 	pushButtonDatabaseCheckConnection->setEnabled(false);
 
 	if ( dbManager->checkConnection(comboBoxDatabaseDriver->currentIndex(),
@@ -1560,6 +1561,7 @@ void ROMAlyzer::on_pushButtonDatabaseCheckConnection_clicked()
 	}
 
 	pushButtonDatabaseCheckConnection->setEnabled(true);
+	if ( hadFocus ) pushButtonDatabaseCheckConnection->setFocus(Qt::OtherFocusReason);
 	QTimer::singleShot(QMC2_DB_RESET_CCB_DELAY, this, SLOT(resetDatabaseConnectionCheckButton()));
 }
 
