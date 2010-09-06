@@ -115,8 +115,8 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     bool chdManagerSHA1Success;
     quint64 chdManagerCurrentHunk;
     quint64 chdManagerTotalHunks;
-    ROMDatabaseManager *dbManager;
 #if defined(QMC2_DATABASE_ENABLED)
+    ROMDatabaseManager *dbManager;
     QPalette savedCheckButtonPalette;
     bool connectionCheckRunning;
 #endif
