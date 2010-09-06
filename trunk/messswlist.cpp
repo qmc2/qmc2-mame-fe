@@ -20,6 +20,8 @@ QString messSwlBuffer;
 QString messSwlLastLine;
 bool messSwlSupported = true;
 
+#define QMC2_DEBUG
+
 MESSSoftwareList::MESSSoftwareList(QString machineName, QWidget *parent)
 	: QWidget(parent)
 {
@@ -56,6 +58,32 @@ MESSSoftwareList::MESSSoftwareList(QString machineName, QWidget *parent)
 	toolButtonPlay->setEnabled(false);
 	toolButtonPlayEmbedded->setEnabled(false);
 	comboBoxDeviceConfiguration->setEnabled(false);
+
+	// software list context menu
+	softwareListMenu = new QMenu(this);
+	QString s = tr("Play selected software");
+	QAction *action = softwareListMenu->addAction(tr("&Play"));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(playActivated()));
+#if defined(Q_WS_X11)
+	s = tr("Play selected software (embedded)");
+	action = softwareListMenu->addAction(tr("Play &embedded"));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(playEmbeddedActivated()));
+#endif
+	softwareListMenu->addSeparator();
+	s = tr("Add to favorite software list");
+	actionAddToFavorites = softwareListMenu->addAction(tr("&Add to favorites"));
+	actionAddToFavorites->setToolTip(s); actionAddToFavorites->setStatusTip(s);
+	actionAddToFavorites->setIcon(QIcon(QString::fromUtf8(":/data/img/plus.png")));
+	connect(actionAddToFavorites, SIGNAL(triggered()), this, SLOT(addToFavorites()));
+	s = tr("Remove from favorite software list");
+	actionRemoveFromFavorites = softwareListMenu->addAction(tr("&Remove from favorites"));
+	actionRemoveFromFavorites->setToolTip(s); actionRemoveFromFavorites->setStatusTip(s);
+	actionRemoveFromFavorites->setIcon(QIcon(QString::fromUtf8(":/data/img/minus.png")));
+	connect(actionRemoveFromFavorites, SIGNAL(triggered()), this, SLOT(removeFromFavorites()));
 
 	// restore widget states
 	treeWidgetKnownSoftware->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/KnownSoftwareHeaderState").toByteArray());
@@ -544,6 +572,7 @@ void MESSSoftwareList::on_toolButtonPlay_clicked(bool checked)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonPlay_clicked(bool checked = %1)").arg(checked));
 #endif
 
+	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
 }
 
 void MESSSoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked)
@@ -552,6 +581,7 @@ void MESSSoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked = %1)").arg(checked));
 #endif
 
+	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
 }
 
 void MESSSoftwareList::treeWidgetKnownSoftware_headerSectionClicked(int index)
@@ -621,10 +651,84 @@ void MESSSoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 
 }
 
+void MESSSoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(const QPoint &p = ...)");
+#endif
+
+	QTreeWidgetItem *item = treeWidgetKnownSoftware->itemAt(p);
+
+	if ( !item )
+		return;
+
+	treeWidgetKnownSoftware->setItemSelected(item, true);
+	actionAddToFavorites->setVisible(true);
+	actionRemoveFromFavorites->setVisible(false);
+	softwareListMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetKnownSoftware->viewport()->mapToGlobal(p), softwareListMenu));
+	softwareListMenu->show();
+}
+
+void MESSSoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &p = ...)");
+#endif
+
+	QTreeWidgetItem *item = treeWidgetFavoriteSoftware->itemAt(p);
+
+	if ( !item )
+		return;
+
+	treeWidgetFavoriteSoftware->setItemSelected(item, true);
+	actionAddToFavorites->setVisible(false);
+	actionRemoveFromFavorites->setVisible(true);
+	softwareListMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetFavoriteSoftware->viewport()->mapToGlobal(p), softwareListMenu));
+	softwareListMenu->show();
+}
+
+void MESSSoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const QPoint &p = ...)");
+#endif
+
+	QTreeWidgetItem *item = treeWidgetSearchResults->itemAt(p);
+
+	if ( !item )
+		return;
+
+	treeWidgetSearchResults->setItemSelected(item, true);
+	actionAddToFavorites->setVisible(true);
+	actionRemoveFromFavorites->setVisible(false);
+	softwareListMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetSearchResults->viewport()->mapToGlobal(p), softwareListMenu));
+	softwareListMenu->show();
+}
+
+QStringList &MESSSoftwareList::arguments()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::arguments()");
+#endif
+
+	static QStringList messSwlArgs;
+
+	messSwlArgs.clear();
+
+	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
+	if ( selectedItems.count() > 0 ) {
+		QTreeWidgetItem *item = selectedItems[0];
+		messSwlArgs << QString("-%1").arg(item->text(QMC2_SWLIST_COLUMN_DEVICE));
+		messSwlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
+	}
+
+	return messSwlArgs;
+}
+
 MESSSoftwareListXmlHandler::MESSSoftwareListXmlHandler(QTreeWidget *parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::MESSSoftwareListXmlHandler(QTreeWidget *parent = %1)").arg((qulonglong)parent));
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::MESSSoftwareListXmlHandler(QTreeWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
 	parentTreeWidget = parent;
@@ -633,7 +737,7 @@ MESSSoftwareListXmlHandler::MESSSoftwareListXmlHandler(QTreeWidget *parent)
 MESSSoftwareListXmlHandler::~MESSSoftwareListXmlHandler()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareListXmlHandler::~MESSSoftwareListXmlHandler()");
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareListXmlHandler::~MESSSoftwareListXmlHandler()");
 #endif
 
 }
@@ -641,7 +745,7 @@ MESSSoftwareListXmlHandler::~MESSSoftwareListXmlHandler()
 bool MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
 #endif
 
 	if ( qName == "softwarelist" ) {
@@ -664,7 +768,7 @@ bool MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI, const
 bool MESSSoftwareListXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::endElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2)").arg(localName).arg(qName));
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::endElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2)").arg(localName).arg(qName));
 #endif
 
 	if ( qName == "description" ) {
@@ -684,7 +788,7 @@ bool MESSSoftwareListXmlHandler::endElement(const QString &namespaceURI, const Q
 bool MESSSoftwareListXmlHandler::characters(const QString &str)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::characters(const QString &str = ...)"));
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::characters(const QString &str = ...)"));
 #endif
 
 	currentText += QString::fromUtf8(str.toAscii());
