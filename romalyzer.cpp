@@ -106,9 +106,8 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 #if !defined(QMC2_DATABASE_ENABLED)
   groupBoxDatabase->setChecked(false);
   groupBoxDatabase->setVisible(false);
-  dbManager = NULL;
-  connectionCheckRunning = false;
 #else
+  connectionCheckRunning = false;
   dbManager = new ROMDatabaseManager(this);
 #endif
 }
