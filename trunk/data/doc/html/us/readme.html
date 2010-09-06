@@ -257,7 +257,7 @@ The <i>installation</i> at a user's end would then just be to extract this archi
 <ul>
   <li>If no configuration can be found for a specific option, hard-coded default values will be used for all front end settings (see code);
       default values for the emulator configuration are read from the current XML template (default paths: <i>/usr/local/share/qmc2/opt/&lt;EMULATOR&gt;/template.xml</i>
-      on UNIX and Mac OS X, <i>data/opt/&lt;EMULATOR&gt;/template.xml</i> on Windows).</li>
+      on UNIX, <i>/Library/Application Support/qmc2/opt/&lt;EMULATOR&gt;/template.xml</i> on Mac OS X, and <i>data\opt\&lt;EMULATOR&gt;\template.xml</i> on Windows).</li>
   <li>If the path to the emulator's executable file has not been set (yet), QMC2 will assume that you are starting it for the first time
       (your setup is considered <i>incomplete</i> as long as this option hasn't been set).</li>
   <li>Although it is recommended to edit the configuration with the built-in setup dialog, you may change it manually with
