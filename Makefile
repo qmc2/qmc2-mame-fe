@@ -405,6 +405,14 @@ ifndef L_LIBS
 L_LIBS =
 endif
 
+# >>> L_LIBDIRS <<<
+#
+# Specify additional libraries directories passed to the linker.
+#
+ifndef L_LIBDIRS
+L_LIBDIRS =
+endif
+
 # >>> LINKER <<<
 #
 # Specify (overwrite) the linker to be used (useful for cross-compilation).
@@ -668,6 +676,14 @@ ifneq '$(L_LIBS)' ''
 QMAKE_L_LIBS += QMAKE_LIBS='$(L_LIBS)' QMAKE_LIBS_RELEASE='$(L_LIBS)' QMAKE_LIBS_DEBUG='$(L_LIBS)'
 endif
 
+# optional library paths
+ifdef QMAKE_L_LIBDIRS
+undef QMAKE_L_LIBDIRS
+endif
+ifneq '$(L_LIBDIRS)' ''
+QMAKE_L_LIBDIRS += QMAKE_LIBDIR='$(L_LIBDIRS)'
+endif
+
 # optional linker binary overwrite
 ifdef QMAKE_LINKER
 undef QMAKE_LINKER
@@ -719,7 +735,7 @@ endif
 $(QMAKEFILE): $(PROJECT).pro
 	@echo "Configuring build of QMC2 v$(VERSION)"
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
-	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
+	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
 ifeq '$(ARCH)' 'Darwin'
 	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
 	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
@@ -735,9 +751,9 @@ else
 endif
 else
 ifeq '$(CTIME)' '0'
-	+@$(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_LINKER) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro && $(MAKE) -f $(QMAKEFILE)
+	+@$(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro && $(MAKE) -f $(QMAKEFILE)
 else
-	+@$(TIME) ($(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_LINKER) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro && $(MAKE) -f $(QMAKEFILE))
+	+@$(TIME) ($(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro && $(MAKE) -f $(QMAKEFILE))
 endif
 endif
 	@$(RM) data/opt/template.xml
@@ -753,7 +769,7 @@ endif
 $(QMAKEFILE): $(PROJECT).pro
 	@echo "Configuring build of QMC2 v$(VERSION)"
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)") 
-	$(QMAKE) -makefile $(QT_MAKE_SPEC) -o Makefile.qmake VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	$(QMAKE) -makefile $(QT_MAKE_SPEC) -o Makefile.qmake VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 ifeq '$(ARCH)' 'Darwin'
 	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
 	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
@@ -958,6 +974,7 @@ config:
 	@echo "JOYSTICK             Compile with SDL joystick support (0, 1)     $(JOYSTICK)"
 	@echo "L_FLAGS              Additional flags passed to the linker        $(L_FLAGS)"
 	@echo "L_LIBS               Additional libraries passed to the linker    $(L_LIBS)"
+	@echo "L_LIBDIRS            Additional libraries paths for the linker    $(L_LIBDIRS)"
 	@echo "LINKER               The linker to be used (empty = default)      $(LINKER)"
 	@echo "LN                   UNIX command ln                              $(LN)"
 	@echo "LRELEASE             Qt language release (lrelease) command       $(LRELEASE)"
