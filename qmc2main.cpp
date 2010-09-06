@@ -1285,6 +1285,10 @@ void MainWindow::on_actionPlay_activated()
 
 #if defined(QMC2_EMUTYPE_MESS)
   qmc2MessMachineName = gameName;
+
+  if ( qmc2MESSSoftwareList )
+    args << qmc2MESSSoftwareList->arguments();
+
   if ( qmc2MESSDeviceConfigurator ) {
     QString configName = qmc2MESSDeviceConfigurator->lineEditConfigurationName->text();
     if ( configName != tr("No devices") ) {
@@ -3870,11 +3874,9 @@ void MainWindow::on_treeWidgetGamelist_customContextMenuRequested(const QPoint &
     return;
   if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
     return;
-  if ( item ) {
-    treeWidgetGamelist->setItemSelected(item, TRUE);
-    qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetGamelist->viewport()->mapToGlobal(p), qmc2GameMenu));
-    qmc2GameMenu->show();
-  }
+  treeWidgetGamelist->setItemSelected(item, TRUE);
+  qmc2GameMenu->move(adjustedWidgetPosition(treeWidgetGamelist->viewport()->mapToGlobal(p), qmc2GameMenu));
+  qmc2GameMenu->show();
 }
 
 void MainWindow::on_treeWidgetHierarchy_customContextMenuRequested(const QPoint &p)

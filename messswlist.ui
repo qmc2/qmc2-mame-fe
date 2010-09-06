@@ -172,6 +172,9 @@
        </property>
        <item row="0" column="0">
         <widget class="QTreeWidget" name="treeWidgetKnownSoftware">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
          <property name="toolTip">
           <string>List of known software for the current machine</string>
          </property>
@@ -229,8 +232,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>520</width>
-        <height>225</height>
+        <width>305</width>
+        <height>192</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -249,6 +252,9 @@
        </property>
        <item row="0" column="0">
         <widget class="QTreeWidget" name="treeWidgetFavoriteSoftware">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
          <property name="toolTip">
           <string>Favorite software for the current machine</string>
          </property>
@@ -311,8 +317,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>520</width>
-        <height>225</height>
+        <width>305</width>
+        <height>192</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -350,6 +356,9 @@
        </item>
        <item row="1" column="0">
         <widget class="QTreeWidget" name="treeWidgetSearchResults">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
+         </property>
          <property name="toolTip">
           <string>Search results</string>
          </property>

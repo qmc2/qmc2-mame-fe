@@ -41,12 +41,16 @@ class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 		QString messMachineName;
 		QTextStream tsSWLCache;
 		QStringList messSwlLines;
+		QMenu *softwareListMenu;
+		QAction *actionAddToFavorites;
+		QAction *actionRemoveFromFavorites;
 
 		MESSSoftwareList(QString, QWidget *);
 		~MESSSoftwareList();
 
 		QString &getSoftwareListXmlData(QString);
 		QString &getXmlData(QString);
+		QStringList &arguments();
 
 	public slots:
 		bool load();
@@ -61,6 +65,9 @@ class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 		void on_treeWidgetKnownSoftware_itemSelectionChanged();
 		void on_treeWidgetFavoriteSoftware_itemSelectionChanged();
 		void on_treeWidgetSearchResults_itemSelectionChanged();
+		void on_treeWidgetKnownSoftware_customContextMenuRequested(const QPoint &);
+		void on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &);
+		void on_treeWidgetSearchResults_customContextMenuRequested(const QPoint &);
 
 		// process management
 		void loadStarted();
@@ -73,6 +80,10 @@ class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 		void treeWidgetKnownSoftware_headerSectionClicked(int);
 		void treeWidgetFavoriteSoftware_headerSectionClicked(int);
 		void treeWidgetSearchResults_headerSectionClicked(int);
+		void addToFavorites() { on_toolButtonAddToFavorites_clicked(false); }
+		void removeFromFavorites() { on_toolButtonRemoveFromFavorites_clicked(false); }
+		void playActivated() { on_toolButtonPlay_clicked(false); }
+		void playEmbeddedActivated() { on_toolButtonPlayEmbedded_clicked(false); }
 
 	protected:
 		void closeEvent(QCloseEvent *);
