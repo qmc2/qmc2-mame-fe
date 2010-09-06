@@ -1784,6 +1784,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
     qmc2MainWindow->actionRomStatusFilterI->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
     qmc2MainWindow->actionRomStatusFilterN->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
     qmc2MainWindow->actionRomStatusFilterU->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
+    if ( !qmc2EarlyStartup )
+      qmc2StatesTogglesEnabled = TRUE;
   }
 
   // Shortcuts / Keys
