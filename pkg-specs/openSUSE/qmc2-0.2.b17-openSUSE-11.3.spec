@@ -15,6 +15,8 @@ BuildRequires:  SDL-devel
 BuildRequires:  make
 BuildRequires:  gcc
 BuildRequires:  rsync
+BuildRequires:  desktop-file-utils
+BuildRequires:  openSUSE-release
 
 %description
 QMC2 is a Qt 4 based multi-platform GUI front end for several MAME and MESS variants.
