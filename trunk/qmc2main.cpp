@@ -2793,6 +2793,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       }
       break;
 
+    // FIXME: remove the WIP clauses when MESS software list support is fully functional
 #if QMC2_WIP_CODE == 1
     case QMC2_SOFTWARE_LIST_INDEX:
       if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
