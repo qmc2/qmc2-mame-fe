@@ -20,8 +20,6 @@ QString messSwlBuffer;
 QString messSwlLastLine;
 bool messSwlSupported = true;
 
-#define QMC2_DEBUG
-
 MESSSoftwareList::MESSSoftwareList(QString machineName, QWidget *parent)
 	: QWidget(parent)
 {
