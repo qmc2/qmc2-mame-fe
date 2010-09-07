@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b17, 06-SEP-2010</h3>
+<h3>README - v0.2.b17, 07-SEP-2010</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -187,12 +187,11 @@ for example because SDL is not supported on your OS (huh?), you could use the <i
 This feature is completely optional though, and as it requires a working Phonon environment -- especially a working backend API such as <i>gstreamer</i> --
 you can disable it at compile time. Use the <i>PHONON</i> make command line option to accomplish that:</p>
 <pre>$ make [-jX] PHONON=0</pre>
-<p>Note that nearly all (*) of the supported make command line options can be freely combined when <i>make</i> is called. See</p>
+<p>Note that nearly all<sup>*</sup> of the supported make command line options can be freely combined when <i>make</i> is called. See</p>
 <pre>$ make help</pre>
 <p>for more information.</p>
-<p>(*) The only exceptions are <i>DISTCC</i> and <i>CCACHE</i> which cannot be enabled at the same time.
-However, on a <i>correctly</i> set up <a href="http://en.opensuse.org/Icecream" target="_blank">icecream</a> cluster, you
-can omit the DISTCC option and thus use CCACHE at the same time.</p>
+<p><font size="-1"><sup>*</sup>: The only exceptions are <i>DISTCC</i> and <i>CCACHE</i> which cannot be enabled at the same time.
+However, on a correctly set up <i>icecream</i> cluster for example, you can omit the DISTCC option and thus use CCACHE at the same time.</font></p>
 <p><b>IMPORTANT NOTE</b></p>
 <p>Pease <b>never ever run <i>qmake</i> standalone</b> -- when qmake is called directly, important settings may be missing in the resulting <i>Makefile.qmake</i> file. If you see strange errors like undeclared MAJOR / MINOR variables, this simply means you've run qmake yourself -- prior to version 0.2.b6 this even destroyed QMC2's <i>Makefile</i>, but that's at least avoided now by forcing qmake's output to be stored as <i>Makefile.qmake</i> in the project definition.<p>
 <p>We've been asked about this so many times that we thought it would be necessary to make it absolutely clear that <b>everything is controlled by make rules and thus you should only call make and nothing else!</b></p>
@@ -591,10 +590,8 @@ has been enabled) are also not filtered.</p>
     </tr>
   </tbody>
 </table>
-<p><font size="-1">
-Note: WIP means <i>work in progress</i> -- that is, those short cuts will only be available for QMC2 builds configured with 'WIP=1'.
-Short cuts marked as <i>reserved</i> (if any) aren't really available yet, but planned to be used in a later version.
-</font></p>
+<font size="-1">Note: WIP means <i>work in progress</i> -- that is, those short cuts will only be available for QMC2 builds configured with 'WIP=1'.
+Short cuts marked as <i>reserved</i> (if any) aren't really available yet, but planned to be used in a later version.</font>
 <p><b>Remapping short cuts and GUI control keys</b></p>
 <p>Since v0.1.b11, QMC2 also supports remapping of all these short cuts and some special keys (cursor keys, tab, +/-, ...)
 needed for GUI control by key-strokes. It should be very handy for users of MAME cabinets with sticks that map their controls

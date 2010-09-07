@@ -717,13 +717,13 @@ void EmulatorOptions::createTemplateMap()
             bool ignore = false;
 	    if ( attributes.hasAttribute("ignore") )
               ignore = attributes.value("ignore") == "true";
-            if ( attributes.hasAttribute(QString("ignore.%1").arg(XSTR(TARGET_OS_NAME))) )
-              ignore = attributes.value(QString("ignore.%1").arg(XSTR(TARGET_OS_NAME))) == "true";
+            if ( attributes.hasAttribute(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))) )
+              ignore = attributes.value(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))) == "true";
             if ( !ignore ) {
               QString type = attributes.value("type").toString();
               QString defaultValue;
-              if ( attributes.hasAttribute(QString("default.%1").arg(XSTR(TARGET_OS_NAME))) )
-                defaultValue = attributes.value(QString("default.%1").arg(XSTR(TARGET_OS_NAME))).toString();
+              if ( attributes.hasAttribute(QString("default.%1").arg(XSTR(BUILD_OS_NAME))) )
+                defaultValue = attributes.value(QString("default.%1").arg(XSTR(BUILD_OS_NAME))).toString();
               else
                 defaultValue = attributes.value("default").toString();
               QString optionDescription = readDescription(&xmlReader, lang, &readNext);
