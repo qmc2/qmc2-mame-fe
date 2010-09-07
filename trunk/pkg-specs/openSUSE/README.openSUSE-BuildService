@@ -1,0 +1,10 @@
+Usage notes for the openSUSE build service
+------------------------------------------
+
+- Run "make dist" in the top-level directory first and upload the resulting
+  archive (qmc2-<version>.tar.bz2)
+
+- Choose one of the spec files in this folder (openSUSE-BuildService*.spec)
+  and upload it as 'qmc2.spec'
+
+- The build process will start automatically
