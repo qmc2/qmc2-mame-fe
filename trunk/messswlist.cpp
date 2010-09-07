@@ -716,9 +716,10 @@ QStringList &MESSSoftwareList::arguments()
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
 	if ( selectedItems.count() > 0 ) {
 		QTreeWidgetItem *item = selectedItems[0];
-		foreach (QString device, item->text(QMC2_SWLIST_COLUMN_DEVICE).split(",")) {
+		foreach (QString device, item->text(QMC2_SWLIST_COLUMN_PART).split(",")) {
 			messSwlArgs << QString("-%1").arg(device);
 			messSwlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
+			break; // FIXME: for now we just stop after the first "part" because MESS can't handle multiple device parts yet
 		}
 	}
 
@@ -756,12 +757,12 @@ bool MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI, const
 		softwareItem->setText(QMC2_SWLIST_COLUMN_NAME, softwareName);
 		softwareItem->setText(QMC2_SWLIST_COLUMN_LIST, softwareListName);
 	} else if ( qName == "part" ) {
-		softwareDevice = attributes.value("name");
-		QString parts = softwareItem->text(QMC2_SWLIST_COLUMN_DEVICE);
+		softwarePart = attributes.value("name");
+		QString parts = softwareItem->text(QMC2_SWLIST_COLUMN_PART);
 		if ( parts.isEmpty() )
-			softwareItem->setText(QMC2_SWLIST_COLUMN_DEVICE, softwareDevice);
+			softwareItem->setText(QMC2_SWLIST_COLUMN_PART, softwarePart);
 		else
-			softwareItem->setText(QMC2_SWLIST_COLUMN_DEVICE, parts + "," + softwareDevice);
+			softwareItem->setText(QMC2_SWLIST_COLUMN_PART, parts + "," + softwarePart);
 	} else if ( qName == "description" || qName == "year" || qName == "publisher" ) {
 		currentText.clear();
 	}

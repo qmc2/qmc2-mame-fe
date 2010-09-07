@@ -215,7 +215,7 @@
          </column>
          <column>
           <property name="text">
-           <string>Device</string>
+           <string>Part</string>
           </property>
          </column>
          <column>
@@ -295,7 +295,7 @@
          </column>
          <column>
           <property name="text">
-           <string>Device</string>
+           <string>Part</string>
           </property>
          </column>
          <column>
@@ -399,7 +399,7 @@
          </column>
          <column>
           <property name="text">
-           <string>Device</string>
+           <string>Part</string>
           </property>
          </column>
          <column>

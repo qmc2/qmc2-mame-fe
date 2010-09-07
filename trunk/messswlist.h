@@ -18,7 +18,7 @@ class MESSSoftwareListXmlHandler : public QXmlDefaultHandler
 		QString softwareTitle;
 		QString softwarePublisher;
 		QString softwareYear;
-		QString softwareDevice;
+		QString softwarePart;
 		QString currentText;
 
 		MESSSoftwareListXmlHandler(QTreeWidget *);
