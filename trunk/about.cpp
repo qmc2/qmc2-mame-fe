@@ -138,7 +138,7 @@ void About::showEvent(QShowEvent *e)
 
   QString sysInfoString = QString("<html><body>") +
 #if !defined(Q_WS_WIN)
-          "<p><b>" + tr("Build OS:") + "</b><br>" + XSTR(TARGET_OS_NAME) + " " + XSTR(TARGET_OS_RELEASE) + " " + XSTR(TARGET_MACHINE) + "</p>" +
+          "<p><b>" + tr("Build OS:") + "</b><br>" + XSTR(BUILD_OS_NAME) + " " + XSTR(BUILD_OS_RELEASE) + " " + XSTR(BUILD_MACHINE) + "</p>" +
 #endif
 #if defined(Q_WS_MAC)
           "<p><b>" + tr("Running OS:") + "</b><br>" + macVersion + "</p>" +
