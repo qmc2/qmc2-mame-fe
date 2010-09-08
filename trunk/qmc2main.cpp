@@ -1288,8 +1288,7 @@ void MainWindow::on_actionPlay_activated()
 
   if ( qmc2MESSSoftwareList )
     args << qmc2MESSSoftwareList->arguments();
-
-  if ( qmc2MESSDeviceConfigurator ) {
+  else if ( qmc2MESSDeviceConfigurator ) {
     QString configName = qmc2MESSDeviceConfigurator->lineEditConfigurationName->text();
     if ( configName != tr("No devices") ) {
       // make sure the currently edited data is up to date
