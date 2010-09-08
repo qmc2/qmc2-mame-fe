@@ -713,6 +713,7 @@ QStringList &MESSSoftwareList::arguments()
 
 	messSwlArgs.clear();
 
+	// arguments to start a software list entry
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
 	if ( selectedItems.count() > 0 ) {
 		QTreeWidgetItem *item = selectedItems[0];
@@ -720,6 +721,22 @@ QStringList &MESSSoftwareList::arguments()
 			messSwlArgs << QString("-%1").arg(device);
 			messSwlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
 			break; // FIXME: for now we just stop after the first "part" because MESS can't handle multiple device parts yet
+		}
+	}
+
+	// optionally add arguments for the selected device configuration
+	QString devConfigName = comboBoxDeviceConfiguration->currentText();
+	if ( devConfigName != tr("No additional devices") ) {
+		qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1/%2").arg(messMachineName).arg(devConfigName));
+		QStringList instances = qmc2Config->value("Instances").toStringList();
+		QStringList files = qmc2Config->value("Files").toStringList();
+		qmc2Config->endGroup();
+		for (int i = 0; i < instances.count(); i++) {
+#if defined(Q_WS_WIN)
+			messSwlArgs << QString("-%1").arg(instances[i]) << files[i].replace('/', '\\');
+#else
+			messSwlArgs << QString("-%1").arg(instances[i]) << files[i].replace("~", "$HOME");
+#endif
 		}
 	}
 
