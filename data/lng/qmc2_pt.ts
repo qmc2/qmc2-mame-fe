@@ -4643,7 +4643,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messswlist.ui" line="298"/>
         <location filename="../../messswlist.ui" line="402"/>
         <source>Part</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../messswlist.ui" line="223"/>
@@ -4741,42 +4741,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messswlist.cpp" line="62"/>
         <source>Play selected software</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar software selecionado</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="63"/>
         <source>&amp;Play</source>
-        <translation type="unfinished">&amp;Jogar</translation>
+        <translation>&amp;Jogar</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="68"/>
         <source>Play selected software (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar software selecionado (embutido)</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="69"/>
         <source>Play &amp;embedded</source>
-        <translation type="unfinished">Jogar &amp;embutido</translation>
+        <translation>Jogar &amp;embutido</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="75"/>
         <source>Add to favorite software list</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar para a lista de software favoritos</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="76"/>
         <source>&amp;Add to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Adicionar a favoritos</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="80"/>
         <source>Remove from favorite software list</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover da lista de software favoritos</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="81"/>
         <source>&amp;Remove from favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Remover dos favoritos</translation>
     </message>
     <message>
         <location filename="../../messswlist.cpp" line="171"/>
@@ -5675,7 +5675,7 @@ Você realmente quer verificar o estado de todas as ROMs agora?</translation>
         <location filename="../../qmc2main.cpp" line="3071"/>
         <location filename="../../qmc2main.cpp" line="3078"/>
         <source>&lt;p&gt;No data available&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Nenhum dado disponível&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3073"/>
@@ -11100,7 +11100,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="1586"/>
         <source>Choose local DB output path</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o caminho local para a base de dados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1548"/>
@@ -11801,7 +11801,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="1559"/>
         <source>database connection check failed -- errorNumber = %1, errorText = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>falha na verificação da conexão com a base de dados -- número do erro = %1. texto do erro = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="15"/>
@@ -12036,12 +12036,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="683"/>
         <source>Password used to access the database (WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha usada para acessar a base de dados (AVISO: senhas são &lt;u&gt;fracamente&lt;/u&gt; encriptadas!)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="720"/>
         <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="740"/>
@@ -12218,27 +12218,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="756"/>
         <source>Overwrite existing data in the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobrescrever dados existentes na base de dados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="759"/>
         <source>Overwrite</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobrescrever</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="766"/>
         <source>Output path</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho de saída</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="779"/>
         <source>Local output directory where downloaded ROMs &amp; CHDs will be created (WARNING: existing files will be overwritten!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório de saída onde ROMs &amp; CHDs baixados serão criados (AVISO: arquivos existentes serão sobrescritos!)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="792"/>
         <source>Browse local output directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher diretório de saída local</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="815"/>
