@@ -3374,12 +3374,15 @@ void MainWindow::action_embedEmulator_triggered()
   qmc2StartEmbedded = FALSE;
 
   QStringList gameList;
+  QStringList idList;
+
   QList<QTreeWidgetItem *> sl = treeWidgetEmulators->selectedItems();
   int i;
   for (i = 0; i < sl.count(); i++) {
     QTreeWidgetItem *item = sl[i];
     while ( item->parent() ) item = item->parent();
     gameList << item->text(QMC2_EMUCONTROL_COLUMN_GAME);
+    idList << item->text(QMC2_EMUCONTROL_COLUMN_NUMBER);
   }
 
   if ( sl.count() == 0 )
@@ -3387,26 +3390,30 @@ void MainWindow::action_embedEmulator_triggered()
       QTreeWidgetItem *item = treeWidgetEmulators->currentItem();
       while ( item->parent() ) item = item->parent();
       gameList << item->text(QMC2_EMUCONTROL_COLUMN_GAME);
+      idList << item->text(QMC2_EMUCONTROL_COLUMN_NUMBER);
     }
 
   bool success = TRUE;
-  foreach(QString gameName, gameList) {
-    if ( gameName.isEmpty() )
+  for (i = 0; i < gameList.count(); i++) {
+    QString gameName = gameList[i];
+    QString gameID = idList[i];
+
+    if ( gameName.isEmpty() || gameID.isEmpty() )
       continue;
 
+    // check if the emulator window is already embedded
     bool found = FALSE;
-    for (i = 0; i < tabWidgetEmbeddedEmulators->count() && !found; i++)
-      found = tabWidgetEmbeddedEmulators->tabText(i).contains("[" + gameName + "]");
-
-    if ( found ) {
-      log(QMC2_LOG_FRONTEND, tr("emulator for '%1' is already embedded").arg(gameName));
+    int j;
+    for (j = 0; j < tabWidgetEmbeddedEmulators->count() && !found; j++)
+      found = tabWidgetEmbeddedEmulators->tabText(j).contains(QString("[#%1: %2]").arg(gameID).arg(gameName));
+    if ( found ) {                                                                  
+      log(QMC2_LOG_FRONTEND, tr("emulator #%1 is already embedded").arg(gameID));
       tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
-      tabWidgetEmbeddedEmulators->setCurrentIndex(i - 1);
+      tabWidgetEmbeddedEmulators->setCurrentIndex(j - 1);
       continue;
     }
 
-    // run "xwininfo -root -all" to find the window ID (FIXME: doesn't work for multiple
-    // instances running the same game/machine! We see currently no way to solve it.)
+    // run "xwininfo -root -all" to find the window ID
     QString command = QString(XSTR(QMC2_XWININFO));
     QStringList args, winIdList;
     args << "-root" << "-all";
@@ -3425,9 +3432,9 @@ void MainWindow::action_embedEmulator_triggered()
       }
       QStringList ssl = QString(commandProc.readAllStandardOutput()).split("\n");
 #if defined(QMC2_EMUTYPE_MAME)
-      QString regExp = QString("*MAME:*%1*").arg(gameName);
+      QString regExp = QString("*MAME:*%1*\"QMC2-MAME-ID-%2\"*").arg(gameName).arg(gameID);
 #elif defined(QMC2_EMUTYPE_MESS)
-      QString regExp = QString("*MESS:*%1*").arg(gameName);
+      QString regExp = QString("*MESS:*%1*\"QMC2-MESS-ID-%2\"*").arg(gameName).arg(gameID);
 #else
       QString regExp;
 #endif
@@ -3440,7 +3447,7 @@ void MainWindow::action_embedEmulator_triggered()
     }
 
     if ( winIdList.count() > 1 )
-      log(QMC2_LOG_FRONTEND, tr("WARNING: multiple emulator windows for '%1' found, choosing window ID %2 for embedding").arg(gameName).arg(winIdList[0]));
+      log(QMC2_LOG_FRONTEND, tr("WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding").arg(gameID).arg(winIdList[0]));
 
     if ( winIdList.count() > 0 ) {
       int embeddedEmusIndex = tabWidgetGamelist->indexOf(widgetEmbeddedEmus);
@@ -3448,10 +3455,10 @@ void MainWindow::action_embedEmulator_triggered()
         qmc2LastListIndex = tabWidgetGamelist->currentIndex();
       if ( embeddedEmusIndex < 0 )
         tabWidgetGamelist->addTab(widgetEmbeddedEmus, QIcon(QString::fromUtf8(":/data/img/embed.png")), tr("Embedded emulators"));
-      log(QMC2_LOG_FRONTEND, tr("embedding emulator window for '%1', window ID = %2").arg(gameName).arg(winIdList[0]));
-      Embedder *embedder = new Embedder(gameName, winIdList[0].toInt(0, 16), this);
+      log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg(winIdList[0]));
+      Embedder *embedder = new Embedder(gameName, gameID, winIdList[0].toInt(0, 16), this);
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
-      tabWidgetEmbeddedEmulators->addTab(embedder, QString("[%1] %2").arg(gameName).arg(qmc2GamelistDescriptionMap[gameName]));
+      tabWidgetEmbeddedEmulators->addTab(embedder, QString("[#%1: %2] %3").arg(gameID).arg(gameName).arg(qmc2GamelistDescriptionMap[gameName]));
 
       // serious hack to access the tab bar without sub-classing from QTabWidget ;)
       QTabBar *tabBar = tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
@@ -3498,7 +3505,7 @@ void MainWindow::action_embedEmulator_triggered()
       embedder->setFocus();
     } else {
       success = FALSE;
-      log(QMC2_LOG_FRONTEND, tr("WARNING: no matching emulator window for '%1' found").arg(gameName));
+      log(QMC2_LOG_FRONTEND, tr("WARNING: no matching window for emulator #%1 found").arg(gameID));
     }
   }
 
@@ -3611,7 +3618,7 @@ void MainWindow::on_embedderOptionsMenu_KillEmulator_activated()
   for (i = 0; i < il.count(); i++) {
     QTreeWidgetItem *item = il[i];
     while ( item->parent() ) item = item->parent();
-    if ( item->text(QMC2_EMUCONTROL_COLUMN_GAME) == embedder->gameName )
+    if ( item->text(QMC2_EMUCONTROL_COLUMN_NUMBER) == embedder->gameID )
       qmc2ProcessManager->kill(item->text(QMC2_EMUCONTROL_COLUMN_NUMBER).toInt());
   }
 }
@@ -3633,7 +3640,7 @@ void MainWindow::on_embedderOptionsMenu_TerminateEmulator_activated()
   for (i = 0; i < il.count(); i++) {
     QTreeWidgetItem *item = il[i];
     while ( item->parent() ) item = item->parent();
-    if ( item->text(QMC2_EMUCONTROL_COLUMN_GAME) == embedder->gameName )
+    if ( item->text(QMC2_EMUCONTROL_COLUMN_NUMBER) == embedder->gameID )
       qmc2ProcessManager->terminate(item->text(QMC2_EMUCONTROL_COLUMN_NUMBER).toInt());
   }
 }

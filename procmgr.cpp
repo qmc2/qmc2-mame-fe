@@ -56,6 +56,18 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ProcessManager::start(): the specified working directory '%1' does not exist -- ignored").arg(workDir));
     }
   }
+
+#if defined(Q_WS_X11)
+  // we use a (session-)unique ID in the WM_CLASS property to identify the window later...
+  QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+#if defined(QMC2_EMUTYPE_MAME)
+  env.insert("SDL_VIDEO_X11_WMCLASS", QString("QMC2-MAME-ID-%1").arg(procCount));
+#elif defined(QMC2_EMUTYPE_MESS)
+  env.insert("SDL_VIDEO_X11_WMCLASS", QString("QMC2-MESS-ID-%1").arg(procCount));
+#endif
+  proc->setProcessEnvironment(env);
+#endif
+
   if ( autoConnect ) {
     lastCommand = command;
     int i;

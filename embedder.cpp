@@ -7,16 +7,17 @@
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 
-Embedder::Embedder(QString name, WId wid, QWidget *parent)
+Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
     : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::Embedder(QString name = %1, WId wid = %2, QWidget *parent = %3)").arg(name).arg((qulonglong)wid).arg((qulonglong)parent));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::Embedder(QString name = %1, QString id = %2, WId wid = %3, QWidget *parent = %4)").arg(name).arg(id).arg((qulonglong)wid).arg((qulonglong)parent));
 #endif
 
   gridLayout = new QGridLayout(this);
 
   gameName = name;
+  gameID = id;
   winId = wid;
   embedded = false;
 

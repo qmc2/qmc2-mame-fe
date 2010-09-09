@@ -18,9 +18,10 @@ class Embedder : public QWidget
     EmbedderOptions *embedderOptions;
     QGridLayout *gridLayout;
     QString gameName;
+    QString gameID;
     QSize nativeResolution;
 
-    Embedder(QString name, WId wid, QWidget *parent = 0);
+    Embedder(QString name, QString id, WId wid, QWidget *parent = 0);
 
   public slots:
     void embed();
