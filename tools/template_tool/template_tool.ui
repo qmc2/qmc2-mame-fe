@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TemplateTool</class>
+ <widget class="QMainWindow" name="TemplateTool">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>813</width>
+    <height>617</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QMC2 Template Tool v0.1</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_5">
+    <item row="0" column="0">
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QTreeWidget" name="treeWidget">
+       <property name="statusTip">
+        <string>Template tree</string>
+       </property>
+       <column>
+        <property name="text">
+         <string>Template tree</string>
+        </property>
+       </column>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <property name="verticalSpacing">
+         <number>12</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBoxTemplateHeader">
+          <property name="title">
+           <string>Header</string>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <property name="leftMargin">
+            <number>6</number>
+           </property>
+           <property name="topMargin">
+            <number>6</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelEmulatorName">
+             <property name="text">
+              <string>Emulator name</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="3">
+            <widget class="QLineEdit" name="lineEditEmulatorName">
+             <property name="statusTip">
+              <string>Emulator name</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelEmulatorVersion">
+             <property name="text">
+              <string>Emulator version</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineEditEmulatorVersion">
+             <property name="statusTip">
+              <string>Emulator version</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="labelTemplateVersion">
+             <property name="text">
+              <string>Template version</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLineEdit" name="lineEditTemplateVersion">
+             <property name="statusTip">
+              <string>Template version</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="groupBoxTemplateElement">
+          <property name="title">
+           <string>Element</string>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <property name="leftMargin">
+            <number>6</number>
+           </property>
+           <property name="topMargin">
+            <number>6</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="2" column="0">
+              <widget class="QLabel" name="labelElementType">
+               <property name="text">
+                <string>Element type</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QComboBox" name="comboBoxElementType">
+               <property name="statusTip">
+                <string>Element type</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>section</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>option</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QLabel" name="labelOptionType">
+               <property name="text">
+                <string>Option type</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="3">
+              <widget class="QComboBox" name="comboBoxOptionType">
+               <property name="statusTip">
+                <string>Option type</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>bool</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>directory</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>file</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>float</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>int</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>string</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="labelName">
+               <property name="text">
+                <string>Name</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1" colspan="3">
+              <widget class="QLineEdit" name="lineEditName">
+               <property name="statusTip">
+                <string>Section / option name</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="labelDefaultValue">
+               <property name="text">
+                <string>Default value</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1" colspan="3">
+              <widget class="QLineEdit" name="lineEditDefaultValue">
+               <property name="statusTip">
+                <string>Default value</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0" colspan="4">
+              <widget class="QLabel" name="labelNativeDescription">
+               <property name="text">
+                <string>Native description for language code US (English)</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0" colspan="4">
+              <widget class="QPlainTextEdit" name="plainTextEditNativeDescription">
+               <property name="statusTip">
+                <string>Native description text</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="0" colspan="4">
+              <widget class="QPlainTextEdit" name="plainTextEditTranslatedDescription">
+               <property name="statusTip">
+                <string>Translated description text</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QPushButton" name="pushButtonAdd">
+               <property name="statusTip">
+                <string>Add this as a new element to the template tree</string>
+               </property>
+               <property name="text">
+                <string>Add</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0" colspan="4">
+              <widget class="QPushButton" name="pushButtonSave">
+               <property name="statusTip">
+                <string>Save this element to the template tree</string>
+               </property>
+               <property name="text">
+                <string>Save element</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="labelParentSection">
+               <property name="text">
+                <string>Parent section</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1" colspan="3">
+              <widget class="QComboBox" name="comboBoxParentSection">
+               <property name="statusTip">
+                <string>Parent section this option belongs to</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QPushButton" name="pushButtonRemove">
+               <property name="statusTip">
+                <string>Remove this element from the template tree</string>
+               </property>
+               <property name="text">
+                <string>Remove</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QPushButton" name="pushButtonCopy">
+               <property name="statusTip">
+                <string>Copy element to clipboard</string>
+               </property>
+               <property name="text">
+                <string>Copy</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QPushButton" name="pushButtonPaste">
+               <property name="statusTip">
+                <string>Paste element from clipboard</string>
+               </property>
+               <property name="text">
+                <string>Paste</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0" colspan="4">
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <item>
+                <widget class="QLabel" name="labelTranslatedDescription">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Translated description for language code</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBoxLanguage">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="statusTip">
+                  <string>Select language code</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>DE (German)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>FR (French)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>GR (Greek)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>PL (Polish)</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>PT (Portuguese)</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>813</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuTemplate">
+    <property name="title">
+     <string>Template</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
+    <addaction name="actionRecent"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionCheckAgainstEmulator"/>
+    <addaction name="actionCreateFromEmulator"/>
+    <addaction name="separator"/>
+    <addaction name="actionCompareWithTemplate"/>
+   </widget>
+   <addaction name="menuTemplate"/>
+   <addaction name="menuTools"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open...</string>
+   </property>
+   <property name="iconText">
+    <string>Open...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a template</string>
+   </property>
+   <property name="statusTip">
+    <string>Open a template</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="toolTip">
+    <string>Save this template</string>
+   </property>
+   <property name="statusTip">
+    <string>Save this template</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="statusTip">
+    <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="text">
+    <string>Save As...</string>
+   </property>
+   <property name="iconText">
+    <string>Save As...</string>
+   </property>
+   <property name="toolTip">
+    <string>Save this template under a different name</string>
+   </property>
+   <property name="statusTip">
+    <string>Save this template under a different name</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a new (empty) template</string>
+   </property>
+   <property name="statusTip">
+    <string>Create a new (empty) template</string>
+   </property>
+  </action>
+  <action name="actionRecent">
+   <property name="text">
+    <string>Recent</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a recently edited template</string>
+   </property>
+   <property name="statusTip">
+    <string>Open a recently edited template</string>
+   </property>
+  </action>
+  <action name="actionAgainst_emulator">
+   <property name="text">
+    <string>Against emulator...</string>
+   </property>
+  </action>
+  <action name="actionCheckAgainstEmulator">
+   <property name="text">
+    <string>Check against emulator...</string>
+   </property>
+   <property name="toolTip">
+    <string>Check this template against an emulator</string>
+   </property>
+   <property name="statusTip">
+    <string>Check this template against an emulator</string>
+   </property>
+  </action>
+  <action name="actionCompareWithTemplate">
+   <property name="text">
+    <string>Compare with template...</string>
+   </property>
+   <property name="toolTip">
+    <string>Compare this template with another template</string>
+   </property>
+   <property name="statusTip">
+    <string>Compare this template with another template</string>
+   </property>
+  </action>
+  <action name="actionCreateFromEmulator">
+   <property name="text">
+    <string>Create from emulator...</string>
+   </property>
+   <property name="toolTip">
+    <string>Create (overwrite) this template from an emulator's default configuration and usage information</string>
+   </property>
+   <property name="statusTip">
+    <string>Create (overwrite) this template from an emulator's default configuration and usage information</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>treeWidget</tabstop>
+  <tabstop>lineEditEmulatorName</tabstop>
+  <tabstop>lineEditEmulatorVersion</tabstop>
+  <tabstop>lineEditTemplateVersion</tabstop>
+  <tabstop>pushButtonAdd</tabstop>
+  <tabstop>pushButtonRemove</tabstop>
+  <tabstop>pushButtonCopy</tabstop>
+  <tabstop>pushButtonPaste</tabstop>
+  <tabstop>pushButtonSave</tabstop>
+  <tabstop>comboBoxElementType</tabstop>
+  <tabstop>comboBoxOptionType</tabstop>
+  <tabstop>comboBoxParentSection</tabstop>
+  <tabstop>lineEditName</tabstop>
+  <tabstop>lineEditDefaultValue</tabstop>
+  <tabstop>plainTextEditNativeDescription</tabstop>
+  <tabstop>comboBoxLanguage</tabstop>
+  <tabstop>plainTextEditTranslatedDescription</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>TemplateTool</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>429</x>
+     <y>283</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
