@@ -888,8 +888,8 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::parseGameDetail(QTreeWidgetItem *item = 0x" + QString::number((ulong)item, 16) + "): item->text(QMC2_GAMELIST_COLUMN_GAME) = \"" + item->text(QMC2_GAMELIST_COLUMN_GAME) + "\"");
 #endif
 
-  int gamePos = xmlGamePositionMap[gameName];
   QString gameName = item->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+  int gamePos = xmlGamePositionMap[gameName];
   if ( gamePos <= 0 ) {
     QString gameDescription = item->text(QMC2_GAMELIST_COLUMN_GAME);
 #if defined(QMC2_EMUTYPE_MAME)
