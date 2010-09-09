@@ -974,7 +974,7 @@ config:
 	@echo "JOYSTICK             Compile with SDL joystick support (0, 1)     $(JOYSTICK)"
 	@echo "L_FLAGS              Additional flags passed to the linker        $(L_FLAGS)"
 	@echo "L_LIBS               Additional libraries passed to the linker    $(L_LIBS)"
-	@echo "L_LIBDIRS            Additional libraries paths for the linker    $(L_LIBDIRS)"
+	@echo "L_LIBDIRS            Additional library paths for the linker      $(L_LIBDIRS)"
 	@echo "LINKER               The linker to be used (empty = default)      $(LINKER)"
 	@echo "LN                   UNIX command ln                              $(LN)"
 	@echo "LRELEASE             Qt language release (lrelease) command       $(LRELEASE)"
