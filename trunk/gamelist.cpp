@@ -102,6 +102,7 @@ QStringList Gamelist::phraseTranslatorList;
 int numVerifyRoms = 0;
 QString verifyLastLine;
 QStringList verifiedList;
+QMap<QString, int> xmlGamePositionMap;
 
 Gamelist::Gamelist(QObject *parent)
   : QObject(parent)
@@ -887,16 +888,30 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::parseGameDetail(QTreeWidgetItem *item = 0x" + QString::number((ulong)item, 16) + "): item->text(QMC2_GAMELIST_COLUMN_GAME) = \"" + item->text(QMC2_GAMELIST_COLUMN_GAME) + "\"");
 #endif
 
+  int gamePos = xmlGamePositionMap[gameName];
+  QString gameName = item->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+  if ( gamePos <= 0 ) {
+    QString gameDescription = item->text(QMC2_GAMELIST_COLUMN_GAME);
 #if defined(QMC2_EMUTYPE_MAME)
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("retrieving game information for '%1'").arg(item->text(QMC2_GAMELIST_COLUMN_GAME)));
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("retrieving game information for '%1'").arg(gameDescription));
 #elif defined(QMC2_EMUTYPE_MESS)
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("retrieving machine information for '%1'").arg(item->text(QMC2_GAMELIST_COLUMN_GAME)));
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("retrieving machine information for '%1'").arg(gameDescription));
 #endif
-  qApp->processEvents();
-
-  int gamePos = 0;
-  QString s = "<description>" + item->text(QMC2_GAMELIST_COLUMN_GAME).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;") + "</description>";
-  while ( !xmlLines[gamePos].contains(s) ) gamePos++;
+    qApp->processEvents();
+    gameDescription.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
+    QString s = "<description>" + gameDescription + "</description>";
+    while ( !xmlLines[gamePos].contains(s) && gamePos < xmlLines.count() ) gamePos++;
+    if ( xmlLines[gamePos].contains(s) ) {
+      xmlGamePositionMap[gameName] = gamePos;
+    } else {
+#if defined(QMC2_EMUTYPE_MAME)
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find game information for '%1'").arg(gameDescription));
+#elif defined(QMC2_EMUTYPE_MESS)
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: couldn't find machine information for '%1'").arg(gameDescription));
+#endif
+      return;
+    }
+  }
 
   QTreeWidgetItem *childItem = item->takeChild(0);
   delete childItem;
@@ -1422,6 +1437,7 @@ void Gamelist::parse()
     gamelistCache.close();
 
   xmlLines.clear();
+  xmlGamePositionMap.clear();
 #if defined(QMC2_EMUTYPE_MAME)
   xmlLines = gamelistBuffer.remove(0, gamelistBuffer.indexOf("<mame build")).split("\n");
 #elif defined(QMC2_EMUTYPE_MESS)
