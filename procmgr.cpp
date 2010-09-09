@@ -59,6 +59,7 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
 
 #if defined(Q_WS_X11)
   // we use a (session-)unique ID in the WM_CLASS property to identify the window later...
+#if QT_VERSION >= 0x040600
   QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
 #if defined(QMC2_EMUTYPE_MAME)
   env.insert("SDL_VIDEO_X11_WMCLASS", QString("QMC2-MAME-ID-%1").arg(procCount));
@@ -66,6 +67,15 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
   env.insert("SDL_VIDEO_X11_WMCLASS", QString("QMC2-MESS-ID-%1").arg(procCount));
 #endif
   proc->setProcessEnvironment(env);
+#else
+  QStringList env = QProcess::systemEnvironment();
+#if defined(QMC2_EMUTYPE_MAME)
+  env << QString("SDL_VIDEO_X11_WMCLASS=QMC2-MAME-ID-%1").arg(procCount);
+#elif defined(QMC2_EMUTYPE_MESS)
+  env << QString("SDL_VIDEO_X11_WMCLASS=QMC2-MESS-ID-%1").arg(procCount);
+#endif
+  proc->setEnvironment(env);
+#endif
 #endif
 
   if ( autoConnect ) {
