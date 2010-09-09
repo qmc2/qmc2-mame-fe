@@ -2246,3 +2246,12 @@ qmc2/.svn/text-base/toolexec.ui.svn-base
 qmc2/.svn/text-base/welcome.cpp.svn-base
 qmc2/.svn/text-base/welcome.h.svn-base
 qmc2/.svn/text-base/welcome.ui.svn-base
+qmc2/tools/.svn
+qmc2/tools/template_tool/.svn
+qmc2/tools/template_tool/.svn/text-base/macros.h.svn-base
+qmc2/tools/template_tool/.svn/text-base/main.cpp.svn-base
+qmc2/tools/template_tool/.svn/text-base/README.template-tool.svn-base
+qmc2/tools/template_tool/.svn/text-base/template_tool.cpp.svn-base
+qmc2/tools/template_tool/.svn/text-base/template_tool.h.svn-base
+qmc2/tools/template_tool/.svn/text-base/template_tool.pro.svn-base
+qmc2/tools/template_tool/.svn/text-base/template_tool.ui.svn-base
