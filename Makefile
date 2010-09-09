@@ -407,7 +407,7 @@ endif
 
 # >>> L_LIBDIRS <<<
 #
-# Specify additional libraries directories passed to the linker.
+# Specify additional library directories passed to the linker.
 #
 ifndef L_LIBDIRS
 L_LIBDIRS =
@@ -415,7 +415,7 @@ endif
 
 # >>> LINKER <<<
 #
-# Specify (overwrite) the linker to be used (useful for cross-compilation).
+# Specify (overwrite) the linker to be used (may be useful for cross-compile).
 #
 ifndef LINKER
 LINKER =
@@ -443,8 +443,8 @@ endif
 # >>> DATABASE <<<
 #
 # Enable (1) or disable (0) the use of any optional features that make use of
-# relational databases. The only supported DB type is MySQL (SQLite is planned
-# as well).
+# relational databases. The only supported DB type currently is MySQL (SQLite
+# support is planned as well).
 #
 # WARNING: this is a WIP feature under development right now - use at your own
 # risk! 
