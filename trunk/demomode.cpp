@@ -57,7 +57,7 @@ DemoModeDialog::~DemoModeDialog()
 
 }
 
-void DemoModeDialog::showEvent(QShowEvent *)
+void DemoModeDialog::showEvent(QShowEvent *e)
 {
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DemoModeDialog::showEvent(QShowEvent *e = %1)").arg((qulonglong) e));
