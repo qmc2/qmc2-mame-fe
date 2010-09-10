@@ -314,6 +314,9 @@
 // additional pre-compile checks
 #define QMC2_USE_PHONON_API		(QMC2_PHONON == 1)
 
+// number of milliseconds to wait before automatically resuming audio playback
+#define QMC2_AUDIOPLAYER_RESUME_DELAY	2000
+
 // audio player seek offset (in milliseconds)
 #define QMC2_AUDIOPLAYER_SEEK_OFFSET	1000
 

@@ -216,7 +216,7 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 #if QMC2_USE_PHONON_API
   if ( procMap.count() == 0 && musicWasPlaying ) {
     sentPlaySignal = TRUE;
-    QTimer::singleShot(2000, qmc2MainWindow, SLOT(on_actionAudioPlayTrack_triggered()));
+    QTimer::singleShot(QMC2_AUDIOPLAYER_RESUME_DELAY, qmc2MainWindow, SLOT(on_actionAudioPlayTrack_triggered()));
   }
 #endif
 }
