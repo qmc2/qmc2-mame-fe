@@ -856,7 +856,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
           if ( calcMD5 )
             md5Hash.reset();
           if ( isCHD ) {
-            quint32 chdTotalHunks;
+            quint32 chdTotalHunks = 0;
             if ( (len = romFile.read(buffer, QMC2_CHD_HEADER_V3_LENGTH)) > 0 ) {
               log(tr("CHD header information:"));
               QByteArray chdTag(buffer + QMC2_CHD_HEADER_TAG_OFFSET, QMC2_CHD_HEADER_TAG_LENGTH);
@@ -1008,14 +1008,14 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                         chdManagerProc->waitForFinished();
                       } else {
                         if ( progressWidget ) {
-                          if ( chdManagerTotalHunks != progressWidget->maximum() )
+                          if ( chdManagerTotalHunks != (quint64)progressWidget->maximum() )
                             progressWidget->setRange(0, chdManagerTotalHunks);
-                          if ( chdManagerCurrentHunk != progressWidget->value() )
+                          if ( chdManagerCurrentHunk != (quint64)progressWidget->value() )
                             progressWidget->setValue(chdManagerCurrentHunk);
                         }
-                        if ( chdManagerTotalHunks !=  progressBarFileIO->maximum() )
+                        if ( chdManagerTotalHunks != (quint64)progressBarFileIO->maximum() )
                           progressBarFileIO->setRange(0, chdManagerTotalHunks);
-                        if ( chdManagerCurrentHunk != progressBarFileIO->value() )
+                        if ( chdManagerCurrentHunk != (quint64)progressBarFileIO->value() )
                           progressBarFileIO->setValue(chdManagerCurrentHunk);
                       }
                     }
@@ -1390,9 +1390,8 @@ void ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()
 
 void ROMAlyzer::chdManagerStarted()
 {
-  QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
+  QProcess *proc = (QProcess *)sender();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerStarted(), proc = %1").arg((qulonglong)proc));
 #endif
 
@@ -1403,9 +1402,8 @@ void ROMAlyzer::chdManagerStarted()
 
 void ROMAlyzer::chdManagerFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-  QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
+  QProcess *proc = (QProcess *)sender();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2), proc = %3").arg(exitCode).arg((int)exitStatus).arg((qulonglong)proc));
 #endif
 
@@ -1473,9 +1471,8 @@ void ROMAlyzer::chdManagerReadyReadStandardError()
 
 void ROMAlyzer::chdManagerError(QProcess::ProcessError processError)
 {
-  QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
+  QProcess *proc = (QProcess *)sender();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerError(QProcess::ProcessError processError = %1), proc = %2").arg((int)processError).arg((qulonglong)proc));
 #endif
 
@@ -1506,9 +1503,8 @@ void ROMAlyzer::chdManagerError(QProcess::ProcessError processError)
 
 void ROMAlyzer::chdManagerStateChanged(QProcess::ProcessState processState)
 {
-  QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
+  QProcess *proc = (QProcess *)sender();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::chdManagerStateChanged(QProcess::ProcessState processState = %1), proc = %2").arg((int)processState).arg((qulonglong)proc));
 #endif
 

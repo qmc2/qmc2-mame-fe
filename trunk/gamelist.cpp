@@ -2213,9 +2213,8 @@ void Gamelist::loadStarted()
 
 void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-  QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
+  QProcess *proc = (QProcess *)sender();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadFinished(int exitCode = " + QString::number(exitCode) + ", QProcess::ExitStatus exitStatus = " + QString::number(exitStatus) + "): proc = 0x" + QString::number((ulong)proc, 16));
 #endif
 
@@ -2363,9 +2362,8 @@ void Gamelist::loadReadyReadStandardOutput()
 
 void Gamelist::loadReadyReadStandardError()
 {
-  QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
+  QProcess *proc = (QProcess *)sender();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadReadyReadStandardError(): proc = 0x" + QString::number((ulong)proc, 16));
 #endif
 
@@ -2397,9 +2395,8 @@ void Gamelist::verifyStarted()
 
 void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-  QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
+  QProcess *proc = (QProcess *)sender();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::verifyFinished(int exitCode = " + QString::number(exitCode) + ", QProcess::ExitStatus exitStatus = " + QString::number(exitStatus) + "): proc = 0x" + QString::number((ulong)proc, 16));
 #endif
 
@@ -2768,9 +2765,8 @@ void Gamelist::verifyReadyReadStandardOutput()
 
 void Gamelist::verifyReadyReadStandardError()
 {
-  QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
+  QProcess *proc = (QProcess *)sender();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::verifyReadyReadStandardError(): proc = 0x" + QString::number((ulong)proc, 16));
 #endif
 

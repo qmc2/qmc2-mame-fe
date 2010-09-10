@@ -304,9 +304,8 @@ void ProcessManager::error(QProcess::ProcessError processError)
 
 void ProcessManager::stateChanged(QProcess::ProcessState processState)
 {
-  QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
+  QProcess *proc = (QProcess *)sender();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::stateChanged(QProcess::ProcessState processState = " + QString::number(processState) + "): proc = 0x" + QString::number((qulonglong)proc, 16));
 #endif
 

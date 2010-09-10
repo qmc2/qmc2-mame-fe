@@ -423,8 +423,6 @@ void MESSSoftwareList::loadStarted()
 
 void MESSSoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-	QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::loadFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2)").arg(exitCode).arg(exitStatus));
 #endif
@@ -499,9 +497,8 @@ void MESSSoftwareList::loadReadyReadStandardError()
 
 void MESSSoftwareList::loadError(QProcess::ProcessError processError)
 {
-	QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
+	QProcess *proc = (QProcess *)sender();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::loadError(QProcess::ProcessError processError = %1)").arg(processError));
 #endif
 
@@ -517,9 +514,8 @@ void MESSSoftwareList::loadError(QProcess::ProcessError processError)
 
 void MESSSoftwareList::loadStateChanged(QProcess::ProcessState processState)
 {
-	QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
+	QProcess *proc = (QProcess *)sender();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::loadStateChanged(QProcess::ProcessState processState = %1)").arg(processState));
 #endif
 
