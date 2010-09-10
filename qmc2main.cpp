@@ -363,8 +363,9 @@ MainWindow::MainWindow(QWidget *parent)
   // disable the menu-bar's default context menu (may be irritating)
   menuBar()->setContextMenuPolicy(Qt::PreventContextMenu);
 
-  // hide "loading game list" label initially
+  // hide "loading game list" labels initially
   labelLoadingGamelist->setVisible(FALSE);
+  labelLoadingHierarchy->setVisible(FALSE);
 
   // hide memory indicator initially
   progressBarMemory->setVisible(FALSE);
@@ -473,6 +474,7 @@ MainWindow::MainWindow(QWidget *parent)
   treeWidgetGamelist->headerItem()->setText(QMC2_GAMELIST_COLUMN_ICON, tr("Value"));
   actionCheckIcons->setVisible(FALSE);
   labelLoadingGamelist->setText(tr("Loading machine list, please wait..."));
+  labelLoadingHierarchy->setText(tr("Loading machine list, please wait..."));
   comboBoxSearch->setToolTip(tr("Search for machines (not case-sensitive)"));
   comboBoxSearch->setStatusTip(tr("Search for machines"));
 #endif
