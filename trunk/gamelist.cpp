@@ -654,6 +654,8 @@ void Gamelist::load()
     // hide game list
     qmc2MainWindow->treeWidgetGamelist->setVisible(FALSE);
     qmc2MainWindow->labelLoadingGamelist->setVisible(TRUE);
+    qmc2MainWindow->treeWidgetHierarchy->setVisible(FALSE);
+    qmc2MainWindow->labelLoadingHierarchy->setVisible(TRUE);
     qApp->processEvents();
   }
 
@@ -665,6 +667,8 @@ void Gamelist::load()
     // show game list
     qmc2MainWindow->labelLoadingGamelist->setVisible(FALSE);
     qmc2MainWindow->treeWidgetGamelist->setVisible(TRUE);
+    qmc2MainWindow->labelLoadingHierarchy->setVisible(FALSE);
+    qmc2MainWindow->treeWidgetHierarchy->setVisible(TRUE);
 
     if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
       switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
@@ -2244,6 +2248,8 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
   // show game list
   qmc2MainWindow->labelLoadingGamelist->setVisible(FALSE);
   qmc2MainWindow->treeWidgetGamelist->setVisible(TRUE);
+  qmc2MainWindow->labelLoadingHierarchy->setVisible(FALSE);
+  qmc2MainWindow->treeWidgetHierarchy->setVisible(TRUE);
 
   if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
 	  switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
