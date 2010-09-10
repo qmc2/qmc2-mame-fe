@@ -23,7 +23,6 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
 
   setupUi(this);
 
-  Embedder *embedder = (Embedder *)parent;
   snapshotViewer = NULL;
 
 #if QMC2_WIP_CODE != 1

@@ -168,9 +168,8 @@ void SampleChecker::verifyStarted()
 
 void SampleChecker::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-  QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
+  QProcess *proc = (QProcess *)sender();
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::verifyFinished(int exitCode = " + QString::number(exitCode) + ", QProcess::ExitStatus exitStatus = " + QString::number(exitStatus) + "): proc = 0x" + QString::number((ulong)proc, 16));
 #endif
 

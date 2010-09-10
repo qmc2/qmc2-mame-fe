@@ -281,7 +281,6 @@ void MainWindow::log(char logOrigin, QString message)
 
   QString msg = timeString + ": " + message;
 
-  bool wasEmpty;
   switch ( logOrigin ) {
     case QMC2_LOG_FRONTEND:
       textBrowserFrontendLog->append(msg);
