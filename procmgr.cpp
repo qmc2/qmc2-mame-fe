@@ -39,7 +39,7 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
   int argCount;
   for (argCount = 0; argCount < arguments.count(); argCount++)
     logMsg += QString(argCount > 0 ? " " + arguments[argCount] : arguments[argCount]);
-  logMsg += "\", bool autoConnect = " + QString(autoConnect ? "TRUE" : "FALSE") ", QString workDir = " + workDir + ")";
+  logMsg += "\", bool autoConnect = " + QString(autoConnect ? "TRUE" : "FALSE") + ", QString workDir = " + workDir + ")";
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, logMsg);
 #endif
 

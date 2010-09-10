@@ -735,8 +735,8 @@ void EmulatorOptions::createTemplateMap()
 	    }
 #ifdef QMC2_DEBUG
             else {
-              qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ignored: elementType = [%1], name = [%2], type = [%3], default = [%4], description = [%5]").
-                                  arg(elementType).arg(name).arg(type).arg(defaultValue).arg(optionDescription));
+              qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ignored: elementType = [%1], name = [%2], description = [%3]").
+                                  arg(elementType).arg(name).arg(optionDescription));
             }
 #endif
           } else if ( elementType == "template" ) {
