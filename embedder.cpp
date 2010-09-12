@@ -130,6 +130,7 @@ void Embedder::toggleOptions()
 #endif
 
   optionsShown = !optionsShown;
+  gridLayout->invalidate();
   if ( optionsShown ) {
     if ( !embedderOptions ) {
       embedderOptions = new EmbedderOptions(this);
