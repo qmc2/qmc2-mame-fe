@@ -3707,13 +3707,20 @@ void JoystickTestWidget::on_joystickButtonValueChanged(int button, bool value)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickTestWidget::on_joystickButtonValueChanged(int button = %1, bool value = %2)").arg(button).arg(value));
 #endif
 
-  QPalette greenPalette(QApplication::palette());
-  greenPalette.setBrush(QPalette::Window, QColor(0, 255, 0));
+  if ( qApp->styleSheet().isEmpty() ) {
+    QPalette greenPalette(QApplication::palette());
+    greenPalette.setBrush(QPalette::Window, QColor(0, 255, 0));
 
-  if ( value )
-    buttonLabels[button]->setPalette(greenPalette);
-  else
-    buttonLabels[button]->setPalette(QApplication::palette());
+    if ( value )
+      buttonLabels[button]->setPalette(greenPalette);
+    else
+      buttonLabels[button]->setPalette(QApplication::palette());
+  } else {
+    if ( value )
+      buttonLabels[button]->setStyleSheet("background: #00ff00; color: black");
+    else
+      buttonLabels[button]->setStyleSheet("");
+  }
 }
 
 void JoystickTestWidget::on_joystickHatValueChanged(int hat, int value)
@@ -3722,13 +3729,20 @@ void JoystickTestWidget::on_joystickHatValueChanged(int hat, int value)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickTestWidget::on_joystickHatValueChanged(int hat = %1, int value = %2)").arg(hat).arg(value));
 #endif
 
-  QPalette greenPalette(QApplication::palette());
-  greenPalette.setBrush(QPalette::Window, QColor(0, 255, 0));
+  if ( qApp->styleSheet().isEmpty() ) {
+    QPalette greenPalette(QApplication::palette());
+    greenPalette.setBrush(QPalette::Window, QColor(0, 255, 0));
 
-  if ( value != 0 )
-    hatValueLabels[hat]->setPalette(greenPalette);
-  else
-    hatValueLabels[hat]->setPalette(QApplication::palette());
+    if ( value != 0 )
+      hatValueLabels[hat]->setPalette(greenPalette);
+    else
+      hatValueLabels[hat]->setPalette(QApplication::palette());
+  } else {
+    if ( value != 0 )
+      hatValueLabels[hat]->setStyleSheet("background: #00ff00; color: black");
+    else
+      hatValueLabels[hat]->setStyleSheet("");
+  }
 
   hatValueLabels[hat]->setText(tr("H%1: %2").arg(hat).arg(value));
 }
@@ -3739,18 +3753,30 @@ void JoystickTestWidget::on_joystickTrackballValueChanged(int trackball, int del
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickTestWidget::on_joystickTrackballValueChanged(int trackball = %1, int deltaX = %2, int deltaY = %3)").arg(trackball).arg(deltaX).arg(deltaY));
 #endif
 
-  QPalette greenPalette(QApplication::palette());
-  greenPalette.setBrush(QPalette::Window, QColor(0, 255, 0));
+  if ( qApp->styleSheet().isEmpty() ) {
+    QPalette greenPalette(QApplication::palette());
+    greenPalette.setBrush(QPalette::Window, QColor(0, 255, 0));
 
-  if ( deltaX != 0 )
-    trackballDeltaXLabels[trackball]->setPalette(greenPalette);
-  else
-    trackballDeltaXLabels[trackball]->setPalette(QApplication::palette());
+    if ( deltaX != 0 )
+      trackballDeltaXLabels[trackball]->setPalette(greenPalette);
+    else
+      trackballDeltaXLabels[trackball]->setPalette(QApplication::palette());
 
-  if ( deltaY != 0 )
-    trackballDeltaYLabels[trackball]->setPalette(greenPalette);
-  else
-    trackballDeltaYLabels[trackball]->setPalette(QApplication::palette());
+    if ( deltaY != 0 )
+      trackballDeltaYLabels[trackball]->setPalette(greenPalette);
+    else
+      trackballDeltaYLabels[trackball]->setPalette(QApplication::palette());
+  } else {
+    if ( deltaX != 0 )
+      trackballDeltaXLabels[trackball]->setStyleSheet("background: #00ff00; color: black");
+    else
+      trackballDeltaXLabels[trackball]->setStyleSheet("");
+
+    if ( deltaY != 0 )
+      trackballDeltaYLabels[trackball]->setStyleSheet("background: #00ff00; color: black");
+    else
+      trackballDeltaYLabels[trackball]->setStyleSheet("");
+  }
 
   trackballDeltaXLabels[trackball]->setText(tr("T%1 DX: %2").arg(trackball).arg(deltaX));
   trackballDeltaYLabels[trackball]->setText(tr("T%1 DY: %2").arg(trackball).arg(deltaY));
@@ -3763,13 +3789,24 @@ void JoystickTestWidget::cleanupPalette()
 #endif
 
   int i;
-  for (i = 0; i < buttonLabels.count(); i++)
-    buttonLabels[i]->setPalette(QApplication::palette());
-  for (i = 0; i < hatValueLabels.count(); i++)
-    hatValueLabels[i]->setPalette(QApplication::palette());
-  for (i = 0; i < trackballDeltaXLabels.count(); i++)
-    trackballDeltaXLabels[i]->setPalette(QApplication::palette());
-  for (i = 0; i < trackballDeltaYLabels.count(); i++)
-    trackballDeltaYLabels[i]->setPalette(QApplication::palette());
+  if ( qApp->styleSheet().isEmpty() ) {
+    for (i = 0; i < buttonLabels.count(); i++)
+      buttonLabels[i]->setPalette(QApplication::palette());
+    for (i = 0; i < hatValueLabels.count(); i++)
+      hatValueLabels[i]->setPalette(QApplication::palette());
+    for (i = 0; i < trackballDeltaXLabels.count(); i++)
+      trackballDeltaXLabels[i]->setPalette(QApplication::palette());
+    for (i = 0; i < trackballDeltaYLabels.count(); i++)
+      trackballDeltaYLabels[i]->setPalette(QApplication::palette());
+  } else {
+    for (i = 0; i < buttonLabels.count(); i++)
+      buttonLabels[i]->setStyleSheet("");
+    for (i = 0; i < hatValueLabels.count(); i++)
+      hatValueLabels[i]->setStyleSheet("");
+    for (i = 0; i < trackballDeltaXLabels.count(); i++)
+      trackballDeltaXLabels[i]->setStyleSheet("");
+    for (i = 0; i < trackballDeltaYLabels.count(); i++)
+      trackballDeltaYLabels[i]->setStyleSheet("");
+  }
 }
 #endif
