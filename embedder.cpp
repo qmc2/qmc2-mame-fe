@@ -68,9 +68,7 @@ void Embedder::clientEmbedded()
 #endif
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator embedded, window ID = 0x%1").arg(QString::number(winId, 16)));
-  // effectively transfer focus to the emulator
-  embedContainer->setFocus();
-  setFocusProxy(embedContainer);
+  forceFocus();
   embedded = true;
 
   // this works around a Qt bug when the tool bar is vertical and obscured by the emulator window before embedding
@@ -168,6 +166,18 @@ void Embedder::adjustIconSizes()
   QSize releaseButtonSize(baseSize, baseSize);
   optionsButton->setFixedSize(optionsButtonSize);
   releaseButton->setFixedSize(releaseButtonSize);
+}
+
+void Embedder::forceFocus()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::forceFocus()"));
+#endif
+
+  // effectively transfer focus to the emulator
+  embedContainer->activateWindow();
+  embedContainer->setFocus();
+  setFocusProxy(embedContainer);
 }
 
 #endif

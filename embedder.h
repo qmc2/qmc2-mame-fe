@@ -32,6 +32,7 @@ class Embedder : public QWidget
     void clientError(QX11EmbedContainer::Error);
     void toggleOptions();
     void adjustIconSizes();
+    void forceFocus();
 
   protected:
     void closeEvent(QCloseEvent *);

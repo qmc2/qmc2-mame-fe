@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b17, 10-SEP-2010</h3>
+<h3>CHANGES - v0.2.b17, 12-SEP-2010</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b17, 10-SEP-2010:</b></p>
+<p><b>v0.2.b17, 12-SEP-2010:</b></p>
 <ul>
   <li>fix: embedder snapshot tool: the first snapshot clicked wasn't displayed in the viewer</li>
   <li>fix: demo mode and ROM checks aren't allowed to run at the same time (would crash); additional emulators shouldn't be launched while in demo mode -- both will be avoided now</li>
@@ -26,6 +26,7 @@ inf: informational only
   <li>fix: MESS targets only: don't try to load machine icons (we don't support them anyway in case of MESS)</li>
   <li>fix: ROMAlyzer: corrected icon size adjustment</li>
   <li>fix: ROM status toggles were effectively disabled when the applied configuration was restored by the user</li>
+  <li>fix: embedder: corrected initial focus issues</li>
   <li>imp: SDLMESS/MESS templates updated to 0.139 (no new options, corrected default value for option <i>writeconfig</i>)</li>
   <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.139u2 (no new or changed options)</li>
   <li>imp: Mac OS X build: determine correct SCM revision used for <i>CFBundleVersion</i> in Info.plist, call <i>macdeployqt</i> only when necessary, use correct permissions on directories for system-wide installation</li>
