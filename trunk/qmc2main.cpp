@@ -2449,8 +2449,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
         Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->currentWidget();
         if ( embedder ) {
           embedder->resize(hSplitter->sizes()[0], embedder->height());
-          embedder->activateWindow();
-          embedder->setFocus();
+          embedder->forceFocus();
         }
       }
       break;
@@ -3501,9 +3500,10 @@ void MainWindow::action_embedEmulator_triggered()
         embedder->adjustIconSizes();
       }
       
+      qApp->processEvents();
+
       tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
       tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
-      embedder->setFocus();
     } else {
       success = FALSE;
       log(QMC2_LOG_FRONTEND, tr("WARNING: no matching window for emulator #%1 found").arg(gameID));
