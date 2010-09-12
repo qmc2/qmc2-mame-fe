@@ -130,7 +130,6 @@ void Embedder::toggleOptions()
 #endif
 
   optionsShown = !optionsShown;
-  gridLayout->invalidate();
   if ( optionsShown ) {
     if ( !embedderOptions ) {
       embedderOptions = new EmbedderOptions(this);
@@ -146,6 +145,7 @@ void Embedder::toggleOptions()
     if ( embedderOptions )
       embedderOptions->hide();
   }
+  embedContainer->showMaximized();
 }
 
 void Embedder::adjustIconSizes()
