@@ -568,6 +568,16 @@ void ROMAlyzer::analyze()
                                                  childItem->text(QMC2_ROMALYZER_COLUMN_TYPE),
                                                  &data, &sha1Calculated, &md5Calculated,
                                                  &zipped, &merged, fileCounter); 
+#ifdef QMC2_DEBUG
+	log(QString("DEBUG: fileName = %1 [%2], isZipped = %3, fileType = %4, crcExpected = %5, sha1Calculated = %6")
+		    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME))
+		    .arg(effectiveFile)
+		    .arg(zipped ? "true" : "false")
+		    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).startsWith(tr("ROM")) ? "ROM" : "CHD")
+		    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC).isEmpty() ? QString("--") : childItem->text(QMC2_ROMALYZER_COLUMN_CRC))
+		    .arg(sha1Calculated.isEmpty() ? QString("--") : sha1Calculated));
+#endif
+
         if ( qmc2StopParser )
           continue;
 
@@ -581,6 +591,7 @@ void ROMAlyzer::analyze()
         } else {
           QString fileStatus;
           bool somethingsWrong = FALSE;
+	  bool eligibleForDatabaseUpload = FALSE;
 
           if ( effectiveFile != QMC2_ROMALYZER_FILE_NOT_FOUND ) {
             if ( zipped )
@@ -646,7 +657,8 @@ void ROMAlyzer::analyze()
               if ( sha1Str != sha1Calculated ) {
                 somethingsWrong = TRUE;
                 fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SHA1, xmlHandler.redBrush);
-              }
+              } else
+                eligibleForDatabaseUpload = TRUE;
               qApp->processEvents();
             }
 
@@ -670,12 +682,17 @@ void ROMAlyzer::analyze()
             childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/warning.png")));
             log(tr("WARNING: ROM file '%1' loaded from '%2' has incorrect checksums").arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME), effectiveFile));
           } else {
-            if ( fileStatus == tr("skipped") )
+            if ( fileStatus == tr("skipped") ) {
               childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.blueBrush);
-            else if ( fileStatus == tr("not found") )
+	    } else if ( fileStatus == tr("not found") ) {
               childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
-            else
+	    } else {
               childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
+
+              if ( eligibleForDatabaseUpload ) {
+                // FIXME: add optional DB upload through ROM database manager here...
+              }
+            }
           }
 
           if ( checkBoxExpandChecksums->isChecked() )
