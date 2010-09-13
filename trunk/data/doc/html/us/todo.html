@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.2.b17, 12-SEP-2010</h3>
+<h3>TODO - v0.2.b17, 13-SEP-2010</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>Certain GUI styles may cause display problems for the emulator configuration widgets</li>
@@ -20,11 +20,10 @@
   <li>Style sheets should only be activated if Qt 4.5.2+ is in use; Qt 4.5.1 works as well but has some QtWebKit related issues/crashes; Qt 4.5.0 shouldn't be used at all with style sheets</li>
   <li>Also, due to a Qt bug (as of 4.5.3) we have to change the current working directory (of the running application) to the style sheet's path to make sure that relative URLs (in the .qss file) are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead -- <b>this is more or less obsolete:</b> since version 0.2.b16, you can specify the working directory that's used when the emulator is executed; this circumvents the issue cleanly!</li>
   <li>Depending on the complexity of a style / style sheet combination, it may slow down GUI operations (that's no bug, but you should note it)</li>
-  <li>Transfering input focus to embedded emulators sometimes fails. Click into the embedded window (or press tab) to transfer focus explicitly. Once transfered, the focus will be held by the emulator.</li>
-  <li>Mixed joystick control may not work correctly when emulators are embedded.</li>
-  <li>Once the first emulator was embedded, the game/machine-specific emulator configuration widget flickers when activated (and recreated). This is minor and just cosmetic, but it's annoying -- especially because we have no clue why this happens!</li>
+  <li>Once the first emulator was embedded, the game/machine-specific emulator configuration widget flickers when activated (and recreated). This is minor and just cosmetic, but it's annoying -- it happens with Qt 4.5 and 4.6 (Qt 4.7 has a fix for this).</li>
+  <li>Mixed joystick control will not work correctly when emulators are embedded.</li>
   <li>Corrupted PNG images may cause crashes -- if the log file contains corresponding Qt warning or error messages after the crash, please correct your images!! For instance, we've experienced Qt paint engine crashes due to wrong iCCP chunks. After correcting the corrupted PNGs (using <i>convert</i> from ImageMagick) the crashes were history.</li> 
-  <li>When Phonon features are enabled on Mac OS X, you'll likely get a crash report when QMC2 finishes -- this can safely be ignored (although it's annoying), because QMC2 has already finished cleanly at that point (if not, you'll be informed at the next start); it appears to be a Phonon bug, so we may not be able to fix it on our own -- we used Qt 4.6.2 (Cocoa) on Mac OS X 10.6.2 in our tests</li>
+  <li>When Phonon features are enabled on Mac OS X, you'll likely get a crash report when QMC2 finishes -- this can safely be ignored (although it's annoying), because QMC2 has already finished cleanly at that point (if not, you'll be informed at the next start); it appears to be a Phonon bug, so we may not be able to fix it on our own -- we used Qt 4.6.3 (Cocoa) on Mac OS X 10.6.4 in our tests</li>
 </ul>
 <p><b>Work in progress</b></p>
 <ul>
