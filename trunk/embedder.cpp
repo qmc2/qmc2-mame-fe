@@ -14,8 +14,6 @@ Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::Embedder(QString name = %1, QString id = %2, WId wid = %3, QWidget *parent = %4)").arg(name).arg(id).arg((qulonglong)wid).arg((qulonglong)parent));
 #endif
 
-  gridLayout = new QGridLayout(this);
-
   gameName = name;
   gameID = id;
   winId = wid;
@@ -23,6 +21,10 @@ Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
 
   embedContainer = new QX11EmbedContainer(this);
   embedContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+  setFocusProxy(embedContainer);
+
+  gridLayout = new QGridLayout(this);
   gridLayout->addWidget(embedContainer, 1, 0);
   gridLayout->setRowStretch(0, 0);
   gridLayout->setRowStretch(1, 1);
@@ -174,10 +176,8 @@ void Embedder::forceFocus()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::forceFocus()"));
 #endif
 
-  // effectively transfer focus to the emulator
-  embedContainer->activateWindow();
-  embedContainer->setFocus();
-  setFocusProxy(embedContainer);
+  activateWindow();
+  setFocus();
 }
 
 void Embedder::maximize()
