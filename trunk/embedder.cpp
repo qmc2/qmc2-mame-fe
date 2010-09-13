@@ -143,7 +143,7 @@ void Embedder::toggleOptions()
     if ( embedderOptions )
       embedderOptions->hide();
   }
-  embedContainer->showMaximized();
+  maximize();
 }
 
 void Embedder::adjustIconSizes()
@@ -178,6 +178,18 @@ void Embedder::forceFocus()
   embedContainer->activateWindow();
   embedContainer->setFocus();
   setFocusProxy(embedContainer);
+}
+
+void Embedder::maximize()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::maximize()"));
+#endif
+
+  resize(parentWidget()->size());
+  embedContainer->resize(size());
+  embedContainer->showMaximized();
+  qApp->processEvents();
 }
 
 #endif

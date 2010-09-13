@@ -33,6 +33,7 @@ class Embedder : public QWidget
     void toggleOptions();
     void adjustIconSizes();
     void forceFocus();
+    void maximize();
 
   protected:
     void closeEvent(QCloseEvent *);
