@@ -2446,9 +2446,10 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
             maximizedSizes << 0 << desktopGeometry.width();
           hSplitter->setSizes(maximizedSizes);
         }
+	qApp->processEvents();
         Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->currentWidget();
         if ( embedder ) {
-          embedder->resize(hSplitter->sizes()[0], embedder->height());
+          embedder->maximize();
           embedder->forceFocus();
         }
       }
