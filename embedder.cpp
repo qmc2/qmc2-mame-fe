@@ -27,8 +27,8 @@ Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
   gridLayout = new QGridLayout(this);
   gridLayout->addWidget(embedContainer, 1, 0);
   gridLayout->setRowStretch(0, 0);
-  gridLayout->setRowStretch(1, 1);
-  gridLayout->setColumnStretch(0, 1);
+  gridLayout->setRowStretch(1, 4);
+  gridLayout->setColumnStretch(0, 4);
   setLayout(gridLayout);
 
   connect(embedContainer, SIGNAL(clientIsEmbedded()), SLOT(clientEmbedded()));
@@ -141,7 +141,7 @@ void Embedder::toggleOptions()
     embedderOptions->show();
   } else {
     gridLayout->setRowStretch(0, 0);
-    gridLayout->setRowStretch(1, 1);
+    gridLayout->setRowStretch(1, 4);
     if ( embedderOptions )
       embedderOptions->hide();
   }
@@ -186,9 +186,9 @@ void Embedder::maximize()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::maximize()"));
 #endif
 
-  resize(parentWidget()->size());
-  embedContainer->resize(size());
-  embedContainer->showMaximized();
+  QRect r = parentWidget()->contentsRect();
+  embedContainer->resize(r.size());
+  embedContainer->move(r.topLeft());
 }
 
 #endif
