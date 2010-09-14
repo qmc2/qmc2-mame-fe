@@ -19,7 +19,7 @@ Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
   winId = wid;
   embedded = false;
 
-  embedContainer = new QX11EmbedContainer(this);
+  embedContainer = new TweakedEmbedContainer(this);
   embedContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
   setFocusProxy(embedContainer);
@@ -34,6 +34,10 @@ Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
   connect(embedContainer, SIGNAL(clientIsEmbedded()), SLOT(clientEmbedded()));
   connect(embedContainer, SIGNAL(clientClosed()), SLOT(clientClosed()));
   connect(embedContainer, SIGNAL(error(QX11EmbedContainer::Error)), SLOT(clientError(QX11EmbedContainer::Error)));
+  connect(embedContainer, SIGNAL(resized()), SLOT(maximizeDelayed()));
+
+  maximizationTimer.setSingleShot(true);
+  connect(&maximizationTimer, SIGNAL(timeout()), this, SLOT(maximize()));
 
   embedderOptions = NULL;
   optionsShown = FALSE;
@@ -69,9 +73,11 @@ void Embedder::clientEmbedded()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientEmbedded()"));
 #endif
 
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator embedded, window ID = 0x%1").arg(QString::number(winId, 16)));
+  maximize();
   forceFocus();
   embedded = true;
+
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator embedded, window ID = 0x%1").arg(QString::number(winId, 16)));
 
   // this works around a Qt bug when the tool bar is vertical and obscured by the emulator window before embedding
   QTimer::singleShot(0, qmc2MainWindow->toolbar, SLOT(update()));
@@ -123,6 +129,15 @@ void Embedder::closeEvent(QCloseEvent *e)
   QWidget::closeEvent(e);
 }
 
+void Embedder::resizeEvent(QResizeEvent *e)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+  QTimer::singleShot(0, this, SLOT(maximizeDelayed()));
+}
+
 void Embedder::toggleOptions()
 {
 #ifdef QMC2_DEBUG
@@ -145,7 +160,6 @@ void Embedder::toggleOptions()
     if ( embedderOptions )
       embedderOptions->hide();
   }
-  maximize();
 }
 
 void Embedder::adjustIconSizes()
@@ -186,9 +200,21 @@ void Embedder::maximize()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::maximize()"));
 #endif
 
+  if ( optionsShown ) return;
+
   QRect r = parentWidget()->contentsRect();
+
   embedContainer->resize(r.size());
   embedContainer->move(r.topLeft());
+}
+
+void Embedder::maximizeDelayed()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Embedder::maximizeDelayed()");
+#endif
+
+  maximizationTimer.start(QMC2_EMBED_MAXIMIZE_DELAY);
 }
 
 #endif

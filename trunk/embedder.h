@@ -6,6 +6,24 @@
 #include <QX11EmbedContainer>
 #include "embedderopt.h"
 
+class TweakedEmbedContainer : public QX11EmbedContainer
+{
+  Q_OBJECT
+
+  public:
+    TweakedEmbedContainer(QWidget *parent) : QX11EmbedContainer(parent) { ; }
+
+  protected:
+    void resizeEvent(QResizeEvent *e)
+    {
+      emit resized();
+      QX11EmbedContainer::resizeEvent(e);
+    }
+
+  signals:
+    void resized();
+};
+
 class Embedder : public QWidget
 {
   Q_OBJECT
@@ -14,12 +32,13 @@ class Embedder : public QWidget
     bool embedded;
     bool optionsShown;
     WId winId;
-    QX11EmbedContainer *embedContainer;
+    TweakedEmbedContainer *embedContainer;
     EmbedderOptions *embedderOptions;
     QGridLayout *gridLayout;
     QString gameName;
     QString gameID;
     QSize nativeResolution;
+    QTimer maximizationTimer;
 
     Embedder(QString name, QString id, WId wid, QWidget *parent = 0);
 
@@ -34,9 +53,11 @@ class Embedder : public QWidget
     void adjustIconSizes();
     void forceFocus();
     void maximize();
+    void maximizeDelayed();
 
   protected:
     void closeEvent(QCloseEvent *);
+    void resizeEvent(QResizeEvent *);
 
   signals:
     void closing();
