@@ -2437,7 +2437,6 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 
 #if defined(Q_WS_X11)
     case QMC2_EMBED_INDEX: {
-        tabWidgetGamelist->setUpdatesEnabled(false);
         if ( toolButtonEmbedderMaximizeToggle->isChecked() ) {
           hSplitterSizes = hSplitter->sizes();
           QList<int> maximizedSizes;
@@ -2448,11 +2447,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
           hSplitter->setSizes(maximizedSizes);
         }
         Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->currentWidget();
-        if ( embedder ) {
-          embedder->maximize();
-          embedder->forceFocus();
-        }
-        tabWidgetGamelist->setUpdatesEnabled(true);
+        if ( embedder ) QTimer::singleShot(0, embedder, SLOT(forceFocus()));
       }
       break;
 #endif
