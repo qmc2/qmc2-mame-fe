@@ -189,7 +189,6 @@ void Embedder::maximize()
   resize(parentWidget()->size());
   embedContainer->resize(size());
   embedContainer->showMaximized();
-  qApp->processEvents();
 }
 
 #endif
