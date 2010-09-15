@@ -16,6 +16,8 @@ MawsQuickDownloadSetup::MawsQuickDownloadSetup(QWidget *parent)
 #endif
 
   setupUi(this);
+
+  adjustIconSizes();
   adjustSize();
 
   // this just reads the current configuration, doesn't cancel the dialog
@@ -28,6 +30,22 @@ MawsQuickDownloadSetup::~MawsQuickDownloadSetup()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MawsQuickDownloadSetup::~MawsQuickDownloadSetup()");
 #endif
 
+}
+
+void MawsQuickDownloadSetup::adjustIconSizes()
+{
+  QFontMetrics fm(QApplication::font());
+  QSize iconSize(fm.height() - 2, fm.height() - 2);
+  pushButtonOk->setIconSize(iconSize);
+  pushButtonCancel->setIconSize(iconSize);
+  toolButtonBrowseIconDirectory->setIconSize(iconSize);
+  toolButtonBrowseFlyerDirectory->setIconSize(iconSize);
+  toolButtonBrowseCabinetDirectory->setIconSize(iconSize);
+  toolButtonBrowseControllerDirectory->setIconSize(iconSize);
+  toolButtonBrowseMarqueeDirectory->setIconSize(iconSize);
+  toolButtonBrowsePCBDirectory->setIconSize(iconSize);
+  toolButtonBrowsePreviewDirectory->setIconSize(iconSize);
+  toolButtonBrowseTitleDirectory->setIconSize(iconSize);
 }
 
 void MawsQuickDownloadSetup::on_pushButtonOk_clicked()

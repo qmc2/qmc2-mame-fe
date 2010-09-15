@@ -22,6 +22,7 @@ class MawsQuickDownloadSetup : public QDialog, public Ui::MawsQuickDownloadSetup
     void on_toolButtonBrowsePCBDirectory_clicked();
     void on_toolButtonBrowsePreviewDirectory_clicked();
     void on_toolButtonBrowseTitleDirectory_clicked();
+    void adjustIconSizes();
 };
 
 #endif

@@ -34,6 +34,7 @@
 #include "romstatusexport.h"
 #include "docbrowser.h"
 #include "detailsetup.h"
+#include "mawsqdlsetup.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #include "joyfuncscan.h"
@@ -116,6 +117,7 @@ extern KeyPressFilter *qmc2KeyPressFilter;
 extern QMap<QString, int> qmc2QtKeyMap;
 extern QMap<QString, QByteArray *> qmc2GameInfoDB;
 extern MiniWebBrowser *qmc2MAWSLookup;
+extern MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup;
 extern DetailSetup *qmc2DetailSetup;
 extern QWidget *qmc2DetailSetupParent;
 #if defined(QMC2_EMUTYPE_MAME)
@@ -477,6 +479,8 @@ void Options::apply()
     if ( qmc2MainWindow->toolButtonMAWSQuickLinks )
       qmc2MainWindow->toolButtonMAWSQuickLinks->setIconSize(iconSize);
   }
+  if ( qmc2MawsQuickDownloadSetup )
+    QTimer::singleShot(0, qmc2MawsQuickDownloadSetup, SLOT(adjustIconSizes()));
 #endif
   if ( qmc2DocBrowser ) {
     qmc2DocBrowser->browser->toolButtonBack->setIconSize(iconSize);
