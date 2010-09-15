@@ -112,7 +112,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
       fileEditor->setAccessibleName("fileEditor");
       if ( !optionDescription.isEmpty() ) {
         fileEditor->lineEditFile->setToolTip(optionDescription);
-        fileEditor->pushButtonBrowse->setToolTip(tr("Browse: ") + optionDescription);
+        fileEditor->toolButtonBrowse->setToolTip(tr("Browse: ") + optionDescription);
       }
       connect(fileEditor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
       return fileEditor;
@@ -124,7 +124,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
       directoryEditor->setAccessibleName("directoryEditor");
       if ( !optionDescription.isEmpty() ) {
         directoryEditor->lineEditDirectory->setToolTip(optionDescription);
-        directoryEditor->pushButtonBrowse->setToolTip(tr("Browse: ") + optionDescription);
+        directoryEditor->toolButtonBrowse->setToolTip(tr("Browse: ") + optionDescription);
       }
       connect(directoryEditor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
       return directoryEditor;
@@ -230,10 +230,10 @@ void EmulatorOptionDelegate::updateEditorGeometry(QWidget *editor, const QStyleO
   QSize iconSize(fm.height() - 2, fm.height() - 2);
   if ( editor->accessibleName() == "fileEditor" ) {
     FileEditWidget *fileEditWidget = static_cast<FileEditWidget *>(editor);
-    fileEditWidget->pushButtonBrowse->setIconSize(iconSize);
+    fileEditWidget->toolButtonBrowse->setIconSize(iconSize);
   } else if ( editor->accessibleName() == "directoryEditor" ) {
     DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget *>(editor);
-    directoryEditor->pushButtonBrowse->setIconSize(iconSize);
+    directoryEditor->toolButtonBrowse->setIconSize(iconSize);
   }
 }
 

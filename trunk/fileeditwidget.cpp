@@ -22,7 +22,7 @@ FileEditWidget::FileEditWidget(QString filePath, QString filter, QWidget *parent
   browserFilter = filter;
   QFontMetrics fm(QApplication::font());
   QSize iconSize(fm.height() - 2, fm.height() - 2);
-  pushButtonBrowse->setIconSize(iconSize);
+  toolButtonBrowse->setIconSize(iconSize);
 }
 
 FileEditWidget::~FileEditWidget()
@@ -33,10 +33,10 @@ FileEditWidget::~FileEditWidget()
 
 }
 
-void FileEditWidget::on_pushButtonBrowse_clicked()
+void FileEditWidget::on_toolButtonBrowse_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: FileEditWidget::on_pushButtonBrowse_clicked()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: FileEditWidget::on_toolButtonBrowse_clicked()");
 #endif
 
   QString startPath = lineEditFile->text();

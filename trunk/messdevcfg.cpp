@@ -88,7 +88,7 @@ void MESSDeviceFileDelegate::updateEditorGeometry(QWidget *editor, const QStyleO
   QFontMetrics fm(QApplication::font());
   QSize iconSize(fm.height() - 2, fm.height() - 2);
   FileEditWidget *fileEditWidget = static_cast<FileEditWidget *>(editor);
-  fileEditWidget->pushButtonBrowse->setIconSize(iconSize);
+  fileEditWidget->toolButtonBrowse->setIconSize(iconSize);
 }
 
 void MESSDeviceFileDelegate::dataChanged(QWidget *widget)
