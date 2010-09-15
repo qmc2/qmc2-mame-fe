@@ -21,7 +21,7 @@ DirectoryEditWidget::DirectoryEditWidget(QString dirPath, QWidget *parent)
   lineEditDirectory->setText(dirPath);
   QFontMetrics fm(QApplication::font());
   QSize iconSize(fm.height() - 2, fm.height() - 2);
-  pushButtonBrowse->setIconSize(iconSize);
+  toolButtonBrowse->setIconSize(iconSize);
 }
 
 DirectoryEditWidget::~DirectoryEditWidget()
@@ -32,10 +32,10 @@ DirectoryEditWidget::~DirectoryEditWidget()
 
 }
 
-void DirectoryEditWidget::on_pushButtonBrowse_clicked()
+void DirectoryEditWidget::on_toolButtonBrowse_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DirectoryEditWidget::on_pushButtonBrowse_clicked()");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DirectoryEditWidget::on_toolButtonBrowse_clicked()");
 #endif
 
   QString startPath = lineEditDirectory->text();

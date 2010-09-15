@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b17, 14-SEP-2010</h3>
+<h3>CHANGES - v0.2.b17, 15-SEP-2010</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b17, 14-SEP-2010:</b></p>
+<p><b>v0.2.b17, 15-SEP-2010:</b></p>
 <ul>
   <li>fix: embedder snapshot tool: the first snapshot clicked wasn't displayed in the viewer</li>
   <li>fix: demo mode and ROM checks aren't allowed to run at the same time (would crash); additional emulators shouldn't be launched while in demo mode -- both will be avoided now</li>
@@ -43,6 +43,7 @@ inf: informational only
   <li>imp: embedder: using the internal emulator ID to set the WM_CLASS property in order to make the emulator's X11 window uniquely identifiable (this means that multiple windows with the same emulated game/machine can now be cleanly embedded!)</li>
   <li>imp: the hierarchical parent/clone view is now also hidden during game/machine list reloads (if applicable)</li>
   <li>imp: embedded emulator windows are now automatically maximized to use <b>all</b> available space within their parent widgets (no margins)</li>
+  <li>imp: file &amp; directory editors in the emulator configuration widgets use tool-buttons (instead of push-buttons) now for better consistency</li>
   <li>new: added generic support to drive a <i>ROM tool</i> for any external processing based on the game/machine ID (<i>$ID$</i>) or description (<i>$DESCRIPTION$</i>)</li>
   <li>new: URLs in the game/machine and emulator info DBs are now directly clickable (opening the URL in the desktop's default browser, if any)</li>
   <li>new: MESS targets only: MESS wiki texts from sysinfo.dat are now converted to HTML (far from perfect, but basically working fine)</li>

@@ -14,7 +14,7 @@ class FileEditWidget : public QWidget, public Ui::FileEditWidget
     ~FileEditWidget();
 
   public slots:
-    void on_pushButtonBrowse_clicked();
+    void on_toolButtonBrowse_clicked();
     void on_lineEditFile_textChanged(const QString &) { emit dataChanged(this); }
 
   signals:

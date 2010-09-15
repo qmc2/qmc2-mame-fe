@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>221</width>
-    <height>26</height>
+    <width>119</width>
+    <height>24</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
@@ -47,9 +47,9 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QPushButton" name="pushButtonBrowse">
+       <widget class="QToolButton" name="toolButtonBrowse">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
