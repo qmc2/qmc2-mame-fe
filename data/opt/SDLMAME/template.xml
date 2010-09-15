@@ -414,7 +414,7 @@
     </option>
   </section>
   <section name="vector_rendering">
-    <description lang="us" text="Vector Rendering"/>
+    <description lang="us" text="Vector rendering"/>
     <description lang="de" text="Vektor-Rendern"/>
     <description lang="pl" text="Renderowanie grafiki wektorowej"/>
     <description lang="fr" text="Rendu Vectoriel"/> 
@@ -988,7 +988,7 @@
     </option>
   </section>
   <section name="per_window_video">
-    <description lang="us" text="Per-Window Video"/>
+    <description lang="us" text="Per-window video"/>
     <description lang="de" text="Per-Fenster Video"/>
     <description lang="pl" text="Obraz dla danego ekranu"/>
     <description lang="fr" text="Fenêtre Vidéo"/>
