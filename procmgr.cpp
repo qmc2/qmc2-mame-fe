@@ -210,7 +210,7 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ProcessManager::finished(...): trying to remove a null item"));
   }
 
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4").arg(procMap[proc]).arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))).arg(procMap.count() - 1));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4").arg(procMap[proc]).arg(exitCodeString(exitCode)).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))).arg(procMap.count() - 1));
   procMap.remove(proc);
 
 #if QMC2_USE_PHONON_API
@@ -309,4 +309,33 @@ void ProcessManager::stateChanged(QProcess::ProcessState processState)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ProcessManager::stateChanged(QProcess::ProcessState processState = " + QString::number(processState) + "): proc = 0x" + QString::number((qulonglong)proc, 16));
 #endif
 
+}
+
+QString &ProcessManager::exitCodeString(int exitCode, bool textOnly)
+{
+	QString exitCodeText;
+	switch ( exitCode ) {
+		case QMC2_MAME_ERROR_NONE: exitCodeText = tr("no error"); break;
+		case QMC2_MAME_ERROR_FAILED_VALIDITY: exitCodeText = tr("failed validity checks"); break;
+		case QMC2_MAME_ERROR_MISSING_FILES: exitCodeText = tr("missing files"); break;
+		case QMC2_MAME_ERROR_FATALERROR: exitCodeText = tr("fatal error"); break;
+		case QMC2_MAME_ERROR_DEVICE: exitCodeText = tr("device initialization error"); break; // MESS-specific
+#if defined(QMC2_EMUTYPE_MAME)
+		case QMC2_MAME_ERROR_NO_SUCH_GAME: exitCodeText = tr("game doesn't exist"); break;
+#elif defined(QMC2_EMUTYPE_MESS)
+		case QMC2_MAME_ERROR_NO_SUCH_GAME: exitCodeText = tr("machine doesn't exist"); break;
+#endif
+		case QMC2_MAME_ERROR_INVALID_CONFIG: exitCodeText = tr("invalid configuration"); break;
+		case QMC2_MAME_ERROR_IDENT_NONROMS: exitCodeText = tr("identified all non-ROM files"); break;
+		case QMC2_MAME_ERROR_IDENT_PARTIAL: exitCodeText = tr("identified some files but not all"); break;
+		case QMC2_MAME_ERROR_IDENT_NONE: exitCodeText = tr("identified no files"); break;
+		case QMC2_MAME_ERROR_UNKNOWN: default: exitCodeText = tr("unknown error"); break;
+	}
+
+	if ( textOnly )
+		exitString = exitCodeText;
+	else
+		exitString = QString("%1 (%2)").arg(exitCode).arg(exitCodeText);
+
+	return exitString;
 }
