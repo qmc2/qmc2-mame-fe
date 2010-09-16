@@ -15,6 +15,7 @@ class ProcessManager : public QObject
     QMap<QProcess *, ushort> procMap;
     ushort procCount;
     QString lastCommand;
+    QString exitString;
 #if QMC2_USE_PHONON_API
     bool musicWasPlaying;
     bool sentPlaySignal;
@@ -23,7 +24,7 @@ class ProcessManager : public QObject
     ProcessManager(QWidget *parent = 0);
     ~ProcessManager();
 
-    int start(QString &, QStringList &, bool autoConnect = TRUE, QString workDir = QString());
+    int start(QString &, QStringList &, bool autoConnect = true, QString workDir = QString());
     QProcess *process(ushort);
     QString readStandardOutput(QProcess *);
     QString readStandardOutput(ushort);
@@ -33,6 +34,7 @@ class ProcessManager : public QObject
     void terminate(ushort);
     void kill(QProcess *);
     void kill(ushort);
+    QString &exitCodeString(int, bool textOnly = false);
 
   public slots:
     void started();
