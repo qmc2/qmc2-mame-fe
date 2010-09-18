@@ -2834,12 +2834,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="912"/>
         <source>WARNING: couldn&apos;t find game information for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível encontrar informações do jogo para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="914"/>
         <source>WARNING: couldn&apos;t find machine information for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível encontrar informações de máquina para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="928"/>
@@ -5710,7 +5710,7 @@ Você realmente quer verificar o estado de todas as ROMs agora?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3506"/>
         <source>WARNING: no matching window for emulator #%1 found</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: nenhuma janela para o emulador #%1 encontrada</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3512"/>
@@ -7697,17 +7697,17 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3407"/>
         <source>emulator #%1 is already embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador #%1 já está embutido</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3447"/>
         <source>WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: múltiplas janelas para o emulador #%1 encontradas, escolhando ID de janela %2 para embutir</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3455"/>
         <source>embedding emulator #%1, window ID = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>embutindo emulador #%1, ID da janela = %2</translation>
     </message>
 </context>
 <context>
@@ -10869,62 +10869,62 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../procmgr.cpp" line="318"/>
         <source>no error</source>
-        <translation type="unfinished"></translation>
+        <translation>nenhum erro</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="319"/>
         <source>failed validity checks</source>
-        <translation type="unfinished"></translation>
+        <translation>checagens de validade falharam</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="320"/>
         <source>missing files</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivos faltantes</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="321"/>
         <source>fatal error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro fatal</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="322"/>
         <source>device initialization error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro na inicialização do dispositivo</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="324"/>
         <source>game doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>jogo não existe</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="326"/>
         <source>machine doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>máquina  não existe</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="328"/>
         <source>invalid configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>configuração inválida</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="329"/>
         <source>identified all non-ROM files</source>
-        <translation type="unfinished"></translation>
+        <translation>todos os arquivos não-ROM identificados</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="330"/>
         <source>identified some files but not all</source>
-        <translation type="unfinished"></translation>
+        <translation>nem todos os arquivos foram identificados</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="331"/>
         <source>identified no files</source>
-        <translation type="unfinished"></translation>
+        <translation>nenhum arquivo identificado</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="332"/>
         <source>unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation>erro desconhecido</translation>
     </message>
 </context>
 <context>
@@ -11471,7 +11471,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="576"/>
         <source>ROM</source>
-        <translation type="unfinished">ROM</translation>
+        <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="587"/>
