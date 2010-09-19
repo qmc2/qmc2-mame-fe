@@ -223,7 +223,8 @@ QString qmc2DefaultStyle;
 QSocketNotifier *qmc2FifoNotifier = NULL;
 bool qmc2ShowGameName = FALSE;
 bool qmc2ShowGameNameOnlyWhenRequired = TRUE;
-QMutex qmc2LogMutex;
+QMutex qmc2LogFrontendMutex;
+QMutex qmc2LogEmulatorMutex;
 QString qmc2FileEditStartPath = "";
 QString qmc2DirectoryEditStartPath = "";
 QNetworkAccessManager *qmc2NetworkAccessManager = NULL;
@@ -246,13 +247,13 @@ void MainWindow::log(char logOrigin, QString message)
 
   QString timeString = QTime::currentTime().toString("hh:mm:ss.zzz");
 
-  qmc2LogMutex.lock();
   // count subsequent message duplicates
   switch ( logOrigin ) {
     case QMC2_LOG_FRONTEND:
+      qmc2LogFrontendMutex.lock();
       if ( message == qmc2LastFrontendLogMessage ) {
         qmc2FrontendLogMessageRepeatCount++;
-        qmc2LogMutex.unlock();
+	qmc2LogFrontendMutex.unlock();
         return;
       } else {
         qmc2LastFrontendLogMessage = message;
@@ -263,9 +264,10 @@ void MainWindow::log(char logOrigin, QString message)
       break;
 
     case QMC2_LOG_EMULATOR:
+      qmc2LogEmulatorMutex.lock();
       if ( message == qmc2LastEmulatorLogMessage ) {
         qmc2EmulatorLogMessageRepeatCount++;
-        qmc2LogMutex.unlock();
+        qmc2LogEmulatorMutex.unlock();
         return;
       } else {
         qmc2LastEmulatorLogMessage = message;
@@ -286,14 +288,14 @@ void MainWindow::log(char logOrigin, QString message)
       textBrowserFrontendLog->append(msg);
       if ( !qmc2FrontendLogFile )
         if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", "data/log/qmc2.log").toString(), this)) == NULL ) {
-          qmc2LogMutex.unlock();
+          qmc2LogFrontendMutex.unlock();
           return;
         }
       if ( qmc2FrontendLogFile->handle() == -1 ) {
         if ( qmc2FrontendLogFile->open(QIODevice::WriteOnly | QIODevice::Text) )
           qmc2FrontendLogStream.setDevice(qmc2FrontendLogFile);
         else {
-          qmc2LogMutex.unlock();
+          qmc2LogFrontendMutex.unlock();
           return;
         }
       }
@@ -309,7 +311,7 @@ void MainWindow::log(char logOrigin, QString message)
 #elif defined(QMC2_EMUTYPE_MESS)
         if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value("MESS/FilesAndDirectories/LogFile", "data/log/mess.log").toString(), this)) == NULL ) {
 #endif
-          qmc2LogMutex.unlock();
+          qmc2LogEmulatorMutex.unlock();
           return;
         }
       }
@@ -317,7 +319,7 @@ void MainWindow::log(char logOrigin, QString message)
         if ( qmc2EmulatorLogFile->open(QIODevice::WriteOnly | QIODevice::Text) )
           qmc2EmulatorLogStream.setDevice(qmc2EmulatorLogFile);
         else {
-          qmc2LogMutex.unlock();
+          qmc2LogEmulatorMutex.unlock();
           return;
         }
       }
@@ -329,7 +331,8 @@ void MainWindow::log(char logOrigin, QString message)
       break;
   }
 
-  qmc2LogMutex.unlock();
+  qmc2LogFrontendMutex.unlock();
+  qmc2LogEmulatorMutex.unlock();
 }
 
 MainWindow::MainWindow(QWidget *parent)
