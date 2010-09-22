@@ -419,4 +419,8 @@
 #define	QMC2_MAME_ERROR_IDENT_NONE	9	// identified no files
 #define	QMC2_MAME_ERROR_UNKNOWN		-1	// unknown exit code
 
+// exchangable (de)compression routines
+#define QMC2_COMPRESS(data)		qCompress((data))
+#define QMC2_UNCOMPRESS(data)		qUncompress((data))
+
 #endif

@@ -2862,7 +2862,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
               if ( !qmc2MAWSCache.contains(gameName) ) {
 #if defined(QMC2_WC_COMPRESSION_ENABLED)
                 QString mawsCacheData = ts.read(QMC2_ONE_MEGABYTE);
-                qmc2MAWSLookup->webViewBrowser->setHtml(QString(qUncompress(mawsCacheData.toLatin1())), QUrl(mawsUrl));
+                qmc2MAWSLookup->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(mawsCacheData.toLatin1())), QUrl(mawsUrl));
 #else
                 QString mawsCacheData = ts.read(16 * QMC2_ONE_MEGABYTE);
                 qmc2MAWSLookup->webViewBrowser->setHtml(mawsCacheData, QUrl(mawsUrl));
@@ -2885,7 +2885,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
                                     QUrl(mawsUrl));
             qmc2MAWSLookup->webViewBrowser->load(QUrl(mawsUrl));
           } else {
-            qmc2MAWSLookup->webViewBrowser->setHtml(QString(qUncompress(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
+            qmc2MAWSLookup->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2MAWSCache[gameName])), QUrl(mawsUrl));
             if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/QuickDownload", TRUE).toBool() )
               QTimer::singleShot(QMC2_MAWS_QDL_DELAY, this, SLOT(createMawsQuickLinksMenu()));
           }
@@ -3055,13 +3055,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
               QString gameInfoText;
 #if defined(QMC2_EMUTYPE_MESS)
               if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() )
-                gameInfoText = QString(qUncompress(*newGameInfo));
+                gameInfoText = QString(QMC2_UNCOMPRESS(*newGameInfo));
               else
                 gameInfoText = QString(*newGameInfo);
               textBrowserGameInfo->setHtml(messWikiToHtml(gameInfoText));
 #else
               if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() )
-                gameInfoText = QString(qUncompress(*newGameInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
+                gameInfoText = QString(QMC2_UNCOMPRESS(*newGameInfo)).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
               else
                 gameInfoText = QString(*newGameInfo).replace(QRegExp(QString("((http|https|ftp)://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>"));
               textBrowserGameInfo->setHtml(gameInfoText);
@@ -3109,7 +3109,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           if ( updateInfo ) {
             if ( newEmuInfo ) {
               if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool() )
-                textBrowserEmuInfo->setHtml(QString(qUncompress(*newEmuInfo)).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
+                textBrowserEmuInfo->setHtml(QString(QMC2_UNCOMPRESS(*newEmuInfo)).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
               else
                 textBrowserEmuInfo->setHtml(QString(*newEmuInfo).replace(QRegExp(QString("(\\w+://%1)").arg(urlSectionRegExp)), QLatin1String("<a href=\"\\1\">\\1</a>")));
             } else
@@ -4998,7 +4998,7 @@ void MainWindow::loadGameInfoDB()
               gameInfoString.remove(gameInfoString.length() - 3, gameInfoString.length() - 1);
             QByteArray *gameInfo;
             if ( compressData )
-              gameInfo = new QByteArray(qCompress(gameInfoString.toAscii())); 
+              gameInfo = new QByteArray(QMC2_COMPRESS(gameInfoString.toAscii())); 
             else
               gameInfo = new QByteArray(gameInfoString.toAscii());
             int i;
@@ -5152,7 +5152,7 @@ void MainWindow::loadEmuInfoDB()
               emuInfoString.remove(emuInfoString.length() - 3, emuInfoString.length() - 1);
             QByteArray *emuInfo;
             if ( compressData )
-              emuInfo = new QByteArray(qCompress(emuInfoString.toAscii())); 
+              emuInfo = new QByteArray(QMC2_COMPRESS(emuInfoString.toAscii())); 
             else
               emuInfo = new QByteArray(emuInfoString.toAscii());
             int i;
@@ -6737,7 +6737,7 @@ void MainWindow::mawsLoadFinished(bool ok)
       }
 
       // store compressed page to in-memory cache
-      QByteArray mawsData = qCompress(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
+      QByteArray mawsData = QMC2_COMPRESS(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
       if ( qmc2MAWSCache.contains(gameName) ) {
         qmc2MAWSCache.remove(gameName);
 #ifdef QMC2_DEBUG
