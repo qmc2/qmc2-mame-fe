@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b17, 19-SEP-2010</h3>
+<h3>CHANGES - v0.2.b17, 23-SEP-2010</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b17, 19-SEP-2010:</b></p>
+<p><b>v0.2.b17, 23-SEP-2010:</b></p>
 <ul>
   <li>fix: embedder snapshot tool: the first snapshot clicked wasn't displayed in the viewer</li>
   <li>fix: demo mode and ROM checks aren't allowed to run at the same time (would crash); additional emulators shouldn't be launched while in demo mode -- both will be avoided now</li>
@@ -50,7 +50,7 @@ inf: informational only
   <li>new: added generic support to drive a <i>ROM tool</i> for any external processing based on the game/machine ID (<i>$ID$</i>) or description (<i>$DESCRIPTION$</i>)</li>
   <li>new: URLs in the game/machine and emulator info DBs are now directly clickable (opening the URL in the desktop's default browser, if any)</li>
   <li>new: MESS targets only: MESS wiki texts from sysinfo.dat are now converted to HTML (far from perfect, but basically working fine)</li>
-  <li>new: support for Qt 4.7 (tested with 4.7.0-RC1 -- first time that browser plugins appear to work nicely, so you could enable the compile-time option BROWSER_PLUGINS in this case)</a></li>
+  <li>new: experimental support for Qt 4.7 -- browser plugins appear to work nicely using Qt 4.7, so you could enable the compile-time option BROWSER_PLUGINS in this case; however, there's at least one embedder-related issue left: toggling the embedder options will lead to a <i>black screen</i> for the embedded emulator's window, but only the first time it is used -- strange!)</a></li>
   <li>wip: MESS targets only: completing the support for MESS software lists -- basically working, but some functionality is still missing</li>
   <li>wip: started to add support for an optional ROM/CHD database, a repository to store and retrieve unique copies of ROM and CHD data</li>
   <li>wip: added the current template-tool wip to the SVN trunk</li>
