@@ -1027,6 +1027,25 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
         gamePos++;
       }
     }
+    if ( element.contains("<configuration ") ) {
+      childItem = new QTreeWidgetItem(item);
+      childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Configuration"));
+      childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name", TRUE));
+
+      gamePos++;
+      while ( xmlLines[gamePos].contains("<confsetting ") ) {
+        QString subElement = xmlLines[gamePos].simplified();
+        QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
+        secondChildItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Setting"));
+        secondChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "name", TRUE));
+        attributes.clear();
+        attributes << "value" << "default";
+        descriptions.clear();
+        descriptions << tr("Value") << tr("Default");
+        insertAttributeItems(secondChildItem, subElement, attributes, descriptions, TRUE);
+        gamePos++;
+      }
+    }
     if ( element.contains("<driver ") ) {
       childItem = new QTreeWidgetItem(item);
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Driver"));
