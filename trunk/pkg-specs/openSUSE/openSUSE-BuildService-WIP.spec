@@ -30,7 +30,7 @@ mv %{name} sdlmess
 pushd sdlmess
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
+    EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 OPENGL=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3 \
     WIP=1 DATABASE=1
 popd
@@ -38,7 +38,7 @@ popd
 pushd sdlmame
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
+    EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 OPENGL=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3 \
     WIP=1 DATABASE=1
 popd
@@ -48,8 +48,8 @@ rm -rf $RPM_BUILD_ROOT
 
 pushd sdlmess
 make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
-    PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
+    PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 OPENGL=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3 \
     WIP=1 DATABASE=1
 popd
@@ -59,8 +59,8 @@ rm -f $RPM_BUILD_ROOT%{_sysconfdir}/qmc2/qmc2.ini
 
 pushd sdlmame
 make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
-    PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
+    PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 OPENGL=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3 \
     WIP=1 DATABASE=1
 popd
