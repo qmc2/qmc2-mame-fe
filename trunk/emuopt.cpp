@@ -990,17 +990,27 @@ void EmulatorOptions::searchTimeout()
 void EmulatorOptions::exportToIni(bool global, QString useFileName)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::exportToIni(QString useFileName = %1)").arg(useFileName));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::exportToIni(bool global = %1, QString useFileName = %2)").arg(global).arg(useFileName));
 #endif
 
   static QBrush redBrush(QColor(255, 0, 0));
   static QBrush greenBrush(QColor(0, 255, 0));
 
 #if defined(QMC2_EMUTYPE_MAME)
-  QStringList iniPaths = qmc2Config->value("MAME/Configuration/Global/inipath").toString().split(";");
+  QStringList iniPaths = qmc2Config->value("MAME/Configuration/Global/inipath").toString().split(";", QString::SkipEmptyParts);
 #elif defined(QMC2_EMUTYPE_MESS)
-  QStringList iniPaths = qmc2Config->value("MESS/Configuration/Global/inipath").toString().split(";");
+  QStringList iniPaths = qmc2Config->value("MESS/Configuration/Global/inipath").toString().split(";", QString::SkipEmptyParts);
 #endif
+  if ( iniPaths.isEmpty() ) {
+    // lookup default value for inipath
+    foreach (QString sectionTitle, qmc2GlobalEmulatorOptions->optionsMap.keys() ) {
+      for (int optionPos = 0; optionPos < qmc2GlobalEmulatorOptions->optionsMap[sectionTitle].count() && iniPaths.isEmpty(); optionPos++) {
+        if ( qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][optionPos].name == "inipath" ) {
+          iniPaths = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][optionPos].dvalue.split(";", QString::SkipEmptyParts);
+        }
+      }
+    }
+  }
   QStringList writableIniPaths;
   QStringList fileNames;
 
@@ -1091,28 +1101,19 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
         switch ( optionsMap[sectionTitle][i].type ) {
           case QMC2_EMUOPT_TYPE_INT: {
             int v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toInt();
-            if ( qmc2GlobalEmulatorOptions == this )
-              ts << optionsMap[sectionTitle][i].name << " " << v << "\n";
-            else
-              ts << optionsMap[sectionTitle][i].name << " " << v << "\n";
+            ts << optionsMap[sectionTitle][i].name << " " << v << "\n";
             break;
           }
 
           case QMC2_EMUOPT_TYPE_FLOAT: {
             double v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toDouble();
-            if ( qmc2GlobalEmulatorOptions == this )
-              ts << optionsMap[sectionTitle][i].name << " " << v << "\n";
-            else
-              ts << optionsMap[sectionTitle][i].name << " " << v << "\n";
+            ts << optionsMap[sectionTitle][i].name << " " << v << "\n";
             break;
           }
 
           case QMC2_EMUOPT_TYPE_BOOL: {
             bool v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toBool();
-            if ( qmc2GlobalEmulatorOptions == this )
-              ts << optionsMap[sectionTitle][i].name << " " << (v ? "1" : "0") << "\n";
-            else
-              ts << optionsMap[sectionTitle][i].name << " " << (v ? "1" : "0") << "\n";
+            ts << optionsMap[sectionTitle][i].name << " " << (v ? "1" : "0") << "\n";
             break;
           }
 
@@ -1121,11 +1122,7 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
           case QMC2_EMUOPT_TYPE_STRING:
           default: {
             QString v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toString();
-            v = v.replace("~", "$HOME");
-            if ( qmc2GlobalEmulatorOptions == this )
-              ts << optionsMap[sectionTitle][i].name << " " << v << "\n";
-            else
-              ts << optionsMap[sectionTitle][i].name << " " << v << "\n";
+            ts << optionsMap[sectionTitle][i].name << " " << v.replace("~", "$HOME") << "\n";
             break;
           }
         }
@@ -1145,17 +1142,27 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
 void EmulatorOptions::importFromIni(bool global, QString useFileName)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::importFromIni(QString useFileName = %1)").arg(useFileName));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::importFromIni(bool global = %1, QString useFileName = %2)").arg(global).arg(useFileName));
 #endif
 
   static QBrush redBrush(QColor(255, 0, 0));
   static QBrush greenBrush(QColor(0, 255, 0));
 
 #if defined(QMC2_EMUTYPE_MAME)
-  QStringList iniPaths = qmc2Config->value("MAME/Configuration/Global/inipath").toString().split(";");
+  QStringList iniPaths = qmc2Config->value("MAME/Configuration/Global/inipath").toString().split(";", QString::SkipEmptyParts);
 #elif defined(QMC2_EMUTYPE_MESS)
-  QStringList iniPaths = qmc2Config->value("MESS/Configuration/Global/inipath").toString().split(";");
+  QStringList iniPaths = qmc2Config->value("MESS/Configuration/Global/inipath").toString().split(";", QString::SkipEmptyParts);
 #endif
+  if ( iniPaths.isEmpty() ) {
+    // lookup default value for inipath
+    foreach (QString sectionTitle, qmc2GlobalEmulatorOptions->optionsMap.keys() ) {
+      for (int optionPos = 0; optionPos < qmc2GlobalEmulatorOptions->optionsMap[sectionTitle].count() && iniPaths.isEmpty(); optionPos++) {
+        if ( qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][optionPos].name == "inipath" ) {
+          iniPaths = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][optionPos].dvalue.split(";", QString::SkipEmptyParts);
+        }
+      }
+    }
+  }
   QStringList readableIniPaths;
   QStringList fileNames;
 
@@ -1252,7 +1259,6 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
 
           // lookup option in map
           QString sectionTitle, sectionTitleFound = "";
-          EmulatorOption mameOpt;
           int optionPos, optionPosFound = -1;
           foreach ( sectionTitle, optionsMap.keys() ) {
             for (optionPos = 0; optionPos < optionsMap[sectionTitle].count() && optionPosFound == -1; optionPos++ ) {
