@@ -1,3 +1,10 @@
+qmc2 (0.2.b17+ppa1~maverick0) maverick; urgency=low
+
+  * New Upstream Release
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Sun, 16 Oct 2010 22:30:00 -0300
+
+
 qmc2 (0.2.b16+ppa1~lucid0) lucid; urgency=low
 
   * New Upstream Release
