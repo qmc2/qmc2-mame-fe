@@ -1554,7 +1554,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="126"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished">proszę poczekać za zakończenie weryfikacji ROM-ów i spróbować ponownie</translation>
+        <translation>proszę poczekać za zakończenie weryfikacji ROM-u i spróbować ponownie</translation>
     </message>
     <message numerus="yes">
         <location filename="../../demomode.cpp" line="157"/>
@@ -1857,7 +1857,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="96"/>
         <source>Softwar&amp;e list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista &amp;oprogramowania</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="97"/>
@@ -2600,12 +2600,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="912"/>
         <source>WARNING: couldn&apos;t find game information for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie udało się znaleźć informacji o grze &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="914"/>
         <source>WARNING: couldn&apos;t find machine information for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie udało się znaleźć informacji o maszynie &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="928"/>
@@ -2794,17 +2794,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1032"/>
         <source>Configuration</source>
-        <translation type="unfinished">Konfiguracja</translation>
+        <translation>Konfiguracja</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1039"/>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawienie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1044"/>
         <source>Value</source>
-        <translation type="unfinished">Wartość</translation>
+        <translation>Wartość</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1051"/>
@@ -2879,22 +2879,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1085"/>
         <source>Adjuster</source>
-        <translation type="unfinished"></translation>
+        <translation>Regulator</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1095"/>
         <source>Software list</source>
-        <translation type="unfinished">Lista oprogramowania</translation>
+        <translation>Lista oprogramowania</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1100"/>
         <source>Category</source>
-        <translation type="unfinished">Kategoria</translation>
+        <translation>Kategoria</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1107"/>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Element</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1198"/>
@@ -5074,7 +5074,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="1403"/>
         <source>Softwar&amp;e list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista &amp;oprogramowania</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1441"/>
@@ -5266,18 +5266,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="3133"/>
         <source>Run external ROM tool...</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom zewnętrzne narzędzie do obsługi ROM-ów...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3136"/>
         <location filename="../../qmc2main.ui" line="3139"/>
         <source>Run tool to process ROM data externally</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom narzędzie, aby przetworzyć dane ROM-ów zewnętrznie</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3142"/>
         <source>F9</source>
-        <translation type="unfinished"></translation>
+        <translation>F9</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="637"/>
@@ -5870,7 +5870,7 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
         <location filename="../../qmc2main.cpp" line="3071"/>
         <location filename="../../qmc2main.cpp" line="3078"/>
         <source>&lt;p&gt;No data available&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Brak danych&lt;p&gt;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3457"/>
@@ -5886,7 +5886,7 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3509"/>
         <source>WARNING: no matching window for emulator #%1 found</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie znaleziono okna odpowiadającego emulatorowi #%1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3515"/>
@@ -5964,7 +5964,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4409"/>
         <source>saving current machine&apos;s favorite software</source>
-        <translation type="unfinished"></translation>
+        <translation>zapisywanie ulubionego oprogramowania bieżącej maszyny</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4417"/>
@@ -7415,8 +7415,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -7734,17 +7732,17 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3410"/>
         <source>emulator #%1 is already embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>emulator #%1 jest już osadzony</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3450"/>
         <source>WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: znaleziono wiele okien dla emulatora #%1, wybrano okno o ID %2 do osadzenia</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3458"/>
         <source>embedding emulator #%1, window ID = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>osadzanie emulatora #%1, ID okna = %2</translation>
     </message>
 </context>
 <context>
@@ -8694,17 +8692,17 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="3152"/>
         <source>Zip tool argument list to remove entries from the ZIP archive (i. e. &quot;$ARCHIVE$ -d $FILELIST$&quot;)</source>
-        <translation>Parametr narzędzia zip do usunięcia wpisów z archiwum ZIP (to jest &quot;$ARCHIVE$ -d $FILELIST$&quot;)</translation>
+        <translation>Parametr narzędzia zip do usunięcia wpisów z archiwum ZIP (np. &quot;$ARCHIVE$ -d $FILELIST$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3162"/>
         <source>File removal tool</source>
-        <translation>Narzędzie usuwania plików</translation>
+        <translation>Narzędzie usuwające pliki</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3218"/>
         <source>File removal tool argument list (i. e. &quot;-f -v $FILELIST$&quot;)</source>
-        <translation>Lista parametrów narzędzia usuwania plików (to jest &quot;-f -v $FILELIST$&quot;)</translation>
+        <translation>Lista parametrów narzędzia usuwającego pliki (np. &quot;-f -v $FILELIST$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3139"/>
@@ -8723,7 +8721,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="3434"/>
         <source>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;UWAGA: zapisane hasła są &lt;u&gt;słabo&lt;/u&gt; zaszyfrowane!&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3455"/>
@@ -8924,47 +8922,47 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="3067"/>
         <source>Proxy / &amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Pośrednik / Narzę&amp;dzia</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3241"/>
         <source>ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Narzędzie do obsługi ROM-ów</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3260"/>
         <source>External ROM tool (it&apos;s completely up to you...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zewnętrzne narzędzie do obsługi ROM-ów (masz wolny wybór...)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3273"/>
         <source>Browse ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż narzędzie do obsługo ROM-ów</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3297"/>
         <source>ROM tool argument list (i. e. &quot;$ID$ $DESCRIPTION$&quot;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista parametrów narzędzia do obsługi ROM-ów (np. &quot;$ID$ $DESCRIPTION$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3307"/>
         <source>Copy the tool&apos;s output to the front end log (keeping it for debugging)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiowanie wyjścia narzędzia do dziennika interfejsu (w celu debugowania)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3310"/>
         <source>Copy tool output to front end log</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj wyjście narzędzia do dziennika interfejsu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3317"/>
         <source>Automatically close the tool-executor dialog when the external process finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczne zamykanie okna dialogowego wykonawcy narzędzia po zakończeniu zewnętrznego procesu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3320"/>
         <source>Close dialog automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij okno dialogowe automatycznie</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3596"/>
@@ -9221,7 +9219,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="272"/>
         <source>Run external ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom zewnętrzne narzędzie do obsługi ROM-ów</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="290"/>
@@ -9504,12 +9502,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="2201"/>
         <source>Choose file removal tool</source>
-        <translation>Wybierz narzędzie usuwania plików</translation>
+        <translation>Wybierz narzędzie usuwające pliki</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2213"/>
         <source>Choose ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz narzędzie do obsługi ROM-ów</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2225"/>
@@ -9594,12 +9592,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="3115"/>
         <source>External zip tool, i.e. &quot;zip&quot; (read and execute)</source>
-        <translation>Zewnętrzne narzędzie zip, to jest &quot;zip&quot; (odczyt i wykonanie)</translation>
+        <translation>Zewnętrzne narzędzie zip, np. &quot;zip&quot; (odczyt i wykonanie)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3181"/>
         <source>External file removal tool, i.e. &quot;rm&quot; (read and execute)</source>
-        <translation>Zewnętrzne narzędzie usuwania plików, to jest &quot;rm&quot; (odczyt i wykonanie)</translation>
+        <translation>Zewnętrzne narzędzie usuwające pliki, np. &quot;rm&quot; (odczyt i wykonanie)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3535"/>
@@ -10871,62 +10869,62 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../procmgr.cpp" line="318"/>
         <source>no error</source>
-        <translation type="unfinished"></translation>
+        <translation>bez błędu</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="319"/>
         <source>failed validity checks</source>
-        <translation type="unfinished"></translation>
+        <translation>nie powiodły się testy walidacji</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="320"/>
         <source>missing files</source>
-        <translation type="unfinished"></translation>
+        <translation>brakujące pliki</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="321"/>
         <source>fatal error</source>
-        <translation type="unfinished"></translation>
+        <translation>błąd krytyczny</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="322"/>
         <source>device initialization error</source>
-        <translation type="unfinished"></translation>
+        <translation>błąd inicjalizacji urządzenia</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="324"/>
         <source>game doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>gra nie istnieje</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="326"/>
         <source>machine doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>maszyna nie istnieje</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="328"/>
         <source>invalid configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>nieprawidłowa konfiguracja</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="329"/>
         <source>identified all non-ROM files</source>
-        <translation type="unfinished"></translation>
+        <translation>zidentyfikowano wszystkie pliki nie będące ROM-ami</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="330"/>
         <source>identified some files but not all</source>
-        <translation type="unfinished"></translation>
+        <translation>zidentyfikowano niektóre pliki, jednakże nie wszystkie</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="331"/>
         <source>identified no files</source>
-        <translation type="unfinished"></translation>
+        <translation>nie zidentyfikowano żadnych plików</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="332"/>
         <source>unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation>nieznany błąd</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="174"/>
@@ -11209,22 +11207,22 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="1599"/>
         <source>Choose local DB output path</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz ścieżkę wyjściową lokalnej bazy danych</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1561"/>
         <source>Connection check -- succeeded!</source>
-        <translation type="unfinished"></translation>
+        <translation>Test połączenia -- udany!</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1571"/>
         <source>Connection check -- failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Test połączenia -- nieudany!</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1562"/>
         <source>database connection check successful</source>
-        <translation type="unfinished"></translation>
+        <translation>test połączenia z bazą danych powiódł się</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1388"/>
@@ -11330,107 +11328,107 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.ui" line="550"/>
         <source>Enable ROM database support (repository access may be slow)</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz obsługę bazy danych ROM-ów (dostęp do repozytorium może być wolny)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="631"/>
         <source>Server / IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Serwer / IP</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="624"/>
         <source>Name or IP address of the database server</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa lub adres IP serwera bazy danych</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="559"/>
         <source>Driver</source>
-        <translation type="unfinished">Sterownik</translation>
+        <translation>Sterownik</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="566"/>
         <source>Port</source>
-        <translation type="unfinished">Port</translation>
+        <translation>Port</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="582"/>
         <source>default</source>
-        <translation type="unfinished"></translation>
+        <translation>domyślny</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="638"/>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa użytkownika</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="651"/>
         <source>Username used to access the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa użytkownika używana do dostępu do bazy danych</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="713"/>
         <source>Password</source>
-        <translation type="unfinished">Hasło</translation>
+        <translation>Hasło</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="727"/>
         <source>Automatically download missing / bad files from the database (if they are available in the repository)</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczne pobieranie brakujących / uszkodzonych plików z bazy danych (jeśli są dostępne w repozytorium)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="730"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobierz</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="737"/>
         <source>Automatically upload good files to the database (if they are missing in the repository)</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczne wysyłanie dobrych plików do bazy danych (jeśli nie ma ich w repozytorium)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="601"/>
         <source>SQL driver to use</source>
-        <translation type="unfinished"></translation>
+        <translation>Używany sterownik SQL</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="605"/>
         <source>MySQL</source>
-        <translation type="unfinished"></translation>
+        <translation>MySQL</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="610"/>
         <source>SQLite</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLite</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="664"/>
         <source>Check the connection to the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Proszę sprawdzić połączenie z bazą danych</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="756"/>
         <source>Overwrite existing data in the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Nadpisz dane istniejące w bazie danych</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="759"/>
         <source>Overwrite</source>
-        <translation type="unfinished"></translation>
+        <translation>Nadpisz</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="766"/>
         <source>Output path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka wyjściowa</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="779"/>
         <source>Local output directory where downloaded ROMs &amp; CHDs will be created (WARNING: existing files will be overwritten!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokalny katalog wyjściowy, w którym będą zapisane pobrane ROM-y i CHD (UWAGA: istniejące pliki zostaną nadpisane!)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="792"/>
         <source>Browse local output directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż lokalny katalog wyjściowy</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="815"/>
@@ -11455,18 +11453,18 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.ui" line="706"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="699"/>
         <source>Name of the database on the server</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa bazy danych na serwerze</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1588"/>
         <location filename="../../romalyzer.ui" line="670"/>
         <source>Connection check</source>
-        <translation type="unfinished"></translation>
+        <translation>Test połączenia</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="835"/>
@@ -11655,7 +11653,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="576"/>
         <source>ROM</source>
-        <translation type="unfinished">ROM</translation>
+        <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="587"/>
@@ -11808,7 +11806,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="1572"/>
         <source>database connection check failed -- errorNumber = %1, errorText = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>test połączenia z bazą danych nieudany -- numer błędu = %1, treść błędu = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="459"/>
@@ -12213,22 +12211,22 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.ui" line="579"/>
         <source>Database server port (0 = default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Port serwera bazy danych (0 = domyślny)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="683"/>
         <source>Password used to access the database (WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasło używane do dostępu do bazy danych (UWAGA: zapisane hasła są &lt;u&gt;słabo&lt;/u&gt; zaszyfrowane!)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="720"/>
         <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryb</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="740"/>
         <source>Upload</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyślij</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="382"/>
@@ -13316,7 +13314,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../toolexec.cpp" line="80"/>
         <location filename="../../toolexec.cpp" line="127"/>
         <source>tool control: </source>
-        <translation type="unfinished"></translation>
+        <translation>sterowanie narzędziem: </translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="78"/>
@@ -13328,17 +13326,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../toolexec.cpp" line="99"/>
         <location filename="../../toolexec.cpp" line="115"/>
         <source>tool output: </source>
-        <translation type="unfinished"></translation>
+        <translation>wyjście narzędzia: </translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="99"/>
         <source>stdout: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>stdout: %1</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="115"/>
         <source>stderr: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>stderr: %1</translation>
     </message>
     <message>
         <location filename="../../toolexec.cpp" line="125"/>
