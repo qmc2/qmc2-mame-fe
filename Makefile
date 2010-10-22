@@ -471,7 +471,7 @@ PROJECT = qmc2
 # version
 VERSION_MAJOR = 0
 VERSION_MINOR = 2
-VERSION_BETA  = 17
+VERSION_BETA  = 18
 
 # emulator target fallback for mameuifx32
 ifeq '$(EMULATOR)' 'MAMEUIFX32'
