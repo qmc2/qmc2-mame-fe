@@ -91,7 +91,7 @@ void Welcome::on_pushButtonOkay_clicked()
       if ( !lineEditROMPath->text().isEmpty() )
         startupConfig->setValue("MESS/Configuration/Global/rompath", lineEditROMPath->text());
       if ( !lineEditHashPath->text().isEmpty() )
-        startupConfig->setValue("MAME/Configuration/Global/hashpath", lineEditHashPath->text());
+        startupConfig->setValue("MESS/Configuration/Global/hashpath", lineEditHashPath->text());
 #endif
       startupConfig->sync();
       delete startupConfig;
