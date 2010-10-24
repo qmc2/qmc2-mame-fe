@@ -1,3 +1,10 @@
+qmc2 (0.2.b17+ppa1~maverick3) maverick; urgency=low
+
+  * Added missing dependency for libqt4-test
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Sun, 24 Oct 2010 22:30:00 -0300
+
+
 qmc2 (0.2.b17+ppa1~maverick0) maverick; urgency=low
 
   * New Upstream Release
