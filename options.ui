@@ -849,8 +849,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>198</width>
-                <height>518</height>
+                <width>1623</width>
+                <height>517</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2107,8 +2107,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>458</width>
-                <height>184</height>
+                <width>1640</width>
+                <height>480</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2513,8 +2513,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>265</width>
-                <height>45</height>
+                <width>1640</width>
+                <height>480</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2626,8 +2626,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>376</width>
-                <height>246</height>
+                <width>1640</width>
+                <height>480</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3083,8 +3083,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>532</width>
-                <height>463</height>
+                <width>1640</width>
+                <height>480</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3486,8 +3486,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>189</width>
-                <height>308</height>
+                <width>532</width>
+                <height>463</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3930,8 +3930,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>127</width>
-                <height>193</height>
+                <width>532</width>
+                <height>463</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22">
@@ -3978,6 +3978,11 @@
                  <column>
                   <property name="text">
                    <string>Executable</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Working directory</string>
                   </property>
                  </column>
                  <column>
@@ -4076,14 +4081,14 @@
                  </property>
                 </widget>
                </item>
-               <item row="4" column="0" colspan="4">
+               <item row="5" column="0" colspan="4">
                 <widget class="QLabel" name="labelAdditionalEmulatorArguments">
                  <property name="text">
                   <string>Arguments</string>
                  </property>
                 </widget>
                </item>
-               <item row="4" column="4" colspan="2">
+               <item row="5" column="4" colspan="2">
                 <widget class="QLineEdit" name="lineEditAdditionalEmulatorArguments">
                  <property name="toolTip">
                   <string>Arguments passed to the emulator -- use $ID$ as a placeholder for the unique game/machine ID (its short name)</string>
@@ -4104,6 +4109,40 @@
                  <property name="icon">
                   <iconset resource="qmc2.qrc">
                    <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="4">
+                <widget class="QLabel" name="labelAdditionalEmulatorWorkingDirectory">
+                 <property name="text">
+                  <string>Working directory</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="4">
+                <widget class="QLineEdit" name="lineEditAdditionalEmulatorWorkingDirectory">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Working directory that's used when the emulator is executed (if empty, QMC2's current working directory is used)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="5">
+                <widget class="QToolButton" name="toolButtonBrowseAdditionalEmulatorWorkingDirectory">
+                 <property name="toolTip">
+                  <string>Browse working directory</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qmc2.qrc">
+                   <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                  </property>
                 </widget>
                </item>
@@ -4376,20 +4415,22 @@
   <tabstop>lineEditAdditionalEmulatorName</tabstop>
   <tabstop>lineEditAdditionalEmulatorExecutableFile</tabstop>
   <tabstop>toolButtonBrowseAdditionalEmulatorExecutable</tabstop>
+  <tabstop>lineEditAdditionalEmulatorWorkingDirectory</tabstop>
+  <tabstop>toolButtonBrowseAdditionalEmulatorWorkingDirectory</tabstop>
   <tabstop>lineEditAdditionalEmulatorArguments</tabstop>
   <tabstop>pushButtonApply</tabstop>
   <tabstop>pushButtonRestore</tabstop>
   <tabstop>pushButtonDefault</tabstop>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonCancel</tabstop>
-  <tabstop>scrollAreaGUI</tabstop>
-  <tabstop>scrollAreaFrontendGamelist</tabstop>
   <tabstop>scrollAreaFrontendFilesAndDirectories</tabstop>
   <tabstop>scrollAreaFrontendShortcuts</tabstop>
   <tabstop>scrollAreaFrontendJoystick</tabstop>
   <tabstop>scrollAreaFrontendTools</tabstop>
   <tabstop>scrollAreaEmulatorFilesAndDirectories</tabstop>
   <tabstop>scrollAreaAdditionalEmulators</tabstop>
+  <tabstop>scrollAreaGUI</tabstop>
+  <tabstop>scrollAreaFrontendGamelist</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
@@ -4402,8 +4443,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>349</x>
-     <y>477</y>
+     <x>470</x>
+     <y>561</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
@@ -4418,8 +4459,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>434</x>
-     <y>477</y>
+     <x>556</x>
+     <y>561</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -4434,12 +4475,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>99</x>
-     <y>90</y>
+     <x>109</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>130</x>
-     <y>102</y>
+     <x>1637</x>
+     <y>89</y>
     </hint>
    </hints>
   </connection>
@@ -4450,8 +4491,8 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>71</x>
-     <y>92</y>
+     <x>81</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
      <x>130</x>
@@ -4466,12 +4507,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>57</x>
-     <y>90</y>
+     <x>67</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>120</x>
-     <y>102</y>
+     <x>130</x>
+     <y>216</y>
     </hint>
    </hints>
   </connection>
@@ -4482,12 +4523,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>113</x>
-     <y>92</y>
+     <x>123</x>
+     <y>86</y>
     </hint>
     <hint type="destinationlabel">
-     <x>128</x>
-     <y>102</y>
+     <x>99</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>
@@ -4498,12 +4539,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>130</x>
-     <y>102</y>
+     <x>145</x>
+     <y>201</y>
     </hint>
     <hint type="destinationlabel">
-     <x>130</x>
-     <y>102</y>
+     <x>217</x>
+     <y>203</y>
     </hint>
    </hints>
   </connection>
@@ -4514,12 +4555,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>173</x>
-     <y>576</y>
+     <x>183</x>
+     <y>639</y>
     </hint>
     <hint type="destinationlabel">
-     <x>467</x>
-     <y>576</y>
+     <x>523</x>
+     <y>639</y>
     </hint>
    </hints>
   </connection>
@@ -4530,12 +4571,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>189</x>
-     <y>554</y>
+     <x>199</x>
+     <y>613</y>
     </hint>
     <hint type="destinationlabel">
-     <x>467</x>
-     <y>554</y>
+     <x>523</x>
+     <y>613</y>
     </hint>
    </hints>
   </connection>
@@ -4546,12 +4587,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>157</x>
-     <y>510</y>
+     <x>167</x>
+     <y>562</y>
     </hint>
     <hint type="destinationlabel">
-     <x>467</x>
-     <y>510</y>
+     <x>523</x>
+     <y>562</y>
     </hint>
    </hints>
   </connection>
@@ -4562,12 +4603,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>166</x>
-     <y>532</y>
+     <x>176</x>
+     <y>587</y>
     </hint>
     <hint type="destinationlabel">
-     <x>467</x>
-     <y>532</y>
+     <x>523</x>
+     <y>587</y>
     </hint>
    </hints>
   </connection>
@@ -4578,12 +4619,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>146</x>
-     <y>400</y>
+     <x>156</x>
+     <y>437</y>
     </hint>
     <hint type="destinationlabel">
-     <x>467</x>
-     <y>400</y>
+     <x>523</x>
+     <y>437</y>
     </hint>
    </hints>
   </connection>
@@ -4594,12 +4635,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>459</x>
-     <y>395</y>
+     <x>523</x>
+     <y>437</y>
     </hint>
     <hint type="destinationlabel">
-     <x>219</x>
-     <y>394</y>
+     <x>229</x>
+     <y>437</y>
     </hint>
    </hints>
   </connection>
