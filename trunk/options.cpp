@@ -434,6 +434,7 @@ void Options::apply()
   toolButtonSaveEmulator->setIconSize(iconSize);
   toolButtonRemoveEmulator->setIconSize(iconSize);
   toolButtonBrowseAdditionalEmulatorExecutable->setIconSize(iconSize);
+  toolButtonBrowseAdditionalEmulatorWorkingDirectory->setIconSize(iconSize);
   checkBoxProcessEmuInfoDB->setIconSize(iconSize);
   checkBoxCompressEmuInfoDB->setIconSize(iconSize);
   checkBoxProcessGameInfoDB->setIconSize(iconSize);
@@ -1132,17 +1133,21 @@ void Options::on_pushButtonApply_clicked()
 #endif
   for (i = 0; i < tableWidgetRegisteredEmulators->rowCount(); i++) {
     if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_NAME) ) {
-      QString emuName, emuCommand, emuArgs;
+      QString emuName, emuCommand, emuWorkDir, emuArgs;
       emuName = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_NAME)->text();
       if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_EXEC) )
         emuCommand = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_EXEC)->text();
+      if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_WDIR) )
+        emuWorkDir = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_WDIR)->text();
       if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_ARGS) )
         emuArgs = tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_ARGS)->text();
 #if defined(QMC2_EMUTYPE_MAME)
       config->setValue(QString("MAME/RegisteredEmulators/%1/Executable").arg(emuName), emuCommand);
+      config->setValue(QString("MAME/RegisteredEmulators/%1/WorkingDirectory").arg(emuName), emuWorkDir);
       config->setValue(QString("MAME/RegisteredEmulators/%1/Arguments").arg(emuName), emuArgs);
 #elif defined(QMC2_EMUTYPE_MESS)
       config->setValue(QString("MESS/RegisteredEmulators/%1/Executable").arg(emuName), emuCommand);
+      config->setValue(QString("MESS/RegisteredEmulators/%1/WorkingDirectory").arg(emuName), emuWorkDir);
       config->setValue(QString("MESS/RegisteredEmulators/%1/Arguments").arg(emuName), emuArgs);
 #endif
     }
@@ -1923,11 +1928,13 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   tableWidgetRegisteredEmulators->setSortingEnabled(FALSE);
   foreach (QString emuName, additionalEmulators) {
     QString emuCommand = config->value(QString("%1/Executable").arg(emuName)).toString();
+    QString emuWorkDir = config->value(QString("%1/WorkingDirectory").arg(emuName)).toString();
     QString emuArgs = config->value(QString("%1/Arguments").arg(emuName)).toString();
     int row = tableWidgetRegisteredEmulators->rowCount();
     tableWidgetRegisteredEmulators->insertRow(row);
     tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(emuName));
     tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(emuCommand));
+    tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(emuWorkDir));
     tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(emuArgs));
   }
   config->endGroup();
@@ -2874,6 +2881,21 @@ void Options::on_toolButtonBrowseAdditionalEmulatorExecutable_clicked()
   raise();
 }
 
+void Options::on_toolButtonBrowseAdditionalEmulatorWorkingDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseAdditionalEmulatorWorkingDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), lineEditAdditionalEmulatorWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditAdditionalEmulatorWorkingDirectory->setText(s);
+  }
+  raise();
+}
+
+
 void Options::on_toolButtonAddEmulator_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -2885,6 +2907,7 @@ void Options::on_toolButtonAddEmulator_clicked()
   tableWidgetRegisteredEmulators->insertRow(row);
   tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(lineEditAdditionalEmulatorName->text()));
   tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(lineEditAdditionalEmulatorExecutableFile->text()));
+  tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(lineEditAdditionalEmulatorWorkingDirectory->text()));
   tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(lineEditAdditionalEmulatorArguments->text()));
   on_lineEditAdditionalEmulatorName_textChanged(lineEditAdditionalEmulatorName->text());
   tableWidgetRegisteredEmulators->setSortingEnabled(TRUE);
@@ -2909,6 +2932,10 @@ void Options::on_toolButtonSaveEmulator_clicked()
       tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC)->setText(lineEditAdditionalEmulatorExecutableFile->text());
     else
       tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(lineEditAdditionalEmulatorExecutableFile->text()));
+    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR) )
+      tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR)->setText(lineEditAdditionalEmulatorWorkingDirectory->text());
+    else
+      tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(lineEditAdditionalEmulatorWorkingDirectory->text()));
     if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS) )
       tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS)->setText(lineEditAdditionalEmulatorArguments->text());
     else
@@ -2949,6 +2976,10 @@ void Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()
       lineEditAdditionalEmulatorExecutableFile->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC)->text());
     else
       lineEditAdditionalEmulatorExecutableFile->clear();
+    if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR) )
+      lineEditAdditionalEmulatorWorkingDirectory->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_WDIR)->text());
+    else
+      lineEditAdditionalEmulatorWorkingDirectory->clear();
     if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS) )
       lineEditAdditionalEmulatorArguments->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_ARGS)->text());
     else
@@ -2956,6 +2987,7 @@ void Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()
   } else {
     lineEditAdditionalEmulatorName->clear();
     lineEditAdditionalEmulatorExecutableFile->clear();
+    lineEditAdditionalEmulatorWorkingDirectory->clear();
     lineEditAdditionalEmulatorArguments->clear();
     toolButtonRemoveEmulator->setEnabled(FALSE);
   }
