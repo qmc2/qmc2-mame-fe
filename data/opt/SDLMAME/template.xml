@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="SDLMAME" version="0.140" format="0.2.3">
+<template emulator="SDLMAME" version="0.140u1" format="0.2.3">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
@@ -614,6 +614,10 @@
       <description lang="pl" text="Pomiń wyświetlanie ekranu informacyjnego przy uruchomieniu"/>
       <description lang="fr" text="Passer l'affichage du menu d'informations au lancement d'un jeu"/>     
       <description lang="pt" text="Pular tela de informações ao iniciar"/>
+    </option>
+    <option name="uifont" type="string" default="default">
+      <description lang="us" text="Specify a font to use"/>
+      <description lang="de" text="Zu verwendende Schriftart angeben"/>
     </option>
   </section>
   <section name="configuration">
