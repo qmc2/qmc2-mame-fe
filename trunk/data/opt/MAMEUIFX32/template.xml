@@ -292,14 +292,6 @@
       <description lang="pl" text="Liczba procesorów (lub 'auto'); nadpisuje liczbę zgłaszaną przez system"/>
       <description lang="pt" text="Número de processadores (ou 'auto'); sobrescreve o número reportado pelo sistema"/>
     </option>
-    <option name="profile" type="int" default="0">
-      <description lang="us" text="Enable profiling, specifying the stack depth to track"/>
-      <description lang="de" text="Profiling unter Angabe der zu verfolgenden Stack-Tiefe aktivieren"/>
-    </option>
-    <option name="bench" type="int" default="0">
-      <description lang="us" text="Benchmark for the given number of emulated seconds; implies '-video none -nosound -nothrottle'"/>
-      <description lang="de" text="Benchmark für die angegebene Anzahl emulierter Sekunden durchführen; impliziert '-video none -nosound -nothrottle'"/>
-    </option>
   </section>
   <section name="rotation">
     <description lang="us" text="Rotation"/>
@@ -489,13 +481,6 @@
       <description lang="fr" text="Volume sonore en décibels (-32 min, 0 max)"/>
       <description lang="pt" text="Volume do som em decibéis (-32 min, 0 max)"/>
     </option>
-    <option name="volume_adjust" type="bool" default="true">
-      <description lang="us" text="Enable volume auto adjustment"/>
-      <description lang="de" text="Automatische Lautstärke-Anpassung aktivieren"/>
-      <description lang="pl" text="Włącz automatyczne dostosowanie siły głosu"/>
-      <description lang="fr" text="Active l'ajustement automatique du volume"/> 
-      <description lang="pt" text="Habilitar auto ajusto do volume"/>
-    </option>
     <option name="audio_latency" type="int" default="2">
       <description lang="us" text="Set audio latency (increase to reduce glitches, decrease for responsiveness)"/>
       <description lang="de" text="Audio-Latenz einstellen (erhöhen zur Reduktion von Störungen, verringern zur Verbesserung des Antwortverhaltens)"/>
@@ -517,7 +502,7 @@
     <description lang="pl" text="Urządzenia wejścia"/>
     <description lang="fr" text="Périphériques d'entrée"/>
     <description lang="pt" text="Dispositivos de entrada"/>
-    <option name="coin_lockout" type="bool" default="true">
+    <option name="coin_lockout" type="bool" default="false">
       <description lang="us" text="Enable coin lockouts to actually lock out coins"/>
       <description lang="pl" text="Włącz odrzucanie monet przez przeznaczone do tego mechanizmy"/>
       <description lang="de" text="Münzsperre aktivieren"/>
