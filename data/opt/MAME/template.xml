@@ -289,10 +289,12 @@
     <option name="profile" type="int" default="0">
       <description lang="us" text="Enable profiling, specifying the stack depth to track"/>
       <description lang="de" text="Profiling unter Angabe der zu verfolgenden Stack-Tiefe aktivieren"/>
+      <description lang="pt" text="Habilitar geração de perfil (profiling), especificando a profundidade da pilha para a trilha"/>
     </option>
     <option name="bench" type="int" default="0">
       <description lang="us" text="Benchmark for the given number of emulated seconds; implies '-video none -nosound -nothrottle'"/>
       <description lang="de" text="Benchmark für die angegebene Anzahl emulierter Sekunden durchführen; impliziert '-video none -nosound -nothrottle'"/>
+      <description lang="pt" text="Medir desempenho para o número de segundos emulados dado; implica '-video none -nosound -nothrottle'"/>
     </option>
   </section>
   <section name="rotation">
@@ -633,6 +635,7 @@
     <option name="uifont" type="string" default="default">
       <description lang="us" text="Specify a font to use"/>
       <description lang="de" text="Zu verwendende Schriftart angeben"/>
+      <description lang="pt" text="Especificar a fonte a ser usada"/>
     </option>
   </section>
   <section name="configuration">
