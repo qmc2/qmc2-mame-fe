@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <author>R. Reucher</author>
+ <class>YouTubeBrowser</class>
+ <widget class="QWidget" name="YouTubeBrowser">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>460</width>
+    <height>382</height>
+   </rect>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="6"/>
+ <resources>
+  <include location="qmc2.qrc"/>
+ </resources>
+ <connections/>
+</ui>
