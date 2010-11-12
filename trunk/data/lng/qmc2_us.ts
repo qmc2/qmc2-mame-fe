@@ -13489,4 +13489,12 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Ignore</translation>
     </message>
 </context>
+<context>
+    <name>YouTubeVideoPlayer</name>
+    <message>
+        <location filename="../../youtubevideoplayer.ui" line="25"/>
+        <source>about:blank</source>
+        <translation>about:blank</translation>
+    </message>
+</context>
 </TS>

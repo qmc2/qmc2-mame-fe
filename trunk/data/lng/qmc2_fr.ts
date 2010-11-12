@@ -13511,4 +13511,12 @@ p, li { white-space: pre-wrap; }
         <translation>Répertoire de samples</translation>
     </message>
 </context>
+<context>
+    <name>YouTubeVideoPlayer</name>
+    <message>
+        <location filename="../../youtubevideoplayer.ui" line="25"/>
+        <source>about:blank</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

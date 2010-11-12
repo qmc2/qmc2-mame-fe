@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <author>R. Reucher</author>
- <class>YouTubeBrowser</class>
- <widget class="QWidget" name="YouTubeBrowser">
+ <class>YouTubeVideoPlayer</class>
+ <widget class="QWidget" name="YouTubeVideoPlayer">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>460</width>
-    <height>382</height>
+    <width>300</width>
+    <height>300</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -18,9 +18,25 @@
    <property name="spacing">
     <number>0</number>
    </property>
+   <item row="0" column="0">
+    <widget class="QWebView" name="webView">
+     <property name="url">
+      <url>
+       <string>about:blank</string>
+      </url>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="6"/>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKit/QWebView</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="qmc2.qrc"/>
  </resources>
