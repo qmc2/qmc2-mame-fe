@@ -13545,4 +13545,12 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
         <translation>Z&amp;ignoruj</translation>
     </message>
 </context>
+<context>
+    <name>YouTubeVideoPlayer</name>
+    <message>
+        <location filename="../../youtubevideoplayer.ui" line="25"/>
+        <source>about:blank</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>
