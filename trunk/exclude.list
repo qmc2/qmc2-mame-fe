@@ -2250,9 +2250,9 @@ qmc2/.svn/text-base/toolexec.ui.svn-base
 qmc2/.svn/text-base/welcome.cpp.svn-base
 qmc2/.svn/text-base/welcome.h.svn-base
 qmc2/.svn/text-base/welcome.ui.svn-base
-qmc2/.svn/text-base/youtubebrowser.cpp.svn-base
-qmc2/.svn/text-base/youtubebrowser.h.svn-base
-qmc2/.svn/text-base/youtubebrowser.ui.svn-base
+qmc2/.svn/text-base/youtubevideoplayer.cpp.svn-base
+qmc2/.svn/text-base/youtubevideoplayer.h.svn-base
+qmc2/.svn/text-base/youtubevideoplayer.ui.svn-base
 qmc2/tools/.svn
 qmc2/tools/template_tool/.svn
 qmc2/tools/template_tool/.svn/text-base/macros.h.svn-base
