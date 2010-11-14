@@ -618,6 +618,7 @@
     <option name="uifont" type="string" default="default">
       <description lang="us" text="Specify a font to use"/>
       <description lang="de" text="Zu verwendende Schriftart angeben"/>
+      <description lang="pl" text="Wskaż używaną czcionkę"/>
       <description lang="pt" text="Especificar a fonte a ser usada"/>
     </option>
   </section>
