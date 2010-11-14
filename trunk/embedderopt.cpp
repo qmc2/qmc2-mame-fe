@@ -145,7 +145,7 @@ void EmbedderOptions::on_checkBoxNativeSnapshotResolution_toggled(bool enabled)
 }
 
 SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
-  : QWidget(parent, Qt::Window | Qt::CustomizeWindowHint | Qt::X11BypassWindowManagerHint)
+  : QWidget(parent, Qt::Window | Qt::CustomizeWindowHint | Qt::FramelessWindowHint)
 {
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::SnapshotViewer(QListWidgetItem *item = %1, QWidget *parent = %2)").arg((qulonglong)item).arg((qulonglong)parent));
@@ -206,6 +206,18 @@ void SnapshotViewer::mousePressEvent(QMouseEvent *e)
 #endif
 
   if ( e->button() != Qt::RightButton ) {
+    myItem->setSelected(TRUE);
+    hide();
+  }
+}
+
+void SnapshotViewer::keyPressEvent(QKeyEvent *e)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SnapshotViewer::keyPressEvent(QKeyPressEvent *e)");
+#endif
+
+  if ( e->key() == Qt::Key_Escape ) {
     myItem->setSelected(TRUE);
     hide();
   }
