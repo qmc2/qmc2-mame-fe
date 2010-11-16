@@ -329,6 +329,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_embedderOptionsMenu_KillEmulator_activated();
     void on_embedderOptionsMenu_TerminateEmulator_activated();
     void on_embedderOptionsMenu_ToFavorites_activated();
+    void on_embedderOptionsMenu_CopyCommand_activated();
 #endif
     void action_terminateEmulator_triggered();
     void action_killEmulator_triggered();

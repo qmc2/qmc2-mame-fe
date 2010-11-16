@@ -3462,7 +3462,6 @@ void MainWindow::action_embedEmulator_triggered()
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
       tabWidgetEmbeddedEmulators->addTab(embedder, QString("[#%1: %2] %3").arg(gameID).arg(gameName).arg(qmc2GamelistDescriptionMap[gameName]));
       embedder->show();
-      embedder->raise();
 
       // serious hack to access the tab bar without sub-classing from QTabWidget ;)
       QTabBar *tabBar = tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
@@ -3498,6 +3497,12 @@ void MainWindow::action_embedEmulator_triggered()
         action->setIcon(QIcon(QString::fromUtf8(":/data/img/kill.png")));
         action->setToolTip(s); action->setStatusTip(s);
         connect(action, SIGNAL(triggered()), this, SLOT(on_embedderOptionsMenu_KillEmulator_activated()));
+        optionsMenu->addSeparator();
+        s = tr("Copy emulator command line to clipboard");
+        action = optionsMenu->addAction(tr("&Copy command"));
+        action->setToolTip(s); action->setStatusTip(s);
+        action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+        connect(action, SIGNAL(triggered()), this, SLOT(on_embedderOptionsMenu_CopyCommand_activated()));
 
 	optionsButton->setMenu(optionsMenu);
 
@@ -3619,14 +3624,8 @@ void MainWindow::on_embedderOptionsMenu_KillEmulator_activated()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_embedderOptionsMenu_KillEmulator_activated()");
 #endif
 
-  QList<QTreeWidgetItem *> il = treeWidgetEmulators->findItems("*", Qt::MatchWildcard);
-  int i;
-  for (i = 0; i < il.count(); i++) {
-    QTreeWidgetItem *item = il[i];
-    while ( item->parent() ) item = item->parent();
-    if ( item->text(QMC2_EMUCONTROL_COLUMN_NUMBER) == embedder->gameID )
-      qmc2ProcessManager->kill(item->text(QMC2_EMUCONTROL_COLUMN_NUMBER).toInt());
-  }
+  if ( embedder )
+    qmc2ProcessManager->kill(embedder->gameID.toInt());
 }
 
 void MainWindow::on_embedderOptionsMenu_TerminateEmulator_activated()
@@ -3641,14 +3640,8 @@ void MainWindow::on_embedderOptionsMenu_TerminateEmulator_activated()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_embedderOptionsMenu_TerminateEmulator_activated()");
 #endif
 
-  QList<QTreeWidgetItem *> il = treeWidgetEmulators->findItems("*", Qt::MatchWildcard);
-  int i;
-  for (i = 0; i < il.count(); i++) {
-    QTreeWidgetItem *item = il[i];
-    while ( item->parent() ) item = item->parent();
-    if ( item->text(QMC2_EMUCONTROL_COLUMN_NUMBER) == embedder->gameID )
-      qmc2ProcessManager->terminate(item->text(QMC2_EMUCONTROL_COLUMN_NUMBER).toInt());
-  }
+  if ( embedder )
+    qmc2ProcessManager->terminate(embedder->gameID.toInt());
 }
 
 void MainWindow::on_embedderOptionsMenu_ToFavorites_activated()
@@ -3663,12 +3656,33 @@ void MainWindow::on_embedderOptionsMenu_ToFavorites_activated()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_embedderOptionsMenu_ToFavorites_activated()");
 #endif
 
-  QString gameDescription = qmc2GamelistDescriptionMap[embedder->gameName];
-  QList<QListWidgetItem *> matches = listWidgetFavorites->findItems(gameDescription, Qt::MatchExactly);
-  if ( matches.count() <= 0 ) {
-    QListWidgetItem *item = new QListWidgetItem(listWidgetFavorites);
-    item->setText(gameDescription);
-    listWidgetFavorites->sortItems();
+  if ( embedder ) {
+    QString gameDescription = qmc2GamelistDescriptionMap[embedder->gameName];
+    QList<QListWidgetItem *> matches = listWidgetFavorites->findItems(gameDescription, Qt::MatchExactly);
+    if ( matches.count() <= 0 ) {
+      QListWidgetItem *item = new QListWidgetItem(listWidgetFavorites);
+      item->setText(gameDescription);
+      listWidgetFavorites->sortItems();
+    }
+  }
+}
+
+void MainWindow::on_embedderOptionsMenu_CopyCommand_activated()
+{
+  // serious hack to access the corresponding embedder ;)
+  QAction *action = (QAction *)sender();
+  QMenu *menu = (QMenu *)action->parent();
+  QToolButton *toolButton = (QToolButton *)menu->parent();
+  QTabBar *tabBar = (QTabBar *)toolButton->parent();
+  Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(tabBar->tabAt(toolButton->pos()));
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_embedderOptionsMenu_CopyCommand_activated()");
+#endif
+
+  if ( embedder ) {
+    QList<QTreeWidgetItem *> il = treeWidgetEmulators->findItems(embedder->gameID, Qt::MatchExactly, QMC2_EMUCONTROL_COLUMN_ID);
+    if ( il.count() > 0 )
+      QApplication::clipboard()->setText(il[0]->text(QMC2_EMUCONTROL_COLUMN_COMMAND));
   }
 }
 #endif
@@ -3723,7 +3737,7 @@ void MainWindow::action_copyEmulatorCommand_triggered()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::action_copyEmulatorCommand_triggered()");
 #endif
 
-  QString commandString = "";
+  QString commandString;
   QList<QTreeWidgetItem *> sl = treeWidgetEmulators->selectedItems();
   QList<QTreeWidgetItem *> tl;
   int i;
