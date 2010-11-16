@@ -3461,6 +3461,8 @@ void MainWindow::action_embedEmulator_triggered()
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0].toInt(0, 16), this);
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
       tabWidgetEmbeddedEmulators->addTab(embedder, QString("[#%1: %2] %3").arg(gameID).arg(gameName).arg(qmc2GamelistDescriptionMap[gameName]));
+      embedder->show();
+      embedder->raise();
 
       // serious hack to access the tab bar without sub-classing from QTabWidget ;)
       QTabBar *tabBar = tabWidgetEmbeddedEmulators->findChild<QTabBar *>();

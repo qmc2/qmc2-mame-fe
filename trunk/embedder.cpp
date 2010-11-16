@@ -19,7 +19,7 @@ Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
   winId = wid;
   embedded = false;
 
-  embedContainer = new TweakedEmbedContainer(this);
+  embedContainer = new QX11EmbedContainer(this);
   embedContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
   setFocusProxy(embedContainer);

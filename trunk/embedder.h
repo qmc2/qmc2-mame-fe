@@ -6,24 +6,6 @@
 #include <QX11EmbedContainer>
 #include "embedderopt.h"
 
-class TweakedEmbedContainer : public QX11EmbedContainer
-{
-  Q_OBJECT
-
-  public:
-    TweakedEmbedContainer(QWidget *parent) : QX11EmbedContainer(parent) { ; }
-
-  protected:
-    void resizeEvent(QResizeEvent *e)
-    {
-      QX11EmbedContainer::resizeEvent(e);
-      emit resized();
-    }
-
-  signals:
-    void resized();
-};
-
 class Embedder : public QWidget
 {
   Q_OBJECT
@@ -32,7 +14,7 @@ class Embedder : public QWidget
     bool embedded;
     bool optionsShown;
     WId winId;
-    TweakedEmbedContainer *embedContainer;
+    QX11EmbedContainer *embedContainer;
     EmbedderOptions *embedderOptions;
     QGridLayout *gridLayout;
     QString gameName;
