@@ -4139,15 +4139,20 @@ void MainWindow::mapJoystickFunction(QString function)
   if ( shortcut.isEmpty() )
     return;
   
-  QWidget *focusWindow = QApplication::focusWidget();
+  QWidget *focusWidget = QApplication::focusWidget();
 
-  if ( focusWindow ) {
+  if ( focusWidget ) {
+#if defined(Q_WS_X11)
+    // don't map joystick functions when they really are meant for an embedded emulator
+    if ( focusWidget->objectName() == "QMC2_EMBED_CONTAINER" )
+      return;
+#endif
     QKeySequence keySeq(shortcut);
     uint i, key = 0;
     for (i = 0; i < keySeq.count(); i++)
       key += keySeq[i];
     QKeyEvent *emulatedKeyEvent = new QKeyEvent(QEvent::KeyPress, key, Qt::NoModifier);
-    qApp->postEvent(focusWindow, emulatedKeyEvent);
+    qApp->postEvent(focusWidget, emulatedKeyEvent);
   }
 }
 
