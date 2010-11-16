@@ -19,6 +19,12 @@ Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
   winId = wid;
   embedded = false;
 
+#if QT_VERSION >= 0x040700
+  setAttribute(Qt::WA_NativeWindow);
+  setAttribute(Qt::WA_DontCreateNativeAncestors);
+  createWinId();
+#endif
+
   embedContainer = new QX11EmbedContainer(this);
   embedContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
@@ -132,14 +138,6 @@ void Embedder::closeEvent(QCloseEvent *e)
     delete embedderOptions;
 
   QWidget::closeEvent(e);
-}
-
-void Embedder::resizeEvent(QResizeEvent *e)
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
-#endif
-
 }
 
 void Embedder::toggleOptions()

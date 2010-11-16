@@ -38,7 +38,6 @@ class Embedder : public QWidget
 
   protected:
     void closeEvent(QCloseEvent *);
-    void resizeEvent(QResizeEvent *);
 
   signals:
     void closing();
