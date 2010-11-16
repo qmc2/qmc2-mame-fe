@@ -16,8 +16,8 @@ class TweakedEmbedContainer : public QX11EmbedContainer
   protected:
     void resizeEvent(QResizeEvent *e)
     {
-      emit resized();
       QX11EmbedContainer::resizeEvent(e);
+      emit resized();
     }
 
   signals:
@@ -38,9 +38,10 @@ class Embedder : public QWidget
     QString gameName;
     QString gameID;
     QSize nativeResolution;
-    QTimer maximizationTimer;
+    int cmLeft, cmTop, cmRight, cmBottom;
 
     Embedder(QString name, QString id, WId wid, QWidget *parent = 0);
+    ~Embedder();
 
   public slots:
     void embed();
@@ -52,8 +53,6 @@ class Embedder : public QWidget
     void toggleOptions();
     void adjustIconSizes();
     void forceFocus();
-    void maximize();
-    void maximizeDelayed();
 
   protected:
     void closeEvent(QCloseEvent *);

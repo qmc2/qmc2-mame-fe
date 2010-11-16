@@ -25,24 +25,30 @@ Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
   setFocusProxy(embedContainer);
 
   gridLayout = new QGridLayout(this);
-  gridLayout->addWidget(embedContainer, 1, 0);
+  gridLayout->getContentsMargins(&cmLeft, &cmTop, &cmRight, &cmBottom);
+  gridLayout->setContentsMargins(0, 0, 0, 0);
   gridLayout->setRowStretch(0, 0);
   gridLayout->setRowStretch(1, 4);
   gridLayout->setColumnStretch(0, 4);
+  gridLayout->addWidget(embedContainer, 1, 0);
   setLayout(gridLayout);
 
   connect(embedContainer, SIGNAL(clientIsEmbedded()), SLOT(clientEmbedded()));
   connect(embedContainer, SIGNAL(clientClosed()), SLOT(clientClosed()));
   connect(embedContainer, SIGNAL(error(QX11EmbedContainer::Error)), SLOT(clientError(QX11EmbedContainer::Error)));
-  connect(embedContainer, SIGNAL(resized()), SLOT(maximizeDelayed()));
-
-  maximizationTimer.setSingleShot(true);
-  connect(&maximizationTimer, SIGNAL(timeout()), this, SLOT(maximize()));
 
   embedderOptions = NULL;
-  optionsShown = FALSE;
+  optionsShown = false;
 
   QTimer::singleShot(0, this, SLOT(embed()));
+}
+
+Embedder::~Embedder()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::~Embedder()"));
+#endif
+
 }
 
 void Embedder::embed()
@@ -73,7 +79,6 @@ void Embedder::clientEmbedded()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientEmbedded()"));
 #endif
 
-  maximize();
   forceFocus();
   embedded = true;
 
@@ -135,7 +140,6 @@ void Embedder::resizeEvent(QResizeEvent *e)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  QTimer::singleShot(0, this, SLOT(maximizeDelayed()));
 }
 
 void Embedder::toggleOptions()
@@ -146,17 +150,19 @@ void Embedder::toggleOptions()
 
   optionsShown = !optionsShown;
   if ( optionsShown ) {
+    gridLayout->setRowStretch(0, 1);
+    gridLayout->setRowStretch(1, 4);
+    gridLayout->setContentsMargins(cmLeft, cmTop, cmRight, cmBottom);
     if ( !embedderOptions ) {
       embedderOptions = new EmbedderOptions(this);
       embedderOptions->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
       gridLayout->addWidget(embedderOptions, 0, 0);
     }
-    gridLayout->setRowStretch(0, 1);
-    gridLayout->setRowStretch(1, 4);
     embedderOptions->show();
   } else {
     gridLayout->setRowStretch(0, 0);
     gridLayout->setRowStretch(1, 4);
+    gridLayout->setContentsMargins(0, 0, 0, 0);
     if ( embedderOptions )
       embedderOptions->hide();
   }
@@ -192,29 +198,6 @@ void Embedder::forceFocus()
 
   activateWindow();
   setFocus();
-}
-
-void Embedder::maximize()
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::maximize()"));
-#endif
-
-  if ( optionsShown ) return;
-
-  QRect r = parentWidget()->contentsRect();
-
-  embedContainer->resize(r.size());
-  embedContainer->move(r.topLeft());
-}
-
-void Embedder::maximizeDelayed()
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Embedder::maximizeDelayed()");
-#endif
-
-  maximizationTimer.start(QMC2_EMBED_MAXIMIZE_DELAY);
 }
 
 #endif
