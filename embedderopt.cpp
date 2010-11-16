@@ -21,6 +21,7 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmbedderOptions::EmbedderOptions(QWidget *parent = %1)").arg((qulonglong) parent));
 #endif
 
+  hide();
   setupUi(this);
 
   snapshotViewer = NULL;

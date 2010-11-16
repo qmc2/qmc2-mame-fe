@@ -3473,6 +3473,7 @@ void MainWindow::action_embedEmulator_triggered()
 	optionsButton->setText(" ");
         optionsButton->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
         optionsButton->setToolTip(tr("Toggle embedder options (hold down for menu)"));
+        optionsButton->setStatusTip(tr("Toggle embedder options (hold down for menu)"));
         optionsButton->setCheckable(TRUE);
         connect(optionsButton, SIGNAL(toggled(bool)), this, SLOT(on_embedderOptions_toggled(bool)));
 
