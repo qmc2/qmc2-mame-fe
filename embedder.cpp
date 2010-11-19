@@ -28,6 +28,10 @@ Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
   embedContainer = new QX11EmbedContainer(this);
   embedContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   embedContainer->setObjectName("QMC2_EMBED_CONTAINER");
+  embedContainer->setAutoFillBackground(true);
+  QPalette pal = embedContainer->palette();
+  pal.setColor(QPalette::Window, Qt::black);
+  embedContainer->setPalette(pal);
 
   setFocusProxy(embedContainer);
 
