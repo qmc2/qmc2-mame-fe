@@ -227,6 +227,35 @@ void ROMAlyzer::on_lineEditGames_textChanged(QString text)
     pushButtonAnalyze->setEnabled(!text.isEmpty());
 }
 
+void ROMAlyzer::on_checkBoxCalculateCRC_toggled(bool enable)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_checkBoxCalculateCRC_toggled(bool enable = %1)").arg(enable));
+#endif
+
+	treeWidgetChecksums->setColumnHidden(QMC2_ROMALYZER_COLUMN_CRC, !enable);
+}
+
+void ROMAlyzer::on_checkBoxCalculateMD5_toggled(bool enable)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_checkBoxCalculateMD5_toggled(bool enable = %1)").arg(enable));
+#endif
+
+	treeWidgetChecksums->setColumnHidden(QMC2_ROMALYZER_COLUMN_MD5, !enable);
+}
+
+void ROMAlyzer::on_checkBoxCalculateSHA1_toggled(bool enable)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_checkBoxCalculateSHA1_toggled(bool enable = %1)").arg(enable));
+#endif
+
+	treeWidgetChecksums->setColumnHidden(QMC2_ROMALYZER_COLUMN_SHA1, !enable);
+	if ( groupBoxDatabase->isChecked() )
+		groupBoxDatabase->setChecked(enable);
+}
+
 void ROMAlyzer::animationTimeout()
 {
 #ifdef QMC2_DEBUG

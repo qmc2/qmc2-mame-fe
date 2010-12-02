@@ -147,6 +147,9 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void on_pushButtonDatabaseCheckConnection_clicked();
     void on_toolButtonBrowseDatabaseOutputPath_clicked();
 #endif
+    void on_checkBoxCalculateCRC_toggled(bool);
+    void on_checkBoxCalculateMD5_toggled(bool);
+    void on_checkBoxCalculateSHA1_toggled(bool);
 
     // miscellaneous slots
     void animationTimeout();
