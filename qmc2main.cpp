@@ -1292,9 +1292,9 @@ void MainWindow::on_actionPlay_activated()
 #if defined(QMC2_EMUTYPE_MESS)
   qmc2MessMachineName = gameName;
 
-  if ( qmc2MESSSoftwareList )
+  if ( qmc2MESSSoftwareList && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_SOFTWARE_LIST_INDEX) )
     args << qmc2MESSSoftwareList->arguments();
-  else if ( qmc2MESSDeviceConfigurator ) {
+  else if ( qmc2MESSDeviceConfigurator && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_DEVICE_INDEX) ) {
     QString configName = qmc2MESSDeviceConfigurator->lineEditConfigurationName->text();
     if ( configName != tr("No devices") ) {
       // make sure the currently edited data is up to date
