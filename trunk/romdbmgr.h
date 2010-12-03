@@ -12,6 +12,9 @@ class ROMDatabaseManager : public QObject
 	public:
 		QSqlDatabase db;
 
+		bool hasFeatureTransactions;
+		bool hasFeatureLastInsertId;
+
 		ROMDatabaseManager(QObject *parent);
 		~ROMDatabaseManager();
 
