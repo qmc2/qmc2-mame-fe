@@ -17,6 +17,8 @@ ROMDatabaseManager::ROMDatabaseManager(QObject *parent)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMDatabaseManager::ROMDatabaseManager(QObject *parent = %1)").arg((qulonglong)parent));
 #endif
 
+	hasFeatureTransactions = false;
+	hasFeatureLastInsertId = false;
 }
 
 ROMDatabaseManager::~ROMDatabaseManager()
@@ -57,7 +59,16 @@ bool ROMDatabaseManager::openConnection(int driver, QString user, QString passwo
 	db.setPassword(password);
 	db.setDatabaseName(database);
 
-	return db.open();
+	if ( db.open() ) {
+		hasFeatureTransactions = db.driver()->hasFeature(QSqlDriver::Transactions);
+		hasFeatureLastInsertId = db.driver()->hasFeature(QSqlDriver::LastInsertId);
+#ifdef QMC2_DEBUG
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: database successfully opened: hasFeatureTransactions = %1, hasFeatureLastInsertId = %2").arg(hasFeatureTransactions).arg(hasFeatureLastInsertId));
+#endif
+		return true;
+	} else {
+		return false;
+	}
 }
 
 void ROMDatabaseManager::closeConnection()
@@ -68,6 +79,9 @@ void ROMDatabaseManager::closeConnection()
 
 	if ( db.isOpen() )
 		db.close();
+
+	hasFeatureTransactions = false;
+	hasFeatureLastInsertId = false;
 }
 
 bool ROMDatabaseManager::checkConnection(int driver, QString user, QString password, QString database, QString host, int port)
