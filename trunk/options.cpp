@@ -154,6 +154,7 @@ Options::Options(QWidget *parent)
   QDir userScopeDir(userScopePath);
   if ( !userScopeDir.exists() )
     userScopeDir.mkdir(userScopePath);
+  qApp->setOrganizationName("qmc2");
   config = new QSettings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
 
   setupUi(this);

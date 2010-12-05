@@ -199,6 +199,7 @@ bool Welcome::checkConfig()
 #endif
   QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_DOT_PATH);
 
+  qApp->setOrganizationName("qmc2");
   startupConfig = new QSettings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
 
 #if defined(QMC2_SDLMAME)
