@@ -138,7 +138,8 @@ Gamelist::Gamelist(QObject *parent)
                          << tr("joy2way") << tr("doublejoy8way") << tr("dial") << tr("paddle") << tr("pedal")
                          << tr("stick") << tr("vjoy2way") << tr("lightgun") << tr("doublejoy4way") << tr("vdoublejoy2way")
                          << tr("doublejoy2way") << tr("printer") << tr("cdrom") << tr("cartridge") << tr("cassette")
-                         << tr("quickload") << tr("floppydisk") << tr("serial") << tr("snapshot");
+                         << tr("quickload") << tr("floppydisk") << tr("serial") << tr("snapshot") << tr("original")
+			 << tr("compatible");
 
   if ( qmc2UseIconFile ) {
 #if defined(QMC2_EMUTYPE_MAME)
@@ -952,9 +953,9 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("ROM"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
       attributes.clear();
-      attributes << "bios" << "size" << "crc" << "sha1" << "merge" << "region" << "offset" << "status" << "dispose";
+      attributes << "bios" << "size" << "crc" << "sha1" << "merge" << "region" << "offset" << "status" << "optional";
       descriptions.clear();
-      descriptions << tr("BIOS") << tr("Size") << tr("CRC") << tr("SHA1") << tr("Merge") << tr("Region") << tr("Offset") << tr("Status") << tr("Dispose");
+      descriptions << tr("BIOS") << tr("Size") << tr("CRC") << tr("SHA1") << tr("Merge") << tr("Region") << tr("Offset") << tr("Status") << tr("Optional");
       insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
     }
     if ( element.contains("<chip ") ) {
@@ -1075,9 +1076,9 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Disk"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
       attributes.clear();
-      attributes << "md5" << "sha1" << "merge" << "region" << "index" << "status";
+      attributes << "md5" << "sha1" << "merge" << "region" << "index" << "status" << "optional";
       descriptions.clear();
-      descriptions << tr("MD5") << tr("SHA1") << tr("Merge") << tr("Region") << tr("Index") << tr("Status");
+      descriptions << tr("MD5") << tr("SHA1") << tr("Merge") << tr("Region") << tr("Index") << tr("Status") << tr("Optional");
       insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
     }
     if ( element.contains("<adjuster ") ) {
@@ -1094,6 +1095,11 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       childItem = new QTreeWidgetItem(item);
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Software list"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
+      attributes.clear();
+      attributes << "status";
+      descriptions.clear();
+      descriptions << tr("Status");
+      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
     }
     if ( element.contains("<category ") ) {
       childItem = new QTreeWidgetItem(item);
@@ -1119,9 +1125,9 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Device"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "type", TRUE));
       attributes.clear();
-      attributes << "tag" << "mandatory";
+      attributes << "tag" << "mandatory" << "interface";
       descriptions.clear();
-      descriptions << tr("Tag") << tr("Mandatory");
+      descriptions << tr("Tag") << tr("Mandatory") << tr("Interface");
       insertAttributeItems(childItem, element, attributes, descriptions, FALSE);
 
       gamePos++;
