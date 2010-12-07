@@ -244,6 +244,9 @@ endif
 #
 # Enable (1) or disable (0) 'pretty' compilation output.
 #
+# This is only supported for Qt 4.5 and Qt 4.6. It produces irritating shell
+# warnings when Qt 4.7+ is used, so it's automatically disabled in this case.
+#
 ifndef PRETTY
 PRETTY = 1
 endif
