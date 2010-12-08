@@ -13,6 +13,13 @@
       <description lang="fr" text="Répertoires des ROMS et Images Disques"/>
       <description lang="pt" text="Caminho para as ROMs e imagens de disco"/>
     </option>
+    <option name="hashpath" type="directory" default="hash">
+      <description lang="us" text="Path to hash files"/>
+      <description lang="de" text="Suchpfad für Prüfsummen-Dateien"/>
+      <description lang="pl" text="Ścieżka do plików skrótów"/>
+      <description lang="fr" text="Répertoires des fichiers hash"/>
+      <description lang="pt" text="Caminho para os arquivos de hash"/>
+    </option>
     <option name="samplepath" type="directory" default="samples">
       <description lang="us" text="Path to sample sets"/>
       <description lang="de" text="Suchpfad für Sample-Sets"/>
