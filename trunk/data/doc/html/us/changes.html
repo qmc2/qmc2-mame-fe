@@ -22,7 +22,7 @@ inf: informational only
   <li>fix: avoid a QWebInspector warning by setting the application's <i>organization name</i> (only for builds with BROWSER_EXTRAS=1); as a result, QWebInspector will now correctly (re)store its settings in ~/.config/qmc2.conf</li>
   <li>imp: foreign emulator support: a working directory can now also be specified in the registration of foreign emulators (this was particularly added to support RAINE, but it's a good idea anyway)</li>
   <li>imp: SDLMESS/MESS templates updated to 0.140 (no new or changed options)</li>
-  <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.140u2 (new options <i>profile</i> and <i>bench</i> for MAME, new option <i>uifont</i> for all, changed default value of <i>coin_lockout</i> for MAMEUIFX32, removed option <i>volume_adjust</i> for MAMEUIFX32)</li>
+  <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.140u2 (new options <i>profile</i> and <i>bench</i> for MAME, new option <i>uifont</i> for all, changed default value of <i>coin_lockout</i> for MAMEUIFX32, removed option <i>volume_adjust</i> for MAMEUIFX32, new option <i>hashpath</i> for all)</li>
   <li>imp: UNIX build: forcedly disable pretty compilation output ('make PRETTY=1 ...') for Qt 4.7+ as it produces irritating (but harmless) shell warnings</li>
   <li>imp: updated redistributed Qt translations from Qt 4.7.1</li>
   <li>imp: embedder snapshot tool: the snapshot viewer now also hides itself when the escape key is pressed -- we're no longer bypassing the X11 window manager and are instead using a managed frameless window (the window manager must understand Motif and/or NETWM hints for this to work; however, most - if not all - modern WMs should be able to handle this)</li>
