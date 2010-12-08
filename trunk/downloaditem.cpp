@@ -113,7 +113,7 @@ void ItemDownloader::init()
                            tr("Local path: %2").arg(localPath) + "\n" +
                            tr("Status: %1").arg(tr("initializing download")) + "\n" +
                            tr("Total size: %1").arg(tr("unknown")) + "\n" +
-                           tr("Downloaded: %1 (%2%)").arg(0).arg(0));
+                           tr("Downloaded: %1 (%2%)").arg(0).arg(0, 0, 'f', 2));
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("download started: URL = %1, local path = %2, reply ID = %3")
                       .arg(networkReply->url().toString()).arg(localPath).arg((qulonglong)networkReply));
 
@@ -208,7 +208,7 @@ void ItemDownloader::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
                            tr("Local path: %2").arg(localPath) + "\n" +
                            tr("Status: %1").arg(tr("downloading")) + "\n" +
                            tr("Total size: %1").arg(progressWidget->maximum()) + "\n" +
-                           tr("Downloaded: %1 (%2%)").arg(progressWidget->value()).arg(((double)progressWidget->value()/(double)progressWidget->maximum()) * 100));
+                           tr("Downloaded: %1 (%2%)").arg(progressWidget->value()).arg(((double)progressWidget->value()/(double)progressWidget->maximum()) * 100, 0, 'f', 2));
 }
 
 void ItemDownloader::metaDataChanged()
