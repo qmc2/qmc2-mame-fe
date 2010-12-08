@@ -137,7 +137,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
       lineEditEditor->setAccessibleName("lineEditEditor");
       if ( !optionDescription.isEmpty() )
         lineEditEditor->setToolTip(optionDescription);
-      connect(lineEditEditor, SIGNAL(textChanged(const QString &)), this, SLOT(dataChanged()));
+      connect(lineEditEditor, SIGNAL(textEdited(const QString &)), this, SLOT(dataChanged()));
       return lineEditEditor;
     }
   }
@@ -164,15 +164,21 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
   } else if ( editor->accessibleName() == "fileEditor" ) {
     QString value = index.model()->data(index, Qt::EditRole).toString();
     FileEditWidget *fileEditor = static_cast<FileEditWidget *>(editor);
+    int cPos = fileEditor->lineEditFile->cursorPosition();
     fileEditor->lineEditFile->setText(value);
+    fileEditor->lineEditFile->setCursorPosition(cPos);
   } else if ( editor->accessibleName() == "directoryEditor" ) {
     QString value = index.model()->data(index, Qt::EditRole).toString();
     DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget *>(editor);
+    int cPos = directoryEditor->lineEditDirectory->cursorPosition();
     directoryEditor->lineEditDirectory->setText(value);
+    directoryEditor->lineEditDirectory->setCursorPosition(cPos);
   } else {
     QString value = index.model()->data(index, Qt::EditRole).toString();
     QLineEdit *lineEdit = static_cast<QLineEdit *>(editor);
+    int cPos = lineEdit->cursorPosition();
     lineEdit->setText(value);
+    lineEdit->setCursorPosition(cPos);
   }
 }
 
