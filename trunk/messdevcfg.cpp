@@ -64,7 +64,9 @@ void MESSDeviceFileDelegate::setEditorData(QWidget *editor, const QModelIndex &i
 
   QString value = index.model()->data(index, Qt::EditRole).toString();
   FileEditWidget *fileEditWidget = static_cast<FileEditWidget *>(editor);
+  int cPos = fileEditWidget->lineEditFile->cursorPosition();
   fileEditWidget->lineEditFile->setText(value);
+  fileEditWidget->lineEditFile->setCursorPosition(cPos);
 }
 
 void MESSDeviceFileDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
