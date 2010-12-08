@@ -2659,12 +2659,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="141"/>
         <source>original</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="142"/>
         <source>compatible</source>
-        <translation type="unfinished"></translation>
+        <translation>compatível</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="148"/>
@@ -3245,7 +3245,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1130"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1137"/>
@@ -3678,7 +3678,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="958"/>
         <location filename="../../gamelist.cpp" line="1081"/>
         <source>Optional</source>
-        <translation type="unfinished"></translation>
+        <translation>Opcional</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2471"/>
@@ -13542,7 +13542,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.ui" line="25"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 </TS>
