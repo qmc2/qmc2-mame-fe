@@ -422,6 +422,6 @@
 
 // exchangable (de)compression routines
 #define QMC2_COMPRESS(data)		qCompress((data))
-#define QMC2_UNCOMPRESS(data)		qUncompress((data))
+#define QMC2_UNCOMPRESS(data)		(data).isEmpty() ? QByteArray() : qUncompress((data))
 
 #endif
