@@ -7,6 +7,8 @@
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 
+#define QMC2_DEBUG
+
 Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
     : QWidget(parent)
 {
@@ -153,6 +155,7 @@ void Embedder::showEvent(QShowEvent *e)
 
   embedContainer->hide();
   QTimer::singleShot(QMC2_EMBED_MAXIMIZE_DELAY, embedContainer, SLOT(showMaximized()));
+  forceFocus();
 }
 
 void Embedder::toggleOptions()
