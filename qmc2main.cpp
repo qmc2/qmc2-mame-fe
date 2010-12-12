@@ -3579,6 +3579,9 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
         hSplitter->setSizes(hSplitterSizes);
     }
     tabWidgetGamelist->removeTab(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
+  } else {
+    Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->currentWidget();
+    if ( embedder ) embedder->forceFocus();
   }
 }
 

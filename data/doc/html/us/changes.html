@@ -23,6 +23,7 @@ inf: informational only
   <li>fix: corrected cursor positioning when editing strings in delegated item views (emulator configuration widgets and MESS device setup)</li>
   <li>fix: avoid possible qUncompress() warnings due to empty input data</li>
   <li>fix: embedder: corrected client resizing issues on maximized embedded emulators</li>
+  <li>fix: embedder: make sure the next visible embedded emulator (if any) gains input focus when the currently focused embed client is released</li>
   <li>imp: foreign emulator support: a working directory can now also be specified in the registration of foreign emulators (this was particularly added to support RAINE, but it's a good idea anyway)</li>
   <li>imp: SDLMESS/MESS templates updated to 0.140 (no new or changed options)</li>
   <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.140u2 (new options <i>profile</i> and <i>bench</i> for MAME, new option <i>uifont</i> for all, changed default value of <i>coin_lockout</i> for MAMEUIFX32, removed option <i>volume_adjust</i> for MAMEUIFX32, new option <i>hashpath</i> for all)</li>
