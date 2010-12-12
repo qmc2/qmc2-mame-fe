@@ -38,6 +38,7 @@ class Embedder : public QWidget
 
   protected:
     void closeEvent(QCloseEvent *);
+    void showEvent(QShowEvent *);
 
   signals:
     void closing();

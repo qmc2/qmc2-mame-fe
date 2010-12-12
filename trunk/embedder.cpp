@@ -145,6 +145,16 @@ void Embedder::closeEvent(QCloseEvent *e)
   QWidget::closeEvent(e);
 }
 
+void Embedder::showEvent(QShowEvent *e)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+  embedContainer->hide();
+  QTimer::singleShot(QMC2_EMBED_MAXIMIZE_DELAY, embedContainer, SLOT(showMaximized()));
+}
+
 void Embedder::toggleOptions()
 {
 #ifdef QMC2_DEBUG
