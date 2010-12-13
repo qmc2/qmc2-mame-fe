@@ -7,8 +7,6 @@
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 
-#define QMC2_DEBUG
-
 Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
     : QWidget(parent)
 {
