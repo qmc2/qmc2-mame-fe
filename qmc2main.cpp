@@ -7739,6 +7739,9 @@ int main(int argc, char *argv[])
   QTimer::singleShot(0, qmc2Options, SLOT(checkJoystickMappings()));
 #endif
 
+  // this effectively enables support for unicode characters in file names
+  QTextCodec::setCodecForCStrings(QTextCodec::codecForLocale());
+
   // create & show greeting string
   QString greeting;
 #if defined(QMC2_EMUTYPE_MESS)
