@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.2.b18, 02-DEC-2010</h3>
+<h3>TODO - v0.2.b18, 21-DEC-2010</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>Certain GUI styles may cause display problems for the emulator configuration widgets</li>
@@ -33,6 +33,7 @@
 </ul>
 <p><b>Planned changes, new features and improvements for QMC2 0.2</b></p>
 <ul>
+	<li>Fix ROMAlyzer with enabled CHD manager: right now, QMC2 assumes that a successful SHA1 calculation through 'chdman' means that it's the expected file, but that's only true if the actual checksum is the expected one (in other words: just because the file integrity is 'good' doesn't mean that it's the wanted file!)</li>
   <li>Add a sysinfo.dat generator for MESS (may also be used as an official replacement for the existing wiki-to-sysinfo.dat converter from <a href="http://www.bannister.org/forums/ubbthreads.php?ubb=showprofile&User=331" target="_blank">Duke</a>)</li>
   <li>Add support to allow for <i>tagging</i> of games/machines and to use these tags later for <i>batch processing</i> (could be useful for the ROMAlyzer, individual ROM checks, the demo mode and the ROM tool)</li>
   <li>Extend the template syntax to include the version an option was added/removed and process such options only if the current MAME/MESS version lies within this range (both new attributes will be optional, though, meaning that if they are omitted QMC2 will process the respective option regardless of the current MAME/MESS version -- just as it works now)</li>
