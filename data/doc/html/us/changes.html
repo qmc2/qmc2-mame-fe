@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b18, 20-DEC-2010</h3>
+<h3>CHANGES - v0.2.b18, 22-DEC-2010</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b18, 20-DEC-2010:</b></p>
+<p><b>v0.2.b18, 22-DEC-2010:</b></p>
 <ul>
   <li>fix: welcome dialog: the initial/optional hashpath setting must be stored under MESS (not MAME)</li>
   <li>fix: Qt 4.7+ only: worked around a Qt bug that caused the first embedded emulator whose options were activated to <i>disappear</i> (visually)</li>
@@ -25,6 +25,7 @@ inf: informational only
   <li>fix: embedder: corrected client resizing issues on maximized embedded emulators</li>
   <li>fix: embedder: make sure the next visible embedded emulator (if any) gains input focus when the currently focused embed client is released</li>
   <li>fix: set the codec for C-string conversion to the current locale's codec in order to correctly support unicode characters used in XML data (however, note that this makes the creation of XML- and gamelist-caches a bit slower)</li>
+  <li>fix: ROMAlyzer: just because <i>chdman</i> verifies the file integrity as <i>good</i> doesn't mean that it's the wanted file, so we still need to use the header checksums for comparison</li>
   <li>imp: foreign emulator support: a working directory can now also be specified in the registration of foreign emulators (this was particularly added to support RAINE, but it's a good idea anyway)</li>
   <li>imp: SDLMESS/MESS templates updated to 0.140 (no new or changed options)</li>
   <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.140u2 (new options <i>profile</i> and <i>bench</i> for MAME, new option <i>uifont</i> for all, changed default value of <i>coin_lockout</i> for MAMEUIFX32, removed option <i>volume_adjust</i> for MAMEUIFX32, new option <i>hashpath</i> for all)</li>
