@@ -621,11 +621,12 @@ void ROMAlyzer::analyze()
           QString fileStatus;
           bool somethingsWrong = FALSE;
 	  bool eligibleForDatabaseUpload = FALSE;
+	  bool isCHD = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).split(" ")[0] == QObject::tr("CHD");
 
           if ( effectiveFile != QMC2_ROMALYZER_FILE_NOT_FOUND ) {
             if ( zipped )
               childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/zip.png")));
-            else if ( childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).split(" ")[0] == QObject::tr("CHD") )
+            else if ( isCHD )
               childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/disk2.png")));
             else
               childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
@@ -709,7 +710,7 @@ void ROMAlyzer::analyze()
             gameOkay = FALSE;
             childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
             childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/warning.png")));
-            log(tr("WARNING: ROM file '%1' loaded from '%2' has incorrect checksums").arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME), effectiveFile));
+            log(tr("WARNING: %1 file '%2' loaded from '%3' has incorrect / unexpected checksums").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME), effectiveFile));
           } else {
             if ( fileStatus == tr("skipped") ) {
               childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.blueBrush);
@@ -1045,6 +1046,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                     chdManagerProc->start(command, args);
                     chdManagerRunning = TRUE;
                     chdManagerMD5Success = chdManagerSHA1Success = FALSE;
+
                     // wait for CHD manager to finish...
                     while ( chdManagerRunning && !qmc2StopParser ) {
                       QTest::qWait(QMC2_ROMALYZER_PAUSE_TIMEOUT);
@@ -1068,9 +1070,39 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                     chdManagerRunning = FALSE;
                     if ( !qmc2StopParser ) {
                       if ( chdManagerMD5Success && calcMD5 )
-                        *md5Str = myItem->text(QMC2_ROMALYZER_COLUMN_MD5);
-                      if ( chdManagerSHA1Success && calcSHA1 )
-                        *sha1Str = myItem->text(QMC2_ROMALYZER_COLUMN_SHA1);
+                        log(tr("CHD manager: CHD file integrity is good"));
+		      else if ( chdManagerSHA1Success && calcSHA1 )
+                        log(tr("CHD manager: CHD file integrity is good"));
+                      else
+                        log(tr("CHD manager: WARNING: CHD file integrity is bad"));
+
+                      switch ( chdVersion ) {
+                        case 3:
+                          log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+                          if ( chdManagerSHA1Success && calcSHA1 ) {
+                            QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
+                            *sha1Str = QString(sha1Data.toHex());
+                          }
+                          if ( chdManagerMD5Success && calcMD5 ) {
+                            QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
+                            *md5Str = QString(md5Data.toHex());
+                          }
+                          break;
+
+                        case 4:
+                          log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+                          if ( chdManagerSHA1Success && calcSHA1 ) {
+                            QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+                            *sha1Str = QString(sha1Data.toHex());
+                          }
+                          break;
+
+                        default:
+                          log(tr("CHD manager: WARNING: no header checksums available for CHD verification").arg(chdVersion));
+                          effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
+                          break;
+                      }
+
                       if ( step == 1 && (chdManagerMD5Success || chdManagerSHA1Success) ) {
                         log(tr("CHD manager: replacing CHD"));
                         if ( progressWidget ) {
@@ -1099,7 +1131,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                 } else {
                   switch ( chdVersion ) {
                     case 3:
-                      log(tr("using header checksums for CHD verification"));
+                      log(tr("using CHD v%1 header checksums for CHD verification").arg(chdVersion));
                       if ( calcSHA1 ) {
                         QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
                         *sha1Str = QString(sha1Data.toHex());
@@ -1111,7 +1143,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                       break;
 
                     case 4:
-                      log(tr("using header checksums for CHD verification"));
+                      log(tr("using CHD v%1 header checksums for CHD verification").arg(chdVersion));
                       if ( calcSHA1 ) {
                         QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
                         *sha1Str = QString(sha1Data.toHex());
@@ -1119,7 +1151,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                       break;
 
                     default:
-                      log(tr("no header checksums available for CHD verification"));
+                      log(tr("WARNING: no header checksums available for CHD verification"));
                       effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
                       break;
                   }
