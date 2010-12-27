@@ -1,3 +1,31 @@
+qmc2 (0.2.b18+ppa1~maverick0) maverick; urgency=low
+
+  * New Upstream release
+  * fix: welcome dialog: the initial/optional hashpath setting must be stored under MESS (not MAME)
+  * fix: Qt 4.7+ only: worked around a Qt bug that caused the first embedded emulator whose options were activated to disappear (visually)
+  * fix: corrected concurrent/mixed joystick control when emulators are embedded
+  * fix: avoid a QWebInspector warning by setting the application's organization name (only for builds with BROWSER_EXTRAS=1); as a result, QWebInspector will now correctly (re)store its settings in ~/.config/qmc2.conf
+  * fix: corrected cursor positioning when editing strings in delegated item views (emulator configuration widgets and MESS device setup)
+  * fix: avoid possible qUncompress() warnings due to empty input data
+  * fix: embedder: corrected client resizing issues on maximized embedded emulators
+  * fix: embedder: make sure the next visible embedded emulator (if any) gains input focus when the currently focused embed client is released
+  * fix: set the codec for C-string conversion to the current locale's codec in order to correctly support unicode characters used in XML data (however, note that this makes the creation of XML- and gamelist-caches a bit slower)
+  * fix: ROMAlyzer: just because chdman verifies the file integrity as good doesn't mean that it's the wanted file, so we still need to use the header checksums for comparison
+  * imp: foreign emulator support: a working directory can now also be specified in the registration of foreign emulators (this was particularly added to support RAINE, but it's a good idea anyway)
+  * imp: SDLMESS/MESS templates updated to 0.140 (no new or changed options)
+  * imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.140u3 (new options profile and bench for MAME, new option uifont for all, changed default value of coin_lockout for MAMEUIFX32, removed option volume_adjust for MAMEUIFX32, new option hashpath for all)
+  * imp: UNIX build: forcedly disable pretty compilation output ('make PRETTY=1 ...') for Qt 4.7+ as it produces irritating (but harmless) shell warnings
+  * imp: updated redistributed Qt translations from Qt 4.7.1
+  * imp: embedder snapshot tool: the snapshot viewer now also hides itself when the escape key is pressed -- we're no longer bypassing the X11 window manager and are instead using a managed frameless window (the window manager must understand Motif and/or NETWM hints for this to work; however, most - if not all - modern WMs should be able to handle this)
+  * imp: embedder: cleaner layout handling to avoid flickering borders due to auto-maximization
+  * imp: ROMAlyzer: checksum columns will only be shown in the analysis report when their calculation has been enabled in the settings
+  * imp: support for additional XML data in game/machine details (status for ROMs, disks and software-lists, optional for ROMs and disks)
+  * new: embedder: the embedder options drop down menu now also contains a copy command item
+  * wip: adding support for game/machine attached youtube.com videos -- will likely only work for Qt 4.7+ as it uses the embeddable youtube.com video player which in turn needs the npviewer browser plugin
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Mon, 27 Dec 2010 21:30:00 -0300
+
+
 qmc2 (0.2.b17+ppa1~maverick3) maverick; urgency=low
 
   * Added missing dependency for libqt4-test
@@ -9,7 +37,7 @@ qmc2 (0.2.b17+ppa1~maverick0) maverick; urgency=low
 
   * New Upstream Release
 
- -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Sun, 16 Oct 2010 22:30:00 -0300
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Sat, 16 Oct 2010 22:30:00 -0300
 
 
 qmc2 (0.2.b16+ppa1~lucid0) lucid; urgency=low

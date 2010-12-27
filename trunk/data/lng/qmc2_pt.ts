@@ -11552,7 +11552,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="713"/>
         <source>WARNING: %1 file &apos;%2&apos; loaded from &apos;%3&apos; has incorrect / unexpected checksums</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: arquivo de %1 &apos;%2&apos; carregado de &apos;%3&apos; tem checksums incorretos / inesperados</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="740"/>
@@ -11816,23 +11816,23 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romalyzer.cpp" line="1073"/>
         <location filename="../../romalyzer.cpp" line="1075"/>
         <source>CHD manager: CHD file integrity is good</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: integridade do arquivo CHD é boa</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1077"/>
         <source>CHD manager: WARNING: CHD file integrity is bad</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: AVISO: integridade do arquivo CHD é ruim</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1081"/>
         <location filename="../../romalyzer.cpp" line="1093"/>
         <source>CHD manager: using CHD v%1 header checksums for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: usando checksums de cabeçalhos CHD v%1 para verificação de CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1101"/>
         <source>CHD manager: WARNING: no header checksums available for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD manager: AVISO: nenhum checksum de cabeçalho disponível para verificação CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1107"/>
@@ -11863,12 +11863,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romalyzer.cpp" line="1134"/>
         <location filename="../../romalyzer.cpp" line="1146"/>
         <source>using CHD v%1 header checksums for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>usando checksums de cabeçalhos CHD v%1 para verificação de CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1154"/>
         <source>WARNING: no header checksums available for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: nenhum checksum de cabeçalho disponível para verificação CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1161"/>
