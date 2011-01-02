@@ -802,6 +802,133 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tabChecksumWizard">
+      <attribute name="title">
+       <string>Checksum wizard</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelChecksumWizardSHA1">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>SHA1 checksum</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QLineEdit" name="lineEditChecksumWizardSHA1">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>SHA1 checksum to search for</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="pushButtonChecksumWizardSearch">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Search for the SHA1 checksum now</string>
+         </property>
+         <property name="text">
+          <string>Search</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/filefind.png</normaloff>:/data/img/filefind.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="4">
+        <widget class="QTreeWidget" name="treeWidgetChecksumWizardSearchResult">
+         <property name="toolTip">
+          <string>Search results for the current SHA1 checksum</string>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ExtendedSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
+         <property name="uniformRowHeights">
+          <bool>true</bool>
+         </property>
+         <property name="itemsExpandable">
+          <bool>false</bool>
+         </property>
+         <property name="sortingEnabled">
+          <bool>true</bool>
+         </property>
+         <property name="allColumnsShowFocus">
+          <bool>true</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string>ID</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Filename</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Type</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Status</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item row="1" column="2" colspan="2">
+        <widget class="QPushButton" name="pushButtonChecksumWizardRepairBadSets">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Repair all 'bad' sets using the file from the first selected 'good' set (at least one good and one bad set are required)</string>
+         </property>
+         <property name="text">
+          <string>Repair bad sets</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QPushButton" name="pushButtonChecksumWizardAnalyzeSelectedSets">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Analyze all selected sets in order to qualify them</string>
+         </property>
+         <property name="text">
+          <string>Analyze selected sets</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item row="2" column="0">
@@ -938,6 +1065,11 @@
   <tabstop>checkBoxDatabaseDownload</tabstop>
   <tabstop>checkBoxDatabaseUpload</tabstop>
   <tabstop>checkBoxDatabaseOverwrite</tabstop>
+  <tabstop>lineEditChecksumWizardSHA1</tabstop>
+  <tabstop>pushButtonChecksumWizardSearch</tabstop>
+  <tabstop>pushButtonChecksumWizardAnalyzeSelectedSets</tabstop>
+  <tabstop>pushButtonChecksumWizardRepairBadSets</tabstop>
+  <tabstop>treeWidgetChecksumWizardSearchResult</tabstop>
   <tabstop>pushButtonClose</tabstop>
  </tabstops>
  <resources>

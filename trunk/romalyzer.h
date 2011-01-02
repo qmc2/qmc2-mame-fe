@@ -8,6 +8,7 @@
 #include <QTimer>
 #include <QTime>
 #include <QProcess>
+#include <QMenu>
 #include "romdbmgr.h"
 
 #include "ui_romalyzer.h"
@@ -21,6 +22,11 @@
 #define QMC2_ROMALYZER_COLUMN_CRC		6
 #define QMC2_ROMALYZER_COLUMN_SHA1		7
 #define QMC2_ROMALYZER_COLUMN_MD5		8
+
+#define QMC2_ROMALYZER_CSWIZ_COLUMN_ID		0
+#define QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME	1
+#define QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE	2
+#define QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS	3
 
 #define QMC2_ROMALYZER_EMUSTATUS_GOOD		0x00000001
 #define QMC2_ROMALYZER_EMUSTATUS_NODUMP		0x00000020
@@ -115,6 +121,9 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     bool chdManagerSHA1Success;
     quint64 chdManagerCurrentHunk;
     quint64 chdManagerTotalHunks;
+    QMenu *contextMenu;
+    QString currentFilesSHA1Checksum;
+    QStringList wizardSelectedSets;
 #if defined(QMC2_DATABASE_ENABLED)
     ROMDatabaseManager *dbManager;
     QPalette savedCheckButtonPalette;
@@ -150,6 +159,11 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void on_checkBoxCalculateCRC_toggled(bool);
     void on_checkBoxCalculateMD5_toggled(bool);
     void on_checkBoxCalculateSHA1_toggled(bool);
+    void on_pushButtonChecksumWizardSearch_clicked();
+    void on_treeWidgetChecksums_customContextMenuRequested(const QPoint &);
+    void on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
+    void on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked();
+    void on_pushButtonChecksumWizardRepairBadSets_clicked();
 
     // miscellaneous slots
     void animationTimeout();
@@ -160,6 +174,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 #if defined(QMC2_DATABASE_ENABLED)
     void resetDatabaseConnectionCheckButton();
 #endif
+    void runChecksumWizard();
 
     // CHD manager process control
     void chdManagerStarted();
