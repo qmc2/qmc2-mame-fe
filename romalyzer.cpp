@@ -671,6 +671,7 @@ void ROMAlyzer::analyze()
               foreach (QTreeWidgetItem *item, il)
                 if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
                   item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
+                  item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, xmlHandler.redBrush);
                   item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, fallbackPath);
                 }
 	      on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
@@ -685,6 +686,7 @@ void ROMAlyzer::analyze()
               foreach (QTreeWidgetItem *item, il)
                 if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
                   item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
+                  item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, xmlHandler.redBrush);
                   item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, fallbackPath);
                 }
 	      on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
@@ -736,6 +738,7 @@ void ROMAlyzer::analyze()
                 foreach (QTreeWidgetItem *item, il)
                   if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
                     item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? tr("good") : tr("bad"));
+                    item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS,  eligibleForDatabaseUpload ? xmlHandler.greenBrush : xmlHandler.redBrush);
                     item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, effectiveFile);
                   }
 	      on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
