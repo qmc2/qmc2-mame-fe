@@ -696,6 +696,12 @@ void ROMAlyzer::analyze()
             fileItem->setText(QMC2_ROMALYZER_COLUMN_GAME, tr("Checksums"));
             childItem->setExpanded(FALSE);
 
+            QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
+            if ( !mergeName.isEmpty() ) {
+              if ( !merged )
+                log(tr("WARNING: %1 file '%2' loaded from '%3' may be obsolete, should be merged from parent set '%4'").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile).arg(parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE)));
+            }
+
             // Size
             QString sizeStr = childItem->text(QMC2_ROMALYZER_COLUMN_SIZE);
             if ( !sizeStr.isEmpty() ){
@@ -764,7 +770,7 @@ void ROMAlyzer::analyze()
             gameOkay = FALSE;
             childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
             childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/warning.png")));
-            log(tr("WARNING: %1 file '%2' loaded from '%3' has incorrect / unexpected checksums").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME), effectiveFile));
+            log(tr("WARNING: %1 file '%2' loaded from '%3' has incorrect / unexpected checksums").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile));
           } else {
             if ( fileStatus == tr("skipped") ) {
               childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.blueBrush);
