@@ -276,6 +276,7 @@ void ROMAlyzer::on_checkBoxCalculateSHA1_toggled(bool enable)
 	treeWidgetChecksums->setColumnHidden(QMC2_ROMALYZER_COLUMN_SHA1, !enable);
 	if ( groupBoxDatabase->isChecked() )
 		groupBoxDatabase->setChecked(enable);
+	tabChecksumWizard->setEnabled(enable);
 }
 
 void ROMAlyzer::animationTimeout()
@@ -498,7 +499,7 @@ void ROMAlyzer::analyze()
   pushButtonPause->setEnabled(TRUE);
   pushButtonPause->setText(tr("&Pause"));
   lineEditGames->setEnabled(FALSE);
-  tabChecksumWizard->setEnabled(FALSE);
+  if ( checkBoxCalculateSHA1->isChecked() ) tabChecksumWizard->setEnabled(FALSE);
   QTime analysisTimer, elapsedTime;
   analysisTimer.start();
   log(tr("analysis started"));
@@ -698,8 +699,11 @@ void ROMAlyzer::analyze()
 
             QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
             if ( !mergeName.isEmpty() ) {
-              if ( !merged )
+              if ( !merged ) {
                 log(tr("WARNING: %1 file '%2' loaded from '%3' may be obsolete, should be merged from parent set '%4'").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile).arg(parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE)));
+                childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
+	      } else 
+                childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
             }
 
             // Size
@@ -855,7 +859,7 @@ void ROMAlyzer::analyze()
   pushButtonPause->setVisible(FALSE);
   pushButtonAnalyze->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
   lineEditGames->setEnabled(TRUE);
-  tabChecksumWizard->setEnabled(TRUE);
+  if ( checkBoxCalculateSHA1->isChecked() ) tabChecksumWizard->setEnabled(TRUE);
 
   progressBar->reset();
   labelStatus->setText(tr("Idle"));
