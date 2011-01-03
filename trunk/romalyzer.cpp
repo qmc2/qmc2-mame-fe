@@ -612,7 +612,7 @@ void ROMAlyzer::analyze()
         bool merged = FALSE;
         QTreeWidgetItem *childItem = xmlHandler.childItems.at(fileCounter);
         QTreeWidgetItem *parentItem = xmlHandler.parentItem;
-        QString sha1Calculated, md5Calculated;
+        QString sha1Calculated, md5Calculated, fallbackPath;
         QString effectiveFile = getEffectiveFile(childItem, gameName, 
                                                  childItem->text(QMC2_ROMALYZER_COLUMN_GAME),
                                                  childItem->text(QMC2_ROMALYZER_COLUMN_CRC),
@@ -620,7 +620,7 @@ void ROMAlyzer::analyze()
                                                  childItem->text(QMC2_ROMALYZER_COLUMN_MERGE),
                                                  childItem->text(QMC2_ROMALYZER_COLUMN_TYPE),
                                                  &data, &sha1Calculated, &md5Calculated,
-                                                 &zipped, &merged, fileCounter); 
+                                                 &zipped, &merged, fileCounter, &fallbackPath); 
 #ifdef QMC2_DEBUG
 	log(QString("DEBUG: fileName = %1 [%2], isZipped = %3, fileType = %4, crcExpected = %5, sha1Calculated = %6")
 		    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME))
@@ -669,8 +669,10 @@ void ROMAlyzer::analyze()
 	    if ( wizardSelectedSets.contains(gameName) ) {
               QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
               foreach (QTreeWidgetItem *item, il)
-                if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) )
+                if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
                   item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
+                  item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, fallbackPath);
+                }
 	      on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
 	    }
           } else if ( effectiveFile == QMC2_ROMALYZER_FILE_NOT_FOUND ) {
@@ -681,8 +683,10 @@ void ROMAlyzer::analyze()
 	    if ( wizardSelectedSets.contains(gameName) ) {
               QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
               foreach (QTreeWidgetItem *item, il)
-                if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) )
+                if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
                   item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
+                  item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, fallbackPath);
+                }
 	      on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
 	    }
           } else {
@@ -730,8 +734,10 @@ void ROMAlyzer::analyze()
 	      if ( wizardSelectedSets.contains(gameName) ) {
                 QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
                 foreach (QTreeWidgetItem *item, il)
-                  if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) )
+                  if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
                     item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? tr("good") : tr("bad"));
+                    item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, effectiveFile);
+                  }
 	      on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
 	      }
               qApp->processEvents();
@@ -879,10 +885,10 @@ QString &ROMAlyzer::getXmlData(QString gameName)
   return xmlBuffer;
 }
 
-QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, QString fileName, QString wantedCRC, QString merge, QString mergeFile, QString type, QByteArray *fileData, QString *sha1Str, QString *md5Str, bool *isZipped, bool *mergeUsed, int fileCounter)
+QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, QString fileName, QString wantedCRC, QString merge, QString mergeFile, QString type, QByteArray *fileData, QString *sha1Str, QString *md5Str, bool *isZipped, bool *mergeUsed, int fileCounter, QString *fallbackPath)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem = %1, QString gameName = %2, QString fileName = %3, QString wantedCRC = %4, QString merge = %5, QString mergeFile = %6, QString type = %7, QByteArray *fileData = ..., QString *sha1Str = ..., QString md5Str = ..., bool *isZipped = ..., bool *mergeUsed = ..., int fileCounter = ...)")
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem = %1, QString gameName = %2, QString fileName = %3, QString wantedCRC = %4, QString merge = %5, QString mergeFile = %6, QString type = %7, QByteArray *fileData = ..., QString *sha1Str = ..., QString md5Str = ..., bool *isZipped = ..., bool *mergeUsed = ..., int fileCounter = ..., QString *fallbackPath = ...)")
                      .arg((qulonglong)myItem).arg(gameName).arg(fileName).arg(wantedCRC).arg(merge).arg(mergeFile).arg(type));
 #endif
 
@@ -911,8 +917,10 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
     progressWidget = NULL;
     oldItemWidget = NULL;
     QString filePath(romPath + "/" + gameName + "/" + fileName);
-    if ( isCHD )
+    if ( isCHD ) {
       filePath += ".chd";
+      if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
+    }
     if ( QFile::exists(filePath) ) {
       QFileInfo fi(filePath);
       if ( fi.isReadable() ) {
@@ -949,6 +957,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
           if ( calcMD5 )
             md5Hash.reset();
           if ( isCHD ) {
+            QString chdFilePath;
             quint32 chdTotalHunks = 0;
             if ( (len = romFile.read(buffer, QMC2_CHD_HEADER_V3_LENGTH)) > 0 ) {
               log(tr("CHD header information:"));
@@ -1009,7 +1018,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                  break;
               }
               if ( calcSHA1 || calcMD5 || chdManagerEnabled ) {
-                QString chdFilePath = fi.absoluteFilePath();
+                chdFilePath = fi.absoluteFilePath();
                 QString chdTempFilePath = lineEditTemporaryWorkingDirectory->text() + fi.baseName() + "-chdman-update.chd";
                 if ( chdManagerEnabled ) {
                   romFile.close();
@@ -1072,6 +1081,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                               default:
                                 log(tr("CHD manager: no header checksums available for CHD verification"));
                                 effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
+                                if ( fallbackPath->isEmpty() ) *fallbackPath = chdFilePath;
                                 break;
                             }
                             continue;
@@ -1146,6 +1156,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                         default:
                           log(tr("CHD manager: WARNING: no header checksums available for CHD verification").arg(chdVersion));
                           effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
+                          if ( fallbackPath->isEmpty() ) *fallbackPath = chdFilePath;
                           break;
                       }
 
@@ -1199,6 +1210,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                     default:
                       log(tr("WARNING: no header checksums available for CHD verification"));
                       effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
+                      if ( fallbackPath->isEmpty() ) *fallbackPath = chdFilePath;
                       break;
                   }
                 }
@@ -1206,6 +1218,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
             } else {
               log(tr("WARNING: can't read CHD header information"));
               effectiveFile = QMC2_ROMALYZER_FILE_ERROR;
+              if ( fallbackPath->isEmpty() ) *fallbackPath = chdFilePath;
             }
           } else {
             while ( (len = romFile.read(buffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE)) > 0 && !qmc2StopParser ) {
@@ -1244,13 +1257,16 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
     } else {
       if ( isCHD ) {
         log(tr("WARNING: CHD file '%1' not found").arg(filePath));
-        if ( mergeFile.isEmpty() && merge.isEmpty() )
+        if ( mergeFile.isEmpty() && merge.isEmpty() ) {
           effectiveFile = QMC2_ROMALYZER_FILE_NOT_FOUND;
+          if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
+	}
       }
     }
 
     if ( effectiveFile.isEmpty() && !qmc2StopParser ) {
       filePath = romPath + "/" + gameName + ".zip";
+      if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
       if ( QFile::exists(filePath) ) {
         QFileInfo fi(filePath);
         if ( fi.isReadable() ) {
@@ -1285,6 +1301,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                   *isZipped = TRUE;
                   progressBarFileIO->reset();
                   effectiveFile = QMC2_ROMALYZER_FILE_TOO_BIG;
+                  if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
                   continue;
                 }
               }
@@ -1321,6 +1338,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                 }
                 unzCloseCurrentFile(zipFile);
                 effectiveFile = filePath;
+                if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
                 *isZipped = TRUE;
                 if ( calcSHA1 )
                   *sha1Str = sha1Hash.result().toHex();
@@ -1361,9 +1379,9 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
       if ( romofPosition > -1 ) {
         nextMerge = nextMerge.mid(romofPosition + 7);
         nextMerge = nextMerge.left(nextMerge.indexOf("\""));
-        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, mergeUsed, fileCounter);
+        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, nextMerge, mergeFile, type, fileData, sha1Str, md5Str, isZipped, mergeUsed, fileCounter, fallbackPath);
       } else
-        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, mergeUsed, fileCounter);
+        effectiveFile = getEffectiveFile(myItem, merge, mergeFile, wantedCRC, "", "", type, fileData, sha1Str, md5Str, isZipped, mergeUsed, fileCounter, fallbackPath);
     }
   }
 
@@ -1644,8 +1662,10 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 #endif
 
 	treeWidgetChecksumWizardSearchResult->clear();
-	int numXmlLines = qmc2Gamelist->xmlLines.count();
 	QString searchedChecksum = lineEditChecksumWizardSHA1->text().toLower();
+	if ( searchedChecksum.isEmpty() ) return;
+
+	int numXmlLines = qmc2Gamelist->xmlLines.count();
 
 	progressBar->setRange(0, numXmlLines);
 	labelStatus->setText(tr("Checksum search"));
