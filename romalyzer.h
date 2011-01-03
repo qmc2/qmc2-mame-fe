@@ -157,6 +157,8 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void on_spinBoxMaxLogSize_valueChanged(int);
     void on_toolButtonBrowseCHDManagerExecutableFile_clicked();
     void on_toolButtonBrowseTemporaryWorkingDirectory_clicked();
+    void on_toolButtonBrowseSetRewriterTemporaryWorkingDirectory_clicked();
+    void on_toolButtonBrowseSetRewriterOutputPath_clicked();
 #if defined(QMC2_DATABASE_ENABLED)
     void on_pushButtonDatabaseCheckConnection_clicked();
     void on_toolButtonBrowseDatabaseOutputPath_clicked();

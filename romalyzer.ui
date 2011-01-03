@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>589</width>
-    <height>495</height>
+    <height>614</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -280,7 +280,7 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Directory to use for temporary storage (make sure it has enough room to store the biggest CHDs)</string>
+             <string>Temporary directory used by the CHD manager (make sure it has enough room to store the biggest CHDs)</string>
             </property>
            </widget>
           </item>
@@ -293,7 +293,7 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Browse directory to use for temporary storage</string>
+             <string>Browse temporary directory used by the CHD manager</string>
             </property>
             <property name="icon">
              <iconset resource="qmc2.qrc">
@@ -800,6 +800,142 @@
          </layout>
         </widget>
        </item>
+       <item row="2" column="0">
+        <widget class="QGroupBox" name="groupBoxSetRewriter">
+         <property name="title">
+          <string>Enable set rewriter</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelSetRewriterOutputPath">
+            <property name="text">
+             <string>Set rewriter output path</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEditSetRewriterOutputPath">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Output path for the set rewriter (WARNING: existing files will be overwritten!)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QToolButton" name="toolButtonBrowseSetRewriterOutputPath">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Browse output path for the set rewriter</string>
+            </property>
+            <property name="icon">
+             <iconset resource="qmc2.qrc">
+              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSetRewriterTemporaryWorkingDirectory">
+            <property name="text">
+             <string>Temporary working directory</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lineEditSetRewriterTemporaryWorkingDirectory">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Temporary directory used by the set rewriter (read and write)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QToolButton" name="toolButtonBrowseSetRewriterTemporaryWorkingDirectory">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Browse temporary working directory for the set rewriter</string>
+            </property>
+            <property name="icon">
+             <iconset resource="qmc2.qrc">
+              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="checkBoxSetRewriterSelfContainedSets">
+            <property name="toolTip">
+             <string>Create sets that do not need parent sets (otherwise create merged sets, which is recommended)</string>
+            </property>
+            <property name="text">
+             <string>Self-contained sets</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="2">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QRadioButton" name="radioButtonSetRewriterZipArchives">
+              <property name="toolTip">
+               <string>Produce ZIP archived sets (recommended)</string>
+              </property>
+              <property name="text">
+               <string>ZIP archives</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radioButtonSetRewriterIndividualDirectories">
+              <property name="toolTip">
+               <string>Produce sets in individual sub-directories (not recommended)</string>
+              </property>
+              <property name="text">
+               <string>Individual sub-directories</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tabChecksumWizard">
@@ -1057,6 +1193,14 @@
   <tabstop>checkBoxVerifyCHDs</tabstop>
   <tabstop>checkBoxFixCHDs</tabstop>
   <tabstop>checkBoxUpdateCHDs</tabstop>
+  <tabstop>groupBoxSetRewriter</tabstop>
+  <tabstop>lineEditSetRewriterOutputPath</tabstop>
+  <tabstop>toolButtonBrowseSetRewriterOutputPath</tabstop>
+  <tabstop>lineEditSetRewriterTemporaryWorkingDirectory</tabstop>
+  <tabstop>toolButtonBrowseSetRewriterTemporaryWorkingDirectory</tabstop>
+  <tabstop>checkBoxSetRewriterSelfContainedSets</tabstop>
+  <tabstop>radioButtonSetRewriterZipArchives</tabstop>
+  <tabstop>radioButtonSetRewriterIndividualDirectories</tabstop>
   <tabstop>groupBoxDatabase</tabstop>
   <tabstop>lineEditDatabaseUser</tabstop>
   <tabstop>lineEditDatabasePassword</tabstop>
@@ -1089,7 +1233,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>86</x>
-     <y>480</y>
+     <y>691</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
@@ -1136,12 +1280,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>397</x>
-     <y>392</y>
+     <x>547</x>
+     <y>520</y>
     </hint>
     <hint type="destinationlabel">
-     <x>438</x>
-     <y>386</y>
+     <x>632</x>
+     <y>520</y>
     </hint>
    </hints>
   </connection>
