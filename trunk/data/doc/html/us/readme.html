@@ -356,9 +356,9 @@ has been enabled) are also not filtered.</p>
   <li>Long ROMAlyzer runs can be paused / resumed or interrupted at nearly any time. Interruptions take place immediatly, and any running external process (like <i>chdman</i> for example) will be terminated. Pausing the analysis is <i>nicer</i> and takes place asynchronously, waiting for the current set to finish its analysis.</li>
   <li>ROM sets that use <i>merged</i> files will also be checked for their <i>merge-states</i>. Possible states include:
     <ul>
-      <li>OK (green) -- the merged files are at their expected places and are taken from the parent set</li>
-      <li>WARNING (yellow) -- the files to be merged are taken from the child set and are thus obsolete (it's OK, but you can safe some space by reorganizing your sets)</li>
-      <li>CRITICAL (red) -- the files to be merged are not found or otherwise wrong in both the parent and the child sets</li>
+      <li>OK (green) -- all merged files are at their expected places and are taken from the parent set</li>
+      <li>WARNING (yellow) -- one or more files to be merged are taken from the child set, but if the parent set already has the files (needs it anyway), they can be considered obsolete within the child set (it's OK, but you can free some space by reorganizing your sets)</li>
+      <li>CRITICAL (red) -- one or more files to be merged are not found or otherwise 'bad' in both the parent and the child sets</li>
     </ul>
   </li>
   <li>The <i>checksum wizard</i> (new since v0.2.b19) will allow you to search for an SHA1 checksum in all sets. You can use it to qualify the states and locations of the respective files and to automatically repair 'bad' sets when 'good' sets exists.</li>
