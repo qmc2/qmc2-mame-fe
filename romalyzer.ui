@@ -891,12 +891,17 @@
          </column>
          <column>
           <property name="text">
+           <string>Status</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
            <string>Type</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>Status</string>
+           <string>Path</string>
           </property>
          </column>
         </widget>

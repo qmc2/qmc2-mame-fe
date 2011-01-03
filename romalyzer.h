@@ -25,8 +25,9 @@
 
 #define QMC2_ROMALYZER_CSWIZ_COLUMN_ID		0
 #define QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME	1
-#define QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE	2
-#define QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS	3
+#define QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS	2
+#define QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE	3
+#define QMC2_ROMALYZER_CSWIZ_COLUMN_PATH	4
 
 #define QMC2_ROMALYZER_EMUSTATUS_GOOD		0x00000001
 #define QMC2_ROMALYZER_EMUSTATUS_NODUMP		0x00000020
@@ -138,7 +139,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     QString humanReadable(quint64);
     QString &getXmlData(QString);
     QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString,
-                              QByteArray *, QString *, QString *, bool *, bool *, int);
+                              QByteArray *, QString *, QString *, bool *, bool *, int, QString *);
 
   public slots:
     // callback functions
