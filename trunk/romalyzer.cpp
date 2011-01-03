@@ -605,7 +605,7 @@ void ROMAlyzer::analyze()
       int fileCounter;
       int notFoundCounter = 0;
       bool gameOkay = TRUE;
-      bool mergeOkay = TRUE;
+      int mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_OK;
       for (fileCounter = 0; fileCounter < xmlHandler.fileCounter && !qmc2StopParser; fileCounter++) {
         progressBar->setValue(fileCounter);
         qApp->processEvents();
@@ -667,6 +667,13 @@ void ROMAlyzer::analyze()
           } else if ( effectiveFile == QMC2_ROMALYZER_FILE_ERROR ) {
             fileStatus = tr("error");
             childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/warning.png")));
+
+            QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
+            if ( !mergeName.isEmpty() ) {
+              if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_CRIT ) mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_CRIT;
+              childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
+            }
+
             filesError = TRUE;
 	    if ( wizardSelectedSets.contains(gameName) ) {
               QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
@@ -683,6 +690,13 @@ void ROMAlyzer::analyze()
             childItem->setIcon(QMC2_ROMALYZER_COLUMN_GAME, QIcon(QString::fromUtf8(":/data/img/remove.png")));
             filesNotFound = TRUE;
             notFoundCounter++;
+
+            QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
+            if ( !mergeName.isEmpty() ) {
+              if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_CRIT ) mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_CRIT;
+              childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
+            }
+
 	    if ( wizardSelectedSets.contains(gameName) ) {
               QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
               foreach (QTreeWidgetItem *item, il)
@@ -703,7 +717,7 @@ void ROMAlyzer::analyze()
               if ( !merged ) {
                 log(tr("WARNING: %1 file '%2' loaded from '%3' may be obsolete, should be merged from parent set '%4'").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile).arg(parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE)));
                 childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
-		mergeOkay = FALSE;
+		if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_WARN ) mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_WARN;
 	      } else 
                 childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
             }
@@ -839,8 +853,21 @@ void ROMAlyzer::analyze()
             xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
           }
         }
-        if ( !xmlHandler.parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() )
-          xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, mergeOkay ? QIcon(QString::fromUtf8(":/data/img/merge_ok.png")) : QIcon(QString::fromUtf8(":/data/img/merge.png")));
+        if ( !xmlHandler.parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
+		switch ( mergeStatus ) {
+			case QMC2_ROMALYZER_MERGE_STATUS_OK:
+				xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
+				break;
+			case QMC2_ROMALYZER_MERGE_STATUS_WARN:
+				xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
+				break;
+			case QMC2_ROMALYZER_MERGE_STATUS_CRIT:
+				xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
+				break;
+			default:
+				break;
+		}
+	}
         log(tr("done (checking %n file(s) for '%1')", "", xmlHandler.fileCounter).arg(gameName));
       }
       if ( qmc2StopParser )
