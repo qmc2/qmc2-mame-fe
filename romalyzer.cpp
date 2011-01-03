@@ -605,6 +605,7 @@ void ROMAlyzer::analyze()
       int fileCounter;
       int notFoundCounter = 0;
       bool gameOkay = TRUE;
+      bool mergeOkay = TRUE;
       for (fileCounter = 0; fileCounter < xmlHandler.fileCounter && !qmc2StopParser; fileCounter++) {
         progressBar->setValue(fileCounter);
         qApp->processEvents();
@@ -702,6 +703,7 @@ void ROMAlyzer::analyze()
               if ( !merged ) {
                 log(tr("WARNING: %1 file '%2' loaded from '%3' may be obsolete, should be merged from parent set '%4'").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile).arg(parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE)));
                 childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
+		mergeOkay = FALSE;
 	      } else 
                 childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
             }
@@ -837,6 +839,8 @@ void ROMAlyzer::analyze()
             xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
           }
         }
+        if ( !xmlHandler.parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() )
+          xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, mergeOkay ? QIcon(QString::fromUtf8(":/data/img/merge_ok.png")) : QIcon(QString::fromUtf8(":/data/img/merge.png")));
         log(tr("done (checking %n file(s) for '%1')", "", xmlHandler.fileCounter).arg(gameName));
       }
       if ( qmc2StopParser )
