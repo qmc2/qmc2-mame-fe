@@ -1859,13 +1859,39 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()");
 #endif
 
+	QList<QTreeWidgetItem *> badList = treeWidgetChecksumWizardSearchResult->findItems(tr("bad"), Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS);
+	int numBadSets = badList.count();
+	log(tr("checksum wizard: repairing %n bad set(s)", "", numBadSets));
+	QTreeWidgetItem *goodItem = NULL;
+	foreach (QTreeWidgetItem *item, treeWidgetChecksumWizardSearchResult->selectedItems()) {
+		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") ) {
+			goodItem = item;
+			break;
+		}
+	}
+	if ( goodItem != NULL ) {
+		QString type = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE);
+		QString file = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME);
+		QString path = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH);
+		log(tr("checksum wizard: using %1 file '%2' from '%3' as repro template").arg(type).arg(file).arg(path));
+		// FIXME: load repro template
+		foreach (QTreeWidgetItem *badItem, badList) {
+			// FIXME: repair set...
+		}
+	} else
+		log(tr("checksum wizard: FATAL: can't find any good set"));
+
+	log(tr("checksum wizard: done (repairing %n bad set(s))", "", numBadSets));
 }
 
 void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &p = ...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &p = ...)");
 #endif
+
+	if ( qmc2ROMAlyzerActive )
+		return;
 
 	QTreeWidgetItem *item = treeWidgetChecksums->itemAt(p);
 	if ( item )
