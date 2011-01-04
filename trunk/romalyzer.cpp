@@ -787,8 +787,9 @@ void ROMAlyzer::analyze()
                 foreach (QTreeWidgetItem *item, il)
                   if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
                     item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? tr("good") : tr("bad"));
-                    item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS,  eligibleForDatabaseUpload ? xmlHandler.greenBrush : xmlHandler.redBrush);
+                    item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? xmlHandler.greenBrush : xmlHandler.redBrush);
                     item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, effectiveFile);
+		    if ( eligibleForDatabaseUpload && zipped ) item->setWhatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
                   }
 	      on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
 	      }
@@ -1343,13 +1344,13 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
             // identify file by CRC!
             unz_file_info zipInfo;
             QMap<uLong, QString> crcIdentMap;
+            uLong ulCRC = wantedCRC.toULong(0, 16);
             do {
               if ( unzGetCurrentFileInfo(zipFile, &zipInfo, buffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
                 crcIdentMap[zipInfo.crc] = QString((const char *)buffer);
-            } while ( unzGoToNextFile(zipFile) == UNZ_OK );
+            } while ( unzGoToNextFile(zipFile) == UNZ_OK && !crcIdentMap.contains(ulCRC) );
             unzGoToFirstFile(zipFile);
             QString fn = "QMC2_DUMMY_FILENAME";
-            uLong ulCRC = wantedCRC.toULong(0, 16);
             if ( crcIdentMap.contains(ulCRC) )
               fn = crcIdentMap[ulCRC];
             else if ( mergeFile.isEmpty() ) {
@@ -1870,13 +1871,69 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 		}
 	}
 	if ( goodItem != NULL ) {
-		QString type = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE);
-		QString file = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME);
-		QString path = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH);
-		log(tr("checksum wizard: using %1 file '%2' from '%3' as repro template").arg(type).arg(file).arg(path));
-		// FIXME: load repro template
-		foreach (QTreeWidgetItem *badItem, badList) {
-			// FIXME: repair set...
+		QString sourceType = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE);
+		QString sourceFile = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME);
+		QString sourceCRC  = goodItem->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME); // we need the CRC for file identification in ZIPs
+		QString sourcePath = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH);
+		log(tr("checksum wizard: using %1 file '%2' from '%3' as repro template").arg(sourceType).arg(sourceFile).arg(sourcePath));
+
+		bool loadOkay = true;
+		QByteArray templateData;
+		QString fn = "QMC2_DUMMY_FILENAME";
+		if ( sourceType == tr("ROM") ) {
+  			char loadBuffer[MAX(QMC2_ROMALYZER_ZIP_BUFFER_SIZE, QMC2_ROMALYZER_FILE_BUFFER_SIZE)];
+			// load ROM image
+			if ( sourcePath.indexOf(QRegExp("^.*\.[zZ][iI][pP]$")) == 0 ) {
+				// file from a ZIP archive
+				unzFile zipFile = unzOpen((const char *)sourcePath.toAscii());
+				if ( zipFile ) {
+					// identify file by CRC
+					unz_file_info zipInfo;
+					QMap<uLong, QString> crcIdentMap;
+					uLong ulCRC = sourceCRC.toULong(0, 16);
+					do {
+						if ( unzGetCurrentFileInfo(zipFile, &zipInfo, loadBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
+							crcIdentMap[zipInfo.crc] = QString((const char *)loadBuffer);
+					} while ( unzGoToNextFile(zipFile) == UNZ_OK && !crcIdentMap.contains(ulCRC) );
+					unzGoToFirstFile(zipFile);
+					if ( crcIdentMap.contains(ulCRC) ) {
+						fn = crcIdentMap[ulCRC];
+						log(tr("checksum wizard: successfully identified '%1' from '%2' by CRC, filename in ZIP archive is '%3'").arg(sourceFile).arg(sourcePath).arg(fn));
+						if ( unzLocateFile(zipFile, (const char *)fn.toAscii(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
+							if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
+								qint64 len;
+								while ( (len = unzReadCurrentFile(zipFile, loadBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
+									QByteArray readData((const char *)loadBuffer, len);
+									templateData += readData;
+								}
+								unzCloseCurrentFile(zipFile);
+								log(tr("checksum wizard: template data loaded, uncompressed size = %1 bytes").arg(templateData.length()));
+							}
+						}
+					} else {
+						log(tr("checksum wizard: FATAL: unable to identify '%1' from '%2' by CRC").arg(sourceFile).arg(sourcePath));
+						loadOkay = false;
+					}
+					unzClose(zipFile);
+				} else {
+					log(tr("checksum wizard: FATAL: can't open ZIP archive '%1' for decompression").arg(sourcePath));
+					loadOkay = false;
+				}
+			} else {
+				// FIXME: no support for normal files yet
+				log(tr("checksum wizard: sorry, no support for normal files yet"));
+				loadOkay = false;
+			}
+		} else {
+			// FIXME: no support for CHDs yet (probably not necessary)
+			log(tr("checksum wizard: sorry, no support for CHD files yet"));
+			loadOkay = false;
+		}
+
+		if ( loadOkay ) {
+			foreach (QTreeWidgetItem *badItem, badList) {
+				// FIXME: repair set...
+			}
 		}
 	} else
 		log(tr("checksum wizard: FATAL: can't find any good set"));
