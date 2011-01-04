@@ -94,7 +94,7 @@ typedef struct tm_zip_s
     uInt tm_year;           /* years - [1980..2044] */
 } tm_zip;
 
-typedef struct
+typedef struct zip_fileinfo_s
 {
     tm_zip      tmz_date;       /* date in understandable format           */
     uLong       dosDate;       /* if dos_date == 0, tmu_date is used      */

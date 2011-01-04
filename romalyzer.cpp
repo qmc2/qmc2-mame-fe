@@ -1842,6 +1842,9 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()");
 #endif
 
+	// only one repair at a time
+	pushButtonChecksumWizardRepairBadSets->setEnabled(false);
+
 	QList<QTreeWidgetItem *> badList = treeWidgetChecksumWizardSearchResult->findItems(tr("bad"), Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS);
 	int numBadSets = badList.count();
 	log(tr("checksum wizard: repairing %n bad set(s)", "", numBadSets));
@@ -1913,13 +1916,17 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 		}
 
 		if ( loadOkay ) {
-			// FIXME: add progress indication for repair process
+			progressBar->setRange(0, badList.count());
+			progressBar->reset();
+			quint32 counter = 0;
 			foreach (QTreeWidgetItem *badItem, badList) {
 				bool saveOkay = true;
 				QString targetType = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE);
 				QString targetFile = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME);
 				QString targetPath = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH);
+				labelStatus->setText(tr("Repairing set '%1' - %2").arg(badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_ID)).arg(badList.count() - counter));
 				log(tr("checksum wizard: repairing %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
+				qApp->processEvents();
 
 				if ( targetType == tr("ROM") ) {
 					// save ROM image
@@ -1938,8 +1945,11 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 							zipInfo.tmz_date.tm_mday = cDT.date().day();
 							zipInfo.tmz_date.tm_mon = cDT.date().month() - 1;
 							zipInfo.tmz_date.tm_year = cDT.date().year();
-							if ( zipOpenNewFileInZip(zip, (const char *)targetFile.toAscii(), &zipInfo, 0, 0, 0, 0, 0, Z_DEFLATED, Z_DEFAULT_COMPRESSION) == ZIP_OK ) {
+							zipInfo.dosDate = 0;
+							if ( zipOpenNewFileInZip(zip, (const char *)targetFile.toAscii(), &zipInfo, (const void *)targetFile.toAscii(), targetFile.length(), 0, 0, 0, Z_DEFLATED, Z_DEFAULT_COMPRESSION) == ZIP_OK ) {
 								quint64 bytesWritten = 0;
+								progressBarFileIO->setRange(0, templateData.length());
+								progressBarFileIO->reset();
 								while ( bytesWritten < templateData.length() && saveOkay ) {
 									quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
 									if ( bytesWritten + bufferLength > templateData.length() )
@@ -1948,7 +1958,10 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 									saveOkay = (zipWriteInFileInZip(zip, (const void *)writeBuffer.data(), bufferLength) == ZIP_OK);
 									if ( saveOkay )
 										bytesWritten += bufferLength;
+									progressBarFileIO->setValue(bytesWritten);
 								}
+								progressBarFileIO->reset();
+								qApp->processEvents();
 								zipCloseFileInZip(zip);
 							} else {
 								log(tr("checksum wizard: FATAL: can't open file '%1' in ZIP archive '%2' for writing").arg(targetFile).arg(targetPath));
@@ -1983,12 +1996,18 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 				} else {
 					log(tr("checksum wizard: FATAL: failed to repair %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
 				}
+
+				progressBar->setValue(++counter);
+				qApp->processEvents();
 			}
+			labelStatus->setText(tr("Idle"));
+			progressBar->reset();
 		}
 	} else
 		log(tr("checksum wizard: FATAL: can't find any good set"));
 
 	log(tr("checksum wizard: done (repairing %n bad set(s))", "", numBadSets));
+	on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
 }
 
 void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &p)
