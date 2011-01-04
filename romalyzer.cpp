@@ -1902,8 +1902,8 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 					loadOkay = false;
 				}
 			} else {
-				// FIXME: no support for normal files yet
-				log(tr("checksum wizard: sorry, no support for normal files yet"));
+				// FIXME: no support for regular files yet
+				log(tr("checksum wizard: sorry, no support for regular files yet"));
 				loadOkay = false;
 			}
 		} else {

@@ -12047,6 +12047,10 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1906"/>
+        <source>checksum wizard: sorry, no support for regular files yet</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../../romalyzer.cpp" line="1970"/>
         <source>checksum wizard: sorry, no support for normal files yet</source>
         <translation></translation>

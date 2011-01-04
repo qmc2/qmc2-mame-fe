@@ -12051,6 +12051,10 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1906"/>
+        <source>checksum wizard: sorry, no support for regular files yet</source>
+        <translation>Prüfsummen-Assistent: sorry, herkömmliche Dateien werden noch nicht unterstützt</translation>
+    </message>
+    <message>
         <location filename="../../romalyzer.cpp" line="1970"/>
         <source>checksum wizard: sorry, no support for normal files yet</source>
         <translation>Prüfsummen-Assistent: sorry, herkömmliche Dateien werden noch nicht unterstützt</translation>

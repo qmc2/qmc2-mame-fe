@@ -12041,6 +12041,10 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1906"/>
+        <source>checksum wizard: sorry, no support for regular files yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../romalyzer.cpp" line="1970"/>
         <source>checksum wizard: sorry, no support for normal files yet</source>
         <translation type="unfinished"></translation>
