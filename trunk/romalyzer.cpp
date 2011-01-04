@@ -1944,12 +1944,12 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 						zipFile zip = zipOpen((const char *)targetPath.toAscii(), APPEND_STATUS_ADDINZIP);
 						if ( zip ) {
 							zip_fileinfo zipInfo;
-							QDateTime cDT = QDateTime::currentDateTime().toLocalTime();
+							QDateTime cDT = QDateTime::currentDateTime();
 							zipInfo.tmz_date.tm_sec = cDT.time().second();
 							zipInfo.tmz_date.tm_min = cDT.time().minute();
 							zipInfo.tmz_date.tm_hour = cDT.time().hour();
 							zipInfo.tmz_date.tm_mday = cDT.date().day();
-							zipInfo.tmz_date.tm_mon = cDT.date().month();
+							zipInfo.tmz_date.tm_mon = cDT.date().month() - 1;
 							zipInfo.tmz_date.tm_year = cDT.date().year();
 							if ( zipOpenNewFileInZip(zip, (const char *)targetFile.toAscii(), &zipInfo, 0, 0, 0, 0, 0, Z_DEFLATED, Z_DEFAULT_COMPRESSION) == ZIP_OK ) {
 								quint64 bytesWritten = 0;
