@@ -1941,7 +1941,11 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 				if ( targetType == tr("ROM") ) {
 					// save ROM image
 					if ( targetPath.indexOf(QRegExp("^.*\.[zZ][iI][pP]$")) == 0 ) {
-						zipFile zip = zipOpen((const char *)targetPath.toAscii(), APPEND_STATUS_ADDINZIP);
+						QFile f(targetPath);
+						int appendType = APPEND_STATUS_ADDINZIP;
+						if ( !f.exists() )
+							appendType = APPEND_STATUS_CREATE;
+						zipFile zip = zipOpen((const char *)targetPath.toAscii(), appendType);
 						if ( zip ) {
 							zip_fileinfo zipInfo;
 							QDateTime cDT = QDateTime::currentDateTime();
@@ -1968,7 +1972,10 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 								saveOkay = false;
 							}
 							if ( saveOkay )
-								zipClose(zip, (const char *)tr("Fixed by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleLongDate)).toAscii());
+								if ( appendType == APPEND_STATUS_ADDINZIP )
+									zipClose(zip, (const char *)tr("Fixed by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleLongDate)).toAscii());
+								else
+									zipClose(zip, (const char *)tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleLongDate)).toAscii());
 							else
 								zipClose(zip, 0);
 						} else {
