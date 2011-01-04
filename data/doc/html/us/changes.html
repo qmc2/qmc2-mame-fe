@@ -16,6 +16,7 @@ inf: informational only
 </p>
 <p><b>v0.2.b19, 04-JAN-2011:</b></p>
 <ul>
+  <li>fix: ROMAlyzer: corrected status determination for ROM files that have no dump (but for which the file size or any checksums are available through the XML data)</li>
   <li>imp: ROMAlyzer: improved performance for CRC identification of ZIP-archived ROM files</li>
   <li>new: ROMAlyzer: added a <i>checksum wizard</i> to search for SHA1 hashes in all sets, to qualify the states of the results and to repair <i>bad</i> sets from <i>good</i> ones (note: the set repair function works only for ZIPs at the moment -- create backups before using it!)</li>
   <li>new: ROMAlyzer: if a ROM or CHD file that's expected to be merged from a parent set is loaded from the child set instead, a warning is logged (may be obsolete); the report will contain green (OK), yellow (warning) or red (critical) symbols to indicate the merge status</li>

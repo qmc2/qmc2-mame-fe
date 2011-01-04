@@ -669,6 +669,7 @@ void ROMAlyzer::analyze()
           bool somethingsWrong = FALSE;
 	  bool eligibleForDatabaseUpload = FALSE;
 	  bool isCHD = childItem->text(QMC2_ROMALYZER_COLUMN_TYPE).split(" ")[0] == QObject::tr("CHD");
+	  bool hasDump = childItem->text(QMC2_ROMALYZER_COLUMN_EMUSTATUS) != QObject::tr("no dump");
 
           if ( effectiveFile != QMC2_ROMALYZER_FILE_NOT_FOUND ) {
             if ( zipped )
@@ -748,7 +749,7 @@ void ROMAlyzer::analyze()
             if ( !sizeStr.isEmpty() ){
               fileItem->setText(QMC2_ROMALYZER_COLUMN_SIZE, QString::number(data.size()));
               fileStatus += tr("SIZE ");
-              if ( data.size() != sizeStr.toLongLong() ) {
+              if ( data.size() != sizeStr.toLongLong() && hasDump ) {
                 somethingsWrong = TRUE;
                 fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SIZE, xmlHandler.redBrush);
               }
@@ -763,7 +764,7 @@ void ROMAlyzer::analyze()
               crc = crc32(crc, (const Bytef *)data.data(), data.size());
               fileItem->setText(QMC2_ROMALYZER_COLUMN_CRC, QString::number(crc, 16).rightJustified(8, '0'));
               fileStatus += tr("CRC ");
-              if ( crc != crcStr.toULongLong(0, 16) ) {
+              if ( crc != crcStr.toULongLong(0, 16) && hasDump ) {
                 somethingsWrong = TRUE;
                 fileItem->setForeground(QMC2_ROMALYZER_COLUMN_CRC, xmlHandler.redBrush);
               }
@@ -775,10 +776,10 @@ void ROMAlyzer::analyze()
             if ( !sha1Str.isEmpty() && checkBoxCalculateSHA1->isChecked() ) {
               fileItem->setText(QMC2_ROMALYZER_COLUMN_SHA1, sha1Calculated);
               fileStatus += tr("SHA1 ");
-              if ( sha1Str != sha1Calculated ) {
+              if ( sha1Str != sha1Calculated && hasDump ) {
                 somethingsWrong = TRUE;
                 fileItem->setForeground(QMC2_ROMALYZER_COLUMN_SHA1, xmlHandler.redBrush);
-              } else
+              } else if ( hasDump )
                 eligibleForDatabaseUpload = TRUE;
 	      if ( wizardSelectedSets.contains(gameName) ) {
                 QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
@@ -799,7 +800,7 @@ void ROMAlyzer::analyze()
             if ( !md5Str.isEmpty() && checkBoxCalculateMD5->isChecked() ) {
               fileItem->setText(QMC2_ROMALYZER_COLUMN_MD5, md5Calculated);
               fileStatus += tr("MD5 ");
-              if ( md5Str != md5Calculated ) {
+              if ( md5Str != md5Calculated && hasDump ) {
                 somethingsWrong = TRUE;
                 fileItem->setForeground(QMC2_ROMALYZER_COLUMN_MD5, xmlHandler.redBrush);
               }
