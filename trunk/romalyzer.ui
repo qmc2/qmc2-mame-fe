@@ -850,43 +850,6 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="labelSetRewriterTemporaryWorkingDirectory">
-            <property name="text">
-             <string>Temporary working directory</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEditSetRewriterTemporaryWorkingDirectory">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Temporary directory used by the set rewriter (read and write)</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QToolButton" name="toolButtonBrowseSetRewriterTemporaryWorkingDirectory">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Browse temporary working directory for the set rewriter</string>
-            </property>
-            <property name="icon">
-             <iconset resource="qmc2.qrc">
-              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
            <widget class="QCheckBox" name="checkBoxSetRewriterSelfContainedSets">
             <property name="toolTip">
              <string>Create sets that do not need parent sets (otherwise create merged sets, which is recommended)</string>
@@ -896,7 +859,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="2">
+          <item row="1" column="1" colspan="2">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
              <widget class="QRadioButton" name="radioButtonSetRewriterZipArchives">
@@ -1196,8 +1159,6 @@
   <tabstop>groupBoxSetRewriter</tabstop>
   <tabstop>lineEditSetRewriterOutputPath</tabstop>
   <tabstop>toolButtonBrowseSetRewriterOutputPath</tabstop>
-  <tabstop>lineEditSetRewriterTemporaryWorkingDirectory</tabstop>
-  <tabstop>toolButtonBrowseSetRewriterTemporaryWorkingDirectory</tabstop>
   <tabstop>checkBoxSetRewriterSelfContainedSets</tabstop>
   <tabstop>radioButtonSetRewriterZipArchives</tabstop>
   <tabstop>radioButtonSetRewriterIndividualDirectories</tabstop>
@@ -1233,7 +1194,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>86</x>
-     <y>691</y>
+     <y>606</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
@@ -1280,12 +1241,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>547</x>
-     <y>520</y>
+     <x>484</x>
+     <y>518</y>
     </hint>
     <hint type="destinationlabel">
-     <x>632</x>
-     <y>520</y>
+     <x>566</x>
+     <y>518</y>
     </hint>
    </hints>
   </connection>
