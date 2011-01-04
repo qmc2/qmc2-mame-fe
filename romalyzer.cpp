@@ -1991,7 +1991,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 					badItem->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, QBrush(QColor(0, 255, 0))); // green
 					log(tr("checksum wizard: successfully repaired %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
 				} else {
-					log(tr("checksum wizard: failed to repair %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
+					log(tr("checksum wizard: FATAL: failed to repair %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
 				}
 			}
 		}
