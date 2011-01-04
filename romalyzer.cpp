@@ -1945,7 +1945,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 							zipInfo.tmz_date.tm_mday = cDT.date().day();
 							zipInfo.tmz_date.tm_mon = cDT.date().month() - 1;
 							zipInfo.tmz_date.tm_year = cDT.date().year();
-							zipInfo.dosDate = 0;
+							zipInfo.dosDate = zipInfo.internal_fa = zipInfo.external_fa = 0;
 							if ( zipOpenNewFileInZip(zip, (const char *)targetFile.toAscii(), &zipInfo, (const void *)targetFile.toAscii(), targetFile.length(), 0, 0, 0, Z_DEFLATED, Z_DEFAULT_COMPRESSION) == ZIP_OK ) {
 								quint64 bytesWritten = 0;
 								progressBarFileIO->setRange(0, templateData.length());
