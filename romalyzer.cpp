@@ -13,6 +13,7 @@
 #include "gamelist.h"
 #include "macros.h"
 #include "unzip.h"
+#include "zip.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -1879,7 +1880,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 
 		bool loadOkay = true;
 		QByteArray templateData;
-		QString fn = "QMC2_DUMMY_FILENAME";
+		QString fn;
 		if ( sourceType == tr("ROM") ) {
   			char loadBuffer[MAX(QMC2_ROMALYZER_ZIP_BUFFER_SIZE, QMC2_ROMALYZER_FILE_BUFFER_SIZE)];
 			// load ROM image
@@ -1931,8 +1932,36 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 		}
 
 		if ( loadOkay ) {
+			// FIXME: add progress indication for repair process
 			foreach (QTreeWidgetItem *badItem, badList) {
-				// FIXME: repair set...
+				bool saveOkay = true;
+				QString targetType = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE);
+				QString targetFile = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME);
+				QString targetPath = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH);
+				log(tr("checksum wizard: repairing %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
+
+				if ( targetType == tr("ROM") ) {
+					// save ROM image
+					if ( targetPath.indexOf(QRegExp("^.*\.[zZ][iI][pP]$")) == 0 ) {
+						// FIXME: repair file
+					} else {
+						// FIXME: no support for normal files yet
+						log(tr("checksum wizard: sorry, no support for normal files yet"));
+						saveOkay = false;
+					}
+				} else {
+					// FIXME: no support for CHDs yet (probably not necessary)
+					log(tr("checksum wizard: sorry, no support for CHD files yet"));
+					saveOkay = false;
+				}
+
+				if ( saveOkay ) {
+					badItem->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("repaired"));
+					badItem->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, QBrush(QColor(0, 255, 0))); // green
+					log(tr("checksum wizard: successfully repaired %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
+				} else {
+					log(tr("checksum wizard: failed to repair %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
+				}
 			}
 		}
 	} else
