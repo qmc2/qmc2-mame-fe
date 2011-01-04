@@ -169,7 +169,6 @@ void ROMAlyzer::adjustIconSizes()
   toolButtonBrowseCHDManagerExecutableFile->setIconSize(iconSize);
   toolButtonBrowseTemporaryWorkingDirectory->setIconSize(iconSize);
   toolButtonBrowseSetRewriterOutputPath->setIconSize(iconSize);
-  toolButtonBrowseSetRewriterTemporaryWorkingDirectory->setIconSize(iconSize);
 #if defined(QMC2_DATABASE_ENABLED)
   toolButtonBrowseDatabaseOutputPath->setIconSize(iconSize);
 #endif
@@ -338,7 +337,6 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterSelfContainedSets", checkBoxSetRewriterSelfContainedSets->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipArchives", radioButtonSetRewriterZipArchives->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", radioButtonSetRewriterIndividualDirectories->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterTemporaryWorkingDirectory", lineEditSetRewriterTemporaryWorkingDirectory->text());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", lineEditSetRewriterOutputPath->text());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", checkBoxVerifyCHDs->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", checkBoxFixCHDs->isChecked());
@@ -404,7 +402,6 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", 0).toInt());
   lineEditCHDManagerExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", "").toString());
   lineEditTemporaryWorkingDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", "").toString());
-  lineEditSetRewriterTemporaryWorkingDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterTemporaryWorkingDirectory", "").toString());
   lineEditSetRewriterOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", "").toString());
 #if QMC2_WIP_CODE == 1
   groupBoxSetRewriter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableSetRewriter", FALSE).toBool());
@@ -1600,20 +1597,6 @@ void ROMAlyzer::on_toolButtonBrowseTemporaryWorkingDirectory_clicked()
     lineEditTemporaryWorkingDirectory->setText(s);
   }
   raise();
-}
-
-void ROMAlyzer::on_toolButtonBrowseSetRewriterTemporaryWorkingDirectory_clicked()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonBrowseSetRewriterTemporaryWorkingDirectory_clicked()");
-#endif
-
-	QString s = QFileDialog::getExistingDirectory(this, tr("Choose temporary working directory"), lineEditSetRewriterTemporaryWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
-	if ( !s.isNull() ) {
-		if ( !s.endsWith("/") ) s += "/";
-		lineEditSetRewriterTemporaryWorkingDirectory->setText(s);
-	}
-	raise();
 }
 
 void ROMAlyzer::on_toolButtonBrowseSetRewriterOutputPath_clicked()
