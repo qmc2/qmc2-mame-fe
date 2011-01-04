@@ -2,12 +2,12 @@ Source: qmc2
 Section: games
 Priority: extra
 Maintainer: Marcelo Marzola Bossoni <mmbossoni@gmail.com>
-Build-Depends: debhelper (>= 5), libqt4-dev (>= 4.5.2), libqt4-phonon-dev | libphonon-dev, libqt4-opengl-dev, libqtwebkit-dev, libsdl1.2-dev, rsync, libxmu-dev
+Build-Depends: debhelper (>= 5), libqt4-dev (>= 4.5.2), libqt4-phonon-dev | libphonon-dev, libqt4-opengl-dev, libqtwebkit-dev | libqt4-dev (<< 4.7.0), libsdl1.2-dev, rsync, libxmu-dev
 Standards-Version: 3.8.3
 Homepage: http://qmc2.arcadehits.net
 
 Package: qmc2
 Architecture: any
-Depends: libqtgui4 (>= 4.5.2), libqt4-phonon | libphonon4, libqtwebkit4, libqt4-test, sdlmame | sdlmess
+Depends: libqtgui4 (>= 4.5.2), libqt4-phonon | libphonon4, libqtwebkit4 | libqt4-webkit, libqt4-test, sdlmame | sdlmess
 Description: M.A.M.E./M.E.S.S. Catalog / Launcher II
  QMC2 is a Qt 4 based multi-platform GUI front end for several MAME and MESS variants.

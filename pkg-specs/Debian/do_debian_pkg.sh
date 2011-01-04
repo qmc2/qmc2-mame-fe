@@ -51,5 +51,5 @@ else
   rm ${RELEASE_FOLDER}/debian/do_debian_pkg.sh
 
   cd ${RELEASE_FOLDER}
-  debuild -S -sd
+  debuild -S -sa
 fi
