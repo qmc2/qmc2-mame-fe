@@ -1840,9 +1840,7 @@ void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
 		wizardSelectedSets << item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
 		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") ) selectedGoodSets++;
 	}
-#if QMC2_WIP_CODE == 1
 	pushButtonChecksumWizardRepairBadSets->setEnabled(badSets > 0 && selectedGoodSets > 0);
-#endif
 }
 
 void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
@@ -1882,7 +1880,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 		QByteArray templateData;
 		QString fn;
 		if ( sourceType == tr("ROM") ) {
-  			char loadBuffer[MAX(QMC2_ROMALYZER_ZIP_BUFFER_SIZE, QMC2_ROMALYZER_FILE_BUFFER_SIZE)];
+  			char ioBuffer[MAX(QMC2_ROMALYZER_ZIP_BUFFER_SIZE, QMC2_ROMALYZER_FILE_BUFFER_SIZE)];
 			// load ROM image
 			if ( sourcePath.indexOf(QRegExp("^.*\.[zZ][iI][pP]$")) == 0 ) {
 				// file from a ZIP archive
@@ -1893,8 +1891,8 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 					QMap<uLong, QString> crcIdentMap;
 					uLong ulCRC = sourceCRC.toULong(0, 16);
 					do {
-						if ( unzGetCurrentFileInfo(zipFile, &zipInfo, loadBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
-							crcIdentMap[zipInfo.crc] = QString((const char *)loadBuffer);
+						if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
+							crcIdentMap[zipInfo.crc] = QString((const char *)ioBuffer);
 					} while ( unzGoToNextFile(zipFile) == UNZ_OK && !crcIdentMap.contains(ulCRC) );
 					unzGoToFirstFile(zipFile);
 					if ( crcIdentMap.contains(ulCRC) ) {
@@ -1903,8 +1901,8 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 						if ( unzLocateFile(zipFile, (const char *)fn.toAscii(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
 							if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 								qint64 len;
-								while ( (len = unzReadCurrentFile(zipFile, loadBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
-									QByteArray readData((const char *)loadBuffer, len);
+								while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
+									QByteArray readData((const char *)ioBuffer, len);
 									templateData += readData;
 								}
 								unzCloseCurrentFile(zipFile);
@@ -1917,7 +1915,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 					}
 					unzClose(zipFile);
 				} else {
-					log(tr("checksum wizard: FATAL: can't open ZIP archive '%1' for decompression").arg(sourcePath));
+					log(tr("checksum wizard: FATAL: can't open ZIP archive '%1' for reading").arg(sourcePath));
 					loadOkay = false;
 				}
 			} else {
@@ -1943,7 +1941,40 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 				if ( targetType == tr("ROM") ) {
 					// save ROM image
 					if ( targetPath.indexOf(QRegExp("^.*\.[zZ][iI][pP]$")) == 0 ) {
-						// FIXME: repair file
+						zipFile zip = zipOpen((const char *)targetPath.toAscii(), APPEND_STATUS_ADDINZIP);
+						if ( zip ) {
+							zip_fileinfo zipInfo;
+							QDateTime cDT = QDateTime::currentDateTime().toLocalTime();
+							zipInfo.tmz_date.tm_sec = cDT.time().second();
+							zipInfo.tmz_date.tm_min = cDT.time().minute();
+							zipInfo.tmz_date.tm_hour = cDT.time().hour();
+							zipInfo.tmz_date.tm_mday = cDT.date().day();
+							zipInfo.tmz_date.tm_mon = cDT.date().month();
+							zipInfo.tmz_date.tm_year = cDT.date().year();
+							if ( zipOpenNewFileInZip(zip, (const char *)targetFile.toAscii(), &zipInfo, 0, 0, 0, 0, 0, Z_DEFLATED, Z_DEFAULT_COMPRESSION) == ZIP_OK ) {
+								quint64 bytesWritten = 0;
+								while ( bytesWritten < templateData.length() && saveOkay ) {
+									quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
+									if ( bytesWritten + bufferLength > templateData.length() )
+										bufferLength = templateData.length() - bytesWritten;
+									QByteArray writeBuffer = templateData.mid(bytesWritten, bufferLength);
+									saveOkay = (zipWriteInFileInZip(zip, (const void *)writeBuffer.data(), bufferLength) == ZIP_OK);
+									if ( saveOkay )
+										bytesWritten += bufferLength;
+								}
+								zipCloseFileInZip(zip);
+							} else {
+								log(tr("checksum wizard: FATAL: can't open file '%1' in ZIP archive '%2' for writing").arg(targetFile).arg(targetPath));
+								saveOkay = false;
+							}
+							if ( saveOkay )
+								zipClose(zip, (const char *)tr("Fixed by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleLongDate)).toAscii());
+							else
+								zipClose(zip, 0);
+						} else {
+							log(tr("checksum wizard: FATAL: can't open ZIP archive '%1' for writing").arg(targetPath));
+							saveOkay = false;
+						}
 					} else {
 						// FIXME: no support for normal files yet
 						log(tr("checksum wizard: sorry, no support for normal files yet"));
