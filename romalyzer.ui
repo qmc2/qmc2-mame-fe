@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>589</width>
-    <height>614</height>
+    <height>584</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1011,10 +1011,14 @@
           <bool>false</bool>
          </property>
          <property name="toolTip">
-          <string>Repair all 'bad' sets using the file from the first selected 'good' set (at least one good and one bad set are required)</string>
+          <string>Repair selected 'bad' sets using the file from the first selected 'good' set (at least 1 good and 1 bad set must be selected)</string>
          </property>
          <property name="text">
           <string>Repair bad sets</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/configure.png</normaloff>:/data/img/configure.png</iconset>
          </property>
         </widget>
        </item>
@@ -1028,6 +1032,10 @@
          </property>
          <property name="text">
           <string>Analyze selected sets</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/search.png</normaloff>:/data/img/search.png</iconset>
          </property>
         </widget>
        </item>
