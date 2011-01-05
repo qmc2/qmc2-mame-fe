@@ -169,6 +169,8 @@ void ROMAlyzer::adjustIconSizes()
   toolButtonBrowseCHDManagerExecutableFile->setIconSize(iconSize);
   toolButtonBrowseTemporaryWorkingDirectory->setIconSize(iconSize);
   toolButtonBrowseSetRewriterOutputPath->setIconSize(iconSize);
+  pushButtonChecksumWizardAnalyzeSelectedSets->setIconSize(iconSize);
+  pushButtonChecksumWizardRepairBadSets->setIconSize(iconSize);
 #if defined(QMC2_DATABASE_ENABLED)
   toolButtonBrowseDatabaseOutputPath->setIconSize(iconSize);
 #endif
@@ -1815,16 +1817,17 @@ void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()");
 #endif
 
-	int badSets = treeWidgetChecksumWizardSearchResult->findItems(tr("bad"), Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS).count();
 	QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->selectedItems();
 	pushButtonChecksumWizardAnalyzeSelectedSets->setEnabled(!il.isEmpty());
 	wizardSelectedSets.clear();
 	int selectedGoodSets = 0;
+	int selectedBadSets = 0;
 	foreach (QTreeWidgetItem *item, il) {
 		wizardSelectedSets << item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
 		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") ) selectedGoodSets++;
+		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("bad") ) selectedBadSets++;
 	}
-	pushButtonChecksumWizardRepairBadSets->setEnabled(badSets > 0 && selectedGoodSets > 0);
+	pushButtonChecksumWizardRepairBadSets->setEnabled(selectedBadSets > 0 && selectedGoodSets > 0);
 }
 
 void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
@@ -1837,25 +1840,61 @@ void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
 	pushButtonAnalyze->animateClick();
 }
 
+bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *dataMap, QMap<QString, QString> *fileMap)
+{
+	bool success = true;
+	unzFile zipFile = unzOpen((const char *)fileName.toAscii());
+
+	if ( zipFile ) {
+  		char ioBuffer[QMC2_ROMALYZER_ZIP_BUFFER_SIZE];
+		unz_file_info zipInfo;
+		do {
+			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
+				fileMap->insert(QString::number(zipInfo.crc), QString((const char *)ioBuffer));
+				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
+					qint64 len;
+					QByteArray fileData;
+					while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
+						QByteArray readData((const char *)ioBuffer, len);
+						fileData += readData;
+					}
+					dataMap->insert(QString::number(zipInfo.crc), fileData);
+					unzCloseCurrentFile(zipFile);
+				}
+			}
+			qApp->processEvents();
+		} while ( unzGoToNextFile(zipFile) == UNZ_OK );
+		unzClose(zipFile);
+	} else
+		success = false;
+
+	return success;
+}
+
 void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()");
 #endif
 
-	// only one repair at a time
-	pushButtonChecksumWizardRepairBadSets->setEnabled(false);
-
-	QList<QTreeWidgetItem *> badList = treeWidgetChecksumWizardSearchResult->findItems(tr("bad"), Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS);
-	int numBadSets = badList.count();
-	log(tr("checksum wizard: repairing %n bad set(s)", "", numBadSets));
+	QList<QTreeWidgetItem *> badList;
 	QTreeWidgetItem *goodItem = NULL;
 	foreach (QTreeWidgetItem *item, treeWidgetChecksumWizardSearchResult->selectedItems()) {
-		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") ) {
+		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("bad") )
+			badList << item;
+		else if ( goodItem == NULL && item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") )
 			goodItem = item;
-			break;
-		}
 	}
+	int numBadSets = badList.count();
+
+	// this should happen, but you never know :)
+	if ( numBadSets <= 0  || goodItem == NULL) return;
+
+	// only one repair at a time
+	if ( !pushButtonChecksumWizardRepairBadSets->isEnabled() ) return;
+	pushButtonChecksumWizardRepairBadSets->setEnabled(false);
+
+	log(tr("checksum wizard: repairing %n bad set(s)", "", numBadSets));
 	if ( goodItem != NULL ) {
 		QString sourceType = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE);
 		QString sourceFile = goodItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME);
@@ -1932,12 +1971,51 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 				if ( targetType == tr("ROM") ) {
 					// save ROM image
 					if ( targetPath.indexOf(QRegExp("^.*\.[zZ][iI][pP]$")) == 0 ) {
+						bool copyTargetData = false;
+						QMap <QString, QByteArray> targetDataMap;
+						QMap <QString, QString> targetFileMap;
 						QFile f(targetPath);
 						int appendType = APPEND_STATUS_ADDINZIP;
-						if ( !f.exists() )
+						if ( f.exists() ) {
+							log(tr("checksum wizard: target ZIP exists, loading complete data and structure"));
+							if ( readAllZipData(targetPath, &targetDataMap, &targetFileMap) ) {
+								log(tr("checksum wizard: target ZIP successfully loaded"));
+								if ( targetDataMap.contains(sourceCRC) ) {
+									log(tr("checksum wizard: an entry with the CRC '%1' already exists, recreating the ZIP from scratch to replace the bad file").arg(sourceCRC));
+									QString newName = targetPath + QString(".qmc2-backup.%1").arg(QDateTime::currentDateTime().toString("yyyyMMddhhmmsszzz"));
+									if ( f.rename(newName) ) {
+										log(tr("checksum wizard: backup file '%1' successfully created").arg(newName));
+										copyTargetData = true;
+										appendType = APPEND_STATUS_CREATE;
+									} else {
+										log(tr("checksum wizard: FATAL: failed to create backup file '%1', aborting"));
+										saveOkay = false;
+									}
+								} else {
+									log(tr("checksum wizard: no entry with the CRC '%1' was found, adding the missing file to the existing ZIP").arg(sourceCRC));
+								}
+							} else {
+								log(tr("checksum wizard: FATAL: failed to load target ZIP, aborting"));
+								saveOkay = false;
+							}
+						} else {
 							appendType = APPEND_STATUS_CREATE;
-						zipFile zip = zipOpen((const char *)targetPath.toAscii(), appendType);
+							log(tr("checksum wizard: the target ZIP does not exist, creating a new ZIP with just the missing file"));
+						}
+
+						zipFile zip = NULL;
+					        if ( saveOkay )
+							zip = zipOpen((const char *)targetPath.toAscii(), appendType);
+
 						if ( zip ) {
+							if ( !copyTargetData ) {
+								targetDataMap.clear();
+								targetFileMap.clear();
+							}
+
+							targetDataMap[sourceCRC] = templateData;
+							targetFileMap[sourceCRC] = targetFile;
+
 							zip_fileinfo zipInfo;
 							QDateTime cDT = QDateTime::currentDateTime();
 							zipInfo.tmz_date.tm_sec = cDT.time().second();
@@ -1947,32 +2025,39 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 							zipInfo.tmz_date.tm_mon = cDT.date().month() - 1;
 							zipInfo.tmz_date.tm_year = cDT.date().year();
 							zipInfo.dosDate = zipInfo.internal_fa = zipInfo.external_fa = 0;
-							if ( zipOpenNewFileInZip(zip, (const char *)targetFile.toAscii(), &zipInfo, (const void *)targetFile.toAscii(), targetFile.length(), 0, 0, 0, Z_DEFLATED, Z_DEFAULT_COMPRESSION) == ZIP_OK ) {
-								quint64 bytesWritten = 0;
-								progressBarFileIO->setRange(0, templateData.length());
-								progressBarFileIO->reset();
-								while ( bytesWritten < templateData.length() && saveOkay ) {
-									quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
-									if ( bytesWritten + bufferLength > templateData.length() )
-										bufferLength = templateData.length() - bytesWritten;
-									QByteArray writeBuffer = templateData.mid(bytesWritten, bufferLength);
-									saveOkay = (zipWriteInFileInZip(zip, (const void *)writeBuffer.data(), bufferLength) == ZIP_OK);
-									if ( saveOkay )
-										bytesWritten += bufferLength;
-									progressBarFileIO->setValue(bytesWritten);
+
+							QMapIterator<QString, QByteArray> it(targetDataMap);
+							while ( it.hasNext() ) {
+								it.next();
+								QString tFile = targetFileMap[it.key()];
+								QByteArray tData = it.value();
+								if ( zipOpenNewFileInZip(zip, (const char *)tFile.toAscii(), &zipInfo, (const void *)tFile.toAscii(), tFile.length(), 0, 0, 0, Z_DEFLATED, Z_DEFAULT_COMPRESSION) == ZIP_OK ) {
+									quint64 bytesWritten = 0;
+									progressBarFileIO->setRange(0, tData.length());
+									progressBarFileIO->reset();
+									while ( bytesWritten < tData.length() && saveOkay ) {
+										quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
+										if ( bytesWritten + bufferLength > tData.length() )
+											bufferLength = tData.length() - bytesWritten;
+										QByteArray writeBuffer = tData.mid(bytesWritten, bufferLength);
+										saveOkay = (zipWriteInFileInZip(zip, (const void *)writeBuffer.data(), bufferLength) == ZIP_OK);
+										if ( saveOkay )
+											bytesWritten += bufferLength;
+										progressBarFileIO->setValue(bytesWritten);
+									}
+									progressBarFileIO->reset();
+									qApp->processEvents();
+									zipCloseFileInZip(zip);
+								} else {
+									log(tr("checksum wizard: FATAL: can't open file '%1' in ZIP archive '%2' for writing").arg(targetFile).arg(targetPath));
+									saveOkay = false;
 								}
-								progressBarFileIO->reset();
-								qApp->processEvents();
-								zipCloseFileInZip(zip);
-							} else {
-								log(tr("checksum wizard: FATAL: can't open file '%1' in ZIP archive '%2' for writing").arg(targetFile).arg(targetPath));
-								saveOkay = false;
 							}
 							if ( saveOkay )
 								if ( appendType == APPEND_STATUS_ADDINZIP )
-									zipClose(zip, (const char *)tr("Fixed by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleLongDate)).toAscii());
+									zipClose(zip, (const char *)tr("Fixed by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toAscii());
 								else
-									zipClose(zip, (const char *)tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleLongDate)).toAscii());
+									zipClose(zip, (const char *)tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toAscii());
 							else
 								zipClose(zip, 0);
 						} else {
@@ -1995,6 +2080,8 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 					badItem->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, QBrush(QColor(0, 255, 0))); // green
 					log(tr("checksum wizard: successfully repaired %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
 				} else {
+					badItem->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("repair failed"));
+					badItem->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, QBrush(QColor(255, 0, 0))); // red
 					log(tr("checksum wizard: FATAL: failed to repair %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
 				}
 
