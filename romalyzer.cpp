@@ -1921,10 +1921,15 @@ void ROMAlyzer::runSetRewriter()
 					outputDataMap.remove(childItem->text(QMC2_ROMALYZER_COLUMN_GAME));
 			}
 		}
-		if ( writeAllZipData(outPath, &outputDataMap) )
-			log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
-		else {
-			log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
+		if ( !outputDataMap.isEmpty() ) {
+			if ( writeAllZipData(outPath, &outputDataMap) )
+				log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
+			else {
+				log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
+				loadOkay = false;
+			}
+		} else {
+			log(tr("set rewriter: INFORMATION: no output data available, thus not rewriting set '%1' to '%2'").arg(setRewriterSetName).arg(outPath));
 			loadOkay = false;
 		}
 	}
