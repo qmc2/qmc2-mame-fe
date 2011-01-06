@@ -184,6 +184,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void resetDatabaseConnectionCheckButton();
 #endif
     void runChecksumWizard();
+    void runSetRewriter();
 
     // CHD manager process control
     void chdManagerStarted();

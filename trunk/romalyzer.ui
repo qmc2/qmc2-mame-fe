@@ -828,7 +828,7 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Output path for the set rewriter (WARNING: existing files will be overwritten!) -- you really shouldn't use one of your primary ROM paths here, but it's possible of course (create backups, if you do!)</string>
+             <string>Output path for the set rewriter (WARNING: existing files will be overwritten!) -- you should NEVER use one of your primary ROM paths here!!!</string>
             </property>
            </widget>
           </item>

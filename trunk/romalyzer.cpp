@@ -136,7 +136,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   s = tr("Rewrite set");
   action = romSetContextMenu->addAction(s);
   action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/save.png")));
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/filesave.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(runSetRewriter()));
 }
 
@@ -1814,6 +1814,14 @@ void ROMAlyzer::runChecksumWizard()
 	}
 }
 
+void ROMAlyzer::runSetRewriter()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::runSetRewriter()");
+#endif
+
+}
+
 void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
@@ -2169,7 +2177,8 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 
 	QTreeWidgetItem *item = treeWidgetChecksums->itemAt(p);
 	if ( item )
-		if ( (QTreeWidgetItem *)item->parent() != (QTreeWidgetItem *)treeWidgetChecksums ) {
+		//if ( (QTreeWidgetItem *)item->parent() != (QTreeWidgetItem *)treeWidgetChecksums ) {
+		if ( item->parent() != NULL ) {
 			currentFilesSHA1Checksum = item->text(QMC2_ROMALYZER_COLUMN_SHA1);
 			if ( !currentFilesSHA1Checksum.isEmpty() ) {
 				treeWidgetChecksums->setItemSelected(item, true);
@@ -2177,7 +2186,7 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 				romFileContextMenu->show();
 			}
 		} else {
-			if ( groupBoxSetRewriter->isEnabled() ) {
+			if ( groupBoxSetRewriter->isChecked() ) {
 				treeWidgetChecksums->setItemSelected(item, true);
 				romSetContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetChecksums->viewport()->mapToGlobal(p), romSetContextMenu));
 				romSetContextMenu->show();
