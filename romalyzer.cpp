@@ -1995,12 +1995,12 @@ bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *data
 					while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
 						QByteArray readData((const char *)ioBuffer, len);
 						fileData += readData;
+						if ( fileData.length() % QMC2_ONE_MEGABYTE == 0 ) qApp->processEvents();
 					}
 					dataMap->insert(QString::number(zipInfo.crc), fileData);
 					unzCloseCurrentFile(zipFile);
 				}
 			}
-			qApp->processEvents();
 		} while ( unzGoToNextFile(zipFile) == UNZ_OK );
 		unzClose(zipFile);
 	} else
@@ -2092,9 +2092,9 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 					success = (zipWriteInFileInZip(zip, (const void *)writeBuffer.data(), bufferLength) == ZIP_OK);
 					if ( success )
 						bytesWritten += bufferLength;
+					if ( bytesWritten % QMC2_ONE_MEGABYTE == 0 ) qApp->processEvents();
 				}
 				zipCloseFileInZip(zip);
-				qApp->processEvents();
 			} else
 				success = false;
 		}
