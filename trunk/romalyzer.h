@@ -135,6 +135,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     QMap<QString, QString> setRewriterCRCMap;
     QString setRewriterSetName;
     QTreeWidgetItem *setRewriterItem;
+    int setRewriterSetCount;
 #if defined(QMC2_DATABASE_ENABLED)
     ROMDatabaseManager *dbManager;
     QPalette savedCheckButtonPalette;
