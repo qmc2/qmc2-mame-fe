@@ -118,25 +118,26 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   groupBoxSetRewriter->setVisible(false);
 #endif
 
-  contextMenu = new QMenu(this);
-  contextMenu->hide();
-  
   QString s;
   QAction *action;
 
+  romFileContextMenu = new QMenu(this);
+  romFileContextMenu->hide();
+  
   s = tr("Search checksum");
-  action = contextMenu->addAction(s);
+  action = romFileContextMenu->addAction(s);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/filefind.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(runChecksumWizard()));
 
-  /*
-  s = tr("Copy to clipboard");
-  action = contextMenu->addAction(s);
+  romSetContextMenu = new QMenu(this);
+  romSetContextMenu->hide();
+  
+  s = tr("Rewrite set");
+  action = romSetContextMenu->addAction(s);
   action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
-  */
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/save.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(runSetRewriter()));
 }
 
 ROMAlyzer::~ROMAlyzer()
@@ -336,6 +337,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", lineEditCHDManagerExecutableFile->text());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", lineEditTemporaryWorkingDirectory->text());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableSetRewriter", groupBoxSetRewriter->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterWhileAnalyzing", checkBoxSetRewriterWhileAnalyzing->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterSelfContainedSets", checkBoxSetRewriterSelfContainedSets->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipArchives", radioButtonSetRewriterZipArchives->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", radioButtonSetRewriterIndividualDirectories->isChecked());
@@ -410,6 +412,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
 #else
   groupBoxSetRewriter->setChecked(FALSE);
 #endif
+  checkBoxSetRewriterWhileAnalyzing->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterWhileAnalyzing", FALSE).toBool());
   checkBoxSetRewriterSelfContainedSets->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterSelfContainedSets", FALSE).toBool());
   radioButtonSetRewriterZipArchives->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipArchives", TRUE).toBool());
   radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", FALSE).toBool());
@@ -1840,6 +1843,10 @@ void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
 	pushButtonAnalyze->animateClick();
 }
 
+// reads all files in the ZIP 'fileName' and maps the data:
+// - CRC codes are mapped to their data in 'dataMap'
+// - CRC codes are mapped to their file names in 'fileMap'
+// - will also read files with an incorrect CRC (compared to its header CRC)
 bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *dataMap, QMap<QString, QString> *fileMap)
 {
 	bool success = true;
@@ -1865,6 +1872,59 @@ bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *data
 			qApp->processEvents();
 		} while ( unzGoToNextFile(zipFile) == UNZ_OK );
 		unzClose(zipFile);
+	} else
+		success = false;
+
+	return success;
+}
+
+// creates the new ZIP 'fileName' (overwrites an existing file w/o creating a backup!)
+// and stores the data found in 'fileDataMap' into the ZIP:
+// - 'fileDataMap' maps file names to their data
+bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fileDataMap)
+{
+	bool success = true;
+
+	QFile f(fileName);
+	if (  f.exists() )
+		success = f.remove();
+
+	zipFile zip = NULL;
+	if ( success )
+		zip = zipOpen((const char *)fileName.toAscii(), APPEND_STATUS_CREATE);
+
+	if ( zip ) {
+		zip_fileinfo zipInfo;
+		QDateTime cDT = QDateTime::currentDateTime();
+		zipInfo.tmz_date.tm_sec = cDT.time().second();
+		zipInfo.tmz_date.tm_min = cDT.time().minute();
+		zipInfo.tmz_date.tm_hour = cDT.time().hour();
+		zipInfo.tmz_date.tm_mday = cDT.date().day();
+		zipInfo.tmz_date.tm_mon = cDT.date().month() - 1;
+		zipInfo.tmz_date.tm_year = cDT.date().year();
+		zipInfo.dosDate = zipInfo.internal_fa = zipInfo.external_fa = 0;
+		QMapIterator<QString, QByteArray> it(*fileDataMap);
+		while ( it.hasNext() && success ) {
+			it.next();
+			QString file = it.key();
+			QByteArray data = it.value();
+			if ( zipOpenNewFileInZip(zip, (const char *)file.toAscii(), &zipInfo, (const void *)file.toAscii(), file.length(), 0, 0, 0, Z_DEFLATED, Z_DEFAULT_COMPRESSION) == ZIP_OK ) {
+				quint64 bytesWritten = 0;
+				while ( bytesWritten < data.length() && success ) {
+					quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
+					if ( bytesWritten + bufferLength > data.length() )
+						bufferLength = data.length() - bytesWritten;
+					QByteArray writeBuffer = data.mid(bytesWritten, bufferLength);
+					success = (zipWriteInFileInZip(zip, (const void *)writeBuffer.data(), bufferLength) == ZIP_OK);
+					if ( success )
+						bytesWritten += bufferLength;
+				}
+				zipCloseFileInZip(zip);
+				qApp->processEvents();
+			} else
+				success = false;
+		}
+		zipClose(zip, (const char *)tr("Created by QMC2 v%1 (%2)").arg(XSTR(QMC2_VERSION)).arg(cDT.toString(Qt::SystemLocaleShortDate)).toAscii());
 	} else
 		success = false;
 
@@ -2113,8 +2173,14 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 			currentFilesSHA1Checksum = item->text(QMC2_ROMALYZER_COLUMN_SHA1);
 			if ( !currentFilesSHA1Checksum.isEmpty() ) {
 				treeWidgetChecksums->setItemSelected(item, true);
-				contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetChecksums->viewport()->mapToGlobal(p), contextMenu));
-				contextMenu->show();
+				romFileContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetChecksums->viewport()->mapToGlobal(p), romFileContextMenu));
+				romFileContextMenu->show();
+			}
+		} else {
+			if ( groupBoxSetRewriter->isEnabled() ) {
+				treeWidgetChecksums->setItemSelected(item, true);
+				romSetContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetChecksums->viewport()->mapToGlobal(p), romSetContextMenu));
+				romSetContextMenu->show();
 			}
 		}
 }

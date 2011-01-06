@@ -828,7 +828,7 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Output path for the set rewriter (WARNING: existing files will be overwritten!)</string>
+             <string>Output path for the set rewriter (WARNING: existing files will be overwritten!) -- you really shouldn't use one of your primary ROM paths here, but it's possible of course (create backups, if you do!)</string>
             </property>
            </widget>
           </item>
@@ -849,32 +849,51 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QCheckBox" name="checkBoxSetRewriterSelfContainedSets">
-            <property name="toolTip">
-             <string>Create sets that do not need parent sets (otherwise create merged sets, which is recommended)</string>
-            </property>
-            <property name="text">
-             <string>Self-contained sets</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1" colspan="2">
+          <item row="1" column="0" colspan="3">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
+             <widget class="QCheckBox" name="checkBoxSetRewriterWhileAnalyzing">
+              <property name="toolTip">
+               <string>Rewrite sets while analyzing them (otherwise sets will only be rewritten on demand / through the context menu)</string>
+              </property>
+              <property name="text">
+               <string>While analyzing</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxSetRewriterSelfContainedSets">
+              <property name="toolTip">
+               <string>Create sets that do not need parent sets (otherwise create merged sets, which is recommended)</string>
+              </property>
+              <property name="text">
+               <string>Self-contained sets</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QRadioButton" name="radioButtonSetRewriterZipArchives">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="toolTip">
                <string>Produce ZIP archived sets (recommended)</string>
               </property>
               <property name="text">
                <string>ZIP archives</string>
               </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
              <widget class="QRadioButton" name="radioButtonSetRewriterIndividualDirectories">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
               <property name="toolTip">
-               <string>Produce sets in individual sub-directories (not recommended)</string>
+               <string>Produce sets in individual sub-directories (not recommended -- and not supported yet!)</string>
               </property>
               <property name="text">
                <string>Individual sub-directories</string>
@@ -888,8 +907,8 @@
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>40</width>
-                <height>20</height>
+                <width>13</width>
+                <height>17</height>
                </size>
               </property>
              </spacer>
@@ -1167,6 +1186,7 @@
   <tabstop>groupBoxSetRewriter</tabstop>
   <tabstop>lineEditSetRewriterOutputPath</tabstop>
   <tabstop>toolButtonBrowseSetRewriterOutputPath</tabstop>
+  <tabstop>checkBoxSetRewriterWhileAnalyzing</tabstop>
   <tabstop>checkBoxSetRewriterSelfContainedSets</tabstop>
   <tabstop>radioButtonSetRewriterZipArchives</tabstop>
   <tabstop>radioButtonSetRewriterIndividualDirectories</tabstop>

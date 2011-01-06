@@ -126,7 +126,8 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     bool chdManagerSHA1Success;
     quint64 chdManagerCurrentHunk;
     quint64 chdManagerTotalHunks;
-    QMenu *contextMenu;
+    QMenu *romFileContextMenu;
+    QMenu *romSetContextMenu;
     QString currentFilesSHA1Checksum;
     QStringList wizardSelectedSets;
 #if defined(QMC2_DATABASE_ENABLED)
@@ -141,6 +142,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void saveState() { closeEvent(NULL); }
     void log(QString);
     bool readAllZipData(QString, QMap<QString, QByteArray> *, QMap<QString, QString> *);
+    bool writeAllZipData(QString, QMap<QString, QByteArray> *);
     QString humanReadable(quint64);
     QString &getXmlData(QString);
     QString &getEffectiveFile(QTreeWidgetItem *item, QString, QString, QString, QString, QString, QString,
