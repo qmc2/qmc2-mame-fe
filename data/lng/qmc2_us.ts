@@ -11014,9 +11014,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../gamelist.cpp" line="2734"/>
         <location filename="../../gamelist.cpp" line="2759"/>
-        <location filename="../../romalyzer.cpp" line="2343"/>
-        <location filename="../../romalyzer.cpp" line="2376"/>
-        <location filename="../../romalyzer.cpp" line="2388"/>
+        <location filename="../../romalyzer.cpp" line="2451"/>
+        <location filename="../../romalyzer.cpp" line="2484"/>
+        <location filename="../../romalyzer.cpp" line="2496"/>
         <source>unknown</source>
         <translation></translation>
     </message>
@@ -11085,37 +11085,37 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>Select file...</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2327"/>
+        <location filename="../../romalyzer.cpp" line="2435"/>
         <source>ROM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="676"/>
-        <location filename="../../romalyzer.cpp" line="2327"/>
+        <location filename="../../romalyzer.cpp" line="684"/>
+        <location filename="../../romalyzer.cpp" line="2435"/>
         <source>CHD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2331"/>
-        <location filename="../../romalyzer.cpp" line="2373"/>
+        <location filename="../../romalyzer.cpp" line="2439"/>
+        <location filename="../../romalyzer.cpp" line="2481"/>
         <source>good</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="677"/>
-        <location filename="../../romalyzer.cpp" line="2335"/>
-        <location filename="../../romalyzer.cpp" line="2382"/>
+        <location filename="../../romalyzer.cpp" line="685"/>
+        <location filename="../../romalyzer.cpp" line="2443"/>
+        <location filename="../../romalyzer.cpp" line="2490"/>
         <source>no dump</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2339"/>
-        <location filename="../../romalyzer.cpp" line="2385"/>
+        <location filename="../../romalyzer.cpp" line="2447"/>
+        <location filename="../../romalyzer.cpp" line="2493"/>
         <source>bad dump</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2379"/>
+        <location filename="../../romalyzer.cpp" line="2487"/>
         <source>no / bad dump</source>
         <translation></translation>
     </message>
@@ -11191,138 +11191,138 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>ROMAlyzer</name>
     <message>
-        <location filename="../../romalyzer.cpp" line="2012"/>
+        <location filename="../../romalyzer.cpp" line="2120"/>
         <source>checksum wizard: FATAL: can&apos;t open ZIP archive &apos;%1&apos; for reading</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2035"/>
+        <location filename="../../romalyzer.cpp" line="2143"/>
         <source>Repairing set &apos;%1&apos; - %2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2036"/>
+        <location filename="../../romalyzer.cpp" line="2144"/>
         <source>checksum wizard: repairing %1 file &apos;%2&apos; in &apos;%3&apos; from repro template</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2120"/>
+        <location filename="../../romalyzer.cpp" line="2228"/>
         <source>checksum wizard: FATAL: can&apos;t open file &apos;%1&apos; in ZIP archive &apos;%2&apos; for writing</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2126"/>
+        <location filename="../../romalyzer.cpp" line="2234"/>
         <source>Fixed by QMC2 v%1 (%2)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2132"/>
+        <location filename="../../romalyzer.cpp" line="2240"/>
         <source>checksum wizard: FATAL: can&apos;t open ZIP archive &apos;%1&apos; for writing</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2147"/>
+        <location filename="../../romalyzer.cpp" line="2255"/>
         <source>repaired</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2149"/>
+        <location filename="../../romalyzer.cpp" line="2257"/>
         <source>checksum wizard: successfully repaired %1 file &apos;%2&apos; in &apos;%3&apos; from repro template</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2266"/>
+        <location filename="../../romalyzer.cpp" line="2374"/>
         <source>Choose local DB output path</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2228"/>
+        <location filename="../../romalyzer.cpp" line="2336"/>
         <source>Connection check -- succeeded!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2238"/>
+        <location filename="../../romalyzer.cpp" line="2346"/>
         <source>Connection check -- failed!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2229"/>
+        <location filename="../../romalyzer.cpp" line="2337"/>
         <source>database connection check successful</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1588"/>
+        <location filename="../../romalyzer.cpp" line="1621"/>
         <source>Choose CHD manager executable file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1588"/>
+        <location filename="../../romalyzer.cpp" line="1621"/>
         <source>All files (*)</source>
         <translation>All files (*)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1600"/>
+        <location filename="../../romalyzer.cpp" line="1633"/>
         <source>Choose temporary working directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1631"/>
+        <location filename="../../romalyzer.cpp" line="1664"/>
         <source>CHD manager: external process started</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1642"/>
-        <location filename="../../romalyzer.cpp" line="1791"/>
+        <location filename="../../romalyzer.cpp" line="1675"/>
+        <location filename="../../romalyzer.cpp" line="1824"/>
         <source>unknown</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1644"/>
+        <location filename="../../romalyzer.cpp" line="1677"/>
         <source>normal</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1645"/>
+        <location filename="../../romalyzer.cpp" line="1678"/>
         <source>crashed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1647"/>
+        <location filename="../../romalyzer.cpp" line="1680"/>
         <source>CHD manager: external process finished (exit code = %1, exit status = %2)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1663"/>
+        <location filename="../../romalyzer.cpp" line="1696"/>
         <source>CHD manager: stdout: %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1685"/>
+        <location filename="../../romalyzer.cpp" line="1718"/>
         <source>CHD manager: stderr: %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1712"/>
+        <location filename="../../romalyzer.cpp" line="1745"/>
         <source>CHD manager: failed to start</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1716"/>
+        <location filename="../../romalyzer.cpp" line="1749"/>
         <source>CHD manager: crashed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1720"/>
+        <location filename="../../romalyzer.cpp" line="1753"/>
         <source>CHD manager: write error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1724"/>
+        <location filename="../../romalyzer.cpp" line="1757"/>
         <source>CHD manager: read error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1728"/>
+        <location filename="../../romalyzer.cpp" line="1761"/>
         <source>CHD manager: unknown error %1</source>
         <translation></translation>
     </message>
@@ -11332,7 +11332,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="917"/>
+        <location filename="../../romalyzer.cpp" line="946"/>
         <location filename="../../romalyzer.ui" line="42"/>
         <source>&amp;Analyze</source>
         <translation>&amp;Analyze</translation>
@@ -11623,7 +11623,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2255"/>
+        <location filename="../../romalyzer.cpp" line="2363"/>
         <location filename="../../romalyzer.ui" line="670"/>
         <source>Connection check</source>
         <translation></translation>
@@ -11635,9 +11635,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="567"/>
-        <location filename="../../romalyzer.cpp" line="924"/>
-        <location filename="../../romalyzer.cpp" line="1801"/>
-        <location filename="../../romalyzer.cpp" line="2159"/>
+        <location filename="../../romalyzer.cpp" line="953"/>
+        <location filename="../../romalyzer.cpp" line="1834"/>
+        <location filename="../../romalyzer.cpp" line="2267"/>
         <location filename="../../romalyzer.ui" line="1096"/>
         <source>Idle</source>
         <translation></translation>
@@ -11704,7 +11704,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="927"/>
+        <location filename="../../romalyzer.cpp" line="956"/>
         <source>analysis ended</source>
         <translation></translation>
     </message>
@@ -11732,12 +11732,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>Analyzing &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="907"/>
+        <location filename="../../romalyzer.cpp" line="936"/>
         <source>done (analyzing &apos;%1&apos;)</source>
         <translation>done (analyzing &apos;%1&apos;)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="909"/>
+        <location filename="../../romalyzer.cpp" line="938"/>
         <source>%n game(s) left</source>
         <translation>
             <numerusform>%n game left</numerusform>
@@ -11813,50 +11813,50 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="657"/>
-        <location filename="../../romalyzer.cpp" line="745"/>
-        <location filename="../../romalyzer.cpp" line="821"/>
-        <location filename="../../romalyzer.cpp" line="1783"/>
-        <location filename="../../romalyzer.cpp" line="1976"/>
-        <location filename="../../romalyzer.cpp" line="2039"/>
+        <location filename="../../romalyzer.cpp" line="665"/>
+        <location filename="../../romalyzer.cpp" line="753"/>
+        <location filename="../../romalyzer.cpp" line="829"/>
+        <location filename="../../romalyzer.cpp" line="1816"/>
+        <location filename="../../romalyzer.cpp" line="2084"/>
+        <location filename="../../romalyzer.cpp" line="2147"/>
         <source>ROM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="668"/>
-        <location filename="../../romalyzer.cpp" line="716"/>
-        <location filename="../../romalyzer.cpp" line="825"/>
-        <location filename="../../romalyzer.cpp" line="854"/>
+        <location filename="../../romalyzer.cpp" line="676"/>
+        <location filename="../../romalyzer.cpp" line="724"/>
+        <location filename="../../romalyzer.cpp" line="833"/>
+        <location filename="../../romalyzer.cpp" line="874"/>
         <source>not found</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="739"/>
+        <location filename="../../romalyzer.cpp" line="747"/>
         <source>Checksums</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="756"/>
+        <location filename="../../romalyzer.cpp" line="764"/>
         <source>SIZE </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="771"/>
+        <location filename="../../romalyzer.cpp" line="779"/>
         <source>CRC </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="783"/>
+        <location filename="../../romalyzer.cpp" line="791"/>
         <source>SHA1 </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="807"/>
+        <location filename="../../romalyzer.cpp" line="815"/>
         <source>MD5 </source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="848"/>
+        <location filename="../../romalyzer.cpp" line="868"/>
         <source>interrupted (checking %n file(s) for &apos;%1&apos;)</source>
         <translation>
             <numerusform>interrupted (checking %n file for &apos;%1&apos;)</numerusform>
@@ -11864,15 +11864,15 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="860"/>
+        <location filename="../../romalyzer.cpp" line="880"/>
         <source>good / not found</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="793"/>
-        <location filename="../../romalyzer.cpp" line="866"/>
-        <location filename="../../romalyzer.cpp" line="1838"/>
-        <location filename="../../romalyzer.cpp" line="1953"/>
+        <location filename="../../romalyzer.cpp" line="801"/>
+        <location filename="../../romalyzer.cpp" line="886"/>
+        <location filename="../../romalyzer.cpp" line="1904"/>
+        <location filename="../../romalyzer.cpp" line="2061"/>
         <source>good</source>
         <translation></translation>
     </message>
@@ -11887,22 +11887,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="709"/>
-        <location filename="../../romalyzer.cpp" line="731"/>
-        <location filename="../../romalyzer.cpp" line="793"/>
-        <location filename="../../romalyzer.cpp" line="880"/>
-        <location filename="../../romalyzer.cpp" line="1839"/>
-        <location filename="../../romalyzer.cpp" line="1951"/>
+        <location filename="../../romalyzer.cpp" line="717"/>
+        <location filename="../../romalyzer.cpp" line="739"/>
+        <location filename="../../romalyzer.cpp" line="801"/>
+        <location filename="../../romalyzer.cpp" line="900"/>
+        <location filename="../../romalyzer.cpp" line="1905"/>
+        <location filename="../../romalyzer.cpp" line="2059"/>
         <source>bad</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="745"/>
+        <location filename="../../romalyzer.cpp" line="753"/>
         <source>WARNING: %1 file &apos;%2&apos; loaded from &apos;%3&apos; may be obsolete, should be merged from parent set &apos;%4&apos;</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="899"/>
+        <location filename="../../romalyzer.cpp" line="919"/>
         <source>done (checking %n file(s) for &apos;%1&apos;)</source>
         <translation>
             <numerusform>done (checking %n file for &apos;%1&apos;)</numerusform>
@@ -11910,132 +11910,172 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1113"/>
+        <location filename="../../romalyzer.cpp" line="1142"/>
         <source>Verify - %p%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1115"/>
+        <location filename="../../romalyzer.cpp" line="1144"/>
         <source>CHD manager: verifying and fixing CHD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1118"/>
+        <location filename="../../romalyzer.cpp" line="1147"/>
         <source>CHD manager: verifying CHD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1128"/>
+        <location filename="../../romalyzer.cpp" line="1157"/>
         <source>Update - %p%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1129"/>
+        <location filename="../../romalyzer.cpp" line="1158"/>
         <source>CHD manager: updating CHD (v%1 -&gt; v%2)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1134"/>
-        <location filename="../../romalyzer.cpp" line="1146"/>
+        <location filename="../../romalyzer.cpp" line="1163"/>
+        <location filename="../../romalyzer.cpp" line="1175"/>
         <source>CHD manager: using header checksums for CHD verification</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1154"/>
+        <location filename="../../romalyzer.cpp" line="1183"/>
         <source>CHD manager: no header checksums available for CHD verification</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1182"/>
+        <location filename="../../romalyzer.cpp" line="1211"/>
         <source>CHD manager: terminating external process</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1201"/>
-        <location filename="../../romalyzer.cpp" line="1203"/>
+        <location filename="../../romalyzer.cpp" line="1230"/>
+        <location filename="../../romalyzer.cpp" line="1232"/>
         <source>CHD manager: CHD file integrity is good</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1205"/>
+        <location filename="../../romalyzer.cpp" line="1234"/>
         <source>CHD manager: WARNING: CHD file integrity is bad</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1209"/>
-        <location filename="../../romalyzer.cpp" line="1221"/>
+        <location filename="../../romalyzer.cpp" line="1238"/>
+        <location filename="../../romalyzer.cpp" line="1250"/>
         <source>CHD manager: using CHD v%1 header checksums for CHD verification</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1229"/>
+        <location filename="../../romalyzer.cpp" line="1258"/>
         <source>CHD manager: WARNING: no header checksums available for CHD verification</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1236"/>
+        <location filename="../../romalyzer.cpp" line="1265"/>
         <source>CHD manager: replacing CHD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1238"/>
+        <location filename="../../romalyzer.cpp" line="1267"/>
         <source>Copy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1244"/>
+        <location filename="../../romalyzer.cpp" line="1273"/>
         <source>CHD manager: CHD replaced</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1247"/>
+        <location filename="../../romalyzer.cpp" line="1276"/>
         <source>CHD manager: FATAL: failed to replace CHD -- updated CHD preserved as &apos;%1&apos;, please copy it to &apos;%2&apos; manually!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1251"/>
+        <location filename="../../romalyzer.cpp" line="1280"/>
         <source>CHD manager: cleaning up</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1263"/>
-        <location filename="../../romalyzer.cpp" line="1275"/>
+        <location filename="../../romalyzer.cpp" line="1292"/>
+        <location filename="../../romalyzer.cpp" line="1304"/>
         <source>using CHD v%1 header checksums for CHD verification</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1283"/>
+        <location filename="../../romalyzer.cpp" line="1312"/>
         <source>WARNING: no header checksums available for CHD verification</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1328"/>
-        <location filename="../../romalyzer.cpp" line="1432"/>
+        <location filename="../../romalyzer.cpp" line="1357"/>
+        <location filename="../../romalyzer.cpp" line="1465"/>
         <source>WARNING: found &apos;%1&apos; but can&apos;t read from it - check permission</source>
         <translation>WARNING: found &apos;%1&apos; but can&apos;t read from it - check permission</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1426"/>
+        <location filename="../../romalyzer.cpp" line="1459"/>
         <source>WARNING: unable to decompress &apos;%1&apos; from &apos;%2&apos; - check file integrity</source>
         <translation>WARNING: unable to decompress &apos;%1&apos; from &apos;%2&apos; - check file integrity</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1430"/>
+        <location filename="../../romalyzer.cpp" line="1463"/>
         <source>WARNING: found &apos;%1&apos; but can&apos;t open it for decompression - check file integrity</source>
         <translation>WARNING: found &apos;%1&apos; but can&apos;t open it for decompression - check file integrity</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1614"/>
+        <location filename="../../romalyzer.cpp" line="1647"/>
         <source>Choose output directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1757"/>
+        <location filename="../../romalyzer.cpp" line="1790"/>
         <source>Checksum search</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1863"/>
+        <source>set rewriter: WARNING: can&apos;t rewrite set &apos;%1&apos;, output path is not a directory</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1867"/>
+        <source>set rewriter: WARNING: can&apos;t rewrite set &apos;%1&apos;, output path is not writable</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1872"/>
+        <source>set rewriter: WARNING: can&apos;t rewrite set &apos;%1&apos;, output path does not exist</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1876"/>
+        <source>set rewriter: WARNING: can&apos;t rewrite set &apos;%1&apos;, output path is empty</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1883"/>
+        <source>space-efficient</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1884"/>
+        <source>self-contained</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1886"/>
+        <source>set rewriter: rewriting %1 set &apos;%2&apos; to &apos;%3&apos;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="1888"/>
+        <source>set rewriter: done (rewriting %1 set &apos;%2&apos; to &apos;%3&apos;)</source>
+        <translation></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="1965"/>
+        <location filename="../../romalyzer.cpp" line="2073"/>
         <source>checksum wizard: repairing %n bad set(s)</source>
         <translation>
             <numerusform>checksum wizard: repairing %n bad set</numerusform>
@@ -12043,100 +12083,100 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1971"/>
+        <location filename="../../romalyzer.cpp" line="2079"/>
         <source>checksum wizard: using %1 file &apos;%2&apos; from &apos;%3&apos; as repro template</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1994"/>
+        <location filename="../../romalyzer.cpp" line="2102"/>
         <source>checksum wizard: successfully identified &apos;%1&apos; from &apos;%2&apos; by CRC, filename in ZIP archive is &apos;%3&apos;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2003"/>
+        <location filename="../../romalyzer.cpp" line="2111"/>
         <source>checksum wizard: template data loaded, uncompressed size = %1 bytes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2007"/>
+        <location filename="../../romalyzer.cpp" line="2115"/>
         <source>checksum wizard: FATAL: unable to identify &apos;%1&apos; from &apos;%2&apos; by CRC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2017"/>
-        <location filename="../../romalyzer.cpp" line="2137"/>
+        <location filename="../../romalyzer.cpp" line="2125"/>
+        <location filename="../../romalyzer.cpp" line="2245"/>
         <source>checksum wizard: sorry, no support for regular files yet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2022"/>
-        <location filename="../../romalyzer.cpp" line="2142"/>
+        <location filename="../../romalyzer.cpp" line="2130"/>
+        <location filename="../../romalyzer.cpp" line="2250"/>
         <source>checksum wizard: sorry, no support for CHD files yet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2048"/>
+        <location filename="../../romalyzer.cpp" line="2156"/>
         <source>checksum wizard: target ZIP exists, loading complete data and structure</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2050"/>
+        <location filename="../../romalyzer.cpp" line="2158"/>
         <source>checksum wizard: target ZIP successfully loaded</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2052"/>
+        <location filename="../../romalyzer.cpp" line="2160"/>
         <source>checksum wizard: an entry with the CRC &apos;%1&apos; already exists, recreating the ZIP from scratch to replace the bad file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2055"/>
+        <location filename="../../romalyzer.cpp" line="2163"/>
         <source>checksum wizard: backup file &apos;%1&apos; successfully created</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2059"/>
+        <location filename="../../romalyzer.cpp" line="2167"/>
         <source>checksum wizard: FATAL: failed to create backup file &apos;%1&apos;, aborting</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2063"/>
+        <location filename="../../romalyzer.cpp" line="2171"/>
         <source>checksum wizard: no entry with the CRC &apos;%1&apos; was found, adding the missing file to the existing ZIP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2066"/>
+        <location filename="../../romalyzer.cpp" line="2174"/>
         <source>checksum wizard: FATAL: failed to load target ZIP, aborting</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2071"/>
+        <location filename="../../romalyzer.cpp" line="2179"/>
         <source>checksum wizard: the target ZIP does not exist, creating a new ZIP with just the missing file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1935"/>
-        <location filename="../../romalyzer.cpp" line="2128"/>
+        <location filename="../../romalyzer.cpp" line="2043"/>
+        <location filename="../../romalyzer.cpp" line="2236"/>
         <source>Created by QMC2 v%1 (%2)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2151"/>
+        <location filename="../../romalyzer.cpp" line="2259"/>
         <source>repair failed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2153"/>
+        <location filename="../../romalyzer.cpp" line="2261"/>
         <source>checksum wizard: FATAL: failed to repair %1 file &apos;%2&apos; in &apos;%3&apos; from repro template</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2163"/>
+        <location filename="../../romalyzer.cpp" line="2271"/>
         <source>checksum wizard: FATAL: can&apos;t find any good set</source>
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="2165"/>
+        <location filename="../../romalyzer.cpp" line="2273"/>
         <source>checksum wizard: done (repairing %n bad set(s))</source>
         <translation>
             <numerusform>checksum wizard: done (repairing %n bad set)</numerusform>
@@ -12144,7 +12184,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="2239"/>
+        <location filename="../../romalyzer.cpp" line="2347"/>
         <source>database connection check failed -- errorNumber = %1, errorText = &apos;%2&apos;</source>
         <translation></translation>
     </message>
@@ -12209,12 +12249,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="874"/>
+        <location filename="../../romalyzer.cpp" line="894"/>
         <source>bad / not found</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1325"/>
+        <location filename="../../romalyzer.cpp" line="1354"/>
         <source>WARNING: found &apos;%1&apos; but can&apos;t read from it although permissions seem okay - check file integrity</source>
         <translation>WARNING: found &apos;%1&apos; but can&apos;t read from it although permissions seem okay - check file integrity</translation>
     </message>
@@ -12256,18 +12296,18 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1012"/>
+        <location filename="../../romalyzer.cpp" line="1041"/>
         <source>loading &apos;%1&apos;%2</source>
         <translation>loading &apos;%1&apos;%2</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1012"/>
-        <location filename="../../romalyzer.cpp" line="1381"/>
+        <location filename="../../romalyzer.cpp" line="1041"/>
+        <location filename="../../romalyzer.cpp" line="1410"/>
         <source> (merged)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1381"/>
+        <location filename="../../romalyzer.cpp" line="1410"/>
         <source>loading &apos;%1&apos; from &apos;%2&apos;%3</source>
         <translation>loading &apos;%1&apos; from &apos;%2&apos;%3</translation>
     </message>
@@ -12277,29 +12317,29 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="689"/>
-        <location filename="../../romalyzer.cpp" line="692"/>
-        <location filename="../../romalyzer.cpp" line="823"/>
+        <location filename="../../romalyzer.cpp" line="697"/>
+        <location filename="../../romalyzer.cpp" line="700"/>
+        <location filename="../../romalyzer.cpp" line="831"/>
         <source>skipped</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="858"/>
+        <location filename="../../romalyzer.cpp" line="878"/>
         <source>good / not found / skipped</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="864"/>
+        <location filename="../../romalyzer.cpp" line="884"/>
         <source>good / skipped</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="872"/>
+        <location filename="../../romalyzer.cpp" line="892"/>
         <source>bad / not found / skipped</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="878"/>
+        <location filename="../../romalyzer.cpp" line="898"/>
         <source>bad / skipped</source>
         <translation></translation>
     </message>
@@ -12309,8 +12349,8 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1550"/>
-        <location filename="../../romalyzer.cpp" line="1564"/>
+        <location filename="../../romalyzer.cpp" line="1583"/>
+        <location filename="../../romalyzer.cpp" line="1597"/>
         <location filename="../../romalyzer.ui" line="385"/>
         <source> MB</source>
         <translation></translation>
@@ -12346,84 +12386,84 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="695"/>
+        <location filename="../../romalyzer.cpp" line="703"/>
         <source>error</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="821"/>
+        <location filename="../../romalyzer.cpp" line="829"/>
         <source>WARNING: %1 file &apos;%2&apos; loaded from &apos;%3&apos; has incorrect / unexpected checksums</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1035"/>
+        <location filename="../../romalyzer.cpp" line="1064"/>
         <source>CHD header information:</source>
         <translation>CHD header information:</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1039"/>
+        <location filename="../../romalyzer.cpp" line="1068"/>
         <source>  version: %1</source>
         <translation>  version: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1040"/>
-        <location filename="../../romalyzer.cpp" line="1245"/>
+        <location filename="../../romalyzer.cpp" line="1069"/>
+        <location filename="../../romalyzer.cpp" line="1274"/>
         <source>CHD v%1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1044"/>
-        <location filename="../../romalyzer.cpp" line="1068"/>
+        <location filename="../../romalyzer.cpp" line="1073"/>
+        <location filename="../../romalyzer.cpp" line="1097"/>
         <source>  compression: %1</source>
         <translation>  compression: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1048"/>
-        <location filename="../../romalyzer.cpp" line="1072"/>
+        <location filename="../../romalyzer.cpp" line="1077"/>
+        <location filename="../../romalyzer.cpp" line="1101"/>
         <source>  number of total hunks: %1</source>
         <translation>  number of total hunks: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1050"/>
-        <location filename="../../romalyzer.cpp" line="1074"/>
+        <location filename="../../romalyzer.cpp" line="1079"/>
+        <location filename="../../romalyzer.cpp" line="1103"/>
         <source>  number of bytes per hunk: %1</source>
         <translation>  number of bytes per hunk: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1054"/>
+        <location filename="../../romalyzer.cpp" line="1083"/>
         <source>  MD5 checksum: %1</source>
         <translation>  MD5 checksum: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1056"/>
-        <location filename="../../romalyzer.cpp" line="1078"/>
+        <location filename="../../romalyzer.cpp" line="1085"/>
+        <location filename="../../romalyzer.cpp" line="1107"/>
         <source>  SHA1 checksum: %1</source>
         <translation>  SHA1 checksum: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1089"/>
+        <location filename="../../romalyzer.cpp" line="1118"/>
         <source>only CHD v3 and v4 headers supported -- rest of header information skipped</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1291"/>
+        <location filename="../../romalyzer.cpp" line="1320"/>
         <source>WARNING: can&apos;t read CHD header information</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1547"/>
-        <location filename="../../romalyzer.cpp" line="1561"/>
+        <location filename="../../romalyzer.cpp" line="1580"/>
+        <location filename="../../romalyzer.cpp" line="1594"/>
         <source> KB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1553"/>
-        <location filename="../../romalyzer.cpp" line="1567"/>
+        <location filename="../../romalyzer.cpp" line="1586"/>
+        <location filename="../../romalyzer.cpp" line="1600"/>
         <source> GB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1556"/>
+        <location filename="../../romalyzer.cpp" line="1589"/>
         <source> TB</source>
         <translation></translation>
     </message>
@@ -12564,72 +12604,72 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1362"/>
+        <location filename="../../romalyzer.cpp" line="1391"/>
         <source>WARNING: unable to identify &apos;%1&apos; from &apos;%2&apos; by CRC</source>
         <translation>WARNING: unable to identify &apos;%1&apos; from &apos;%2&apos; by CRC</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1037"/>
+        <location filename="../../romalyzer.cpp" line="1066"/>
         <source>  tag: %1</source>
         <translation>  tag: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1059"/>
+        <location filename="../../romalyzer.cpp" line="1088"/>
         <source>  parent CHD&apos;s MD5 checksum: %1</source>
         <translation>  parent CHD&apos;s MD5 checksum: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1061"/>
-        <location filename="../../romalyzer.cpp" line="1081"/>
+        <location filename="../../romalyzer.cpp" line="1090"/>
+        <location filename="../../romalyzer.cpp" line="1110"/>
         <source>  parent CHD&apos;s SHA1 checksum: %1</source>
         <translation>  parent CHD&apos;s SHA1 checksum: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1046"/>
-        <location filename="../../romalyzer.cpp" line="1070"/>
+        <location filename="../../romalyzer.cpp" line="1075"/>
+        <location filename="../../romalyzer.cpp" line="1099"/>
         <source>  flags: %1, %2</source>
         <translation>  flags: %1, %2</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1046"/>
-        <location filename="../../romalyzer.cpp" line="1070"/>
+        <location filename="../../romalyzer.cpp" line="1075"/>
+        <location filename="../../romalyzer.cpp" line="1099"/>
         <source>has parent</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1046"/>
-        <location filename="../../romalyzer.cpp" line="1070"/>
+        <location filename="../../romalyzer.cpp" line="1075"/>
+        <location filename="../../romalyzer.cpp" line="1099"/>
         <source>no parent</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1046"/>
-        <location filename="../../romalyzer.cpp" line="1070"/>
+        <location filename="../../romalyzer.cpp" line="1075"/>
+        <location filename="../../romalyzer.cpp" line="1099"/>
         <source>allows writes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1046"/>
-        <location filename="../../romalyzer.cpp" line="1070"/>
+        <location filename="../../romalyzer.cpp" line="1075"/>
+        <location filename="../../romalyzer.cpp" line="1099"/>
         <source>read only</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1052"/>
-        <location filename="../../romalyzer.cpp" line="1076"/>
+        <location filename="../../romalyzer.cpp" line="1081"/>
+        <location filename="../../romalyzer.cpp" line="1105"/>
         <source>  logical size: %1 bytes (%2)</source>
         <translation>  logical size: %1 bytes (%2)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1331"/>
+        <location filename="../../romalyzer.cpp" line="1360"/>
         <source>WARNING: CHD file &apos;%1&apos; not found</source>
         <translation>WARNING: CHD file &apos;%1&apos; not found</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="745"/>
-        <location filename="../../romalyzer.cpp" line="821"/>
-        <location filename="../../romalyzer.cpp" line="977"/>
-        <location filename="../../romalyzer.cpp" line="1780"/>
+        <location filename="../../romalyzer.cpp" line="753"/>
+        <location filename="../../romalyzer.cpp" line="829"/>
+        <location filename="../../romalyzer.cpp" line="1006"/>
+        <location filename="../../romalyzer.cpp" line="1813"/>
         <source>CHD</source>
         <translation></translation>
     </message>
@@ -12677,7 +12717,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="911"/>
+        <location filename="../../romalyzer.cpp" line="940"/>
         <source>%n machine(s) left</source>
         <translation>
             <numerusform>%n machine left</numerusform>
@@ -12685,7 +12725,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         </translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="927"/>
+        <location filename="../../romalyzer.cpp" line="956"/>
         <source>elapsed time = %1</source>
         <translation>elapsed time = %1</translation>
     </message>
@@ -12695,17 +12735,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1084"/>
+        <location filename="../../romalyzer.cpp" line="1113"/>
         <source>  raw SHA1 checksum: %1</source>
         <translation>  raw SHA1 checksum: %1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1003"/>
+        <location filename="../../romalyzer.cpp" line="1032"/>
         <source>size of &apos;%1&apos; is greater than allowed maximum -- skipped</source>
         <translation>size of &apos;%1&apos; is greater than allowed maximum -- skipped</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1372"/>
+        <location filename="../../romalyzer.cpp" line="1401"/>
         <source>size of &apos;%1&apos; from &apos;%2&apos; is greater than allowed maximum -- skipped</source>
         <translation>size of &apos;%1&apos; from &apos;%2&apos; is greater than allowed maximum -- skipped</translation>
     </message>

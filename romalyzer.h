@@ -8,6 +8,7 @@
 #include <QTimer>
 #include <QTime>
 #include <QProcess>
+#include <QMap>
 #include <QMenu>
 #include "romdbmgr.h"
 
@@ -130,6 +131,10 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     QMenu *romSetContextMenu;
     QString currentFilesSHA1Checksum;
     QStringList wizardSelectedSets;
+    QMap<QString, QString> setRewriterFileMap;
+    QMap<QString, QString> setRewriterCRCMap;
+    QString setRewriterSetName;
+    QTreeWidgetItem *setRewriterItem;
 #if defined(QMC2_DATABASE_ENABLED)
     ROMDatabaseManager *dbManager;
     QPalette savedCheckButtonPalette;
@@ -142,6 +147,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void saveState() { closeEvent(NULL); }
     void log(QString);
     bool readAllZipData(QString, QMap<QString, QByteArray> *, QMap<QString, QString> *);
+    bool readZipFileData(QString, QString, QByteArray *);
     bool writeAllZipData(QString, QMap<QString, QByteArray> *);
     QString humanReadable(quint64);
     QString &getXmlData(QString);
