@@ -632,6 +632,12 @@ void ROMAlyzer::analyze()
       int notFoundCounter = 0;
       bool gameOkay = TRUE;
       int mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_OK;
+
+      setRewriterFileMap.clear();
+      setRewriterCRCMap.clear();
+      setRewriterSetName = gameName;
+      setRewriterItem = item;
+
       for (fileCounter = 0; fileCounter < xmlHandler.fileCounter && !qmc2StopParser; fileCounter++) {
         progressBar->setValue(fileCounter);
         qApp->processEvents();
@@ -641,6 +647,7 @@ void ROMAlyzer::analyze()
         QTreeWidgetItem *childItem = xmlHandler.childItems.at(fileCounter);
         QTreeWidgetItem *parentItem = xmlHandler.parentItem;
         QString sha1Calculated, md5Calculated, fallbackPath;
+
         QString effectiveFile = getEffectiveFile(childItem, gameName, 
                                                  childItem->text(QMC2_ROMALYZER_COLUMN_GAME),
                                                  childItem->text(QMC2_ROMALYZER_COLUMN_CRC),
@@ -649,6 +656,7 @@ void ROMAlyzer::analyze()
                                                  childItem->text(QMC2_ROMALYZER_COLUMN_TYPE),
                                                  &data, &sha1Calculated, &md5Calculated,
                                                  &zipped, &merged, fileCounter, &fallbackPath); 
+
 #ifdef QMC2_DEBUG
 	log(QString("DEBUG: fileName = %1 [%2], isZipped = %3, fileType = %4, crcExpected = %5, sha1Calculated = %6")
 		    .arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME))
@@ -839,6 +847,18 @@ void ROMAlyzer::analyze()
           qApp->processEvents();
         }
       }
+
+      /*
+      QMapIterator<QString, QString> it(setRewriterFileMap);
+      while ( it.hasNext() ) {
+        it.next();
+        QString fileName = it.key();
+        QString filePath = it.value();
+        QString fileCRC = setRewriterCRCMap[fileName];
+        printf("gameName = %s, fileCRC = %s, fileName = %s, filePath = %s\n", (const char *) gameName.toAscii(), (const char *) fileCRC.toAscii(),(const char *) fileName.toAscii(), (const char *) filePath.toAscii());
+      }
+      */
+
       if ( xmlHandler.fileCounter == 0 )
         progressBar->setRange(0, 1);
       progressBar->reset();
@@ -897,6 +917,15 @@ void ROMAlyzer::analyze()
 		}
 	}
         log(tr("done (checking %n file(s) for '%1')", "", xmlHandler.fileCounter).arg(gameName));
+
+	if ( gameOkay ) {
+		if ( groupBoxSetRewriter->isChecked() ) {
+			if ( checkBoxSetRewriterWhileAnalyzing->isChecked() && !qmc2StopParser ) {
+				runSetRewriter();
+				QString outPath = lineEditSetRewriterOutputPath->text();
+			}
+		}
+	}
       }
       if ( qmc2StopParser )
         break;
@@ -1411,6 +1440,10 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                 unzCloseCurrentFile(zipFile);
                 effectiveFile = filePath;
                 if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
+                if ( !wantedCRC.isEmpty() ) {
+                  setRewriterFileMap[fileName] = filePath;
+                  setRewriterCRCMap[fileName] = wantedCRC;
+                }
                 *isZipped = TRUE;
                 if ( calcSHA1 )
                   *sha1Str = sha1Hash.result().toHex();
@@ -1820,6 +1853,39 @@ void ROMAlyzer::runSetRewriter()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::runSetRewriter()");
 #endif
 
+	// check output path and write permission
+	QString outPath = lineEditSetRewriterOutputPath->text();
+	if ( !outPath.isEmpty() ) {
+		QDir dir(outPath);
+		if ( dir.exists() ) {
+			QFileInfo dirInfo(outPath);
+			if ( !dirInfo.isDir() ) {
+				log(tr("set rewriter: WARNING: can't rewrite set '%1', output path is not a directory").arg(setRewriterSetName));
+				return;
+			}
+			if ( !dirInfo.isWritable() ) {
+				log(tr("set rewriter: WARNING: can't rewrite set '%1', output path is not writable").arg(setRewriterSetName));
+				return;
+			}
+
+		} else {
+			log(tr("set rewriter: WARNING: can't rewrite set '%1', output path does not exist").arg(setRewriterSetName));
+			return;
+		}
+	} else {
+		log(tr("set rewriter: WARNING: can't rewrite set '%1', output path is empty").arg(setRewriterSetName));
+		return;
+	}
+
+	if ( !outPath.endsWith("/") ) outPath += "/";
+	outPath += setRewriterSetName + ".zip";
+
+	QString modeString = tr("space-efficient");
+	if ( checkBoxSetRewriterSelfContainedSets->isChecked() ) modeString = tr("self-contained");
+
+	log(tr("set rewriter: rewriting %1 set '%2' to '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
+
+	log(tr("set rewriter: done (rewriting %1 set '%2' to '%3')").arg(modeString).arg(setRewriterSetName).arg(outPath));
 }
 
 void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
@@ -1879,6 +1945,48 @@ bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *data
 			}
 			qApp->processEvents();
 		} while ( unzGoToNextFile(zipFile) == UNZ_OK );
+		unzClose(zipFile);
+	} else
+		success = false;
+
+	return success;
+}
+
+// reads the file with the CRC 'crc' in the ZIP 'fileName' and returns its data in 'data'
+bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
+{
+	bool success = true;
+	unzFile zipFile = unzOpen((const char *)fileName.toAscii());
+
+	if ( zipFile ) {
+  		char ioBuffer[QMC2_ROMALYZER_ZIP_BUFFER_SIZE];
+
+		// identify file by CRC
+		unz_file_info zipInfo;
+		QMap<uLong, QString> crcIdentMap;
+		uLong ulCRC = crc.toULong(0, 16);
+		do {
+			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK )
+				crcIdentMap[zipInfo.crc] = QString((const char *)ioBuffer);
+		} while ( unzGoToNextFile(zipFile) == UNZ_OK && !crcIdentMap.contains(ulCRC) );
+		unzGoToFirstFile(zipFile);
+		if ( crcIdentMap.contains(ulCRC) ) {
+			QString fn = crcIdentMap[ulCRC];
+			if ( unzLocateFile(zipFile, (const char *)fn.toAscii(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
+				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
+					qint64 len;
+					while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
+						QByteArray readData((const char *)ioBuffer, len);
+						*data += readData;
+					}
+					unzCloseCurrentFile(zipFile);
+				} else
+					success = false;
+			} else
+				success = false;
+		} else
+			success = false;
+
 		unzClose(zipFile);
 	} else
 		success = false;
