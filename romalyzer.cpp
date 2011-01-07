@@ -1889,6 +1889,7 @@ void ROMAlyzer::runSetRewriter()
 	labelStatus->setText(tr("Rewriting '%1' - %2").arg(setRewriterSetName).arg(setRewriterSetCount));
 	progressBar->setRange(0, 0);
 	progressBar->reset();
+	qApp->processEvents();
 	QString modeString = tr("space-efficient");
 	if ( checkBoxSetRewriterSelfContainedSets->isChecked() ) modeString = tr("self-contained");
 
@@ -1905,7 +1906,16 @@ void ROMAlyzer::runSetRewriter()
 		log(tr("set rewriter: loading '%1' with CRC '%2' from '%3'").arg(fileName).arg(fileCRC).arg(filePath));
 		QByteArray fileData;
 		if ( readZipFileData(filePath, fileCRC, &fileData) ) {
-			outputDataMap[fileName] = fileData;
+			QString outputFileName = fileName;
+			bool found = false;
+			for (int i = 0; i < setRewriterItem->childCount() && !found; i++) {
+				QTreeWidgetItem *childItem = setRewriterItem->child(i);
+				if ( childItem->parent() != setRewriterItem )
+					continue;
+				if ( childItem->text(QMC2_ROMALYZER_COLUMN_MERGE) == fileName )
+					outputFileName = childItem->text(QMC2_ROMALYZER_COLUMN_GAME);
+			}
+			outputDataMap[outputFileName] = fileData;
 		} else {
 			log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));
 			loadOkay = false;
@@ -1913,17 +1923,19 @@ void ROMAlyzer::runSetRewriter()
 	}
 
 	if ( loadOkay ) {
-		log(tr("set rewriter: writing new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
 		if ( !checkBoxSetRewriterSelfContainedSets->isChecked() ) {
 			for (int i = 0; i < setRewriterItem->childCount(); i++) {
 				QTreeWidgetItem *childItem = setRewriterItem->child(i);
 				if ( childItem->parent() != setRewriterItem )
 					continue;
-				if ( !childItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() )
+				if ( !childItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
+					log(tr("set rewriter: removing redundant file '%1' from output data").arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)));
 					outputDataMap.remove(childItem->text(QMC2_ROMALYZER_COLUMN_GAME));
+				}
 			}
 		}
 		if ( !outputDataMap.isEmpty() ) {
+			log(tr("set rewriter: writing new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
 			if ( writeAllZipData(outPath, &outputDataMap) )
 				log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
 			else {
@@ -1945,6 +1957,7 @@ void ROMAlyzer::runSetRewriter()
 	progressBar->setValue(0);
 	progressBar->setRange(0, 100);
 	progressBar->reset();
+	qApp->processEvents();
 }
 
 void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
