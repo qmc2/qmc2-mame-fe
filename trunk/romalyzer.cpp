@@ -1590,6 +1590,8 @@ void ROMAlyzer::log(QString message)
 
   textBrowserLog->append(msg);
   qApp->processEvents();
+
+  // printf("%s\n", (const char *)msg.toAscii()); fflush(stdout);
 }
 
 void ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()
@@ -1925,10 +1927,12 @@ void ROMAlyzer::runSetRewriter()
 				if ( childItem->parent() != setRewriterItem )
 					continue;
 				if ( !childItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
-					QString localName = setRewriterFileMap[childItem->text(QMC2_ROMALYZER_COLUMN_CRC)][2];
-					if ( outputDataMap.contains(localName) ) {
-						log(tr("set rewriter: removing redundant file '%1' with CRC '%2' from output data").arg(localName).arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)));
-						outputDataMap.remove(localName);
+					if ( !childItem->text(QMC2_ROMALYZER_COLUMN_CRC).isEmpty() ) {
+						QString localName = setRewriterFileMap[childItem->text(QMC2_ROMALYZER_COLUMN_CRC)][2];
+						if ( outputDataMap.contains(localName) ) {
+							log(tr("set rewriter: removing redundant file '%1' with CRC '%2' from output data").arg(localName).arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)));
+							outputDataMap.remove(localName);
+						}
 					}
 				}
 			}
