@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b19, 04-JAN-2011</h3>
+<h3>README - v0.2.b19, 07-JAN-2011</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -98,7 +98,7 @@ use with the MAME variant).
   <li>All short cuts and GUI control keys can be remapped</li>
   <li>Removal of obsolete samples and image files (stored in directories or ZIP archives)</li>
   <li>Automatic caching of XML output from the emulator</li>
-  <li>Built-in ROMAlyzer to deeply analyze a game's/machine's ROMs and CHDs (and to support in fixing them as far as possible) -- inspired by <a href="credits.html#Carsten">Carsten Engel's</a> ROMAlyzer script (see scripts/romalyzer.pl in source distribution)</li>
+  <li>Built-in ROMAlyzer to deeply analyze a game's/machine's ROMs (including repair- and rewrite-functionality for zipped sets) and CHDs -- inspired by <a href="credits.html#Carsten">Carsten Engel's</a> ROMAlyzer script (see scripts/romalyzer.pl in source distribution)</li>
   <li>Optional use of OpenGL features (currently only for image painting)</li>
   <li>Support for direct GUI control via analog and digital joysticks through SDL (<i>Simple Directmedia Layer</i>)</li>
   <li>Detailed game/machine information from MAME's <i>history.dat</i> game information database and MESS' <i>sysinfo.dat</i> machine information database</li>
@@ -361,7 +361,10 @@ has been enabled) are also not filtered.</p>
       <li>CRITICAL (red) -- one or more files to be merged are not found or otherwise 'bad' in both the parent and the child sets</li>
     </ul>
   </li>
-  <li>The <i>checksum wizard</i> (new since v0.2.b19) will allow you to search for an SHA1 checksum in all sets. You can use it to qualify the states and locations of the respective files and to automatically repair 'bad' sets when 'good' sets exists.</li>
+  <li>The <i>checksum wizard</i> will allow you to search for an SHA1 checksum in all sets. You can use it to qualify the states and locations of the respective files and to automatically repair 'bad' sets when 'good' sets exists.</li>
+  <li>You can enable the <i>set rewriter</i> function to recreate clean new ZIPs (does not include CHDs!). <b>Take backups of your primary ROM data before you replace it with the ZIPs created by the <i>set rewriter</i> (and NEVER use one of your ROM paths as the output directory)!</b>
+  We can't guarantee that it will work cleanly in all cases, though we <i>think</i> that the set rewriter should basically work correctly under all circumstances. However, if the source data is bad and/or incomplete, the results will not be any better.
+  So, first of all, get your ROM sets <i>working</i> before you dare to run the set rewriter in order to clean them up :)!</li>
   <li>Take a look at the ROMAlyzer's log for a more detailed analysis report.</li>
 </ul>
 <h3><a name="5."></a>5. GUI style plugins and Qt style sheets</h3>
