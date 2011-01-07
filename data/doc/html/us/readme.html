@@ -362,9 +362,13 @@ has been enabled) are also not filtered.</p>
     </ul>
   </li>
   <li>The <i>checksum wizard</i> will allow you to search for an SHA1 checksum in all sets. You can use it to qualify the states and locations of the respective files and to automatically repair 'bad' sets when 'good' sets exists.</li>
-  <li>You can enable the <i>set rewriter</i> function to recreate clean new ZIPs (does not include CHDs!). <b>Take backups of your primary ROM data before you replace it with the ZIPs created by the <i>set rewriter</i> (and NEVER use one of your ROM paths as the output directory)!</b>
-  We can't guarantee that it will work cleanly in all cases, though we <i>think</i> that the set rewriter should basically work correctly under all circumstances. However, if the source data is bad and/or incomplete, the results will not be any better.
-  So, first of all, get your ROM sets <i>working</i> before you dare to run the set rewriter in order to clean them up :)!</li>
+  <li>You can enable the so called <i>set rewriter</i> to recreate clean new ZIPs (does not include CHDs!). Things to note about the <i>set rewriter</i>:
+    <ul>
+      <li><b>Take backups of your primary ROM data before you replace it with the ZIPs created by the <i>set rewriter</i>!</b></li>
+      <li><b>NEVER use one of your primary ROM paths as the output directory for the <i>set rewriter</i>!</b></li>
+      <li>When the source data is bad and/or incomplete, the results will not be better. First get your ROM sets <i>working</i> before you dare to run the set rewriter in order to clean them up!</li>
+      <li>When a child set requires a merged file from a parent set in which this file is marked as 'no dump' (and its CRC is unknown to the emulator), a space-efficiently rewritten set may not be complete. You have to fix it manually by putting the file in the parent set. An example for this in MAME 0.141 is 'tenkai' vs. 'tenkaid' (it's the only case in this version of MAME, the rest is clean).</li>
+    </ul>
   <li>Take a look at the ROMAlyzer's log for a more detailed analysis report.</li>
 </ul>
 <h3><a name="5."></a>5. GUI style plugins and Qt style sheets</h3>
