@@ -367,7 +367,7 @@ has been enabled) are also not filtered.</p>
       <li><b>Take backups of your primary ROM data before you replace it with the ZIPs created by the <i>set rewriter</i>!</b></li>
       <li><b>NEVER use one of your primary ROM paths as the output directory for the <i>set rewriter</i>!</b></li>
       <li>When the source data is bad and/or incomplete, the results will not be better. First get your ROM sets <i>working</i> before you dare to run the set rewriter in order to clean them up!</li>
-      <li>When a child set requires a merged file from a parent set in which this file is marked as 'no dump' (and its CRC is unknown to the emulator), a space-efficiently rewritten set may not be complete. You have to fix it manually by putting the file in the parent set. An example for this in MAME 0.141 is 'tenkai' vs. 'tenkaid' (it's the only case in this version of MAME, the rest is clean).</li>
+      <li>When a child set requires a merged file from a parent set in which this file is marked as 'no dump' (and its CRC is unknown to the emulator), a rewritten set may not be complete. You'd have to fix it manually by putting the file in the parent set (or in the child set if it's only required there). An example for this in MAME 0.141 is 'tenkai' vs. 'tenkaid' (as it appears to be a MAME bug, there's no need to work around it in QMC2 since it'd be very awkward to handle anyway).</li>
     </ul>
   <li>Take a look at the ROMAlyzer's log for a more detailed analysis report.</li>
 </ul>
