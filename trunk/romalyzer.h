@@ -131,8 +131,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     QMenu *romSetContextMenu;
     QString currentFilesSHA1Checksum;
     QStringList wizardSelectedSets;
-    QMap<QString, QString> setRewriterFileMap;
-    QMap<QString, QString> setRewriterCRCMap;
+    QMap<QString, QStringList> setRewriterFileMap;
     QString setRewriterSetName;
     QTreeWidgetItem *setRewriterItem;
     int setRewriterSetCount;

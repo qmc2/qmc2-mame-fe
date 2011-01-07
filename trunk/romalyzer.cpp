@@ -628,7 +628,6 @@ void ROMAlyzer::analyze()
       int mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_OK;
 
       setRewriterFileMap.clear();
-      setRewriterCRCMap.clear();
       setRewriterSetName = gameName;
       setRewriterItem = item;
 
@@ -1420,8 +1419,10 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                 effectiveFile = filePath;
                 if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
                 if ( !wantedCRC.isEmpty() ) {
-                  setRewriterFileMap[fileName] = filePath;
-                  setRewriterCRCMap[fileName] = wantedCRC;
+		  QStringList sl;
+		  //    fromName    fromPath    toName
+		  sl << fileName << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME);
+		  setRewriterFileMap.insert(wantedCRC, sl); 
                 }
                 *isZipped = TRUE;
                 if ( calcSHA1 )
@@ -1896,27 +1897,17 @@ void ROMAlyzer::runSetRewriter()
 	log(tr("set rewriter: rewriting %1 set '%2' to '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
 
 	bool loadOkay = true;
-	QMapIterator<QString, QString> it(setRewriterFileMap);
+	QMapIterator<QString, QStringList> it(setRewriterFileMap);
 	QMap<QString, QByteArray> outputDataMap;
 	while ( it.hasNext() && loadOkay ) {
 		it.next();
-		QString fileName = it.key();
-		QString filePath = it.value();
-		QString fileCRC = setRewriterCRCMap[fileName];
-		log(tr("set rewriter: loading '%1' with CRC '%2' from '%3'").arg(fileName).arg(fileCRC).arg(filePath));
+		QString fileCRC = it.key();
+		QString fileName = it.value()[0];
+		QString filePath = it.value()[1];
+		QString outputFileName = it.value()[2];
+		log(tr("set rewriter: loading '%1' with CRC '%2' from '%3' as '%4'").arg(fileName).arg(fileCRC).arg(filePath).arg(outputFileName));
 		QByteArray fileData;
 		if ( readZipFileData(filePath, fileCRC, &fileData) ) {
-			QString outputFileName = fileName;
-			bool found = false;
-			for (int i = 0; i < setRewriterItem->childCount() && !found; i++) {
-				QTreeWidgetItem *childItem = setRewriterItem->child(i);
-				if ( childItem->parent() != setRewriterItem )
-					continue;
-				if ( childItem->text(QMC2_ROMALYZER_COLUMN_MERGE) == fileName ) {
-					outputFileName = childItem->text(QMC2_ROMALYZER_COLUMN_GAME);
-					found = true;
-				}
-			}
 			outputDataMap[outputFileName] = fileData;
 		} else {
 			if ( checkBoxSetRewriterGoodSetsOnly->isChecked() ) {
@@ -1934,8 +1925,11 @@ void ROMAlyzer::runSetRewriter()
 				if ( childItem->parent() != setRewriterItem )
 					continue;
 				if ( !childItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
-					log(tr("set rewriter: removing redundant file '%1' from output data").arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)));
-					outputDataMap.remove(childItem->text(QMC2_ROMALYZER_COLUMN_GAME));
+					QString localName = setRewriterFileMap[childItem->text(QMC2_ROMALYZER_COLUMN_CRC)][2];
+					if ( outputDataMap.contains(localName) ) {
+						log(tr("set rewriter: removing redundant file '%1' with CRC '%2' from output data").arg(localName).arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)));
+						outputDataMap.remove(localName);
+					}
 				}
 			}
 		}
