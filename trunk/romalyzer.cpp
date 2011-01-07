@@ -1912,13 +1912,18 @@ void ROMAlyzer::runSetRewriter()
 				QTreeWidgetItem *childItem = setRewriterItem->child(i);
 				if ( childItem->parent() != setRewriterItem )
 					continue;
-				if ( childItem->text(QMC2_ROMALYZER_COLUMN_MERGE) == fileName )
+				if ( childItem->text(QMC2_ROMALYZER_COLUMN_MERGE) == fileName ) {
 					outputFileName = childItem->text(QMC2_ROMALYZER_COLUMN_GAME);
+					found = true;
+				}
 			}
 			outputDataMap[outputFileName] = fileData;
 		} else {
-			log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));
-			loadOkay = false;
+			if ( checkBoxSetRewriterGoodSetsOnly->isChecked() ) {
+				log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));
+				loadOkay = false;
+			} else
+				log(tr("set rewriter: WARNING: can't load '%1' with CRC '%2' from '%3', ignoring this file").arg(fileName).arg(fileCRC).arg(filePath));
 		}
 	}
 
