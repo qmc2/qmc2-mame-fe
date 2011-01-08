@@ -328,6 +328,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame", checkBoxSelectGame->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxFileSize", spinBoxMaxFileSize->value());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", spinBoxMaxLogSize->value());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxReports", spinBoxMaxReports->value());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCHDManager", groupBoxCHDManager->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", lineEditCHDManagerExecutableFile->text());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", lineEditTemporaryWorkingDirectory->text());
@@ -400,6 +401,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   checkBoxSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame", TRUE).toBool());
   spinBoxMaxFileSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxFileSize", 0).toInt());
   spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", 0).toInt());
+  spinBoxMaxReports->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxReports", 1000).toInt());
   lineEditCHDManagerExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", "").toString());
   lineEditTemporaryWorkingDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", "").toString());
   lineEditSetRewriterOutputPath->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", "").toString());
@@ -570,6 +572,7 @@ void ROMAlyzer::analyze()
 #endif
 
     i = 0;
+    int setsInMemory = 0;
     foreach (QString gameName, analyzerList) {
       // wait if paused...
       for (quint64 waitCounter = 0; qmc2ROMAlyzerPaused && !qmc2StopParser; waitCounter++) {
@@ -590,6 +593,25 @@ void ROMAlyzer::analyze()
 
       if ( qmc2StopParser )
         break;
+
+      // remove the 'oldest' sets from the report if the report limit has been reached
+      int reportLimit = spinBoxMaxReports->value();
+      if ( reportLimit > 0 ) {
+	      if ( setsInMemory >= reportLimit ) {
+		      int setsToBeRemoved = setsInMemory - reportLimit + 1;
+		      log(tr("INFORMATION: report limit reached, removing %n set(s) from the report", "", setsToBeRemoved));
+		      for (int j = 0; j < setsToBeRemoved; j++) {
+			      QTreeWidgetItem *ti = treeWidgetChecksums->topLevelItem(0);
+			      if ( ti ) {
+				      if ( ti->isSelected() )
+					      treeWidgetChecksums->selectionModel()->clear();
+				      delete treeWidgetChecksums->takeTopLevelItem(0);
+				      setsInMemory--;
+			      }
+		      }
+	      }
+      }
+      setsInMemory++;
 
       // analyze game
       log(tr("analyzing '%1'").arg(gameName));
