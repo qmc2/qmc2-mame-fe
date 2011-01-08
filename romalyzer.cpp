@@ -1965,7 +1965,7 @@ void ROMAlyzer::runSetRewriter()
 		}
 		if ( !outputDataMap.isEmpty() ) {
 			log(tr("set rewriter: writing new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
-			if ( writeAllZipData(outPath, &outputDataMap) )
+			if ( writeAllZipData(outPath, &outputDataMap, true) )
 				log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
 			else {
 				log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
@@ -2044,7 +2044,7 @@ bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *data
 						progressBarFileIO->setValue(fileData.length());
 						progressBarFileIO->update();
 						progressBar->update();
-						if ( fileData.length() % QMC2_ONE_MEGABYTE == 0 ) qApp->processEvents();
+						if ( fileData.length() % QMC2_128K == 0 || fileData.length() == zipInfo.uncompressed_size ) qApp->processEvents();
 					}
 					dataMap->insert(QString::number(zipInfo.crc), fileData);
 					unzCloseCurrentFile(zipFile);
@@ -2090,7 +2090,7 @@ bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 						progressBarFileIO->setValue(data->length());
 						progressBarFileIO->update();
 						progressBar->update();
-						if ( data->length() % QMC2_ONE_MEGABYTE == 0 ) qApp->processEvents();
+						if ( data->length() % QMC2_128K == 0 || data->length() == zipInfo.uncompressed_size ) qApp->processEvents();
 					}
 					unzCloseCurrentFile(zipFile);
 				} else
@@ -2111,7 +2111,7 @@ bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 // creates the new ZIP 'fileName' (overwrites an existing file w/o creating a backup!)
 // and stores the data found in 'fileDataMap' into the ZIP:
 // - 'fileDataMap' maps file names to their data
-bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fileDataMap)
+bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fileDataMap, bool writeLog)
 {
 	bool success = true;
 
@@ -2138,6 +2138,8 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 			it.next();
 			QString file = it.key();
 			QByteArray data = it.value();
+			if ( writeLog )
+				log(tr("set rewriter: deflating '%1' (uncompressed size: %2)").arg(file).arg(humanReadable(data.length())));
 			if ( zipOpenNewFileInZip(zip, (const char *)file.toAscii(), &zipInfo, (const void *)file.toAscii(), file.length(), 0, 0, 0, Z_DEFLATED, Z_DEFAULT_COMPRESSION) == ZIP_OK ) {
 				quint64 bytesWritten = 0;
 				progressBarFileIO->setInvertedAppearance(true);
@@ -2155,8 +2157,9 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 						progressBarFileIO->setValue(bytesWritten);
 						progressBarFileIO->update();
 						progressBar->update();
-						qApp->processEvents();
-					}
+						if ( bytesWritten % QMC2_128K == 0 || bytesWritten == data.length() ) qApp->processEvents();
+					} else if ( writeLog )
+						log(tr("set rewriter: WARNING: failed to deflate '%1'").arg(file));
 				}
 				zipCloseFileInZip(zip);
 			} else
