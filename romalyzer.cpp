@@ -2155,7 +2155,7 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 						progressBarFileIO->setValue(bytesWritten);
 						progressBarFileIO->update();
 						progressBar->update();
-						if ( bytesWritten % QMC2_ONE_MEGABYTE == 0 ) qApp->processEvents();
+						qApp->processEvents();
 					}
 				}
 				zipCloseFileInZip(zip);
