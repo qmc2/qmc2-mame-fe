@@ -171,10 +171,10 @@
 #define QMC2_SEARCH_TIMEOUT		2000
 
 // buffer size for reading zip-files
-#define QMC2_ZIP_BUFFER_SIZE		32768
+#define QMC2_ZIP_BUFFER_SIZE		QMC2_32K
 
 // buffer size for reading regular files
-#define QMC2_FILE_BUFFER_SIZE		65536
+#define QMC2_FILE_BUFFER_SIZE		QMC2_64K
 
 // process timeouts in msecs
 #define QMC2_PROCESS_POLL_TIME		25
@@ -257,6 +257,12 @@
 #define QMC2_ONE_MEGABYTE		1048576
 #define QMC2_ONE_GIGABYTE		1073741824
 #define QMC2_ONE_TERABYTE		1099511627776
+#define QMC2_16K			16*QMC2_ONE_KILOBYTE
+#define QMC2_32K			32*QMC2_ONE_KILOBYTE
+#define QMC2_64K			64*QMC2_ONE_KILOBYTE
+#define QMC2_128K			128*QMC2_ONE_KILOBYTE
+#define QMC2_256K			256*QMC2_ONE_KILOBYTE
+#define QMC2_512K			512*QMC2_ONE_KILOBYTE
 
 // MiniWebBrowser: hide status bar after how many milliseconds (if no longer required)
 #define QMC2_BROWSER_STATUS_TIMEOUT	250
