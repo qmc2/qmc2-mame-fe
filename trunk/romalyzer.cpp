@@ -550,7 +550,7 @@ void ROMAlyzer::analyze()
     while ( it.hasNext() && !qmc2StopParser ) {
       qApp->processEvents();
       it.next();
-      progressBar->setValue(i++);
+      progressBar->setValue(++i);
       foreach (QString pattern, patternList) {
         QRegExp regexp(pattern, Qt::CaseSensitive, QRegExp::Wildcard);
         if ( regexp.exactMatch(it.key()) )
@@ -654,7 +654,7 @@ void ROMAlyzer::analyze()
       setRewriterItem = item;
 
       for (fileCounter = 0; fileCounter < xmlHandler.fileCounter && !qmc2StopParser; fileCounter++) {
-	progressBar->setValue(fileCounter);
+	progressBar->setValue(fileCounter + 1);
 	qApp->processEvents();
 	QByteArray data;
 	bool zipped = FALSE;
@@ -684,8 +684,6 @@ void ROMAlyzer::analyze()
 
 	if ( qmc2StopParser )
 	  continue;
-
-	progressBar->setValue(fileCounter + 1);
 
 	if ( effectiveFile.isEmpty() ) {
 	  childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
@@ -1026,7 +1024,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
       QFileInfo fi(filePath);
       if ( fi.isReadable() ) {
         totalSize = fi.size();
-        // load data from normal file
+        // load data from a regular file
         if ( sizeLimited ) {
           if ( totalSize > (qint64) spinBoxMaxFileSize->value() * QMC2_ONE_MEGABYTE ) {
             log(tr("size of '%1' is greater than allowed maximum -- skipped").arg(filePath));
@@ -1040,7 +1038,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
         if ( romFile.open(QIODevice::ReadOnly) ) {
           log(tr("loading '%1'%2").arg(filePath).arg(*mergeUsed ? tr(" (merged)") : ""));
           progressBarFileIO->setRange(0, totalSize);
-          progressBarFileIO->setValue(0);
+	  progressBarFileIO->reset();
           if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD ) {
             bool needProgressWidget = TRUE;
             if ( isCHD && !chdManagerEnabled ) needProgressWidget = FALSE;
@@ -1130,7 +1128,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                     progressWidget->setValue(0);
                   }
                   progressBarFileIO->setRange(0, chdTotalHunks);
-                  progressBarFileIO->setValue(0);
+                  progressBarFileIO->reset();
                   int step;
                   for (step = 0; step < 2 && !qmc2StopParser; step++) {
                     QStringList args;
@@ -1222,6 +1220,8 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                           progressBarFileIO->setRange(0, chdManagerTotalHunks);
                         if ( chdManagerCurrentHunk != (quint64)progressBarFileIO->value() )
                           progressBarFileIO->setValue(chdManagerCurrentHunk);
+                        progressBarFileIO->update();
+			qApp->processEvents();
                       }
                     }
                     chdManagerRunning = FALSE;
@@ -1334,6 +1334,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
               progressBarFileIO->setValue(myProgress);
               if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD )
                 if ( progressWidget ) progressWidget->setValue(myProgress);
+              progressBarFileIO->update();
               qApp->processEvents();
             }
             if ( calcSHA1 )
@@ -1344,12 +1345,12 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
           romFile.close();
           effectiveFile = filePath;
           *isZipped = FALSE;
-          progressBarFileIO->reset();
           if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD ) {
             if ( progressWidget ) progressWidget->reset();
             if ( oldItemWidget ) treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, oldItemWidget);
             if ( progressWidget ) delete progressWidget;
           }
+          progressBarFileIO->reset();
         } else {
           log(tr("WARNING: found '%1' but can't read from it although permissions seem okay - check file integrity").arg(filePath));
         }
@@ -1409,7 +1410,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
               if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
                 log(tr("loading '%1' from '%2'%3").arg(fn).arg(filePath).arg(*mergeUsed ? tr(" (merged)") : ""));
                 progressBarFileIO->setRange(0, totalSize);
-                progressBarFileIO->setValue(0);
+                progressBarFileIO->reset();
                 if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD ) {
                   progressWidget = new QProgressBar(0);
                   progressWidget->setRange(0, totalSize);
@@ -1435,6 +1436,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                   progressBarFileIO->setValue(myProgress);
                   if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD )
                     progressWidget->setValue(myProgress);
+                  progressBarFileIO->update();
                   qApp->processEvents();
                 }
                 unzCloseCurrentFile(zipFile);
@@ -1451,12 +1453,12 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                   *sha1Str = sha1Hash.result().toHex();
                 if ( calcMD5 )
                   *md5Str = md5Hash.result().toHex();
-                progressBarFileIO->reset();
                 if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD ) {
                   progressWidget->reset();
                   treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, oldItemWidget);
                   delete progressWidget;
                 }
+                progressBarFileIO->reset();
               } else
                 log(tr("WARNING: unable to decompress '%1' from '%2' - check file integrity").arg(fn).arg(filePath));
             }
@@ -2034,9 +2036,14 @@ bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *data
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 					qint64 len;
 					QByteArray fileData;
+					progressBarFileIO->setRange(0, zipInfo.uncompressed_size);
+					progressBarFileIO->reset();
 					while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
 						QByteArray readData((const char *)ioBuffer, len);
 						fileData += readData;
+						progressBarFileIO->setValue(fileData.length());
+						progressBarFileIO->update();
+						progressBar->update();
 						if ( fileData.length() % QMC2_ONE_MEGABYTE == 0 ) qApp->processEvents();
 					}
 					dataMap->insert(QString::number(zipInfo.crc), fileData);
@@ -2048,6 +2055,7 @@ bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *data
 	} else
 		success = false;
 
+	progressBarFileIO->reset();
 	return success;
 }
 
@@ -2074,9 +2082,15 @@ bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 			if ( unzLocateFile(zipFile, (const char *)fn.toAscii(), 2) == UNZ_OK ) { // NOT case-sensitive filename compare!
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 					qint64 len;
+					progressBarFileIO->setRange(0, zipInfo.uncompressed_size);
+					progressBarFileIO->reset();
 					while ( (len = unzReadCurrentFile(zipFile, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE)) > 0 ) {
 						QByteArray readData((const char *)ioBuffer, len);
 						*data += readData;
+						progressBarFileIO->setValue(data->length());
+						progressBarFileIO->update();
+						progressBar->update();
+						if ( data->length() % QMC2_ONE_MEGABYTE == 0 ) qApp->processEvents();
 					}
 					unzCloseCurrentFile(zipFile);
 				} else
@@ -2090,6 +2104,7 @@ bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 	} else
 		success = false;
 
+	progressBarFileIO->reset();
 	return success;
 }
 
@@ -2125,6 +2140,9 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 			QByteArray data = it.value();
 			if ( zipOpenNewFileInZip(zip, (const char *)file.toAscii(), &zipInfo, (const void *)file.toAscii(), file.length(), 0, 0, 0, Z_DEFLATED, Z_DEFAULT_COMPRESSION) == ZIP_OK ) {
 				quint64 bytesWritten = 0;
+				progressBarFileIO->setInvertedAppearance(true);
+				progressBarFileIO->setRange(0, data.length());
+				progressBarFileIO->reset();
 				qApp->processEvents();
 				while ( bytesWritten < data.length() && success ) {
 					quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
@@ -2132,9 +2150,13 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 						bufferLength = data.length() - bytesWritten;
 					QByteArray writeBuffer = data.mid(bytesWritten, bufferLength);
 					success = (zipWriteInFileInZip(zip, (const void *)writeBuffer.data(), bufferLength) == ZIP_OK);
-					if ( success )
+					if ( success ) {
 						bytesWritten += bufferLength;
-					if ( bytesWritten % QMC2_ONE_MEGABYTE == 0 ) qApp->processEvents();
+						progressBarFileIO->setValue(bytesWritten);
+						progressBarFileIO->update();
+						progressBar->update();
+						if ( bytesWritten % QMC2_ONE_MEGABYTE == 0 ) qApp->processEvents();
+					}
 				}
 				zipCloseFileInZip(zip);
 			} else
@@ -2144,6 +2166,8 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 	} else
 		success = false;
 
+	progressBarFileIO->reset();
+	progressBarFileIO->setInvertedAppearance(false);
 	return success;
 }
 
@@ -2320,6 +2344,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 										if ( saveOkay )
 											bytesWritten += bufferLength;
 										progressBarFileIO->setValue(bytesWritten);
+										progressBarFileIO->update();
 									}
 									progressBarFileIO->reset();
 									qApp->processEvents();
