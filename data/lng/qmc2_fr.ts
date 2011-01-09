@@ -4927,18 +4927,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>MainWindow</name>
-    <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="261"/>
-        <location filename="../../qmc2main.cpp" line="275"/>
-        <source>last message repeated %n time(s)
-</source>
-        <translation>
-            <numerusform>dernier message répété %n fois
-</numerusform>
-            <numerusform>dernier message répété %n fois
-</numerusform>
-        </translation>
-    </message>
     <message>
         <location filename="../../qmc2main.cpp" line="353"/>
         <location filename="../../qmc2main.cpp" line="2916"/>
@@ -5031,7 +5019,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="689"/>
         <location filename="../../qmc2main.cpp" line="741"/>
         <location filename="../../qmc2main.cpp" line="800"/>
-        <location filename="../../qmc2main.ui" line="2274"/>
+        <location filename="../../qmc2main.ui" line="2280"/>
         <source>&amp;Play</source>
         <translation>&amp;Jouer</translation>
     </message>
@@ -5056,7 +5044,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="700"/>
         <location filename="../../qmc2main.cpp" line="752"/>
         <location filename="../../qmc2main.cpp" line="811"/>
-        <location filename="../../qmc2main.ui" line="3052"/>
+        <location filename="../../qmc2main.ui" line="3058"/>
         <source>Play &amp;embedded</source>
         <translation>Jouer &amp;embarqué</translation>
     </message>
@@ -5064,8 +5052,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="655"/>
         <location filename="../../qmc2main.cpp" line="707"/>
         <location filename="../../qmc2main.cpp" line="818"/>
-        <location filename="../../qmc2main.ui" line="2479"/>
-        <location filename="../../qmc2main.ui" line="2482"/>
+        <location filename="../../qmc2main.ui" line="2485"/>
+        <location filename="../../qmc2main.ui" line="2488"/>
         <source>Add current game to favorites</source>
         <translation>Ajoute le jeu sélectionné aux favoris</translation>
     </message>
@@ -5074,7 +5062,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="711"/>
         <location filename="../../qmc2main.cpp" line="822"/>
         <location filename="../../qmc2main.cpp" line="3488"/>
-        <location filename="../../qmc2main.ui" line="2476"/>
+        <location filename="../../qmc2main.ui" line="2482"/>
         <source>To &amp;favorites</source>
         <translation>Ajouter le jeu aux &amp;favoris</translation>
     </message>
@@ -5083,8 +5071,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="717"/>
         <location filename="../../qmc2main.cpp" line="760"/>
         <location filename="../../qmc2main.cpp" line="828"/>
-        <location filename="../../qmc2main.ui" line="2601"/>
-        <location filename="../../qmc2main.ui" line="2604"/>
+        <location filename="../../qmc2main.ui" line="2607"/>
+        <location filename="../../qmc2main.ui" line="2610"/>
         <source>Check current game&apos;s ROM state</source>
         <translation>Vérifie l&apos;état de ROM pour le jeu sélectionné</translation>
     </message>
@@ -5303,7 +5291,7 @@ Etes-vous sûr(e) de vouloir vérifier les ROMS ?</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2103"/>
-        <location filename="../../qmc2main.ui" line="2361"/>
+        <location filename="../../qmc2main.ui" line="2367"/>
         <source>About Qt</source>
         <translation>A propos de Qt</translation>
     </message>
@@ -5667,417 +5655,417 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>log du Frontend</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1462"/>
+        <location filename="../../qmc2main.ui" line="1465"/>
         <source>Emulator &amp;log</source>
         <translation>&amp;log de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1474"/>
         <location filename="../../qmc2main.ui" line="1477"/>
+        <location filename="../../qmc2main.ui" line="1480"/>
         <source>Emulator log</source>
         <translation>log de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1566"/>
+        <location filename="../../qmc2main.ui" line="1572"/>
         <source>MP&amp;3 player</source>
         <translation>lecteur MP&amp;3</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1584"/>
-        <location filename="../../qmc2main.ui" line="1587"/>
+        <location filename="../../qmc2main.ui" line="1590"/>
+        <location filename="../../qmc2main.ui" line="1593"/>
         <source>Playlist (move items by dragging &amp; dropping them)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1777"/>
-        <location filename="../../qmc2main.ui" line="1780"/>
+        <location filename="../../qmc2main.ui" line="1783"/>
+        <location filename="../../qmc2main.ui" line="1786"/>
         <source>Enter URL to add to playlist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1808"/>
-        <location filename="../../qmc2main.ui" line="1811"/>
+        <location filename="../../qmc2main.ui" line="1814"/>
+        <location filename="../../qmc2main.ui" line="1817"/>
         <source>Setup available audio effects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1906"/>
+        <location filename="../../qmc2main.ui" line="1912"/>
         <source>Dow&amp;nloads</source>
         <translation>Téléchargeme&amp;nts</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2004"/>
+        <location filename="../../qmc2main.ui" line="2010"/>
         <source>Automatically remove successfully finished downloads from this list</source>
         <translation>Automatiquement supprimer les téléchargements réussis de cette liste</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2043"/>
+        <location filename="../../qmc2main.ui" line="2049"/>
         <source>&amp;Help</source>
         <translation>&amp;Aide</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2052"/>
+        <location filename="../../qmc2main.ui" line="2058"/>
         <source>&amp;Tools</source>
         <translation>&amp;Outils</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2111"/>
+        <location filename="../../qmc2main.ui" line="2117"/>
         <source>&amp;Check</source>
         <translation>Vérifi&amp;cation</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2124"/>
+        <location filename="../../qmc2main.ui" line="2130"/>
         <source>&amp;View</source>
         <translation>&amp;Vue</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2183"/>
+        <location filename="../../qmc2main.ui" line="2189"/>
         <source>Toolbar</source>
         <translation>Barre d&apos;outils</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2232"/>
+        <location filename="../../qmc2main.ui" line="2238"/>
         <source>Check &amp;samples...</source>
         <translation>Verifier les &amp;samples...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2235"/>
-        <location filename="../../qmc2main.ui" line="2238"/>
+        <location filename="../../qmc2main.ui" line="2241"/>
+        <location filename="../../qmc2main.ui" line="2244"/>
         <source>Check sample set</source>
         <translation>Vérifier les samples</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2241"/>
+        <location filename="../../qmc2main.ui" line="2247"/>
         <source>Ctrl+2</source>
         <translation>Ctrl+2</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2253"/>
+        <location filename="../../qmc2main.ui" line="2259"/>
         <source>Check &amp;previews...</source>
         <translation>Vérifier les ca&amp;ptures...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2256"/>
-        <location filename="../../qmc2main.ui" line="2259"/>
+        <location filename="../../qmc2main.ui" line="2262"/>
+        <location filename="../../qmc2main.ui" line="2265"/>
         <source>Check preview images</source>
         <translation>Vérifier les captures</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2262"/>
+        <location filename="../../qmc2main.ui" line="2268"/>
         <source>Ctrl+3</source>
         <translation>Ctrl+3</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2277"/>
-        <location filename="../../qmc2main.ui" line="2280"/>
+        <location filename="../../qmc2main.ui" line="2283"/>
+        <location filename="../../qmc2main.ui" line="2286"/>
         <source>Play current game</source>
         <translation>Joue le jeu sélectionné</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2283"/>
+        <location filename="../../qmc2main.ui" line="2289"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2295"/>
+        <location filename="../../qmc2main.ui" line="2301"/>
         <source>E&amp;xit / Stop</source>
         <translation>Quitter / St&amp;op</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2298"/>
-        <location filename="../../qmc2main.ui" line="2301"/>
+        <location filename="../../qmc2main.ui" line="2304"/>
+        <location filename="../../qmc2main.ui" line="2307"/>
         <source>Exit program / Stop any active processing</source>
         <translation>Quitter le programme / Arrêter tout processus actif</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2304"/>
+        <location filename="../../qmc2main.ui" line="2310"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2316"/>
+        <location filename="../../qmc2main.ui" line="2322"/>
         <source>&amp;Documentation...</source>
         <translation>&amp;Documentation...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2319"/>
-        <location filename="../../qmc2main.ui" line="2322"/>
+        <location filename="../../qmc2main.ui" line="2325"/>
+        <location filename="../../qmc2main.ui" line="2328"/>
         <source>View online documentation</source>
         <translation>Voir la documentation en ligne</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2325"/>
+        <location filename="../../qmc2main.ui" line="2331"/>
         <source>Ctrl+H</source>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2340"/>
-        <location filename="../../qmc2main.ui" line="2343"/>
+        <location filename="../../qmc2main.ui" line="2346"/>
+        <location filename="../../qmc2main.ui" line="2349"/>
         <source>About M.A.M.E. Catalog / Launcher II</source>
         <translation>A propos de M.A.M.E. Catalog / Launcher II</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2346"/>
+        <location filename="../../qmc2main.ui" line="2352"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2364"/>
+        <location filename="../../qmc2main.ui" line="2370"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2376"/>
+        <location filename="../../qmc2main.ui" line="2382"/>
         <source>Check &amp;ROMs...</source>
         <translation>Vérifier les &amp;ROMs...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2379"/>
-        <location filename="../../qmc2main.ui" line="2382"/>
+        <location filename="../../qmc2main.ui" line="2385"/>
+        <location filename="../../qmc2main.ui" line="2388"/>
         <source>Check ROM collection</source>
         <translation>Vérifier la collection de ROMS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2385"/>
+        <location filename="../../qmc2main.ui" line="2391"/>
         <source>Ctrl+1</source>
         <translation>Ctrl+1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2397"/>
+        <location filename="../../qmc2main.ui" line="2403"/>
         <source>&amp;Options...</source>
         <translation>&amp;Options...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2400"/>
+        <location filename="../../qmc2main.ui" line="2406"/>
         <source>Options</source>
         <translation>Options</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2403"/>
-        <location filename="../../qmc2main.ui" line="2406"/>
+        <location filename="../../qmc2main.ui" line="2409"/>
+        <location filename="../../qmc2main.ui" line="2412"/>
         <source>Frontend setup and global emulator configuration</source>
         <translation>Configuration du Frontend et de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2409"/>
+        <location filename="../../qmc2main.ui" line="2415"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2421"/>
+        <location filename="../../qmc2main.ui" line="2427"/>
         <source>&amp;Reload</source>
         <translation>&amp;Recharger la liste des jeux</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2430"/>
+        <location filename="../../qmc2main.ui" line="2436"/>
         <source>Ctrl+R</source>
         <translation>Ctrl+R</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2438"/>
-        <location filename="../../qmc2main.ui" line="2441"/>
         <location filename="../../qmc2main.ui" line="2444"/>
+        <location filename="../../qmc2main.ui" line="2447"/>
+        <location filename="../../qmc2main.ui" line="2450"/>
         <source>Clear image cache</source>
         <translation>Nettoyer le cache d&apos;images</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2447"/>
+        <location filename="../../qmc2main.ui" line="2453"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2464"/>
+        <location filename="../../qmc2main.ui" line="2470"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2485"/>
+        <location filename="../../qmc2main.ui" line="2491"/>
         <source>Ctrl+F</source>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2506"/>
+        <location filename="../../qmc2main.ui" line="2512"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2527"/>
+        <location filename="../../qmc2main.ui" line="2533"/>
         <source>F6</source>
         <translation>F6</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2539"/>
+        <location filename="../../qmc2main.ui" line="2545"/>
         <source>Check &amp;flyers...</source>
         <translation>Vérifier les &amp;flyers...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2542"/>
-        <location filename="../../qmc2main.ui" line="2545"/>
+        <location filename="../../qmc2main.ui" line="2548"/>
+        <location filename="../../qmc2main.ui" line="2551"/>
         <source>Check flyer images</source>
         <translation>Vérifier les flyers</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2548"/>
+        <location filename="../../qmc2main.ui" line="2554"/>
         <source>Ctrl+4</source>
         <translation>Ctrl+4</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2556"/>
-        <location filename="../../qmc2main.ui" line="2559"/>
+        <location filename="../../qmc2main.ui" line="2562"/>
+        <location filename="../../qmc2main.ui" line="2565"/>
         <source>Clear icon cache</source>
         <translation>Nettoyer le cache d&apos;icônes</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2562"/>
+        <location filename="../../qmc2main.ui" line="2568"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2574"/>
+        <location filename="../../qmc2main.ui" line="2580"/>
         <source>Check &amp;icons...</source>
         <translation>Vérifier les &amp;icônes...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2577"/>
-        <location filename="../../qmc2main.ui" line="2580"/>
+        <location filename="../../qmc2main.ui" line="2583"/>
+        <location filename="../../qmc2main.ui" line="2586"/>
         <source>Check icon images</source>
         <translation>Vérifier les icônes</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2583"/>
+        <location filename="../../qmc2main.ui" line="2589"/>
         <source>Ctrl+5</source>
         <translation>Ctrl+5</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2595"/>
-        <location filename="../../qmc2main.ui" line="2598"/>
+        <location filename="../../qmc2main.ui" line="2601"/>
+        <location filename="../../qmc2main.ui" line="2604"/>
         <source>ROM state</source>
         <translation>statut de ROM</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2607"/>
+        <location filename="../../qmc2main.ui" line="2613"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2622"/>
+        <location filename="../../qmc2main.ui" line="2628"/>
         <source>Analyse ROM</source>
         <translation>Analyse ROM</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2631"/>
+        <location filename="../../qmc2main.ui" line="2637"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2643"/>
+        <location filename="../../qmc2main.ui" line="2649"/>
         <source>ROMAly&amp;zer...</source>
         <translation>ROMAly&amp;zer...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2646"/>
-        <location filename="../../qmc2main.ui" line="2649"/>
+        <location filename="../../qmc2main.ui" line="2652"/>
+        <location filename="../../qmc2main.ui" line="2655"/>
         <source>Open ROMAlyzer dialog</source>
         <translation>Ouvrir le dialogue de ROMAlyzer</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2652"/>
+        <location filename="../../qmc2main.ui" line="2658"/>
         <source>Ctrl+Z</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2730"/>
+        <location filename="../../qmc2main.ui" line="2736"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3031"/>
+        <location filename="../../qmc2main.ui" line="3037"/>
         <source>Check template map</source>
         <translation>Vérifier le template</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3034"/>
-        <location filename="../../qmc2main.ui" line="3037"/>
+        <location filename="../../qmc2main.ui" line="3040"/>
+        <location filename="../../qmc2main.ui" line="3043"/>
         <source>Check template map against the configuration options of the currently selected emulator</source>
         <translation>Vérifier le template avec les options de configuration de l&apos;émulateur actuel</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3040"/>
+        <location filename="../../qmc2main.ui" line="3046"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3055"/>
-        <location filename="../../qmc2main.ui" line="3058"/>
+        <location filename="../../qmc2main.ui" line="3061"/>
+        <location filename="../../qmc2main.ui" line="3064"/>
         <source>Play current game (embedded)</source>
         <translation>Jouer le jeu (embarqué)</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3061"/>
+        <location filename="../../qmc2main.ui" line="3067"/>
         <source>Ctrl+Shift+P</source>
         <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3070"/>
+        <location filename="../../qmc2main.ui" line="3076"/>
         <source>&amp;Demo mode...</source>
         <translation>mode &amp;Démo...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3073"/>
-        <location filename="../../qmc2main.ui" line="3076"/>
+        <location filename="../../qmc2main.ui" line="3079"/>
+        <location filename="../../qmc2main.ui" line="3082"/>
         <source>Open the demo mode dialog</source>
         <translation>Ouvrir la fenêtre du mode démo</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3079"/>
+        <location filename="../../qmc2main.ui" line="3085"/>
         <source>Ctrl+Shift+D</source>
         <translation>Ctrl+Shift+D</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3091"/>
+        <location filename="../../qmc2main.ui" line="3097"/>
         <source>By category</source>
         <translation>Par catégorie</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3094"/>
-        <location filename="../../qmc2main.ui" line="3097"/>
+        <location filename="../../qmc2main.ui" line="3100"/>
+        <location filename="../../qmc2main.ui" line="3103"/>
         <source>View games by category</source>
         <translation>Voir les jeux par catégorie</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3100"/>
+        <location filename="../../qmc2main.ui" line="3106"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3112"/>
+        <location filename="../../qmc2main.ui" line="3118"/>
         <source>By version</source>
         <translation>Par version​‎</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3115"/>
-        <location filename="../../qmc2main.ui" line="3118"/>
+        <location filename="../../qmc2main.ui" line="3121"/>
+        <location filename="../../qmc2main.ui" line="3124"/>
         <source>View games by version they were added to the emulator</source>
         <translation>Voir les jeux selon la version de l&apos;émulateur à laquelle ils ont été ajoutés</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3121"/>
+        <location filename="../../qmc2main.ui" line="3127"/>
         <source>F8</source>
         <translation>F8</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3133"/>
+        <location filename="../../qmc2main.ui" line="3139"/>
         <source>Run external ROM tool...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3136"/>
-        <location filename="../../qmc2main.ui" line="3139"/>
+        <location filename="../../qmc2main.ui" line="3142"/>
+        <location filename="../../qmc2main.ui" line="3145"/>
         <source>Run tool to process ROM data externally</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3142"/>
+        <location filename="../../qmc2main.ui" line="3148"/>
         <source>F9</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6206,7 +6194,7 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Informations détaillées d&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1495"/>
+        <location filename="../../qmc2main.ui" line="1501"/>
         <source>E&amp;mulator control</source>
         <translation>Contrôle de l&apos;é&amp;mulateur</translation>
     </message>
@@ -6221,7 +6209,7 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>invalidation de mameinfo.dat DB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2706"/>
+        <location filename="../../qmc2main.ui" line="2712"/>
         <source>F12</source>
         <translation>F12</translation>
     </message>
@@ -6286,189 +6274,189 @@ Faut-il les tuer à la sortie ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1605"/>
-        <location filename="../../qmc2main.ui" line="1608"/>
-        <location filename="../../qmc2main.ui" line="2742"/>
+        <location filename="../../qmc2main.ui" line="1611"/>
+        <location filename="../../qmc2main.ui" line="1614"/>
+        <location filename="../../qmc2main.ui" line="2748"/>
         <source>Previous track</source>
         <translation>Piste précédente</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1619"/>
-        <location filename="../../qmc2main.ui" line="1622"/>
-        <location filename="../../qmc2main.ui" line="2763"/>
+        <location filename="../../qmc2main.ui" line="1625"/>
+        <location filename="../../qmc2main.ui" line="1628"/>
+        <location filename="../../qmc2main.ui" line="2769"/>
         <source>Next track</source>
         <translation>Piste suivante</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1633"/>
-        <location filename="../../qmc2main.ui" line="1636"/>
-        <location filename="../../qmc2main.ui" line="2784"/>
+        <location filename="../../qmc2main.ui" line="1639"/>
+        <location filename="../../qmc2main.ui" line="1642"/>
+        <location filename="../../qmc2main.ui" line="2790"/>
         <source>Fast backward</source>
         <translation>Retour rapide</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1653"/>
-        <location filename="../../qmc2main.ui" line="1656"/>
-        <location filename="../../qmc2main.ui" line="2802"/>
+        <location filename="../../qmc2main.ui" line="1659"/>
+        <location filename="../../qmc2main.ui" line="1662"/>
+        <location filename="../../qmc2main.ui" line="2808"/>
         <source>Fast forward</source>
         <translation>Avance rapide</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1822"/>
-        <location filename="../../qmc2main.ui" line="1825"/>
+        <location filename="../../qmc2main.ui" line="1828"/>
+        <location filename="../../qmc2main.ui" line="1831"/>
         <source>Start playing automatically when QMC2 has started</source>
         <translation>Commencer la lecture automatiquement au démarrage de QMC2</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1828"/>
+        <location filename="../../qmc2main.ui" line="1834"/>
         <source>Play on start</source>
         <translation>Jouer au démarrage</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1835"/>
-        <location filename="../../qmc2main.ui" line="1838"/>
+        <location filename="../../qmc2main.ui" line="1841"/>
+        <location filename="../../qmc2main.ui" line="1844"/>
         <source>Select random tracks from playlist</source>
         <translation>Choisir une piste au hazard dans la liste</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1841"/>
+        <location filename="../../qmc2main.ui" line="1847"/>
         <source>Shuffle</source>
         <translation>Aléatoire</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1848"/>
-        <location filename="../../qmc2main.ui" line="1851"/>
+        <location filename="../../qmc2main.ui" line="1854"/>
+        <location filename="../../qmc2main.ui" line="1857"/>
         <source>Automatically pause audio playback when at least one emulator is running</source>
         <translation>Met automatiquement en pause la lecture audio quand un émulateur est en fonctionnement</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1854"/>
+        <location filename="../../qmc2main.ui" line="1860"/>
         <source>Pause</source>
         <translation>Pause</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1870"/>
+        <location filename="../../qmc2main.ui" line="1876"/>
         <source>Fade in/out</source>
         <translation>Fondu entrée/sortie</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2007"/>
+        <location filename="../../qmc2main.ui" line="2013"/>
         <source>Remove finished</source>
         <translation>Retirer les finis</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2107"/>
+        <location filename="../../qmc2main.ui" line="2113"/>
         <source>&amp;Game</source>
         <translation>&amp;Jeu</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2148"/>
+        <location filename="../../qmc2main.ui" line="2154"/>
         <source>&amp;Display</source>
         <translation>&amp;Affichage</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2748"/>
+        <location filename="../../qmc2main.ui" line="2754"/>
         <source>Ctrl+Alt+Left</source>
         <translation>Ctrl+Alt+Left</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2769"/>
+        <location filename="../../qmc2main.ui" line="2775"/>
         <source>Ctrl+Alt+Right</source>
         <translation>Ctrl+Alt+Right</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2790"/>
+        <location filename="../../qmc2main.ui" line="2796"/>
         <source>Ctrl+Alt+B</source>
         <translation>Ctrl+Alt+B</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2808"/>
+        <location filename="../../qmc2main.ui" line="2814"/>
         <source>Ctrl+Alt+F</source>
         <translation>Ctrl+Alt+F</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2829"/>
+        <location filename="../../qmc2main.ui" line="2835"/>
         <source>Ctrl+Alt+S</source>
         <translation>Ctrl+Alt+S</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2877"/>
+        <location filename="../../qmc2main.ui" line="2883"/>
         <source>Ctrl+Alt+P</source>
         <translation>Ctrl+Alt+P</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1724"/>
-        <location filename="../../qmc2main.ui" line="1727"/>
+        <location filename="../../qmc2main.ui" line="1730"/>
+        <location filename="../../qmc2main.ui" line="1733"/>
         <source>Progress indicator for current track</source>
         <translation>Indicateur de progression de la piste courante</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5679"/>
         <location filename="../../qmc2main.cpp" line="5689"/>
-        <location filename="../../qmc2main.ui" line="1733"/>
+        <location filename="../../qmc2main.ui" line="1739"/>
         <source>%vs (%ms total)</source>
         <translation>%vs (%ms total)</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2853"/>
+        <location filename="../../qmc2main.ui" line="2859"/>
         <source>Ctrl+Alt+#</source>
         <translation>Ctrl+Alt+#</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1673"/>
-        <location filename="../../qmc2main.ui" line="1676"/>
-        <location filename="../../qmc2main.ui" line="2823"/>
+        <location filename="../../qmc2main.ui" line="1679"/>
+        <location filename="../../qmc2main.ui" line="1682"/>
+        <location filename="../../qmc2main.ui" line="2829"/>
         <source>Stop track</source>
         <translation>Stopper la piste</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1690"/>
-        <location filename="../../qmc2main.ui" line="1693"/>
-        <location filename="../../qmc2main.ui" line="2847"/>
+        <location filename="../../qmc2main.ui" line="1696"/>
+        <location filename="../../qmc2main.ui" line="1699"/>
+        <location filename="../../qmc2main.ui" line="2853"/>
         <source>Pause track</source>
         <translation>Mettre en pause la piste</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1707"/>
-        <location filename="../../qmc2main.ui" line="1710"/>
-        <location filename="../../qmc2main.ui" line="2871"/>
+        <location filename="../../qmc2main.ui" line="1713"/>
+        <location filename="../../qmc2main.ui" line="1716"/>
+        <location filename="../../qmc2main.ui" line="2877"/>
         <source>Play track</source>
         <translation>Lire la piste</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1510"/>
-        <location filename="../../qmc2main.ui" line="1513"/>
+        <location filename="../../qmc2main.ui" line="1516"/>
+        <location filename="../../qmc2main.ui" line="1519"/>
         <source>Emulator control panel</source>
         <translation>Panneau de contrôle de l&apos;émulateur</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1523"/>
+        <location filename="../../qmc2main.ui" line="1529"/>
         <source>#</source>
         <translation>#</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1548"/>
+        <location filename="../../qmc2main.ui" line="1554"/>
         <source>PID</source>
         <translation>PID</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1533"/>
-        <location filename="../../qmc2main.ui" line="1940"/>
+        <location filename="../../qmc2main.ui" line="1539"/>
+        <location filename="../../qmc2main.ui" line="1946"/>
         <source>Status</source>
         <translation>Statut</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1538"/>
+        <location filename="../../qmc2main.ui" line="1544"/>
         <source>LED0</source>
         <translation>LED0</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1543"/>
+        <location filename="../../qmc2main.ui" line="1549"/>
         <source>LED1</source>
         <translation>LED1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1553"/>
+        <location filename="../../qmc2main.ui" line="1559"/>
         <source>Command</source>
         <translation>Commande</translation>
     </message>
@@ -6523,47 +6511,47 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>notification de sortie MAME inattendue: jeu = %1, classe = %2, quoi = %3, état = %4</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1528"/>
+        <location filename="../../qmc2main.ui" line="1534"/>
         <source>Game / Notifier</source>
         <translation>Jeu / Notification</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2056"/>
+        <location filename="../../qmc2main.ui" line="2062"/>
         <source>&amp;Clean up</source>
         <translation>&amp;Nettoyer</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2071"/>
+        <location filename="../../qmc2main.ui" line="2077"/>
         <source>&amp;Audio player</source>
         <translation>&amp;Lecteur audio</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2337"/>
+        <location filename="../../qmc2main.ui" line="2343"/>
         <source>&amp;About...</source>
         <translation>&amp;A propos...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2358"/>
+        <location filename="../../qmc2main.ui" line="2364"/>
         <source>About &amp;Qt...</source>
         <translation>Au sujet de &amp;Qt...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2455"/>
+        <location filename="../../qmc2main.ui" line="2461"/>
         <source>Recreate template map</source>
         <translation>Re-créer le template</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2497"/>
+        <location filename="../../qmc2main.ui" line="2503"/>
         <source>Full detail</source>
         <translation>Liste détaillée</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2619"/>
+        <location filename="../../qmc2main.ui" line="2625"/>
         <source>Analyse ROM...</source>
         <translation>Analyse de ROM...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2518"/>
+        <location filename="../../qmc2main.ui" line="2524"/>
         <source>Parent / clones</source>
         <translation>Hiérarchie parent / clones</translation>
     </message>
@@ -6588,43 +6576,43 @@ Faut-il les tuer à la sortie ?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2521"/>
-        <location filename="../../qmc2main.ui" line="2524"/>
+        <location filename="../../qmc2main.ui" line="2527"/>
+        <location filename="../../qmc2main.ui" line="2530"/>
         <source>View parent / clone hierarchy</source>
         <translation>Voir la hiérarchie parent / clone</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2745"/>
+        <location filename="../../qmc2main.ui" line="2751"/>
         <source>Play previous track</source>
         <translation>Jouer le morceau précédent</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2766"/>
+        <location filename="../../qmc2main.ui" line="2772"/>
         <source>Play next track</source>
         <translation>Jouer le morceau suivant</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2787"/>
+        <location filename="../../qmc2main.ui" line="2793"/>
         <source>Fast backward within track</source>
         <translation>Retour rapide dans le morceau</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2826"/>
+        <location filename="../../qmc2main.ui" line="2832"/>
         <source>Stop current track</source>
         <translation>Stopper la lecture</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2850"/>
+        <location filename="../../qmc2main.ui" line="2856"/>
         <source>Pause current track</source>
         <translation>Mettre en pause</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2874"/>
+        <location filename="../../qmc2main.ui" line="2880"/>
         <source>Play current track</source>
         <translation>Lecture du morceau</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2805"/>
+        <location filename="../../qmc2main.ui" line="2811"/>
         <source>Fast forward within track</source>
         <translation>Avance rapide dans le morceau</translation>
     </message>
@@ -6634,28 +6622,28 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Sélectionner un ou plusieurs fichiers audio</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1763"/>
-        <location filename="../../qmc2main.ui" line="1766"/>
+        <location filename="../../qmc2main.ui" line="1769"/>
+        <location filename="../../qmc2main.ui" line="1772"/>
         <source>Browse for tracks to add to playlist</source>
         <translation>Parcourir pour des morceaux à ajouter dans la liste de lecture</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1794"/>
-        <location filename="../../qmc2main.ui" line="1797"/>
+        <location filename="../../qmc2main.ui" line="1800"/>
+        <location filename="../../qmc2main.ui" line="1803"/>
         <source>Remove selected tracks from playlist</source>
         <translation>Enlever les morceaux sélectionnés de la liste de lecture</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1742"/>
-        <location filename="../../qmc2main.ui" line="1745"/>
-        <location filename="../../qmc2main.ui" line="1880"/>
-        <location filename="../../qmc2main.ui" line="1883"/>
+        <location filename="../../qmc2main.ui" line="1748"/>
+        <location filename="../../qmc2main.ui" line="1751"/>
+        <location filename="../../qmc2main.ui" line="1886"/>
+        <location filename="../../qmc2main.ui" line="1889"/>
         <source>Audio player volume</source>
         <translation>Volume du lecteur audio</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1864"/>
-        <location filename="../../qmc2main.ui" line="1867"/>
+        <location filename="../../qmc2main.ui" line="1870"/>
+        <location filename="../../qmc2main.ui" line="1873"/>
         <source>Fade in and out on pause / resume</source>
         <translation>Baisser / Monter le volume sur pause / reprise</translation>
     </message>
@@ -6665,48 +6653,48 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>lecteur audio: info du morceau: titre = &apos;%1&apos;, artiste = &apos;%2&apos;, album = &apos;%3&apos;, genre = &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2888"/>
+        <location filename="../../qmc2main.ui" line="2894"/>
         <source>Raise volume</source>
         <translation>Monter le volume</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2891"/>
+        <location filename="../../qmc2main.ui" line="2897"/>
         <source>Raise audio player volume</source>
         <translation>Monter le volume du lecteur audio</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2894"/>
+        <location filename="../../qmc2main.ui" line="2900"/>
         <source>Ctrl+Alt+PgUp</source>
         <translation>Ctrl+Alt+PgHaut</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2902"/>
+        <location filename="../../qmc2main.ui" line="2908"/>
         <source>Lower volume</source>
         <translation>Baisser le volume</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2905"/>
+        <location filename="../../qmc2main.ui" line="2911"/>
         <source>Lower audio player volume</source>
         <translation>Baisser le volume du lecteur audio</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2908"/>
+        <location filename="../../qmc2main.ui" line="2914"/>
         <source>Ctrl+Alt+PgDown</source>
         <translation>Ctrl+Alt+PgBas</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2920"/>
+        <location filename="../../qmc2main.ui" line="2926"/>
         <source>&amp;Export ROM status...</source>
         <translation>&amp;Exporter le statut de ROM...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2923"/>
-        <location filename="../../qmc2main.ui" line="2926"/>
+        <location filename="../../qmc2main.ui" line="2929"/>
+        <location filename="../../qmc2main.ui" line="2932"/>
         <source>Export ROM status</source>
         <translation>Exporter le statut de ROM</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2929"/>
+        <location filename="../../qmc2main.ui" line="2935"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
@@ -6856,26 +6844,26 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Liste des jeux détaillée (filtrée)</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2424"/>
-        <location filename="../../qmc2main.ui" line="2427"/>
+        <location filename="../../qmc2main.ui" line="2430"/>
+        <location filename="../../qmc2main.ui" line="2433"/>
         <source>Reload entire game list</source>
         <translation>Recharger la liste des jeux</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2458"/>
-        <location filename="../../qmc2main.ui" line="2461"/>
+        <location filename="../../qmc2main.ui" line="2464"/>
+        <location filename="../../qmc2main.ui" line="2467"/>
         <source>Recreate template configuration map</source>
         <translation>reCréation du template de configuration</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2500"/>
-        <location filename="../../qmc2main.ui" line="2503"/>
+        <location filename="../../qmc2main.ui" line="2506"/>
+        <location filename="../../qmc2main.ui" line="2509"/>
         <source>View game list with full detail</source>
         <translation>Voir la liste des jeux détaillée</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2625"/>
-        <location filename="../../qmc2main.ui" line="2628"/>
+        <location filename="../../qmc2main.ui" line="2631"/>
+        <location filename="../../qmc2main.ui" line="2634"/>
         <source>Analyse current game with ROMAlyzer</source>
         <translation>Analyse le jeu actuel avec ROMAlyzer</translation>
     </message>
@@ -6969,34 +6957,34 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>M.E.S.S. Catalog / Launcher II</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2941"/>
+        <location filename="../../qmc2main.ui" line="2947"/>
         <source>QMC2 for SDLMAME</source>
         <translation>QMC2 pour SDLMAME</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2944"/>
-        <location filename="../../qmc2main.ui" line="2947"/>
+        <location filename="../../qmc2main.ui" line="2950"/>
+        <location filename="../../qmc2main.ui" line="2953"/>
         <source>Launch QMC2 for SDLMAME</source>
         <translation>Démarrer QMC2 pour SDLMAME</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2962"/>
+        <location filename="../../qmc2main.ui" line="2968"/>
         <source>QMC2 for SDLMESS</source>
         <translation>QMC2 pour SDLMESS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2965"/>
-        <location filename="../../qmc2main.ui" line="2968"/>
+        <location filename="../../qmc2main.ui" line="2971"/>
+        <location filename="../../qmc2main.ui" line="2974"/>
         <source>Launch QMC2 for SDLMESS</source>
         <translation>Démarrer QMC2 pour SDLMESS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2950"/>
+        <location filename="../../qmc2main.ui" line="2956"/>
         <source>Ctrl+Alt+1</source>
         <translation>Ctrl+Alt+1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2971"/>
+        <location filename="../../qmc2main.ui" line="2977"/>
         <source>Ctrl+Alt+2</source>
         <translation>Ctrl+Alt+2</translation>
     </message>
@@ -7036,24 +7024,24 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>destruction de la vue arcade</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2152"/>
+        <location filename="../../qmc2main.ui" line="2158"/>
         <source>&amp;Arcade</source>
         <translation>&amp;Arcade</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="908"/>
-        <location filename="../../qmc2main.ui" line="2667"/>
+        <location filename="../../qmc2main.ui" line="2673"/>
         <source>&amp;Setup...</source>
         <translation>&amp;Configurer...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2670"/>
-        <location filename="../../qmc2main.ui" line="2673"/>
+        <location filename="../../qmc2main.ui" line="2676"/>
+        <location filename="../../qmc2main.ui" line="2679"/>
         <source>Setup arcade mode</source>
         <translation>Configurer le mode arcade</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2679"/>
+        <location filename="../../qmc2main.ui" line="2685"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
@@ -7078,49 +7066,49 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>ArcadeView n&apos;est pas actuellement actif, impossible de prendre un screenshot</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2982"/>
+        <location filename="../../qmc2main.ui" line="2988"/>
         <source>Show FPS</source>
         <translation>Affiche les FPS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2985"/>
-        <location filename="../../qmc2main.ui" line="2988"/>
+        <location filename="../../qmc2main.ui" line="2991"/>
+        <location filename="../../qmc2main.ui" line="2994"/>
         <source>Toggle FPS display</source>
         <translation>Basule l&apos;affichage FPS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2991"/>
+        <location filename="../../qmc2main.ui" line="2997"/>
         <source>Meta+F</source>
         <translation>Meta+F</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3003"/>
+        <location filename="../../qmc2main.ui" line="3009"/>
         <source>Screen shot</source>
         <translation>Capture d&apos;écran</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3006"/>
+        <location filename="../../qmc2main.ui" line="3012"/>
         <source>Save a screen shot from the current arcade scene</source>
         <translation>Sauvegarde un screenshot de la scène actuelle</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3009"/>
+        <location filename="../../qmc2main.ui" line="3015"/>
         <source>Take screen shot from arcade scene</source>
         <translation>Prendre un screenshot de la scène actuelle</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3012"/>
+        <location filename="../../qmc2main.ui" line="3018"/>
         <source>Meta+F12</source>
         <translation>Meta+F12</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2694"/>
+        <location filename="../../qmc2main.ui" line="2700"/>
         <source>&amp;Toggle arcade</source>
         <translation>&amp;Basculer en arcade</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2697"/>
-        <location filename="../../qmc2main.ui" line="2700"/>
+        <location filename="../../qmc2main.ui" line="2703"/>
+        <location filename="../../qmc2main.ui" line="2706"/>
         <source>Toggle arcade mode</source>
         <translation>Basculer en mode arcade</translation>
     </message>
@@ -7206,17 +7194,17 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Démarrer QMC2 pour MESS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2721"/>
+        <location filename="../../qmc2main.ui" line="2727"/>
         <source>Toggle &amp;full screen</source>
         <translation>Basculer en &amp;Plein écran</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2724"/>
+        <location filename="../../qmc2main.ui" line="2730"/>
         <source>Toggle full screen</source>
         <translation>Basculer en plein écran</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="2727"/>
+        <location filename="../../qmc2main.ui" line="2733"/>
         <source>Toggle full screen / windowed mode</source>
         <translation>Basculer en plein écran / fenêtre</translation>
     </message>
@@ -7392,13 +7380,13 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>La cache mémoire de MAWS à été nettoyé (%1)</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3020"/>
-        <location filename="../../qmc2main.ui" line="3023"/>
+        <location filename="../../qmc2main.ui" line="3026"/>
+        <location filename="../../qmc2main.ui" line="3029"/>
         <source>Clear MAWS cache</source>
         <translation>Nettoyer le cache de MAWS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="3026"/>
+        <location filename="../../qmc2main.ui" line="3032"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
@@ -7424,31 +7412,31 @@ Faut-il les tuer à la sortie ?</translation>
         <translation>Cache disque MAWS nettoyé (%1)</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1912"/>
-        <location filename="../../qmc2main.ui" line="1915"/>
+        <location filename="../../qmc2main.ui" line="1918"/>
+        <location filename="../../qmc2main.ui" line="1921"/>
         <source>List of active/inactive downloads</source>
         <translation>Liste des téléchargements actifs/inactifs</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1945"/>
+        <location filename="../../qmc2main.ui" line="1951"/>
         <source>Progress</source>
         <translation>Progression</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1953"/>
-        <location filename="../../qmc2main.ui" line="1956"/>
+        <location filename="../../qmc2main.ui" line="1959"/>
+        <location filename="../../qmc2main.ui" line="1962"/>
         <source>Clear finished / stopped downloads from list</source>
         <translation>Nettoyer les téléchargements finis/stoppés de la liste</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1970"/>
-        <location filename="../../qmc2main.ui" line="1973"/>
+        <location filename="../../qmc2main.ui" line="1976"/>
+        <location filename="../../qmc2main.ui" line="1979"/>
         <source>Reload selected downloads</source>
         <translation>Recharger les téléchargements sélectionnés</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.ui" line="1987"/>
-        <location filename="../../qmc2main.ui" line="1990"/>
+        <location filename="../../qmc2main.ui" line="1993"/>
+        <location filename="../../qmc2main.ui" line="1996"/>
         <source>Stop selected downloads</source>
         <translation>Stopper les téléchargements sélectionnés</translation>
     </message>
@@ -7496,6 +7484,15 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="6867"/>
         <source>Cabinet art</source>
         <translation>Borne Art</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../qmc2main.cpp" line="261"/>
+        <location filename="../../qmc2main.cpp" line="275"/>
+        <source>last message repeated %n time(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1445"/>
@@ -11439,7 +11436,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="953"/>
         <location filename="../../romalyzer.cpp" line="1842"/>
         <location filename="../../romalyzer.cpp" line="2397"/>
-        <location filename="../../romalyzer.ui" line="1167"/>
+        <location filename="../../romalyzer.ui" line="1173"/>
         <source>Idle</source>
         <translation>Idle</translation>
     </message>
@@ -11766,7 +11763,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1589"/>
         <location filename="../../romalyzer.cpp" line="1603"/>
-        <location filename="../../romalyzer.ui" line="492"/>
+        <location filename="../../romalyzer.ui" line="498"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
@@ -12037,7 +12034,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="102"/>
-        <location filename="../../romalyzer.ui" line="1088"/>
+        <location filename="../../romalyzer.ui" line="1094"/>
         <source>Type</source>
         <translation>Type</translation>
     </message>
@@ -12082,540 +12079,540 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>log d&apos;analyse</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="163"/>
+        <location filename="../../romalyzer.ui" line="169"/>
         <source>Search string</source>
         <translation>Chaîne de recherche</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="170"/>
+        <location filename="../../romalyzer.ui" line="176"/>
         <source>Search string forward</source>
         <translation>Recherche la chaîne suivante</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="173"/>
+        <location filename="../../romalyzer.ui" line="179"/>
         <source>&amp;Forward</source>
         <translation>&amp;Suivant</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="187"/>
+        <location filename="../../romalyzer.ui" line="193"/>
         <source>Search string backward</source>
         <translation>Recherche la chaîne précédente</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="190"/>
+        <location filename="../../romalyzer.ui" line="196"/>
         <source>&amp;Backward</source>
         <translation>&amp;Précédent</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="205"/>
+        <location filename="../../romalyzer.ui" line="211"/>
         <source>Settings</source>
         <translation>Paramètres</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="224"/>
+        <location filename="../../romalyzer.ui" line="230"/>
         <source>Enable CHD manager (may be slow)</source>
         <translation>Active le manager CHD (peut être lent)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="233"/>
+        <location filename="../../romalyzer.ui" line="239"/>
         <source>CHD manager (chdman)</source>
         <translation>manager CHD (chdman)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="246"/>
+        <location filename="../../romalyzer.ui" line="252"/>
         <source>CHD manager executable file (read and execute)</source>
         <translation>fichier exécutable du manager CHD (lecture et exécution)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="259"/>
+        <location filename="../../romalyzer.ui" line="265"/>
         <source>Browse CHD manager executable file</source>
         <translation>Parcourir pour l&apos;exécutable du manager CHD</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="270"/>
+        <location filename="../../romalyzer.ui" line="276"/>
         <source>Temporary working directory</source>
         <translation>Répertoire de travail temporaire</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="309"/>
+        <location filename="../../romalyzer.ui" line="315"/>
         <source>Verify CHDs through &apos;chdman -verify&apos;</source>
         <translation>Vérifier les CHD avec &apos;chdman -verify&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="312"/>
+        <location filename="../../romalyzer.ui" line="318"/>
         <source>Verify CHDs</source>
         <translation>Vérification des CHDs</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="322"/>
+        <location filename="../../romalyzer.ui" line="328"/>
         <source>Also try to fix CHDs using &apos;chdman -verifyfix&apos;</source>
         <translation>Essayer également de corriger les CHD avec &apos;chdman -verifyfix&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="325"/>
+        <location filename="../../romalyzer.ui" line="331"/>
         <source>Fix CHDs</source>
         <translation>Corriger les CHDs</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="332"/>
+        <location filename="../../romalyzer.ui" line="338"/>
         <source>Try to update CHDs if their header indicates an older version (&apos;chdman -update&apos;)</source>
         <translation>Essayer de mettre à jour les CHD si leur entête indique une ancienne version (&apos;chdman -update&apos;)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="335"/>
+        <location filename="../../romalyzer.ui" line="341"/>
         <source>Update CHDs</source>
         <translation>Mettre à jour les CHDs</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="366"/>
+        <location filename="../../romalyzer.ui" line="372"/>
         <source>If set, analysis output is appended (otherwise the report is cleared before the analysis)</source>
         <translation>Si activé, le rapport d&apos;analyse est ajouté à la suite (sinon, le rapport est vidé avant l&apos;analyse)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="369"/>
+        <location filename="../../romalyzer.ui" line="375"/>
         <source>Append to report</source>
         <translation>Ajouter au rapport</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="389"/>
+        <location filename="../../romalyzer.ui" line="395"/>
         <source>Calculate CRC-32 checksum</source>
         <translation>Calculer la somme de contrôle CRC-32</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="392"/>
+        <location filename="../../romalyzer.ui" line="398"/>
         <source>Calculate CRC</source>
         <translation>Calculer le CRC</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="622"/>
+        <location filename="../../romalyzer.ui" line="628"/>
         <source>Database server port (0 = default)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="726"/>
+        <location filename="../../romalyzer.ui" line="732"/>
         <source>Password used to access the database (WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="763"/>
+        <location filename="../../romalyzer.ui" line="769"/>
         <source>Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="783"/>
+        <location filename="../../romalyzer.ui" line="789"/>
         <source>Upload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="900"/>
+        <location filename="../../romalyzer.ui" line="906"/>
         <source>Rewrite sets while analyzing them (otherwise sets will only be rewritten on demand / through the context menu)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="903"/>
+        <location filename="../../romalyzer.ui" line="909"/>
         <source>While analyzing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="913"/>
+        <location filename="../../romalyzer.ui" line="919"/>
         <source>Self-contained</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="923"/>
+        <location filename="../../romalyzer.ui" line="929"/>
         <source>Good only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="939"/>
+        <location filename="../../romalyzer.ui" line="945"/>
         <source>ZIPs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="958"/>
+        <location filename="../../romalyzer.ui" line="964"/>
         <source>Level </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="980"/>
+        <location filename="../../romalyzer.ui" line="986"/>
         <source>Produce sets in individual sub-directories (not recommended -- and not supported yet!)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="983"/>
+        <location filename="../../romalyzer.ui" line="989"/>
         <source>Directories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1104"/>
+        <location filename="../../romalyzer.ui" line="1110"/>
         <source>Repair selected &apos;bad&apos; sets using the file from the first selected &apos;good&apos; set (at least 1 good and 1 bad set must be selected)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2493"/>
-        <location filename="../../romalyzer.ui" line="713"/>
+        <location filename="../../romalyzer.ui" line="719"/>
         <source>Connection check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="749"/>
+        <location filename="../../romalyzer.ui" line="755"/>
         <source>Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="742"/>
+        <location filename="../../romalyzer.ui" line="748"/>
         <source>Name of the database on the server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="376"/>
+        <location filename="../../romalyzer.ui" line="382"/>
         <source>Automatically scroll to the currently analyzed game</source>
         <translation>Défile automatiquement vers le jeu actuellement analysé</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="379"/>
+        <location filename="../../romalyzer.ui" line="385"/>
         <source>Auto scroll</source>
         <translation>Défile automatiquement</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="438"/>
+        <location filename="../../romalyzer.ui" line="444"/>
         <source>Calculate SHA1 hash</source>
         <translation>Calculer le hash SHA1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="441"/>
+        <location filename="../../romalyzer.ui" line="447"/>
         <source>Calculate SHA1</source>
         <translation>Calculer le SHA1</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="415"/>
+        <location filename="../../romalyzer.ui" line="421"/>
         <source>Automatically expand file info</source>
         <translation>Etendre automatiquement l&apos;information du fichier</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="418"/>
+        <location filename="../../romalyzer.ui" line="424"/>
         <source>Expand file info</source>
         <translation>Etendre l&apos;information du fichier</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="402"/>
+        <location filename="../../romalyzer.ui" line="408"/>
         <source>Calculate MD5 hash</source>
         <translation>Calculer le hash MD5</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="405"/>
+        <location filename="../../romalyzer.ui" line="411"/>
         <source>Calculate MD5</source>
         <translation>Calculer le MD5</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="428"/>
+        <location filename="../../romalyzer.ui" line="434"/>
         <source>Automatically expand checksums</source>
         <translation>Etendre automatiquement les sommes de contrôle</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="431"/>
+        <location filename="../../romalyzer.ui" line="437"/>
         <source>Expand checksums</source>
         <translation>Etendre les sommes de contrôle</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="454"/>
+        <location filename="../../romalyzer.ui" line="460"/>
         <source>Select game</source>
         <translation>Sélectionner un jeu</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="593"/>
+        <location filename="../../romalyzer.ui" line="599"/>
         <source>Enable ROM database support (repository access may be slow)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="674"/>
+        <location filename="../../romalyzer.ui" line="680"/>
         <source>Server / IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="667"/>
+        <location filename="../../romalyzer.ui" line="673"/>
         <source>Name or IP address of the database server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="602"/>
+        <location filename="../../romalyzer.ui" line="608"/>
         <source>Driver</source>
         <translation type="unfinished">Pilote</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="609"/>
+        <location filename="../../romalyzer.ui" line="615"/>
         <source>Port</source>
         <translation type="unfinished">Port</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="625"/>
+        <location filename="../../romalyzer.ui" line="631"/>
         <source>default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="681"/>
+        <location filename="../../romalyzer.ui" line="687"/>
         <source>Username</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="694"/>
+        <location filename="../../romalyzer.ui" line="700"/>
         <source>Username used to access the database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="756"/>
+        <location filename="../../romalyzer.ui" line="762"/>
         <source>Password</source>
         <translation type="unfinished">Mot de passe</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="770"/>
+        <location filename="../../romalyzer.ui" line="776"/>
         <source>Automatically download missing / bad files from the database (if they are available in the repository)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="773"/>
+        <location filename="../../romalyzer.ui" line="779"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="780"/>
+        <location filename="../../romalyzer.ui" line="786"/>
         <source>Automatically upload good files to the database (if they are missing in the repository)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="644"/>
+        <location filename="../../romalyzer.ui" line="650"/>
         <source>SQL driver to use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="283"/>
+        <location filename="../../romalyzer.ui" line="289"/>
         <source>Temporary directory used by the CHD manager (make sure it has enough room to store the biggest CHDs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="296"/>
+        <location filename="../../romalyzer.ui" line="302"/>
         <source>Browse temporary directory used by the CHD manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="360"/>
+        <location filename="../../romalyzer.ui" line="366"/>
         <source>General analysis flags and limits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="466"/>
+        <location filename="../../romalyzer.ui" line="472"/>
         <source>&lt;b&gt;Limits:&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="473"/>
+        <location filename="../../romalyzer.ui" line="479"/>
         <source>File size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="486"/>
+        <location filename="../../romalyzer.ui" line="492"/>
         <source>Maximum size (in MB) of files to be loaded, files are skipped when they are bigger than that (0 = no limit)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="508"/>
+        <location filename="../../romalyzer.ui" line="514"/>
         <source>Log size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="543"/>
+        <location filename="../../romalyzer.ui" line="549"/>
         <source>Reports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="556"/>
+        <location filename="../../romalyzer.ui" line="562"/>
         <source>Maximum number of reported sets held in memory (0 = no limit)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="648"/>
+        <location filename="../../romalyzer.ui" line="654"/>
         <source>MySQL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="653"/>
+        <location filename="../../romalyzer.ui" line="659"/>
         <source>SQLite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="707"/>
+        <location filename="../../romalyzer.ui" line="713"/>
         <source>Check the connection to the database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="799"/>
+        <location filename="../../romalyzer.ui" line="805"/>
         <source>Overwrite existing data in the database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="802"/>
+        <location filename="../../romalyzer.ui" line="808"/>
         <source>Overwrite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="809"/>
+        <location filename="../../romalyzer.ui" line="815"/>
         <source>Output path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="822"/>
+        <location filename="../../romalyzer.ui" line="828"/>
         <source>Local output directory where downloaded ROMs &amp; CHDs will be created (WARNING: existing files will be overwritten!)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="835"/>
+        <location filename="../../romalyzer.ui" line="841"/>
         <source>Browse local output directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="849"/>
+        <location filename="../../romalyzer.ui" line="855"/>
         <source>Enable set rewriter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="861"/>
+        <location filename="../../romalyzer.ui" line="867"/>
         <source>Set rewriter output path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="874"/>
+        <location filename="../../romalyzer.ui" line="880"/>
         <source>Output path for the set rewriter (WARNING: existing files will be overwritten!) -- you should NEVER use one of your primary ROM paths here!!!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="887"/>
+        <location filename="../../romalyzer.ui" line="893"/>
         <source>Browse output path for the set rewriter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="910"/>
+        <location filename="../../romalyzer.ui" line="916"/>
         <source>Create sets that do not need parent sets (otherwise create merged sets, which is recommended)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="920"/>
+        <location filename="../../romalyzer.ui" line="926"/>
         <source>Rewrite sets only when they are &apos;good&apos; (otherwise, &apos;bad&apos; sets will be included)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="936"/>
+        <location filename="../../romalyzer.ui" line="942"/>
         <source>Produce ZIP archived sets (recommended)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="955"/>
+        <location filename="../../romalyzer.ui" line="961"/>
         <source>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="996"/>
+        <location filename="../../romalyzer.ui" line="1002"/>
         <source>Checksum wizard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1008"/>
+        <location filename="../../romalyzer.ui" line="1014"/>
         <source>SHA1 checksum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1021"/>
+        <location filename="../../romalyzer.ui" line="1027"/>
         <source>SHA1 checksum to search for</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1034"/>
+        <location filename="../../romalyzer.ui" line="1040"/>
         <source>Search for the SHA1 checksum now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1037"/>
+        <location filename="../../romalyzer.ui" line="1043"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1048"/>
+        <location filename="../../romalyzer.ui" line="1054"/>
         <source>Search results for the current SHA1 checksum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1073"/>
+        <location filename="../../romalyzer.ui" line="1079"/>
         <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1078"/>
+        <location filename="../../romalyzer.ui" line="1084"/>
         <source>Filename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1083"/>
+        <location filename="../../romalyzer.ui" line="1089"/>
         <source>Status</source>
         <translation type="unfinished">Statut</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1093"/>
+        <location filename="../../romalyzer.ui" line="1099"/>
         <source>Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1107"/>
+        <location filename="../../romalyzer.ui" line="1113"/>
         <source>Repair bad sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1121"/>
+        <location filename="../../romalyzer.ui" line="1127"/>
         <source>Analyze all selected sets in order to qualify them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1124"/>
+        <location filename="../../romalyzer.ui" line="1130"/>
         <source>Analyze selected sets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1144"/>
+        <location filename="../../romalyzer.ui" line="1150"/>
         <source>Close ROMAlyzer</source>
         <translation>Fermer ROMAlyzer</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1147"/>
+        <location filename="../../romalyzer.ui" line="1153"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1164"/>
+        <location filename="../../romalyzer.ui" line="1170"/>
         <source>Current ROMAlyzer status</source>
         <translation>Statut courant de ROMAlyzer</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1183"/>
+        <location filename="../../romalyzer.ui" line="1189"/>
         <source>Analysis progress indicator</source>
         <translation>Indication de progression d&apos;analyse</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="1202"/>
+        <location filename="../../romalyzer.ui" line="1208"/>
         <source>File I/O progress indicator</source>
         <translation>Indicateur de progression de fichier E/S</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="521"/>
+        <location filename="../../romalyzer.ui" line="527"/>
         <source>Maximum number of lines in log (0 = no limit)</source>
         <translation>Nombre max de ligne dans le fichier log (0 = pas de limite)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="527"/>
+        <location filename="../../romalyzer.ui" line="533"/>
         <source> lines</source>
         <translation> lignes</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="489"/>
-        <location filename="../../romalyzer.ui" line="524"/>
-        <location filename="../../romalyzer.ui" line="559"/>
+        <location filename="../../romalyzer.ui" line="495"/>
+        <location filename="../../romalyzer.ui" line="530"/>
+        <location filename="../../romalyzer.ui" line="565"/>
         <source>unlimited</source>
         <translation>illimité</translation>
     </message>
@@ -12804,7 +12801,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>Choisir la machine dans la liste si sélectionnée dans le rapport d&apos;analyse ?</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.ui" line="451"/>
+        <location filename="../../romalyzer.ui" line="457"/>
         <source>Select game in game list if selected in analysis report?</source>
         <translation>Sélectionner le jeu dans la liste si sélectionné dans le rapport d&apos;analyse ?</translation>
     </message>

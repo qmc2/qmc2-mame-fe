@@ -146,6 +146,9 @@
          <property name="toolTip">
           <string>Analysis log</string>
          </property>
+         <property name="undoRedoEnabled">
+          <bool>false</bool>
+         </property>
          <property name="lineWrapMode">
           <enum>QPlainTextEdit::NoWrap</enum>
          </property>

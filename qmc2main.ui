@@ -1443,6 +1443,9 @@
             <property name="statusTip">
              <string>Frontend log</string>
             </property>
+            <property name="undoRedoEnabled">
+             <bool>false</bool>
+            </property>
             <property name="lineWrapMode">
              <enum>QPlainTextEdit::NoWrap</enum>
             </property>
@@ -1475,6 +1478,9 @@
             </property>
             <property name="statusTip">
              <string>Emulator log</string>
+            </property>
+            <property name="undoRedoEnabled">
+             <bool>false</bool>
             </property>
             <property name="lineWrapMode">
              <enum>QPlainTextEdit::NoWrap</enum>
