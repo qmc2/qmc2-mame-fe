@@ -301,6 +301,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_tabWidgetGameDetail_currentChanged(int);
     void on_tabWidgetGamelist_currentChanged(int);
     void on_tabWidgetLogsAndEmulators_currentChanged(int);
+    void on_tabWidgetLogsAndEmulators_updateCurrent() { on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex()); };
     void on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *, int);
     void on_treeWidgetGamelist_itemDoubleClicked(QTreeWidgetItem *, int); 
     void on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *);

@@ -352,13 +352,8 @@ void Options::apply()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::apply()");
 #endif
 
-  bool scrollBarMaximum = (qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->value() == qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->maximum());
-
   qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
   qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
-
-  qmc2MainWindow->textBrowserFrontendLog->setUpdatesEnabled(FALSE);
-  qmc2MainWindow->textBrowserEmulatorLog->setUpdatesEnabled(FALSE);
 
   QFont f;
   f.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
@@ -561,12 +556,6 @@ void Options::apply()
   if ( qmc2DetailSetup )
     if ( qmc2DetailSetup->isVisible() )
       QTimer::singleShot(0, qmc2DetailSetup, SLOT(adjustIconSizes()));
-
-  qmc2MainWindow->textBrowserFrontendLog->setUpdatesEnabled(TRUE);
-  qmc2MainWindow->textBrowserEmulatorLog->setUpdatesEnabled(TRUE);
-
-  if ( scrollBarMaximum )
-    qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->setValue(qmc2MainWindow->textBrowserFrontendLog->verticalScrollBar()->maximum());
 }
 
 void Options::on_pushButtonOk_clicked()

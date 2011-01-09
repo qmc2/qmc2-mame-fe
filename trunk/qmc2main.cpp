@@ -250,7 +250,7 @@ void MainWindow::log(char logOrigin, QString message)
   // count subsequent message duplicates
   switch ( logOrigin ) {
     case QMC2_LOG_FRONTEND:
-      qmc2LogFrontendMutex.lock();
+      if ( !qmc2LogFrontendMutex.tryLock(100) ) return;
       if ( message == qmc2LastFrontendLogMessage ) {
         qmc2FrontendLogMessageRepeatCount++;
 	qmc2LogFrontendMutex.unlock();
@@ -264,7 +264,7 @@ void MainWindow::log(char logOrigin, QString message)
       break;
 
     case QMC2_LOG_EMULATOR:
-      qmc2LogEmulatorMutex.lock();
+      if( !qmc2LogEmulatorMutex.tryLock(100) ) return;
       if ( message == qmc2LastEmulatorLogMessage ) {
         qmc2EmulatorLogMessageRepeatCount++;
         qmc2LogEmulatorMutex.unlock();
@@ -283,9 +283,15 @@ void MainWindow::log(char logOrigin, QString message)
 
   QString msg = timeString + ": " + message;
 
+  bool scrollBarMaximum = false;
+
   switch ( logOrigin ) {
     case QMC2_LOG_FRONTEND:
+      scrollBarMaximum = (textBrowserFrontendLog->verticalScrollBar()->value() == textBrowserFrontendLog->verticalScrollBar()->maximum());
       textBrowserFrontendLog->appendPlainText(msg);
+      if ( scrollBarMaximum )
+        if ( !qmc2EarlyStartup )
+          QTimer::singleShot(0, this, SLOT(on_tabWidgetLogsAndEmulators_updateCurrent()));
       if ( !qmc2FrontendLogFile )
         if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", "data/log/qmc2.log").toString(), this)) == NULL ) {
           qmc2LogFrontendMutex.unlock();
@@ -304,7 +310,11 @@ void MainWindow::log(char logOrigin, QString message)
       break;
 
     case QMC2_LOG_EMULATOR:
+      scrollBarMaximum = (textBrowserEmulatorLog->verticalScrollBar()->value() == textBrowserEmulatorLog->verticalScrollBar()->maximum());
       textBrowserEmulatorLog->appendPlainText(msg);
+      if ( scrollBarMaximum )
+        if ( !qmc2EarlyStartup )
+          QTimer::singleShot(0, this, SLOT(on_tabWidgetLogsAndEmulators_updateCurrent()));
       if ( !qmc2EmulatorLogFile ) {
 #if defined(QMC2_EMUTYPE_MAME)
         if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value("MAME/FilesAndDirectories/LogFile", "data/log/mame.log").toString(), this)) == NULL ) {
@@ -2495,26 +2505,17 @@ void MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int currentIndex)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int i = " + QString::number(currentIndex) + ")");
 #endif
 
-  static bool firstTimeViewingFrontendLog = TRUE;
-  static bool firstTimeViewingEmulatorLog = TRUE;
-
   switch ( currentIndex ) {
     case QMC2_FRONTENDLOG_INDEX:
-      if ( firstTimeViewingFrontendLog ) {
-        textBrowserFrontendLog->horizontalScrollBar()->setValue(0);
-        textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
-        firstTimeViewingFrontendLog = FALSE;
-        qApp->processEvents();
-      }
+      textBrowserFrontendLog->update();
+      qApp->processEvents();
+      textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
       break;
 
     case QMC2_EMULATORLOG_INDEX:
-      if ( firstTimeViewingEmulatorLog ) {
-        textBrowserEmulatorLog->horizontalScrollBar()->setValue(0);
-        textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
-        firstTimeViewingEmulatorLog = FALSE;
-        qApp->processEvents();
-      }
+      textBrowserEmulatorLog->update();
+      qApp->processEvents();
+      textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
       break;
 
     default:
@@ -4680,9 +4681,9 @@ void MainWindow::init()
   }
   progressBarMemory->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", FALSE).toBool());
   setUpdatesEnabled(TRUE);
-  qmc2EarlyStartup = FALSE;
   textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
   textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
+  qmc2EarlyStartup = FALSE;
   QTimer::singleShot(0, this, SLOT(on_actionReload_activated()));
   activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 }
@@ -4731,8 +4732,6 @@ void MainWindow::setupStyleSheet(QString styleSheetName)
 
   static QString oldStyleSheetName = "";
 
-  bool scrollBarMaximum = (textBrowserFrontendLog->verticalScrollBar()->value() == textBrowserFrontendLog->verticalScrollBar()->maximum()) && textBrowserFrontendLog->verticalScrollBar()->isVisible();
-
   if ( !styleSheetName.isEmpty() ) {
     QFile f(styleSheetName);
     if ( f.open(QIODevice::ReadOnly) ) {
@@ -4756,9 +4755,6 @@ void MainWindow::setupStyleSheet(QString styleSheetName)
   oldStyleSheetName = styleSheetName;
 
   qApp->processEvents();
-
-  if ( scrollBarMaximum )
-    textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
 }
 
 void MainWindow::viewFullDetail()
