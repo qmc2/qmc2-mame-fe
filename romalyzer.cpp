@@ -401,7 +401,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   checkBoxCalculateMD5->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CalculateMD5", TRUE).toBool());
   checkBoxSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SelectGame", TRUE).toBool());
   spinBoxMaxFileSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxFileSize", 0).toInt());
-  spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", 0).toInt());
+  spinBoxMaxLogSize->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxLogSize", 10000).toInt());
   spinBoxMaxReports->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/MaxReports", 1000).toInt());
   lineEditCHDManagerExecutableFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/CHDManagerExecutableFile", "").toString());
   lineEditTemporaryWorkingDirectory->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/TemporaryWorkingDirectory", "").toString());
@@ -449,7 +449,7 @@ void ROMAlyzer::on_spinBoxMaxLogSize_valueChanged(int value)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_spinBoxMaxLogSize_valueChanged(int value = %1)").arg(value));
 #endif
 
-  textBrowserLog->document()->setMaximumBlockCount(spinBoxMaxLogSize->value());
+  textBrowserLog->setMaximumBlockCount(spinBoxMaxLogSize->value());
 }
 
 void ROMAlyzer::moveEvent(QMoveEvent *e)
@@ -1614,10 +1614,10 @@ void ROMAlyzer::log(QString message)
 {
   QString msg = QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + message;
 
-  textBrowserLog->append(msg);
+  textBrowserLog->appendPlainText(msg);
   qApp->processEvents();
 
-  //printf("%s\n", (const char *)msg.toAscii()); fflush(stdout);
+  //printf("# of lines: %d\r", textBrowserLog->blockCount());
 }
 
 void ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()

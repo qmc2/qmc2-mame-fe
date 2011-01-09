@@ -142,12 +142,15 @@
       </attribute>
       <layout class="QGridLayout">
        <item row="0" column="0" colspan="3">
-        <widget class="QTextBrowser" name="textBrowserLog">
+        <widget class="QPlainTextEdit" name="textBrowserLog">
          <property name="toolTip">
           <string>Analysis log</string>
          </property>
          <property name="lineWrapMode">
-          <enum>QTextEdit::NoWrap</enum>
+          <enum>QPlainTextEdit::NoWrap</enum>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

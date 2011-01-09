@@ -285,7 +285,7 @@ void MainWindow::log(char logOrigin, QString message)
 
   switch ( logOrigin ) {
     case QMC2_LOG_FRONTEND:
-      textBrowserFrontendLog->append(msg);
+      textBrowserFrontendLog->appendPlainText(msg);
       if ( !qmc2FrontendLogFile )
         if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", "data/log/qmc2.log").toString(), this)) == NULL ) {
           qmc2LogFrontendMutex.unlock();
@@ -304,7 +304,7 @@ void MainWindow::log(char logOrigin, QString message)
       break;
 
     case QMC2_LOG_EMULATOR:
-      textBrowserEmulatorLog->append(msg);
+      textBrowserEmulatorLog->appendPlainText(msg);
       if ( !qmc2EmulatorLogFile ) {
 #if defined(QMC2_EMUTYPE_MAME)
         if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value("MAME/FilesAndDirectories/LogFile", "data/log/mame.log").toString(), this)) == NULL ) {
