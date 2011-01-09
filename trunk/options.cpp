@@ -745,9 +745,9 @@ void Options::on_pushButtonApply_clicked()
   } else
     qmc2MainWindow->labelGameStatus->setVisible(FALSE);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/FrontendLogSize", spinBoxFrontendLogSize->value());
-  qmc2MainWindow->textBrowserFrontendLog->document()->setMaximumBlockCount(spinBoxFrontendLogSize->value());
+  qmc2MainWindow->textBrowserFrontendLog->setMaximumBlockCount(spinBoxFrontendLogSize->value());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/EmulatorLogSize", spinBoxEmulatorLogSize->value());
-  qmc2MainWindow->textBrowserEmulatorLog->document()->setMaximumBlockCount(spinBoxEmulatorLogSize->value());
+  qmc2MainWindow->textBrowserEmulatorLog->setMaximumBlockCount(spinBoxEmulatorLogSize->value());
 #if defined(QMC2_VARIANT_LAUNCHER)
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch", checkBoxMinimizeOnVariantLaunch->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ExitOnVariantLaunch", checkBoxExitOnVariantLaunch->isChecked());

@@ -1430,7 +1430,7 @@
          </attribute>
          <layout class="QGridLayout" name="gridLayoutFrontendLog">
           <item row="0" column="0">
-           <widget class="QTextBrowser" name="textBrowserFrontendLog">
+           <widget class="QPlainTextEdit" name="textBrowserFrontendLog">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -1444,7 +1444,7 @@
              <string>Frontend log</string>
             </property>
             <property name="lineWrapMode">
-             <enum>QTextEdit::NoWrap</enum>
+             <enum>QPlainTextEdit::NoWrap</enum>
             </property>
             <property name="readOnly">
              <bool>true</bool>
@@ -1463,7 +1463,7 @@
          </attribute>
          <layout class="QGridLayout" name="gridLayoutEmulatorLog">
           <item row="0" column="0">
-           <widget class="QTextBrowser" name="textBrowserEmulatorLog">
+           <widget class="QPlainTextEdit" name="textBrowserEmulatorLog">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -1477,7 +1477,7 @@
              <string>Emulator log</string>
             </property>
             <property name="lineWrapMode">
-             <enum>QTextEdit::NoWrap</enum>
+             <enum>QPlainTextEdit::NoWrap</enum>
             </property>
             <property name="readOnly">
              <bool>true</bool>
