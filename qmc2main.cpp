@@ -250,7 +250,7 @@ void MainWindow::log(char logOrigin, QString message)
   // count subsequent message duplicates
   switch ( logOrigin ) {
     case QMC2_LOG_FRONTEND:
-      if ( !qmc2LogFrontendMutex.tryLock(100) ) return;
+      if ( !qmc2LogFrontendMutex.tryLock(QMC2_LOG_MUTEX_LOCK_TIMEOUT) ) return;
       if ( message == qmc2LastFrontendLogMessage ) {
         qmc2FrontendLogMessageRepeatCount++;
 	qmc2LogFrontendMutex.unlock();
@@ -264,7 +264,7 @@ void MainWindow::log(char logOrigin, QString message)
       break;
 
     case QMC2_LOG_EMULATOR:
-      if( !qmc2LogEmulatorMutex.tryLock(100) ) return;
+      if( !qmc2LogEmulatorMutex.tryLock(QMC2_LOG_MUTEX_LOCK_TIMEOUT) ) return;
       if ( message == qmc2LastEmulatorLogMessage ) {
         qmc2EmulatorLogMessageRepeatCount++;
         qmc2LogEmulatorMutex.unlock();
@@ -2376,6 +2376,11 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
   static int lastTabWidgetGamelistIndex = -1;
 
 #if defined(Q_WS_X11)
+  bool scrollBarMaximum = false;
+  if ( textBrowserFrontendLog->isVisible() )
+    scrollBarMaximum = (textBrowserFrontendLog->verticalScrollBar()->value() == textBrowserFrontendLog->verticalScrollBar()->maximum());
+  else if ( textBrowserEmulatorLog->isVisible() )
+    scrollBarMaximum = (textBrowserEmulatorLog->verticalScrollBar()->value() == textBrowserEmulatorLog->verticalScrollBar()->maximum());
   if ( hSplitterSizes.count() > 1 )
     hSplitter->setSizes(hSplitterSizes);
 #endif
@@ -2474,6 +2479,12 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       break;
   }
 
+#if defined(Q_WS_X11)
+  if ( scrollBarMaximum )
+    if ( !qmc2EarlyStartup )
+      QTimer::singleShot(0, this, SLOT(on_tabWidgetLogsAndEmulators_updateCurrent()));
+#endif
+
   qmc2Preview->update();
   qmc2Flyer->update();
   qmc2Cabinet->update();
@@ -2507,14 +2518,18 @@ void MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int currentIndex)
 
   switch ( currentIndex ) {
     case QMC2_FRONTENDLOG_INDEX:
-      textBrowserFrontendLog->update();
-      qApp->processEvents();
+      if ( !qmc2EarlyStartup ) {
+        textBrowserFrontendLog->update();
+        qApp->processEvents();
+      }
       textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
       break;
 
     case QMC2_EMULATORLOG_INDEX:
-      textBrowserEmulatorLog->update();
-      qApp->processEvents();
+      if ( !qmc2EarlyStartup ) {
+        textBrowserEmulatorLog->update();
+        qApp->processEvents();
+      }
       textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
       break;
 
@@ -3606,6 +3621,11 @@ void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on = %1)").arg(on));
 #endif
 
+  bool scrollBarMaximum = false;
+  if ( textBrowserFrontendLog->isVisible() )
+    scrollBarMaximum = (textBrowserFrontendLog->verticalScrollBar()->value() == textBrowserFrontendLog->verticalScrollBar()->maximum());
+  else if ( textBrowserEmulatorLog->isVisible() )
+    scrollBarMaximum = (textBrowserEmulatorLog->verticalScrollBar()->value() == textBrowserEmulatorLog->verticalScrollBar()->maximum());
   if ( on ) {
     hSplitterSizes = hSplitter->sizes();
     QList<int> maximizedSizes;
@@ -3617,6 +3637,9 @@ void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
   } else {
     hSplitter->setSizes(hSplitterSizes);
   }
+  if ( scrollBarMaximum )
+    if ( !qmc2EarlyStartup )
+      QTimer::singleShot(0, this, SLOT(on_tabWidgetLogsAndEmulators_updateCurrent()));
 }
 
 void MainWindow::on_embedderOptionsMenu_KillEmulator_activated()
@@ -4681,8 +4704,6 @@ void MainWindow::init()
   }
   progressBarMemory->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", FALSE).toBool());
   setUpdatesEnabled(TRUE);
-  textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
-  textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
   qmc2EarlyStartup = FALSE;
   QTimer::singleShot(0, this, SLOT(on_actionReload_activated()));
   activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
