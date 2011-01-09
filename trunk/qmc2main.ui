@@ -1443,9 +1443,6 @@
             <property name="statusTip">
              <string>Frontend log</string>
             </property>
-            <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOn</enum>
-            </property>
             <property name="undoRedoEnabled">
              <bool>false</bool>
             </property>
@@ -1481,9 +1478,6 @@
             </property>
             <property name="statusTip">
              <string>Emulator log</string>
-            </property>
-            <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOn</enum>
             </property>
             <property name="undoRedoEnabled">
              <bool>false</bool>

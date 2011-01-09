@@ -431,4 +431,7 @@
 #define QMC2_COMPRESS(data)		qCompress((data))
 #define QMC2_UNCOMPRESS(data)		(data).isEmpty() ? QByteArray() : qUncompress((data))
 
+// timeout (in ms) for locking the log-mutex
+#define QMC2_LOG_MUTEX_LOCK_TIMEOUT	100
+
 #endif
