@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>589</width>
-    <height>586</height>
+    <height>589</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -458,7 +458,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0" colspan="4">
+          <item row="2" column="0" colspan="5">
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
              <widget class="QLabel" name="labelLimits">
@@ -570,6 +570,19 @@
              </widget>
             </item>
            </layout>
+          </item>
+          <item row="0" column="4" rowspan="2">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
@@ -913,8 +926,11 @@
             </item>
             <item>
              <widget class="QRadioButton" name="radioButtonSetRewriterZipArchives">
-              <property name="enabled">
-               <bool>false</bool>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
               <property name="toolTip">
                <string>Produce ZIP archived sets (recommended)</string>
@@ -928,9 +944,37 @@
              </widget>
             </item>
             <item>
+             <widget class="QSpinBox" name="spinBoxSetRewriterZipLevel">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</string>
+              </property>
+              <property name="prefix">
+               <string>Level </string>
+              </property>
+              <property name="maximum">
+               <number>9</number>
+              </property>
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QRadioButton" name="radioButtonSetRewriterIndividualDirectories">
               <property name="enabled">
                <bool>false</bool>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
               <property name="toolTip">
                <string>Produce sets in individual sub-directories (not recommended -- and not supported yet!)</string>
@@ -939,19 +983,6 @@
                <string>Directories</string>
               </property>
              </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>13</width>
-                <height>17</height>
-               </size>
-              </property>
-             </spacer>
             </item>
            </layout>
           </item>
@@ -1231,6 +1262,7 @@
   <tabstop>checkBoxSetRewriterSelfContainedSets</tabstop>
   <tabstop>checkBoxSetRewriterGoodSetsOnly</tabstop>
   <tabstop>radioButtonSetRewriterZipArchives</tabstop>
+  <tabstop>spinBoxSetRewriterZipLevel</tabstop>
   <tabstop>radioButtonSetRewriterIndividualDirectories</tabstop>
   <tabstop>groupBoxDatabase</tabstop>
   <tabstop>lineEditDatabaseUser</tabstop>
@@ -1264,7 +1296,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>86</x>
-     <y>606</y>
+     <y>581</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
@@ -1301,6 +1333,22 @@
     <hint type="destinationlabel">
      <x>566</x>
      <y>518</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButtonSetRewriterZipArchives</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinBoxSetRewriterZipLevel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>368</x>
+     <y>364</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>407</x>
+     <y>360</y>
     </hint>
    </hints>
   </connection>
