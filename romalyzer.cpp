@@ -1445,11 +1445,24 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                 effectiveFile = filePath;
                 if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
                 if ( !wantedCRC.isEmpty() ) {
-		  QStringList sl;
-		  //    fromName    fromPath    toName
-		  sl << fileName << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME);
-		  setRewriterFileMap.insert(wantedCRC, sl); 
-                }
+                  QStringList sl;
+                  //    fromName    fromPath    toName
+                  sl << fileName << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME);
+                  setRewriterFileMap.insert(wantedCRC, sl); 
+                } else {
+                  ulong crc = crc32(0, NULL, 0);
+	          crc = crc32(crc, (const Bytef *)fileData->data(), fileData->size());
+                  QString fallbackCRC = QString::number(crc, 16).rightJustified(8, '0');
+                  if ( !fallbackCRC.isEmpty() ) {
+                    QStringList sl;
+                    //    fromName    fromPath    toName
+                    sl << fileName << filePath << myItem->text(QMC2_ROMALYZER_COLUMN_GAME);
+                    setRewriterFileMap.insert(fallbackCRC, sl); 
+                    if ( groupBoxSetRewriter->isChecked() )
+                      log(tr("WARNING: the CRC for '%1' from '%2' is unknown to the emulator, the set rewriter will use the recalculated CRC '%3' to qualify the file").arg(fileName).arg(filePath).arg(fallbackCRC));
+                  } else if ( groupBoxSetRewriter->isChecked() )
+                    log(tr("WARNING: unable to determine the CRC for '%1' from '%2', the set rewriter will NOT store this file in the new set").arg(fileName).arg(filePath));
+		}
                 *isZipped = TRUE;
                 if ( calcSHA1 )
                   *sha1Str = sha1Hash.result().toHex();
