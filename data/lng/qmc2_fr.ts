@@ -11478,6 +11478,14 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>Paused</source>
         <translation>Pause</translation>
     </message>
+    <message numerus="yes">
+        <location filename="../../romalyzer.cpp" line="604"/>
+        <source>report limit reached, removing %n set(s) from the report</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
     <message>
         <location filename="../../romalyzer.cpp" line="619"/>
         <source>analyzing &apos;%1&apos;</source>
@@ -11631,14 +11639,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="131"/>
         <source>Rewrite set</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="604"/>
-        <source>INFORMATION: report limit reached, removing %n set(s) from the report</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="923"/>

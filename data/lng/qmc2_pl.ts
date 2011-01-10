@@ -11953,15 +11953,6 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <source>Rewrite set</source>
         <translation type="unfinished"></translation>
     </message>
-    <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="604"/>
-        <source>INFORMATION: report limit reached, removing %n set(s) from the report</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-        </translation>
-    </message>
     <message>
         <location filename="../../romalyzer.cpp" line="732"/>
         <location filename="../../romalyzer.cpp" line="754"/>
@@ -12513,6 +12504,15 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romalyzer.cpp" line="95"/>
         <source>A/V codec</source>
         <translation>kodek A/V</translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../romalyzer.cpp" line="604"/>
+        <source>report limit reached, removing %n set(s) from the report</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="718"/>

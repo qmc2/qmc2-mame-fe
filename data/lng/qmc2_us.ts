@@ -11908,14 +11908,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>Rewrite set</source>
         <translation></translation>
     </message>
-    <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="604"/>
-        <source>INFORMATION: report limit reached, removing %n set(s) from the report</source>
-        <translation>
-            <numerusform>INFORMATION: report limit reached, removing the oldest set from the report</numerusform>
-            <numerusform>INFORMATION: report limit reached, removing %n sets from the report</numerusform>
-        </translation>
-    </message>
     <message>
         <location filename="../../romalyzer.cpp" line="732"/>
         <location filename="../../romalyzer.cpp" line="754"/>
@@ -12464,6 +12456,14 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="95"/>
         <source>A/V codec</source>
         <translation></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../../romalyzer.cpp" line="604"/>
+        <source>report limit reached, removing %n set(s) from the report</source>
+        <translation>
+            <numerusform>report limit reached, removing the oldest set from the report</numerusform>
+            <numerusform>report limit reached, removing %n sets from the report</numerusform>
+        </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="718"/>

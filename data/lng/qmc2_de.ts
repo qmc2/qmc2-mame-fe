@@ -11912,14 +11912,6 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <source>Rewrite set</source>
         <translation>Set neu schreiben</translation>
     </message>
-    <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="604"/>
-        <source>INFORMATION: report limit reached, removing %n set(s) from the report</source>
-        <translation>
-            <numerusform>INFORMATION: Berichtgrenze erreicht, entferne das älteste Set aus dem Bericht</numerusform>
-            <numerusform>INFORMATION: Berichtgrenze erreicht, entferne %n Sets aus dem Bericht</numerusform>
-        </translation>
-    </message>
     <message>
         <location filename="../../romalyzer.cpp" line="732"/>
         <location filename="../../romalyzer.cpp" line="754"/>
@@ -12469,6 +12461,14 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <source>A/V codec</source>
         <translation>A/V Codec</translation>
     </message>
+    <message numerus="yes">
+        <location filename="../../romalyzer.cpp" line="604"/>
+        <source>report limit reached, removing %n set(s) from the report</source>
+        <translation>
+            <numerusform>Berichtgrenze erreicht, entferne das älteste Set aus dem Bericht</numerusform>
+            <numerusform>Berichtgrenze erreicht, entferne %n Sets aus dem Bericht</numerusform>
+        </translation>
+    </message>
     <message>
         <location filename="../../romalyzer.cpp" line="718"/>
         <source>error</source>
@@ -12542,7 +12542,7 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
     <message>
         <location filename="../../romalyzer.cpp" line="1464"/>
         <source>WARNING: unable to determine the CRC for &apos;%1&apos; from &apos;%2&apos;, the set rewriter will NOT store this file in the new set</source>
-        <translation type="unfinished">WARNUNG: der CRC für &apos;%1&apos; von &apos;%2&apos; konnte nicht ermittelt werden, diese Datei wird bei der Set-Neuerzeugung NICHT mit abgespeichert</translation>
+        <translation>WARNUNG: der CRC für &apos;%1&apos; von &apos;%2&apos; konnte nicht ermittelt werden, diese Datei wird bei der Set-Neuerzeugung NICHT mit abgespeichert</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1599"/>
