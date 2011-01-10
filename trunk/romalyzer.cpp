@@ -601,7 +601,7 @@ void ROMAlyzer::analyze()
       if ( reportLimit > 0 ) {
 	      if ( setsInMemory >= reportLimit ) {
 		      int setsToBeRemoved = setsInMemory - reportLimit + 1;
-		      log(tr("INFORMATION: report limit reached, removing %n set(s) from the report", "", setsToBeRemoved));
+		      log(tr("report limit reached, removing %n set(s) from the report", "", setsToBeRemoved));
 		      for (int j = 0; j < setsToBeRemoved; j++) {
 			      QTreeWidgetItem *ti = treeWidgetChecksums->topLevelItem(0);
 			      if ( ti ) {
