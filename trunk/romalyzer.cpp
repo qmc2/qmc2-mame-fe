@@ -1934,8 +1934,8 @@ void ROMAlyzer::runSetRewriter()
 	outPath += setRewriterSetName + ".zip";
 
 	QString savedStatusText = labelStatus->text();
-	labelStatus->setText(tr("Rewriting '%1' - %2").arg(setRewriterSetName).arg(setRewriterSetCount));
-	progressBar->setRange(0, 0);
+	labelStatus->setText(tr("Reading '%1' - %2").arg(setRewriterSetName).arg(setRewriterSetCount));
+	progressBar->setRange(0, setRewriterFileMap.count());
 	progressBar->reset();
 	qApp->processEvents();
 	QString modeString = tr("space-efficient");
@@ -1946,7 +1946,9 @@ void ROMAlyzer::runSetRewriter()
 	bool loadOkay = true;
 	QMapIterator<QString, QStringList> it(setRewriterFileMap);
 	QMap<QString, QByteArray> outputDataMap;
+	int count = 0;
 	while ( it.hasNext() && loadOkay ) {
+		progressBar->setValue(++count);
 		it.next();
 		QString fileCRC = it.key();
 		QString fileName = it.value()[0];
@@ -1964,6 +1966,7 @@ void ROMAlyzer::runSetRewriter()
 				log(tr("set rewriter: WARNING: can't load '%1' with CRC '%2' from '%3', ignoring this file").arg(fileName).arg(fileCRC).arg(filePath));
 		}
 	}
+	progressBar->reset();
 
 	if ( loadOkay ) {
 		if ( !checkBoxSetRewriterSelfContainedSets->isChecked() ) {
@@ -1986,7 +1989,8 @@ void ROMAlyzer::runSetRewriter()
 		}
 		if ( !outputDataMap.isEmpty() ) {
 			log(tr("set rewriter: writing new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
-			if ( writeAllZipData(outPath, &outputDataMap, true) )
+			labelStatus->setText(tr("Writing '%1' - %2").arg(setRewriterSetName).arg(setRewriterSetCount));
+			if ( writeAllZipData(outPath, &outputDataMap, true, progressBar) )
 				log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
 			else {
 				log(tr("set rewriter: FATAL: failed to create new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
@@ -2004,8 +2008,8 @@ void ROMAlyzer::runSetRewriter()
 	}
 
 	labelStatus->setText(savedStatusText);
-	progressBar->setValue(0);
 	progressBar->setRange(0, 100);
+	progressBar->setValue(0);
 	progressBar->reset();
 	qApp->processEvents();
 }
@@ -2132,7 +2136,7 @@ bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 // creates the new ZIP 'fileName' (overwrites an existing file w/o creating a backup!)
 // and stores the data found in 'fileDataMap' into the ZIP:
 // - 'fileDataMap' maps file names to their data
-bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fileDataMap, bool writeLog)
+bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fileDataMap, bool writeLog, QProgressBar *pBar)
 {
 	bool success = true;
 
@@ -2154,8 +2158,14 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 		zipInfo.tmz_date.tm_mon = cDT.date().month() - 1;
 		zipInfo.tmz_date.tm_year = cDT.date().year();
 		zipInfo.dosDate = zipInfo.internal_fa = zipInfo.external_fa = 0;
+		if ( pBar ) {
+			pBar->setRange(0, fileDataMap->count());
+			pBar->reset();
+		}
 		QMapIterator<QString, QByteArray> it(*fileDataMap);
+		int count = 0;
 		while ( it.hasNext() && success ) {
+			if ( pBar ) pBar->setValue(++count);
 			it.next();
 			QString file = it.key();
 			QByteArray data = it.value();
@@ -2190,6 +2200,7 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 	} else
 		success = false;
 
+	if ( pBar ) pBar->reset();
 	progressBarFileIO->reset();
 	progressBarFileIO->setInvertedAppearance(false);
 	return success;
