@@ -1874,6 +1874,7 @@ void ROMAlyzer::runSetRewriter()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::runSetRewriter()");
 #endif
 
+	// when called through the context menu and multiple sets are in the report, rerun the analyzer on the respective set (to make sure that pre-check data is current)
 	if ( setRewriterItem == NULL ) {
 		QList<QTreeWidgetItem *> il = treeWidgetChecksums->selectedItems();
 		if ( il.count() > 0 ) {
