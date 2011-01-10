@@ -1627,8 +1627,12 @@ void ROMAlyzer::log(QString message)
 {
   QString msg = QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + message;
 
+  bool scrollBarMaximum = (textBrowserLog->verticalScrollBar()->value() == textBrowserLog->verticalScrollBar()->maximum());
   textBrowserLog->appendPlainText(msg);
-  qApp->processEvents();
+  if ( scrollBarMaximum ) {
+    textBrowserLog->update();
+    qApp->processEvents();
+  }
 
   //printf("# of lines: %d\r", textBrowserLog->blockCount());
 }
