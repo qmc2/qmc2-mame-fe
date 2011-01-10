@@ -1632,6 +1632,7 @@ void ROMAlyzer::log(QString message)
   if ( scrollBarMaximum ) {
     textBrowserLog->update();
     qApp->processEvents();
+    textBrowserLog->verticalScrollBar()->setValue(textBrowserLog->verticalScrollBar()->maximum());
   }
 
   //printf("# of lines: %d\r", textBrowserLog->blockCount());
