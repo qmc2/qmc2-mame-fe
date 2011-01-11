@@ -996,8 +996,8 @@ MainWindow::MainWindow(QWidget *parent)
   menu_Tools->removeAction(menuAudio_player->menuAction());
 #else
   audioState = Phonon::StoppedState;
-  phononAudioPlayer = new Phonon::MediaObject;
-  phononAudioOutput = new Phonon::AudioOutput(Phonon::MusicCategory);
+  phononAudioPlayer = new Phonon::MediaObject(this);
+  phononAudioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, this);
   phononAudioPath = Phonon::createPath(phononAudioPlayer, phononAudioOutput);
   listWidgetAudioPlaylist->setTextElideMode(Qt::ElideMiddle);
   listWidgetAudioPlaylist->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -4570,15 +4570,12 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #endif
 
 #if QMC2_USE_PHONON_API
+  log(QMC2_LOG_FRONTEND, tr("disconnecting audio source from audio sink"));
+  phononAudioPath.disconnect();
   if ( qmc2AudioEffectDialog ) {
     log(QMC2_LOG_FRONTEND, tr("destroying audio effects dialog"));
     qmc2AudioEffectDialog->close();
     delete qmc2AudioEffectDialog;
-  }
-  log(QMC2_LOG_FRONTEND, tr("disconnecting/destroying audio source and sink"));
-  if ( phononAudioPath.disconnect() ) {
-    delete phononAudioPlayer;
-    delete phononAudioOutput;
   }
 #endif
 
