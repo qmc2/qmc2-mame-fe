@@ -1818,17 +1818,32 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	for (int i = 0; i < numXmlLines; i++) {
 		progressBar->setValue(i);
 		QString xmlLine = qmc2Gamelist->xmlLines[i];
+#if defined(QMC2_EMUTYPE_MAME)
 		int gameNamePos = xmlLine.indexOf("game name=\"") + 11;
+#elif defined(QMC2_EMUTYPE_MESS)
+		int gameNamePos = xmlLine.indexOf("machine name=\"") + 14;
+#else
+		int gameNamePos = -1;
+#endif
 		if ( gameNamePos > 0 ) {
 			QString currentGame = xmlLine.mid(gameNamePos, xmlLine.indexOf("\"", gameNamePos) - gameNamePos);
 			bool gameEnd = false;
 			int j;
 			for (j = i + 1; j < numXmlLines && !gameEnd; j++) {
 				xmlLine = qmc2Gamelist->xmlLines[j];
+#if defined(QMC2_EMUTYPE_MAME)
 				if ( xmlLine.startsWith("</game>") ) {
 					gameEnd = true;
 					continue;
 				}
+#elif defined(QMC2_EMUTYPE_MESS)
+				if ( xmlLine.startsWith("</machine>") ) {
+					gameEnd = true;
+					continue;
+				}
+#else
+				continue;
+#endif
 				int sha1Pos = xmlLine.indexOf("sha1=\"") + 6;
 				if ( sha1Pos > 0 ) {
 					QString currentChecksum = xmlLine.mid(sha1Pos, xmlLine.indexOf("\"", sha1Pos) - sha1Pos).toLower();
