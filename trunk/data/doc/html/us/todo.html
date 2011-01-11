@@ -13,7 +13,7 @@
   <li>The icon sizes of all menu actions are not adjusted to the actual font size -- this is a Qt restriction, and I have not yet found a way to work around this restriction... however, it's just a minor/cosmetic issue</li>
   <li>On UNIX / X11 platforms, the QMC2 variant launcher will try to raise a probably already running <i>other</i> variant -- this feature is <b>very</b> dependent on the window manager which may decide to ignore XMapRaised()</li>
   <li>Variant launching does not work on Windows yet</li>
-  <li>Running both the MAME and the MESS variants in parallel will prevent output notifications to be read by one of them (the one that first launches an emulator </i>wins</i>); that's an emulation restriction as both want to use the same FIFO (/tmp/sdlmame_out)</li>
+  <li>Running both the MAME and the MESS variants in parallel will prevent output notifications to be read by one of them (the one that first launches an emulator <i>wins</i>); that's an emulation restriction as both want to use the same FIFO (/tmp/sdlmame_out)</li>
   <li>MAME/MESS output notifications are not supported on Windows</li>
   <li>The MiniWebBrowser -- used for the MAWS lookup and the documentation browser -- has a fairly restrictive set of features which is tailored to the uses of QMC2.
       It's not even <i>meant</i> to be a full-featured browser. However, as of Qt 4.7.1, the browser works quite nicely. It even supports plugins (when enabled at compile time).</li>
