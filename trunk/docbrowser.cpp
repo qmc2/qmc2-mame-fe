@@ -77,8 +77,23 @@ void DocBrowser::moveEvent(QMoveEvent *e)
 void DocBrowser::titleChanged(QString &title)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DocBrowser::titleChanged(QString &title = ...");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DocBrowser::titleChanged(QString &title = ...");
 #endif
 
-  setWindowTitle(tr("MiniWebBrowser") + " :: " + title);
+	static QString currentTitle = "QMC2_NO_TITLE";
+
+	if ( title == "QMC2_NO_TITLE" ) {
+			setWindowTitle(tr("MiniWebBrowser"));
+			currentTitle = "QMC2_NO_TITLE";
+	} else {
+		if ( title.isEmpty() ) {
+			if ( currentTitle == "QMC2_NO_TITLE" )
+				setWindowTitle(tr("MiniWebBrowser"));
+			else
+				setWindowTitle(tr("MiniWebBrowser") + " :: " + currentTitle);
+		} else {
+			currentTitle = title;
+			setWindowTitle(tr("MiniWebBrowser") + " :: " + currentTitle);
+		}
+	}
 }
