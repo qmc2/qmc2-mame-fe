@@ -234,8 +234,7 @@ void MiniWebBrowser::webViewBrowser_urlChanged(const QUrl url)
 
   comboBoxURL->setEditText(QString::fromUtf8(webViewBrowser->url().toEncoded()));
 
-  QString newTitle = webViewBrowser->page()->mainFrame()->title();
-  if ( newTitle.isEmpty() ) newTitle = tr("No title");
+  QString newTitle = webViewBrowser->title();
   emit titleChanged(newTitle);
 
   int i = comboBoxURL->findText(comboBoxURL->lineEdit()->text());
@@ -257,6 +256,9 @@ void MiniWebBrowser::webViewBrowser_loadStarted()
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MiniWebBrowser::webViewBrowser_loadStarted()");
 #endif
+
+  QString newTitle = webViewBrowser->title();
+  emit titleChanged(newTitle);
 
   progressBar->reset();
   progressBar->setRange(0, 100);
@@ -293,6 +295,9 @@ void MiniWebBrowser::webViewBrowser_loadProgress(int progress)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_loadProgress(int progress = %1)").arg(progress));
 #endif
 
+  QString newTitle = webViewBrowser->title();
+  emit titleChanged(newTitle);
+
   progressBar->setValue(progress);
 
   if ( firstTimeLoadProgress ) {
@@ -314,6 +319,10 @@ void MiniWebBrowser::webViewBrowser_loadFinished(bool ok)
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MiniWebBrowser::webViewBrowser_loadFinished(bool ok = %1)").arg(ok));
 #endif
+
+  QString newTitle = webViewBrowser->title();
+  if ( newTitle.isEmpty() ) newTitle = "QMC2_NO_TITLE";
+  emit titleChanged(newTitle);
 
   progressBar->reset();
   progressBar->hide();
