@@ -2268,7 +2268,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 		if ( sourceType == tr("ROM") ) {
   			char ioBuffer[MAX(QMC2_ROMALYZER_ZIP_BUFFER_SIZE, QMC2_ROMALYZER_FILE_BUFFER_SIZE)];
 			// load ROM image
-			if ( sourcePath.indexOf(QRegExp("^.*\.[zZ][iI][pP]$")) == 0 ) {
+			if ( sourcePath.indexOf(QRegExp("^.*\\.[zZ][iI][pP]$")) == 0 ) {
 				// file from a ZIP archive
 				unzFile zipFile = unzOpen((const char *)sourcePath.toAscii());
 				if ( zipFile ) {
@@ -2330,7 +2330,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 
 				if ( targetType == tr("ROM") ) {
 					// save ROM image
-					if ( targetPath.indexOf(QRegExp("^.*\.[zZ][iI][pP]$")) == 0 ) {
+					if ( targetPath.indexOf(QRegExp("^.*\\.[zZ][iI][pP]$")) == 0 ) {
 						bool copyTargetData = false;
 						QMap <QString, QByteArray> targetDataMap;
 						QMap <QString, QString> targetFileMap;
