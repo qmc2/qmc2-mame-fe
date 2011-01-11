@@ -396,6 +396,10 @@ MainWindow::MainWindow(QWidget *parent)
   actionLaunchQMC2MESS->setText(tr("QMC2 for MESS"));
   actionLaunchQMC2MESS->setToolTip(tr("Launch QMC2 for MESS"));
   actionLaunchQMC2MESS->setStatusTip(tr("Launch QMC2 for MESS"));
+  // output notifiers are not supported on Windows
+  treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_STATUS);
+  treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED0);
+  treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED1);
 #endif
 
   // FIXME: remove this when arcade mode is ready
