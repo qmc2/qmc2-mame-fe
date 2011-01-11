@@ -4575,6 +4575,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2AudioEffectDialog->close();
     delete qmc2AudioEffectDialog;
   }
+  log(QMC2_LOG_FRONTEND, tr("disconnecting/destroying audio source and sink"));
+  if ( phononAudioPath.disconnect() ) {
+    delete phononAudioPlayer;
+    delete phononAudioOutput;
+  }
 #endif
 
   if ( !qmc2GameInfoDB.isEmpty() ) {
