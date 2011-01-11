@@ -1966,7 +1966,10 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DocBrowser</name>
     <message>
-        <location filename="../../docbrowser.cpp" line="83"/>
+        <location filename="../../docbrowser.cpp" line="86"/>
+        <location filename="../../docbrowser.cpp" line="91"/>
+        <location filename="../../docbrowser.cpp" line="93"/>
+        <location filename="../../docbrowser.cpp" line="96"/>
         <location filename="../../docbrowser.ui" line="15"/>
         <source>MiniWebBrowser</source>
         <translation>MiniNavigateurWeb</translation>
@@ -8163,12 +8166,7 @@ Re-essayer l&apos;embarquement?</translation>
         <translation>Inspecter</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="238"/>
-        <source>No title</source>
-        <translation>Sans titre</translation>
-    </message>
-    <message>
-        <location filename="../../miniwebbrowser.cpp" line="461"/>
+        <location filename="../../miniwebbrowser.cpp" line="470"/>
         <source>WARNING: invalid network reply and/or network error</source>
         <translation>ATTENTION: réponse réseau invalide et/ou erreur réseau</translation>
     </message>
