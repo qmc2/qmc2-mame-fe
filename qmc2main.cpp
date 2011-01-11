@@ -1160,12 +1160,6 @@ void MainWindow::on_actionPlay_activated()
   gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
 #endif
 
-  if ( qmc2BiosROMs.contains(gameName) ) {
-    // ROM is a BIOS and cannot be run...
-    log(QMC2_LOG_FRONTEND, tr("sorry, BIOS ROMs cannot be run")); 
-    return;
-  }
-
 #if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2DemoGame.isEmpty() ) {
 #endif

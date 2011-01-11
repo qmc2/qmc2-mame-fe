@@ -24,6 +24,7 @@ inf: informational only
   <li>imp: all logs are now based on read-only QPlainTextEdit's as this class is much better optimized for large amounts of plain-text data (compared to rich-text capabable QTextBrowser's, which were used before)</li>
   <li>imp: SDLMESS/MESS templates updated to 0.141 (new option <i>uifont</i>, changed default value of <i>writeconfig</i>)</li>
   <li>imp: MESS targets only: for machines that require no ROMs, the ROMAlyzer will now display both their emulation- and file-states as 'good' (as opposed to 'unknown' / 'not found' which was used before)</li>
+  <li>imp: launching of BIOS sets will no longer be avoided (it actually makes sense for some of them) -- except in demo mode, where BIOS sets are never selected</li>
   <li>new: ROMAlyzer: added a <i>checksum wizard</i> to search for SHA1 hashes in all sets, to qualify the states of the results and to repair <i>bad</i> sets from <i>good</i> ones (note: the set repair function works only for ZIPs at the moment -- create backups before using it!)</li>
   <li>new: ROMAlyzer: if a ROM or CHD file that's expected to be merged from a parent set is loaded from the child set instead, a warning is logged (may be obsolete); the report will contain green (OK), yellow (warning) or red (critical) symbols to indicate the merge status</li>
   <li>new: ROMAlyzer: added a <i>set rewriter</i> function to programmatically rewrite (clean) ROM sets on demand and/or while analysing them (works only for ZIPs!)</li>
