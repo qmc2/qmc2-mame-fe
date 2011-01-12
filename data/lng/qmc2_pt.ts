@@ -11561,8 +11561,8 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romalyzer.cpp" line="604"/>
         <source>report limit reached, removing %n set(s) from the report</source>
         <translation>
-            <numerusform>limite de reportes alcançado, removendo %n conjunto do reporte</numerusform>
-            <numerusform>limite de reportes alcançado, removendo %n conjuntos do reporte</numerusform>
+            <numerusform>limite de relatório alcançado, removendo %n conjunto do relatório</numerusform>
+            <numerusform>limite de relatório alcançado, removendo %n conjuntos do relatório</numerusform>
         </translation>
     </message>
     <message>
@@ -12288,12 +12288,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="73"/>
         <source>Report</source>
-        <translation>Reporte</translation>
+        <translation>Relatório</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="82"/>
         <source>Analysis report</source>
-        <translation>Reporte de análise</translation>
+        <translation>Relatório de análise</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="92"/>
@@ -12439,12 +12439,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="372"/>
         <source>If set, analysis output is appended (otherwise the report is cleared before the analysis)</source>
-        <translation>Se selecionado, a saída da análise será adicionada (senão o reporte será limpo antes da análise)</translation>
+        <translation>Se selecionado, a saída da análise será adicionada (senão o relatório será limpo antes da análise)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="375"/>
         <source>Append to report</source>
-        <translation>Adicionar ao reporte</translation>
+        <translation>Adicionar ao relatório</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="382"/>
@@ -12717,7 +12717,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="549"/>
         <source>Reports</source>
-        <translation>Reportes</translation>
+        <translation>Relatórios</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="562"/>
