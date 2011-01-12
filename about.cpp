@@ -113,6 +113,9 @@ void About::showEvent(QShowEvent *e)
 #ifdef BETA
           ".b" + QString::number(BETA) +
 #endif
+#if QMC2_SVN_REV > 0
+	  " (" + tr("SVN r%1").arg(QMC2_SVN_REV) + ")" +
+#endif
           ", " + tr("built for") + 
 #if defined(QMC2_SDLMAME)
           " SDLMAME" +
