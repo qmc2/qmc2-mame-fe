@@ -4,14 +4,14 @@
 <context>
     <name></name>
     <message>
-        <location filename="../../macros.h" line="346"/>
-        <location filename="../../macros.h" line="352"/>
+        <location filename="../../macros.h" line="350"/>
+        <location filename="../../macros.h" line="356"/>
         <source>M.A.M.E. Catalog / Launcher II</source>
         <translation>M.A.M.E. Catalog / Launcher II</translation>
     </message>
     <message>
-        <location filename="../../macros.h" line="349"/>
-        <location filename="../../macros.h" line="355"/>
+        <location filename="../../macros.h" line="353"/>
+        <location filename="../../macros.h" line="359"/>
         <source>M.E.S.S. Catalog / Launcher II</source>
         <translation>M.E.S.S. Catalog / Launcher II</translation>
     </message>
@@ -24,7 +24,7 @@
         <translation>Version </translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="116"/>
+        <location filename="../../about.cpp" line="119"/>
         <source>built for</source>
         <translation>erzeugt für</translation>
     </message>
@@ -39,17 +39,17 @@
         <translation>System Informationen</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="141"/>
+        <location filename="../../about.cpp" line="144"/>
         <source>Build OS:</source>
         <translation>Systemumgebung bei Erzeugung:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="155"/>
+        <location filename="../../about.cpp" line="158"/>
         <source>Phonon backend / supported MIME types:</source>
         <translation>Phonon Backend / unterstützte MIME Typen:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="167"/>
+        <location filename="../../about.cpp" line="170"/>
         <source>Environment variables:</source>
         <translation>Umgebungsvariablen:</translation>
     </message>
@@ -72,40 +72,40 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="132"/>
+        <location filename="../../about.cpp" line="135"/>
         <source>Project homepage:</source>
         <translation>Projekt Homepage:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="133"/>
+        <location filename="../../about.cpp" line="136"/>
         <source>Development site:</source>
         <translation>Entwicklungsseite:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="134"/>
+        <location filename="../../about.cpp" line="137"/>
         <source>QMC2 development mailing list:</source>
         <translation>QMC2 Entwicklungs-Mailingliste:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="135"/>
+        <location filename="../../about.cpp" line="138"/>
         <source>List subscription:</source>
         <translation>Liste abonnieren:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="150"/>
+        <location filename="../../about.cpp" line="153"/>
         <source>Qt version:</source>
         <translation>Qt Version:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="150"/>
-        <location filename="../../about.cpp" line="152"/>
+        <location filename="../../about.cpp" line="153"/>
+        <location filename="../../about.cpp" line="155"/>
         <source>Compile-time:</source>
         <translation>Zur Kompilationszeit:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="150"/>
-        <location filename="../../about.cpp" line="152"/>
+        <location filename="../../about.cpp" line="153"/>
         <location filename="../../about.cpp" line="155"/>
+        <location filename="../../about.cpp" line="158"/>
         <source>Run-time:</source>
         <translation>Zur Laufzeit:</translation>
     </message>
@@ -115,17 +115,17 @@ p, li { white-space: pre-wrap; }
         <translation>Projekt Details</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="128"/>
+        <location filename="../../about.cpp" line="131"/>
         <source>Copyright</source>
         <translation>Copyright</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="128"/>
+        <location filename="../../about.cpp" line="131"/>
         <source>Germany</source>
         <translation>Deutschland</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="148"/>
+        <location filename="../../about.cpp" line="151"/>
         <source>Emulator version:</source>
         <translation>Emulator Version:</translation>
     </message>
@@ -141,37 +141,37 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="164"/>
+        <location filename="../../about.cpp" line="167"/>
         <source>Total: %1 MB</source>
         <translation>Gesamt: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="164"/>
+        <location filename="../../about.cpp" line="167"/>
         <source>Free: %1 MB</source>
         <translation>Frei: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="164"/>
+        <location filename="../../about.cpp" line="167"/>
         <source>Used: %1 MB</source>
         <translation>Benutzt: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="164"/>
+        <location filename="../../about.cpp" line="167"/>
         <source>Physical memory:</source>
         <translation>Physischer Speicher:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="166"/>
+        <location filename="../../about.cpp" line="169"/>
         <source>Number of CPUs:</source>
         <translation>Anzahl CPUs:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="166"/>
+        <location filename="../../about.cpp" line="169"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="149"/>
+        <location filename="../../about.cpp" line="152"/>
         <source>Template information:</source>
         <translation>Template Information:</translation>
     </message>
@@ -181,27 +181,27 @@ p, li { white-space: pre-wrap; }
         <translation>Windows 7 oder Windows Server 2008 R2 (Windows 6.1)</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="149"/>
+        <location filename="../../about.cpp" line="152"/>
         <source>Emulator:</source>
         <translation>Emulator:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="149"/>
+        <location filename="../../about.cpp" line="152"/>
         <source>Version:</source>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="149"/>
+        <location filename="../../about.cpp" line="152"/>
         <source>Format:</source>
         <translation>Format:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="150"/>
+        <location filename="../../about.cpp" line="153"/>
         <source>Build key:</source>
         <translation>Build Schlüssel:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="152"/>
+        <location filename="../../about.cpp" line="155"/>
         <source>SDL version:</source>
         <translation>SDL Version:</translation>
     </message>
@@ -261,18 +261,23 @@ p, li { white-space: pre-wrap; }
         <translation>Windows (unbekannt)</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="134"/>
+        <location filename="../../about.cpp" line="117"/>
+        <source>SVN r%1</source>
+        <translation>SVN r%1</translation>
+    </message>
+    <message>
+        <location filename="../../about.cpp" line="137"/>
         <source>subscription required</source>
         <translation>Subskription erforderlich</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="136"/>
+        <location filename="../../about.cpp" line="139"/>
         <source>Bug tracking system:</source>
         <translation>Bug Tracking System:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="144"/>
-        <location filename="../../about.cpp" line="146"/>
+        <location filename="../../about.cpp" line="147"/>
+        <location filename="../../about.cpp" line="149"/>
         <source>Running OS:</source>
         <translation>Systemumgebung zur Laufzeit:</translation>
     </message>
@@ -282,7 +287,7 @@ p, li { white-space: pre-wrap; }
         <translation>Qt 4 basiertes Multi-Plattform/Multi-Emulator Frontend</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="155"/>
+        <location filename="../../about.cpp" line="158"/>
         <source>Phonon version:</source>
         <translation>Phonon Version:</translation>
     </message>
@@ -11032,25 +11037,25 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7821"/>
+        <location filename="../../qmc2main.cpp" line="7824"/>
         <source>Export to...</source>
         <translation>Exportieren nach...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2997"/>
-        <location filename="../../qmc2main.cpp" line="7829"/>
+        <location filename="../../qmc2main.cpp" line="7832"/>
         <source>Import from...</source>
         <translation>Importieren von...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7847"/>
-        <location filename="../../qmc2main.cpp" line="7855"/>
+        <location filename="../../qmc2main.cpp" line="7850"/>
+        <location filename="../../qmc2main.cpp" line="7858"/>
         <source>&lt;inipath&gt;/mame.ini</source>
         <translation>&lt;inipath&gt;/mame.ini</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7851"/>
-        <location filename="../../qmc2main.cpp" line="7859"/>
+        <location filename="../../qmc2main.cpp" line="7854"/>
+        <location filename="../../qmc2main.cpp" line="7862"/>
         <source>Select file...</source>
         <translation>Datei auswählen...</translation>
     </message>
@@ -11067,19 +11072,24 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Spiel-spezifische MAME Konfiguration importieren</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7823"/>
-        <location filename="../../qmc2main.cpp" line="7824"/>
+        <location filename="../../qmc2main.cpp" line="7779"/>
+        <source>SVN r%1</source>
+        <translation>SVN r%1</translation>
+    </message>
+    <message>
+        <location filename="../../qmc2main.cpp" line="7826"/>
+        <location filename="../../qmc2main.cpp" line="7827"/>
         <source>Export global MAME configuration</source>
         <translation>Globale MAME Konfiguration exportieren</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7831"/>
-        <location filename="../../qmc2main.cpp" line="7832"/>
+        <location filename="../../qmc2main.cpp" line="7834"/>
+        <location filename="../../qmc2main.cpp" line="7835"/>
         <source>Import global MAME configuration</source>
         <translation>Globale MAME Konfiguration importieren</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7807"/>
+        <location filename="../../qmc2main.cpp" line="7810"/>
         <source>processing global emulator configuration</source>
         <translation>Verarbeite globale Emulator-Konfiguration</translation>
     </message>
@@ -11126,19 +11136,19 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Spielname</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7794"/>
+        <location filename="../../qmc2main.cpp" line="7797"/>
         <source>OpenGL features enabled</source>
         <translation>OpenGL Features aktiviert</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7826"/>
-        <location filename="../../qmc2main.cpp" line="7827"/>
+        <location filename="../../qmc2main.cpp" line="7829"/>
+        <location filename="../../qmc2main.cpp" line="7830"/>
         <source>Export global MESS configuration</source>
         <translation>Globale MESS Konfiguration exportieren</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7834"/>
-        <location filename="../../qmc2main.cpp" line="7835"/>
+        <location filename="../../qmc2main.cpp" line="7837"/>
+        <location filename="../../qmc2main.cpp" line="7838"/>
         <source>Import global MESS configuration</source>
         <translation>Globale MESS Konfiguration importieren</translation>
     </message>
@@ -11155,13 +11165,13 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Maschinen Name</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7803"/>
+        <location filename="../../qmc2main.cpp" line="7806"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
         <translation>SDL Joystick Unterstützung aktiviert - verwende SDL v%1.%2.%3</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7849"/>
-        <location filename="../../qmc2main.cpp" line="7857"/>
+        <location filename="../../qmc2main.cpp" line="7852"/>
+        <location filename="../../qmc2main.cpp" line="7860"/>
         <source>&lt;inipath&gt;/mess.ini</source>
         <translation>&lt;inipath&gt;/mess.ini</translation>
     </message>
@@ -11183,7 +11193,7 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>M.E.S.S. Catalog / Launcher II v</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7798"/>
+        <location filename="../../qmc2main.cpp" line="7801"/>
         <source>Phonon features enabled - using Phonon v%1</source>
         <translation>Phonon Features aktiviert - verwende Phonon v%1</translation>
     </message>

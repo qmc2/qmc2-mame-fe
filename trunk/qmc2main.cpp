@@ -7775,6 +7775,9 @@ int main(int argc, char *argv[])
 #ifdef BETA
              ".b" + QString::number(BETA) +
 #endif
+#if QMC2_SVN_REV > 0
+             ", " + QObject::tr("SVN r%1").arg(QMC2_SVN_REV) +
+#endif
              " (Qt " + qVersion() +
 #if defined(QMC2_SDLMAME)
              ", SDLMAME, " +
