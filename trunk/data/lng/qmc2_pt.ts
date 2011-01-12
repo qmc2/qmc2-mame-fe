@@ -91,7 +91,7 @@
     <message>
         <location filename="../../about.cpp" line="117"/>
         <source>SVN r%1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="119"/>
@@ -5957,7 +5957,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4573"/>
         <source>disconnecting audio source from audio sink</source>
-        <translation type="unfinished"></translation>
+        <translation>desconectando fonte de áudio do sumidouro de áudio</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4584"/>
@@ -7702,9 +7702,9 @@ Tentar novamente?</translation>
         <location filename="../../qmc2main.cpp" line="261"/>
         <location filename="../../qmc2main.cpp" line="275"/>
         <source>last message repeated %n time(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>última mensagem se repetiu %n vez</numerusform>
+            <numerusform>última mensagem se repetiu %n vezes</numerusform>
         </translation>
     </message>
     <message>
@@ -11111,7 +11111,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../qmc2main.cpp" line="7779"/>
         <source>SVN r%1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7797"/>
@@ -11222,72 +11222,72 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="2304"/>
         <source>checksum wizard: FATAL: can&apos;t open ZIP archive &apos;%1&apos; for reading</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: FATAL: impossível abrir arquivo ZIP &apos;%1&apos; para leitura</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1962"/>
         <source>Reading &apos;%1&apos; - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Lendo &apos;%1&apos; - %2</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1982"/>
         <source>set rewriter: loading &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos; as &apos;%4&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: carregando &apos;%1&apos; com CRC &apos;%2&apos; de &apos;%3&apos; como &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2007"/>
         <source>set rewriter: removing redundant file &apos;%1&apos; with CRC &apos;%2&apos; from output data</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: removendo arquivo redundante &apos;%1&apos; com CRC &apos;%2&apos; dos dados de saída</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2025"/>
         <source>set rewriter: INFORMATION: no output data available, thus not rewriting set &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: INFORMAÇÃO: nenhum dado de saída disponível, portanto não reescrevendo conjunto &apos;%1&apos; para &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2198"/>
         <source>set rewriter: deflating &apos;%1&apos; (uncompressed size: %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: desinflando &apos;%1&apos; (tamanho não comprimido: %2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2218"/>
         <source>set rewriter: WARNING: failed to deflate &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: AVISO: falha ao desinflar &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2327"/>
         <source>Repairing set &apos;%1&apos; - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Reparando conjunto &apos;%1&apos; - %2</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2328"/>
         <source>checksum wizard: repairing %1 file &apos;%2&apos; in &apos;%3&apos; from repro template</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: reparando arquivo %1&apos;%2&apos; em &apos;%3&apos; do modelo de reprodução</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2413"/>
         <source>checksum wizard: FATAL: can&apos;t open file &apos;%1&apos; in ZIP archive &apos;%2&apos; for writing</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: FATAL: impossível abrir arquivo &apos;%1&apos; no arquivo ZIP &apos;%2&apos; para escrita</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2419"/>
         <source>Fixed by QMC2 v%1 (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2425"/>
         <source>checksum wizard: FATAL: can&apos;t open ZIP archive &apos;%1&apos; for writing</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: FATAL: impossível abrir arquivo ZIP &apos;%1&apos; para escrita</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2440"/>
         <source>repaired</source>
-        <translation type="unfinished"></translation>
+        <translation>reparado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2442"/>
         <source>checksum wizard: successfully repaired %1 file &apos;%2&apos; in &apos;%3&apos; from repro template</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: arquivo %1 &apos;%2&apos; reparado com sucesso em &apos;%3&apos; do modelo de reprodução</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2559"/>
@@ -11312,12 +11312,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="1472"/>
         <source>WARNING: the CRC for &apos;%1&apos; from &apos;%2&apos; is unknown to the emulator, the set rewriter will use the recalculated CRC &apos;%3&apos; to qualify the file</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o CRC para &apos;%1&apos; de &apos;%2&apos; é desconhecido para o emulador, o reescritor de conjuntos usará o CRC recalculado &apos;%3&apos; para qualificar o arquivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1474"/>
         <source>WARNING: unable to determine the CRC for &apos;%1&apos; from &apos;%2&apos;, the set rewriter will NOT store this file in the new set</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: incapaz de determinar o CRC para &apos;%1&apos; de &apos;%2&apos;, o reescritor de conjuntos NÃO guardará este arquivo no novo conjunto</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1657"/>
@@ -11560,9 +11560,9 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="604"/>
         <source>report limit reached, removing %n set(s) from the report</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>limite de reportes alcançado, removendo %n conjunto do reporte</numerusform>
+            <numerusform>limite de reportes alcançado, removendo %n conjuntos do reporte</numerusform>
         </translation>
     </message>
     <message>
@@ -11772,17 +11772,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="122"/>
         <source>Search checksum</source>
-        <translation type="unfinished"></translation>
+        <translation>Soma da busca</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="131"/>
         <source>Rewrite set</source>
-        <translation type="unfinished"></translation>
+        <translation>Reescrever conjunto</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="768"/>
         <source>WARNING: %1 file &apos;%2&apos; loaded from &apos;%3&apos; may be obsolete, should be merged from parent set &apos;%4&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: arquivo %1 &apos;%2&apos; carregado de &apos;%3&apos; pode estar obsoleto, deveria ser misturado do conjunto pai &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1042"/>
@@ -12074,190 +12074,190 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="1683"/>
         <source>Choose output directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha diretório de destino</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1826"/>
         <source>Checksum search</source>
-        <translation type="unfinished"></translation>
+        <translation>Busca de somas</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1941"/>
         <source>set rewriter: WARNING: can&apos;t rewrite set &apos;%1&apos;, output path is not a directory</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: AVISO: impossível reescrever conjunto &apos;%1&apos;, caminho de saída não é um diretório</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1945"/>
         <source>set rewriter: WARNING: can&apos;t rewrite set &apos;%1&apos;, output path is not writable</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: AVISO: impossível reescrever conjunto &apos;%1&apos;, caminho de saída não tem permissão de escrita</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1950"/>
         <source>set rewriter: WARNING: can&apos;t rewrite set &apos;%1&apos;, output path does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: AVISO: impossível reescrever conjunto &apos;%1&apos;, caminho de saída não existe</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1954"/>
         <source>set rewriter: WARNING: can&apos;t rewrite set &apos;%1&apos;, output path is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: AVISO: impossível reescrever conjunto &apos;%1&apos;, caminho de saída não está vazio</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1966"/>
         <source>space-efficient</source>
-        <translation type="unfinished"></translation>
+        <translation>eficiência de espaço</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1967"/>
         <source>self-contained</source>
-        <translation type="unfinished"></translation>
+        <translation>auto contido</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1969"/>
         <source>set rewriter: rewriting %1 set &apos;%2&apos; to &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: reescrevendo conjunto %1 &apos;%2&apos; para &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1988"/>
         <source>set rewriter: FATAL: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos;, aborting</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: FATAL: impossível carregar &apos;%1&apos; com CRC &apos;%2&apos; de &apos;%3&apos;, abortando</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1991"/>
         <source>set rewriter: WARNING: can&apos;t load &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos;, ignoring this file</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: AVISO: impossível carregar &apos;%1&apos; com CRC &apos;%2&apos; de &apos;%3&apos;, ignorando este arquivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2016"/>
         <source>set rewriter: writing new %1 set &apos;%2&apos; in &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: escrevendo novo conjunto %1 &apos;%2&apos; em &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2017"/>
         <source>Writing &apos;%1&apos; - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Escrevendo &apos;%1&apos; - %2</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2019"/>
         <source>set rewriter: new %1 set &apos;%2&apos; in &apos;%3&apos; successfully created</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: novo conjunto %1 &apos;%2&apos; em &apos;%3&apos; criado com sucesso</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2021"/>
         <source>set rewriter: FATAL: failed to create new %1 set &apos;%2&apos; in &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: FATAL: falha para criar novo conjunto %1 &apos;%2&apos; em &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2031"/>
         <source>set rewriter: done (rewriting %1 set &apos;%2&apos; to &apos;%3&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: feito (reescrevendo conjunto %1 &apos;%2&apos; para &apos;%3&apos;)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="2257"/>
         <source>checksum wizard: repairing %n bad set(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>checksum wizard: reparando %n conjunto ruim</numerusform>
+            <numerusform>checksum wizard: reparando %n conjuntos ruins</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2263"/>
         <source>checksum wizard: using %1 file &apos;%2&apos; from &apos;%3&apos; as repro template</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: usando arquivo %1&apos;%2&apos; de &apos;%3&apos; como modelo de reprodução</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2286"/>
         <source>checksum wizard: successfully identified &apos;%1&apos; from &apos;%2&apos; by CRC, filename in ZIP archive is &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: &apos;%1&apos; de &apos;%2&apos; identificado com sucesso pelo CRC, nome do arquivo no pacote ZIP é &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2295"/>
         <source>checksum wizard: template data loaded, uncompressed size = %1 bytes</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: dado de modelo carregado, dado não comprimido = %1 bytes</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2299"/>
         <source>checksum wizard: FATAL: unable to identify &apos;%1&apos; from &apos;%2&apos; by CRC</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: FATAL: incapaz de identificar &apos;%1&apos; de &apos;%2&apos; pelo CRC</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2309"/>
         <location filename="../../romalyzer.cpp" line="2430"/>
         <source>checksum wizard: sorry, no support for regular files yet</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: desculpe, sem suporte para arquivos regulares por enquanto</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2314"/>
         <location filename="../../romalyzer.cpp" line="2435"/>
         <source>checksum wizard: sorry, no support for CHD files yet</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: desculpe, sem suporte para arquivos CHD por enquanto</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2340"/>
         <source>checksum wizard: target ZIP exists, loading complete data and structure</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: arquivo de destino ZIP existe, carregando dados e estrutura completos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2342"/>
         <source>checksum wizard: target ZIP successfully loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: arquivo ZIP de destino carregado com sucesso</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2344"/>
         <source>checksum wizard: an entry with the CRC &apos;%1&apos; already exists, recreating the ZIP from scratch to replace the bad file</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: um entrada com o CRC &apos;%1&apos; já existe, recriando o ZIP do início para substituir o arquivo ruim</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2347"/>
         <source>checksum wizard: backup file &apos;%1&apos; successfully created</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: arquivo de backup &apos;%1&apos; criado com sucesso</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2351"/>
         <source>checksum wizard: FATAL: failed to create backup file &apos;%1&apos;, aborting</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: FATAL: falha ao criar o arquivo de backup &apos;%1&apos;, abortando</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2355"/>
         <source>checksum wizard: no entry with the CRC &apos;%1&apos; was found, adding the missing file to the existing ZIP</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: nenhuma entrada com o CRC &apos;%1&apos; foi encontrada, adicionando o arquivo faltando para o ZIP existente</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2358"/>
         <source>checksum wizard: FATAL: failed to load target ZIP, aborting</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: FATAL: falha ao carregar o arquivo ZIP de destino, abortando</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2363"/>
         <source>checksum wizard: the target ZIP does not exist, creating a new ZIP with just the missing file</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: o arquivo ZIP de destino não existe, criando um novo arquivo ZIP somente com o arquivo faltante</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2224"/>
         <location filename="../../romalyzer.cpp" line="2421"/>
         <source>Created by QMC2 v%1 (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2444"/>
         <source>repair failed</source>
-        <translation type="unfinished"></translation>
+        <translation>reparo falhou</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2446"/>
         <source>checksum wizard: FATAL: failed to repair %1 file &apos;%2&apos; in &apos;%3&apos; from repro template</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: FATAL: falha ao reparar arquivo %1 &apos;%2&apos; em &apos;%3&apos; do modelo de reprodução</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2456"/>
         <source>checksum wizard: FATAL: can&apos;t find any good set</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: FATAL: nenhum conjunto bom encontrado</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="2458"/>
         <source>checksum wizard: done (repairing %n bad set(s))</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>checksum wizard: feito (reparando %n conjunto ruim)</numerusform>
+            <numerusform>checksum wizard: feito (reparando %n conjuntos ruins)</numerusform>
         </translation>
     </message>
     <message>
@@ -12499,47 +12499,47 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="906"/>
         <source>Rewrite sets while analyzing them (otherwise sets will only be rewritten on demand / through the context menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Reescrever conjuntos enquanto são analisados (caso contrário conjuntos serão reescritos apenas sob demanda ou pelo menu de contexto)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="909"/>
         <source>While analyzing</source>
-        <translation type="unfinished"></translation>
+        <translation>Enquanto analisa</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="919"/>
         <source>Self-contained</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto contido</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="929"/>
         <source>Good only</source>
-        <translation type="unfinished"></translation>
+        <translation>Somente bons</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="945"/>
         <source>ZIPs</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="964"/>
         <source>Level </source>
-        <translation type="unfinished"></translation>
+        <translation>Nível</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="986"/>
         <source>Produce sets in individual sub-directories (not recommended -- and not supported yet!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Produzir conjuntos em sub diretórios individuais (não recomendado - e não suportado por enquanto!)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="989"/>
         <source>Directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretórios</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1110"/>
         <source>Repair selected &apos;bad&apos; sets using the file from the first selected &apos;good&apos; set (at least 1 good and 1 bad set must be selected)</source>
-        <translation type="unfinished"></translation>
+        <translation>Reparar conjuntos &apos;ruins&apos; selecionados usando arquivos do primeiro conjunto &apos;bom&apos; selecionado (pelo menos 1 conjunto bom e 1 ruim deve ser selecionados)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2548"/>
@@ -12682,47 +12682,47 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="289"/>
         <source>Temporary directory used by the CHD manager (make sure it has enough room to store the biggest CHDs)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório temporário usado pelo CHD manager (garanta que tem espaço suficiente para guardar os CHDs maiores)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="302"/>
         <source>Browse temporary directory used by the CHD manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher diretório temporário que será usado pelo CHD manager</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="366"/>
         <source>General analysis flags and limits</source>
-        <translation type="unfinished"></translation>
+        <translation>Flags e limites de análise geral</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="472"/>
         <source>&lt;b&gt;Limits:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Limites:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="479"/>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho do arquivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="492"/>
         <source>Maximum size (in MB) of files to be loaded, files are skipped when they are bigger than that (0 = no limit)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanha máximo (em MB) dos arquivos a serem carregados, arquivos são pulados quando são maiores que o limite (0 = ilimitado)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="514"/>
         <source>Log size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho do arquivo de log</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="549"/>
         <source>Reports</source>
-        <translation type="unfinished"></translation>
+        <translation>Reportes</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="562"/>
         <source>Maximum number of reported sets held in memory (0 = no limit)</source>
-        <translation type="unfinished"></translation>
+        <translation>Número máximo de conjuntos relatados em memória (0 = sem limite)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="654"/>
@@ -12767,107 +12767,107 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="855"/>
         <source>Enable set rewriter</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar reescritor de conjuntos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="867"/>
         <source>Set rewriter output path</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho de saída para o reescritor de conjuntos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="880"/>
         <source>Output path for the set rewriter (WARNING: existing files will be overwritten!) -- you should NEVER use one of your primary ROM paths here!!!</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho de saída para o reescritor de conjuntos (AVISO: arquivos existentes serão sobrescritos!) - você NUNCA deveria usar um de seus caminhos de ROMs aqui!!!</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="893"/>
         <source>Browse output path for the set rewriter</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher caminho de saída para o reescritor de conjuntos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="916"/>
         <source>Create sets that do not need parent sets (otherwise create merged sets, which is recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>Criar conjuntos que não precisam de conjuntos pais (caso contrário criar conjuntos mistos, o que é recomendado)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="926"/>
         <source>Rewrite sets only when they are &apos;good&apos; (otherwise, &apos;bad&apos; sets will be included)</source>
-        <translation type="unfinished"></translation>
+        <translation>Reescrever conjuntos somento quando eles estão &apos;bons&apos; (caso contrário, conjuntos &apos;ruins&apos; serão incluídos)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="942"/>
         <source>Produce ZIP archived sets (recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>Produzir conjuntos em arquivos ZIP (recomendado)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="961"/>
         <source>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o nível de compressão para os arquivos ZIP (0 = menor / mais rápido, 9 = melhor / mais lento)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1002"/>
         <source>Checksum wizard</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1014"/>
         <source>SHA1 checksum</source>
-        <translation type="unfinished"></translation>
+        <translation>Soma SHA1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1027"/>
         <source>SHA1 checksum to search for</source>
-        <translation type="unfinished"></translation>
+        <translation>Soma SHA1 para buscar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1040"/>
         <source>Search for the SHA1 checksum now</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar pela soma SHA1 agora</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1043"/>
         <source>Search</source>
-        <translation type="unfinished">Procurar</translation>
+        <translation>Buscar</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1054"/>
         <source>Search results for the current SHA1 checksum</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar resultados para a soma SHA1 atual</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1079"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1084"/>
         <source>Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do arquivo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1089"/>
         <source>Status</source>
-        <translation type="unfinished">Estado</translation>
+        <translation>Estado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1099"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1113"/>
         <source>Repair bad sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Reparar conjuntos ruins</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1127"/>
         <source>Analyze all selected sets in order to qualify them</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisar todos os conjuntos selecionado para qualificá-los</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1130"/>
         <source>Analyze selected sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisar conjuntos selecionados</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1150"/>
