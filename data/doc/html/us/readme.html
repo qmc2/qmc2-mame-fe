@@ -209,14 +209,12 @@ However, a symbolic link named <i>qmc2</i> will created in the binary installati
 In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new settings</b> and add them to /etc/qmc2/qmc2.ini manually!</p>
 <p>Note that in order to use the <i>QMC2 variant launcher</i> - one QMC2 variant can launch (or switch to) the other - it is <b>required</b> that all binaries are in your search path (including the <i>runonce</i> launcher wrapper)!</p>
 <p><b>Building the QMC2 binary on Windows</b></p>
-<p>The build steps on Windows are completely different than the ones on UNIX and Mac OS X. There may be other ways to do it on Windows than the one described here,
-but that's how we succeeded and what we therefore can support (note that this is still <i>preliminary</i> information and the Windows build process will eventually
-become cleaner and more automatic when time permits):</p>
+<p>The build steps on Windows are completely different than the ones on UNIX and Mac OS X. There may be other ways to do it on Windows than the one described here, but that's how we succeeded and what we therefore can support:</p>
 <ol>
   <li>Install all software requirements mentioned above.</li>
-  <li>Extract all contents from the QMC2 source distribution archive into a directory.</li>
+  <li>Extract all contents from the QMC2 source distribution archive into a directory (or use the code from the SVN repo: <a href="http://tortoisesvn.tigris.org/" target="_blank">TortoiseSVN</a> is a nicely working SVN client for Windows which we use ourselves).</li>
   <li>For correct embedding of <i>static</i> images that QMC2 uses (mostly icons) it's necessary to copy <b>all</b> image files from <i>data\img\classic\</i> to <i>data\img\</i>, overwriting the existing symbolic links (this is due to the fact that we are relinking the images on UNIX and Mac OS X, but on Windows this doesn't work). If you'd like to exchange some images with those in other image sets (see sub-directories below <i>data\img\</i>, i. e. <i>crazy\</i> or <i>crazy-black\</i>), copy these files over the ones that are in <i>data\img\</i> now.</li>
-  <li>Edit the batch script <i>scripts\generate-vcprojects.bat</i> and adjust the path variables at the beginning of the script. The scripts requires <a href="http://gnuwin32.sourceforge.net/packages/sed.htm" target="_blank">sed for Windows</a> (and optionally <a href="http://tortoisesvn.tigris.org/" target="_blank">TortoiseSVN</a>)</li>
+  <li>Edit the batch script <i>scripts\generate-vcprojects.bat</i> and adjust the path variables at the beginning of the script. The script requires <a href="http://gnuwin32.sourceforge.net/packages/sed.htm" target="_blank">sed for Windows</a> (and optionally <a href="http://tortoisesvn.tigris.org/" target="_blank">TortoiseSVN</a> when using code from the SVN repo)</li>
   <li>Make sure the current working directory is the top-level path of where you extracted the QMC2 sources and run <i>scripts\generate-vcprojects.bat</i>. This will create two additional sub-directories (<i>debug\</i> and <i>release\</i>) and generate two VC++ project files: <i>qmc2-mame.vcproj</i> and <i>qmc2-mess.vcproj</i>.</li>
   <li>Open one (or both) of the project files in Visual C++ 2008 Express (double-clicking the .vcproj files should also work).</li>
   <li>Edit the project settings within VC++ to produce <i>Release</i> instead of <i>Debug</i> (default) output.</li>
