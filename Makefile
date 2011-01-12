@@ -497,6 +497,12 @@ include $(DISTCFGFILE)
 endif
 endif
 
+# determine the SVN revision (if any)
+SVN_REV=$(shell $(SVNVERSION) 2>&1 | $(SED) -e "s/[MS]//g" -e "s/^[[:digit:]]*://" | $(GREP) "^[0-9]*$$")
+ifeq '$(SVN_REV)' ''
+SVN_REV=0
+endif
+
 # global QMC2 configuration file
 GLOBAL_QMC2_INI=$(shell echo $(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)/$(PROJECT).ini | $(SED) -e "s*//*/*g")
 
@@ -523,7 +529,7 @@ blank =
 space = $(blank) $(blank)
 
 # pre-compiler definitions (passed to qmake)
-DEFINES = DEFINES+=$(VERSIONDEFS) QMC2_VERSION=$(VERSION) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_ARCADE_OPENGL=$(ARCADE_OPENGL) QMC2_WIP_CODE=$(WIP) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED) QMC2_XWININFO=$(XWININFO)
+DEFINES = DEFINES+=$(VERSIONDEFS) QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_ARCADE_OPENGL=$(ARCADE_OPENGL) QMC2_WIP_CODE=$(WIP) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED) QMC2_XWININFO=$(XWININFO)
 
 # process make options
 ifeq '$(DEBUG)' '2'
@@ -704,7 +710,7 @@ $(PROJECT): $(PROJECT)-bin
 
 # put the version and SCM revision in the Info.plist for OS X
 %.plist: %.plist.in
-	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(shell svnversion | $(SED) -e 's/[MS]//g' -e 's/^[[:digit:]]*://'))/g' < $< > $@
+	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' < $< > $@
 
 ifeq '$(ARCH)' 'Darwin'
 $(QMAKEFILE): macx/Info.plist
@@ -1010,6 +1016,7 @@ endif
 	@echo "SDLLOCAL_INC         Base include directory of the 'local' SDL    $(SDLLOCAL_INC)"
 	@echo "SDLLOCAL_LIB         Base library directory of the 'local' SDL    $(SDLLOCAL_LIB)"
 	@echo "SED                  UNIX command sed                             $(SED)"
+	@echo "SVNVERSION           UNIX command svnversion (optional)           $(SVNVERSION)"
 	@echo "SYSCONFDIR           System configuration directory               $(SYSCONFDIR)"
 	@echo "TAR                  UNIX command tar                             $(TAR)"
 	@echo "TR                   UNIX command tr                              $(TR)"
@@ -1018,6 +1025,10 @@ endif
 	@echo "WC_COMPRESSION       Compress MAWS web-cache data (0, 1)          $(WC_COMPRESSION)"
 	@echo "WIP                  Enable unfinished code (0, 1)                $(WIP)"
 	@echo "XWININFO             X11 xwininfo command                         $(XWININFO)"
+ifneq '$(SVN_REV)' ''
+	@echo ""
+	@echo "The SVN revision of your working copy is $(SVN_REV)."
+endif
 
 # process translations
 QMC2_TRANSLATIONS = us de pl fr pt

@@ -3,6 +3,10 @@
 
 #include <Qt>
 
+#if !defined(QMC2_SVN_REV)
+#define QMC2_SVN_REV			0
+#endif
+
 // min/max of two constants
 #define MAX(a, b)			(((a) > (b)) ? (a) : (b))
 #define MIN(a, b)			(((a) < (b)) ? (a) : (b))
