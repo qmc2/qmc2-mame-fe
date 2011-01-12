@@ -96,6 +96,10 @@ set find2=%QT_PATH_ESCAPED%\\lib\\qtmain.lib
 set repl2=
 set find3=%QT_PATH_ESCAPED%\\lib\\qtmaind.lib 
 set repl3=
+set find4=AdditionalOptions=\"
+set repl4=AdditionalOptions=\"\/MACHINE:X86 
+set find5=AdditionalOptions=\"\/MACHINE:X86 -Zm200\"
+set repl5=AdditionalOptions=\"-Zm200\"
 
 echo Adjusting VC++ project files, please wait...
 
@@ -106,7 +110,7 @@ set new_file=%old_file%.new
 
 if exist %new_file% del %new_file%
 
-%SED_COMMAND% -e "s/%find1%/%repl1%/" -e "s/%find2%/%repl2%/" -e "s/%find3%/%repl3%/" %old_file% > %new_file%
+%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
 
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
@@ -118,7 +122,7 @@ set new_file=%old_file%.new
 
 if exist %new_file% del %new_file%
 
-%SED_COMMAND% -e "s/%find1%/%repl1%/" -e "s/%find2%/%repl2%/" -e "s/%find3%/%repl3%/" %old_file% > %new_file%
+%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
 
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
