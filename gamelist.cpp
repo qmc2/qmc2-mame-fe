@@ -1032,6 +1032,11 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       childItem = new QTreeWidgetItem(item);
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Configuration"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name", TRUE));
+      attributes.clear();
+      attributes << "tag" << "mask";
+      descriptions.clear();
+      descriptions << tr("Tag") << tr("Mask");
+      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
 
       gamePos++;
       while ( xmlLines[gamePos].contains("<confsetting ") ) {
