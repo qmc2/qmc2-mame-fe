@@ -2101,6 +2101,7 @@ qmc2/scripts/.svn/text-base/os-detect.sh.svn-base
 qmc2/scripts/.svn/text-base/plugin_helper.sh.svn-base
 qmc2/scripts/.svn/text-base/romalyzer.pl.svn-base
 qmc2/scripts/.svn/text-base/setup_imgset.sh.svn-base
+qmc2/scripts/.svn/text-base/subwcrev.template.svn-base
 qmc2/.svn
 qmc2/.svn/prop-base/about.cpp.svn-base
 qmc2/.svn/prop-base/about.h.svn-base
