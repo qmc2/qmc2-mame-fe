@@ -51,6 +51,7 @@ extern QSettings *qmc2Config;
 extern unzFile qmc2PreviewFile;
 extern unzFile qmc2FlyerFile;
 extern unzFile qmc2IconFile;
+extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 ImageChecker::ImageChecker(QWidget *parent)
 #if defined(Q_WS_WIN)
@@ -1112,7 +1113,7 @@ void ImageChecker::selectItem(QString gameName)
       if ( gameItem ) {
         qmc2MainWindow->treeWidgetGamelist->clearSelection();
         qmc2MainWindow->treeWidgetGamelist->setCurrentItem(gameItem);
-        qmc2MainWindow->treeWidgetGamelist->scrollToItem(gameItem, QAbstractItemView::PositionAtTop);
+        qmc2MainWindow->treeWidgetGamelist->scrollToItem(gameItem, qmc2CursorPositioningMode);
         gameItem->setSelected(TRUE);
       }
       break;
@@ -1122,7 +1123,7 @@ void ImageChecker::selectItem(QString gameName)
       if ( hierarchyItem ) {
         qmc2MainWindow->treeWidgetHierarchy->clearSelection();
         qmc2MainWindow->treeWidgetHierarchy->setCurrentItem(hierarchyItem);
-        qmc2MainWindow->treeWidgetHierarchy->scrollToItem(hierarchyItem, QAbstractItemView::PositionAtTop);
+        qmc2MainWindow->treeWidgetHierarchy->scrollToItem(hierarchyItem, qmc2CursorPositioningMode);
         hierarchyItem->setSelected(TRUE);
       }
       break;
@@ -1133,7 +1134,7 @@ void ImageChecker::selectItem(QString gameName)
       if ( categoryItem ) {
         qmc2MainWindow->treeWidgetCategoryView->clearSelection();
         qmc2MainWindow->treeWidgetCategoryView->setCurrentItem(categoryItem);
-        qmc2MainWindow->treeWidgetCategoryView->scrollToItem(categoryItem, QAbstractItemView::PositionAtTop);
+        qmc2MainWindow->treeWidgetCategoryView->scrollToItem(categoryItem, qmc2CursorPositioningMode);
         categoryItem->setSelected(TRUE);
       }
       break;
@@ -1143,7 +1144,7 @@ void ImageChecker::selectItem(QString gameName)
       if ( versionItem ) {
         qmc2MainWindow->treeWidgetVersionView->clearSelection();
         qmc2MainWindow->treeWidgetVersionView->setCurrentItem(versionItem);
-        qmc2MainWindow->treeWidgetVersionView->scrollToItem(versionItem, QAbstractItemView::PositionAtTop);
+        qmc2MainWindow->treeWidgetVersionView->scrollToItem(versionItem, qmc2CursorPositioningMode);
         versionItem->setSelected(TRUE);
       }
       break;

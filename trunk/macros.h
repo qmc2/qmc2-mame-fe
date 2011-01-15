@@ -211,6 +211,12 @@
 #define QMC2_SORT_BY_CATEGORY		6
 #define QMC2_SORT_BY_VERSION		7
 
+// gamelist cursor positioning mode
+#define QMC2_CURSOR_POS_VISIBLE		0
+#define QMC2_CURSOR_POS_TOP		1
+#define QMC2_CURSOR_POS_BOTTOM		2
+#define QMC2_CURSOR_POS_CENTER		3
+
 // internal ROM state representations
 #define QMC2_ROMSTATE_COUNT		5
 #define QMC2_ROMSTATE_INT_C		0

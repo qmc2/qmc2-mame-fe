@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>564</width>
-    <height>570</height>
+    <width>577</width>
+    <height>615</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,8 +57,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>515</width>
-                <height>619</height>
+                <width>527</width>
+                <height>618</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -849,8 +849,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1623</width>
-                <height>517</height>
+                <width>527</width>
+                <height>518</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2107,8 +2107,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1640</width>
-                <height>480</height>
+                <width>545</width>
+                <height>508</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2418,16 +2418,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="2" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxAutoTriggerROMCheck">
-                   <property name="toolTip">
-                    <string>Automatically trigger a ROM check if necessary</string>
-                   </property>
-                   <property name="text">
-                    <string>Auto-trigger ROM check</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="4" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxDoubleClickActivation">
                    <property name="toolTip">
@@ -2451,16 +2441,6 @@
                    </property>
                   </spacer>
                  </item>
-                 <item row="4" column="2" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxHideWhileLoading">
-                   <property name="toolTip">
-                    <string>Hide primary game list while loading (recommended, much faster)</string>
-                   </property>
-                   <property name="text">
-                    <string>Hide while loading</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="5" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxPlayOnSublistActivation">
                    <property name="toolTip">
@@ -2472,17 +2452,61 @@
                   </widget>
                  </item>
                  <item row="5" column="2" colspan="2">
-                  <spacer name="horizontalSpacer2">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
+                  <widget class="QCheckBox" name="checkBoxHideWhileLoading">
+                   <property name="toolTip">
+                    <string>Hide primary game list while loading (recommended, much faster)</string>
                    </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>40</width>
-                     <height>20</height>
-                    </size>
+                   <property name="text">
+                    <string>Hide while loading</string>
                    </property>
-                  </spacer>
+                  </widget>
+                 </item>
+                 <item row="4" column="2" colspan="2">
+                  <widget class="QCheckBox" name="checkBoxAutoTriggerROMCheck">
+                   <property name="toolTip">
+                    <string>Automatically trigger a ROM check if necessary</string>
+                   </property>
+                   <property name="text">
+                    <string>Auto-trigger ROM check</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="3">
+                  <widget class="QComboBox" name="comboBoxCursorPosition">
+                   <property name="toolTip">
+                    <string>Select the cursor position QMC2 uses when auto-scrolling to the current item (this setting applies to all views and lists!)</string>
+                   </property>
+                   <property name="currentIndex">
+                    <number>1</number>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>Visible</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Top</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Bottom</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Center</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QLabel" name="labelCursoPosition">
+                   <property name="text">
+                    <string>Cursor position</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -2513,8 +2537,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1640</width>
-                <height>480</height>
+                <width>545</width>
+                <height>508</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2626,8 +2650,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1640</width>
-                <height>480</height>
+                <width>545</width>
+                <height>508</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3083,8 +3107,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1640</width>
-                <height>480</height>
+                <width>545</width>
+                <height>508</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3486,8 +3510,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>532</width>
-                <height>463</height>
+                <width>1640</width>
+                <height>480</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3930,8 +3954,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>532</width>
-                <height>463</height>
+                <width>1640</width>
+                <height>480</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22">
@@ -4354,10 +4378,11 @@
   <tabstop>spinBoxResponsiveness</tabstop>
   <tabstop>spinBoxUpdateDelay</tabstop>
   <tabstop>checkBoxSortOnline</tabstop>
-  <tabstop>checkBoxAutoTriggerROMCheck</tabstop>
+  <tabstop>comboBoxCursorPosition</tabstop>
   <tabstop>checkBoxDoubleClickActivation</tabstop>
-  <tabstop>checkBoxHideWhileLoading</tabstop>
+  <tabstop>checkBoxAutoTriggerROMCheck</tabstop>
   <tabstop>checkBoxPlayOnSublistActivation</tabstop>
+  <tabstop>checkBoxHideWhileLoading</tabstop>
   <tabstop>pushButtonRedefineKeySequence</tabstop>
   <tabstop>pushButtonResetShortcut</tabstop>
   <tabstop>treeWidgetShortcuts</tabstop>
