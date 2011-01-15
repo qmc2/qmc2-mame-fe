@@ -133,6 +133,7 @@ extern MESSSoftwareList *qmc2MESSSoftwareList;
 #if QMC2_USE_PHONON_API
 extern AudioEffectDialog *qmc2AudioEffectDialog;
 #endif
+extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 Options::Options(QWidget *parent)
 #if defined(Q_WS_WIN)
@@ -924,6 +925,8 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation", checkBoxDoubleClickActivation->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/HideWhileLoading", checkBoxHideWhileLoading->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation", checkBoxPlayOnSublistActivation->isChecked());
+  qmc2CursorPositioningMode = (QAbstractItemView::ScrollHint)comboBoxCursorPosition->currentIndex();
+  config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/CursorPosition", qmc2CursorPositioningMode);
   qmc2GamelistResponsiveness = spinBoxResponsiveness->value();
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/Responsiveness", qmc2GamelistResponsiveness);
   qmc2UpdateDelay = spinBoxUpdateDelay->value();
@@ -1757,6 +1760,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxDoubleClickActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation", TRUE).toBool());
   checkBoxHideWhileLoading->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/HideWhileLoading", TRUE).toBool());
   checkBoxPlayOnSublistActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation", FALSE).toBool());
+  qmc2CursorPositioningMode = (QAbstractItemView::ScrollHint)config->value(QMC2_FRONTEND_PREFIX + "Gamelist/CursorPosition", QMC2_CURSOR_POS_TOP).toInt();
+  comboBoxCursorPosition->setCurrentIndex((int)qmc2CursorPositioningMode);
   spinBoxResponsiveness->setValue(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/Responsiveness", 100).toInt());
   qmc2GamelistResponsiveness = spinBoxResponsiveness->value();
   spinBoxUpdateDelay->setValue(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UpdateDelay", 10).toInt());

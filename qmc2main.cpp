@@ -229,6 +229,7 @@ QString qmc2FileEditStartPath = "";
 QString qmc2DirectoryEditStartPath = "";
 QNetworkAccessManager *qmc2NetworkAccessManager = NULL;
 int qmc2LastListIndex = 0;
+QAbstractItemView::ScrollHint qmc2CursorPositioningMode = QAbstractItemView::PositionAtTop;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -1006,7 +1007,7 @@ MainWindow::MainWindow(QWidget *parent)
   QList<QListWidgetItem *> sl = listWidgetAudioPlaylist->findItems(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/LastTrack", QString()).toString(), Qt::MatchExactly);
   if ( sl.count() > 0 ) {
     listWidgetAudioPlaylist->setCurrentItem(sl[0]);
-    listWidgetAudioPlaylist->scrollToItem(sl[0], QAbstractItemView::PositionAtTop);
+    listWidgetAudioPlaylist->scrollToItem(sl[0], qmc2CursorPositioningMode);
     qmc2AudioLastIndividualTrack = sl[0]->text();
   }
   checkBoxAudioPlayOnStart->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/PlayOnStart", FALSE).toBool());
@@ -2290,7 +2291,7 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
     qmc2CheckItemVisibility = FALSE;
     treeWidgetGamelist->clearSelection();
     treeWidgetGamelist->setCurrentItem(matchItem);
-    treeWidgetGamelist->scrollToItem(matchItem, QAbstractItemView::PositionAtTop);
+    treeWidgetGamelist->scrollToItem(matchItem, qmc2CursorPositioningMode);
     qmc2CurrentItem = matchItem;
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation").toBool() ) {
       if ( qmc2DemoModeDialog )
@@ -2557,7 +2558,7 @@ void MainWindow::scrollToCurrentItem()
         if ( ci ) {
           treeWidgetHierarchy->clearSelection();
           treeWidgetHierarchy->setCurrentItem(ci);
-          treeWidgetHierarchy->scrollToItem(ci, QAbstractItemView::PositionAtTop);
+          treeWidgetHierarchy->scrollToItem(ci, qmc2CursorPositioningMode);
         }
         break;
 
@@ -2567,7 +2568,7 @@ void MainWindow::scrollToCurrentItem()
         if ( ci ) {
           treeWidgetCategoryView->clearSelection();
           treeWidgetCategoryView->setCurrentItem(ci);
-          treeWidgetCategoryView->scrollToItem(ci, QAbstractItemView::PositionAtTop);
+          treeWidgetCategoryView->scrollToItem(ci, qmc2CursorPositioningMode);
         }
         break;
 
@@ -2576,7 +2577,7 @@ void MainWindow::scrollToCurrentItem()
         if ( ci ) {
           treeWidgetVersionView->clearSelection();
           treeWidgetVersionView->setCurrentItem(ci);
-          treeWidgetVersionView->scrollToItem(ci, QAbstractItemView::PositionAtTop);
+          treeWidgetVersionView->scrollToItem(ci, qmc2CursorPositioningMode);
         }
         break;
 #endif
@@ -2587,7 +2588,7 @@ void MainWindow::scrollToCurrentItem()
         treeWidgetGamelist->clearSelection();
         if ( !qmc2ReloadActive )
           treeWidgetGamelist->setCurrentItem(ci);
-        treeWidgetGamelist->scrollToItem(ci, QAbstractItemView::PositionAtTop);
+        treeWidgetGamelist->scrollToItem(ci, qmc2CursorPositioningMode);
         break;
     }
     if ( !qmc2ReloadActive && ci )
@@ -2613,7 +2614,7 @@ void MainWindow::checkCurrentSearchSelection()
     QListWidgetItem *matchedItem = searchMatches[0];
     if ( matchedItem != NULL ) {
       listWidgetSearch->setCurrentItem(matchedItem, QItemSelectionModel::ClearAndSelect);
-      listWidgetSearch->scrollToItem(matchedItem, QAbstractItemView::PositionAtTop);
+      listWidgetSearch->scrollToItem(matchedItem, qmc2CursorPositioningMode);
       qApp->processEvents();
     }
   }
@@ -2638,7 +2639,7 @@ void MainWindow::checkCurrentFavoritesSelection()
     QListWidgetItem *matchedItem = favoritesMatches[0];
     if ( matchedItem != NULL ) {
       listWidgetFavorites->setCurrentItem(matchedItem, QItemSelectionModel::ClearAndSelect);
-      listWidgetFavorites->scrollToItem(matchedItem, QAbstractItemView::PositionAtTop);
+      listWidgetFavorites->scrollToItem(matchedItem, qmc2CursorPositioningMode);
       qApp->processEvents();
     }
   }
@@ -2664,7 +2665,7 @@ void MainWindow::checkCurrentPlayedSelection()
     QListWidgetItem *matchedItem = playedMatches[0];
     if ( matchedItem != NULL ) {
       listWidgetPlayed->setCurrentItem(matchedItem, QItemSelectionModel::ClearAndSelect);
-      listWidgetPlayed->scrollToItem(matchedItem, QAbstractItemView::PositionAtTop);
+      listWidgetPlayed->scrollToItem(matchedItem, qmc2CursorPositioningMode);
       qApp->processEvents();
     }
   }
@@ -3981,7 +3982,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
         treeWidgetHierarchy->clearSelection();
         if ( hierarchyItem ) {
           treeWidgetHierarchy->setCurrentItem(hierarchyItem);
-          treeWidgetHierarchy->scrollToItem(hierarchyItem, QAbstractItemView::PositionAtTop);
+          treeWidgetHierarchy->scrollToItem(hierarchyItem, qmc2CursorPositioningMode);
           hierarchyItem->setSelected(TRUE);
         }
       }
@@ -3995,7 +3996,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
         treeWidgetCategoryView->clearSelection();
         if ( categoryItem ) {
           treeWidgetCategoryView->setCurrentItem(categoryItem);
-          treeWidgetCategoryView->scrollToItem(categoryItem, QAbstractItemView::PositionAtTop);
+          treeWidgetCategoryView->scrollToItem(categoryItem, qmc2CursorPositioningMode);
           categoryItem->setSelected(TRUE);
         }
       }
@@ -4008,7 +4009,7 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
         treeWidgetVersionView->clearSelection();
         if ( versionItem ) {
           treeWidgetVersionView->setCurrentItem(versionItem);
-          treeWidgetVersionView->scrollToItem(versionItem, QAbstractItemView::PositionAtTop);
+          treeWidgetVersionView->scrollToItem(versionItem, qmc2CursorPositioningMode);
           versionItem->setSelected(TRUE);
         }
       }
@@ -5498,7 +5499,7 @@ void MainWindow::on_actionAudioPlayTrack_triggered(bool checked)
     if ( ci->text() != audioPlayerCurrentTrack ) {
       progressBarAudioProgress->reset();
       audioPlayerCurrentTrack = ci->text();
-      listWidgetAudioPlaylist->scrollToItem(ci, QAbstractItemView::PositionAtTop);
+      listWidgetAudioPlaylist->scrollToItem(ci, qmc2CursorPositioningMode);
       phononAudioPlayer->setCurrentSource(Phonon::MediaSource(audioPlayerCurrentTrack));
     }
     phononAudioPlayer->play();
