@@ -2,6 +2,7 @@
 #define _TITLE_H_
 
 #include <QMap>
+#include <QMenu>
 #include <QWidget>
 #include <QPixmap>
 #include <QPainter>
@@ -27,6 +28,7 @@ class Title : public QWidget
 #else
     QPixmap currentTitlePixmap;
 #endif
+    QMenu *contextMenu;
 
     Title(QWidget *parent = 0);
     ~Title();
@@ -35,9 +37,11 @@ class Title : public QWidget
     void drawCenteredImage(QPixmap *, QPainter *);
     void drawScaledImage(QPixmap *, QPainter *);
     bool loadTitle(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
+    void copyToClipboard();
 
   protected:
     void paintEvent(QPaintEvent *);
+    void contextMenuEvent(QContextMenuEvent *);
 };
 
 #endif

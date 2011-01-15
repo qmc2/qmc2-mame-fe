@@ -2,6 +2,7 @@
 #define _PCB_H_
 
 #include <QMap>
+#include <QMenu>
 #include <QWidget>
 #include <QPixmap>
 #include <QPainter>
@@ -27,6 +28,7 @@ class PCB : public QWidget
 #else
     QPixmap currentPCBPixmap;
 #endif
+    QMenu *contextMenu;
 
     PCB(QWidget *parent = 0);
     ~PCB();
@@ -35,9 +37,11 @@ class PCB : public QWidget
     void drawCenteredImage(QPixmap *, QPainter *);
     void drawScaledImage(QPixmap *, QPainter *);
     bool loadPCB(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
+    void copyToClipboard();
 
   protected:
     void paintEvent(QPaintEvent *);
+    void contextMenuEvent(QContextMenuEvent *);
 };
 
 #endif

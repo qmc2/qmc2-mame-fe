@@ -2,6 +2,7 @@
 #define _CABINET_H_
 
 #include <QMap>
+#include <QMenu>
 #include <QWidget>
 #include <QPixmap>
 #include <QPainter>
@@ -27,6 +28,7 @@ class Cabinet : public QWidget
 #else
     QPixmap currentCabinetPixmap;
 #endif
+    QMenu *contextMenu;
 
     Cabinet(QWidget *parent = 0);
     ~Cabinet();
@@ -35,9 +37,11 @@ class Cabinet : public QWidget
     void drawCenteredImage(QPixmap *, QPainter *);
     void drawScaledImage(QPixmap *, QPainter *);
     bool loadCabinet(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
+    void copyToClipboard();
 
   protected:
     void paintEvent(QPaintEvent *);
+    void contextMenuEvent(QContextMenuEvent *);
 };
 
 #endif
