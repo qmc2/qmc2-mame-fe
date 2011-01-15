@@ -350,6 +350,16 @@ ifndef BROWSER_JAVASCRIPT
 BROWSER_JAVASCRIPT = 1
 endif
 
+# >>> BROWSER_PREFETCH_DNS <<<
+#
+# Enable (1) or disable (0) prefetching of DNS lookups.
+#
+# This is only supported for Qt >= 4.6  and will be ignored otherwise.
+#
+ifndef BROWSER_PREFETCH_DNS
+BROWSER_PREFETCH_DNS = 0
+endif
+
 # >>> WC_COMPRESSION <<<
 #
 # Enable (1) or disable (0) web-cache compression when storing HTML pages on
@@ -563,6 +573,10 @@ endif
 
 ifeq '$(BROWSER_JAVASCRIPT)' '1'
 DEFINES += QMC2_BROWSER_JAVASCRIPT_ENABLED
+endif
+
+ifeq '$(BROWSER_PREFETCH_DNS)' '1'
+DEFINES += QMC2_BROWSER_PREFETCH_DNS_ENABLED
 endif
 
 ifeq '$(WC_COMPRESSION)' '1'
@@ -956,6 +970,7 @@ config:
 	@echo "BROWSER_JAVA         Enable Java in web browsers (0, 1)           $(BROWSER_JAVA)"
 	@echo "BROWSER_JAVASCRIPT   Enable JavaScript in web browsers (0, 1)     $(BROWSER_JAVASCRIPT)"
 	@echo "BROWSER_PLUGINS      Enable browser plugins (0, 1)                $(BROWSER_PLUGINS)"
+	@echo "BROWSER_PREFETCH_DNS Enable prefetching of DNS lookups (0, 1)     $(BROWSER_PREFETCH_DNS)"
 	@echo "CC_FLAGS             Additional flags passed to the C compiler    $(CC_FLAGS)"
 	@echo "CXX_FLAGS            Additional flags passed to the C++ compiler  $(CXX_FLAGS)"
 	@echo "CCACHE               Use a compiler cache (0, 1)                  $(CCACHE)"

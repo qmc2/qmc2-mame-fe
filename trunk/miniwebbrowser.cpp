@@ -140,6 +140,13 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineStorageDatabaseEnabled, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineWebApplicationCacheEnabled, FALSE);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::LocalStorageDatabaseEnabled, FALSE);
+#if QT_VERSION >= 0x040600
+#if defined(QMC2_BROWSER_PREFETCH_DNS_ENABLED)
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, TRUE);
+#else
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, FALSE);
+#endif
+#endif
 
   // we want to detect/handle unsupported content
   webViewBrowser->page()->setForwardUnsupportedContent(TRUE);
