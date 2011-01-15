@@ -3,6 +3,7 @@
 #include <QImage>
 #include <QMatrix>
 #include <QByteArray>
+#include <QClipboard>
 
 #include "marquee.h"
 #include "options.h"
@@ -38,6 +39,18 @@ Marquee::Marquee(QWidget *parent)
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Marquee::Marquee(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
 #endif
+
+  contextMenu = new QMenu(this);
+  contextMenu->hide();
+
+  QString s;
+  QAction *action;
+
+  s = tr("Copy to clipboard");
+  action = contextMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
 
 #if defined(QMC2_EMUTYPE_MAME)
   setToolTip(tr("Game marquee image"));
@@ -331,4 +344,27 @@ void Marquee::drawScaledImage(QPixmap *pm, QPainter *p)
     pmScaled = pm->scaled((int)desired_width, (int)desired_height, Qt::KeepAspectRatio, Qt::FastTransformation);
 
   drawCenteredImage(&pmScaled, p);
+}
+
+void Marquee::copyToClipboard()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Marquee::copyToClipboard()");
+#endif
+
+#if QT_VERSION < 0x040600
+  qApp->clipboard()->setPixmap(*currentMarqueePixmap);
+#else
+  qApp->clipboard()->setPixmap(currentMarqueePixmap);
+#endif
+}
+
+void Marquee::contextMenuEvent(QContextMenuEvent *e)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Marquee::contextMenuEvent(QContextMenuEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+  contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
+  contextMenu->show();
 }

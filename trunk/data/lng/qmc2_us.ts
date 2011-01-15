@@ -1464,25 +1464,30 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Cabinet</name>
     <message>
-        <location filename="../../cabinet.cpp" line="43"/>
-        <location filename="../../cabinet.cpp" line="44"/>
+        <location filename="../../cabinet.cpp" line="49"/>
+        <source>Copy to clipboard</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../cabinet.cpp" line="56"/>
+        <location filename="../../cabinet.cpp" line="57"/>
         <source>Game cabinet image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../cabinet.cpp" line="46"/>
-        <location filename="../../cabinet.cpp" line="47"/>
+        <location filename="../../cabinet.cpp" line="59"/>
+        <location filename="../../cabinet.cpp" line="60"/>
         <source>Machine cabinet image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../cabinet.cpp" line="55"/>
-        <location filename="../../cabinet.cpp" line="59"/>
+        <location filename="../../cabinet.cpp" line="68"/>
+        <location filename="../../cabinet.cpp" line="72"/>
         <source>FATAL: can&apos;t open cabinet file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open cabinet file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../cabinet.cpp" line="87"/>
+        <location filename="../../cabinet.cpp" line="100"/>
         <source>Waiting for data...</source>
         <translation>Waiting for data...</translation>
     </message>
@@ -1490,25 +1495,30 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Controller</name>
     <message>
-        <location filename="../../controller.cpp" line="43"/>
-        <location filename="../../controller.cpp" line="44"/>
+        <location filename="../../controller.cpp" line="49"/>
+        <source>Copy to clipboard</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../controller.cpp" line="56"/>
+        <location filename="../../controller.cpp" line="57"/>
         <source>Game controller image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../controller.cpp" line="46"/>
-        <location filename="../../controller.cpp" line="47"/>
+        <location filename="../../controller.cpp" line="59"/>
+        <location filename="../../controller.cpp" line="60"/>
         <source>Machine controller image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../controller.cpp" line="55"/>
-        <location filename="../../controller.cpp" line="59"/>
+        <location filename="../../controller.cpp" line="68"/>
+        <location filename="../../controller.cpp" line="72"/>
         <source>FATAL: can&apos;t open controller file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open controller file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../controller.cpp" line="87"/>
+        <location filename="../../controller.cpp" line="100"/>
         <source>Waiting for data...</source>
         <translation>Waiting for data...</translation>
     </message>
@@ -2383,25 +2393,30 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Flyer</name>
     <message>
-        <location filename="../../flyer.cpp" line="43"/>
-        <location filename="../../flyer.cpp" line="44"/>
+        <location filename="../../flyer.cpp" line="49"/>
+        <source>Copy to clipboard</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../flyer.cpp" line="56"/>
+        <location filename="../../flyer.cpp" line="57"/>
         <source>Game flyer image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../flyer.cpp" line="55"/>
-        <location filename="../../flyer.cpp" line="59"/>
+        <location filename="../../flyer.cpp" line="68"/>
+        <location filename="../../flyer.cpp" line="72"/>
         <source>FATAL: can&apos;t open flyer file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open flyer file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../flyer.cpp" line="87"/>
+        <location filename="../../flyer.cpp" line="100"/>
         <source>Waiting for data...</source>
         <translation>Waiting for data...</translation>
     </message>
     <message>
-        <location filename="../../flyer.cpp" line="46"/>
-        <location filename="../../flyer.cpp" line="47"/>
+        <location filename="../../flyer.cpp" line="59"/>
+        <location filename="../../flyer.cpp" line="60"/>
         <source>Machine flyer image</source>
         <translation></translation>
     </message>
@@ -7739,25 +7754,30 @@ Retry embedding?</source>
 <context>
     <name>Marquee</name>
     <message>
-        <location filename="../../marquee.cpp" line="43"/>
-        <location filename="../../marquee.cpp" line="44"/>
+        <location filename="../../marquee.cpp" line="49"/>
+        <source>Copy to clipboard</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../marquee.cpp" line="56"/>
+        <location filename="../../marquee.cpp" line="57"/>
         <source>Game marquee image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../marquee.cpp" line="46"/>
-        <location filename="../../marquee.cpp" line="47"/>
+        <location filename="../../marquee.cpp" line="59"/>
+        <location filename="../../marquee.cpp" line="60"/>
         <source>Machine marquee image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../marquee.cpp" line="55"/>
-        <location filename="../../marquee.cpp" line="59"/>
+        <location filename="../../marquee.cpp" line="68"/>
+        <location filename="../../marquee.cpp" line="72"/>
         <source>FATAL: can&apos;t open marquee file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open marquee file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../marquee.cpp" line="87"/>
+        <location filename="../../marquee.cpp" line="100"/>
         <source>Waiting for data...</source>
         <translation>Waiting for data...</translation>
     </message>
@@ -10775,25 +10795,30 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>PCB</name>
     <message>
-        <location filename="../../pcb.cpp" line="43"/>
-        <location filename="../../pcb.cpp" line="44"/>
+        <location filename="../../pcb.cpp" line="49"/>
+        <source>Copy to clipboard</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../pcb.cpp" line="56"/>
+        <location filename="../../pcb.cpp" line="57"/>
         <source>Game PCB image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../pcb.cpp" line="46"/>
-        <location filename="../../pcb.cpp" line="47"/>
+        <location filename="../../pcb.cpp" line="59"/>
+        <location filename="../../pcb.cpp" line="60"/>
         <source>Machine PCB image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../pcb.cpp" line="55"/>
-        <location filename="../../pcb.cpp" line="59"/>
+        <location filename="../../pcb.cpp" line="68"/>
+        <location filename="../../pcb.cpp" line="72"/>
         <source>FATAL: can&apos;t open PCB file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open PCB file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../pcb.cpp" line="87"/>
+        <location filename="../../pcb.cpp" line="100"/>
         <source>Waiting for data...</source>
         <translation>Waiting for data...</translation>
     </message>
@@ -10801,25 +10826,30 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>Preview</name>
     <message>
-        <location filename="../../preview.cpp" line="45"/>
-        <location filename="../../preview.cpp" line="46"/>
+        <location filename="../../preview.cpp" line="51"/>
+        <source>Copy to clipboard</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../preview.cpp" line="58"/>
+        <location filename="../../preview.cpp" line="59"/>
         <source>Game preview image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../preview.cpp" line="57"/>
-        <location filename="../../preview.cpp" line="61"/>
+        <location filename="../../preview.cpp" line="70"/>
+        <location filename="../../preview.cpp" line="74"/>
         <source>FATAL: can&apos;t open preview file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open preview file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../preview.cpp" line="89"/>
+        <location filename="../../preview.cpp" line="102"/>
         <source>Waiting for data...</source>
         <translation>Waiting for data...</translation>
     </message>
     <message>
-        <location filename="../../preview.cpp" line="48"/>
-        <location filename="../../preview.cpp" line="49"/>
+        <location filename="../../preview.cpp" line="61"/>
+        <location filename="../../preview.cpp" line="62"/>
         <source>Machine preview image</source>
         <translation></translation>
     </message>
@@ -13771,25 +13801,30 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
 <context>
     <name>Title</name>
     <message>
-        <location filename="../../title.cpp" line="43"/>
-        <location filename="../../title.cpp" line="44"/>
+        <location filename="../../title.cpp" line="49"/>
+        <source>Copy to clipboard</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../title.cpp" line="56"/>
+        <location filename="../../title.cpp" line="57"/>
         <source>Game title image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../title.cpp" line="46"/>
-        <location filename="../../title.cpp" line="47"/>
+        <location filename="../../title.cpp" line="59"/>
+        <location filename="../../title.cpp" line="60"/>
         <source>Machine title image</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../title.cpp" line="55"/>
-        <location filename="../../title.cpp" line="59"/>
+        <location filename="../../title.cpp" line="68"/>
+        <location filename="../../title.cpp" line="72"/>
         <source>FATAL: can&apos;t open title file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open title file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../title.cpp" line="87"/>
+        <location filename="../../title.cpp" line="100"/>
         <source>Waiting for data...</source>
         <translation>Waiting for data...</translation>
     </message>

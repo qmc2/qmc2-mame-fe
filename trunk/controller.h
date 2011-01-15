@@ -2,6 +2,7 @@
 #define _CONTROLLER_H_
 
 #include <QMap>
+#include <QMenu>
 #include <QWidget>
 #include <QPixmap>
 #include <QPainter>
@@ -27,6 +28,7 @@ class Controller : public QWidget
 #else
     QPixmap currentControllerPixmap;
 #endif
+    QMenu *contextMenu;
 
     Controller(QWidget *parent = 0);
     ~Controller();
@@ -35,9 +37,11 @@ class Controller : public QWidget
     void drawCenteredImage(QPixmap *, QPainter *);
     void drawScaledImage(QPixmap *, QPainter *);
     bool loadController(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
+    void copyToClipboard();
 
   protected:
     void paintEvent(QPaintEvent *);
+    void contextMenuEvent(QContextMenuEvent *);
 };
 
 #endif

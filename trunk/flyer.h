@@ -2,6 +2,7 @@
 #define _FLYER_H_
 
 #include <QMap>
+#include <QMenu>
 #include <QWidget>
 #include <QPixmap>
 #include <QPainter>
@@ -27,6 +28,7 @@ class Flyer : public QWidget
 #else
     QPixmap currentFlyerPixmap;
 #endif
+    QMenu *contextMenu;
 
     Flyer(QWidget *parent = 0);
     ~Flyer();
@@ -35,9 +37,11 @@ class Flyer : public QWidget
     void drawCenteredImage(QPixmap *, QPainter *);
     void drawScaledImage(QPixmap *, QPainter *);
     bool loadFlyer(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
+    void copyToClipboard();
 
   protected:
     void paintEvent(QPaintEvent *);
+    void contextMenuEvent(QContextMenuEvent *);
 };
 
 #endif
