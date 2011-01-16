@@ -482,14 +482,13 @@ endif
 # videos.
 #
 # Notes: 1) This is only supported for Qt 4.7+ (otherwise ignored)!
-#        2) You need the npviewer browser (Flashplayer) plugin installed and
-#           working (check i. e. with Firefox)!
+#        2) You need the npviewer browser plugin (Adobe Flash Player) installed
+#           and working (check with Firefox for example)!
 #        3) Currently, this is a WIP feature (WIP=1 must be specified as well)!
 #
 ifndef YOUTUBE
 YOUTUBE = 1
 endif
-
 
 # >>> END OF MAKE OPTIONS <<<
 
