@@ -1023,8 +1023,6 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
   toolButtonAudioPreviousTrack->setDefaultAction(actionAudioPreviousTrack);
   toolButtonAudioNextTrack->setDefaultAction(actionAudioNextTrack);
-  toolButtonAudioFastBackward->setDefaultAction(actionAudioFastBackward);
-  toolButtonAudioFastForward->setDefaultAction(actionAudioFastForward);
   toolButtonAudioStopTrack->setDefaultAction(actionAudioStopTrack);
   toolButtonAudioPauseTrack->setDefaultAction(actionAudioPauseTrack);
   toolButtonAudioPlayTrack->setDefaultAction(actionAudioPlayTrack);
