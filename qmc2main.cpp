@@ -2873,17 +2873,16 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         if ( mawsCacheDir.exists(gameName + ".wc") ) {
           QFile mawsCacheFile(mawsCacheDir.filePath(gameName + ".wc"));
           if ( mawsCacheFile.open(QIODevice::ReadOnly) ) {
-            QTextStream ts(&mawsCacheFile);
-            ts.readLine();
-            QString mawsCacheAge = ts.readLine().split('\t')[1];
+            mawsCacheFile.readLine();
+            QString mawsCacheAge = QString(mawsCacheFile.readLine().trimmed()).split('\t')[1];
             if ( QDateTime::currentDateTime().toTime_t() - mawsCacheAge.toULong() < QMC2_MAWS_MAX_CACHE_AGE ) {
               if ( !qmc2MAWSCache.contains(gameName) ) {
+                QByteArray data = mawsCacheFile.read(QMC2_ONE_MEGABYTE);
 #if defined(QMC2_WC_COMPRESSION_ENABLED)
-                QString mawsCacheData = ts.read(QMC2_ONE_MEGABYTE);
-                qmc2MAWSLookup->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(mawsCacheData.toLatin1())), QUrl(mawsUrl));
+		QByteArray uncompressedData = QMC2_UNCOMPRESS(data);
+                qmc2MAWSLookup->webViewBrowser->setHtml(QString::fromLatin1(uncompressedData.constData()), QUrl(mawsUrl));
 #else
-                QString mawsCacheData = ts.read(16 * QMC2_ONE_MEGABYTE);
-                qmc2MAWSLookup->webViewBrowser->setHtml(mawsCacheData, QUrl(mawsUrl));
+                qmc2MAWSLookup->webViewBrowser->setHtml(QString(data), QUrl(mawsUrl));
 #endif
                 foundInDiskCache = TRUE;
               }
@@ -6804,20 +6803,14 @@ void MainWindow::mawsLoadFinished(bool ok)
       if ( mawsCacheDir.exists() ) {
         QFile mawsCacheFile(mawsCacheDir.filePath(gameName + ".wc"));
         if ( mawsCacheFile.open(QIODevice::WriteOnly) ) {
-          QTextStream ts(&mawsCacheFile);
-#if defined(Q_WS_WIN)
-          ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\r\n";
-          ts << "TIMESTAMP\t" + QString::number(QDateTime::currentDateTime().toTime_t()) + "\r\n";
-#else
-          ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-          ts << "TIMESTAMP\t" + QString::number(QDateTime::currentDateTime().toTime_t()) + "\n";
-#endif
+          mawsCacheFile.write("# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n");
+	  QString timeStamp = "TIMESTAMP\t" + QString::number(QDateTime::currentDateTime().toTime_t()) + "\n";
+	  mawsCacheFile.write((const char  *)timeStamp.toAscii());
 #if defined(QMC2_WC_COMPRESSION_ENABLED)
-          ts << mawsData;
+          mawsCacheFile.write(mawsData);
 #else
-          ts << qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml();
+          mawsCacheFile.write((const char *)qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
 #endif
-          ts.flush();
           mawsCacheFile.close();
         }
       }

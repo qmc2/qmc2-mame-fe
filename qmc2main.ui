@@ -1403,6 +1403,15 @@
              <string>Softwar&amp;e list</string>
             </attribute>
            </widget>
+           <widget class="QWidget" name="tabYouTube">
+            <attribute name="icon">
+             <iconset resource="qmc2.qrc">
+              <normaloff>:/data/img/youtube.png</normaloff>:/data/img/youtube.png</iconset>
+            </attribute>
+            <attribute name="title">
+             <string>&amp;YouTube</string>
+            </attribute>
+           </widget>
           </widget>
          </item>
         </layout>

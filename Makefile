@@ -476,6 +476,21 @@ ifndef MAC_UNIVERSAL
 MAC_UNIVERSAL = 0
 endif
 
+# >>> YOUTUBE <<<
+#
+# Enable (1) or disable (0) support for game/machine 'attached' youtube.com
+# videos.
+#
+# Notes: 1) This is only supported for Qt 4.7+ (otherwise ignored)!
+#        2) You need the npviewer browser (Flashplayer) plugin installed and
+#           working (check i. e. with Firefox)!
+#        3) Currently, this is a WIP feature (WIP=1 must be specified as well)!
+#
+ifndef YOUTUBE
+YOUTUBE = 1
+endif
+
+
 # >>> END OF MAKE OPTIONS <<<
 
 # project name
@@ -585,6 +600,10 @@ endif
 
 ifeq '$(DATABASE)' '1'
 DEFINES += QMC2_DATABASE_ENABLED
+endif
+
+ifeq '$(YOUTUBE)' '1'
+DEFINES += QMC2_YOUTUBE_ENABLED
 endif
 
 # setup SDL library and include paths
@@ -1040,6 +1059,7 @@ endif
 	@echo "WC_COMPRESSION       Compress MAWS web-cache data (0, 1)          $(WC_COMPRESSION)"
 	@echo "WIP                  Enable unfinished code (0, 1)                $(WIP)"
 	@echo "XWININFO             X11 xwininfo command                         $(XWININFO)"
+	@echo "YOUTUBE              Enable youtube.com videos (0, 1)             $(YOUTUBE)"
 ifneq '$(SVN_REV)' ''
 	@echo ""
 	@echo "The SVN revision of your working copy is $(SVN_REV)."
