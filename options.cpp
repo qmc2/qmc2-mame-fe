@@ -618,6 +618,11 @@ void Options::on_pushButtonApply_clicked()
 #else 
   config->setValue("Version", QString::number(MAJOR) + "." + QString::number(MINOR));
 #endif
+#if QMC2_SVN_REV > 0
+  config->setValue("SVN_Revision", QMC2_SVN_REV);
+#else
+  config->remove("SVN_Revision");
+#endif
 
   // Frontend
 
