@@ -1485,7 +1485,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cabinet.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copiar para área de transferência</translation>
+        <translation>Copiar para área de transferência</translation>
     </message>
     <message>
         <location filename="../../cabinet.cpp" line="56"/>
@@ -1516,7 +1516,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../controller.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copiar para área de transferência</translation>
+        <translation>Copiar para área de transferência</translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="56"/>
@@ -1812,13 +1812,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../detailsetup.cpp" line="55"/>
         <location filename="../../detailsetup.cpp" line="121"/>
         <source>&amp;YouTube</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="56"/>
         <location filename="../../detailsetup.cpp" line="122"/>
         <source>YouTube videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Vídeos do YouTube</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="99"/>
@@ -2426,7 +2426,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../flyer.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copiar para área de transferência</translation>
+        <translation>Copiar para área de transferência</translation>
     </message>
     <message>
         <location filename="../../flyer.cpp" line="56"/>
@@ -6943,7 +6943,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="1412"/>
         <source>&amp;YouTube</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1599"/>
@@ -7796,7 +7796,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../marquee.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copiar para área de transferência</translation>
+        <translation>Copiar para área de transferência</translation>
     </message>
     <message>
         <location filename="../../marquee.cpp" line="56"/>
@@ -10174,32 +10174,32 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2477"/>
         <source>Select the cursor position QMC2 uses when auto-scrolling to the current item (this setting applies to all views and lists!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher posição do cursor a ser usado pelo QMC2 quando fizer rolagem automática para o ítem atual (essa configuração se aplica a todas as visões e listas!)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2484"/>
         <source>Visible</source>
-        <translation type="unfinished"></translation>
+        <translation>Visível</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2489"/>
         <source>Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Em cima</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2494"/>
         <source>Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>Em baixo</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2499"/>
         <source>Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Centro</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2507"/>
         <source>Cursor position</source>
-        <translation type="unfinished"></translation>
+        <translation>Posição do cursor</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2521"/>
@@ -10837,7 +10837,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../pcb.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copiar para área de transferência</translation>
+        <translation>Copiar para área de transferência</translation>
     </message>
     <message>
         <location filename="../../pcb.cpp" line="56"/>
@@ -10868,7 +10868,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../preview.cpp" line="51"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copiar para área de transferência</translation>
+        <translation>Copiar para área de transferência</translation>
     </message>
     <message>
         <location filename="../../preview.cpp" line="58"/>
@@ -13843,7 +13843,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../title.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copiar para área de transferência</translation>
+        <translation>Copiar para área de transferência</translation>
     </message>
     <message>
         <location filename="../../title.cpp" line="56"/>
