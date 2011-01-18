@@ -90,13 +90,16 @@ void Embedder::clientEmbedded()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientEmbedded()"));
 #endif
 
-  forceFocus();
   embedded = true;
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator embedded, window ID = 0x%1").arg(QString::number(winId, 16)));
 
   // this works around a Qt bug when the tool bar is vertical and obscured by the emulator window before embedding
   QTimer::singleShot(0, qmc2MainWindow->toolbar, SLOT(update()));
+
+  // gain focus
+  qApp->processEvents();
+  QTimer::singleShot(0, this, SLOT(forceFocus()));
 }
 
 void Embedder::clientClosed()
@@ -152,8 +155,13 @@ void Embedder::showEvent(QShowEvent *e)
 #endif
 
   embedContainer->hide();
+
+  QTimer::singleShot(0, this, SLOT(forceFocus()));
+
   QTimer::singleShot(QMC2_EMBED_MAXIMIZE_DELAY, embedContainer, SLOT(showMaximized()));
-  forceFocus();
+
+  if ( qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
+    QTimer::singleShot(0, qmc2MainWindow->menuBar(), SLOT(hide()));
 }
 
 void Embedder::toggleOptions()
