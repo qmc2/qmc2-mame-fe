@@ -374,6 +374,7 @@ void Options::apply()
     logFont.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
   qmc2MainWindow->textBrowserFrontendLog->setFont(logFont);
   qmc2MainWindow->textBrowserEmulatorLog->setFont(logFont);
+  lineEditLogFont->setFont(logFont);
 
   QSize iconSize(fm.height() - 2, fm.height() - 2);
   QSize iconSizeLarge = iconSize + QSize(4, 4);

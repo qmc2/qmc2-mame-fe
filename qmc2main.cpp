@@ -3453,7 +3453,7 @@ void MainWindow::action_embedEmulator_triggered()
     bool found = FALSE;
     int j;
     for (j = 0; j < tabWidgetEmbeddedEmulators->count() && !found; j++)
-      found = tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("%1: %2: ").arg(gameID).arg(gameName));
+      found = tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(gameID));
     if ( found ) {                                                                  
       log(QMC2_LOG_FRONTEND, tr("emulator #%1 is already embedded").arg(gameID));
       tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
@@ -3506,7 +3506,7 @@ void MainWindow::action_embedEmulator_triggered()
       log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg(winIdList[0]));
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0].toInt(0, 16), this);
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
-      tabWidgetEmbeddedEmulators->addTab(embedder, QString("%1: %2: %3").arg(gameID).arg(gameName).arg(qmc2GamelistDescriptionMap[gameName]));
+      tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1 - %2").arg(gameID).arg(qmc2GamelistDescriptionMap[gameName]));
       embedder->show();
 
       // serious hack to access the tab bar without sub-classing from QTabWidget ;)
