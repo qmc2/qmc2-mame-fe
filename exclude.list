@@ -267,6 +267,7 @@ qmc2/data/img/circles/.svn/prop-base/mame.ico.svn-base
 qmc2/data/img/circles/.svn/prop-base/mame.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/marquee.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/maws.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/maximize.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/media_back.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/media_fastbackward.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/media_fastforward.png.svn-base
@@ -279,6 +280,7 @@ qmc2/data/img/circles/.svn/prop-base/merge_ok.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/merge.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/mess.ico.svn-base
 qmc2/data/img/circles/.svn/prop-base/mess.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/minimize.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/minus.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/movie.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/music.png.svn-base
@@ -417,6 +419,7 @@ qmc2/data/img/circles/.svn/text-base/mame.ico.svn-base
 qmc2/data/img/circles/.svn/text-base/mame.png.svn-base
 qmc2/data/img/circles/.svn/text-base/marquee.png.svn-base
 qmc2/data/img/circles/.svn/text-base/maws.png.svn-base
+qmc2/data/img/circles/.svn/text-base/maximize.png.svn-base
 qmc2/data/img/circles/.svn/text-base/media_back.png.svn-base
 qmc2/data/img/circles/.svn/text-base/media_fastbackward.png.svn-base
 qmc2/data/img/circles/.svn/text-base/media_fastforward.png.svn-base
@@ -429,6 +432,7 @@ qmc2/data/img/circles/.svn/text-base/merge_ok.png.svn-base
 qmc2/data/img/circles/.svn/text-base/merge.png.svn-base
 qmc2/data/img/circles/.svn/text-base/mess.ico.svn-base
 qmc2/data/img/circles/.svn/text-base/mess.png.svn-base
+qmc2/data/img/circles/.svn/text-base/minimize.png.svn-base
 qmc2/data/img/circles/.svn/text-base/minus.png.svn-base
 qmc2/data/img/circles/.svn/text-base/movie.png.svn-base
 qmc2/data/img/circles/.svn/text-base/music.png.svn-base
@@ -568,6 +572,7 @@ qmc2/data/img/classic/.svn/prop-base/mame.ico.svn-base
 qmc2/data/img/classic/.svn/prop-base/mame.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/marquee.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/maws.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/maximize.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/media_back.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/media_fastbackward.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/media_fastforward.png.svn-base
@@ -580,6 +585,7 @@ qmc2/data/img/classic/.svn/prop-base/merge_ok.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/merge.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/mess.ico.svn-base
 qmc2/data/img/classic/.svn/prop-base/mess.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/minimize.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/minus.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/movie.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/music.png.svn-base
@@ -719,6 +725,7 @@ qmc2/data/img/classic/.svn/text-base/mame.ico.svn-base
 qmc2/data/img/classic/.svn/text-base/mame.png.svn-base
 qmc2/data/img/classic/.svn/text-base/marquee.png.svn-base
 qmc2/data/img/classic/.svn/text-base/maws.png.svn-base
+qmc2/data/img/classic/.svn/text-base/maximize.png.svn-base
 qmc2/data/img/classic/.svn/text-base/media_back.png.svn-base
 qmc2/data/img/classic/.svn/text-base/media_fastbackward.png.svn-base
 qmc2/data/img/classic/.svn/text-base/media_fastforward.png.svn-base
@@ -731,6 +738,7 @@ qmc2/data/img/classic/.svn/text-base/merge_ok.png.svn-base
 qmc2/data/img/classic/.svn/text-base/merge.png.svn-base
 qmc2/data/img/classic/.svn/text-base/mess.ico.svn-base
 qmc2/data/img/classic/.svn/text-base/mess.png.svn-base
+qmc2/data/img/classic/.svn/text-base/minimize.png.svn-base
 qmc2/data/img/classic/.svn/text-base/minus.png.svn-base
 qmc2/data/img/classic/.svn/text-base/movie.png.svn-base
 qmc2/data/img/classic/.svn/text-base/music.png.svn-base
@@ -870,6 +878,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/mame.ico.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/mame.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/marquee.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/maws.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/maximize.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/media_back.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/media_fastbackward.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/media_fastforward.png.svn-base
@@ -882,6 +891,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/merge_ok.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/merge.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/mess.ico.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/mess.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/minimize.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/minus.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/movie.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/music.png.svn-base
@@ -1021,6 +1031,7 @@ qmc2/data/img/crazy-black/.svn/text-base/mame.ico.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/mame.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/marquee.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/maws.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/maximize.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/media_back.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/media_fastbackward.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/media_fastforward.png.svn-base
@@ -1033,6 +1044,7 @@ qmc2/data/img/crazy-black/.svn/text-base/merge_ok.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/merge.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/mess.ico.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/mess.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/minimize.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/minus.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/movie.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/music.png.svn-base
@@ -1172,6 +1184,7 @@ qmc2/data/img/crazy/.svn/prop-base/mame.ico.svn-base
 qmc2/data/img/crazy/.svn/prop-base/mame.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/marquee.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/maws.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/maximize.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/media_back.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/media_fastbackward.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/media_fastforward.png.svn-base
@@ -1184,6 +1197,7 @@ qmc2/data/img/crazy/.svn/prop-base/merge_ok.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/merge.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/mess.ico.svn-base
 qmc2/data/img/crazy/.svn/prop-base/mess.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/minimize.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/minus.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/movie.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/music.png.svn-base
@@ -1323,6 +1337,7 @@ qmc2/data/img/crazy/.svn/text-base/mame.ico.svn-base
 qmc2/data/img/crazy/.svn/text-base/mame.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/marquee.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/maws.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/maximize.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/media_back.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/media_fastbackward.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/media_fastforward.png.svn-base
@@ -1335,6 +1350,7 @@ qmc2/data/img/crazy/.svn/text-base/merge_ok.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/merge.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/mess.ico.svn-base
 qmc2/data/img/crazy/.svn/text-base/mess.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/minimize.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/minus.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/movie.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/music.png.svn-base
@@ -1474,6 +1490,7 @@ qmc2/data/img/cubes/.svn/prop-base/mame.ico.svn-base
 qmc2/data/img/cubes/.svn/prop-base/mame.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/marquee.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/maws.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/maximize.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/media_back.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/media_fastbackward.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/media_fastforward.png.svn-base
@@ -1486,6 +1503,7 @@ qmc2/data/img/cubes/.svn/prop-base/merge_ok.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/merge.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/mess.ico.svn-base
 qmc2/data/img/cubes/.svn/prop-base/mess.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/minimize.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/minus.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/movie.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/music.png.svn-base
@@ -1624,6 +1642,7 @@ qmc2/data/img/cubes/.svn/text-base/mame.ico.svn-base
 qmc2/data/img/cubes/.svn/text-base/mame.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/marquee.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/maws.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/maximize.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/media_back.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/media_fastbackward.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/media_fastforward.png.svn-base
@@ -1636,6 +1655,7 @@ qmc2/data/img/cubes/.svn/text-base/merge_ok.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/merge.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/mess.ico.svn-base
 qmc2/data/img/cubes/.svn/text-base/mess.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/minimize.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/minus.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/movie.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/music.png.svn-base
@@ -1775,6 +1795,7 @@ qmc2/data/img/.svn/prop-base/mame.ico.svn-base
 qmc2/data/img/.svn/prop-base/mame.png.svn-base
 qmc2/data/img/.svn/prop-base/marquee.png.svn-base
 qmc2/data/img/.svn/prop-base/maws.png.svn-base
+qmc2/data/img/.svn/prop-base/maximize.png.svn-base
 qmc2/data/img/.svn/prop-base/media_back.png.svn-base
 qmc2/data/img/.svn/prop-base/media_fastbackward.png.svn-base
 qmc2/data/img/.svn/prop-base/media_fastforward.png.svn-base
@@ -1787,6 +1808,7 @@ qmc2/data/img/.svn/prop-base/merge_ok.png.svn-base
 qmc2/data/img/.svn/prop-base/merge.png.svn-base
 qmc2/data/img/.svn/prop-base/mess.ico.svn-base
 qmc2/data/img/.svn/prop-base/mess.png.svn-base
+qmc2/data/img/.svn/prop-base/minimize.png.svn-base
 qmc2/data/img/.svn/prop-base/minus.png.svn-base
 qmc2/data/img/.svn/prop-base/movie.png.svn-base
 qmc2/data/img/.svn/prop-base/music.png.svn-base
@@ -1926,6 +1948,7 @@ qmc2/data/img/.svn/text-base/mame.ico.svn-base
 qmc2/data/img/.svn/text-base/mame.png.svn-base
 qmc2/data/img/.svn/text-base/marquee.png.svn-base
 qmc2/data/img/.svn/text-base/maws.png.svn-base
+qmc2/data/img/.svn/text-base/maximize.png.svn-base
 qmc2/data/img/.svn/text-base/media_back.png.svn-base
 qmc2/data/img/.svn/text-base/media_fastbackward.png.svn-base
 qmc2/data/img/.svn/text-base/media_fastforward.png.svn-base
@@ -1938,6 +1961,7 @@ qmc2/data/img/.svn/text-base/merge_ok.png.svn-base
 qmc2/data/img/.svn/text-base/merge.png.svn-base
 qmc2/data/img/.svn/text-base/mess.ico.svn-base
 qmc2/data/img/.svn/text-base/mess.png.svn-base
+qmc2/data/img/.svn/text-base/minimize.png.svn-base
 qmc2/data/img/.svn/text-base/minus.png.svn-base
 qmc2/data/img/.svn/text-base/movie.png.svn-base
 qmc2/data/img/.svn/text-base/music.png.svn-base
