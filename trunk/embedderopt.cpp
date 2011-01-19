@@ -29,7 +29,6 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
 
 #if QMC2_WIP_CODE != 1
   tabWidgetEmbedderOptions->removeTab(tabWidgetEmbedderOptions->indexOf(tabMovies));
-  tabWidgetEmbedderOptions->removeTab(tabWidgetEmbedderOptions->indexOf(tabNetplay));
 #endif
 
   // restore settings
