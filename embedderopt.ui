@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>427</width>
-    <height>224</height>
+    <width>370</width>
+    <height>262</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,7 +47,10 @@
           <bool>true</bool>
          </property>
          <property name="autoRepeatDelay">
-          <number>200</number>
+          <number>100</number>
+         </property>
+         <property name="autoRepeatInterval">
+          <number>50</number>
          </property>
          <property name="toolButtonStyle">
           <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -125,15 +128,6 @@
       </attribute>
       <attribute name="title">
        <string>Movies</string>
-      </attribute>
-     </widget>
-     <widget class="QWidget" name="tabNetplay">
-      <attribute name="icon">
-       <iconset resource="qmc2.qrc">
-        <normaloff>:/data/img/world.png</normaloff>:/data/img/world.png</iconset>
-      </attribute>
-      <attribute name="title">
-       <string>Netplay</string>
       </attribute>
      </widget>
     </widget>
