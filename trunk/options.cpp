@@ -353,8 +353,15 @@ void Options::apply()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::apply()");
 #endif
 
+#if defined(Q_WS_X11)
+  if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() ) {
+    qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
+    qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
+  }
+#else
   qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
   qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
+#endif
 
   QFont f;
   f.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
@@ -551,7 +558,7 @@ void Options::apply()
     if ( embedder->embedderOptions )
       embedder->embedderOptions->adjustIconSizes();
   }
-  qmc2MainWindow->toolButtonEmbedderMaximizeToggle->setIconSize(iconSize);
+  qmc2MainWindow->toolButtonEmbedderMaximizeToggle->setIconSize(iconSizeLarge);
 #endif
 
   if ( qmc2DetailSetup )
@@ -1998,7 +2005,12 @@ void Options::applyDelayed()
   qmc2MainWindow->on_tabWidgetGameDetail_currentChanged(qmc2MainWindow->tabWidgetGameDetail->currentIndex());
 
   // hide / show the menu bar
+#if defined(Q_WS_X11)
+  if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
+    qmc2MainWindow->menuBar()->setVisible(checkBoxShowMenuBar->isChecked());
+#else
   qmc2MainWindow->menuBar()->setVisible(checkBoxShowMenuBar->isChecked());
+#endif
   qApp->processEvents();
   qmc2VariantSwitchReady = TRUE;
 }

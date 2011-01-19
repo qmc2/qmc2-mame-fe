@@ -414,8 +414,13 @@ MainWindow::MainWindow(QWidget *parent)
 
 #if defined(Q_WS_X11)
   toolButtonEmbedderMaximizeToggle = new QToolButton(tabWidgetEmbeddedEmulators);
-  toolButtonEmbedderMaximizeToggle->setIcon(QIcon(QString::fromUtf8(":/data/img/toggle_fullscreen.png")));
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", FALSE).toBool() )
+    toolButtonEmbedderMaximizeToggle->setIcon(QIcon(QString::fromUtf8(":/data/img/minimize.png")));
+  else
+    toolButtonEmbedderMaximizeToggle->setIcon(QIcon(QString::fromUtf8(":/data/img/maximize.png")));
   toolButtonEmbedderMaximizeToggle->setToolTip(tr("Toggle maximization of embedded emulator windows"));
+  toolButtonEmbedderMaximizeToggle->setToolButtonStyle(Qt::ToolButtonIconOnly);
+  toolButtonEmbedderMaximizeToggle->setAutoRaise(TRUE);
   toolButtonEmbedderMaximizeToggle->setCheckable(TRUE);
   toolButtonEmbedderMaximizeToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", FALSE).toBool());
   tabWidgetEmbeddedEmulators->setCornerWidget(toolButtonEmbedderMaximizeToggle, Qt::TopRightCorner);
@@ -1376,6 +1381,7 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
     menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", TRUE).toBool());
     statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
     toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
+    frameStatus->show();
   }
 #endif
 
@@ -2394,6 +2400,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", TRUE).toBool());
       statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
       toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
+      frameStatus->show();
 #else
       QTimer::singleShot(0, this, SLOT(scrollToCurrentItem()));
 #endif
@@ -2427,6 +2434,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", TRUE).toBool());
       statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
       toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
+      frameStatus->show();
 #else
       QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
 #endif
@@ -2446,6 +2454,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", TRUE).toBool());
       statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
       toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
+      frameStatus->show();
 #else
       QTimer::singleShot(0, this, SLOT(checkCurrentFavoritesSelection()));
 #endif
@@ -2462,6 +2471,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
       menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", TRUE).toBool());
       statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
       toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
+      frameStatus->show();
 #else
       QTimer::singleShot(0, this, SLOT(checkCurrentPlayedSelection()));
 #endif
@@ -2477,6 +2487,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
           menuBar()->hide();
           statusBar()->hide();
           toolbar->hide();
+          frameStatus->hide();
           qApp->processEvents();
           hSplitterSizes = hSplitter->sizes();
           QList<int> maximizedSizes;
@@ -3619,6 +3630,7 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
     menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", TRUE).toBool());
     statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
     toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
+    frameStatus->show();
   } else {
     Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->currentWidget();
     if ( embedder ) QTimer::singleShot(0, embedder, SLOT(forceFocus()));
@@ -3653,6 +3665,7 @@ void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
 		menuBar()->hide();
 		statusBar()->hide();
 		toolbar->hide();
+		frameStatus->hide();
 		qApp->processEvents();
 		hSplitterSizes = hSplitter->sizes();
 		QList<int> maximizedSizes;
@@ -3661,11 +3674,14 @@ void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
 		else
 			maximizedSizes << 0 << desktopGeometry.width();
 		hSplitter->setSizes(maximizedSizes);
+		toolButtonEmbedderMaximizeToggle->setIcon(QIcon(QString::fromUtf8(":/data/img/minimize.png")));
 	} else {
 		hSplitter->setSizes(hSplitterSizes);
 		menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", TRUE).toBool());
 		statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
 		toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
+		frameStatus->show();
+		toolButtonEmbedderMaximizeToggle->setIcon(QIcon(QString::fromUtf8(":/data/img/maximize.png")));
 	}
 
 	if ( scrollBarMaximum )
