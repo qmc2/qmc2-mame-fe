@@ -1,5 +1,10 @@
 #include <QtGui>
+
 #if defined(Q_WS_X11)
+
+#include <QX11Info>
+#include <X11/Xlib.h>
+#include <X11/keysym.h>
 #include "embedder.h"
 #include "qmc2main.h"
 #include "macros.h"
@@ -18,6 +23,7 @@ Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
   gameID = id;
   winId = wid;
   embedded = false;
+  pauseKeyPressed = false;
 
 #if QT_VERSION >= 0x040700
   setAttribute(Qt::WA_NativeWindow);
@@ -220,6 +226,31 @@ void Embedder::forceFocus()
 
   activateWindow();
   setFocus();
+}
+
+void Embedder::simulatePauseKey()
+{
+	XKeyEvent xev;
+	xev.display = QX11Info::display();
+	xev.window = winId;
+	xev.root = qApp->desktop()->winId();
+	xev.subwindow = 0;
+	xev.time = QDateTime::currentDateTime().toTime_t();
+	xev.x = xev.y = xev.x_root = xev.y_root = 1;
+	xev.same_screen = true;
+	xev.keycode = XKeysymToKeycode(xev.display, Qt::Key_P); // FIXME: allow to use a custom key
+	xev.state = 0;
+
+	if ( pauseKeyPressed ) {
+		xev.type = KeyRelease;
+		XSendEvent(xev.display, xev.window, true, KeyPressMask, (XEvent *)&xev);
+		pauseKeyPressed = false;
+	} else {
+		xev.type = KeyPress;
+		XSendEvent(xev.display, xev.window, true, KeyPressMask, (XEvent *)&xev);
+		pauseKeyPressed = true;
+		QTimer::singleShot(QMC2_XKEYEVENT_TRANSITION_TIME, this, SLOT(simulatePauseKey()));
+	}
 }
 
 #endif
