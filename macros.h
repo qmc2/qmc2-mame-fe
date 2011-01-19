@@ -445,4 +445,7 @@
 // timeout (in ms) for locking the log-mutex
 #define QMC2_LOG_MUTEX_LOCK_TIMEOUT	100
 
+// X11 only: time (in ms) between KeyPress and KeyRelease events when simulating keys sent to an emulator
+#define QMC2_XKEYEVENT_TRANSITION_TIME	50
+
 #endif

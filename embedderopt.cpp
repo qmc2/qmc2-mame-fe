@@ -8,6 +8,7 @@
 #include "preview.h"
 #include "title.h"
 #include "macros.h"
+
 extern MainWindow *qmc2MainWindow;
 extern Gamelist *qmc2Gamelist;
 extern QSettings *qmc2Config;
