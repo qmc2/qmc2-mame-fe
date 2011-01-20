@@ -122,8 +122,13 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_SHOWMEMINFO)
     QTimer memoryUpdateTimer;
 #endif
+#if defined(Q_WS_X11)
     QWidget *widgetEmbeddedEmus;
+    QWidget *embedderCornerWidget;
+    QHBoxLayout *embedderCornerLayout;
     QToolButton *toolButtonEmbedderMaximizeToggle;
+    QToolButton *toolButtonEmbedderAutoPause;
+#endif
     QList<int> hSplitterSizes;
     QRect desktopGeometry;
     QWidget *hSplitterWidget0;
