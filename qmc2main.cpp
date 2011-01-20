@@ -413,23 +413,42 @@ MainWindow::MainWindow(QWidget *parent)
   labelGameStatus->setPalette(qmc2StatusColorBlue);
 
 #if defined(Q_WS_X11)
-  toolButtonEmbedderMaximizeToggle = new QToolButton(tabWidgetEmbeddedEmulators);
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", FALSE).toBool() )
+  embedderCornerWidget = new QWidget(tabWidgetEmbeddedEmulators);
+  embedderCornerLayout = new QHBoxLayout(embedderCornerWidget);
+  embedderCornerLayout->setContentsMargins(0, 0, 0, 0);
+
+  toolButtonEmbedderAutoPause = new QToolButton(embedderCornerWidget);
+  toolButtonEmbedderAutoPause->setIcon(QIcon(QString::fromUtf8(":/data/img/sleep.png")));
+  toolButtonEmbedderAutoPause->setToolTip(tr("Toggle automatic pausing of embedded emulators"));
+  toolButtonEmbedderAutoPause->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+  toolButtonEmbedderAutoPause->setToolButtonStyle(Qt::ToolButtonIconOnly);
+  toolButtonEmbedderAutoPause->setAutoRaise(true);
+  toolButtonEmbedderAutoPause->setCheckable(true);
+  toolButtonEmbedderAutoPause->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Embedder/AutoPause", false).toBool());
+  embedderCornerLayout->addWidget(toolButtonEmbedderAutoPause);
+
+  toolButtonEmbedderMaximizeToggle = new QToolButton(embedderCornerWidget);
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", false).toBool() )
     toolButtonEmbedderMaximizeToggle->setIcon(QIcon(QString::fromUtf8(":/data/img/minimize.png")));
   else
     toolButtonEmbedderMaximizeToggle->setIcon(QIcon(QString::fromUtf8(":/data/img/maximize.png")));
   toolButtonEmbedderMaximizeToggle->setToolTip(tr("Toggle maximization of embedded emulator windows"));
+  toolButtonEmbedderMaximizeToggle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
   toolButtonEmbedderMaximizeToggle->setToolButtonStyle(Qt::ToolButtonIconOnly);
-  toolButtonEmbedderMaximizeToggle->setAutoRaise(TRUE);
-  toolButtonEmbedderMaximizeToggle->setCheckable(TRUE);
-  toolButtonEmbedderMaximizeToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", FALSE).toBool());
-  tabWidgetEmbeddedEmulators->setCornerWidget(toolButtonEmbedderMaximizeToggle, Qt::TopRightCorner);
+  toolButtonEmbedderMaximizeToggle->setAutoRaise(true);
+  toolButtonEmbedderMaximizeToggle->setCheckable(true);
+  toolButtonEmbedderMaximizeToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", false).toBool());
   connect(toolButtonEmbedderMaximizeToggle, SIGNAL(toggled(bool)), this, SLOT(on_toolButtonEmbedderMaximizeToggle_toggled(bool)));
+  embedderCornerLayout->addWidget(toolButtonEmbedderMaximizeToggle);
+
+  embedderCornerWidget->setLayout(embedderCornerLayout);
+  tabWidgetEmbeddedEmulators->setCornerWidget(embedderCornerWidget, Qt::TopRightCorner);
+
+  widgetEmbeddedEmus = tabWidgetGamelist->widget(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
 #else
   actionPlayEmbedded->setVisible(FALSE);
 #endif
   tabWidgetEmbeddedEmulators->removeTab(0);
-  widgetEmbeddedEmus = tabWidgetGamelist->widget(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
   tabWidgetGamelist->removeTab(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
 
 #if !defined(QMC2_VARIANT_LAUNCHER)
@@ -3507,7 +3526,6 @@ void MainWindow::action_embedEmulator_triggered()
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0].toInt(0, 16), this);
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
       tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1 - %2").arg(gameID).arg(qmc2GamelistDescriptionMap[gameName]));
-      embedder->show();
 
       // serious hack to access the tab bar without sub-classing from QTabWidget ;)
       QTabBar *tabBar = tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
@@ -4434,6 +4452,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     else
       qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitter->sizes().at(0), hSplitter->sizes().at(1)));
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", toolButtonEmbedderMaximizeToggle->isChecked());
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/Embedder/AutoPause", toolButtonEmbedderAutoPause->isChecked());
 #else
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/hSplitter", QSize(hSplitter->sizes().at(0), hSplitter->sizes().at(1)));
 #endif
@@ -6061,6 +6080,14 @@ void MainWindow::processFifoData()
           if ( msgClass == "MAME" ) {
             if ( msgWhat == "START" ) {
               il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
+#if defined(Q_WS_X11)
+	      Embedder *embedder = NULL;
+	      for (int j = 0; j < qmc2MainWindow->tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
+		      if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) )
+			      embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
+	      }
+	      if ( embedder ) embedder->isPaused = false;
+#endif
             } else if ( msgWhat == "STOP" ) {
               il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("stopped"));
             } else {
@@ -6083,10 +6110,25 @@ void MainWindow::processFifoData()
               else
                 il[0]->setIcon(QMC2_EMUCONTROL_COLUMN_LED1, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
             } else if ( msgWhat == "pause" ) {
+#if defined(Q_WS_X11)
+	      Embedder *embedder = NULL;
+	      for (int j = 0; j < qmc2MainWindow->tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
+		      if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) )
+			      embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
+	      }
+              if ( msgState == "1" ) {
+		      il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("paused"));
+		      if ( embedder ) embedder->isPaused = true;
+	      } else {
+		      il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
+		      if ( embedder ) embedder->isPaused = false;
+	      }
+#else
               if ( msgState == "1" )
                 il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("paused"));
               else
                 il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
+#endif
             } else {
                // add or refresh dynamic output notifiers
                QTreeWidgetItem *itemFound = NULL;

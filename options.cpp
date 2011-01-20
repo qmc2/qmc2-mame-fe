@@ -560,6 +560,7 @@ void Options::apply()
       embedder->embedderOptions->adjustIconSizes();
   }
   qmc2MainWindow->toolButtonEmbedderMaximizeToggle->setIconSize(iconSizeLarge);
+  qmc2MainWindow->toolButtonEmbedderAutoPause->setIconSize(iconSizeLarge);
 #endif
 
   if ( qmc2DetailSetup )

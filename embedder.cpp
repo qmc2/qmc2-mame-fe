@@ -24,6 +24,7 @@ Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
   winId = wid;
   embedded = false;
   pauseKeyPressed = false;
+  isPaused = false;
 
 #if QT_VERSION >= 0x040700
   setAttribute(Qt::WA_NativeWindow);
@@ -168,6 +169,23 @@ void Embedder::showEvent(QShowEvent *e)
 
   if ( qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
     QTimer::singleShot(0, qmc2MainWindow->menuBar(), SLOT(hide()));
+
+  if ( embedded && qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() ) {
+    QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(resume()));
+    QApplication::syncX();
+  }
+}
+
+void Embedder::hideEvent(QHideEvent *e)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+  if ( embedded && qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() ) {
+    QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(pause()));
+    QApplication::syncX();
+  }
 }
 
 void Embedder::toggleOptions()
@@ -226,6 +244,28 @@ void Embedder::forceFocus()
 
   activateWindow();
   setFocus();
+}
+
+void Embedder::pause()
+{
+	qApp->processEvents();
+
+	if ( isVisible() )
+		return;
+
+	if ( !isPaused )
+		simulatePauseKey();
+}
+
+void Embedder::resume()
+{
+	qApp->processEvents();
+
+	if ( !isVisible() )
+		return;
+
+	if ( isPaused )
+		simulatePauseKey();
 }
 
 void Embedder::simulatePauseKey()

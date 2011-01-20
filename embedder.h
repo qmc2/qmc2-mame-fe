@@ -22,6 +22,7 @@ class Embedder : public QWidget
     QSize nativeResolution;
     int cmLeft, cmTop, cmRight, cmBottom;
     bool pauseKeyPressed;
+    bool isPaused;
 
     Embedder(QString name, QString id, WId wid, QWidget *parent = 0);
     ~Embedder();
@@ -37,10 +38,13 @@ class Embedder : public QWidget
     void adjustIconSizes();
     void forceFocus();
     void simulatePauseKey();
+    void pause();
+    void resume();
 
   protected:
     void closeEvent(QCloseEvent *);
     void showEvent(QShowEvent *);
+    void hideEvent(QHideEvent *);
 
   signals:
     void closing();
