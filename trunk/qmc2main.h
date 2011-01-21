@@ -128,6 +128,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QHBoxLayout *embedderCornerLayout;
     QToolButton *toolButtonEmbedderMaximizeToggle;
     QToolButton *toolButtonEmbedderAutoPause;
+    QMenu *menuAutoPause;
 #endif
     QList<int> hSplitterSizes;
     QRect desktopGeometry;
@@ -328,6 +329,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_pushButtonCurrentEmulatorOptionsSelectImportFile_clicked();
 #if defined(Q_WS_X11)
     void action_embedEmulator_triggered();
+    void action_embedderScanPauseKey_triggered();
     void on_tabWidgetEmbeddedEmulators_tabCloseRequested(int);
     void on_embedderOptions_toggled(bool);
     void closeEmbeddedEmuTab();

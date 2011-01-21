@@ -67,6 +67,9 @@
 #include "toolexec.h"
 #include "arcade/arcadeview.h"
 #include "arcade/arcadesetupdialog.h"
+#if defined(Q_WS_X11)
+#include "keyseqscan.h"
+#endif
 
 #ifdef __APPLE__
 #include <ApplicationServices/ApplicationServices.h>
@@ -419,13 +422,21 @@ MainWindow::MainWindow(QWidget *parent)
 
   toolButtonEmbedderAutoPause = new QToolButton(embedderCornerWidget);
   toolButtonEmbedderAutoPause->setIcon(QIcon(QString::fromUtf8(":/data/img/sleep.png")));
-  toolButtonEmbedderAutoPause->setToolTip(tr("Toggle automatic pausing of embedded emulators"));
+  toolButtonEmbedderAutoPause->setToolTip(tr("Toggle automatic pausing of embedded emulators (hold down for menu)"));
   toolButtonEmbedderAutoPause->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
   toolButtonEmbedderAutoPause->setToolButtonStyle(Qt::ToolButtonIconOnly);
   toolButtonEmbedderAutoPause->setAutoRaise(true);
   toolButtonEmbedderAutoPause->setCheckable(true);
   toolButtonEmbedderAutoPause->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Embedder/AutoPause", false).toBool());
   embedderCornerLayout->addWidget(toolButtonEmbedderAutoPause);
+
+  menuAutoPause = new QMenu(0);
+  QString apMenuString = tr("Scan the pause key used by the emulator");
+  QAction *apMenuAction = menuAutoPause->addAction(tr("Scan pause key..."));
+  apMenuAction->setIcon(QIcon(QString::fromUtf8(":/data/img/keyboard.png")));
+  apMenuAction->setToolTip(apMenuString); apMenuAction->setStatusTip(apMenuString);
+  connect(apMenuAction, SIGNAL(triggered()), this, SLOT(action_embedderScanPauseKey_triggered()));
+  toolButtonEmbedderAutoPause->setMenu(menuAutoPause);
 
   toolButtonEmbedderMaximizeToggle = new QToolButton(embedderCornerWidget);
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Embedder/Maximize", false).toBool() )
@@ -3606,6 +3617,19 @@ void MainWindow::action_embedEmulator_triggered()
         break;
     }
   }
+}
+
+void MainWindow::action_embedderScanPauseKey_triggered()
+{
+	qApp->removeEventFilter(qmc2KeyPressFilter);
+
+	KeySequenceScanner keySeqScanner(this, true, true);
+	keySeqScanner.setWindowTitle(tr("Scanning pause key"));
+	keySeqScanner.labelStatus->setText(tr("Scanning pause key"));
+	if ( keySeqScanner.exec() == QDialog::Accepted )
+  		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Embedder/PauseKey", keySeqScanner.keySequence);
+
+	qApp->installEventFilter(qmc2KeyPressFilter);
 }
 
 void MainWindow::on_embedderOptions_toggled(bool enabled)
