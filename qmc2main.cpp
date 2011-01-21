@@ -2516,8 +2516,6 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
             maximizedSizes << 0 << desktopGeometry.width();
           hSplitter->setSizes(maximizedSizes);
         }
-        Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->currentWidget();
-        if ( embedder ) QTimer::singleShot(0, embedder, SLOT(forceFocus()));
       }
       break;
 #endif
@@ -3442,6 +3440,7 @@ void MainWindow::action_embedEmulator_triggered()
 
   QStringList gameList;
   QStringList idList;
+  QStringList statusList;
 
   QList<QTreeWidgetItem *> sl = treeWidgetEmulators->selectedItems();
   int i;
@@ -3450,6 +3449,7 @@ void MainWindow::action_embedEmulator_triggered()
     while ( item->parent() ) item = item->parent();
     gameList << item->text(QMC2_EMUCONTROL_COLUMN_GAME);
     idList << item->text(QMC2_EMUCONTROL_COLUMN_NUMBER);
+    statusList << item->text(QMC2_EMUCONTROL_COLUMN_STATUS);
   }
 
   if ( sl.count() == 0 )
@@ -3458,12 +3458,14 @@ void MainWindow::action_embedEmulator_triggered()
       while ( item->parent() ) item = item->parent();
       gameList << item->text(QMC2_EMUCONTROL_COLUMN_GAME);
       idList << item->text(QMC2_EMUCONTROL_COLUMN_NUMBER);
+      statusList << item->text(QMC2_EMUCONTROL_COLUMN_STATUS);
     }
 
   bool success = TRUE;
   for (i = 0; i < gameList.count(); i++) {
     QString gameName = gameList[i];
     QString gameID = idList[i];
+    QString gameStatus = statusList[i];
 
     if ( gameName.isEmpty() || gameID.isEmpty() )
       continue;
@@ -3523,7 +3525,7 @@ void MainWindow::action_embedEmulator_triggered()
       if ( embeddedEmusIndex < 0 )
         tabWidgetGamelist->addTab(widgetEmbeddedEmus, QIcon(QString::fromUtf8(":/data/img/embed.png")), tr("Embedded emulators"));
       log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg(winIdList[0]));
-      Embedder *embedder = new Embedder(gameName, gameID, winIdList[0].toInt(0, 16), this);
+      Embedder *embedder = new Embedder(gameName, gameID, winIdList[0].toInt(0, 16), (gameStatus == tr("paused")), this);
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
       tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1 - %2").arg(gameID).arg(qmc2GamelistDescriptionMap[gameName]));
 
@@ -3649,9 +3651,6 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
     statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
     toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
     frameStatus->show();
-  } else {
-    Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->currentWidget();
-    if ( embedder ) QTimer::singleShot(0, embedder, SLOT(forceFocus()));
   }
 }
 
