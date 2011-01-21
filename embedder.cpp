@@ -22,8 +22,7 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
   gameName = name;
   gameID = id;
   winId = wid;
-  embedded = false;
-  pauseKeyPressed = false;
+  embedded = pauseKeyPressed = pausing = resuming = false;
   isPaused = currentlyPaused;
 
 #if QT_VERSION >= 0x040700
@@ -160,18 +159,16 @@ void Embedder::showEvent(QShowEvent *e)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  embedContainer->hide();
-
   QTimer::singleShot(QMC2_EMBED_MAXIMIZE_DELAY, embedContainer, SLOT(showMaximized()));
+
+  // gain focus
+  QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, this, SLOT(forceFocus()));
 
   if ( qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
     QTimer::singleShot(0, qmc2MainWindow->menuBar(), SLOT(hide()));
 
   if ( embedded && qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() )
     QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(showEventDelayed()));
-
-  // gain focus
-  QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, this, SLOT(forceFocus()));
 }
 
 void Embedder::hideEvent(QHideEvent *e)
@@ -186,18 +183,18 @@ void Embedder::hideEvent(QHideEvent *e)
 
 void Embedder::showEventDelayed()
 {
-	qApp->processEvents();
-
-	if ( isVisible() )
+	if ( isVisible() ) {
+		resuming = true;
 		resume();
+	}
 }
 
 void Embedder::hideEventDelayed()
 {
-	qApp->processEvents();
-
-	if ( !isVisible() )
+	if ( !isVisible() ) {
+		pausing = true;
 		pause();
+	}
 }
 
 void Embedder::toggleOptions()
@@ -260,14 +257,22 @@ void Embedder::forceFocus()
 
 void Embedder::pause()
 {
-	if ( !isPaused )
+	if ( !isPaused ) {
 		simulatePauseKey();
+		if ( !resuming )
+			QTimer::singleShot(2 * QMC2_XKEYEVENT_TRANSITION_TIME, this, SLOT(pause()));
+	} else
+		pausing = false;
 }
 
 void Embedder::resume()
 {
-	if ( isPaused )
+	if ( isPaused ) {
 		simulatePauseKey();
+		if ( !pausing )
+			QTimer::singleShot(2 * QMC2_XKEYEVENT_TRANSITION_TIME, this, SLOT(resume()));
+	} else
+		resuming = false;
 }
 
 void Embedder::simulatePauseKey()
