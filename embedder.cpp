@@ -170,10 +170,8 @@ void Embedder::showEvent(QShowEvent *e)
   if ( qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
     QTimer::singleShot(0, qmc2MainWindow->menuBar(), SLOT(hide()));
 
-  if ( embedded && qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() ) {
-    QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(resume()));
-    QApplication::syncX();
-  }
+  if ( embedded && qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() )
+    QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(showEventDelayed()));
 }
 
 void Embedder::hideEvent(QHideEvent *e)
@@ -182,10 +180,20 @@ void Embedder::hideEvent(QHideEvent *e)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  if ( embedded && qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() ) {
-    QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(pause()));
-    QApplication::syncX();
-  }
+  if ( embedded && qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() )
+    QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(hideEventDelayed()));
+}
+
+void Embedder::showEventDelayed()
+{
+	if ( isVisible() )
+		resume();
+}
+
+void Embedder::hideEventDelayed()
+{
+	if ( !isVisible() )
+		pause();
 }
 
 void Embedder::toggleOptions()

@@ -40,6 +40,8 @@ class Embedder : public QWidget
     void simulatePauseKey();
     void pause();
     void resume();
+    void showEventDelayed();
+    void hideEventDelayed();
 
   protected:
     void closeEvent(QCloseEvent *);
