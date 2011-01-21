@@ -250,8 +250,6 @@ void Embedder::adjustIconSizes()
 
 void Embedder::forceFocus()
 {
-	QApplication::syncX();
-
 	if ( embedded ) {
 		XSetInputFocus(QX11Info::display(), winId, RevertToParent, QDateTime::currentDateTime().toTime_t());
 	} else {
