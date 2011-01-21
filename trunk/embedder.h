@@ -24,7 +24,7 @@ class Embedder : public QWidget
     bool pauseKeyPressed;
     bool isPaused;
 
-    Embedder(QString name, QString id, WId wid, QWidget *parent = 0);
+    Embedder(QString name, QString id, WId wid, bool currentlyPaused = false, QWidget *parent = 0);
     ~Embedder();
 
   public slots:

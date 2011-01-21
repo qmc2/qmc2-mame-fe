@@ -12,11 +12,11 @@
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 
-Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
+Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWidget *parent)
     : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::Embedder(QString name = %1, QString id = %2, WId wid = %3, QWidget *parent = %4)").arg(name).arg(id).arg((qulonglong)wid).arg((qulonglong)parent));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::Embedder(QString name = %1, QString id = %2, WId wid = %3, bool currentlyPaused = %4, QWidget *parent = %5)").arg(name).arg(id).arg((qulonglong)wid).arg(currentlyPaused).arg((qulonglong)parent));
 #endif
 
   gameName = name;
@@ -24,7 +24,7 @@ Embedder::Embedder(QString name, QString id, WId wid, QWidget *parent)
   winId = wid;
   embedded = false;
   pauseKeyPressed = false;
-  isPaused = false;
+  isPaused = currentlyPaused;
 
 #if QT_VERSION >= 0x040700
   setAttribute(Qt::WA_NativeWindow);
@@ -105,7 +105,7 @@ void Embedder::clientEmbedded()
   QTimer::singleShot(0, qmc2MainWindow->toolbar, SLOT(update()));
 
   // gain focus
-  QTimer::singleShot(0, this, SLOT(forceFocus()));
+  QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, this, SLOT(forceFocus()));
 }
 
 void Embedder::clientClosed()
@@ -171,7 +171,7 @@ void Embedder::showEvent(QShowEvent *e)
     QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(showEventDelayed()));
 
   // gain focus
-  QTimer::singleShot(0, this, SLOT(forceFocus()));
+  QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, this, SLOT(forceFocus()));
 }
 
 void Embedder::hideEvent(QHideEvent *e)
@@ -186,12 +186,16 @@ void Embedder::hideEvent(QHideEvent *e)
 
 void Embedder::showEventDelayed()
 {
+	qApp->processEvents();
+
 	if ( isVisible() )
 		resume();
 }
 
 void Embedder::hideEventDelayed()
 {
+	qApp->processEvents();
+
 	if ( !isVisible() )
 		pause();
 }
@@ -246,31 +250,24 @@ void Embedder::adjustIconSizes()
 
 void Embedder::forceFocus()
 {
-	activateWindow();
-	setFocus();
-	qApp->processEvents();
-	if ( embedded )
+	QApplication::syncX();
+
+	if ( embedded ) {
 		XSetInputFocus(QX11Info::display(), winId, RevertToParent, QDateTime::currentDateTime().toTime_t());
+	} else {
+		activateWindow();
+		setFocus();
+	}
 }
 
 void Embedder::pause()
 {
-	qApp->processEvents();
-
-	if ( isVisible() )
-		return;
-
 	if ( !isPaused )
 		simulatePauseKey();
 }
 
 void Embedder::resume()
 {
-	qApp->processEvents();
-
-	if ( !isVisible() )
-		return;
-
 	if ( isPaused )
 		simulatePauseKey();
 }
