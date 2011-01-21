@@ -258,9 +258,13 @@ void Embedder::forceFocus()
 void Embedder::pause()
 {
 	if ( !isPaused ) {
+		if ( resuming ) {
+			// retry soon...
+			QTimer::singleShot(QMC2_XKEYEVENT_TRANSITION_TIME, this, SLOT(pause()));
+			return;
+		}
 		simulatePauseKey();
-		if ( !resuming )
-			QTimer::singleShot(2 * QMC2_XKEYEVENT_TRANSITION_TIME, this, SLOT(pause()));
+		QTimer::singleShot(2 * QMC2_XKEYEVENT_TRANSITION_TIME, this, SLOT(pause()));
 	} else
 		pausing = false;
 }
@@ -268,9 +272,13 @@ void Embedder::pause()
 void Embedder::resume()
 {
 	if ( isPaused ) {
+		if ( pausing ) {
+			// retry soon...
+			QTimer::singleShot(QMC2_XKEYEVENT_TRANSITION_TIME, this, SLOT(resume()));
+			return;
+		}
 		simulatePauseKey();
-		if ( !pausing )
-			QTimer::singleShot(2 * QMC2_XKEYEVENT_TRANSITION_TIME, this, SLOT(resume()));
+		QTimer::singleShot(2 * QMC2_XKEYEVENT_TRANSITION_TIME, this, SLOT(resume()));
 	} else
 		resuming = false;
 }
@@ -292,6 +300,7 @@ void Embedder::simulatePauseKey()
 		xev.type = KeyRelease;
 		XSendEvent(xev.display, xev.window, true, KeyPressMask, (XEvent *)&xev);
 		pauseKeyPressed = false;
+		XFlush(QX11Info::display());
 	} else {
 		xev.type = KeyPress;
 		XSendEvent(xev.display, xev.window, true, KeyPressMask, (XEvent *)&xev);
