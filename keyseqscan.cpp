@@ -6,7 +6,7 @@
 // external global variables
 extern MainWindow *qmc2MainWindow;
 
-KeySequenceScanner::KeySequenceScanner(QWidget *parent, bool special)
+KeySequenceScanner::KeySequenceScanner(QWidget *parent, bool special, bool onlyOne)
   : QDialog(parent)
 {
 #ifdef QMC2_DEBUG
@@ -15,6 +15,7 @@ KeySequenceScanner::KeySequenceScanner(QWidget *parent, bool special)
 
   setupUi(this);
 
+  onlyOneKey = onlyOne;
   specialKey = special;
   if ( specialKey ) {
     labelStatus->setText(tr("Scanning special key"));
@@ -94,19 +95,31 @@ void KeySequenceScanner::keyPressEvent(QKeyEvent *event)
   if ( keySequence != 0 && keySequence != Qt::Key_unknown ) {
     animTimer.stop();
     keySequence += seqModifiers;
-
-    QString keySeqString(QKeySequence(keySequence).toString().toAscii());
+    QString keySeqString(QKeySequence(keySequence).toString().toLatin1());
+    if ( onlyOneKey ) keySequence -= seqModifiers;
     currentKeySequence = keySeqString;
     QStringList words = keySeqString.split("+");
     keySeqString = "";
-    int i;
-    for (i = 0; i < words.count(); i++) {
-      if ( i > 0 ) keySeqString += "+";
-      keySeqString += QObject::tr(words[i].toAscii());
+    if ( onlyOneKey ) {
+      keySeqString = QObject::tr(words[0].toLatin1());
+    } else {
+      int i;
+      for (i = 0; i < words.count(); i++) {
+        if ( i > 0 ) keySeqString += "+";
+        keySeqString += QObject::tr(words[i].toLatin1());
+      }
     }
     labelKeySequence->setText(keySeqString);
 
-    if ( specialKey ) {
+    if ( onlyOneKey ) {
+      if ( words.count() > 0 ) {
+        pushButtonOk->setEnabled(TRUE);
+      } else {
+        pushButtonOk->setEnabled(FALSE);
+        animSeq = 0;
+        animTimer.start(QMC2_ANIMATION_TIMEOUT);
+      }
+    } else if ( specialKey ) {
       if ( (words.count() != 1 && currentKeySequence != "+") || labelKeySequence->text().endsWith("??") ) {
         pushButtonOk->setEnabled(FALSE);
         animSeq = 0;
@@ -142,19 +155,31 @@ void KeySequenceScanner::keyReleaseEvent(QKeyEvent *event)
     seqModifiers = event->modifiers();
     animTimer.stop();
     keySequence += seqModifiers;
-
-    QString keySeqString(QKeySequence(keySequence).toString().toAscii());
+    QString keySeqString(QKeySequence(keySequence).toString().toLatin1());
+    if ( onlyOneKey ) keySequence -= seqModifiers;
     currentKeySequence = keySeqString;
     QStringList words = keySeqString.split("+");
     keySeqString = "";
-    int i;
-    for (i = 0; i < words.count(); i++) {
-      if ( i > 0 ) keySeqString += "+";
-      keySeqString += QObject::tr(words[i].toAscii());
+    if ( onlyOneKey ) {
+      keySeqString = QObject::tr(words[0].toLatin1());
+    } else {
+      int i;
+      for (i = 0; i < words.count(); i++) {
+        if ( i > 0 ) keySeqString += "+";
+        keySeqString += QObject::tr(words[i].toLatin1());
+      }
     }
     labelKeySequence->setText(keySeqString);
 
-    if ( specialKey ) {
+    if ( onlyOneKey ) {
+      if ( words.count() > 0 ) {
+        pushButtonOk->setEnabled(TRUE);
+      } else {
+        pushButtonOk->setEnabled(FALSE);
+        animSeq = 0;
+        animTimer.start(QMC2_ANIMATION_TIMEOUT);
+      }
+    } else if ( specialKey ) {
       if ( (words.count() != 1 && currentKeySequence != "+") || labelKeySequence->text().endsWith("??") ) {
         pushButtonOk->setEnabled(FALSE);
         animSeq = 0;

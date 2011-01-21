@@ -282,7 +282,7 @@ void Embedder::simulatePauseKey()
 	xev.time = QDateTime::currentDateTime().toTime_t();
 	xev.x = xev.y = xev.x_root = xev.y_root = 1;
 	xev.same_screen = true;
-	xev.keycode = XKeysymToKeycode(xev.display, Qt::Key_P); // FIXME: allow to use a custom key
+	xev.keycode = XKeysymToKeycode(xev.display, qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/PauseKey", Qt::Key_P).toInt());
 	xev.state = 0;
 
 	if ( pauseKeyPressed ) {

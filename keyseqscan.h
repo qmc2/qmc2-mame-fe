@@ -15,8 +15,9 @@ class KeySequenceScanner : public QDialog, public Ui::KeySequenceScanner
     Qt::KeyboardModifiers seqModifiers;
     QString currentKeySequence;
     bool specialKey;
+    bool onlyOneKey;
 
-    KeySequenceScanner(QWidget *parent = 0, bool special = FALSE);
+    KeySequenceScanner(QWidget *parent = 0, bool special = FALSE, bool onlyOne = FALSE);
     ~KeySequenceScanner();
 
   public slots:
