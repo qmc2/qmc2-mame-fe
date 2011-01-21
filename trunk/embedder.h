@@ -23,6 +23,8 @@ class Embedder : public QWidget
     int cmLeft, cmTop, cmRight, cmBottom;
     bool pauseKeyPressed;
     bool isPaused;
+    bool resuming;
+    bool pausing;
 
     Embedder(QString name, QString id, WId wid, bool currentlyPaused = false, QWidget *parent = 0);
     ~Embedder();

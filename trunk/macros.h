@@ -400,9 +400,9 @@
 
 // X11 only: embedder specific delays (in ms)
 #define QMC2_EMBED_DELAY		250
-#define QMC2_EMBED_MAXIMIZE_DELAY	100
+#define QMC2_EMBED_MAXIMIZE_DELAY	0
 #define QMC2_EMBED_FOCUS_DELAY		50
-#define QMC2_EMBED_PAUSERESUME_DELAY	250
+#define QMC2_EMBED_PAUSERESUME_DELAY	100
 
 // maximum number of retries to find an emulator window via xwininfo (emulator may need longer to get ready)
 #define QMC2_MAX_XWININFO_RETRIES	3
@@ -448,6 +448,6 @@
 #define QMC2_LOG_MUTEX_LOCK_TIMEOUT	100
 
 // X11 only: time (in ms) between KeyPress and KeyRelease events when simulating keys sent to an emulator
-#define QMC2_XKEYEVENT_TRANSITION_TIME	100
+#define QMC2_XKEYEVENT_TRANSITION_TIME	50
 
 #endif
