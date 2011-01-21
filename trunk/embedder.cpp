@@ -105,7 +105,6 @@ void Embedder::clientEmbedded()
   QTimer::singleShot(0, qmc2MainWindow->toolbar, SLOT(update()));
 
   // gain focus
-  qApp->processEvents();
   QTimer::singleShot(0, this, SLOT(forceFocus()));
 }
 
@@ -163,8 +162,6 @@ void Embedder::showEvent(QShowEvent *e)
 
   embedContainer->hide();
 
-  QTimer::singleShot(0, this, SLOT(forceFocus()));
-
   QTimer::singleShot(QMC2_EMBED_MAXIMIZE_DELAY, embedContainer, SLOT(showMaximized()));
 
   if ( qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
@@ -172,6 +169,9 @@ void Embedder::showEvent(QShowEvent *e)
 
   if ( embedded && qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() )
     QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(showEventDelayed()));
+
+  // gain focus
+  QTimer::singleShot(0, this, SLOT(forceFocus()));
 }
 
 void Embedder::hideEvent(QHideEvent *e)
@@ -246,12 +246,11 @@ void Embedder::adjustIconSizes()
 
 void Embedder::forceFocus()
 {
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::forceFocus()"));
-#endif
-
-  activateWindow();
-  setFocus();
+	activateWindow();
+	setFocus();
+	qApp->processEvents();
+	if ( embedded )
+		XSetInputFocus(QX11Info::display(), winId, RevertToParent, QDateTime::currentDateTime().toTime_t());
 }
 
 void Embedder::pause()
