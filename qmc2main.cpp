@@ -159,6 +159,7 @@ bool qmc2VariantSwitchReady = FALSE;
 bool qmc2DestroyingArcadeView = FALSE;
 bool qmc2IgnoreItemActivation = FALSE;
 bool qmc2StartEmbedded = FALSE;
+bool qmc2FifoIsOpen = FALSE;
 int qmc2GamelistResponsiveness = 100;
 int qmc2UpdateDelay = 10;
 QFile *qmc2FrontendLogFile = NULL;
@@ -4724,7 +4725,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
     if ( qmc2FifoFile->isOpen() )
       qmc2FifoFile->close();
     delete qmc2FifoFile;
-    ::unlink(QMC2_SDLMAME_OUTPUT_FIFO);
+#if defined(QMC2_SDLMAME)
+//    ::unlink(QMC2_SDLMAME_OUTPUT_FIFO);
+#elif defined(QMC2_SDLMESS)
+//    ::unlink(QMC2_SDLMESS_OUTPUT_FIFO);
+#endif
   }
 #endif
 
@@ -5982,7 +5987,8 @@ void MainWindow::createFifo(bool logFifoCreation)
 #else
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS)
 #if defined(QMC2_SDLMAME)
-  mkfifo(QMC2_SDLMAME_OUTPUT_FIFO, S_IRUSR | S_IWUSR | S_IRGRP);
+  if ( !EXISTS(QMC2_SDLMAME_OUTPUT_FIFO) )
+    mkfifo(QMC2_SDLMAME_OUTPUT_FIFO, S_IRUSR | S_IWUSR | S_IRGRP);
   if ( !EXISTS(QMC2_SDLMAME_OUTPUT_FIFO) ) {
     log(QMC2_LOG_FRONTEND, tr("WARNING: can't create SDLMAME output notifier FIFO, path = %1").arg(QMC2_SDLMAME_OUTPUT_FIFO));
   } else {
@@ -5993,7 +5999,8 @@ void MainWindow::createFifo(bool logFifoCreation)
     int fd = ::open(QMC2_SDLMAME_OUTPUT_FIFO, O_NONBLOCK);
 #endif
 #elif defined(QMC2_SDLMESS)
-  mkfifo(QMC2_SDLMESS_OUTPUT_FIFO, S_IRUSR | S_IWUSR | S_IRGRP);
+  if ( !EXISTS(QMC2_SDLMESS_OUTPUT_FIFO) )
+    mkfifo(QMC2_SDLMESS_OUTPUT_FIFO, S_IRUSR | S_IWUSR | S_IRGRP);
   if ( !EXISTS(QMC2_SDLMESS_OUTPUT_FIFO) ) {
     log(QMC2_LOG_FRONTEND, tr("WARNING: can't create SDLMESS output notifier FIFO, path = %1").arg(QMC2_SDLMESS_OUTPUT_FIFO));
   } else {
@@ -6035,6 +6042,10 @@ void MainWindow::createFifo(bool logFifoCreation)
 #endif
 #endif
 #endif
+  if ( qmc2FifoFile && qmc2FifoNotifier )
+    qmc2FifoIsOpen = qmc2FifoFile->isOpen();
+  else
+    qmc2FifoIsOpen = false;
 }
 
 void MainWindow::recreateFifo()
@@ -6054,9 +6065,9 @@ void MainWindow::recreateFifo()
     qmc2FifoFile->close();
   delete qmc2FifoFile;
 #if defined(QMC2_SDLMAME)
-  ::unlink(QMC2_SDLMAME_OUTPUT_FIFO);
+//  ::unlink(QMC2_SDLMAME_OUTPUT_FIFO);
 #elif defined(QMC2_SDLMESS)
-  ::unlink(QMC2_SDLMESS_OUTPUT_FIFO);
+//  ::unlink(QMC2_SDLMESS_OUTPUT_FIFO);
 #endif
   qmc2FifoFile = NULL;
   createFifo(FALSE);
@@ -6105,14 +6116,34 @@ void MainWindow::processFifoData()
               il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
 #if defined(Q_WS_X11)
 	      Embedder *embedder = NULL;
-	      for (int j = 0; j < qmc2MainWindow->tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
-		      if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) )
+	      int embedderIndex = -1;
+	      for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
+		      if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) ) {
 			      embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
+			      embedderIndex = j;
+		      }
 	      }
-	      if ( embedder ) embedder->isPaused = false;
+	      if ( embedder ) {
+		      embedder->isPaused = false;
+		      tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png")));
+	      }
 #endif
             } else if ( msgWhat == "STOP" ) {
               il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("stopped"));
+#if defined(Q_WS_X11)
+	      Embedder *embedder = NULL;
+	      int embedderIndex = -1;
+	      for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
+		      if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) ) {
+			      embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
+			      embedderIndex = j;
+		      }
+	      }
+	      if ( embedder ) {
+		      embedder->isPaused = false;
+		      tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_red.png")));
+	      }
+#endif
             } else {
 #if defined(QMC2_SDLMAME)
               log(QMC2_LOG_FRONTEND, tr("unhandled MAME output notification: game = %1, class = %2, what = %3, state = %4").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_GAME)).arg(msgClass).arg(msgWhat).arg(msgState));
@@ -6135,16 +6166,25 @@ void MainWindow::processFifoData()
             } else if ( msgWhat == "pause" ) {
 #if defined(Q_WS_X11)
 	      Embedder *embedder = NULL;
-	      for (int j = 0; j < qmc2MainWindow->tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
-		      if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) )
+	      int embedderIndex = -1;
+	      for (int j = 0; j < tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
+		      if ( tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(il[0]->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) ) {
 			      embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
+			      embedderIndex = j;
+		      }
 	      }
               if ( msgState == "1" ) {
 		      il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("paused"));
-		      if ( embedder ) embedder->isPaused = true;
+		      if ( embedder ) {
+			      embedder->isPaused = true;
+			      tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_yellow.png")));
+		      }
 	      } else {
 		      il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
-		      if ( embedder ) embedder->isPaused = false;
+		      if ( embedder ) {
+			      embedder->isPaused = false;
+			      tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png")));
+		      }
 	      }
 #else
               if ( msgState == "1" )

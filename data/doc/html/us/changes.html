@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b19, 21-JAN-2011</h3>
+<h3>CHANGES - v0.2.b19, 24-JAN-2011</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b19, 21-JAN-2011:</b></p>
+<p><b>v0.2.b19, 24-JAN-2011:</b></p>
 <ul>
   <li>fix: ROMAlyzer: corrected status determination for ROM files that have no dump (but for which the file size or any checksums are available through the XML data)</li>
   <li>fix: corrected the scrolling behavior of the front-end and emulator logs</li>
@@ -40,7 +40,9 @@ inf: informational only
   <li>new: all game/machine detail images now have a context menu with a 'copy to clipboard' item</li>
   <li>new: added new compile-time setting <i>BROWSER_PREFETCH_DNS</i> to allow for prefetching of DNS lookups by the mini web browser (Qt 4.6 and higher)</li>
   <li>new: embedder: embedded emulators can now automatically be paused when they are hidden and resumed when they are shown (requires the MAME/MESS notifier FIFO in order to correctly track any state changes)</li>
+  <li>new: embedder: the current status of an embedded emulator is now indicated through traffic lights in the respective tab widget header</li>
   <li>wip: completing the support for game/machine <i>attached</i> youtube.com videos -- note: this is a Qt 4.7+ only feature as it uses the embeddable youtube.com video player which in turn needs the npviewer browser plugin (and that's only cleanly supported since Qt 4.7)</li>
+  <li>inf: SDLMAME &amp; SDLMESS targets only: the output notifier FIFO (<i>/tmp/sdlmame_out</i>) is no longer removed when QMC2 exits to allow for clean concurrent use by multiple variants (that's actually a work around because SDLMAME &amp; SDLMESS both use the <b>same</b> FIFO, and there's apparently no portable way to find out if it's opened by another process to decide when it's eligible for removal)</li>
 </ul>
 <p><b>v0.2.b18, 02-JAN-2011:</b></p>
 <ul>

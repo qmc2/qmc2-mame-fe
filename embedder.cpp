@@ -11,6 +11,7 @@
 
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
+extern bool qmc2FifoIsOpen;
 
 Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWidget *parent)
     : QWidget(parent)
@@ -103,8 +104,15 @@ void Embedder::clientEmbedded()
   // this works around a Qt bug when the tool bar is vertical and obscured by the emulator window before embedding
   QTimer::singleShot(0, qmc2MainWindow->toolbar, SLOT(update()));
 
-  // gain focus
-  QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, this, SLOT(forceFocus()));
+  int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
+
+  if ( qmc2FifoIsOpen ) {
+    if ( isPaused )
+      qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_yellow.png")));
+    else
+      qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png")));
+  } else
+    qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png")));
 }
 
 void Embedder::clientClosed()
@@ -161,14 +169,16 @@ void Embedder::showEvent(QShowEvent *e)
 
   QTimer::singleShot(QMC2_EMBED_MAXIMIZE_DELAY, embedContainer, SLOT(showMaximized()));
 
-  // gain focus
-  QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, this, SLOT(forceFocus()));
-
   if ( qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
     QTimer::singleShot(0, qmc2MainWindow->menuBar(), SLOT(hide()));
 
-  if ( embedded && qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() )
+  if ( embedded )
     QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(showEventDelayed()));
+
+  if ( !qmc2FifoIsOpen ) {
+    int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
+    qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png")));
+  }
 }
 
 void Embedder::hideEvent(QHideEvent *e)
@@ -177,23 +187,29 @@ void Embedder::hideEvent(QHideEvent *e)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  if ( embedded && qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() )
+  if ( embedded )
     QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(hideEventDelayed()));
 }
 
 void Embedder::showEventDelayed()
 {
 	if ( isVisible() ) {
-		resuming = true;
-		resume();
+  		// gain focus
+		QTimer::singleShot(0, this, SLOT(forceFocus()));
+		if ( qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() ) {
+			resuming = true;
+			resume();
+		}
 	}
 }
 
 void Embedder::hideEventDelayed()
 {
 	if ( !isVisible() ) {
-		pausing = true;
-		pause();
+		if ( qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() ) {
+			pausing = true;
+			pause();
+		}
 	}
 }
 
