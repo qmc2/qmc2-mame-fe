@@ -2019,17 +2019,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="91"/>
         <source>emulator #%1 released, window ID = 0x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador #%1 liberado, ID da janela = 0x%2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="102"/>
         <source>emulator #%1 embedded, window ID = 0x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador #%1 embutido, ID da janela = 0x%2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="125"/>
         <source>emulator #%1 closed, window ID = 0x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador #%1 fechado, ID da janela = 0x%2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="143"/>
@@ -5789,7 +5789,7 @@ Você realmente quer verificar o estado de todas as ROMs agora?</translation>
         <location filename="../../qmc2main.cpp" line="3628"/>
         <location filename="../../qmc2main.cpp" line="3629"/>
         <source>Scanning pause key</source>
-        <translation type="unfinished"></translation>
+        <translation>Escaneando tecla de pausa</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3900"/>
@@ -6286,17 +6286,17 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="426"/>
         <source>Toggle automatic pausing of embedded emulators (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar/desativar pausa automática de emuladores embutidos (segure pressionado para abrir o menu)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="435"/>
         <source>Scan the pause key used by the emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Escanear tecla de pausa usada pelo emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="436"/>
         <source>Scan pause key...</source>
-        <translation type="unfinished"></translation>
+        <translation>Escanear tecla de pausa...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6856"/>
