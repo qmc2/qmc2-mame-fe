@@ -2,6 +2,7 @@
 #include <QFileInfo>
 #include "procmgr.h"
 #include "qmc2main.h"
+#include "embedder.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -204,6 +205,18 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
   QList<QTreeWidgetItem *> il = qmc2MainWindow->treeWidgetEmulators->findItems(QString::number(procMap[proc]), Qt::MatchStartsWith);
   if ( il.count() > 0 ) {
     QTreeWidgetItem *item = qmc2MainWindow->treeWidgetEmulators->takeTopLevelItem(qmc2MainWindow->treeWidgetEmulators->indexOfTopLevelItem(il[0]));
+#if defined(Q_WS_X11)
+    Embedder *embedder = NULL;
+    int embedderIndex = -1;
+    for (int j = 0; j < qmc2MainWindow->tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
+	    if ( qmc2MainWindow->tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(item->text(QMC2_EMUCONTROL_COLUMN_NUMBER))) ) {
+		    embedder = (Embedder *)qmc2MainWindow->tabWidgetEmbeddedEmulators->widget(j);
+		    embedderIndex = j;
+	    }
+    }
+    if ( embedder )
+	    QTimer::singleShot(0, embedder, SLOT(clientClosed()));
+#endif
     if ( item )
       delete item;
     else
