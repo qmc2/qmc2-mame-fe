@@ -88,7 +88,7 @@ void Embedder::release()
   embedded = false;
   embedContainer->clearFocus();
   embedContainer->discardClient();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator released, window ID = 0x%1").arg(QString::number(winId, 16)));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
 }
 
 void Embedder::clientEmbedded()
@@ -99,7 +99,7 @@ void Embedder::clientEmbedded()
 
   embedded = true;
 
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator embedded, window ID = 0x%1").arg(QString::number(winId, 16)));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
 
   // this works around a Qt bug when the tool bar is vertical and obscured by the emulator window before embedding
   QTimer::singleShot(0, qmc2MainWindow->toolbar, SLOT(update()));
@@ -122,7 +122,7 @@ void Embedder::clientClosed()
 #endif
 
   if ( embedded ) 
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator closed, window ID = 0x%1").arg(QString::number(winId, 16)));
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 closed, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
   embedded = false;
   emit closing();
 }
