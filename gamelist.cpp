@@ -1528,9 +1528,7 @@ void Gamelist::parse()
       if ( !endParser ) {
         QString descriptionElement = xmlLines[lineCounter].simplified();
         QString gameElement = xmlLines[lineCounter - 1].simplified();
-        QString runnableCheck = value(gameElement, "runnable");
-        QString isbiosCheck = value(gameElement, "isbios");
-        bool isBIOS = ( runnableCheck == "no" || isbiosCheck == "yes" );
+        bool isBIOS = ( value(gameElement, "isbios") == "yes" );
         QString gameName = value(gameElement, "name");
         QString gameCloneOf = value(gameElement, "cloneof");
         QString gameDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">");
