@@ -167,13 +167,13 @@ void Embedder::showEvent(QShowEvent *e)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  QTimer::singleShot(QMC2_EMBED_MAXIMIZE_DELAY, embedContainer, SLOT(showMaximized()));
-
   if ( qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
     QTimer::singleShot(0, qmc2MainWindow->menuBar(), SLOT(hide()));
 
   if ( embedded )
     QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(showEventDelayed()));
+
+  QTimer::singleShot(QMC2_EMBED_MAXIMIZE_DELAY, embedContainer, SLOT(showMaximized()));
 
   if ( !qmc2FifoIsOpen ) {
     int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
@@ -195,7 +195,8 @@ void Embedder::showEventDelayed()
 {
 	if ( isVisible() ) {
   		// gain focus
-		QTimer::singleShot(0, this, SLOT(forceFocus()));
+    		QTimer::singleShot(QMC2_EMBED_RAISE_DELAY, embedContainer, SLOT(raise()));
+		QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, this, SLOT(forceFocus()));
 		if ( qmc2MainWindow->toolButtonEmbedderAutoPause->isChecked() ) {
 			resuming = true;
 			resume();
