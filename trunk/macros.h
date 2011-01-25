@@ -400,8 +400,9 @@
 
 // X11 only: embedder specific delays (in ms)
 #define QMC2_EMBED_DELAY		250
+#define QMC2_EMBED_RAISE_DELAY		0
 #define QMC2_EMBED_MAXIMIZE_DELAY	0
-#define QMC2_EMBED_FOCUS_DELAY		50
+#define QMC2_EMBED_FOCUS_DELAY		0
 #define QMC2_EMBED_PAUSERESUME_DELAY	250
 
 // maximum number of retries to find an emulator window via xwininfo (emulator may need longer to get ready)
