@@ -293,6 +293,12 @@
       <description lang="fr" text="Nombre de of processeurs (ou 'auto'); écrase le nombre de processeurs indiqués par le système"/>
       <description lang="pt" text="Número de processadores (ou 'auto'); sobrescreve o número reportado pelo sistema"/>
     </option>
+    <option name="bench" type="int" default="0">
+      <description lang="us" text="Benchmark for the given number of emulated seconds; implies '-video none -nosound -nothrottle'"/>
+      <description lang="de" text="Benchmark für die angegebene Anzahl emulierter Sekunden durchführen; impliziert '-video none -nosound -nothrottle'"/>
+      <description lang="pl" text="Sprawdzanie wydajności (benchmark) przez podaną liczbę sekund; wymusza '-video none -nosound -nothrottle'"/>
+      <description lang="pt" text="Medir desempenho para o número de segundos emulados dado; implica '-video none -nosound -nothrottle'"/>
+    </option>
   </section>
   <section name="rotation">
     <description lang="us" text="Rotation"/>
@@ -628,6 +634,13 @@
       <description lang="pl" text="Wskaż używaną czcionkę"/>
       <description lang="pt" text="Especificar a fonte a ser usada"/>
     </option>
+    <option name="ramsize" type="string" default="">
+      <description lang="us" text="Size of RAM (if supported by driver)"/>
+      <description lang="de" text="RAM Größe (falls vom Treiber unterstützt)"/>
+      <description lang="pl" text="Rozmiar pamięci RAM (jeśli wspierany przez sterownik)"/>
+      <description lang="fr" text="Taille de RAM (si supporté par le driver)"/>
+      <description lang="pt" text="Tamanho da RAM (se suportado pelo driver)"/>
+    </option>
   </section>
   <section name="configuration">
     <description lang="us" text="Configuration"/>
@@ -704,6 +717,13 @@
       <description lang="pl" text="Używaj wewnętrznego debuggera"/>
       <description lang="fr" text="Utiliser le débogueur interne pour débuguer"/>
       <description lang="pt" text="Usar o depurador interno"/>
+    </option>
+    <option name="watchdog" type="int" default="0">
+      <description lang="us" text="Force the program to terminate if no updates within specified number of seconds"/>
+      <description lang="de" text="Programmabbruch erzwingen, wenn nach der angegebenen Anzahl von Sekunden kein Update passiert ist"/>
+      <description lang="pl" text="Wymuś zakończenie programu jeśli nie będzie aktualizacji po ustalonej liczbie sekund"/>
+      <description lang="fr" text="Forcer le programme à quitter si rien ne se passe au bout du nombre de secondes spécifié"/>
+      <description lang="pt" text="Forçar o programa a terminar se não houver atualizações dentro de um número especificado de segundos"/>
     </option>
   </section>
   <section name="video">
@@ -788,6 +808,13 @@
       <description lang="pl" text="Tryb skalowania: none, async, yv12, yuy2, yv12x2, yuy2x2 (tylko z -video soft)"/>
       <description lang="fr" text="Mode d'agrandissement: none, async, yv12, yuy2, yv12x2, yuy2x2 (-video soft uniquement)"/>
       <description lang="pt" text="Modo de esticamento: none, async, yv12, yuy2, yv12x2, yuy2x2 (-video soft somente)"/>
+    </option>
+    <option name="syncrefresh" type="bool" default="false">
+      <description lang="us" text="Enable using the start of VBLANK for throttling instead of the game time"/>
+      <description lang="de" text="Bei Drosselung an V-Sync anpassen anstelle der Spiel-Geschwindigkeit"/>
+      <description lang="pl" text="Włącz użycie początku synchronizacji pionowej zamiast czasu gry do dławienia"/>
+      <description lang="fr" text="Active l'utilisation de V-BLANK comme accélérateur plutôt que le timer du jeu"/>
+      <description lang="pt" text="Ativar a utilização do VBLANK como troca ao invés do tempo do jogo"/>
     </option>
   </section>
   <section name="opengl">

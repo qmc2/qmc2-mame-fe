@@ -299,6 +299,12 @@
       <description lang="pl" text="Liczba procesorów (lub 'auto'); nadpisuje liczbę zgłaszaną przez system"/>
       <description lang="pt" text="Número de processadores (ou 'auto'); sobrescreve o número reportado pelo sistema"/>
     </option>
+    <option name="bench" type="int" default="0">
+      <description lang="us" text="Benchmark for the given number of emulated seconds; implies '-video none -nosound -nothrottle'"/>
+      <description lang="de" text="Benchmark für die angegebene Anzahl emulierter Sekunden durchführen; impliziert '-video none -nosound -nothrottle'"/>
+      <description lang="pl" text="Sprawdzanie wydajności (benchmark) przez podaną liczbę sekund; wymusza '-video none -nosound -nothrottle'"/>
+      <description lang="pt" text="Medir desempenho para o número de segundos emulados dado; implica '-video none -nosound -nothrottle'"/>
+    </option>
   </section>
   <section name="rotation">
     <description lang="us" text="Rotation"/>
@@ -717,6 +723,13 @@
       <description lang="de" text="Zu verwendende Schriftart angeben"/>
       <description lang="pl" text="Wskaż używaną czcionkę"/>
       <description lang="pt" text="Especificar a fonte a ser usada"/>
+    </option>
+    <option name="ramsize" type="string" default="">
+      <description lang="us" text="Size of RAM (if supported by driver)"/>
+      <description lang="de" text="RAM Größe (falls vom Treiber unterstützt)"/>
+      <description lang="pl" text="Rozmiar pamięci RAM (jeśli wspierany przez sterownik)"/>
+      <description lang="fr" text="Taille de RAM (si supporté par le driver)"/>
+      <description lang="pt" text="Tamanho da RAM (se suportado pelo driver)"/>
     </option>
   </section>
   <section name="configuration">

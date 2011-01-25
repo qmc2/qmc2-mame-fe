@@ -621,7 +621,7 @@
       <description lang="fr" text="Passer l'affichage du menu d'informations au lancement d'un jeu"/>     
       <description lang="pt" text="Pular tela de informações ao iniciar"/>
     </option>
-     <option name="ramsize" type="string" default="">
+    <option name="ramsize" type="string" default="">
       <description lang="us" text="Size of RAM (if supported by driver)"/>
       <description lang="de" text="RAM Größe (falls vom Treiber unterstützt)"/>
       <description lang="pl" text="Rozmiar pamięci RAM (jeśli wspierany przez sterownik)"/>
