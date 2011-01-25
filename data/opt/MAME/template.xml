@@ -647,6 +647,13 @@
       <description lang="pl" text="Wskaż używaną czcionkę"/>
       <description lang="pt" text="Especificar a fonte a ser usada"/>
     </option>
+    <option name="ramsize" type="string" default="">
+      <description lang="us" text="Size of RAM (if supported by driver)"/>
+      <description lang="de" text="RAM Größe (falls vom Treiber unterstützt)"/>
+      <description lang="pl" text="Rozmiar pamięci RAM (jeśli wspierany przez sterownik)"/>
+      <description lang="fr" text="Taille de RAM (si supporté par le driver)"/>
+      <description lang="pt" text="Tamanho da RAM (se suportado pelo driver)"/>
+    </option>
   </section>
   <section name="configuration">
     <description lang="us" text="Configuration"/>
