@@ -100,6 +100,8 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   adjustIconSizes();
   pushButtonPause->setVisible(FALSE);
 
+  wizardSearch = false;
+
   QFont logFont;
   logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
   textBrowserLog->setFont(logFont);
@@ -532,15 +534,8 @@ void ROMAlyzer::analyze()
 #elif defined(QMC2_EMUTYPE_MESS)
   log(tr("determining list of machines to analyze"));
 #endif
-  if ( patternList.count() == 1 ) {
-    if ( qmc2GamelistItemMap.contains(patternList[0]) ) {
-      // special case for exactly _one_ matching game - no need to search
-      analyzerList << patternList[0];
-    }
-  }
 
-  if ( analyzerList.empty() ) {
-    // determine list of games to analyze
+  if ( wizardSearch ) {
 #if defined(QMC2_EMUTYPE_MAME)
     labelStatus->setText(tr("Searching games"));
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -548,21 +543,54 @@ void ROMAlyzer::analyze()
 #endif
     progressBar->setRange(0, qmc2Gamelist->numGames);
     progressBar->reset();
+
+    QString pattern = "(" + patternList.join("|") + ")";
     QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
     i = 0;
     while ( it.hasNext() && !qmc2StopParser ) {
       qApp->processEvents();
       it.next();
       progressBar->setValue(++i);
-      foreach (QString pattern, patternList) {
-        QRegExp regexp(pattern, Qt::CaseSensitive, QRegExp::Wildcard);
-        if ( regexp.exactMatch(it.key()) )
-          if ( !analyzerList.contains(it.key()) )
-            analyzerList << it.key();
-      }
+      QRegExp regexp(pattern, Qt::CaseSensitive, QRegExp::RegExp);
+      if ( regexp.exactMatch(it.key()) )
+        if ( !analyzerList.contains(it.key()) )
+          analyzerList << it.key();
     }
     progressBar->reset();
     labelStatus->setText(tr("Idle"));
+  } else {
+    if ( patternList.count() == 1 ) {
+      if ( qmc2GamelistItemMap.contains(patternList[0]) ) {
+        // special case for exactly _one_ matching game - no need to search
+        analyzerList << patternList[0];
+      }
+    }
+
+    if ( analyzerList.empty() ) {
+      // determine list of games to analyze
+#if defined(QMC2_EMUTYPE_MAME)
+      labelStatus->setText(tr("Searching games"));
+#elif defined(QMC2_EMUTYPE_MESS)
+      labelStatus->setText(tr("Searching machines"));
+#endif
+      progressBar->setRange(0, qmc2Gamelist->numGames);
+      progressBar->reset();
+      QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+      i = 0;
+      while ( it.hasNext() && !qmc2StopParser ) {
+        qApp->processEvents();
+        it.next();
+        progressBar->setValue(++i);
+        foreach (QString pattern, patternList) {
+          QRegExp regexp(pattern, Qt::CaseSensitive, QRegExp::Wildcard);
+          if ( regexp.exactMatch(it.key()) )
+            if ( !analyzerList.contains(it.key()) )
+              analyzerList << it.key();
+        }
+      }
+      progressBar->reset();
+      labelStatus->setText(tr("Idle"));
+    }
   }
 
   if ( !qmc2StopParser ) {
@@ -966,6 +994,7 @@ void ROMAlyzer::analyze()
   elapsedTime = elapsedTime.addMSecs(analysisTimer.elapsed());
   log(tr("analysis ended") + " - " + tr("elapsed time = %1").arg(elapsedTime.toString("hh:mm:ss.zzz")));
   qmc2ROMAlyzerActive = FALSE;
+  wizardSearch = false;
 }
 
 QString &ROMAlyzer::getXmlData(QString gameName)
@@ -2066,6 +2095,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
 #endif
 
 	lineEditGames->setText(wizardSelectedSets.join(" "));
+	wizardSearch = true;
 	pushButtonAnalyze->animateClick();
 }
 
