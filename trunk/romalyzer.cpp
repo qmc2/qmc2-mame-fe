@@ -672,7 +672,7 @@ void ROMAlyzer::analyze()
 	break;
 
       // step 3: check file status of ROMs and CHDs, recalculate checksums
-      log(tr("checking %n file(s) for '%1'", "", xmlHandler.fileCounter).arg(gameName));
+      log(tr("checking %n file(s) for '%1'", "", wizardSearch ? 1 : xmlHandler.fileCounter).arg(gameName));
       progressBar->reset();
       progressBar->setRange(0, xmlHandler.fileCounter);
       int fileCounter;
@@ -693,6 +693,17 @@ void ROMAlyzer::analyze()
 	QTreeWidgetItem *childItem = xmlHandler.childItems.at(fileCounter);
 	QTreeWidgetItem *parentItem = xmlHandler.parentItem;
 	QString sha1Calculated, md5Calculated, fallbackPath;
+
+	if ( wizardSearch ) {
+		QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+		if ( il.count() > 0 ) {
+			if ( childItem->text(QMC2_ROMALYZER_COLUMN_GAME) != il[0]->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) ) {
+				childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("skipped"));
+				childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.blueBrush);
+				continue;
+			}
+		}
+	}
 
 	QString effectiveFile = getEffectiveFile(childItem, gameName, 
 						 childItem->text(QMC2_ROMALYZER_COLUMN_GAME),
@@ -898,68 +909,70 @@ void ROMAlyzer::analyze()
       qApp->processEvents();
 
       if ( qmc2StopParser ) 
-	log(tr("interrupted (checking %n file(s) for '%1')", "", xmlHandler.fileCounter).arg(gameName));
+	log(tr("interrupted (checking %n file(s) for '%1')", "", wizardSearch ? 1 : xmlHandler.fileCounter).arg(gameName));
       else {
 	gameOkay |= filesError;
 	filesSkipped |= filesUnknown;
-	if ( gameOkay ) {
-	  if ( notFoundCounter == xmlHandler.fileCounter ) {
+	if ( !wizardSearch ) {
+		if ( gameOkay ) {
+		  if ( notFoundCounter == xmlHandler.fileCounter ) {
 #if defined(QMC2_EMUTYPE_MAME)
-	    xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
-	    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
-#elif defined(QMC2_EMUTYPE_MESS)
-	    if ( xmlHandler.fileCounter == 0 ) {
-		    xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good"));
-		    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
-	    } else {
 		    xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
 		    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
-	    }
+#elif defined(QMC2_EMUTYPE_MESS)
+		    if ( xmlHandler.fileCounter == 0 ) {
+			    xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good"));
+			    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
+		    } else {
+			    xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
+			    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
+		    }
 #endif
-	  } else if ( notFoundCounter > 0 ) {
-	    if ( filesSkipped )
-	      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / not found / skipped"));
-	    else
-	      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / not found"));
-	    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.brownBrush);
-	  } else {
-	    if ( filesSkipped )
-	      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / skipped"));
-	    else
-	      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good"));
-	    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
-	  }
-	} else {
-	  if ( notFoundCounter > 0 ) {
-	    if ( filesSkipped )
-	      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / not found / skipped"));
-	    else
-	      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / not found"));
-	    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
-	  } else {
-	    if ( filesSkipped )
-	      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / skipped"));
-	    else
-	      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad"));
-	    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
-	  }
-	}
-	if ( !xmlHandler.parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
-		switch ( mergeStatus ) {
-			case QMC2_ROMALYZER_MERGE_STATUS_OK:
-				xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
-				break;
-			case QMC2_ROMALYZER_MERGE_STATUS_WARN:
-				xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
-				break;
-			case QMC2_ROMALYZER_MERGE_STATUS_CRIT:
-				xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
-				break;
-			default:
-				break;
+		  } else if ( notFoundCounter > 0 ) {
+		    if ( filesSkipped )
+		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / not found / skipped"));
+		    else
+		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / not found"));
+		    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.brownBrush);
+		  } else {
+		    if ( filesSkipped )
+		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / skipped"));
+		    else
+		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good"));
+		    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
+		  }
+		} else {
+		  if ( notFoundCounter > 0 ) {
+		    if ( filesSkipped )
+		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / not found / skipped"));
+		    else
+		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / not found"));
+		    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
+		  } else {
+		    if ( filesSkipped )
+		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad / skipped"));
+		    else
+		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("bad"));
+		    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.redBrush);
+		  }
+		}
+		if ( !xmlHandler.parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
+			switch ( mergeStatus ) {
+				case QMC2_ROMALYZER_MERGE_STATUS_OK:
+					xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
+					break;
+				case QMC2_ROMALYZER_MERGE_STATUS_WARN:
+					xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
+					break;
+				case QMC2_ROMALYZER_MERGE_STATUS_CRIT:
+					xmlHandler.parentItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_nok.png")));
+					break;
+				default:
+					break;
+			}
 		}
 	}
-	log(tr("done (checking %n file(s) for '%1')", "", xmlHandler.fileCounter).arg(gameName));
+	log(tr("done (checking %n file(s) for '%1')", "", wizardSearch ? 1 : xmlHandler.fileCounter).arg(gameName));
 
 	if ( gameOkay || !checkBoxSetRewriterGoodSetsOnly->isChecked() )
 		if ( groupBoxSetRewriter->isChecked() )
