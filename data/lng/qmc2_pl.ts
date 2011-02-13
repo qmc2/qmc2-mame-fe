@@ -89,7 +89,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="117"/>
         <source>SVN r%1</source>
-        <translation type="unfinished"></translation>
+        <translation>SVN wersja %1</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="119"/>
@@ -1485,7 +1485,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cabinet.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Kopiuj do schowka</translation>
+        <translation>Kopiuj do schowka</translation>
     </message>
     <message>
         <location filename="../../cabinet.cpp" line="56"/>
@@ -1516,7 +1516,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../controller.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Kopiuj do schowka</translation>
+        <translation>Kopiuj do schowka</translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="56"/>
@@ -2435,7 +2435,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../flyer.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Kopiuj do schowka</translation>
+        <translation>Kopiuj do schowka</translation>
     </message>
     <message>
         <location filename="../../flyer.cpp" line="56"/>
@@ -7482,8 +7482,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -7570,8 +7568,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../qmc2main.cpp" line="280"/>
         <source>last message repeated %n time(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -7845,7 +7841,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../marquee.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Kopiuj do schowka</translation>
+        <translation>Kopiuj do schowka</translation>
     </message>
     <message>
         <location filename="../../marquee.cpp" line="56"/>
@@ -12302,8 +12298,6 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <source>checksum wizard: repairing %n bad set(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -12433,8 +12427,6 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romalyzer.cpp" line="2459"/>
         <source>checksum wizard: done (repairing %n bad set(s))</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -12639,8 +12631,6 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romalyzer.cpp" line="605"/>
         <source>report limit reached, removing %n set(s) from the report</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -13902,7 +13892,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../title.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Kopiuj do schowka</translation>
+        <translation>Kopiuj do schowka</translation>
     </message>
     <message>
         <location filename="../../title.cpp" line="56"/>
