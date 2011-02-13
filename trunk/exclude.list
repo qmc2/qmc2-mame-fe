@@ -26,6 +26,7 @@ qmc2/arch/Linux/.svn/prop-base/Fedora_release_12.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Fedora_release_13.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Fedora_release_14.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Fedora_release_15.cfg.svn-base
+qmc2/arch/Linux/.svn/prop-base/Fedora_release_16.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Fedora_release_8.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Fedora_release_9.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Mandriva_Linux_release_2009.0.cfg.svn-base
@@ -48,6 +49,7 @@ qmc2/arch/Linux/.svn/text-base/Fedora_release_12.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Fedora_release_13.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Fedora_release_14.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Fedora_release_15.cfg.svn-base
+qmc2/arch/Linux/.svn/text-base/Fedora_release_16.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Fedora_release_8.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Fedora_release_9.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Mandriva_Linux.cfg.svn-base
@@ -666,7 +668,6 @@ qmc2/data/img/classic/.svn/prop-base/world.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/zip.png.svn-base
-qmc2/data/img/classic/.svn/props/speeker.png.svn-work
 qmc2/data/img/classic/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/classic/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/classic/.svn/text-base/arcadebackground.png.svn-base
@@ -982,7 +983,6 @@ qmc2/data/img/crazy-black/.svn/prop-base/world.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/zip.png.svn-base
-qmc2/data/img/crazy-black/.svn/props/speeker.png.svn-work
 qmc2/data/img/crazy-black/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/arcadebackground.png.svn-base
@@ -1298,7 +1298,6 @@ qmc2/data/img/crazy/.svn/prop-base/world.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/zip.png.svn-base
-qmc2/data/img/crazy/.svn/props/speeker.png.svn-work
 qmc2/data/img/crazy/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/arcadebackground.png.svn-base
@@ -1929,7 +1928,6 @@ qmc2/data/img/.svn/prop-base/world.png.svn-base
 qmc2/data/img/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/.svn/prop-base/zip.png.svn-base
-qmc2/data/img/.svn/props/speeker.png.svn-work
 qmc2/data/img/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/.svn/text-base/arcadebackground.png.svn-base
@@ -2276,7 +2274,6 @@ qmc2/.svn/prop-base/toolexec.ui.svn-base
 qmc2/.svn/prop-base/welcome.cpp.svn-base
 qmc2/.svn/prop-base/welcome.h.svn-base
 qmc2/.svn/prop-base/welcome.ui.svn-base
-qmc2/.svn/props/speaker.png.svn-work
 qmc2/.svn/text-base/about.cpp.svn-base
 qmc2/.svn/text-base/about.h.svn-base
 qmc2/.svn/text-base/about.ui.svn-base
