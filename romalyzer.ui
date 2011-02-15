@@ -1063,7 +1063,7 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>When a set contains multiple files with same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</string>
+             <string>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</string>
             </property>
             <property name="text">
              <string>Unique CRCs</string>
