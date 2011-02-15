@@ -671,8 +671,12 @@ void ROMAlyzer::analyze()
       if ( qmc2StopParser )
 	break;
 
+      int numWizardFiles = 1;
+      if ( wizardSearch )
+	numWizardFiles = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID).count();
+
       // step 3: check file status of ROMs and CHDs, recalculate checksums
-      log(tr("checking %n file(s) for '%1'", "", wizardSearch ? 1 : xmlHandler.fileCounter).arg(gameName));
+      log(tr("checking %n file(s) for '%1'", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
       progressBar->reset();
       progressBar->setRange(0, xmlHandler.fileCounter);
       int fileCounter;
@@ -696,12 +700,16 @@ void ROMAlyzer::analyze()
 
 	if ( wizardSearch ) {
 		QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
-		if ( il.count() > 0 ) {
-			if ( childItem->text(QMC2_ROMALYZER_COLUMN_GAME) != il[0]->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) ) {
-				childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("skipped"));
-				childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.blueBrush);
-				continue;
+		bool itemFound = false;
+		foreach (QTreeWidgetItem *it, il)
+			if ( it->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
+				itemFound = true;
+				break;
 			}
+		if ( !itemFound ) {
+			childItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("skipped"));
+			childItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.blueBrush);
+			continue;
 		}
 	}
 
@@ -768,7 +776,8 @@ void ROMAlyzer::analyze()
 	    if ( wizardSelectedSets.contains(gameName) ) {
 	      QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
 	      foreach (QTreeWidgetItem *item, il)
-		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
+		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ||
+		     item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
 		  item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
 		  item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, xmlHandler.redBrush);
 		  item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, fallbackPath);
@@ -790,7 +799,8 @@ void ROMAlyzer::analyze()
 	    if ( wizardSelectedSets.contains(gameName) ) {
 	      QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
 	      foreach (QTreeWidgetItem *item, il)
-		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
+		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ||
+		     item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
 		  item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("bad"));
 		  item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, xmlHandler.redBrush);
 		  item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, fallbackPath);
@@ -852,7 +862,8 @@ void ROMAlyzer::analyze()
 	      if ( wizardSelectedSets.contains(gameName) ) {
 		QList<QTreeWidgetItem *> il = treeWidgetChecksumWizardSearchResult->findItems(gameName, Qt::MatchExactly, QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
 		foreach (QTreeWidgetItem *item, il)
-		  if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ) {
+		  if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_GAME) ||
+		       item->whatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME) == childItem->text(QMC2_ROMALYZER_COLUMN_CRC) ) {
 		    item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? tr("good") : tr("bad"));
 		    item->setForeground(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, eligibleForDatabaseUpload ? xmlHandler.greenBrush : xmlHandler.redBrush);
 		    item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, effectiveFile);
@@ -909,7 +920,7 @@ void ROMAlyzer::analyze()
       qApp->processEvents();
 
       if ( qmc2StopParser ) 
-	log(tr("interrupted (checking %n file(s) for '%1')", "", wizardSearch ? 1 : xmlHandler.fileCounter).arg(gameName));
+	log(tr("interrupted (checking %n file(s) for '%1')", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
       else {
 	gameOkay |= filesError;
 	filesSkipped |= filesUnknown;
@@ -972,7 +983,7 @@ void ROMAlyzer::analyze()
 			}
 		}
 	}
-	log(tr("done (checking %n file(s) for '%1')", "", wizardSearch ? 1 : xmlHandler.fileCounter).arg(gameName));
+	log(tr("done (checking %n file(s) for '%1')", "", wizardSearch ? numWizardFiles : xmlHandler.fileCounter).arg(gameName));
 
 	if ( gameOkay || !checkBoxSetRewriterGoodSetsOnly->isChecked() )
 		if ( groupBoxSetRewriter->isChecked() )
@@ -1463,7 +1474,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                 }
               }
               if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
-                log(tr("loading '%1' from '%2'%3").arg(fn).arg(filePath).arg(*mergeUsed ? tr(" (merged)") : ""));
+                log(tr("loading '%1' with CRC '%2' from '%3' as '%4'%5").arg(fn).arg(wantedCRC).arg(filePath).arg(myItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(*mergeUsed ? tr(" (merged)") : ""));
                 progressBarFileIO->setRange(0, totalSize);
                 progressBarFileIO->reset();
                 if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD ) {
@@ -2043,12 +2054,14 @@ void ROMAlyzer::runSetRewriter()
 				QTreeWidgetItem *childItem = setRewriterItem->child(i);
 				if ( !childItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
 					if ( !childItem->text(QMC2_ROMALYZER_COLUMN_CRC).isEmpty() ) {
-						QStringList fileEntry = setRewriterFileMap[childItem->text(QMC2_ROMALYZER_COLUMN_CRC)];
-						if ( fileEntry.count() == 3 ) { // valid entry?
-							QString localName = fileEntry[2];
-							if ( outputDataMap.contains(localName) ) {
-								log(tr("set rewriter: removing redundant file '%1' with CRC '%2' from output data").arg(localName).arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)));
-								outputDataMap.remove(localName);
+						QList<QStringList> fileEntries = setRewriterFileMap.values(childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
+						foreach (QStringList fileEntry, fileEntries) {
+							if ( fileEntry.count() == 3 ) { // valid entry?
+								QString localName = fileEntry[2];
+								if ( outputDataMap.contains(localName) ) {
+									log(tr("set rewriter: removing redundant file '%1' with CRC '%2' from output data").arg(localName).arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)));
+									outputDataMap.remove(localName);
+								}
 							}
 						}
 					}
@@ -2098,6 +2111,7 @@ void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
 		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("good") ) selectedGoodSets++;
 		if ( item->text(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS) == tr("bad") ) selectedBadSets++;
 	}
+	wizardSelectedSets.removeDuplicates();
 	pushButtonChecksumWizardRepairBadSets->setEnabled(selectedBadSets > 0 && selectedGoodSets > 0);
 }
 
