@@ -540,32 +540,13 @@ void ROMAlyzer::analyze()
 #endif
 
   if ( wizardSearch ) {
-#if defined(QMC2_EMUTYPE_MAME)
-    labelStatus->setText(tr("Searching games"));
-#elif defined(QMC2_EMUTYPE_MESS)
-    labelStatus->setText(tr("Searching machines"));
-#endif
-    progressBar->setRange(0, qmc2Gamelist->numGames);
-    progressBar->reset();
-
-    QString pattern = "(" + patternList.join("|") + ")";
-    QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
-    i = 0;
-    while ( it.hasNext() && !qmc2StopParser ) {
-      qApp->processEvents();
-      it.next();
-      progressBar->setValue(++i);
-      QRegExp regexp(pattern, Qt::CaseSensitive, QRegExp::RegExp);
-      if ( regexp.exactMatch(it.key()) )
-        if ( !analyzerList.contains(it.key()) )
-          analyzerList << it.key();
-    }
-    progressBar->reset();
-    labelStatus->setText(tr("Idle"));
+    // simple case: the checksum wizard does not use any wild-cards - no need to search
+    analyzerList = patternList;
+    analyzerList.sort();
   } else {
     if ( patternList.count() == 1 ) {
       if ( qmc2GamelistItemMap.contains(patternList[0]) ) {
-        // special case for exactly _one_ matching game - no need to search
+        // special case for exactly ONE matching game - no need to search
         analyzerList << patternList[0];
       }
     }
@@ -873,7 +854,7 @@ void ROMAlyzer::analyze()
 		    item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH, effectiveFile);
 		    if ( eligibleForDatabaseUpload && zipped ) item->setWhatsThis(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, childItem->text(QMC2_ROMALYZER_COLUMN_CRC));
 		  }
-	      on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
+	        on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
 	      }
 	      qApp->processEvents();
 	    }
@@ -1022,7 +1003,7 @@ void ROMAlyzer::analyze()
   elapsedTime = elapsedTime.addMSecs(analysisTimer.elapsed());
   log(tr("analysis ended") + " - " + tr("elapsed time = %1").arg(elapsedTime.toString("hh:mm:ss.zzz")));
 
-  if ( wizardSearch && wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_REPAIR ) {
+  if ( wizardSearch && wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_REPAIR && !qmc2StopParser ) {
     if ( pushButtonChecksumWizardRepairBadSets->isEnabled() )
       on_pushButtonChecksumWizardRepairBadSets_clicked();
   }
@@ -1882,9 +1863,14 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()");
 #endif
 
+	qmc2StopParser = false;
+
 	treeWidgetChecksumWizardSearchResult->clear();
 	QString searchedChecksum = lineEditChecksumWizardSHA1->text().toLower();
 	if ( searchedChecksum.isEmpty() ) return;
+
+	pushButtonChecksumWizardSearch->setEnabled(false);
+	lineEditChecksumWizardSHA1->setEnabled(false);
 
 	int numXmlLines = qmc2Gamelist->xmlLines.count();
 
@@ -1947,11 +1933,13 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 			i = j - 1;
 		}
 	}
-	qApp->processEvents();
 	progressBar->reset();
 	labelStatus->setText(tr("Idle"));
+	pushButtonChecksumWizardSearch->setEnabled(true);
+	lineEditChecksumWizardSHA1->setEnabled(true);
+	qApp->processEvents();
 
-	if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_ANALYZE ) {
+	if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_ANALYZE && !qmc2StopParser ) {
 		if ( pushButtonChecksumWizardAnalyzeSelectedSets->isEnabled() ) {
 			on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked();
 		}
