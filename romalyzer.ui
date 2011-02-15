@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>589</width>
-    <height>589</height>
+    <width>561</width>
+    <height>609</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -604,6 +604,12 @@
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="2" column="0">
            <widget class="QLabel" name="labelDatabaseDriver">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Driver</string>
             </property>
@@ -611,15 +617,21 @@
           </item>
           <item row="2" column="2">
            <widget class="QLabel" name="labelDatabasePort">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Port</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="3" colspan="2">
+          <item row="2" column="3">
            <widget class="QSpinBox" name="spinBoxDatabasePort">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -661,10 +673,10 @@
             </item>
            </widget>
           </item>
-          <item row="1" column="1" colspan="4">
+          <item row="1" column="1" colspan="3">
            <widget class="QLineEdit" name="lineEditDatabaseServer">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -676,6 +688,12 @@
           </item>
           <item row="1" column="0">
            <widget class="QLabel" name="labelDatabaseServer">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Server / IP</string>
             </property>
@@ -683,15 +701,21 @@
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="labelDatabaseUser">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Username</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="4">
+          <item row="0" column="1" colspan="3">
            <widget class="QLineEdit" name="lineEditDatabaseUser">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -701,10 +725,10 @@
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="5">
+          <item row="3" column="0" colspan="4">
            <widget class="QPushButton" name="pushButtonDatabaseCheckConnection">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <sizepolicy hsizetype="Ignored" vsizetype="Minimum">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -723,7 +747,7 @@
           <item row="0" column="6" colspan="4">
            <widget class="QLineEdit" name="lineEditDatabasePassword">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -739,7 +763,7 @@
           <item row="1" column="6" colspan="4">
            <widget class="QLineEdit" name="lineEditDatabaseName">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -751,6 +775,12 @@
           </item>
           <item row="1" column="5">
            <widget class="QLabel" name="labelDatabaseName">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Database</string>
             </property>
@@ -758,6 +788,12 @@
           </item>
           <item row="0" column="5">
            <widget class="QLabel" name="labelDatabasePassword">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Password</string>
             </property>
@@ -765,6 +801,12 @@
           </item>
           <item row="3" column="5">
            <widget class="QLabel" name="labelDatabaseMode">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Mode</string>
             </property>
@@ -772,6 +814,12 @@
           </item>
           <item row="3" column="6">
            <widget class="QCheckBox" name="checkBoxDatabaseDownload">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Automatically download missing / bad files from the database (if they are available in the repository)</string>
             </property>
@@ -782,6 +830,12 @@
           </item>
           <item row="3" column="7">
            <widget class="QCheckBox" name="checkBoxDatabaseUpload">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="toolTip">
              <string>Automatically upload good files to the database (if they are missing in the repository)</string>
             </property>
@@ -796,7 +850,7 @@
              <bool>false</bool>
             </property>
             <property name="sizePolicy">
-             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -811,6 +865,12 @@
           </item>
           <item row="2" column="5">
            <widget class="QLabel" name="labelDatabaseOutputPath">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
              <string>Output path</string>
             </property>
@@ -819,7 +879,7 @@
           <item row="2" column="6" colspan="3">
            <widget class="QLineEdit" name="lineEditDatabaseOutputPath">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -863,12 +923,18 @@
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="0">
            <widget class="QLabel" name="labelSetRewriterOutputPath">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="text">
-             <string>Set rewriter output path</string>
+             <string>Output directory</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="0" column="1" colspan="5">
            <widget class="QLineEdit" name="lineEditSetRewriterOutputPath">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -881,55 +947,76 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
-           <widget class="QToolButton" name="toolButtonBrowseSetRewriterOutputPath">
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSetRewriterGeneralSettings">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>General settings</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="checkBoxSetRewriterWhileAnalyzing">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Browse output path for the set rewriter</string>
+             <string>Rewrite sets while analyzing them (otherwise sets will only be rewritten on demand / through the context menu)</string>
             </property>
-            <property name="icon">
-             <iconset resource="qmc2.qrc">
-              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+            <property name="text">
+             <string>Rewrite while analyzing</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="3">
+          <item row="1" column="2">
+           <widget class="QCheckBox" name="checkBoxSetRewriterSelfContainedSets">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Create sets that do not need parent sets (otherwise create merged sets, which is recommended)</string>
+            </property>
+            <property name="text">
+             <string>Self-contained</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QCheckBox" name="checkBoxSetRewriterGoodSetsOnly">
+            <property name="toolTip">
+             <string>Rewrite sets only when they are 'good' (otherwise, 'bad' sets will be included)</string>
+            </property>
+            <property name="text">
+             <string>Good sets only</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="labelSetRewriterReproductionType">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Reproduction type</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QCheckBox" name="checkBoxSetRewriterWhileAnalyzing">
-              <property name="toolTip">
-               <string>Rewrite sets while analyzing them (otherwise sets will only be rewritten on demand / through the context menu)</string>
-              </property>
-              <property name="text">
-               <string>While analyzing</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxSetRewriterSelfContainedSets">
-              <property name="toolTip">
-               <string>Create sets that do not need parent sets (otherwise create merged sets, which is recommended)</string>
-              </property>
-              <property name="text">
-               <string>Self-contained</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxSetRewriterGoodSetsOnly">
-              <property name="toolTip">
-               <string>Rewrite sets only when they are 'good' (otherwise, 'bad' sets will be included)</string>
-              </property>
-              <property name="text">
-               <string>Good only</string>
-              </property>
-             </widget>
-            </item>
             <item>
              <widget class="QRadioButton" name="radioButtonSetRewriterZipArchives">
               <property name="sizePolicy">
@@ -951,12 +1038,6 @@
             </item>
             <item>
              <widget class="QSpinBox" name="spinBoxSetRewriterZipLevel">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
               <property name="toolTip">
                <string>Select the ZIP compression level (0 = lowest / fastest, 9 = highest / slowest)</string>
               </property>
@@ -971,26 +1052,66 @@
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QRadioButton" name="radioButtonSetRewriterIndividualDirectories">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="toolTip">
-               <string>Produce sets in individual sub-directories (not recommended -- and not supported yet!)</string>
-              </property>
-              <property name="text">
-               <string>Directories</string>
-              </property>
-             </widget>
-            </item>
            </layout>
+          </item>
+          <item row="2" column="2">
+           <widget class="QCheckBox" name="checkBoxSetRewriterUniqueCRCs">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>When a set contains multiple files with same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</string>
+            </property>
+            <property name="text">
+             <string>Unique CRCs</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3" colspan="4">
+           <widget class="QRadioButton" name="radioButtonSetRewriterIndividualDirectories">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>Produce sets in individual sub-directories (not recommended -- and not supported yet!)</string>
+            </property>
+            <property name="text">
+             <string>Directories</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4" colspan="3">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="6">
+           <widget class="QToolButton" name="toolButtonBrowseSetRewriterOutputPath">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Browse output path for the set rewriter</string>
+            </property>
+            <property name="icon">
+             <iconset resource="qmc2.qrc">
+              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -1269,6 +1390,7 @@
   <tabstop>checkBoxSetRewriterGoodSetsOnly</tabstop>
   <tabstop>radioButtonSetRewriterZipArchives</tabstop>
   <tabstop>spinBoxSetRewriterZipLevel</tabstop>
+  <tabstop>checkBoxSetRewriterUniqueCRCs</tabstop>
   <tabstop>radioButtonSetRewriterIndividualDirectories</tabstop>
   <tabstop>groupBoxDatabase</tabstop>
   <tabstop>lineEditDatabaseUser</tabstop>
@@ -1333,12 +1455,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>484</x>
-     <y>518</y>
+     <x>485</x>
+     <y>545</y>
     </hint>
     <hint type="destinationlabel">
-     <x>566</x>
-     <y>518</y>
+     <x>567</x>
+     <y>545</y>
     </hint>
    </hints>
   </connection>
@@ -1349,12 +1471,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>368</x>
-     <y>364</y>
+     <x>73</x>
+     <y>400</y>
     </hint>
     <hint type="destinationlabel">
-     <x>407</x>
-     <y>360</y>
+     <x>146</x>
+     <y>401</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButtonSetRewriterZipArchives</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxSetRewriterUniqueCRCs</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>35</x>
+     <y>390</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>191</x>
+     <y>394</y>
     </hint>
    </hints>
   </connection>

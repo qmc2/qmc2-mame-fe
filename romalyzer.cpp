@@ -341,6 +341,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterGoodSetsOnly", checkBoxSetRewriterGoodSetsOnly->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipArchives", radioButtonSetRewriterZipArchives->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipLevel", spinBoxSetRewriterZipLevel->value());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUniqueCRCs", checkBoxSetRewriterUniqueCRCs->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", radioButtonSetRewriterIndividualDirectories->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", lineEditSetRewriterOutputPath->text());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", checkBoxVerifyCHDs->isChecked());
@@ -415,6 +416,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   checkBoxSetRewriterGoodSetsOnly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterGoodSetsOnly", TRUE).toBool());
   radioButtonSetRewriterZipArchives->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipArchives", TRUE).toBool());
   spinBoxSetRewriterZipLevel->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipLevel", Z_DEFAULT_COMPRESSION).toInt());
+  checkBoxSetRewriterUniqueCRCs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUniqueCRCs", FALSE).toBool());
   radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", FALSE).toBool());
   checkBoxVerifyCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", TRUE).toBool());
   checkBoxFixCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", FALSE).toBool());
@@ -2026,6 +2028,7 @@ void ROMAlyzer::runSetRewriter()
 	QMapIterator<QString, QStringList> it(setRewriterFileMap);
 	QMap<QString, QByteArray> outputDataMap;
 	int count = 0;
+	QStringList uniqueCRCs;
 	while ( it.hasNext() && loadOkay ) {
 		progressBar->setValue(++count);
 		it.next();
@@ -2033,10 +2036,17 @@ void ROMAlyzer::runSetRewriter()
 		QString fileName = it.value()[0];
 		QString filePath = it.value()[1];
 		QString outputFileName = it.value()[2];
+		if ( checkBoxSetRewriterUniqueCRCs->isChecked() ) {
+			if ( uniqueCRCs.contains(fileCRC) ) {
+				log(tr("set rewriter: skipping '%1' with CRC '%2' from '%3' as '%4'").arg(fileName).arg(fileCRC).arg(filePath).arg(outputFileName));
+				continue;
+			}
+		}
 		log(tr("set rewriter: loading '%1' with CRC '%2' from '%3' as '%4'").arg(fileName).arg(fileCRC).arg(filePath).arg(outputFileName));
 		QByteArray fileData;
 		if ( readZipFileData(filePath, fileCRC, &fileData) ) {
 			outputDataMap[outputFileName] = fileData;
+			uniqueCRCs << fileCRC;
 		} else {
 			if ( checkBoxSetRewriterGoodSetsOnly->isChecked() ) {
 				log(tr("set rewriter: FATAL: can't load '%1' with CRC '%2' from '%3', aborting").arg(fileName).arg(fileCRC).arg(filePath));

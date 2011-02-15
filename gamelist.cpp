@@ -240,10 +240,15 @@ void Gamelist::enableWidgets(bool enable)
   if ( qmc2ROMStatusExporter )
     qmc2ROMStatusExporter->pushButtonExport->setEnabled(enable);
   if ( qmc2ROMAlyzer ) {
-    qmc2ROMAlyzer->toolButtonBrowseCHDManagerExecutableFile->setEnabled(enable);
-    qmc2ROMAlyzer->toolButtonBrowseTemporaryWorkingDirectory->setEnabled(enable);
+    if ( qmc2ROMAlyzer->groupBoxCHDManager->isChecked() ) {
+      qmc2ROMAlyzer->toolButtonBrowseCHDManagerExecutableFile->setEnabled(enable);
+      qmc2ROMAlyzer->toolButtonBrowseTemporaryWorkingDirectory->setEnabled(enable);
+    }
+    if ( qmc2ROMAlyzer->groupBoxSetRewriter->isChecked() )
+      qmc2ROMAlyzer->toolButtonBrowseSetRewriterOutputPath->setEnabled(enable);
 #if defined(QMC2_DATABASE_ENABLED)
-    qmc2ROMAlyzer->toolButtonBrowseDatabaseOutputPath->setEnabled(enable);
+    if ( qmc2ROMAlyzer->groupBoxDatabase->isChecked() )
+      qmc2ROMAlyzer->toolButtonBrowseDatabaseOutputPath->setEnabled(enable);
 #endif
   }
   qmc2MainWindow->pushButtonSelectRomFilter->setEnabled(enable);
