@@ -344,6 +344,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUniqueCRCs", checkBoxSetRewriterUniqueCRCs->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", radioButtonSetRewriterIndividualDirectories->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", lineEditSetRewriterOutputPath->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", comboBoxChecksumWizardAutomationLevel->currentIndex());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", checkBoxVerifyCHDs->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", checkBoxFixCHDs->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", checkBoxUpdateCHDs->isChecked());
@@ -417,6 +418,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   radioButtonSetRewriterZipArchives->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipArchives", TRUE).toBool());
   spinBoxSetRewriterZipLevel->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipLevel", Z_DEFAULT_COMPRESSION).toInt());
   checkBoxSetRewriterUniqueCRCs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUniqueCRCs", FALSE).toBool());
+  comboBoxChecksumWizardAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", QMC2_ROMALYZER_CSWIZ_AMLVL_NONE).toInt());
   radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", FALSE).toBool());
   checkBoxVerifyCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", TRUE).toBool());
   checkBoxFixCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", FALSE).toBool());
@@ -1019,6 +1021,12 @@ void ROMAlyzer::analyze()
   qApp->processEvents();
   elapsedTime = elapsedTime.addMSecs(analysisTimer.elapsed());
   log(tr("analysis ended") + " - " + tr("elapsed time = %1").arg(elapsedTime.toString("hh:mm:ss.zzz")));
+
+  if ( wizardSearch && wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_REPAIR ) {
+    if ( pushButtonChecksumWizardRepairBadSets->isEnabled() )
+      on_pushButtonChecksumWizardRepairBadSets_clicked();
+  }
+
   qmc2ROMAlyzerActive = FALSE;
   wizardSearch = false;
 }
@@ -1931,6 +1939,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName);
 						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE, fileType);
 						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("unknown"));
+						if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_SELECT ) item->setSelected(true);
 						qApp->processEvents();
 					}
 				}
@@ -1941,6 +1950,12 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	qApp->processEvents();
 	progressBar->reset();
 	labelStatus->setText(tr("Idle"));
+
+	if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_ANALYZE ) {
+		if ( pushButtonChecksumWizardAnalyzeSelectedSets->isEnabled() ) {
+			on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked();
+		}
+	}
 }
 
 void ROMAlyzer::runChecksumWizard()
