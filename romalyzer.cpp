@@ -1876,9 +1876,9 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 
 	progressBar->setRange(0, numXmlLines);
 	labelStatus->setText(tr("Checksum search"));
-	qApp->processEvents();
 	for (int i = 0; i < numXmlLines; i++) {
 		progressBar->setValue(i);
+		qApp->processEvents();
 		QString xmlLine = qmc2Gamelist->xmlLines[i];
 #if defined(QMC2_EMUTYPE_MAME)
 		int gameNamePos = xmlLine.indexOf("game name=\"") + 11;
@@ -1926,7 +1926,6 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE, fileType);
 						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("unknown"));
 						if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_SELECT ) item->setSelected(true);
-						qApp->processEvents();
 					}
 				}
 			}
