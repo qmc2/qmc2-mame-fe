@@ -11414,7 +11414,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="1487"/>
         <source>loading &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos; as &apos;%4&apos;%5</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando &apos;%1&apos; com CRC &apos;%2&apos; de &apos;%3&apos; como &apos;%4&apos;%5</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1538"/>
@@ -12225,7 +12225,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="2058"/>
         <source>set rewriter: skipping &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos; as &apos;%4&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>set rewriter: pulando &apos;%1&apos; com CRC &apos;%2&apos; de &apos;%3&apos; como &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2069"/>
@@ -12630,7 +12630,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1066"/>
         <source>When a set contains multiple files with the same CRC, should the produced ZIP include all files individually or just the first one (which is actually sufficient)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Quando um conjunto contém vários arquivos com o mesmo CRC, o ZIP produzido deve incluir todos os arquivos individualmente ou apenas o primeiro (o que é atualmente suficiente atualmente)?</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1079"/>
@@ -12878,7 +12878,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="933"/>
         <source>Output directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório de destino</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="946"/>
@@ -12888,12 +12888,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="959"/>
         <source>General settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações gerais</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1014"/>
         <source>Reproduction type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo de reprodução</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1108"/>
@@ -12903,7 +12903,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="975"/>
         <source>Rewrite while analyzing</source>
-        <translation type="unfinished"></translation>
+        <translation>Reescrever durante análise</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="988"/>
@@ -12918,7 +12918,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1001"/>
         <source>Good sets only</source>
-        <translation type="unfinished"></translation>
+        <translation>Somente conjuntos bons</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1029"/>
@@ -12933,7 +12933,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1069"/>
         <source>Unique CRCs</source>
-        <translation type="unfinished"></translation>
+        <translation>CRCs únicos</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1123"/>
@@ -13003,32 +13003,32 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1264"/>
         <source>Level of automation</source>
-        <translation type="unfinished"></translation>
+        <translation>Nível de automação</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1277"/>
         <source>Choose the level of automated wizard operations</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o nível das operações do wizard automatizado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1281"/>
         <source>Do nothing automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Não fazer nada automaticamente</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1286"/>
         <source>Automatically select matches</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar correspondências automaticamente</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1291"/>
         <source>Automatically select matches and analyze sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar correspondências e analisar conjuntos automaticamente</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1296"/>
         <source>Automatically select matches, analyze sets and repair bad ones</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar correspondências, analisar conjuntos e reparar os ruins automaticamente</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1315"/>
