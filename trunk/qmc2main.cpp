@@ -1193,6 +1193,8 @@ void MainWindow::on_actionPlay_activated()
 #if defined(QMC2_EMUTYPE_MAME)
   if ( !qmc2DemoGame.isEmpty() )
     gameName = qmc2DemoGame;
+  else if ( !qmc2CurrentItem )
+    return;
   else
     gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
 #else
@@ -3299,6 +3301,8 @@ void MainWindow::on_treeWidgetHierarchy_itemDoubleClicked(QTreeWidgetItem *item,
 
 void MainWindow::on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *item)
 {
+  if ( !item ) return;
+
   if ( qmc2ReloadActive ) {
     treeWidgetGamelist->collapseItem(item);
     log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
@@ -3333,9 +3337,8 @@ void MainWindow::on_treeWidgetGamelist_currentItemChanged(QTreeWidgetItem *curre
             if ( current == NULL ) 
               break;
           }
-          if ( current ) {
+          if ( current )
             treeWidgetGamelist->setCurrentItem(current);
-          }
         }
       }
     } else

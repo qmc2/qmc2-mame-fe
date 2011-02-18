@@ -18,6 +18,10 @@
 #include "qmc2main.h"
 #include "fileeditwidget.h"
 #include "direditwidget.h"
+#include "macros.h"
+#if defined(QMC2_EMUTYPE_MAME)
+#include "demomode.h"
+#endif
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -29,6 +33,9 @@ extern bool qmc2GuiReady;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern Gamelist *qmc2Gamelist;
 extern bool qmc2ReloadActive;
+#if defined(QMC2_EMUTYPE_MAME)
+extern DemoModeDialog *qmc2DemoModeDialog;
+#endif
 
 QMap<QString, QList<EmulatorOption> > EmulatorOptions::templateMap;
 QMap<QString, bool> EmulatorOptions::optionExpansionMap;
@@ -433,6 +440,12 @@ void EmulatorOptions::save()
 
   if ( loadActive )
     return;
+
+#if defined(QMC2_EMUTYPE_MAME)
+  if ( qmc2DemoModeDialog )
+    if ( qmc2DemoModeDialog->demoModeRunning )
+      return;
+#endif
 
   if ( qmc2GlobalEmulatorOptions != this ) {
     horizontalScrollPosition = horizontalScrollBar()->sliderPosition();
