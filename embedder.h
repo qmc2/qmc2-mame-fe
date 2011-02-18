@@ -44,11 +44,13 @@ class Embedder : public QWidget
     void resume();
     void showEventDelayed();
     void hideEventDelayed();
+    void resizeEventDelayed();
 
   protected:
     void closeEvent(QCloseEvent *);
     void showEvent(QShowEvent *);
     void hideEvent(QHideEvent *);
+    void resizeEvent(QResizeEvent *);
 
   signals:
     void closing();
