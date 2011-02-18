@@ -400,8 +400,7 @@
 
 // X11 only: embedder specific delays (in ms)
 #define QMC2_EMBED_DELAY		250
-#define QMC2_EMBED_RAISE_DELAY		0
-#define QMC2_EMBED_MAXIMIZE_DELAY	0
+#define QMC2_EMBED_MAXIMIZE_DELAY	100
 #define QMC2_EMBED_FOCUS_DELAY		100
 #define QMC2_EMBED_PAUSERESUME_DELAY	250
 
