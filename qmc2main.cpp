@@ -4802,8 +4802,15 @@ void MainWindow::init()
     setupStyleSheet(myStyleSheet);
   }
   progressBarMemory->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", FALSE).toBool());
+
+  // make sure the logs get scrolled to their maxima
+  textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
+  textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
+  qApp->processEvents();
+
   setUpdatesEnabled(TRUE);
   qmc2EarlyStartup = FALSE;
+
   QTimer::singleShot(0, this, SLOT(on_actionReload_activated()));
   activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 }
@@ -8026,6 +8033,6 @@ int main(int argc, char *argv[])
 #endif
   qmc2GlobalEmulatorOptions->pseudoConstructor();
 
-  // run the application
+  // finally run the application
   return qmc2App.exec();
 }
