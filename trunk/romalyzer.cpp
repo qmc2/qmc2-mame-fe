@@ -344,6 +344,7 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUniqueCRCs", checkBoxSetRewriterUniqueCRCs->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", radioButtonSetRewriterIndividualDirectories->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterOutputPath", lineEditSetRewriterOutputPath->text());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardHashType", comboBoxChecksumWizardHashType->currentIndex());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", comboBoxChecksumWizardAutomationLevel->currentIndex());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", checkBoxVerifyCHDs->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", checkBoxFixCHDs->isChecked());
@@ -418,6 +419,7 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   radioButtonSetRewriterZipArchives->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipArchives", TRUE).toBool());
   spinBoxSetRewriterZipLevel->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterZipLevel", Z_DEFAULT_COMPRESSION).toInt());
   checkBoxSetRewriterUniqueCRCs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterUniqueCRCs", FALSE).toBool());
+  comboBoxChecksumWizardHashType->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardHashType", QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1).toInt());
   comboBoxChecksumWizardAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", QMC2_ROMALYZER_CSWIZ_AMLVL_NONE).toInt());
   radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", FALSE).toBool());
   checkBoxVerifyCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", TRUE).toBool());
@@ -1866,16 +1868,32 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	qmc2StopParser = false;
 
 	treeWidgetChecksumWizardSearchResult->clear();
-	QString searchedChecksum = lineEditChecksumWizardSHA1->text().toLower();
+	QString searchedChecksum = lineEditChecksumWizardHash->text().toLower();
 	if ( searchedChecksum.isEmpty() ) return;
 
 	pushButtonChecksumWizardSearch->setEnabled(false);
-	lineEditChecksumWizardSHA1->setEnabled(false);
+	lineEditChecksumWizardHash->setEnabled(false);
 
 	int numXmlLines = qmc2Gamelist->xmlLines.count();
 
 	progressBar->setRange(0, numXmlLines);
 	labelStatus->setText(tr("Checksum search"));
+
+	QString hashStartString;
+	int hashStartOffset;
+	switch ( comboBoxChecksumWizardHashType->currentIndex() ) {
+		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC:
+			hashStartString = "crc=\"";
+			hashStartOffset = 5;
+			break;
+
+		default:
+		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1:
+			hashStartString = "sha1=\"";
+			hashStartOffset = 6;
+			break;
+	}
+
 	for (int i = 0; i < numXmlLines; i++) {
 		progressBar->setValue(i);
 		qApp->processEvents();
@@ -1906,9 +1924,9 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 #else
 				continue;
 #endif
-				int sha1Pos = xmlLine.indexOf("sha1=\"") + 6;
-				if ( sha1Pos > 0 ) {
-					QString currentChecksum = xmlLine.mid(sha1Pos, xmlLine.indexOf("\"", sha1Pos) - sha1Pos).toLower();
+				int hashPos = xmlLine.indexOf(hashStartString) + hashStartOffset;
+				if ( hashPos > 0 ) {
+					QString currentChecksum = xmlLine.mid(hashPos, xmlLine.indexOf("\"", hashPos) - hashPos).toLower();
 					if ( currentChecksum == searchedChecksum ) {
 						int fileNamePos;
 						QString fileType;
@@ -1935,7 +1953,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	progressBar->reset();
 	labelStatus->setText(tr("Idle"));
 	pushButtonChecksumWizardSearch->setEnabled(true);
-	lineEditChecksumWizardSHA1->setEnabled(true);
+	lineEditChecksumWizardHash->setEnabled(true);
 	qApp->processEvents();
 
 	if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_ANALYZE && !qmc2StopParser ) {
@@ -1952,7 +1970,8 @@ void ROMAlyzer::runChecksumWizard()
 #endif
 
 	if ( !currentFilesSHA1Checksum.isEmpty() ) {
-		lineEditChecksumWizardSHA1->setText(currentFilesSHA1Checksum);
+		comboBoxChecksumWizardHashType->setCurrentIndex(QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1);
+		lineEditChecksumWizardHash->setText(currentFilesSHA1Checksum);
 		tabWidgetAnalysis->setCurrentWidget(tabChecksumWizard);
 		pushButtonChecksumWizardSearch->animateClick();
 	}
