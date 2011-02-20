@@ -44,6 +44,7 @@ inf: informational only
   <li>new: added new compile-time setting <i>BROWSER_PREFETCH_DNS</i> to allow for prefetching of DNS lookups by the mini web browser (Qt 4.6 and higher)</li>
   <li>new: embedder: embedded emulators can now automatically be paused when they are hidden and resumed when they are shown (requires the MAME/MESS notifier FIFO in order to correctly track any state changes)</li>
   <li>new: embedder: the current status of an embedded emulator is now indicated through traffic lights in the respective tab widget header</li>
+  <li>new: added support for a 'number of players' column to the game/machine list as suggested by Francisco Javier Felix (<i>csfax</i>) -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=14" target="_blank">bug tracker ID #14</a></li>
   <li>wip: completing the support for game/machine <i>attached</i> youtube.com videos -- note: this is a Qt 4.7+ only feature as it uses the embeddable youtube.com video player which in turn needs the npviewer browser plugin (and that's only cleanly supported since Qt 4.7)</li>
   <li>inf: SDLMAME &amp; SDLMESS targets only: the output notifier FIFO (<i>/tmp/sdlmame_out</i>) is no longer removed when QMC2 exits to allow for clean concurrent use by multiple variants (that's actually a work around because SDLMAME &amp; SDLMESS both use the <b>same</b> FIFO, and there's apparently no portable way to find out if it's opened by another process to decide when it's eligible for removal)</li>
 </ul>
