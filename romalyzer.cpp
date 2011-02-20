@@ -1905,7 +1905,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 #else
 		int gameNamePos = -1;
 #endif
-		if ( gameNamePos > 0 ) {
+		if ( gameNamePos >= 0 ) {
 			QString currentGame = xmlLine.mid(gameNamePos, xmlLine.indexOf("\"", gameNamePos) - gameNamePos);
 			bool gameEnd = false;
 			int j;
@@ -1925,7 +1925,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 				continue;
 #endif
 				int hashPos = xmlLine.indexOf(hashStartString) + hashStartOffset;
-				if ( hashPos > 0 ) {
+				if ( hashPos >= 0 ) {
 					QString currentChecksum = xmlLine.mid(hashPos, xmlLine.indexOf("\"", hashPos) - hashPos).toLower();
 					if ( currentChecksum == searchedChecksum ) {
 						int fileNamePos;

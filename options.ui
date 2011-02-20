@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>577</width>
-    <height>615</height>
+    <width>503</width>
+    <height>471</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
+                <width>453</width>
                 <height>618</height>
                </rect>
               </property>
@@ -850,7 +850,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>527</width>
-                <height>518</height>
+                <height>517</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2301,6 +2301,11 @@
                      <string>ROM types</string>
                     </property>
                    </item>
+                   <item>
+                    <property name="text">
+                     <string>Players</string>
+                    </property>
+                   </item>
                   </widget>
                  </item>
                  <item row="1" column="2">
@@ -3510,8 +3515,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1640</width>
-                <height>480</height>
+                <width>187</width>
+                <height>307</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3954,8 +3959,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>1640</width>
-                <height>480</height>
+                <width>159</width>
+                <height>236</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22">

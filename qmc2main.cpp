@@ -625,7 +625,9 @@ MainWindow::MainWindow(QWidget *parent)
     treeWidgetGamelist->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState").toByteArray());
     treeWidgetHierarchy->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState").toByteArray());
 #if defined(QMC2_EMUTYPE_MAME)
+    treeWidgetCategoryView->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
     treeWidgetCategoryView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState").toByteArray());
+    treeWidgetVersionView->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
     treeWidgetVersionView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState").toByteArray());
 #endif
     treeWidgetEmulators->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState").toByteArray());
@@ -1127,8 +1129,6 @@ MainWindow::MainWindow(QWidget *parent)
   treeWidgetGamelist->header()->setClickable(TRUE);
   treeWidgetHierarchy->header()->setClickable(TRUE);
 #if defined(QMC2_EMUTYPE_MAME)
-  treeWidgetCategoryView->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
-  treeWidgetVersionView->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
   connect(treeWidgetCategoryView->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetCategoryView_headerSectionClicked(int)));
   connect(treeWidgetVersionView->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetVersionView_headerSectionClicked(int)));
   treeWidgetCategoryView->header()->setClickable(TRUE);
@@ -6352,6 +6352,13 @@ void MainWindow::on_treeWidgetGamelist_headerSectionClicked(int logicalIndex)
         qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_ROMTYPES);
       break;
 
+    case QMC2_GAMELIST_COLUMN_PLAYERS:
+      if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_PLAYERS )
+        qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
+      else
+        qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_PLAYERS);
+      break;
+
 #if defined(QMC2_EMUTYPE_MAME)
     case QMC2_GAMELIST_COLUMN_CATEGORY:
       if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_CATEGORY )
@@ -7533,6 +7540,10 @@ int MainWindow::sortCriteriaLogicalIndex() {
 
     case QMC2_SORT_BY_ROMTYPES:
       return QMC2_GAMELIST_COLUMN_RTYPES;
+      break;
+
+    case QMC2_SORT_BY_PLAYERS:
+      return QMC2_GAMELIST_COLUMN_PLAYERS;
       break;
 
 #if defined(QMC2_EMUTYPE_MAME)
