@@ -1123,21 +1123,8 @@
        <string>Checksum wizard</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_6">
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelChecksumWizardSHA1">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>SHA1 checksum</string>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="1" colspan="2">
-        <widget class="QLineEdit" name="lineEditChecksumWizardSHA1">
+        <widget class="QLineEdit" name="lineEditChecksumWizardHash">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -1145,7 +1132,7 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>SHA1 checksum to search for</string>
+          <string>Checksum to be searched</string>
          </property>
         </widget>
        </item>
@@ -1158,7 +1145,7 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Search for the SHA1 checksum now</string>
+          <string>Search for the checksum now</string>
          </property>
          <property name="text">
           <string>Search</string>
@@ -1206,7 +1193,7 @@
        <item row="2" column="0" colspan="4">
         <widget class="QTreeWidget" name="treeWidgetChecksumWizardSearchResult">
          <property name="toolTip">
-          <string>Search results for the current SHA1 checksum</string>
+          <string>Search results for the current checksum</string>
          </property>
          <property name="selectionMode">
           <enum>QAbstractItemView::ExtendedSelection</enum>
@@ -1299,6 +1286,29 @@
           </widget>
          </item>
         </layout>
+       </item>
+       <item row="0" column="0">
+        <widget class="QComboBox" name="comboBoxChecksumWizardHashType">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Select the checksum type</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>SHA1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>CRC</string>
+          </property>
+         </item>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -1449,7 +1459,8 @@
   <tabstop>checkBoxDatabaseDownload</tabstop>
   <tabstop>checkBoxDatabaseUpload</tabstop>
   <tabstop>checkBoxDatabaseOverwrite</tabstop>
-  <tabstop>lineEditChecksumWizardSHA1</tabstop>
+  <tabstop>comboBoxChecksumWizardHashType</tabstop>
+  <tabstop>lineEditChecksumWizardHash</tabstop>
   <tabstop>pushButtonChecksumWizardSearch</tabstop>
   <tabstop>pushButtonChecksumWizardAnalyzeSelectedSets</tabstop>
   <tabstop>pushButtonChecksumWizardRepairBadSets</tabstop>

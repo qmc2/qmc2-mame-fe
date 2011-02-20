@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b19, 18-FEB-2011</h3>
+<h3>CHANGES - v0.2.b19, 20-FEB-2011</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b19, 18-FEB-2011:</b></p>
+<p><b>v0.2.b19, 20-FEB-2011:</b></p>
 <ul>
   <li>fix: ROMAlyzer: corrected status determination for ROM files that have no dump (but for which the file size or any checksums are available through the XML data)</li>
   <li>fix: corrected the scrolling behavior of the front-end and emulator logs</li>
@@ -35,7 +35,7 @@ inf: informational only
   <li>imp: support for additional XML data in game/machine details (<i>tag</i> and <i>mask</i> as sub-elements of <i>configuration</i>)</li>
   <li>imp: embedder: when embedder maximization is turned on, the menu-, status- and tool-bars as well as the game-/machine-list status frame are now automatically hidden while an emulator is shown</li>
   <li>imp: embedder: the embedder maximization toggle button now uses two icons to indicate the action taken when it's clicked</li>
-  <li>new: ROMAlyzer: added a <i>checksum wizard</i> to search for SHA1 hashes in all sets, to qualify the states of the results and to repair <i>bad</i> sets from <i>good</i> ones (note: the set repair function works only for ZIPs at the moment -- create backups before using it!)</li>
+  <li>new: ROMAlyzer: added a <i>checksum wizard</i> to search for SHA1 or CRC hashes in all sets, to qualify the states of the results and to repair <i>bad</i> sets from <i>good</i> ones (note: the set repair function works only for ZIPs at the moment -- create backups before using it!)</li>
   <li>new: ROMAlyzer: if a ROM or CHD file that's expected to be merged from a parent set is loaded from the child set instead, a warning is logged (may be obsolete); the report will contain green (OK), yellow (warning) or red (critical) symbols to indicate the merge status</li>
   <li>new: ROMAlyzer: added a <i>set rewriter</i> function to programmatically rewrite (clean) ROM sets on demand and/or while analysing them (works only for ZIPs!)</li>
   <li>new: ROMAlyzer: the number of reported sets held in memory can now be limited (which is important for long batch runs where the memory consumption can otherwise grow enormously); the new default behavior now is that after 1000 analyzed sets the ROMAlyzer will start to remove the oldest reports</li>
