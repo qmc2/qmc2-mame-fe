@@ -6957,7 +6957,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.ui" line="404"/>
         <location filename="../../qmc2main.ui" line="520"/>
         <source>Players</source>
-        <translation type="unfinished">Jogadores</translation>
+        <translation>Jogadores</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="665"/>
@@ -10098,7 +10098,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2306"/>
         <source>Players</source>
-        <translation type="unfinished">Jogadores</translation>
+        <translation>Jogadores</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2314"/>
@@ -11092,7 +11092,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="1261"/>
         <source>players</source>
-        <translation type="unfinished"></translation>
+        <translation>jogadores</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1884"/>
@@ -12664,12 +12664,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1135"/>
         <source>Checksum to be searched</source>
-        <translation type="unfinished"></translation>
+        <translation>Checksum a ser procurado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1148"/>
         <source>Search for the checksum now</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar pelo checksum agora</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1182"/>
@@ -13012,7 +13012,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1196"/>
         <source>Search results for the current checksum</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar resultados para o checksum atual</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1251"/>
@@ -13047,7 +13047,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1299"/>
         <source>Select the checksum type</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o tipo de checksum</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1325"/>
