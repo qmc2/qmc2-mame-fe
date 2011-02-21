@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b19, 20-FEB-2011</h3>
+<h3>README - v0.2.b19, 21-FEB-2011</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -184,7 +184,7 @@ SDLMAME is the default emulator on UNIX and Mac OS X. To build QMC2 for other po
 for example because SDL is not supported on your OS (huh?), you could use the <i>JOYSTICK</i> make command line option to do so:</p>
 <pre>$ make [-jX] JOYSTICK=0</pre>
 <p>The QMC2 build system will automatically enable the use of Qt's Phonon integration for some multimedia functionality (like the built-in audio player).
-This feature is completely optional though, and as it requires a working Phonon environment -- especially a working backend API such as <i>gstreamer</i> --
+This feature is completely optional though, and as it requires a working Phonon environment -- especially a working backend such as <i>gstreamer</i>, <i>VLC</i> or <i>xine</i> --
 you can disable it at compile time. Use the <i>PHONON</i> make command line option to accomplish that:</p>
 <pre>$ make [-jX] PHONON=0</pre>
 <p>Note that nearly all<sup>*</sup> of the supported make command line options can be freely combined when <i>make</i> is called. See</p>
