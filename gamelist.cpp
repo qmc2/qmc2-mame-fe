@@ -949,6 +949,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
     }
     if ( element.contains("<manufacturer>") ) {
       content = element.remove("<manufacturer>").remove("</manufacturer>");
+      content.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">");
       childItem = new QTreeWidgetItem(item);
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Manufacturer"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, content);
