@@ -864,7 +864,7 @@ QString Gamelist::value(QString element, QString attribute, bool translate)
 
   if ( element.contains(attribute) ) {
     QString valueString = element.remove(0, element.indexOf(attribute) + attribute.length() + 2);
-    valueString = valueString.remove(valueString.indexOf("\""), valueString.lastIndexOf(">")).replace("&amp;", "&");
+    valueString = valueString.remove(valueString.indexOf("\""), valueString.lastIndexOf(">")).replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
     if ( translate )
       return tr(valueString.toAscii());
     else
