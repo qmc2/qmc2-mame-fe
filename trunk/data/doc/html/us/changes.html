@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b19, 20-FEB-2011</h3>
+<h3>CHANGES - v0.2.b19, 23-FEB-2011</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b19, 20-FEB-2011:</b></p>
+<p><b>v0.2.b19, 23-FEB-2011:</b></p>
 <ul>
   <li>fix: ROMAlyzer: corrected status determination for ROM files that have no dump (but for which the file size or any checksums are available through the XML data)</li>
   <li>fix: corrected the scrolling behavior of the front-end and emulator logs</li>
@@ -24,6 +24,7 @@ inf: informational only
   <li>fix: corrected MAWS web-cache compression (works also on Windows now)</li>
   <li>fix: embedder: avoid left-over embed container widget when an emulator dies unexpectedly while it's currently being embedded</li>
   <li>fix: demo mode: avoid saving game configurations while in demo mode (may crash)</li>
+  <li>fix: corrected the conversion to/from some (HTML encoded) special characters as used in a few game/machine descriptions and manufacturer names</li>
   <li>imp: ROMAlyzer: improved performance for CRC identification of ZIP-archived ROM files</li>
   <li>imp: ROMAlyzer: generally improved progress indication</li>
   <li>imp: all logs are now based on read-only QPlainTextEdit's as this class is much better optimized for large amounts of plain-text data (compared to rich-text capabable QTextBrowser's, which were used before)</li>

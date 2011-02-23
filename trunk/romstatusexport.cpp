@@ -828,9 +828,9 @@ void ROMStatusExporter::exportToHTML()
 	ts << "<td valign=\"top\">" << tr("unknown") << "</td>";
         break;
     }
-    ts << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;") << "</td>"
+    ts << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;") << "</td>"
        << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR) << "</td>"
-       << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;") << "</td>"
+       << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;") << "</td>"
        << "<td valign=\"top\">" << itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES) << "</td>\n"
        << "</tr>\n";
   }
