@@ -908,7 +908,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("retrieving machine information for '%1'").arg(gameDescription));
 #endif
     qApp->processEvents();
-    gameDescription.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
+    gameDescription.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;");
     QString s = "<description>" + gameDescription + "</description>";
     while ( !xmlLines[gamePos].contains(s) && gamePos < xmlLines.count() ) gamePos++;
     if ( xmlLines[gamePos].contains(s) ) {
@@ -949,7 +949,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
     }
     if ( element.contains("<manufacturer>") ) {
       content = element.remove("<manufacturer>").remove("</manufacturer>");
-      content.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">");
+      content.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
       childItem = new QTreeWidgetItem(item);
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Manufacturer"));
       childItem->setText(QMC2_GAMELIST_COLUMN_ICON, content);
@@ -1548,7 +1548,7 @@ void Gamelist::parse()
         bool isBIOS = ( value(gameElement, "isbios") == "yes" );
         QString gameName = value(gameElement, "name");
         QString gameCloneOf = value(gameElement, "cloneof");
-        QString gameDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">");
+        QString gameDescription = descriptionElement.remove("<description>").remove("</description>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
         GamelistItem *gameDescriptionItem = new GamelistItem(qmc2MainWindow->treeWidgetGamelist);
 
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1566,7 +1566,7 @@ void Gamelist::parse()
             gameYear = xmlLine.simplified().remove("<year>").remove("</year>");
             yearFound = TRUE;
           } else if ( xmlLine.contains("<manufacturer>") ) {
-            gameManufacturer = xmlLine.simplified().remove("<manufacturer>").remove("</manufacturer>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">");
+            gameManufacturer = xmlLine.simplified().remove("<manufacturer>").remove("</manufacturer>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
             manufacturerFound = TRUE;
           } else if ( xmlLine.contains("<rom name") ) {
             hasROMs = TRUE;
