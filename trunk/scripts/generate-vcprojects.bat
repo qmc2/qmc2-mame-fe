@@ -14,6 +14,11 @@ set SDLMAIN_LIB_PATH=e:\sdl\lib\sdlmain.lib
 set SVN_REV_COMMAND=c:\Programme\TortoiseSVN\bin\SubWCRev.exe
 set SED_COMMAND=d:\Tools\sed\bin\sed.exe
 
+REM #############################################################
+REM # FOR VS2010, QMAKESPEC NEEDS TO BE SET TO "win32-msvc2008" #
+REM #############################################################
+REM set QMAKESPEC=win32-msvc2008
+
 REM #################################################
 REM # !!! DON'T CHANGE ANYTHING BELOW THIS LINE !!! #
 REM #################################################
