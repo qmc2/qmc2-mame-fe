@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b19, 21-FEB-2011</h3>
+<h3>README - v0.2.b19, 25-FEB-2011</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -209,7 +209,8 @@ However, a symbolic link named <i>qmc2</i> will created in the binary installati
 In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new settings</b> and add them to /etc/qmc2/qmc2.ini manually!</p>
 <p>Note that in order to use the <i>QMC2 variant launcher</i> - one QMC2 variant can launch (or switch to) the other - it is <b>required</b> that all binaries are in your search path (including the <i>runonce</i> launcher wrapper)!</p>
 <p><b>Building the QMC2 binary on Windows</b></p>
-<p>The build steps on Windows are completely different than the ones on UNIX and Mac OS X. There may be other ways to do it on Windows than the one described here, but that's how we succeeded and what we therefore can support:</p>
+<p>The build steps on Windows are completely different than the ones on UNIX and Mac OS X. There may be other ways to do it on Windows than the one described here, but that's how we succeeded and what we therefore can support.</p>
+<p>Using Visual C++ 2008:</p>
 <ol>
   <li>Install all software requirements mentioned above.</li>
   <li>Extract all contents from the QMC2 source distribution archive into a directory (or use the code from the SVN repo: <a href="http://tortoisesvn.tigris.org/" target="_blank">TortoiseSVN</a> is a nicely working SVN client for Windows which we use ourselves).</li>
@@ -220,6 +221,11 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
   <li>Edit the project settings within VC++ to produce <i>Release</i> instead of <i>Debug</i> (default) output.</li>
   <li>Select <i>Build</i> from the project's context menu to create the front end executable, which you will find in the <i>release\</i> sub-directory after it has been successfully built.</li>
   <li>If you're going to build both variants, don't forget to <i>clean up</i> the project before you start the second build process!</li>
+</ol>
+<p>Using Visual C++ 2010:</p>
+<ol>
+  <li>Basically the same as with VC++ 2008, but be sure to also uncomment <i>set QMAKESPEC=win32-msvc2008</i> when editing <i>scripts\generate-vcprojects.bat</i>.</li>
+  <li>Also, as qmake can only produce .vcproj files for us (compatible with VC++ 2008), you will have to convert each one of them: open the files with VC++ 2010 and let it run the conversions (overwriting old files, if applicable!), then close VC++ and use the newly created .vcxproj files from now on.</li>
 </ol>
 <p><b>Installation on Windows</b></p>
 <p>Provided that all necessary DLLs are included in paths pointed to by <i>%LIBPATH%</i>, an installation isn't really required on Windows. As on UNIX and Mac OS X, you can simply start the executable
