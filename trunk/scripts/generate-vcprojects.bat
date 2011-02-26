@@ -15,9 +15,9 @@ set SVN_REV_COMMAND=c:\Programme\TortoiseSVN\bin\SubWCRev.exe
 set SED_COMMAND=d:\Tools\sed\bin\sed.exe
 
 REM #############################################################
-REM # FOR VS2010, QMAKESPEC NEEDS TO BE SET TO "win32-msvc2008" #
+REM # FOR VS2010, QMAKESPEC NEEDS TO BE SET TO "win32-msvc2010" #
 REM #############################################################
-REM set QMAKESPEC=win32-msvc2008
+REM set QMAKESPEC=win32-msvc2010
 
 REM #################################################
 REM # !!! DON'T CHANGE ANYTHING BELOW THIS LINE !!! #
@@ -71,7 +71,7 @@ echo Generating RC and VC++ project files for qmc2-mame, please wait...
 
 set QMC2_MAME_DEFINES="DEFINES+=MAJOR=%MAJOR% MINOR=%MINOR% BETA=%BETA% QMC2_VERSION=%VERSION% QMC2_SVN_REV=%SVN_REV% BUILD_OS_NAME=Windows BUILD_OS_RELEASE=unknown BUILD_MACHINE=unknown QMC2_JOYSTICK=1 QMC2_OPENGL=0 QMC2_ARCADE_OPENGL=0 QMC2_WIP_CODE=0 QMC2_PHONON=1 QMC2_FADER_SPEED=2000 QMC2_BROWSER_PLUGINS_ENABLED QMC2_BROWSER_JAVA_ENABLED QMC2_BROWSER_JAVASCRIPT_ENABLED QMC2_WC_COMPRESSION_ENABLED QMC2_MAME"
 
-echo IDI_ICON1               ICON    DISCARDABLE     "data\img\mame.ico" > qmc2-mame.rc
+echo IDI_ICON1 ICON DISCARDABLE "data\img\mame.ico" > qmc2-mame.rc
 
 %QT_PATH%\bin\qmake.exe -tp vc QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%ZLIB_INC_PATH% LIBS+=%ZLIB_LIB_PATH% INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH% LIBS+=%SDLMAIN_LIB_PATH% QMC2_PRETTY_COMPILE=0 TARGET=qmc2-mame %QMC2_MAME_DEFINES% -o qmc2-mame.vcproj qmc2.pro > NUL 2> NUL
 
@@ -85,7 +85,7 @@ echo Generating RC and VC++ project files for qmc2-mess, please wait...
 
 set QMC2_MESS_DEFINES="DEFINES+=MAJOR=%MAJOR% MINOR=%MINOR% BETA=%BETA% QMC2_VERSION=%VERSION% QMC2_SVN_REV=%SVN_REV% BUILD_OS_NAME=Windows BUILD_OS_RELEASE=unknown BUILD_MACHINE=unknown QMC2_JOYSTICK=1 QMC2_OPENGL=0 QMC2_ARCADE_OPENGL=0 QMC2_WIP_CODE=0 QMC2_PHONON=1 QMC2_FADER_SPEED=2000 QMC2_BROWSER_PLUGINS_ENABLED QMC2_BROWSER_JAVA_ENABLED QMC2_BROWSER_JAVASCRIPT_ENABLED QMC2_WC_COMPRESSION_ENABLED QMC2_MESS"
 
-echo IDI_ICON1               ICON    DISCARDABLE     "data\img\mess.ico" > qmc2-mess.rc
+echo IDI_ICON1 ICON DISCARDABLE "data\img\mess.ico" > qmc2-mess.rc
 
 %QT_PATH%\bin\qmake.exe -tp vc QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%ZLIB_INC_PATH% LIBS+=%ZLIB_LIB_PATH% INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH% LIBS+=%SDLMAIN_LIB_PATH% QMC2_PRETTY_COMPILE=0 TARGET=qmc2-mess %QMC2_MESS_DEFINES% -o qmc2-mess.vcproj qmc2.pro > NUL 2> NUL
 
