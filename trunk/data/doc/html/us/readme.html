@@ -210,7 +210,7 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
 <p>Note that in order to use the <i>QMC2 variant launcher</i> - one QMC2 variant can launch (or switch to) the other - it is <b>required</b> that all binaries are in your search path (including the <i>runonce</i> launcher wrapper)!</p>
 <p><b>Building the QMC2 binary on Windows</b></p>
 <p>The build steps on Windows are completely different than the ones on UNIX and Mac OS X. There may be other ways to do it on Windows than the one described here, but that's how we succeeded and what we therefore can support.</p>
-<p>Using Visual C++ 2008:</p>
+<p>Using Visual C++ 2008 (Qt 4.5+):</p>
 <ol>
   <li>Install all software requirements mentioned above.</li>
   <li>Extract all contents from the QMC2 source distribution archive into a directory (or use the code from the SVN repo: <a href="http://tortoisesvn.tigris.org/" target="_blank">TortoiseSVN</a> is a nicely working SVN client for Windows which we use ourselves).</li>
@@ -222,10 +222,10 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
   <li>Select <i>Build</i> from the project's context menu to create the front end executable, which you will find in the <i>release\</i> sub-directory after it has been successfully built.</li>
   <li>If you're going to build both variants, don't forget to <i>clean up</i> the project before you start the second build process!</li>
 </ol>
-<p>Using Visual C++ 2010:</p>
+<p>Using Visual C++ 2010 (Qt 4.7+):</p>
 <ol>
-  <li>We're still experimenting with VC++ 2010 and are having some issues... anyway, the process is basically the same as with VC++ 2008, just make sure the Qt library you're using was built with a <i>QMAKESPEC</i> of <i>win32-msvc2010</i> (i. e. <i>configure.exe -platform win32-msvc2010 ...</i> -- Qt 4.7+ required!). </li>
-  <li>As with VC++ 2008, the project file generator will produce two files, but this time they are named a bit diffently: 'qmc2-mame.vcxproj' and 'qmc2-mess.vcxproj' -- which is all you need to build QMC2 with VC++ 2010.</li>
+  <li>The process is basically the same as with VC++ 2008, just make sure the Qt library you're using was built with a <i>QMAKESPEC</i> of <i>win32-msvc2010</i> (i. e. <i>configure.exe -platform win32-msvc2010 ...</i>).</li>
+  <li>As with VC++ 2008, the project file generator will produce two files, but this time they will be named a bit differently: <i>qmc2-mame.vcxproj</i> and <i>qmc2-mess.vcxproj</i> -- which is all you need to build QMC2 with VC++ 2010.</li>
 </ol>
 <p><b>Installation on Windows</b></p>
 <p>Provided that all necessary DLLs are included in paths pointed to by <i>%LIBPATH%</i>, an installation isn't really required on Windows. As on UNIX and Mac OS X, you can simply start the executable
