@@ -218,14 +218,13 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
   <li>Edit the batch script <i>scripts\generate-vcprojects.bat</i> and adjust the path variables at the beginning of the script. Note that the script requires <a href="http://gnuwin32.sourceforge.net/packages/sed.htm" target="_blank">sed for Windows</a> (and optionally <a href="http://tortoisesvn.tigris.org/" target="_blank">TortoiseSVN</a> when using code from the SVN repo).</li>
   <li>Make sure the current working directory is the top-level path of where you extracted the QMC2 sources and run <i>scripts\generate-vcprojects.bat</i>. This will create two additional sub-directories (<i>debug\</i> and <i>release\</i>) and generate two VC++ project files: <i>qmc2-mame.vcproj</i> and <i>qmc2-mess.vcproj</i>.</li>
   <li>Open one (or both) of the project files in Visual C++ 2008 Express (double-clicking the .vcproj files should also work).</li>
-  <li>Edit the project settings within VC++ to produce <i>Release</i> instead of <i>Debug</i> (default) output.</li>
   <li>Select <i>Build</i> from the project's context menu to create the front end executable, which you will find in the <i>release\</i> sub-directory after it has been successfully built.</li>
   <li>If you're going to build both variants, don't forget to <i>clean up</i> the project before you start the second build process!</li>
 </ol>
 <p>Using Visual C++ 2010 (Qt 4.7+):</p>
 <ol>
-  <li>The process is basically the same as with VC++ 2008, just make sure the Qt library you're using was built with a <i>QMAKESPEC</i> of <i>win32-msvc2010</i> (i. e. <i>configure.exe -platform win32-msvc2010 ...</i>).</li>
-  <li>As with VC++ 2008, the project file generator will produce two files, but this time they will be named a bit differently: <i>qmc2-mame.vcxproj</i> and <i>qmc2-mess.vcxproj</i> -- which is all you need to build QMC2 with VC++ 2010.</li>
+  <li>The process is basically the same as with VC++ 2008, but make sure to uncomment the line containing <i>set QMAKESPEC=win32-msvc2010</i> when editing <i>scripts\generate-vcprojects.bat</i>.</li>
+  <li>As with VC++ 2008, the project file generator will produce two files, but this time they will be named a bit differently: <i>qmc2-mame.vcxproj</i> and <i>qmc2-mess.vcxproj</i> -- which is all you need to build each QMC2 variant through VC++ 2010.</li>
 </ol>
 <p><b>Installation on Windows</b></p>
 <p>Provided that all necessary DLLs are included in paths pointed to by <i>%LIBPATH%</i>, an installation isn't really required on Windows. As on UNIX and Mac OS X, you can simply start the executable
