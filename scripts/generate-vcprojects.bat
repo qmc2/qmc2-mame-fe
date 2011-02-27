@@ -4,20 +4,20 @@ REM #############################################################
 REM # !!! ADJUST THESE PATHS TO FIT YOUR LOCAL INSTALLATION !!! #
 REM #############################################################
 
-set QT_PATH=e:\Qt
-set QT_PATH_ESCAPED=e:\\Qt
-set ZLIB_INC_PATH=e:\zlib\include
-set ZLIB_LIB_PATH=e:\zlib\lib\zlib.lib
-set SDL_INC_PATH=e:\sdl\include
-set SDL_LIB_PATH=e:\sdl\lib\sdl.lib
-set SDLMAIN_LIB_PATH=e:\sdl\lib\sdlmain.lib
-set SVN_REV_COMMAND=c:\Programme\TortoiseSVN\bin\SubWCRev.exe
-set SED_COMMAND=d:\Tools\sed\bin\sed.exe
+set QT_PATH=c:\Qt
+set QT_PATH_ESCAPED=c:\\Qt
+set ZLIB_INC_PATH=c:\zlib
+set ZLIB_LIB_PATH=c:\zlib\zlib.lib
+set SDL_INC_PATH=c:\sdl\include
+set SDL_LIB_PATH=c:\sdl\lib\sdl.lib
+set SDLMAIN_LIB_PATH=c:\sdl\lib\sdlmain.lib
+set SVN_REV_COMMAND="c:\Program Files\TortoiseSVN\bin\SubWCRev.exe"
+set SED_COMMAND=c:\GnuWin32\bin\sed.exe
 
 REM #####################################################################
 REM # !!! FOR VS2010, QMAKESPEC NEEDS TO BE SET TO "win32-msvc2010" !!! #
 REM #####################################################################
-REM set QMAKESPEC=win32-msvc2010
+set QMAKESPEC=win32-msvc2010
 
 REM #################################################
 REM # !!! DON'T CHANGE ANYTHING BELOW THIS LINE !!! #
@@ -100,19 +100,23 @@ REM ##############################################
 
 set find1=SubSystem=\"1\"
 set repl1=SubSystem=\"2\"
-set find2=%QT_PATH_ESCAPED%\\lib\\qtmain.lib 
+set find2=%QT_PATH_ESCAPED%\\lib\\qtmain.lib
 set repl2=
-set find3=%QT_PATH_ESCAPED%\\lib\\qtmaind.lib 
+set find3=%QT_PATH_ESCAPED%\\lib\\qtmaind.lib
 set repl3=
 set find4=AdditionalOptions=\"
 set repl4=AdditionalOptions=\"\/MACHINE:X86 
 set find5=AdditionalOptions=\"\/MACHINE:X86 -Zm200\"
 set repl5=AdditionalOptions=\"-Zm200\"
 
-set repl1_vc10=Console
+set find1_vc10=Console
 set repl1_vc10=Windows
-set repl2_vc10=\>Debug\<
-set repl2_vc10=\>Release\<
+set find2_vc10=^>Debug^<
+set repl2_vc10=^>Release^<
+set find3_vc10=%QT_PATH_ESCAPED%\\lib\\qtmain.lib;
+set repl3_vc10=
+set find4_vc10=%QT_PATH_ESCAPED%\\lib\\qtmaind.lib;
+set repl4_vc10=
 
 echo Adjusting VC++ project files, please wait...
 
@@ -124,7 +128,7 @@ set new_file=%old_file%.new
 if exist %new_file% del %new_file%
 
 if "%QMAKESPEC%" neq "win32-msvc2010" goto :qmc2_mame_vc2008
-%SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" %old_file% > %new_file%
+%SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10%/%repl3_vc10%/g" -e "s/%find4_vc10%/%repl4_vc10%/g" %old_file% > %new_file%
 goto :qmc2_mame_ready
 :qmc2_mame_vc2008
 %SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
@@ -142,7 +146,7 @@ set new_file=%old_file%.new
 if exist %new_file% del %new_file%
 
 if "%QMAKESPEC%" neq "win32-msvc2010" goto :qmc2_mess_vc2008
-%SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" %old_file% > %new_file%
+%SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" -e "s/%find3_vc10%/%repl3_vc10%/g" -e "s/%find4_vc10%/%repl4_vc10%/g" %old_file% > %new_file%
 goto :qmc2_mess_ready
 :qmc2_mess_vc2008
 %SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
