@@ -14,9 +14,9 @@ set SDLMAIN_LIB_PATH=e:\sdl\lib\sdlmain.lib
 set SVN_REV_COMMAND=c:\Programme\TortoiseSVN\bin\SubWCRev.exe
 set SED_COMMAND=d:\Tools\sed\bin\sed.exe
 
-REM #############################################################
-REM # FOR VS2010, QMAKESPEC NEEDS TO BE SET TO "win32-msvc2010" #
-REM #############################################################
+REM #####################################################################
+REM # !!! FOR VS2010, QMAKESPEC NEEDS TO BE SET TO "win32-msvc2010" !!! #
+REM #####################################################################
 REM set QMAKESPEC=win32-msvc2010
 
 REM #################################################
@@ -30,6 +30,9 @@ set VERSION=0.2.b19
 set SVN_REV=0
 set SVN_REV_TEMPLATE=scripts\subwcrev.template
 set SVN_REV_OUT=scripts\subwcrev.out
+
+set VCPROJ_EXTENSION=vcproj
+if "%QMAKESPEC%" eq "win32-msvc2010" set VCPROJ_EXTENSION=vcxproj
 
 if exist .\qmc2.pro goto :pathok
 echo Please run this command from the base directory!
@@ -73,7 +76,7 @@ set QMC2_MAME_DEFINES="DEFINES+=MAJOR=%MAJOR% MINOR=%MINOR% BETA=%BETA% QMC2_VER
 
 echo IDI_ICON1 ICON DISCARDABLE "data\img\mame.ico" > qmc2-mame.rc
 
-%QT_PATH%\bin\qmake.exe -tp vc QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%ZLIB_INC_PATH% LIBS+=%ZLIB_LIB_PATH% INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH% LIBS+=%SDLMAIN_LIB_PATH% QMC2_PRETTY_COMPILE=0 TARGET=qmc2-mame %QMC2_MAME_DEFINES% -o qmc2-mame.vcproj qmc2.pro > NUL 2> NUL
+%QT_PATH%\bin\qmake.exe -tp vc QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%ZLIB_INC_PATH% LIBS+=%ZLIB_LIB_PATH% INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH% LIBS+=%SDLMAIN_LIB_PATH% QMC2_PRETTY_COMPILE=0 TARGET=qmc2-mame %QMC2_MAME_DEFINES% -o qmc2-mame.%VCPROJ_EXTENSION% qmc2.pro > NUL 2> NUL
 
 echo done
 
@@ -87,7 +90,7 @@ set QMC2_MESS_DEFINES="DEFINES+=MAJOR=%MAJOR% MINOR=%MINOR% BETA=%BETA% QMC2_VER
 
 echo IDI_ICON1 ICON DISCARDABLE "data\img\mess.ico" > qmc2-mess.rc
 
-%QT_PATH%\bin\qmake.exe -tp vc QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%ZLIB_INC_PATH% LIBS+=%ZLIB_LIB_PATH% INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH% LIBS+=%SDLMAIN_LIB_PATH% QMC2_PRETTY_COMPILE=0 TARGET=qmc2-mess %QMC2_MESS_DEFINES% -o qmc2-mess.vcproj qmc2.pro > NUL 2> NUL
+%QT_PATH%\bin\qmake.exe -tp vc QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%ZLIB_INC_PATH% LIBS+=%ZLIB_LIB_PATH% INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH% LIBS+=%SDLMAIN_LIB_PATH% QMC2_PRETTY_COMPILE=0 TARGET=qmc2-mess %QMC2_MESS_DEFINES% -o qmc2-mess.%VCPROJ_EXTENSION% qmc2.pro > NUL 2> NUL
 
 echo done
 
@@ -106,28 +109,45 @@ set repl4=AdditionalOptions=\"\/MACHINE:X86
 set find5=AdditionalOptions=\"\/MACHINE:X86 -Zm200\"
 set repl5=AdditionalOptions=\"-Zm200\"
 
+set repl1_vc10=Console
+set repl1_vc10=Windows
+set repl2_vc10=\>Debug\<
+set repl2_vc10=\>Release\<
+
 echo Adjusting VC++ project files, please wait...
 
 REM ### qmc2-mame ###
 
-set old_file=qmc2-mame.vcproj
+set old_file=qmc2-mame.%VCPROJ_EXTENSION%
 set new_file=%old_file%.new
 
 if exist %new_file% del %new_file%
 
+if "%QMAKESPEC%" eq "win32-msvc2010" goto :qmc2_mame_vc10
 %SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
+goto :qmc2_mame_ready
+:qmc2_mame_vc10
+%SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" %old_file% > %new_file%
+
+:qmc2_mame_ready
 
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
 
 REM ### qmc2-mess ###
 
-set old_file=qmc2-mess.vcproj
+set old_file=qmc2-mess.%VCPROJ_EXTENSION%
 set new_file=%old_file%.new
 
 if exist %new_file% del %new_file%
 
+if "%QMAKESPEC%" eq "win32-msvc2010" goto :qmc2_mess_vc10
 %SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
+goto :qmc2_mess_ready
+:qmc2_mess_vc10
+%SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" %old_file% > %new_file%
+
+:qmc2_mess_ready
 
 if exist %old_file% del %old_file%
 rename %new_file% %old_file%
