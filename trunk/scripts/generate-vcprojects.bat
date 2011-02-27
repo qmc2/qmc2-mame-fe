@@ -31,8 +31,8 @@ set SVN_REV=0
 set SVN_REV_TEMPLATE=scripts\subwcrev.template
 set SVN_REV_OUT=scripts\subwcrev.out
 
-set VCPROJ_EXTENSION=vcproj
-if "%QMAKESPEC%" eq "win32-msvc2010" set VCPROJ_EXTENSION=vcxproj
+set VCPROJ_EXTENSION=vcxproj
+if "%QMAKESPEC%" neq "win32-msvc2010" set VCPROJ_EXTENSION=vcproj
 
 if exist .\qmc2.pro goto :pathok
 echo Please run this command from the base directory!
