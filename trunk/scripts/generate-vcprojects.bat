@@ -123,11 +123,11 @@ set new_file=%old_file%.new
 
 if exist %new_file% del %new_file%
 
-if "%QMAKESPEC%" eq "win32-msvc2010" goto :qmc2_mame_vc10
-%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
-goto :qmc2_mame_ready
-:qmc2_mame_vc10
+if "%QMAKESPEC%" neq "win32-msvc2010" goto :qmc2_mame_vc2008
 %SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" %old_file% > %new_file%
+goto :qmc2_mame_ready
+:qmc2_mame_vc2008
+%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
 
 :qmc2_mame_ready
 
@@ -141,11 +141,11 @@ set new_file=%old_file%.new
 
 if exist %new_file% del %new_file%
 
-if "%QMAKESPEC%" eq "win32-msvc2010" goto :qmc2_mess_vc10
-%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
-goto :qmc2_mess_ready
-:qmc2_mess_vc10
+if "%QMAKESPEC%" neq "win32-msvc2010" goto :qmc2_mess_vc2008
 %SED_COMMAND% -e "s/%find1_vc10%/%repl1_vc10%/g" -e "s/%find2_vc10%/%repl2_vc10%/g" %old_file% > %new_file%
+goto :qmc2_mess_ready
+:qmc2_mess_vc2008
+%SED_COMMAND% -e "s/%find1%/%repl1%/g" -e "s/%find2%/%repl2%/g" -e "s/%find3%/%repl3%/g" -e "s#%find4%#%repl4%#g" -e "s#%find5%#%repl5%#g" %old_file% > %new_file%
 
 :qmc2_mess_ready
 
