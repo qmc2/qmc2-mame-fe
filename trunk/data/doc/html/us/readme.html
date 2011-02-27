@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b19, 26-FEB-2011</h3>
+<h3>README - v0.2.b19, 27-FEB-2011</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -224,8 +224,8 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
 </ol>
 <p>Using Visual C++ 2010:</p>
 <ol>
-  <li>We're still experimenting with VC++ 2010 and are having some issues... anyway, it should basically be the same as with VC++ 2008, but make sure to uncomment <i>set QMAKESPEC=win32-msvc2010</i> when editing <i>scripts\generate-vcprojects.bat</i>.</li>
-  <li>The project file generator should produce two files named 'qmc2-mame.vcxproj' and 'qmc2-mess.vcxproj' -- this is what you need in case of VC++ 2010.</li>
+  <li>We're still experimenting with VC++ 2010 and are having some issues... anyway, the process is basically the same as with VC++ 2008, just make sure the Qt library you're using was built with a <i>QMAKESPEC</i> of <i>win32-msvc2010</i> (i. e. <i>configure.exe -platform win32-msvc2010 ...</i> -- Qt 4.7+ required!). </li>
+  <li>As with VC++ 2008, the project file generator will produce two files, but this time they are named a bit diffently: 'qmc2-mame.vcxproj' and 'qmc2-mess.vcxproj' -- which is all you need to build QMC2 with VC++ 2010.</li>
 </ol>
 <p><b>Installation on Windows</b></p>
 <p>Provided that all necessary DLLs are included in paths pointed to by <i>%LIBPATH%</i>, an installation isn't really required on Windows. As on UNIX and Mac OS X, you can simply start the executable
