@@ -173,10 +173,10 @@ void MiniWebBrowser::on_comboBoxURL_activated()
 #endif
 
   if ( !comboBoxURL->lineEdit()->text().isEmpty() ) {
-    QString text = comboBoxURL->lineEdit()->text().toLower();
+    QString text = comboBoxURL->lineEdit()->text();
     QUrl url(text, QUrl::TolerantMode);
     if ( url.scheme().isEmpty() )
-      if ( !text.startsWith("http://") )
+      if ( !text.toLower().startsWith("http://") )
         text.prepend("http://");
     comboBoxURL->setEditText(text);
     url = QUrl(text, QUrl::TolerantMode);
@@ -206,10 +206,10 @@ void MiniWebBrowser::on_toolButtonLoad_clicked()
 #endif
 
   if ( !comboBoxURL->lineEdit()->text().isEmpty() ) {
-    QString text = comboBoxURL->lineEdit()->text().toLower();
+    QString text = comboBoxURL->lineEdit()->text();
     QUrl url(text, QUrl::TolerantMode);
     if ( url.scheme().isEmpty() )
-      if ( !text.startsWith("http://") )
+      if ( !text.toLower().startsWith("http://") )
         text.prepend("http://");
     comboBoxURL->setEditText(text);
     webViewBrowser->load(QUrl(text, QUrl::TolerantMode));
