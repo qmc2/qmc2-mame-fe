@@ -1448,7 +1448,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
               fn = crcIdentMap[ulCRC];
             else if ( mergeFile.isEmpty() ) {
               if ( !isCHD )
-                log(tr("WARNING: unable to identify '%1' from '%2' by CRC").arg(fileName).arg(filePath));
+                log(tr("WARNING: unable to identify '%1' from '%2' by CRC '%3'").arg(fileName).arg(filePath).arg(wantedCRC));
               fn = fileName;
             }
 

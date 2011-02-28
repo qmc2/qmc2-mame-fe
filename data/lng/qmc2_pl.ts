@@ -2533,8 +2533,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="135"/>
-        <location filename="../../gamelist.cpp" line="1388"/>
-        <location filename="../../gamelist.cpp" line="1609"/>
+        <location filename="../../gamelist.cpp" line="1389"/>
+        <location filename="../../gamelist.cpp" line="1610"/>
         <source>Unknown</source>
         <translation>Nieznany</translation>
     </message>
@@ -2579,10 +2579,10 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="344"/>
         <location filename="../../gamelist.cpp" line="347"/>
         <location filename="../../gamelist.cpp" line="349"/>
-        <location filename="../../gamelist.cpp" line="1446"/>
-        <location filename="../../gamelist.cpp" line="1667"/>
-        <location filename="../../gamelist.cpp" line="1906"/>
-        <location filename="../../gamelist.cpp" line="2692"/>
+        <location filename="../../gamelist.cpp" line="1447"/>
+        <location filename="../../gamelist.cpp" line="1668"/>
+        <location filename="../../gamelist.cpp" line="1907"/>
+        <location filename="../../gamelist.cpp" line="2693"/>
         <source>Waiting for data...</source>
         <translation>Oczekiwanie na dane...</translation>
     </message>
@@ -2678,469 +2678,469 @@ p, li { white-space: pre-wrap; }
         <translation>Rok</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="953"/>
+        <location filename="../../gamelist.cpp" line="954"/>
         <source>Manufacturer</source>
         <translation>Producent</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="958"/>
-        <location filename="../../gamelist.cpp" line="1378"/>
-        <location filename="../../gamelist.cpp" line="1599"/>
+        <location filename="../../gamelist.cpp" line="959"/>
+        <location filename="../../gamelist.cpp" line="1379"/>
+        <location filename="../../gamelist.cpp" line="1600"/>
         <source>ROM</source>
         <translation>ROM</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="963"/>
+        <location filename="../../gamelist.cpp" line="964"/>
         <source>BIOS</source>
         <translation>BIOS</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="963"/>
+        <location filename="../../gamelist.cpp" line="964"/>
         <source>Size</source>
         <translation>Rozmiar</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="963"/>
+        <location filename="../../gamelist.cpp" line="964"/>
         <source>CRC</source>
         <translation>CRC</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="963"/>
-        <location filename="../../gamelist.cpp" line="1091"/>
+        <location filename="../../gamelist.cpp" line="964"/>
+        <location filename="../../gamelist.cpp" line="1092"/>
         <source>SHA1</source>
         <translation>SHA1</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="963"/>
-        <location filename="../../gamelist.cpp" line="1091"/>
+        <location filename="../../gamelist.cpp" line="964"/>
+        <location filename="../../gamelist.cpp" line="1092"/>
         <source>Merge</source>
         <translation>Scalanie</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="963"/>
-        <location filename="../../gamelist.cpp" line="1091"/>
+        <location filename="../../gamelist.cpp" line="964"/>
+        <location filename="../../gamelist.cpp" line="1092"/>
         <source>Region</source>
         <translation>Region</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="963"/>
+        <location filename="../../gamelist.cpp" line="964"/>
         <source>Offset</source>
         <translation>Przesunięcie</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="963"/>
-        <location filename="../../gamelist.cpp" line="1066"/>
-        <location filename="../../gamelist.cpp" line="1091"/>
-        <location filename="../../gamelist.cpp" line="1111"/>
+        <location filename="../../gamelist.cpp" line="964"/>
+        <location filename="../../gamelist.cpp" line="1067"/>
+        <location filename="../../gamelist.cpp" line="1092"/>
+        <location filename="../../gamelist.cpp" line="1112"/>
         <source>Status</source>
         <translation>Stan</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="968"/>
+        <location filename="../../gamelist.cpp" line="969"/>
         <source>Chip</source>
         <translation>Chip</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="973"/>
-        <location filename="../../gamelist.cpp" line="982"/>
+        <location filename="../../gamelist.cpp" line="974"/>
+        <location filename="../../gamelist.cpp" line="983"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="973"/>
+        <location filename="../../gamelist.cpp" line="974"/>
         <source>Clock</source>
         <translation>Taktowanie</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="982"/>
+        <location filename="../../gamelist.cpp" line="983"/>
         <source>Width</source>
         <translation>Szerokość</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="982"/>
+        <location filename="../../gamelist.cpp" line="983"/>
         <source>Height</source>
         <translation>Wysokość</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="982"/>
+        <location filename="../../gamelist.cpp" line="983"/>
         <source>Refresh</source>
         <translation>Odświeżanie</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="987"/>
-        <location filename="../../gamelist.cpp" line="1066"/>
+        <location filename="../../gamelist.cpp" line="988"/>
+        <location filename="../../gamelist.cpp" line="1067"/>
         <source>Sound</source>
         <translation>Dźwięk</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="991"/>
+        <location filename="../../gamelist.cpp" line="992"/>
         <source>Channels</source>
         <translation>Kanały</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="996"/>
+        <location filename="../../gamelist.cpp" line="997"/>
         <source>Input</source>
         <translation>Wejście</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1000"/>
+        <location filename="../../gamelist.cpp" line="1001"/>
         <source>Service</source>
         <translation>Serwis</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1000"/>
+        <location filename="../../gamelist.cpp" line="1001"/>
         <source>Tilt</source>
         <translation>Nachylenie</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1000"/>
+        <location filename="../../gamelist.cpp" line="1001"/>
         <source>Players</source>
         <translation>Gracze</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1000"/>
+        <location filename="../../gamelist.cpp" line="1001"/>
         <source>Buttons</source>
         <translation>Przyciski</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1000"/>
+        <location filename="../../gamelist.cpp" line="1001"/>
         <source>Coins</source>
         <translation>Monety</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1019"/>
+        <location filename="../../gamelist.cpp" line="1020"/>
         <source>DIP switch</source>
         <translation>przełącznik DIP</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1026"/>
+        <location filename="../../gamelist.cpp" line="1027"/>
         <source>DIP value</source>
         <translation>wartość DIP</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1031"/>
-        <location filename="../../gamelist.cpp" line="1055"/>
-        <location filename="../../gamelist.cpp" line="1076"/>
-        <location filename="../../gamelist.cpp" line="1101"/>
-        <location filename="../../gamelist.cpp" line="1128"/>
-        <location filename="../../gamelist.cpp" line="1178"/>
+        <location filename="../../gamelist.cpp" line="1032"/>
+        <location filename="../../gamelist.cpp" line="1056"/>
+        <location filename="../../gamelist.cpp" line="1077"/>
+        <location filename="../../gamelist.cpp" line="1102"/>
+        <location filename="../../gamelist.cpp" line="1129"/>
+        <location filename="../../gamelist.cpp" line="1179"/>
         <source>Default</source>
         <translation>Domyślny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1038"/>
+        <location filename="../../gamelist.cpp" line="1039"/>
         <source>Configuration</source>
         <translation>Konfiguracja</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1043"/>
+        <location filename="../../gamelist.cpp" line="1044"/>
         <source>Mask</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1050"/>
+        <location filename="../../gamelist.cpp" line="1051"/>
         <source>Setting</source>
         <translation>Ustawienie</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1055"/>
+        <location filename="../../gamelist.cpp" line="1056"/>
         <source>Value</source>
         <translation>Wartość</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1062"/>
+        <location filename="../../gamelist.cpp" line="1063"/>
         <source>Driver</source>
         <translation>Sterownik</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1066"/>
+        <location filename="../../gamelist.cpp" line="1067"/>
         <source>Emulation</source>
         <translation>Emulacja</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1066"/>
+        <location filename="../../gamelist.cpp" line="1067"/>
         <source>Color</source>
         <translation>Kolor</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1066"/>
+        <location filename="../../gamelist.cpp" line="1067"/>
         <source>Graphic</source>
         <translation>Grafika</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1066"/>
+        <location filename="../../gamelist.cpp" line="1067"/>
         <source>Cocktail</source>
         <translation>Koktajl</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1066"/>
+        <location filename="../../gamelist.cpp" line="1067"/>
         <source>Protection</source>
         <translation>Ochrona</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1066"/>
+        <location filename="../../gamelist.cpp" line="1067"/>
         <source>Save state</source>
         <translation>Zapis stanu</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1066"/>
+        <location filename="../../gamelist.cpp" line="1067"/>
         <source>Palette size</source>
         <translation>Rozmiar palety</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1071"/>
+        <location filename="../../gamelist.cpp" line="1072"/>
         <source>BIOS set</source>
         <translation>Zestaw BIOS</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1076"/>
+        <location filename="../../gamelist.cpp" line="1077"/>
         <source>Description</source>
         <translation>Opis</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1081"/>
+        <location filename="../../gamelist.cpp" line="1082"/>
         <source>Sample</source>
         <translation>Sampel</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1086"/>
+        <location filename="../../gamelist.cpp" line="1087"/>
         <source>Disk</source>
         <translation>Dysk</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1091"/>
+        <location filename="../../gamelist.cpp" line="1092"/>
         <source>MD5</source>
         <translation>MD5</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1091"/>
+        <location filename="../../gamelist.cpp" line="1092"/>
         <source>Index</source>
         <translation>Indeks</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1096"/>
+        <location filename="../../gamelist.cpp" line="1097"/>
         <source>Adjuster</source>
         <translation>Regulator</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1106"/>
+        <location filename="../../gamelist.cpp" line="1107"/>
         <source>Software list</source>
         <translation>Lista oprogramowania</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1116"/>
+        <location filename="../../gamelist.cpp" line="1117"/>
         <source>Category</source>
         <translation>Kategoria</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1123"/>
+        <location filename="../../gamelist.cpp" line="1124"/>
         <source>Item</source>
         <translation>Element</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1140"/>
+        <location filename="../../gamelist.cpp" line="1141"/>
         <source>Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1214"/>
+        <location filename="../../gamelist.cpp" line="1215"/>
         <source>WARNING: can&apos;t open ROM state cache, please check ROMs</source>
         <translation>UWAGA: nie można otworzyć bufora stanów ROM-ów, proszę sprawdzić ROM-y</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1217"/>
+        <location filename="../../gamelist.cpp" line="1218"/>
         <source>loading ROM state from cache</source>
         <translation>wczytywanie stanów ROM-ów z bufora</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1219"/>
+        <location filename="../../gamelist.cpp" line="1220"/>
         <source>ROM states - %p%</source>
         <translation>Stany romów - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1241"/>
+        <location filename="../../gamelist.cpp" line="1242"/>
         <source>done (loading ROM state from cache, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie stanów ROM-ów z bufora, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1244"/>
+        <location filename="../../gamelist.cpp" line="1245"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, please re-check ROMs</source>
         <translation>UWAGA: bufor stanów ROM-ów jest niekompletny lub nieaktualny, proszę ponownie sprawdzić ROM-y</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1298"/>
-        <location filename="../../gamelist.cpp" line="1307"/>
+        <location filename="../../gamelist.cpp" line="1299"/>
+        <location filename="../../gamelist.cpp" line="1308"/>
         <source>INFORMATION: the game list cache will now be updated due to a new format</source>
         <translation>INFORMACJA: bufor listy gier zostanie teraz zaktualizowany ze względu na nowy format</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1300"/>
-        <location filename="../../gamelist.cpp" line="1309"/>
+        <location filename="../../gamelist.cpp" line="1301"/>
+        <location filename="../../gamelist.cpp" line="1310"/>
         <source>INFORMATION: the machine list cache will now be updated due to a new format</source>
         <translation>INFORMACJA: bufor listy maszyn zostanie teraz zaktualizowany ze względu na nowy format</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1324"/>
-        <location filename="../../gamelist.cpp" line="1503"/>
+        <location filename="../../gamelist.cpp" line="1325"/>
+        <location filename="../../gamelist.cpp" line="1504"/>
         <source>Game data - %p%</source>
         <translation>Dane gier - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1376"/>
-        <location filename="../../gamelist.cpp" line="1597"/>
+        <location filename="../../gamelist.cpp" line="1377"/>
+        <location filename="../../gamelist.cpp" line="1598"/>
         <source>ROM, CHD</source>
         <translation>ROM, CHD</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1380"/>
-        <location filename="../../gamelist.cpp" line="1601"/>
+        <location filename="../../gamelist.cpp" line="1381"/>
+        <location filename="../../gamelist.cpp" line="1602"/>
         <source>CHD</source>
         <translation>CHD</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1389"/>
-        <location filename="../../gamelist.cpp" line="1610"/>
-        <location filename="../../gamelist.cpp" line="3214"/>
-        <location filename="../../gamelist.cpp" line="3304"/>
+        <location filename="../../gamelist.cpp" line="1390"/>
+        <location filename="../../gamelist.cpp" line="1611"/>
+        <location filename="../../gamelist.cpp" line="3215"/>
+        <location filename="../../gamelist.cpp" line="3305"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1892"/>
-        <location filename="../../gamelist.cpp" line="1894"/>
-        <location filename="../../gamelist.cpp" line="2678"/>
-        <location filename="../../gamelist.cpp" line="2680"/>
+        <location filename="../../gamelist.cpp" line="1893"/>
+        <location filename="../../gamelist.cpp" line="1895"/>
+        <location filename="../../gamelist.cpp" line="2679"/>
+        <location filename="../../gamelist.cpp" line="2681"/>
         <source>ascending</source>
         <translation>rosnącym</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1892"/>
-        <location filename="../../gamelist.cpp" line="1894"/>
-        <location filename="../../gamelist.cpp" line="2678"/>
-        <location filename="../../gamelist.cpp" line="2680"/>
+        <location filename="../../gamelist.cpp" line="1893"/>
+        <location filename="../../gamelist.cpp" line="1895"/>
+        <location filename="../../gamelist.cpp" line="2679"/>
+        <location filename="../../gamelist.cpp" line="2681"/>
         <source>descending</source>
         <translation>malejącym</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1926"/>
-        <location filename="../../gamelist.cpp" line="1942"/>
+        <location filename="../../gamelist.cpp" line="1927"/>
+        <location filename="../../gamelist.cpp" line="1943"/>
         <source>restoring game selection</source>
         <translation>przywracanie wyboru gry</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2006"/>
+        <location filename="../../gamelist.cpp" line="2007"/>
         <source>ROM state filter already active</source>
         <translation>filtr stanów ROM-ów jest już aktywny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2011"/>
+        <location filename="../../gamelist.cpp" line="2012"/>
         <source>please wait for ROM verification to finish and try again</source>
         <translation>proszę poczekać za zakończenie weryfikacji ROM-ów i spróbować ponownie</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2016"/>
+        <location filename="../../gamelist.cpp" line="2017"/>
         <source>please wait for reload to finish and try again</source>
         <translation>proszę poczekać za zakończenie przeładowywania i spróbować ponownie</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2025"/>
+        <location filename="../../gamelist.cpp" line="2026"/>
         <source>applying ROM state filter</source>
         <translation>zastosowywanie filtra stanów ROM-ów</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2028"/>
+        <location filename="../../gamelist.cpp" line="2029"/>
         <source>State filter - %p%</source>
         <translation>Filtr stanów - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2082"/>
+        <location filename="../../gamelist.cpp" line="2083"/>
         <source>done (applying ROM state filter, elapsed time = %1)</source>
         <translation>ukończono (zastosowywanie filtra stanów ROM-ów, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2109"/>
+        <location filename="../../gamelist.cpp" line="2110"/>
         <source>loading favorites</source>
         <translation>wczytywanie ulubionych</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2133"/>
+        <location filename="../../gamelist.cpp" line="2134"/>
         <source>done (loading favorites)</source>
         <translation>ukończono (wczytywanie ulubionych)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2146"/>
+        <location filename="../../gamelist.cpp" line="2147"/>
         <source>saving favorites</source>
         <translation>zapisywanie ulubionych</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2162"/>
-        <location filename="../../gamelist.cpp" line="2164"/>
+        <location filename="../../gamelist.cpp" line="2163"/>
+        <location filename="../../gamelist.cpp" line="2165"/>
         <source>FATAL: can&apos;t open favorites file for writing, path = %1</source>
         <translation>FATALNIE: nie można otworzyć pliku ulubionych do zapisu, ścieżka = %1</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2168"/>
+        <location filename="../../gamelist.cpp" line="2169"/>
         <source>done (saving favorites)</source>
         <translation>ukończono (zapisywanie ulubionych)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2177"/>
+        <location filename="../../gamelist.cpp" line="2178"/>
         <source>loading play history</source>
         <translation>wczytywanie historii gier</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2200"/>
+        <location filename="../../gamelist.cpp" line="2201"/>
         <source>done (loading play history)</source>
         <translation>ukończono (wczytywanie historii gier)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2213"/>
+        <location filename="../../gamelist.cpp" line="2214"/>
         <source>saving play history</source>
         <translation>zapisywanie historii gier</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2229"/>
-        <location filename="../../gamelist.cpp" line="2231"/>
+        <location filename="../../gamelist.cpp" line="2230"/>
+        <location filename="../../gamelist.cpp" line="2232"/>
         <source>FATAL: can&apos;t open play history file for writing, path = %1</source>
         <translation>FATALNIE: nie można otworzyć pliku historii do zapisu, ścieżka = %1</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2235"/>
+        <location filename="../../gamelist.cpp" line="2236"/>
         <source>done (saving play history)</source>
         <translation>ukończono (zapisywanie historii gier)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2245"/>
+        <location filename="../../gamelist.cpp" line="2246"/>
         <source>L:</source>
         <translation>W:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2246"/>
+        <location filename="../../gamelist.cpp" line="2247"/>
         <source>C:</source>
         <translation>P:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2247"/>
+        <location filename="../../gamelist.cpp" line="2248"/>
         <source>M:</source>
         <translation>Wp:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2248"/>
+        <location filename="../../gamelist.cpp" line="2249"/>
         <source>I:</source>
         <translation>Np:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2249"/>
+        <location filename="../../gamelist.cpp" line="2250"/>
         <source>N:</source>
         <translation>Nz:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2250"/>
+        <location filename="../../gamelist.cpp" line="2251"/>
         <source>U:</source>
         <translation>Nn:</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2251"/>
+        <location filename="../../gamelist.cpp" line="2252"/>
         <source>S:</source>
         <translation>S:</translation>
     </message>
@@ -3155,78 +3155,78 @@ p, li { white-space: pre-wrap; }
         <translation>Sprawdzanie ROM-ów - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2656"/>
+        <location filename="../../gamelist.cpp" line="2657"/>
         <source>done (verifying ROM status for &apos;%1&apos;, elapsed time = %2)</source>
         <translation>ukończono (weryfikowanie stanu ROM-ów dla „%1”, miniony czas = %2)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2659"/>
+        <location filename="../../gamelist.cpp" line="2660"/>
         <source>done (verifying ROM status for all games, elapsed time = %1)</source>
         <translation>ukończono (weryfikowanie stanu ROM-ów dla wszystkich gier, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2678"/>
-        <location filename="../../gamelist.cpp" line="2680"/>
+        <location filename="../../gamelist.cpp" line="2679"/>
+        <location filename="../../gamelist.cpp" line="2681"/>
         <source>ROM state</source>
         <translation>Stan ROM-u</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2877"/>
+        <location filename="../../gamelist.cpp" line="2878"/>
         <source>ROM status for &apos;%1&apos; is &apos;%2&apos;</source>
         <translation>Stan ROM-u dla „%1” to „%2”</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2967"/>
+        <location filename="../../gamelist.cpp" line="2968"/>
         <source>pre-caching icons from ZIP archive</source>
         <translation>pre-buforowanie ikon z archiwum ZIP</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3022"/>
+        <location filename="../../gamelist.cpp" line="3023"/>
         <source>done (pre-caching icons from ZIP archive, elapsed time = %1)</source>
         <translation>ukończono (pre-buforowanie ikon z archiwum ZIP, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3036"/>
+        <location filename="../../gamelist.cpp" line="3037"/>
         <source>pre-caching icons from directory</source>
         <translation>pre-buforowanie ikon z katalogu</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3089"/>
+        <location filename="../../gamelist.cpp" line="3090"/>
         <source>done (pre-caching icons from directory, elapsed time = %1)</source>
         <translation>ukończono (pre-buforowanie ikon z katalogu, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3118"/>
+        <location filename="../../gamelist.cpp" line="3119"/>
         <source>loading catver.ini</source>
         <translation>wczytywanie catver.ini</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3124"/>
+        <location filename="../../gamelist.cpp" line="3125"/>
         <source>Catver.ini - %p%</source>
         <translation>Catver.ini - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3162"/>
+        <location filename="../../gamelist.cpp" line="3163"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
         <translation>UWAGA: nie można otworzyć &apos;%1&apos; do odczytu -- dane catver.ini niedostępne</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3171"/>
+        <location filename="../../gamelist.cpp" line="3172"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie catver.ini, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3172"/>
+        <location filename="../../gamelist.cpp" line="3173"/>
         <source>%1 category / %2 version records loaded</source>
         <translation>wczytano %1 rekordów kategorii / %2 wersji</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3197"/>
+        <location filename="../../gamelist.cpp" line="3198"/>
         <source>Category view - %p%</source>
         <translation>Widok kategorii - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3287"/>
+        <location filename="../../gamelist.cpp" line="3288"/>
         <source>Version view - %p%</source>
         <translation>Widok wersji - %p%</translation>
     </message>
@@ -3240,7 +3240,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="1242"/>
+        <location filename="../../gamelist.cpp" line="1243"/>
         <source>%n cached ROM state(s) loaded</source>
         <translation>
             <numerusform>%n buforowany stan ROM-ów załadowany</numerusform>
@@ -3249,7 +3249,7 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="1956"/>
+        <location filename="../../gamelist.cpp" line="1957"/>
         <source>%n game(s) loaded</source>
         <translation>
             <numerusform>%n gra załadowana</numerusform>
@@ -3258,8 +3258,8 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="3023"/>
-        <location filename="../../gamelist.cpp" line="3090"/>
+        <location filename="../../gamelist.cpp" line="3024"/>
+        <location filename="../../gamelist.cpp" line="3091"/>
         <source>%n icon(s) loaded</source>
         <translation>
             <numerusform>%n ikona załadowana</numerusform>
@@ -3268,8 +3268,8 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2973"/>
-        <location filename="../../gamelist.cpp" line="3051"/>
+        <location filename="../../gamelist.cpp" line="2974"/>
+        <location filename="../../gamelist.cpp" line="3052"/>
         <source>Icon cache - %p%</source>
         <translation>Bufor ikon - %p%</translation>
     </message>
@@ -3309,89 +3309,89 @@ p, li { white-space: pre-wrap; }
         <translation>Uruchamialny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="978"/>
+        <location filename="../../gamelist.cpp" line="979"/>
         <source>Display</source>
         <translation>Ekran</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="982"/>
+        <location filename="../../gamelist.cpp" line="983"/>
         <source>Rotate</source>
         <translation>Obrót</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="982"/>
+        <location filename="../../gamelist.cpp" line="983"/>
         <source>Flip-X</source>
         <translation>Odbicie w poziomie</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="982"/>
+        <location filename="../../gamelist.cpp" line="983"/>
         <source>Pixel clock</source>
         <translation>Zegar pikseli</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="982"/>
+        <location filename="../../gamelist.cpp" line="983"/>
         <source>H-Total</source>
         <translation>Poz. całkowite</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="982"/>
+        <location filename="../../gamelist.cpp" line="983"/>
         <source>H-Bend</source>
         <translation>Odchylanie poz. </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="982"/>
+        <location filename="../../gamelist.cpp" line="983"/>
         <source>HB-Start</source>
         <translation>Początek odch. poz.</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="982"/>
+        <location filename="../../gamelist.cpp" line="983"/>
         <source>V-Total</source>
         <translation>Pion. całkowite</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="982"/>
+        <location filename="../../gamelist.cpp" line="983"/>
         <source>V-Bend</source>
         <translation>Odchylanie pion.</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="982"/>
+        <location filename="../../gamelist.cpp" line="983"/>
         <source>VB-Start</source>
         <translation>Początek odch. pion.</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="973"/>
-        <location filename="../../gamelist.cpp" line="1043"/>
-        <location filename="../../gamelist.cpp" line="1140"/>
+        <location filename="../../gamelist.cpp" line="974"/>
+        <location filename="../../gamelist.cpp" line="1044"/>
+        <location filename="../../gamelist.cpp" line="1141"/>
         <source>Tag</source>
         <translation>Etykieta</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1007"/>
+        <location filename="../../gamelist.cpp" line="1008"/>
         <source>Control</source>
         <translation>Kontrola</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1012"/>
+        <location filename="../../gamelist.cpp" line="1013"/>
         <source>Minimum</source>
         <translation>Minimum</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1012"/>
+        <location filename="../../gamelist.cpp" line="1013"/>
         <source>Maximum</source>
         <translation>Maksimum</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1012"/>
+        <location filename="../../gamelist.cpp" line="1013"/>
         <source>Sensitivity</source>
         <translation>Czułość</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1012"/>
+        <location filename="../../gamelist.cpp" line="1013"/>
         <source>Key Delta</source>
         <translation>Delta przycisków</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1012"/>
+        <location filename="../../gamelist.cpp" line="1013"/>
         <source>Reverse</source>
         <translation>Odwrócenie</translation>
     </message>
@@ -3506,27 +3506,27 @@ p, li { white-space: pre-wrap; }
         <translation>Zrzut</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1135"/>
+        <location filename="../../gamelist.cpp" line="1136"/>
         <source>Device</source>
         <translation>Urządzenie</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1147"/>
+        <location filename="../../gamelist.cpp" line="1148"/>
         <source>Instance</source>
         <translation>Instancja</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1152"/>
+        <location filename="../../gamelist.cpp" line="1153"/>
         <source>Brief name</source>
         <translation>Skrócona nazwa</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1159"/>
+        <location filename="../../gamelist.cpp" line="1160"/>
         <source>Extension</source>
         <translation>Rozszerzenie</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1140"/>
+        <location filename="../../gamelist.cpp" line="1141"/>
         <source>Mandatory</source>
         <translation>Obowiązkowy</translation>
     </message>
@@ -3625,91 +3625,91 @@ p, li { white-space: pre-wrap; }
         <translation>uzyskiwanie informacji o maszynie dla „%1”</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="963"/>
-        <location filename="../../gamelist.cpp" line="1091"/>
+        <location filename="../../gamelist.cpp" line="964"/>
+        <location filename="../../gamelist.cpp" line="1092"/>
         <source>Optional</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1254"/>
+        <location filename="../../gamelist.cpp" line="1255"/>
         <source>processing game list</source>
         <translation>przetwarzanie listy gier</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1256"/>
+        <location filename="../../gamelist.cpp" line="1257"/>
         <source>processing machine list</source>
         <translation>przetwarzanie listy maszyn</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1291"/>
+        <location filename="../../gamelist.cpp" line="1292"/>
         <source>WARNING: couldn&apos;t determine emulator version of game list cache</source>
         <translation>UWAGA: nie udało się określić wersji emulatora dla bufora listy gier</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1293"/>
+        <location filename="../../gamelist.cpp" line="1294"/>
         <source>WARNING: couldn&apos;t determine emulator version of machine list cache</source>
         <translation>UWAGA: nie udało się określić wersji emulatora dla bufora listy maszyn</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1322"/>
+        <location filename="../../gamelist.cpp" line="1323"/>
         <source>loading game data from game list cache</source>
         <translation>wczytywanie danych gier z bufora listy gier</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1481"/>
+        <location filename="../../gamelist.cpp" line="1482"/>
         <source>done (loading game data from game list cache, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie danych gier z bufora listy gier, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1501"/>
+        <location filename="../../gamelist.cpp" line="1502"/>
         <source>parsing game data and (re)creating game list cache</source>
         <translation>parsowanie danych listy gier XML i tworzenie (odtwarzanie) bufora</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1505"/>
+        <location filename="../../gamelist.cpp" line="1506"/>
         <source>parsing machine data and (re)creating machine list cache</source>
         <translation>parsowanie danych listy maszyn XML i tworzenie (odtwarzanie) bufora</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1514"/>
+        <location filename="../../gamelist.cpp" line="1515"/>
         <source>ERROR: can&apos;t open game list cache for writing, path = %1</source>
         <translation>BŁĄD: nie można otworzyć bufora listy gier do zapisu, ścieżka = %1</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1516"/>
+        <location filename="../../gamelist.cpp" line="1517"/>
         <source>ERROR: can&apos;t open machine list cache for writing, path = %1</source>
         <translation>BŁĄD: nie można otworzyć bufora listy maszyn do zapisu, ścieżka = %1</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1892"/>
-        <location filename="../../gamelist.cpp" line="2678"/>
+        <location filename="../../gamelist.cpp" line="1893"/>
+        <location filename="../../gamelist.cpp" line="2679"/>
         <source>sorting game list by %1 in %2 order</source>
         <translation>sortowanie listy gier według %1 w porządku %2</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1894"/>
-        <location filename="../../gamelist.cpp" line="2680"/>
+        <location filename="../../gamelist.cpp" line="1895"/>
+        <location filename="../../gamelist.cpp" line="2681"/>
         <source>sorting machine list by %1 in %2 order</source>
         <translation>sortowanie listy maszyn według %1 w porządku %2</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1928"/>
-        <location filename="../../gamelist.cpp" line="1944"/>
+        <location filename="../../gamelist.cpp" line="1929"/>
+        <location filename="../../gamelist.cpp" line="1945"/>
         <source>restoring machine selection</source>
         <translation>przywracanie wyboru maszyny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1955"/>
+        <location filename="../../gamelist.cpp" line="1956"/>
         <source>done (processing game list, elapsed time = %1)</source>
         <translation>ukończono (przetwarzanie listy gier, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1958"/>
+        <location filename="../../gamelist.cpp" line="1959"/>
         <source>done (processing machine list, elapsed time = %1)</source>
         <translation>ukończono (przetwarzanie listy maszyn, miniony czas = %1)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../gamelist.cpp" line="1959"/>
+        <location filename="../../gamelist.cpp" line="1960"/>
         <source>%n machine(s) loaded</source>
         <translation>
             <numerusform>%n maszyna załadowana</numerusform>
@@ -3718,114 +3718,114 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1964"/>
+        <location filename="../../gamelist.cpp" line="1965"/>
         <source>WARNING: game list not fully parsed, invalidating game list cache</source>
         <translation>UWAGA: lista gier nie jest w pełni sparsowana, unieważnianie bufora listy gier</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1967"/>
+        <location filename="../../gamelist.cpp" line="1968"/>
         <source>WARNING: machine list not fully parsed, invalidating machine list cache</source>
         <translation>UWAGA: lista maszyn nie jest w pełni sparsowana, unieważnianie bufora listy maszyn</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1973"/>
+        <location filename="../../gamelist.cpp" line="1974"/>
         <source>WARNING: game list cache is out of date, invalidating game list cache</source>
         <translation>UWAGA: bufor listy gier jest nieaktualny, unieważnianie bufora listy gier</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1976"/>
+        <location filename="../../gamelist.cpp" line="1977"/>
         <source>WARNING: machine list cache is out of date, invalidating machine list cache</source>
         <translation>UWAGA: bufor listy maszyn jest nieaktualny, unieważnianie bufora listy maszyn</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2095"/>
+        <location filename="../../gamelist.cpp" line="2096"/>
         <source>saving game list</source>
         <translation>zapisywanie listy gier</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2096"/>
+        <location filename="../../gamelist.cpp" line="2097"/>
         <source>done (saving game list)</source>
         <translation>ukończono (zapisywanie listy gier)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2098"/>
+        <location filename="../../gamelist.cpp" line="2099"/>
         <source>saving machine list</source>
         <translation>zapisywanie listy maszyn</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2099"/>
+        <location filename="../../gamelist.cpp" line="2100"/>
         <source>done (saving machine list)</source>
         <translation>ukończono (zapisywanie listy maszyn)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2280"/>
+        <location filename="../../gamelist.cpp" line="2281"/>
         <source>done (loading XML game list data and (re)creating cache, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie listy gier XML i tworzenie (odtwarzanie) bufora, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2282"/>
+        <location filename="../../gamelist.cpp" line="2283"/>
         <source>done (loading XML machine list data and (re)creating cache, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie listy maszyn XML i tworzenie (odtwarzanie) bufora, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2661"/>
+        <location filename="../../gamelist.cpp" line="2662"/>
         <source>done (verifying ROM status for all machines, elapsed time = %1)</source>
         <translation>ukończono (weryfikowanie stanu ROM-ów dla wszystkich maszyn, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1326"/>
+        <location filename="../../gamelist.cpp" line="1327"/>
         <source>loading machine data from machine list cache</source>
         <translation>wczytywanie danych maszyn z bufora listy maszyn</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1483"/>
+        <location filename="../../gamelist.cpp" line="1484"/>
         <source>done (loading machine data from machine list cache, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie danych maszyn z bufora listy maszyn, miniony czas = %1)</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1328"/>
-        <location filename="../../gamelist.cpp" line="1507"/>
+        <location filename="../../gamelist.cpp" line="1329"/>
+        <location filename="../../gamelist.cpp" line="1508"/>
         <source>Machine data - %p%</source>
         <translation>Dane maszyn - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1166"/>
+        <location filename="../../gamelist.cpp" line="1167"/>
         <source>RAM options</source>
         <translation>Opcje RAM-u</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1170"/>
+        <location filename="../../gamelist.cpp" line="1171"/>
         <source>Option</source>
         <translation>Opcja</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2499"/>
-        <location filename="../../gamelist.cpp" line="2615"/>
-        <location filename="../../gamelist.cpp" line="2862"/>
+        <location filename="../../gamelist.cpp" line="2500"/>
+        <location filename="../../gamelist.cpp" line="2616"/>
+        <location filename="../../gamelist.cpp" line="2863"/>
         <source>WARNING: can&apos;t find item map entry for &apos;%1&apos; - ROM state cannot be determined</source>
         <translation>UWAGA: nie można znaleźć wpisu o mapie elementów dla „%1” - stan ROM-u nieustalony</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2275"/>
-        <location filename="../../gamelist.cpp" line="2458"/>
+        <location filename="../../gamelist.cpp" line="2276"/>
+        <location filename="../../gamelist.cpp" line="2459"/>
         <source>WARNING: emulator audit call didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
         <translation>UWAGA: wywołanie audytu emulatora nie zakończyło się czysto -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2275"/>
-        <location filename="../../gamelist.cpp" line="2458"/>
+        <location filename="../../gamelist.cpp" line="2276"/>
+        <location filename="../../gamelist.cpp" line="2459"/>
         <source>normal</source>
         <translation>normalny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2275"/>
-        <location filename="../../gamelist.cpp" line="2458"/>
+        <location filename="../../gamelist.cpp" line="2276"/>
+        <location filename="../../gamelist.cpp" line="2459"/>
         <source>crashed</source>
         <translation>przestał działać</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1982"/>
-        <location filename="../../gamelist.cpp" line="2664"/>
+        <location filename="../../gamelist.cpp" line="1983"/>
+        <location filename="../../gamelist.cpp" line="2665"/>
         <source>ROM state info: C:%1 M:%2 I:%3 N:%4 U:%5</source>
         <translation>Informacje o stanie ROM-ów: P:%1 Wp:%2 Np:%3 Nz:%4 Nn:%5</translation>
     </message>
@@ -5029,12 +5029,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="3425"/>
         <location filename="../../qmc2main.cpp" line="4024"/>
         <location filename="../../qmc2main.cpp" line="4040"/>
-        <location filename="../../qmc2main.cpp" line="4922"/>
-        <location filename="../../qmc2main.cpp" line="4941"/>
-        <location filename="../../qmc2main.cpp" line="6727"/>
-        <location filename="../../qmc2main.cpp" line="6744"/>
-        <location filename="../../qmc2main.cpp" line="6821"/>
-        <location filename="../../qmc2main.cpp" line="6838"/>
+        <location filename="../../qmc2main.cpp" line="4929"/>
+        <location filename="../../qmc2main.cpp" line="4948"/>
+        <location filename="../../qmc2main.cpp" line="6734"/>
+        <location filename="../../qmc2main.cpp" line="6751"/>
+        <location filename="../../qmc2main.cpp" line="6828"/>
+        <location filename="../../qmc2main.cpp" line="6845"/>
         <location filename="../../qmc2main.ui" line="190"/>
         <location filename="../../qmc2main.ui" line="303"/>
         <location filename="../../qmc2main.ui" line="419"/>
@@ -5048,9 +5048,9 @@ p, li { white-space: pre-wrap; }
         <translation>Gra / Klony</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7036"/>
-        <location filename="../../qmc2main.cpp" line="7038"/>
-        <location filename="../../qmc2main.cpp" line="7243"/>
+        <location filename="../../qmc2main.cpp" line="7043"/>
+        <location filename="../../qmc2main.cpp" line="7045"/>
+        <location filename="../../qmc2main.cpp" line="7250"/>
         <location filename="../../qmc2main.ui" line="263"/>
         <location filename="../../qmc2main.ui" line="379"/>
         <location filename="../../qmc2main.ui" line="495"/>
@@ -5616,7 +5616,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.cpp" line="3239"/>
         <location filename="../../qmc2main.cpp" line="4569"/>
         <location filename="../../qmc2main.cpp" line="4798"/>
-        <location filename="../../qmc2main.cpp" line="4820"/>
+        <location filename="../../qmc2main.cpp" line="4827"/>
         <source>Default</source>
         <translation>Domyślny</translation>
     </message>
@@ -5965,9 +5965,9 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
         <location filename="../../qmc2main.cpp" line="4159"/>
         <location filename="../../qmc2main.cpp" line="4191"/>
         <location filename="../../qmc2main.cpp" line="4227"/>
-        <location filename="../../qmc2main.cpp" line="5618"/>
-        <location filename="../../qmc2main.cpp" line="7340"/>
-        <location filename="../../qmc2main.cpp" line="7382"/>
+        <location filename="../../qmc2main.cpp" line="5625"/>
+        <location filename="../../qmc2main.cpp" line="7347"/>
+        <location filename="../../qmc2main.cpp" line="7389"/>
         <source>All files (*)</source>
         <translation>Wszystkie pliki (*)</translation>
     </message>
@@ -6171,32 +6171,32 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>niszczenie bazy danych informacji o grach</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5050"/>
+        <location filename="../../qmc2main.cpp" line="5057"/>
         <source>loading game info DB</source>
         <translation>wczytywanie bazy danych informacji o grach</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5157"/>
+        <location filename="../../qmc2main.cpp" line="5164"/>
         <source>WARNING: missing &apos;$end&apos; in game info DB %1</source>
         <translation>UWAGA: brakujący „$end” w bazie danych informacji o grach %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5164"/>
+        <location filename="../../qmc2main.cpp" line="5171"/>
         <source>WARNING: missing &apos;$bio&apos; in game info DB %1</source>
         <translation>UWAGA: brakujący „$bio” w bazie danych informacji o grach %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5171"/>
+        <location filename="../../qmc2main.cpp" line="5178"/>
         <source>WARNING: missing &apos;$info&apos; in game info DB %1</source>
         <translation>UWAGA: brakujący „$info” w bazie danych informacji o grach %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5185"/>
+        <location filename="../../qmc2main.cpp" line="5192"/>
         <source>WARNING: can&apos;t open game info DB %1</source>
         <translation>UWAGA: nie można otworzyć bazy danych informacji o grach %1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="5194"/>
+        <location filename="../../qmc2main.cpp" line="5201"/>
         <source>%n game info record(s) loaded</source>
         <translation>
             <numerusform>załadowano %n rekord informacji o grach</numerusform>
@@ -6205,7 +6205,7 @@ Czy mają być zabite przy wyjściu?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5193"/>
+        <location filename="../../qmc2main.cpp" line="5200"/>
         <source>done (loading game info DB, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie bazy danych informacji o grach, miniony czas = %1)</translation>
     </message>
@@ -6215,37 +6215,37 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>niszczenie bazy danych informacji o emulatorze</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5232"/>
+        <location filename="../../qmc2main.cpp" line="5239"/>
         <source>loading emulator info DB</source>
         <translation>wczytywanie bazy danych informacji o emulatorze</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5310"/>
+        <location filename="../../qmc2main.cpp" line="5317"/>
         <source>WARNING: missing &apos;$end&apos; in emulator info DB %1</source>
         <translation>UWAGA: brakujący „$end” w bazie danych informacji o emulatorze %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5313"/>
+        <location filename="../../qmc2main.cpp" line="5320"/>
         <source>WARNING: missing &apos;$mame&apos; in emulator info DB %1</source>
         <translation>UWAGA: brakujący „$mame” w bazie danych informacji o emulatorze %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5316"/>
+        <location filename="../../qmc2main.cpp" line="5323"/>
         <source>WARNING: missing &apos;$info&apos; in emulator info DB %1</source>
         <translation>UWAGA: brakujący „$info” w bazie danych informacji o emulatorze %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5326"/>
+        <location filename="../../qmc2main.cpp" line="5333"/>
         <source>WARNING: can&apos;t open emulator info DB %1</source>
         <translation>UWAGA: nie można otworzyć bazy danych informacji o emulatorze %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5329"/>
+        <location filename="../../qmc2main.cpp" line="5336"/>
         <source>done (loading emulator info DB, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie bazy danych informacji o emulatorze, miniony czas = %1)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="5330"/>
+        <location filename="../../qmc2main.cpp" line="5337"/>
         <source>%n emulator info record(s) loaded</source>
         <translation>
             <numerusform>załadowano %n rekord informacji o emulatorze</numerusform>
@@ -6265,12 +6265,12 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>Kontrola emu&amp;latora</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5196"/>
+        <location filename="../../qmc2main.cpp" line="5203"/>
         <source>invalidating game info DB</source>
         <translation>unieważnianie bazy danych informacji o grach</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5332"/>
+        <location filename="../../qmc2main.cpp" line="5339"/>
         <source>invalidating emulator info DB</source>
         <translation>unieważnianie bazy danych informacji o emulatorze</translation>
     </message>
@@ -6460,8 +6460,8 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>Wskaźnik postępu dla bieżącej ścieżki</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5795"/>
-        <location filename="../../qmc2main.cpp" line="5805"/>
+        <location filename="../../qmc2main.cpp" line="5802"/>
+        <location filename="../../qmc2main.cpp" line="5812"/>
         <location filename="../../qmc2main.ui" line="1800"/>
         <source>%vs (%ms total)</source>
         <translation>%vs (%ms w sumie)</translation>
@@ -6530,21 +6530,21 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>Polecenie</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6119"/>
-        <location filename="../../qmc2main.cpp" line="6186"/>
-        <location filename="../../qmc2main.cpp" line="6196"/>
+        <location filename="../../qmc2main.cpp" line="6126"/>
+        <location filename="../../qmc2main.cpp" line="6193"/>
+        <location filename="../../qmc2main.cpp" line="6203"/>
         <source>running</source>
         <translation>uruchomiony</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6135"/>
+        <location filename="../../qmc2main.cpp" line="6142"/>
         <source>stopped</source>
         <translation>zatrzymany</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3543"/>
-        <location filename="../../qmc2main.cpp" line="6180"/>
-        <location filename="../../qmc2main.cpp" line="6194"/>
+        <location filename="../../qmc2main.cpp" line="6187"/>
+        <location filename="../../qmc2main.cpp" line="6201"/>
         <source>paused</source>
         <translation>wstrzymany</translation>
     </message>
@@ -6561,24 +6561,24 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>S&amp;kopiuj polecenie</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5996"/>
+        <location filename="../../qmc2main.cpp" line="6003"/>
         <source>WARNING: can&apos;t create SDLMAME output notifier FIFO, path = %1</source>
         <translation>UWAGA: nie można otworzyć FIFO powiadamiacza wyjścia SDLMAME, ścieżka = %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6024"/>
+        <location filename="../../qmc2main.cpp" line="6031"/>
         <source>SDLMAME output notifier FIFO created</source>
         <translation>Utworzono FIFO powiadamiacza wyjścia SDLMAME</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6028"/>
-        <location filename="../../qmc2main.cpp" line="6031"/>
+        <location filename="../../qmc2main.cpp" line="6035"/>
+        <location filename="../../qmc2main.cpp" line="6038"/>
         <source>WARNING: can&apos;t open SDLMAME output notifier FIFO for reading, path = %1</source>
         <translation>UWAGA: nie można otworzyć FIFO powiadamiacza wyjścia SDLMAME do odczytu, ścieżka = %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6152"/>
-        <location filename="../../qmc2main.cpp" line="6223"/>
+        <location filename="../../qmc2main.cpp" line="6159"/>
+        <location filename="../../qmc2main.cpp" line="6230"/>
         <source>unhandled MAME output notification: game = %1, class = %2, what = %3, state = %4</source>
         <translation>nieobsługiwane powiadomienie wyjścia MAME: gra = %1, klasa = %2, co = %3, stan = %4</translation>
     </message>
@@ -6689,7 +6689,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>Przewijaj do przodu w ramach ścieżki</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5618"/>
+        <location filename="../../qmc2main.cpp" line="5625"/>
         <source>Select one or more audio files</source>
         <translation>Wybierz jeden lub więcej plików dźwiękowych</translation>
     </message>
@@ -6720,7 +6720,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>Pogłaśniaj i sciszaj przy wstrzymaniu / wznowieniu </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5917"/>
+        <location filename="../../qmc2main.cpp" line="5924"/>
         <source>audio player: track info: title = &apos;%1&apos;, artist = &apos;%2&apos;, album = &apos;%3&apos;, genre = &apos;%4&apos;</source>
         <translation>odtwarzacz dźwięku: informacje o ścieżce: tytuł = „%1”, wykonawca = „%2”, album = „%3”, gatunek = „%4”</translation>
     </message>
@@ -6776,24 +6776,24 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>niszczenie eksportera stanu ROM-ów</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6008"/>
+        <location filename="../../qmc2main.cpp" line="6015"/>
         <source>WARNING: can&apos;t create SDLMESS output notifier FIFO, path = %1</source>
         <translation>UWAGA: nie można otworzyć FIFO powiadamiacza wyjścia SDLMESS, ścieżka = %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6035"/>
+        <location filename="../../qmc2main.cpp" line="6042"/>
         <source>SDLMESS output notifier FIFO created</source>
         <translation>Utworzono FIFO powiadamiacza wyjścia SDLMESS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6039"/>
-        <location filename="../../qmc2main.cpp" line="6042"/>
+        <location filename="../../qmc2main.cpp" line="6046"/>
+        <location filename="../../qmc2main.cpp" line="6049"/>
         <source>WARNING: can&apos;t open SDLMESS output notifier FIFO for reading, path = %1</source>
         <translation>UWAGA: nie można otworzyć FIFO powiadamiacza wyjścia SDLMESS do odczytu, ścieżka = %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6154"/>
-        <location filename="../../qmc2main.cpp" line="6225"/>
+        <location filename="../../qmc2main.cpp" line="6161"/>
+        <location filename="../../qmc2main.cpp" line="6232"/>
         <source>unhandled MESS output notification: game = %1, class = %2, what = %3, state = %4</source>
         <translation>nieobsługiwane powiadomienie wyjścia MESS: gra = %1, klasa = %2, co = %3, stan = %4</translation>
     </message>
@@ -7133,7 +7133,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>niszczenie listy maszyn</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="6866"/>
+        <location filename="../../qmc2main.cpp" line="6873"/>
         <source>ArcadeView is not currently active, can&apos;t take screen shot</source>
         <translation>ArcadeView nie jest obecnie aktywny, nie można pobrać zrzutu ekranu</translation>
     </message>
@@ -7190,37 +7190,37 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>niszczenie bazy danych informacji o maszynach</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5052"/>
+        <location filename="../../qmc2main.cpp" line="5059"/>
         <source>loading machine info DB</source>
         <translation>wczytywanie bazy danych informacji o maszynach</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5159"/>
+        <location filename="../../qmc2main.cpp" line="5166"/>
         <source>WARNING: missing &apos;$end&apos; in machine info DB %1</source>
         <translation>UWAGA: brakujący „$end” w bazie danych informacji o maszynach %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5166"/>
+        <location filename="../../qmc2main.cpp" line="5173"/>
         <source>WARNING: missing &apos;$bio&apos; in machine info DB %1</source>
         <translation>UWAGA: brakujący „$bio” w bazie danych informacji o maszynach %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5173"/>
+        <location filename="../../qmc2main.cpp" line="5180"/>
         <source>WARNING: missing &apos;$info&apos; in machine info DB %1</source>
         <translation>UWAGA: brakujący „$info” w bazie danych informacji o maszynach %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5187"/>
+        <location filename="../../qmc2main.cpp" line="5194"/>
         <source>WARNING: can&apos;t open machine info DB %1</source>
         <translation>UWAGA: nie można otworzyć bazy danych informacji o maszynach %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5198"/>
+        <location filename="../../qmc2main.cpp" line="5205"/>
         <source>done (loading machine info DB, elapsed time = %1)</source>
         <translation>ukończono (wczytywanie bazy danych informacji o maszynach, miniony czas = %1)</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../qmc2main.cpp" line="5199"/>
+        <location filename="../../qmc2main.cpp" line="5206"/>
         <source>%n machine info record(s) loaded</source>
         <translation>
             <numerusform>załadowano %n rekord informacji o maszynach</numerusform>
@@ -7229,7 +7229,7 @@ Czy mają być zabite przy wyjściu?</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5201"/>
+        <location filename="../../qmc2main.cpp" line="5208"/>
         <source>invalidating machine info DB</source>
         <translation>unieważnianie bazy danych informacji o maszynach</translation>
     </message>
@@ -7529,37 +7529,37 @@ Czy mają być zabite przy wyjściu?</translation>
         <translation>niszczenie odwołania MAWS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7382"/>
+        <location filename="../../qmc2main.cpp" line="7389"/>
         <source>Choose file to store download</source>
         <translation>Wybierz plik do zapisania pobierania</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4859"/>
+        <location filename="../../qmc2main.cpp" line="4866"/>
         <source>loading style sheet &apos;%1&apos;</source>
         <translation>ładowanie arkusza stylu „%1”</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4868"/>
+        <location filename="../../qmc2main.cpp" line="4875"/>
         <source>FATAL: can&apos;t open style sheet file &apos;%1&apos;, please check</source>
         <translation>FATALNIE: nie można otworzyć pliku arkusza stylu „%1”, proszę sprawdzić</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="4871"/>
+        <location filename="../../qmc2main.cpp" line="4878"/>
         <source>removing current style sheet</source>
         <translation>usuwanie bieżącego arkusza stylu</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7017"/>
+        <location filename="../../qmc2main.cpp" line="7024"/>
         <source>Quick download links for MAWS data usable by QMC2</source>
         <translation>Szybko pobieraj odnośniki do danych MAWS użytecznych dla QMC2</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7179"/>
+        <location filename="../../qmc2main.cpp" line="7186"/>
         <source>Setup...</source>
         <translation>Ustawienia...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7042"/>
+        <location filename="../../qmc2main.cpp" line="7049"/>
         <source>Cabinet art</source>
         <translation>Oprawa graficzna automatu</translation>
     </message>
@@ -7656,169 +7656,169 @@ Ponowić próbę osadzania?</translation>
         <translation>niszczenie okna dialogowego efektów dźwięku</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5083"/>
+        <location filename="../../qmc2main.cpp" line="5090"/>
         <source>Game info - %p%</source>
         <translation>Informacje o grze - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5085"/>
+        <location filename="../../qmc2main.cpp" line="5092"/>
         <source>Machine info - %p%</source>
         <translation>Informacje o maszynie - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5256"/>
+        <location filename="../../qmc2main.cpp" line="5263"/>
         <source>Emu info - %p%</source>
         <translation>Informacje o emulatorze - %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5630"/>
+        <location filename="../../qmc2main.cpp" line="5637"/>
         <source>Add URL</source>
         <translation>Dodaj adres URL</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5630"/>
+        <location filename="../../qmc2main.cpp" line="5637"/>
         <source>Enter valid MP3 stream URL:</source>
         <translation>Wprowadź poprawny adres URL strumienia MP3:</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="5931"/>
+        <location filename="../../qmc2main.cpp" line="5938"/>
         <source>Buffering %p%</source>
         <translation>Buforowanie %p%</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7060"/>
-        <location filename="../../qmc2main.cpp" line="7247"/>
-        <location filename="../../qmc2main.cpp" line="7294"/>
+        <location filename="../../qmc2main.cpp" line="7067"/>
+        <location filename="../../qmc2main.cpp" line="7254"/>
+        <location filename="../../qmc2main.cpp" line="7301"/>
         <source>Cabinet</source>
         <translation>Automat</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7062"/>
-        <location filename="../../qmc2main.cpp" line="7251"/>
-        <location filename="../../qmc2main.cpp" line="7296"/>
+        <location filename="../../qmc2main.cpp" line="7069"/>
+        <location filename="../../qmc2main.cpp" line="7258"/>
+        <location filename="../../qmc2main.cpp" line="7303"/>
         <source>Controller</source>
         <translation>Kontroler</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7064"/>
-        <location filename="../../qmc2main.cpp" line="7263"/>
-        <location filename="../../qmc2main.cpp" line="7302"/>
+        <location filename="../../qmc2main.cpp" line="7071"/>
+        <location filename="../../qmc2main.cpp" line="7270"/>
+        <location filename="../../qmc2main.cpp" line="7309"/>
         <source>PCB</source>
         <translation>Płytka drukowana</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7066"/>
-        <location filename="../../qmc2main.cpp" line="7255"/>
-        <location filename="../../qmc2main.cpp" line="7298"/>
+        <location filename="../../qmc2main.cpp" line="7073"/>
+        <location filename="../../qmc2main.cpp" line="7262"/>
+        <location filename="../../qmc2main.cpp" line="7305"/>
         <source>Flyer</source>
         <translation>Ulotka</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7068"/>
-        <location filename="../../qmc2main.cpp" line="7259"/>
-        <location filename="../../qmc2main.cpp" line="7300"/>
+        <location filename="../../qmc2main.cpp" line="7075"/>
+        <location filename="../../qmc2main.cpp" line="7266"/>
+        <location filename="../../qmc2main.cpp" line="7307"/>
         <source>Marquee</source>
         <translation>Plansza tytułowa</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7073"/>
+        <location filename="../../qmc2main.cpp" line="7080"/>
         <source>No cabinet art</source>
         <translation>Brak oprawy graficznej automatu</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7085"/>
+        <location filename="../../qmc2main.cpp" line="7092"/>
         <source>Previews</source>
         <translation>Podglądy</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7092"/>
-        <location filename="../../qmc2main.cpp" line="7145"/>
+        <location filename="../../qmc2main.cpp" line="7099"/>
+        <location filename="../../qmc2main.cpp" line="7152"/>
         <source>AntoPISA progettoSNAPS</source>
         <translation>AntoPISA progettoSNAPS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7092"/>
         <location filename="../../qmc2main.cpp" line="7099"/>
         <location filename="../../qmc2main.cpp" line="7106"/>
         <location filename="../../qmc2main.cpp" line="7113"/>
-        <location filename="../../qmc2main.cpp" line="7131"/>
-        <location filename="../../qmc2main.cpp" line="7267"/>
-        <location filename="../../qmc2main.cpp" line="7304"/>
+        <location filename="../../qmc2main.cpp" line="7120"/>
+        <location filename="../../qmc2main.cpp" line="7138"/>
+        <location filename="../../qmc2main.cpp" line="7274"/>
+        <location filename="../../qmc2main.cpp" line="7311"/>
         <source>preview</source>
         <translation>podgląd</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7099"/>
+        <location filename="../../qmc2main.cpp" line="7106"/>
         <source>MAME World Snap Collection</source>
         <translation>MAME World Snap Collection</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7106"/>
-        <location filename="../../qmc2main.cpp" line="7152"/>
+        <location filename="../../qmc2main.cpp" line="7113"/>
+        <location filename="../../qmc2main.cpp" line="7159"/>
         <source>CrashTest Snap Collection</source>
         <translation>CrashTest Snap Collection</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7113"/>
+        <location filename="../../qmc2main.cpp" line="7120"/>
         <source>Enaitz Jar Snaps</source>
         <translation>Enaitz Jar Snaps</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7116"/>
+        <location filename="../../qmc2main.cpp" line="7123"/>
         <source>No previews</source>
         <translation>Bez podglądów</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7138"/>
+        <location filename="../../qmc2main.cpp" line="7145"/>
         <source>Titles</source>
         <translation>Ekrany tytułowe</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7145"/>
         <location filename="../../qmc2main.cpp" line="7152"/>
-        <location filename="../../qmc2main.cpp" line="7171"/>
-        <location filename="../../qmc2main.cpp" line="7271"/>
-        <location filename="../../qmc2main.cpp" line="7306"/>
+        <location filename="../../qmc2main.cpp" line="7159"/>
+        <location filename="../../qmc2main.cpp" line="7178"/>
+        <location filename="../../qmc2main.cpp" line="7278"/>
+        <location filename="../../qmc2main.cpp" line="7313"/>
         <source>title</source>
         <translation>ekran tytułowy</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7156"/>
+        <location filename="../../qmc2main.cpp" line="7163"/>
         <source>No titles</source>
         <translation>Bez ekranów tytułowych</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7340"/>
+        <location filename="../../qmc2main.cpp" line="7347"/>
         <source>Choose file to store the icon</source>
         <translation>Proszę wybrać plik do zapisania ikony</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7346"/>
+        <location filename="../../qmc2main.cpp" line="7353"/>
         <source>icon image for &apos;%1&apos; stored as &apos;%2&apos;</source>
         <translation>obraz ikony dla „%1” zapisany jako „%2”</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7353"/>
+        <location filename="../../qmc2main.cpp" line="7360"/>
         <source>FATAL: icon image for &apos;%1&apos; couldn&apos;t be stored as &apos;%2&apos;</source>
         <translation>FATALNIE: obraz ikony dla „%1” nie mógł zostać zapisany jako „%2”</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7477"/>
+        <location filename="../../qmc2main.cpp" line="7484"/>
         <source>Physical memory:</source>
         <translation>Pamięć fizyczna:</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7477"/>
+        <location filename="../../qmc2main.cpp" line="7484"/>
         <source>Total: %1 MB</source>
         <translation>Całkowita: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7477"/>
+        <location filename="../../qmc2main.cpp" line="7484"/>
         <source>Free: %1 MB</source>
         <translation>Wolna: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7477"/>
+        <location filename="../../qmc2main.cpp" line="7484"/>
         <source>Used: %1 MB</source>
         <translation>W użyciu: %1 MB</translation>
     </message>
@@ -11113,19 +11113,19 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1884"/>
+        <location filename="../../gamelist.cpp" line="1885"/>
         <location filename="../../options.cpp" line="1265"/>
         <source>category</source>
         <translation>kategoria</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1887"/>
+        <location filename="../../gamelist.cpp" line="1888"/>
         <location filename="../../options.cpp" line="1268"/>
         <source>version</source>
         <translation>wersja</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1880"/>
+        <location filename="../../gamelist.cpp" line="1881"/>
         <location filename="../../options.cpp" line="1258"/>
         <source>ROM types</source>
         <translation>Rodzaje ROM-ów</translation>
@@ -11144,7 +11144,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3057"/>
-        <location filename="../../qmc2main.cpp" line="7994"/>
+        <location filename="../../qmc2main.cpp" line="8001"/>
         <source>Import from...</source>
         <translation>Importuj z...</translation>
     </message>
@@ -11155,97 +11155,97 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Importuj specyficzną dla gry konfigurację MAME</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7932"/>
-        <location filename="../../qmc2main.cpp" line="7934"/>
+        <location filename="../../qmc2main.cpp" line="7939"/>
+        <location filename="../../qmc2main.cpp" line="7941"/>
         <source>M.A.M.E. Catalog / Launcher II v</source>
         <translation>M.A.M.E. Catalog / Launcher II wersja </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7941"/>
+        <location filename="../../qmc2main.cpp" line="7948"/>
         <source>SVN r%1</source>
         <translation type="unfinished">SVN wersja %1</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7972"/>
+        <location filename="../../qmc2main.cpp" line="7979"/>
         <source>processing global emulator configuration</source>
         <translation>przetwarzanie globalnej konfiguracji emulatora</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7986"/>
+        <location filename="../../qmc2main.cpp" line="7993"/>
         <source>Export to...</source>
         <translation>Eksportuj do...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7988"/>
-        <location filename="../../qmc2main.cpp" line="7989"/>
+        <location filename="../../qmc2main.cpp" line="7995"/>
+        <location filename="../../qmc2main.cpp" line="7996"/>
         <source>Export global MAME configuration</source>
         <translation>Eksportuj globalną konfigurację MAME</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7996"/>
-        <location filename="../../qmc2main.cpp" line="7997"/>
+        <location filename="../../qmc2main.cpp" line="8003"/>
+        <location filename="../../qmc2main.cpp" line="8004"/>
         <source>Import global MAME configuration</source>
         <translation>Importuj globalną konfigurację MAME</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8012"/>
-        <location filename="../../qmc2main.cpp" line="8020"/>
+        <location filename="../../qmc2main.cpp" line="8019"/>
+        <location filename="../../qmc2main.cpp" line="8027"/>
         <source>&lt;inipath&gt;/mame.ini</source>
         <translation>&lt;ścieżka ini&gt;/mame.ini</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8016"/>
-        <location filename="../../qmc2main.cpp" line="8024"/>
+        <location filename="../../qmc2main.cpp" line="8023"/>
+        <location filename="../../qmc2main.cpp" line="8031"/>
         <source>Select file...</source>
         <translation>Wybierz plik...</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1859"/>
+        <location filename="../../gamelist.cpp" line="1860"/>
         <location filename="../../options.cpp" line="1236"/>
         <source>game description</source>
         <translation>opisu gry</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1865"/>
+        <location filename="../../gamelist.cpp" line="1866"/>
         <location filename="../../options.cpp" line="1242"/>
         <source>ROM state</source>
         <translation>stanu ROM-u</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1868"/>
+        <location filename="../../gamelist.cpp" line="1869"/>
         <location filename="../../options.cpp" line="1245"/>
         <source>year</source>
         <translation>roku</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1871"/>
+        <location filename="../../gamelist.cpp" line="1872"/>
         <location filename="../../options.cpp" line="1248"/>
         <source>manufacturer</source>
         <translation>producenta</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2751"/>
+        <location filename="../../gamelist.cpp" line="2752"/>
         <source>correct</source>
         <translation>poprawny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2773"/>
+        <location filename="../../gamelist.cpp" line="2774"/>
         <source>incorrect</source>
         <translation>niepoprawny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2795"/>
+        <location filename="../../gamelist.cpp" line="2796"/>
         <source>mostly correct</source>
         <translation>w większości poprawny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2817"/>
+        <location filename="../../gamelist.cpp" line="2818"/>
         <source>not found</source>
         <translation>nieznaleziony</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="2839"/>
-        <location filename="../../gamelist.cpp" line="2864"/>
+        <location filename="../../gamelist.cpp" line="2840"/>
+        <location filename="../../gamelist.cpp" line="2865"/>
         <location filename="../../romalyzer.cpp" line="2727"/>
         <location filename="../../romalyzer.cpp" line="2760"/>
         <location filename="../../romalyzer.cpp" line="2772"/>
@@ -11289,48 +11289,48 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>brak zrzutu / zły zrzut</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1875"/>
+        <location filename="../../gamelist.cpp" line="1876"/>
         <location filename="../../options.cpp" line="1252"/>
         <source>game name</source>
         <translation>nazwa gry</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7959"/>
+        <location filename="../../qmc2main.cpp" line="7966"/>
         <source>OpenGL features enabled</source>
         <translation>Funkcje OpenGL włączone</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7991"/>
-        <location filename="../../qmc2main.cpp" line="7992"/>
+        <location filename="../../qmc2main.cpp" line="7998"/>
+        <location filename="../../qmc2main.cpp" line="7999"/>
         <source>Export global MESS configuration</source>
         <translation>Eksportuj globalną konfigurację MESS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7999"/>
-        <location filename="../../qmc2main.cpp" line="8000"/>
+        <location filename="../../qmc2main.cpp" line="8006"/>
+        <location filename="../../qmc2main.cpp" line="8007"/>
         <source>Import global MESS configuration</source>
         <translation>Importuj globalną konfigurację MESS</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1861"/>
+        <location filename="../../gamelist.cpp" line="1862"/>
         <location filename="../../options.cpp" line="1238"/>
         <source>machine description</source>
         <translation>opisu maszyny</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="1877"/>
+        <location filename="../../gamelist.cpp" line="1878"/>
         <location filename="../../options.cpp" line="1254"/>
         <source>machine name</source>
         <translation>nazwy maszyny</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7968"/>
+        <location filename="../../qmc2main.cpp" line="7975"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
         <translation>Wsparcie dla dżojstika SDL włączone - używanie SDL w wersji %1.%2.%3</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="8014"/>
-        <location filename="../../qmc2main.cpp" line="8022"/>
+        <location filename="../../qmc2main.cpp" line="8021"/>
+        <location filename="../../qmc2main.cpp" line="8029"/>
         <source>&lt;inipath&gt;/mess.ini</source>
         <translation>&lt;ścieżka ini&gt;/mess.ini</translation>
     </message>
@@ -11347,12 +11347,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>Importuj specyficzną dla maszyny konfigurację MESS</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7930"/>
+        <location filename="../../qmc2main.cpp" line="7937"/>
         <source>M.E.S.S. Catalog / Launcher II v</source>
         <translation>M.E.S.S. Catalog / Launcher II wersja </translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="7963"/>
+        <location filename="../../qmc2main.cpp" line="7970"/>
         <source>Phonon features enabled - using Phonon v%1</source>
         <translation>Funkcje Phonona włączone - używanie Phonon w wersji %1</translation>
     </message>
@@ -12263,6 +12263,11 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>UWAGA: znaleziono „%1”, lecz nie można z niego czytać - sprawdź uprawnienia</translation>
     </message>
     <message>
+        <location filename="../../romalyzer.cpp" line="1451"/>
+        <source>WARNING: unable to identify &apos;%1&apos; from &apos;%2&apos; by CRC &apos;%3&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../romalyzer.cpp" line="1470"/>
         <source>loading &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos; as &apos;%4&apos;%5</source>
         <translation type="unfinished"></translation>
@@ -12955,9 +12960,8 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>nieograniczony</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1451"/>
         <source>WARNING: unable to identify &apos;%1&apos; from &apos;%2&apos; by CRC</source>
-        <translation>UWAGA: nie można zidentyfikować „%1” z „%2” na podstawie CRC</translation>
+        <translation type="obsolete">UWAGA: nie można zidentyfikować „%1” z „%2” na podstawie CRC</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1123"/>
