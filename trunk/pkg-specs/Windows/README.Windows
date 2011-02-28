@@ -1,0 +1,6 @@
+Sample Inno Setup package configuration
+---------------------------------------
+
+- Get Inno Setup 5.4.1+ here: http://www.jrsoftware.org/isinfo.php
+
+- This is what we use to create the Windows installer binary.
