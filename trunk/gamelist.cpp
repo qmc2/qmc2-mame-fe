@@ -862,17 +862,16 @@ QString Gamelist::value(QString element, QString attribute, bool translate)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::value(QString element = " + element + ", QString attribute = \"" + attribute + "\", translate = " + QString(translate ? "TRUE" : "FALSE") + ")");
 #endif
 
-  if ( element.contains(attribute) ) {
-    QString valueString = element.remove(0, element.indexOf(attribute) + attribute.length() + 2);
+  QString attributePattern = " " + attribute + "=\"";
+  if ( element.contains(attributePattern) ) {
+    QString valueString = element.remove(0, element.indexOf(attributePattern) + attributePattern.length());
     valueString = valueString.remove(valueString.indexOf("\""), valueString.lastIndexOf(">")).replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
     if ( translate )
       return tr(valueString.toAscii());
     else
       return valueString;
-  }
-  else {
+  } else
     return QString::null;
-  }
 }
 
 void Gamelist::insertAttributeItems(QTreeWidgetItem *parent, QString element, QStringList attributes, QStringList descriptions, bool translate)
