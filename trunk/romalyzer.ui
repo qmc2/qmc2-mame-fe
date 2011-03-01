@@ -1552,5 +1552,21 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>checkBoxExpandFiles</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxExpandChecksums</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>57</x>
+     <y>126</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>167</x>
+     <y>121</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
 </ui>

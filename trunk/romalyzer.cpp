@@ -894,7 +894,7 @@ void ROMAlyzer::analyze()
 	    }
 	  }
 
-	  if ( checkBoxExpandChecksums->isChecked() )
+	  if ( checkBoxExpandChecksums->isChecked() && checkBoxExpandFiles->isChecked() )
 	    childItem->setExpanded(TRUE);
 
 	  qApp->processEvents();
