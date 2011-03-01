@@ -1447,8 +1447,12 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
             if ( crcIdentMap.contains(ulCRC) )
               fn = crcIdentMap[ulCRC];
             else if ( mergeFile.isEmpty() ) {
-              if ( !isCHD )
-                log(tr("WARNING: unable to identify '%1' from '%2' by CRC '%3'").arg(fileName).arg(filePath).arg(wantedCRC));
+              if ( !isCHD ) {
+		      if ( wantedCRC.isEmpty() )
+			      log(tr("WARNING: unable to identify '%1' from '%2' by CRC (no dump exists / CRC unknown)").arg(fileName).arg(filePath));
+		      else
+			      log(tr("WARNING: unable to identify '%1' from '%2' by CRC '%3'").arg(fileName).arg(filePath).arg(wantedCRC));
+              }
               fn = fileName;
             }
 
