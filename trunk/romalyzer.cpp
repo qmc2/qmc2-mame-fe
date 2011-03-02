@@ -6,6 +6,7 @@
 #include <QTest>
 #include <QMap>
 #include <QFileDialog>
+#include <QClipboard>
 
 #include "romalyzer.h"
 #include "qmc2main.h"
@@ -136,6 +137,12 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/filesave.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(runSetRewriter()));
+
+  s = tr("Copy to clipboard");
+  action = romSetContextMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
 }
 
 ROMAlyzer::~ROMAlyzer()
@@ -2130,6 +2137,61 @@ void ROMAlyzer::runSetRewriter()
 	progressBar->setValue(0);
 	progressBar->reset();
 	qApp->processEvents();
+}
+
+void ROMAlyzer::copyToClipboard()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::copyToClipboard()");
+#endif
+
+	QList<QTreeWidgetItem *> il = treeWidgetChecksums->selectedItems();
+	if ( !il.isEmpty() ) {
+		QHeaderView *header = treeWidgetChecksums->header();
+		QTreeWidgetItem *headerItem = treeWidgetChecksums->headerItem();
+		QTreeWidgetItem *item = il[0];
+		QStringList columnTitles;
+		QList<int> columnWidths;
+		QList<QStringList> rows;
+		QStringList firstRow;
+		for (int i = 0; i < treeWidgetChecksums->columnCount(); i++)
+			if ( !treeWidgetChecksums->isColumnHidden(header->logicalIndex(i)) ) {
+				QString h = headerItem->text(header->logicalIndex(i));
+				columnTitles << h;
+				QString t = item->text(header->logicalIndex(i));
+				firstRow << t;
+				columnWidths.append(MAX(t.length(), h.length()));
+			}
+		rows.append(firstRow);
+		for (int i = 0; i < item->childCount(); i++) {
+			QTreeWidgetItem *childItem = item->child(i);
+			QStringList row;
+			for (int j = 0; j < treeWidgetChecksums->columnCount(); j++) {
+				if ( !treeWidgetChecksums->isColumnHidden(header->logicalIndex(j)) ) {
+					QString t = childItem->text(header->logicalIndex(j));
+					if ( j == 0 ) t.prepend("\\ ");
+					row << t;
+					if ( columnWidths[j] < t.length() ) columnWidths[j] = t.length();
+				}
+			}
+			rows.append(row);
+		}
+
+		QString cbText;
+		for (int i = 0; i < columnTitles.count(); i++)
+			cbText += columnTitles[i].leftJustified(columnWidths[i] + 2, ' ');
+		cbText += "\n";
+		for (int i = 0; i < columnTitles.count(); i++)
+			cbText += QString().fill('-', columnWidths[i]) + "  ";
+		cbText += "\n";
+		foreach (QStringList row, rows) {
+			for (int i = 0; i < row.count(); i++)
+				cbText += row[i].leftJustified(columnWidths[i] + 2, ' ');
+			cbText += "\n";
+		}
+
+		qApp->clipboard()->setText(cbText);
+	}
 }
 
 void ROMAlyzer::on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged()
