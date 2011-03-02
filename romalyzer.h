@@ -205,6 +205,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 #endif
     void runChecksumWizard();
     void runSetRewriter();
+    void copyToClipboard();
 
     // CHD manager process control
     void chdManagerStarted();
