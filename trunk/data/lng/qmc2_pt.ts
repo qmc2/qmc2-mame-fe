@@ -11434,12 +11434,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="1461"/>
         <source>WARNING: unable to identify &apos;%1&apos; from &apos;%2&apos; by CRC &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: incapaz de identificar &apos;%1&apos; de &apos;%2&apos; pelo CRC &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1459"/>
         <source>WARNING: unable to identify &apos;%1&apos; from &apos;%2&apos; by CRC (no dump exists / CRC unknown)</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: incapaz de identificar &apos;%1&apos; de &apos;%2&apos; pelo CRC (dump inexistente / CRC desconhecido)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1481"/>
@@ -11920,7 +11920,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="141"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copiar para área de transferência</translation>
+        <translation>Copiar para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="812"/>
