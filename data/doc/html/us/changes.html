@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b19, 02-MAR-2011</h3>
+<h3>CHANGES - v0.2.b19, 10-MAR-2011</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b19, 02-MAR-2011:</b></p>
+<p><b>v0.2.b19, 10-MAR-2011:</b></p>
 <ul>
   <li>fix: ROMAlyzer: corrected status determination for ROM files that have no dump (but for which the file size or any checksums are available through the XML data)</li>
   <li>fix: corrected the scrolling behavior of the front-end and emulator logs</li>
@@ -51,6 +51,7 @@ inf: informational only
   <li>new: added support for a 'number of players' column to the game/machine list as suggested by Francisco Javier Felix (<i>csfax</i>) -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=14" target="_blank">bug tracker ID #14</a></li>
   <li>new: ROMAlyzer: added a 'copy to clipboard' function to copy the analysis output for the currently selected set to the system clipboard (as formatted text)</li> 
   <li>wip: completing the support for game/machine <i>attached</i> youtube.com videos -- note: this is a Qt 4.7+ only feature as it uses the embeddable youtube.com video player which in turn needs the npviewer browser plugin (and that's only cleanly supported since Qt 4.7)</li>
+  <li>doc: updated <a href="faq.html#A1.7.2">Q1.7.2</a> in FAQ to reflect openSUSE 11.4</li>
   <li>inf: SDLMAME &amp; SDLMESS targets only: the output notifier FIFO (<i>/tmp/sdlmame_out</i>) is no longer removed when QMC2 exits to allow for clean concurrent use by multiple variants (that's actually a work around because SDLMAME &amp; SDLMESS both use the <b>same</b> FIFO, and there's apparently no portable way to find out if it's opened by another process to decide when it's eligible for removal)</li>
 </ul>
 <p><b>v0.2.b18, 02-JAN-2011:</b></p>
