@@ -18,6 +18,7 @@ qmc2/arcade/.svn/text-base/arcadeview.cpp.svn-base
 qmc2/arcade/.svn/text-base/arcadeview.h.svn-base
 qmc2/arch/Linux/.svn
 qmc2/arch/Linux/.svn/prop-base/Debian_5.0.cfg.svn-base
+qmc2/arch/Linux/.svn/prop-base/Debian_6.0.1.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Debian_lenny-sid.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Debian_squeeze-sid.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Fedora_release_10.cfg.svn-base
@@ -40,6 +41,7 @@ qmc2/arch/Linux/.svn/prop-base/Yellow_Dog_Linux_release_6.0.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Yellow_Dog_Linux_release_6.1.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Yellow_Dog_Linux_release_6.2.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Debian_5.0.cfg.svn-base
+qmc2/arch/Linux/.svn/text-base/Debian_6.0.1.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Debian.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Debian_lenny-sid.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Debian_squeeze-sid.cfg.svn-base
