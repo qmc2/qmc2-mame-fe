@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="MAMEUIFX32" version="0.141u3" format="0.2.3">
+<template emulator="MAMEUIFX32" version="0.141u4" format="0.2.3">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
