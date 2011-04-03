@@ -7481,8 +7481,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -12162,10 +12160,10 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romalyzer.cpp" line="1145"/>
         <location filename="../../romalyzer.cpp" line="1169"/>
         <source>  logical size: %n byte(s) (%1)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>rozmiar logiczny: %n bajt (%1)</numerusform>
+            <numerusform>rozmiar logiczny: %n bajty (%1)</numerusform>
+            <numerusform>rozmiar logiczny: %n bajtów (%1)</numerusform>
         </translation>
     </message>
     <message>
@@ -12503,10 +12501,10 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="2452"/>
         <source>checksum wizard: template data loaded, uncompressed size = %n byte(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>asystent sum kontrolnych: wczytano dane szablonu, nieskompresowany rozmiar = %n bajt</numerusform>
+            <numerusform>asystent sum kontrolnych: wczytano dane szablonu, nieskompresowany rozmiar = %n bajty</numerusform>
+            <numerusform>asystent sum kontrolnych: wczytano dane szablonu, nieskompresowany rozmiar = %n bajtów</numerusform>
         </translation>
     </message>
     <message>
