@@ -11380,9 +11380,9 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="2452"/>
         <source>checksum wizard: template data loaded, uncompressed size = %n byte(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>checksum wizard: dados do modelo carregado, tamanho descomprimido = %n byte</numerusform>
+            <numerusform>checksum wizard: dados do modelo carregado, tamanho descomprimido = %n bytes</numerusform>
         </translation>
     </message>
     <message>
@@ -11454,9 +11454,9 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romalyzer.cpp" line="1145"/>
         <location filename="../../romalyzer.cpp" line="1169"/>
         <source>  logical size: %n byte(s) (%1)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>  tamanho lógico: %n byte (%1)</numerusform>
+            <numerusform>  tamanho lógico: %n bytes (%1)</numerusform>
         </translation>
     </message>
     <message>
