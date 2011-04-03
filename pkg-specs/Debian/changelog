@@ -1,3 +1,49 @@
+qmc2 (0.2.b19+ppa1~maverick0) maverick; urgency=low
+
+  * New Upstream release
+  * fix: ROMAlyzer: corrected status determination for ROM files that have no dump (but for which the file size or any checksums are available through the XML data)
+  * fix: corrected the scrolling behavior of the front-end and emulator logs
+  * fix: MESS targets only: corrected ROM status determination for machines that require no ROMs
+  * fix: correctly display document titles / title changes in the mini web browser
+  * fix: MP3 player: corrected auto-repeating of pressed (and held) fast-forward / fast-backward buttons
+  * fix: corrected MAWS web-cache compression (works also on Windows now)
+  * fix: embedder: avoid left-over embed container widget when an emulator dies unexpectedly while it's currently being embedded
+  * fix: demo mode: avoid saving game configurations while in demo mode (may crash)
+  * fix: corrected the conversion to/from some (HTML encoded) special characters as used in a few game/machine descriptions and manufacturer names
+  * fix: ensure correct parsing of XML attributes when retrieving game/machine details
+  * fix: mini web browser: don't produce lower case URL patterns when validating entered strings
+  * fix: corrected ROM cache updates on individual ROM status checks
+  * imp: ROMAlyzer: improved performance for CRC identification of ZIP-archived ROM files
+  * imp: ROMAlyzer: generally improved progress indication
+  * imp: all logs are now based on read-only QPlainTextEdit's as this class is much better optimized for large amounts of plain-text data (compared to rich-text capabable QTextBrowser's, which were used before)
+  * imp: SDLMESS/MESS templates updated to 0.141 (new option uifont, changed default value of writeconfig)
+  * imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.141u4 (new option ramsize for all, new options syncrefresh, bench and watchdog for SDLMAME)
+  * imp: MESS targets only: for machines that require no ROMs, the ROMAlyzer will now display both their emulation- and file-states as 'good' (as opposed to 'unknown' / 'not found' which was used before)
+  * imp: launching of BIOS sets will no longer be prevented (it actually makes sense for some of them) -- except in demo mode, where BIOS sets are never selected
+  * imp: Windows build: revised the VC++ project generation script to be fully automatic and to also support VC++ 2010 (requires sed for Windows now!)
+  * imp: support for additional XML data in game/machine details (tag and mask as sub-elements of configuration)
+  * imp: embedder: when embedder maximization is turned on, the menu-, status- and tool-bars as well as the game-/machine-list status frame are now automatically hidden while an emulator is shown
+  * imp: embedder: the embedder maximization toggle button now uses two icons to indicate the action taken when it's clicked
+  * imp: updated redistributed Qt translations from Qt 4.7.2
+  * new: ROMAlyzer: added a checksum wizard to search for SHA1 or CRC hashes in all sets, to qualify the states of the results and to repair bad sets from good ones (note: the set repair function works only for ZIPs at the moment -- create backups before using it!)
+  * new: ROMAlyzer: if a ROM or CHD file that's expected to be merged from a parent set is loaded from the child set instead, a warning is logged (may be obsolete); the report will contain green (OK), yellow (warning) or red (critical) symbols to indicate the merge status
+  * new: ROMAlyzer: added a set rewriter function to programmatically rewrite (clean) ROM sets on demand and/or while analysing them (works only for ZIPs!)
+  * new: ROMAlyzer: the number of reported sets held in memory can now be limited (which is important for long batch runs where the memory consumption can otherwise grow enormously); the new default behavior now is that after 1000 analyzed sets the ROMAlyzer will start to remove the oldest reports
+  * new: you can now select the position chosen by QMC2 when scrolling to the current game/machine item (the setting actually applies to all views & lists); the default is top (= old behavior)
+  * new: all game/machine detail images now have a context menu with a 'copy to clipboard' item
+  * new: added new compile-time setting BROWSER_PREFETCH_DNS to allow for prefetching of DNS lookups by the mini web browser (Qt 4.6 and higher)
+  * new: embedder: embedded emulators can now automatically be paused when they are hidden and resumed when they are shown (requires the MAME/MESS notifier FIFO in order to correctly track any state changes)
+  * new: embedder: the current status of an embedded emulator is now indicated through traffic lights in the respective tab widget header
+  * new: added support for a 'number of players' column to the game/machine list as suggested by Francisco Javier Felix (csfax) -- see bug tracker ID #14
+  * new: ROMAlyzer: added a 'copy to clipboard' function to copy the analysis output for the currently selected set to the system clipboard (as formatted text)
+  * wip: completing the support for game/machine attached youtube.com videos -- note: this is a Qt 4.7+ only feature as it uses the embeddable youtube.com video player which in turn needs the npviewer browser plugin (and that's only cleanly supported since Qt 4.7)
+  * doc: updated Q1.7.2 in FAQ to reflect openSUSE 11.4
+  * inf: SDLMAME & SDLMESS targets only: the output notifier FIFO (/tmp/sdlmame_out) is no longer removed when QMC2 exits to allow for clean concurrent use by multiple variants (that's actually a work around because SDLMAME & SDLMESS both use the same FIFO, and there's apparently no portable way to find out if it's opened by another process to decide when it's eligible for removal)
+
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Sun, 03 Apr 2011 10:04:00 -0300
+
+
 qmc2 (0.2.b18+ppa1~maverick0) maverick; urgency=low
 
   * New Upstream release
