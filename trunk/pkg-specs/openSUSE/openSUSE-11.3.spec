@@ -1,8 +1,8 @@
 Name:           qmc2
-Version:        0.2.b19
+Version:        0.2.b20
 Release:        1
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II
-Distribution:   openSUSE 11.4
+Distribution:   openSUSE 11.3
 Group:          Applications/Emulators
 License:        GPLv2
 URL:            http://qmc2.arcadehits.net/wordpress
@@ -88,5 +88,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/qmc2-sdlmess.desktop
 
 %changelog
-* Tue Mar 23 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b19-1
-- created spec file for openSUSE 11.4 (copy from the spec for 11.3)
+* Sun Mar 03 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b20-1
+- updated spec to QMC2 0.2.b20
+
+* Sun Jan 02 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b19-1
+- updated spec to QMC2 0.2.b19
+
+* Fri Oct 22 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b18-1
+- updated spec to QMC2 0.2.b18
+
+* Mon Sep 06 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b17-1
+- Added compiler optimization flags (-O3)
+
+* Fri Jul 30 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b17-1
+- created spec file for openSUSE 11.3 (copy from the spec for 11.2)

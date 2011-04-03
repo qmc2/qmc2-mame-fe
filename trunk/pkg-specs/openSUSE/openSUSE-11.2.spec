@@ -1,8 +1,8 @@
 Name:           qmc2
-Version:        0.2.b19
+Version:        0.2.b20
 Release:        1
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II
-Distribution:   openSUSE 11.3
+Distribution:   openSUSE 11.2
 Group:          Applications/Emulators
 License:        GPLv2
 URL:            http://qmc2.arcadehits.net/wordpress
@@ -88,6 +88,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/qmc2-sdlmess.desktop
 
 %changelog
+* Sun Mar 03 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b20-1
+- updated spec to QMC2 0.2.b20
+
 * Sun Jan 02 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b19-1
 - updated spec to QMC2 0.2.b19
 
@@ -98,4 +101,40 @@ rm -rf $RPM_BUILD_ROOT
 - Added compiler optimization flags (-O3)
 
 * Fri Jul 30 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b17-1
-- created spec file for openSUSE 11.3 (copy from the spec for 11.2)
+- Updated spec to 0.2.b17
+
+* Sun May 16 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b16-1
+- Updated spec to 0.2.b16
+
+* Fri Mar 12 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b15-1
+- Updated spec to 0.2.b15
+
+* Tue Jan 19 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b14-1
+- Updated spec to 0.2.b14
+
+* Sat Jan 02 2010 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b13-1
+- Updated spec to 0.2.b13
+
+* Sun Nov 13 2009 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b12-1
+- Updated spec to openSUSE 11.2 (first officially supported openSUSE release)
+
+* Sun Nov 01 2009 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b12-1
+- Updated spec to 0.2.b12 final
+
+* Fri Sep 11 2009 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b11-1
+- Updated spec to 0.2.b11 final
+
+* Tue Jul 21 2009 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b10-1
+- Updated spec to 0.2.b10 final
+
+* Tue Jun 09 2009 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b9-1
+- Updated spec to 0.2.b9 final
+
+* Sun May 17 2009 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b9-SVN-3
+- Merged the three packages into one
+
+* Fri May 15 2009 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b9-SVN-2
+- Added more precise (sub-)package descriptions
+
+* Mon May 04 2009 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.2.b9-SVN-1
+- Initial version of this spec based on Julian Sikorski's Fedora spec file

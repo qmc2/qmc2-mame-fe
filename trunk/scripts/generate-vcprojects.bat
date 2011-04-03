@@ -25,8 +25,8 @@ REM #################################################
 
 set MAJOR=0
 set MINOR=2
-set BETA=19
-set VERSION=0.2.b19
+set BETA=20
+set VERSION=0.2.b20
 set SVN_REV=0
 set SVN_REV_TEMPLATE=scripts\subwcrev.template
 set SVN_REV_OUT=scripts\subwcrev.out
