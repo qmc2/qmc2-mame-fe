@@ -1142,7 +1142,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                   quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_HUNKBYTES_OFFSET);
                   log(tr("  number of bytes per hunk: %1").arg(chdHunkBytes));
                   quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V3_LOGICALBYTES_OFFSET);
-                  log(tr("  logical size: %1 bytes (%2)").arg(chdLogicalBytes).arg(humanReadable(chdLogicalBytes)));
+                  log(tr("  logical size: %n byte(s) (%1)", "", chdLogicalBytes).arg(humanReadable(chdLogicalBytes)));
                   QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
                   log(tr("  MD5 checksum: %1").arg(QString(md5Data.toHex())));
                   QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
@@ -1166,7 +1166,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                   quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_HUNKBYTES_OFFSET);
                   log(tr("  number of bytes per hunk: %1").arg(chdHunkBytes));
                   quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V4_LOGICALBYTES_OFFSET);
-                  log(tr("  logical size: %1 bytes (%2)").arg(chdLogicalBytes).arg(humanReadable(chdLogicalBytes)));
+                  log(tr("  logical size: %n byte(s) (%1)", "", chdLogicalBytes).arg(humanReadable(chdLogicalBytes)));
                   QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
                   log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
                   if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
@@ -2449,7 +2449,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 									templateData += readData;
 								}
 								unzCloseCurrentFile(zipFile);
-								log(tr("checksum wizard: template data loaded, uncompressed size = %1 bytes").arg(templateData.length()));
+								log(tr("checksum wizard: template data loaded, uncompressed size = %n byte(s)", "", templateData.length()));
 							}
 						}
 					} else {
