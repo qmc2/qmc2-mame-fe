@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="MESS" version="0.141" format="0.2.3">
+<template emulator="MESS" version="0.142" format="0.2.3">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
@@ -285,6 +285,12 @@
       <description lang="pl" text="Liczba procesorów (lub 'auto'); nadpisuje liczbę zgłaszaną przez system"/>
       <description lang="fr" text="Nombre de of processeurs (ou 'auto'); écrase le nombre de processeurs indiqués par le système"/>
       <description lang="pt" text="Número de processadores (ou 'auto'); sobrescreve o número reportado pelo sistema"/>
+    </option>
+    <option name="bench" type="int" default="0">
+      <description lang="us" text="Benchmark for the given number of emulated seconds; implies '-video none -nosound -nothrottle'"/>
+      <description lang="de" text="Benchmark für die angegebene Anzahl emulierter Sekunden durchführen; impliziert '-video none -nosound -nothrottle'"/>
+      <description lang="pl" text="Sprawdzanie wydajności (benchmark) przez podaną liczbę sekund; wymusza '-video none -nosound -nothrottle'"/>
+      <description lang="pt" text="Medir desempenho para o número de segundos emulados dado; implica '-video none -nosound -nothrottle'"/>
     </option>
   </section>
   <section name="rotation">
@@ -722,6 +728,13 @@
       <description lang="fr" text="Utiliser le débogueur interne pour débuguer"/>
       <description lang="pt" text="Usar o depurador interno"/>
     </option>
+    <option name="watchdog" type="int" default="0">
+      <description lang="us" text="Force the program to terminate if no updates within specified number of seconds"/>
+      <description lang="de" text="Programmabbruch erzwingen, wenn nach der angegebenen Anzahl von Sekunden kein Update passiert ist"/>
+      <description lang="pl" text="Wymuś zakończenie programu jeśli nie będzie aktualizacji po ustalonej liczbie sekund"/>
+      <description lang="fr" text="Forcer le programme à quitter si rien ne se passe au bout du nombre de secondes spécifié"/>
+      <description lang="pt" text="Forçar o programa a terminar se não houver atualizações dentro de um número especificado de segundos"/>
+    </option>
   </section>
   <section name="video">
     <description lang="us" text="Video"/>
@@ -784,6 +797,13 @@
       <description lang="pl" text="Czekaj na synchronizację pionową przed przerzucaniem ekranów; zmniejsza efekty rwania"/>
       <description lang="fr" text="Attendre la synchronisation verticale avant de passer à l'image suivante; réduit les effets de saccade"/>
       <description lang="pt" text="Esperar o início da sincronização verfical antes de inverter telas; reduz efeitos de tremor"/>
+    </option>
+    <option name="syncrefresh" type="bool" default="false">
+      <description lang="us" text="Enable using the start of VBLANK for throttling instead of the game time"/>
+      <description lang="de" text="Bei Drosselung an V-Sync anpassen anstelle der Spiel-Geschwindigkeit"/>
+      <description lang="pl" text="Włącz użycie początku synchronizacji pionowej zamiast czasu gry do dławienia"/>
+      <description lang="fr" text="Active l'utilisation de V-BLANK comme accélérateur plutôt que le timer du jeu"/>
+      <description lang="pt" text="Ativar a utilização do VBLANK como troca ao invés do tempo do jogo"/>
     </option>
   </section>
   <section name="directdraw">
