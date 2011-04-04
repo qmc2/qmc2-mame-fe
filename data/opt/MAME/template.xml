@@ -818,6 +818,7 @@
     <option name="menu" type="bool" default="false">
       <description lang="us" text="Enable menu bar if available by UI implementation"/>
       <description lang="de" text="Menü-Zeile aktivieren, sofern in UI Implementierung verfügbar"/>
+      <description lang="pl" text="Włącz pasek menu jeżeli jest dostępny w implementacji UI"/>
     </option>
   </section>
   <section name="directdraw">
