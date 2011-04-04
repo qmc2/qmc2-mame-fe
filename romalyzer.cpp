@@ -1951,7 +1951,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 						QString fileName = xmlLine.mid(fileNamePos, xmlLine.indexOf("\"", fileNamePos) - fileNamePos);
 						QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksumWizardSearchResult);
 						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_ID, currentGame);
-						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName);
+						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME, fileName.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">"));
 						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE, fileType);
 						item->setText(QMC2_ROMALYZER_CSWIZ_COLUMN_STATUS, tr("unknown"));
 						if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_SELECT ) item->setSelected(true);
