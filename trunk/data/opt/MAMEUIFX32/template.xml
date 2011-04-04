@@ -669,13 +669,6 @@
       <description lang="fr" text="Spécifier l'utilisation du clavier naturel ou pas"/>
       <description lang="pt" text="Especificar se deve ser usado teclado natural ou não"/>
     </option>
-    <option name="uimodekey" type="string" default="auto">
-      <description lang="us" text="Specifies the key used to toggle between full and partial UI mode"/>
-      <description lang="de" text="Gibt an, welche Taste für das Umschalten zwischen vollem und partiellem UI Modus verwendet wird"/>
-      <description lang="pl" text="Ustawia klawisz przełączający pomiędzy pełnym a częściowym trybem interfejsu użytkownika"/>
-      <description lang="fr" text="Spécifier la touche à utiliser pour basculer entre l'interface complète ou partielle"/>
-      <description lang="pt" text="Especificar a tecla usada para alternar entre interface total ou parcial"/>
-    </option>
   </section>
   <section name="misc">
     <description lang="us" text="Miscellaneous"/>
