@@ -481,13 +481,14 @@ endif
 # Enable (1) or disable (0) support for game/machine 'attached' youtube.com
 # videos.
 #
-# Notes: 1) This is only supported for Qt 4.7+ (otherwise ignored)!
-#        2) You need the npviewer browser plugin (Adobe Flash Player) installed
-#           and working (check with Firefox for example)!
-#        3) Currently, this is a WIP feature (WIP=1 must be specified as well)!
+# Notes: 1) Requires Phonon and will be disabled if PHONON=0
+#        2) Currently this is a WIP feature (WIP=1 must be specified as well)
 #
 ifndef YOUTUBE
 YOUTUBE = 1
+endif
+ifeq '$(PHONON)' '0'
+YOUTUBE = 0
 endif
 
 # >>> END OF MAKE OPTIONS <<<

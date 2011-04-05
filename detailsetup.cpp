@@ -51,7 +51,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   longTitleMap[QMC2_PCB_INDEX] = tr("PCB image");
   iconMap[QMC2_PCB_INDEX] = QIcon(QString::fromUtf8(":/data/img/circuit.png"));
 #if QMC2_WIP_CODE == 1
-#if QT_VERSION >= 0x040700 && QMC2_YOUTUBE_ENABLED
+#if QMC2_YOUTUBE_ENABLED
   shortTitleMap[QMC2_YOUTUBE_INDEX] = tr("&YouTube");
   longTitleMap[QMC2_YOUTUBE_INDEX] = tr("YouTube videos");
   iconMap[QMC2_YOUTUBE_INDEX] = QIcon(QString::fromUtf8(":/data/img/youtube.png"));
@@ -69,7 +69,7 @@ DetailSetup::DetailSetup(QWidget *parent)
                       << QMC2_MAWS_INDEX
                       << QMC2_PCB_INDEX
 #if QMC2_WIP_CODE == 1
-#if QT_VERSION >= 0x040700 && QMC2_YOUTUBE_ENABLED
+#if QMC2_YOUTUBE_ENABLED
                       << QMC2_YOUTUBE_INDEX;
 #else
                       ;
@@ -89,7 +89,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_MAWS_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MAWS_INDEX);
   tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
 #if QMC2_WIP_CODE == 1
-#if QT_VERSION >= 0x040700 && QMC2_YOUTUBE_ENABLED
+#if QMC2_YOUTUBE_ENABLED
   tabWidgetsMap[QMC2_YOUTUBE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX);
 #endif
 #endif
@@ -117,7 +117,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Softwar&e list");
   longTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Software list");
   iconMap[QMC2_SOFTWARE_LIST_INDEX] = QIcon(QString::fromUtf8(":/data/img/pacman.png"));
-#if QT_VERSION >= 0x040700 && QMC2_YOUTUBE_ENABLED
+#if QMC2_YOUTUBE_ENABLED
   shortTitleMap[QMC2_YOUTUBE_INDEX] = tr("&YouTube");
   longTitleMap[QMC2_YOUTUBE_INDEX] = tr("YouTube videos");
   iconMap[QMC2_YOUTUBE_INDEX] = QIcon(QString::fromUtf8(":/data/img/youtube.png"));
@@ -131,7 +131,7 @@ DetailSetup::DetailSetup(QWidget *parent)
                       << QMC2_PCB_INDEX
 #if QMC2_WIP_CODE == 1
                       << QMC2_SOFTWARE_LIST_INDEX
-#if QT_VERSION >= 0x040700 && QMC2_YOUTUBE_ENABLED
+#if QMC2_YOUTUBE_ENABLED
                       << QMC2_YOUTUBE_INDEX;
 #else
                       ;
@@ -147,7 +147,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
 #if QMC2_WIP_CODE == 1
   tabWidgetsMap[QMC2_SOFTWARE_LIST_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SOFTWARE_LIST_INDEX);
-#if QT_VERSION >= 0x040700 && QMC2_YOUTUBE_ENABLED
+#if QMC2_YOUTUBE_ENABLED
   tabWidgetsMap[QMC2_YOUTUBE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX);
 #endif
 #endif
