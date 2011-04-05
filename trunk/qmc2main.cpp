@@ -70,6 +70,9 @@
 #if defined(Q_WS_X11)
 #include "keyseqscan.h"
 #endif
+#if defined(QMC2_YOUTUBE_ENABLED)
+#include "youtubevideoplayer.h"
+#endif
 
 #ifdef __APPLE__
 #include <ApplicationServices/ApplicationServices.h>
@@ -191,6 +194,10 @@ QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
 QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 QTreeWidgetItem *qmc2CategoryViewSelectedItem = NULL;
 QTreeWidgetItem *qmc2VersionViewSelectedItem = NULL;
+#endif
+#if defined(QMC2_YOUTUBE_ENABLED)
+YouTubeVideoPlayer *qmc2YouTubeWidget = NULL;
+QTreeWidgetItem *qmc2LastYouTubeItem = NULL;
 #endif
 QTreeWidgetItem *qmc2HierarchySelectedItem = NULL;
 QMenu *qmc2EmulatorMenu = NULL,
@@ -2848,6 +2855,32 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
   }
 
   switch ( qmc2DetailSetup->appliedDetailList[currentIndex] ) {
+    // FIXME: remove the WIP clause when finished
+#if QMC2_WIP_CODE == 1
+#if defined(QMC2_YOUTUBE_ENABLED)
+    case QMC2_YOUTUBE_INDEX:
+      if ( qmc2CurrentItem != qmc2LastYouTubeItem ) {
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("WIP: support for attached YouTube videos is still under development and not working properly yet!"));
+          tabYouTube->setUpdatesEnabled(FALSE);
+          if ( qmc2YouTubeWidget ) {
+            QLayout *vbl = tabYouTube->layout();
+            if ( vbl )
+              delete vbl;
+            delete qmc2YouTubeWidget;
+            qmc2YouTubeWidget = NULL;
+          }
+          QVBoxLayout *layout = new QVBoxLayout;
+          qmc2YouTubeWidget = new YouTubeVideoPlayer(tabYouTube);
+          layout->addWidget(qmc2YouTubeWidget);
+          tabYouTube->setLayout(layout);
+          qmc2YouTubeWidget->show();
+          qmc2LastYouTubeItem = qmc2CurrentItem;
+          tabYouTube->setUpdatesEnabled(TRUE);
+      }
+      break;
+#endif
+#endif
+
 #if defined(QMC2_EMUTYPE_MESS)
     case QMC2_DEVICE_INDEX:
       if ( qmc2CurrentItem != qmc2LastDeviceConfigItem ) {
@@ -2872,13 +2905,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       }
       break;
 
-    // FIXME: remove the WIP clauses when MESS software list support is fully functional
+    // FIXME: remove the WIP clause when finished
 #if QMC2_WIP_CODE == 1
     case QMC2_SOFTWARE_LIST_INDEX:
       if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
 	if ( !qmc2MessSWListAlreadyLoading ) {
           qmc2MessSWListAlreadyLoading = true;
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("WIP: MESS software lists are still under development and aren't working correctly yet!"));
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("WIP: support for MESS software lists is still under development and not working properly yet!"));
           tabSoftwareList->setUpdatesEnabled(FALSE);
           if ( qmc2MESSSoftwareList ) {
             QLayout *vbl = tabSoftwareList->layout();
@@ -4672,6 +4705,12 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2AudioEffectDialog->close();
     delete qmc2AudioEffectDialog;
   }
+#if defined(QMC2_YOUTUBE_ENABLED)
+  if ( qmc2YouTubeWidget ) {
+    log(QMC2_LOG_FRONTEND, tr("destroying YouTube video widget"));
+    delete qmc2YouTubeWidget;
+  }
+#endif
 #endif
 
   if ( !qmc2GameInfoDB.isEmpty() ) {
