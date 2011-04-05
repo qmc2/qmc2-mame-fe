@@ -150,10 +150,8 @@ void YouTubeVideoPlayer::playVideo(QString &videoID)
 
 	currentVideoID = videoID;
 	QUrl url = getVideoStreamUrl(videoID);
-	printf("\nUsing this URL:\n%s\n", (const char *)url.toString().toLatin1());
-	if ( url.isValid() ) {
+	if ( url.isValid() )
 		videoPlayer->play(Phonon::MediaSource(QUrl::fromEncoded((const char *)url.toString().toLatin1())));
-	}
 }
 
 QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
@@ -191,7 +189,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
 		QStringList videoInfoList = videoInfoBuffer.split("&");
 
 		// FIXME: debug
-		printf("\n");
+		printf("\nAvailable formats / URLs for video ID '%s':\n", (const char *)videoID.toLatin1());
 
 		QMap <QString, QUrl> formatToUrlMap;
 		foreach (QString videoInfo, videoInfoList) {
@@ -235,6 +233,11 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
 		for (int i = comboBoxPreferredFormat->currentIndex(); i >= 0; i--) {
 			if ( formatToUrlMap.contains(indexToFormat(i)) ) {
 				videoUrl = formatToUrlMap[indexToFormat(i)];
+
+				// FIXME: debug
+				QString fmtStr = indexToFormat(i);
+				printf("\nSelected format / URL for video ID '%s':\n%s\t%s\n", (const char *)videoID.toLatin1(), (const char *)fmtStr.toLatin1(), (const char *)videoUrl.toString().toLatin1());
+
 				break;
 			}
 		}
