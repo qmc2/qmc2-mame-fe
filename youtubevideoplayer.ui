@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>382</width>
-    <height>377</height>
+    <width>400</width>
+    <height>328</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -18,15 +18,15 @@
    <item row="0" column="0">
     <widget class="QToolBox" name="toolBox">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
-     <widget class="QWidget" name="pageAttachedvideos">
+     <widget class="QWidget" name="pageAttachedVideos">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>96</width>
-        <height>94</height>
+        <width>400</width>
+        <height>238</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -40,65 +40,82 @@
        <property name="margin">
         <number>0</number>
        </property>
-       <item row="0" column="0">
-        <widget class="QListView" name="listView"/>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="pageVidePlayer">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>382</width>
-        <height>287</height>
-       </rect>
-      </property>
-      <attribute name="icon">
-       <iconset resource="qmc2.qrc">
-        <normaloff>:/data/img/youtube.png</normaloff>:/data/img/youtube.png</iconset>
-      </attribute>
-      <attribute name="label">
-       <string>Video player</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,0,1,1,0,0,0">
-       <property name="margin">
-        <number>0</number>
-       </property>
-       <item row="0" column="0" colspan="7">
-        <widget class="Phonon::VideoPlayer" name="videoPlayer"/>
-       </item>
-       <item row="1" column="1">
-        <widget class="QToolButton" name="toolButtonPlayPause">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+       <item row="0" column="0" colspan="5">
+        <widget class="QListWidget" name="listWidgetAttachedVideos">
+         <property name="acceptDrops">
+          <bool>true</bool>
          </property>
+         <property name="showDropIndicator" stdset="0">
+          <bool>true</bool>
+         </property>
+         <property name="dragEnabled">
+          <bool>true</bool>
+         </property>
+         <property name="dragDropMode">
+          <enum>QAbstractItemView::DragDrop</enum>
+         </property>
+         <property name="defaultDropAction">
+          <enum>Qt::CopyAction</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="checkBoxPlayOMatic">
          <property name="toolTip">
-          <string>Play / pause / replay the current video</string>
+          <string>Start playing / select next video automatically</string>
          </property>
          <property name="text">
-          <string/>
+          <string>Play-O-Matic</string>
          </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/media_stop.png</normaloff>:/data/img/media_stop.png</iconset>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="label">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Mode:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
        <item row="1" column="2">
-        <widget class="Phonon::VolumeSlider" name="volumeSlider">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+        <widget class="QComboBox" name="comboBoxMode">
+         <property name="enabled">
+          <bool>false</bool>
          </property>
+         <property name="toolTip">
+          <string>Choose the video selection mode</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>sequential</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>random</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="1" column="3">
+        <widget class="QCheckBox" name="checkBoxRepeat">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Allow videos to be repeated (otherwise stop after last video)</string>
+         </property>
+         <property name="text">
+          <string>Allow repeat</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
         <spacer name="horizontalSpacer">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -111,24 +128,30 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="4" colspan="2">
-        <widget class="QLabel" name="labelPlayingTime">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Remaining playing time</string>
-         </property>
-         <property name="text">
-          <string notr="true">--:--:--</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageVideoPlayer">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>259</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <attribute name="icon">
+       <iconset resource="qmc2.qrc">
+        <normaloff>:/data/img/youtube.png</normaloff>:/data/img/youtube.png</iconset>
+      </attribute>
+      <attribute name="label">
+       <string>Video player</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayoutVideoPlayer" columnstretch="0,0,0,1,0">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0" colspan="5">
+        <widget class="Phonon::VideoPlayer" name="videoPlayer"/>
        </item>
        <item row="1" column="0">
         <widget class="QComboBox" name="comboBoxPreferredFormat">
@@ -206,6 +229,65 @@
          </item>
         </widget>
        </item>
+       <item row="1" column="1">
+        <widget class="QToolButton" name="toolButtonPlayPause">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Play / pause / replay the current video</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/media_stop.png</normaloff>:/data/img/media_stop.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="Phonon::VolumeSlider" name="volumeSlider">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLabel" name="labelPlayingTime">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Remaining playing time</string>
+         </property>
+         <property name="text">
+          <string notr="true">--:--:--</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="Phonon::SeekSlider" name="seekSlider">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="pageSearchVideos">
@@ -213,8 +295,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>96</width>
-        <height>26</height>
+        <width>137</width>
+        <height>125</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -224,6 +306,83 @@
       <attribute name="label">
        <string>Search videos</string>
       </attribute>
+      <layout class="QGridLayout" name="gridLayoutSearchVideos">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLineEdit" name="lineEditSearchString">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Search pattern -- use the 'hint' button to get a suggestion</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QToolButton" name="toolButtonSearch">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Search YouTube videos using the specified search pattern</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/search.png</normaloff>:/data/img/search.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="4">
+        <widget class="QListWidget" name="listWidgetSearchResult"/>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="spinBoxResultPage">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Select the search result page to use (automatically increments on every search with the same pattern)</string>
+         </property>
+         <property name="prefix">
+          <string>P</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>50</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QToolButton" name="toolButtonSuggest">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Suggest a search pattern</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/hint.png</normaloff>:/data/img/hint.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
@@ -237,18 +396,96 @@
    <header location="global">phonon/videoplayer.h</header>
   </customwidget>
   <customwidget>
+   <class>Phonon::SeekSlider</class>
+   <extends>QWidget</extends>
+   <header location="global">phonon/seekslider.h</header>
+  </customwidget>
+  <customwidget>
    <class>Phonon::VolumeSlider</class>
    <extends>QWidget</extends>
    <header location="global">phonon/volumeslider.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>listView</tabstop>
+  <tabstop>listWidgetAttachedVideos</tabstop>
+  <tabstop>checkBoxPlayOMatic</tabstop>
+  <tabstop>comboBoxMode</tabstop>
+  <tabstop>checkBoxRepeat</tabstop>
   <tabstop>comboBoxPreferredFormat</tabstop>
   <tabstop>toolButtonPlayPause</tabstop>
+  <tabstop>lineEditSearchString</tabstop>
+  <tabstop>spinBoxResultPage</tabstop>
+  <tabstop>toolButtonSuggest</tabstop>
+  <tabstop>toolButtonSearch</tabstop>
+  <tabstop>listWidgetSearchResult</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>lineEditSearchString</sender>
+   <signal>returnPressed()</signal>
+   <receiver>toolButtonSearch</receiver>
+   <slot>animateClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>157</x>
+     <y>103</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>114</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxPlayOMatic</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxRepeat</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>74</x>
+     <y>255</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>109</x>
+     <y>254</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxPlayOMatic</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>comboBoxMode</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>66</x>
+     <y>264</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>233</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxPlayOMatic</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>32</x>
+     <y>255</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>187</x>
+     <y>251</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

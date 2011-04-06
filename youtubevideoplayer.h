@@ -28,6 +28,10 @@
 #define YOUTUBE_VIDEO_PLAYER_PAGE	1
 #define YOUTUBE_SEARCH_VIDEO_PAGE	2
 
+// Play-O-Matic modes
+#define YOUTUBE_PLAYOMATIC_SEQUENTIAL	0
+#define YOUTUBE_PLAYOMATIC_RANDOM	1
+
 class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 {
 	Q_OBJECT
@@ -44,6 +48,8 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QString videoInfoBuffer;
 		bool viFinished;
 		bool viError;
+		QSlider *privateSeekSlider;
+		QToolButton *privateMuteButton;
 
 		QUrl getVideoStreamUrl(QString);
 		QString indexToFormat(int);
