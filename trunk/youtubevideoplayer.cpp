@@ -3,9 +3,9 @@
 #include <QtTest>
 #include <QSettings>
 
-#include "youtubevideoplayer.h"
 #include "macros.h"
 #include "qmc2main.h"
+#include "youtubevideoplayer.h"
 
 #define QMC2_DEBUG
 
@@ -25,6 +25,10 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 	videoFinished();
 	comboBoxPreferredFormat->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PreferredFormat", YOUTUBE_FORMAT_MP4_1080P_INDEX).toInt());
 	videoPlayer->audioOutput()->setVolume(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", 0.5).toDouble());
+	toolBox->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PageIndex", YOUTUBE_SEARCH_VIDEO_PAGE).toInt());
+	checkBoxPlayOMatic->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", false).toBool());
+	comboBoxMode->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", YOUTUBE_PLAYOMATIC_SEQUENTIAL).toInt());
+	checkBoxRepeat->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", true).toBool());
 
 	youTubeFormats << YOUTUBE_FORMAT_FLV_240P
 		<< YOUTUBE_FORMAT_FLV_360P
@@ -38,11 +42,21 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 	videoInfoManager = NULL;
 	videoPlayer->mediaObject()->setTickInterval(1000);
 	volumeSlider->setAudioOutput(videoPlayer->audioOutput());
+	seekSlider->setMediaObject(videoPlayer->mediaObject());
 	connect(videoPlayer->mediaObject(), SIGNAL(tick(qint64)), this, SLOT(videoTick(qint64)));
 	connect(videoPlayer->mediaObject(), SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(videoStateChanged(Phonon::State, Phonon::State)));
+#ifdef QMC2_DEBUG
+	connect(videoPlayer->mediaObject(), SIGNAL(metaDataChanged()), this, SLOT(videoMetaDataChanged()));
+#endif
 	connect(videoPlayer, SIGNAL(finished()), this, SLOT(videoFinished()));
 
 	adjustIconSizes();
+
+	privateMuteButton = volumeSlider->findChild<QToolButton *>();
+	if ( privateMuteButton ) {
+		privateMuteButton->setCheckable(true);
+		privateMuteButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+	}
 
 	QTimer::singleShot(100, this, SLOT(init()));
 }
@@ -55,6 +69,10 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 
   	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PreferredFormat", comboBoxPreferredFormat->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", videoPlayer->audioOutput()->volume());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PageIndex", toolBox->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", checkBoxPlayOMatic->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", comboBoxMode->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", checkBoxRepeat->isChecked());
 
 	if ( videoInfoReply ) {
 		disconnect(videoInfoReply);
@@ -73,8 +91,8 @@ void YouTubeVideoPlayer::init()
 #endif
 
 	//QString video = "bcwBowBFFzc";
-	//QString video = "vK9rfCpjOQc";
-	QString video = "gO-OwcBCa8Y";
+	QString video = "vK9rfCpjOQc";
+	//QString video = "gO-OwcBCa8Y";
 	playVideo(video);
 }
 
@@ -91,6 +109,9 @@ void YouTubeVideoPlayer::adjustIconSizes()
 	comboBoxPreferredFormat->setIconSize(iconSize);
 	toolButtonPlayPause->setIconSize(iconSize);
 	volumeSlider->setIconSize(iconSize);
+	seekSlider->setIconSize(iconSize);
+	toolButtonSuggest->setIconSize(iconSize);
+	toolButtonSearch->setIconSize(iconSize);
 	toolBox->setItemIcon(YOUTUBE_ATTACHED_VIDEOS_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/movie.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	toolBox->setItemIcon(YOUTUBE_VIDEO_PLAYER_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/youtube.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	toolBox->setItemIcon(YOUTUBE_SEARCH_VIDEO_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/pacman.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
@@ -102,6 +123,10 @@ void YouTubeVideoPlayer::videoFinished()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::videoFinished()");
 #endif
 
+	// serious hack to access the seekSlider's slider object
+	privateSeekSlider = seekSlider->findChild<QSlider *>();
+	if ( privateSeekSlider )
+		privateSeekSlider->setValue(0);
 	labelPlayingTime->setText("--:--:--");
 	toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 }
@@ -138,6 +163,10 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 		default:
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 			labelPlayingTime->setText("--:--:--");
+			// serious hack to access the seekSlider's slider object
+			privateSeekSlider = seekSlider->findChild<QSlider *>();
+			if ( privateSeekSlider )
+				privateSeekSlider->setValue(0);
 			break;
 	}
 }
@@ -161,7 +190,6 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
 #endif
 
 	static QUrl videoUrl;
-	static QString localIpRange;
 
 	if ( videoInfoReply ) {
 		disconnect(videoInfoReply);
@@ -187,10 +215,9 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
 
 	if ( viFinished && !viError ) {
 		QStringList videoInfoList = videoInfoBuffer.split("&");
-
-		// FIXME: debug
+#ifdef QMC2_DEBUG
 		printf("\nAvailable formats / URLs for video ID '%s':\n", (const char *)videoID.toLatin1());
-
+#endif
 		QMap <QString, QUrl> formatToUrlMap;
 		foreach (QString videoInfo, videoInfoList) {
 			if ( videoInfo.startsWith("fmt_url_map=") ) {
@@ -201,24 +228,9 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
 						QUrl url = QUrl::fromEncoded(formatAndUrl[1].toAscii());
 						QString urlStr = url.toString();
 						url.setEncodedUrl(urlStr.toAscii());
-						/*
-						if ( url.queryItemValue("ip") != "0.0.0.0" )
-							localIpRange = url.queryItemValue("ip");
-						else if ( !localIpRange.isEmpty() ) {
-							QList<QPair<QString, QString> > qItems = url.queryItems();
-							for (int i = 0; i < qItems.count(); i++) {
-								if ( qItems[i].first == "ip" ) {
-									qItems[i].second = localIpRange;
-									break;
-								}
-							}
-							url.setQueryItems(qItems);
-						}
-						*/
-
-						// FIXME: debug
+#ifdef QMC2_DEBUG
 						printf("%s\t%s\n", (const char *)formatAndUrl[0].toLatin1(), (const char *)url.toString().toLatin1());
-
+#endif
 						formatToUrlMap[formatAndUrl[0]] = url;
 					}
 				}
@@ -233,11 +245,10 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
 		for (int i = comboBoxPreferredFormat->currentIndex(); i >= 0; i--) {
 			if ( formatToUrlMap.contains(indexToFormat(i)) ) {
 				videoUrl = formatToUrlMap[indexToFormat(i)];
-
-				// FIXME: debug
+#ifdef QMC2_DEBUG
 				QString fmtStr = indexToFormat(i);
 				printf("\nSelected format / URL for video ID '%s':\n%s\t%s\n", (const char *)videoID.toLatin1(), (const char *)fmtStr.toLatin1(), (const char *)videoUrl.toString().toLatin1());
-
+#endif
 				break;
 			}
 		}
