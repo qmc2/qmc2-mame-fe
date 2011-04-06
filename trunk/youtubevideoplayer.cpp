@@ -23,6 +23,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 	setupUi(this);
 
 	videoFinished();
+	toolButtonPlayPause->setEnabled(false);
 	comboBoxPreferredFormat->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PreferredFormat", YOUTUBE_FORMAT_MP4_1080P_INDEX).toInt());
 	videoPlayer->audioOutput()->setVolume(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", 0.5).toDouble());
 	toolBox->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PageIndex", YOUTUBE_SEARCH_VIDEO_PAGE).toInt());
@@ -93,7 +94,10 @@ void YouTubeVideoPlayer::init()
 	//QString video = "bcwBowBFFzc";
 	QString video = "vK9rfCpjOQc";
 	//QString video = "gO-OwcBCa8Y";
-	playVideo(video);
+	if ( checkBoxPlayOMatic->isChecked() )
+		playVideo(video);
+	else
+		loadVideo(video);
 }
 
 void YouTubeVideoPlayer::adjustIconSizes()
@@ -168,6 +172,20 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 			if ( privateSeekSlider )
 				privateSeekSlider->setValue(0);
 			break;
+	}
+	if ( !toolButtonPlayPause->isEnabled() ) toolButtonPlayPause->setEnabled(true);
+}
+
+void YouTubeVideoPlayer::loadVideo(QString &videoID)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::loadVideo(QString videoID = %1)").arg(videoID));
+#endif
+
+	currentVideoID = videoID;
+	QUrl url = getVideoStreamUrl(videoID);
+	if ( url.isValid() ) {
+		videoPlayer->mediaObject()->setCurrentSource(Phonon::MediaSource(QUrl::fromEncoded((const char *)url.toString().toLatin1())));
 	}
 }
 
@@ -307,6 +325,8 @@ void YouTubeVideoPlayer::on_toolButtonPlayPause_clicked()
 	if ( videoPlayer->isPlaying() )
 		videoPlayer->pause();
 	else if ( videoPlayer->isPaused() )
+		videoPlayer->play();
+	else if ( videoPlayer->mediaObject()->hasVideo() )
 		videoPlayer->play();
 	else if ( !currentVideoID.isEmpty() )
 		playVideo(currentVideoID);
