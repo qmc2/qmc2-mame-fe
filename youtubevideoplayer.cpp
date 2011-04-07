@@ -25,8 +25,6 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 	videoPlayer->videoWidget()->setScaleMode(Phonon::VideoWidget::FitInView);
 	videoPlayer->videoWidget()->setAspectRatio(Phonon::VideoWidget::AspectRatioAuto);
 
-	videoFinished();
-
 	toolButtonPlayPause->setEnabled(false);
 	comboBoxPreferredFormat->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PreferredFormat", YOUTUBE_FORMAT_MP4_1080P_INDEX).toInt());
 	videoPlayer->audioOutput()->setVolume(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", 0.5).toDouble());
@@ -34,8 +32,16 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 	checkBoxPlayOMatic->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", false).toBool());
 	comboBoxMode->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", YOUTUBE_PLAYOMATIC_SEQUENTIAL).toInt());
 	checkBoxRepeat->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", true).toBool());
+	privateMuteButton = volumeSlider->findChild<QToolButton *>();
+	if ( privateMuteButton ) {
+		privateMuteButton->setCheckable(true);
+		privateMuteButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+		privateMuteButton->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioMuted", false).toBool());
+		videoPlayer->audioOutput()->setMuted(privateMuteButton->isChecked());
+	}
 
-	youTubeFormats << YOUTUBE_FORMAT_FLV_240P
+	youTubeFormats 
+		<< YOUTUBE_FORMAT_FLV_240P
 		<< YOUTUBE_FORMAT_FLV_360P
 		<< YOUTUBE_FORMAT_MP4_360P
 		<< YOUTUBE_FORMAT_FLV_480P
@@ -51,20 +57,11 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 	seekSlider->setMediaObject(videoPlayer->mediaObject());
 	connect(videoPlayer->mediaObject(), SIGNAL(tick(qint64)), this, SLOT(videoTick(qint64)));
 	connect(videoPlayer->mediaObject(), SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(videoStateChanged(Phonon::State, Phonon::State)));
-#ifdef QMC2_DEBUG
-	connect(videoPlayer->mediaObject(), SIGNAL(metaDataChanged()), this, SLOT(videoMetaDataChanged()));
-#endif
 	connect(videoPlayer, SIGNAL(finished()), this, SLOT(videoFinished()));
 
 	adjustIconSizes();
 
-	privateMuteButton = volumeSlider->findChild<QToolButton *>();
-	if ( privateMuteButton ) {
-		privateMuteButton->setCheckable(true);
-		privateMuteButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
-	}
-
-	QTimer::singleShot(100, this, SLOT(init()));
+	QTimer::singleShot(0, this, SLOT(init()));
 }
 
 YouTubeVideoPlayer::~YouTubeVideoPlayer()
@@ -79,6 +76,9 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", checkBoxPlayOMatic->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", comboBoxMode->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", checkBoxRepeat->isChecked());
+	privateMuteButton = volumeSlider->findChild<QToolButton *>();
+	if ( privateMuteButton )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioMuted", privateMuteButton->isChecked());
 
 	if ( videoInfoReply ) {
 		disconnect(videoInfoReply);
@@ -88,6 +88,21 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 		disconnect(videoInfoManager);
 		delete videoInfoManager;
 	}
+	if ( videoPlayer ) {
+		disconnect(videoPlayer);
+		delete videoPlayer;
+	}
+}
+
+void YouTubeVideoPlayer::loadNullVideo()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::loadNullVideo()");
+#endif
+
+	currentVideoID.clear();
+	videoPlayer->play(Phonon::MediaSource(QString::fromUtf8(":/data/img/ghost_video.png")));
+	videoPlayer->stop();
 }
 
 void YouTubeVideoPlayer::init()
@@ -97,12 +112,24 @@ void YouTubeVideoPlayer::init()
 #endif
 
 	//QString video = "bcwBowBFFzc";
-	QString video = "vK9rfCpjOQc";
+	//QString video = "vK9rfCpjOQc";
 	//QString video = "gO-OwcBCa8Y";
+	//QString video = "XCv5aPqlDd4";
+	//QString video = "PZxfFxYY7JM";
+	//QString video = "X6Qvpz5d18g";
+	//QString video = "xdg5wBd9r_U";
+	//QString video = "SyhO0Ypukfc";
+	//QString video = "9XyR8buBfNk";
+	/*
+	QString video = "3qD453R7usI";
 	if ( checkBoxPlayOMatic->isChecked() )
 		playVideo(video);
 	else
 		loadVideo(video);
+	*/
+
+	if ( listWidgetAttachedVideos->count() < 1 )
+		QTimer::singleShot(100, this, SLOT(loadNullVideo()));
 }
 
 void YouTubeVideoPlayer::adjustIconSizes()
@@ -189,7 +216,7 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 				videoPlayer->audioOutput()->setMuted(false);
 			}
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
-			toolButtonPlayPause->setEnabled(true);
+			toolButtonPlayPause->setEnabled(!currentVideoID.isEmpty());
 			labelPlayingTime->setText("--:--:--");
 			// serious hack to access the seekSlider's slider object
 			privateSeekSlider = seekSlider->findChild<QSlider *>();

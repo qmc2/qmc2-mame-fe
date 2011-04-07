@@ -33,6 +33,9 @@
 #include "messdevcfg.h"
 #include "messswlist.h"
 #endif
+#if defined(QMC2_YOUTUBE_ENABLED)
+#include "youtubevideoplayer.h"
+#endif
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -95,6 +98,10 @@ extern QMap<QString, QString> qmc2CategoryMap;
 extern QMap<QString, QString> qmc2VersionMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
+#endif
+#if defined(QMC2_YOUTUBE_ENABLED)
+extern YouTubeVideoPlayer *qmc2YouTubeWidget;
+extern QTreeWidgetItem *qmc2LastYouTubeItem;
 #endif
 
 // local global variables
@@ -292,8 +299,7 @@ void Gamelist::load()
     qmc2MESSDeviceConfigurator->save();
     qmc2MESSDeviceConfigurator->setVisible(FALSE);
     QLayout *vbl = qmc2MainWindow->tabDevices->layout();
-    if ( vbl )
-      delete vbl;
+    if ( vbl ) delete vbl;
     delete qmc2MESSDeviceConfigurator;
     qmc2MESSDeviceConfigurator = NULL;
   }
@@ -303,8 +309,7 @@ void Gamelist::load()
     qmc2MESSSoftwareList->save();
     qmc2MESSSoftwareList->setVisible(FALSE);
     QLayout *vbl = qmc2MainWindow->tabSoftwareList->layout();
-    if ( vbl )
-      delete vbl;
+    if ( vbl ) delete vbl;
     delete qmc2MESSSoftwareList;
     qmc2MESSSoftwareList = NULL;
   }
@@ -321,12 +326,24 @@ void Gamelist::load()
   if ( qmc2MAWSLookup ) {
     qmc2MAWSLookup->setVisible(FALSE);
     QLayout *vbl = qmc2MainWindow->tabMAWS->layout();
-    if ( vbl )
-      delete vbl;
+    if ( vbl ) delete vbl;
     delete qmc2MAWSLookup;
     qmc2MAWSLookup = NULL;
   }
   qmc2LastMAWSItem = NULL;
+#endif
+
+#if QMC2_WIP_CODE == 1
+#if defined(QMC2_YOUTUBE_ENABLED)
+  qmc2LastYouTubeItem = NULL;
+  if ( qmc2YouTubeWidget ) {
+      qmc2YouTubeWidget->setVisible(FALSE);
+      QLayout *vbl = qmc2MainWindow->tabYouTube->layout();
+      if ( vbl ) delete vbl;
+      delete qmc2YouTubeWidget;
+      qmc2YouTubeWidget = NULL;
+  }
+#endif
 #endif
 
   qmc2Preview->update();
@@ -351,8 +368,7 @@ void Gamelist::load()
   if ( qmc2EmulatorOptions ) {
     qmc2EmulatorOptions->save();
     QLayout *vbl = qmc2MainWindow->tabConfiguration->layout();
-    if ( vbl )
-      delete vbl;
+    if ( vbl ) delete vbl;
     delete qmc2MainWindow->labelEmuSelector;
     delete qmc2MainWindow->comboBoxEmuSelector;
     delete qmc2EmulatorOptions;
