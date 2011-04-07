@@ -2854,6 +2854,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       break;
   }
 
+  int left, top, right, bottom;
   switch ( qmc2DetailSetup->appliedDetailList[currentIndex] ) {
     // FIXME: remove the WIP clause when finished
 #if QMC2_WIP_CODE == 1
@@ -2869,7 +2870,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
             delete qmc2YouTubeWidget;
             qmc2YouTubeWidget = NULL;
           }
+          gridLayout->getContentsMargins(&left, &top, &right, &bottom);
           QVBoxLayout *layout = new QVBoxLayout;
+          layout->setContentsMargins(left, top, right, bottom);
           qmc2YouTubeWidget = new YouTubeVideoPlayer(tabYouTube);
           layout->addWidget(qmc2YouTubeWidget);
           tabYouTube->setLayout(layout);
@@ -2893,8 +2896,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           delete qmc2MESSDeviceConfigurator;
           qmc2MESSDeviceConfigurator = NULL;
         }
+        gridLayout->getContentsMargins(&left, &top, &right, &bottom);
         QString machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
         QVBoxLayout *layout = new QVBoxLayout;
+        layout->setContentsMargins(left, top, right, bottom);
         qmc2MESSDeviceConfigurator = new MESSDeviceConfigurator(machineName, tabDevices);
         qmc2MESSDeviceConfigurator->load();
         layout->addWidget(qmc2MESSDeviceConfigurator);
@@ -2921,7 +2926,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
             qmc2MESSSoftwareList = NULL;
           }
           QString machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
+          gridLayout->getContentsMargins(&left, &top, &right, &bottom);
           QVBoxLayout *layout = new QVBoxLayout;
+          layout->setContentsMargins(left, top, right, bottom);
           qmc2MESSSoftwareList = new MESSSoftwareList(machineName, tabSoftwareList);
           qmc2MESSSoftwareList->load();
           layout->addWidget(qmc2MESSSoftwareList);
@@ -2947,15 +2954,14 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           qmc2MAWSLookup = NULL;
         }
         QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+        gridLayout->getContentsMargins(&left, &top, &right, &bottom);
         QVBoxLayout *layout = new QVBoxLayout;
+        layout->setContentsMargins(left, top, right, bottom);
         qmc2MAWSLookup = new MiniWebBrowser(tabMAWS);
         qmc2MAWSLookup->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
         qmc2MAWSLookup->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
         qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MAWS page for '%1'").arg(qmc2GamelistDescriptionMap[gameName]));
-        int left, top, right, bottom;
-        gridLayout->getContentsMargins(&left, &top, &right, &bottom);
         layout->addWidget(qmc2MAWSLookup);
-        layout->setContentsMargins(left, top, right, bottom);
         tabMAWS->setLayout(layout);
         QString mawsUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString().arg(gameName);
 
@@ -3036,7 +3042,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           qmc2EmulatorOptions = NULL;
         }
         QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
-        int left, top, right, bottom;
         gridLayout->getContentsMargins(&left, &top, &right, &bottom);
         QVBoxLayout *layout = new QVBoxLayout;
         configWidget->setLayout(layout);

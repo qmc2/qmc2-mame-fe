@@ -180,12 +180,6 @@
    </item>
    <item row="1" column="0" colspan="7">
     <layout class="QGridLayout" name="gridLayout">
-     <property name="horizontalSpacing">
-      <number>0</number>
-     </property>
-     <property name="verticalSpacing">
-      <number>2</number>
-     </property>
      <item row="1" column="0">
       <widget class="QLabel" name="labelStatus">
        <property name="sizePolicy">
@@ -230,7 +224,7 @@
         </sizepolicy>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <layout class="QGridLayout" name="gridLayoutBrowser">
         <property name="margin">

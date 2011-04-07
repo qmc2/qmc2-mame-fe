@@ -22,7 +22,11 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 
 	setupUi(this);
 
+	videoPlayer->videoWidget()->setScaleMode(Phonon::VideoWidget::FitInView);
+	videoPlayer->videoWidget()->setAspectRatio(Phonon::VideoWidget::AspectRatioAuto);
+
 	videoFinished();
+
 	toolButtonPlayPause->setEnabled(false);
 	comboBoxPreferredFormat->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PreferredFormat", YOUTUBE_FORMAT_MP4_1080P_INDEX).toInt());
 	videoPlayer->audioOutput()->setVolume(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", 0.5).toDouble());
@@ -185,7 +189,8 @@ void YouTubeVideoPlayer::loadVideo(QString &videoID)
 	currentVideoID = videoID;
 	QUrl url = getVideoStreamUrl(videoID);
 	if ( url.isValid() ) {
-		videoPlayer->mediaObject()->setCurrentSource(Phonon::MediaSource(QUrl::fromEncoded((const char *)url.toString().toLatin1())));
+		videoPlayer->load(Phonon::MediaSource(QUrl::fromEncoded((const char *)url.toString().toLatin1())));
+		videoPlayer->stop();
 	}
 }
 
@@ -340,6 +345,24 @@ void YouTubeVideoPlayer::on_comboBoxPreferredFormat_currentIndexChanged(int inde
 
 	if ( !currentVideoID.isEmpty() )
 		playVideo(currentVideoID);
+}
+
+void YouTubeVideoPlayer::on_toolBox_currentChanged(int page)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_toolBox_currentChanged(int page = %1)").arg(page));
+#endif
+
+	switch ( page ) {
+		case YOUTUBE_ATTACHED_VIDEOS_PAGE:
+			break;
+		case YOUTUBE_VIDEO_PLAYER_PAGE:
+			break;
+		case YOUTUBE_SEARCH_VIDEO_PAGE:
+			break;
+		default:
+			break;
+	}
 }
 
 void YouTubeVideoPlayer::showEvent(QShowEvent *e)
