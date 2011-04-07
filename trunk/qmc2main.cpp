@@ -2861,12 +2861,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #if defined(QMC2_YOUTUBE_ENABLED)
     case QMC2_YOUTUBE_INDEX:
       if ( qmc2CurrentItem != qmc2LastYouTubeItem ) {
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("WIP: support for attached YouTube videos is still under development and not working properly yet!"));
+          log(QMC2_LOG_FRONTEND, QString("WIP: support for attached YouTube videos is still under development and not working properly yet!"));
           tabYouTube->setUpdatesEnabled(FALSE);
           if ( qmc2YouTubeWidget ) {
             QLayout *vbl = tabYouTube->layout();
-            if ( vbl )
-              delete vbl;
+            if ( vbl ) delete vbl;
             delete qmc2YouTubeWidget;
             qmc2YouTubeWidget = NULL;
           }
@@ -2891,8 +2890,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         if ( qmc2MESSDeviceConfigurator ) {
           qmc2MESSDeviceConfigurator->save();
           QLayout *vbl = tabDevices->layout();
-          if ( vbl )
-            delete vbl;
+          if ( vbl ) delete vbl;
           delete qmc2MESSDeviceConfigurator;
           qmc2MESSDeviceConfigurator = NULL;
         }
@@ -2916,12 +2914,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
 	if ( !qmc2MessSWListAlreadyLoading ) {
           qmc2MessSWListAlreadyLoading = true;
-          qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("WIP: support for MESS software lists is still under development and not working properly yet!"));
+          log(QMC2_LOG_FRONTEND, QString("WIP: support for MESS software lists is still under development and not working properly yet!"));
           tabSoftwareList->setUpdatesEnabled(FALSE);
           if ( qmc2MESSSoftwareList ) {
             QLayout *vbl = tabSoftwareList->layout();
-            if ( vbl )
-              delete vbl;
+            if ( vbl ) delete vbl;
             delete qmc2MESSSoftwareList;
             qmc2MESSSoftwareList = NULL;
           }
@@ -2948,8 +2945,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         tabMAWS->setUpdatesEnabled(FALSE);
         if ( qmc2MAWSLookup ) {
           QLayout *vbl = tabMAWS->layout();
-          if ( vbl )
-            delete vbl;
+          if ( vbl ) delete vbl;
           delete qmc2MAWSLookup;
           qmc2MAWSLookup = NULL;
         }
@@ -3032,8 +3028,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
             qmc2Config->setValue(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator", selectedEmulator);
           qmc2EmulatorOptions->save();
           QLayout *vbl = configWidget->layout();
-          if ( vbl )
-            delete vbl;
+          if ( vbl ) delete vbl;
           delete labelEmuSelector;
           delete comboBoxEmuSelector;
           delete qmc2EmulatorOptions;
@@ -3251,8 +3246,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           qmc2Config->setValue(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator", selectedEmulator);
         qmc2EmulatorOptions->save();
         QLayout *vbl = configWidget->layout();
-        if ( vbl )
-          delete vbl;
+        if ( vbl ) delete vbl;
         delete labelEmuSelector;
         delete comboBoxEmuSelector;
         delete qmc2EmulatorOptions;

@@ -62,6 +62,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 
 		void playVideo(QString &);
 		void loadVideo(QString &);
+		void loadNullVideo();
 		void videoTick(qint64);
 		void videoFinished();
 		void videoStateChanged(Phonon::State, Phonon::State);
