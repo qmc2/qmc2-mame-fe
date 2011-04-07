@@ -212,7 +212,8 @@ endif
 # Requires libphonon and a working Phonon backend (such as gstreamer or xine on
 # Linux, DirectX 9+ on Windows and QuickTime 7+ on Mac OS X).
 #
-# Phonon is currently only used by the built-in MP3 player.
+# Built-in Phonon features include the MP3 audio player and the YouTube video
+# widget.
 #
 ifndef PHONON
 PHONON = 1
@@ -481,7 +482,7 @@ endif
 # Enable (1) or disable (0) support for game/machine 'attached' youtube.com
 # videos.
 #
-# Notes: 1) Requires Phonon and will be disabled if PHONON=0
+# Notes: 1) Requires Phonon and will be disabled if PHONON=0!
 #        2) Currently this is a WIP feature (WIP=1 must be specified as well)
 #
 ifndef YOUTUBE

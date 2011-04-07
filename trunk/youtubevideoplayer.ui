@@ -18,7 +18,7 @@
    <item row="0" column="0">
     <widget class="QToolBox" name="toolBox">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="pageAttachedVideos">
       <property name="geometry">
@@ -270,7 +270,25 @@
         </widget>
        </item>
        <item row="0" column="0" colspan="5">
-        <widget class="Phonon::VideoPlayer" name="videoPlayer"/>
+        <widget class="QFrame" name="frameVideo">
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayoutVideoFrame">
+          <property name="margin">
+           <number>0</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="Phonon::VideoPlayer" name="videoPlayer"/>
+          </item>
+         </layout>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -279,8 +297,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>137</width>
-        <height>125</height>
+        <width>427</width>
+        <height>288</height>
        </rect>
       </property>
       <attribute name="icon">

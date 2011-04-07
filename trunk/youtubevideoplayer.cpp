@@ -43,6 +43,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 		<< YOUTUBE_FORMAT_MP4_1080P
 		<< YOUTUBE_FORMAT_MP4_3072P;
 
+	loadOnly = pausedByHideEvent = false;
 	videoInfoReply = NULL;
 	videoInfoManager = NULL;
 	videoPlayer->mediaObject()->setTickInterval(1000);
@@ -158,18 +159,37 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 
 	switch ( newState ) {
 		case Phonon::LoadingState:
-		case Phonon::PlayingState:
 		case Phonon::BufferingState:
+			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
+			toolButtonPlayPause->setEnabled(false);
+			labelPlayingTime->setText("--:--:--");
+			// serious hack to access the seekSlider's slider object
+			privateSeekSlider = seekSlider->findChild<QSlider *>();
+			if ( privateSeekSlider )
+				privateSeekSlider->setValue(0);
+			break;
+		case Phonon::PlayingState:
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_play.png")));
+			toolButtonPlayPause->setEnabled(true);
 			break;
 		case Phonon::PausedState:
+			if ( loadOnly ) {
+				loadOnly = false;
+				videoPlayer->audioOutput()->setMuted(false);
+			}
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_pause.png")));
+			toolButtonPlayPause->setEnabled(true);
 			break;
 		case Phonon::ErrorState:
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: playback error: %1").arg(videoPlayer->mediaObject()->errorString()));
 		case Phonon::StoppedState:
 		default:
+			if ( loadOnly ) {
+				loadOnly = false;
+				videoPlayer->audioOutput()->setMuted(false);
+			}
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
+			toolButtonPlayPause->setEnabled(true);
 			labelPlayingTime->setText("--:--:--");
 			// serious hack to access the seekSlider's slider object
 			privateSeekSlider = seekSlider->findChild<QSlider *>();
@@ -177,7 +197,6 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 				privateSeekSlider->setValue(0);
 			break;
 	}
-	if ( !toolButtonPlayPause->isEnabled() ) toolButtonPlayPause->setEnabled(true);
 }
 
 void YouTubeVideoPlayer::loadVideo(QString &videoID)
@@ -189,8 +208,10 @@ void YouTubeVideoPlayer::loadVideo(QString &videoID)
 	currentVideoID = videoID;
 	QUrl url = getVideoStreamUrl(videoID);
 	if ( url.isValid() ) {
+		loadOnly = true;
+		videoPlayer->audioOutput()->setMuted(true);
 		videoPlayer->load(Phonon::MediaSource(QUrl::fromEncoded((const char *)url.toString().toLatin1())));
-		videoPlayer->stop();
+		videoPlayer->pause();
 	}
 }
 
@@ -202,8 +223,10 @@ void YouTubeVideoPlayer::playVideo(QString &videoID)
 
 	currentVideoID = videoID;
 	QUrl url = getVideoStreamUrl(videoID);
-	if ( url.isValid() )
+	if ( url.isValid() ) {
+		loadOnly = false;
 		videoPlayer->play(Phonon::MediaSource(QUrl::fromEncoded((const char *)url.toString().toLatin1())));
+	}
 }
 
 QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
@@ -327,9 +350,10 @@ void YouTubeVideoPlayer::on_toolButtonPlayPause_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::on_toolButtonPlayPause_clicked()");
 #endif
 
-	if ( videoPlayer->isPlaying() )
+	if ( videoPlayer->isPlaying() ) {
+		pausedByHideEvent = false;
 		videoPlayer->pause();
-	else if ( videoPlayer->isPaused() )
+	} else if ( videoPlayer->isPaused() )
 		videoPlayer->play();
 	else if ( videoPlayer->mediaObject()->hasVideo() )
 		videoPlayer->play();
@@ -371,8 +395,9 @@ void YouTubeVideoPlayer::showEvent(QShowEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-	if ( videoPlayer->isPaused() )
+	if ( videoPlayer->isPaused() && pausedByHideEvent )
 		videoPlayer->play();
+	pausedByHideEvent = false;
 }
 
 void YouTubeVideoPlayer::hideEvent(QHideEvent *e)
@@ -381,7 +406,9 @@ void YouTubeVideoPlayer::hideEvent(QHideEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-	if ( videoPlayer->isPlaying() )
+	if ( videoPlayer->isPlaying() ) {
+		pausedByHideEvent = true;
 		videoPlayer->pause();
+	}
 }
 #endif
