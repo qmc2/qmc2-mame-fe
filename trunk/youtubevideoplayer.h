@@ -70,6 +70,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 
 		void on_toolButtonPlayPause_clicked();
 		void on_comboBoxPreferredFormat_currentIndexChanged(int);
+		void on_toolBox_currentChanged(int);
 
 	protected:
 		void showEvent(QShowEvent *);

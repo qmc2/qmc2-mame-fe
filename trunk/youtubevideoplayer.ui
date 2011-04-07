@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>328</height>
+    <width>427</width>
+    <height>378</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -25,8 +25,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>238</height>
+        <width>427</width>
+        <height>288</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -41,23 +41,7 @@
         <number>0</number>
        </property>
        <item row="0" column="0" colspan="5">
-        <widget class="QListWidget" name="listWidgetAttachedVideos">
-         <property name="acceptDrops">
-          <bool>true</bool>
-         </property>
-         <property name="showDropIndicator" stdset="0">
-          <bool>true</bool>
-         </property>
-         <property name="dragEnabled">
-          <bool>true</bool>
-         </property>
-         <property name="dragDropMode">
-          <enum>QAbstractItemView::DragDrop</enum>
-         </property>
-         <property name="defaultDropAction">
-          <enum>Qt::CopyAction</enum>
-         </property>
-        </widget>
+        <widget class="QListWidget" name="listWidgetAttachedVideos"/>
        </item>
        <item row="1" column="0">
         <widget class="QCheckBox" name="checkBoxPlayOMatic">
@@ -135,8 +119,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>259</width>
-        <height>32</height>
+        <width>427</width>
+        <height>288</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -146,13 +130,10 @@
       <attribute name="label">
        <string>Video player</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayoutVideoPlayer" columnstretch="0,0,0,1,0">
+      <layout class="QGridLayout" name="gridLayoutVideoPlayer" columnstretch="0,0,0,0,0">
        <property name="margin">
         <number>0</number>
        </property>
-       <item row="0" column="0" colspan="5">
-        <widget class="Phonon::VideoPlayer" name="videoPlayer"/>
-       </item>
        <item row="1" column="0">
         <widget class="QComboBox" name="comboBoxPreferredFormat">
          <property name="sizePolicy">
@@ -287,6 +268,9 @@
           </sizepolicy>
          </property>
         </widget>
+       </item>
+       <item row="0" column="0" colspan="5">
+        <widget class="Phonon::VideoPlayer" name="videoPlayer"/>
        </item>
       </layout>
      </widget>
