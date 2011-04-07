@@ -48,6 +48,8 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QString videoInfoBuffer;
 		bool viFinished;
 		bool viError;
+		bool loadOnly;
+		bool pausedByHideEvent;
 		QSlider *privateSeekSlider;
 		QToolButton *privateMuteButton;
 
