@@ -479,17 +479,15 @@ endif
 
 # >>> YOUTUBE <<<
 #
-# Enable (1) or disable (0) support for game/machine 'attached' youtube.com
-# videos.
+# Enable (1) or disable (0) support for game/machine 'attached' YouTube videos.
 #
-# Notes: 1) Requires Phonon and will be disabled if PHONON=0!
-#        2) Currently this is a WIP feature (WIP=1 must be specified as well)
+# Notes: 1) Requires Phonon and will thus be disabled automatically when
+#           PHONON=0!
+#        2) This is still an experimental 'WIP feature', so WIP=1 must also be
+#           specified!
 #
 ifndef YOUTUBE
 YOUTUBE = 1
-endif
-ifeq '$(PHONON)' '0'
-YOUTUBE = 0
 endif
 
 # >>> END OF MAKE OPTIONS <<<
@@ -601,6 +599,10 @@ endif
 
 ifeq '$(DATABASE)' '1'
 DEFINES += QMC2_DATABASE_ENABLED
+endif
+
+ifeq '$(PHONON)' '0'
+YOUTUBE = 0
 endif
 
 ifeq '$(YOUTUBE)' '1'
@@ -1060,7 +1062,7 @@ endif
 	@echo "WC_COMPRESSION       Compress MAWS web-cache data (0, 1)          $(WC_COMPRESSION)"
 	@echo "WIP                  Enable unfinished code (0, 1)                $(WIP)"
 	@echo "XWININFO             X11 xwininfo command                         $(XWININFO)"
-	@echo "YOUTUBE              Enable youtube.com videos (0, 1)             $(YOUTUBE)"
+	@echo "YOUTUBE              Enable support for YouTube videos (0, 1)     $(YOUTUBE)"
 ifneq '$(SVN_REV)' ''
 	@echo ""
 	@echo "The SVN revision of your working copy is $(SVN_REV)."
