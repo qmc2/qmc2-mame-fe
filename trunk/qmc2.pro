@@ -26,6 +26,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			detailsetup.ui \
 			miniwebbrowser.ui \
 			youtubevideoplayer.ui \
+			videoitemwidget.ui \
 			mawsqdlsetup.ui \
 			embedderopt.ui \
 			demomode.ui \
@@ -62,6 +63,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			detailsetup.cpp \
 			miniwebbrowser.cpp \
 			youtubevideoplayer.cpp \
+			videoitemwidget.cpp \
 			downloaditem.cpp \
 			mawsqdlsetup.cpp \
 			embedder.cpp \
@@ -111,6 +113,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			detailsetup.h \
 			miniwebbrowser.h \
 			youtubevideoplayer.h \
+			videoitemwidget.h \
 			downloaditem.h \
 			mawsqdlsetup.h \
 			embedder.h \
