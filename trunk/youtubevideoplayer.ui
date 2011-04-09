@@ -48,11 +48,8 @@
          <property name="horizontalScrollMode">
           <enum>QAbstractItemView::ScrollPerPixel</enum>
          </property>
-         <property name="resizeMode">
-          <enum>QListView::Adjust</enum>
-         </property>
-         <property name="viewMode">
-          <enum>QListView::ListMode</enum>
+         <property name="movement">
+          <enum>QListView::Free</enum>
          </property>
         </widget>
        </item>
@@ -132,8 +129,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>519</width>
-        <height>288</height>
+        <width>259</width>
+        <height>37</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -310,8 +307,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>137</width>
-        <height>125</height>
+        <width>519</width>
+        <height>288</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -356,7 +353,14 @@
         </widget>
        </item>
        <item row="1" column="0" colspan="4">
-        <widget class="QListWidget" name="listWidgetSearchResult"/>
+        <widget class="QListWidget" name="listWidgetSearchResult">
+         <property name="verticalScrollMode">
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="horizontalScrollMode">
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+        </widget>
        </item>
        <item row="0" column="1">
         <widget class="QSpinBox" name="spinBoxResultPage">

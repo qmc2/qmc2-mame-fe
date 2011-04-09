@@ -69,8 +69,9 @@ void VideoItemWidget::setImage(QImage &vImage)
 #endif
 
 	videoImage = vImage;
-	labelVideoImage->setFixedSize(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT);
 	labelVideoImage->setPixmap(QPixmap::fromImage(videoImage).scaled(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+	labelVideoImage->setFixedSize(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT);
+	textBrowserVideoDescription->setFixedHeight(VIDEOITEM_IMAGE_HEIGHT);
 }
 
 void VideoItemWidget::setVideoID(QString vID)
