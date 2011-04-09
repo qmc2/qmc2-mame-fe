@@ -49,6 +49,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		bool viFinished;
 		bool viError;
 		bool loadOnly;
+		bool isMuted;
 		bool pausedByHideEvent;
 		QSlider *privateSeekSlider;
 		QToolButton *privateMuteButton;
@@ -74,6 +75,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void on_toolButtonPlayPause_clicked();
 		void on_comboBoxPreferredFormat_currentIndexChanged(int);
 		void on_toolBox_currentChanged(int);
+		void on_listWidgetAttachedVideos_itemActivated(QListWidgetItem *);
 
 	protected:
 		void showEvent(QShowEvent *);
