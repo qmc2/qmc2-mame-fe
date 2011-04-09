@@ -52,9 +52,19 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 		<< YOUTUBE_FORMAT_MP4_1080P
 		<< YOUTUBE_FORMAT_MP4_3072P;
 
+	youTubeFormatNames
+		<< tr("FLV 240P")
+		<< tr("FLV 360P")
+		<< tr("MP4 360P")
+		<< tr("FLV 480P")
+		<< tr("MP4 720P")
+		<< tr("MP4 1080P")
+		<< tr("MP4 3072P");
+
 	loadOnly = isMuted = pausedByHideEvent = viError = viFinished = false;
 	videoInfoReply = NULL;
 	videoInfoManager = NULL;
+	currentFormat = bestAvailableFormat = YOUTUBE_FORMAT_UNKNOWN_INDEX;
 
 	videoPlayer->mediaObject()->setTickInterval(1000);
 	volumeSlider->setAudioOutput(videoPlayer->audioOutput());
@@ -328,6 +338,9 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
 
 	static QUrl videoUrl;
 
+	availableFormats.clear();
+	currentFormat = bestAvailableFormat = YOUTUBE_FORMAT_UNKNOWN_INDEX;
+
 	if ( videoInfoReply ) {
 		disconnect(videoInfoReply);
 		delete videoInfoReply;
@@ -373,11 +386,17 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
 				}
 			}
 		}
+
 		for (int i = 0; i < comboBoxPreferredFormat->count(); i++) {
-			if ( formatToUrlMap.contains(indexToFormat(i)) )
+			if ( formatToUrlMap.contains(indexToFormat(i)) ) {
 				comboBoxPreferredFormat->setItemIcon(i, QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png")));
-			else
+				availableFormats << i;
+				if ( bestAvailableFormat < i )
+					bestAvailableFormat = i;
+			} else {
 				comboBoxPreferredFormat->setItemIcon(i, QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png")));
+			}
+			comboBoxPreferredFormat->setItemText(i, youTubeFormatNames[i]);
 		}
 		for (int i = comboBoxPreferredFormat->currentIndex(); i >= 0; i--) {
 			if ( formatToUrlMap.contains(indexToFormat(i)) ) {
@@ -386,6 +405,8 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
 				QString fmtStr = indexToFormat(i);
 				printf("\nSelected format / URL for video ID '%s':\n%s\t%s\n", (const char *)videoID.toLatin1(), (const char *)fmtStr.toLatin1(), (const char *)videoUrl.toString().toLatin1());
 #endif
+				currentFormat = i;
+				comboBoxPreferredFormat->setItemText(i, "[" + youTubeFormatNames[i] + "]");
 				break;
 			}
 		}
@@ -458,8 +479,16 @@ void YouTubeVideoPlayer::on_comboBoxPreferredFormat_currentIndexChanged(int inde
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_comboBoxPreferredFormat_currentIndexChanged(int index = %1)").arg(index));
 #endif
 
-	if ( !currentVideoID.isEmpty() )
-		playVideo(currentVideoID);
+	if ( !currentVideoID.isEmpty() ) {
+		if ( availableFormats.contains(index) ) {
+			if ( videoPlayer->isPlaying() ) {
+				if ( currentFormat != index )
+					playVideo(currentVideoID);
+			} else
+				playVideo(currentVideoID);
+		} else if ( currentFormat < bestAvailableFormat && index > currentFormat )
+			playVideo(currentVideoID);
+	}
 }
 
 void YouTubeVideoPlayer::on_toolBox_currentChanged(int page)

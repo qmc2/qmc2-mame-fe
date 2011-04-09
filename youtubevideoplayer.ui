@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>519</width>
-    <height>378</height>
+    <width>553</width>
+    <height>341</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -18,15 +18,15 @@
    <item row="0" column="0">
     <widget class="QToolBox" name="toolBox">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="pageAttachedVideos">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>519</width>
-        <height>288</height>
+        <width>328</width>
+        <height>122</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -129,8 +129,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>259</width>
-        <height>37</height>
+        <width>553</width>
+        <height>251</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -147,13 +147,16 @@
        <item row="1" column="0">
         <widget class="QComboBox" name="comboBoxPreferredFormat">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
          <property name="toolTip">
           <string>Select the preferred video format (automatically falls back to the next available format)</string>
+         </property>
+         <property name="sizeAdjustPolicy">
+          <enum>QComboBox::AdjustToContents</enum>
          </property>
          <item>
           <property name="text">
@@ -307,8 +310,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>519</width>
-        <height>288</height>
+        <width>137</width>
+        <height>125</height>
        </rect>
       </property>
       <attribute name="icon">

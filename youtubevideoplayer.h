@@ -22,6 +22,7 @@
 #define YOUTUBE_FORMAT_MP4_1080P_INDEX	5
 #define YOUTUBE_FORMAT_MP4_3072P	"38"
 #define YOUTUBE_FORMAT_MP4_3072P_INDEX	6
+#define YOUTUBE_FORMAT_UNKNOWN_INDEX	-1
 
 // tool-box pages
 #define YOUTUBE_ATTACHED_VIDEOS_PAGE	0
@@ -42,6 +43,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 
 		QString currentVideoID;
 		QStringList youTubeFormats;
+		QStringList youTubeFormatNames;
 		QNetworkReply *videoInfoReply;
 		QNetworkAccessManager *videoInfoManager;
 		QNetworkRequest videoInfoRequest;
@@ -53,6 +55,9 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		bool pausedByHideEvent;
 		QSlider *privateSeekSlider;
 		QToolButton *privateMuteButton;
+		QList<int> availableFormats;
+		int bestAvailableFormat;
+		int currentFormat;
 
 		QUrl getVideoStreamUrl(QString);
 		QString indexToFormat(int);
