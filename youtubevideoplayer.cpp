@@ -361,7 +361,14 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
 	connect(videoInfoReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(videoInfoError(QNetworkReply::NetworkError)));
 	connect(videoInfoReply, SIGNAL(finished()), this, SLOT(videoInfoFinished()));
 
-	while ( !viFinished && !viError ) QTest::qWait(10);
+	QTime timer;
+	bool timeoutOccurred = false;
+	timer.start();
+	while ( !viFinished && !viError && !timeoutOccurred ) {
+		timeoutOccurred = ( timer.elapsed() >= YOUTUBE_VIDEOINFO_TIMEOUT );
+		if ( !timeoutOccurred )
+			QTest::qWait(YOUTUBE_VIDEOINFO_WAIT);
+	}
 
 	if ( viFinished && !viError ) {
 		QStringList videoInfoList = videoInfoBuffer.split("&");
@@ -413,7 +420,12 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
 		return videoUrl;
 	} else if ( viError ) {
 		return QString();
+	} else if ( timeoutOccurred ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: video info error: timeout occurred"));
+		return QString();
 	}
+
+	return QString();
 }
 
 QString YouTubeVideoPlayer::indexToFormat(int index)
@@ -445,6 +457,7 @@ void YouTubeVideoPlayer::videoInfoError(QNetworkReply::NetworkError error)
 #endif
 
 	viError = true;
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: video info error: %1").arg(videoInfoReply->errorString()));
 }
 
 void YouTubeVideoPlayer::videoInfoFinished()
@@ -540,8 +553,8 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetIt
 
 	VideoItemWidget *itemWidget = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
 	if ( itemWidget ) {
-		playVideo(itemWidget->videoID);
 		toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
+		playVideo(itemWidget->videoID);
 	}
 }
 #endif
