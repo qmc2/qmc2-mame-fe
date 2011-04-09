@@ -33,6 +33,10 @@
 #define YOUTUBE_PLAYOMATIC_SEQUENTIAL	0
 #define YOUTUBE_PLAYOMATIC_RANDOM	1
 
+// timeout and request polling (wait) time for video info requests in ms
+#define YOUTUBE_VIDEOINFO_TIMEOUT	10000
+#define YOUTUBE_VIDEOINFO_WAIT		100
+
 class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 {
 	Q_OBJECT
