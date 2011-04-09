@@ -119,7 +119,12 @@ void YouTubeVideoPlayer::init()
 
 	VideoItemWidget *videoItemWidget;
 	QListWidgetItem *listWidgetItem;
-	QSize size(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT);
+	QSize size(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT + 4);
+
+	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
+	listWidgetItem->setSizeHint(size);
+	videoItemWidget = new VideoItemWidget("bFjX1uUhB1A", "<p><b>Joe Satriani - The Mystical Potato Head Groove Thing (G3 LIVE in Denver 2003)</b></p>");
+	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);

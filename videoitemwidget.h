@@ -11,6 +11,7 @@
 #define VIDEOITEM_TYPE_YOUTUBE		0
 
 #define VIDEOITEM_YOUTUBE_URL_PATTERN	"http://www.youtube.com/v/$VIDEO_ID$"
+//#define VIDEOITEM_YOUTUBE_URL_PATTERN	"http://www.youtube.com/watch?v=$VIDEO_ID$"
 
 class VideoItemWidget : public QWidget, public Ui::VideoItemWidget
 {
