@@ -6,6 +6,7 @@
 #include "macros.h"
 #include "qmc2main.h"
 #include "youtubevideoplayer.h"
+#include "videoitemwidget.h"
 
 #define QMC2_DEBUG
 
@@ -32,6 +33,8 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 	checkBoxPlayOMatic->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", false).toBool());
 	comboBoxMode->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", YOUTUBE_PLAYOMATIC_SEQUENTIAL).toInt());
 	checkBoxRepeat->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", true).toBool());
+
+	// serious hack to access the volume slider's tool button object
 	privateMuteButton = volumeSlider->findChild<QToolButton *>();
 	if ( privateMuteButton ) {
 		privateMuteButton->setCheckable(true);
@@ -49,9 +52,10 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 		<< YOUTUBE_FORMAT_MP4_1080P
 		<< YOUTUBE_FORMAT_MP4_3072P;
 
-	loadOnly = pausedByHideEvent = false;
+	loadOnly = isMuted = pausedByHideEvent = viError = viFinished = false;
 	videoInfoReply = NULL;
 	videoInfoManager = NULL;
+
 	videoPlayer->mediaObject()->setTickInterval(1000);
 	volumeSlider->setAudioOutput(videoPlayer->audioOutput());
 	seekSlider->setMediaObject(videoPlayer->mediaObject());
@@ -76,6 +80,8 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", checkBoxPlayOMatic->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", comboBoxMode->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", checkBoxRepeat->isChecked());
+
+	// serious hack to access the volume slider's tool button object
 	privateMuteButton = volumeSlider->findChild<QToolButton *>();
 	if ( privateMuteButton )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioMuted", privateMuteButton->isChecked());
@@ -111,25 +117,75 @@ void YouTubeVideoPlayer::init()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::init()");
 #endif
 
-	//QString video = "bcwBowBFFzc";
-	//QString video = "vK9rfCpjOQc";
-	//QString video = "gO-OwcBCa8Y";
-	//QString video = "XCv5aPqlDd4";
-	//QString video = "PZxfFxYY7JM";
-	//QString video = "X6Qvpz5d18g";
-	//QString video = "xdg5wBd9r_U";
-	//QString video = "SyhO0Ypukfc";
-	//QString video = "9XyR8buBfNk";
+	VideoItemWidget *videoItemWidget;
+	QListWidgetItem *listWidgetItem;
+	QSize size(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT);
+
+	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
+	listWidgetItem->setSizeHint(size);
+	videoItemWidget = new VideoItemWidget("bcwBowBFFzc", "<p><b>Frogger (Arcade) Demo</b></p>");
+	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
+
+	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
+	listWidgetItem->setSizeHint(size);
+	videoItemWidget = new VideoItemWidget("vK9rfCpjOQc", "<p><b>Orianthi</b></p>");
+	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
+
+	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
+	listWidgetItem->setSizeHint(size);
+	videoItemWidget = new VideoItemWidget("gO-OwcBCa8Y", "<p><b>Orianthi HD</b></p>");
+	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
+
+	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
+	listWidgetItem->setSizeHint(size);
+	videoItemWidget = new VideoItemWidget("XCv5aPqlDd4", "<p><b>world.avi</b></p>");
+	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
+
+	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
+	listWidgetItem->setSizeHint(size);
+	videoItemWidget = new VideoItemWidget("PZxfFxYY7JM", "<p><b>Golden Globe</b></p>");
+	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
+
+	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
+	listWidgetItem->setSizeHint(size);
+	videoItemWidget = new VideoItemWidget("X6Qvpz5d18g", "<p><b>Earth 3D.wmv</b></p>");
+	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
+
+	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
+	listWidgetItem->setSizeHint(size);
+	videoItemWidget = new VideoItemWidget("xdg5wBd9r_U", "<p><b>Realistic 3d Earth using only AE</b></p>");
+	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
+
+	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
+	listWidgetItem->setSizeHint(size);
+	videoItemWidget = new VideoItemWidget("SyhO0Ypukfc", "<p><b>Universo 3D</b></p>");
+	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
+
+	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
+	listWidgetItem->setSizeHint(size);
+	videoItemWidget = new VideoItemWidget("9XyR8buBfNk", "<p><b>RayStorm - first stage</b></p>");
+	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
+
+	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
+	listWidgetItem->setSizeHint(size);
+	videoItemWidget = new VideoItemWidget("3qD453R7usI", "<p><b>The Block Kuzushi</b></p>");
+	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
+
+	listWidgetAttachedVideos->updateGeometry();
+
+	QTimer::singleShot(100, this, SLOT(loadNullVideo()));
+
 	/*
-	QString video = "3qD453R7usI";
 	if ( checkBoxPlayOMatic->isChecked() )
 		playVideo(video);
 	else
 		loadVideo(video);
-	*/
+		*/
 
+	/*
 	if ( listWidgetAttachedVideos->count() < 1 )
 		QTimer::singleShot(100, this, SLOT(loadNullVideo()));
+	*/
 }
 
 void YouTubeVideoPlayer::adjustIconSizes()
@@ -163,6 +219,7 @@ void YouTubeVideoPlayer::videoFinished()
 	privateSeekSlider = seekSlider->findChild<QSlider *>();
 	if ( privateSeekSlider )
 		privateSeekSlider->setValue(0);
+
 	labelPlayingTime->setText("--:--:--");
 	toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 }
@@ -202,7 +259,7 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 		case Phonon::PausedState:
 			if ( loadOnly ) {
 				loadOnly = false;
-				videoPlayer->audioOutput()->setMuted(false);
+				videoPlayer->audioOutput()->setMuted(isMuted);
 			}
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_pause.png")));
 			toolButtonPlayPause->setEnabled(true);
@@ -213,7 +270,7 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 		default:
 			if ( loadOnly ) {
 				loadOnly = false;
-				videoPlayer->audioOutput()->setMuted(false);
+				videoPlayer->audioOutput()->setMuted(isMuted);
 			}
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 			toolButtonPlayPause->setEnabled(!currentVideoID.isEmpty());
@@ -234,9 +291,11 @@ void YouTubeVideoPlayer::loadVideo(QString &videoID)
 
 	currentVideoID = videoID;
 	QUrl url = getVideoStreamUrl(videoID);
+	isMuted = videoPlayer->audioOutput()->isMuted();
 	if ( url.isValid() ) {
 		loadOnly = true;
-		videoPlayer->audioOutput()->setMuted(true);
+		if ( !isMuted )
+			videoPlayer->audioOutput()->setMuted(true);
 		videoPlayer->load(Phonon::MediaSource(QUrl::fromEncoded((const char *)url.toString().toLatin1())));
 		videoPlayer->pause();
 	}
@@ -436,6 +495,19 @@ void YouTubeVideoPlayer::hideEvent(QHideEvent *e)
 	if ( videoPlayer->isPlaying() ) {
 		pausedByHideEvent = true;
 		videoPlayer->pause();
+	}
+}
+
+void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetItem *item)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong)item));
+#endif
+
+	VideoItemWidget *itemWidget = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+	if ( itemWidget ) {
+		playVideo(itemWidget->videoID);
+		toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
 	}
 }
 #endif
