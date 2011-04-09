@@ -364,16 +364,16 @@
 #define QMC2_COMMAND_RUNONCE		"runonce"
 #define QMC2_VARIANT_SDLMAME_NAME	"qmc2-sdlmame"
 #define QMC2_VARIANT_SDLMAME_BUNDLE_ID	"net.arcadehits.qmc2." QMC2_VARIANT_SDLMAME_NAME
-#define QMC2_VARIANT_SDLMAME_TITLE	tr("M.A.M.E. Catalog / Launcher II")
+#define QMC2_VARIANT_SDLMAME_TITLE	MainWindow::tr("M.A.M.E. Catalog / Launcher II")
 #define QMC2_VARIANT_SDLMESS_NAME	"qmc2-sdlmess"
 #define QMC2_VARIANT_SDLMESS_BUNDLE_ID	"net.arcadehits.qmc2." QMC2_VARIANT_SDLMESS_NAME
-#define QMC2_VARIANT_SDLMESS_TITLE	tr("M.E.S.S. Catalog / Launcher II")
+#define QMC2_VARIANT_SDLMESS_TITLE	MainWindow::tr("M.E.S.S. Catalog / Launcher II")
 #define QMC2_VARIANT_MAME_NAME		"qmc2-mame"
 #define QMC2_VARIANT_MAME_BUNDLE_ID	"net.arcadehits.qmc2." QMC2_VARIANT_MAME_NAME
-#define QMC2_VARIANT_MAME_TITLE		tr("M.A.M.E. Catalog / Launcher II")
+#define QMC2_VARIANT_MAME_TITLE		MainWindow::tr("M.A.M.E. Catalog / Launcher II")
 #define QMC2_VARIANT_MESS_NAME		"qmc2-mess"
 #define QMC2_VARIANT_MESS_BUNDLE_ID	"net.arcadehits.qmc2." QMC2_VARIANT_MESS_NAME
-#define QMC2_VARIANT_MESS_TITLE		tr("M.E.S.S. Catalog / Launcher II")
+#define QMC2_VARIANT_MESS_TITLE		MainWindow::tr("M.E.S.S. Catalog / Launcher II")
 #if defined(QMC2_SDLMAME)
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-sdlmame/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-sdlmame/")
