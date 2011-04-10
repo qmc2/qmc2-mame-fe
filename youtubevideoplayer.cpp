@@ -486,10 +486,10 @@ void YouTubeVideoPlayer::on_toolButtonPlayPause_clicked()
 		playVideo(currentVideoID);
 }
 
-void YouTubeVideoPlayer::on_comboBoxPreferredFormat_currentIndexChanged(int index)
+void YouTubeVideoPlayer::on_comboBoxPreferredFormat_activated(int index)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_comboBoxPreferredFormat_currentIndexChanged(int index = %1)").arg(index));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_comboBoxPreferredFormat_activated(int index = %1)").arg(index));
 #endif
 
 	if ( !currentVideoID.isEmpty() ) {
@@ -497,10 +497,16 @@ void YouTubeVideoPlayer::on_comboBoxPreferredFormat_currentIndexChanged(int inde
 			if ( videoPlayer->isPlaying() ) {
 				if ( currentFormat != index )
 					playVideo(currentVideoID);
-			} else
+			} else if ( index == currentFormat ) {
+				videoPlayer->play();
+			} else {
 				playVideo(currentVideoID);
-		} else if ( currentFormat < bestAvailableFormat && index > currentFormat )
+			}
+		} else if ( currentFormat < bestAvailableFormat && index > currentFormat ) {
 			playVideo(currentVideoID);
+		} else if ( index >= currentFormat ) {
+			videoPlayer->play();
+		}
 	}
 }
 
