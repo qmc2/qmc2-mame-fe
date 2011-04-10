@@ -82,7 +82,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void videoInfoFinished();
 
 		void on_toolButtonPlayPause_clicked();
-		void on_comboBoxPreferredFormat_currentIndexChanged(int);
+		void on_comboBoxPreferredFormat_activated(int);
 		void on_toolBox_currentChanged(int);
 		void on_listWidgetAttachedVideos_itemActivated(QListWidgetItem *);
 
