@@ -1949,9 +1949,13 @@ void MainWindow::on_actionFullscreenToggle_activated()
     showFullScreen();
 #endif
   } else {
+#if defined(QMC2_YOUTUBE_ENABLED)
+    bool youTubeWasPlaying = false;
+    if ( qmc2YouTubeWidget )
+      youTubeWasPlaying = qmc2YouTubeWidget->videoPlayer->isPlaying();
+#endif
     hide();
     qApp->processEvents();
-
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
       if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Maximized", FALSE).toBool() ) {
         showMaximized();
@@ -1969,6 +1973,10 @@ void MainWindow::on_actionFullscreenToggle_activated()
       move((qApp->desktop()->availableGeometry().width() - width()) / 2, (qApp->desktop()->availableGeometry().height() - height()) / 2);
       showNormal();
     }
+#if defined(QMC2_YOUTUBE_ENABLED)
+    if ( qmc2YouTubeWidget && youTubeWasPlaying )
+      qmc2YouTubeWidget->videoPlayer->play();
+#endif
   }
 
   activateWindow();
