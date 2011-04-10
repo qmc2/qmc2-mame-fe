@@ -40,6 +40,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 		privateMuteButton->setCheckable(true);
 		privateMuteButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
 		privateMuteButton->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioMuted", false).toBool());
+		privateMuteButton->setToolTip(tr("Mute / unmute audio output"));
 		videoPlayer->audioOutput()->setMuted(privateMuteButton->isChecked());
 	}
 
@@ -69,11 +70,16 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 	videoPlayer->mediaObject()->setTickInterval(1000);
 	volumeSlider->setAudioOutput(videoPlayer->audioOutput());
 	seekSlider->setMediaObject(videoPlayer->mediaObject());
+	seekSlider->setToolTip(tr("Video progress"));
 	connect(videoPlayer->mediaObject(), SIGNAL(tick(qint64)), this, SLOT(videoTick(qint64)));
 	connect(videoPlayer->mediaObject(), SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(videoStateChanged(Phonon::State, Phonon::State)));
+	connect(videoPlayer->mediaObject(), SIGNAL(bufferStatus(int)), this, SLOT(videoBufferStatus(int)));
 	connect(videoPlayer, SIGNAL(finished()), this, SLOT(videoFinished()));
 
 	adjustIconSizes();
+
+	progressBarBufferStatus->setValue(0);
+	progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
 
 	QTimer::singleShot(0, this, SLOT(init()));
 }
@@ -222,6 +228,7 @@ void YouTubeVideoPlayer::adjustIconSizes()
 	toolBox->setItemIcon(YOUTUBE_ATTACHED_VIDEOS_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/movie.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	toolBox->setItemIcon(YOUTUBE_VIDEO_PLAYER_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/youtube.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	toolBox->setItemIcon(YOUTUBE_SEARCH_VIDEO_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/pacman.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+	progressBarBufferStatus->setFixedWidth(progressBarBufferStatus->sizeHint().width() / 4);
 }
 
 void YouTubeVideoPlayer::videoFinished()
@@ -237,6 +244,8 @@ void YouTubeVideoPlayer::videoFinished()
 
 	labelPlayingTime->setText("--:--:--");
 	toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
+	progressBarBufferStatus->setValue(0);
+	progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
 }
 
 void YouTubeVideoPlayer::videoTick(qint64 time)
@@ -248,6 +257,16 @@ void YouTubeVideoPlayer::videoTick(qint64 time)
 	QTime hrTime;
 	hrTime = hrTime.addMSecs(videoPlayer->mediaObject()->remainingTime());
 	labelPlayingTime->setText(hrTime.toString("hh:mm:ss"));
+}
+
+void YouTubeVideoPlayer::videoBufferStatus(int percentFilled)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoBufferStatus(int percentFilled = %1)").arg(percentFilled));
+#endif
+
+	progressBarBufferStatus->setValue(percentFilled);
+	progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(percentFilled));
 }
 
 void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State oldState)
@@ -266,6 +285,8 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 			privateSeekSlider = seekSlider->findChild<QSlider *>();
 			if ( privateSeekSlider )
 				privateSeekSlider->setValue(0);
+			progressBarBufferStatus->setValue(0);
+			progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
 			break;
 		case Phonon::PlayingState:
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_play.png")));
@@ -294,6 +315,8 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 			privateSeekSlider = seekSlider->findChild<QSlider *>();
 			if ( privateSeekSlider )
 				privateSeekSlider->setValue(0);
+			progressBarBufferStatus->setValue(0);
+			progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
 			break;
 	}
 }

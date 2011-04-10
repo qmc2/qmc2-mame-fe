@@ -140,10 +140,34 @@
       <attribute name="label">
        <string>Video player</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayoutVideoPlayer" columnstretch="0,0,0,1,0">
+      <layout class="QGridLayout" name="gridLayoutVideoPlayer" columnstretch="0,0,0,1,0,0">
        <property name="margin">
         <number>0</number>
        </property>
+       <item row="0" column="0" colspan="6">
+        <widget class="QFrame" name="frameVideo">
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+         <property name="lineWidth">
+          <number>0</number>
+         </property>
+         <layout class="QGridLayout" name="gridLayoutVideoFrame">
+          <property name="margin">
+           <number>0</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="Phonon::VideoPlayer" name="videoPlayer"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
        <item row="1" column="0">
         <widget class="QComboBox" name="comboBoxPreferredFormat">
          <property name="sizePolicy">
@@ -253,6 +277,16 @@
          </property>
         </widget>
        </item>
+       <item row="1" column="3">
+        <widget class="Phonon::SeekSlider" name="seekSlider">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
        <item row="1" column="4">
         <widget class="QLabel" name="labelPlayingTime">
          <property name="sizePolicy">
@@ -272,35 +306,26 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="3">
-        <widget class="Phonon::SeekSlider" name="seekSlider">
+       <item row="1" column="5">
+        <widget class="QProgressBar" name="progressBarBufferStatus">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+          <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-        </widget>
-       </item>
-       <item row="0" column="0" colspan="5">
-        <widget class="QFrame" name="frameVideo">
-         <property name="autoFillBackground">
-          <bool>true</bool>
+         <property name="toolTip">
+          <string>Current buffer fill level</string>
          </property>
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
+         <property name="value">
+          <number>0</number>
          </property>
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
          </property>
-         <layout class="QGridLayout" name="gridLayoutVideoFrame">
-          <property name="margin">
-           <number>0</number>
-          </property>
-          <item row="0" column="0">
-           <widget class="Phonon::VideoPlayer" name="videoPlayer"/>
-          </item>
-         </layout>
+         <property name="format">
+          <string/>
+         </property>
         </widget>
        </item>
       </layout>
