@@ -76,6 +76,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void videoTick(qint64);
 		void videoFinished();
 		void videoStateChanged(Phonon::State, Phonon::State);
+		void videoBufferStatus(int);
 
 		void videoInfoReadyRead();
 		void videoInfoError(QNetworkReply::NetworkError);
