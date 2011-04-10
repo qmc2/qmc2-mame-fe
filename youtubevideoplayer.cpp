@@ -591,7 +591,8 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetIt
 	VideoItemWidget *itemWidget = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
 	if ( itemWidget ) {
 		toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
-		playVideo(itemWidget->videoID);
+		if ( currentVideoID != itemWidget->videoID || !videoPlayer->isPlaying() )
+			playVideo(itemWidget->videoID);
 	}
 }
 #endif
