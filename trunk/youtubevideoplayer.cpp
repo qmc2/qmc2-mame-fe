@@ -228,7 +228,7 @@ void YouTubeVideoPlayer::adjustIconSizes()
 	toolBox->setItemIcon(YOUTUBE_ATTACHED_VIDEOS_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/movie.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	toolBox->setItemIcon(YOUTUBE_VIDEO_PLAYER_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/youtube.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	toolBox->setItemIcon(YOUTUBE_SEARCH_VIDEO_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/pacman.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
-	progressBarBufferStatus->setFixedWidth(progressBarBufferStatus->sizeHint().width() / 4);
+	progressBarBufferStatus->setFixedWidth(progressBarBufferStatus->sizeHint().width() / 2);
 }
 
 void YouTubeVideoPlayer::videoFinished()
@@ -275,12 +275,20 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoStateChanged(Phonon::State newState = %1, Phonon::State oldState = %2)").arg(newState).arg(oldState));
 #endif
 
+	QTime hrTime;
+	qint64 remainingTime;
+
 	switch ( newState ) {
 		case Phonon::LoadingState:
 		case Phonon::BufferingState:
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 			toolButtonPlayPause->setEnabled(false);
-			labelPlayingTime->setText("--:--:--");
+			remainingTime = videoPlayer->mediaObject()->remainingTime();
+			if ( remainingTime > 0 ) {
+				hrTime = hrTime.addMSecs(remainingTime);
+				labelPlayingTime->setText(hrTime.toString("hh:mm:ss"));
+			} else
+				labelPlayingTime->setText("--:--:--");
 			// serious hack to access the seekSlider's slider object
 			privateSeekSlider = seekSlider->findChild<QSlider *>();
 			if ( privateSeekSlider )
