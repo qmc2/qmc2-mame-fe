@@ -17,6 +17,7 @@ VideoItemWidget::VideoItemWidget(QString vID, QString vDescription, QImage &vIma
 #endif
 
 	setupUi(this);
+	textBrowserVideoDescription->setObjectName("QMC2_VIDEO_DESCRIPTION");
 
 	myVideoPlayer = vPlayer;
 	setType(vType);
@@ -33,6 +34,7 @@ VideoItemWidget::VideoItemWidget(QString vID, QString vDescription, int vType, v
 #endif
 
 	setupUi(this);
+	textBrowserVideoDescription->setObjectName("QMC2_VIDEO_DESCRIPTION");
 
 	myVideoPlayer = vPlayer;
 	setType(vType);
