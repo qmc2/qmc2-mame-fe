@@ -52,6 +52,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QNetworkAccessManager *videoInfoManager;
 		QNetworkRequest videoInfoRequest;
 		QString videoInfoBuffer;
+		QAction *videoMenuPlayPauseAction;
 		bool viFinished;
 		bool viError;
 		bool loadOnly;
@@ -62,6 +63,9 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QList<int> availableFormats;
 		int bestAvailableFormat;
 		int currentFormat;
+		QMenu *menuAttachedVideos;
+		QMenu *menuSearchResults;
+		QMenu *menuVideoPlayer;
 
 		QUrl getVideoStreamUrl(QString);
 		QString indexToFormat(int);
@@ -87,8 +91,15 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void on_toolBox_currentChanged(int);
 		void on_listWidgetAttachedVideos_itemActivated(QListWidgetItem *);
 		void on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &);
-		void on_listWidgetSearchResult_customContextMenuRequested(const QPoint &);
+		void on_listWidgetSearchResults_customContextMenuRequested(const QPoint &);
 		void on_videoPlayer_customContextMenuRequested(const QPoint &);
+
+		void playAttachedVideo();
+		void copyYouTubeUrl();
+		void copyAlternateYouTubeUrl();
+		void copyCurrentYouTubeUrl();
+		void copyCurrentAlternateYouTubeUrl();
+		void removeSelectedVideos();
 
 	protected:
 		void showEvent(QShowEvent *);

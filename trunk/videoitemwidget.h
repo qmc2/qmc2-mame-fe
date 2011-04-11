@@ -4,14 +4,14 @@
 #include <Qt>
 #include "ui_videoitemwidget.h"
 
-#define VIDEOITEM_IMAGE_WIDTH		100
-#define VIDEOITEM_IMAGE_HEIGHT		75
+#define VIDEOITEM_IMAGE_WIDTH					100
+#define VIDEOITEM_IMAGE_HEIGHT					75
 
-#define VIDEOITEM_TYPE_UNKNOWN		-1
-#define VIDEOITEM_TYPE_YOUTUBE		0
+#define VIDEOITEM_TYPE_UNKNOWN					-1
+#define VIDEOITEM_TYPE_YOUTUBE					0
 
-#define VIDEOITEM_YOUTUBE_URL_PATTERN	"http://www.youtube.com/v/$VIDEO_ID$"
-//#define VIDEOITEM_YOUTUBE_URL_PATTERN	"http://www.youtube.com/watch?v=$VIDEO_ID$"
+#define VIDEOITEM_YOUTUBE_URL_PATTERN				"http://www.youtube.com/watch?v=$VIDEO_ID$"
+#define VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER		"http://www.youtube.com/v/$VIDEO_ID$"
 
 class VideoItemWidget : public QWidget, public Ui::VideoItemWidget
 {

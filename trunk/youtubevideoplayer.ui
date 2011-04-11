@@ -28,8 +28,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>466</width>
-        <height>229</height>
+        <width>327</width>
+        <height>121</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -296,7 +296,7 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Play / pause / replay the current video</string>
+          <string>Start / pause / resume video playback</string>
          </property>
          <property name="text">
           <string/>
@@ -375,8 +375,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>466</width>
-        <height>229</height>
+        <width>137</width>
+        <height>125</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -421,7 +421,7 @@
         </widget>
        </item>
        <item row="1" column="0" colspan="4">
-        <widget class="QListWidget" name="listWidgetSearchResult">
+        <widget class="QListWidget" name="listWidgetSearchResults">
          <property name="verticalScrollMode">
           <enum>QAbstractItemView::ScrollPerPixel</enum>
          </property>
@@ -504,7 +504,7 @@
   <tabstop>spinBoxResultPage</tabstop>
   <tabstop>toolButtonSuggest</tabstop>
   <tabstop>toolButtonSearch</tabstop>
-  <tabstop>listWidgetSearchResult</tabstop>
+  <tabstop>listWidgetSearchResults</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>

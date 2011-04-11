@@ -2,6 +2,7 @@
 
 #include <QtTest>
 #include <QSettings>
+#include <QClipboard>
 
 #include "macros.h"
 #include "qmc2main.h"
@@ -81,6 +82,56 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 	progressBarBufferStatus->setValue(0);
 	progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
 
+	QString s;
+	QAction *action;
+
+	// context menus
+	menuAttachedVideos = new QMenu(0);
+	s = tr("Play this video");
+	action = menuAttachedVideos->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/media_play.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(playAttachedVideo()));
+	menuAttachedVideos->addSeparator();
+	s = tr("Copy YouTube URL (standard)");
+	action = menuAttachedVideos->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyYouTubeUrl()));
+	s = tr("Copy alternate YouTube URL (no country filter)");
+	action = menuAttachedVideos->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyAlternateYouTubeUrl()));
+	menuAttachedVideos->addSeparator();
+	s = tr("Remove selected videos");
+	action = menuAttachedVideos->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/remove.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(removeSelectedVideos()));
+
+	menuVideoPlayer = new QMenu(0);
+	s = tr("Start / pause / resume video playback");
+	action = menuVideoPlayer->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
+	videoMenuPlayPauseAction = action;
+	videoMenuPlayPauseAction->setEnabled(false);
+	connect(action, SIGNAL(triggered()), this, SLOT(on_toolButtonPlayPause_clicked()));
+	menuVideoPlayer->addSeparator();
+	s = tr("Copy YouTube URL (standard)");
+	action = menuVideoPlayer->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyCurrentYouTubeUrl()));
+	s = tr("Copy alternate YouTube URL (no country filter)");
+	action = menuVideoPlayer->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyCurrentAlternateYouTubeUrl()));
+
+	menuSearchResults = NULL;
+
 	QTimer::singleShot(0, this, SLOT(init()));
 }
 
@@ -102,6 +153,19 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 	if ( privateMuteButton )
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioMuted", privateMuteButton->isChecked());
 
+	// clean up
+	if ( menuAttachedVideos ) {
+		disconnect(menuAttachedVideos);
+		delete menuAttachedVideos;
+	}
+	if ( menuSearchResults ) {
+		disconnect(menuSearchResults);
+		delete menuSearchResults;
+	}
+	if ( menuVideoPlayer ) {
+		disconnect(menuVideoPlayer);
+		delete menuVideoPlayer;
+	}
 	if ( videoInfoReply ) {
 		disconnect(videoInfoReply);
 		delete videoInfoReply;
@@ -125,6 +189,98 @@ void YouTubeVideoPlayer::loadNullVideo()
 	currentVideoID.clear();
 	videoPlayer->play(Phonon::MediaSource(QString::fromUtf8(":/data/img/ghost_video.png")));
 	videoPlayer->stop();
+}
+
+void YouTubeVideoPlayer::playAttachedVideo()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::playAttachedVideo()");
+#endif
+
+	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
+	if ( item )
+		on_listWidgetAttachedVideos_itemActivated(item);
+}
+
+void YouTubeVideoPlayer::copyYouTubeUrl()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyYouTubeUrl()");
+#endif
+
+	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
+	if ( item ) {
+		VideoItemWidget *itemWidget = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+		if ( itemWidget ) {
+			if ( !itemWidget->videoID.isEmpty() ) {
+				if ( !itemWidget->videoUrlPattern.isEmpty() ) {
+					QString url = VIDEOITEM_YOUTUBE_URL_PATTERN;
+					url.replace("$VIDEO_ID$", itemWidget->videoID);
+					qApp->clipboard()->setText(url);
+				}
+			}
+		}
+	}
+}
+
+void YouTubeVideoPlayer::copyAlternateYouTubeUrl()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyAlternateYouTubeUrl()");
+#endif
+
+	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
+	if ( item ) {
+		VideoItemWidget *itemWidget = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+		if ( itemWidget ) {
+			if ( !itemWidget->videoID.isEmpty() ) {
+				if ( !itemWidget->videoUrlPattern.isEmpty() ) {
+					QString url = VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER;
+					url.replace("$VIDEO_ID$", itemWidget->videoID);
+					qApp->clipboard()->setText(url);
+				}
+			}
+		}
+	}
+}
+
+void YouTubeVideoPlayer::copyCurrentYouTubeUrl()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyCurrentYouTubeUrl()");
+#endif
+
+	if ( !currentVideoID.isEmpty() ) {
+		QString url = VIDEOITEM_YOUTUBE_URL_PATTERN;
+		url.replace("$VIDEO_ID$", currentVideoID);
+		qApp->clipboard()->setText(url);
+	}
+}
+
+void YouTubeVideoPlayer::copyCurrentAlternateYouTubeUrl()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyCurrentYouTubeUrl()");
+#endif
+
+	if ( !currentVideoID.isEmpty() ) {
+		QString url = VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER;
+		url.replace("$VIDEO_ID$", currentVideoID);
+		qApp->clipboard()->setText(url);
+	}
+}
+
+void YouTubeVideoPlayer::removeSelectedVideos()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::removeSelectedVideos()");
+#endif
+
+	QList<QListWidgetItem *> il = listWidgetAttachedVideos->selectedItems();
+	foreach (QListWidgetItem *item, il) {
+		QListWidgetItem *i = listWidgetAttachedVideos->takeItem(listWidgetAttachedVideos->row(item));
+		delete i;
+	}
 }
 
 void YouTubeVideoPlayer::init()
@@ -244,6 +400,7 @@ void YouTubeVideoPlayer::videoFinished()
 
 	labelPlayingTime->setText("--:--:--");
 	toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
+	videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 	progressBarBufferStatus->setValue(0);
 	progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
 }
@@ -283,6 +440,8 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 		case Phonon::BufferingState:
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 			toolButtonPlayPause->setEnabled(false);
+			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
+			videoMenuPlayPauseAction->setEnabled(false);
 			remainingTime = videoPlayer->mediaObject()->remainingTime();
 			if ( remainingTime > 0 ) {
 				hrTime = hrTime.addMSecs(remainingTime);
@@ -299,6 +458,8 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 		case Phonon::PlayingState:
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_play.png")));
 			toolButtonPlayPause->setEnabled(true);
+			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_play.png")));
+			videoMenuPlayPauseAction->setEnabled(true);
 			break;
 		case Phonon::PausedState:
 			if ( loadOnly ) {
@@ -307,6 +468,8 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 			}
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_pause.png")));
 			toolButtonPlayPause->setEnabled(true);
+			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_pause.png")));
+			videoMenuPlayPauseAction->setEnabled(true);
 			break;
 		case Phonon::ErrorState:
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: playback error: %1").arg(videoPlayer->mediaObject()->errorString()));
@@ -318,6 +481,8 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 			}
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 			toolButtonPlayPause->setEnabled(!currentVideoID.isEmpty());
+			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
+			videoMenuPlayPauseAction->setEnabled(!currentVideoID.isEmpty());
 			labelPlayingTime->setText("--:--:--");
 			// serious hack to access the seekSlider's slider object
 			privateSeekSlider = seekSlider->findChild<QSlider *>();
@@ -591,7 +756,9 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetIt
 	VideoItemWidget *itemWidget = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
 	if ( itemWidget ) {
 		toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
-		if ( currentVideoID != itemWidget->videoID || !videoPlayer->isPlaying() )
+		if ( currentVideoID == itemWidget->videoID && !videoPlayer->isPlaying() )
+			videoPlayer->play();
+		else if ( currentVideoID != itemWidget->videoID || !videoPlayer->isPlaying() )
 			playVideo(itemWidget->videoID);
 	}
 }
@@ -602,14 +769,30 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &p = [%1, %2])").arg(p.x()).arg(p.y()));
 #endif
 
+	QWidget *w = listWidgetAttachedVideos->viewport();
+	if ( sender() )
+		if ( sender()->objectName() == "QMC2_VIDEO_DESCRIPTION" )
+			w = (QWidget *)sender();
+	if ( w && menuAttachedVideos ) {
+		menuAttachedVideos->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuAttachedVideos));
+		menuAttachedVideos->show();
+	}
 }
 
-void YouTubeVideoPlayer::on_listWidgetSearchResult_customContextMenuRequested(const QPoint &p)
+void YouTubeVideoPlayer::on_listWidgetSearchResults_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_listWidgetSearchResult_customContextMenuRequested(const QPoint &p = [%1, %2])").arg(p.x()).arg(p.y()));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_listWidgetSearchResults_customContextMenuRequested(const QPoint &p = [%1, %2])").arg(p.x()).arg(p.y()));
 #endif
 
+	QWidget *w = listWidgetSearchResults->viewport();
+	if ( sender() )
+		if ( sender()->objectName() == "QMC2_VIDEO_DESCRIPTION" )
+			w = (QWidget *)sender();
+	if ( w && menuSearchResults ) {
+		menuSearchResults->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuSearchResults));
+		menuSearchResults->show();
+	}
 }
 
 void YouTubeVideoPlayer::on_videoPlayer_customContextMenuRequested(const QPoint &p)
@@ -618,5 +801,12 @@ void YouTubeVideoPlayer::on_videoPlayer_customContextMenuRequested(const QPoint 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_videoPlayer_customContextMenuRequested(const QPoint &p = [%1, %2])").arg(p.x()).arg(p.y()));
 #endif
 
+	if ( currentVideoID.isEmpty() )
+		return;
+
+	if ( menuVideoPlayer ) {
+		menuVideoPlayer->move(qmc2MainWindow->adjustedWidgetPosition(videoPlayer->mapToGlobal(p), menuVideoPlayer));
+		menuVideoPlayer->show();
+	}
 }
 #endif
