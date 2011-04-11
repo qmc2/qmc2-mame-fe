@@ -139,57 +139,57 @@ void YouTubeVideoPlayer::init()
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("bFjX1uUhB1A", "<p><b>Joe Satriani - The Mystical Potato Head Groove Thing (G3 LIVE in Denver 2003)</b></p>");
+	videoItemWidget = new VideoItemWidget("bFjX1uUhB1A", "<p><b>Joe Satriani - The Mystical Potato Head Groove Thing (G3 LIVE in Denver 2003)</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("bcwBowBFFzc", "<p><b>Frogger (Arcade) Demo</b></p>");
+	videoItemWidget = new VideoItemWidget("bcwBowBFFzc", "<p><b>Frogger (Arcade) Demo</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("vK9rfCpjOQc", "<p><b>Orianthi</b></p>");
+	videoItemWidget = new VideoItemWidget("vK9rfCpjOQc", "<p><b>Orianthi</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("gO-OwcBCa8Y", "<p><b>Orianthi HD</b></p>");
+	videoItemWidget = new VideoItemWidget("gO-OwcBCa8Y", "<p><b>Orianthi HD</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("XCv5aPqlDd4", "<p><b>world.avi</b></p>");
+	videoItemWidget = new VideoItemWidget("XCv5aPqlDd4", "<p><b>world.avi</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("PZxfFxYY7JM", "<p><b>Golden Globe</b></p>");
+	videoItemWidget = new VideoItemWidget("PZxfFxYY7JM", "<p><b>Golden Globe</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("X6Qvpz5d18g", "<p><b>Earth 3D.wmv</b></p>");
+	videoItemWidget = new VideoItemWidget("X6Qvpz5d18g", "<p><b>Earth 3D.wmv</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("xdg5wBd9r_U", "<p><b>Realistic 3d Earth using only AE</b></p>");
+	videoItemWidget = new VideoItemWidget("xdg5wBd9r_U", "<p><b>Realistic 3d Earth using only AE</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("SyhO0Ypukfc", "<p><b>Universo 3D</b></p>");
+	videoItemWidget = new VideoItemWidget("SyhO0Ypukfc", "<p><b>Universo 3D</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("9XyR8buBfNk", "<p><b>RayStorm - first stage</b></p>");
+	videoItemWidget = new VideoItemWidget("9XyR8buBfNk", "<p><b>RayStorm - first stage</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("3qD453R7usI", "<p><b>The Block Kuzushi</b></p>");
+	videoItemWidget = new VideoItemWidget("3qD453R7usI", "<p><b>The Block Kuzushi</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetAttachedVideos->updateGeometry();
@@ -594,5 +594,29 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetIt
 		if ( currentVideoID != itemWidget->videoID || !videoPlayer->isPlaying() )
 			playVideo(itemWidget->videoID);
 	}
+}
+
+void YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &p = [%1, %2])").arg(p.x()).arg(p.y()));
+#endif
+
+}
+
+void YouTubeVideoPlayer::on_listWidgetSearchResult_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_listWidgetSearchResult_customContextMenuRequested(const QPoint &p = [%1, %2])").arg(p.x()).arg(p.y()));
+#endif
+
+}
+
+void YouTubeVideoPlayer::on_videoPlayer_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_videoPlayer_customContextMenuRequested(const QPoint &p = [%1, %2])").arg(p.x()).arg(p.y()));
+#endif
+
 }
 #endif
