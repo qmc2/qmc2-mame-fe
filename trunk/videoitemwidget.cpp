@@ -1,5 +1,6 @@
 #include "macros.h"
 #include "videoitemwidget.h"
+#include "youtubevideoplayer.h"
 
 #define QMC2_DEBUG
 
@@ -8,31 +9,33 @@
 extern MainWindow *qmc2MainWindow;
 #endif
 
-VideoItemWidget::VideoItemWidget(QString vID, QString vDescription, QImage &vImage, int type, QWidget *parent)
+VideoItemWidget::VideoItemWidget(QString vID, QString vDescription, QImage &vImage, int vType, void *vPlayer, QWidget *parent)
   : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vDescription = ..., QImage &vImage = ..., nt type = %2, QWidget *parent = %3)").arg(vID).arg(type).arg((qulonglong) parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vDescription = ..., QImage &vImage = ..., int vType = %2, void *vPlayer = %3, QWidget *parent = %4)").arg(vID).arg(vType).arg((qulonglong) vPlayer).arg((qulonglong) parent));
 #endif
 
 	setupUi(this);
 
-	setType(type);
+	myVideoPlayer = vPlayer;
+	setType(vType);
 	setVideoID(vID);
 	setImage(vImage);
 	setVideoDescription(vDescription);
 }
 
-VideoItemWidget::VideoItemWidget(QString vID, QString vDescription, int type, QWidget *parent)
+VideoItemWidget::VideoItemWidget(QString vID, QString vDescription, int vType, void *vPlayer, QWidget *parent)
   : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vDescription = ..., int type = %2, QWidget *parent = %3)").arg(vID).arg(type).arg((qulonglong) parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vDescription = ..., int vType = %2, void *vPlayer = %3, QWidget *parent = %4)").arg(vID).arg(vType).arg((qulonglong) vPlayer).arg((qulonglong) parent));
 #endif
 
 	setupUi(this);
 
-	setType(type);
+	myVideoPlayer = vPlayer;
+	setType(vType);
 	setVideoID(vID);
 	QImage ghostImage = QImage(QString::fromUtf8(":/data/img/ghost_video.png"));
 	setImage(ghostImage);
@@ -58,6 +61,10 @@ void VideoItemWidget::setType(int type)
 		case VIDEOITEM_TYPE_YOUTUBE:
 		default:
 			videoUrlPattern = VIDEOITEM_YOUTUBE_URL_PATTERN;
+			if ( myVideoPlayer ) {
+				textBrowserVideoDescription->disconnect((YouTubeVideoPlayer *)myVideoPlayer);
+				connect(textBrowserVideoDescription, SIGNAL(customContextMenuRequested(const QPoint &)), (YouTubeVideoPlayer *)myVideoPlayer, SLOT(on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &))); 
+			}
 			break;
 	}
 }

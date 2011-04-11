@@ -22,10 +22,11 @@ class VideoItemWidget : public QWidget, public Ui::VideoItemWidget
 		QString videoID;
 		QString videoDescription;
 		QString videoUrlPattern;
+		void *myVideoPlayer;
 		int itemType;
 
-		VideoItemWidget(QString, QString, QImage &vImage, int type = VIDEOITEM_TYPE_YOUTUBE, QWidget *parent = 0);
-		VideoItemWidget(QString, QString, int type = VIDEOITEM_TYPE_YOUTUBE, QWidget *parent = 0);
+		VideoItemWidget(QString, QString, QImage &vImage, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
+		VideoItemWidget(QString, QString, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
 		~VideoItemWidget();
 
 	public slots:

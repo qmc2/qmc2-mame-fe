@@ -270,7 +270,7 @@ void MainWindow::log(char logOrigin, QString message)
       } else {
         qmc2LastFrontendLogMessage = message;
         if ( qmc2FrontendLogMessageRepeatCount > 0 )
-          message = tr("last message repeated %n time(s)", "", qmc2FrontendLogMessageRepeatCount);
+          message = tr("last message repeated %n time(s)", "", qmc2FrontendLogMessageRepeatCount) + "\n" + timeString + ": " + qmc2LastFrontendLogMessage;
         qmc2FrontendLogMessageRepeatCount = 0;
       }
       break;
@@ -284,7 +284,7 @@ void MainWindow::log(char logOrigin, QString message)
       } else {
         qmc2LastEmulatorLogMessage = message;
         if ( qmc2EmulatorLogMessageRepeatCount > 0 )
-          message = tr("last message repeated %n time(s)", "", qmc2EmulatorLogMessageRepeatCount);
+          message = tr("last message repeated %n time(s)", "", qmc2EmulatorLogMessageRepeatCount) + "\n" + timeString + ": " + qmc2LastEmulatorLogMessage;
         qmc2EmulatorLogMessageRepeatCount = 0;
       }
       break;
