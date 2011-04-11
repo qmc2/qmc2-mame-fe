@@ -2880,7 +2880,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           gridLayout->getContentsMargins(&left, &top, &right, &bottom);
           QVBoxLayout *layout = new QVBoxLayout;
           layout->setContentsMargins(left, top, right, bottom);
-          qmc2YouTubeWidget = new YouTubeVideoPlayer(tabYouTube);
+	  QString setID = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
+          qmc2YouTubeWidget = new YouTubeVideoPlayer(setID, qmc2GamelistDescriptionMap[setID], tabYouTube);
           layout->addWidget(qmc2YouTubeWidget);
           tabYouTube->setLayout(layout);
           qmc2YouTubeWidget->show();

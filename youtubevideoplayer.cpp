@@ -3,6 +3,7 @@
 #include <QtTest>
 #include <QSettings>
 #include <QClipboard>
+#include <QInputDialog>
 
 #include "macros.h"
 #include "qmc2main.h"
@@ -15,25 +16,34 @@ extern MainWindow *qmc2MainWindow;
 extern QNetworkAccessManager *qmc2NetworkAccessManager;
 extern QSettings *qmc2Config;
 
-YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
+YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
 	: QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent = %1)").arg((qulonglong) parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID = %1, QString sName = %2, QWidget *parent = %3)").arg(sID).arg(sName).arg((qulonglong) parent));
 #endif
 
 	setupUi(this);
+
+	mySetID = sID;
+	mySetName = sName;
 
 	videoPlayer->videoWidget()->setScaleMode(Phonon::VideoWidget::FitInView);
 	videoPlayer->videoWidget()->setAspectRatio(Phonon::VideoWidget::AspectRatioAuto);
 
 	toolButtonPlayPause->setEnabled(false);
+	toolButtonSearch->setEnabled(false);
 	comboBoxPreferredFormat->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PreferredFormat", YOUTUBE_FORMAT_MP4_1080P_INDEX).toInt());
 	videoPlayer->audioOutput()->setVolume(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", 0.5).toDouble());
 	toolBox->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PageIndex", YOUTUBE_SEARCH_VIDEO_PAGE).toInt());
 	checkBoxPlayOMatic->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", false).toBool());
 	comboBoxMode->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", YOUTUBE_PLAYOMATIC_SEQUENTIAL).toInt());
 	checkBoxRepeat->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", true).toBool());
+#if defined(QMC2_EMUTYPE_MAME)
+	suggestorAppendString = qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", "Arcade").toString();
+#else
+	suggestorAppendString = qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", "").toString();
+#endif
 
 	// serious hack to access the volume slider's tool button object
 	privateMuteButton = volumeSlider->findChild<QToolButton *>();
@@ -132,6 +142,21 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QWidget *parent)
 
 	menuSearchResults = NULL;
 
+	menuSuggestButton = new QMenu(0);
+	s = tr("Auto-suggest");
+	action = menuSuggestButton->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setCheckable(true);
+	action->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AutoSuggest", true).toBool());
+	autoSuggestAction = action;
+	s = tr("Append...");
+	action = menuSuggestButton->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	connect(action, SIGNAL(triggered()), this, SLOT(setSuggestorAppendString()));
+	toolButtonSuggest->setMenu(menuSuggestButton);
+	if ( autoSuggestAction->isChecked() )
+		on_toolButtonSuggest_clicked();
+
 	QTimer::singleShot(0, this, SLOT(init()));
 }
 
@@ -147,6 +172,8 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", checkBoxPlayOMatic->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", comboBoxMode->currentIndex());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", checkBoxRepeat->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AutoSuggest", autoSuggestAction->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", suggestorAppendString);
 
 	// serious hack to access the volume slider's tool button object
 	privateMuteButton = volumeSlider->findChild<QToolButton *>();
@@ -166,6 +193,10 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 		disconnect(menuVideoPlayer);
 		delete menuVideoPlayer;
 	}
+	if ( menuSuggestButton ) {
+		disconnect(menuSuggestButton);
+		delete menuSuggestButton;
+	}
 	if ( videoInfoReply ) {
 		disconnect(videoInfoReply);
 		delete videoInfoReply;
@@ -178,6 +209,23 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 		disconnect(videoPlayer);
 		delete videoPlayer;
 	}
+}
+
+void YouTubeVideoPlayer::setSuggestorAppendString()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::setSuggestorAppendString()");
+#endif
+
+	bool ok;
+	QString appendString = QInputDialog::getText(this,
+						tr("Appended string"),
+						tr("Enter the string to be appended when suggesting a pattern:"),
+						QLineEdit::Normal,
+						suggestorAppendString,
+						&ok);
+	if ( ok )
+		suggestorAppendString = appendString;
 }
 
 void YouTubeVideoPlayer::loadNullVideo()
@@ -301,6 +349,11 @@ void YouTubeVideoPlayer::init()
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
 	videoItemWidget = new VideoItemWidget("bcwBowBFFzc", "<p><b>Frogger (Arcade) Demo</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
+	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
+
+	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
+	listWidgetItem->setSizeHint(size);
+	videoItemWidget = new VideoItemWidget("xkTasNER4vI", "<p><b>Arcade Longplay [119] Bionic Commando</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
@@ -808,5 +861,35 @@ void YouTubeVideoPlayer::on_videoPlayer_customContextMenuRequested(const QPoint 
 		menuVideoPlayer->move(qmc2MainWindow->adjustedWidgetPosition(videoPlayer->mapToGlobal(p), menuVideoPlayer));
 		menuVideoPlayer->show();
 	}
+}
+
+void YouTubeVideoPlayer::on_lineEditSearchString_textChanged(const QString &text)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_lineEditSearchString_textChanged(const QString &text = %1)").arg(text));
+#endif
+
+	toolButtonSearch->setEnabled(!text.isEmpty());
+}
+
+void YouTubeVideoPlayer::on_toolButtonSuggest_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::on_toolButtonSuggest_clicked()");
+#endif
+
+	QString suggestedSearchPattern = mySetName;
+	suggestedSearchPattern = suggestedSearchPattern.replace(QRegExp("\\(.*\\)"), "").simplified();
+	if ( !suggestorAppendString.isEmpty() )
+		suggestedSearchPattern.append(" " + suggestorAppendString);
+	lineEditSearchString->setText(suggestedSearchPattern);
+}
+
+void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::on_toolButtonSearch_clicked()");
+#endif
+
 }
 #endif
