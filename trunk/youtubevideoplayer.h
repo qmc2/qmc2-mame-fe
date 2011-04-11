@@ -42,10 +42,13 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 	Q_OBJECT
 
 	public:
-		YouTubeVideoPlayer(QWidget *parent = 0);
+		YouTubeVideoPlayer(QString, QString, QWidget *parent = 0);
 		~YouTubeVideoPlayer();
 
 		QString currentVideoID;
+		QString mySetID;
+		QString mySetName;
+		QString suggestorAppendString;
 		QStringList youTubeFormats;
 		QStringList youTubeFormatNames;
 		QNetworkReply *videoInfoReply;
@@ -53,6 +56,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QNetworkRequest videoInfoRequest;
 		QString videoInfoBuffer;
 		QAction *videoMenuPlayPauseAction;
+		QAction *autoSuggestAction;
 		bool viFinished;
 		bool viError;
 		bool loadOnly;
@@ -66,6 +70,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QMenu *menuAttachedVideos;
 		QMenu *menuSearchResults;
 		QMenu *menuVideoPlayer;
+		QMenu *menuSuggestButton;
 
 		QUrl getVideoStreamUrl(QString);
 		QString indexToFormat(int);
@@ -93,6 +98,9 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &);
 		void on_listWidgetSearchResults_customContextMenuRequested(const QPoint &);
 		void on_videoPlayer_customContextMenuRequested(const QPoint &);
+		void on_lineEditSearchString_textChanged(const QString &);
+		void on_toolButtonSuggest_clicked();
+		void on_toolButtonSearch_clicked();
 
 		void playAttachedVideo();
 		void copyYouTubeUrl();
@@ -100,6 +108,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void copyCurrentYouTubeUrl();
 		void copyCurrentAlternateYouTubeUrl();
 		void removeSelectedVideos();
+		void setSuggestorAppendString();
 
 	protected:
 		void showEvent(QShowEvent *);
