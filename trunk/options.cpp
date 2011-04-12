@@ -1690,6 +1690,12 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
   
   // Files / Directories
+#if defined(QMC2_YOUTUBE_ENABLED)
+  QString youTubeCachePath = config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", userScopePath + "/youtube/").toString();
+  QDir youTubeCacheDir(youTubeCachePath);
+  if ( !youTubeCacheDir.exists() )
+    youTubeCacheDir.mkdir(youTubeCachePath);
+#endif
   lineEditDataDirectory->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory", QMC2_DEFAULT_DATA_PATH + "/").toString());
 #if defined(QMC2_EMUTYPE_MAME)
 #if defined(QMC2_SDLMAME)
@@ -2331,7 +2337,8 @@ void Options::on_toolButtonBrowseMAWSCacheDirectory_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMAWSCacheDirectory_clicked()");
 #endif
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose MAWS cache directory"), lineEditMAWSCacheDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  // we set the option 'QFileDialog::DontUseNativeDialog' here because the native dialog doesn't always handle dot-paths (hidden dirs) correctly
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose MAWS cache directory"), lineEditMAWSCacheDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
   if ( !s.isNull() ) {
     if ( !s.endsWith("/") ) s += "/";
     lineEditMAWSCacheDirectory->setText(s);

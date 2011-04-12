@@ -55,6 +55,9 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 		videoPlayer->audioOutput()->setMuted(privateMuteButton->isChecked());
 	}
 
+	currentVideoID.clear();
+	currentAuthor.clear();
+
 	youTubeFormats 
 		<< YOUTUBE_FORMAT_FLV_240P
 		<< YOUTUBE_FORMAT_FLV_360P
@@ -113,6 +116,11 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyAlternateYouTubeUrl()));
+	s = tr("Copy author URL");
+	action = menuAttachedVideos->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyAuthorUrl()));
 	menuAttachedVideos->addSeparator();
 	s = tr("Remove selected videos");
 	action = menuAttachedVideos->addAction(s);
@@ -139,6 +147,11 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyCurrentAlternateYouTubeUrl()));
+	s = tr("Copy author URL");
+	action = menuVideoPlayer->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyCurrentAuthorUrl()));
 
 	menuSearchResults = NULL;
 
@@ -235,6 +248,7 @@ void YouTubeVideoPlayer::loadNullVideo()
 #endif
 
 	currentVideoID.clear();
+	currentAuthor.clear();
 	videoPlayer->play(Phonon::MediaSource(QString::fromUtf8(":/data/img/ghost_video.png")));
 	videoPlayer->stop();
 }
@@ -292,6 +306,27 @@ void YouTubeVideoPlayer::copyAlternateYouTubeUrl()
 	}
 }
 
+void YouTubeVideoPlayer::copyAuthorUrl()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyAuthorUrl()");
+#endif
+
+	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
+	if ( item ) {
+		VideoItemWidget *itemWidget = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+		if ( itemWidget ) {
+			if ( !itemWidget->videoAuthor.isEmpty() ) {
+				if ( !itemWidget->authorUrlPattern.isEmpty() ) {
+					QString url = VIDEOITEM_YOUTUBE_AUTHOR_URL_PATTERN;
+					url.replace("$USER_ID$", itemWidget->videoAuthor);
+					qApp->clipboard()->setText(url);
+				}
+			}
+		}
+	}
+}
+
 void YouTubeVideoPlayer::copyCurrentYouTubeUrl()
 {
 #ifdef QMC2_DEBUG
@@ -314,6 +349,19 @@ void YouTubeVideoPlayer::copyCurrentAlternateYouTubeUrl()
 	if ( !currentVideoID.isEmpty() ) {
 		QString url = VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER;
 		url.replace("$VIDEO_ID$", currentVideoID);
+		qApp->clipboard()->setText(url);
+	}
+}
+
+void YouTubeVideoPlayer::copyCurrentAuthorUrl()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyCurrentAuthorUrl()");
+#endif
+
+	if ( !currentAuthor.isEmpty() ) {
+		QString url = VIDEOITEM_YOUTUBE_AUTHOR_URL_PATTERN;
+		url.replace("$USER_ID$", currentAuthor);
 		qApp->clipboard()->setText(url);
 	}
 }
@@ -343,62 +391,62 @@ void YouTubeVideoPlayer::init()
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("bFjX1uUhB1A", "<p><b>Joe Satriani - The Mystical Potato Head Groove Thing (G3 LIVE in Denver 2003)</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
+	videoItemWidget = new VideoItemWidget("bFjX1uUhB1A", "Joe Satriani - The Mystical Potato Head Groove Thing (G3 LIVE in Denver 2003)", "malfarius", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("bcwBowBFFzc", "<p><b>Frogger (Arcade) Demo</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
+	videoItemWidget = new VideoItemWidget("bcwBowBFFzc", "Frogger (Arcade) Demo", "retrojuegoschile", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("xkTasNER4vI", "<p><b>Arcade Longplay [119] Bionic Commando</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
+	videoItemWidget = new VideoItemWidget("xkTasNER4vI", "Arcade Longplay [119] Bionic Commando", "cubex55", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("vK9rfCpjOQc", "<p><b>Orianthi</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
+	videoItemWidget = new VideoItemWidget("vK9rfCpjOQc", "Orianthi", "VARANDONIS", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("gO-OwcBCa8Y", "<p><b>Orianthi HD</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
+	videoItemWidget = new VideoItemWidget("gO-OwcBCa8Y", "Orianthi HD", "EsperantoBr", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("XCv5aPqlDd4", "<p><b>world.avi</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
+	videoItemWidget = new VideoItemWidget("XCv5aPqlDd4", "world.avi", "themaster011189", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("PZxfFxYY7JM", "<p><b>Golden Globe</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
+	videoItemWidget = new VideoItemWidget("PZxfFxYY7JM", "Golden Globe", "paulnewson", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("X6Qvpz5d18g", "<p><b>Earth 3D.wmv</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
+	videoItemWidget = new VideoItemWidget("X6Qvpz5d18g", "Earth 3D.wmv", "Aegyssus07", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("xdg5wBd9r_U", "<p><b>Realistic 3d Earth using only AE</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
+	videoItemWidget = new VideoItemWidget("xdg5wBd9r_U", "Realistic 3d Earth using only AE", "ShaneNL69", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("SyhO0Ypukfc", "<p><b>Universo 3D</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
+	videoItemWidget = new VideoItemWidget("SyhO0Ypukfc", "Universo 3D", "vipaces", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("9XyR8buBfNk", "<p><b>RayStorm - first stage</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
+	videoItemWidget = new VideoItemWidget("9XyR8buBfNk", "RayStorm - first stage", "samortails", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
 	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("3qD453R7usI", "<p><b>The Block Kuzushi</b></p>", VIDEOITEM_TYPE_YOUTUBE, this);
+	videoItemWidget = new VideoItemWidget("3qD453R7usI", "The Block Kuzushi", "DarkPuIse", VIDEOITEM_TYPE_YOUTUBE, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 
 	listWidgetAttachedVideos->updateGeometry();
@@ -585,10 +633,10 @@ void YouTubeVideoPlayer::playVideo(QString &videoID)
 	}
 }
 
-QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
+QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoInfoStringList, bool videoInfoOnly)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::getVideoStreamUrl(QString videoID = %1)").arg(videoID));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::getVideoStreamUrl(QString videoID = %1, QStringList *videoInfoStringList = %2, bool videoInfoOnly = %3)").arg(videoID).arg((qulonglong)videoInfoStringList).arg(videoInfoOnly));
 #endif
 
 	static QUrl videoUrl;
@@ -628,12 +676,57 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
 	if ( viFinished && !viError ) {
 		QStringList videoInfoList = videoInfoBuffer.split("&");
 #ifdef QMC2_DEBUG
-		printf("\nAvailable formats / URLs for video ID '%s':\n", (const char *)videoID.toLatin1());
+		printf("\nFull info for video ID '%s':\n>>>>\n", (const char *)videoID.toLatin1());
 #endif
+		QString author, authorUrl, thumbnail_url, title;
+		QUrl debugUrl;
+		foreach (QString vInfo, videoInfoList) {
+#ifdef QMC2_DEBUG
+			 printf("%s\n", (const char *)vInfo.toLatin1());
+#endif
+			 if ( vInfo.startsWith("author=") ) {
+				 vInfo.replace(QRegExp("^author="), "");
+				 debugUrl = QUrl::fromEncoded(vInfo.toAscii());
+				 author = debugUrl.toString();
+				 authorUrl = VIDEOITEM_YOUTUBE_AUTHOR_URL_PATTERN;
+				 authorUrl.replace("$USER_ID$", author);
+			 } else if ( vInfo.startsWith("thumbnail_url=") ) {
+				 vInfo.replace(QRegExp("^thumbnail_url="), "");
+				 debugUrl = QUrl::fromEncoded(vInfo.toAscii());
+				 thumbnail_url = debugUrl.toString();
+			 } else if ( vInfo.startsWith("title") ) {
+				 vInfo.replace(QRegExp("^title="), "");
+				 debugUrl = QUrl::fromEncoded(vInfo.toAscii());
+				 title = debugUrl.toString();
+				 title.replace("+", " ");
+			 }
+		}
+
+#ifdef QMC2_DEBUG
+		printf(">>>>\n\nSelected (decoded) info for video ID '%s':\n>>>>\n", (const char *)videoID.toLatin1());
+		printf("title         = '%s'\n", (const char *)title.toLatin1());
+		printf("author        = '%s'\n", (const char *)author.toLatin1());
+		printf("author_url    = '%s'\n", (const char *)authorUrl.toLatin1());
+		printf("thumbnail_url = '%s'\n>>>>\n", (const char *)thumbnail_url.toLatin1());
+		printf("\nAvailable formats / stream URLs for video ID '%s':\n>>>>\n", (const char *)videoID.toLatin1());
+#endif
+
+		if ( videoInfoStringList ) {
+			videoInfoStringList->clear();
+			videoInfoStringList->append(title);
+			videoInfoStringList->append(author);
+			videoInfoStringList->append(authorUrl);
+			videoInfoStringList->append(thumbnail_url);
+		}
+		if ( videoInfoOnly )
+			return QString();
+
+		currentAuthor = author;
+
 		QMap <QString, QUrl> formatToUrlMap;
 		foreach (QString videoInfo, videoInfoList) {
 			if ( videoInfo.startsWith("fmt_url_map=") ) {
-				QStringList fmtUrlMap = videoInfo.replace("fmt_url_map=", "").split("%2C");
+				QStringList fmtUrlMap = videoInfo.replace(QRegExp("^fmt_url_map="), "").split("%2C");
 				foreach (QString fmtUrl, fmtUrlMap) {
 					QStringList formatAndUrl = fmtUrl.split("%7C");
 					if ( formatAndUrl.count() > 1 ) {
@@ -665,7 +758,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID)
 				videoUrl = formatToUrlMap[indexToFormat(i)];
 #ifdef QMC2_DEBUG
 				QString fmtStr = indexToFormat(i);
-				printf("\nSelected format / URL for video ID '%s':\n%s\t%s\n", (const char *)videoID.toLatin1(), (const char *)fmtStr.toLatin1(), (const char *)videoUrl.toString().toLatin1());
+				printf(">>>>\n\nSelected format / stream URL for video ID '%s':\n>>>>\n%s\t%s\n>>>>\n", (const char *)videoID.toLatin1(), (const char *)fmtStr.toLatin1(), (const char *)videoUrl.toString().toLatin1());
 #endif
 				currentFormat = i;
 				comboBoxPreferredFormat->setItemText(i, "[" + youTubeFormatNames[i] + "]");

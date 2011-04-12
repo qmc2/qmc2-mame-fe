@@ -1,5 +1,6 @@
 #include <QInputDialog>
 #include <QSettings>
+#include <QFileDialog>
 
 #include "detailsetup.h"
 #include "macros.h"
@@ -94,6 +95,12 @@ DetailSetup::DetailSetup(QWidget *parent)
 #endif
 #endif
   configurableDetailList << QMC2_MAWS_INDEX;
+#if QMC2_WIP_CODE == 1
+#if QMC2_YOUTUBE_ENABLED
+  configurableDetailList << QMC2_YOUTUBE_INDEX;
+#endif
+#endif
+
 #elif defined(QMC2_EMUTYPE_MESS)
   shortTitleMap[QMC2_PREVIEW_INDEX] = tr("Pre&view");
   longTitleMap[QMC2_PREVIEW_INDEX] = tr("Machine preview image");
@@ -151,6 +158,12 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_YOUTUBE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX);
 #endif
 #endif
+#if QMC2_WIP_CODE == 1
+#if QMC2_YOUTUBE_ENABLED
+  configurableDetailList << QMC2_YOUTUBE_INDEX;
+#endif
+#endif
+
 #endif
 
   setupUi(this);
@@ -390,6 +403,34 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
           }
           break;
 #endif
+
+#if QMC2_WIP_CODE == 1
+#if QMC2_YOUTUBE_ENABLED
+	case QMC2_YOUTUBE_INDEX: {
+		QString userScopePath = QMC2_DOT_PATH;
+		QString oldCacheDirectory = qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", userScopePath + "/youtube/").toString();
+		// we set the option 'QFileDialog::DontUseNativeDialog' here because the native dialog doesn't always handle dot-paths (hidden dirs) correctly
+		QString youTubeCacheDirectory = QFileDialog::getExistingDirectory(this,
+										tr("Choose the YouTube cache directory"),
+										oldCacheDirectory,
+										QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks | QFileDialog::DontUseNativeDialog);
+
+		if ( !youTubeCacheDirectory.isNull() ) {
+			if ( !youTubeCacheDirectory.endsWith("/") ) youTubeCacheDirectory += "/";
+			if ( youTubeCacheDirectory != oldCacheDirectory ) {
+				QDir youTubeCacheDir(youTubeCacheDirectory);
+				if ( !youTubeCacheDir.exists() ) {
+					if ( youTubeCacheDir.mkdir(youTubeCacheDirectory) )
+						qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", youTubeCacheDirectory);
+					else
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create new YouTube cache directory, path = %1").arg(youTubeCacheDirectory));
+				}
+			}
+		}
+	}
+#endif
+#endif
+
         default:
           break;
       }
