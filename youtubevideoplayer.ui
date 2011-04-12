@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>466</width>
-    <height>319</height>
+    <width>715</width>
+    <height>426</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -165,8 +165,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>466</width>
-        <height>229</height>
+        <width>715</width>
+        <height>336</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -176,42 +176,21 @@
       <attribute name="label">
        <string>Video player</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayoutVideoPlayer" columnstretch="0,0,0,1,0,0">
+      <layout class="QGridLayout" name="gridLayoutVideoPlayer" rowstretch="1,0" columnstretch="0,0,0,1,0,0">
        <property name="margin">
         <number>0</number>
        </property>
        <item row="0" column="0" colspan="6">
-        <widget class="QFrame" name="frameVideo">
-         <property name="autoFillBackground">
-          <bool>true</bool>
+        <widget class="Phonon::VideoPlayer" name="videoPlayer">
+         <property name="contextMenuPolicy">
+          <enum>Qt::CustomContextMenu</enum>
          </property>
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-         <property name="lineWidth">
-          <number>0</number>
-         </property>
-         <layout class="QGridLayout" name="gridLayoutVideoFrame">
-          <property name="margin">
-           <number>0</number>
-          </property>
-          <item row="0" column="0">
-           <widget class="Phonon::VideoPlayer" name="videoPlayer">
-            <property name="contextMenuPolicy">
-             <enum>Qt::CustomContextMenu</enum>
-            </property>
-           </widget>
-          </item>
-         </layout>
         </widget>
        </item>
        <item row="1" column="0">
         <widget class="QComboBox" name="comboBoxPreferredFormat">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -330,7 +309,7 @@
        <item row="1" column="4">
         <widget class="QLabel" name="labelPlayingTime">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -461,7 +440,7 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Suggest a search pattern</string>
+          <string>Suggest a search pattern (hold down for menu)</string>
          </property>
          <property name="icon">
           <iconset resource="qmc2.qrc">

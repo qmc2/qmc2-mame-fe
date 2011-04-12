@@ -49,7 +49,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	privateMuteButton = volumeSlider->findChild<QToolButton *>();
 	if ( privateMuteButton ) {
 		privateMuteButton->setCheckable(true);
-		privateMuteButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+		privateMuteButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 		privateMuteButton->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioMuted", false).toBool());
 		privateMuteButton->setToolTip(tr("Mute / unmute audio output"));
 		videoPlayer->audioOutput()->setMuted(privateMuteButton->isChecked());
@@ -430,8 +430,14 @@ void YouTubeVideoPlayer::adjustIconSizes()
 	QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
 	comboBoxPreferredFormat->setIconSize(iconSize);
 	toolButtonPlayPause->setIconSize(iconSize);
-	volumeSlider->setIconSize(iconSize);
 	seekSlider->setIconSize(iconSize);
+	volumeSlider->setIconSize(iconSize);
+	// serious hack to access the volume slider's tool button object
+	privateMuteButton = volumeSlider->findChild<QToolButton *>();
+	if ( privateMuteButton ) {
+		privateMuteButton->setIconSize(iconSize);
+		privateMuteButton->setFixedHeight(toolButtonPlayPause->height());
+	}
 	toolButtonSuggest->setIconSize(iconSize);
 	toolButtonSearch->setIconSize(iconSize);
 	toolBox->setItemIcon(YOUTUBE_ATTACHED_VIDEOS_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/movie.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));

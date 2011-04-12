@@ -14239,96 +14239,96 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="220"/>
+        <location filename="../../youtubevideoplayer.ui" line="199"/>
         <source>Select the preferred video format (automatically falls back to the next available format)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="227"/>
+        <location filename="../../youtubevideoplayer.ui" line="206"/>
         <location filename="../../youtubevideoplayer.cpp" line="68"/>
         <source>FLV 240P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="236"/>
+        <location filename="../../youtubevideoplayer.ui" line="215"/>
         <location filename="../../youtubevideoplayer.cpp" line="69"/>
         <source>FLV 360P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="245"/>
+        <location filename="../../youtubevideoplayer.ui" line="224"/>
         <location filename="../../youtubevideoplayer.cpp" line="70"/>
         <source>MP4 360P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="254"/>
+        <location filename="../../youtubevideoplayer.ui" line="233"/>
         <location filename="../../youtubevideoplayer.cpp" line="71"/>
         <source>FLV 480P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="263"/>
+        <location filename="../../youtubevideoplayer.ui" line="242"/>
         <location filename="../../youtubevideoplayer.cpp" line="72"/>
         <source>MP4 720P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="272"/>
+        <location filename="../../youtubevideoplayer.ui" line="251"/>
         <location filename="../../youtubevideoplayer.cpp" line="73"/>
         <source>MP4 1080P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="281"/>
+        <location filename="../../youtubevideoplayer.ui" line="260"/>
         <location filename="../../youtubevideoplayer.cpp" line="74"/>
         <source>MP4 3072P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="299"/>
+        <location filename="../../youtubevideoplayer.ui" line="278"/>
         <location filename="../../youtubevideoplayer.cpp" line="124"/>
         <source>Start / pause / resume video playback</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="339"/>
+        <location filename="../../youtubevideoplayer.ui" line="318"/>
         <source>Remaining playing time</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="358"/>
+        <location filename="../../youtubevideoplayer.ui" line="337"/>
         <source>Current buffer fill level</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="387"/>
+        <location filename="../../youtubevideoplayer.ui" line="366"/>
         <source>Search videos</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="402"/>
+        <location filename="../../youtubevideoplayer.ui" line="381"/>
         <source>Search pattern -- use the &apos;hint&apos; button to get a suggestion</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="415"/>
+        <location filename="../../youtubevideoplayer.ui" line="394"/>
         <source>Search YouTube videos using the specified search pattern</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="442"/>
+        <location filename="../../youtubevideoplayer.ui" line="421"/>
         <source>Select the search result page to use (automatically increments on every search with the same pattern)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="445"/>
+        <location filename="../../youtubevideoplayer.ui" line="424"/>
         <source>P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.ui" line="464"/>
-        <source>Suggest a search pattern</source>
+        <location filename="../../youtubevideoplayer.ui" line="443"/>
+        <source>Suggest a search pattern (hold down for menu)</source>
         <translation></translation>
     </message>
     <message>
@@ -14343,10 +14343,10 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="93"/>
-        <location filename="../../youtubevideoplayer.cpp" line="453"/>
-        <location filename="../../youtubevideoplayer.cpp" line="474"/>
-        <location filename="../../youtubevideoplayer.cpp" line="504"/>
-        <location filename="../../youtubevideoplayer.cpp" line="540"/>
+        <location filename="../../youtubevideoplayer.cpp" line="464"/>
+        <location filename="../../youtubevideoplayer.cpp" line="485"/>
+        <location filename="../../youtubevideoplayer.cpp" line="515"/>
+        <location filename="../../youtubevideoplayer.cpp" line="551"/>
         <source>Current buffer fill level: %1%</source>
         <translation></translation>
     </message>
@@ -14393,17 +14393,17 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="523"/>
+        <location filename="../../youtubevideoplayer.cpp" line="534"/>
         <source>video player: playback error: %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="668"/>
+        <location filename="../../youtubevideoplayer.cpp" line="679"/>
         <source>video player: video info error: timeout occurred</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="704"/>
+        <location filename="../../youtubevideoplayer.cpp" line="715"/>
         <source>video player: video info error: %1</source>
         <translation></translation>
     </message>
