@@ -1416,12 +1416,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../audioeffects.cpp" line="178"/>
         <source>WARNING: audio player: can&apos;t insert effect &apos;%1&apos;</source>
-        <translation>AVISO: tocador de áudio: impossível inserir efeito &apos;%1&apos;</translation>
+        <translation>AVISO: reprodutor de áudio: impossível inserir efeito &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="191"/>
         <source>WARNING: audio player: can&apos;t remove effect &apos;%1&apos;</source>
-        <translation>AVISO: tocador de áudio: impossível remover efeito &apos;%1&apos;</translation>
+        <translation>AVISO: reprodutor de áudio: impossível remover efeito &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="14"/>
@@ -1879,12 +1879,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="414"/>
         <source>Choose the YouTube cache directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o diretório de cache do YouTube</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="426"/>
         <source>FATAL: can&apos;t create new YouTube cache directory, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível criar o novo diretório de cache do YouTube, caminho = %1</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="457"/>
@@ -5996,7 +5996,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4718"/>
         <source>destroying YouTube video widget</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo widget de vídeos do YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4726"/>
@@ -6206,7 +6206,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5971"/>
         <source>audio player: track info: title = &apos;%1&apos;, artist = &apos;%2&apos;, album = &apos;%3&apos;, genre = &apos;%4&apos;</source>
-        <translation>tocador de músicas: informação da faixa: título = &apos;%1&apos;, artista = &apos;%2&apos;, album = &apos;%3&apos;, gênero = &apos;%4&apos;</translation>
+        <translation>reprodutor de músicas: informação da faixa: título = &apos;%1&apos;, artista = &apos;%2&apos;, album = &apos;%3&apos;, gênero = &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5985"/>
@@ -6829,7 +6829,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.ui" line="1777"/>
         <location filename="../../qmc2main.ui" line="2938"/>
         <source>Play track</source>
-        <translation>Tocar faixa</translation>
+        <translation>Reproduzir faixa</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1791"/>
@@ -6866,12 +6866,12 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.ui" line="1889"/>
         <location filename="../../qmc2main.ui" line="1892"/>
         <source>Start playing automatically when QMC2 has started</source>
-        <translation>Tocar automaticamente quando o QMC2 iniciar</translation>
+        <translation>Iniciar jogo automaticamente quando o QMC2 iniciar</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1895"/>
         <source>Play on start</source>
-        <translation>Tocar ao iniciar</translation>
+        <translation>Iniciar ao abrir</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1902"/>
@@ -6912,7 +6912,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.ui" line="1947"/>
         <location filename="../../qmc2main.ui" line="1950"/>
         <source>Audio player volume</source>
-        <translation>Volume do tocador de música</translation>
+        <translation>Volume do reprodutor de música</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="175"/>
@@ -7011,7 +7011,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2138"/>
         <source>&amp;Audio player</source>
-        <translation>&amp;Tocador de música</translation>
+        <translation>&amp;Reprodutor de música</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2174"/>
@@ -7403,7 +7403,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2812"/>
         <source>Play previous track</source>
-        <translation>Tocar faixa anterior</translation>
+        <translation>Reproduzir faixa anterior</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2815"/>
@@ -7413,7 +7413,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2833"/>
         <source>Play next track</source>
-        <translation>Tocar próxima música</translation>
+        <translation>Reproduzir próxima música</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2836"/>
@@ -7463,7 +7463,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2941"/>
         <source>Play current track</source>
-        <translation>Tocar faixa atual</translation>
+        <translation>Reproduzir faixa atual</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2944"/>
@@ -7478,7 +7478,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2958"/>
         <source>Raise audio player volume</source>
-        <translation>Aumentar o volume do tocador de músicas</translation>
+        <translation>Aumentar o volume do reprodutor de músicas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2961"/>
@@ -7493,7 +7493,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2972"/>
         <source>Lower audio player volume</source>
-        <translation>Abaixar o volume do tocador de músicas</translation>
+        <translation>Abaixar o volume do reprodutor de músicas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2975"/>
@@ -8521,47 +8521,47 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="286"/>
         <source>Previous track (audio player)</source>
-        <translation>Faixa anterior (tocador de música)</translation>
+        <translation>Faixa anterior (reprodutor de música)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="287"/>
         <source>Next track (audio player)</source>
-        <translation>Próxima faixa (tocador de música)</translation>
+        <translation>Próxima faixa (reprodutor de música)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="288"/>
         <source>Fast backward (audio player)</source>
-        <translation>Retrocesso rápido (tocador de música)</translation>
+        <translation>Retrocesso rápido (reprodutor de música)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="289"/>
         <source>Fast forward (audio player)</source>
-        <translation>Progresso rápido (tocador de música)</translation>
+        <translation>Progresso rápido (reprodutor de música)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="290"/>
         <source>Stop track (audio player)</source>
-        <translation>Parar faixa (tocador de música)</translation>
+        <translation>Parar faixa (reprodutor de música)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="291"/>
         <source>Pause track (audio player)</source>
-        <translation>Pausar faixa (tocador de música)</translation>
+        <translation>Pausar faixa (reprodutor de música)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="292"/>
         <source>Play track (audio player)</source>
-        <translation>Tocar faixa (tocador de música)</translation>
+        <translation>Reproduzir faixa (reprodutor de música)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="293"/>
         <source>Raise volume (audio player)</source>
-        <translation>Aumentar volume (tocador de música)</translation>
+        <translation>Aumentar volume (reprodutor de música)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="294"/>
         <source>Lower volume (audio player)</source>
-        <translation>Baixar volume (tocador de música)</translation>
+        <translation>Baixar volume (reprodutor de música)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="298"/>
@@ -14024,29 +14024,29 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../videoitemwidget.cpp" line="120"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Título:</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="125"/>
         <location filename="../../videoitemwidget.cpp" line="127"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor:</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="125"/>
         <source>Open author URL with the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir URL do autor com o navegador padrão</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="133"/>
         <source>Open video URL with the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir URL do vídeo com o navegador padrão</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="133"/>
         <location filename="../../videoitemwidget.cpp" line="135"/>
         <source>Video:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vídeo:</translation>
     </message>
 </context>
 <context>
@@ -14247,155 +14247,155 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.ui" line="40"/>
         <source>Attached videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Vídeos anexados</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="77"/>
         <source>Start playing / select next video automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Reproduzir / selecionar o próximo vídeo automaticamente</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="80"/>
         <source>Play-O-Matic</source>
-        <translation type="unfinished"></translation>
+        <translation>Reprodutor automático</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="96"/>
         <source>Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="115"/>
         <source>Choose the video selection mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o modo de seleção de vídeos</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="119"/>
         <source>sequential</source>
-        <translation type="unfinished"></translation>
+        <translation>sequencial</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="124"/>
         <source>random</source>
-        <translation type="unfinished"></translation>
+        <translation>aleatório</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="141"/>
         <source>Allow videos to be repeated (otherwise stop after last video)</source>
-        <translation type="unfinished"></translation>
+        <translation>Permitir repetição de vídeos (caso contrário parar após o último)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="144"/>
         <source>Allow repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Permitir repetição</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="177"/>
         <source>Video player</source>
-        <translation type="unfinished"></translation>
+        <translation>Reprodutor de vídeos</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="199"/>
         <source>Select the preferred video format (automatically falls back to the next available format)</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o formato de vídeo preferido (usa o próximo disponível automaticamente)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="206"/>
         <location filename="../../youtubevideoplayer.cpp" line="71"/>
         <source>FLV 240P</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="215"/>
         <location filename="../../youtubevideoplayer.cpp" line="72"/>
         <source>FLV 360P</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="224"/>
         <location filename="../../youtubevideoplayer.cpp" line="73"/>
         <source>MP4 360P</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="233"/>
         <location filename="../../youtubevideoplayer.cpp" line="74"/>
         <source>FLV 480P</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="242"/>
         <location filename="../../youtubevideoplayer.cpp" line="75"/>
         <source>MP4 720P</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="251"/>
         <location filename="../../youtubevideoplayer.cpp" line="76"/>
         <source>MP4 1080P</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="260"/>
         <location filename="../../youtubevideoplayer.cpp" line="77"/>
         <source>MP4 3072P</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="278"/>
         <location filename="../../youtubevideoplayer.cpp" line="132"/>
         <source>Start / pause / resume video playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Reproduzir / pausar / resumir vídeo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="318"/>
         <source>Remaining playing time</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo restante</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="337"/>
         <source>Current buffer fill level</source>
-        <translation type="unfinished"></translation>
+        <translation>Nível atual do buffer</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="366"/>
         <source>Search videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar vídeos</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="381"/>
         <source>Search pattern -- use the &apos;hint&apos; button to get a suggestion</source>
-        <translation type="unfinished"></translation>
+        <translation>Padrão de busca -- use o botão &apos;dica&apos; para obter uma sugestão</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="394"/>
         <source>Search YouTube videos using the specified search pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar vídeos no YouTube usando o padrão de busca especificado</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="421"/>
         <source>Select the search result page to use (automatically increments on every search with the same pattern)</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar a página de resultados de busca a ser utilizado (automaticamente incrementa em cada busca com o mesmo padrão)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="424"/>
         <source>P</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="443"/>
         <source>Suggest a search pattern (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sugerir um padrão de busca (segure para mostrar o menu)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="54"/>
         <source>Mute / unmute audio output</source>
-        <translation type="unfinished"></translation>
+        <translation>Tornar mudo / audível a saída de áudio</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="87"/>
         <source>Video progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progresso do vídeo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="96"/>
@@ -14404,70 +14404,70 @@ p, li { white-space: pre-wrap; }
         <location filename="../../youtubevideoplayer.cpp" line="563"/>
         <location filename="../../youtubevideoplayer.cpp" line="599"/>
         <source>Current buffer fill level: %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Nível atual do buffer: %1%</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="103"/>
         <source>Play this video</source>
-        <translation type="unfinished"></translation>
+        <translation>Reproduzir esse vídeo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="109"/>
         <location filename="../../youtubevideoplayer.cpp" line="140"/>
         <source>Copy YouTube URL (standard)</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar URL do YouTube (padrão)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="114"/>
         <location filename="../../youtubevideoplayer.cpp" line="145"/>
         <source>Copy alternate YouTube URL (no country filter)</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar URL alternativa do YouTube (sem filtro de país)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="119"/>
         <location filename="../../youtubevideoplayer.cpp" line="150"/>
         <source>Copy author URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar URL do autor</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="125"/>
         <source>Remove selected videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover vídeos selecionados</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="159"/>
         <source>Auto-suggest</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto-sugerir</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="165"/>
         <source>Append...</source>
-        <translation type="unfinished"></translation>
+        <translation>Anexar...</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="235"/>
         <source>Appended string</source>
-        <translation type="unfinished"></translation>
+        <translation>Anexar texto</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="236"/>
         <source>Enter the string to be appended when suggesting a pattern:</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre com o texto a ser anexado quando sugerir um padrão:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="582"/>
         <source>video player: playback error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: erro de reprodução: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="772"/>
         <source>video player: video info error: timeout occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: erro na informação do vídeo: estouro de tempo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="808"/>
         <source>video player: video info error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: erro na informação do vídeo: %1</translation>
     </message>
 </context>
 </TS>
