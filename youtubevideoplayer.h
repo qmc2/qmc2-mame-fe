@@ -46,6 +46,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		~YouTubeVideoPlayer();
 
 		QString currentVideoID;
+		QString currentAuthor;
 		QString mySetID;
 		QString mySetName;
 		QString suggestorAppendString;
@@ -72,7 +73,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QMenu *menuVideoPlayer;
 		QMenu *menuSuggestButton;
 
-		QUrl getVideoStreamUrl(QString);
+		QUrl getVideoStreamUrl(QString, QStringList *videoInfoStringList = NULL, bool videoInfoOnly = false);
 		QString indexToFormat(int);
 
 	public slots:
@@ -105,8 +106,10 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void playAttachedVideo();
 		void copyYouTubeUrl();
 		void copyAlternateYouTubeUrl();
+		void copyAuthorUrl();
 		void copyCurrentYouTubeUrl();
 		void copyCurrentAlternateYouTubeUrl();
+		void copyCurrentAuthorUrl();
 		void removeSelectedVideos();
 		void setSuggestorAppendString();
 

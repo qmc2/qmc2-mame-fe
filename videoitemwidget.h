@@ -12,6 +12,7 @@
 
 #define VIDEOITEM_YOUTUBE_URL_PATTERN				"http://www.youtube.com/watch?v=$VIDEO_ID$"
 #define VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER		"http://www.youtube.com/v/$VIDEO_ID$"
+#define VIDEOITEM_YOUTUBE_AUTHOR_URL_PATTERN			"http://www.youtube.com/user/$USER_ID$"
 
 class VideoItemWidget : public QWidget, public Ui::VideoItemWidget
 {
@@ -20,19 +21,22 @@ class VideoItemWidget : public QWidget, public Ui::VideoItemWidget
 	public:
 		QImage videoImage;
 		QString videoID;
+		QString videoAuthor;
 		QString videoDescription;
 		QString videoUrlPattern;
+		QString authorUrlPattern;
 		void *myVideoPlayer;
 		int itemType;
 
-		VideoItemWidget(QString, QString, QImage &vImage, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
-		VideoItemWidget(QString, QString, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
+		VideoItemWidget(QString, QString, QString, QImage &vImage, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
+		VideoItemWidget(QString, QString, QString, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
 		~VideoItemWidget();
 
 	public slots:
 		void setImage(QImage &);
-		void setVideoID(QString);
-		void setVideoDescription(QString);
+		void setID(QString);
+		void setDescription(QString);
+		void setAuthor(QString);
 		void setType(int);
 };
 
