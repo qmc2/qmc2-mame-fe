@@ -1698,6 +1698,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   QDir youTubeCacheDir(youTubeCachePath);
   if ( !youTubeCacheDir.exists() )
     youTubeCacheDir.mkdir(youTubeCachePath);
+  config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", youTubeCachePath);
 #endif
   lineEditDataDirectory->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory", QMC2_DEFAULT_DATA_PATH + "/").toString());
 #if defined(QMC2_EMUTYPE_MAME)
