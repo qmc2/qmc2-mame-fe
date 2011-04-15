@@ -475,6 +475,10 @@ MainWindow::MainWindow(QWidget *parent)
   actionLaunchQMC2MESS->setVisible(FALSE);
 #endif
 
+#if !defined(QMC2_YOUTUBE_ENABLED)
+  actionClearYouTubeCache->setVisible(FALSE);
+#endif
+
 #if defined(QMC2_EMUTYPE_MAME)
   actionLaunchQMC2MAME->setVisible(FALSE);
   qmc2MAWSCache.setMaxCost(QMC2_MAWS_CACHE_SIZE);
@@ -1847,6 +1851,33 @@ void MainWindow::on_actionClearMAWSCache_activated()
   }
   cacheStatus = tr("removed %n byte(s) in %1", "", removedBytes).arg(tr("%n file(s)", "", removedFiles));
   log(QMC2_LOG_FRONTEND, tr("MAWS on-disk cache cleared (%1)").arg(cacheStatus));
+}
+#endif
+
+#if defined(QMC2_YOUTUBE_ENABLED)
+void MainWindow::on_actionClearYouTubeCache_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearYouTubeCache_activated()");
+#endif
+
+	QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
+	quint64 removedBytes = 0;
+	quint64 removedFiles = 0;
+	if ( youTubeCacheDir.exists() ) {
+		QStringList youTubeCacheFiles = youTubeCacheDir.entryList(QStringList("*.png"));
+		foreach (QString youTubeCacheFile, youTubeCacheFiles) {
+			QFileInfo fi(youTubeCacheDir.filePath(youTubeCacheFile));
+			qint64 fSize = fi.size();
+			if ( youTubeCacheDir.remove(youTubeCacheFile) ) {
+				removedBytes += fSize;
+				removedFiles++;
+			}
+			qApp->processEvents();
+		}
+	}
+	QString removalInfo = tr("removed %n byte(s) in %1", "", removedBytes).arg(tr("%n file(s)", "", removedFiles));
+	log(QMC2_LOG_FRONTEND, tr("YouTube on-disk cache cleared (%1)").arg(removalInfo));
 }
 #endif
 
@@ -7857,6 +7888,9 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+T"].second = qmc2MainWindow->actionRecreateTemplateMap;
   qmc2ShortcutMap["Ctrl+C"].second = qmc2MainWindow->actionCheckTemplateMap;
   qmc2ShortcutMap["Ctrl+X"].second = qmc2MainWindow->actionExitStop;
+#if defined(QMC2_YOUTUBE_ENABLED)
+  qmc2ShortcutMap["Ctrl+Y"].second = qmc2MainWindow->actionClearYouTubeCache;
+#endif
   qmc2ShortcutMap["Ctrl+Z"].second = qmc2MainWindow->actionROMAlyzer;
   qmc2ShortcutMap["Ctrl+Alt+C"].second = qmc2MainWindow->actionRomStatusFilterC;
   qmc2ShortcutMap["Ctrl+Alt+M"].second = qmc2MainWindow->actionRomStatusFilterM;

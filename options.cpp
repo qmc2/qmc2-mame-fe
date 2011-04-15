@@ -256,6 +256,9 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+T"] = QPair<QString, QAction *>(tr("Recreate template map"), NULL);
   qmc2ShortcutMap["Ctrl+C"] = QPair<QString, QAction *>(tr("Check template map"), NULL);
   qmc2ShortcutMap["Ctrl+X"] = QPair<QString, QAction *>(tr("Stop processing / exit QMC2"), NULL);
+#if defined(QMC2_YOUTUBE_ENABLED)
+  qmc2ShortcutMap["Ctrl+Y"] = QPair<QString, QAction *>(tr("Clear YouTube cache"), NULL);
+#endif
   qmc2ShortcutMap["Ctrl+Z"] = QPair<QString, QAction *>(tr("Open ROMAlyzer dialog"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+C"] = QPair<QString, QAction *>(tr("Toggle ROM state C"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+M"] = QPair<QString, QAction *>(tr("Toggle ROM state M"), NULL);

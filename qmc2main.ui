@@ -2102,7 +2102,7 @@
      <x>0</x>
      <y>0</y>
      <width>693</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Help">
@@ -2129,6 +2129,7 @@
      <addaction name="actionClearImageCache"/>
      <addaction name="actionClearIconCache"/>
      <addaction name="actionClearMAWSCache"/>
+     <addaction name="actionClearYouTubeCache"/>
      <addaction name="separator"/>
      <addaction name="actionRecreateTemplateMap"/>
      <addaction name="actionCheckTemplateMap"/>
@@ -3092,6 +3093,9 @@
    <property name="shortcut">
     <string>Ctrl+M</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionCheckTemplateMap">
    <property name="text">
@@ -3207,6 +3211,20 @@
    </property>
    <property name="shortcut">
     <string>F9</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionClearYouTubeCache">
+   <property name="text">
+    <string>Clear YouTube cache</string>
+   </property>
+   <property name="statusTip">
+    <string>Clear YouTube cache</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
