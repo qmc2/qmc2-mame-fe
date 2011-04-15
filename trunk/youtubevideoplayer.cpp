@@ -275,9 +275,6 @@ void YouTubeVideoPlayer::loadNullVideo()
 
 	currentVideoID.clear();
 	currentAuthor.clear();
-#if QT_VERSION >= 0x040700
-	videoPlayer->play(Phonon::MediaSource(QString::fromUtf8(":/data/img/ghost_video.png")));
-#endif
 	videoPlayer->stop();
 }
 
