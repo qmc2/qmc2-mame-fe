@@ -4,6 +4,11 @@
 #include <QSettings>
 #include <QClipboard>
 #include <QInputDialog>
+#include <QPixmapCache>
+#include <QImageReader>
+#include <QFileInfo>
+#include <QFile>
+#include <QDir>
 
 #include "macros.h"
 #include "qmc2main.h"
@@ -13,7 +18,6 @@
 #define QMC2_DEBUG
 
 extern MainWindow *qmc2MainWindow;
-extern QNetworkAccessManager *qmc2NetworkAccessManager;
 extern QSettings *qmc2Config;
 
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
@@ -76,9 +80,9 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 		<< tr("MP4 1080P")
 		<< tr("MP4 3072P");
 
-	loadOnly = isMuted = pausedByHideEvent = viError = viFinished = false;
-	videoInfoReply = NULL;
-	videoInfoManager = NULL;
+	forcedExit = loadOnly = isMuted = pausedByHideEvent = viError = viFinished = false;
+	videoInfoReply = videoImageReply = NULL;
+	videoInfoManager = videoImageManager = NULL;
 	currentFormat = bestAvailableFormat = YOUTUBE_FORMAT_UNKNOWN_INDEX;
 
 	videoPlayer->mediaObject()->setTickInterval(1000);
@@ -170,7 +174,10 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	if ( autoSuggestAction->isChecked() )
 		on_toolButtonSuggest_clicked();
 
-	QTimer::singleShot(0, this, SLOT(init()));
+	imageDownloadManager = new QNetworkAccessManager(this);
+	connect(imageDownloadManager, SIGNAL(finished(QNetworkReply *)), this, SLOT(imageDownloadFinished(QNetworkReply *)));
+
+	QTimer::singleShot(100, this, SLOT(init()));
 }
 
 YouTubeVideoPlayer::~YouTubeVideoPlayer()
@@ -178,20 +185,6 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::~YouTubeVideoPlayer()");
 #endif
-
-  	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PreferredFormat", comboBoxPreferredFormat->currentIndex());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", videoPlayer->audioOutput()->volume());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PageIndex", toolBox->currentIndex());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", checkBoxPlayOMatic->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", comboBoxMode->currentIndex());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", checkBoxRepeat->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AutoSuggest", autoSuggestAction->isChecked());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", suggestorAppendString);
-
-	// serious hack to access the volume slider's tool button object
-	privateMuteButton = volumeSlider->findChild<QToolButton *>();
-	if ( privateMuteButton )
-		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioMuted", privateMuteButton->isChecked());
 
 	// clean up
 	if ( menuAttachedVideos ) {
@@ -218,10 +211,43 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 		disconnect(videoInfoManager);
 		delete videoInfoManager;
 	}
+	if ( videoImageReply ) {
+		disconnect(videoImageReply);
+		delete videoImageReply;
+	}
+	if ( videoImageManager ) {
+		disconnect(videoImageManager);
+		delete videoImageManager;
+	}
+	if ( imageDownloadManager ) {
+		disconnect(imageDownloadManager);
+		delete imageDownloadManager;
+	}
 	if ( videoPlayer ) {
 		disconnect(videoPlayer);
 		delete videoPlayer;
 	}
+}
+
+void YouTubeVideoPlayer::saveSettings()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::saveSettings()");
+#endif
+
+  	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PreferredFormat", comboBoxPreferredFormat->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioVolume", videoPlayer->audioOutput()->volume());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PageIndex", toolBox->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Enabled", checkBoxPlayOMatic->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Mode", comboBoxMode->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", checkBoxRepeat->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AutoSuggest", autoSuggestAction->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", suggestorAppendString);
+
+	// serious hack to access the volume slider's tool button object
+	privateMuteButton = volumeSlider->findChild<QToolButton *>();
+	if ( privateMuteButton )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AudioMuted", privateMuteButton->isChecked());
 }
 
 void YouTubeVideoPlayer::setSuggestorAppendString()
@@ -251,6 +277,21 @@ void YouTubeVideoPlayer::loadNullVideo()
 	currentAuthor.clear();
 	videoPlayer->play(Phonon::MediaSource(QString::fromUtf8(":/data/img/ghost_video.png")));
 	videoPlayer->stop();
+}
+
+void YouTubeVideoPlayer::playNextVideo()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::playNextVideo()");
+#endif
+
+	QList<QListWidgetItem *> il = listWidgetAttachedVideos->findItems("*", Qt::MatchWildcard);
+	if ( il.count() > 0 ) {
+		// FIXME: select video according to Play-O-Matic settings
+		int index = qrand() % il.count();
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(il[index]);
+		playVideo(viw->videoID);
+	}
 }
 
 void YouTubeVideoPlayer::playAttachedVideo()
@@ -374,9 +415,49 @@ void YouTubeVideoPlayer::removeSelectedVideos()
 
 	QList<QListWidgetItem *> il = listWidgetAttachedVideos->selectedItems();
 	foreach (QListWidgetItem *item, il) {
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+		viwMap.remove(viw->videoID);
 		QListWidgetItem *i = listWidgetAttachedVideos->takeItem(listWidgetAttachedVideos->row(item));
 		delete i;
 	}
+}
+
+void YouTubeVideoPlayer::attachVideo(QString id, QString description, QString author)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::attachVideo(QString id = '%1', QString description = '%2', QString author = '%3')").arg(id).arg(description).arg(author));
+#endif
+
+	QSize size(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT + 4);
+
+	bool pixmapFound = false;
+	QPixmap imagePixmap;
+#if QT_VERSION < 0x040600
+	pixmapFound = QPixmapCache::find("yt_" + id, imagePixmap);
+#else
+	pixmapFound = QPixmapCache::find("yt_" + id, &imagePixmap);
+#endif
+	if ( !pixmapFound ) {
+		QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
+		if ( youTubeCacheDir.exists() ) {
+			QString imageFile = id + ".png";
+			if ( youTubeCacheDir.exists(imageFile) ) {
+				pixmapFound = imagePixmap.load(youTubeCacheDir.filePath(imageFile), "PNG");
+				if ( pixmapFound )
+					QPixmapCache::insert("yt_" + id, imagePixmap);
+			}
+		}
+	}
+
+	QListWidgetItem *listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
+	listWidgetItem->setSizeHint(size);
+	VideoItemWidget *videoItemWidget;
+	if ( pixmapFound )
+		videoItemWidget = new VideoItemWidget(id, description, author, imagePixmap, VIDEOITEM_TYPE_YOUTUBE, this, this);
+	else
+		videoItemWidget = new VideoItemWidget(id, description, author, VIDEOITEM_TYPE_YOUTUBE, this, this);
+	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
+	viwMap[id] = videoItemWidget;
 }
 
 void YouTubeVideoPlayer::init()
@@ -385,73 +466,27 @@ void YouTubeVideoPlayer::init()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::init()");
 #endif
 
-	VideoItemWidget *videoItemWidget;
-	QListWidgetItem *listWidgetItem;
-	QSize size(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT + 4);
-
-	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
-	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("bFjX1uUhB1A", "Joe Satriani - The Mystical Potato Head Groove Thing (G3 LIVE in Denver 2003)", "malfarius", VIDEOITEM_TYPE_YOUTUBE, this);
-	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
-
-	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
-	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("bcwBowBFFzc", "Frogger (Arcade) Demo", "retrojuegoschile", VIDEOITEM_TYPE_YOUTUBE, this);
-	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
-
-	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
-	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("xkTasNER4vI", "Arcade Longplay [119] Bionic Commando", "cubex55", VIDEOITEM_TYPE_YOUTUBE, this);
-	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
-
-	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
-	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("vK9rfCpjOQc", "Orianthi", "VARANDONIS", VIDEOITEM_TYPE_YOUTUBE, this);
-	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
-
-	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
-	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("gO-OwcBCa8Y", "Orianthi HD", "EsperantoBr", VIDEOITEM_TYPE_YOUTUBE, this);
-	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
-
-	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
-	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("XCv5aPqlDd4", "world.avi", "themaster011189", VIDEOITEM_TYPE_YOUTUBE, this);
-	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
-
-	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
-	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("PZxfFxYY7JM", "Golden Globe", "paulnewson", VIDEOITEM_TYPE_YOUTUBE, this);
-	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
-
-	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
-	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("X6Qvpz5d18g", "Earth 3D.wmv", "Aegyssus07", VIDEOITEM_TYPE_YOUTUBE, this);
-	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
-
-	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
-	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("xdg5wBd9r_U", "Realistic 3d Earth using only AE", "ShaneNL69", VIDEOITEM_TYPE_YOUTUBE, this);
-	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
-
-	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
-	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("SyhO0Ypukfc", "Universo 3D", "vipaces", VIDEOITEM_TYPE_YOUTUBE, this);
-	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
-
-	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
-	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("9XyR8buBfNk", "RayStorm - first stage", "samortails", VIDEOITEM_TYPE_YOUTUBE, this);
-	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
-
-	listWidgetItem = new QListWidgetItem(listWidgetAttachedVideos);
-	listWidgetItem->setSizeHint(size);
-	videoItemWidget = new VideoItemWidget("3qD453R7usI", "The Block Kuzushi", "DarkPuIse", VIDEOITEM_TYPE_YOUTUBE, this);
-	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
-
+	// FIXME: this is a 'silly' and 'demo-only' init() routine... 
+	attachVideo("bFjX1uUhB1A", "Joe Satriani - The Mystical Potato Head Groove Thing (G3 LIVE in Denver 2003)", "malfarius");
+	attachVideo("bcwBowBFFzc", "Frogger (Arcade) Demo", "retrojuegoschile");
+	attachVideo("xkTasNER4vI", "Arcade Longplay [119] Bionic Commando", "cubex55");
+	attachVideo("vK9rfCpjOQc", "Orianthi", "VARANDONIS");
+	attachVideo("gO-OwcBCa8Y", "Orianthi HD", "EsperantoBr");
+	attachVideo("XCv5aPqlDd4", "world.avi", "themaster011189");
+	attachVideo("PZxfFxYY7JM", "Golden Globe", "paulnewson");
+	attachVideo("X6Qvpz5d18g", "Earth 3D.wmv", "Aegyssus07");
+	attachVideo("xdg5wBd9r_U", "Realistic 3d Earth using only AE", "ShaneNL69");
+	attachVideo("SyhO0Ypukfc", "Universo 3D", "vipaces");
+	attachVideo("9XyR8buBfNk", "RayStorm - first stage", "samortails");
+	attachVideo("3qD453R7usI", "The Block Kuzushi", "DarkPuIse");
 	listWidgetAttachedVideos->updateGeometry();
 
-	QTimer::singleShot(100, this, SLOT(loadNullVideo()));
+	if ( checkBoxPlayOMatic->isChecked() )
+		QTimer::singleShot(0, this, SLOT(playNextVideo()));
+	else
+		QTimer::singleShot(0, this, SLOT(loadNullVideo()));
+
+	QTimer::singleShot(1000, this, SLOT(updateAttachedVideoInfoImages()));
 
 	/*
 	if ( checkBoxPlayOMatic->isChecked() )
@@ -616,6 +651,7 @@ void YouTubeVideoPlayer::loadVideo(QString &videoID)
 			videoPlayer->audioOutput()->setMuted(true);
 		videoPlayer->load(Phonon::MediaSource(QUrl::fromEncoded((const char *)url.toString().toLatin1())));
 		videoPlayer->pause();
+		if ( !playedVideos.contains(videoID) ) playedVideos << videoID;
 	}
 }
 
@@ -630,6 +666,7 @@ void YouTubeVideoPlayer::playVideo(QString &videoID)
 	if ( url.isValid() ) {
 		loadOnly = false;
 		videoPlayer->play(Phonon::MediaSource(QUrl::fromEncoded((const char *)url.toString().toLatin1())));
+		if ( !playedVideos.contains(videoID) ) playedVideos << videoID;
 	}
 }
 
@@ -652,7 +689,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 	videoInfoBuffer.clear();
 	viError = viFinished = false;
 	videoInfoRequest.setUrl(QString("http://www.youtube.com/get_video_info?&video_id=%1").arg(videoID));
-	videoInfoRequest.setRawHeader("User-Agent", "QMC2's YouTube Player");
+	//videoInfoRequest.setRawHeader("User-Agent", "QMC2's YouTube Player");
 	if ( videoInfoManager ) {
 		disconnect(videoInfoManager);
 		delete videoInfoManager;
@@ -669,8 +706,10 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 	timer.start();
 	while ( !viFinished && !viError && !timeoutOccurred ) {
 		timeoutOccurred = ( timer.elapsed() >= YOUTUBE_VIDEOINFO_TIMEOUT );
-		if ( !timeoutOccurred )
+		if ( !timeoutOccurred ) {
+			qApp->processEvents();
 			QTest::qWait(YOUTUBE_VIDEOINFO_WAIT);
+		}
 	}
 
 	if ( viFinished && !viError ) {
@@ -990,5 +1029,179 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::on_toolButtonSearch_clicked()");
 #endif
 
+}
+
+void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::updateAttachedVideoInfoImages()");
+#endif
+
+	foreach (QListWidgetItem *item, listWidgetAttachedVideos->findItems("*", Qt::MatchWildcard)) {
+		if ( forcedExit )
+			break;
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+		if ( !viw )
+			continue;
+		if ( viw->videoImageValid )
+			continue;
+
+		bool pixmapFound = false;
+		QPixmap imagePixmap;
+#if QT_VERSION < 0x040600
+		pixmapFound = QPixmapCache::find("yt_" + viw->videoID, imagePixmap);
+#else
+		pixmapFound = QPixmapCache::find("yt_" + viw->videoID, &imagePixmap);
+#endif
+		if ( !pixmapFound ) {
+			QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
+			if ( youTubeCacheDir.exists() ) {
+				QString imageFile = viw->videoID + ".png";
+				if ( youTubeCacheDir.exists(imageFile) ) {
+					pixmapFound = imagePixmap.load(youTubeCacheDir.filePath(imageFile), "PNG");
+					if ( pixmapFound )
+						QPixmapCache::insert("yt_" + viw->videoID, imagePixmap);
+				}
+			}
+		} else {
+			viw->setImage(imagePixmap);
+			continue;
+		}
+		
+		if ( videoImageReply ) {
+			disconnect(videoImageReply);
+			delete videoImageReply;
+			videoImageReply = NULL;
+		}
+		videoImageBuffer.clear();
+		vimgError = vimgFinished = false;
+		videoImageRequest.setUrl(QString("http://www.youtube.com/get_video_info?&video_id=%1").arg(viw->videoID));
+		//videoImageRequest.setRawHeader("User-Agent", "QMC2's YouTube Player");
+		if ( videoImageManager ) {
+			disconnect(videoImageManager);
+			delete videoImageManager;
+			videoImageManager = NULL;
+		}
+		videoImageManager = new QNetworkAccessManager(this);
+		videoImageReply = videoImageManager->get(videoImageRequest);
+		connect(videoImageReply, SIGNAL(readyRead()), this, SLOT(videoImageReadyRead()));
+		connect(videoImageReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(videoImageError(QNetworkReply::NetworkError)));
+		connect(videoImageReply, SIGNAL(finished()), this, SLOT(videoImageFinished()));
+		QTime timer;
+		bool timeoutOccurred = false;
+		timer.start();
+		while ( !forcedExit && !vimgFinished && !vimgError && !timeoutOccurred ) {
+			timeoutOccurred = ( timer.elapsed() >= YOUTUBE_VIDEOINFO_TIMEOUT );
+			if ( !timeoutOccurred ) {
+				qApp->processEvents();
+				QTest::qWait(YOUTUBE_VIDEOINFO_WAIT);
+			}
+		}
+		if ( !forcedExit && vimgFinished && !vimgError ) {
+			QStringList videoInfoList = videoImageBuffer.split("&");
+			QString thumbnail_url;
+			foreach (QString vInfo, videoInfoList) {
+				if ( forcedExit )
+					break;
+				if ( vInfo.startsWith("thumbnail_url=") ) {
+					vInfo.replace(QRegExp("^thumbnail_url="), "");
+					thumbnail_url = QUrl::fromEncoded(vInfo.toAscii()).toString();
+					break;
+				}
+			}
+			if ( !forcedExit ) {
+				if ( !thumbnail_url.isEmpty() ) {
+#ifdef QMC2_DEBUG
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::updateAttachedVideoInfoImages(): downloading thumbnail for video ID '%1' from '%2'").arg(viw->videoID).arg(thumbnail_url));
+#endif
+					QNetworkReply *reply = imageDownloadManager->get(QNetworkRequest(QUrl(thumbnail_url)));
+				} else {
+#ifdef QMC2_DEBUG
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::updateAttachedVideoInfoImages(): thumbnail URL for video ID '%1' not found!").arg(viw->videoID));
+#endif
+				}
+			}
+		}
+	}
+}
+
+void YouTubeVideoPlayer::videoImageReadyRead()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::videoImageReadyRead()");
+#endif
+
+	videoImageBuffer += videoImageReply->readAll();
+}
+
+void YouTubeVideoPlayer::videoImageError(QNetworkReply::NetworkError error)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::videoImageError(QNetworkReply::NetworkError error = %1)").arg(error));
+#endif
+
+	vimgError = true;
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: video image info error: %1").arg(videoInfoReply->errorString()));
+}
+
+void YouTubeVideoPlayer::videoImageFinished()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::videoImageFinished()");
+#endif
+
+	vimgFinished = true;
+}
+
+void YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply)
+{
+	QString urlString = reply->url().toString();
+
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply = %1): URL = '%2'").arg((qulonglong)reply).arg(urlString));
+#endif
+
+	// example URL: 'http://i3.ytimg.com/vi/bFjX1uUhB1A/default.jpg'
+	QString videoID;
+	QRegExp rx("http\\:\\/\\/.*\\/vi\\/(.*)\\/.*");
+	int pos = rx.indexIn(urlString);
+	if ( pos > -1 ) {
+		videoID = rx.cap(1);
+#ifdef QMC2_DEBUG
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply = %1): videoID = '%2'").arg((qulonglong)reply).arg(videoID));
+#endif
+	} else {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: can't determine the video ID from the reply URL '%1' -- please inform developers").arg(urlString));
+		reply->deleteLater();
+		return;
+	}
+
+	if ( !viwMap.contains(videoID) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: can't associate the returned image for video ID '%1' -- please inform developers").arg(urlString));
+		reply->deleteLater();
+		return;
+	}
+
+	VideoItemWidget *viw = viwMap[videoID];
+
+	if ( reply->error() == QNetworkReply::NoError ) {
+		QImageReader imageReader(reply);
+		QPixmap pm = QPixmap::fromImageReader(&imageReader);
+		if ( !pm.isNull() ) {
+			QPixmapCache::insert("yt_" + videoID, pm);
+			viw->setImage(pm, true);
+			QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
+			if ( youTubeCacheDir.exists() ) {
+				QString imagePath = youTubeCacheDir.canonicalPath() + "/" + videoID + ".png";
+				if ( !pm.save(imagePath, "PNG") )
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: can't save the image for video ID '%1' to the YouTube cache directory '%2' -- please check permissions").arg(videoID).arg(youTubeCacheDir.canonicalPath()));
+			} else
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: can't save the image for video ID '%1', the YouTube cache directory '%2' does not exist -- please correct").arg(videoID).arg(youTubeCacheDir.canonicalPath()));
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: image download failed for video ID '%1', retrieved image is not valid").arg(videoID));
+	} else
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: image download failed for video ID '%1', error text = '%2'").arg(videoID).arg(reply->errorString()));
+
+	reply->deleteLater();
 }
 #endif

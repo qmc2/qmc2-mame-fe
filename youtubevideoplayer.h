@@ -5,6 +5,7 @@
 
 #include <QtNetwork>
 #include "ui_youtubevideoplayer.h"
+#include "videoitemwidget.h"
 
 // supported YouTube formats (see http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs)
 #define YOUTUBE_FORMAT_COUNT		7
@@ -33,9 +34,9 @@
 #define YOUTUBE_PLAYOMATIC_SEQUENTIAL	0
 #define YOUTUBE_PLAYOMATIC_RANDOM	1
 
-// timeout and request polling (wait) time for video info requests in ms
-#define YOUTUBE_VIDEOINFO_TIMEOUT	30000
-#define YOUTUBE_VIDEOINFO_WAIT		100
+// timeout and reply polling (wait) time for video info requests in ms
+#define YOUTUBE_VIDEOINFO_TIMEOUT	10000
+#define YOUTUBE_VIDEOINFO_WAIT		10
 
 class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 {
@@ -52,17 +53,20 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QString suggestorAppendString;
 		QStringList youTubeFormats;
 		QStringList youTubeFormatNames;
-		QNetworkReply *videoInfoReply;
-		QNetworkAccessManager *videoInfoManager;
-		QNetworkRequest videoInfoRequest;
-		QString videoInfoBuffer;
+		QNetworkReply *videoInfoReply, *videoImageReply;
+		QNetworkAccessManager *videoInfoManager, *videoImageManager, *imageDownloadManager;
+		QNetworkRequest videoInfoRequest, videoImageRequest;
+		QString videoInfoBuffer, videoImageBuffer;
 		QAction *videoMenuPlayPauseAction;
 		QAction *autoSuggestAction;
-		bool viFinished;
-		bool viError;
+		QStringList playedVideos;
+		QMap<QString, VideoItemWidget *> viwMap;
+		bool viFinished, vimgFinished;
+		bool viError, vimgError;
 		bool loadOnly;
 		bool isMuted;
 		bool pausedByHideEvent;
+		bool forcedExit;
 		QSlider *privateSeekSlider;
 		QToolButton *privateMuteButton;
 		QList<int> availableFormats;
@@ -79,10 +83,12 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 	public slots:
 		void init();
 		void adjustIconSizes();
+		void saveSettings();
 
 		void playVideo(QString &);
 		void loadVideo(QString &);
 		void loadNullVideo();
+		void playNextVideo();
 		void videoTick(qint64);
 		void videoFinished();
 		void videoStateChanged(Phonon::State, Phonon::State);
@@ -91,6 +97,9 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void videoInfoReadyRead();
 		void videoInfoError(QNetworkReply::NetworkError);
 		void videoInfoFinished();
+		void videoImageReadyRead();
+		void videoImageError(QNetworkReply::NetworkError);
+		void videoImageFinished();
 
 		void on_toolButtonPlayPause_clicked();
 		void on_comboBoxPreferredFormat_activated(int);
@@ -112,6 +121,9 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void copyCurrentAuthorUrl();
 		void removeSelectedVideos();
 		void setSuggestorAppendString();
+		void updateAttachedVideoInfoImages();
+		void imageDownloadFinished(QNetworkReply *);
+		void attachVideo(QString, QString, QString);
 
 	protected:
 		void showEvent(QShowEvent *);
