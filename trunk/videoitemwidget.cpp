@@ -1,3 +1,5 @@
+#if defined(QMC2_YOUTUBE_ENABLED)
+
 #include "macros.h"
 #include "videoitemwidget.h"
 #include "youtubevideoplayer.h"
@@ -174,3 +176,5 @@ void VideoItemWidget::setDescription(QString vDescription)
 	htmlText += "</table></body></html>";
 	textBrowserVideoDescription->setHtml(htmlText);
 }
+
+#endif

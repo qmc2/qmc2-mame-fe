@@ -179,6 +179,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_EMUTYPE_MAME)
     void on_actionClearMAWSCache_activated();
 #endif
+#if defined(QMC2_YOUTUBE_ENABLED)
+    void on_actionClearYouTubeCache_activated();
+#endif
     void on_actionRecreateTemplateMap_activated();
     void on_actionCheckTemplateMap_activated();
     void on_actionOptions_activated();

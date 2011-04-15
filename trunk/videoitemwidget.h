@@ -1,3 +1,5 @@
+#if defined(QMC2_YOUTUBE_ENABLED)
+
 #ifndef _VIDEOITEMWIDGET_H_
 #define _VIDEOITEMWIDGET_H_
 
@@ -43,5 +45,7 @@ class VideoItemWidget : public QWidget, public Ui::VideoItemWidget
 		void setAuthor(QString);
 		void setType(int);
 };
+
+#endif
 
 #endif
