@@ -275,7 +275,9 @@ void YouTubeVideoPlayer::loadNullVideo()
 
 	currentVideoID.clear();
 	currentAuthor.clear();
+#if QT_VERSION >= 0x040700
 	videoPlayer->play(Phonon::MediaSource(QString::fromUtf8(":/data/img/ghost_video.png")));
+#endif
 	videoPlayer->stop();
 }
 
@@ -1186,7 +1188,12 @@ void YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply)
 
 	if ( reply->error() == QNetworkReply::NoError ) {
 		QImageReader imageReader(reply);
+#if QT_VERSION < 0x040700
+		QImage image = imageReader.read();
+		QPixmap pm = QPixmap::fromImage(image);
+#else
 		QPixmap pm = QPixmap::fromImageReader(&imageReader);
+#endif
 		if ( !pm.isNull() ) {
 			QPixmapCache::insert("yt_" + videoID, pm);
 			viw->setImage(pm, true);
