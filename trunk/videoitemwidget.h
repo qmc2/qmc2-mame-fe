@@ -19,21 +19,25 @@ class VideoItemWidget : public QWidget, public Ui::VideoItemWidget
 	Q_OBJECT
 
 	public:
-		QImage videoImage;
+		QPixmap videoImage;
 		QString videoID;
 		QString videoAuthor;
 		QString videoDescription;
 		QString videoUrlPattern;
 		QString authorUrlPattern;
+		bool videoImageValid;
 		void *myVideoPlayer;
 		int itemType;
 
-		VideoItemWidget(QString, QString, QString, QImage &vImage, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
+		VideoItemWidget(QString, QString, QString, QPixmap &vImage, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
 		VideoItemWidget(QString, QString, QString, int vType = VIDEOITEM_TYPE_YOUTUBE, void *vPlayer = 0, QWidget *parent = 0);
 		~VideoItemWidget();
 
+		bool closingState();
+
 	public slots:
-		void setImage(QImage &);
+		void setImage(QPixmap, bool valid = true);
+		void setImage(QPixmap *, bool valid = true);
 		void setID(QString);
 		void setDescription(QString);
 		void setAuthor(QString);

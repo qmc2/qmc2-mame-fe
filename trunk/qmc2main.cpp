@@ -2872,9 +2872,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           log(QMC2_LOG_FRONTEND, QString("WIP: support for attached YouTube videos is still under development and not working properly yet!"));
           tabYouTube->setUpdatesEnabled(FALSE);
           if ( qmc2YouTubeWidget ) {
+            qmc2YouTubeWidget->forcedExit = true;
             QLayout *vbl = tabYouTube->layout();
             if ( vbl ) delete vbl;
-            delete qmc2YouTubeWidget;
+	    qmc2YouTubeWidget->saveSettings();
+            qmc2YouTubeWidget->deleteLater();
             qmc2YouTubeWidget = NULL;
           }
           gridLayout->getContentsMargins(&left, &top, &right, &bottom);
