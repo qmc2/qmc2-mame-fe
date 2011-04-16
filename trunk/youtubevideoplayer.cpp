@@ -467,6 +467,7 @@ void YouTubeVideoPlayer::init()
 
 	// FIXME: this is a 'silly' and 'demo-only' init() routine... 
 	attachVideo("bFjX1uUhB1A", "Joe Satriani - The Mystical Potato Head Groove Thing (G3 LIVE in Denver 2003)", "malfarius");
+	attachVideo("oH1ybin4ZEU", "Guitar battle: Steve Vai vs Dweezil Zappa -- Zappa plays Zappa DVD concert", "magma5555");
 	attachVideo("bcwBowBFFzc", "Frogger (Arcade) Demo", "retrojuegoschile");
 	attachVideo("xkTasNER4vI", "Arcade Longplay [119] Bionic Commando", "cubex55");
 	attachVideo("vK9rfCpjOQc", "Orianthi", "VARANDONIS");
