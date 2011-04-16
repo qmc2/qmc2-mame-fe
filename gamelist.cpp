@@ -548,7 +548,16 @@ void Gamelist::load()
   if ( emulatorVersion != tr("unknown") )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator info: type = %1, version = %2").arg(emulatorType).arg(emulatorVersion));
   else {
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator type and version"));
+    if ( emulatorType == tr("unknown") )
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator type and version"));
+    else
+#if defined(QMC2_EMUTYPE_MAME)
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator version, type identification string is '%1' -- please inform developers if you're sure that this is a valid MAME binary"));
+#elif defined(QMC2_EMUTYPE_MESS)
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine emulator version, type identification string is '%1' -- please inform developers if you're sure that this is a valid MESS binary"));
+#else
+      ;
+#endif
     qmc2ReloadActive = FALSE;
     enableWidgets(TRUE);
     return;
