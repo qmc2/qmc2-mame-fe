@@ -4750,6 +4750,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #if defined(QMC2_YOUTUBE_ENABLED)
   if ( qmc2YouTubeWidget ) {
     qmc2YouTubeWidget->videoPlayer->stop();
+    qmc2YouTubeWidget->forcedExit = true;
     log(QMC2_LOG_FRONTEND, tr("destroying YouTube video widget"));
     delete qmc2YouTubeWidget;
   }
