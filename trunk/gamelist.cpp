@@ -472,7 +472,7 @@ void Gamelist::load()
 #elif defined(QMC2_EMUTYPE_MESS)
     QStringList versionWords = versionLines.first().split(" ");
     if ( versionWords.count() > 1 ) {
-      if ( versionWords[0] == "MESS" ) {
+      if ( versionWords[0] == "MESS" || versionWords[0] == "M.E.S.S.") {
         emulatorVersion = versionWords[1].remove("v");
         emulatorType = "MESS";
       } else {
