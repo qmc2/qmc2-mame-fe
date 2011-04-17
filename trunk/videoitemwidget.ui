@@ -21,7 +21,7 @@
     <number>2</number>
    </property>
    <item row="0" column="1">
-    <widget class="QTextBrowser" name="textBrowserVideoDescription">
+    <widget class="QTextBrowser" name="textBrowserVideoTitle">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
        <horstretch>0</horstretch>
