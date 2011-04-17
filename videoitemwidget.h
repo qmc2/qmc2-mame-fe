@@ -24,7 +24,7 @@ class VideoItemWidget : public QWidget, public Ui::VideoItemWidget
 		QPixmap videoImage;
 		QString videoID;
 		QString videoAuthor;
-		QString videoDescription;
+		QString videoTitle;
 		QString videoUrlPattern;
 		QString authorUrlPattern;
 		bool videoImageValid;
@@ -41,7 +41,7 @@ class VideoItemWidget : public QWidget, public Ui::VideoItemWidget
 		void setImage(QPixmap, bool valid = true);
 		void setImage(QPixmap *, bool valid = true);
 		void setID(QString);
-		void setDescription(QString);
+		void setTitle(QString);
 		void setAuthor(QString);
 		void setType(int);
 };

@@ -312,12 +312,12 @@ void YouTubeVideoPlayer::copyYouTubeUrl()
 
 	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
 	if ( item ) {
-		VideoItemWidget *itemWidget = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
-		if ( itemWidget ) {
-			if ( !itemWidget->videoID.isEmpty() ) {
-				if ( !itemWidget->videoUrlPattern.isEmpty() ) {
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+		if ( viw ) {
+			if ( !viw->videoID.isEmpty() ) {
+				if ( !viw->videoUrlPattern.isEmpty() ) {
 					QString url = VIDEOITEM_YOUTUBE_URL_PATTERN;
-					url.replace("$VIDEO_ID$", itemWidget->videoID);
+					url.replace("$VIDEO_ID$", viw->videoID);
 					qApp->clipboard()->setText(url);
 				}
 			}
@@ -333,12 +333,12 @@ void YouTubeVideoPlayer::copyAlternateYouTubeUrl()
 
 	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
 	if ( item ) {
-		VideoItemWidget *itemWidget = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
-		if ( itemWidget ) {
-			if ( !itemWidget->videoID.isEmpty() ) {
-				if ( !itemWidget->videoUrlPattern.isEmpty() ) {
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+		if ( viw ) {
+			if ( !viw->videoID.isEmpty() ) {
+				if ( !viw->videoUrlPattern.isEmpty() ) {
 					QString url = VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER;
-					url.replace("$VIDEO_ID$", itemWidget->videoID);
+					url.replace("$VIDEO_ID$", viw->videoID);
 					qApp->clipboard()->setText(url);
 				}
 			}
@@ -354,12 +354,12 @@ void YouTubeVideoPlayer::copyAuthorUrl()
 
 	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
 	if ( item ) {
-		VideoItemWidget *itemWidget = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
-		if ( itemWidget ) {
-			if ( !itemWidget->videoAuthor.isEmpty() ) {
-				if ( !itemWidget->authorUrlPattern.isEmpty() ) {
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+		if ( viw ) {
+			if ( !viw->videoAuthor.isEmpty() ) {
+				if ( !viw->authorUrlPattern.isEmpty() ) {
 					QString url = VIDEOITEM_YOUTUBE_AUTHOR_URL_PATTERN;
-					url.replace("$USER_ID$", itemWidget->videoAuthor);
+					url.replace("$USER_ID$", viw->videoAuthor);
 					qApp->clipboard()->setText(url);
 				}
 			}
@@ -421,10 +421,10 @@ void YouTubeVideoPlayer::removeSelectedVideos()
 	}
 }
 
-void YouTubeVideoPlayer::attachVideo(QString id, QString description, QString author)
+void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::attachVideo(QString id = '%1', QString description = '%2', QString author = '%3')").arg(id).arg(description).arg(author));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::attachVideo(QString id = '%1', QString title = '%2', QString author = '%3')").arg(id).arg(title).arg(author));
 #endif
 
 	QSize size(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT + 4);
@@ -452,9 +452,9 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString description, QString au
 	listWidgetItem->setSizeHint(size);
 	VideoItemWidget *videoItemWidget;
 	if ( pixmapFound )
-		videoItemWidget = new VideoItemWidget(id, description, author, imagePixmap, VIDEOITEM_TYPE_YOUTUBE, this, this);
+		videoItemWidget = new VideoItemWidget(id, title, author, imagePixmap, VIDEOITEM_TYPE_YOUTUBE, this, this);
 	else
-		videoItemWidget = new VideoItemWidget(id, description, author, VIDEOITEM_TYPE_YOUTUBE, this, this);
+		videoItemWidget = new VideoItemWidget(id, title, author, VIDEOITEM_TYPE_YOUTUBE, this, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 	viwMap[id] = videoItemWidget;
 }
@@ -944,13 +944,13 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetIt
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
-	VideoItemWidget *itemWidget = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
-	if ( itemWidget ) {
+	VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+	if ( viw ) {
 		toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
-		if ( currentVideoID == itemWidget->videoID && !videoPlayer->isPlaying() )
+		if ( currentVideoID == viw->videoID && !videoPlayer->isPlaying() )
 			videoPlayer->play();
-		else if ( currentVideoID != itemWidget->videoID || !videoPlayer->isPlaying() )
-			playVideo(itemWidget->videoID);
+		else if ( currentVideoID != viw->videoID || !videoPlayer->isPlaying() )
+			playVideo(viw->videoID);
 	}
 }
 
@@ -962,7 +962,7 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(
 
 	QWidget *w = listWidgetAttachedVideos->viewport();
 	if ( sender() )
-		if ( sender()->objectName() == "QMC2_VIDEO_DESCRIPTION" )
+		if ( sender()->objectName() == "QMC2_VIDEO_TITLE" )
 			w = (QWidget *)sender();
 	if ( w && menuAttachedVideos ) {
 		menuAttachedVideos->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuAttachedVideos));
@@ -978,7 +978,7 @@ void YouTubeVideoPlayer::on_listWidgetSearchResults_customContextMenuRequested(c
 
 	QWidget *w = listWidgetSearchResults->viewport();
 	if ( sender() )
-		if ( sender()->objectName() == "QMC2_VIDEO_DESCRIPTION" )
+		if ( sender()->objectName() == "QMC2_VIDEO_TITLE" )
 			w = (QWidget *)sender();
 	if ( w && menuSearchResults ) {
 		menuSearchResults->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuSearchResults));
@@ -1160,6 +1160,11 @@ void YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply)
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply = %1): URL = '%2'").arg((qulonglong)reply).arg(urlString));
 #endif
+
+	if ( forcedExit ) {
+		reply->deleteLater();
+		return;
+	}
 
 	// example URL: 'http://i3.ytimg.com/vi/bFjX1uUhB1A/default.jpg'
 	QString videoID;

@@ -11,33 +11,33 @@
 extern MainWindow *qmc2MainWindow;
 #endif
 
-VideoItemWidget::VideoItemWidget(QString vID, QString vDescription, QString vAuthor, QPixmap &vImage, int vType, void *vPlayer, QWidget *parent)
+VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, QPixmap &vImage, int vType, void *vPlayer, QWidget *parent)
   : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vDescription = ..., QString vAuthor = ..., QPixmap &vImage = ..., int vType = %2, void *vPlayer = %3, QWidget *parent = %4)").arg(vID).arg(vType).arg((qulonglong) vPlayer).arg((qulonglong) parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vTitle = ..., QString vAuthor = ..., QPixmap &vImage = ..., int vType = %2, void *vPlayer = %3, QWidget *parent = %4)").arg(vID).arg(vType).arg((qulonglong) vPlayer).arg((qulonglong) parent));
 #endif
 
 	setupUi(this);
-	textBrowserVideoDescription->setObjectName("QMC2_VIDEO_DESCRIPTION");
+	textBrowserVideoTitle->setObjectName("QMC2_VIDEO_TITLE");
 
 	myVideoPlayer = vPlayer;
 	setType(vType);
 	setID(vID);
 	setAuthor(vAuthor);
 	setImage(vImage, true);
-	setDescription(vDescription);
+	setTitle(vTitle);
 }
 
-VideoItemWidget::VideoItemWidget(QString vID, QString vDescription, QString vAuthor, int vType, void *vPlayer, QWidget *parent)
+VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, int vType, void *vPlayer, QWidget *parent)
   : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vDescription = ..., QString vAuthor = ..., int vType = %2, void *vPlayer = %3, QWidget *parent = %4)").arg(vID).arg(vType).arg((qulonglong) vPlayer).arg((qulonglong) parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::VideoItemWidget(QString vID = %1, QString vTitle = ..., QString vAuthor = ..., int vType = %2, void *vPlayer = %3, QWidget *parent = %4)").arg(vID).arg(vType).arg((qulonglong) vPlayer).arg((qulonglong) parent));
 #endif
 
 	setupUi(this);
-	textBrowserVideoDescription->setObjectName("QMC2_VIDEO_DESCRIPTION");
+	textBrowserVideoTitle->setObjectName("QMC2_VIDEO_TITLE");
 
 	myVideoPlayer = vPlayer;
 	setType(vType);
@@ -45,7 +45,7 @@ VideoItemWidget::VideoItemWidget(QString vID, QString vDescription, QString vAut
 	setAuthor(vAuthor);
 	QPixmap ghostImage = QPixmap(QString::fromUtf8(":/data/img/ghost_video.png"));
 	setImage(ghostImage, false);
-	setDescription(vDescription);
+	setTitle(vTitle);
 }
 
 VideoItemWidget::~VideoItemWidget()
@@ -81,8 +81,8 @@ void VideoItemWidget::setType(int type)
 			videoUrlPattern = VIDEOITEM_YOUTUBE_URL_PATTERN;
 			authorUrlPattern = VIDEOITEM_YOUTUBE_AUTHOR_URL_PATTERN;
 			if ( myVideoPlayer ) {
-				textBrowserVideoDescription->disconnect((YouTubeVideoPlayer *)myVideoPlayer);
-				connect(textBrowserVideoDescription, SIGNAL(customContextMenuRequested(const QPoint &)), (YouTubeVideoPlayer *)myVideoPlayer, SLOT(on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &))); 
+				textBrowserVideoTitle->disconnect((YouTubeVideoPlayer *)myVideoPlayer);
+				connect(textBrowserVideoTitle, SIGNAL(customContextMenuRequested(const QPoint &)), (YouTubeVideoPlayer *)myVideoPlayer, SLOT(on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &))); 
 			}
 			break;
 	}
@@ -100,7 +100,7 @@ void VideoItemWidget::setImage(QPixmap vImage, bool valid)
 	videoImage = vImage;
 	labelVideoImage->setPixmap(videoImage.scaled(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	labelVideoImage->setFixedSize(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT);
-	textBrowserVideoDescription->setFixedHeight(VIDEOITEM_IMAGE_HEIGHT);
+	textBrowserVideoTitle->setFixedHeight(VIDEOITEM_IMAGE_HEIGHT);
 }
 
 void VideoItemWidget::setImage(QPixmap *vImage, bool valid)
@@ -116,7 +116,7 @@ void VideoItemWidget::setImage(QPixmap *vImage, bool valid)
 	delete vImage;
 	labelVideoImage->setPixmap(videoImage.scaled(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 	labelVideoImage->setFixedSize(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT);
-	textBrowserVideoDescription->setFixedHeight(VIDEOITEM_IMAGE_HEIGHT);
+	textBrowserVideoTitle->setFixedHeight(VIDEOITEM_IMAGE_HEIGHT);
 }
 
 void VideoItemWidget::setID(QString vID)
@@ -128,8 +128,8 @@ void VideoItemWidget::setID(QString vID)
 	if ( closingState() ) return;
 
 	videoID = vID;
-	if ( !videoDescription.isEmpty() )
-		setDescription(videoDescription);
+	if ( !videoTitle.isEmpty() )
+		setTitle(videoTitle);
 }
 
 void VideoItemWidget::setAuthor(QString vAuthor)
@@ -141,22 +141,22 @@ void VideoItemWidget::setAuthor(QString vAuthor)
 	if ( closingState() ) return;
 
 	videoAuthor = vAuthor;
-	if ( !videoDescription.isEmpty() )
-		setDescription(videoDescription);
+	if ( !videoTitle.isEmpty() )
+		setTitle(videoTitle);
 }
 
-void VideoItemWidget::setDescription(QString vDescription)
+void VideoItemWidget::setTitle(QString vTitle)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setDescription(QString vDescription = %1)").arg(vDescription));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: VideoItemWidget::setTitle(QString vTitle = %1)").arg(vTitle));
 #endif
 
 	if ( closingState() ) return;
 
-	videoDescription = vDescription;
+	videoTitle = vTitle;
 
 	QString htmlText = "<html><body><table cellpadding=\"0\" border=\"0\" width=\"100%\" height=\"100%\">";
-	htmlText += "<tr><td width=\"5%\" align=\"right\" valign=\"top\">" + tr("Title:") + "</td><td width=\"95%\" valign=\"top\"><b>" + videoDescription + "</b></td></tr>";
+	htmlText += "<tr><td width=\"5%\" align=\"right\" valign=\"top\">" + tr("Title:") + "</td><td width=\"95%\" valign=\"top\"><b>" + videoTitle + "</b></td></tr>";
 	if ( !videoAuthor.isEmpty() ) {
 		if ( !authorUrlPattern.isEmpty() ) {
 			QString url = authorUrlPattern;
@@ -174,7 +174,7 @@ void VideoItemWidget::setDescription(QString vDescription)
 			htmlText += "<tr><td width=\"5%\" align=\"right\" valign=\"top\">" + tr("Video:") + "</td><td width=\"95%\" valign=\"top\">" + videoID + "</td></tr>";
 	}
 	htmlText += "</table></body></html>";
-	textBrowserVideoDescription->setHtml(htmlText);
+	textBrowserVideoTitle->setHtml(htmlText);
 }
 
 #endif
