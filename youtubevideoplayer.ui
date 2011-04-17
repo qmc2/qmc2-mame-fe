@@ -28,8 +28,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>327</width>
-        <height>121</height>
+        <width>715</width>
+        <height>336</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -354,8 +354,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>137</width>
-        <height>125</height>
+        <width>715</width>
+        <height>336</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -419,6 +419,15 @@
          </property>
          <property name="toolTip">
           <string>Select the search result page to use (automatically increments on every search with the same pattern)</string>
+         </property>
+         <property name="wrapping">
+          <bool>true</bool>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::PlusMinus</enum>
+         </property>
+         <property name="accelerated">
+          <bool>true</bool>
          </property>
          <property name="prefix">
           <string>P</string>
