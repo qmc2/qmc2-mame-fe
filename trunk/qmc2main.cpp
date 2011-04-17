@@ -2903,7 +2903,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           log(QMC2_LOG_FRONTEND, QString("WIP: support for attached YouTube videos is still under development and not working properly yet!"));
           tabYouTube->setUpdatesEnabled(FALSE);
           if ( qmc2YouTubeWidget ) {
-            qmc2YouTubeWidget->videoPlayer->stop();
+            if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
+              qmc2YouTubeWidget->videoPlayer->stop();
             qmc2YouTubeWidget->forcedExit = true;
             QLayout *vbl = tabYouTube->layout();
             if ( vbl ) delete vbl;
@@ -4749,7 +4750,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
 #if defined(QMC2_YOUTUBE_ENABLED)
   if ( qmc2YouTubeWidget ) {
-    qmc2YouTubeWidget->videoPlayer->stop();
+    if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
+      qmc2YouTubeWidget->videoPlayer->stop();
     qmc2YouTubeWidget->forcedExit = true;
     log(QMC2_LOG_FRONTEND, tr("destroying YouTube video widget"));
     delete qmc2YouTubeWidget;

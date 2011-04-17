@@ -275,7 +275,8 @@ void YouTubeVideoPlayer::loadNullVideo()
 
 	currentVideoID.clear();
 	currentAuthor.clear();
-	videoPlayer->stop();
+	if ( videoPlayer->isPlaying() || videoPlayer->isPaused() )
+		videoPlayer->stop();
 }
 
 void YouTubeVideoPlayer::playNextVideo()
