@@ -77,12 +77,12 @@ AudioEffectDialog::~AudioEffectDialog()
 	foreach (Phonon::EffectWidget *widget, effectWidgetMap)
 		if ( widget ) {
 			widget->close();
-			delete widget;
+			widget->deleteLater();
 		}
 
 	foreach (Phonon::Effect *effect, effectMap)
 		if ( effect )
-			delete effect;
+			effect->deleteLater();
 }
 
 void AudioEffectDialog::saveEffectSettings()
