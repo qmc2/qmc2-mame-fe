@@ -195,7 +195,7 @@ bool Welcome::checkConfig()
 #if !defined(Q_WS_WIN)
   QSettings::setPath(QSettings::IniFormat, QSettings::SystemScope, QMC2_SYSCONF_PATH);
 #endif
-  QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_DOT_PATH);
+  QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_DYNAMIC_DOT_PATH);
 
   qApp->setOrganizationName("qmc2");
   startupConfig = new QSettings(QSettings::IniFormat, QSettings::UserScope, "qmc2");

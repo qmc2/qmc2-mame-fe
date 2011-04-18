@@ -109,7 +109,7 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 #endif
 
   // setup browser settings
-  webViewBrowser->page()->settings()->setIconDatabasePath(QMC2_DOT_PATH);
+  webViewBrowser->page()->settings()->setIconDatabasePath(QMC2_DYNAMIC_DOT_PATH);
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, TRUE);
 #if defined(QMC2_BROWSER_JAVASCRIPT_ENABLED)
   webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, TRUE);
