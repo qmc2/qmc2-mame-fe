@@ -13,7 +13,7 @@ class DirectoryEditWidget : public QWidget, public Ui::DirectoryEditWidget
 
   public slots:
     void on_toolButtonBrowse_clicked();
-    void on_lineEditDirectory_textEdited(const QString &) { emit dataChanged(this); }
+    void on_lineEditDirectory_textChanged(const QString &) { emit dataChanged(this); }
 
   signals:
     void dataChanged(QWidget *);
