@@ -156,7 +156,7 @@ Options::Options(QWidget *parent)
 #if !defined(Q_WS_WIN)
   QSettings::setPath(QSettings::IniFormat, QSettings::SystemScope, QMC2_SYSCONF_PATH);
 #endif
-  QString userScopePath = QMC2_DOT_PATH;
+  QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
   QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, userScopePath);
   QDir userScopeDir(userScopePath);
   if ( !userScopeDir.exists() )
@@ -1618,7 +1618,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
     qmc2Config = config;
   }
 
-  QString userScopePath = QMC2_DOT_PATH;
+  QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 
   // Frontend
 

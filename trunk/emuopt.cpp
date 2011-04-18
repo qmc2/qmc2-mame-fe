@@ -790,7 +790,7 @@ void EmulatorOptions::checkTemplateMap()
     return;
   }
 
-  QString userScopePath = QMC2_DOT_PATH;
+  QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 
   int diffCount = 0;
   QMap <QString, QString> emuOptions;

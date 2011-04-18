@@ -267,7 +267,7 @@ void Gamelist::load()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::load()");
 #endif
 
-  QString userScopePath = QMC2_DOT_PATH;
+  QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 
   qmc2ReloadActive = qmc2EarlyReloadActive = TRUE;
   qmc2StopParser = FALSE;

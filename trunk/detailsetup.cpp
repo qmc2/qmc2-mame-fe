@@ -407,7 +407,7 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
 #if QMC2_WIP_CODE == 1
 #if QMC2_YOUTUBE_ENABLED
 	case QMC2_YOUTUBE_INDEX: {
-		QString userScopePath = QMC2_DOT_PATH;
+		QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 		QString oldCacheDirectory = qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", userScopePath + "/youtube/").toString();
 		// we set the option 'QFileDialog::DontUseNativeDialog' here because the native dialog doesn't always handle dot-paths (hidden dirs) correctly
 		QString youTubeCacheDirectory = QFileDialog::getExistingDirectory(this,

@@ -401,6 +401,7 @@
 #define QMC2_DOT_PATH			(QDir::homePath() + "/.qmc2")
 #define QMC2_DEFAULT_DATA_PATH		QString("data")
 #endif
+#define QMC2_DYNAMIC_DOT_PATH		(qApp->arguments().indexOf("-qmc2_config_path") >= 0 && qApp->arguments().indexOf("-qmc2_config_path") + 1 <= qApp->arguments().count() ? qApp->arguments()[qApp->arguments().indexOf("-qmc2_config_path") + 1]: QMC2_DOT_PATH)
 
 // determine if memory infomation can be read
 #if defined(_SC_PHYS_PAGES) && defined(_SC_PAGESIZE) && defined(_SC_AVPHYS_PAGES)
