@@ -1,6 +1,6 @@
 #include <QFileInfo>
 
-#include "messswlist.h"
+#include "softwarelist.h"
 #include "gamelist.h"
 #include "macros.h"
 #include "qmc2main.h"
@@ -12,26 +12,31 @@ extern QSettings *qmc2Config;
 extern Gamelist *qmc2Gamelist;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
-extern QMap<QString, QString> messXmlDataCache;
 
-QMap<QString, QStringList> messMachineSoftwareListMap;
-QMap<QString, QString> messSoftwareListXmlDataCache;
-QString messSwlBuffer;
-QString messSwlLastLine;
-bool messSwlSupported = true;
+QMap<QString, QStringList> systemSoftwareListMap;
+QMap<QString, QString> softwareListXmlDataCache;
+QString swlBuffer;
+QString swlLastLine;
+bool swlSupported = true;
 
-MESSSoftwareList::MESSSoftwareList(QString machineName, QWidget *parent)
+SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	: QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::MESSSoftwareList(QString machineName = %1, QWidget *parent = %2)").arg(machineName).arg((qulonglong)parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::SoftwareList(QString sysName = %1, QWidget *parent = %2)").arg(sysName).arg((qulonglong)parent));
 #endif
 
 	setupUi(this);
 
-	messMachineName = machineName;
+	systemName = sysName;
 	loadProc = NULL;
 	validData = false;
+
+#if defined(QMC2_EMUTYPE_MAME)
+	comboBoxDeviceConfiguration->setVisible(false);
+	QString altText = tr("Add the currently selected software to the favorites list");
+	toolButtonAddToFavorites->setToolTip(altText); toolButtonAddToFavorites->setStatusTip(altText);
+#endif
 
 	QFontMetrics fm(QApplication::font());
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
@@ -84,103 +89,118 @@ MESSSoftwareList::MESSSoftwareList(QString machineName, QWidget *parent)
 	connect(actionRemoveFromFavorites, SIGNAL(triggered()), this, SLOT(removeFromFavorites()));
 
 	// restore widget states
-	treeWidgetKnownSoftware->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/KnownSoftwareHeaderState").toByteArray());
-	treeWidgetFavoriteSoftware->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/FavoriteSoftwareHeaderState").toByteArray());
-	treeWidgetSearchResults->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/SearchResultsHeaderState").toByteArray());
-	toolBoxSoftwareList->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/PageIndex").toInt());
+	treeWidgetKnownSoftware->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/KnownSoftwareHeaderState").toByteArray());
+	treeWidgetFavoriteSoftware->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/FavoriteSoftwareHeaderState").toByteArray());
+	treeWidgetSearchResults->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SearchResultsHeaderState").toByteArray());
+	toolBoxSoftwareList->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/PageIndex").toInt());
 
 	connect(treeWidgetKnownSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetKnownSoftware_headerSectionClicked(int)));
 	connect(treeWidgetFavoriteSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetFavoriteSoftware_headerSectionClicked(int)));
 	connect(treeWidgetSearchResults->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetSearchResults_headerSectionClicked(int)));
 }
 
-MESSSoftwareList::~MESSSoftwareList()
+SoftwareList::~SoftwareList()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::~MESSSoftwareList()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::~SoftwareList()");
 #endif
 
 	// save widget states
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/KnownSoftwareHeaderState", treeWidgetKnownSoftware->header()->saveState());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/FavoriteSoftwareHeaderState", treeWidgetFavoriteSoftware->header()->saveState());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/SearchResultsHeaderState", treeWidgetSearchResults->header()->saveState());
-	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSSoftwareList/PageIndex", toolBoxSoftwareList->currentIndex());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/KnownSoftwareHeaderState", treeWidgetKnownSoftware->header()->saveState());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/FavoriteSoftwareHeaderState", treeWidgetFavoriteSoftware->header()->saveState());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SearchResultsHeaderState", treeWidgetSearchResults->header()->saveState());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/PageIndex", toolBoxSoftwareList->currentIndex());
 }
 
-QString &MESSSoftwareList::getSoftwareListXmlData(QString listName)
+QString &SoftwareList::getSoftwareListXmlData(QString listName)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::getSoftwareListXmlData(QString listName = %1)").arg(listName));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::getSoftwareListXmlData(QString listName = %1)").arg(listName));
 #endif
 
 	static QString softwareListXmlBuffer;
 
-	softwareListXmlBuffer = messSoftwareListXmlDataCache[listName];
+	softwareListXmlBuffer = softwareListXmlDataCache[listName];
 
 	if ( softwareListXmlBuffer.isEmpty() ) {
 		int i = 0;
 		QString s = "<softwarelist name=\"" + listName + "\"";
-		while ( !messSwlLines[i].contains(s) ) i++;
+		while ( !swlLines[i].contains(s) ) i++;
 		softwareListXmlBuffer = "<?xml version=\"1.0\"?>\n";
-		while ( !messSwlLines[i].contains("</softwarelist>") )
-			softwareListXmlBuffer += messSwlLines[i++].simplified() + "\n";
+		while ( !swlLines[i].contains("</softwarelist>") )
+			softwareListXmlBuffer += swlLines[i++].simplified() + "\n";
 		softwareListXmlBuffer += "</softwarelist>";
-		messSoftwareListXmlDataCache[listName] = softwareListXmlBuffer;
+		softwareListXmlDataCache[listName] = softwareListXmlBuffer;
 	}
 
 	return softwareListXmlBuffer;
 }
 
-QString &MESSSoftwareList::getXmlData(QString machineName)
+QString &SoftwareList::getXmlData(QString machineName)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::getXmlData(QString machineName = %1)").arg(machineName));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::getXmlData(QString machineName = %1)").arg(machineName));
 #endif
 
 	static QString xmlBuffer;
 
-	QStringList machineSoftwareList = messMachineSoftwareListMap[machineName];
-	if ( machineSoftwareList.isEmpty() ) {
+	QStringList softwareList = systemSoftwareListMap[systemName];
+	if ( softwareList.isEmpty() ) {
 		int i = 0;
-		QString s = "<machine name=\"" + machineName + "\"";
+#if defined(QMC2_EMUTYPE_MAME)
+		QString s = "<game name=\"" + systemName + "\"";
+		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
+		while ( !qmc2Gamelist->xmlLines[i].contains("</game>") ) {
+			QString line = qmc2Gamelist->xmlLines[i++].simplified();
+			if ( line.startsWith("<softwarelist name=\"") ) {
+				int startIndex = line.indexOf("\"") + 1;
+				int endIndex = line.indexOf("\"", startIndex);
+				softwareList << line.mid(startIndex, endIndex - startIndex); 
+			}
+		}
+#elif defined(QMC2_EMUTYPE_MESS)
+		QString s = "<machine name=\"" + systemName + "\"";
 		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
 		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") ) {
 			QString line = qmc2Gamelist->xmlLines[i++].simplified();
 			if ( line.startsWith("<softwarelist name=\"") ) {
 				int startIndex = line.indexOf("\"") + 1;
 				int endIndex = line.indexOf("\"", startIndex);
-				machineSoftwareList << line.mid(startIndex, endIndex - startIndex); 
+				softwareList << line.mid(startIndex, endIndex - startIndex); 
 			}
 		}
-		if ( machineSoftwareList.isEmpty() )
-			machineSoftwareList << "NO_SOFTWARE_LIST";
-		messMachineSoftwareListMap[machineName] = machineSoftwareList;
+#endif
+		if ( softwareList.isEmpty() )
+			softwareList << "NO_SOFTWARE_LIST";
+		systemSoftwareListMap[systemName] = softwareList;
 #ifdef QMC2_DEBUG
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: messMachineSoftwareListMap[%1] = %2").arg(machineName).arg(machineSoftwareList.join(", ")));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: systemSoftwareListMap[%1] = %2").arg(systemName).arg(softwareList.join(", ")));
 #endif
 	}
 #ifdef QMC2_DEBUG
 	else
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: messMachineSoftwareListMap[%1] = %2 (cached)").arg(machineName).arg(messMachineSoftwareListMap[machineName].join(", ")));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: systemSoftwareListMap[%1] = %2 (cached)").arg(systemName).arg(systemSoftwareListMap[systemName].join(", ")));
 #endif
 
 	xmlBuffer.clear();
 
-	if ( !machineSoftwareList.isEmpty() && !machineSoftwareList.contains("NO_SOFTWARE_LIST") ) {
-		QString swlString = machineSoftwareList.join(", ");
+	if ( !softwareList.isEmpty() && !softwareList.contains("NO_SOFTWARE_LIST") ) {
+		QString swlString = softwareList.join(", ");
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (%1)").arg(swlString));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (%1)").arg(swlString));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(swlString));
 		toolBoxSoftwareList->setEnabled(true);
 
+#if defined(QMC2_EMUTYPE_MESS)
 		// load available device configurations, if any...
-		qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1").arg(messMachineName));
+		qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1").arg(systemName));
 		QStringList configurationList = qmc2Config->childGroups();
 		qmc2Config->endGroup();
 		if ( !configurationList.isEmpty() ) {
 			comboBoxDeviceConfiguration->insertItems(1, configurationList);
 			comboBoxDeviceConfiguration->setEnabled(true);
 		}
+#endif
 	} else {
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (no data available)"));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (no data available)"));
@@ -190,15 +210,19 @@ QString &MESSSoftwareList::getXmlData(QString machineName)
 	return xmlBuffer;
 }
 
-bool MESSSoftwareList::load()
+bool SoftwareList::load()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::load()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::load()");
 #endif
 
 	bool swlCacheOkay = true;
-	validData = messSwlSupported;
+	validData = swlSupported;
+#if defined(QMC2_EMUTYPE_MAME)
+	QString swlCachePath = qmc2Config->value("MAME/FilesAndDirectories/SoftwareListCache").toString();
+#elif defined(QMC2_EMUTYPE_MESS)
 	QString swlCachePath = qmc2Config->value("MESS/FilesAndDirectories/SoftwareListCache").toString();
+#endif
 
 	treeWidgetKnownSoftware->clear();
 	treeWidgetFavoriteSoftware->clear();
@@ -211,8 +235,8 @@ bool MESSSoftwareList::load()
 	treeWidgetSearchResults->setSortingEnabled(false);
 	treeWidgetSearchResults->header()->setSortIndicatorShown(false);
 
-	if ( messSwlBuffer.isEmpty() && messSwlSupported ) {
-		messSwlLines.clear();
+	if ( swlBuffer.isEmpty() && swlSupported ) {
+		swlLines.clear();
 		validData = false;
 		swlCacheOkay = false;
 		if ( !swlCachePath.isEmpty() ) {
@@ -221,6 +245,15 @@ bool MESSSoftwareList::load()
 				QTextStream ts(&fileSWLCache);
 				QString line = ts.readLine();
 				line = ts.readLine();
+#if defined(QMC2_EMUTYPE_MAME)
+				if ( line.startsWith("MAME_VERSION") ) {
+					QStringList words = line.split("\t");
+					if ( words.count() > 1 ) {
+						if ( qmc2Gamelist->emulatorVersion == words[1] )
+							swlCacheOkay = true;
+					}
+				}
+#elif defined(QMC2_EMUTYPE_MESS)
 				if ( line.startsWith("MESS_VERSION") ) {
 					QStringList words = line.split("\t");
 					if ( words.count() > 1 ) {
@@ -228,6 +261,7 @@ bool MESSSoftwareList::load()
 							swlCacheOkay = true;
 					}
 				}
+#endif
 				if ( swlCacheOkay ) {
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML software list data from cache"));
 					QTime elapsedTime;
@@ -251,14 +285,14 @@ bool MESSSoftwareList::load()
 						for (l = 0; l < lc; l++) {
 							if ( !lines[l].isEmpty() ) {
 								line = lines[l];
-								messSwlBuffer += line + "\n";
+								swlBuffer += line + "\n";
 							}
 						}
 						if ( endsWithNewLine )
 							readBuffer.clear();
 						else
 							readBuffer = lines.last();
-						qmc2MainWindow->progressBarGamelist->setValue(messSwlBuffer.length());
+						qmc2MainWindow->progressBarGamelist->setValue(swlBuffer.length());
 					}
 					qmc2MainWindow->progressBarGamelist->reset();
 					elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
@@ -269,7 +303,11 @@ bool MESSSoftwareList::load()
 					fileSWLCache.close();
 			}
 		} else {
+#if defined(QMC2_EMUTYPE_MAME)
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: the file name for the MAME software list cache is empty -- please correct this and reload the game list afterwards"));
+#elif defined(QMC2_EMUTYPE_MESS)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: the file name for the MESS software list cache is empty -- please correct this and reload the machine list afterwards"));
+#endif
 			return false;
 		}
         }
@@ -284,17 +322,25 @@ bool MESSSoftwareList::load()
 			qmc2MainWindow->progressBarGamelist->setFormat("%p%");
 
 		if ( !fileSWLCache.open(QIODevice::WriteOnly | QIODevice::Text) ) {
+#if defined(QMC2_EMUTYPE_MAME)
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open the MAME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards").arg(swlCachePath));
+#elif defined(QMC2_EMUTYPE_MESS)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards").arg(swlCachePath));
+#endif
 			return false;
 		}
 
-		messSwlBuffer.clear();
-		messSwlLastLine.clear();
+		swlBuffer.clear();
+		swlLastLine.clear();
 
 		tsSWLCache.setDevice(&fileSWLCache);
 		tsSWLCache.reset();
 		tsSWLCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
+#if defined(QMC2_EMUTYPE_MAME)
+		tsSWLCache << "MAME_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
+#elif defined(QMC2_EMUTYPE_MESS)
 		tsSWLCache << "MESS_VERSION\t" + qmc2Gamelist->emulatorVersion + "\n";
+#endif
 		
 		loadProc = new QProcess(this);
 
@@ -305,12 +351,21 @@ bool MESSSoftwareList::load()
 		connect(loadProc, SIGNAL(started()), this, SLOT(loadStarted()));
 		connect(loadProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(loadStateChanged(QProcess::ProcessState)));
 
+#if defined(QMC2_EMUTYPE_MAME)
+		QString command = qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString();
+		QStringList args;
+		args << "-listsoftware";
+		QString hashPath = qmc2Config->value("MAME/Configuration/Global/hashpath").toString().replace("~", "$HOME");
+		if ( !hashPath.isEmpty() )
+			args << "-hashpath" << hashPath;
+#elif defined(QMC2_EMUTYPE_MESS)
 		QString command = qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString();
 		QStringList args;
 		args << "-listsoftware";
 		QString hashPath = qmc2Config->value("MESS/Configuration/Global/hashpath").toString().replace("~", "$HOME");
 		if ( !hashPath.isEmpty() )
 			args << "-hashpath" << hashPath;
+#endif
 
 		loadProc->start(command, args);
 
@@ -333,29 +388,29 @@ bool MESSSoftwareList::load()
 	}
 
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::load(): validData = %1").arg(validData ? "true" : "false"));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): validData = %1").arg(validData ? "true" : "false"));
 #endif
 
-	QString xmlData = getXmlData(messMachineName);
+	QString xmlData = getXmlData(systemName);
 
-	QStringList machineSoftwareList = messMachineSoftwareListMap[messMachineName];
-	if ( !machineSoftwareList.contains("NO_SOFTWARE_LIST") ) {
-		messSwlLines = messSwlBuffer.split("\n");
-		foreach (QString swList, machineSoftwareList) {
+	QStringList softwareList = systemSoftwareListMap[systemName];
+	if ( !softwareList.contains("NO_SOFTWARE_LIST") ) {
+		swlLines = swlBuffer.split("\n");
+		foreach (QString swList, softwareList) {
 			QString softwareListXml = getSoftwareListXmlData(swList);
 #ifdef QMC2_DEBUG
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::load(): XML data for software list '%1' follows:\n%2").arg(swList).arg(softwareListXml));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): XML data for software list '%1' follows:\n%2").arg(swList).arg(softwareListXml));
 #endif
 			QXmlInputSource xmlInputSource;
 			xmlInputSource.setData(softwareListXml);
-			MESSSoftwareListXmlHandler xmlHandler(treeWidgetKnownSoftware);
+			SoftwareListXmlHandler xmlHandler(treeWidgetKnownSoftware);
 			QXmlSimpleReader xmlReader;
 			xmlReader.setContentHandler(&xmlHandler);
 			if ( !xmlReader.parse(xmlInputSource) )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list '%1'").arg(swList));
 #ifdef QMC2_DEBUG
 			else
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::load(): successfully parsed the XML data for software list '%1'").arg(swList));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): successfully parsed the XML data for software list '%1'").arg(swList));
 #endif
 		}
 	}
@@ -370,50 +425,50 @@ bool MESSSoftwareList::load()
 	return true;
 }
 
-bool MESSSoftwareList::save()
+bool SoftwareList::save()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::save()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::save()");
 #endif
 
 	// FIXME: save favorites here...
 	return true;
 }
 
-void MESSSoftwareList::closeEvent(QCloseEvent *e)
+void SoftwareList::closeEvent(QCloseEvent *e)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
 #endif
 
 	if ( e )
 		e->accept();
 }
 
-void MESSSoftwareList::hideEvent(QHideEvent *e)
+void SoftwareList::hideEvent(QHideEvent *e)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
 #endif
 
 	if ( e )
 		e->accept();
 }
 
-void MESSSoftwareList::showEvent(QShowEvent *e)
+void SoftwareList::showEvent(QShowEvent *e)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
 	if ( e )
 		e->accept();
 }
 
-void MESSSoftwareList::loadStarted()
+void SoftwareList::loadStarted()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::loadStarted()"));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadStarted()"));
 #endif
 
 	// we don't know how many items there are...
@@ -421,10 +476,10 @@ void MESSSoftwareList::loadStarted()
 	qmc2MainWindow->progressBarGamelist->reset();
 }
 
-void MESSSoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
+void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::loadFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2)").arg(exitCode).arg(exitStatus));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2)").arg(exitCode).arg(exitStatus));
 #endif
 
 	QTime elapsedTime;
@@ -432,7 +487,11 @@ void MESSSoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatu
 	if ( exitStatus == QProcess::NormalExit && exitCode == 0 ) {
 		validData = true;
 	} else {
+#if defined(QMC2_EMUTYPE_MAME)
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MAME software lists didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+#elif defined(QMC2_EMUTYPE_MESS)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MESS software lists didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed")));
+#endif
 		validData = false;
 	}
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML software list data and (re)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
@@ -444,24 +503,24 @@ void MESSSoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatu
 	qmc2MainWindow->progressBarGamelist->reset();
 }
 
-void MESSSoftwareList::loadReadyReadStandardOutput()
+void SoftwareList::loadReadyReadStandardOutput()
 {
 	QProcess *proc = (QProcess *)sender();
 
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::loadReadyReadStandardOutput()"));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadReadyReadStandardOutput()"));
 #endif
 
-	QString s = messSwlLastLine + proc->readAllStandardOutput();
+	QString s = swlLastLine + proc->readAllStandardOutput();
 #if defined(Q_WS_WIN)
 	s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
 	QStringList lines = s.split("\n");
 
 	if ( s.endsWith("\n") ) {
-		messSwlLastLine.clear();
+		swlLastLine.clear();
 	} else {
-		messSwlLastLine = lines.last();
+		swlLastLine = lines.last();
 		lines.removeLast();
 	}
 
@@ -470,12 +529,12 @@ void MESSSoftwareList::loadReadyReadStandardOutput()
 		if ( !line.isEmpty() )
 			if ( !line.startsWith("<!") && !line.startsWith("<?xml") && !line.startsWith("]>") ) {
 				tsSWLCache << line << "\n";
-				messSwlBuffer += line + "\n";
+				swlBuffer += line + "\n";
 			}
 	}
 }
 
-void MESSSoftwareList::loadReadyReadStandardError()
+void SoftwareList::loadReadyReadStandardError()
 {
 	QProcess *proc = (QProcess *)sender();
 
@@ -483,26 +542,34 @@ void MESSSoftwareList::loadReadyReadStandardError()
 	data = data.trimmed();
 
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::loadReadyReadStandardError(): data = '%1'").arg(data));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadReadyReadStandardError(): data = '%1'").arg(data));
 #endif
 
 	if ( data.contains("unknown option: -listsoftware") ) {
+#if defined(QMC2_EMUTYPE_MAME)
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: your currently selected MAME emulator doesn't support software lists -- MAME 0.142+ required"));
+#elif defined(QMC2_EMUTYPE_MESS)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: your currently selected MESS emulator doesn't support software lists -- MESS 0.138+ required"));
-		messSwlSupported = false;
+#endif
+		swlSupported = false;
 		if ( fileSWLCache.isOpen() )
 			fileSWLCache.close();
 		fileSWLCache.remove();
 	}
 }
 
-void MESSSoftwareList::loadError(QProcess::ProcessError processError)
+void SoftwareList::loadError(QProcess::ProcessError processError)
 {
 #ifdef QMC2_DEBUG
 	QProcess *proc = (QProcess *)sender();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::loadError(QProcess::ProcessError processError = %1)").arg(processError));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadError(QProcess::ProcessError processError = %1)").arg(processError));
 #endif
 
+#if defined(QMC2_EMUTYPE_MAME)
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MAME software lists caused an error -- processError = %1").arg(processError));
+#elif defined(QMC2_EMUTYPE_MESS)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MESS software lists caused an error -- processError = %1").arg(processError));
+#endif
 	validData = false;
 
 	if ( fileSWLCache.isOpen() )
@@ -512,19 +579,19 @@ void MESSSoftwareList::loadError(QProcess::ProcessError processError)
 	qmc2MainWindow->progressBarGamelist->reset();
 }
 
-void MESSSoftwareList::loadStateChanged(QProcess::ProcessState processState)
+void SoftwareList::loadStateChanged(QProcess::ProcessState processState)
 {
 #ifdef QMC2_DEBUG
 	QProcess *proc = (QProcess *)sender();
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::loadStateChanged(QProcess::ProcessState processState = %1)").arg(processState));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadStateChanged(QProcess::ProcessState processState = %1)").arg(processState));
 #endif
 
 }
 
-void MESSSoftwareList::on_toolButtonReload_clicked(bool checked)
+void SoftwareList::on_toolButtonReload_clicked(bool checked)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonReload_clicked(bool checked = %1)").arg(checked));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonReload_clicked(bool checked = %1)").arg(checked));
 #endif
 
 	save();
@@ -544,44 +611,44 @@ void MESSSoftwareList::on_toolButtonReload_clicked(bool checked)
 	QTimer::singleShot(0, this, SLOT(load()));
 }
 
-void MESSSoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
+void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonAddToFavorites_clicked(bool checked = %1)").arg(checked));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked = %1)").arg(checked));
 #endif
 
 }
 
-void MESSSoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked)
+void SoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked = %1)").arg(checked));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked = %1)").arg(checked));
 #endif
 
 }
 
-void MESSSoftwareList::on_toolButtonPlay_clicked(bool checked)
+void SoftwareList::on_toolButtonPlay_clicked(bool checked)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonPlay_clicked(bool checked = %1)").arg(checked));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonPlay_clicked(bool checked = %1)").arg(checked));
 #endif
 
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
 }
 
-void MESSSoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked)
+void SoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked = %1)").arg(checked));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked = %1)").arg(checked));
 #endif
 
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
 }
 
-void MESSSoftwareList::treeWidgetKnownSoftware_headerSectionClicked(int index)
+void SoftwareList::treeWidgetKnownSoftware_headerSectionClicked(int index)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_treeWidgetKnownSoftware_headerSectionClicked(int index = %1)").arg(index));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetKnownSoftware_headerSectionClicked(int index = %1)").arg(index));
 #endif
 
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
@@ -589,10 +656,10 @@ void MESSSoftwareList::treeWidgetKnownSoftware_headerSectionClicked(int index)
 		treeWidgetKnownSoftware->scrollToItem(selectedItems[0]);
 }
 
-void MESSSoftwareList::treeWidgetFavoriteSoftware_headerSectionClicked(int index)
+void SoftwareList::treeWidgetFavoriteSoftware_headerSectionClicked(int index)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_treeWidgetFavoriteSoftware_headerSectionClicked(int index = %1)").arg(index));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_headerSectionClicked(int index = %1)").arg(index));
 #endif
 
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetFavoriteSoftware->selectedItems();
@@ -600,10 +667,10 @@ void MESSSoftwareList::treeWidgetFavoriteSoftware_headerSectionClicked(int index
 		treeWidgetFavoriteSoftware->scrollToItem(selectedItems[0]);
 }
 
-void MESSSoftwareList::treeWidgetSearchResults_headerSectionClicked(int index)
+void SoftwareList::treeWidgetSearchResults_headerSectionClicked(int index)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareList::on_treeWidgetSearchResults_headerSectionClicked(int index = %1)").arg(index));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetSearchResults_headerSectionClicked(int index = %1)").arg(index));
 #endif
 
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetSearchResults->selectedItems();
@@ -611,10 +678,10 @@ void MESSSoftwareList::treeWidgetSearchResults_headerSectionClicked(int index)
 		treeWidgetSearchResults->scrollToItem(selectedItems[0]);
 }
 
-void MESSSoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
+void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()");
 #endif
 
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
@@ -624,10 +691,10 @@ void MESSSoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 	toolButtonAddToFavorites->setEnabled(enable);
 }
 
-void MESSSoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
+void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()");
 #endif
 
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetFavoriteSoftware->selectedItems();
@@ -637,18 +704,18 @@ void MESSSoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 	toolButtonRemoveFromFavorites->setEnabled(enable);
 }
 
-void MESSSoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
+void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()");
 #endif
 
 }
 
-void MESSSoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(const QPoint &p)
+void SoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(const QPoint &p = ...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
 	QTreeWidgetItem *item = treeWidgetKnownSoftware->itemAt(p);
@@ -663,10 +730,10 @@ void MESSSoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(con
 	softwareListMenu->show();
 }
 
-void MESSSoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &p)
+void SoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &p = ...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
 	QTreeWidgetItem *item = treeWidgetFavoriteSoftware->itemAt(p);
@@ -681,10 +748,10 @@ void MESSSoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(
 	softwareListMenu->show();
 }
 
-void MESSSoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const QPoint &p)
+void SoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const QPoint &p = ...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
 	QTreeWidgetItem *item = treeWidgetSearchResults->itemAt(p);
@@ -699,67 +766,69 @@ void MESSSoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(con
 	softwareListMenu->show();
 }
 
-QStringList &MESSSoftwareList::arguments()
+QStringList &SoftwareList::arguments()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareList::arguments()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::arguments()");
 #endif
 
-	static QStringList messSwlArgs;
+	static QStringList swlArgs;
 
-	messSwlArgs.clear();
+	swlArgs.clear();
 
 	// arguments to start a software list entry
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
 	if ( selectedItems.count() > 0 ) {
 		QTreeWidgetItem *item = selectedItems[0];
 		foreach (QString device, item->text(QMC2_SWLIST_COLUMN_PART).split(",")) {
-			messSwlArgs << QString("-%1").arg(device);
-			messSwlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
+			swlArgs << QString("-%1").arg(device);
+			swlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
 			break; // FIXME: for now we just stop after the first "part" because MESS can't handle multiple device parts yet
 		}
 	}
 
+#if defined(QMC2_EMUTYPE_MESS)
 	// optionally add arguments for the selected device configuration
 	QString devConfigName = comboBoxDeviceConfiguration->currentText();
 	if ( devConfigName != tr("No additional devices") ) {
-		qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1/%2").arg(messMachineName).arg(devConfigName));
+		qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1/%2").arg(systemName).arg(devConfigName));
 		QStringList instances = qmc2Config->value("Instances").toStringList();
 		QStringList files = qmc2Config->value("Files").toStringList();
 		qmc2Config->endGroup();
 		for (int i = 0; i < instances.count(); i++) {
 #if defined(Q_WS_WIN)
-			messSwlArgs << QString("-%1").arg(instances[i]) << files[i].replace('/', '\\');
+			swlArgs << QString("-%1").arg(instances[i]) << files[i].replace('/', '\\');
 #else
-			messSwlArgs << QString("-%1").arg(instances[i]) << files[i].replace("~", "$HOME");
+			swlArgs << QString("-%1").arg(instances[i]) << files[i].replace("~", "$HOME");
 #endif
 		}
 	}
+#endif
 
-	return messSwlArgs;
+	return swlArgs;
 }
 
-MESSSoftwareListXmlHandler::MESSSoftwareListXmlHandler(QTreeWidget *parent)
+SoftwareListXmlHandler::SoftwareListXmlHandler(QTreeWidget *parent)
 {
 #ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::MESSSoftwareListXmlHandler(QTreeWidget *parent = %1)").arg((qulonglong)parent));
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListXmlHandler::SoftwareListXmlHandler(QTreeWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
 	parentTreeWidget = parent;
 }
 
-MESSSoftwareListXmlHandler::~MESSSoftwareListXmlHandler()
+SoftwareListXmlHandler::~SoftwareListXmlHandler()
 {
 #ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSSoftwareListXmlHandler::~MESSSoftwareListXmlHandler()");
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareListXmlHandler::~SoftwareListXmlHandler()");
 #endif
 
 }
 
-bool MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
+bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
 {
 #ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
 #endif
 
 	if ( qName == "softwarelist" ) {
@@ -783,10 +852,10 @@ bool MESSSoftwareListXmlHandler::startElement(const QString &namespaceURI, const
 	return true;
 }
 
-bool MESSSoftwareListXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
+bool SoftwareListXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
 {
 #ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::endElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2)").arg(localName).arg(qName));
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListXmlHandler::endElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2)").arg(localName).arg(qName));
 #endif
 
 	if ( qName == "description" ) {
@@ -803,10 +872,10 @@ bool MESSSoftwareListXmlHandler::endElement(const QString &namespaceURI, const Q
 	return true;
 }
 
-bool MESSSoftwareListXmlHandler::characters(const QString &str)
+bool SoftwareListXmlHandler::characters(const QString &str)
 {
 #ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSSoftwareListXmlHandler::characters(const QString &str = ...)"));
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListXmlHandler::characters(const QString &str = ...)"));
 #endif
 
 	currentText += QString::fromUtf8(str.toAscii());

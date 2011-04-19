@@ -31,9 +31,6 @@ Welcome::Welcome(QWidget *parent)
 
 #if defined(QMC2_SDLMAME)
     QString emulatorName = tr("SDLMAME");
-    labelHashPath->setVisible(FALSE);
-    lineEditHashPath->setVisible(FALSE);
-    toolButtonBrowseHashPath->setVisible(FALSE);
 #elif defined(QMC2_SDLMESS)
     QString emulatorName = tr("SDLMESS");
     labelSamplePath->setVisible(FALSE);
@@ -41,9 +38,6 @@ Welcome::Welcome(QWidget *parent)
     toolButtonBrowseSamplePath->setVisible(FALSE);
 #elif defined(QMC2_MAME)
     QString emulatorName = tr("MAME");
-    labelHashPath->setVisible(FALSE);
-    lineEditHashPath->setVisible(FALSE);
-    toolButtonBrowseHashPath->setVisible(FALSE);
 #elif defined(QMC2_MESS)
     QString emulatorName = tr("MESS");
     labelSamplePath->setVisible(FALSE);
@@ -84,6 +78,8 @@ void Welcome::on_pushButtonOkay_clicked()
         startupConfig->setValue("MAME/Configuration/Global/rompath", lineEditROMPath->text());
       if ( !lineEditSamplePath->text().isEmpty() )
         startupConfig->setValue("MAME/Configuration/Global/samplepath", lineEditSamplePath->text());
+      if ( !lineEditHashPath->text().isEmpty() )
+        startupConfig->setValue("MAME/Configuration/Global/hashpath", lineEditHashPath->text());
 #elif defined(QMC2_EMUTYPE_MESS)
       startupConfig->setValue("MESS/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
       if ( !lineEditROMPath->text().isEmpty() )
@@ -148,12 +144,10 @@ void Welcome::on_toolButtonBrowseHashPath_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseHashPath_clicked()");
 #endif
 
-#if defined(QMC2_EMUTYPE_MESS)
   QString s = QFileDialog::getExistingDirectory(this, tr("Choose hash path"), lineEditHashPath->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
   if ( !s.isNull() )
     lineEditHashPath->setText(s);
   raise();
-#endif
 }
 
 void Welcome::setupLanguage()
