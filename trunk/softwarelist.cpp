@@ -36,6 +36,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	comboBoxDeviceConfiguration->setVisible(false);
 	QString altText = tr("Add the currently selected software to the favorites list");
 	toolButtonAddToFavorites->setToolTip(altText); toolButtonAddToFavorites->setStatusTip(altText);
+#elif defined(QMC2_EMUTYPE_MESS)
+	horizontalLayout->removeItem(horizontalSpacer);
 #endif
 
 	QFontMetrics fm(QApplication::font());

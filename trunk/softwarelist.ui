@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>449</width>
-    <height>330</height>
+    <width>445</width>
+    <height>289</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,127 +19,144 @@
     <number>0</number>
    </property>
    <item row="0" column="0">
-    <widget class="QToolButton" name="toolButtonReload">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Reload all information</string>
-     </property>
-     <property name="statusTip">
-      <string>Reload all information</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QComboBox" name="comboBoxDeviceConfiguration">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Select a pre-defined device configuration to be added to the software setup</string>
-     </property>
-     <property name="statusTip">
-      <string>Select a pre-defined device configuration to be added to the software setup</string>
-     </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <property name="text">
-       <string>No additional devices</string>
-      </property>
+      <widget class="QToolButton" name="toolButtonReload">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Reload all information</string>
+       </property>
+       <property name="statusTip">
+        <string>Reload all information</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+       </property>
+      </widget>
      </item>
-    </widget>
+     <item>
+      <widget class="QComboBox" name="comboBoxDeviceConfiguration">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Select a pre-defined device configuration to be added to the software setup</string>
+       </property>
+       <property name="statusTip">
+        <string>Select a pre-defined device configuration to be added to the software setup</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>No additional devices</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>0</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonAddToFavorites">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Add the currently selected software and device setup to the favorites list</string>
+       </property>
+       <property name="statusTip">
+        <string>Add the currently selected software and device setup to the favorites list</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonRemoveFromFavorites">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Remove the currently selected favorite software configuration</string>
+       </property>
+       <property name="statusTip">
+        <string>Remove the currently selected favorite software configuration</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonPlay">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Play the selected software configuration</string>
+       </property>
+       <property name="statusTip">
+        <string>Play the selected software configuration</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/launch.png</normaloff>:/data/img/launch.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonPlayEmbedded">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Play the selected software configuration (embedded)</string>
+       </property>
+       <property name="statusTip">
+        <string>Play the selected software configuration (embedded)</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/embed.png</normaloff>:/data/img/embed.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
-   <item row="0" column="3">
-    <widget class="QToolButton" name="toolButtonAddToFavorites">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Add the currently selected software and device setup to the favorites list</string>
-     </property>
-     <property name="statusTip">
-      <string>Add the currently selected software and device setup to the favorites list</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="4">
-    <widget class="QToolButton" name="toolButtonRemoveFromFavorites">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Remove the currently selected favorite software configuration</string>
-     </property>
-     <property name="statusTip">
-      <string>Remove the currently selected favorite software configuration</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="5">
-    <widget class="QToolButton" name="toolButtonPlay">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Play the selected software configuration</string>
-     </property>
-     <property name="statusTip">
-      <string>Play the selected software configuration</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/launch.png</normaloff>:/data/img/launch.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="6">
-    <widget class="QToolButton" name="toolButtonPlayEmbedded">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="toolTip">
-      <string>Play the selected software configuration (embedded)</string>
-     </property>
-     <property name="statusTip">
-      <string>Play the selected software configuration (embedded)</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/embed.png</normaloff>:/data/img/embed.png</iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="7">
+   <item row="1" column="0">
     <widget class="QToolBox" name="toolBoxSoftwareList">
      <property name="currentIndex">
       <number>0</number>
@@ -152,8 +169,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>449</width>
-        <height>227</height>
+        <width>445</width>
+        <height>184</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -232,8 +249,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>449</width>
-        <height>227</height>
+        <width>96</width>
+        <height>94</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -317,8 +334,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>449</width>
-        <height>227</height>
+        <width>96</width>
+        <height>121</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -412,22 +429,6 @@
       </layout>
      </widget>
     </widget>
-   </item>
-   <item row="0" column="2">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Preferred</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>0</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
