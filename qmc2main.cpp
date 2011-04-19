@@ -2933,7 +2933,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
 	if ( !qmc2SoftwareListAlreadyLoading ) {
           qmc2SoftwareListAlreadyLoading = true;
-          log(QMC2_LOG_FRONTEND, QString("WIP: support for MESS software lists is still under development and not working properly yet!"));
+          log(QMC2_LOG_FRONTEND, QString("WIP: support for software lists is still under development and not working properly yet!"));
           tabSoftwareList->setUpdatesEnabled(FALSE);
           if ( qmc2SoftwareList ) {
             QLayout *vbl = tabSoftwareList->layout();
