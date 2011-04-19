@@ -53,12 +53,12 @@
 #include "mawsqdlsetup.h"
 #include "embedder.h"
 #include "demomode.h"
+#include "softwarelist.h"
 #if QMC2_JOYSTICK == 1
 #include "joystick.h"
 #endif
 #if defined(QMC2_EMUTYPE_MESS)
 #include "messdevcfg.h"
-#include "messswlist.h"
 #endif
 #if QMC2_USE_PHONON_API
 #include <QTest>
@@ -107,14 +107,14 @@ DetailSetup *qmc2DetailSetup = NULL;
 QWidget *qmc2DetailSetupParent = NULL;
 ArcadeView *qmc2ArcadeView = NULL;
 ArcadeSetupDialog *qmc2ArcadeSetupDialog = NULL;
+SoftwareList *qmc2SoftwareList = NULL;
 #if defined(QMC2_EMUTYPE_MESS)
 MESSDeviceConfigurator *qmc2MESSDeviceConfigurator = NULL;
-MESSSoftwareList *qmc2MESSSoftwareList = NULL;
 QString qmc2MessMachineName = "";
 QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
-QTreeWidgetItem *qmc2LastSoftwareListItem = NULL;
-bool qmc2MessSWListAlreadyLoading = FALSE;
 #endif
+QTreeWidgetItem *qmc2LastSoftwareListItem = NULL;
+bool qmc2SoftwareListAlreadyLoading = FALSE;
 #if QMC2_USE_PHONON_API
 AudioEffectDialog *qmc2AudioEffectDialog = NULL;
 QString qmc2AudioLastIndividualTrack = "";
@@ -1348,8 +1348,8 @@ void MainWindow::on_actionPlay_activated()
 #if defined(QMC2_EMUTYPE_MESS)
   qmc2MessMachineName = gameName;
 
-  if ( qmc2MESSSoftwareList && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_SOFTWARE_LIST_INDEX) )
-    args << qmc2MESSSoftwareList->arguments();
+  if ( qmc2SoftwareList && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_SOFTWARE_LIST_INDEX) )
+    args << qmc2SoftwareList->arguments();
   else if ( qmc2MESSDeviceConfigurator && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_DEVICE_INDEX) ) {
     QString configName = qmc2MESSDeviceConfigurator->lineEditConfigurationName->text();
     if ( configName != tr("No devices") ) {
@@ -2927,6 +2927,37 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 #endif
 
+    // FIXME: remove the WIP clause when software list support is finished
+#if QMC2_WIP_CODE == 1
+    case QMC2_SOFTWARE_LIST_INDEX:
+      if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
+	if ( !qmc2SoftwareListAlreadyLoading ) {
+          qmc2SoftwareListAlreadyLoading = true;
+          log(QMC2_LOG_FRONTEND, QString("WIP: support for MESS software lists is still under development and not working properly yet!"));
+          tabSoftwareList->setUpdatesEnabled(FALSE);
+          if ( qmc2SoftwareList ) {
+            QLayout *vbl = tabSoftwareList->layout();
+            if ( vbl ) delete vbl;
+            delete qmc2SoftwareList;
+            qmc2SoftwareList = NULL;
+          }
+          QString machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
+          gridLayout->getContentsMargins(&left, &top, &right, &bottom);
+          QVBoxLayout *layout = new QVBoxLayout;
+          layout->setContentsMargins(left, top, right, bottom);
+          qmc2SoftwareList = new SoftwareList(machineName, tabSoftwareList);
+          qmc2SoftwareList->load();
+          layout->addWidget(qmc2SoftwareList);
+          tabSoftwareList->setLayout(layout);
+          qmc2SoftwareList->show();
+          qmc2LastSoftwareListItem = qmc2CurrentItem;
+          tabSoftwareList->setUpdatesEnabled(TRUE);
+          qmc2SoftwareListAlreadyLoading = false;
+	}
+      }
+      break;
+#endif
+
 #if defined(QMC2_EMUTYPE_MESS)
     case QMC2_DEVICE_INDEX:
       if ( qmc2CurrentItem != qmc2LastDeviceConfigItem ) {
@@ -2951,37 +2982,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         tabDevices->setUpdatesEnabled(TRUE);
       }
       break;
-
-    // FIXME: remove the WIP clause when finished
-#if QMC2_WIP_CODE == 1
-    case QMC2_SOFTWARE_LIST_INDEX:
-      if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
-	if ( !qmc2MessSWListAlreadyLoading ) {
-          qmc2MessSWListAlreadyLoading = true;
-          log(QMC2_LOG_FRONTEND, QString("WIP: support for MESS software lists is still under development and not working properly yet!"));
-          tabSoftwareList->setUpdatesEnabled(FALSE);
-          if ( qmc2MESSSoftwareList ) {
-            QLayout *vbl = tabSoftwareList->layout();
-            if ( vbl ) delete vbl;
-            delete qmc2MESSSoftwareList;
-            qmc2MESSSoftwareList = NULL;
-          }
-          QString machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
-          gridLayout->getContentsMargins(&left, &top, &right, &bottom);
-          QVBoxLayout *layout = new QVBoxLayout;
-          layout->setContentsMargins(left, top, right, bottom);
-          qmc2MESSSoftwareList = new MESSSoftwareList(machineName, tabSoftwareList);
-          qmc2MESSSoftwareList->load();
-          layout->addWidget(qmc2MESSSoftwareList);
-          tabSoftwareList->setLayout(layout);
-          qmc2MESSSoftwareList->show();
-          qmc2LastSoftwareListItem = qmc2CurrentItem;
-          tabSoftwareList->setUpdatesEnabled(TRUE);
-          qmc2MessSWListAlreadyLoading = false;
-	}
-      }
-      break;
-#endif
 
 #elif defined(QMC2_EMUTYPE_MAME)
     case QMC2_MAWS_INDEX:
@@ -4623,15 +4623,22 @@ void MainWindow::closeEvent(QCloseEvent *e)
     delete qmc2ArcadeSetupDialog;
   }
 
-#if defined(QMC2_EMUTYPE_MESS)
+#if defined(QMC2_EMUTYPE_MAME)
+  if ( qmc2SoftwareList ) {
+    log(QMC2_LOG_FRONTEND, tr("saving current game's favorite software"));
+    qmc2SoftwareList->save();
+    delete qmc2SoftwareList;
+  }
+#elif defined(QMC2_EMUTYPE_MESS)
+  if ( qmc2SoftwareList ) {
+    log(QMC2_LOG_FRONTEND, tr("saving current machine's favorite software"));
+    qmc2SoftwareList->save();
+    delete qmc2SoftwareList;
+  }
   if ( qmc2MESSDeviceConfigurator ) {
     log(QMC2_LOG_FRONTEND, tr("saving current machine's device configurations"));
     qmc2MESSDeviceConfigurator->save();
-  }
-  if ( qmc2MESSSoftwareList ) {
-    log(QMC2_LOG_FRONTEND, tr("saving current machine's favorite software"));
-    qmc2MESSSoftwareList->save();
-    delete qmc2MESSSoftwareList;
+    delete qmc2MESSDeviceConfigurator;
   }
 #endif
 

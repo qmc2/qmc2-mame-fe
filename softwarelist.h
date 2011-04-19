@@ -1,14 +1,14 @@
-#ifndef _MESSSWLIST_H_
-#define _MESSSWLIST_H_
+#ifndef _SOFTWARELIST_H_
+#define _SOFTWARELIST_H_
 
 #include <QProcess>
 #include <QTime>
 #include <QFile>
 #include <QTextStream>
 #include <QXmlDefaultHandler>
-#include "ui_messswlist.h"
+#include "ui_softwarelist.h"
 
-class MESSSoftwareListXmlHandler : public QXmlDefaultHandler
+class SoftwareListXmlHandler : public QXmlDefaultHandler
 {
 	public:
 		QTreeWidget *parentTreeWidget;
@@ -21,15 +21,15 @@ class MESSSoftwareListXmlHandler : public QXmlDefaultHandler
 		QString softwarePart;
 		QString currentText;
 
-		MESSSoftwareListXmlHandler(QTreeWidget *);
-		~MESSSoftwareListXmlHandler();
+		SoftwareListXmlHandler(QTreeWidget *);
+		~SoftwareListXmlHandler();
 		
 		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
 		bool endElement(const QString &, const QString &, const QString &);
 		bool characters(const QString &);
 };
 
-class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
+class SoftwareList : public QWidget, public Ui::SoftwareList
 {
 	Q_OBJECT
 	
@@ -38,15 +38,15 @@ class MESSSoftwareList : public QWidget, public Ui::MESSSoftwareList
 		QTime loadTimer;
 		bool validData;
 		QFile fileSWLCache;
-		QString messMachineName;
+		QString systemName;
 		QTextStream tsSWLCache;
-		QStringList messSwlLines;
+		QStringList swlLines;
 		QMenu *softwareListMenu;
 		QAction *actionAddToFavorites;
 		QAction *actionRemoveFromFavorites;
 
-		MESSSoftwareList(QString, QWidget *);
-		~MESSSoftwareList();
+		SoftwareList(QString, QWidget *);
+		~SoftwareList();
 
 		QString &getSoftwareListXmlData(QString);
 		QString &getXmlData(QString);

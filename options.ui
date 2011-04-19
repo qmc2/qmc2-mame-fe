@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>503</width>
-    <height>471</height>
+    <height>489</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,8 +57,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>453</width>
-                <height>618</height>
+                <width>456</width>
+                <height>584</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -849,8 +849,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>527</width>
-                <height>517</height>
+                <width>443</width>
+                <height>539</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2107,8 +2107,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>545</width>
-                <height>508</height>
+                <width>459</width>
+                <height>364</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2542,8 +2542,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>545</width>
-                <height>508</height>
+                <width>459</width>
+                <height>364</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2655,8 +2655,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>545</width>
-                <height>508</height>
+                <width>459</width>
+                <height>364</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3112,8 +3112,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>545</width>
-                <height>508</height>
+                <width>443</width>
+                <height>487</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3515,8 +3515,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>187</width>
-                <height>307</height>
+                <width>459</width>
+                <height>364</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3872,7 +3872,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>MESS software list cache (write)</string>
+                    <string>Software list cache file (write)</string>
                    </property>
                   </widget>
                  </item>
@@ -3885,7 +3885,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Browse MESS software list cache file</string>
+                    <string>Browse software list cache file</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
@@ -3959,8 +3959,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>159</width>
-                <height>236</height>
+                <width>168</width>
+                <height>263</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22">

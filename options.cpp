@@ -41,8 +41,8 @@
 #endif
 #if defined(QMC2_EMUTYPE_MESS)
 #include "messdevcfg.h"
-#include "messswlist.h"
 #endif
+#include "softwarelist.h"
 #if defined(Q_WS_X11)
 #include "embedder.h"
 #include "embedderopt.h"
@@ -131,8 +131,8 @@ extern Joystick *qmc2Joystick;
 #endif
 #if defined(QMC2_EMUTYPE_MESS)
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
-extern MESSSoftwareList *qmc2MESSSoftwareList;
 #endif
+extern SoftwareList *qmc2SoftwareList;
 #if QMC2_USE_PHONON_API
 extern AudioEffectDialog *qmc2AudioEffectDialog;
 #if defined(QMC2_YOUTUBE_ENABLED)
@@ -222,9 +222,6 @@ Options::Options(QWidget *parent)
 #elif defined(QMC2_EMUTYPE_MAME)
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
-  labelSoftwareListCache->setVisible(FALSE);
-  lineEditSoftwareListCache->setVisible(FALSE);
-  toolButtonBrowseSoftwareListCache->setVisible(FALSE);
 #endif
 
   // shortcuts
@@ -526,8 +523,8 @@ void Options::apply()
 #endif
   if ( qmc2ROMStatusExporter )
     QTimer::singleShot(0, qmc2ROMStatusExporter, SLOT(adjustIconSizes()));
-#if defined(QMC2_EMUTYPE_MESS)
   toolButtonBrowseSoftwareListCache->setIconSize(iconSize);
+#if defined(QMC2_EMUTYPE_MESS)
   if ( qmc2MESSDeviceConfigurator ) {
     qmc2MESSDeviceConfigurator->pushButtonConfiguration->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->pushButtonNewConfiguration->setIconSize(iconSize);
@@ -535,19 +532,19 @@ void Options::apply()
     qmc2MESSDeviceConfigurator->pushButtonSaveConfiguration->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->pushButtonRemoveConfiguration->setIconSize(iconSize);
   }
-  if ( qmc2MESSSoftwareList ) {
-    qmc2MESSSoftwareList->toolButtonAddToFavorites->setIconSize(iconSize);
-    qmc2MESSSoftwareList->toolButtonRemoveFromFavorites->setIconSize(iconSize);
-    qmc2MESSSoftwareList->toolButtonPlay->setIconSize(iconSize);
+#endif
+  if ( qmc2SoftwareList ) {
+    qmc2SoftwareList->toolButtonAddToFavorites->setIconSize(iconSize);
+    qmc2SoftwareList->toolButtonRemoveFromFavorites->setIconSize(iconSize);
+    qmc2SoftwareList->toolButtonPlay->setIconSize(iconSize);
 #if defined(Q_WS_X11)
-    qmc2MESSSoftwareList->toolButtonPlayEmbedded->setIconSize(iconSize);
+    qmc2SoftwareList->toolButtonPlayEmbedded->setIconSize(iconSize);
 #endif
-    qmc2MESSSoftwareList->toolButtonReload->setIconSize(iconSize);
-    qmc2MESSSoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/flat.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
-    qmc2MESSSoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_FAVORITES_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/favorites.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
-    qmc2MESSSoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_SEARCH_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/hint.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+    qmc2SoftwareList->toolButtonReload->setIconSize(iconSize);
+    qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/flat.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+    qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_FAVORITES_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/favorites.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+    qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_SEARCH_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/hint.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
   }
-#endif
   qmc2MainWindow->pushButtonClearFinishedDownloads->setIconSize(iconSize);
   qmc2MainWindow->pushButtonReloadSelectedDownloads->setIconSize(iconSize);
   qmc2MainWindow->pushButtonStopSelectedDownloads->setIconSize(iconSize);
@@ -1122,6 +1119,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
   config->setValue("MAME/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
   config->setValue("MAME/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
+  config->setValue("MAME/FilesAndDirectories/SoftwareListCache", lineEditSoftwareListCache->text());
   config->setValue("MAME/FilesAndDirectories/MAWSCacheDirectory", lineEditMAWSCacheDirectory->text());
   s = lineEditOptionsTemplateFile->text();
   needRecreateTemplateMap = needRecreateTemplateMap || (config->value("MAME/FilesAndDirectories/OptionsTemplateFile").toString() != s );
@@ -1933,6 +1931,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditListXMLCache->setText(config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
   lineEditGamelistCacheFile->setText(config->value("MAME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mame.glc").toString());
   lineEditROMStateCacheFile->setText(config->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
+  lineEditSoftwareListCache->setText(config->value("MAME/FilesAndDirectories/SoftwareListCache", userScopePath + "/mame.swl").toString());
   QString mawsCachePath = config->value("MAME/FilesAndDirectories/MAWSCacheDirectory", userScopePath + "/maws/").toString();
   lineEditMAWSCacheDirectory->setText(mawsCachePath);
   QDir mawsCacheDir(mawsCachePath);

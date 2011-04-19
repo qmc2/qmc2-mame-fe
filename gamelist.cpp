@@ -31,8 +31,8 @@
 #include "unzip.h"
 #if defined(QMC2_EMUTYPE_MESS)
 #include "messdevcfg.h"
-#include "messswlist.h"
 #endif
+#include "softwarelist.h"
 #if defined(QMC2_YOUTUBE_ENABLED)
 #include "youtubevideoplayer.h"
 #endif
@@ -68,13 +68,13 @@ extern QTreeWidgetItem *qmc2LastGameInfoItem;
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern QTreeWidgetItem *qmc2LastSoftwareListItem;
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
-extern MESSSoftwareList *qmc2MESSSoftwareList;
 extern QMap<QString, QString> messXmlDataCache;
-extern QMap<QString, QStringList> messMachineSoftwareListMap;
-extern QMap<QString, QString> messSoftwareListXmlDataCache;
-extern QString messSwlBuffer;
-extern bool messSwlSupported;
 #endif
+extern SoftwareList *qmc2SoftwareList;
+extern QMap<QString, QStringList> systemSoftwareListMap;
+extern QMap<QString, QString> softwareListXmlDataCache;
+extern QString swlBuffer;
+extern bool swlSupported;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2HierarchyItemMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2GamelistItemByDescriptionMap;
@@ -198,9 +198,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseCatverIniFile->setEnabled(enable);
   qmc2Options->checkBoxUseCatverIni->setEnabled(enable);
 #endif
-#if defined(QMC2_EMUTYPE_MESS)
   qmc2Options->toolButtonBrowseSoftwareListCache->setEnabled(enable);
-#endif
   qmc2Options->toolButtonBrowseExecutableFile->setEnabled(enable);
   qmc2Options->lineEditExecutableFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseWorkingDirectory->setEnabled(enable);
@@ -240,6 +238,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseFileRemovalTool->setEnabled(enable);
   qmc2Options->toolButtonBrowseRomTool->setEnabled(enable);
   qmc2Options->toolButtonBrowseAdditionalEmulatorExecutable->setEnabled(enable);
+  qmc2Options->toolButtonBrowseAdditionalEmulatorWorkingDirectory->setEnabled(enable);
 #if QMC2_USE_PHONON_API
   qmc2MainWindow->toolButtonAudioAddTracks->setEnabled(enable);
   qmc2MainWindow->toolButtonAudioAddURL->setEnabled(enable);
@@ -305,19 +304,19 @@ void Gamelist::load()
   }
   qmc2LastDeviceConfigItem = NULL;
   messXmlDataCache.clear();
-  if ( qmc2MESSSoftwareList ) {
-    qmc2MESSSoftwareList->save();
-    qmc2MESSSoftwareList->setVisible(FALSE);
+  if ( qmc2SoftwareList ) {
+    qmc2SoftwareList->save();
+    qmc2SoftwareList->setVisible(FALSE);
     QLayout *vbl = qmc2MainWindow->tabSoftwareList->layout();
     if ( vbl ) delete vbl;
-    delete qmc2MESSSoftwareList;
-    qmc2MESSSoftwareList = NULL;
+    delete qmc2SoftwareList;
+    qmc2SoftwareList = NULL;
   }
   qmc2LastSoftwareListItem = NULL;
-  messSwlSupported = true;
-  messMachineSoftwareListMap.clear();
-  messSoftwareListXmlDataCache.clear();
-  messSwlBuffer.clear();
+  swlSupported = true;
+  systemSoftwareListMap.clear();
+  softwareListXmlDataCache.clear();
+  swlBuffer.clear();
 #endif
   qmc2LastGameInfoItem = NULL;
 #if defined(QMC2_EMUTYPE_MAME)
