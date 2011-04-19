@@ -2367,9 +2367,6 @@ qmc2/.svn/text-base/mawsqdlsetup.ui.svn-base
 qmc2/.svn/text-base/messdevcfg.cpp.svn-base
 qmc2/.svn/text-base/messdevcfg.h.svn-base
 qmc2/.svn/text-base/messdevcfg.ui.svn-base
-qmc2/.svn/text-base/messswlist.cpp.svn-base
-qmc2/.svn/text-base/messswlist.h.svn-base
-qmc2/.svn/text-base/messswlist.ui.svn-base
 qmc2/.svn/text-base/miniwebbrowser.cpp.svn-base
 qmc2/.svn/text-base/miniwebbrowser.h.svn-base
 qmc2/.svn/text-base/miniwebbrowser.ui.svn-base
@@ -2402,6 +2399,9 @@ qmc2/.svn/text-base/sampcheck.h.svn-base
 qmc2/.svn/text-base/sampcheck.ui.svn-base
 qmc2/.svn/text-base/SDLMain_tmpl.h.svn-base
 qmc2/.svn/text-base/SDLMain_tmpl.m.svn-base
+qmc2/.svn/text-base/softwarelist.cpp.svn-base
+qmc2/.svn/text-base/softwarelist.h.svn-base
+qmc2/.svn/text-base/softwarelist.ui.svn-base
 qmc2/.svn/text-base/title.cpp.svn-base
 qmc2/.svn/text-base/title.h.svn-base
 qmc2/.svn/text-base/toolexec.cpp.svn-base
