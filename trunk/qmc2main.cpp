@@ -1921,6 +1921,14 @@ void MainWindow::on_actionFullscreenToggle_activated()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionFullscreenToggle_activated()");
 #endif
 
+#if defined(QMC2_YOUTUBE_ENABLED)
+  if ( qmc2YouTubeWidget )
+	  if ( qmc2YouTubeWidget->videoPlayer->videoWidget()->isFullScreen() ) {
+		  qmc2YouTubeWidget->videoPlayer->videoWidget()->setFullScreen(false);
+		  return;
+	  }
+#endif
+
   if ( qmc2ArcadeView )
     if ( qmc2ArcadeView->isActiveWindow() ) {
       qmc2ArcadeView->raise();

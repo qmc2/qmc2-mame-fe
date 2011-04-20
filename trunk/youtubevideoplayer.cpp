@@ -48,6 +48,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 #else
 	suggestorAppendString = qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", "").toString();
 #endif
+	spinBoxResultsPerRequest->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SearchResultsPerRequest", 10).toInt());
 
 	// serious hack to access the volume slider's tool button object
 	privateMuteButton = volumeSlider->findChild<QToolButton *>();
@@ -60,7 +61,8 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	}
 
 	currentVideoID.clear();
-	currentAuthor.clear();
+	currentVideoAuthor.clear();
+	currentVideoTitle.clear();
 
 	youTubeFormats 
 		<< YOUTUBE_FORMAT_FLV_240P
@@ -135,6 +137,11 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	videoMenuPlayPauseAction = action;
 	videoMenuPlayPauseAction->setEnabled(false);
 	connect(action, SIGNAL(triggered()), this, SLOT(on_toolButtonPlayPause_clicked()));
+	s = tr("Full screen (return with toggle-key)");
+	action = menuVideoPlayer->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/toggle_fullscreen.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(goFullScreen()));
 	menuVideoPlayer->addSeparator();
 	s = tr("Copy video URL");
 	action = menuVideoPlayer->addAction(s);
@@ -146,6 +153,12 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyCurrentAuthorUrl()));
+	menuVideoPlayer->addSeparator();
+	s = tr("Attach this video");
+	action = menuVideoPlayer->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/movie.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(attachCurrentVideo()));
 
 	menuSearchResults = new QMenu(0);
 	s = tr("Play this video");
@@ -262,6 +275,7 @@ void YouTubeVideoPlayer::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PlayOMatic/Repeat", checkBoxRepeat->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AutoSuggest", autoSuggestAction->isChecked());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", suggestorAppendString);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SearchResultsPerRequest", spinBoxResultsPerRequest->value());
 
 	// serious hack to access the volume slider's tool button object
 	privateMuteButton = volumeSlider->findChild<QToolButton *>();
@@ -293,7 +307,8 @@ void YouTubeVideoPlayer::loadNullVideo()
 #endif
 
 	currentVideoID.clear();
-	currentAuthor.clear();
+	currentVideoAuthor.clear();
+	currentVideoTitle.clear();
 	if ( videoPlayer->isPlaying() || videoPlayer->isPaused() )
 		videoPlayer->stop();
 }
@@ -438,9 +453,9 @@ void YouTubeVideoPlayer::copyCurrentAuthorUrl()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyCurrentAuthorUrl()");
 #endif
 
-	if ( !currentAuthor.isEmpty() ) {
+	if ( !currentVideoAuthor.isEmpty() ) {
 		QString url = VIDEOITEM_YOUTUBE_AUTHOR_URL_PATTERN;
-		url.replace("$USER_ID$", currentAuthor);
+		url.replace("$USER_ID$", currentVideoAuthor);
 		qApp->clipboard()->setText(url);
 	}
 }
@@ -460,11 +475,25 @@ void YouTubeVideoPlayer::removeSelectedVideos()
 	}
 }
 
+void YouTubeVideoPlayer::goFullScreen()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::goFullScreen()");
+#endif
+
+	videoPlayer->videoWidget()->setFullScreen(!videoPlayer->videoWidget()->isFullScreen());
+}
+
 void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::attachVideo(QString id = '%1', QString title = '%2', QString author = '%3')").arg(id).arg(title).arg(author));
 #endif
+
+	if ( viwMap.keys().contains(id) ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: a video with the ID '%1' is already attached, ignored").arg(id));
+		return;
+	}
 
 	QSize size(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT + 4);
 
@@ -496,6 +525,18 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 		videoItemWidget = new VideoItemWidget(id, title, author, VIDEOITEM_TYPE_YOUTUBE, this, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 	viwMap[id] = videoItemWidget;
+}
+
+void YouTubeVideoPlayer::attachCurrentVideo()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::attachCurrentVideo()");
+#endif
+
+	if ( !currentVideoID.isEmpty() && !currentVideoTitle.isEmpty() && !currentVideoAuthor.isEmpty() ) {
+		attachVideo(currentVideoID, currentVideoTitle, currentVideoAuthor);
+		QTimer::singleShot(10, this, SLOT(updateAttachedVideoInfoImages()));
+	}
 }
 
 void YouTubeVideoPlayer::attachSearchedVideo()
@@ -829,10 +870,12 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 			videoInfoStringList->append(authorUrl);
 			videoInfoStringList->append(thumbnail_url);
 		}
+
 		if ( videoInfoOnly )
 			return QString();
 
-		currentAuthor = author;
+		currentVideoAuthor = author;
+		currentVideoTitle = title;
 
 		QMap <QString, QUrl> formatToUrlMap;
 		foreach (QString videoInfo, videoInfoList) {
@@ -1305,12 +1348,8 @@ void YouTubeVideoPlayer::searchRequestFinished()
 	QXmlSimpleReader xmlReader;
 	xmlReader.setContentHandler(&xmlHandler);
 	xmlReader.setErrorHandler(&xmlHandler);
-	if ( xmlReader.parse(xmlInputSource) ) {
-	} else {
-#ifdef QMC2_DEBUG
-		printf("\nXML parsing failed!\n");
-#endif
-	}
+	if ( !xmlReader.parse(xmlInputSource) )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: search error: can't parse XML data"));
 }
 
 void YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply)
@@ -1444,7 +1483,7 @@ bool YouTubeXmlHandler::characters(const QString &chars)
 
 bool YouTubeXmlHandler::fatalError(const QXmlParseException &exception)
 {
-	qWarning() << "YouTube XML handler: fatal error on line" << exception.lineNumber() << "/ column" << exception.columnNumber() << exception.message();
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QObject::tr("video player: XML error: fatal error on line %1, column %2: %3").arg(exception.lineNumber()).arg(exception.columnNumber()).arg(exception.message()));
 
 	return false;
 }
