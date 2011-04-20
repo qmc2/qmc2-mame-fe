@@ -122,12 +122,9 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void attachSearchedVideo();
 		void copyYouTubeUrl();
 		void copySearchYouTubeUrl();
-		void copyAlternateYouTubeUrl();
-		void copySearchAlternateYouTubeUrl();
 		void copyAuthorUrl();
 		void copySearchAuthorUrl();
 		void copyCurrentYouTubeUrl();
-		void copyCurrentAlternateYouTubeUrl();
 		void copyCurrentAuthorUrl();
 		void removeSelectedVideos();
 		void setSuggestorAppendString();

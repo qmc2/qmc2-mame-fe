@@ -110,16 +110,11 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/media_play.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(playAttachedVideo()));
 	menuAttachedVideos->addSeparator();
-	s = tr("Copy YouTube URL (standard)");
+	s = tr("Copy video URL");
 	action = menuAttachedVideos->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyYouTubeUrl()));
-	s = tr("Copy alternate YouTube URL (no country filter)");
-	action = menuAttachedVideos->addAction(s);
-	action->setToolTip(s); action->setStatusTip(s);
-	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
-	connect(action, SIGNAL(triggered()), this, SLOT(copyAlternateYouTubeUrl()));
 	s = tr("Copy author URL");
 	action = menuAttachedVideos->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
@@ -141,16 +136,11 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	videoMenuPlayPauseAction->setEnabled(false);
 	connect(action, SIGNAL(triggered()), this, SLOT(on_toolButtonPlayPause_clicked()));
 	menuVideoPlayer->addSeparator();
-	s = tr("Copy YouTube URL (standard)");
+	s = tr("Copy video URL");
 	action = menuVideoPlayer->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyCurrentYouTubeUrl()));
-	s = tr("Copy alternate YouTube URL (no country filter)");
-	action = menuVideoPlayer->addAction(s);
-	action->setToolTip(s); action->setStatusTip(s);
-	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
-	connect(action, SIGNAL(triggered()), this, SLOT(copyCurrentAlternateYouTubeUrl()));
 	s = tr("Copy author URL");
 	action = menuVideoPlayer->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
@@ -169,16 +159,11 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/movie.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(attachSearchedVideo()));
 	menuSearchResults->addSeparator();
-	s = tr("Copy YouTube URL (standard)");
+	s = tr("Copy video URL");
 	action = menuSearchResults->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copySearchYouTubeUrl()));
-	s = tr("Copy alternate YouTube URL (no country filter)");
-	action = menuSearchResults->addAction(s);
-	action->setToolTip(s); action->setStatusTip(s);
-	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
-	connect(action, SIGNAL(triggered()), this, SLOT(copySearchAlternateYouTubeUrl()));
 	s = tr("Copy author URL");
 	action = menuSearchResults->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
@@ -371,27 +356,6 @@ void YouTubeVideoPlayer::copyYouTubeUrl()
 	}
 }
 
-void YouTubeVideoPlayer::copyAlternateYouTubeUrl()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyAlternateYouTubeUrl()");
-#endif
-
-	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
-	if ( item ) {
-		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
-		if ( viw ) {
-			if ( !viw->videoID.isEmpty() ) {
-				if ( !viw->videoUrlPattern.isEmpty() ) {
-					QString url = VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER;
-					url.replace("$VIDEO_ID$", viw->videoID);
-					qApp->clipboard()->setText(url);
-				}
-			}
-		}
-	}
-}
-
 void YouTubeVideoPlayer::copyAuthorUrl()
 {
 #ifdef QMC2_DEBUG
@@ -434,27 +398,6 @@ void YouTubeVideoPlayer::copySearchYouTubeUrl()
 	}
 }
 
-void YouTubeVideoPlayer::copySearchAlternateYouTubeUrl()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copySearchAlternateYouTubeUrl()");
-#endif
-
-	QListWidgetItem *item = listWidgetSearchResults->currentItem();
-	if ( item ) {
-		VideoItemWidget *viw = (VideoItemWidget *)listWidgetSearchResults->itemWidget(item);
-		if ( viw ) {
-			if ( !viw->videoID.isEmpty() ) {
-				if ( !viw->videoUrlPattern.isEmpty() ) {
-					QString url = VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER;
-					url.replace("$VIDEO_ID$", viw->videoID);
-					qApp->clipboard()->setText(url);
-				}
-			}
-		}
-	}
-}
-
 void YouTubeVideoPlayer::copySearchAuthorUrl()
 {
 #ifdef QMC2_DEBUG
@@ -484,19 +427,6 @@ void YouTubeVideoPlayer::copyCurrentYouTubeUrl()
 
 	if ( !currentVideoID.isEmpty() ) {
 		QString url = VIDEOITEM_YOUTUBE_URL_PATTERN;
-		url.replace("$VIDEO_ID$", currentVideoID);
-		qApp->clipboard()->setText(url);
-	}
-}
-
-void YouTubeVideoPlayer::copyCurrentAlternateYouTubeUrl()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copyCurrentYouTubeUrl()");
-#endif
-
-	if ( !currentVideoID.isEmpty() ) {
-		QString url = VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER;
 		url.replace("$VIDEO_ID$", currentVideoID);
 		qApp->clipboard()->setText(url);
 	}
@@ -842,13 +772,22 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 #ifdef QMC2_DEBUG
 		printf("\nFull info for video ID '%s':\n>>>>\n", (const char *)videoID.toLatin1());
 #endif
-		QString author, authorUrl, thumbnail_url, title;
+		QString status, errorcode, errortext, author, authorUrl, thumbnail_url, title;
 		QUrl debugUrl;
 		foreach (QString vInfo, videoInfoList) {
 #ifdef QMC2_DEBUG
 			 printf("%s\n", (const char *)vInfo.toLatin1());
 #endif
-			 if ( vInfo.startsWith("author=") ) {
+			 if ( vInfo.startsWith("status=") ) {
+				 vInfo.replace(QRegExp("^status="), "");
+				 status = vInfo;
+			 } else if ( vInfo.startsWith("errorcode=") ) {
+				 vInfo.replace(QRegExp("^errorcode="), "");
+				 errorcode = vInfo;
+			 } else if ( vInfo.startsWith("reason=") ) {
+				 vInfo.replace(QRegExp("^reason="), "").replace("+", " ");
+				 errortext = vInfo;
+			 } else if ( vInfo.startsWith("author=") ) {
 				 vInfo.replace(QRegExp("^author="), "");
 				 debugUrl = QUrl::fromEncoded(vInfo.toAscii());
 				 author = debugUrl.toString();
@@ -868,12 +807,20 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 
 #ifdef QMC2_DEBUG
 		printf(">>>>\n\nSelected (decoded) info for video ID '%s':\n>>>>\n", (const char *)videoID.toLatin1());
+		printf("status        = '%s'\n", (const char *)status.toLatin1());
+		printf("errorcode     = '%s'\n", (const char *)errorcode.toLatin1());
+		printf("errortext     = '%s'\n", (const char *)errortext.toLatin1());
 		printf("title         = '%s'\n", (const char *)title.toLatin1());
 		printf("author        = '%s'\n", (const char *)author.toLatin1());
 		printf("author_url    = '%s'\n", (const char *)authorUrl.toLatin1());
 		printf("thumbnail_url = '%s'\n>>>>\n", (const char *)thumbnail_url.toLatin1());
 		printf("\nAvailable formats / stream URLs for video ID '%s':\n>>>>\n", (const char *)videoID.toLatin1());
 #endif
+
+		if ( status != "ok" ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: video info error: status = '%1', errorCode = '%2', errorText = '%3'").arg(status).arg(errorcode).arg(errortext));
+			return QString();
+		}
 
 		if ( videoInfoStringList ) {
 			videoInfoStringList->clear();
