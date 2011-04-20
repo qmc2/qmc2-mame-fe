@@ -4,6 +4,7 @@
 #define _YOUTUBEVIDEOPLAYER_H_
 
 #include <QtNetwork>
+#include <QXmlDefaultHandler>
 #include "ui_youtubevideoplayer.h"
 #include "videoitemwidget.h"
 
@@ -53,10 +54,10 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QString suggestorAppendString;
 		QStringList youTubeFormats;
 		QStringList youTubeFormatNames;
-		QNetworkReply *videoInfoReply, *videoImageReply;
-		QNetworkAccessManager *videoInfoManager, *videoImageManager, *imageDownloadManager;
-		QNetworkRequest videoInfoRequest, videoImageRequest;
-		QString videoInfoBuffer, videoImageBuffer;
+		QNetworkReply *videoInfoReply, *videoImageReply, *searchRequestReply;
+		QNetworkAccessManager *videoInfoManager, *videoImageManager, *searchRequestManager, *imageDownloadManager;
+		QNetworkRequest videoInfoRequest, videoImageRequest, searchRequest;
+		QString videoInfoBuffer, videoImageBuffer, searchRequestBuffer;
 		QAction *videoMenuPlayPauseAction;
 		QAction *autoSuggestAction;
 		QStringList playedVideos;
@@ -100,11 +101,15 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void videoImageReadyRead();
 		void videoImageError(QNetworkReply::NetworkError);
 		void videoImageFinished();
+		void searchRequestReadyRead();
+		void searchRequestError(QNetworkReply::NetworkError);
+		void searchRequestFinished();
 
 		void on_toolButtonPlayPause_clicked();
 		void on_comboBoxPreferredFormat_activated(int);
 		void on_toolBox_currentChanged(int);
 		void on_listWidgetAttachedVideos_itemActivated(QListWidgetItem *);
+		void on_listWidgetSearchResults_itemActivated(QListWidgetItem *);
 		void on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &);
 		void on_listWidgetSearchResults_customContextMenuRequested(const QPoint &);
 		void on_videoPlayer_customContextMenuRequested(const QPoint &);
@@ -113,9 +118,14 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void on_toolButtonSearch_clicked();
 
 		void playAttachedVideo();
+		void playSearchedVideo();
+		void attachSearchedVideo();
 		void copyYouTubeUrl();
+		void copySearchYouTubeUrl();
 		void copyAlternateYouTubeUrl();
+		void copySearchAlternateYouTubeUrl();
 		void copyAuthorUrl();
+		void copySearchAuthorUrl();
 		void copyCurrentYouTubeUrl();
 		void copyCurrentAlternateYouTubeUrl();
 		void copyCurrentAuthorUrl();
@@ -128,6 +138,23 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 	protected:
 		void showEvent(QShowEvent *);
 		void hideEvent(QHideEvent *);
+};
+
+class YouTubeXmlHandler : public QXmlDefaultHandler
+{
+	public:
+		QListWidget *listWidget;
+		QString currentText;
+		QString id, title, author;
+		bool isEntry;
+		YouTubeVideoPlayer *videoPlayer;
+
+		YouTubeXmlHandler(QListWidget *, YouTubeVideoPlayer *);
+
+		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
+		bool endElement(const QString &, const QString &, const QString &);
+		bool characters(const QString &);
+		bool fatalError(const QXmlParseException &);
 };
 
 #endif

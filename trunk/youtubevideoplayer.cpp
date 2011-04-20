@@ -81,8 +81,8 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 		<< tr("MP4 3072P");
 
 	forcedExit = loadOnly = isMuted = pausedByHideEvent = viError = viFinished = false;
-	videoInfoReply = videoImageReply = NULL;
-	videoInfoManager = videoImageManager = NULL;
+	videoInfoReply = videoImageReply = searchRequestReply = NULL;
+	videoInfoManager = videoImageManager = searchRequestManager = NULL;
 	currentFormat = bestAvailableFormat = YOUTUBE_FORMAT_UNKNOWN_INDEX;
 
 	videoPlayer->mediaObject()->setTickInterval(1000);
@@ -157,7 +157,33 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyCurrentAuthorUrl()));
 
-	menuSearchResults = NULL;
+	menuSearchResults = new QMenu(0);
+	s = tr("Play this video");
+	action = menuSearchResults->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/media_play.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(playSearchedVideo()));
+	s = tr("Attach this video");
+	action = menuSearchResults->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/movie.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(attachSearchedVideo()));
+	menuSearchResults->addSeparator();
+	s = tr("Copy YouTube URL (standard)");
+	action = menuSearchResults->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copySearchYouTubeUrl()));
+	s = tr("Copy alternate YouTube URL (no country filter)");
+	action = menuSearchResults->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copySearchAlternateYouTubeUrl()));
+	s = tr("Copy author URL");
+	action = menuSearchResults->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copySearchAuthorUrl()));
 
 	menuSuggestButton = new QMenu(0);
 	s = tr("Auto-suggest");
@@ -218,6 +244,14 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 	if ( videoImageManager ) {
 		disconnect(videoImageManager);
 		delete videoImageManager;
+	}
+	if ( searchRequestReply ) {
+		disconnect(searchRequestReply);
+		delete searchRequestReply;
+	}
+	if ( searchRequestManager ) {
+		disconnect(searchRequestManager);
+		delete searchRequestManager;
 	}
 	if ( imageDownloadManager ) {
 		disconnect(imageDownloadManager);
@@ -305,6 +339,17 @@ void YouTubeVideoPlayer::playAttachedVideo()
 		on_listWidgetAttachedVideos_itemActivated(item);
 }
 
+void YouTubeVideoPlayer::playSearchedVideo()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::playSearchedVideo()");
+#endif
+
+	QListWidgetItem *item = listWidgetSearchResults->currentItem();
+	if ( item )
+		on_listWidgetSearchResults_itemActivated(item);
+}
+
 void YouTubeVideoPlayer::copyYouTubeUrl()
 {
 #ifdef QMC2_DEBUG
@@ -356,6 +401,69 @@ void YouTubeVideoPlayer::copyAuthorUrl()
 	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
 	if ( item ) {
 		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+		if ( viw ) {
+			if ( !viw->videoAuthor.isEmpty() ) {
+				if ( !viw->authorUrlPattern.isEmpty() ) {
+					QString url = VIDEOITEM_YOUTUBE_AUTHOR_URL_PATTERN;
+					url.replace("$USER_ID$", viw->videoAuthor);
+					qApp->clipboard()->setText(url);
+				}
+			}
+		}
+	}
+}
+
+void YouTubeVideoPlayer::copySearchYouTubeUrl()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copySearchYouTubeUrl()");
+#endif
+
+	QListWidgetItem *item = listWidgetSearchResults->currentItem();
+	if ( item ) {
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetSearchResults->itemWidget(item);
+		if ( viw ) {
+			if ( !viw->videoID.isEmpty() ) {
+				if ( !viw->videoUrlPattern.isEmpty() ) {
+					QString url = VIDEOITEM_YOUTUBE_URL_PATTERN;
+					url.replace("$VIDEO_ID$", viw->videoID);
+					qApp->clipboard()->setText(url);
+				}
+			}
+		}
+	}
+}
+
+void YouTubeVideoPlayer::copySearchAlternateYouTubeUrl()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copySearchAlternateYouTubeUrl()");
+#endif
+
+	QListWidgetItem *item = listWidgetSearchResults->currentItem();
+	if ( item ) {
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetSearchResults->itemWidget(item);
+		if ( viw ) {
+			if ( !viw->videoID.isEmpty() ) {
+				if ( !viw->videoUrlPattern.isEmpty() ) {
+					QString url = VIDEOITEM_YOUTUBE_URL_PATTERN_NO_COUNTRY_FILTER;
+					url.replace("$VIDEO_ID$", viw->videoID);
+					qApp->clipboard()->setText(url);
+				}
+			}
+		}
+	}
+}
+
+void YouTubeVideoPlayer::copySearchAuthorUrl()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::copySearchAuthorUrl()");
+#endif
+
+	QListWidgetItem *item = listWidgetSearchResults->currentItem();
+	if ( item ) {
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetSearchResults->itemWidget(item);
 		if ( viw ) {
 			if ( !viw->videoAuthor.isEmpty() ) {
 				if ( !viw->authorUrlPattern.isEmpty() ) {
@@ -458,6 +566,22 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 		videoItemWidget = new VideoItemWidget(id, title, author, VIDEOITEM_TYPE_YOUTUBE, this, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 	viwMap[id] = videoItemWidget;
+}
+
+void YouTubeVideoPlayer::attachSearchedVideo()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::attachSearchedVideo()");
+#endif
+
+	QListWidgetItem *item = listWidgetSearchResults->currentItem();
+	if ( item ) {
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetSearchResults->itemWidget(item);
+		if ( viw ) {
+			attachVideo(viw->videoID, viw->videoTitle, viw->videoAuthor);
+			QTimer::singleShot(10, this, SLOT(updateAttachedVideoInfoImages()));
+		}
+	}
 }
 
 void YouTubeVideoPlayer::init()
@@ -955,6 +1079,22 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_itemActivated(QListWidgetIt
 	}
 }
 
+void YouTubeVideoPlayer::on_listWidgetSearchResults_itemActivated(QListWidgetItem *item)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_listWidgetSearchResults_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong)item));
+#endif
+
+	VideoItemWidget *viw = (VideoItemWidget *)listWidgetSearchResults->itemWidget(item);
+	if ( viw ) {
+		toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
+		if ( currentVideoID == viw->videoID && !videoPlayer->isPlaying() )
+			videoPlayer->play();
+		else if ( currentVideoID != viw->videoID || !videoPlayer->isPlaying() )
+			playVideo(viw->videoID);
+	}
+}
+
 void YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
@@ -1018,7 +1158,7 @@ void YouTubeVideoPlayer::on_toolButtonSuggest_clicked()
 #endif
 
 	QString suggestedSearchPattern = mySetName;
-	suggestedSearchPattern = suggestedSearchPattern.replace(QRegExp("\\(.*\\)"), "").simplified();
+	suggestedSearchPattern = suggestedSearchPattern.replace(QRegExp("\\(.*\\)"), "").replace("\\", " ").replace("/", " ").simplified();
 	if ( !suggestorAppendString.isEmpty() )
 		suggestedSearchPattern.append(" " + suggestorAppendString);
 	lineEditSearchString->setText(suggestedSearchPattern);
@@ -1030,6 +1170,28 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::on_toolButtonSearch_clicked()");
 #endif
 
+	searchRequestBuffer.clear();
+	listWidgetSearchResults->clear();
+	QString queryString = lineEditSearchString->text().simplified();
+	queryString.replace(" ", "+");
+	// retrieve an XML feed from http://gdata.youtube.com/feeds/api/videos?max-results=<max-results>&start-index=<start-index>&q=<query-string>
+	searchRequest.setUrl(QString("http://gdata.youtube.com/feeds/api/videos?max-results=%1&start-index=%2&q=%3").arg(spinBoxResultsPerRequest->value()).arg(spinBoxStartIndex->value()).arg(queryString));
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_toolButtonSearch_clicked(): sending search request: %1").arg(searchRequest.url().toString()));
+#endif
+	if ( searchRequestManager ) {
+		disconnect(searchRequestManager);
+		delete searchRequestManager;
+		searchRequestManager = NULL;
+	}
+	searchRequestManager = new QNetworkAccessManager(this);
+	searchRequestReply = searchRequestManager->get(searchRequest);
+	connect(searchRequestReply, SIGNAL(readyRead()), this, SLOT(searchRequestReadyRead()));
+	connect(searchRequestReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(searchRequestError(QNetworkReply::NetworkError)));
+	connect(searchRequestReply, SIGNAL(finished()), this, SLOT(searchRequestFinished()));
+#ifdef QMC2_DEBUG
+	printf("\nSearch request sent, replied data follows:\n");
+#endif
 }
 
 void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
@@ -1154,6 +1316,56 @@ void YouTubeVideoPlayer::videoImageFinished()
 	vimgFinished = true;
 }
 
+void YouTubeVideoPlayer::searchRequestReadyRead()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::searchRequestReadyRead()");
+#endif
+
+	QString part = searchRequestReply->readAll();
+#ifdef QMC2_DEBUG
+	printf("%s", (const char *)part.toLatin1());
+#endif
+	searchRequestBuffer += part;
+}
+
+void YouTubeVideoPlayer::searchRequestError(QNetworkReply::NetworkError error)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::searchRequestError(QNetworkReply::NetworkError error = %1)").arg(error));
+#endif
+
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: search request error: %1").arg(searchRequestReply->errorString()));
+
+#ifdef QMC2_DEBUG
+	printf("\nSearch request failed!\n");
+#endif
+}
+
+void YouTubeVideoPlayer::searchRequestFinished()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::searchRequestFinished()");
+#endif
+
+#ifdef QMC2_DEBUG
+	printf("\nSearch request finished!\n");
+#endif
+
+	QXmlInputSource xmlInputSource;
+	xmlInputSource.setData(searchRequestBuffer);
+	YouTubeXmlHandler xmlHandler(listWidgetSearchResults, this);
+	QXmlSimpleReader xmlReader;
+	xmlReader.setContentHandler(&xmlHandler);
+	xmlReader.setErrorHandler(&xmlHandler);
+	if ( xmlReader.parse(xmlInputSource) ) {
+	} else {
+#ifdef QMC2_DEBUG
+		printf("\nXML parsing failed!\n");
+#endif
+	}
+}
+
 void YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply)
 {
 	QString urlString = reply->url().toString();
@@ -1214,5 +1426,79 @@ void YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply)
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: image download failed for video ID '%1', error text = '%2'").arg(videoID).arg(reply->errorString()));
 
 	reply->deleteLater();
+}
+
+YouTubeXmlHandler::YouTubeXmlHandler(QListWidget *lw, YouTubeVideoPlayer *vp)
+{
+	listWidget = lw;
+	videoPlayer = vp;
+	isEntry = false;
+}
+
+bool YouTubeXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
+{
+	if ( qName == "entry" ) {
+#ifdef QMC2_DEBUG
+		printf("start of entry\n");
+#endif
+		isEntry = true;
+	} else if (qName == "id" ) {
+		currentText.clear();
+	} else if ( qName == "title" ) {
+		currentText.clear();
+	} else if ( qName == "author" ) {
+		currentText.clear();
+	}
+
+	return true;
+}
+
+bool YouTubeXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
+{
+	if ( !isEntry )
+		return true;
+
+	if ( qName == "entry" ) {
+#ifdef QMC2_DEBUG
+		printf("end of entry\n");
+#endif
+		QSize size(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT + 4);
+		QListWidgetItem *listWidgetItem = new QListWidgetItem(listWidget);
+		listWidgetItem->setSizeHint(size);
+		VideoItemWidget *videoItemWidget = new VideoItemWidget(id, title, author, VIDEOITEM_TYPE_YOUTUBE_SEARCH, videoPlayer, videoPlayer);
+		listWidget->setItemWidget(listWidgetItem, videoItemWidget);
+		isEntry = false;
+	} else if (qName == "id" ) {
+		id = currentText.remove(0, currentText.lastIndexOf("/") + 1);
+#ifdef QMC2_DEBUG
+		printf("    id     = '%s'\n", (const char *)id.toLatin1());
+#endif
+	} else if ( qName == "title" ) {
+		title = currentText;
+#ifdef QMC2_DEBUG
+		printf("    title  = '%s'\n", (const char *)title.toLatin1());
+#endif
+	} else if ( qName == "author" ) {
+		author = currentText.left(currentText.indexOf("http://"));
+#ifdef QMC2_DEBUG
+		printf("    author = '%s'\n", (const char *)author.toLatin1());
+#endif
+	}
+
+	return true;
+}
+
+bool YouTubeXmlHandler::characters(const QString &chars)
+{
+	currentText += QString::fromUtf8(chars.toAscii());
+
+	return true;
+}
+
+bool YouTubeXmlHandler::fatalError(const QXmlParseException &exception)
+{
+	qWarning() << "YouTube XML handler: fatal error on line" << exception.lineNumber() << "/ column" << exception.columnNumber() << exception.message();
+
+	return false;
 }
 #endif
