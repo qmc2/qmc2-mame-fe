@@ -48,7 +48,8 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		~YouTubeVideoPlayer();
 
 		QString currentVideoID;
-		QString currentAuthor;
+		QString currentVideoAuthor;
+		QString currentVideoTitle;
 		QString mySetID;
 		QString mySetName;
 		QString suggestorAppendString;
@@ -120,6 +121,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void playAttachedVideo();
 		void playSearchedVideo();
 		void attachSearchedVideo();
+		void attachCurrentVideo();
 		void copyYouTubeUrl();
 		void copySearchYouTubeUrl();
 		void copyAuthorUrl();
@@ -131,6 +133,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void updateAttachedVideoInfoImages();
 		void imageDownloadFinished(QNetworkReply *);
 		void attachVideo(QString, QString, QString);
+		void goFullScreen();
 
 	protected:
 		void showEvent(QShowEvent *);

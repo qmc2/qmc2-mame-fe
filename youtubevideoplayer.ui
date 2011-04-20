@@ -28,8 +28,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>715</width>
-        <height>336</height>
+        <width>327</width>
+        <height>121</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -165,8 +165,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>715</width>
-        <height>336</height>
+        <width>288</width>
+        <height>32</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -453,7 +453,7 @@
           <number>1</number>
          </property>
          <property name="maximum">
-          <number>100</number>
+          <number>50</number>
          </property>
          <property name="value">
           <number>10</number>
