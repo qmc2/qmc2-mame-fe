@@ -20,8 +20,7 @@
 
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
-
-QMap <QString, YouTubeVideoInfo> youTubeVideoInfoMap;
+extern QMap <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoMap;
 
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
 	: QWidget(parent)
@@ -292,6 +291,17 @@ void YouTubeVideoPlayer::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", suggestorAppendString);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SearchResultsPerRequest", spinBoxResultsPerRequest->value());
 
+	QList<QListWidgetItem *> il = listWidgetAttachedVideos->findItems("*", Qt::MatchWildcard);
+	QStringList attachedVideos;
+	foreach (QListWidgetItem *item, il) {
+		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+		attachedVideos << viw->videoID;
+	}
+	if ( attachedVideos.isEmpty() )
+		qmc2Config->remove(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID));
+	else
+		qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID), attachedVideos);
+
 	// serious hack to access the volume slider's tool button object
 	privateMuteButton = volumeSlider->findChild<QToolButton *>();
 	if ( privateMuteButton )
@@ -534,7 +544,6 @@ void YouTubeVideoPlayer::removeSelectedVideos()
 	foreach (QListWidgetItem *item, il) {
 		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
 		viwMap.remove(viw->videoID);
-		youTubeVideoInfoMap.remove(viw->videoID);
 		QListWidgetItem *i = listWidgetAttachedVideos->takeItem(listWidgetAttachedVideos->row(item));
 		delete i;
 	}
@@ -547,6 +556,18 @@ void YouTubeVideoPlayer::goFullScreen()
 #endif
 
 	videoPlayer->videoWidget()->setFullScreen(!videoPlayer->videoWidget()->isFullScreen());
+}
+
+void YouTubeVideoPlayer::attachVideoById(QString id)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::attachVideoById(QString id = %1)").arg(id));
+#endif
+
+	QStringList videoInfoList;
+	getVideoStreamUrl(id, &videoInfoList, true);
+	if ( videoInfoList.count() > 2 )
+		attachVideo(id, videoInfoList[0], videoInfoList[1]);
 }
 
 void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
@@ -590,7 +611,7 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 		videoItemWidget = new VideoItemWidget(id, title, author, VIDEOITEM_TYPE_YOUTUBE, this, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 	viwMap[id] = videoItemWidget;
-	youTubeVideoInfoMap[id] = YouTubeVideoInfo(title, author);
+	qmc2YouTubeVideoInfoMap[id] = YouTubeVideoInfo(title, author);
 }
 
 void YouTubeVideoPlayer::attachCurrentVideo()
@@ -627,7 +648,16 @@ void YouTubeVideoPlayer::init()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::init()");
 #endif
 
-	// FIXME: insert attached videos here
+	QStringList attachedVideos = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID), QStringList()).toStringList();
+	foreach(QString vid, attachedVideos ) {
+		if ( qmc2YouTubeVideoInfoMap.contains(vid) ) {
+			YouTubeVideoInfo vi = qmc2YouTubeVideoInfoMap[vid];
+			attachVideo(vid, vi.title, vi.author);
+		} else
+			attachVideoById(vid); // this is more expensive
+	}
+
+	QTimer::singleShot(1000, this, SLOT(updateAttachedVideoInfoImages()));
 
 	if ( checkBoxPlayOMatic->isChecked() ) {
 		QList<QListWidgetItem *> il = listWidgetAttachedVideos->findItems("*", Qt::MatchWildcard);
@@ -638,8 +668,6 @@ void YouTubeVideoPlayer::init()
 			QTimer::singleShot(0, this, SLOT(loadNullVideo()));
 	} else
 		QTimer::singleShot(0, this, SLOT(loadNullVideo()));
-
-	QTimer::singleShot(1000, this, SLOT(updateAttachedVideoInfoImages()));
 }
 
 void YouTubeVideoPlayer::adjustIconSizes()

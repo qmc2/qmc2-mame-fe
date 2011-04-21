@@ -44,9 +44,9 @@
 
 class YouTubeVideoInfo
 {
-	QString author, title;
-
 	public:
+		QString author, title;
+
 		YouTubeVideoInfo() { ; }
 		YouTubeVideoInfo(QString t, QString a) { title = t; author = a; }
 };
@@ -152,6 +152,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void updateAttachedVideoInfoImages();
 		void imageDownloadFinished(QNetworkReply *);
 		void attachVideo(QString, QString, QString);
+		void attachVideoById(QString);
 		void goFullScreen();
 
 	protected:
