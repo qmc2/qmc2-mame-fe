@@ -28,8 +28,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>327</width>
-        <height>121</height>
+        <width>715</width>
+        <height>336</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -58,9 +58,6 @@
           <enum>QAbstractItemView::ExtendedSelection</enum>
          </property>
          <property name="verticalScrollMode">
-          <enum>QAbstractItemView::ScrollPerPixel</enum>
-         </property>
-         <property name="horizontalScrollMode">
           <enum>QAbstractItemView::ScrollPerPixel</enum>
          </property>
         </widget>
@@ -165,8 +162,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>288</width>
-        <height>32</height>
+        <width>715</width>
+        <height>336</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -405,9 +402,6 @@
           <enum>Qt::CustomContextMenu</enum>
          </property>
          <property name="verticalScrollMode">
-          <enum>QAbstractItemView::ScrollPerPixel</enum>
-         </property>
-         <property name="horizontalScrollMode">
           <enum>QAbstractItemView::ScrollPerPixel</enum>
          </property>
         </widget>
