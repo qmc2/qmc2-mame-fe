@@ -1096,8 +1096,10 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(
 		if ( sender()->objectName() == "QMC2_VIDEO_TITLE" )
 			w = (QWidget *)sender();
 	if ( w && menuAttachedVideos ) {
-		menuAttachedVideos->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuAttachedVideos));
-		menuAttachedVideos->show();
+		if ( listWidgetAttachedVideos->itemAt(p) ) {
+			menuAttachedVideos->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuAttachedVideos));
+			menuAttachedVideos->show();
+		}
 	}
 }
 
@@ -1112,8 +1114,10 @@ void YouTubeVideoPlayer::on_listWidgetSearchResults_customContextMenuRequested(c
 		if ( sender()->objectName() == "QMC2_VIDEO_TITLE" )
 			w = (QWidget *)sender();
 	if ( w && menuSearchResults ) {
-		menuSearchResults->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuSearchResults));
-		menuSearchResults->show();
+		if ( listWidgetSearchResults->itemAt(p) ) {
+			menuSearchResults->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuSearchResults));
+			menuSearchResults->show();
+		}
 	}
 }
 
