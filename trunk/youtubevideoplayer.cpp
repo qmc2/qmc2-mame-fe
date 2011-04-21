@@ -9,6 +9,7 @@
 #include <QFileInfo>
 #include <QFile>
 #include <QDir>
+#include <QMap>
 
 #include "macros.h"
 #include "qmc2main.h"
@@ -19,6 +20,8 @@
 
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
+
+QMap <QString, YouTubeVideoInfo> youTubeVideoInfoMap;
 
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
 	: QWidget(parent)
@@ -470,6 +473,7 @@ void YouTubeVideoPlayer::removeSelectedVideos()
 	foreach (QListWidgetItem *item, il) {
 		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
 		viwMap.remove(viw->videoID);
+		youTubeVideoInfoMap.remove(viw->videoID);
 		QListWidgetItem *i = listWidgetAttachedVideos->takeItem(listWidgetAttachedVideos->row(item));
 		delete i;
 	}
@@ -525,6 +529,7 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 		videoItemWidget = new VideoItemWidget(id, title, author, VIDEOITEM_TYPE_YOUTUBE, this, this);
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 	viwMap[id] = videoItemWidget;
+	youTubeVideoInfoMap[id] = YouTubeVideoInfo(title, author);
 }
 
 void YouTubeVideoPlayer::attachCurrentVideo()
@@ -561,7 +566,7 @@ void YouTubeVideoPlayer::init()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::init()");
 #endif
 
-	// FIXME: this is a 'silly' and 'demo-only' init() routine... 
+	/*
 	attachVideo("bFjX1uUhB1A", "Joe Satriani - The Mystical Potato Head Groove Thing (G3 LIVE in Denver 2003)", "malfarius");
 	attachVideo("oH1ybin4ZEU", "Guitar battle: Steve Vai vs Dweezil Zappa -- Zappa plays Zappa DVD concert", "magma5555");
 	attachVideo("bcwBowBFFzc", "Frogger (Arcade) Demo", "retrojuegoschile");
@@ -576,6 +581,9 @@ void YouTubeVideoPlayer::init()
 	attachVideo("9XyR8buBfNk", "RayStorm - first stage", "samortails");
 	attachVideo("3qD453R7usI", "The Block Kuzushi", "DarkPuIse");
 	listWidgetAttachedVideos->updateGeometry();
+	*/
+
+	// FIXME: insert attached videos here
 
 	if ( checkBoxPlayOMatic->isChecked() )
 		QTimer::singleShot(0, this, SLOT(playNextVideo()));
@@ -583,18 +591,6 @@ void YouTubeVideoPlayer::init()
 		QTimer::singleShot(0, this, SLOT(loadNullVideo()));
 
 	QTimer::singleShot(1000, this, SLOT(updateAttachedVideoInfoImages()));
-
-	/*
-	if ( checkBoxPlayOMatic->isChecked() )
-		playVideo(video);
-	else
-		loadVideo(video);
-		*/
-
-	/*
-	if ( listWidgetAttachedVideos->count() < 1 )
-		QTimer::singleShot(100, this, SLOT(loadNullVideo()));
-	*/
 }
 
 void YouTubeVideoPlayer::adjustIconSizes()
@@ -1169,7 +1165,6 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 	searchRequestBuffer.clear();
 	listWidgetSearchResults->clear();
 	QString queryString = lineEditSearchString->text().simplified();
-	queryString.replace(" ", "+");
 	// retrieve an XML feed from http://gdata.youtube.com/feeds/api/videos?max-results=<max-results>&start-index=<start-index>&q=<query-string>
 	searchRequest.setUrl(QString("http://gdata.youtube.com/feeds/api/videos?max-results=%1&start-index=%2&q=%3").arg(spinBoxResultsPerRequest->value()).arg(spinBoxStartIndex->value()).arg(queryString));
 	if ( searchRequestManager ) {
@@ -1177,6 +1172,9 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 		delete searchRequestManager;
 		searchRequestManager = NULL;
 	}
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_toolButtonSearch_clicked(): search request URL: %1").arg(searchRequest.url().toString()));
+#endif
 	searchRequestManager = new QNetworkAccessManager(this);
 	searchRequestReply = searchRequestManager->get(searchRequest);
 	connect(searchRequestReply, SIGNAL(readyRead()), this, SLOT(searchRequestReadyRead()));
