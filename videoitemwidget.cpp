@@ -25,7 +25,10 @@ VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, Q
 	setType(vType);
 	setID(vID);
 	setAuthor(vAuthor);
-	setImage(vImage, true);
+	if ( vType == VIDEOITEM_TYPE_YOUTUBE_SEARCH )
+		labelVideoImage->hide();
+	else
+		setImage(vImage, true);
 	setTitle(vTitle);
 }
 
@@ -44,7 +47,10 @@ VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, i
 	setID(vID);
 	setAuthor(vAuthor);
 	QPixmap ghostImage = QPixmap(QString::fromUtf8(":/data/img/ghost_video.png"));
-	setImage(ghostImage, false);
+	if ( vType == VIDEOITEM_TYPE_YOUTUBE_SEARCH )
+		labelVideoImage->hide();
+	else
+		setImage(ghostImage, false);
 	setTitle(vTitle);
 }
 
