@@ -70,6 +70,11 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QString videoInfoBuffer, videoImageBuffer, searchRequestBuffer;
 		QAction *videoMenuPlayPauseAction;
 		QAction *autoSuggestAction;
+		QAction *avmActionPlayVideo;
+		QAction *avmActionCopyVideoUrl;
+		QAction *avmActionCopyAuthorUrl;
+		QAction *avmActionPasteVideoUrl;
+		QAction *avmActionRemoveVideos;
 		QStringList playedVideos;
 		QMap<QString, VideoItemWidget *> viwMap;
 		bool viFinished, vimgFinished;
@@ -132,6 +137,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void attachSearchedVideo();
 		void attachCurrentVideo();
 		void copyYouTubeUrl();
+		void pasteYouTubeUrl();
 		void copySearchYouTubeUrl();
 		void copyAuthorUrl();
 		void copySearchAuthorUrl();
