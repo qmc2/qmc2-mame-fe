@@ -1160,15 +1160,14 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::on_toolButtonSearch_clicked()");
 #endif
 
+	toolButtonSearch->setEnabled(false);
+
 	searchRequestBuffer.clear();
 	listWidgetSearchResults->clear();
 	QString queryString = lineEditSearchString->text().simplified();
 	queryString.replace(" ", "+");
 	// retrieve an XML feed from http://gdata.youtube.com/feeds/api/videos?max-results=<max-results>&start-index=<start-index>&q=<query-string>
 	searchRequest.setUrl(QString("http://gdata.youtube.com/feeds/api/videos?max-results=%1&start-index=%2&q=%3").arg(spinBoxResultsPerRequest->value()).arg(spinBoxStartIndex->value()).arg(queryString));
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_toolButtonSearch_clicked(): sending search request: %1").arg(searchRequest.url().toString()));
-#endif
 	if ( searchRequestManager ) {
 		disconnect(searchRequestManager);
 		delete searchRequestManager;
@@ -1179,9 +1178,6 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 	connect(searchRequestReply, SIGNAL(readyRead()), this, SLOT(searchRequestReadyRead()));
 	connect(searchRequestReply, SIGNAL(error(QNetworkReply::NetworkError)), this, SLOT(searchRequestError(QNetworkReply::NetworkError)));
 	connect(searchRequestReply, SIGNAL(finished()), this, SLOT(searchRequestFinished()));
-#ifdef QMC2_DEBUG
-	printf("\nSearch request sent, replied data follows:\n");
-#endif
 }
 
 void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
@@ -1326,10 +1322,7 @@ void YouTubeVideoPlayer::searchRequestError(QNetworkReply::NetworkError error)
 #endif
 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: search request error: %1").arg(searchRequestReply->errorString()));
-
-#ifdef QMC2_DEBUG
-	printf("\nSearch request failed!\n");
-#endif
+	toolButtonSearch->setEnabled(true);
 }
 
 void YouTubeVideoPlayer::searchRequestFinished()
@@ -1338,18 +1331,18 @@ void YouTubeVideoPlayer::searchRequestFinished()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::searchRequestFinished()");
 #endif
 
-#ifdef QMC2_DEBUG
-	printf("\nSearch request finished!\n");
-#endif
-
 	QXmlInputSource xmlInputSource;
 	xmlInputSource.setData(searchRequestBuffer);
 	YouTubeXmlHandler xmlHandler(listWidgetSearchResults, this);
 	QXmlSimpleReader xmlReader;
 	xmlReader.setContentHandler(&xmlHandler);
 	xmlReader.setErrorHandler(&xmlHandler);
+#ifdef QMC2_DEBUG
+	printf("\n");
+#endif
 	if ( !xmlReader.parse(xmlInputSource) )
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: search error: can't parse XML data"));
+	toolButtonSearch->setEnabled(true);
 }
 
 void YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply)
