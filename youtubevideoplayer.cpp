@@ -85,10 +85,11 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 		<< tr("MP4 1080P")
 		<< tr("MP4 3072P");
 
-	forcedExit = loadOnly = isMuted = pausedByHideEvent = viError = viFinished = false;
+	forcedExit = loadOnly = isMuted = pausedByHideEvent = viError = viFinished = vimgError = vimgFinished = false;
 	videoInfoReply = videoImageReply = searchRequestReply = NULL;
 	videoInfoManager = videoImageManager = searchRequestManager = NULL;
 	currentFormat = bestAvailableFormat = YOUTUBE_FORMAT_UNKNOWN_INDEX;
+	videoSeqNum = 0;
 
 	videoPlayer->mediaObject()->setTickInterval(1000);
 	volumeSlider->setAudioOutput(videoPlayer->audioOutput());
@@ -335,10 +336,39 @@ void YouTubeVideoPlayer::playNextVideo()
 
 	QList<QListWidgetItem *> il = listWidgetAttachedVideos->findItems("*", Qt::MatchWildcard);
 	if ( il.count() > 0 ) {
-		// FIXME: select video according to Play-O-Matic settings
-		int index = qrand() % il.count();
-		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(il[index]);
-		playVideo(viw->videoID);
+		switch ( comboBoxMode->currentIndex() ) {
+			case YOUTUBE_PLAYOMATIC_RANDOM: {
+					int index = qrand() % il.count();
+					VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(il[index]);
+					if ( checkBoxRepeat->isChecked() )
+						playVideo(viw->videoID);
+					else if ( !playedVideos.contains(viw->videoID) )
+						playVideo(viw->videoID);
+					else if ( playedVideos.count() < il.count() ) {
+						do {
+							index = qrand() % il.count();
+							viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(il[index]);
+						} while ( playedVideos.contains(viw->videoID) );
+						playVideo(viw->videoID);
+					} else
+						videoPlayer->stop();
+				}
+				break;
+			case YOUTUBE_PLAYOMATIC_SEQUENTIAL:
+			default: {
+					 if ( videoSeqNum > il.count() - 1 )
+						 videoSeqNum = 0;
+					 VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(il[videoSeqNum]);
+					 if ( checkBoxRepeat->isChecked() )
+						 playVideo(viw->videoID);
+					 else if ( !playedVideos.contains(viw->videoID) )
+						 playVideo(viw->videoID);
+					 else
+						 videoPlayer->stop();
+					 videoSeqNum++;
+				}
+				break;
+		}	
 	}
 }
 
@@ -597,28 +627,16 @@ void YouTubeVideoPlayer::init()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::init()");
 #endif
 
-	/*
-	attachVideo("bFjX1uUhB1A", "Joe Satriani - The Mystical Potato Head Groove Thing (G3 LIVE in Denver 2003)", "malfarius");
-	attachVideo("oH1ybin4ZEU", "Guitar battle: Steve Vai vs Dweezil Zappa -- Zappa plays Zappa DVD concert", "magma5555");
-	attachVideo("bcwBowBFFzc", "Frogger (Arcade) Demo", "retrojuegoschile");
-	attachVideo("xkTasNER4vI", "Arcade Longplay [119] Bionic Commando", "cubex55");
-	attachVideo("vK9rfCpjOQc", "Orianthi", "VARANDONIS");
-	attachVideo("gO-OwcBCa8Y", "Orianthi HD", "EsperantoBr");
-	attachVideo("XCv5aPqlDd4", "world.avi", "themaster011189");
-	attachVideo("PZxfFxYY7JM", "Golden Globe", "paulnewson");
-	attachVideo("X6Qvpz5d18g", "Earth 3D.wmv", "Aegyssus07");
-	attachVideo("xdg5wBd9r_U", "Realistic 3d Earth using only AE", "ShaneNL69");
-	attachVideo("SyhO0Ypukfc", "Universo 3D", "vipaces");
-	attachVideo("9XyR8buBfNk", "RayStorm - first stage", "samortails");
-	attachVideo("3qD453R7usI", "The Block Kuzushi", "DarkPuIse");
-	listWidgetAttachedVideos->updateGeometry();
-	*/
-
 	// FIXME: insert attached videos here
 
-	if ( checkBoxPlayOMatic->isChecked() )
-		QTimer::singleShot(0, this, SLOT(playNextVideo()));
-	else
+	if ( checkBoxPlayOMatic->isChecked() ) {
+		QList<QListWidgetItem *> il = listWidgetAttachedVideos->findItems("*", Qt::MatchWildcard);
+		if ( il.count() > 0 ) {
+			QTimer::singleShot(YOUTUBE_PLAYOMATIC_DELAY, this, SLOT(playNextVideo()));
+			toolBox->setCurrentIndex(YOUTUBE_VIDEO_PLAYER_PAGE);
+		} else
+			QTimer::singleShot(0, this, SLOT(loadNullVideo()));
+	} else
 		QTimer::singleShot(0, this, SLOT(loadNullVideo()));
 
 	QTimer::singleShot(1000, this, SLOT(updateAttachedVideoInfoImages()));
@@ -668,6 +686,9 @@ void YouTubeVideoPlayer::videoFinished()
 	videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 	progressBarBufferStatus->setValue(0);
 	progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
+
+	if ( checkBoxPlayOMatic->isChecked() )
+		QTimer::singleShot(YOUTUBE_PLAYOMATIC_DELAY, this, SLOT(playNextVideo()));
 }
 
 void YouTubeVideoPlayer::videoTick(qint64 time)
