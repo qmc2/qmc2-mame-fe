@@ -198,6 +198,7 @@ QTreeWidgetItem *qmc2VersionViewSelectedItem = NULL;
 #if defined(QMC2_YOUTUBE_ENABLED)
 YouTubeVideoPlayer *qmc2YouTubeWidget = NULL;
 QTreeWidgetItem *qmc2LastYouTubeItem = NULL;
+QMap <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoMap;
 #endif
 QTreeWidgetItem *qmc2HierarchySelectedItem = NULL;
 QMenu *qmc2EmulatorMenu = NULL,
@@ -1865,7 +1866,7 @@ void MainWindow::on_actionClearYouTubeCache_activated()
 	quint64 removedBytes = 0;
 	quint64 removedFiles = 0;
 	if ( youTubeCacheDir.exists() ) {
-		QStringList youTubeCacheFiles = youTubeCacheDir.entryList(QStringList("*.png"));
+		QStringList youTubeCacheFiles = youTubeCacheDir.entryList(QStringList("*"));
 		foreach (QString youTubeCacheFile, youTubeCacheFiles) {
 			QFileInfo fi(youTubeCacheDir.filePath(youTubeCacheFile));
 			qint64 fSize = fi.size();
@@ -2907,6 +2908,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #if QMC2_WIP_CODE == 1
 #if defined(QMC2_YOUTUBE_ENABLED)
     case QMC2_YOUTUBE_INDEX:
+      if ( qmc2YouTubeVideoInfoMap.isEmpty() )
+        loadYouTubeVideoInfoMap();
       if ( qmc2CurrentItem != qmc2LastYouTubeItem ) {
           log(QMC2_LOG_FRONTEND, QString("WIP: support for attached YouTube videos is still under development and not working properly yet!"));
           tabYouTube->setUpdatesEnabled(FALSE);
@@ -4518,6 +4521,39 @@ void MainWindow::closeEvent(QCloseEvent *e)
     }
   }
 
+#if defined(QMC2_YOUTUBE_ENABLED)
+  if ( !qmc2YouTubeVideoInfoMap.isEmpty() ) {
+	  log(QMC2_LOG_FRONTEND, tr("saving YouTube video info map"));
+	  QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
+	  if ( youTubeCacheDir.exists() ) {
+#if defined(QMC2_SDLMAME)
+		  QFile f(youTubeCacheDir.canonicalPath() + "/qmc2-sdlmame.yti");
+#elif defined(QMC2_SDLMESS)
+		  QFile f(youTubeCacheDir.canonicalPath() + "/qmc2-sdlmess.yti");
+#elif defined(QMC2_MAME)
+		  QFile f(youTubeCacheDir.canonicalPath() + "/qmc2-mame.yti");
+#elif defined(QMC2_MESS)
+		  QFile f(youTubeCacheDir.canonicalPath() + "/qmc2-mess.yti");
+#else
+		  QFile f(youTubeCacheDir.canonicalPath() + "/qmc2.yti");
+#endif
+		  if ( f.open(QIODevice::WriteOnly | QIODevice::Text) ) {
+			  QTextStream ts(&f);
+			  ts << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
+			  QMapIterator<QString, YouTubeVideoInfo> it(qmc2YouTubeVideoInfoMap);
+			  while ( it.hasNext() ) {
+				  it.next();
+				  ts << it.key() << "\t" << it.value().author << "\t" << it.value().title << "\n";
+			  }
+			  f.close();
+			  log(QMC2_LOG_FRONTEND, tr("done (saving YouTube video info map)"));
+		  } else
+			  log(QMC2_LOG_FRONTEND, tr("failed (saving YouTube video info map)"));
+	  } else
+		  log(QMC2_LOG_FRONTEND, tr("failed (saving YouTube video info map)"));
+  }
+#endif
+
   if ( listWidgetFavorites->count() > 0 )
     qmc2Gamelist->saveFavorites();
 
@@ -4765,6 +4801,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
 #if defined(QMC2_YOUTUBE_ENABLED)
   if ( qmc2YouTubeWidget ) {
+    qmc2YouTubeWidget->saveSettings();
     if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
       qmc2YouTubeWidget->videoPlayer->stop();
     qmc2YouTubeWidget->forcedExit = true;
@@ -5141,6 +5178,56 @@ bool KeyPressFilter::eventFilter(QObject *object, QEvent *event)
     return QObject::eventFilter(object, event);
   }
 }
+
+#if defined(QMC2_YOUTUBE_ENABLED)
+void MainWindow::loadYouTubeVideoInfoMap()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::loadYouTubeVideoInfoMap()");
+#endif
+
+	log(QMC2_LOG_FRONTEND, tr("loading YouTube video info map"));
+	QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
+	if ( youTubeCacheDir.exists() ) {
+#if defined(QMC2_SDLMAME)
+		QFile f(youTubeCacheDir.canonicalPath() + "/qmc2-sdlmame.yti");
+#elif defined(QMC2_SDLMESS)
+		QFile f(youTubeCacheDir.canonicalPath() + "/qmc2-sdlmess.yti");
+#elif defined(QMC2_MAME)
+		QFile f(youTubeCacheDir.canonicalPath() + "/qmc2-mame.yti");
+#elif defined(QMC2_MESS)
+		QFile f(youTubeCacheDir.canonicalPath() + "/qmc2-mess.yti");
+#else
+		QFile f(youTubeCacheDir.canonicalPath() + "/qmc2.yti");
+#endif
+		if ( f.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+			QString oldFormat = progressBarGamelist->format();
+			if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+				progressBarGamelist->setFormat(tr("YouTube index - %p%"));
+			else
+				progressBarGamelist->setFormat("%p%");
+			QFileInfo fi(f.fileName());
+			progressBarGamelist->setRange(0, fi.size());
+			progressBarGamelist->setValue(0);
+			qmc2YouTubeVideoInfoMap.clear();
+			QTextStream ts(&f);
+			while ( !ts.atEnd() ) {
+				QString line = ts.readLine();
+				if ( !line.startsWith("#") ) {
+					QStringList tokens = line.split("\t");
+					if ( tokens.count() > 2 )
+						qmc2YouTubeVideoInfoMap[tokens[0]] = YouTubeVideoInfo(tokens[2], tokens[1]);
+				}
+				progressBarGamelist->setValue(progressBarGamelist->value() + line.length());
+			}
+			progressBarGamelist->reset();
+			progressBarGamelist->setFormat(oldFormat);
+		}
+	}
+	log(QMC2_LOG_FRONTEND, tr("done (loading YouTube video info map)"));
+	log(QMC2_LOG_FRONTEND, tr("%n video info record(s) loaded", "", qmc2YouTubeVideoInfoMap.count()));
+}
+#endif
 
 void MainWindow::loadGameInfoDB()
 {
