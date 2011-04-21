@@ -114,23 +114,33 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/media_play.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(playAttachedVideo()));
+	avmActionPlayVideo = action;
 	menuAttachedVideos->addSeparator();
 	s = tr("Copy video URL");
 	action = menuAttachedVideos->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyYouTubeUrl()));
+	avmActionCopyVideoUrl = action;
 	s = tr("Copy author URL");
 	action = menuAttachedVideos->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyAuthorUrl()));
+	avmActionCopyAuthorUrl = action;
+	s = tr("Paste video URL");
+	action = menuAttachedVideos->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(pasteYouTubeUrl()));
+	avmActionPasteVideoUrl = action;
 	menuAttachedVideos->addSeparator();
 	s = tr("Remove selected videos");
 	action = menuAttachedVideos->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/remove.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(removeSelectedVideos()));
+	avmActionRemoveVideos = action;
 
 	menuVideoPlayer = new QMenu(0);
 	s = tr("Start / pause / resume video playback");
@@ -140,6 +150,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	videoMenuPlayPauseAction = action;
 	videoMenuPlayPauseAction->setEnabled(false);
 	connect(action, SIGNAL(triggered()), this, SLOT(on_toolButtonPlayPause_clicked()));
+	menuVideoPlayer->addSeparator();
 	s = tr("Full screen (return with toggle-key)");
 	action = menuVideoPlayer->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
@@ -371,6 +382,26 @@ void YouTubeVideoPlayer::copyYouTubeUrl()
 				}
 			}
 		}
+	}
+}
+
+void YouTubeVideoPlayer::pasteYouTubeUrl()
+{
+	QString videoID = qApp->clipboard()->text();
+	videoID.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?v\\=(.*)$"), "\\1");
+
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::pasteYouTubeUrl(): videoID = '%1'").arg(videoID));
+#endif
+
+	if ( videoID.isEmpty() )
+		return;
+
+	QStringList videoInfoList;
+	getVideoStreamUrl(videoID, &videoInfoList, true);
+	if ( videoInfoList.count() > 2 ) {
+		attachVideo(videoID, videoInfoList[0], videoInfoList[1]);
+		QTimer::singleShot(10, this, SLOT(updateAttachedVideoInfoImages()));
 	}
 }
 
@@ -1087,14 +1118,33 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(const QPoint &p = [%1, %2])").arg(p.x()).arg(p.y()));
 #endif
 
+	QString clipboardText = qApp->clipboard()->text();
+	if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?v\\=.*$")) == 0 )
+		avmActionPasteVideoUrl->setEnabled(true);
+	else
+		avmActionPasteVideoUrl->setEnabled(false);
+
 	QWidget *w = listWidgetAttachedVideos->viewport();
 	if ( sender() )
 		if ( sender()->objectName() == "QMC2_VIDEO_TITLE" )
 			w = (QWidget *)sender();
 	if ( w && menuAttachedVideos ) {
 		if ( listWidgetAttachedVideos->itemAt(p) ) {
+			avmActionPlayVideo->setEnabled(true);
+			avmActionCopyVideoUrl->setEnabled(true);
+			avmActionCopyAuthorUrl->setEnabled(true);
+			avmActionRemoveVideos->setEnabled(true);
 			menuAttachedVideos->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuAttachedVideos));
 			menuAttachedVideos->show();
+		} else {
+			if ( avmActionPasteVideoUrl->isEnabled() ) {
+				avmActionPlayVideo->setEnabled(false);
+				avmActionCopyVideoUrl->setEnabled(false);
+				avmActionCopyAuthorUrl->setEnabled(false);
+				avmActionRemoveVideos->setEnabled(false);
+				menuAttachedVideos->move(qmc2MainWindow->adjustedWidgetPosition(w->mapToGlobal(p), menuAttachedVideos));
+				menuAttachedVideos->show();
+			}
 		}
 	}
 }
