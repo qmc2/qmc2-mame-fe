@@ -35,6 +35,9 @@
 #define YOUTUBE_PLAYOMATIC_SEQUENTIAL	0
 #define YOUTUBE_PLAYOMATIC_RANDOM	1
 
+// Play-O-Matic delay between videos
+#define YOUTUBE_PLAYOMATIC_DELAY	2000
+
 // timeout and reply polling (wait) time for video info requests in ms
 #define YOUTUBE_VIDEOINFO_TIMEOUT	10000
 #define YOUTUBE_VIDEOINFO_WAIT		10
@@ -56,6 +59,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		YouTubeVideoPlayer(QString, QString, QWidget *parent = 0);
 		~YouTubeVideoPlayer();
 
+		quint64 videoSeqNum;
 		QString currentVideoID;
 		QString currentVideoAuthor;
 		QString currentVideoTitle;
