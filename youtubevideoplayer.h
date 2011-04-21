@@ -39,6 +39,15 @@
 #define YOUTUBE_VIDEOINFO_TIMEOUT	10000
 #define YOUTUBE_VIDEOINFO_WAIT		10
 
+class YouTubeVideoInfo
+{
+	QString author, title;
+
+	public:
+		YouTubeVideoInfo() { ; }
+		YouTubeVideoInfo(QString t, QString a) { title = t; author = a; }
+};
+
 class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 {
 	Q_OBJECT
