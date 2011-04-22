@@ -5208,14 +5208,22 @@ void MainWindow::loadYouTubeVideoInfoMap()
 			progressBarGamelist->setValue(0);
 			qmc2YouTubeVideoInfoMap.clear();
 			QTextStream ts(&f);
+			quint64 viCounter = 0;
+			quint64 curLen = 0;
 			while ( !ts.atEnd() ) {
 				QString line = ts.readLine();
+#if defined(Q_WS_WIN)
+				curLen += line.length() + 2; // + 0x0d 0x0a
+#else
+				curLen += line.length() + 1; // + 0x0a
+#endif
+				if ( viCounter++ % QMC2_YOUTUBE_VIDEO_INFO_RSP == 0 )
+					progressBarGamelist->setValue(curLen);
 				if ( !line.startsWith("#") ) {
 					QStringList tokens = line.split("\t");
 					if ( tokens.count() > 2 )
 						qmc2YouTubeVideoInfoMap[tokens[0]] = YouTubeVideoInfo(tokens[2], tokens[1]);
 				}
-				progressBarGamelist->setValue(progressBarGamelist->value() + line.length());
 			}
 			progressBarGamelist->reset();
 			progressBarGamelist->setFormat(oldFormat);

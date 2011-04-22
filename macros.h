@@ -258,6 +258,9 @@
 // responsiveness while pre-caching icons
 #define QMC2_ICONCACHE_RESPONSIVENESS	250
 
+// responsiveness while loading the YouTube video info map
+#define QMC2_YOUTUBE_VIDEO_INFO_RSP	50
+
 // delay in milliseconds before an automatic ROM check gets triggered
 #define QMC2_AUTOROMCHECK_DELAY		250
 
