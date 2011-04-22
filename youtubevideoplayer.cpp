@@ -16,11 +16,12 @@
 #include "youtubevideoplayer.h"
 #include "videoitemwidget.h"
 
-#define QMC2_DEBUG
+//#define QMC2_DEBUG
 
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 extern QMap <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoMap;
+extern bool qmc2YouTubeVideoInfoMapChanged;
 
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
 	: QWidget(parent)
@@ -612,6 +613,7 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 	listWidgetAttachedVideos->setItemWidget(listWidgetItem, videoItemWidget);
 	viwMap[id] = videoItemWidget;
 	qmc2YouTubeVideoInfoMap[id] = YouTubeVideoInfo(title, author);
+	qmc2YouTubeVideoInfoMapChanged = true;
 }
 
 void YouTubeVideoPlayer::attachCurrentVideo()

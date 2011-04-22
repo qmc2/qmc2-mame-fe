@@ -332,7 +332,6 @@ void Gamelist::load()
   qmc2LastMAWSItem = NULL;
 #endif
 
-#if QMC2_WIP_CODE == 1
 #if defined(QMC2_YOUTUBE_ENABLED)
   qmc2LastYouTubeItem = NULL;
   if ( qmc2YouTubeWidget ) {
@@ -342,7 +341,6 @@ void Gamelist::load()
       delete qmc2YouTubeWidget;
       qmc2YouTubeWidget = NULL;
   }
-#endif
 #endif
 
   qmc2Preview->update();
