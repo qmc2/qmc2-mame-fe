@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="MESS" version="0.142" format="0.2.3">
+<template emulator="MESS" version="0.142u1" format="0.2.3">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
