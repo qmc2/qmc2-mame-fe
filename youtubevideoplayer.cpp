@@ -753,6 +753,12 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 
 	switch ( newState ) {
 		case Phonon::LoadingState:
+			// serious hack to access the seekSlider's slider object
+			privateSeekSlider = seekSlider->findChild<QSlider *>();
+			if ( privateSeekSlider )
+				privateSeekSlider->setValue(0);
+			progressBarBufferStatus->setValue(0);
+			progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
 		case Phonon::BufferingState:
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 			toolButtonPlayPause->setEnabled(false);
@@ -764,12 +770,6 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 				labelPlayingTime->setText(hrTime.toString("hh:mm:ss"));
 			} else
 				labelPlayingTime->setText("--:--:--");
-			// serious hack to access the seekSlider's slider object
-			privateSeekSlider = seekSlider->findChild<QSlider *>();
-			if ( privateSeekSlider )
-				privateSeekSlider->setValue(0);
-			progressBarBufferStatus->setValue(0);
-			progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
 			break;
 		case Phonon::PlayingState:
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_play.png")));
