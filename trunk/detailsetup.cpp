@@ -55,11 +55,11 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Softwar&e list");
   longTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Software list");
   iconMap[QMC2_SOFTWARE_LIST_INDEX] = QIcon(QString::fromUtf8(":/data/img/pacman.png"));
+#endif
 #if QMC2_YOUTUBE_ENABLED
   shortTitleMap[QMC2_YOUTUBE_INDEX] = tr("&YouTube");
   longTitleMap[QMC2_YOUTUBE_INDEX] = tr("YouTube videos");
   iconMap[QMC2_YOUTUBE_INDEX] = QIcon(QString::fromUtf8(":/data/img/youtube.png"));
-#endif
 #endif
   availableDetailList << QMC2_PREVIEW_INDEX
                       << QMC2_FLYER_INDEX
@@ -71,16 +71,12 @@ DetailSetup::DetailSetup(QWidget *parent)
                       << QMC2_MARQUEE_INDEX
                       << QMC2_TITLE_INDEX
                       << QMC2_MAWS_INDEX
-                      << QMC2_PCB_INDEX
+                      << QMC2_PCB_INDEX;
 #if QMC2_WIP_CODE == 1
-                      << QMC2_SOFTWARE_LIST_INDEX
-#if QMC2_YOUTUBE_ENABLED
-                      << QMC2_YOUTUBE_INDEX;
-#else
-                      ;
+  availableDetailList << QMC2_SOFTWARE_LIST_INDEX;
 #endif
-#else
-                      ;
+#if QMC2_YOUTUBE_ENABLED
+  availableDetailList << QMC2_YOUTUBE_INDEX;
 #endif
   tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
   tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
@@ -95,15 +91,13 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
 #if QMC2_WIP_CODE == 1
   tabWidgetsMap[QMC2_SOFTWARE_LIST_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SOFTWARE_LIST_INDEX);
+#endif
 #if QMC2_YOUTUBE_ENABLED
   tabWidgetsMap[QMC2_YOUTUBE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX);
 #endif
-#endif
   configurableDetailList << QMC2_MAWS_INDEX;
-#if QMC2_WIP_CODE == 1
 #if QMC2_YOUTUBE_ENABLED
   configurableDetailList << QMC2_YOUTUBE_INDEX;
-#endif
 #endif
 
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -129,27 +123,23 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Softwar&e list");
   longTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Software list");
   iconMap[QMC2_SOFTWARE_LIST_INDEX] = QIcon(QString::fromUtf8(":/data/img/pacman.png"));
+#endif
 #if QMC2_YOUTUBE_ENABLED
   shortTitleMap[QMC2_YOUTUBE_INDEX] = tr("&YouTube");
   longTitleMap[QMC2_YOUTUBE_INDEX] = tr("YouTube videos");
   iconMap[QMC2_YOUTUBE_INDEX] = QIcon(QString::fromUtf8(":/data/img/youtube.png"));
-#endif
 #endif
   availableDetailList << QMC2_PREVIEW_INDEX
                       << QMC2_FLYER_INDEX
                       << QMC2_MACHINEINFO_INDEX
                       << QMC2_CONFIG_INDEX
                       << QMC2_DEVICE_INDEX
-                      << QMC2_PCB_INDEX
+                      << QMC2_PCB_INDEX;
 #if QMC2_WIP_CODE == 1
-                      << QMC2_SOFTWARE_LIST_INDEX
-#if QMC2_YOUTUBE_ENABLED
-                      << QMC2_YOUTUBE_INDEX;
-#else
-                      ;
+  availableDetailList << QMC2_SOFTWARE_LIST_INDEX;
 #endif
-#else
-                      ;
+#if QMC2_YOUTUBE_ENABLED
+  availableDetailList << QMC2_YOUTUBE_INDEX;
 #endif
   tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
   tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
@@ -159,14 +149,10 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
 #if QMC2_WIP_CODE == 1
   tabWidgetsMap[QMC2_SOFTWARE_LIST_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SOFTWARE_LIST_INDEX);
+#endif
 #if QMC2_YOUTUBE_ENABLED
   tabWidgetsMap[QMC2_YOUTUBE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX);
-#endif
-#endif
-#if QMC2_WIP_CODE == 1
-#if QMC2_YOUTUBE_ENABLED
   configurableDetailList << QMC2_YOUTUBE_INDEX;
-#endif
 #endif
 
 #endif
@@ -223,9 +209,9 @@ void DetailSetup::loadDetail()
                      << QMC2_PCB_INDEX;
 #if QMC2_WIP_CODE == 1
     activeDetailList << QMC2_SOFTWARE_LIST_INDEX;
+#endif
 #if QMC2_YOUTUBE_ENABLED
     activeDetailList << QMC2_YOUTUBE_INDEX;
-#endif
 #endif
 #elif defined(QMC2_EMUTYPE_MESS)
     activeDetailList << QMC2_PREVIEW_INDEX
@@ -236,9 +222,9 @@ void DetailSetup::loadDetail()
                      << QMC2_PCB_INDEX;
 #if QMC2_WIP_CODE == 1
     activeDetailList << QMC2_SOFTWARE_LIST_INDEX;
+#endif
 #if QMC2_YOUTUBE_ENABLED
     activeDetailList << QMC2_YOUTUBE_INDEX;
-#endif
 #endif
 #endif
   } else {
@@ -416,7 +402,6 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
           break;
 #endif
 
-#if QMC2_WIP_CODE == 1
 #if QMC2_YOUTUBE_ENABLED
 	case QMC2_YOUTUBE_INDEX: {
 		QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
@@ -440,7 +425,6 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
 			}
 		}
 	}
-#endif
 #endif
 
         default:

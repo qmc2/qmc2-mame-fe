@@ -199,6 +199,7 @@ QTreeWidgetItem *qmc2VersionViewSelectedItem = NULL;
 YouTubeVideoPlayer *qmc2YouTubeWidget = NULL;
 QTreeWidgetItem *qmc2LastYouTubeItem = NULL;
 QMap <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoMap;
+bool qmc2YouTubeVideoInfoMapChanged = false;
 #endif
 QTreeWidgetItem *qmc2HierarchySelectedItem = NULL;
 QMenu *qmc2EmulatorMenu = NULL,
@@ -2904,14 +2905,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 
   int left, top, right, bottom;
   switch ( qmc2DetailSetup->appliedDetailList[currentIndex] ) {
-    // FIXME: remove the WIP clause when finished
-#if QMC2_WIP_CODE == 1
 #if defined(QMC2_YOUTUBE_ENABLED)
     case QMC2_YOUTUBE_INDEX:
       if ( qmc2YouTubeVideoInfoMap.isEmpty() )
         loadYouTubeVideoInfoMap();
       if ( qmc2CurrentItem != qmc2LastYouTubeItem ) {
-          log(QMC2_LOG_FRONTEND, QString("WIP: support for attached YouTube videos is still under development and not working properly yet!"));
           tabYouTube->setUpdatesEnabled(FALSE);
           if ( qmc2YouTubeWidget ) {
             if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
@@ -2935,7 +2933,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           tabYouTube->setUpdatesEnabled(TRUE);
       }
       break;
-#endif
 #endif
 
     // FIXME: remove the WIP clause when software list support is finished
@@ -4522,7 +4519,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
 
 #if defined(QMC2_YOUTUBE_ENABLED)
-  if ( !qmc2YouTubeVideoInfoMap.isEmpty() ) {
+  if ( !qmc2YouTubeVideoInfoMap.isEmpty() && qmc2YouTubeVideoInfoMapChanged ) {
 	  log(QMC2_LOG_FRONTEND, tr("saving YouTube video info map"));
 	  QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 	  if ( youTubeCacheDir.exists() ) {
@@ -5226,6 +5223,7 @@ void MainWindow::loadYouTubeVideoInfoMap()
 	}
 	log(QMC2_LOG_FRONTEND, tr("done (loading YouTube video info map)"));
 	log(QMC2_LOG_FRONTEND, tr("%n video info record(s) loaded", "", qmc2YouTubeVideoInfoMap.count()));
+	qmc2YouTubeVideoInfoMapChanged = false;
 }
 #endif
 
