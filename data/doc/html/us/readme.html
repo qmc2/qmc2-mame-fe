@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b20, 19-APR-2011</h3>
+<h3>README - v0.2.b20, 24-APR-2011</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -163,6 +163,13 @@ use with the MAME variant).
 				       <a href="http://www.microsoft.com/downloads/en/details.aspx?displaylang=en&FamilyID=3021d52b-514e-41d3-ad02-438a3ba730ba&pf=true" target="_blank">http://www.microsoft.com/downloads/en/details.aspx?displaylang=en&FamilyID=3021d52b-514e-41d3-ad02-438a3ba730ba&pf=true</a><br>
                                        <a href="http://www.libsdl.org/release/SDL-1.2.14.dmg">http://www.libsdl.org/release/SDL-1.2.14.dmg</a></td>
     </tr>
+    <tr>
+      <td style="vertical-align: top;"><u>Video codecs (optional)</u><br>Linux: usually included<br>Windows: W7 Codec Pack<br>Mac OS X: Perian</td>
+      <td style="vertical-align: top;"><br>
+                                       Linux Phonon backends like xine, gstreamer or VLC should include everything you need.<br>
+                                       <a href="http://www.windows7codecs.com/" target="_blank">http://www.windows7codecs.com/</a><br>
+				       <a href="http://perian.org/" target="_blank">http://perian.org/</a></td>
+    </tr>
   </tbody>
 </table>
 <p><b>Building the QMC2 binary on UNIX and Mac OS X</b></p>
@@ -184,7 +191,7 @@ SDLMAME is the default emulator on UNIX and Mac OS X. To build QMC2 for other po
 <p>Joystick support is optional (but enabled by default) and requires SDL - the <i>Simple Directmedia Layer</i>. If you would like to disable it,
 for example because SDL is not supported on your OS (huh?), you could use the <i>JOYSTICK</i> make command line option to do so:</p>
 <pre>$ make [-jX] JOYSTICK=0</pre>
-<p>The QMC2 build system will automatically enable the use of Qt's Phonon integration for some multimedia functionality (built-in audio/video players).
+<p>The QMC2 build system will automatically enable the use of Qt's Phonon integration for some multimedia functionality (built-in audio &amp; video players).
 This feature is completely optional though, and as it requires a working Phonon environment -- especially a working backend such as <i>gstreamer</i>, <i>VLC</i> or <i>xine</i> --
 you can disable it at compile time. Use the <i>PHONON</i> make command line option to accomplish that:</p>
 <pre>$ make [-jX] PHONON=0</pre>
