@@ -175,13 +175,13 @@ use with the MAME variant).
 <p><b>Building the QMC2 binary on UNIX and Mac OS X</b></p>
 <p>Uncompress and untar the source distribution archive, then cd into the source directory:</p>
 <pre>$ bzip2 -d qmc2-&lt;version&gt;.tar.bz2<br>$ tar xvf qmc2-&lt;version&gt;.tar<br>$ cd qmc2</pre>
-<p>At this point, you may have to create (or adjust) an OS-dependent configuration file, if your platform should not be in the list of tested operating environments;
+<p>Side note: at this point, you may have to create (or adjust) an OS-dependent configuration file, if your platform should not be in the list of tested operating environments;
 if applicable, see <a href="#8.">section 8.</a> for more details.</p>
-<p>Usually, you should be able to just start the build process by calling <i>make</i>, which (among other things) will call <i>qmake</i> to create a tailored makefile (<i>Makefile.qmake</i>) for the target system:</p>
+<p>Usually, you should be able to just start the build process by calling <i>make</i>, which (among other things) will call <i>qmake</i> to create a tailored makefile (<i>Makefile.qmake</i>) for the target system and call a second make job with that file as input:</p>
 <pre>$ make</pre>
 <p>The default build configuration assumes that the <i>qmake</i> command is part of your search path for executable files (see the PATH environment variable).
 If you want/need to use a different qmake (i.e. to use a separately installed Qt version), you have to specify <i>QMAKE=&lt;path-to-qmake&gt;</i> on the make command line. For example:</p>
-<pre>$ make QMAKE=/usr/local/lib/qt-4.5.3/bin/qmake</pre>
+<pre>$ make QMAKE=/usr/local/lib/qt-4.7.2/bin/qmake</pre>
 <p>If you have an SMP system, you may want to run make in job-server mode. This is completely safe and usually much faster:</p>
 <pre>$ make -j3</pre>
 <p><font size="-1">(replace "3" with "#CPUs + 1")</font></p>
@@ -196,12 +196,13 @@ This feature is completely optional though, and as it requires a working Phonon 
 you can disable it at compile time. Use the <i>PHONON</i> make command line option to accomplish that:</p>
 <pre>$ make [-jX] PHONON=0</pre>
 <p>QMC2's Phonon features include the support for game/machine <i>attached</i> YouTube videos, which may require additional <i>codecs</i> to be installed (see table above for recommended video codecs).
-Since we can't be sure there's sufficient back-end support everywhere, we made this sub-feature completely optional, and you can disable the YouTube video player at compile-time
-(if PHONON=0 is set, this will be done automatically, though):</p>
+Since we can't be sure there's sufficient back-end support everywhere, we made this sub-feature completely optional, and you can even disable the YouTube video player at compile-time
+(when PHONON=0 is set, this will be done automatically):</p>
 <pre>$ make [-jX] YOUTUBE=0</pre>
-<p>Note that nearly all<sup>*</sup> of the supported make command line options can be freely combined when <i>make</i> is called. See</p>
+<p>Note that nearly all<sup>*</sup> of the supported make command line options can be freely combined when <i>make</i> is called, and non-string build options can alternatively be set as environment variables.</p>
+<p>See</p>
 <pre>$ make help</pre>
-<p>for more information.</p>
+<p>for a list of make targets and configuration options.</p>
 <p><font size="-1"><sup>*</sup>: The only exceptions are <i>DISTCC</i> and <i>CCACHE</i> which cannot be enabled at the same time.
 However, on a correctly set up <i>icecream</i> cluster for example, you can omit the DISTCC option and thus use CCACHE at the same time.</font></p>
 <p><b>IMPORTANT NOTE</b></p>
@@ -251,7 +252,7 @@ The <i>installation</i> at a user's end would then just be to extract this archi
 <p>When the <i>-qmc2_config_path</i> option is specified on the command line, QMC2 will use this directory instead of the default 'dot-path' (see configuration notes below).
 Note that it's in your responsibility to copy/move the data to its desired place prior to starting QMC2 when this option is set, otherwise QMC2 will start over (which may be wanted behavior, though). Also, any settings
 that may have inherited the previous dot-path will have to be changed manually (probably by editing qmc2.ini, but take care).</p>
-<p>Besides that, QMC2 provides those arguments inherited from Qt 4. See <a href="http://qt.nokia.com/doc/4.7/qapplication.html#QApplication" target="_blank">http://qt.nokia.com/doc/4.7/qapplication.html#QApplication</a> for details
+<p>Besides that, QMC2 provides a number of arguments it inherits from Qt 4. See <a href="http://doc.qt.nokia.com/4.7/qapplication.html#QApplication" target="_blank">http://doc.qt.nokia.com/4.7/qapplication.html#QApplication</a> for details
 (note, however, that some of these arguments are useless since QMC2 will overwrite them with its configured settings).</p>
 <p><b>Notes on the configuration of QMC2</b></p>
 <p>UNIX and Mac OS X:</p>
@@ -407,7 +408,7 @@ has been enabled) are also not filtered.</p>
    path to make sure that relative URLs (in the .qss file) are handled correctly. If you don't like that, use the <i>-stylesheet</i> command line parameter instead!
    <b>Update:</b> since version 0.2.b16 we support the specification of the <i>working directory</i> that's used when the emulator is launched in play- or demo-mode;
    we strongly recommend to set this option as it cleanly works around this issue.</p>
-<p>Read more about Qt style sheets here: <a href="http://qt.nokia.com/doc/4.5/stylesheet.html" target="_blank">http://qt.nokia.com/doc/4.5/stylesheet.html</a></p>
+<p>Read more about Qt style sheets here: <a href="http://doc.qt.nokia.com/4.7/stylesheet.html" target="_blank">http://doc.qt.nokia.com/4.7/stylesheet.html</a></p>
 <h3><a name="6."></a>6. Short cuts, GUI control keys and joystick support</h3>
 <p>Several functions (or <i>actions</i> in Qt technical jargon :) can be accessed via short cut key-sequences. The following table lists all of them:</p>
 <table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">

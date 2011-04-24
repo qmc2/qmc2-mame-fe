@@ -490,7 +490,7 @@ ifndef YOUTUBE
 YOUTUBE = 1
 endif
 
-# >>> END OF MAKE OPTIONS <<<
+# >>> END OF MAKE OPTIONS -- PLEASE DO NOT CHANGE ANYTHING AFTER THIS LINE <<<
 
 # project name
 PROJECT = qmc2
@@ -500,7 +500,12 @@ VERSION_MAJOR = 0
 VERSION_MINOR = 2
 VERSION_BETA  = 20
 
-# emulator target fallback for mameuifx32
+# make sure the emulator target is in capital letters
+ifdef TR
+EMULATOR = $(shell echo $(EMULATOR) | $(TR) [a-z] [A-Z])
+endif
+
+# emulator target fall-back for MAMEUIFX32
 ifeq '$(EMULATOR)' 'MAMEUIFX32'
 EMULATOR = MAME
 endif
