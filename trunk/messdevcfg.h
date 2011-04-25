@@ -4,6 +4,7 @@
 #include <QItemDelegate>
 #include <QModelIndex>
 #include <QXmlDefaultHandler>
+
 #include "ui_messdevcfg.h"
 
 class MESSDeviceFileDelegate : public QItemDelegate
@@ -54,6 +55,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     QMap<QString, QPair<QStringList, QStringList> > configurationMap;
     QMenu *deviceConfigurationListMenu;
     QMenu *configurationMenu;
+    QMenu *deviceContextMenu;
 
     MESSDeviceConfigurator(QString, QWidget *);
     ~MESSDeviceConfigurator();
@@ -74,8 +76,10 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void on_listWidgetDeviceConfigurations_itemActivated(QListWidgetItem *);
     void on_listWidgetDeviceConfigurations_currentTextChanged(const QString &);
     void on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &);
+    void on_treeWidgetDeviceSetup_customContextMenuRequested(const QPoint &);
     void actionSelectDefaultDeviceDirectory_triggered();
     void actionGenerateDeviceConfigurations_triggered();
+    void actionSelectFile_triggered();
 
     // other
     void editorDataChanged(const QString &);

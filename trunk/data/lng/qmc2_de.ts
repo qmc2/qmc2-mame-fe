@@ -4525,55 +4525,55 @@ p, li { white-space: pre-wrap; }
         <translation>Aktuelle Geräte-Konfiguration in Liste der verfügbaren Konfigurationen sichern</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="138"/>
         <location filename="../../messdevcfg.ui" line="141"/>
+        <location filename="../../messdevcfg.ui" line="144"/>
         <source>Device setup of current configuration</source>
         <translation>Geräte-Setup der aktuellen Konfiguration</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="159"/>
+        <location filename="../../messdevcfg.ui" line="162"/>
         <source>Brief name</source>
         <translation>Kurzname</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="194"/>
+        <location filename="../../messdevcfg.ui" line="197"/>
         <source>Available device configurations</source>
         <translation>Verfügbare Geräte-Konfigurationen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="209"/>
         <location filename="../../messdevcfg.ui" line="212"/>
+        <location filename="../../messdevcfg.ui" line="215"/>
         <source>List of available device configurations</source>
         <translation>Liste der verfügbaren Geräte-Konfigurationen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="236"/>
-        <location filename="../../messdevcfg.cpp" line="385"/>
+        <location filename="../../messdevcfg.cpp" line="249"/>
+        <location filename="../../messdevcfg.cpp" line="398"/>
         <source>No devices</source>
         <translation>Keine Geräte</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="154"/>
+        <location filename="../../messdevcfg.ui" line="157"/>
         <source>Device instance</source>
         <translation>Geräte-Instanz</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="164"/>
+        <location filename="../../messdevcfg.ui" line="167"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="169"/>
+        <location filename="../../messdevcfg.ui" line="172"/>
         <source>Tag</source>
         <translation>Markierung</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="174"/>
+        <location filename="../../messdevcfg.ui" line="177"/>
         <source>Extensions</source>
         <translation>Erweiterungen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="179"/>
+        <location filename="../../messdevcfg.ui" line="182"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
@@ -4596,58 +4596,68 @@ p, li { white-space: pre-wrap; }
         <translation>Aktuelle Geräte-Konfiguration klonen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="300"/>
-        <location filename="../../messdevcfg.cpp" line="302"/>
+        <location filename="../../messdevcfg.cpp" line="313"/>
+        <location filename="../../messdevcfg.cpp" line="315"/>
         <source>%1. copy of </source>
         <translation>%1. Kopie von </translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="451"/>
+        <location filename="../../messdevcfg.cpp" line="464"/>
         <source>%1. variant of </source>
         <translation>%1. Variante von </translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="155"/>
+        <location filename="../../messdevcfg.cpp" line="160"/>
         <source>Play selected game</source>
         <translation>Ausgewähltes Spiel spielen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="156"/>
+        <location filename="../../messdevcfg.cpp" line="161"/>
         <source>&amp;Play</source>
         <translation>S&amp;pielen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="138"/>
+        <location filename="../../messdevcfg.cpp" line="143"/>
         <source>Select default device directory</source>
         <translation>Standard Geräte-Verzeichnis auswählen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="139"/>
+        <location filename="../../messdevcfg.cpp" line="144"/>
         <source>&amp;Default device directory for &apos;%1&apos;...</source>
         <translation>Stan&amp;dard Geräte-Verzeichnis für &apos;%1&apos;...</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="145"/>
+        <location filename="../../messdevcfg.cpp" line="150"/>
         <source>Generate device configurations</source>
         <translation>Geräte-Konfigurationen erzeugen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="146"/>
+        <location filename="../../messdevcfg.cpp" line="151"/>
         <source>&amp;Generate configurations for &apos;%1&apos;...</source>
         <translation>&amp;Konfigurationen für &apos;%1&apos; erzeugen...</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="161"/>
+        <location filename="../../messdevcfg.cpp" line="166"/>
         <source>Play selected game (embedded)</source>
         <translation>Ausgewähltes Spiel spielen (eingebettet)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="162"/>
+        <location filename="../../messdevcfg.cpp" line="167"/>
         <source>Play &amp;embedded</source>
         <translation>Spielen (&amp;eingebettet)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="503"/>
+        <location filename="../../messdevcfg.cpp" line="175"/>
+        <source>Select a file to be mapped to this device instance</source>
+        <translation>Datei auswählen, die der Geräte-Instanz zugeordnet werden soll</translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="176"/>
+        <source>Select file...</source>
+        <translation>Datei auswählen...</translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="545"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Standard Geräte-Verzeichnis für &apos;%1&apos; auswählen</translation>
     </message>

@@ -20,13 +20,13 @@ inf: informational only
   <li>fix: corrected the handling of repeated log messages (the repetition counter was correctly logged, but the actual <i>new</i> message was eaten)</li>
   <li>fix: remove Phonon effects asynchronously (aka QObject::deleteLater()) -- note that this finally also fixes the long-standing post-mortem crash on Mac OS X</li>
   <li>fix: file and directory edit widgets did only commit any data changes when they were 'edited', but not when their data changed 'spontaneously' -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=17" target="_blank">bug tracker ID #17</a></li>
-  <li>fix: MESS targets only: avoid crash when exiting while a device setup is open</li>
+  <li>fix: MESS targets: avoid crash when exiting while a device setup is open</li>
   <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.142u1 (new option <i>menu</i> for MAME, removed option <i>uimodekey</i> for MAME)</li>
   <li>imp: SDLMESS/MESS templates updated to 0.142u1</li>
   <li>imp: ghost image enhanced, including a derived 'no video' pendant</li>
   <li>imp: improved log output when the validation of the emulator executable fails</li>
   <li>imp: MESS targets: added new / alternate emulator type identification string ('M.E.S.S.' vs. 'MESS') as used since 0.142 SVN -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=16" target="_blank">bug tracker ID #16</a></li>
-  <li>imp: MESS targets: the device configurator now also saves and restores the last selected setup (if any)</li>
+  <li>imp: MESS targets: the device configurator now also saves / restores the last selected setup (if any) and includes a context menu for the device instance map</li>
   <li>new: added command line option <i>-qmc2_config_path</i> to allow for overwriting the path where QMC2 stores its setup, caches etc. -- it's in the user's responsibility to copy/move the data to the desired directory (otherwise QMC2 will start over, which may be wanted behavior, though)</li>
   <li>new: support for game/machine <i>attached</i> YouTube videos (Phonon-based video player)</li>
   <li>wip: completing the support for software lists -- basically working, but some planned functionality is still missing, and there are open questions regarding the official way to scan the hash XML data</li>
