@@ -1,3 +1,4 @@
+#include <QList>
 #include <QMap>
 #include <QHeaderView>
 #include <QFileInfo>
@@ -19,6 +20,7 @@ extern bool qmc2EarlyStartup;
 extern QString qmc2FileEditStartPath;
 
 QMap<QString, QString> messXmlDataCache;
+QList<FileEditWidget *> messFileEditWidgetList;
 
 MESSDeviceFileDelegate::MESSDeviceFileDelegate(QObject *parent)
   : QItemDelegate(parent)
@@ -27,6 +29,7 @@ MESSDeviceFileDelegate::MESSDeviceFileDelegate(QObject *parent)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::MESSDeviceFileDelegate(QObject *parent = %1)").arg((qulonglong)parent));
 #endif
 
+  messFileEditWidgetList.clear();
 }
 
 QWidget *MESSDeviceFileDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -35,7 +38,8 @@ QWidget *MESSDeviceFileDelegate::createEditor(QWidget *parent, const QStyleOptio
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::createEditor(QWidget *parent = %1, const QStyleOptionViewItem &option, const QModelIndex &index)").arg((qulonglong)parent));
 #endif
 
-  QModelIndex sibling = index.sibling(index.row(), QMC2_DEVCONFIG_COLUMN_EXT);
+  int row = index.row();
+  QModelIndex sibling = index.sibling(row, QMC2_DEVCONFIG_COLUMN_EXT);
   QStringList extensions = sibling.model()->data(sibling, Qt::EditRole).toString().split("/");
 #if defined(Q_WS_WIN)
   QString filterString("(*.zip");
@@ -52,6 +56,7 @@ QWidget *MESSDeviceFileDelegate::createEditor(QWidget *parent, const QStyleOptio
   FileEditWidget *fileEditWidget = new FileEditWidget("", filterString, parent);
   fileEditWidget->installEventFilter(const_cast<MESSDeviceFileDelegate*>(this));
   connect(fileEditWidget, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged(QWidget *)));
+  messFileEditWidgetList.insert(row, fileEditWidget);
 
   return fileEditWidget;
 }
@@ -164,6 +169,14 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
   connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
 #endif
+
+  // device instance list context menu
+  deviceContextMenu = new QMenu(this);
+  s = tr("Select a file to be mapped to this device instance");
+  action = deviceContextMenu->addAction(tr("Select file..."));
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(actionSelectFile_triggered()));
 }
 
 MESSDeviceConfigurator::~MESSDeviceConfigurator()
@@ -488,6 +501,35 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_customContextMenu
     deviceConfigurationListMenu->move(listWidgetDeviceConfigurations->viewport()->mapToGlobal(point));
     deviceConfigurationListMenu->show();
   }
+}
+
+void MESSDeviceConfigurator::on_treeWidgetDeviceSetup_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_treeWidgetDeviceSetup_customContextMenuRequested(const QPoint &p = [%1, %2])").arg(p.x()).arg(p.y()));
+#endif
+
+	if ( treeWidgetDeviceSetup->itemAt(p) ) {
+		deviceContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetDeviceSetup->viewport()->mapToGlobal(p), deviceContextMenu));
+		deviceContextMenu->show();
+	}
+}
+
+void MESSDeviceConfigurator::actionSelectFile_triggered()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::actionSelectFile_triggered()");
+#endif
+
+	QTreeWidgetItem *item = treeWidgetDeviceSetup->currentItem();
+	if ( item ) {
+		int row = treeWidgetDeviceSetup->indexOfTopLevelItem(item);
+		if ( row >= 0 ) {
+			FileEditWidget *few = messFileEditWidgetList[row];
+			if ( few )
+				QTimer::singleShot(0, few, SLOT(on_toolButtonBrowse_clicked()));
+		}
+	}
 }
 
 void MESSDeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
