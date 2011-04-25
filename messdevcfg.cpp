@@ -215,15 +215,17 @@ bool MESSDeviceConfigurator::load()
   xmlReader.setContentHandler(&xmlHandler);
   xmlReader.parse(xmlInputSource);
 
-  qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1").arg(messMachineName));
   configurationMap.clear();
 
+  qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1").arg(messMachineName));
+  QString selectedConfiguration = qmc2Config->value("SelectedConfiguration").toString();
   QStringList configurationList = qmc2Config->childGroups();
 
   foreach (QString configName, configurationList) {
     configurationMap[configName].first = qmc2Config->value(QString("%1/Instances").arg(configName)).toStringList();
     configurationMap[configName].second = qmc2Config->value(QString("%1/Files").arg(configName)).toStringList();
-    listWidgetDeviceConfigurations->insertItem(listWidgetDeviceConfigurations->count(), configName);
+    QListWidgetItem *item = new QListWidgetItem(configName, listWidgetDeviceConfigurations);
+    if ( selectedConfiguration == configName ) listWidgetDeviceConfigurations->setCurrentItem(item);
   }
 
   qmc2FileEditStartPath = qmc2Config->value("DefaultDeviceDirectory").toString();
@@ -231,8 +233,9 @@ bool MESSDeviceConfigurator::load()
   qmc2Config->endGroup();
 
   dontIgnoreNameChange = TRUE;
-  listWidgetDeviceConfigurations->insertItem(0, tr("No devices"));
-  lineEditConfigurationName->setText(tr("No devices"));
+  QListWidgetItem *noDeviceItem = new QListWidgetItem(tr("No devices"), listWidgetDeviceConfigurations);
+  if ( listWidgetDeviceConfigurations->currentItem() == NULL )
+    listWidgetDeviceConfigurations->setCurrentItem(noDeviceItem);
   dontIgnoreNameChange = FALSE;
 
   return TRUE;
@@ -257,8 +260,13 @@ bool MESSDeviceConfigurator::save()
       qmc2Config->setValue(QString("%1/Files").arg(configName), config.second);
     }
   }
+
   if ( !devDir.isEmpty() )
     qmc2Config->setValue("DefaultDeviceDirectory", devDir);
+
+  QListWidgetItem *curItem = listWidgetDeviceConfigurations->currentItem();
+  if ( curItem != NULL )
+    qmc2Config->setValue("SelectedConfiguration", curItem->text());
 
   qmc2Config->endGroup();
 
