@@ -41,6 +41,7 @@
 <p><div class="menuitem"><a href="#A2.11">Q2.11: When I try to launch another QMC2 variant from a currently running one, nothing happens. What's up?</a></div></p>
 <p><div class="menuitem"><a href="#A2.12">Q2.12: The MAWS lookup feature is nice, but I would like to use a different catalog. Is it possible?</a></div></p>
 <p><div class="menuitem"><a href="#A2.13">Q2.13: I want to use other/older emulators for specific games. Does QMC2 support that?</a></div></p>
+<p><div class="menuitem"><a href="#A2.14">Q2.14: I'm primarily interested in the MESS variant of QMC2. How do I setup any devices to be hooked up to the emulator?</a></div></p>
 <p><b>Miscellaneous FAQs, known bugs inside and outside of QMC2 etc.:</b></p>
 <p><div class="menuitem"><a href="#A3.1">Q3.1: QMC2 doesn't determine the ROM state. What's wrong?</a></div></p>
 <p><div class="menuitem"><a href="#A3.2">Q3.2: ROM state filtering takes veeeery long. What's up?</a></div></p>
@@ -461,6 +462,19 @@ I had to go into the CompizConfig Settings Manager, General Options, Focus &amp;
   <li>RAINE 0.51.9</li>
 </ul>
 <p>Note for X11 users: embedding of foreign emulators may only work if they are <i>close enough</i> to MAME or MESS (that is, SDLMAME or SDLMESS)!</p>
+<hr>
+<p><a name="A2.14"></a><b>Q2.14: I'm primarily interested in the MESS variant of QMC2. How do I setup any devices to be hooked up to the emulator?</b></p>
+<p>Select the machine you want to emulate, then change to its <i>Devices</i> detail-tab (upper-right) and set up the devices like this:</p>
+<ol>
+	<li>Optional, but recommended: Click the <i>Configuration</i> button and select <i>Default device directory for '&lt;machine-name&gt;'...</i> so you can point QMC2 to a <i>primary</i> directory where you have your cart/rom/bin/whatever files for the current system. This directory will later be presented to you when you browse for device files.</li>
+	<li>Click the only enabled button right to the device name (which says 'No devices' initially) to create a new empty device setup.</li>
+	<li>If you're going to use device files with speaking names, don't bother with setting up a name for the configuration... QMC2 will automatically do it for you!</li>
+	<li>From the (then enabled) list of available <i>Device instances</i> select the one (or more) you want to map a file to; when you click the browse button, the default directory from above will be used (if set), filtered by names that fit the contents of the <i>Extensions</i> column.</li>
+	<li>When you've selected the first file this way, QMC2 will suggest a configuration name (when the name hasn't been set before).</li>
+	<li>When you're done with the setup, click the <i>save</i> button (right-most tool button, now enabled as well).</li>
+	<li>The configuration will then be added to the list of <i>Available device configurations</i> and can be selected and played.</li>
+</ol>
+</p>
 <hr>
 <p><a name="A3.1"></a><b>Q3.1: QMC2 doesn't determine the ROM state. What's wrong?</b></p>
 <p>There are at least three possible scenarios:</p>
