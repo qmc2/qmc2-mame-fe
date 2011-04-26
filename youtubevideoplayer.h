@@ -66,6 +66,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QString mySetID;
 		QString mySetName;
 		QString suggestorAppendString;
+		QString savedSearchString;
 		QStringList youTubeFormats;
 		QStringList youTubeFormatNames;
 		QNetworkReply *videoInfoReply, *videoImageReply, *searchRequestReply;
