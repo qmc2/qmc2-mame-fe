@@ -3,6 +3,7 @@
 #include "procmgr.h"
 #include "qmc2main.h"
 #include "embedder.h"
+#include "youtubevideoplayer.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -10,6 +11,9 @@ extern bool qmc2GuiReady;
 extern bool qmc2StartEmbedded;
 #if defined(QMC2_EMUTYPE_MESS)
 extern QString qmc2MessMachineName;
+#endif
+#if defined(QMC2_YOUTUBE_ENABLED)
+extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 #endif
 
 ProcessManager::ProcessManager(QWidget *parent)
@@ -20,8 +24,11 @@ ProcessManager::ProcessManager(QWidget *parent)
 #endif
 
   procCount = 0;
-#if QMC2_USE_PHONON_API
-  musicWasPlaying = sentPlaySignal = FALSE;
+#if defined(QMC2_USE_PHONON_API)
+  musicWasPlaying = sentPlaySignal = false;
+#if defined(QMC2_YOUTUBE_ENABLED)
+  videoWasPlaying = true;
+#endif
 #endif
 }
 
@@ -40,7 +47,7 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
   int argCount;
   for (argCount = 0; argCount < arguments.count(); argCount++)
     logMsg += QString(argCount > 0 ? " " + arguments[argCount] : arguments[argCount]);
-  logMsg += "\", bool autoConnect = " + QString(autoConnect ? "TRUE" : "FALSE") + ", QString workDir = " + workDir + ")";
+  logMsg += "\", bool autoConnect = " + QString(autoConnect ? "true" : "false") + ", QString workDir = " + workDir + ")";
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, logMsg);
 #endif
 
@@ -226,11 +233,17 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4").arg(procMap[proc]).arg(exitCodeString(exitCode)).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))).arg(procMap.count() - 1));
   procMap.remove(proc);
 
-#if QMC2_USE_PHONON_API
+#if defined(QMC2_USE_PHONON_API)
   if ( procMap.count() == 0 && musicWasPlaying ) {
-    sentPlaySignal = TRUE;
+    sentPlaySignal = true;
     QTimer::singleShot(QMC2_AUDIOPLAYER_RESUME_DELAY, qmc2MainWindow, SLOT(on_actionAudioPlayTrack_triggered()));
   }
+#if defined(QMC2_YOUTUBE_ENABLED)
+  if ( procMap.count() == 0 && videoWasPlaying )
+	  if ( qmc2YouTubeWidget )
+		  if ( qmc2YouTubeWidget->isVisible() )
+			  QTimer::singleShot(QMC2_VIDEOPLAYER_RESUME_DELAY, qmc2YouTubeWidget->videoPlayer, SLOT(play()));
+#endif
 #endif
 }
 
@@ -264,21 +277,29 @@ void ProcessManager::started()
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 started, PID = %2, running emulators = %3").arg(procMap[proc]).arg((quint64)proc->pid()).arg(procMap.count()));
 
-#if QMC2_USE_PHONON_API
+#if defined(QMC2_USE_PHONON_API)
   if ( qmc2MainWindow->phononAudioPlayer->state() == Phonon::PlayingState && procMap.count() == 1 ) {
-    musicWasPlaying = TRUE;
+    musicWasPlaying = true;
     if ( qmc2MainWindow->checkBoxAudioPause->isChecked() )
       QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionAudioPauseTrack_triggered()));
   } else if ( procMap.count() == 1 )
-    musicWasPlaying = FALSE;
+    musicWasPlaying = false;
+#if defined(QMC2_YOUTUBE_ENABLED)
+  if ( qmc2YouTubeWidget ) {
+	  videoWasPlaying = qmc2YouTubeWidget->videoPlayer->isPlaying();
+	  if ( videoWasPlaying )
+		  qmc2YouTubeWidget->videoPlayer->pause();
+  } else
+	  videoWasPlaying = false;
+#endif
 #endif
 
 #if defined(Q_WS_X11)
   if ( qmc2StartEmbedded ) {
     qmc2MainWindow->treeWidgetEmulators->clearSelection();
-    procItem->setSelected(TRUE);
+    procItem->setSelected(true);
     QTimer::singleShot(QMC2_EMBED_DELAY, qmc2MainWindow, SLOT(action_embedEmulator_triggered()));
-    qmc2StartEmbedded = FALSE;
+    qmc2StartEmbedded = false;
   }
 #endif
 }
