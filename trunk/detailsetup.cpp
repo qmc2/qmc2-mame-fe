@@ -160,11 +160,6 @@ DetailSetup::DetailSetup(QWidget *parent)
   setupUi(this);
   hide();
 
-#if defined(QMC2_EMUTYPE_MESS)
-  // no configurable details for MESS variants yet
-  pushButtonConfigureDetail->setVisible(FALSE);
-#endif
-
   QMapIterator<int, QString> it(longTitleMap);
   while ( it.hasNext() ) {
     it.next();
@@ -369,7 +364,8 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
 	    QStringList suggestedUrls;
 	    QString currentUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString();
             suggestedUrls << QMC2_MAWS_BASE_URL
-                          << "http://maws.mameworld.info/minimaws/romset/%1";
+                          << "http://maws.mameworld.info/minimaws/romset/%1"
+			  << "http://www.arcadehits.net/index.php?p=roms&zip=%1";
             if ( !suggestedUrls.contains(currentUrl) ) suggestedUrls << currentUrl;
             int current = suggestedUrls.indexOf(currentUrl);
             QString baseUrl = QInputDialog::getItem(this,
