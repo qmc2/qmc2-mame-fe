@@ -1240,6 +1240,7 @@ void YouTubeVideoPlayer::on_lineEditSearchString_textChanged(const QString &text
 #endif
 
 	toolButtonSearch->setEnabled(!text.isEmpty());
+	spinBoxStartIndex->setValue(1);
 }
 
 void YouTubeVideoPlayer::on_toolButtonSuggest_clicked()
@@ -1265,7 +1266,8 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 
 	searchRequestBuffer.clear();
 	listWidgetSearchResults->clear();
-	QString queryString = lineEditSearchString->text().simplified();
+	savedSearchString = lineEditSearchString->text();
+	QString queryString = savedSearchString.simplified();
 	// retrieve an XML feed from http://gdata.youtube.com/feeds/api/videos?max-results=<max-results>&start-index=<start-index>&q=<query-string>
 	searchRequest.setUrl(QString("http://gdata.youtube.com/feeds/api/videos?max-results=%1&start-index=%2&q=%3").arg(spinBoxResultsPerRequest->value()).arg(spinBoxStartIndex->value()).arg(queryString));
 	if ( searchRequestManager ) {
@@ -1443,7 +1445,10 @@ void YouTubeVideoPlayer::searchRequestFinished()
 #ifdef QMC2_DEBUG
 	printf("\n");
 #endif
-	if ( !xmlReader.parse(xmlInputSource) )
+	if ( xmlReader.parse(xmlInputSource) ) {
+		if ( savedSearchString == lineEditSearchString->text() && !savedSearchString.isEmpty() )
+			spinBoxStartIndex->setValue(spinBoxStartIndex->value() + listWidgetSearchResults->count());
+	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: search error: can't parse XML data"));
 	toolButtonSearch->setEnabled(true);
 }
