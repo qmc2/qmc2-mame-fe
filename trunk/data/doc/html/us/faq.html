@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.2.b20, 25-APR-2011</h3>
+<h3>FAQ - v0.2.b20, 26-APR-2011</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (UNIX/Linux, Mac OS X) distribution comes with an older (or no) version of Qt. What should I do about that?</a></div></p>
@@ -41,7 +41,8 @@
 <p><div class="menuitem"><a href="#A2.11">Q2.11: When I try to launch another QMC2 variant from a currently running one, nothing happens. What's up?</a></div></p>
 <p><div class="menuitem"><a href="#A2.12">Q2.12: The MAWS lookup feature is nice, but I would like to use a different catalog. Is it possible?</a></div></p>
 <p><div class="menuitem"><a href="#A2.13">Q2.13: I want to use other/older emulators for specific games. Does QMC2 support that?</a></div></p>
-<p><div class="menuitem"><a href="#A2.14">Q2.14: I'm primarily interested in the MESS variant of QMC2. How do I setup any devices to be hooked up to the emulator?</a></div></p>
+<p><div class="menuitem"><a href="#A2.14">Q2.14: I'm primarily interested in the (SDL)MESS variant of QMC2. How do I setup any devices to be hooked up to the emulator?</a></div></p>
+<p><div class="menuitem"><a href="#A2.15">Q2.15: There are just too many emulator configuration options, so it's hard to find the ones I want to set quickly. Is there an easy way to search for them?</a></div></p>
 <p><b>Miscellaneous FAQs, known bugs inside and outside of QMC2 etc.:</b></p>
 <p><div class="menuitem"><a href="#A3.1">Q3.1: QMC2 doesn't determine the ROM state. What's wrong?</a></div></p>
 <p><div class="menuitem"><a href="#A3.2">Q3.2: ROM state filtering takes veeeery long. What's up?</a></div></p>
@@ -55,23 +56,18 @@
 <p>First of all, don't worry. Regardless if an older version of Qt is already installed or not, you can use several versions in parallel. This includes self-compiled versions as in the following example.
 You only need to take care of the <i>QMAKE</i> make option as described in the build instructions of <a href="readme.html#2.">readme.html</a>.</p>
 <p>If you need to build Qt 4 from source, please follow these steps (on X11 platforms):</p>
-<p>1) Download the latest source archive of Qt 4 from this URL: <a href="http://qt.nokia.com/downloads" target="_blank">http://qt.nokia.com/downloads</a> -- for example qt-x11-opensource-src-4.5.3.tar.gz.</p>
+<p>1) Download the latest source archive of Qt 4 from this URL: <a href="http://qt.nokia.com/downloads" target="_blank">http://qt.nokia.com/downloads</a> -- for example <a href="http://download.qt.nokia.com/qt/source/qt-everywhere-opensource-src-4.7.2.zip" target="_blank">http://download.qt.nokia.com/qt/source/qt-everywhere-opensource-src-4.7.2.zip</a>.</p>
 <p>2) Extract this tar-ball to a directory where you are going to build it, then configure and build it completely:</p>
-<pre># mkdir -p src &amp;&amp; cd src<br># gzcat /tmp/qt-x11-opensource-src-4.5.3.tar.gz | tar xfv -<br># cd qt-x11-opensource-src-4.5.3<br># ./configure -platform linux-g++ -prefix /usr/local/lib/qt-4.5.3<br># make</pre>
+<pre># mkdir -p src &amp;&amp; cd src<br># gzcat /tmp/qt-everywhere-opensource-src-4.7.2.zip | tar xfv -<br># cd qt-everywhere-opensource-src-4.7.2<br># ./configure -platform linux-g++ -fast -opensource -prefix /usr/local/lib/qt-4.7.2<br># make</pre>
 <p>Exchange the values for <span style="font-style: italic;">-platform</span> and <span style="font-style: italic;">-prefix</span> with things that fit your needs. The example is for a 32-bit Linux distribution, building Qt 4 on a 64-bit Linux system requires <i>-platform linux-g++-64</i>! See the available <i>make specs</i> in the Qt source (directory <i>mkspecs/</i>) for other platforms.</p>
 <p>3) Install the library (it will be installed to the prefix-directory specified on the configure command line!):</p>
 <pre># make install</pre>
-<p>This is VERY important for Qt 4 (whereas in case of Qt 3 this wasn't necessary)!</p>
-<p>Now, following the instructions of <a href="readme.html#2.">readme.html</a>, you are able to build and use QMC2!!</p>
-<p>Note that building Qt from source is recommended for QMC2, even if your distribution already comes with <i>sufficient</i> Qt 4 packages. Some distributions use buggy versions of Qt (performance issues, potential crashes), others do not include all the required features. Installing Qt as described here is guaranteed to work with QMC2 - provided that Qt itself builds cleanly :). On Linux at least, there should be no problem at all to build Qt from source. On <u>most</u> other platforms supported by Qt this is true as well.</p>
-<p>On Mac OS X (Cocoa), this can be done in pretty much the same way. You just need to use the <i>mac</i> version of Qt 4.5.x (for Qt 4.6.x, all platforms are unified in the <i>everywhere</i> releases). Then use a Qt configuration like this:</p>
-<pre># ./configure -debug-and-release -cocoa -no-exceptions -fast -opensource -prefix /Users/joeuser/libs/qt-4.5.3</pre>
-<p>When that's finished, run <i>make && make install</i> as usual to build and install Qt locally.</p>
-<p>However, note that (in contrast to Linux/UNIX) on Mac OS X we recommend to install Qt from the official binary packages. See <a href="#A1.7.4">Q1.7.4</a> for more information!</p>
-<p>See here for official installation instructions (covering all platforms): <a href="http://doc.qt.nokia.com/4.7/installation.html" target="_blank">http://doc.qt.nokia.com/4.7/installation.html</a></p>
+<p>Now, following the instructions of <a href="readme.html#2.">readme.html</a>, you should be able to build and use QMC2!!</p>
+<p><b>This FAQ is somewhat obsolete:</b> current versions of all relevant target OSs / platforms / distributions should include support for Qt 4.5 or above, or there's at least a binary SDK for it. More exotic environments may still need a local Qt installation, though.</p>
 <hr>
 <p><a name="A1.2"></a><b>Q1.2: Aren't there any binary packages on the net?</b></p>
-<p>Please see <a href="http://qmc2.arcadehits.net/wordpress/download/#binaries" target="_blank">http://qmc2.arcadehits.net/wordpress/download/#binaries</a> for more information.</p>
+<p>Yes. See <a href="http://qmc2.arcadehits.net/wordpress/download/#binaries" target="_blank">http://qmc2.arcadehits.net/wordpress/download/#binaries</a> for a list of known packages.</p>
+<p>This list may not be complete, though. If you know of any binary packages that are missing, please <a href="readme.html#9.">contact us</a>!</p>
 <hr>
 <p><a name="A1.3"></a><b>Q1.3: I want to be at the cutting edge of QMC2 development. How do I access your development code base?</b></p>
 <p>We are using <i>Subversion</i> (SVN) for the code repository during development.</p>
@@ -454,8 +450,8 @@ I had to go into the CompizConfig Settings Manager, General Options, Focus &amp;
 <p>Note, however, that QMC2's <i>default</i> emulator needs to be one of the officially supported set and that the configuration of foreign emulators is totally up to the user who
    needs to register each emulator with its (complete) command line options -- including a placeholder for the game/machine ID! If you omit the ID placeholder (<i>$ID$</i>) in the emulator
    registration, this mechanism will simply not work.</p>
-<p>To add, copy or modify foreign emulators, go to the <i>additional emulators</i> tab in the emulator section of the global setup (don't forget to apply/save the configuration changes).
-   Then select one of these emulators in any game-/machine-specific emulator configuration and you're done!</p>
+<p>To add, copy or modify foreign emulators, go to the <i>additional emulators</i> tab in the emulator section of the global setup -- don't forget to apply/save the configuration changes when you're finished!
+   Then select one of these registered emulators in any game-/machine-specific emulator configuration and you're done!</p>
 <p>Officially tested (and in this context <i>supported</i>) foreign emulators include:</p>
 <ul>
   <li>XMAME 0.106</li>
@@ -463,18 +459,23 @@ I had to go into the CompizConfig Settings Manager, General Options, Focus &amp;
 </ul>
 <p>Note for X11 users: embedding of foreign emulators may only work if they are <i>close enough</i> to MAME or MESS (that is, SDLMAME or SDLMESS)!</p>
 <hr>
-<p><a name="A2.14"></a><b>Q2.14: I'm primarily interested in the MESS variant of QMC2. How do I setup any devices to be hooked up to the emulator?</b></p>
+<p><a name="A2.14"></a><b>Q2.14: I'm primarily interested in the (SDL)MESS variant of QMC2. How do I setup any devices to be hooked up to the emulator?</b></p>
 <p>Select the machine you want to emulate, then change to its <i>Devices</i> detail-tab (upper-right) and set up the devices like this:</p>
 <ol>
-	<li>Optional, but recommended: Click the <i>Configuration</i> button and select <i>Default device directory for '&lt;machine-name&gt;'...</i> so you can point QMC2 to a <i>primary</i> directory where you have your cart/rom/bin/whatever files for the current system. This directory will later be presented to you when you browse for device files.</li>
+	<li>Optional, but recommended: Click the <i>Configuration</i> button and select <i>Default device directory for '&lt;machine-name&gt;'...</i> so you can point QMC2 to a <i>primary</i> directory where you have your cart/rom/bin/whatever files for the current system. This directory will later be presented to you when you browse for device files. You only need to do this once, of course.</li>
 	<li>Click the only enabled button right to the device name (which says 'No devices' initially) to create a new empty device setup.</li>
 	<li>If you're going to use device files with speaking names, don't bother with setting up a name for the configuration... QMC2 will automatically do it for you!</li>
 	<li>From the (then enabled) list of available <i>Device instances</i> select the one (or more) you want to map a file to; when you click the browse button, the default directory from above will be used (if set), filtered by names that fit the contents of the <i>Extensions</i> column.</li>
 	<li>When you've selected the first file this way, QMC2 will suggest a configuration name (when the name hasn't been set before).</li>
 	<li>When you're done with the setup, click the <i>save</i> button (right-most tool button, now enabled as well).</li>
-	<li>The configuration will then be added to the list of <i>Available device configurations</i> and can be selected and played.</li>
+	<li>The configuration will then be added to the list of <i>Available device configurations</i> and can be selected, edited and 'played' (launched).</li>
 </ol>
 </p>
+<hr>
+<p><a name="A2.15"></a><b>Q2.15: There are just too many emulator configuration options, so it's hard to find the ones I want to set quickly. Is there an easy way to search for them?</b></p>
+<p>Yes. Click into the tree widget which contains all the emulator configuration options and enter the string you want to search for. A small editor widget will pop up and all matches in the
+configuration tree will be high-lighted/expanded as you type. The widget closes when ESC is pressed or automatically after an idle time of 2 seconds.</p>
+<p>This works for both the global and the game/machine-specific settings.</p>
 <hr>
 <p><a name="A3.1"></a><b>Q3.1: QMC2 doesn't determine the ROM state. What's wrong?</b></p>
 <p>There are at least three possible scenarios:</p>
