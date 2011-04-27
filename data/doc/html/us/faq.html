@@ -31,7 +31,7 @@
 <p><div class="menuitem"><a href="#A2.1">Q2.1: When the game/machine list reloads, the insertion of games/machines is fairly slow. Is there a way to somehow speed it up?</a></div></p>
 <p><div class="menuitem"><a href="#A2.2">Q2.2: How do I use the search feature?</a></div></p>
 <p><div class="menuitem"><a href="#A2.3">Q2.3: What are the typical CPU &amp; memory requirements?</a></div></p>
-<p><div class="menuitem"><a href="#A2.4">Q2.4: What image formats are supported for in-game screenshots (previews), flyers, icons etc.?</a></div></p>
+<p><div class="menuitem"><a href="#A2.4">Q2.4: What image or video formats are supported for in-game screenshots (previews), flyers, icons etc.?</a></div></p>
 <p><div class="menuitem"><a href="#A2.5">Q2.5: What do I have to do to make QMC2 access my image &amp; icon collections?</a></div></p>
 <p><div class="menuitem"><a href="#A2.6">Q2.6: The menu fonts in MAME/MESS look ugly when started via QMC2. How do I fix that?</a></div></p>
 <p><div class="menuitem"><a href="#A2.7">Q2.7: Nearly all MAME/MESS output is logged at once when the emulator finishes. What's up?</a></div></p>
@@ -342,10 +342,10 @@ greater if you set the responsiveness parameter a bit higher (250 - 500, for exa
    However, with regard to the analysis of individual files, the ROMAlyzer will load only small chunks of data (up to 64 KB per chunk) to recalculate checksums -- this won't hurt.</p>
 <p>All numbers were measured with QMC2 0.2.b15 and (SDL)MAME 0.137 / (SDL)MESS 0.137 (8604 games / 1260 machines, game/machine &amp; emulator info DBs loaded with no in-memory compression, Phonon features enabled, many icons loaded).</p>
 <hr>
-<p><a name="A2.4"></a><b>Q2.4: What image formats are supported for in-game screenshots (previews), flyers, icons etc.?</b></p>
-<p><i>Portable Network Graphics</i> (PNG) is the <b>only</b> image format supported by QMC2!</p>
-<p>This is true for icons as well which are usually in <i>ICO</i> format - you'll need to convert them to PNGs before they can be used with QMC2.</p>
-<p>We plan to also support <i>preview movies</i> in the future. These will have to be in formats supported by Phonon and its backend API such as <i>gstreamer</i>; existing codec plugins for gstreamer include support for MNGs and all sorts of AVIs, which should be sufficient.</p>
+<p><a name="A2.4"></a><b>Q2.4: What image or video formats are supported for in-game screenshots (previews), flyers, icons etc.?</b></p>
+<p><i>Portable Network Graphics</i> (PNG) is the <b>primary</b> image format supported by QMC2! This is true for icons as well which are usually in <i>ICO</i> format -- you'll need to convert them to PNGs before they can be used with QMC2.</p>
+<p>When loading images directly from the internet, QMC2 also supports other image formats such as JPEG. But when it's required to store them locally, they'll be converted to PNGs automatically.</p>
+<p>Provided your Phonon back-end supports the video formats MP4 and FLV, QMC2 can also play YouTube videos (since v0.2.b20) which you can <i>attach</i> to each game/machine individually. Note that this may require additional codecs to be installed!</p>
 <hr>
 <p><a name="A2.5"></a><b>Q2.5: What do I have to do to make QMC2 access my image &amp; icon collections?</b></p>
 <p>QMC2 can handle images of in-game screenshots (previews), flyers, cabinets, control panels, marquees, title screens, PCBs and icons stored in directories or ZIP archives.</p>
@@ -359,7 +359,7 @@ greater if you set the responsiveness parameter a bit higher (250 - 500, for exa
 <p><a name="A2.6"></a><b>Q2.6: The menu fonts in MAME/MESS look ugly when started via QMC2. How do I fix that?</b></p>
 <p>The most probable reason is you didn't setup the MAME/MESS option <i>fontpath</i> correctly! Change it to the directory where MAME/MESS has been installed and / or built (see <i>Options</i> -&gt; <i>Emulator</i> -&gt; <i>Global configuration</i>). The font files in question are <i>ui.bdf</i> and <i>ui.bdc</i> (will be created if it doesn't exist) and the default value of <i>fontpath</i> is "." (the current working directory), which is most likely not the correct path when MAME/MESS is started via QMC2.</p>
 <p>Alternatively, you could of course also change the current working directory to the path where <i>ui.bdf</i> / <i>ui.bdc</i> reside before you start QMC2.</p>
-<p>Another possibility is to synchronize both configurations (standalone &amp; QMC2) by either exporting or importing the respective global configuration file (mame.ini). In this case you should also take care of the <i>inipath</i> parameter which points to the directory where MAME/MESS searches for ini-files. For example, if you setup the <i>inipath</i> to <i>~/.qmc2/ini</i> a shell alias like <pre>$ alias mame="mame -inipath ~/.qmc2/ini"</pre> could make life easier for you, and MAME/MESS would always look the same (provided you keep mame.ini/mess.ini in synch with QMC2's MAME/MESS configuration =&gt; export it every time you change it). This is also true when a game/machine-specific configuration (<i>gamename</i>.ini) is used, whose parameters will overwrite those of the global configuration (mame.ini).</p>
+<p>Since MAME/MESS 0.140 there's also an emulator option to specifcy a true-type font: see <i>uifont</i>!</p>
 <hr>
 <p><a name="A2.7"></a><b>Q2.7: Nearly all MAME/MESS output is logged at once when the emulator finishes. What's up?</b></p>
 <p>This is caused by the way MAME and MESS buffer their output to the <i>stdout</i> stream. Unfortunately, there is no (standardized) way to solve this from within QMC2.
