@@ -360,7 +360,7 @@ greater if you set the responsiveness parameter a bit higher (250 - 500, for exa
 <p><a name="A2.6"></a><b>Q2.6: The menu fonts in MAME/MESS look ugly when started via QMC2. How do I fix that?</b></p>
 <p>The most probable reason is you didn't setup the MAME/MESS option <i>fontpath</i> correctly! Change it to the directory where MAME/MESS has been installed and / or built (see <i>Options</i> -&gt; <i>Emulator</i> -&gt; <i>Global configuration</i>). The font files in question are <i>ui.bdf</i> and <i>ui.bdc</i> (will be created if it doesn't exist) and the default value of <i>fontpath</i> is "." (the current working directory), which is most likely not the correct path when MAME/MESS is started via QMC2.</p>
 <p>Alternatively, you could of course also change the current working directory to the path where <i>ui.bdf</i> / <i>ui.bdc</i> reside before you start QMC2.</p>
-<p>Since MAME/MESS 0.141 there's also an emulator option to specifcy a true-type font: see <i>uifont</i>!</p>
+<p>Since MAME/MESS 0.141 there's also an emulator option to specify a true-type font: see <i>uifont</i>!</p>
 <hr>
 <p><a name="A2.7"></a><b>Q2.7: Nearly all MAME/MESS output is logged at once when the emulator finishes. What's up?</b></p>
 <p>This is caused by the way MAME and MESS buffer their output to the <i>stdout</i> stream. Unfortunately, there is no (standardized) way to solve this from within QMC2.
