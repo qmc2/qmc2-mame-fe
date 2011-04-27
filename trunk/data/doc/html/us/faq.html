@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.2.b20, 26-APR-2011</h3>
+<h3>FAQ - v0.2.b20, 27-APR-2011</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (UNIX/Linux, Mac OS X) distribution comes with an older (or no) version of Qt. What should I do about that?</a></div></p>
@@ -90,12 +90,12 @@ At some point in time - when several new features were incorporated and the code
 SVN revision and publish it as the <i>final</i> release of a respective version. File releases should be more or less working fine and
 can be considered as <i>stable</i>, which does not necessarily mean that they are bug-free :).</p>
 <p>To always provide the community with good working combinations of QMC2 and MAME/MESS, we are striving hard to align QMC2 releases with stable MAME/MESS releases. Although we can't guarantee this in all cases, it's generally a nice approach for not-so-adventurous users and package maintainers.</p>
-<p>Because QMC2's roots are MAME based, we've decided to release a new stable version every time a new stable (SDL)MAME version gets released. The stable (SDL)MESS release usually follows within hours or days. As soon as that's available, we check the compatibility and post a patch for the (SDL)MESS variant of QMC2 if required.</p>
-<p>We try to keep the SVN repository up to date with the latest intermediate SDLMAME release.</p>
+<p>Because QMC2's roots are MAME based, we've decided to release a new stable version every time a new stable MAME version gets released. The stable MESS release usually follows within hours or days. As soon as that's available, we'll check the compatibility and post a patch for the MESS variant of QMC2 if required.</p>
+<p>However, we try to keep the SVN repository up to date with the latest intermediate MAME and MESS releases (a.k.a. u-releases).</p>
 <hr>
 <p><a name="A1.4"></a><b>Q1.4: Why aren't you using autoconf/automake (configure)?</b></p>
-<p>Because QMC2 is a Qt based project. We use <i>qmake</i> instead, which fits better in this case and has equivalent functionality with regard to automatic platform configuration.</p>
-<p>Everything else - that is, build or installation commands which are outside the scope of how we use qmake - is under control of <i>make rules</i> and handled through architecture specific configuration files, which are stored in the <i>arch/</i> directory.</p>
+<p>Because QMC2 is a Qt based project. We use <i>qmake</i> instead, which fits better in this case and has equivalent functionality with regard to automatic platform configuration (and it's guaranteed to work everywhere where Qt can live).</p>
+<p>Everything else -- that is, build or installation commands which are outside the scope of how we use qmake -- is under control of <i>make rules</i> and handled through architecture specific configuration files, which are stored in the <i>arch/</i> directory.</p>
 <p>See <a href="readme.html#8.">readme.html</a> (multi-platform support) for more information!</p>
 <hr>
 <p><a name="A1.5"></a><b>Q1.5: My (Linux) distribution already comes with a binary Qt 4 package, but the build fails. It complains about a wrong version of qmake or can't find it. What's wrong?</b></p>
@@ -136,9 +136,9 @@ phonon-backend-gstreamer-0_10-4.3.1-3.3.i586
 phonon-4.3.1-3.3.i586</pre>
 <hr>
 <p><a name="A1.6"></a><b>Q1.6: How do I know about the available make targets and build configuration options?</b></p>
-<p>Run</p>
+<p>From the base QMC2 source directory, run</p>
 <pre>$ make help</pre>
-<p>for more information.</p>
+<p>to get a list of all available make targets and build configuration options (including their current values).</p>
 <hr>
 <p><a name="A1.7"></a><b>Q1.7: Build and installation instructions for specific distributions</b></p>
 <p>This FAQ section lists the commands required to build QMC2 on several distributions which provide sufficient Qt 4 libraries themselves.</p>
