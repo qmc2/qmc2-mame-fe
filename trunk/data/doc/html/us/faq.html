@@ -487,21 +487,21 @@ are also some minor differences with regard to the platforms involved (Windows v
 <p>There are at least three possible scenarios:</p>
 <ol>
 <li><p>Symptom: <font color="blue"><b>all games/machines are in an unknown state (blue)</b></font><br>
-    Probable reason: you didn't trigger a ROM check<br><br>
+    Probable reason a): You didn't trigger a ROM check.<br><br>
     Solution: see <i>Tools</i> -&gt; <i>Check ROMs</i> in the menu to trigger a ROM check.</p>
 </li>
 <li><p>Symptom: <font color="blue"><b>all games/machines are in an unknown state (blue)</b></font><br>
-    Probable reason: the ROM state cache file cannot be read or written<br><br>
+    Probable reason b): The ROM state cache file cannot be read or written.<br><br>
     Solution: see <i>Tools</i> -&gt; <i>Options</i> -&gt; <i>Emulator</i> -&gt; <i>Files / Directories</i> -&gt; <i>ROM state cache</i> and check your access permissions to that file.</p>
 </li>
 <li><p>Symptom: <font color="grey"><b>no games/machines were found (grey)</b></font><br>
-    Probable reason: the ROM path isn't setup correctly<br><br>
+    Probable reason: The ROM path isn't set up correctly.<br><br>
     Solution: Check the <i>rompath</i>-setting in your global emulator options (see <i>Tools</i> -&gt; <i>Options</i> -&gt; <i>Emulator</i> -&gt; <i>Global configuration</i>)!<br>
-    For SDLMAME or SDLMESS see <i>Search paths</i>.<br>
-    Apply your changes and retry the ROM check!</p>
+    Open the <i>Search paths</i> sub-tree and change the <i>rompath</i> setting according to your local setup.<br>
+    <b>Apply</b> your changes and retry the ROM check!</p>
 </li>
 </ol>
-<p>Please also check the front end log for FATAL or WARNING messages!</p>
+<p>Please also check the front-end log for FATAL or WARNING messages!</p>
 <hr>
 <p><a name="A3.2"></a><b>Q3.2: ROM state filtering takes veeeery long. What's up?</b></p>
 <p>You're most likely using Qt 4.3.2.</p>
