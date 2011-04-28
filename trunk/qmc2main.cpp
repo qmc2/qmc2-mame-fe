@@ -3695,13 +3695,22 @@ void MainWindow::action_embedEmulator_triggered()
       QProcess commandProc;
       bool commandProcStarted = FALSE;
       commandProc.start(command, args);
-      if ( commandProc.waitForStarted() ) {
+      int retries = 0;
+      bool started = false;
+      while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
+	qApp->processEvents();
+        started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
+      }
+      if ( started ) {
         commandProcStarted = TRUE;
         bool commandProcRunning = (commandProc.state() == QProcess::Running);
         while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
           qApp->processEvents();
           commandProcRunning = (commandProc.state() == QProcess::Running);
         }
+      } else {
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start XWININFO within a reasonable time frame (%1 seconds), giving up").arg(QMC2_PROCESS_POLL_RETRIES * QMC2_PROCESS_POLL_TIME_LONG / 1000));
+        break;
       }
       QStringList ssl = QString(commandProc.readAllStandardOutput()).split("\n");
 #if defined(QMC2_EMUTYPE_MAME)

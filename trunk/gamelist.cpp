@@ -387,7 +387,7 @@ void Gamelist::load()
   }
 #endif
 
-  // determine emulator version and supported games
+  // determine emulator version and supported games/machines
 #if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported games"));
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -426,13 +426,26 @@ void Gamelist::load()
   commandProc.start(qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString(), args);
 #endif
   bool commandProcStarted = FALSE;
-  if ( commandProc.waitForStarted() ) {
+  int retries = 0;
+  bool started = false;
+  while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
+    qApp->processEvents();
+    started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
+  }
+  if ( started ) {
     commandProcStarted = TRUE;
     bool commandProcRunning = (commandProc.state() == QProcess::Running);
     while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
       qApp->processEvents();
       commandProcRunning = (commandProc.state() == QProcess::Running);
     }
+  } else {
+#if defined(QMC2_EMUTYPE_MAME)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame (%1 seconds), giving up").arg(QMC2_PROCESS_POLL_RETRIES * QMC2_PROCESS_POLL_TIME_LONG / 1000));
+#elif defined(QMC2_EMUTYPE_MESS)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame (%1 seconds), giving up").arg(QMC2_PROCESS_POLL_RETRIES * QMC2_PROCESS_POLL_TIME_LONG / 1000));
+#endif
+    return;
   }
 
 #if defined(QMC2_SDLMAME)
@@ -502,13 +515,26 @@ void Gamelist::load()
   commandProc.start(qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString(), args);
 #endif
   commandProcStarted = FALSE;
-  if ( commandProc.waitForStarted() ) {
+  retries = 0;
+  started = false;
+  while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
+    qApp->processEvents();
+    started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
+  }
+  if ( started ) {
     commandProcStarted = TRUE;
     bool commandProcRunning = (commandProc.state() == QProcess::Running);
     while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
       qApp->processEvents();
       commandProcRunning = (commandProc.state() == QProcess::Running);
     }
+  } else {
+#if defined(QMC2_EMUTYPE_MAME)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame (%1 seconds), giving up").arg(QMC2_PROCESS_POLL_RETRIES * QMC2_PROCESS_POLL_TIME_LONG / 1000));
+#elif defined(QMC2_EMUTYPE_MESS)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame (%1 seconds), giving up").arg(QMC2_PROCESS_POLL_RETRIES * QMC2_PROCESS_POLL_TIME_LONG / 1000));
+#endif
+    return;
   }
 
 #if defined(QMC2_SDLMAME)
