@@ -28,6 +28,7 @@ inf: informational only
   <li>imp: MESS targets: added new / alternate emulator type identification string ('M.E.S.S.' vs. 'MESS') as used since 0.142 SVN -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=16" target="_blank">bug tracker ID #16</a></li>
   <li>imp: MESS targets: the device configurator now also saves / restores the last selected setup (if any) and includes a context menu for the device instance map</li>
   <li>imp: added an option to let user decide if the ROM status icons are to be shown or not (see in game/machine-list tab of the main setup dialog)</li>
+  <li>imp: avoid potential blocking when synchronously calling external programs</li>
   <li>new: added command line option <i>-qmc2_config_path</i> to allow for overwriting the path where QMC2 stores its setup, caches etc. -- it's in the user's responsibility to copy/move the data to the desired directory (otherwise QMC2 will start over, which may be wanted behavior, though)</li>
   <li>new: support for game/machine <i>attached</i> YouTube videos (Phonon-based video player)</li>
   <li>new: added three tool-functions to allow for forced removal of any game/machine-list related cache data stored on disk</li>

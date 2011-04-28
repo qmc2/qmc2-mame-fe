@@ -26,6 +26,12 @@
      </item>
      <item>
       <widget class="QComboBox" name="comboBoxOutputFormat">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="toolTip">
         <string>Select output format</string>
        </property>
@@ -178,6 +184,12 @@
       </item>
       <item row="1" column="1">
        <widget class="QComboBox" name="comboBoxSortCriteria">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="toolTip">
          <string>Select sort criteria</string>
         </property>
@@ -222,6 +234,12 @@
       </item>
       <item row="2" column="1">
        <widget class="QComboBox" name="comboBoxSortOrder">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="toolTip">
          <string>Select sort order</string>
         </property>
@@ -311,6 +329,12 @@
            <layout class="QGridLayout" name="gridLayout">
             <item row="0" column="0">
              <widget class="QToolButton" name="toolButtonBrowseASCIIFile">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="toolTip">
                <string>Browse ASCII export file</string>
               </property>
@@ -328,6 +352,12 @@
             </item>
             <item row="0" column="1" colspan="2">
              <widget class="QLineEdit" name="lineEditASCIIFile">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="toolTip">
                <string>ASCII export file</string>
               </property>
@@ -344,6 +374,12 @@
              <widget class="QSpinBox" name="spinBoxASCIIColumnWidth">
               <property name="enabled">
                <bool>true</bool>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
               <property name="toolTip">
                <string>Maximum column width for ASCII export (0 = unlimited)</string>
@@ -398,6 +434,12 @@
            <layout class="QGridLayout" name="gridLayout_2">
             <item row="0" column="0">
              <widget class="QToolButton" name="toolButtonBrowseCSVFile">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="toolTip">
                <string>Browse CSV export file</string>
               </property>
@@ -415,6 +457,12 @@
             </item>
             <item row="0" column="1" colspan="5">
              <widget class="QLineEdit" name="lineEditCSVFile">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="toolTip">
                <string>CSV export file</string>
               </property>
@@ -444,6 +492,12 @@
              <widget class="QLineEdit" name="lineEditCSVSeparator">
               <property name="enabled">
                <bool>true</bool>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
               <property name="minimumSize">
                <size>
@@ -482,6 +536,12 @@
              <widget class="QLineEdit" name="lineEditCSVDelimiter">
               <property name="enabled">
                <bool>true</bool>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
               <property name="minimumSize">
                <size>
@@ -548,6 +608,12 @@
            <layout class="QGridLayout" name="gridLayout_3">
             <item row="0" column="0">
              <widget class="QToolButton" name="toolButtonBrowseHTMLFile">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="toolTip">
                <string>Browse HTML export file</string>
               </property>
@@ -565,6 +631,12 @@
             </item>
             <item row="0" column="1" colspan="2">
              <widget class="QLineEdit" name="lineEditHTMLFile">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="toolTip">
                <string>HTML export file</string>
               </property>
@@ -581,6 +653,12 @@
              <widget class="QSpinBox" name="spinBoxHTMLBorderWidth">
               <property name="enabled">
                <bool>true</bool>
+              </property>
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
               <property name="toolTip">
                <string>Border line width for tables (0 = no border)</string>
