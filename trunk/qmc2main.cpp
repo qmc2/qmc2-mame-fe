@@ -3709,7 +3709,7 @@ void MainWindow::action_embedEmulator_triggered()
           commandProcRunning = (commandProc.state() == QProcess::Running);
         }
       } else {
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start XWININFO within a reasonable time frame (%1 seconds), giving up").arg(QMC2_PROCESS_POLL_RETRIES * QMC2_PROCESS_POLL_TIME_LONG / 1000));
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start XWININFO within a reasonable time frame, giving up"));
         break;
       }
       QStringList ssl = QString(commandProc.readAllStandardOutput()).split("\n");
