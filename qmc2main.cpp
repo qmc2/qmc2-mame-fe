@@ -1893,6 +1893,15 @@ void MainWindow::on_actionClearROMStateCache_activated()
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearROMStateCache_activated()");
 #endif
 
+	if ( qmc2ReloadActive ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+		return;
+	}
+	if ( qmc2VerifyActive ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
+		return;
+	}
+
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1917,6 +1926,11 @@ void MainWindow::on_actionClearGamelistCache_activated()
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearGamelistCache_activated()");
 #endif
+
+	if ( qmc2ReloadActive ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+		return;
+	}
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 
@@ -1949,6 +1963,11 @@ void MainWindow::on_actionClearXMLCache_activated()
 #ifdef QMC2_DEBUG
 	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearXMLCache_activated()");
 #endif
+
+	if ( qmc2ReloadActive ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+		return;
+	}
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 
