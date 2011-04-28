@@ -1262,7 +1262,12 @@ void YouTubeVideoPlayer::on_toolButtonSearch_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::on_toolButtonSearch_clicked()");
 #endif
 
+	lineEditSearchString->setEnabled(false);
+	spinBoxStartIndex->setEnabled(false);
+	spinBoxResultsPerRequest->setEnabled(false);
+	toolButtonSuggest->setEnabled(false);
 	toolButtonSearch->setEnabled(false);
+	listWidgetSearchResults->setEnabled(false);
 
 	searchRequestBuffer.clear();
 	listWidgetSearchResults->clear();
@@ -1427,7 +1432,12 @@ void YouTubeVideoPlayer::searchRequestError(QNetworkReply::NetworkError error)
 #endif
 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: search request error: %1").arg(searchRequestReply->errorString()));
+	lineEditSearchString->setEnabled(true);
+	spinBoxStartIndex->setEnabled(true);
+	spinBoxResultsPerRequest->setEnabled(true);
+	toolButtonSuggest->setEnabled(false);
 	toolButtonSearch->setEnabled(true);
+	listWidgetSearchResults->setEnabled(true);
 }
 
 void YouTubeVideoPlayer::searchRequestFinished()
@@ -1450,7 +1460,13 @@ void YouTubeVideoPlayer::searchRequestFinished()
 			spinBoxStartIndex->setValue(spinBoxStartIndex->value() + listWidgetSearchResults->count());
 	} else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: search error: can't parse XML data"));
+
+	lineEditSearchString->setEnabled(true);
+	spinBoxStartIndex->setEnabled(true);
+	spinBoxResultsPerRequest->setEnabled(true);
+	toolButtonSuggest->setEnabled(true);
 	toolButtonSearch->setEnabled(true);
+	listWidgetSearchResults->setEnabled(true);
 }
 
 void YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply)
