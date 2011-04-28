@@ -172,7 +172,7 @@ use with the MAME variant).
     </tr>
   </tbody>
 </table>
-<p><b>Building the QMC2 binary on UNIX and Mac OS X</b></p>
+<p><a name="build_unix"></a><b>Building the QMC2 binary on UNIX and Mac OS X</b></p>
 <p>Uncompress and untar the source distribution archive, then cd into the source directory:</p>
 <pre>$ bzip2 -d qmc2-&lt;version&gt;.tar.bz2<br>$ tar xvf qmc2-&lt;version&gt;.tar<br>$ cd qmc2</pre>
 <p>Side note: at this point, you may have to create (or adjust) an OS-dependent configuration file, if your platform should not be in the list of tested operating environments;
@@ -221,7 +221,7 @@ However, a symbolic link named <i>qmc2</i> will created in the binary installati
 <p>The system-wide default configuration will be installed to <i>/etc/qmc2/qmc2.ini</i> or <i>/etc/qmc2/qmc2.ini.new</i> (if an older version of that file already exists).
 In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new settings</b> and add them to /etc/qmc2/qmc2.ini manually!</p>
 <p>Note that in order to use the <i>QMC2 variant launcher</i> - one QMC2 variant can launch (or switch to) the other - it is <b>required</b> that all binaries are in your search path (including the <i>runonce</i> launcher wrapper)!</p>
-<p><b>Building the QMC2 binary on Windows</b></p>
+<p><a name="build_win"></a><b>Building the QMC2 binary on Windows</b></p>
 <p>The build steps on Windows are completely different than the ones on UNIX and Mac OS X. There may be other ways to do it on Windows than the one described here, but that's how we succeeded and what we therefore can support.</p>
 <p>Using Visual C++ 2008 (Qt 4.5+):</p>
 <ol>
