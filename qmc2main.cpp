@@ -2582,7 +2582,7 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
     scrollBarMaximum = (textBrowserFrontendLog->verticalScrollBar()->value() == textBrowserFrontendLog->verticalScrollBar()->maximum());
   else if ( textBrowserEmulatorLog->isVisible() )
     scrollBarMaximum = (textBrowserEmulatorLog->verticalScrollBar()->value() == textBrowserEmulatorLog->verticalScrollBar()->maximum());
-  if ( hSplitterSizes.count() > 1 )
+  if ( hSplitterSizes.count() > 1 && currentIndex != QMC2_EMBED_INDEX )
     hSplitter->setSizes(hSplitterSizes);
 #endif
 
@@ -3788,11 +3788,9 @@ void MainWindow::action_embedEmulator_triggered()
         tabBar->setTabButton(index, QTabBar::LeftSide, optionsButton);
         embedder->adjustIconSizes();
       }
-      
-      qApp->processEvents();
-
       tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
       tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
+      qApp->processEvents();
     } else {
       success = FALSE;
       log(QMC2_LOG_FRONTEND, tr("WARNING: no matching window for emulator #%1 found").arg(gameID));
@@ -3857,11 +3855,14 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index = %1)").arg(index));
 #endif
 
+  tabWidgetGamelist->setUpdatesEnabled(false);
+
+  QWidget *widget = NULL;
+
   if ( index >= 0 ) {
-    QWidget *widget = tabWidgetEmbeddedEmulators->widget(index);
-    tabWidgetEmbeddedEmulators->removeTab(index);
-    widget->close();
-    delete widget;
+    widget = tabWidgetEmbeddedEmulators->widget(index);
+    if ( widget )
+      tabWidgetEmbeddedEmulators->removeTab(index);
   }
 
   qApp->processEvents();
@@ -3878,6 +3879,13 @@ void MainWindow::on_tabWidgetEmbeddedEmulators_tabCloseRequested(int index)
     toolbar->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
     frameStatus->show();
   }
+
+  if ( widget ) {
+    widget->close();
+    widget->deleteLater();
+  }
+
+  tabWidgetGamelist->setUpdatesEnabled(true);
 }
 
 void MainWindow::closeEmbeddedEmuTab()
