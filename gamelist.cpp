@@ -198,6 +198,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseCatverIniFile->setEnabled(enable);
   qmc2Options->checkBoxUseCatverIni->setEnabled(enable);
 #endif
+  qmc2Options->checkBoxShowROMStatusIcons->setEnabled(enable);
   qmc2Options->toolButtonBrowseSoftwareListCache->setEnabled(enable);
   qmc2Options->toolButtonBrowseExecutableFile->setEnabled(enable);
   qmc2Options->lineEditExecutableFile->setEnabled(enable);
@@ -1236,6 +1237,8 @@ void Gamelist::parse()
     return;
   }
 
+  bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool();
+
   QTime elapsedTime;
   autoROMCheck = FALSE;
   qmc2MainWindow->progressBarGamelist->setRange(0, numTotalGames);
@@ -1428,40 +1431,40 @@ void Gamelist::parse()
               case 'C': 
                 numCorrectGames++;
                 if ( isBIOS ) {
-                  gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+                  if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
                   qmc2BiosROMs << gameName;
                 } else
-                  gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+                  if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
                 gameDescriptionItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
                 break;
 
               case 'M': 
                 numMostlyCorrectGames++;
                 if ( isBIOS ) {
-                  gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
+                  if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
                   qmc2BiosROMs << gameName;
                 } else
-                  gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
+                  if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
                 gameDescriptionItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_M);
                 break;
 
               case 'I':
                 numIncorrectGames++;
                 if ( isBIOS ) {
-                  gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
+                  if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
                   qmc2BiosROMs << gameName;
                 } else
-                  gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
+                  if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
                 gameDescriptionItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_I);
                 break;
 
               case 'N':
                 numNotFoundGames++;
                 if ( isBIOS ) {
-                  gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+                  if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
                   qmc2BiosROMs << gameName;
                 } else
-                  gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+                  if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
                 gameDescriptionItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
                 break;
 
@@ -1469,10 +1472,10 @@ void Gamelist::parse()
                 numUnknownGames++;
                 qmc2GamelistStatusMap[gameName] = "U";
                 if ( isBIOS ) {
-                  gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+                  if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
                   qmc2BiosROMs << gameName;
                 } else
-                  gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+                  if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
                 gameDescriptionItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_U);
                 break;
             }
@@ -1649,40 +1652,40 @@ void Gamelist::parse()
           case 'C': 
             numCorrectGames++;
             if ( isBIOS ) {
-              gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+              if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
               qmc2BiosROMs << gameName;
             } else
-              gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+              if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
             gameDescriptionItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
             break;
 
           case 'M': 
             numMostlyCorrectGames++;
             if ( isBIOS ) {
-              gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
+              if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
               qmc2BiosROMs << gameName;
             } else
-              gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
+              if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
             gameDescriptionItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_M);
             break;
 
           case 'I':
             numIncorrectGames++;
             if ( isBIOS ) {
-              gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
+              if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
               qmc2BiosROMs << gameName;
             } else
-              gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
+              if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
             gameDescriptionItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_I);
             break;
 
           case 'N':
             numNotFoundGames++;
             if ( isBIOS ) {
-              gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+              if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
               qmc2BiosROMs << gameName;
             } else
-              gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+              if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
             gameDescriptionItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
             break;
 
@@ -1690,10 +1693,10 @@ void Gamelist::parse()
             numUnknownGames++;
             qmc2GamelistStatusMap[gameName] = "U";
             if ( isBIOS ) {
-              gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+              if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
               qmc2BiosROMs << gameName;
             } else
-              gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+              if ( showROMStatusIcons ) gameDescriptionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
             gameDescriptionItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_U);
             break;
         }
@@ -1764,42 +1767,47 @@ void Gamelist::parse()
     qmc2HierarchyItemMap[iValue] = hierarchyItem;
     switch ( qmc2GamelistStatusMap[iValue][0].toAscii() ) {
       case 'C': 
-        if ( qmc2BiosROMs.contains(iValue) )
-          hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-        else
-          hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+        if ( qmc2BiosROMs.contains(iValue) ) {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+	} else {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+	}
         hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
         break;
 
       case 'M': 
-        if ( qmc2BiosROMs.contains(iValue) )
-          hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
-        else
-          hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
+        if ( qmc2BiosROMs.contains(iValue) ) {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
+        } else {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
+	}
         hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_M);
         break;
 
       case 'I':
-        if ( qmc2BiosROMs.contains(iValue) )
-          hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
-        else
-          hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
+        if ( qmc2BiosROMs.contains(iValue) ) {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
+	} else {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
+	}
         hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_I);
         break;
 
       case 'N':
-        if ( qmc2BiosROMs.contains(iValue) )
-          hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-        else
-          hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+        if ( qmc2BiosROMs.contains(iValue) ) {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+	} else {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+	}
         hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
         break;
 
       default:
-        if ( qmc2BiosROMs.contains(iValue) )
-          hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
-        else
-          hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+        if ( qmc2BiosROMs.contains(iValue) ) {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+	} else {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+	}
         hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_U);
         break;
     }
@@ -1841,42 +1849,47 @@ void Gamelist::parse()
 #endif
       switch ( qmc2GamelistStatusMap[jValue][0].toAscii() ) {
         case 'C': 
-          if ( qmc2BiosROMs.contains(jValue) )
-            hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-          else
-            hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+          if ( qmc2BiosROMs.contains(jValue) ) {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+	  } else {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+	  }
           hierarchySubItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
           break;
 
         case 'M': 
-          if ( qmc2BiosROMs.contains(jValue) )
-            hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
-          else
-            hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
+          if ( qmc2BiosROMs.contains(jValue) ) {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
+	  } else {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
+	  }
           hierarchySubItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_M);
           break;
 
         case 'I':
-          if ( qmc2BiosROMs.contains(jValue) )
-            hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
-          else
-            hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
+          if ( qmc2BiosROMs.contains(jValue) ) {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
+	  } else {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
+	  }
           hierarchySubItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_I);
           break;
 
         case 'N':
-          if ( qmc2BiosROMs.contains(jValue) )
-            hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-          else
-            hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+          if ( qmc2BiosROMs.contains(jValue) ) {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+	  } else {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+	  }
           hierarchySubItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
           break;
 
         default:
-          if ( qmc2BiosROMs.contains(jValue) )
-            hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
-          else
-            hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+          if ( qmc2BiosROMs.contains(jValue) ) {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+	  } else {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+	  }
           hierarchySubItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_U);
           break;
       }
@@ -2494,6 +2507,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
     cleanExit = FALSE;
   }
 
+  bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool();
   if ( !verifyCurrentOnly ) {
     QSet<QString> gameSet = QSet<QString>::fromList(qmc2GamelistItemMap.uniqueKeys());
     QList<QString> remainingGames = gameSet.subtract(QSet<QString>::fromList(verifiedList)).values();
@@ -2514,19 +2528,23 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
             tsRomCache << gameName << " U\n";
           numUnknownGames++;
           if ( isBIOS ) {
-            romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
-            hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+            if ( showROMStatusIcons )  {
+              romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+              hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
 #if defined(QMC2_EMUTYPE_MAME)
-	    if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
-	    if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+	      if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+	      if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
 #endif
+	    }
           } else {
-            romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
-            hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+            if ( showROMStatusIcons ) {
+              romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+              hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
 #if defined(QMC2_EMUTYPE_MAME)
-	    if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
-	    if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+	      if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+	      if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
 #endif
+            }
           }
           romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_U);
           hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_U);
@@ -2604,35 +2622,39 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	  }
 #endif
           if ( isBIOS ) {
+            if ( showROMStatusIcons ) {
 #if defined(QMC2_EMUTYPE_MAME)
-            romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-            hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-	    if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-	    if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+              romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+              hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+	      if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+	      if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
 #elif defined(QMC2_EMUTYPE_MESS)
-	    if ( romRequired ) {
-		    romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-		    hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-	    } else {
-		    romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-		    hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-	    }
+              if ( romRequired ) {
+                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+              } else {
+                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+              }
 #endif
+            }
           } else {
+            if ( showROMStatusIcons ) {
 #if defined(QMC2_EMUTYPE_MAME)
-            romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-            hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-	    if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-	    if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+              romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+              hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+              if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+              if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
 #elif defined(QMC2_EMUTYPE_MESS)
-	    if ( romRequired ) {
-		    romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-		    hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-	    } else {
-		    romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-		    hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-	    }
+              if ( romRequired ) {
+                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+              } else {
+                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+              }
 #endif
+            }
           }
 #if defined(QMC2_EMUTYPE_MAME)
           romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
@@ -2765,6 +2787,7 @@ void Gamelist::verifyReadyReadStandardOutput()
     lines.removeLast();
   }
 
+  bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool();
   for (i = 0; i < lines.count(); i++) {
     if ( lines[i].startsWith("romset ") ) {
       QStringList words = lines[i].split(" ");
@@ -2786,19 +2809,23 @@ void Gamelist::verifyReadyReadStandardOutput()
               romStateLong = QObject::tr("correct");
               numCorrectGames++;
               if ( isBIOS ) {
-                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+                if ( showROMStatusIcons ) {
+                  romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+                  hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
 #if defined(QMC2_EMUTYPE_MAME)
-                if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-                if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+                  if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+                  if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
 #endif
+                }
               } else {
-                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+                if ( showROMStatusIcons ) {
+                  romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+                  hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
 #if defined(QMC2_EMUTYPE_MAME)
-                if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-                if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+                  if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+                  if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
 #endif
+                }
               }
               romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
               hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
@@ -2808,19 +2835,23 @@ void Gamelist::verifyReadyReadStandardOutput()
               romStateLong = QObject::tr("incorrect");
               numIncorrectGames++;
               if ( isBIOS ) {
-                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
-                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
+                if ( showROMStatusIcons ) {
+                  romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
+                  hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
 #if defined(QMC2_EMUTYPE_MAME)
-                if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
-                if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
+                  if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
+                  if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
 #endif
+                }
               } else {
-                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
-                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
+                if ( showROMStatusIcons ) {
+                  romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
+                  hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
 #if defined(QMC2_EMUTYPE_MAME)
-                if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
-                if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
+                  if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
+                  if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
 #endif
+                }
               }
               romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_I);
               hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_I);
@@ -2830,19 +2861,23 @@ void Gamelist::verifyReadyReadStandardOutput()
               romStateLong = QObject::tr("mostly correct");
               numMostlyCorrectGames++;
               if ( isBIOS ) {
-                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
-                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
+                if ( showROMStatusIcons ) {
+                  romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
+                  hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
 #if defined(QMC2_EMUTYPE_MAME)
-                if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
-                if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
+                  if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
+                  if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
 #endif
+                }
               } else {
-                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
-                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
+                if ( showROMStatusIcons ) {
+                  romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
+                  hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
 #if defined(QMC2_EMUTYPE_MAME)
-                if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
-                if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
+                  if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
+                  if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
 #endif
+                }
               }
               romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_M);
               hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_M);
@@ -2852,19 +2887,23 @@ void Gamelist::verifyReadyReadStandardOutput()
               romStateLong = QObject::tr("not found");
               numNotFoundGames++;
               if ( isBIOS ) {
-                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+                if ( showROMStatusIcons ) {
+                  romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+                  hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
 #if defined(QMC2_EMUTYPE_MAME)
-                if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-                if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+                  if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+                  if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
 #endif
+                }
               } else {
-                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+                if ( showROMStatusIcons ) {
+                  romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+                  hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
 #if defined(QMC2_EMUTYPE_MAME)
-                if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-                if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+                  if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+                  if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
 #endif
+                }
               }
               romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
               hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
@@ -2874,19 +2913,23 @@ void Gamelist::verifyReadyReadStandardOutput()
               romStateLong = QObject::tr("unknown");
               numUnknownGames++;
               if ( isBIOS ) {
-                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
-                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+                if ( showROMStatusIcons ) {
+                  romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+                  hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
 #if defined(QMC2_EMUTYPE_MAME)
-                if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
-                if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+                  if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+                  if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
 #endif
+                }
               } else {
-                romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
-                hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+                if ( showROMStatusIcons ) {
+                  romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+                  hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
 #if defined(QMC2_EMUTYPE_MAME)
-                if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
-                if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+                  if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
+                  if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
 #endif
+                }
               }
               romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_U);
               hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_U);
@@ -3265,22 +3308,24 @@ void Gamelist::createCategoryView()
 				gameItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_VERSION, baseItem->text(QMC2_GAMELIST_COLUMN_VERSION));
-				switch ( qmc2GamelistStatusMap[gameName][0].toAscii() ) {
-					case 'C':
-						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2CorrectBIOSImageIcon : qmc2CorrectImageIcon);
-						break;
-					case 'M':
-						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2MostlyCorrectBIOSImageIcon : qmc2MostlyCorrectImageIcon);
-						break;
-					case 'I':
-						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2IncorrectBIOSImageIcon : qmc2IncorrectImageIcon);
-						break;
-					case 'N':
-						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2NotFoundBIOSImageIcon : qmc2NotFoundImageIcon);
-						break;
-					default:
-						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2UnknownBIOSImageIcon : qmc2UnknownImageIcon);
-						break;
+				if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
+					switch ( qmc2GamelistStatusMap[gameName][0].toAscii() ) {
+						case 'C':
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2CorrectBIOSImageIcon : qmc2CorrectImageIcon);
+							break;
+						case 'M':
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2MostlyCorrectBIOSImageIcon : qmc2MostlyCorrectImageIcon);
+							break;
+						case 'I':
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2IncorrectBIOSImageIcon : qmc2IncorrectImageIcon);
+							break;
+						case 'N':
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2NotFoundBIOSImageIcon : qmc2NotFoundImageIcon);
+							break;
+						default:
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2UnknownBIOSImageIcon : qmc2UnknownImageIcon);
+							break;
+					}
 				}
 				loadIcon(gameName, gameItem);
 				qmc2CategoryItemMap[gameName] = gameItem;
@@ -3355,22 +3400,24 @@ void Gamelist::createVersionView()
 				gameItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
-				switch ( qmc2GamelistStatusMap[gameName][0].toAscii() ) {
-					case 'C':
-						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2CorrectBIOSImageIcon : qmc2CorrectImageIcon);
-						break;
-					case 'M':
-						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2MostlyCorrectBIOSImageIcon : qmc2MostlyCorrectImageIcon);
-						break;
-					case 'I':
-						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2IncorrectBIOSImageIcon : qmc2IncorrectImageIcon);
-						break;
-					case 'N':
-						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2NotFoundBIOSImageIcon : qmc2NotFoundImageIcon);
-						break;
-					default:
-						gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2UnknownBIOSImageIcon : qmc2UnknownImageIcon);
-						break;
+				if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
+					switch ( qmc2GamelistStatusMap[gameName][0].toAscii() ) {
+						case 'C':
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2CorrectBIOSImageIcon : qmc2CorrectImageIcon);
+							break;
+						case 'M':
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2MostlyCorrectBIOSImageIcon : qmc2MostlyCorrectImageIcon);
+							break;
+						case 'I':
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2IncorrectBIOSImageIcon : qmc2IncorrectImageIcon);
+							break;
+						case 'N':
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2NotFoundBIOSImageIcon : qmc2NotFoundImageIcon);
+							break;
+						default:
+							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2UnknownBIOSImageIcon : qmc2UnknownImageIcon);
+							break;
+					}
 				}
 				loadIcon(gameName, gameItem);
 				qmc2VersionItemMap[gameName] = gameItem;

@@ -431,6 +431,7 @@ void Options::apply()
   toolButtonShowN->setIconSize(iconSize);
   toolButtonShowU->setIconSize(iconSize);
   comboBoxSortOrder->setIconSize(iconSize);
+  checkBoxShowROMStatusIcons->setIconSize(iconSize);
   toolButtonBrowseExecutableFile->setIconSize(iconSize);
   toolButtonBrowseWorkingDirectory->setIconSize(iconSize);
   toolButtonBrowseEmulatorLogFile->setIconSize(iconSize);
@@ -460,6 +461,7 @@ void Options::apply()
   labelLegend3Pic->setPixmap(reloadPixmap);
   labelExecutableFilePic->setPixmap(reloadPixmap);
   labelLegend4Pic->setPixmap(reloadPixmap);
+  labelLegend5Pic->setPixmap(reloadPixmap);
   
   tableWidgetRegisteredEmulators->resizeRowsToContents();
 
@@ -944,6 +946,9 @@ void Options::on_pushButtonApply_clicked()
 #endif
 
   // Gamelist
+  bool showROMStatusIcons = checkBoxShowROMStatusIcons->isChecked();
+  needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", TRUE).toBool() != showROMStatusIcons );
+  config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", showROMStatusIcons);
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/SortOnline", checkBoxSortOnline->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck", checkBoxAutoTriggerROMCheck->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation", checkBoxDoubleClickActivation->isChecked());
@@ -1803,6 +1808,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
 
   // Gamelist
+  checkBoxShowROMStatusIcons->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", TRUE).toBool());
   checkBoxSortOnline->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/SortOnline", FALSE).toBool());
   checkBoxAutoTriggerROMCheck->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck", FALSE).toBool());
   checkBoxDoubleClickActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation", TRUE).toBool());
