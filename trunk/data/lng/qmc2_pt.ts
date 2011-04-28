@@ -2241,12 +2241,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="830"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame (%1 seconds), giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível iniciar o executável do MAME dentro de um tempo razoável (%1 segundos), desistindo</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="832"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame (%1 seconds), giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível iniciar o executável do MESS dentro de um tempo razoável (%1 segundos), desistindo</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="888"/>
@@ -2771,12 +2771,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="579"/>
         <source>FATAL: couldn&apos;t determine emulator version, type identification string is &apos;%1&apos; -- please inform developers if you&apos;re sure that this is a valid MAME binary</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível determinar a versão do emulador, texto de identificação de tipo é &apos;%1&apos; -- por favor informar os desenvolvedores se você está certo de que este executável do MAME é válido</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="581"/>
         <source>FATAL: couldn&apos;t determine emulator version, type identification string is &apos;%1&apos; -- please inform developers if you&apos;re sure that this is a valid MESS binary</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível determinar a versão do emulador, texto de identificação de tipo é &apos;%1&apos; -- por favor informar os desenvolvedores se você está certo de que este executável do MESS é válido</translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="592"/>
@@ -3730,13 +3730,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="444"/>
         <location filename="../../gamelist.cpp" line="533"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível iniciar o executável do MAME dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="446"/>
         <location filename="../../gamelist.cpp" line="535"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível iniciar o executável do MESS dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="886"/>
@@ -4586,12 +4586,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="175"/>
         <source>Select a file to be mapped to this device instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione um arquivo para ser mapeado para essa instância do dispositivo</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="176"/>
         <source>Select file...</source>
-        <translation type="unfinished">Selecionar arquivo...</translation>
+        <translation>Selecionar arquivo...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="249"/>
@@ -5430,7 +5430,7 @@ Você realmente quer verificar o estado de todas as ROMs agora?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1886"/>
         <source>YouTube on-disk cache cleared (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache em disco do YouTube limpo (%1)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2163"/>
@@ -5631,7 +5631,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4791"/>
         <source>saving current game&apos;s favorite software</source>
-        <translation type="unfinished"></translation>
+        <translation>salvando software favorito do jogo atual</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4802"/>
@@ -5647,69 +5647,69 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="506"/>
         <location filename="../../qmc2main.cpp" line="507"/>
         <source>Clear machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache de lista da máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="508"/>
         <location filename="../../qmc2main.cpp" line="509"/>
         <source>Forcedly clear (remove) the machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Forçar limpar (remover) o cache da lista de máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1918"/>
         <source>ROM state cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de cache &apos;%1&apos; do estado da ROM forçadamente removido devido à requisição do usuário</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1920"/>
         <source>WARNING: cannot remove the ROM state cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível remover o arquivo de cache &apos;%1&apos; do estado da ROM, por favor cheque as permissões</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1949"/>
         <source>game list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo de cache &apos;%1&apos; de lista de jogos forçadamente removido devido à requisição do usuário</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1951"/>
         <source>WARNING: cannot remove the game list cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível remover o arquivo de cache &apos;%1&apos; da lista de jogos, por favor cheque as permissões</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1954"/>
         <source>machine list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo de cache &apos;%1&apos; de lista de máquinas forçadamente removido devido à requisição do usuário</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1956"/>
         <source>WARNING: cannot remove the machine list cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível remover o arquivo de cache &apos;%1&apos; da lista de máquinas, por favor cheque as permissões</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1985"/>
         <source>XML cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de cache XML &apos;%1&apos; forçadamente removido devido à requisição do usuário</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1987"/>
         <source>WARNING: cannot remove the XML cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível remover arquivo de cache XML &apos;%1&apos;, por favor cheque as permissões</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4645"/>
         <source>saving YouTube video info map</source>
-        <translation type="unfinished"></translation>
+        <translation>salvando mapa de informação de vídeo do YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4668"/>
         <source>done (saving YouTube video info map)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (salvando mapa de informação de vídeo do YouTube)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4670"/>
         <location filename="../../qmc2main.cpp" line="4672"/>
         <source>failed (saving YouTube video info map)</source>
-        <translation type="unfinished"></translation>
+        <translation>falhou (salvando mapa de informação de vídeo do YouTube)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4810"/>
@@ -5895,24 +5895,24 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5308"/>
         <source>loading YouTube video info map</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando mapa de informação de vídeo do YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5325"/>
         <source>YouTube index - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Índice do YouTube - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5354"/>
         <source>done (loading YouTube video info map)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando mapa de informação de vídeo do YouTube)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="5355"/>
         <source>%n video info record(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n registro de informação de vídeo carregado</numerusform>
+            <numerusform>%n registros de informação de vídeo carregados</numerusform>
         </translation>
     </message>
     <message>
@@ -6235,7 +6235,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3712"/>
         <source>FATAL: can&apos;t start XWININFO within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível iniciar XWININFO dentro de um espaço de tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7501"/>
@@ -7551,45 +7551,45 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.ui" line="3225"/>
         <location filename="../../qmc2main.ui" line="3228"/>
         <source>Clear YouTube cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache do YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3231"/>
         <source>Ctrl+Y</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3239"/>
         <source>Clear ROM state cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache de estado da ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3242"/>
         <location filename="../../qmc2main.ui" line="3245"/>
         <source>Forcedly clear (remove) the ROM state cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Forçar limpar (remover) o cache de estado da ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3253"/>
         <source>Clear game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache da lista de jogos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3256"/>
         <location filename="../../qmc2main.ui" line="3259"/>
         <source>Forcedly clear (remove) the game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Forçar limpar (remover) o cache da lista de jogos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3267"/>
         <source>Clear XML cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache XML</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3270"/>
         <location filename="../../qmc2main.ui" line="3273"/>
         <source>Forcedly clear (remove) the XML cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Forçar limpar (remover) o cache XML</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5405"/>
@@ -8331,7 +8331,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="257"/>
         <source>Clear YouTube cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache do YouTube</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="259"/>
@@ -10054,22 +10054,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2548"/>
         <source>Display ROM status icons in master lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar ícones de estado da ROM nas listas principais?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2551"/>
         <source>Show ROM status icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar ícones de estado da ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3954"/>
         <source>Software list cache file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de cache de lista de jogos (escrita)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3967"/>
         <source>Browse software list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar arquivo de cache de lista de jogos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2428"/>
@@ -11227,7 +11227,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1603"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: Erro no XML: erro fatal na linha %1, coluna %2: %3</translation>
     </message>
 </context>
 <context>
@@ -13688,7 +13688,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../sampcheck.cpp" line="178"/>
         <source>crashed</source>
-        <translation>qeubrado</translation>
+        <translation>quebrado</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="194"/>
@@ -13847,326 +13847,326 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.ui" line="15"/>
         <source>Software list</source>
-        <translation type="unfinished">Lista de Software</translation>
+        <translation>Lista de Software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="32"/>
         <location filename="../../softwarelist.ui" line="35"/>
         <source>Reload all information</source>
-        <translation type="unfinished">Recarregar todas as informações</translation>
+        <translation>Recarregar todas as informações</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="52"/>
         <location filename="../../softwarelist.ui" line="55"/>
         <source>Select a pre-defined device configuration to be added to the software setup</source>
-        <translation type="unfinished">Selecionar uma configuração de dispositivo pré definida para ser adicionada à configuração do software</translation>
+        <translation>Selecionar uma configuração de dispositivo pré definida para ser adicionada à configuração do software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="59"/>
         <location filename="../../softwarelist.cpp" line="611"/>
         <location filename="../../softwarelist.cpp" line="795"/>
         <source>No additional devices</source>
-        <translation type="unfinished">Nenhum dispositivo adicional</translation>
+        <translation>Nenhum dispositivo adicional</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="86"/>
         <location filename="../../softwarelist.ui" line="89"/>
         <source>Add the currently selected software and device setup to the favorites list</source>
-        <translation type="unfinished">Adicionar software atualmente selecionado e configuração de dispositivo à lista de favoritos</translation>
+        <translation>Adicionar software atualmente selecionado e configuração de dispositivo à lista de favoritos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="106"/>
         <location filename="../../softwarelist.ui" line="109"/>
         <source>Remove the currently selected favorite software configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover a configuração de software favorita atualmente selecionada</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="126"/>
         <location filename="../../softwarelist.ui" line="129"/>
         <source>Play the selected software configuration</source>
-        <translation type="unfinished">Executar a configuração de software selecionada</translation>
+        <translation>Executar a configuração de software selecionada</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="146"/>
         <location filename="../../softwarelist.ui" line="149"/>
         <source>Play the selected software configuration (embedded)</source>
-        <translation type="unfinished">Executar a configuração de software selecionada (embutida)</translation>
+        <translation>Executar a configuração de software selecionada (embutida)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="181"/>
         <source>Known software</source>
-        <translation type="unfinished">Softwares conhecidos</translation>
+        <translation>Softwares conhecidos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="184"/>
         <source>Complete list of known software for the current system</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista completa de softwares conhecidos para o sistema atual</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="264"/>
         <source>View / manage your favorite software list for the current system</source>
-        <translation type="unfinished"></translation>
+        <translation>Ver / gerenciar sua lista de softwares favoritos para o sistema atual</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="349"/>
         <source>Search within the list of known software for the current system</source>
-        <translation type="unfinished"></translation>
+        <translation>procurar na lista de softwares conhecidos para o sistema atual</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="196"/>
         <location filename="../../softwarelist.ui" line="199"/>
         <source>List of known software</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de softwares conhecidos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="215"/>
         <location filename="../../softwarelist.ui" line="295"/>
         <location filename="../../softwarelist.ui" line="399"/>
         <source>Title</source>
-        <translation type="unfinished">Título</translation>
+        <translation>Título</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="220"/>
         <location filename="../../softwarelist.ui" line="300"/>
         <location filename="../../softwarelist.ui" line="404"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="225"/>
         <location filename="../../softwarelist.ui" line="305"/>
         <location filename="../../softwarelist.ui" line="409"/>
         <source>Publisher</source>
-        <translation type="unfinished">Editor</translation>
+        <translation>Editor</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="230"/>
         <location filename="../../softwarelist.ui" line="310"/>
         <location filename="../../softwarelist.ui" line="414"/>
         <source>Year</source>
-        <translation type="unfinished">Ano</translation>
+        <translation>Ano</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="235"/>
         <location filename="../../softwarelist.ui" line="315"/>
         <location filename="../../softwarelist.ui" line="419"/>
         <source>Part</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="240"/>
         <location filename="../../softwarelist.ui" line="320"/>
         <location filename="../../softwarelist.ui" line="424"/>
         <source>List</source>
-        <translation type="unfinished">Lista</translation>
+        <translation>Lista</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="261"/>
         <source>Favorites</source>
-        <translation type="unfinished">Favoritos</translation>
+        <translation>Favoritos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="276"/>
         <location filename="../../softwarelist.ui" line="279"/>
         <source>Favorite software configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurações de software favoritas</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="325"/>
         <source>Device configuration</source>
-        <translation type="unfinished">Configurações de dispositivo</translation>
+        <translation>Configurações de dispositivo</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="346"/>
         <source>Search</source>
-        <translation type="unfinished">Buscar</translation>
+        <translation>Buscar</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="364"/>
         <location filename="../../softwarelist.ui" line="367"/>
         <source>Search for known software (not case-sensitive)</source>
-        <translation type="unfinished">Procura por softwares conhecidos (não sensível à caixa)</translation>
+        <translation>Procura por softwares conhecidos (não sensível à caixa)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="380"/>
         <location filename="../../softwarelist.ui" line="383"/>
         <source>Search results</source>
-        <translation type="unfinished">Resultados da busca</translation>
+        <translation>Resultados da busca</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="37"/>
         <source>Add the currently selected software to the favorites list</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar o software selecionado atualmente para a lista de favoritos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="69"/>
         <source>Play selected software</source>
-        <translation type="unfinished">Jogar software selecionado</translation>
+        <translation>Jogar software selecionado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="70"/>
         <source>&amp;Play</source>
-        <translation type="unfinished">&amp;Jogar</translation>
+        <translation>&amp;Jogar</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="75"/>
         <source>Play selected software (embedded)</source>
-        <translation type="unfinished">Jogar software selecionado (embutido)</translation>
+        <translation>Jogar software selecionado (embutido)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="76"/>
         <source>Play &amp;embedded</source>
-        <translation type="unfinished">Jogar &amp;embutido</translation>
+        <translation>Jogar &amp;embutido</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="82"/>
         <source>Add to favorite software list</source>
-        <translation type="unfinished">Adicionar para a lista de software favoritos</translation>
+        <translation>Adicionar para a lista de software favoritos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="83"/>
         <source>&amp;Add to favorites</source>
-        <translation type="unfinished">&amp;Adicionar a favoritos</translation>
+        <translation>&amp;Adicionar a favoritos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="87"/>
         <source>Remove from favorite software list</source>
-        <translation type="unfinished">Remover da lista de software favoritos</translation>
+        <translation>Remover da lista de software favoritos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="88"/>
         <source>&amp;Remove from favorites</source>
-        <translation type="unfinished">&amp;Remover dos favoritos</translation>
+        <translation>&amp;Remover dos favoritos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="191"/>
         <source>Known software (%1)</source>
-        <translation type="unfinished">Software conhecidos (%1)</translation>
+        <translation>Software conhecidos (%1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="192"/>
         <source>Favorites (%1)</source>
-        <translation type="unfinished">Favoritos (%1)</translation>
+        <translation>Favoritos (%1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="193"/>
         <source>Search (%1)</source>
-        <translation type="unfinished">Busca (%1)</translation>
+        <translation>Busca (%1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="207"/>
         <location filename="../../softwarelist.cpp" line="385"/>
         <source>Known software (no data available)</source>
-        <translation type="unfinished">Software conhecidos (nenhum dado disponível)</translation>
+        <translation>Software conhecidos (nenhum dado disponível)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="208"/>
         <location filename="../../softwarelist.cpp" line="386"/>
         <source>Favorites (no data available)</source>
-        <translation type="unfinished">Favoritos (nenhum dado disponível)</translation>
+        <translation>Favoritos (nenhum dado disponível)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="209"/>
         <location filename="../../softwarelist.cpp" line="387"/>
         <source>Search (no data available)</source>
-        <translation type="unfinished">Busca (nenhum dado disponível)</translation>
+        <translation>Busca (nenhum dado disponível)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="268"/>
         <source>loading XML software list data from cache</source>
-        <translation type="unfinished">carregando lista de software (XML) do cache</translation>
+        <translation>carregando lista de software (XML) do cache</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="273"/>
         <source>SWL cache - %p%</source>
-        <translation type="unfinished">Cache SWL - %p%</translation>
+        <translation>Cache SWL - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="301"/>
         <source>done (loading XML software list data from cache, elapsed time = %1</source>
-        <translation type="unfinished">feito (carregando lista de software (XML) do cache, tempo = %1)</translation>
+        <translation>feito (carregando lista de software (XML) do cache, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="309"/>
         <source>ERROR: the file name for the MAME software list cache is empty -- please correct this and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRO: o nome do arquivo para o cache da lista de software do MAME está vazio -- por favor corrija o problema e recarregue a lista de jogos em seguida</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="311"/>
         <source>ERROR: the file name for the MESS software list cache is empty -- please correct this and reload the machine list afterwards</source>
-        <translation type="unfinished">ERRO: o nome do arquivo para o cache da lista de software do MESS está vazio -- por favor corrija o problema e recarregue a lista de máquinas a seguir</translation>
+        <translation>ERRO: o nome do arquivo para o cache da lista de software do MESS está vazio -- por favor corrija o problema e recarregue a lista de máquinas a seguir</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="319"/>
         <source>loading XML software list data and (re)creating cache</source>
-        <translation type="unfinished">carregando lista de software (XML) do cache e (re)criando cache</translation>
+        <translation>carregando lista de software (XML) do cache e (re)criando cache</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="322"/>
         <source>SWL data - %p%</source>
-        <translation type="unfinished">Dados SWL - %p%</translation>
+        <translation>Dados SWL - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="328"/>
         <source>ERROR: can&apos;t open the MAME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: impossível abrir o arquivo de cache da lista de software do MAME para escrita. path = %1 -- por favor verifique/corrija as permissões de acesso e recarregue a lista de máquina a seguir</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="330"/>
         <source>ERROR: can&apos;t open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards</source>
-        <translation type="unfinished">ERROR: impossível abrir o arquivo de cache da lista de software do MESS para escrita. path = %1 -- por favor verifique/corrija as permissões de acesso e recarregue a lista de máquina a seguir</translation>
+        <translation>ERROR: impossível abrir o arquivo de cache da lista de software do MESS para escrita. path = %1 -- por favor verifique/corrija as permissões de acesso e recarregue a lista de máquina a seguir</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="412"/>
         <source>FATAL: error while parsing XML data for software list &apos;%1&apos;</source>
-        <translation type="unfinished">FATAL: erro durante a análise dos dados do XML para a lista de software &apos;%1&apos;</translation>
+        <translation>FATAL: erro durante a análise dos dados do XML para a lista de software &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="493"/>
         <source>WARNING: the external process called to load the MAME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o processo externo chamado para carregar a lista de software do MAME não terminou corretamente -- código de saída - %1, estado da saída = %2</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="493"/>
         <location filename="../../softwarelist.cpp" line="495"/>
         <source>normal</source>
-        <translation type="unfinished"></translation>
+        <translation>normal</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="493"/>
         <location filename="../../softwarelist.cpp" line="495"/>
         <source>crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>quebrado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="495"/>
         <source>WARNING: the external process called to load the MESS software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished">AVISO: o processo externo chamado para carregar as listas de software do MESS não terminaram corretamente -- código da saída = %1, estado de saída = %2</translation>
+        <translation>AVISO: o processo externo chamado para carregar as listas de software do MESS não terminaram corretamente -- código da saída = %1, estado de saída = %2</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="499"/>
         <source>done (loading XML software list data and (re)creating cache, elapsed time = %1)</source>
-        <translation type="unfinished">feito (carregando dados da lista de software (XML) e (re)criando cache, tempo = %1)</translation>
+        <translation>feito (carregando dados da lista de software (XML) e (re)criando cache, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="552"/>
         <source>WARNING: your currently selected MAME emulator doesn&apos;t support software lists -- MAME 0.142+ required</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: seu emulador MAME atualmente selecionado não suporta listas de software -- requerido MAME 0.142 ou superior</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="554"/>
         <source>WARNING: your currently selected MESS emulator doesn&apos;t support software lists -- MESS 0.138+ required</source>
-        <translation type="unfinished">AVISO: seu emulador MESS atualmente selecionado não suporta listas de software -- requerido MESS 0.138 ou superior</translation>
+        <translation>AVISO: seu emulador MESS atualmente selecionado não suporta listas de software -- requerido MESS 0.138 ou superior</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="571"/>
         <source>WARNING: the external process called to load the MAME software lists caused an error -- processError = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o processo externo chamado para carregar as listas de software do MAME causou um erro -- Erro do Processo = %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="573"/>
         <source>WARNING: the external process called to load the MESS software lists caused an error -- processError = %1</source>
-        <translation type="unfinished">AVISO: o processo externo chamado para carregar as listas de software do MESS causou um erro -- Erro do Processo = %1</translation>
+        <translation>AVISO: o processo externo chamado para carregar as listas de software do MESS causou um erro -- Erro do Processo = %1</translation>
     </message>
 </context>
 <context>
@@ -14630,22 +14630,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.ui" line="435"/>
         <source>Maximum number of results per search request</source>
-        <translation type="unfinished"></translation>
+        <translation>Número máximo de resultados por requisição de busca</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="466"/>
         <source>Start index for the search request</source>
-        <translation type="unfinished"></translation>
+        <translation>Índice inicial para a requisição de busca</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="491"/>
         <source>SI:</source>
-        <translation type="unfinished"></translation>
+        <translation>IB:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="498"/>
         <source>R:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="418"/>
@@ -14682,7 +14682,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../youtubevideoplayer.cpp" line="161"/>
         <location filename="../../youtubevideoplayer.cpp" line="190"/>
         <source>Copy video URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar URL do vídeo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="126"/>
@@ -14694,7 +14694,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="132"/>
         <source>Paste video URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Colar URL do vídeo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="139"/>
@@ -14704,13 +14704,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="155"/>
         <source>Full screen (return with toggle-key)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tela cheia (retornar com tecla)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="172"/>
         <location filename="../../youtubevideoplayer.cpp" line="184"/>
         <source>Attach this video</source>
-        <translation type="unfinished"></translation>
+        <translation>Anexar esse vídeo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="202"/>
@@ -14735,7 +14735,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="581"/>
         <source>video player: a video with the ID &apos;%1&apos; is already attached, ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: um vídeo com ID &apos;%1&apos; já está anexado, ignorado</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="791"/>
@@ -14745,7 +14745,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="940"/>
         <source>video player: video info error: status = &apos;%1&apos;, errorCode = &apos;%2&apos;, errorText = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: erro nas informações do vídeo: estado = &apos;%1&apos;, código de erro = &apos;%2&apos;, texto do erro = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1004"/>
@@ -14760,47 +14760,47 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1403"/>
         <source>video player: video image info error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: erro na informação da imagem do vídeo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1434"/>
         <source>video player: search request error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: erro na requisição de busca: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1462"/>
         <source>video player: search error: can&apos;t parse XML data</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: erro na busca: impossível analisar os dados do XML</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1495"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: impossível determinar o ID do vídeo da URL - &apos;%1&apos; -- por favor informe os desenvolvedores</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1501"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: impossível associar a imagem para o vídeo com ID &apos;%1&apos; -- por favor informe os desenvolvedores</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1523"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: impossível salvar a imagem para o vídeo com ID &apos;%1&apos; para o diretório de cache do YouTube &apos;%2&apos; -- por favor cheque as permissões</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1525"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: impossível salvar a imagem para o vídeo com ID &apos;%1&apos; o diretório de cache do YouTube &apos;%2&apos; não existe -- por favor corrija</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1527"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: download da imagem para o vídeo com ID &apos;%1&apos; falhou, a imagem não é válida</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1529"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: download da imagem para o vídeo com ID &apos;%1&apos; falhou, texto do erro = &apos;%2&apos;</translation>
     </message>
 </context>
 </TS>
