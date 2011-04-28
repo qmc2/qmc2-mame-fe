@@ -2133,6 +2133,10 @@
      <addaction name="separator"/>
      <addaction name="actionRecreateTemplateMap"/>
      <addaction name="actionCheckTemplateMap"/>
+     <addaction name="separator"/>
+     <addaction name="actionClearROMStateCache"/>
+     <addaction name="actionClearGamelistCache"/>
+     <addaction name="actionClearXMLCache"/>
     </widget>
     <widget class="QMenu" name="menuAudio_player">
      <property name="title">
@@ -3225,6 +3229,48 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Y</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionClearROMStateCache">
+   <property name="text">
+    <string>Clear ROM state cache</string>
+   </property>
+   <property name="toolTip">
+    <string>Forcedly clear (remove) the ROM state cache</string>
+   </property>
+   <property name="statusTip">
+    <string>Forcedly clear (remove) the ROM state cache</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionClearGamelistCache">
+   <property name="text">
+    <string>Clear game list cache</string>
+   </property>
+   <property name="toolTip">
+    <string>Forcedly clear (remove) the game list cache</string>
+   </property>
+   <property name="statusTip">
+    <string>Forcedly clear (remove) the game list cache</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionClearXMLCache">
+   <property name="text">
+    <string>Clear XML cache</string>
+   </property>
+   <property name="toolTip">
+    <string>Forcedly clear (remove) the XML cache</string>
+   </property>
+   <property name="statusTip">
+    <string>Forcedly clear (remove) the XML cache</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>

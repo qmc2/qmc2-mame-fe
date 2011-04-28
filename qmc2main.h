@@ -184,6 +184,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #endif
     void on_actionRecreateTemplateMap_activated();
     void on_actionCheckTemplateMap_activated();
+    void on_actionClearROMStateCache_activated();
+    void on_actionClearGamelistCache_activated();
+    void on_actionClearXMLCache_activated();
     void on_actionOptions_activated();
 
     // display menu

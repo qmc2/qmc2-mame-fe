@@ -503,6 +503,10 @@ MainWindow::MainWindow(QWidget *parent)
   treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, tr("Machine / Notifier"));
   actionPlay->setToolTip(tr("Play current machine"));
   actionPlay->setStatusTip(tr("Play current machine"));
+  actionClearGamelistCache->setText(tr("Clear machine list cache"));
+  actionClearGamelistCache->setIconText(tr("Clear machine list cache"));
+  actionClearGamelistCache->setToolTip(tr("Forcedly clear (remove) the machine list cache"));
+  actionClearGamelistCache->setStatusTip(tr("Forcedly clear (remove) the machine list cache"));
 #if defined(Q_WS_X11)
   actionPlayEmbedded->setToolTip(tr("Play current machine (embedded)"));
   actionPlayEmbedded->setStatusTip(tr("Play current machine (embedded)"));
@@ -1882,6 +1886,88 @@ void MainWindow::on_actionClearYouTubeCache_activated()
 	log(QMC2_LOG_FRONTEND, tr("YouTube on-disk cache cleared (%1)").arg(removalInfo));
 }
 #endif
+
+void MainWindow::on_actionClearROMStateCache_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearROMStateCache_activated()");
+#endif
+
+	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+
+#if defined(QMC2_EMUTYPE_MAME)
+	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString();
+#elif defined(QMC2_EMUTYPE_MESS)
+	QString fileName = qmc2Config->value("MESS/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mess.rsc").toString();
+#else
+	return;
+#endif
+
+	QFile f(fileName);
+	if ( f.exists() ) {
+		if ( f.remove() )
+			log(QMC2_LOG_FRONTEND, tr("ROM state cache file '%1' forcedly removed upon user request").arg(fileName));
+		else
+			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the ROM state cache file '%1', please check permissions").arg(fileName));
+	}
+}
+
+void MainWindow::on_actionClearGamelistCache_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearGamelistCache_activated()");
+#endif
+
+	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+
+#if defined(QMC2_EMUTYPE_MAME)
+	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mame.glc").toString();
+#elif defined(QMC2_EMUTYPE_MESS)
+	QString fileName = qmc2Config->value("MESS/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mess.glc").toString();
+#else
+	return;
+#endif
+
+	QFile f(fileName);
+	if ( f.exists() ) {
+#if defined(QMC2_EMUTYPE_MAME)
+		if ( f.remove() )
+			log(QMC2_LOG_FRONTEND, tr("game list cache file '%1' forcedly removed upon user request").arg(fileName));
+		else
+			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the game list cache file '%1', please check permissions").arg(fileName));
+#elif defined(QMC2_EMUTYPE_MESS)
+		if ( f.remove() )
+			log(QMC2_LOG_FRONTEND, tr("machine list cache file '%1' forcedly removed upon user request").arg(fileName));
+		else
+			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the machine list cache file '%1', please check permissions").arg(fileName));
+#endif
+	}
+}
+
+void MainWindow::on_actionClearXMLCache_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearXMLCache_activated()");
+#endif
+
+	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+
+#if defined(QMC2_EMUTYPE_MAME)
+	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString();
+#elif defined(QMC2_EMUTYPE_MESS)
+	QString fileName = qmc2Config->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString();
+#else
+	return;
+#endif
+
+	QFile f(fileName);
+	if ( f.exists() ) {
+		if ( f.remove() )
+			log(QMC2_LOG_FRONTEND, tr("XML cache file '%1' forcedly removed upon user request").arg(fileName));
+		else
+			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the XML cache file '%1', please check permissions").arg(fileName));
+	}
+}
 
 void MainWindow::on_actionRecreateTemplateMap_activated()
 {
