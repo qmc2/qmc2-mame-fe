@@ -121,9 +121,11 @@ void Embedder::clientClosed()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientClosed()"));
 #endif
 
-  if ( embedded ) 
+  if ( embedded )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 closed, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
+
   embedded = false;
+
   emit closing();
 }
 
@@ -143,6 +145,7 @@ void Embedder::clientError(QX11EmbedContainer::Error error)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: embedder: unknown error, window ID = 0x%1").arg(QString::number(winId, 16)));
       break;
   }
+
   emit closing();
 }
 
