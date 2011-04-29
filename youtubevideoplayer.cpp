@@ -367,7 +367,7 @@ void YouTubeVideoPlayer::playNextVideo()
 				break;
 			case YOUTUBE_PLAYOMATIC_SEQUENTIAL:
 			default: {
-					 if ( videoSeqNum > il.count() - 1 )
+					 if ( videoSeqNum > il.count() - 1 || videoSeqNum < 0 )
 						 videoSeqNum = 0;
 					 VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(il[videoSeqNum]);
 					 if ( checkBoxRepeat->isChecked() )
@@ -390,8 +390,10 @@ void YouTubeVideoPlayer::playAttachedVideo()
 #endif
 
 	QListWidgetItem *item = listWidgetAttachedVideos->currentItem();
-	if ( item )
+	if ( item ) {
 		on_listWidgetAttachedVideos_itemActivated(item);
+		videoSeqNum = listWidgetAttachedVideos->row(item);
+	}
 }
 
 void YouTubeVideoPlayer::playSearchedVideo()
