@@ -16,11 +16,10 @@
 #include "youtubevideoplayer.h"
 #include "videoitemwidget.h"
 
-//#define QMC2_DEBUG
-
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 extern QMap <QString, YouTubeVideoInfo> qmc2YouTubeVideoInfoMap;
+extern QMap<QString, QString> qmc2CustomShortcutMap;
 extern bool qmc2YouTubeVideoInfoMapChanged;
 
 YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *parent)
@@ -156,6 +155,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action = menuVideoPlayer->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/toggle_fullscreen.png")));
+	videoMenuFullscreenAction = action;
 	connect(action, SIGNAL(triggered()), this, SLOT(goFullScreen()));
 	menuVideoPlayer->addSeparator();
 	s = tr("Copy video URL");
@@ -1228,6 +1228,11 @@ void YouTubeVideoPlayer::on_videoPlayer_customContextMenuRequested(const QPoint 
 		return;
 
 	if ( menuVideoPlayer ) {
+		QString keySeq = qmc2CustomShortcutMap["F11"];
+		if ( !keySeq.isEmpty() )
+			videoMenuFullscreenAction->setText(tr("Full screen (press %1 to return)").arg(keySeq));
+		else
+			videoMenuFullscreenAction->setText(tr("Full screen (return with toggle-key)"));
 		menuVideoPlayer->move(qmc2MainWindow->adjustedWidgetPosition(videoPlayer->mapToGlobal(p), menuVideoPlayer));
 		menuVideoPlayer->show();
 	}

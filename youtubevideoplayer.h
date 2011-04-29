@@ -74,6 +74,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QNetworkRequest videoInfoRequest, videoImageRequest, searchRequest;
 		QString videoInfoBuffer, videoImageBuffer, searchRequestBuffer;
 		QAction *videoMenuPlayPauseAction;
+		QAction *videoMenuFullscreenAction;
 		QAction *autoSuggestAction;
 		QAction *avmActionPlayVideo;
 		QAction *avmActionCopyVideoUrl;
