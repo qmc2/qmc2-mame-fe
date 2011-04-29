@@ -41,7 +41,7 @@ extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
   #include <QByteArray>
   #include <zlib.h>
   ...
-  QByteArray ba("This is a Test 123 :)!");
+  QByteArray ba("This is a test -- 123 :)!");
   ulong crc = crc32(0, NULL, 0);
   crc = crc32(crc, (const Bytef *)ba.data(), ba.size());
   printf("CRC-32 = 0x%x\n", crc);
@@ -1704,8 +1704,6 @@ void ROMAlyzer::log(QString message)
     qApp->processEvents();
     textBrowserLog->verticalScrollBar()->setValue(textBrowserLog->verticalScrollBar()->maximum());
   }
-
-  //printf("# of lines: %d\r", textBrowserLog->blockCount());
 }
 
 void ROMAlyzer::on_toolButtonBrowseCHDManagerExecutableFile_clicked()
@@ -2228,7 +2226,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
 // reads all files in the ZIP 'fileName' and maps the data:
 // - CRC codes are mapped to their data in 'dataMap'
 // - CRC codes are mapped to their file names in 'fileMap'
-// - will also read files with an incorrect CRC (compared to its header CRC)
+// - will also read files with incorrect CRCs (compared to their header CRCs)
 bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *dataMap, QMap<QString, QString> *fileMap)
 {
 	bool success = true;
@@ -2404,7 +2402,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 	}
 	int numBadSets = badList.count();
 
-	// this should happen, but you never know :)
+	// this shouldn't happen, but you never know :)
 	if ( numBadSets <= 0  || goodItem == NULL) return;
 
 	// only one repair at a time
