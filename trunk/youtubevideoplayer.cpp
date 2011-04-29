@@ -431,7 +431,7 @@ void YouTubeVideoPlayer::copyYouTubeUrl()
 void YouTubeVideoPlayer::pasteYouTubeUrl()
 {
 	QString videoID = qApp->clipboard()->text();
-	videoID.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?v\\=(.*)$"), "\\1");
+	videoID.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?v\\=(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
 
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::pasteYouTubeUrl(): videoID = '%1'").arg(videoID));
