@@ -4830,6 +4830,28 @@ void MainWindow::closeEvent(QCloseEvent *e)
   log(QMC2_LOG_FRONTEND, tr("destroying machine list"));
 #endif
   delete qmc2Gamelist;
+
+#if QMC2_USE_PHONON_API
+  log(QMC2_LOG_FRONTEND, tr("disconnecting audio source from audio sink"));
+  phononAudioPath.disconnect();
+  if ( qmc2AudioEffectDialog ) {
+    log(QMC2_LOG_FRONTEND, tr("destroying audio effects dialog"));
+    qmc2AudioEffectDialog->close();
+    delete qmc2AudioEffectDialog;
+  }
+#if defined(QMC2_YOUTUBE_ENABLED)
+  if ( qmc2YouTubeWidget ) {
+    qmc2YouTubeWidget->saveSettings();
+    if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
+      qmc2YouTubeWidget->videoPlayer->stop();
+    qmc2YouTubeWidget->forcedExit = true;
+    log(QMC2_LOG_FRONTEND, tr("destroying YouTube video widget"));
+    delete qmc2YouTubeWidget;
+  }
+#endif
+  qApp->processEvents();
+#endif
+
   if ( qmc2Preview ) {
     log(QMC2_LOG_FRONTEND, tr("destroying preview"));
     delete qmc2Preview;
@@ -4908,26 +4930,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2DemoModeDialog->close();
     delete qmc2DemoModeDialog;
   }
-#endif
-
-#if QMC2_USE_PHONON_API
-  log(QMC2_LOG_FRONTEND, tr("disconnecting audio source from audio sink"));
-  phononAudioPath.disconnect();
-  if ( qmc2AudioEffectDialog ) {
-    log(QMC2_LOG_FRONTEND, tr("destroying audio effects dialog"));
-    qmc2AudioEffectDialog->close();
-    delete qmc2AudioEffectDialog;
-  }
-#if defined(QMC2_YOUTUBE_ENABLED)
-  if ( qmc2YouTubeWidget ) {
-    qmc2YouTubeWidget->saveSettings();
-    if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
-      qmc2YouTubeWidget->videoPlayer->stop();
-    qmc2YouTubeWidget->forcedExit = true;
-    log(QMC2_LOG_FRONTEND, tr("destroying YouTube video widget"));
-    delete qmc2YouTubeWidget;
-  }
-#endif
 #endif
 
   if ( !qmc2GameInfoDB.isEmpty() ) {
@@ -8352,5 +8354,9 @@ int main(int argc, char *argv[])
   qmc2GlobalEmulatorOptions->pseudoConstructor();
 
   // finally run the application
-  return qmc2App.exec();
+  int rc = qmc2App.exec();
+
+  // and quit...
+  qInstallMsgHandler(0);
+  return rc;
 }
