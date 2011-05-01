@@ -192,8 +192,8 @@
 
 // process timeouts in msecs
 #define QMC2_PROCESS_POLL_TIME		25
-#define QMC2_PROCESS_POLL_TIME_LONG	250
-#define QMC2_PROCESS_POLL_RETRIES	40
+#define QMC2_PROCESS_POLL_TIME_LONG	500
+#define QMC2_PROCESS_POLL_RETRIES	30
 
 // update lists every how many milliseconds (for image & sample checkers)?
 #define QMC2_CHECK_UPDATE		1000
