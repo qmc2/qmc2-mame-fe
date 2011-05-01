@@ -8354,9 +8354,5 @@ int main(int argc, char *argv[])
   qmc2GlobalEmulatorOptions->pseudoConstructor();
 
   // finally run the application
-  int rc = qmc2App.exec();
-
-  // and quit...
-  qInstallMsgHandler(0);
-  return rc;
+  return qmc2App.exec();
 }

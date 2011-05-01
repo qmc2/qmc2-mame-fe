@@ -445,6 +445,8 @@ void Gamelist::load()
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
 #endif
+    qmc2ReloadActive = qmc2EarlyReloadActive = false;
+    qmc2StopParser = true;
     return;
   }
 
@@ -534,6 +536,8 @@ void Gamelist::load()
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
 #endif
+    qmc2ReloadActive = qmc2EarlyReloadActive = false;
+    qmc2StopParser = true;
     return;
   }
 
