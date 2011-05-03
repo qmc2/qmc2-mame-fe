@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QLineEdit>
 #include "comboeditwidget.h"
 
 #ifdef QMC2_DEBUG
@@ -17,6 +18,8 @@ ComboBoxEditWidget::ComboBoxEditWidget(QStringList choices, QString curText, QWi
 	setupUi(this);
 
 	comboBoxValue->insertItems(0, choices);
+	comboBoxValue->lineEdit();
+	connect(comboBoxValue, SIGNAL(editTextChanged(const QString &)), this, SLOT(lineEditValue_textChanged(const QString &)));
 }
 
 ComboBoxEditWidget::~ComboBoxEditWidget()
