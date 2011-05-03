@@ -2312,6 +2312,9 @@ qmc2/.svn/text-base/audioeffects.h.svn-base
 qmc2/.svn/text-base/audioeffects.ui.svn-base
 qmc2/.svn/text-base/cabinet.cpp.svn-base
 qmc2/.svn/text-base/cabinet.h.svn-base
+qmc2/.svn/text-base/comboeditwidget.cpp.svn-base
+qmc2/.svn/text-base/comboeditwidget.h.svn-base
+qmc2/.svn/text-base/comboeditwidget.ui.svn-base
 qmc2/.svn/text-base/controller.cpp.svn-base
 qmc2/.svn/text-base/controller.h.svn-base
 qmc2/.svn/text-base/demomode.cpp.svn-base
