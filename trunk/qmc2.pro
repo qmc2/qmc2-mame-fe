@@ -23,6 +23,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			softwarelist.ui \
 			direditwidget.ui \
 			fileeditwidget.ui \
+			comboeditwidget.ui \
 			detailsetup.ui \
 			miniwebbrowser.ui \
 			youtubevideoplayer.ui \
@@ -60,6 +61,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			softwarelist.cpp \
 			direditwidget.cpp \
 			fileeditwidget.cpp \
+			comboeditwidget.cpp \
 			detailsetup.cpp \
 			miniwebbrowser.cpp \
 			youtubevideoplayer.cpp \
@@ -110,6 +112,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			softwarelist.h \
 			direditwidget.h \
 			fileeditwidget.h \
+			comboeditwidget.h \
 			detailsetup.h \
 			miniwebbrowser.h \
 			youtubevideoplayer.h \
