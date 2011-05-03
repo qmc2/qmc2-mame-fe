@@ -957,6 +957,7 @@ all:
 endif
 
 svn-exclude-list: exclude-list
+exclude.list: exclude-list
 exclude-list:
 	cd .. ; \
 	$(FIND) qmc2 -name "*svn*" | env LOCALE=C sort > qmc2/exclude.list
