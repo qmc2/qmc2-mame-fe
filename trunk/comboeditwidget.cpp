@@ -7,14 +7,16 @@
 extern MainWindow *qmc2MainWindow;
 #endif
 
-ComboBoxEditWidget::ComboBoxEditWidget(QStringList entries, QString curText, QWidget *parent)
+ComboBoxEditWidget::ComboBoxEditWidget(QStringList choices, QString curText, QWidget *parent)
 	: QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ComboBoxEditWidget::ComboBoxEditWidget(QStringList entries = ..., QString curText = %1, QWidget *parent = %2").arg(curText).arg((qulonglong) parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ComboBoxEditWidget::ComboBoxEditWidget(QStringList choices = ..., QString curText = %1, QWidget *parent = %2").arg(curText).arg((qulonglong) parent));
 #endif
 
 	setupUi(this);
+
+	comboBoxValue->insertItems(0, choices);
 }
 
 ComboBoxEditWidget::~ComboBoxEditWidget()

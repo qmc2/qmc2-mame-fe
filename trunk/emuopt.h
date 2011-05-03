@@ -54,14 +54,15 @@ class EmulatorOption
 {
   public:
     QString name, shortname, dvalue, description, value;
-    bool valid;
+    QStringList choices;
+    bool valid, visible;
     int type;
     QTreeWidgetItem *item;
 
     EmulatorOption() {
       valid = FALSE;
     };
-    EmulatorOption(QString n, QString sn, QString t, QString dv, QString d, QString v, QTreeWidgetItem *i, bool va) {
+    EmulatorOption(QString n, QString sn, QString t, QString dv, QString d, QString v, QTreeWidgetItem *i, bool va, QStringList c = QStringList(), bool vis = true) {
       name = n;
       shortname = sn;
       switch ( t.at(0).toAscii() ) {
@@ -70,6 +71,7 @@ class EmulatorOption
         case 'f': if ( t.at(1).toAscii() == 'l' ) type = QMC2_EMUOPT_TYPE_FLOAT; else type = QMC2_EMUOPT_TYPE_FILE; break;
         case 's': type = QMC2_EMUOPT_TYPE_STRING; break;
         case 'd': type = QMC2_EMUOPT_TYPE_DIRECTORY; break;
+        case 'c': type = QMC2_EMUOPT_TYPE_COMBO; break;
         default: type = QMC2_EMUOPT_TYPE_UNKNOWN; break;
       }
       dvalue = dv;
@@ -77,6 +79,8 @@ class EmulatorOption
       value = v;
       item = i;
       valid = va;
+      choices = c;
+      visible = vis;
     }
 };
 
@@ -109,6 +113,7 @@ class EmulatorOptions : public QTreeWidget
     void pseudoConstructor();
     void pseudoDestructor();
     QString readDescription(QXmlStreamReader *, QString, bool *);
+    QStringList readChoices(QXmlStreamReader *);
 
   public slots:
     void load(bool overwrite = FALSE);

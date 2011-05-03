@@ -18,6 +18,7 @@
 #include "qmc2main.h"
 #include "fileeditwidget.h"
 #include "direditwidget.h"
+#include "comboeditwidget.h"
 #include "macros.h"
 #if defined(QMC2_EMUTYPE_MAME)
 #include "demomode.h"
@@ -46,6 +47,7 @@ int EmulatorOptions::verticalScrollPosition = 0;
 
 QString optionDescription = "";
 int optionType = QMC2_EMUOPT_TYPE_UNKNOWN;
+QStringList optionChoices;
 EmulatorOptions *emulatorOptions = NULL;
 
 EmulatorOptionDelegate::EmulatorOptionDelegate(QObject *parent)
@@ -64,7 +66,7 @@ void EmulatorOptionDelegate::dataChanged()
   if ( widget ) {
     emit commitData(widget);
     if ( qmc2GlobalEmulatorOptions && parent() == qmc2GlobalEmulatorOptions )
-      qmc2GlobalEmulatorOptions->changed = TRUE;
+      qmc2GlobalEmulatorOptions->changed = true;
   }
 }
 
@@ -137,6 +139,16 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
       return directoryEditor;
     }
 
+    case QMC2_EMUOPT_TYPE_COMBO: {
+      ComboBoxEditWidget *comboEditor = new ComboBoxEditWidget(optionChoices, "", parent);
+      comboEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
+      comboEditor->setAccessibleName("comboEditor");
+      if ( !optionDescription.isEmpty() )
+        comboEditor->comboBoxValue->setToolTip(optionDescription);
+      connect(comboEditor, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged()));
+      return comboEditor;
+    }
+
     case QMC2_EMUOPT_TYPE_STRING:
     default: {
       QLineEdit *lineEditEditor = new QLineEdit(parent);
@@ -163,11 +175,25 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
   } else if ( editor->accessibleName() == "spinBoxEditor" ) {
     int value = index.model()->data(index, Qt::EditRole).toInt();
     QSpinBox *spinBox = static_cast<QSpinBox *>(editor);
+    int cPos = 0;
+    // serious hack to access the protected line edit ;)
+    QLineEdit *lineEdit = spinBox->findChild<QLineEdit *>();
+    if ( lineEdit )
+      cPos = lineEdit->cursorPosition();
     spinBox->setValue(value);
+    if ( lineEdit )
+      lineEdit->setCursorPosition(cPos);
   } else if ( editor->accessibleName() == "doubleSpinBoxEditor" ) {
     double value = index.model()->data(index, Qt::EditRole).toDouble();
     QDoubleSpinBox *doubleSpinBox = static_cast<QDoubleSpinBox *>(editor);
+    int cPos = 0;
+    // serious hack to access the protected line edit ;)
+    QLineEdit *lineEdit = doubleSpinBox->findChild<QLineEdit *>();
+    if ( lineEdit )
+      cPos = lineEdit->cursorPosition();
     doubleSpinBox->setValue(value);
+    if ( lineEdit )
+      lineEdit->setCursorPosition(cPos);
   } else if ( editor->accessibleName() == "fileEditor" ) {
     QString value = index.model()->data(index, Qt::EditRole).toString();
     FileEditWidget *fileEditor = static_cast<FileEditWidget *>(editor);
@@ -180,6 +206,15 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
     int cPos = directoryEditor->lineEditDirectory->cursorPosition();
     directoryEditor->lineEditDirectory->setText(value);
     directoryEditor->lineEditDirectory->setCursorPosition(cPos);
+  } else if ( editor->accessibleName() == "comboEditor" ) {
+    QString value = index.model()->data(index, Qt::EditRole).toString();
+    ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget *>(editor);
+    int cPos = comboEditor->comboBoxValue->lineEdit()->cursorPosition();
+    comboEditor->comboBoxValue->lineEdit()->setText(value);
+    comboEditor->comboBoxValue->lineEdit()->setCursorPosition(cPos);
+    int itemIndex = comboEditor->comboBoxValue->findText(value);
+    if ( itemIndex >= 0 )
+      comboEditor->comboBoxValue->setCurrentIndex(itemIndex);
   } else {
     QString value = index.model()->data(index, Qt::EditRole).toString();
     QLineEdit *lineEdit = static_cast<QLineEdit *>(editor);
@@ -223,6 +258,11 @@ void EmulatorOptionDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
     optionType = QMC2_EMUOPT_TYPE_DIRECTORY;
     DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget*>(editor);
     QString v = directoryEditor->lineEditDirectory->text();
+    model->setData(index, v);
+  } else if ( editor->accessibleName() == "comboEditor" ) {
+    optionType = QMC2_EMUOPT_TYPE_COMBO;
+    ComboBoxEditWidget *comboEditor = static_cast<ComboBoxEditWidget*>(editor);
+    QString v = comboEditor->comboBoxValue->lineEdit()->text();
     model->setData(index, v);
   } else {
     optionType = QMC2_EMUOPT_TYPE_STRING;
@@ -272,15 +312,15 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
     emulatorOptions = this;
     setStatusTip(tr("Global emulator configuration"));
   }
-  loadActive = changed = FALSE;
+  loadActive = changed = false;
   settingsGroup = group;
   delegate = new EmulatorOptionDelegate(this);
   setColumnCount(2);  
   setItemDelegateForColumn(1, delegate);
-  setAlternatingRowColors(TRUE);
+  setAlternatingRowColors(true);
   headerItem()->setText(0, tr("Option / Attribute"));
   headerItem()->setText(1, tr("Value"));
-  header()->setClickable(FALSE);
+  header()->setClickable(false);
   if ( templateMap.count() == 0 )
     createTemplateMap();
   createMap();
@@ -307,7 +347,7 @@ void EmulatorOptions::pseudoConstructor()
     header()->resizeSection(0, qmc2Config->value(settingsGroup + "/OptionColumnWidth", 200).toInt());
     header()->restoreState(qmc2Config->value(settingsGroup + "/HeaderState").toByteArray());
   } else {
-    header()->setMovable(FALSE);
+    header()->setMovable(false);
   }
 }
 
@@ -329,10 +369,10 @@ void EmulatorOptions::pseudoDestructor()
 void EmulatorOptions::load(bool overwrite)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmulatorOptions::load(bool overwrite = " + QString(overwrite ? "TRUE" : "FALSE") + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmulatorOptions::load(bool overwrite = " + QString(overwrite ? "true" : "false") + ")");
 #endif
 
-  loadActive = TRUE;
+  loadActive = true;
   qmc2Config->beginGroup(settingsGroup);
   QString sectionTitle;
   foreach (sectionTitle, optionsMap.keys()) {
@@ -353,6 +393,7 @@ void EmulatorOptions::load(bool overwrite)
       switch ( option.type ) {
         case QMC2_EMUOPT_TYPE_INT: {
           optionType = QMC2_EMUOPT_TYPE_INT;
+          optionChoices.clear();
           int v;
           if ( qmc2GlobalEmulatorOptions != this ) {
             if ( overwrite )
@@ -364,13 +405,14 @@ void EmulatorOptions::load(bool overwrite)
           if ( ok ) {
             optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, v);
             optionsMap[sectionTitle][i].value.sprintf("%d", v);
-            optionsMap[sectionTitle][i].valid = TRUE;
+            optionsMap[sectionTitle][i].valid = true;
           }
           break;
         }
 
         case QMC2_EMUOPT_TYPE_FLOAT: {
           optionType = QMC2_EMUOPT_TYPE_FLOAT;
+          optionChoices.clear();
           double v;
           if ( qmc2GlobalEmulatorOptions != this ) {
             if ( overwrite )
@@ -382,13 +424,14 @@ void EmulatorOptions::load(bool overwrite)
           if ( ok ) {
             optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, v);
             optionsMap[sectionTitle][i].value.sprintf("%.6f", v);
-            optionsMap[sectionTitle][i].valid = TRUE;
+            optionsMap[sectionTitle][i].valid = true;
           }
           break;
         }
 
         case QMC2_EMUOPT_TYPE_BOOL: {
           optionType = QMC2_EMUOPT_TYPE_BOOL;
+          optionChoices.clear();
           bool v;
           if ( qmc2GlobalEmulatorOptions != this ) {
             if ( overwrite )
@@ -401,15 +444,20 @@ void EmulatorOptions::load(bool overwrite)
           optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QColor(0, 0, 0, 0));
           optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QFont("Helvetiva", 1));
           optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, v);
-          optionsMap[sectionTitle][i].valid = TRUE;
+          optionsMap[sectionTitle][i].valid = true;
           break;
         }
 
+        case QMC2_EMUOPT_TYPE_COMBO:
         case QMC2_EMUOPT_TYPE_FILE:
         case QMC2_EMUOPT_TYPE_DIRECTORY:
         case QMC2_EMUOPT_TYPE_STRING:
         default: {
           optionType = option.type;
+          if ( optionType == QMC2_EMUOPT_TYPE_COMBO )
+            optionChoices = option.choices;
+          else
+            optionChoices.clear();
           QString v;
           if ( qmc2GlobalEmulatorOptions != this ) {
             if ( overwrite )
@@ -420,7 +468,7 @@ void EmulatorOptions::load(bool overwrite)
             v = qmc2Config->value(option.name, option.dvalue).toString();
           optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, v);
           optionsMap[sectionTitle][i].value = v;
-          optionsMap[sectionTitle][i].valid = TRUE;
+          optionsMap[sectionTitle][i].valid = true;
           break;
         }
       }
@@ -429,7 +477,7 @@ void EmulatorOptions::load(bool overwrite)
 
   qmc2Config->endGroup();
 
-  loadActive = changed = FALSE;
+  loadActive = changed = false;
 }
 
 void EmulatorOptions::save()
@@ -525,6 +573,7 @@ void EmulatorOptions::save()
           break;
         }
 
+        case QMC2_EMUOPT_TYPE_COMBO:
         case QMC2_EMUOPT_TYPE_FILE:
         case QMC2_EMUOPT_TYPE_DIRECTORY:
         case QMC2_EMUOPT_TYPE_STRING:
@@ -550,7 +599,7 @@ void EmulatorOptions::save()
     }
   }
   qmc2Config->endGroup();
-  changed = FALSE;
+  changed = false;
 }
 
 void EmulatorOptions::createMap()
@@ -573,6 +622,7 @@ void EmulatorOptions::createMap()
       optionsMap[sectionTitle][i].value = optionsMap[sectionTitle][i].dvalue;
       EmulatorOption emulatorOption = optionsMap[sectionTitle].at(i);
       QTreeWidgetItem *optionItem = new QTreeWidgetItem(sectionItem);
+      optionItem->setHidden(!emulatorOption.visible);
       optionsMap[sectionTitle][i].item = optionItem;
       optionItem->setText(0, emulatorOption.name);
       optionType = emulatorOption.type;
@@ -598,6 +648,10 @@ void EmulatorOptions::createMap()
 
         case QMC2_EMUOPT_TYPE_DIRECTORY:
            childItem->setText(1, tr("directory"));
+           break;
+
+        case QMC2_EMUOPT_TYPE_COMBO:
+           childItem->setText(1, tr("choice"));
            break;
 
         case QMC2_EMUOPT_TYPE_STRING:
@@ -627,6 +681,7 @@ void EmulatorOptions::createMap()
       }
       if ( !emulatorOption.description.isEmpty() ) {
         optionDescription = emulatorOption.description;
+	optionChoices = emulatorOption.choices;
         optionItem->setToolTip(0, optionDescription);
         childItem = new QTreeWidgetItem(optionItem);
         childItem->setText(0, tr("Description"));
@@ -659,10 +714,10 @@ QString EmulatorOptions::readDescription(QXmlStreamReader *xmlReader, QString la
           QString description = attributes.value("text").toString();
           translations[language] = description;
         } else
-          *readNext = FALSE;
+          *readNext = false;
       }
     } else
-      *readNext = FALSE;
+      *readNext = false;
   }
 
   if ( translations.contains(lang) )
@@ -673,6 +728,38 @@ QString EmulatorOptions::readDescription(QXmlStreamReader *xmlReader, QString la
     translatedDescription = tr("unknown");
 
   return translatedDescription;
+}
+
+QStringList EmulatorOptions::readChoices(QXmlStreamReader *xmlReader)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmulatorOptions::readChoices(...)");
+#endif
+
+	static QStringList validChoices;
+
+	validChoices.clear();
+	bool readNext = true;
+
+	while ( !xmlReader->atEnd() && readNext ) {
+		if ( !xmlReader->hasError() ) {
+			if ( xmlReader->isStartElement() ) {
+				QString elementType = xmlReader->name().toString();
+				if ( elementType == "choice" ) {
+					QXmlStreamAttributes attributes = xmlReader->attributes();
+					QString choiceName = attributes.value("name").toString();
+					if ( !choiceName.isEmpty() )
+						validChoices << choiceName;
+				} else
+					readNext = false;
+			}
+		} else
+			readNext = false;
+		if ( readNext )
+			xmlReader->readNext();
+	}
+
+	return validChoices;
 }
 
 void EmulatorOptions::createTemplateMap()
@@ -711,12 +798,12 @@ void EmulatorOptions::createTemplateMap()
   if ( qmc2TemplateFile.open(QFile::ReadOnly) ) {
     QXmlStreamReader xmlReader(&qmc2TemplateFile);
     QString sectionTitle;
-    bool readNext = TRUE;
+    bool readNext = true;
     while ( !xmlReader.atEnd() ) {
       if ( readNext )
         xmlReader.readNext();
       else
-        readNext = TRUE;
+        readNext = true;
       if ( xmlReader.hasError() ) {
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: XML error reading template: '%1' in file '%2' at line %3, column %4").
                             arg(xmlReader.errorString()).arg(templateFile).arg(xmlReader.lineNumber()).arg(xmlReader.columnNumber()));
@@ -734,8 +821,11 @@ void EmulatorOptions::createTemplateMap()
 #endif
           } else if ( elementType == "option" ) {
             bool ignore = false;
+	    bool visible = true;
 	    if ( attributes.hasAttribute("ignore") )
               ignore = attributes.value("ignore") == "true";
+            if ( attributes.hasAttribute("visible") )
+              visible = attributes.value("visible") == "true";
             if ( attributes.hasAttribute(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))) )
               ignore = attributes.value(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))) == "true";
             if ( !ignore ) {
@@ -746,7 +836,10 @@ void EmulatorOptions::createTemplateMap()
               else
                 defaultValue = attributes.value("default").toString();
               QString optionDescription = readDescription(&xmlReader, lang, &readNext);
-              templateMap[sectionTitle].append(EmulatorOption(name, "", type, defaultValue, optionDescription, QString::null, NULL, FALSE));
+	      optionChoices.clear();
+              if ( type == "combo" && xmlReader.name().toString() == "choice" )
+                optionChoices = readChoices(&xmlReader);
+              templateMap[sectionTitle].append(EmulatorOption(name, "", type, defaultValue, optionDescription, QString::null, NULL, false, optionChoices, visible));
 #ifdef QMC2_DEBUG
               qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: elementType = [%1], name = [%2], type = [%3], default = [%4], description = [%5]").
                                   arg(elementType).arg(name).arg(type).arg(defaultValue).arg(optionDescription));
@@ -811,7 +904,7 @@ void EmulatorOptions::checkTemplateMap()
 #elif defined(QMC2_EMUTYPE_MESS)
   commandProc.start(qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString(), args);
 #endif
-  bool commandProcStarted = FALSE;
+  bool commandProcStarted = false;
   int retries = 0;
   bool started = false;
   while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
@@ -819,7 +912,7 @@ void EmulatorOptions::checkTemplateMap()
     started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
   }
   if ( started ) {
-    commandProcStarted = TRUE;
+    commandProcStarted = true;
     bool commandProcRunning = (commandProc.state() == QProcess::Running);
     while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
       qApp->processEvents();
@@ -925,6 +1018,7 @@ void EmulatorOptions::checkTemplateMap()
             break;
           }
 
+          case QMC2_EMUOPT_TYPE_COMBO:
           case QMC2_EMUOPT_TYPE_FILE:
           case QMC2_EMUOPT_TYPE_DIRECTORY:
           case QMC2_EMUOPT_TYPE_STRING:
@@ -983,18 +1077,18 @@ void EmulatorOptions::keyPressEvent(QKeyEvent *e)
     clearSelection();
     if ( !lineEditSearch->text().isEmpty() ) {
       int i;
-      bool madeCurrent = FALSE;
+      bool madeCurrent = false;
       QList<QTreeWidgetItem *> foundItems = findItems(lineEditSearch->text(), Qt::MatchRecursive | Qt::MatchContains, 0);
       for (i = 0; i < foundItems.count(); i++) {
         QTreeWidgetItem *p = foundItems[i];
         if ( p->parent() ) {
           if ( !p->parent()->parent() ) {
-            p->setSelected(TRUE);
-            p->parent()->setSelected(TRUE);
+            p->setSelected(true);
+            p->parent()->setSelected(true);
             if ( !madeCurrent ) {
               scrollToItem(p);
               setCurrentItem(p);
-              madeCurrent = TRUE;
+              madeCurrent = true;
             }
           }
         }
@@ -1071,10 +1165,10 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
       foreach (QListWidgetItem *item, itemSelector.listWidgetItems->findItems("*", Qt::MatchWildcard)) {
         if ( writableIniPaths.contains(item->text()) ) {
           item->setForeground(greenBrush);
-          item->setSelected(TRUE);
+          item->setSelected(true);
         } else {
           item->setForeground(redBrush);
-          item->setSelected(FALSE);
+          item->setSelected(false);
         }
       }
       if ( itemSelector.exec() == QDialog::Rejected )
@@ -1149,6 +1243,7 @@ void EmulatorOptions::exportToIni(bool global, QString useFileName)
             break;
           }
 
+          case QMC2_EMUOPT_TYPE_COMBO:
           case QMC2_EMUOPT_TYPE_FILE:
           case QMC2_EMUOPT_TYPE_DIRECTORY:
           case QMC2_EMUOPT_TYPE_STRING:
@@ -1223,10 +1318,10 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
       foreach (QListWidgetItem *item, itemSelector.listWidgetItems->findItems("*", Qt::MatchWildcard)) {
         if ( readableIniPaths.contains(item->text()) ) {
           item->setForeground(greenBrush);
-          item->setSelected(TRUE);
+          item->setSelected(true);
         } else {
           item->setForeground(redBrush);
-          item->setSelected(FALSE);
+          item->setSelected(false);
         }
       }
       if ( itemSelector.exec() == QDialog::Rejected )
@@ -1327,20 +1422,21 @@ void EmulatorOptions::importFromIni(bool global, QString useFileName)
                   qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QColor(0, 0, 0, 0));
                   qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QFont("Helvetiva", 1));
                   if ( value == "0" )
-                    qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, FALSE);
+                    qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, false);
                   else
-                    qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, TRUE);
+                    qmc2GlobalEmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, true);
                 } else {
                   qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::ForegroundRole, QColor(0, 0, 0, 0));
                   qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::FontRole, QFont("Helvetiva", 1));
                   if ( value == "0" )
-                    qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, FALSE);
+                    qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, false);
                   else
-                    qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, TRUE);
+                    qmc2EmulatorOptions->optionsMap[sectionTitleFound][optionPosFound].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, true);
                 }
                 break;
               }
 
+              case QMC2_EMUOPT_TYPE_COMBO:
               case QMC2_EMUOPT_TYPE_FILE:
               case QMC2_EMUOPT_TYPE_DIRECTORY:
               case QMC2_EMUOPT_TYPE_STRING:
