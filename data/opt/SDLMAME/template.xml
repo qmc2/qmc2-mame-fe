@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="SDLMAME" version="0.142u2" format="0.2.3">
+<template emulator="SDLMAME" version="0.142u2" format="0.2.4">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
@@ -188,26 +188,29 @@
       <description lang="fr" text="Nom de fichier pour enregistrer les sons WAV de la session courante"/>
       <description lang="pt" text="Nome opcional de arquivo para escrever um arquivo WAV da sessão corrente"/>
     </option>
-    <option name="snapname" type="string" default="%g/%i">
+    <option name="snapname" type="combo" default="%g/%i">
       <description lang="us" text="Override of the default snapshot/movie naming: %g == gamename, %i == index"/>
       <description lang="de" text="Namensgebung für Screenshots/Movies ändern: %g == Spielname, %i == Index"/>
       <description lang="pl" text="Zastąp domyślne nazywanie zrzutów ekranu: %g == nazwa gry, %i == indeks"/>
       <description lang="fr" text="Modifier le nommage des captures par défaut: %g == Snomderom, %i == index"/>
       <description lang="pt" text="Sobrescrever o nome padrão para nomear um snapshot/filme: %g == nomedojogo, %i == índice"/>
+      <choice name="%g/%i"/>
     </option>
-    <option name="snapsize" type="string" default="auto">
+    <option name="snapsize" type="combo" default="auto">
       <description lang="us" text="Specify snapshot/movie resolution (WIDTHxHEIGHT) or 'auto' to use minimal size"/>
       <description lang="de" text="Screenshot/Movie Auflösung festlegen (BREITExHOEHE) oder 'auto' für minimale Größe"/>
       <description lang="pl" text="Określ rozdzielczość zrzutów ekranu/filmów (SZEROKOŚĆxWYSOKOŚĆ) lub 'auto' aby użyć minimalnego rozmiaru"/>
       <description lang="fr" text="Spécifier la résolution des captures/vidéos (LARGEURxHAUTEUR) ou 'auto' pour utiliser la taille minimale"/>
       <description lang="pt" text="Especifique a resolução (LARGURAxALTURA) do snapshot/filme ou use 'auto' para usar o tamanho mínimo"/>
+      <choice name="auto"/>
     </option>
-    <option name="snapview" type="string" default="internal">
+    <option name="snapview" type="combo" default="internal">
       <description lang="us" text="Specify snapshot/movie view or 'internal' to use internal pixel-aspect views"/>
       <description lang="de" text="Screenshot/Movie Ansicht festlegen oder 'internal' für interne Ansicht"/>
       <description lang="pl" text="Określ widok zrzutów ekranu/filmów lub 'internal' aby użyć wewnętrzych widoków zachowujących proporcje pikseli"/>
       <description lang="fr" text="Spécifier la vue de capture/vidéo ou 'internal' pour utiliser la vue 'interne'"/>
       <description lang="pt" text="Especifique a visão do snapshot/filme ou 'internal' para usar as visões internas do aspecto do pixel"/>
+      <choice name="internal"/>
     </option>
     <option name="burnin" type="bool" default="false">
       <description lang="us" text="Create burn-in snapshots for each screen"/>
@@ -286,12 +289,13 @@
       <description lang="fr" text="Affiche les performances video de SDL"/>
       <description lang="pt" text="Mostra o desempenho de vídeo do SDL"/>
     </option>
-    <option name="numprocessors" type="string" default="auto">
+    <option name="numprocessors" type="combo" default="auto">
       <description lang="us" text="Number of processors (or 'auto'); this overrides the number the system reports"/>
       <description lang="de" text="Anzahl der Prozessoren (oder 'auto'); überschreibt die vom System ausgelesene Prozessoranzahl"/>
       <description lang="pl" text="Liczba procesorów (lub 'auto'); nadpisuje liczbę zgłaszaną przez system"/>
       <description lang="fr" text="Nombre de of processeurs (ou 'auto'); écrase le nombre de processeurs indiqués par le système"/>
       <description lang="pt" text="Número de processadores (ou 'auto'); sobrescreve o número reportado pelo sistema"/>
+      <choice name="auto"/>
     </option>
     <option name="bench" type="int" default="0">
       <description lang="us" text="Benchmark for the given number of emulated seconds; implies '-video none -nosound -nothrottle'"/>
@@ -600,7 +604,7 @@
     <description lang="pl" text="Różne"/>
     <description lang="fr" text="Divers"/>
     <description lang="pt" text="Diversos"/>
-    <option name="bios" type="string" default="">
+    <option name="bios" type="combo" default="">
       <description lang="us" text="Select the system BIOS to use"/>
       <description lang="de" text="Zu verwendendes System BIOS auswählen"/>
       <description lang="pl" text="Wybierz BIOS systemowy do użytku"/>
@@ -621,13 +625,14 @@
       <description lang="fr" text="Passer l'affichage du menu d'informations au lancement d'un jeu"/>     
       <description lang="pt" text="Pular tela de informações ao iniciar"/>
     </option>
-    <option name="uifont" type="string" default="default">
+    <option name="uifont" type="combo" default="default">
       <description lang="us" text="Specify a font to use"/>
       <description lang="de" text="Zu verwendende Schriftart angeben"/>
       <description lang="pl" text="Wskaż używaną czcionkę"/>
       <description lang="pt" text="Especificar a fonte a ser usada"/>
+      <choice name="default"/>
     </option>
-    <option name="ramsize" type="string" default="">
+    <option name="ramsize" type="combo" visible="false" default="">
       <description lang="us" text="Size of RAM (if supported by driver)"/>
       <description lang="de" text="RAM Größe (falls vom Treiber unterstützt)"/>
       <description lang="pl" text="Rozmiar pamięci RAM (jeśli wspierany przez sterownik)"/>
@@ -725,12 +730,15 @@
     <description lang="pl" text="Obraz"/>
     <description lang="fr" text="Vidéo"/>   
     <description lang="pt" text="Vídeo"/>
-    <option name="video" type="string" default="soft">
+    <option name="video" type="combo" default="soft">
       <description lang="us" text="Video output method: none, soft or opengl"/>
       <description lang="de" text="Methode zur Video-Ausgabe: none, soft oder opengl"/>
       <description lang="pl" text="Metoda wyjścia obrazu: none, soft lub opengl"/>
       <description lang="fr" text="Méthode de sortie vidéo: none, soft ou opengl"/>
       <description lang="pt" text="Método de saída de vídeo: none, soft ou opengl"/>
+      <choice name="none"/>
+      <choice name="soft"/>
+      <choice name="opengl"/>
     </option>
     <option name="numscreens" type="int" default="1">
       <description lang="us" text="Number of screens to create; SDLMAME only supports 1 screen at this time"/>
@@ -795,12 +803,18 @@
       <description lang="fr" text="Attendre la synchronisation verticale avant de passer à l'image suivante; réduit les effets de saccade"/>
       <description lang="pt" text="Esperar o início da sincronização verfical antes de inverter telas; reduz efeitos de tremor"/>
     </option>
-    <option name="scalemode" type="string" default="none">
+    <option name="scalemode" type="combo" default="none">
       <description lang="us" text="Scale mode: none, async, yv12, yuy2, yv12x2, yuy2x2 (-video soft only)"/>
       <description lang="de" text="Scalierungs-Modus: none, async, yv12, yuy2, yv12x2, yuy2x2 (nur mit -video soft)"/>
       <description lang="pl" text="Tryb skalowania: none, async, yv12, yuy2, yv12x2, yuy2x2 (tylko z -video soft)"/>
       <description lang="fr" text="Mode d'agrandissement: none, async, yv12, yuy2, yv12x2, yuy2x2 (-video soft uniquement)"/>
       <description lang="pt" text="Modo de esticamento: none, async, yv12, yuy2, yv12x2, yuy2x2 (-video soft somente)"/>
+      <choice name="none"/>
+      <choice name="async"/>
+      <choice name="yv12"/>
+      <choice name="yuy2"/>
+      <choice name="yv12x2"/>
+      <choice name="yuy2x2"/>
     </option>
     <option name="syncrefresh" type="bool" default="false">
       <description lang="us" text="Enable using the start of VBLANK for throttling instead of the game time"/>
@@ -879,145 +893,165 @@
       <description lang="fr" text="Active OpenGL GLSL pour le contrôle de luminosité et contraste. Meilleurs perfs RGB gratis (défaut: oui)"/>
       <description lang="pt" text="Habilitar tratamento de brilho e contraste GLSL do OpenGL. Desempenho RGB melhor de graça (padrão ligado)"/>
     </option>
-    <option name="glsl_shader_mame0" type="string" default="none">
+    <option name="glsl_shader_mame0" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 0"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 0"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 0"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 0"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 0 do MAME"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_mame1" type="string" default="none">
+    <option name="glsl_shader_mame1" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 1"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 1"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 1"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 1"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 1 do MAME"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_mame2" type="string" default="none">
+    <option name="glsl_shader_mame2" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 2"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 2"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 2"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 2"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 2 do MAME"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_mame3" type="string" default="none">
+    <option name="glsl_shader_mame3" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 3"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 3"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 3"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 3"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 3 do MAME"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_mame4" type="string" default="none">
+    <option name="glsl_shader_mame4" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 4"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 4"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 4"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 4"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 4 do MAME"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_mame5" type="string" default="none">
+    <option name="glsl_shader_mame5" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 5"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 5"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 5"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 5"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 5 do MAME"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_mame6" type="string" default="none">
+    <option name="glsl_shader_mame6" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 6"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 6"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 6"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 6"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 6 do MAME"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_mame7" type="string" default="none">
+    <option name="glsl_shader_mame7" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 7"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 7"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 7"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 7"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 7 do MAME"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_mame8" type="string" default="none">
+    <option name="glsl_shader_mame8" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 8"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 8"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 8"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 8"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 8 do MAME"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_mame9" type="string" default="none">
+    <option name="glsl_shader_mame9" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader set MAME bitmap 9"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Set MAME Bitmap 9"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa MAME 9"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour MAME bitmap 9"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 9 do MAME"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_screen0" type="string" default="none">
+    <option name="glsl_shader_screen0" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 0"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 0"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 0"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 0"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 0 da tela"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_screen1" type="string" default="none">
+    <option name="glsl_shader_screen1" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 1"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 1"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 1"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 1"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 1 da tela"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_screen2" type="string" default="none">
+    <option name="glsl_shader_screen2" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 2"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 2"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 2"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 2"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 2 da tela"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_screen3" type="string" default="none">
+    <option name="glsl_shader_screen3" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 3"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 3"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 3"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 3"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 3 da tela"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_screen4" type="string" default="none">
+    <option name="glsl_shader_screen4" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 4"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 4"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 4"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 4"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 4 da tela"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_screen5" type="string" default="none">
+    <option name="glsl_shader_screen5" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 5"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 5"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 5"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 5"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 5 da tela"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_screen6" type="string" default="none">
+    <option name="glsl_shader_screen6" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 6"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 6"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 6"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 6"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 6 da tela"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_screen7" type="string" default="none">
+    <option name="glsl_shader_screen7" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 7"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 7"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 7"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 7"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 7 da tela"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_screen8" type="string" default="none">
+    <option name="glsl_shader_screen8" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 8"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 8"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 8"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 8"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 8 da tela"/>
+      <choice name="none"/>
     </option>
-    <option name="glsl_shader_screen9" type="string" default="none">
+    <option name="glsl_shader_screen9" type="combo" default="none">
       <description lang="us" text="Custom OpenGL GLSL shader screen bitmap 9"/>
       <description lang="de" text="Angepasstes OpenGL GLSL Shader-Screen Bitmap 9"/>
       <description lang="pl" text="Osobisty zestaw shaderów OpenGL GLSL bitmapa ekranu 9"/>
       <description lang="fr" text="OpenGL GLSL shader personnalisé pour bitmap écran 9"/>
       <description lang="pt" text="Shader GLSL do OpenGL personalizado para bitmap 9 da tela"/>
+      <choice name="none"/>
     </option>
   </section>
   <section name="per_window_video">
@@ -1026,145 +1060,165 @@
     <description lang="pl" text="Obraz dla danego ekranu"/>
     <description lang="fr" text="Fenêtre Vidéo"/>
     <description lang="pt" text="Vídeo por janela"/>
-    <option name="screen" type="string" default="auto">
+    <option name="screen" type="combo" default="auto">
       <description lang="us" text="Explicit name of the screen; 'auto' will try a best guess"/>
       <description lang="de" text="Expliziter Name des Screens; 'auto' erzeugt ihn automatisch"/>
       <description lang="pl" text="Sprecyzowana nazwa ekranu; 'auto' spróbuje najlepszego odgadnięcia"/>
       <description lang="fr" text="Nom explicite de l'écran; 'auto' essaiera le plus approprié"/>
       <description lang="pt" text="Explicitar nome da tela; 'auto' irá tentar o mais apropriado"/>
+      <choice name="auto"/>
     </option>
-    <option name="aspect" type="string" default="auto">
+    <option name="aspect" type="combo" default="auto">
       <description lang="us" text="Aspect ratio for all screens; 'auto' will try a best guess"/>
       <description lang="de" text="Seitenverhältnis aller Screens; 'auto' erzeugt es automatisch"/>
       <description lang="pl" text="Proporcja obrazu dla wszystkich ekranów; 'auto' spróbuje najlepszego odgadnięcia"/>
       <description lang="fr" text="Ratio d'aspect des écrans; 'auto' essaiera le plus approprié"/>
       <description lang="pt" text="Razão de aspecto para todas as telas; 'auto' irá tentar o mais apropriado"/>
+      <choice name="auto"/>
     </option>
-    <option name="resolution" type="string" default="auto">
+    <option name="resolution" type="combo" default="auto">
       <description lang="us" text="Preferred resolution for all screens; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
       <description lang="de" text="Vorgezogene Auflösung aller Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
       <description lang="pl" text="Preferowana rozdzielczość dla wszystkich ekranów; format to SZEROKOŚĆXWYSOKOŚĆ[@ODŚWIEŻANIE] lub 'auto'"/>
       <description lang="fr" text="Résolution d'écran préférée (tous les écrans); le format est LARGEURxHAUTEUR[@RAFRAICHISSEMENT] sinon 'auto'"/>
       <description lang="pt" text="Resolução preferencial para todas as telas; formato é LARGURAxALTURA[@TAXADEREFRESH] ou 'auto'"/>
+      <choice name="auto"/>
     </option>
-    <option name="view" type="string" default="auto">
+    <option name="view" type="combo" default="auto">
       <description lang="us" text="Preferred view for all screens"/>
       <description lang="de" text="Vorgezogene Ansicht aller Screens"/>
       <description lang="pl" text="Preferowany widok dla wszystkich ekranów"/>
       <description lang="fr" text="Vue préférée pour tous les écrans"/>
       <description lang="pt" text="Visão preferencial para todas as telas"/>
+      <choice name="auto"/>
     </option>
-    <option name="screen0" type="string" default="auto">
+    <option name="screen0" type="combo" default="auto">
       <description lang="us" text="Explicit name of screen 0; 'auto' will try a best guess"/>
       <description lang="de" text="Expliziter Name des 0. Screens; 'auto' erzeugt ihn automatisch"/>
       <description lang="pl" text="Sprecyzowana nazwa ekranu 0; 'auto' spróbuje najlepszego odgadnięcia"/>
       <description lang="fr" text="Nom explicite de l'écran 0; 'auto' essaiera le plus approprié"/>
       <description lang="pt" text="Nome explícito da tela 0; 'auto' ira tentar o mais apropriado"/>
+      <choice name="auto"/>
     </option>
-    <option name="aspect0" type="string" default="auto">
+    <option name="aspect0" type="combo" default="auto">
       <description lang="us" text="Aspect ratio of screen 0; 'auto' will try a best guess"/>
       <description lang="de" text="Seitenverhältnis des 0. Screens; 'auto' erzeugt es automatisch"/>
       <description lang="pl" text="Proporcja obrazu dla ekranu 0; 'auto' spróbuje najlepszego odgadnięcia"/>
       <description lang="fr" text="Ratio d'aspect pour l'écran 0; 'auto' essaiera le plus approprié"/>
       <description lang="pt" text="Razão de aspecto da tela 0; 'auto' ira tentar o mais apropriado"/>
+      <choice name="auto"/>
     </option>
-    <option name="resolution0" type="string" default="auto">
+    <option name="resolution0" type="combo" default="auto">
       <description lang="us" text="Preferred resolution for screen 0; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
       <description lang="de" text="Vorgezogene Auflösung des 0. Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
       <description lang="pl" text="Preferowana rozdzielczość dla ekranu 0; format to SZEROKOŚĆXWYSOKOŚĆ[@ODŚWIEŻANIE] lub 'auto'"/>
       <description lang="fr" text="Résolution préférée pour l'écran 0; le format est LARGEURxHAUTEUR[@RAFRAICHISSEMENT] sinon 'auto'"/>
       <description lang="pt" text="Resolução preferencial da tela 0; o formato é LARGURAxALTURA[@TAXADEREFRESH] ou 'auto'"/>
+      <choice name="auto"/>
     </option>
-    <option name="view0" type="string" default="auto">
+    <option name="view0" type="combo" default="auto">
       <description lang="us" text="Preferred view for screen 0"/>
       <description lang="de" text="Vorgezogene Ansicht des 0. Screens"/>
       <description lang="pl" text="Preferowany widok dla ekranu 0"/>
       <description lang="fr" text="Vue préférée pour l'écran 0"/>
       <description lang="pt" text="Visão preferencial para a tela 0"/>
+      <choice name="auto"/>
     </option>
-    <option name="screen1" type="string" default="auto">
+    <option name="screen1" type="combo" default="auto">
       <description lang="us" text="Explicit name of screen 1; 'auto' will try a best guess"/>
       <description lang="de" text="Expliziter Name des 1. Screens; 'auto' erzeugt ihn automatisch"/>
       <description lang="pl" text="Sprecyzowana nazwa ekranu 1; 'auto' spróbuje najlepszego odgadnięcia"/>
       <description lang="fr" text="Nom explicite de l'écran 1; 'auto' essaiera le plus approprié"/>
       <description lang="pt" text="Nome explícito da tela 1; 'auto' ira tentar o mais apropriado"/>
+      <choice name="auto"/>
     </option>
-    <option name="aspect1" type="string" default="auto">
+    <option name="aspect1" type="combo" default="auto">
       <description lang="us" text="Aspect ratio of screen 1; 'auto' will try a best guess"/>
       <description lang="de" text="Seitenverhältnis des 1. Screens; 'auto' erzeugt es automatisch"/>
       <description lang="pl" text="Proporcja obrazu dla ekranu 1; 'auto' spróbuje najlepszego odgadnięcia"/>
       <description lang="fr" text="Ratio d'aspect pour l'écran 1; 'auto' essaiera le plus approprié"/>
       <description lang="pt" text="Razão de aspecto da tela 1; 'auto' ira tentar o mais apropriado"/>
+      <choice name="auto"/>
     </option>
-    <option name="resolution1" type="string" default="auto">
+    <option name="resolution1" type="combo" default="auto">
       <description lang="us" text="Preferred resolution for screen 1; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
       <description lang="de" text="Vorgezogene Auflösung des 1. Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
       <description lang="pl" text="Preferowana rozdzielczość dla ekranu 1; format to SZEROKOŚĆXWYSOKOŚĆ[@ODŚWIEŻANIE] lub 'auto'"/>
       <description lang="fr" text="Résolution préférée pour l'écran 1; le format est LARGEURxHAUTEUR[@RAFRAICHISSEMENT] sinon 'auto'"/>
       <description lang="pt" text="Resolução preferencial da tela 1; o formato é LARGURAxALTURA[@TAXADEREFRESH] ou 'auto'"/>
+      <choice name="auto"/>
     </option>
-    <option name="view1" type="string" default="auto">
+    <option name="view1" type="combo" default="auto">
       <description lang="us" text="Preferred view for screen 1"/>
       <description lang="de" text="Vorgezogene Ansicht des 1. Screens"/>
       <description lang="pl" text="Preferowany widok dla ekranu 1"/>
       <description lang="fr" text="Vue préférée pour l'écran 1"/>
       <description lang="pt" text="Visão preferencial para a tela 1"/>
+      <choice name="auto"/>
     </option>
-    <option name="screen2" type="string" default="auto">
+    <option name="screen2" type="combo" default="auto">
       <description lang="us" text="Explicit name of screen 2; 'auto' will try a best guess"/>
       <description lang="de" text="Expliziter Name des 2. Screens; 'auto' erzeugt ihn automatisch"/>
       <description lang="pl" text="Sprecyzowana nazwa ekranu 2; 'auto' spróbuje najlepszego odgadnięcia"/>
       <description lang="fr" text="Nom explicite de l'écran 2; 'auto' essaiera le plus approprié"/>
       <description lang="pt" text="Nome explícito da tela 2; 'auto' ira tentar o mais apropriado"/>
+      <choice name="auto"/>
     </option>
-    <option name="aspect2" type="string" default="auto">
+    <option name="aspect2" type="combo" default="auto">
       <description lang="us" text="Aspect ratio of screen 2; 'auto' will try a best guess"/>
       <description lang="de" text="Seitenverhältnis des 2. Screens; 'auto' erzeugt es automatisch"/>
       <description lang="pl" text="Proporcja obrazu dla ekranu 2; 'auto' spróbuje najlepszego odgadnięcia"/>
       <description lang="fr" text="Ratio d'aspect pour l'écran 2; 'auto' essaiera le plus approprié"/>
       <description lang="pt" text="Razão de aspecto da tela 2; 'auto' ira tentar o mais apropriado"/>
+      <choice name="auto"/>
     </option>
-    <option name="resolution2" type="string" default="auto">
+    <option name="resolution2" type="combo" default="auto">
       <description lang="us" text="Preferred resolution for screen 2; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
       <description lang="de" text="Vorgezogene Auflösung des 2. Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
       <description lang="pl" text="Preferowana rozdzielczość dla ekranu 2; format to SZEROKOŚĆXWYSOKOŚĆ[@ODŚWIEŻANIE] lub 'auto'"/>
       <description lang="fr" text="Résolution préférée pour l'écran 2; le format est LARGEURxHAUTEUR[@RAFRAICHISSEMENT] sinon 'auto'"/>
       <description lang="pt" text="Resolução preferencial da tela 2; o formato é LARGURAxALTURA[@TAXADEREFRESH] ou 'auto'"/>
+      <choice name="auto"/>
     </option>
-    <option name="view2" type="string" default="auto">
+    <option name="view2" type="combo" default="auto">
       <description lang="us" text="Preferred view for screen 2"/>
       <description lang="de" text="Vorgezogene Ansicht des 2. Screens"/>
       <description lang="pl" text="Preferowany widok dla ekranu 2"/>
       <description lang="fr" text="Vue préférée pour l'écran 2"/>
       <description lang="pt" text="Visão preferencial para a tela 2"/>
+      <choice name="auto"/>
     </option>
-    <option name="screen3" type="string" default="auto">
+    <option name="screen3" type="combo" default="auto">
       <description lang="us" text="Explicit name of screen 3; 'auto' will try a best guess"/>
       <description lang="de" text="Expliziter Name des 3. Screens; 'auto' erzeugt ihn automatisch"/>
       <description lang="pl" text="Sprecyzowana nazwa ekranu 3; 'auto' spróbuje najlepszego odgadnięcia"/>
       <description lang="fr" text="Nom explicite de l'écran 3; 'auto' essaiera le plus approprié"/>
       <description lang="pt" text="Nome explícito da tela 3; 'auto' ira tentar o mais apropriado"/>
+      <choice name="auto"/>
     </option>
-    <option name="aspect3" type="string" default="auto">
+    <option name="aspect3" type="combo" default="auto">
       <description lang="us" text="Aspect ratio of screen 3; 'auto' will try a best guess"/>
       <description lang="de" text="Seitenverhältnis des 3. Screens; 'auto' erzeugt es automatisch"/>
       <description lang="pl" text="Proporcja obrazu dla ekranu 3; 'auto' spróbuje najlepszego odgadnięcia"/>
       <description lang="fr" text="Ratio d'aspect pour l'écran 3; 'auto' essaiera le plus approprié"/>
       <description lang="pt" text="Razão de aspecto da tela 3; 'auto' ira tentar o mais apropriado"/>
+      <choice name="auto"/>
     </option>
-    <option name="resolution3" type="string" default="auto">
+    <option name="resolution3" type="combo" default="auto">
       <description lang="us" text="Preferred resolution for screen 3; format is WIDTHxHEIGHT[@REFRESHRATE] or 'auto'"/>
       <description lang="de" text="Vorgezogene Auflösung des 3. Screens; Format: BREITExHÖHE[@REFRESHRATE] oder 'auto'"/>
       <description lang="pl" text="Preferowana rozdzielczość dla ekranu 3; format to SZEROKOŚĆXWYSOKOŚĆ[@ODŚWIEŻANIE] lub 'auto'"/>
       <description lang="fr" text="Résolution préférée pour l'écran 3; le format est LARGEURxHAUTEUR[@RAFRAICHISSEMENT] sinon 'auto'"/>
       <description lang="pt" text="Resolução preferencial da tela 3; o formato é LARGURAxALTURA[@TAXADEREFRESH] ou 'auto'"/>
+      <choice name="auto"/>
     </option>
-    <option name="view3" type="string" default="auto">
+    <option name="view3" type="combo" default="auto">
       <description lang="us" text="Preferred view for screen 3"/>
       <description lang="de" text="Vorgezogene Ansicht des 3. Screens"/>
       <description lang="pl" text="Preferowany widok dla ekranu 3"/>
       <description lang="fr" text="Vue préférée pour l'écran 3"/>
       <description lang="pt" text="Visão preferencial para a tela 3"/>
+      <choice name="auto"/>
     </option>
   </section>
   <section name="fullscreen">
@@ -1194,61 +1248,101 @@
     <description lang="pl" text="Automatyczny wybór urządzeń"/>
     <description lang="fr" text="Choix automatique du périphérique de jeu"/>
     <description lang="pt" text="Seleção automática de dispositivos"/>
-    <option name="paddle_device" type="string" default="keyboard">
+    <option name="paddle_device" type="combo" default="keyboard">
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a paddle control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Paddle-Controller verfügbar ist"/>
       <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest manipulator drążkowy"/>
       <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle au paddle est disponible"/>
       <description lang="pt" text="Habilitar (none|keyboard|mouse|lightgun|joystick) se um controle paddle estiver presente"/>
+      <choice name="none"/>
+      <choice name="keyboard"/>
+      <choice name="mouse"/>
+      <choice name="lightgun"/>
+      <choice name="joystick"/>
     </option>
-    <option name="adstick_device" type="string" default="keyboard">
+    <option name="adstick_device" type="combo" default="keyboard">
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if an analog joystick control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls analoger Joystick-Controller verfügbar ist"/>
       <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest joystick analogowy"/>
       <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle au joystick analogique est disponible"/>
       <description lang="pt" text="Habilitar (none|keyboard|mouse|lightgun|joystick) se um joystick analógico estiver presente"/>
+      <choice name="none"/>
+      <choice name="keyboard"/>
+      <choice name="mouse"/>
+      <choice name="lightgun"/>
+      <choice name="joystick"/>
     </option>
-    <option name="pedal_device" type="string" default="keyboard">
+    <option name="pedal_device" type="combo" default="keyboard">
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a pedal control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Pedal-Controller verfügbar ist"/>
       <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest manipulator pedałowy"/>
       <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle de type pédale d'accélérateur est disponible"/>
       <description lang="pt" text="Habilitar (none|keyboard|mouse|lightgun|joystick) se um controle pedal estiver presente"/>
+      <choice name="none"/>
+      <choice name="keyboard"/>
+      <choice name="mouse"/>
+      <choice name="lightgun"/>
+      <choice name="joystick"/>
     </option>
-    <option name="dial_device" type="string" default="keyboard">
+    <option name="dial_device" type="combo" default="keyboard">
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a dial control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Dial-Controller verfügbar ist"/>
       <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest manipulator tarczowy"/>
       <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle au dial est disponible"/>
       <description lang="pt" text="Habilitar (none|keyboard|mouse|lightgun|joystick) se um controle dial estiver presente"/>
+      <choice name="none"/>
+      <choice name="keyboard"/>
+      <choice name="mouse"/>
+      <choice name="lightgun"/>
+      <choice name="joystick"/>
     </option>
-    <option name="trackball_device" type="string" default="keyboard">
+    <option name="trackball_device" type="combo" default="keyboard">
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a trackball control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Trackball-Controller verfügbar ist"/>
       <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest trackball"/>
       <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle au trackball est disponible"/>
       <description lang="pt" text="Habilitar (none|keyboard|mouse|lightgun|joystick) se um controle trackball estiver presente"/>
+      <choice name="none"/>
+      <choice name="keyboard"/>
+      <choice name="mouse"/>
+      <choice name="lightgun"/>
+      <choice name="joystick"/>
     </option>
-    <option name="lightgun_device" type="string" default="keyboard">
+    <option name="lightgun_device" type="combo" default="keyboard">
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a lightgun control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Lightgun-Controller verfügbar ist"/>
       <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest pistolet świetlny"/>
       <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle au Lightgun est disponible"/>
       <description lang="pt" text="Habilitar (none|keyboard|mouse|lightgun|joystick) se um controle lightgun estiver presente"/>
+      <choice name="none"/>
+      <choice name="keyboard"/>
+      <choice name="mouse"/>
+      <choice name="lightgun"/>
+      <choice name="joystick"/>
     </option>
-    <option name="positional_device" type="string" default="keyboard">
+    <option name="positional_device" type="combo" default="keyboard">
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a positional control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Positional-Controller verfügbar ist"/>
       <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecny jest manipulator pozycyjny"/>
       <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle de position est disponible"/>
       <description lang="pt" text="Habilitar (none|keyboard|mouse|lightgun|joystick) se um controle posicional estiver presente"/>
+      <choice name="none"/>
+      <choice name="keyboard"/>
+      <choice name="mouse"/>
+      <choice name="lightgun"/>
+      <choice name="joystick"/>
     </option>
-    <option name="mouse_device" type="string" default="mouse">
+    <option name="mouse_device" type="combo" default="mouse">
       <description lang="us" text="Enable (none|keyboard|mouse|lightgun|joystick) if a mouse control is present"/>
       <description lang="de" text="(none|keyboard|mouse|lightgun|joystick) aktivieren, falls Maus-Controller verfügbar ist"/>
       <description lang="pl" text="Włącz (none|keyboard|mouse|lightgun|joystick), jeśli obecna jest mysz"/>
       <description lang="fr" text="Activer (none|keyboard|mouse|lightgun|joystick) si un contrôle à la souris est disponible"/>
       <description lang="pt" text="Habilitar (none|keyboard|mouse|lightgun|joystick) se um controle mouse estiver presente"/>
+      <choice name="none"/>
+      <choice name="keyboard"/>
+      <choice name="mouse"/>
+      <choice name="lightgun"/>
+      <choice name="joystick"/>
     </option>
   </section>
   <section name="keyboard_mapping">
@@ -1278,61 +1372,69 @@
     <description lang="pl" text="Mapowanie dżojstika"/>
     <description lang="fr" text="Mapping de joystick"/>
     <description lang="pt" text="Mapeamento de joystick"/>
-    <option name="joy_idx1" type="string" default="auto">
+    <option name="joy_idx1" type="combo" default="auto">
       <description lang="us" text="Name of joystick mapped to joystick #1"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #1 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #1"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #1"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #1"/>
+      <choice name="auto"/>
     </option>
-    <option name="joy_idx2" type="string" default="auto">
+    <option name="joy_idx2" type="combo" default="auto">
       <description lang="us" text="Name of joystick mapped to joystick #2"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #2 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #2"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #2"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #2"/>
+      <choice name="auto"/>
     </option>
-    <option name="joy_idx3" type="string" default="auto">
+    <option name="joy_idx3" type="combo" default="auto">
       <description lang="us" text="Name of joystick mapped to joystick #3"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #3 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #3"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #3"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #3"/>
+      <choice name="auto"/>
     </option>
-    <option name="joy_idx4" type="string" default="auto">
+    <option name="joy_idx4" type="combo" default="auto">
       <description lang="us" text="Name of joystick mapped to joystick #4"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #4 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #4"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #4"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #4"/>
+      <choice name="auto"/>
     </option>
-    <option name="joy_idx5" type="string" default="auto">
+    <option name="joy_idx5" type="combo" default="auto">
       <description lang="us" text="Name of joystick mapped to joystick #5"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #5 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #5"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #5"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #5"/>
+      <choice name="auto"/>
     </option>
-    <option name="joy_idx6" type="string" default="auto">
+    <option name="joy_idx6" type="combo" default="auto">
       <description lang="us" text="Name of joystick mapped to joystick #6"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #6 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #6"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #6"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #6"/>
+      <choice name="auto"/>
     </option>
-    <option name="joy_idx7" type="string" default="auto">
+    <option name="joy_idx7" type="combo" default="auto">
       <description lang="us" text="Name of joystick mapped to joystick #7"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #7 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #7"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #7"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #7"/>
+      <choice name="auto"/>
     </option>
-    <option name="joy_idx8" type="string" default="auto">
+    <option name="joy_idx8" type="combo" default="auto">
       <description lang="us" text="Name of joystick mapped to joystick #8"/>
       <description lang="de" text="Name des Joytsicks, der als Joystick #8 gemapped wird"/>
       <description lang="pl" text="Nazwa dzojstika, który będzie mapowany jako dżojstik #8"/>
       <description lang="fr" text="Nom du joystick mappé en joystick #8"/>
       <description lang="pt" text="Nome do joystick mapeado para o joystick #8"/>
+      <choice name="auto"/>
     </option>
     <option name="sixaxis" type="bool" default="false">
       <description lang="us" text="Use special handling for PS3 Sixaxis controllers"/>
@@ -1348,19 +1450,27 @@
     <description lang="pl" text="Opcje sterowników SDL"/>
     <description lang="fr" text="Options du pilote SDL"/>
     <description lang="pt" text="Opções do driver SDL"/>
-    <option name="videodriver" type="string" default="auto">
+    <option name="videodriver" type="combo" default="auto">
       <description lang="us" text="SDL video driver to use ('x11', 'directfb', ... or 'auto' for SDL default)"/>
       <description lang="de" text="Einzusetzender SDL Video Treiber ('x11', 'directfb', ... oder 'auto' für SDL Standard)"/>
       <description lang="pl" text="Używany sterownik obrazu SDL ('x11', 'directfb', ... lub 'auto' dla domyślnego SDL)"/>
       <description lang="fr" text="pilote SDL video à utiliser ('x11', 'directfb', ... ou 'auto' pour réglage par défaut)"/>
       <description lang="pt" text="Driver de vídeo do SDL à utilizar ('x11', 'directfb', ... ou 'auto' para usar o padrão)"/>
+      <choice name="auto"/>
+      <choice name="x11"/>
+      <choice name="directfb"/>
     </option>
-    <option name="audiodriver" type="string" default="auto">
+    <option name="audiodriver" type="combo" default="auto">
       <description lang="us" text="SDL audio driver to use ('alsa', 'arts', ... or 'auto' for SDL default)"/>
       <description lang="de" text="Einzusetzender SDL Audio Treiber ('alsa', 'arts', ... oder 'auto' für SDL Standard)"/>
       <description lang="pl" text="Używany sterownik dźwięku SDL ('alsa', 'arts', ... lub 'auto' dla domyślnego SDL)"/>
       <description lang="fr" text="pilote SDL audio à utiliser ('alsa', 'arts', ... ou 'auto' pour réglage par défaut)"/>
       <description lang="pt" text="Driver de áudio do SDL à utilizar ('alsa', 'arts', ... ou 'auto' para usar o padrão)"/>
+      <choice name="auto"/>
+      <choice name="alsa"/>
+      <choice name="arts"/>
+      <choice name="esd"/>
+      <choice name="pulse"/>
     </option>
     <option name="gl_lib" type="file" default="auto" default.Darwin="/System/Library/Frameworks/OpenGL.framework/Libraries/libGL.dylib">
       <description lang="us" text="Alternative libGL.so to use; 'auto' for system default"/>
