@@ -316,7 +316,7 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
   settingsGroup = group;
   delegate = new EmulatorOptionDelegate(this);
   setColumnCount(2);  
-  setItemDelegateForColumn(1, delegate);
+  setItemDelegateForColumn(QMC2_EMUOPT_COLUMN_VALUE, delegate);
   setAlternatingRowColors(true);
   headerItem()->setText(0, tr("Option / Attribute"));
   headerItem()->setText(1, tr("Value"));
