@@ -26,25 +26,8 @@ class EmulatorOptionDelegate : public QStyledItemDelegate
     virtual void setModelData(QWidget *, QAbstractItemModel *, const QModelIndex &) const;
     virtual void updateEditorGeometry(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const;
 
-    static QString boolToString(bool b)
-    {
-      QString result;
-      if ( b )
-        result = "true";
-      else
-        result = "false";
-      return result;
-    }
-
-    static bool stringToBool(QString s)
-    {
-      bool result;
-      if ( s == "true" )
-        result = TRUE;
-      else
-        result = FALSE;
-      return result;
-    }
+    static QString boolToString(bool b) { return (b ? QString("true") : QString("false")); }
+    static bool stringToBool(QString s) { return (s == "true" ? true : false); }
 
   public slots:
     void dataChanged();
@@ -60,7 +43,7 @@ class EmulatorOption
     QTreeWidgetItem *item;
 
     EmulatorOption() {
-      valid = FALSE;
+      valid = false;
     };
     EmulatorOption(QString n, QString sn, QString t, QString dv, QString d, QString v, QTreeWidgetItem *i, bool va, QStringList c = QStringList(), bool vis = true) {
       name = n;
@@ -116,8 +99,9 @@ class EmulatorOptions : public QTreeWidget
     QStringList readChoices(QXmlStreamReader *);
 
   public slots:
-    void load(bool overwrite = FALSE);
+    void load(bool overwrite = false);
     void save();
+    void addChoices(QString, QStringList);
     void createTemplateMap();
     void checkTemplateMap();
     void createMap();

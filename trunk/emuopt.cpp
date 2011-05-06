@@ -602,6 +602,31 @@ void EmulatorOptions::save()
   changed = false;
 }
 
+void EmulatorOptions::addChoices(QString optionName, QStringList choices)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::addChoices(QString optionName = %1, QStringList choices = ...)").arg(optionName));
+#endif
+
+	// IMPORTANT: it's assumed that 'optionName' refers to a combo-type option -- this isn't checked and will thus lead to crashes if the assumption is wrong!
+	bool optFound = false;
+	foreach (QString section, optionsMap.keys()) {
+		foreach (EmulatorOption emuOpt, optionsMap[section]) {
+			if ( emuOpt.name == optionName ) {
+				ComboBoxEditWidget *comboWidget = (ComboBoxEditWidget *)itemWidget(emuOpt.item, QMC2_EMUOPT_COLUMN_VALUE);
+				if ( comboWidget ) {
+					QString value = comboWidget->comboBoxValue->lineEdit()->text();
+					comboWidget->comboBoxValue->insertItems(comboWidget->comboBoxValue->count(), choices);
+					comboWidget->comboBoxValue->lineEdit()->setText(value);
+				}
+				optFound = true;
+			}
+			if ( optFound ) break;
+		}
+		if ( optFound ) break;
+	}
+}
+
 void EmulatorOptions::createMap()
 {
 #ifdef QMC2_DEBUG

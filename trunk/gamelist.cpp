@@ -103,6 +103,7 @@ extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 extern QTreeWidgetItem *qmc2LastYouTubeItem;
 #endif
+extern QMap<QString, int> qmc2XmlGamePositionMap;
 
 // local global variables
 QStringList Gamelist::phraseTranslatorList;
@@ -1557,6 +1558,7 @@ void Gamelist::parse()
 
   xmlLines.clear();
   xmlGamePositionMap.clear();
+  qmc2XmlGamePositionMap.clear();
 #if defined(QMC2_EMUTYPE_MAME)
   xmlLines = gamelistBuffer.remove(0, gamelistBuffer.indexOf("<mame build")).split("\n");
 #elif defined(QMC2_EMUTYPE_MESS)

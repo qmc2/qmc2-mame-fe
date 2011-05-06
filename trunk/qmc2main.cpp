@@ -243,6 +243,7 @@ QString qmc2DirectoryEditStartPath = "";
 QNetworkAccessManager *qmc2NetworkAccessManager = NULL;
 int qmc2LastListIndex = 0;
 QAbstractItemView::ScrollHint qmc2CursorPositioningMode = QAbstractItemView::PositionAtTop;
+QMap<QString, int> qmc2XmlGamePositionMap;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -3229,7 +3230,16 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #elif defined(QMC2_EMUTYPE_MESS)
         qmc2EmulatorOptions = new EmulatorOptions("MESS/Configuration/" + gameName, configWidget);
 #endif
+
         qmc2EmulatorOptions->load();
+
+#if defined(QMC2_EMUTYPE_MAME)
+        qmc2EmulatorOptions->addChoices("bios", getXmlChoices(gameName, "biosset", "name"));
+#elif defined(QMC2_EMUTYPE_MESS)
+        qmc2EmulatorOptions->addChoices("bios", getXmlChoices(gameName, "biosset", "name"));
+        qmc2EmulatorOptions->addChoices("ramsize", getXmlChoices(gameName, "ramoption"));
+#endif
+
         layout->addWidget(qmc2EmulatorOptions);
         layout->setContentsMargins(left, top, right, bottom);
 
@@ -3414,6 +3424,60 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       qmc2LastConfigItem = NULL;
       break;
   }
+}
+
+QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, QString optionAttribute)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: &MainWindow::getXmlChoices(QString gameName = %1, QString optionElement = %2, QString optionAttribute = %3)").arg(gameName).arg(optionElement).arg(optionAttribute));
+#endif
+
+	static QStringList xmlChoices;
+	xmlChoices.clear();
+	int i = qmc2XmlGamePositionMap[gameName];
+	if ( i <= 0 ) {
+#if defined(QMC2_EMUTYPE_MAME)
+		QString s = "<game name=\"" + gameName + "\"";
+#elif defined(QMC2_EMUTYPE_MESS)
+		QString s = "<machine name=\"" + gameName + "\"";
+#endif
+		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
+		if ( qmc2Gamelist->xmlLines[i].contains(s) )
+			qmc2XmlGamePositionMap[gameName] = i;
+	}
+	if ( i > 0 ) {
+#if defined(QMC2_EMUTYPE_MAME)
+		while ( !qmc2Gamelist->xmlLines[i].contains("</game>") ) {
+#elif defined(QMC2_EMUTYPE_MESS)
+		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") ) {
+#endif
+			QString xmlLine = qmc2Gamelist->xmlLines[i++].simplified();
+
+			int index = xmlLine.indexOf("<" + optionElement);
+			if ( index >= 0 ) {
+				if ( optionAttribute.isEmpty() ) {
+					index = xmlLine.indexOf(">", index);
+					if ( index >= 0 ) {
+						xmlLine.remove(0, index + 1);
+						xmlLine.replace("</" + optionElement + ">", "");
+						xmlChoices << xmlLine;
+					}
+				} else {
+					QString prefix = optionAttribute + "=\"";
+					index = xmlLine.indexOf(prefix);
+					if ( index >= 0 ) {
+						xmlLine.remove(0, index + prefix.length());
+						index = xmlLine.indexOf("\"");
+						if ( index >= 0 )
+							xmlChoices << xmlLine.left(index);
+					}
+				}
+			}
+		}
+	}
+	if ( !xmlChoices.isEmpty() )
+		xmlChoices.insert(0, QString());
+	return xmlChoices;
 }
 
 void MainWindow::on_emuSelector_currentIndexChanged(const QString &text)
