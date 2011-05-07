@@ -423,12 +423,12 @@ void Gamelist::load()
   qApp->processEvents();
   bool commandProcStarted = FALSE;
   int retries = 0;
-  bool started = false;
 #if defined(QMC2_EMUTYPE_MAME)
   commandProc.start(qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString(), args);
 #elif defined(QMC2_EMUTYPE_MESS)
   commandProc.start(qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString(), args);
 #endif
+  bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
   while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
     started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
     qApp->processEvents();
@@ -514,12 +514,12 @@ void Gamelist::load()
   qApp->processEvents();
   commandProcStarted = FALSE;
   retries = 0;
-  started = false;
 #if defined(QMC2_EMUTYPE_MAME)
   commandProc.start(qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString(), args);
 #elif defined(QMC2_EMUTYPE_MESS)
   commandProc.start(qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString(), args);
 #endif
+  started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
   while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
     started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
     qApp->processEvents();

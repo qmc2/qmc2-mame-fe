@@ -924,17 +924,17 @@ void EmulatorOptions::checkTemplateMap()
 
   args << "-noreadconfig" << "-showconfig";
   qApp->processEvents();
+  bool commandProcStarted = false;
+  int retries = 0;
 #if defined(QMC2_EMUTYPE_MAME)
   commandProc.start(qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString(), args);
 #elif defined(QMC2_EMUTYPE_MESS)
   commandProc.start(qmc2Config->value("MESS/FilesAndDirectories/ExecutableFile").toString(), args);
 #endif
-  bool commandProcStarted = false;
-  int retries = 0;
-  bool started = false;
+  bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
   while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
-    qApp->processEvents();
     started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
+    qApp->processEvents();
   }
   if ( started ) {
     commandProcStarted = true;
@@ -945,9 +945,9 @@ void EmulatorOptions::checkTemplateMap()
     }
   } else {
 #if defined(QMC2_EMUTYPE_MAME)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame (%1 seconds), giving up").arg(QMC2_PROCESS_POLL_RETRIES * QMC2_PROCESS_POLL_TIME_LONG / 1000));
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MAME executable within a reasonable time frame, giving up"));
 #elif defined(QMC2_EMUTYPE_MESS)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame (%1 seconds), giving up").arg(QMC2_PROCESS_POLL_RETRIES * QMC2_PROCESS_POLL_TIME_LONG / 1000));
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
 #endif
     return;
   }
