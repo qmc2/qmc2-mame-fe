@@ -3758,12 +3758,12 @@ void MainWindow::action_embedEmulator_triggered()
     while ( winIdList.count() < 1 && xwininfoRetries++ < QMC2_MAX_XWININFO_RETRIES ) {
       QProcess commandProc;
       bool commandProcStarted = FALSE;
-      commandProc.start(command, args);
       int retries = 0;
-      bool started = false;
+      commandProc.start(command, args);
+      bool started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME);
       while ( !started && retries++ < QMC2_PROCESS_POLL_RETRIES ) {
-	qApp->processEvents();
         started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
+	qApp->processEvents();
       }
       if ( started ) {
         commandProcStarted = TRUE;
