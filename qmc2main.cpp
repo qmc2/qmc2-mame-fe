@@ -3441,9 +3441,16 @@ QStringList &MainWindow::getXmlChoices(QString gameName, QString optionElement, 
 #elif defined(QMC2_EMUTYPE_MESS)
 		QString s = "<machine name=\"" + gameName + "\"";
 #endif
-		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-		if ( qmc2Gamelist->xmlLines[i].contains(s) )
-			qmc2XmlGamePositionMap[gameName] = i;
+		int xmlLinesCount = qmc2Gamelist->xmlLines.count();
+		i = 0;
+		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) {
+			i++;
+			if ( i >= xmlLinesCount )
+				break;
+		}
+		if ( i < xmlLinesCount )
+			if ( qmc2Gamelist->xmlLines[i].contains(s) )
+				qmc2XmlGamePositionMap[gameName] = i;
 	}
 	if ( i > 0 ) {
 #if defined(QMC2_EMUTYPE_MAME)

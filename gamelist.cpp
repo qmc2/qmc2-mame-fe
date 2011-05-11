@@ -976,8 +976,13 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
     qApp->processEvents();
     gameDescription.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;");
     QString s = "<description>" + gameDescription + "</description>";
-    while ( !xmlLines[gamePos].contains(s) && gamePos < xmlLines.count() ) gamePos++;
-    if ( xmlLines[gamePos].contains(s) ) {
+    gamePos = 0;
+    int xmlLinesCount = xmlLines.count();
+    while ( !xmlLines[gamePos].contains(s) ) {
+      gamePos++;
+      if ( gamePos > xmlLinesCount ) break;
+    }
+    if ( gamePos < xmlLinesCount && xmlLines[gamePos].contains(s) ) {
       xmlGamePositionMap[gameName] = gamePos;
     } else {
 #if defined(QMC2_EMUTYPE_MAME)
@@ -988,6 +993,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       return;
     }
   }
+  qApp->processEvents();
 
   QTreeWidgetItem *childItem = item->takeChild(0);
   delete childItem;
