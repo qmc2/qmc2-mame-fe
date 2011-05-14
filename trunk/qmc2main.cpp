@@ -643,10 +643,10 @@ MainWindow::MainWindow(QWidget *parent)
     treeWidgetGamelist->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState").toByteArray());
     treeWidgetHierarchy->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState").toByteArray());
 #if defined(QMC2_EMUTYPE_MAME)
-    treeWidgetCategoryView->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
     treeWidgetCategoryView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState").toByteArray());
-    treeWidgetVersionView->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
+    treeWidgetCategoryView->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
     treeWidgetVersionView->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState").toByteArray());
+    treeWidgetVersionView->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
 #endif
     treeWidgetEmulators->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState").toByteArray());
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Visible").toBool() ) {
