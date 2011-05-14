@@ -23,6 +23,8 @@ inf: informational only
   <li>fix: MESS targets: avoid crash when exiting while a device setup is open</li>
   <li>fix: emulator configuration: correctly position the text cursor for 'int' and 'float' option types as well</li>
   <li>fix: corrected hiding of category-/version-columns in the category-/version-views</li>
+  <li>fix: embedder: under certain window-managers (i.e. KDE4 &gt;= 4.6) the snapshot-viewer wasn't correctly updated -- fixed by adding an explicit paintEvent() method which just repaints the background brush</li> 
+  <li>fix: Win32: emulator control panel: hide LED0-, LED1- and status-columns, because notifiers aren't supported on Windows (yet)</li>
   <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.142u3 (new option <i>menu</i> for MAME, removed option <i>uimodekey</i> for MAME)</li>
   <li>imp: SDLMESS/MESS templates updated to 0.142u3</li>
   <li>imp: ghost image enhanced, including a derived 'no video' pendant</li>

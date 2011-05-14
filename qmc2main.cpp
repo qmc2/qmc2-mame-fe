@@ -411,10 +411,6 @@ MainWindow::MainWindow(QWidget *parent)
   actionLaunchQMC2MESS->setText(tr("QMC2 for MESS"));
   actionLaunchQMC2MESS->setToolTip(tr("Launch QMC2 for MESS"));
   actionLaunchQMC2MESS->setStatusTip(tr("Launch QMC2 for MESS"));
-  // output notifiers are not supported on Windows
-  treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_STATUS);
-  treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED0);
-  treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED1);
 #endif
 
   // FIXME: remove this when arcade mode is ready
@@ -485,6 +481,9 @@ MainWindow::MainWindow(QWidget *parent)
 #if defined(QMC2_EMUTYPE_MAME)
   actionLaunchQMC2MAME->setVisible(FALSE);
   qmc2MAWSCache.setMaxCost(QMC2_MAWS_CACHE_SIZE);
+#if defined(Q_WS_WIN)
+  treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_GAME, tr("Game"));
+#endif
 #elif defined(QMC2_EMUTYPE_MESS)
   actionLaunchQMC2MESS->setVisible(FALSE);
   actionClearMAWSCache->setVisible(FALSE);
@@ -501,7 +500,6 @@ MainWindow::MainWindow(QWidget *parent)
   listWidgetFavorites->setStatusTip(tr("Favorite machines"));
   listWidgetPlayed->setToolTip(tr("Machines last played"));
   listWidgetPlayed->setStatusTip(tr("Machines last played"));
-  treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, tr("Machine / Notifier"));
   actionPlay->setToolTip(tr("Play current machine"));
   actionPlay->setStatusTip(tr("Play current machine"));
   actionClearGamelistCache->setText(tr("Clear machine list cache"));
@@ -511,6 +509,11 @@ MainWindow::MainWindow(QWidget *parent)
 #if defined(Q_WS_X11)
   actionPlayEmbedded->setToolTip(tr("Play current machine (embedded)"));
   actionPlayEmbedded->setStatusTip(tr("Play current machine (embedded)"));
+#endif
+#if defined(Q_WS_WIN)
+  treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, tr("Machine"));
+#else
+  treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, tr("Machine / Notifier"));
 #endif
   actionToFavorites->setToolTip(tr("Add current machine to favorites"));
   actionToFavorites->setStatusTip(tr("Add current machine to favorites"));
@@ -649,6 +652,12 @@ MainWindow::MainWindow(QWidget *parent)
     treeWidgetVersionView->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
 #endif
     treeWidgetEmulators->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState").toByteArray());
+#if defined(Q_WS_WIN)
+    // output notifiers are not supported on Windows
+    treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_STATUS);
+    treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED0);
+    treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED1);
+#endif
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Visible").toBool() ) {
       on_actionCheckPreviews_activated();
       qmc2ImageChecker->tabWidgetImageChecker->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/CurrentTab", 0).toInt());
