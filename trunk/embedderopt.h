@@ -27,6 +27,7 @@ class SnapshotViewer : public QWidget
     void mousePressEvent(QMouseEvent *);
     void contextMenuEvent(QContextMenuEvent *);
     void keyPressEvent(QKeyEvent *);
+    void paintEvent(QPaintEvent *);
 };
 
 class EmbedderOptions : public QWidget, public Ui::EmbedderOptions

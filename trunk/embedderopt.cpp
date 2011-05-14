@@ -300,4 +300,11 @@ void SnapshotViewer::saveAs()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SnapshotViewer/LastStoragePath", storagePath);
   }
 }
+
+void SnapshotViewer::paintEvent(QPaintEvent *e)
+{
+  QPainter p(this);
+  p.eraseRect(rect());
+  p.end();
+}
 #endif
