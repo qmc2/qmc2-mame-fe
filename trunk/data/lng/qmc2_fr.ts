@@ -8340,12 +8340,6 @@ Re-essayer l&apos;embarquement?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="334"/>
-        <location filename="../../options.cpp" line="341"/>
-        <source>No style-sheet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../options.cpp" line="768"/>
         <source>image cache size set to %1 MB</source>
         <translation>taille du cache d&apos;images réglé à %1 MB</translation>
@@ -8488,6 +8482,12 @@ Re-essayer l&apos;embarquement?</translation>
         <location filename="../../options.cpp" line="249"/>
         <source>Play (embedded)</source>
         <translation>Jouer (embarqué)</translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="334"/>
+        <location filename="../../options.cpp" line="341"/>
+        <source>No style sheet</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="899"/>

@@ -8572,7 +8572,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="334"/>
         <location filename="../../options.cpp" line="341"/>
-        <source>No style-sheet</source>
+        <source>No style sheet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

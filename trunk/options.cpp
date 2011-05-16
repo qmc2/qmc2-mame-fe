@@ -331,14 +331,14 @@ Options::Options(QWidget *parent)
 
   // style-sheet reset action
   QMenu *styleSheetButtonMenu = new QMenu(0);
-  s = tr("No style-sheet");
+  s = tr("No style sheet");
   action = styleSheetButtonMenu->addAction(s);
   action->setToolTip(s); action->setStatusTip(s);
   toolButtonBrowseStyleSheet->setMenu(styleSheetButtonMenu);
   connect(action, SIGNAL(triggered()), lineEditStyleSheet, SLOT(clear()));
 
 #if QT_VERSION >= 0x040700
-  lineEditStyleSheet->setPlaceholderText(tr("No style-sheet"));
+  lineEditStyleSheet->setPlaceholderText(tr("No style sheet"));
   lineEditFont->setPlaceholderText(tr("Default"));
   lineEditLogFont->setPlaceholderText(tr("Default"));
 #endif
