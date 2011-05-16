@@ -109,6 +109,7 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonBrowseROMStateCacheFile_clicked();
     void on_toolButtonBrowseMAWSCacheDirectory_clicked();
     void on_toolButtonBrowseSoftwareListCache_clicked();
+    void on_toolButtonBrowseGeneralSoftwareFolder_clicked();
     void on_toolButtonBrowsePreviewDirectory_clicked();
     void on_toolButtonBrowsePreviewFile_clicked();
     void on_toolButtonBrowseFlyerDirectory_clicked();

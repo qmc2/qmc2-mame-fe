@@ -850,7 +850,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>179</width>
-                <height>493</height>
+                <height>496</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2108,7 +2108,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>437</width>
-                <height>191</height>
+                <height>194</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3594,8 +3594,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>174</width>
-                <height>290</height>
+                <width>469</width>
+                <height>360</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -3846,7 +3846,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="0" colspan="3">
+                 <item row="10" column="0" colspan="3">
                   <spacer name="spacer11">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -3859,7 +3859,7 @@
                    </property>
                   </spacer>
                  </item>
-                 <item row="10" column="0" colspan="3">
+                 <item row="11" column="0" colspan="3">
                   <layout class="QHBoxLayout" name="layout17">
                    <item>
                     <widget class="QLabel" name="labelLegend4Pic">
@@ -4009,6 +4009,43 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="9" column="0">
+                  <widget class="QLabel" name="labelGeneralSoftwareFolder">
+                   <property name="text">
+                    <string>General software folder</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="9" column="1">
+                  <widget class="QLineEdit" name="lineEditGeneralSoftwareFolder">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Directory used as the default software folder for the MESS device configurator</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="9" column="2">
+                  <widget class="QToolButton" name="toolButtonBrowseGeneralSoftwareFolder">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse general software folder</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -4038,8 +4075,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>145</width>
-                <height>211</height>
+                <width>469</width>
+                <height>360</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22">
@@ -4518,6 +4555,8 @@
   <tabstop>toolButtonBrowseMAWSCacheDirectory</tabstop>
   <tabstop>lineEditSoftwareListCache</tabstop>
   <tabstop>toolButtonBrowseSoftwareListCache</tabstop>
+  <tabstop>lineEditGeneralSoftwareFolder</tabstop>
+  <tabstop>toolButtonBrowseGeneralSoftwareFolder</tabstop>
   <tabstop>tableWidgetRegisteredEmulators</tabstop>
   <tabstop>toolButtonAddEmulator</tabstop>
   <tabstop>toolButtonSaveEmulator</tabstop>

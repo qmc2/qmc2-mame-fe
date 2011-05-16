@@ -168,21 +168,21 @@ Options::Options(QWidget *parent)
   setupUi(this);
 
 #if !defined(QMC2_SHOWMEMINFO)
-  checkBoxMemoryIndicator->setVisible(FALSE);
+  checkBoxMemoryIndicator->setVisible(false);
 #endif
 
 #if !defined(QMC2_VARIANT_LAUNCHER)
-  checkBoxMinimizeOnVariantLaunch->setVisible(FALSE);
-  checkBoxExitOnVariantLaunch->setVisible(FALSE);
+  checkBoxMinimizeOnVariantLaunch->setVisible(false);
+  checkBoxExitOnVariantLaunch->setVisible(false);
 #endif
 
 #if defined(QMC2_EMUTYPE_MESS)
-  toolButtonBrowseEmuInfoDB->setVisible(FALSE);
-  checkBoxProcessEmuInfoDB->setVisible(FALSE);
-  checkBoxCompressEmuInfoDB->setVisible(FALSE);
-  lineEditEmuInfoDB->setVisible(FALSE);
-  labelEmuInfoDB->setVisible(FALSE);
-  labelEmuInfoDBPic->setVisible(FALSE);
+  toolButtonBrowseEmuInfoDB->setVisible(false);
+  checkBoxProcessEmuInfoDB->setVisible(false);
+  checkBoxCompressEmuInfoDB->setVisible(false);
+  lineEditEmuInfoDB->setVisible(false);
+  labelEmuInfoDB->setVisible(false);
+  labelEmuInfoDBPic->setVisible(false);
   labelGameInfoDB->setText(tr("Machine info DB"));
   checkBoxProcessGameInfoDB->setText(tr("Load machine info DB"));
   checkBoxProcessGameInfoDB->setToolTip(tr("Load machine information database (MESS sysinfo.dat)"));
@@ -195,26 +195,26 @@ Options::Options(QWidget *parent)
   spinBoxResponsiveness->setToolTip(tr("Number of item insertions between machine list updates during reload (higher means faster, but makes the GUI less responsive)"));
   spinBoxUpdateDelay->setToolTip(tr("Delay update of any machine details (preview, flyer, info, configuration, ...) by how many milliseconds?"));
   checkBoxSortOnline->setToolTip(tr("Sort machine list while reloading (slower)"));
-  checkBoxScaledCabinet->setVisible(FALSE);
-  checkBoxScaledController->setVisible(FALSE);
-  checkBoxScaledMarquee->setVisible(FALSE);
-  checkBoxScaledTitle->setVisible(FALSE);
-  radioButtonIconSelect->setVisible(FALSE);
-  radioButtonCabinetSelect->setVisible(FALSE);
-  radioButtonControllerSelect->setVisible(FALSE);
-  radioButtonMarqueeSelect->setVisible(FALSE);
-  radioButtonTitleSelect->setVisible(FALSE);
-  stackedWidgetIcon->setVisible(FALSE);
-  stackedWidgetCabinet->setVisible(FALSE);
-  stackedWidgetController->setVisible(FALSE);
-  stackedWidgetMarquee->setVisible(FALSE);
-  stackedWidgetTitle->setVisible(FALSE);
-  labelMAWSCacheDirectory->setVisible(FALSE);
-  lineEditMAWSCacheDirectory->setVisible(FALSE);
-  toolButtonBrowseMAWSCacheDirectory->setVisible(FALSE);
-  checkBoxUseCatverIni->setVisible(FALSE);
-  lineEditCatverIniFile->setVisible(FALSE);
-  toolButtonBrowseCatverIniFile->setVisible(FALSE);
+  checkBoxScaledCabinet->setVisible(false);
+  checkBoxScaledController->setVisible(false);
+  checkBoxScaledMarquee->setVisible(false);
+  checkBoxScaledTitle->setVisible(false);
+  radioButtonIconSelect->setVisible(false);
+  radioButtonCabinetSelect->setVisible(false);
+  radioButtonControllerSelect->setVisible(false);
+  radioButtonMarqueeSelect->setVisible(false);
+  radioButtonTitleSelect->setVisible(false);
+  stackedWidgetIcon->setVisible(false);
+  stackedWidgetCabinet->setVisible(false);
+  stackedWidgetController->setVisible(false);
+  stackedWidgetMarquee->setVisible(false);
+  stackedWidgetTitle->setVisible(false);
+  labelMAWSCacheDirectory->setVisible(false);
+  lineEditMAWSCacheDirectory->setVisible(false);
+  toolButtonBrowseMAWSCacheDirectory->setVisible(false);
+  checkBoxUseCatverIni->setVisible(false);
+  lineEditCatverIniFile->setVisible(false);
+  toolButtonBrowseCatverIniFile->setVisible(false);
   labelLegendFrontendGUI->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   labelLegendFrontendFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   labelLegendEmulatorFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
@@ -223,6 +223,9 @@ Options::Options(QWidget *parent)
 #elif defined(QMC2_EMUTYPE_MAME)
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
+  labelGeneralSoftwareFolder->setVisible(false);
+  lineEditGeneralSoftwareFolder->setVisible(false);
+  toolButtonBrowseGeneralSoftwareFolder->setVisible(false);
 #endif
 
   // shortcuts
@@ -351,7 +354,7 @@ Options::Options(QWidget *parent)
   joystickTestWidget = NULL;
   scrollArea = new QScrollArea(groupBoxCalibrationAndTest);
   scrollArea->hide();
-  scrollArea->setWidgetResizable(TRUE);
+  scrollArea->setWidgetResizable(true);
 #endif
 
   restoreCurrentConfig();
@@ -391,12 +394,12 @@ void Options::apply()
 
 #if defined(Q_WS_X11)
   if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() ) {
-    qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
-    qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
+    qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
+    qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
   }
 #else
-  qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
-  qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
+  qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
+  qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
 #endif
 
   QFont f = qmc2StartupDefaultFont;
@@ -558,6 +561,7 @@ void Options::apply()
     QTimer::singleShot(0, qmc2ROMStatusExporter, SLOT(adjustIconSizes()));
   toolButtonBrowseSoftwareListCache->setIconSize(iconSize);
 #if defined(QMC2_EMUTYPE_MESS)
+  toolButtonBrowseGeneralSoftwareFolder->setIconSize(iconSize);
   if ( qmc2MESSDeviceConfigurator ) {
     qmc2MESSDeviceConfigurator->pushButtonConfiguration->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->pushButtonNewConfiguration->setIconSize(iconSize);
@@ -649,20 +653,20 @@ void Options::on_pushButtonApply_clicked()
   static QString oldStyleSheet = "";
   QString s;
   int i;
-  bool needRestart = FALSE,
-       needResort = FALSE,
-       needRecreateTemplateMap = FALSE,
-       needFilter = FALSE,
-       needReopenPreviewFile = FALSE,
-       needReopenFlyerFile = FALSE,
-       needReopenIconFile = FALSE,
-       needReopenCabinetFile = FALSE,
-       needReopenControllerFile = FALSE,
-       needReopenMarqueeFile = FALSE,
-       needReopenTitleFile = FALSE,
-       needReopenPCBFile = FALSE,
-       needReload = FALSE,
-       needManualReload = FALSE;
+  bool needRestart = false,
+       needResort = false,
+       needRecreateTemplateMap = false,
+       needFilter = false,
+       needReopenPreviewFile = false,
+       needReopenFlyerFile = false,
+       needReopenIconFile = false,
+       needReopenCabinetFile = false,
+       needReopenControllerFile = false,
+       needReopenMarqueeFile = false,
+       needReopenTitleFile = false,
+       needReopenPCBFile = false,
+       needReload = false,
+       needManualReload = false;
 
   // General
 #ifdef BETA
@@ -731,10 +735,10 @@ void Options::on_pushButtonApply_clicked()
 
   s = lineEditStyleSheet->text();
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/StyleSheet", s);
-  bool newStyleSheet = FALSE;
+  bool newStyleSheet = false;
   if ( s != oldStyleSheet ) {
     oldStyleSheet = s;
-    newStyleSheet = TRUE;
+    newStyleSheet = true;
   }
   if ( !qmc2EarlyStartup ) {
     // style sheet
@@ -782,15 +786,15 @@ void Options::on_pushButtonApply_clicked()
   if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator").toBool() ) {
     if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired").toBool() ) {
       if ( qmc2MainWindow->hSplitter->sizes()[0] == 0 || qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_GAMELIST_INDEX ) {
-        qmc2MainWindow->labelGameStatus->setVisible(TRUE);
+        qmc2MainWindow->labelGameStatus->setVisible(true);
       } else {
-        qmc2MainWindow->labelGameStatus->setVisible(FALSE);
+        qmc2MainWindow->labelGameStatus->setVisible(false);
       }
     } else {
-      qmc2MainWindow->labelGameStatus->setVisible(TRUE);
+      qmc2MainWindow->labelGameStatus->setVisible(true);
     }
   } else
-    qmc2MainWindow->labelGameStatus->setVisible(FALSE);
+    qmc2MainWindow->labelGameStatus->setVisible(false);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/FrontendLogSize", spinBoxFrontendLogSize->value());
   qmc2MainWindow->textBrowserFrontendLog->setMaximumBlockCount(spinBoxFrontendLogSize->value());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/EmulatorLogSize", spinBoxEmulatorLogSize->value());
@@ -804,13 +808,13 @@ void Options::on_pushButtonApply_clicked()
   if ( checkBoxMemoryIndicator->isChecked() ) {
     qmc2MainWindow->progressBarMemory->setRange(0, 100);
     qmc2MainWindow->on_memoryUpdateTimer_timeout();
-    qmc2MainWindow->progressBarMemory->setVisible(TRUE);
+    qmc2MainWindow->progressBarMemory->setVisible(true);
     connect(&qmc2MainWindow->memoryUpdateTimer, SIGNAL(timeout()), qmc2MainWindow, SLOT(on_memoryUpdateTimer_timeout()));
     qmc2MainWindow->memoryUpdateTimer.start(QMC2_MEMORY_UPDATE_TIME);
   } else {
     qmc2MainWindow->memoryUpdateTimer.stop();
     disconnect(&qmc2MainWindow->memoryUpdateTimer);
-    qmc2MainWindow->progressBarMemory->setVisible(FALSE);
+    qmc2MainWindow->progressBarMemory->setVisible(false);
   }
 #endif
 
@@ -878,17 +882,17 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/EmuInfoDB", lineEditEmuInfoDB->text());
   config->setValue("MAME/FilesAndDirectories/CatverIni", lineEditCatverIniFile->text());
   bool catverUsed = checkBoxUseCatverIni->isChecked();
-  needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", FALSE).toBool() != catverUsed );
+  needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", false).toBool() != catverUsed );
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", catverUsed);
   if ( catverUsed ) {
     qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
     qmc2MainWindow->treeWidgetGamelist->showColumn(QMC2_GAMELIST_COLUMN_VERSION);
     qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
     qmc2MainWindow->treeWidgetHierarchy->showColumn(QMC2_GAMELIST_COLUMN_VERSION);
-    qmc2MainWindow->actionViewByCategory->setVisible(TRUE);
-    qmc2MainWindow->actionViewByCategory->setEnabled(TRUE);
-    qmc2MainWindow->actionViewByVersion->setVisible(TRUE);
-    qmc2MainWindow->actionViewByVersion->setEnabled(TRUE);
+    qmc2MainWindow->actionViewByCategory->setVisible(true);
+    qmc2MainWindow->actionViewByCategory->setEnabled(true);
+    qmc2MainWindow->actionViewByVersion->setVisible(true);
+    qmc2MainWindow->actionViewByVersion->setEnabled(true);
     if ( comboBoxSortCriteria->count() - 1 < QMC2_SORTCRITERIA_CATEGORY ) {
       comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
       comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
@@ -906,10 +910,10 @@ void Options::on_pushButtonApply_clicked()
     qmc2MainWindow->treeWidgetGamelist->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
     qmc2MainWindow->treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_VERSION);
     qmc2MainWindow->treeWidgetHierarchy->hideColumn(QMC2_GAMELIST_COLUMN_CATEGORY);
-    qmc2MainWindow->actionViewByCategory->setVisible(FALSE);
-    qmc2MainWindow->actionViewByCategory->setEnabled(FALSE);
-    qmc2MainWindow->actionViewByVersion->setVisible(FALSE);
-    qmc2MainWindow->actionViewByVersion->setEnabled(FALSE);
+    qmc2MainWindow->actionViewByCategory->setVisible(false);
+    qmc2MainWindow->actionViewByCategory->setEnabled(false);
+    qmc2MainWindow->actionViewByVersion->setVisible(false);
+    qmc2MainWindow->actionViewByVersion->setEnabled(false);
     if ( comboBoxSortCriteria->count() > QMC2_SORTCRITERIA_VERSION ) {
       comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_VERSION);
       comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_CATEGORY);
@@ -978,7 +982,7 @@ void Options::on_pushButtonApply_clicked()
 
   // Gamelist
   bool showROMStatusIcons = checkBoxShowROMStatusIcons->isChecked();
-  needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", TRUE).toBool() != showROMStatusIcons );
+  needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() != showROMStatusIcons );
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", showROMStatusIcons);
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/SortOnline", checkBoxSortOnline->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck", checkBoxAutoTriggerROMCheck->isChecked());
@@ -1131,7 +1135,7 @@ void Options::on_pushButtonApply_clicked()
            case 1:
              qmc2GlobalEmulatorOptions->save();
              qmc2GlobalEmulatorOptions->load();
-             qmc2EmulatorOptions->load(TRUE);
+             qmc2EmulatorOptions->load(true);
              qmc2EmulatorOptions->save();
              break;
 
@@ -1171,6 +1175,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
   config->setValue("MESS/FilesAndDirectories/ROMStateCacheFile", lineEditROMStateCacheFile->text());
   config->setValue("MESS/FilesAndDirectories/SoftwareListCache", lineEditSoftwareListCache->text());
+  config->setValue("MESS/FilesAndDirectories/GeneralSoftwareFolder", lineEditGeneralSoftwareFolder->text());
   s = lineEditOptionsTemplateFile->text();
   needRecreateTemplateMap = needRecreateTemplateMap || (config->value("MESS/FilesAndDirectories/OptionsTemplateFile").toString() != s );
   config->setValue("MESS/FilesAndDirectories/OptionsTemplateFile", s);
@@ -1179,7 +1184,7 @@ void Options::on_pushButtonApply_clicked()
 #endif
 
   // Additional emulators
-  tableWidgetRegisteredEmulators->setSortingEnabled(FALSE);
+  tableWidgetRegisteredEmulators->setSortingEnabled(false);
 #if defined(QMC2_EMUTYPE_MAME)
   config->remove("MAME/RegisteredEmulators");
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -1206,11 +1211,11 @@ void Options::on_pushButtonApply_clicked()
 #endif
     }
   }
-  tableWidgetRegisteredEmulators->setSortingEnabled(TRUE);
+  tableWidgetRegisteredEmulators->setSortingEnabled(true);
 
   // sync settings (write settings to disk) and apply
   config->sync();
-  applied = TRUE;
+  applied = true;
   if ( qmc2GuiReady )
     apply();
 
@@ -1262,7 +1267,7 @@ void Options::on_pushButtonApply_clicked()
     qmc2MainWindow->on_actionRecreateTemplateMap_activated();
 
   if ( needResort && !needReload ) {
-    bool doResort = TRUE;
+    bool doResort = true;
 
     if ( qmc2VerifyActive ) {
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1272,7 +1277,7 @@ void Options::on_pushButtonApply_clicked()
 #endif
       qmc2SortCriteria = oldSortCriteria;
       qmc2SortOrder = oldSortOrder;
-      doResort = FALSE;
+      doResort = false;
     }
 
     if ( doResort ) {
@@ -1351,78 +1356,78 @@ void Options::on_pushButtonApply_clicked()
     case QMC2_SORT_BY_DESCRIPTION:
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_GAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_GAME, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_GAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_GAME, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
 #endif
       break;
 
     case QMC2_SORT_BY_YEAR:
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_YEAR, qmc2SortOrder);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_YEAR, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_YEAR, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_YEAR, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
 #endif
       break;
 
     case QMC2_SORT_BY_MANUFACTURER:
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_MANU, qmc2SortOrder);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_MANU, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_MANU, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_MANU, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
 #endif
       break;
 
     case QMC2_SORT_BY_NAME:
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_NAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_NAME, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_NAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_NAME, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
 #endif
       break;
 
     case QMC2_SORT_BY_ROMTYPES:
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RTYPES, qmc2SortOrder);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RTYPES, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RTYPES, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_RTYPES, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
 #endif
       break;
 
     case QMC2_SORT_BY_PLAYERS:
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_PLAYERS, qmc2SortOrder);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_PLAYERS, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_PLAYERS, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_PLAYERS, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
 #endif
       break;
 
@@ -1430,38 +1435,38 @@ void Options::on_pushButtonApply_clicked()
     case QMC2_SORT_BY_CATEGORY:
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_CATEGORY, qmc2SortOrder);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_CATEGORY, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_CATEGORY, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_CATEGORY, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
       break;
 
     case QMC2_SORT_BY_VERSION:
       qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_VERSION, qmc2SortOrder);
       qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_VERSION, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_VERSION, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_VERSION, qmc2SortOrder);
-      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(TRUE);
-      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(TRUE);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
       break;
 #endif
 
     default:
-      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(FALSE);
-      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(FALSE);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(false);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(false);
 #if defined(QMC2_EMUTYPE_MAME)
-      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(FALSE);
-      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(FALSE);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(false);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(false);
 #endif
       break;
   }
 
   if ( needFilter && !needReload ) {
-    qmc2StatesTogglesEnabled = FALSE;
+    qmc2StatesTogglesEnabled = false;
     qmc2MainWindow->actionRomStatusFilterC->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
     qmc2MainWindow->actionRomStatusFilterM->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_M]);
     qmc2MainWindow->actionRomStatusFilterI->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
@@ -1617,7 +1622,7 @@ void Options::on_pushButtonApply_clicked()
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("triggering automatic reload of machine list"));
 #endif
-    qmc2AutomaticReload = TRUE;
+    qmc2AutomaticReload = true;
     QTimer::singleShot(0, qmc2MainWindow->actionReload, SLOT(trigger()));
   }
 
@@ -1630,7 +1635,7 @@ void Options::on_pushButtonDefault_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonDefault_clicked()");
 #endif
 
-  restoreCurrentConfig(TRUE);
+  restoreCurrentConfig(true);
 }
 
 void Options::restoreCurrentConfig(bool useDefaultSettings)
@@ -1657,39 +1662,39 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   // Frontend
 
   // GUI
-  checkBoxToolbar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
-  checkBoxSaveLayout->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout", TRUE).toBool());
-  checkBoxRestoreLayout->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout", TRUE).toBool());
-  checkBoxSaveGameSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection", TRUE).toBool());
-  checkBoxRestoreGameSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection", TRUE).toBool());
-  checkBoxStatusbar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", TRUE).toBool());
-  checkBoxStandardColorPalette->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", TRUE).toBool());
-  checkBoxProgressTexts->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts", FALSE).toBool());
-  checkBoxProcessGameInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB", TRUE).toBool());
-  checkBoxCompressGameInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB", FALSE).toBool());
+  checkBoxToolbar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
+  checkBoxSaveLayout->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout", true).toBool());
+  checkBoxRestoreLayout->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout", true).toBool());
+  checkBoxSaveGameSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection", true).toBool());
+  checkBoxRestoreGameSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreGameSelection", true).toBool());
+  checkBoxStatusbar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
+  checkBoxStandardColorPalette->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", true).toBool());
+  checkBoxProgressTexts->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts", false).toBool());
+  checkBoxProcessGameInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB", true).toBool());
+  checkBoxCompressGameInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB", false).toBool());
 #if defined(QMC2_EMUTYPE_MAME)
-  checkBoxProcessEmuInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB", TRUE).toBool());
-  checkBoxCompressEmuInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB", FALSE).toBool());
+  checkBoxProcessEmuInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB", true).toBool());
+  checkBoxCompressEmuInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB", false).toBool());
 #endif
-  qmc2ScaledPreview = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledPreview", TRUE).toBool();
+  qmc2ScaledPreview = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledPreview", true).toBool();
   checkBoxScaledPreview->setChecked(qmc2ScaledPreview);
-  qmc2ScaledFlyer = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledFlyer", TRUE).toBool();
+  qmc2ScaledFlyer = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledFlyer", true).toBool();
   checkBoxScaledFlyer->setChecked(qmc2ScaledFlyer);
-  qmc2ScaledCabinet = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledCabinet", TRUE).toBool();
+  qmc2ScaledCabinet = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledCabinet", true).toBool();
   checkBoxScaledCabinet->setChecked(qmc2ScaledCabinet);
-  qmc2ScaledController = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledController", TRUE).toBool();
+  qmc2ScaledController = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledController", true).toBool();
   checkBoxScaledController->setChecked(qmc2ScaledController);
-  qmc2ScaledMarquee = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledMarquee", TRUE).toBool();
+  qmc2ScaledMarquee = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledMarquee", true).toBool();
   checkBoxScaledMarquee->setChecked(qmc2ScaledMarquee);
-  qmc2ScaledTitle = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledTitle", TRUE).toBool();
+  qmc2ScaledTitle = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledTitle", true).toBool();
   checkBoxScaledTitle->setChecked(qmc2ScaledTitle);
-  qmc2ScaledPCB = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledPCB", TRUE).toBool();
+  qmc2ScaledPCB = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledPCB", true).toBool();
   checkBoxScaledPCB->setChecked(qmc2ScaledPCB);
-  qmc2SmoothScaling = config->value(QMC2_FRONTEND_PREFIX + "GUI/SmoothScaling", FALSE).toBool();
+  qmc2SmoothScaling = config->value(QMC2_FRONTEND_PREFIX + "GUI/SmoothScaling", false).toBool();
   checkBoxSmoothScaling->setChecked(qmc2SmoothScaling);
-  qmc2RetryLoadingImages = config->value(QMC2_FRONTEND_PREFIX + "GUI/RetryLoadingImages", TRUE).toBool();
+  qmc2RetryLoadingImages = config->value(QMC2_FRONTEND_PREFIX + "GUI/RetryLoadingImages", true).toBool();
   checkBoxRetryLoadingImages->setChecked(qmc2RetryLoadingImages);
-  qmc2ParentImageFallback = config->value(QMC2_FRONTEND_PREFIX + "GUI/ParentImageFallback", FALSE).toBool();
+  qmc2ParentImageFallback = config->value(QMC2_FRONTEND_PREFIX + "GUI/ParentImageFallback", false).toBool();
   checkBoxParentImageFallback->setChecked(qmc2ParentImageFallback);
   comboBoxLanguage->setCurrentIndex(comboBoxLanguage->findText(config->value(QMC2_FRONTEND_PREFIX + "GUI/Language", "us").toString().toUpper(), Qt::MatchContains | Qt::MatchCaseSensitive));
   comboBoxStyle->clear();
@@ -1707,23 +1712,23 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditLogFont->setFont(f);
   int pixmapCacheSize = config->value(QMC2_FRONTEND_PREFIX + "GUI/PixmapCacheSize", 64).toInt();
   spinBoxPixmapCacheSize->setValue(pixmapCacheSize);
-  checkBoxKillEmulatorsOnExit->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/KillEmulatorsOnExit", TRUE).toBool());
-  checkBoxShowMenuBar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", TRUE).toBool());
-  checkBoxCheckSingleInstance->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CheckSingleInstance", TRUE).toBool());
-  checkBoxGameStatusIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", FALSE).toBool());
-  checkBoxGameStatusIndicatorOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", TRUE).toBool());
-  checkBoxShowGameName->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", FALSE).toBool());
+  checkBoxKillEmulatorsOnExit->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/KillEmulatorsOnExit", true).toBool());
+  checkBoxShowMenuBar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
+  checkBoxCheckSingleInstance->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CheckSingleInstance", true).toBool());
+  checkBoxGameStatusIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", false).toBool());
+  checkBoxGameStatusIndicatorOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", true).toBool());
+  checkBoxShowGameName->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", false).toBool());
   qmc2ShowGameName = checkBoxShowGameName->isChecked();
-  checkBoxShowGameNameOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameNameOnlyWhenRequired", TRUE).toBool());
+  checkBoxShowGameNameOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameNameOnlyWhenRequired", true).toBool());
   qmc2ShowGameNameOnlyWhenRequired = checkBoxShowGameNameOnlyWhenRequired->isChecked();
   spinBoxFrontendLogSize->setValue(config->value(QMC2_FRONTEND_PREFIX + "GUI/FrontendLogSize", 0).toInt());
   spinBoxEmulatorLogSize->setValue(config->value(QMC2_FRONTEND_PREFIX + "GUI/EmulatorLogSize", 0).toInt());
 #if defined(QMC2_VARIANT_LAUNCHER)
-  checkBoxMinimizeOnVariantLaunch->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch", FALSE).toBool());
-  checkBoxExitOnVariantLaunch->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ExitOnVariantLaunch", FALSE).toBool());
+  checkBoxMinimizeOnVariantLaunch->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch", false).toBool());
+  checkBoxExitOnVariantLaunch->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ExitOnVariantLaunch", false).toBool());
 #endif
 #if defined(QMC2_SHOWMEMINFO)
-  checkBoxMemoryIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", FALSE).toBool());
+  checkBoxMemoryIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", false).toBool());
 #endif
   
   // Files / Directories
@@ -1745,48 +1750,48 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
   lineEditPreviewDirectory->setText(config->value("MAME/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
   lineEditPreviewFile->setText(config->value("MAME/FilesAndDirectories/PreviewFile", QMC2_DEFAULT_DATA_PATH + "/prv/previews.zip").toString());
-  qmc2UsePreviewFile = config->value("MAME/FilesAndDirectories/UsePreviewFile", FALSE).toBool();
+  qmc2UsePreviewFile = config->value("MAME/FilesAndDirectories/UsePreviewFile", false).toBool();
   stackedWidgetPreview->setCurrentIndex(qmc2UsePreviewFile ? 1 : 0);
   radioButtonPreviewSelect->setText(qmc2UsePreviewFile ? tr("Preview file") : tr("Preview directory"));
   lineEditFlyerDirectory->setText(config->value("MAME/FilesAndDirectories/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
   lineEditFlyerFile->setText(config->value("MAME/FilesAndDirectories/FlyerFile", QMC2_DEFAULT_DATA_PATH + "/fly/flyers.zip").toString());
-  qmc2UseFlyerFile = config->value("MAME/FilesAndDirectories/UseFlyerFile", FALSE).toBool();
+  qmc2UseFlyerFile = config->value("MAME/FilesAndDirectories/UseFlyerFile", false).toBool();
   stackedWidgetFlyer->setCurrentIndex(qmc2UseFlyerFile ? 1 : 0);
   radioButtonFlyerSelect->setText(qmc2UseFlyerFile ? tr("Flyer file") : tr("Flyer directory"));
   lineEditIconDirectory->setText(config->value("MAME/FilesAndDirectories/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
   lineEditIconFile->setText(config->value("MAME/FilesAndDirectories/IconFile", QMC2_DEFAULT_DATA_PATH + "/ico/icons.zip").toString());
-  qmc2UseIconFile = config->value("MAME/FilesAndDirectories/UseIconFile", FALSE).toBool();
+  qmc2UseIconFile = config->value("MAME/FilesAndDirectories/UseIconFile", false).toBool();
   stackedWidgetIcon->setCurrentIndex(qmc2UseIconFile ? 1 : 0);
   radioButtonIconSelect->setText(qmc2UseIconFile ? tr("Icon file") : tr("Icon directory"));
   lineEditCabinetDirectory->setText(config->value("MAME/FilesAndDirectories/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
   lineEditCabinetFile->setText(config->value("MAME/FilesAndDirectories/CabinetFile", QMC2_DEFAULT_DATA_PATH + "/cab/cabinets.zip").toString());
-  qmc2UseCabinetFile = config->value("MAME/FilesAndDirectories/UseCabinetFile", FALSE).toBool();
+  qmc2UseCabinetFile = config->value("MAME/FilesAndDirectories/UseCabinetFile", false).toBool();
   stackedWidgetCabinet->setCurrentIndex(qmc2UseCabinetFile ? 1 : 0);
   radioButtonCabinetSelect->setText(qmc2UseCabinetFile ? tr("Cabinet file") : tr("Cabinet directory"));
   lineEditControllerDirectory->setText(config->value("MAME/FilesAndDirectories/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
   lineEditControllerFile->setText(config->value("MAME/FilesAndDirectories/ControllerFile", QMC2_DEFAULT_DATA_PATH + "/ctl/controllers.zip").toString());
-  qmc2UseControllerFile = config->value("MAME/FilesAndDirectories/UseControllerFile", FALSE).toBool();
+  qmc2UseControllerFile = config->value("MAME/FilesAndDirectories/UseControllerFile", false).toBool();
   stackedWidgetController->setCurrentIndex(qmc2UseControllerFile ? 1 : 0);
   radioButtonControllerSelect->setText(qmc2UseControllerFile ? tr("Controller file") : tr("Controller directory"));
   lineEditMarqueeDirectory->setText(config->value("MAME/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
   lineEditMarqueeFile->setText(config->value("MAME/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/marquees.zip").toString());
-  qmc2UseMarqueeFile = config->value("MAME/FilesAndDirectories/UseMarqueeFile", FALSE).toBool();
+  qmc2UseMarqueeFile = config->value("MAME/FilesAndDirectories/UseMarqueeFile", false).toBool();
   stackedWidgetMarquee->setCurrentIndex(qmc2UseMarqueeFile ? 1 : 0);
   radioButtonMarqueeSelect->setText(qmc2UseMarqueeFile ? tr("Marquee file") : tr("Marquee directory"));
   lineEditTitleDirectory->setText(config->value("MAME/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
   lineEditTitleFile->setText(config->value("MAME/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
-  qmc2UseTitleFile = config->value("MAME/FilesAndDirectories/UseTitleFile", FALSE).toBool();
+  qmc2UseTitleFile = config->value("MAME/FilesAndDirectories/UseTitleFile", false).toBool();
   stackedWidgetTitle->setCurrentIndex(qmc2UseTitleFile ? 1 : 0);
   radioButtonTitleSelect->setText(qmc2UseTitleFile ? tr("Title file") : tr("Title directory"));
   lineEditPCBDirectory->setText(config->value("MAME/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
   lineEditPCBFile->setText(config->value("MAME/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
-  qmc2UsePCBFile = config->value("MAME/FilesAndDirectories/UsePCBFile", FALSE).toBool();
+  qmc2UsePCBFile = config->value("MAME/FilesAndDirectories/UsePCBFile", false).toBool();
   stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
   radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
   lineEditGameInfoDB->setText(config->value("MAME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
   lineEditEmuInfoDB->setText(config->value("MAME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
   lineEditCatverIniFile->setText(config->value("MAME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
-  checkBoxUseCatverIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", FALSE).toBool());
+  checkBoxUseCatverIni->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UseCatverIni", false).toBool());
 #elif defined(QMC2_EMUTYPE_MESS)
 #if defined(QMC2_SDLMESS)
   lineEditTemporaryFile->setText(config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
@@ -1797,54 +1802,54 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
   lineEditPreviewDirectory->setText(config->value("MESS/FilesAndDirectories/PreviewDirectory", QMC2_DEFAULT_DATA_PATH + "/prv/").toString());
   lineEditPreviewFile->setText(config->value("MESS/FilesAndDirectories/PreviewFile", QMC2_DEFAULT_DATA_PATH + "/prv/previews.zip").toString());
-  qmc2UsePreviewFile = config->value("MESS/FilesAndDirectories/UsePreviewFile", FALSE).toBool();
+  qmc2UsePreviewFile = config->value("MESS/FilesAndDirectories/UsePreviewFile", false).toBool();
   stackedWidgetPreview->setCurrentIndex(qmc2UsePreviewFile ? 1 : 0);
   radioButtonPreviewSelect->setText(qmc2UsePreviewFile ? tr("Preview file") : tr("Preview directory"));
   lineEditFlyerDirectory->setText(config->value("MESS/FilesAndDirectories/FlyerDirectory", QMC2_DEFAULT_DATA_PATH + "/fly/").toString());
   lineEditFlyerFile->setText(config->value("MESS/FilesAndDirectories/FlyerFile", QMC2_DEFAULT_DATA_PATH + "/fly/flyers.zip").toString());
-  qmc2UseFlyerFile = config->value("MESS/FilesAndDirectories/UseFlyerFile", FALSE).toBool();
+  qmc2UseFlyerFile = config->value("MESS/FilesAndDirectories/UseFlyerFile", false).toBool();
   stackedWidgetFlyer->setCurrentIndex(qmc2UseFlyerFile ? 1 : 0);
   radioButtonFlyerSelect->setText(qmc2UseFlyerFile ? tr("Flyer file") : tr("Flyer directory"));
   lineEditIconDirectory->setText(config->value("MESS/FilesAndDirectories/IconDirectory", QMC2_DEFAULT_DATA_PATH + "/ico/").toString());
   lineEditIconFile->setText(config->value("MESS/FilesAndDirectories/IconFile", QMC2_DEFAULT_DATA_PATH + "/ico/icons.zip").toString());
-  qmc2UseIconFile = config->value("MESS/FilesAndDirectories/UseIconFile", FALSE).toBool();
+  qmc2UseIconFile = config->value("MESS/FilesAndDirectories/UseIconFile", false).toBool();
   stackedWidgetIcon->setCurrentIndex(qmc2UseIconFile ? 1 : 0);
   radioButtonIconSelect->setText(qmc2UseIconFile ? tr("Icon file") : tr("Icon directory"));
   lineEditCabinetDirectory->setText(config->value("MESS/FilesAndDirectories/CabinetDirectory", QMC2_DEFAULT_DATA_PATH + "/cab/").toString());
   lineEditCabinetFile->setText(config->value("MESS/FilesAndDirectories/CabinetFile", QMC2_DEFAULT_DATA_PATH + "/cab/cabinets.zip").toString());
-  qmc2UseCabinetFile = config->value("MESS/FilesAndDirectories/UseCabinetFile", FALSE).toBool();
+  qmc2UseCabinetFile = config->value("MESS/FilesAndDirectories/UseCabinetFile", false).toBool();
   stackedWidgetCabinet->setCurrentIndex(qmc2UseCabinetFile ? 1 : 0);
   radioButtonCabinetSelect->setText(qmc2UseCabinetFile ? tr("Cabinet file") : tr("Cabinet directory"));
   lineEditControllerDirectory->setText(config->value("MESS/FilesAndDirectories/ControllerDirectory", QMC2_DEFAULT_DATA_PATH + "/ctl/").toString());
   lineEditControllerFile->setText(config->value("MESS/FilesAndDirectories/ControllerFile", QMC2_DEFAULT_DATA_PATH + "/ctl/controllers.zip").toString());
-  qmc2UseControllerFile = config->value("MESS/FilesAndDirectories/UseControllerFile", FALSE).toBool();
+  qmc2UseControllerFile = config->value("MESS/FilesAndDirectories/UseControllerFile", false).toBool();
   stackedWidgetController->setCurrentIndex(qmc2UseControllerFile ? 1 : 0);
   radioButtonControllerSelect->setText(qmc2UseControllerFile ? tr("Controller file") : tr("Controller directory"));
   lineEditMarqueeDirectory->setText(config->value("MESS/FilesAndDirectories/MarqueeDirectory", QMC2_DEFAULT_DATA_PATH + "/mrq/").toString());
   lineEditMarqueeFile->setText(config->value("MESS/FilesAndDirectories/MarqueeFile", QMC2_DEFAULT_DATA_PATH + "/mrq/marquees.zip").toString());
-  qmc2UseMarqueeFile = config->value("MESS/FilesAndDirectories/UseMarqueeFile", FALSE).toBool();
+  qmc2UseMarqueeFile = config->value("MESS/FilesAndDirectories/UseMarqueeFile", false).toBool();
   stackedWidgetMarquee->setCurrentIndex(qmc2UseMarqueeFile ? 1 : 0);
   radioButtonMarqueeSelect->setText(qmc2UseMarqueeFile ? tr("Marquee file") : tr("Marquee directory"));
   lineEditTitleDirectory->setText(config->value("MESS/FilesAndDirectories/TitleDirectory", QMC2_DEFAULT_DATA_PATH + "/ttl/").toString());
   lineEditTitleFile->setText(config->value("MESS/FilesAndDirectories/TitleFile", QMC2_DEFAULT_DATA_PATH + "/ttl/titles.zip").toString());
-  qmc2UseTitleFile = config->value("MESS/FilesAndDirectories/UseTitleFile", FALSE).toBool();
+  qmc2UseTitleFile = config->value("MESS/FilesAndDirectories/UseTitleFile", false).toBool();
   stackedWidgetTitle->setCurrentIndex(qmc2UseTitleFile ? 1 : 0);
   radioButtonTitleSelect->setText(qmc2UseTitleFile ? tr("Title file") : tr("Title directory"));
   lineEditPCBDirectory->setText(config->value("MESS/FilesAndDirectories/PCBDirectory", QMC2_DEFAULT_DATA_PATH + "/pcb/").toString());
   lineEditPCBFile->setText(config->value("MESS/FilesAndDirectories/PCBFile", QMC2_DEFAULT_DATA_PATH + "/pcb/pcbs.zip").toString());
-  qmc2UsePCBFile = config->value("MESS/FilesAndDirectories/UsePCBFile", FALSE).toBool();
+  qmc2UsePCBFile = config->value("MESS/FilesAndDirectories/UsePCBFile", false).toBool();
   stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
   radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
   lineEditGameInfoDB->setText(config->value("MESS/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
 #endif
 
   // Gamelist
-  checkBoxShowROMStatusIcons->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", TRUE).toBool());
-  checkBoxSortOnline->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/SortOnline", FALSE).toBool());
-  checkBoxAutoTriggerROMCheck->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck", FALSE).toBool());
-  checkBoxDoubleClickActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation", TRUE).toBool());
-  checkBoxHideWhileLoading->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/HideWhileLoading", TRUE).toBool());
-  checkBoxPlayOnSublistActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation", FALSE).toBool());
+  checkBoxShowROMStatusIcons->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool());
+  checkBoxSortOnline->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/SortOnline", false).toBool());
+  checkBoxAutoTriggerROMCheck->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck", false).toBool());
+  checkBoxDoubleClickActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation", true).toBool());
+  checkBoxHideWhileLoading->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/HideWhileLoading", true).toBool());
+  checkBoxPlayOnSublistActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation", false).toBool());
   qmc2CursorPositioningMode = (QAbstractItemView::ScrollHint)config->value(QMC2_FRONTEND_PREFIX + "Gamelist/CursorPosition", QMC2_CURSOR_POS_TOP).toInt();
   comboBoxCursorPosition->setCurrentIndex((int)qmc2CursorPositioningMode);
   spinBoxResponsiveness->setValue(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/Responsiveness", 100).toInt());
@@ -1855,26 +1860,26 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   qmc2SortCriteria = comboBoxSortCriteria->currentIndex();
   comboBoxSortOrder->setCurrentIndex(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/SortOrder", 0).toInt());
   qmc2SortOrder = comboBoxSortOrder->currentIndex() == 0 ? Qt::AscendingOrder : Qt::DescendingOrder;
-  qmc2Filter.setBit(QMC2_ROMSTATE_INT_C, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowC", TRUE).toBool());
+  qmc2Filter.setBit(QMC2_ROMSTATE_INT_C, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowC", true).toBool());
   toolButtonShowC->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
-  qmc2Filter.setBit(QMC2_ROMSTATE_INT_M, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowM", TRUE).toBool());
+  qmc2Filter.setBit(QMC2_ROMSTATE_INT_M, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowM", true).toBool());
   toolButtonShowM->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_M]);
-  qmc2Filter.setBit(QMC2_ROMSTATE_INT_I, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowI", TRUE).toBool());
+  qmc2Filter.setBit(QMC2_ROMSTATE_INT_I, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowI", true).toBool());
   toolButtonShowI->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
-  qmc2Filter.setBit(QMC2_ROMSTATE_INT_N, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowN", TRUE).toBool());
+  qmc2Filter.setBit(QMC2_ROMSTATE_INT_N, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowN", true).toBool());
   toolButtonShowN->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
-  qmc2Filter.setBit(QMC2_ROMSTATE_INT_U, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowU", TRUE).toBool());
+  qmc2Filter.setBit(QMC2_ROMSTATE_INT_U, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowU", true).toBool());
   toolButtonShowU->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
 
   if ( qmc2MainWindow ) {
-    qmc2StatesTogglesEnabled = FALSE;
+    qmc2StatesTogglesEnabled = false;
     qmc2MainWindow->actionRomStatusFilterC->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);
     qmc2MainWindow->actionRomStatusFilterM->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_M]);
     qmc2MainWindow->actionRomStatusFilterI->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_I]);
     qmc2MainWindow->actionRomStatusFilterN->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
     qmc2MainWindow->actionRomStatusFilterU->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
     if ( !qmc2EarlyStartup )
-      qmc2StatesTogglesEnabled = TRUE;
+      qmc2StatesTogglesEnabled = true;
   }
 
   // Shortcuts / Keys
@@ -1908,8 +1913,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 
   // Joystick
 #if QMC2_JOYSTICK == 1
-  checkBoxEnableJoystickControl->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Joystick/EnableJoystickControl", FALSE).toBool());
-  checkBoxJoystickAutoRepeat->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Joystick/AutoRepeat", TRUE).toBool());
+  checkBoxEnableJoystickControl->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Joystick/EnableJoystickControl", false).toBool());
+  checkBoxJoystickAutoRepeat->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Joystick/AutoRepeat", true).toBool());
   spinBoxJoystickAutoRepeatTimeout->setValue(config->value(QMC2_FRONTEND_PREFIX + "Joystick/AutoRepeatTimeout", 250).toInt());
   spinBoxJoystickEventTimeout->setValue(config->value(QMC2_FRONTEND_PREFIX + "Joystick/EventTimeout", 25).toInt());
   on_pushButtonRescanJoysticks_clicked();
@@ -1948,7 +1953,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxCopyToolOutput->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput", true).toBool());
   checkBoxCloseToolDialog->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Tools/CloseToolDialog", false).toBool());
 
-  groupBoxHTTPProxy->setChecked(config->value("Network/HTTPProxy/Enable", FALSE).toBool());
+  groupBoxHTTPProxy->setChecked(config->value("Network/HTTPProxy/Enable", false).toBool());
   lineEditHTTPProxyHost->setText(config->value("Network/HTTPProxy/Host", "").toString());
   spinBoxHTTPProxyPort->setValue(config->value("Network/HTTPProxy/Port", 80).toInt());
   lineEditHTTPProxyUserID->setText(config->value("Network/HTTPProxy/UserID", "").toString());
@@ -1989,6 +1994,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditGamelistCacheFile->setText(config->value("MESS/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mess.glc").toString());
   lineEditROMStateCacheFile->setText(config->value("MESS/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mess.rsc").toString());
   lineEditSoftwareListCache->setText(config->value("MESS/FilesAndDirectories/SoftwareListCache", userScopePath + "/mess.swl").toString());
+  lineEditGeneralSoftwareFolder->setText(config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", "").toString());
 #if defined(QMC2_SDLMESS)
   lineEditOptionsTemplateFile->setText(config->value("MESS/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMESS/template.xml").toString());
 #elif defined(QMC2_MESS)
@@ -2006,7 +2012,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   config->beginGroup("MESS/RegisteredEmulators");
 #endif
   QStringList additionalEmulators = config->childGroups();
-  tableWidgetRegisteredEmulators->setSortingEnabled(FALSE);
+  tableWidgetRegisteredEmulators->setSortingEnabled(false);
   foreach (QString emuName, additionalEmulators) {
     QString emuCommand = config->value(QString("%1/Executable").arg(emuName)).toString();
     QString emuWorkDir = config->value(QString("%1/WorkingDirectory").arg(emuName)).toString();
@@ -2019,7 +2025,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
     tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(emuArgs));
   }
   config->endGroup();
-  tableWidgetRegisteredEmulators->setSortingEnabled(TRUE);
+  tableWidgetRegisteredEmulators->setSortingEnabled(true);
 
   if ( useDefaultSettings ) {
     QString fn = config->fileName();
@@ -2044,7 +2050,7 @@ void Options::applyDelayed()
     return;
   }
 
-  static bool firstTime = TRUE;
+  static bool firstTime = true;
 
   if ( firstTime ) {
 #if defined(Q_WS_WIN)
@@ -2072,7 +2078,7 @@ void Options::applyDelayed()
       tableWidgetRegisteredEmulators->horizontalHeader()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/RegisteredEmulatorsHeaderState").toByteArray());
     }
     tableWidgetRegisteredEmulators->resizeRowsToContents();
-    firstTime = FALSE;
+    firstTime = false;
   }
 
   // redraw detail if setup changed
@@ -2086,7 +2092,7 @@ void Options::applyDelayed()
   qmc2MainWindow->menuBar()->setVisible(checkBoxShowMenuBar->isChecked());
 #endif
   qApp->processEvents();
-  qmc2VariantSwitchReady = TRUE;
+  qmc2VariantSwitchReady = true;
 }
 
 void Options::on_toolButtonBrowseStyleSheet_clicked()
@@ -2398,6 +2404,19 @@ void Options::on_toolButtonBrowseSoftwareListCache_clicked()
   raise();
 }
 
+void Options::on_toolButtonBrowseGeneralSoftwareFolder_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseGeneralSoftwareFolder_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose general software folder"), lineEditGeneralSoftwareFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditGeneralSoftwareFolder->setText(s);
+  }
+  raise();
+}
 
 void Options::on_toolButtonBrowseFrontendLogFile_clicked()
 {
@@ -2528,7 +2547,7 @@ void Options::showEvent(QShowEvent *e)
 
   if ( !qmc2CleaningUp && !qmc2EarlyStartup )
     if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-      config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible", TRUE);
+      config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible", true);
 
   e->accept();
 }
@@ -2541,7 +2560,7 @@ void Options::hideEvent(QHideEvent *e)
 
   if ( !qmc2CleaningUp && !qmc2EarlyStartup )
     if ( config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-      config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible", FALSE);
+      config->setValue(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/Visible", false);
 
   e->accept();
 }
@@ -2777,7 +2796,7 @@ void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
       nativeShortcut += QObject::tr(words[i].toAscii());
     }
 
-    bool found = FALSE;
+    bool found = false;
     QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
     while ( it.hasNext() && !found ) {
       it.next();
@@ -2789,7 +2808,7 @@ void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
       }
 
       if ( itShortcut == nativeShortcut ) {
-        found = TRUE;
+        found = true;
         nativeShortcut = it.key();
       }
     }
@@ -2800,7 +2819,7 @@ void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
       QTimer::singleShot(0, this, SLOT(checkShortcuts()));
     }
 
-    pushButtonResetShortcut->setEnabled(TRUE);
+    pushButtonResetShortcut->setEnabled(true);
   }
 
   qApp->installEventFilter(qmc2KeyPressFilter);
@@ -2814,11 +2833,11 @@ void Options::on_treeWidgetShortcuts_itemSelectionChanged()
 
   QList<QTreeWidgetItem *> selItems = treeWidgetShortcuts->selectedItems();
   if ( selItems.count() > 0 ) {
-    pushButtonRedefineKeySequence->setEnabled(TRUE);
+    pushButtonRedefineKeySequence->setEnabled(true);
     pushButtonResetShortcut->setEnabled(selItems[0]->text(2).length() > 0);
   } else {
-    pushButtonRedefineKeySequence->setEnabled(FALSE);
-    pushButtonResetShortcut->setEnabled(FALSE);
+    pushButtonRedefineKeySequence->setEnabled(false);
+    pushButtonResetShortcut->setEnabled(false);
   }
 }
 
@@ -2849,7 +2868,7 @@ void Options::on_pushButtonResetShortcut_clicked()
       nativeShortcut += QObject::tr(words[i].toAscii());
     }
 
-    bool found = FALSE;
+    bool found = false;
     QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
     while ( it.hasNext() && !found ) {
       it.next();
@@ -2861,7 +2880,7 @@ void Options::on_pushButtonResetShortcut_clicked()
       }
 
       if ( itShortcut == nativeShortcut ) {
-        found = TRUE;
+        found = true;
         nativeShortcut = it.key();
       }
     }
@@ -2872,7 +2891,7 @@ void Options::on_pushButtonResetShortcut_clicked()
       QTimer::singleShot(0, this, SLOT(checkShortcuts()));
     }
 
-    pushButtonResetShortcut->setEnabled(FALSE);
+    pushButtonResetShortcut->setEnabled(false);
   }
 }
 
@@ -2989,7 +3008,7 @@ void Options::on_toolButtonAddEmulator_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonAddEmulator_clicked()");
 #endif
 
-  tableWidgetRegisteredEmulators->setSortingEnabled(FALSE);
+  tableWidgetRegisteredEmulators->setSortingEnabled(false);
   int row = tableWidgetRegisteredEmulators->rowCount();
   tableWidgetRegisteredEmulators->insertRow(row);
   tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_NAME, new QTableWidgetItem(lineEditAdditionalEmulatorName->text()));
@@ -2997,7 +3016,7 @@ void Options::on_toolButtonAddEmulator_clicked()
   tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(lineEditAdditionalEmulatorWorkingDirectory->text()));
   tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(lineEditAdditionalEmulatorArguments->text()));
   on_lineEditAdditionalEmulatorName_textChanged(lineEditAdditionalEmulatorName->text());
-  tableWidgetRegisteredEmulators->setSortingEnabled(TRUE);
+  tableWidgetRegisteredEmulators->setSortingEnabled(true);
 }
 
 void Options::on_toolButtonSaveEmulator_clicked()
@@ -3006,7 +3025,7 @@ void Options::on_toolButtonSaveEmulator_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonSaveEmulator_clicked()");
 #endif
 
-  tableWidgetRegisteredEmulators->setSortingEnabled(FALSE);
+  tableWidgetRegisteredEmulators->setSortingEnabled(false);
   QString name = lineEditAdditionalEmulatorName->text();
   if ( !name.isEmpty() ) {
     QList<QTableWidgetItem *> il = tableWidgetRegisteredEmulators->findItems(name, Qt::MatchExactly);
@@ -3028,7 +3047,7 @@ void Options::on_toolButtonSaveEmulator_clicked()
     else
       tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(lineEditAdditionalEmulatorArguments->text()));
   }
-  tableWidgetRegisteredEmulators->setSortingEnabled(TRUE);
+  tableWidgetRegisteredEmulators->setSortingEnabled(true);
 }
 
 void Options::on_toolButtonRemoveEmulator_clicked()
@@ -3054,10 +3073,10 @@ void Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()
     int row = sl[QMC2_ADDTLEMUS_COLUMN_NAME]->row();
     if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME) ) {
       lineEditAdditionalEmulatorName->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->text());
-      toolButtonRemoveEmulator->setEnabled(TRUE);
+      toolButtonRemoveEmulator->setEnabled(true);
     } else {
       lineEditAdditionalEmulatorName->clear();
-      toolButtonRemoveEmulator->setEnabled(FALSE);
+      toolButtonRemoveEmulator->setEnabled(false);
     }
     if ( tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC) )
       lineEditAdditionalEmulatorExecutableFile->setText(tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_EXEC)->text());
@@ -3076,7 +3095,7 @@ void Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()
     lineEditAdditionalEmulatorExecutableFile->clear();
     lineEditAdditionalEmulatorWorkingDirectory->clear();
     lineEditAdditionalEmulatorArguments->clear();
-    toolButtonRemoveEmulator->setEnabled(FALSE);
+    toolButtonRemoveEmulator->setEnabled(false);
   }
 }
 
@@ -3090,17 +3109,17 @@ void Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &s)
   if ( !text.isEmpty() ) {
     if ( text == tr("Default") ) {
       // this name isn't allowed!
-      toolButtonAddEmulator->setEnabled(FALSE);
-      toolButtonSaveEmulator->setEnabled(FALSE);
-      toolButtonRemoveEmulator->setEnabled(FALSE);
+      toolButtonAddEmulator->setEnabled(false);
+      toolButtonSaveEmulator->setEnabled(false);
+      toolButtonRemoveEmulator->setEnabled(false);
     } else {
       QList<QTableWidgetItem *> il = tableWidgetRegisteredEmulators->findItems(text, Qt::MatchExactly);
       toolButtonAddEmulator->setEnabled(il.isEmpty());
       toolButtonSaveEmulator->setEnabled(!il.isEmpty());
     }
   } else {
-    toolButtonAddEmulator->setEnabled(FALSE);
-    toolButtonSaveEmulator->setEnabled(FALSE);
+    toolButtonAddEmulator->setEnabled(false);
+    toolButtonSaveEmulator->setEnabled(false);
   }
 }
 
@@ -3111,7 +3130,7 @@ void Options::on_pushButtonRescanJoysticks_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_pushButtonRescanJoysticks_clicked()");
 #endif
 
-  toolButtonMapJoystick->setChecked(TRUE);
+  toolButtonMapJoystick->setChecked(true);
   on_toolButtonMapJoystick_clicked();
 
   QStringList joystickNames;
@@ -3139,7 +3158,7 @@ void Options::on_toolButtonCalibrateAxes_clicked()
 #endif
 
   if ( comboBoxSelectJoysticks->currentText() == tr("No joysticks found") || comboBoxSelectJoysticks->currentIndex() < 0 ) {
-    toolButtonMapJoystick->setChecked(TRUE);
+    toolButtonMapJoystick->setChecked(true);
     on_toolButtonMapJoystick_clicked();
     return;
   }
@@ -3176,11 +3195,11 @@ void Options::on_toolButtonCalibrateAxes_clicked()
       scrollArea->show();
       joystickCalibrationWidget->show();
     } else {
-      toolButtonMapJoystick->setChecked(TRUE);
+      toolButtonMapJoystick->setChecked(true);
       on_toolButtonMapJoystick_clicked();
     }
   } else {
-    toolButtonMapJoystick->setChecked(TRUE);
+    toolButtonMapJoystick->setChecked(true);
     on_toolButtonMapJoystick_clicked();
   }
 }
@@ -3192,7 +3211,7 @@ void Options::on_toolButtonTestJoystick_clicked()
 #endif
 
   if ( comboBoxSelectJoysticks->currentText() == tr("No joysticks found") || comboBoxSelectJoysticks->currentIndex() < 0 ) {
-    toolButtonMapJoystick->setChecked(TRUE);
+    toolButtonMapJoystick->setChecked(true);
     on_toolButtonMapJoystick_clicked();
     return;
   }
@@ -3229,11 +3248,11 @@ void Options::on_toolButtonTestJoystick_clicked()
       scrollArea->show();
       joystickTestWidget->show();
     } else {
-      toolButtonMapJoystick->setChecked(TRUE);
+      toolButtonMapJoystick->setChecked(true);
       on_toolButtonMapJoystick_clicked();
     }
   } else {
-    toolButtonMapJoystick->setChecked(TRUE);
+    toolButtonMapJoystick->setChecked(true);
     on_toolButtonMapJoystick_clicked();
   }
 }
@@ -3302,7 +3321,7 @@ void Options::on_checkBoxEnableJoystickControl_toggled(bool enable)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_checkBoxEnableJoystickControl_toggled(bool enable = %1)").arg(enable));
 #endif
 
-  toolButtonMapJoystick->setChecked(TRUE);
+  toolButtonMapJoystick->setChecked(true);
   on_toolButtonMapJoystick_clicked();
 }
 
@@ -3353,7 +3372,7 @@ void Options::on_treeWidgetJoystickMappings_itemActivated(QTreeWidgetItem *item)
       joystick->close();
     if ( joystick->open(comboBoxSelectJoysticks->currentIndex()) ) {
       // suppress strange Qt warning messages (this works - basta! :)
-      qmc2SuppressQtMessages = TRUE;
+      qmc2SuppressQtMessages = true;
       JoystickFunctionScanner joyFuncScanner(joystick, this);
       if ( joyFuncScanner.exec() == QDialog::Accepted ) {
         item->setText(1, joyFuncScanner.labelJoystickFunction->text());
@@ -3361,7 +3380,7 @@ void Options::on_treeWidgetJoystickMappings_itemActivated(QTreeWidgetItem *item)
         pushButtonRemoveJoystickMapping->setEnabled(item->text(1).length() > 0);
         QTimer::singleShot(0, this, SLOT(checkJoystickMappings()));
       }
-      qmc2SuppressQtMessages = FALSE;
+      qmc2SuppressQtMessages = false;
     }
   }
 }
@@ -3374,11 +3393,11 @@ void Options::on_treeWidgetJoystickMappings_itemSelectionChanged()
 
   QList<QTreeWidgetItem *> selItems = treeWidgetJoystickMappings->selectedItems();
   if ( selItems.count() > 0 ) {
-    pushButtonRemapJoystickFunction->setEnabled(TRUE);
+    pushButtonRemapJoystickFunction->setEnabled(true);
     pushButtonRemoveJoystickMapping->setEnabled(selItems[0]->text(1).length() > 0);
   } else {
-    pushButtonRemapJoystickFunction->setEnabled(FALSE);
-    pushButtonRemoveJoystickMapping->setEnabled(FALSE);
+    pushButtonRemapJoystickFunction->setEnabled(false);
+    pushButtonRemoveJoystickMapping->setEnabled(false);
   }
 }
 
@@ -3411,7 +3430,7 @@ void Options::on_pushButtonRemoveJoystickMapping_clicked()
           qmc2JoystickFunctionMap.insertMulti(selItems[0]->text(1), valueList[i]);
     }
     selItems[0]->setText(1, "");
-    pushButtonRemoveJoystickMapping->setEnabled(FALSE);
+    pushButtonRemoveJoystickMapping->setEnabled(false);
     QTimer::singleShot(0, this, SLOT(checkJoystickMappings()));
   }
 }
@@ -3476,7 +3495,7 @@ JoystickCalibrationWidget::JoystickCalibrationWidget(Joystick *joystick, QWidget
   for (i = 0; i < myJoystick->numAxes; i++) {
     QHBoxLayout *hLayout = new QHBoxLayout();
 
-    bool enabled = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Enabled").arg(joyIndex).arg(i), TRUE).toBool();
+    bool enabled = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Enabled").arg(joyIndex).arg(i), true).toBool();
     int minValue = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Minimum").arg(joyIndex).arg(i), 0).toInt();
     axesMinimums[i] = minValue;
     int maxValue = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Maximum").arg(joyIndex).arg(i), 0).toInt();
@@ -3698,7 +3717,7 @@ void JoystickCalibrationWidget::on_axisEnablerStateChanged(int state)
   int i;
   for (i = 0; i < checkBoxList.count() && checkBoxList[i] != checkBox; i++) ;
   if ( checkBox == checkBoxList[i] ) {
-    bool enabled = (state == 0 ? FALSE : TRUE);
+    bool enabled = (state == 0 ? false : true);
     int joyIndex = qmc2Options->comboBoxSelectJoysticks->currentIndex();
     qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Enabled").arg(joyIndex).arg(i), enabled);
     
@@ -3731,7 +3750,7 @@ JoystickTestWidget::JoystickTestWidget(Joystick *joystick, QWidget *parent)
     myJoystick->deadzones[i] = dzValue;
     int sValue = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Sensitivity").arg(joyIndex).arg(i), 0).toInt();
     myJoystick->sensitivities[i] = sValue;
-    bool enabled = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Enabled").arg(joyIndex).arg(i), TRUE).toBool();
+    bool enabled = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Enabled").arg(joyIndex).arg(i), true).toBool();
 
     axesRanges[i] = new QProgressBar(this);
     axesRanges[i]->setFormat(tr("A%1: %v").arg(i));
@@ -3748,7 +3767,7 @@ JoystickTestWidget::JoystickTestWidget(Joystick *joystick, QWidget *parent)
     buttonLabels[i] = new QLabel(tr("B%1").arg(i), this);
     buttonLabels[i]->setToolTip(tr("Current state of button %1").arg(i));
     buttonLabels[i]->setAlignment(Qt::AlignCenter);
-    buttonLabels[i]->setAutoFillBackground(TRUE);
+    buttonLabels[i]->setAutoFillBackground(true);
     buttonLabels[i]->setFrameShape(QFrame::Box);
     buttonLabels[i]->setSizePolicy(QSizePolicy::Expanding, myJoystick->numButtons < maxRows ? QSizePolicy::Ignored : QSizePolicy::Minimum);
 
@@ -3759,7 +3778,7 @@ JoystickTestWidget::JoystickTestWidget(Joystick *joystick, QWidget *parent)
     hatValueLabels[i] = new QLabel(tr("H%1: 0").arg(i), this);
     hatValueLabels[i]->setToolTip(tr("Current value of hat %1").arg(i));
     hatValueLabels[i]->setAlignment(Qt::AlignCenter);
-    hatValueLabels[i]->setAutoFillBackground(TRUE);
+    hatValueLabels[i]->setAutoFillBackground(true);
     hatValueLabels[i]->setFrameShape(QFrame::Box);
     hatValueLabels[i]->setSizePolicy(QSizePolicy::Expanding, myJoystick->numHats < maxRows ? QSizePolicy::Ignored : QSizePolicy::Minimum);
 
@@ -3770,7 +3789,7 @@ JoystickTestWidget::JoystickTestWidget(Joystick *joystick, QWidget *parent)
     trackballDeltaXLabels[i] = new QLabel(tr("T%1 DX: 0").arg(i), this);
     trackballDeltaXLabels[i]->setToolTip(tr("Current X-delta of trackball %1").arg(i));
     trackballDeltaXLabels[i]->setAlignment(Qt::AlignCenter);
-    trackballDeltaXLabels[i]->setAutoFillBackground(TRUE);
+    trackballDeltaXLabels[i]->setAutoFillBackground(true);
     trackballDeltaXLabels[i]->setFrameShape(QFrame::Box);
     trackballDeltaXLabels[i]->setSizePolicy(QSizePolicy::Expanding, myJoystick->numTrackballs < maxRows ? QSizePolicy::Ignored : QSizePolicy::Minimum);
 
@@ -3781,7 +3800,7 @@ JoystickTestWidget::JoystickTestWidget(Joystick *joystick, QWidget *parent)
     trackballDeltaYLabels[i] = new QLabel(tr("T%1 DY: 0").arg(i), this);
     trackballDeltaYLabels[i]->setToolTip(tr("Current Y-delta of trackball %1").arg(i));
     trackballDeltaYLabels[i]->setAlignment(Qt::AlignCenter);
-    trackballDeltaYLabels[i]->setAutoFillBackground(TRUE);
+    trackballDeltaYLabels[i]->setAutoFillBackground(true);
     trackballDeltaYLabels[i]->setFrameShape(QFrame::Box);
     trackballDeltaYLabels[i]->setSizePolicy(QSizePolicy::Expanding, myJoystick->numTrackballs < maxRows ? QSizePolicy::Ignored : QSizePolicy::Minimum);
     
