@@ -8837,6 +8837,12 @@ Einbettung wiederholen?</translation>
         <translation>aufsteigend</translation>
     </message>
     <message>
+        <location filename="../../options.cpp" line="334"/>
+        <location filename="../../options.cpp" line="341"/>
+        <source>No style sheet</source>
+        <translation>Kein Style Sheet</translation>
+    </message>
+    <message>
         <location filename="../../options.cpp" line="1320"/>
         <location filename="../../options.cpp" line="1322"/>
         <source>descending</source>
@@ -10275,12 +10281,6 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <location filename="../../options.cpp" line="326"/>
         <source>Reset to default font</source>
         <translation>Auf Standard-Schriftart zurücksetzen</translation>
-    </message>
-    <message>
-        <location filename="../../options.cpp" line="334"/>
-        <location filename="../../options.cpp" line="341"/>
-        <source>No style-sheet</source>
-        <translation>Kein Style-Sheet</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1253"/>

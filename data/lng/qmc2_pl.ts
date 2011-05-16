@@ -9336,12 +9336,6 @@ Ponowić próbę osadzania?</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="334"/>
-        <location filename="../../options.cpp" line="341"/>
-        <source>No style-sheet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../options.cpp" line="768"/>
         <source>image cache size set to %1 MB</source>
         <translation>rozmiar bufora obrazów ustawiony na %1 MB</translation>
@@ -10406,6 +10400,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../options.cpp" line="249"/>
         <source>Play (embedded)</source>
         <translation>Graj (osadzaj)</translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="334"/>
+        <location filename="../../options.cpp" line="341"/>
+        <source>No style sheet</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="899"/>

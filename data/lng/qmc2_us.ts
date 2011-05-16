@@ -8308,12 +8308,6 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="334"/>
-        <location filename="../../options.cpp" line="341"/>
-        <source>No style-sheet</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../options.cpp" line="768"/>
         <source>image cache size set to %1 MB</source>
         <translation>image cache size set to %1 MB</translation>
@@ -8455,6 +8449,12 @@ Retry embedding?</source>
     <message>
         <location filename="../../options.cpp" line="249"/>
         <source>Play (embedded)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="334"/>
+        <location filename="../../options.cpp" line="341"/>
+        <source>No style sheet</source>
         <translation></translation>
     </message>
     <message>
