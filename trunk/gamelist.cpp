@@ -201,6 +201,9 @@ void Gamelist::enableWidgets(bool enable)
 #endif
   qmc2Options->checkBoxShowROMStatusIcons->setEnabled(enable);
   qmc2Options->toolButtonBrowseSoftwareListCache->setEnabled(enable);
+#if defined(QMC2_EMUTYPE_MESS)
+  qmc2Options->toolButtonBrowseGeneralSoftwareFolder->setEnabled(enable);
+#endif
   qmc2Options->toolButtonBrowseExecutableFile->setEnabled(enable);
   qmc2Options->lineEditExecutableFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseWorkingDirectory->setEnabled(enable);

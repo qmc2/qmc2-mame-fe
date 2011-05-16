@@ -119,7 +119,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   setupUi(this);
 
   messMachineName = machineName;
-  dontIgnoreNameChange = FALSE;
+  dontIgnoreNameChange = false;
   treeWidgetDeviceSetup->setItemDelegateForColumn(QMC2_DEVCONFIG_COLUMN_FILE, &fileEditDelegate);
   connect(&fileEditDelegate, SIGNAL(editorDataChanged(const QString &)), this, SLOT(editorDataChanged(const QString &)));
   treeWidgetDeviceSetup->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DeviceSetupHeaderState").toByteArray());
@@ -245,13 +245,17 @@ bool MESSDeviceConfigurator::load()
 
   qmc2Config->endGroup();
 
-  dontIgnoreNameChange = TRUE;
+  // use the 'general software folder' as fall-back, if applicable
+  if ( qmc2FileEditStartPath.isEmpty() )
+    qmc2FileEditStartPath = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
+
+  dontIgnoreNameChange = true;
   QListWidgetItem *noDeviceItem = new QListWidgetItem(tr("No devices"), listWidgetDeviceConfigurations);
   if ( listWidgetDeviceConfigurations->currentItem() == NULL )
     listWidgetDeviceConfigurations->setCurrentItem(noDeviceItem);
-  dontIgnoreNameChange = FALSE;
+  dontIgnoreNameChange = false;
 
-  return TRUE;
+  return true;
 }
 
 bool MESSDeviceConfigurator::save()
@@ -283,7 +287,7 @@ bool MESSDeviceConfigurator::save()
 
   qmc2Config->endGroup();
 
-  return TRUE;
+  return true;
 }
 
 void MESSDeviceConfigurator::on_pushButtonNewConfiguration_clicked()
@@ -292,12 +296,12 @@ void MESSDeviceConfigurator::on_pushButtonNewConfiguration_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_pushButtonNewConfiguration_clicked()");
 #endif
 
-  dontIgnoreNameChange = TRUE;
+  dontIgnoreNameChange = true;
   lineEditConfigurationName->clear();
-  pushButtonCloneConfiguration->setEnabled(FALSE);
-  pushButtonSaveConfiguration->setEnabled(FALSE);
-  pushButtonRemoveConfiguration->setEnabled(FALSE);
-  treeWidgetDeviceSetup->setEnabled(TRUE);
+  pushButtonCloneConfiguration->setEnabled(false);
+  pushButtonSaveConfiguration->setEnabled(false);
+  pushButtonRemoveConfiguration->setEnabled(false);
+  treeWidgetDeviceSetup->setEnabled(true);
   lineEditConfigurationName->setFocus();
 }
 
@@ -317,7 +321,7 @@ void MESSDeviceConfigurator::on_pushButtonCloneConfiguration_clicked()
   configurationMap.insert(targetName, configurationMap[sourceName]);
   listWidgetDeviceConfigurations->insertItem(listWidgetDeviceConfigurations->count(), targetName);
   
-  dontIgnoreNameChange = TRUE;
+  dontIgnoreNameChange = true;
   lineEditConfigurationName->setText(targetName);
 }
 
@@ -349,7 +353,7 @@ void MESSDeviceConfigurator::on_pushButtonSaveConfiguration_clicked()
   } else {
     // add new device configuration
     listWidgetDeviceConfigurations->insertItem(listWidgetDeviceConfigurations->count(), cfgName);
-    dontIgnoreNameChange = TRUE;
+    dontIgnoreNameChange = true;
     on_pushButtonSaveConfiguration_clicked();
   }
 
@@ -394,29 +398,29 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString &text = %1)").arg(text));
 #endif
 
-  pushButtonSaveConfiguration->setEnabled(FALSE);
+  pushButtonSaveConfiguration->setEnabled(false);
   if ( text == tr("No devices") ) {
-    pushButtonCloneConfiguration->setEnabled(FALSE);
-    pushButtonSaveConfiguration->setEnabled(FALSE);
-    pushButtonRemoveConfiguration->setEnabled(FALSE);
-    treeWidgetDeviceSetup->setEnabled(FALSE);
+    pushButtonCloneConfiguration->setEnabled(false);
+    pushButtonSaveConfiguration->setEnabled(false);
+    pushButtonRemoveConfiguration->setEnabled(false);
+    treeWidgetDeviceSetup->setEnabled(false);
   } else if ( !text.isEmpty() ) {
     QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(text, Qt::MatchExactly);
     if ( matchedItemList.count() > 0 ) {
-      pushButtonRemoveConfiguration->setEnabled(TRUE);
-      pushButtonSaveConfiguration->setEnabled(TRUE);
-      pushButtonCloneConfiguration->setEnabled(TRUE);
+      pushButtonRemoveConfiguration->setEnabled(true);
+      pushButtonSaveConfiguration->setEnabled(true);
+      pushButtonCloneConfiguration->setEnabled(true);
     } else {
-      pushButtonRemoveConfiguration->setEnabled(FALSE);
-      pushButtonSaveConfiguration->setEnabled(TRUE);
-      pushButtonCloneConfiguration->setEnabled(FALSE);
+      pushButtonRemoveConfiguration->setEnabled(false);
+      pushButtonSaveConfiguration->setEnabled(true);
+      pushButtonCloneConfiguration->setEnabled(false);
     }
-    treeWidgetDeviceSetup->setEnabled(TRUE);
+    treeWidgetDeviceSetup->setEnabled(true);
   } else {
-    pushButtonCloneConfiguration->setEnabled(FALSE);
-    pushButtonSaveConfiguration->setEnabled(FALSE);
-    pushButtonRemoveConfiguration->setEnabled(FALSE);
-    treeWidgetDeviceSetup->setEnabled(TRUE);
+    pushButtonCloneConfiguration->setEnabled(false);
+    pushButtonSaveConfiguration->setEnabled(false);
+    pushButtonRemoveConfiguration->setEnabled(false);
+    treeWidgetDeviceSetup->setEnabled(true);
   }
 
   if ( dontIgnoreNameChange ) {
@@ -426,7 +430,7 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 
     QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(text, Qt::MatchExactly);
     if ( matchedItemList.count() > 0 ) {
-      matchedItemList[0]->setSelected(TRUE);
+      matchedItemList[0]->setSelected(true);
       listWidgetDeviceConfigurations->setCurrentItem(matchedItemList[0]);
       listWidgetDeviceConfigurations->scrollToItem(matchedItemList[0]);
       QString configName = matchedItemList[0]->text();
@@ -441,11 +445,11 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
       }
     } else {
       listWidgetDeviceConfigurations->clearSelection();
-      pushButtonRemoveConfiguration->setEnabled(FALSE);
-      pushButtonCloneConfiguration->setEnabled(FALSE);
+      pushButtonRemoveConfiguration->setEnabled(false);
+      pushButtonCloneConfiguration->setEnabled(false);
     }
   }
-  dontIgnoreNameChange = FALSE;
+  dontIgnoreNameChange = false;
 }
 
 void MESSDeviceConfigurator::editorDataChanged(const QString &text)
@@ -472,9 +476,9 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_currentTextChange
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_currentTextChanged(const QString &text = %1)").arg(text));
 #endif
 
-  dontIgnoreNameChange = TRUE;
+  dontIgnoreNameChange = true;
   lineEditConfigurationName->setText(text);
-  dontIgnoreNameChange = FALSE;
+  dontIgnoreNameChange = false;
 }
 
 void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *item)
@@ -483,9 +487,9 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QList
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem * = %1)").arg((qulonglong)item));
 #endif
 
-  dontIgnoreNameChange = TRUE;
+  dontIgnoreNameChange = true;
   lineEditConfigurationName->setText(item->text());
-  dontIgnoreNameChange = FALSE;
+  dontIgnoreNameChange = false;
 }
 
 void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &point)
@@ -497,7 +501,7 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_customContextMenu
   QListWidgetItem *item = listWidgetDeviceConfigurations->itemAt(point);
   if ( item ) {
     listWidgetDeviceConfigurations->setCurrentItem(item);
-    listWidgetDeviceConfigurations->setItemSelected(item, TRUE);
+    listWidgetDeviceConfigurations->setItemSelected(item, true);
     deviceConfigurationListMenu->move(listWidgetDeviceConfigurations->viewport()->mapToGlobal(point));
     deviceConfigurationListMenu->show();
   }
@@ -539,17 +543,22 @@ void MESSDeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
 #endif
 
   QString group = QString("MESS/Configuration/Devices/%1").arg(messMachineName);
+  QString path = qmc2Config->value(group + "/DefaultDeviceDirectory", "").toString();
+
+  if ( path.isEmpty() )
+    path = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
 
   qmc2Config->beginGroup(group);
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(messMachineName),
-                                                qmc2Config->value("DefaultDeviceDirectory", ".").toString(),
-                                                QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(messMachineName), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
   if ( !s.isNull() )
     qmc2Config->setValue("DefaultDeviceDirectory", s);
   qmc2FileEditStartPath = qmc2Config->value("DefaultDeviceDirectory").toString();
 
   qmc2Config->endGroup();
+
+  if ( qmc2FileEditStartPath.isEmpty() )
+    qmc2FileEditStartPath = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
 }
 
 void MESSDeviceConfigurator::actionGenerateDeviceConfigurations_triggered()
@@ -629,7 +638,7 @@ bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &namespaceURI,
     deviceExtensions << attributes.value("name");
   }
 
-  return TRUE;
+  return true;
 }
 
 bool MESSDeviceConfiguratorXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
@@ -651,7 +660,7 @@ bool MESSDeviceConfiguratorXmlHandler::endElement(const QString &namespaceURI, c
     }
   }
 
-  return TRUE;
+  return true;
 }
 
 bool MESSDeviceConfiguratorXmlHandler::characters(const QString &str)
@@ -660,5 +669,5 @@ bool MESSDeviceConfiguratorXmlHandler::characters(const QString &str)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfiguratorXmlHandler::characters(const QString &str = %1)").arg(str));
 #endif
 
-  return TRUE;
+  return true;
 }
