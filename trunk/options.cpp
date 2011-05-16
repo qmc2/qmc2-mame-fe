@@ -140,6 +140,7 @@ extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 #endif
 #endif
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
+extern QFont qmc2StartupDefaultFont;
 
 Options::Options(QWidget *parent)
 #if defined(Q_WS_WIN)
@@ -313,6 +314,35 @@ Options::Options(QWidget *parent)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: configuration is not writeable, please check access permissions for ") + config->fileName());
   }
 
+  // font reset actions
+  QMenu *fontButtonMenu = new QMenu(0);
+  QString s = tr("Reset to default font");
+  QAction *action = fontButtonMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  toolButtonBrowseFont->setMenu(fontButtonMenu);
+  connect(action, SIGNAL(triggered()), lineEditFont, SLOT(clear()));
+
+  QMenu *logFontButtonMenu = new QMenu(0);
+  s = tr("Reset to default font");
+  action = logFontButtonMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  toolButtonBrowseLogFont->setMenu(logFontButtonMenu);
+  connect(action, SIGNAL(triggered()), lineEditLogFont, SLOT(clear()));
+
+  // style-sheet reset action
+  QMenu *styleSheetButtonMenu = new QMenu(0);
+  s = tr("No style-sheet");
+  action = styleSheetButtonMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  toolButtonBrowseStyleSheet->setMenu(styleSheetButtonMenu);
+  connect(action, SIGNAL(triggered()), lineEditStyleSheet, SLOT(clear()));
+
+#if QT_VERSION >= 0x040700
+  lineEditStyleSheet->setPlaceholderText(tr("No style-sheet"));
+  lineEditFont->setPlaceholderText(tr("Default"));
+  lineEditLogFont->setPlaceholderText(tr("Default"));
+#endif
+
 #if QMC2_JOYSTICK != 1
   tabWidgetFrontendSettings->removeTab(tabWidgetFrontendSettings->indexOf(tabFrontendJoystick));
 #else
@@ -369,8 +399,9 @@ void Options::apply()
   qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", TRUE).toBool());
 #endif
 
-  QFont f;
-  f.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+  QFont f = qmc2StartupDefaultFont;
+  if ( !config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString().isEmpty() )
+    f.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
   qApp->setFont(f);
   QFontMetrics fm(f);
   foreach (QWidget *widget, QApplication::allWidgets())

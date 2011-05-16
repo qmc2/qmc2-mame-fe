@@ -244,6 +244,7 @@ QNetworkAccessManager *qmc2NetworkAccessManager = NULL;
 int qmc2LastListIndex = 0;
 QAbstractItemView::ScrollHint qmc2CursorPositioningMode = QAbstractItemView::PositionAtTop;
 QMap<QString, int> qmc2XmlGamePositionMap;
+QFont qmc2StartupDefaultFont;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -368,7 +369,8 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
   qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), TRUE);
-
+ 
+  qmc2StartupDefaultFont = qApp->font();
   desktopGeometry = qApp->desktop()->geometry();
 
   // remember the default style
@@ -1049,6 +1051,10 @@ MainWindow::MainWindow(QWidget *parent)
   connect(&updateTimer, SIGNAL(timeout()), this, SLOT(on_treeWidgetGamelist_itemSelectionChanged_delayed()));
   connect(&activityCheckTimer, SIGNAL(timeout()), this, SLOT(checkActivity()));
   activityState = FALSE;
+
+#if QT_VERSION >= 0x040700
+  comboBoxSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
+#endif
 
   // restore toolbar state
   restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolbarState", QByteArray()).toByteArray());
