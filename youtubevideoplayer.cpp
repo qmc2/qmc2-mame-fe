@@ -216,6 +216,10 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	imageDownloadManager = new QNetworkAccessManager(this);
 	connect(imageDownloadManager, SIGNAL(finished(QNetworkReply *)), this, SLOT(imageDownloadFinished(QNetworkReply *)));
 
+#if QT_VERSION >= 0x040700
+	lineEditSearchString->setPlaceholderText(tr("Enter search string"));
+#endif
+
 	QTimer::singleShot(100, this, SLOT(init()));
 }
 
