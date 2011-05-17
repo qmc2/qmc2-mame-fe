@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b20, 16-MAY-2011</h3>
+<h3>CHANGES - v0.2.b20, 17-MAY-2011</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b20, 16-MAY-2011:</b></p>
+<p><b>v0.2.b20, 17-MAY-2011:</b></p>
 <ul>
   <li>fix: ROMAlyzer / checksum wizard: correctly handle ROM files when their names contain special characters (i.e. '&amp;')</li>
   <li>fix: corrected the handling of repeated log messages (the repetition counter was correctly logged, but the actual <i>new</i> message was eaten)</li>
@@ -35,6 +35,7 @@ inf: informational only
   <li>imp: avoid potential blocking when synchronously calling external programs</li>
   <li>imp: updated template format to v0.2.4 which adds support for a new 'combo' option-type (editable combo-box with pre-defined choices the user can select from) and a new 'visible' attribute to hide certain options (esp. to hide the <i>ramsize</i> option for MAME, where it's not used, but the emulator still reports it as a valid option)</li>
   <li>imp: setup dialog: added the ability to reset a customized application- or log-font as well as to reset the style-sheet (note that the system's default font will be gathered during startup, so if its value changes at run-time you will have to restart QMC2 for correct behavior)</li>
+  <li>imp: reduced (eliminated?) flickering upon creation of game-/machine-specific emulator configuration widgets</li>
   <li>new: added command line option <i>-qmc2_config_path</i> to allow for overwriting the path where QMC2 stores its setup, caches etc. -- it's in the user's responsibility to copy/move the data to the desired directory (otherwise QMC2 will start over, which may be wanted behavior, though)</li>
   <li>new: support for game/machine <i>attached</i> YouTube videos (Phonon-based video player)</li>
   <li>new: added three tool-functions to allow for forced removal of any game/machine-list related cache data stored on disk</li>
