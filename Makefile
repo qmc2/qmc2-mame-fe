@@ -366,11 +366,8 @@ endif
 # Enable (1) or disable (0) web-cache compression when storing HTML pages on
 # disk?
 #
-# This is used by the MAWS web-cache -- and has nothing to do with a toilet :).
-#
-# Note that web-cache compression doesn't work on Windows yet and will thus be
-# automatically disabled on that platform, no matter what value this option has
-# been set to.
+# This is used by the MAWS web-cache feature -- and has nothing to do with a
+# toilet :). It just saves some disk space.
 #
 ifndef WC_COMPRESSION
 WC_COMPRESSION = 1
@@ -460,8 +457,8 @@ endif
 # relational databases. The only supported DB type currently is MySQL (SQLite
 # support is planned as well).
 #
-# WARNING: this is a WIP feature under development right now - use at your own
-# risk! 
+# WARNING: this is a WIP feature under development right now -- use at your own
+# risk!
 #
 ifndef DATABASE
 DATABASE = 0
@@ -481,10 +478,12 @@ endif
 #
 # Enable (1) or disable (0) support for game/machine 'attached' YouTube videos.
 #
-# Notes: 1) Requires Phonon and will thus be disabled automatically when
-#           PHONON=0!
-#        2) This is still an experimental 'WIP feature', so WIP=1 must also be
-#           specified!
+# Note that this feature requires Phonon and will thus be disabled automatically
+# when Phonon has been disabled (PHONON=0)!
+#
+# You'll also need a decent back-end that supports FLV and MP4 video formats
+# (codecs). Take a look at the README (section 2, software requirements) for
+# recommended codec-packages on certain platforms.
 #
 ifndef YOUTUBE
 YOUTUBE = 1
