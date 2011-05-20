@@ -4599,24 +4599,25 @@ p, li { white-space: pre-wrap; }
         <translation>Selecionar arquivo...</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="253"/>
-        <location filename="../../messdevcfg.cpp" line="402"/>
+        <location filename="../../messdevcfg.cpp" line="257"/>
+        <location filename="../../messdevcfg.cpp" line="290"/>
+        <location filename="../../messdevcfg.cpp" line="410"/>
         <source>No devices</source>
         <translation>Nenhum dispositivo</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="317"/>
-        <location filename="../../messdevcfg.cpp" line="319"/>
+        <location filename="../../messdevcfg.cpp" line="325"/>
+        <location filename="../../messdevcfg.cpp" line="327"/>
         <source>%1. copy of </source>
         <translation>%1. cópia de</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="468"/>
+        <location filename="../../messdevcfg.cpp" line="476"/>
         <source>%1. variant of </source>
         <translation>%1. variação de</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="553"/>
+        <location filename="../../messdevcfg.cpp" line="565"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Escolha o diretório de dispositivo padrão para &apos;%1&apos;</translation>
     </message>
@@ -4718,7 +4719,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="380"/>
         <location filename="../../qmc2main.cpp" line="3198"/>
-        <location filename="../../qmc2main.cpp" line="3226"/>
+        <location filename="../../qmc2main.cpp" line="3234"/>
         <location filename="../../qmc2main.cpp" line="3425"/>
         <location filename="../../qmc2main.cpp" line="3514"/>
         <location filename="../../qmc2main.cpp" line="4901"/>
@@ -5477,29 +5478,29 @@ Você realmente quer verificar o estado de todas as ROMs agora?</translation>
         <translation>Baixando página do MAWS para &apos;%1&apos;, por favore espere...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3219"/>
+        <location filename="../../qmc2main.cpp" line="3220"/>
         <source>Emulator for this game</source>
         <translation>Emulador para este jogo</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3221"/>
+        <location filename="../../qmc2main.cpp" line="3222"/>
         <source>Emulator for this machine</source>
         <translation>Emulador para esta máquina</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3264"/>
+        <location filename="../../qmc2main.cpp" line="3263"/>
         <source>Export to...</source>
         <translation>Exportar para...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3286"/>
-        <location filename="../../qmc2main.cpp" line="3290"/>
+        <location filename="../../qmc2main.cpp" line="3285"/>
+        <location filename="../../qmc2main.cpp" line="3289"/>
         <source>&lt;inipath&gt;/%1.ini</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3287"/>
-        <location filename="../../qmc2main.cpp" line="3291"/>
+        <location filename="../../qmc2main.cpp" line="3286"/>
+        <location filename="../../qmc2main.cpp" line="3290"/>
         <source>Select file...</source>
         <translation>Selecionar arquivo...</translation>
     </message>
@@ -10109,6 +10110,11 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Procurar arquivo de cache de lista de jogos</translation>
     </message>
     <message>
+        <location filename="../../options.ui" line="4028"/>
+        <source>Directory used as the default software folder for the MESS device configurator (if a sub-folder named as the current machine exists, that folder will be selected instead)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../options.ui" line="2428"/>
         <source>Launch emulation on double-click events (may be annoying)</source>
         <translation>Iniciar emulador por clique duplo (pode ser estranho)</translation>
@@ -10694,11 +10700,6 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4028"/>
-        <source>Directory used as the default software folder for the MESS device configurator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="4041"/>
         <source>Browse general software folder</source>
         <translation type="unfinished"></translation>
@@ -11130,32 +11131,32 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Padrão</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.cpp" line="3265"/>
         <location filename="../../qmc2main.cpp" line="3266"/>
-        <location filename="../../qmc2main.cpp" line="3267"/>
         <source>Export game-specific MAME configuration</source>
         <translation>Exportar configuração do MAME específica de jogo</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.cpp" line="3268"/>
         <location filename="../../qmc2main.cpp" line="3269"/>
-        <location filename="../../qmc2main.cpp" line="3270"/>
         <source>Export machine-specific MESS configuration</source>
         <translation>Exportar configuração do MESS específica de máquina</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3272"/>
+        <location filename="../../qmc2main.cpp" line="3271"/>
         <location filename="../../qmc2main.cpp" line="8407"/>
         <source>Import from...</source>
         <translation>Importar de...</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.cpp" line="3273"/>
         <location filename="../../qmc2main.cpp" line="3274"/>
-        <location filename="../../qmc2main.cpp" line="3275"/>
         <source>Import game-specific MAME configuration</source>
         <translation>Importar configuração do MAME específica de jogo</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.cpp" line="3276"/>
         <location filename="../../qmc2main.cpp" line="3277"/>
-        <location filename="../../qmc2main.cpp" line="3278"/>
         <source>Import machine-specific MESS configuration</source>
         <translation>Importar configuração do MAME específica de máquina</translation>
     </message>
