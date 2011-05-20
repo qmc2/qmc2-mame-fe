@@ -89,8 +89,11 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
   if ( autoConnect ) {
     lastCommand = command;
     int i;
-    for (i = 0; i < arguments.count(); i++)
-      lastCommand += " " + arguments[i];
+    for (i = 0; i < arguments.count(); i++) {
+      QString arg = arguments[i];
+      if ( arg.contains(QRegExp("\\s")) ) arg = "\"" + arg + "\"";
+      lastCommand += " " + arg;
+    }
 #if defined(Q_WS_WIN)
     QString emuCommandLine = lastCommand;
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulator #%1, command = %2").arg(procCount).arg(emuCommandLine.replace('/', '\\')));
