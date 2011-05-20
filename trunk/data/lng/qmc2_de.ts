@@ -4574,8 +4574,9 @@ p, li { white-space: pre-wrap; }
         <translation>Liste der verfügbaren Geräte-Konfigurationen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="253"/>
-        <location filename="../../messdevcfg.cpp" line="402"/>
+        <location filename="../../messdevcfg.cpp" line="257"/>
+        <location filename="../../messdevcfg.cpp" line="290"/>
+        <location filename="../../messdevcfg.cpp" line="410"/>
         <source>No devices</source>
         <translation>Keine Geräte</translation>
     </message>
@@ -4623,13 +4624,13 @@ p, li { white-space: pre-wrap; }
         <translation>Aktuelle Geräte-Konfiguration klonen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="317"/>
-        <location filename="../../messdevcfg.cpp" line="319"/>
+        <location filename="../../messdevcfg.cpp" line="325"/>
+        <location filename="../../messdevcfg.cpp" line="327"/>
         <source>%1. copy of </source>
         <translation>%1. Kopie von </translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="468"/>
+        <location filename="../../messdevcfg.cpp" line="476"/>
         <source>%1. variant of </source>
         <translation>%1. Variante von </translation>
     </message>
@@ -4684,7 +4685,7 @@ p, li { white-space: pre-wrap; }
         <translation>Datei auswählen...</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="553"/>
+        <location filename="../../messdevcfg.cpp" line="565"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Standard Geräte-Verzeichnis für &apos;%1&apos; auswählen</translation>
     </message>
@@ -5143,7 +5144,7 @@ Sollen diese beim Beenden geschlossen werden?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="380"/>
         <location filename="../../qmc2main.cpp" line="3198"/>
-        <location filename="../../qmc2main.cpp" line="3226"/>
+        <location filename="../../qmc2main.cpp" line="3234"/>
         <location filename="../../qmc2main.cpp" line="3425"/>
         <location filename="../../qmc2main.cpp" line="3514"/>
         <location filename="../../qmc2main.cpp" line="4901"/>
@@ -5417,19 +5418,19 @@ Sollen diese beim Beenden geschlossen werden?</translation>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3264"/>
+        <location filename="../../qmc2main.cpp" line="3263"/>
         <source>Export to...</source>
         <translation>Exportieren nach...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3286"/>
-        <location filename="../../qmc2main.cpp" line="3290"/>
+        <location filename="../../qmc2main.cpp" line="3285"/>
+        <location filename="../../qmc2main.cpp" line="3289"/>
         <source>&lt;inipath&gt;/%1.ini</source>
         <translation>&lt;inipath&gt;/%1.ini</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3287"/>
-        <location filename="../../qmc2main.cpp" line="3291"/>
+        <location filename="../../qmc2main.cpp" line="3286"/>
+        <location filename="../../qmc2main.cpp" line="3290"/>
         <source>Select file...</source>
         <translation>Datei auswählen...</translation>
     </message>
@@ -7504,12 +7505,12 @@ Einbettung wiederholen?</translation>
         <translation>Maschinenliste wird bereits neu geladen</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3219"/>
+        <location filename="../../qmc2main.cpp" line="3220"/>
         <source>Emulator for this game</source>
         <translation>Emulator für dieses Spiel</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3221"/>
+        <location filename="../../qmc2main.cpp" line="3222"/>
         <source>Emulator for this machine</source>
         <translation>Emulator für diese Maschine</translation>
     </message>
@@ -8433,11 +8434,6 @@ Einbettung wiederholen?</translation>
         <translation>Allg. Software-Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4028"/>
-        <source>Directory used as the default software folder for the MESS device configurator</source>
-        <translation>Standard-Verzeichnis, das bei der MESS-Gerätekonfiguration verwendet wird, so lange kein individuelles Software-Verzeichnis angegeben wurde</translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="4041"/>
         <source>Browse general software folder</source>
         <translation>Allgmeines Software-Verzeichnis auswählen</translation>
@@ -8925,6 +8921,11 @@ Einbettung wiederholen?</translation>
         <location filename="../../options.ui" line="3967"/>
         <source>Browse software list cache file</source>
         <translation>Softwarelisten-Cache Datei auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="4028"/>
+        <source>Directory used as the default software folder for the MESS device configurator (if a sub-folder named as the current machine exists, that folder will be selected instead)</source>
+        <translation>Standard Software-Verzeichnis, das bei der MESS Geräte-Konfiguration verwendet wird (sofern dort ein Unterverzeichnis mit dem Namen der aktuell ausgewählten Maschine existiert, wird dieses stattdessen verwendet)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4339"/>
@@ -11104,7 +11105,7 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Exportieren nach...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="3272"/>
+        <location filename="../../qmc2main.cpp" line="3271"/>
         <location filename="../../qmc2main.cpp" line="8407"/>
         <source>Import from...</source>
         <translation>Importieren von...</translation>
@@ -11122,14 +11123,14 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>Datei auswählen...</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.cpp" line="3265"/>
         <location filename="../../qmc2main.cpp" line="3266"/>
-        <location filename="../../qmc2main.cpp" line="3267"/>
         <source>Export game-specific MAME configuration</source>
         <translation>Spiel-spezifische MAME Konfiguration exportieren</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.cpp" line="3273"/>
         <location filename="../../qmc2main.cpp" line="3274"/>
-        <location filename="../../qmc2main.cpp" line="3275"/>
         <source>Import game-specific MAME configuration</source>
         <translation>Spiel-spezifische MAME Konfiguration importieren</translation>
     </message>
@@ -11238,14 +11239,14 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>&lt;inipath&gt;/mess.ini</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.cpp" line="3268"/>
         <location filename="../../qmc2main.cpp" line="3269"/>
-        <location filename="../../qmc2main.cpp" line="3270"/>
         <source>Export machine-specific MESS configuration</source>
         <translation>Maschinen-spezifische MESS Konfiguration exportieren</translation>
     </message>
     <message>
+        <location filename="../../qmc2main.cpp" line="3276"/>
         <location filename="../../qmc2main.cpp" line="3277"/>
-        <location filename="../../qmc2main.cpp" line="3278"/>
         <source>Import machine-specific MESS configuration</source>
         <translation>Maschinen-spezifische MESS Konfiguration importieren</translation>
     </message>

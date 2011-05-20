@@ -246,8 +246,12 @@ bool MESSDeviceConfigurator::load()
   qmc2Config->endGroup();
 
   // use the 'general software folder' as fall-back, if applicable
-  if ( qmc2FileEditStartPath.isEmpty() )
+  if ( qmc2FileEditStartPath.isEmpty() ) {
     qmc2FileEditStartPath = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
+    QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + messMachineName);
+    if ( machineSoftwareFolder.exists() )
+      qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
+  }
 
   dontIgnoreNameChange = true;
   QListWidgetItem *noDeviceItem = new QListWidgetItem(tr("No devices"), listWidgetDeviceConfigurations);
@@ -282,8 +286,12 @@ bool MESSDeviceConfigurator::save()
     qmc2Config->setValue("DefaultDeviceDirectory", devDir);
 
   QListWidgetItem *curItem = listWidgetDeviceConfigurations->currentItem();
-  if ( curItem != NULL )
-    qmc2Config->setValue("SelectedConfiguration", curItem->text());
+  if ( curItem != NULL ) {
+    if ( curItem->text() == tr("No devices") )
+      qmc2Config->remove("SelectedConfiguration");
+    else
+      qmc2Config->setValue("SelectedConfiguration", curItem->text());
+  }
 
   qmc2Config->endGroup();
 
@@ -545,20 +553,28 @@ void MESSDeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
   QString group = QString("MESS/Configuration/Devices/%1").arg(messMachineName);
   QString path = qmc2Config->value(group + "/DefaultDeviceDirectory", "").toString();
 
-  if ( path.isEmpty() )
+  if ( path.isEmpty() ) {
     path = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
+    QDir machineSoftwareFolder(path + "/" + messMachineName);
+    if ( machineSoftwareFolder.exists() )
+      path = machineSoftwareFolder.canonicalPath();
+  }
 
   qmc2Config->beginGroup(group);
 
   QString s = QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(messMachineName), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
-  if ( !s.isNull() )
+  if ( !s.isEmpty() )
     qmc2Config->setValue("DefaultDeviceDirectory", s);
   qmc2FileEditStartPath = qmc2Config->value("DefaultDeviceDirectory").toString();
 
   qmc2Config->endGroup();
 
-  if ( qmc2FileEditStartPath.isEmpty() )
+  if ( qmc2FileEditStartPath.isEmpty() ) {
     qmc2FileEditStartPath = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
+    QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + messMachineName);
+    if ( machineSoftwareFolder.exists() )
+      qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
+  }
 }
 
 void MESSDeviceConfigurator::actionGenerateDeviceConfigurations_triggered()
