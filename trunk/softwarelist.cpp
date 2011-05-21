@@ -126,13 +126,17 @@ QString &SoftwareList::getSoftwareListXmlData(QString listName)
 
 	if ( softwareListXmlBuffer.isEmpty() ) {
 		int i = 0;
+		int swlLinesMax = swlLines.count() - 1;
 		QString s = "<softwarelist name=\"" + listName + "\"";
-		while ( !swlLines[i].contains(s) ) i++;
+		while ( !swlLines[i].startsWith(s) && i < swlLinesMax ) i++;
 		softwareListXmlBuffer = "<?xml version=\"1.0\"?>\n";
-		while ( !swlLines[i].contains("</softwarelist>") )
+		while ( !swlLines[i].startsWith("</softwarelist>") && i < swlLinesMax )
 			softwareListXmlBuffer += swlLines[i++].simplified() + "\n";
 		softwareListXmlBuffer += "</softwarelist>";
-		softwareListXmlDataCache[listName] = softwareListXmlBuffer;
+		if ( i < swlLinesMax ) {
+			softwareListXmlDataCache[listName] = softwareListXmlBuffer;
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: software list '%1' not found").arg(listName));
 	}
 
 	return softwareListXmlBuffer;
