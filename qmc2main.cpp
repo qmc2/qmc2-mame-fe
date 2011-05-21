@@ -421,6 +421,11 @@ MainWindow::MainWindow(QWidget *parent)
   actionArcadeToggle->setVisible(false);
 #endif
 
+  // FIXME: remove the WIP clause when software list support is finished
+#if QMC2_WIP_CODE != 1
+  actionClearSoftwareListCache->setVisible(false);
+#endif
+
   labelGameStatus->setVisible(false);
   labelGameStatus->setPalette(qmc2StatusColorBlue);
 
@@ -2004,6 +2009,36 @@ void MainWindow::on_actionClearXMLCache_activated()
 	}
 }
 
+void MainWindow::on_actionClearSoftwareListCache_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearSoftwareListCache_activated()");
+#endif
+
+	if ( qmc2ReloadActive ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
+		return;
+	}
+
+	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+
+#if defined(QMC2_EMUTYPE_MAME)
+	QString fileName = qmc2Config->value("MAME/FilesAndDirectories/SoftwareListCache", userScopePath + "/mame.swl").toString();
+#elif defined(QMC2_EMUTYPE_MESS)
+	QString fileName = qmc2Config->value("MESS/FilesAndDirectories/SoftwareListCache", userScopePath + "/mess.swl").toString();
+#else
+	return;
+#endif
+
+	QFile f(fileName);
+	if ( f.exists() ) {
+		if ( f.remove() )
+			log(QMC2_LOG_FRONTEND, tr("software list cache file '%1' forcedly removed upon user request").arg(fileName));
+		else
+			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the software list cache file '%1', please check permissions").arg(fileName));
+	}
+}
+
 void MainWindow::on_actionRecreateTemplateMap_activated()
 {
 #ifdef QMC2_DEBUG
@@ -3062,7 +3097,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
 	if ( !qmc2SoftwareListAlreadyLoading ) {
           qmc2SoftwareListAlreadyLoading = true;
-          log(QMC2_LOG_FRONTEND, QString("WIP: support for software lists is still under development and not working properly yet!"));
+          log(QMC2_LOG_FRONTEND, QString("WIP: note that support for software lists is still under development!"));
           tabSoftwareList->setUpdatesEnabled(false);
           if ( qmc2SoftwareList ) {
             QLayout *vbl = tabSoftwareList->layout();
