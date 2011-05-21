@@ -255,6 +255,8 @@ QColor MainWindow::qmc2StatusColorGrey = QColor("#7f7f7f");
 
 // extern global variables
 extern bool exitArcade;
+extern QMap<QString, QStringList> systemSoftwareListMap;
+extern QMap<QString, QString> softwareListXmlDataCache;
 
 void MainWindow::log(char logOrigin, QString message)
 {
@@ -2007,6 +2009,8 @@ void MainWindow::on_actionClearXMLCache_activated()
 		else
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the XML cache file '%1', please check permissions").arg(fileName));
 	}
+	softwareListXmlDataCache.clear();
+	systemSoftwareListMap.clear();
 }
 
 void MainWindow::on_actionClearSoftwareListCache_activated()
