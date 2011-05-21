@@ -547,11 +547,11 @@ void SoftwareList::loadReadyReadStandardError()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadReadyReadStandardError(): data = '%1'").arg(data));
 #endif
 
-	if ( data.contains("unknown option: -listsoftware") ) {
+	if ( data.contains("unknown option: -listsoftware") || data.contains("Unknown command 'listsoftware' specified") ) {
 #if defined(QMC2_EMUTYPE_MAME)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: your currently selected MAME emulator doesn't support software lists -- MAME 0.142+ required"));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the currently selected MAME emulator doesn't support software lists"));
 #elif defined(QMC2_EMUTYPE_MESS)
-		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: your currently selected MESS emulator doesn't support software lists -- MESS 0.138+ required"));
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the currently selected MESS emulator doesn't support software lists"));
 #endif
 		swlSupported = false;
 		if ( fileSWLCache.isOpen() )
