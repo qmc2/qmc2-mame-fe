@@ -188,6 +188,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_actionClearROMStateCache_activated();
     void on_actionClearGamelistCache_activated();
     void on_actionClearXMLCache_activated();
+    void on_actionClearSoftwareListCache_activated();
     void on_actionOptions_activated();
 
     // display menu

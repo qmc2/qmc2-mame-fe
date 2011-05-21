@@ -2102,7 +2102,7 @@
      <x>0</x>
      <y>0</y>
      <width>693</width>
-     <height>25</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Help">
@@ -2118,6 +2118,24 @@
     <property name="title">
      <string>&amp;Tools</string>
     </property>
+    <widget class="QMenu" name="menuAudio_player">
+     <property name="title">
+      <string>&amp;Audio player</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/music.png</normaloff>:/data/img/music.png</iconset>
+     </property>
+     <addaction name="actionAudioPlayTrack"/>
+     <addaction name="actionAudioPauseTrack"/>
+     <addaction name="actionAudioStopTrack"/>
+     <addaction name="actionAudioFastForward"/>
+     <addaction name="actionAudioFastBackward"/>
+     <addaction name="actionAudioNextTrack"/>
+     <addaction name="actionAudioPreviousTrack"/>
+     <addaction name="actionAudioRaiseVolume"/>
+     <addaction name="actionAudioLowerVolume"/>
+    </widget>
     <widget class="QMenu" name="menuCleanUp">
      <property name="title">
       <string>&amp;Clean up</string>
@@ -2137,24 +2155,7 @@
      <addaction name="actionClearROMStateCache"/>
      <addaction name="actionClearGamelistCache"/>
      <addaction name="actionClearXMLCache"/>
-    </widget>
-    <widget class="QMenu" name="menuAudio_player">
-     <property name="title">
-      <string>&amp;Audio player</string>
-     </property>
-     <property name="icon">
-      <iconset resource="qmc2.qrc">
-       <normaloff>:/data/img/music.png</normaloff>:/data/img/music.png</iconset>
-     </property>
-     <addaction name="actionAudioPlayTrack"/>
-     <addaction name="actionAudioPauseTrack"/>
-     <addaction name="actionAudioStopTrack"/>
-     <addaction name="actionAudioFastForward"/>
-     <addaction name="actionAudioFastBackward"/>
-     <addaction name="actionAudioNextTrack"/>
-     <addaction name="actionAudioPreviousTrack"/>
-     <addaction name="actionAudioRaiseVolume"/>
-     <addaction name="actionAudioLowerVolume"/>
+     <addaction name="actionClearSoftwareListCache"/>
     </widget>
     <addaction name="actionCheckROMs"/>
     <addaction name="actionCheckSamples"/>
@@ -3274,6 +3275,17 @@
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionClearSoftwareListCache">
+   <property name="text">
+    <string>Clear software list cache</string>
+   </property>
+   <property name="toolTip">
+    <string>Forcedly clear (remove) the software list cache</string>
+   </property>
+   <property name="statusTip">
+    <string>Forcedly clear (remove) the software list cache</string>
    </property>
   </action>
  </widget>
