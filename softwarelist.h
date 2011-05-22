@@ -36,7 +36,6 @@ class SoftwareSnap : public QWidget
 	Q_OBJECT
 
 	public:
-		QMenu *contextMenu;
 		QString listName;
 		QString entryName;
 		QPoint position;
@@ -50,7 +49,6 @@ class SoftwareSnap : public QWidget
 	protected:
 		void leaveEvent(QEvent *);
 		void mousePressEvent(QMouseEvent *);
-		void contextMenuEvent(QContextMenuEvent *);
 		void keyPressEvent(QKeyEvent *);
 		void paintEvent(QPaintEvent *);
 };
