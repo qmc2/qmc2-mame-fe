@@ -773,6 +773,37 @@ void SoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const Q
 	softwareListMenu->show();
 }
 
+//#define QMC2_DEBUG
+
+void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item, int column)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item = %1 int column = %2)").arg((qulonglong)item).arg(column));
+#endif
+
+	// FIXME
+}
+
+void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *item, int column)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *item = %1 int column = %2)").arg((qulonglong)item).arg(column));
+#endif
+
+	// FIXME
+}
+
+void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item, int column)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item = %1 int column = %2)").arg((qulonglong)item).arg(column));
+#endif
+
+	// FIXME
+}
+
+//#undef QMC2_DEBUG
+
 QStringList &SoftwareList::arguments()
 {
 #ifdef QMC2_DEBUG
