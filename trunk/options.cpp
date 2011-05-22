@@ -83,6 +83,7 @@ extern bool qmc2UseControllerFile;
 extern bool qmc2UseMarqueeFile;
 extern bool qmc2UseTitleFile;
 extern bool qmc2UsePCBFile;
+extern bool qmc2UseSoftwareSnapFile;
 extern bool qmc2AutomaticReload;
 extern bool qmc2SuppressQtMessages;
 extern bool qmc2ShowGameName;
@@ -166,6 +167,12 @@ Options::Options(QWidget *parent)
   config = new QSettings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
 
   setupUi(this);
+
+  // FIXME: remove the WIP clause when software list support is finished
+#if QMC2_WIP_CODE != 1
+  stackedWidgetSWSnap->setVisible(false);
+  radioButtonSoftwareSnapSelect->setVisible(false);
+#endif
 
 #if !defined(QMC2_SHOWMEMINFO)
   checkBoxMemoryIndicator->setVisible(false);
@@ -459,6 +466,8 @@ void Options::apply()
   toolButtonBrowseTitleFile->setIconSize(iconSize);
   toolButtonBrowsePCBDirectory->setIconSize(iconSize);
   toolButtonBrowsePCBFile->setIconSize(iconSize);
+  toolButtonBrowseSoftwareSnapDirectory->setIconSize(iconSize);
+  toolButtonBrowseSoftwareSnapFile->setIconSize(iconSize);
   toolButtonShowC->setIconSize(iconSize);
   toolButtonShowM->setIconSize(iconSize);
   toolButtonShowI->setIconSize(iconSize);
@@ -665,6 +674,7 @@ void Options::on_pushButtonApply_clicked()
        needReopenMarqueeFile = false,
        needReopenTitleFile = false,
        needReopenPCBFile = false,
+       needReopenSoftwareSnapFile = false,
        needReload = false,
        needManualReload = false;
 
@@ -868,10 +878,16 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/TitleFile", lineEditTitleFile->text());
   needReopenPCBFile = (qmc2UsePCBFile != (stackedWidgetPCB->currentIndex() == 1));
   needReopenPCBFile |= (config->value("MAME/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
-  qmc2UsePCBFile = (stackedWidgetTitle->currentIndex() == 1);
+  qmc2UsePCBFile = (stackedWidgetPCB->currentIndex() == 1);
   config->setValue("MAME/FilesAndDirectories/UsePCBFile", qmc2UsePCBFile);
   config->setValue("MAME/FilesAndDirectories/PCBDirectory", lineEditPCBDirectory->text());
   config->setValue("MAME/FilesAndDirectories/PCBFile", lineEditPCBFile->text());
+  needReopenSoftwareSnapFile = (qmc2UseSoftwareSnapFile != (stackedWidgetSWSnap->currentIndex() == 1));
+  needReopenSoftwareSnapFile |= (config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString() != lineEditSoftwareSnapFile->text());
+  qmc2UseSoftwareSnapFile = (stackedWidgetSWSnap->currentIndex() == 1);
+  config->setValue("MAME/FilesAndDirectories/UseSoftwareSnapFile", qmc2UseSoftwareSnapFile);
+  config->setValue("MAME/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
+  config->setValue("MAME/FilesAndDirectories/SoftwareSnapFile", lineEditSoftwareSnapFile->text());
   s = lineEditGameInfoDB->text();
   needManualReload |= (config->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
   invalidateGameInfoDB |= (config->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
@@ -970,10 +986,16 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/TitleFile", lineEditTitleFile->text());
   needReopenPCBFile = (qmc2UsePCBFile != (stackedWidgetPCB->currentIndex() == 1));
   needReopenPCBFile |= (config->value("MESS/FilesAndDirectories/PCBFile").toString() != lineEditPCBFile->text());
-  qmc2UsePCBFile = (stackedWidgetTitle->currentIndex() == 1);
+  qmc2UsePCBFile = (stackedWidgetPCB->currentIndex() == 1);
   config->setValue("MESS/FilesAndDirectories/UsePCBFile", qmc2UsePCBFile);
   config->setValue("MESS/FilesAndDirectories/PCBDirectory", lineEditPCBDirectory->text());
   config->setValue("MESS/FilesAndDirectories/PCBFile", lineEditPCBFile->text());
+  needReopenSoftwareSnapFile = (qmc2UseSoftwareSnapFile != (stackedWidgetSWSnap->currentIndex() == 1));
+  needReopenSoftwareSnapFile |= (config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString() != lineEditSoftwareSnapFile->text());
+  qmc2UseSoftwareSnapFile = (stackedWidgetSWSnap->currentIndex() == 1);
+  config->setValue("MESS/FilesAndDirectories/UseSoftwareSnapFile", qmc2UseSoftwareSnapFile);
+  config->setValue("MESS/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
+  config->setValue("MESS/FilesAndDirectories/SoftwareSnapFile", lineEditSoftwareSnapFile->text());
   s = lineEditGameInfoDB->text();
   needManualReload |= (config->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
   invalidateGameInfoDB |= (config->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
@@ -1601,6 +1623,8 @@ void Options::on_pushButtonApply_clicked()
     qmc2PCB->update();
   }
 
+  // FIXME: add reopen-code for a software snap file
+
   if ( needReopenIconFile ) {
     if ( qmc2UseIconFile ) {
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1788,6 +1812,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   qmc2UsePCBFile = config->value("MAME/FilesAndDirectories/UsePCBFile", false).toBool();
   stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
   radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
+  lineEditSoftwareSnapDirectory->setText(config->value("MAME/FilesAndDirectories/SoftwareSnapDirectory", QMC2_DEFAULT_DATA_PATH + "/sws/").toString());
+  lineEditSoftwareSnapFile->setText(config->value("MAME/FilesAndDirectories/SoftwareSnapFile", QMC2_DEFAULT_DATA_PATH + "/sws/swsnaps.zip").toString());
+  qmc2UseSoftwareSnapFile = config->value("MAME/FilesAndDirectories/UseSoftwareSnapFile", false).toBool();
+  stackedWidgetSWSnap->setCurrentIndex(qmc2UseSoftwareSnapFile ? 1 : 0);
+  radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
   lineEditGameInfoDB->setText(config->value("MAME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
   lineEditEmuInfoDB->setText(config->value("MAME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
   lineEditCatverIniFile->setText(config->value("MAME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
@@ -1840,6 +1869,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   qmc2UsePCBFile = config->value("MESS/FilesAndDirectories/UsePCBFile", false).toBool();
   stackedWidgetPCB->setCurrentIndex(qmc2UsePCBFile ? 1 : 0);
   radioButtonPCBSelect->setText(qmc2UsePCBFile ? tr("PCB file") : tr("PCB directory"));
+  lineEditSoftwareSnapDirectory->setText(config->value("MESS/FilesAndDirectories/SoftwareSnapDirectory", QMC2_DEFAULT_DATA_PATH + "/sws/").toString());
+  lineEditSoftwareSnapFile->setText(config->value("MESS/FilesAndDirectories/SoftwareSnapFile", QMC2_DEFAULT_DATA_PATH + "/sws/swsnaps.zip").toString());
+  qmc2UseSoftwareSnapFile = config->value("MESS/FilesAndDirectories/UseSoftwareSnapFile", false).toBool();
+  stackedWidgetSWSnap->setCurrentIndex(qmc2UseSoftwareSnapFile ? 1 : 0);
+  radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
   lineEditGameInfoDB->setText(config->value("MESS/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
 #endif
 
@@ -2679,6 +2713,17 @@ void Options::on_radioButtonPCBSelect_clicked()
   radioButtonPCBSelect->setText(!currentUsePCBFile ? tr("PCB file") : tr("PCB directory"));
 }
 
+void Options::on_radioButtonSoftwareSnapSelect_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_radioButtonSoftwareSnapSelect_clicked()");
+#endif
+
+  bool currentUseSoftwareSnapFile = (stackedWidgetSWSnap->currentIndex() == 1);
+  stackedWidgetSWSnap->setCurrentIndex(!currentUseSoftwareSnapFile);
+  radioButtonSoftwareSnapSelect->setText(!currentUseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
+}
+
 void Options::on_toolButtonBrowsePreviewFile_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -2772,6 +2817,32 @@ void Options::on_toolButtonBrowsePCBFile_clicked()
   QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed PCB file"), lineEditPCBFile->text(), tr("All files (*)"));
   if ( !s.isNull() )
     lineEditPCBFile->setText(s);
+  raise();
+}
+
+void Options::on_toolButtonBrowseSoftwareSnapDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareSnapDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose software snap directory"), lineEditSoftwareSnapDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditSoftwareSnapDirectory->setText(s);
+  }
+  raise();
+}
+
+void Options::on_toolButtonBrowseSoftwareSnapFile_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareSnapFile_clicked()");
+#endif
+
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed software snap file"), lineEditPCBFile->text(), tr("All files (*)"));
+  if ( !s.isNull() )
+    lineEditSoftwareSnapFile->setText(s);
   raise();
 }
 
