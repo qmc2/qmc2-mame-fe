@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>501</width>
-    <height>463</height>
+    <width>470</width>
+    <height>421</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>452</width>
+                <width>446</width>
                 <height>597</height>
                </rect>
               </property>
@@ -848,9 +848,9 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>452</width>
-                <height>496</height>
+                <y>-207</y>
+                <width>421</width>
+                <height>525</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -1470,7 +1470,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="16" column="0" colspan="3">
+                 <item row="17" column="0" colspan="3">
                   <spacer name="spacer5">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -1483,7 +1483,7 @@
                    </property>
                   </spacer>
                  </item>
-                 <item row="17" column="0" colspan="3">
+                 <item row="18" column="0" colspan="3">
                   <layout class="QHBoxLayout" name="layout8">
                    <item>
                     <widget class="QLabel" name="labelLegend3Pic">
@@ -2076,6 +2076,109 @@
                     <iconset resource="qmc2.qrc">
                      <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
+                  </widget>
+                 </item>
+                 <item row="16" column="0">
+                  <widget class="QRadioButton" name="radioButtonSoftwareSnapSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying a software snap directory or a ZIP-compressed software snap file</string>
+                   </property>
+                   <property name="text">
+                    <string>SW snap folder</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="16" column="1" colspan="2">
+                  <widget class="QStackedWidget" name="stackedWidgetSWSnap">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="currentIndex">
+                    <number>0</number>
+                   </property>
+                   <widget class="QWidget" name="pageSoftwareSnapDirectory">
+                    <layout class="QHBoxLayout" name="_20">
+                     <property name="margin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLineEdit" name="lineEditSoftwareSnapDirectory">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Software snap-shot directory (read)</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QToolButton" name="toolButtonBrowseSoftwareSnapDirectory">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Browse software snap-shot directory</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="qmc2.qrc">
+                         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                   <widget class="QWidget" name="pageSoftwareSnapFile">
+                    <layout class="QHBoxLayout" name="_21">
+                     <property name="margin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QLineEdit" name="lineEditSoftwareSnapFile">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>ZIP-compressed software snap-shot file (read)</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QToolButton" name="toolButtonBrowseSoftwareSnapFile">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="toolTip">
+                        <string>Browse ZIP-compressed software snap-shot file</string>
+                       </property>
+                       <property name="icon">
+                        <iconset resource="qmc2.qrc">
+                         <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
                   </widget>
                  </item>
                 </layout>
@@ -3594,8 +3697,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>469</width>
-                <height>360</height>
+                <width>179</width>
+                <height>322</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -4489,6 +4592,11 @@
   <tabstop>toolButtonBrowsePCBDirectory</tabstop>
   <tabstop>lineEditPCBFile</tabstop>
   <tabstop>toolButtonBrowsePCBFile</tabstop>
+  <tabstop>radioButtonSoftwareSnapSelect</tabstop>
+  <tabstop>lineEditSoftwareSnapDirectory</tabstop>
+  <tabstop>toolButtonBrowseSoftwareSnapDirectory</tabstop>
+  <tabstop>lineEditSoftwareSnapFile</tabstop>
+  <tabstop>toolButtonBrowseSoftwareSnapFile</tabstop>
   <tabstop>toolButtonShowC</tabstop>
   <tabstop>toolButtonShowM</tabstop>
   <tabstop>toolButtonShowI</tabstop>

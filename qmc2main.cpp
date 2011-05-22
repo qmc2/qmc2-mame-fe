@@ -150,6 +150,7 @@ bool qmc2UseIconFile = false;
 bool qmc2UseMarqueeFile = false;
 bool qmc2UseTitleFile = false;
 bool qmc2UsePCBFile = false;
+bool qmc2UseSoftwareSnapFile = false;
 bool qmc2IconsPreloaded = false;
 bool qmc2CheckItemVisibility = true;
 bool qmc2AutomaticReload = false;
