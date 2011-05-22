@@ -2176,7 +2176,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="679"/>
         <source>choice</source>
-        <translation type="unfinished"></translation>
+        <translation>escolha</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="683"/>
@@ -2246,12 +2246,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="948"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">FATAL: impossível iniciar o executável do MAME dentro de um tempo razoável, desistindo</translation>
+        <translation>FATAL: impossível iniciar o executável do MAME dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="950"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">FATAL: impossível iniciar o executável do MESS dentro de um tempo razoável, desistindo</translation>
+        <translation>FATAL: impossível iniciar o executável do MESS dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1006"/>
@@ -5836,27 +5836,27 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="494"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogo</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="523"/>
         <source>Machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Máquina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1063"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre com o texto de busca</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2040"/>
         <source>software list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>arquivo de cache &apos;%1&apos; de lista de software forçadamente removido devido à requisição do usuário</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2042"/>
         <source>WARNING: cannot remove the software list cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: impossível remover o arquivo de cache &apos;%1&apos; da lista de software, por favor cheque as permissões</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4973"/>
@@ -7626,13 +7626,13 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3282"/>
         <source>Clear software list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache de lista de software</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3285"/>
         <location filename="../../qmc2main.ui" line="3288"/>
         <source>Forcedly clear (remove) the software list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Forçar limpar (remover) o cache da lista de software</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5532"/>
@@ -8590,13 +8590,13 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="322"/>
         <location filename="../../options.cpp" line="329"/>
         <source>Reset to default font</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar para a fonte padrão</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="337"/>
         <location filename="../../options.cpp" line="344"/>
         <source>No style sheet</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem folha de estilo</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="772"/>
@@ -9052,7 +9052,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="2413"/>
         <source>Choose general software folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha a pasta geral de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2427"/>
@@ -10134,7 +10134,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="4028"/>
         <source>Directory used as the default software folder for the MESS device configurator (if a sub-folder named as the current machine exists, that folder will be selected instead)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório utilizado como diretório padrão de software para o configurador de dispositivos do MESS (se um subdiretório com o mesmo nome da máquina existir, essa pasta será selecionada no lugar)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2428"/>
@@ -10719,12 +10719,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="4015"/>
         <source>General software folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório geral de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4041"/>
         <source>Browse general software folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar diretório geral de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4059"/>
@@ -14118,7 +14118,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="139"/>
         <source>WARNING: software list &apos;%1&apos; not found</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: lista de software &apos;%1&apos; não encontrada</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="195"/>
@@ -14233,12 +14233,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="556"/>
         <source>WARNING: the currently selected MAME emulator doesn&apos;t support software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o emulador MAME selecionado atualmente não suporta lista de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="558"/>
         <source>WARNING: the currently selected MESS emulator doesn&apos;t support software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: o emulador MESS selecionado atualmente não suporta lista de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="575"/>
@@ -14808,7 +14808,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="220"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre com o texto de busca</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="324"/>
@@ -14848,7 +14848,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1239"/>
         <source>Full screen (press %1 to return)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tela cheia (pressione %1 para retornar)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1414"/>
