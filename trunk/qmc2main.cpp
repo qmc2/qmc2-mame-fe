@@ -4921,6 +4921,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
     delete qmc2ArcadeSetupDialog;
   }
 
+  if ( qmc2SoftwareSnap ) {
+    qmc2SoftwareSnap->close();
+    delete qmc2SoftwareSnap;
+  }
+
 #if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2SoftwareList ) {
     log(QMC2_LOG_FRONTEND, tr("saving current game's favorite software"));
