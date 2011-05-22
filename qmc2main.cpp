@@ -2446,13 +2446,21 @@ void MainWindow::on_comboBoxSearch_textChanged_delayed()
   }
 
   listWidgetSearch->clear();
-  QList<QTreeWidgetItem *> matches = treeWidgetGamelist->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard);
-  
+  QList<QTreeWidgetItem *> matches = treeWidgetGamelist->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_GAME);
+  QList<QTreeWidgetItem *> matchesByShortName = treeWidgetGamelist->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_GAMELIST_COLUMN_NAME);
+
   int i;
+  for (i = 0; i < matchesByShortName.count(); i++) {
+    QTreeWidgetItem *item = matchesByShortName[i];
+    if ( !matches.contains(item) ) matches.append(item);
+  }
+  
   for (i = 0; i < matches.count(); i++) {
     QListWidgetItem *item = new QListWidgetItem(listWidgetSearch);
     item->setText(matches.at(i)->text(QMC2_GAMELIST_COLUMN_GAME));
   }
+
+  listWidgetSearch->sortItems();
 
   qmc2Gamelist->numSearchGames = matches.count();
   labelGamelistStatus->setText(qmc2Gamelist->status());
