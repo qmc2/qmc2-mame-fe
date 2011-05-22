@@ -3,6 +3,7 @@
 
 #include <QProcess>
 #include <QTime>
+#include <QTimer>
 #include <QFile>
 #include <QTextStream>
 #include <QXmlDefaultHandler>
@@ -36,13 +37,15 @@ class SoftwareSnap : public QWidget
 
 	public:
 		QMenu *contextMenu;
+		QString listName;
+		QString entryName;
+		QPoint position;
 		unzFile snapFile;
 
 		SoftwareSnap(QWidget *parent = 0);
 
 	public slots:
-		void copyToClipboard();
-		void saveAs();
+		void loadSnapshot();
 
 	protected:
 		void leaveEvent(QEvent *);
@@ -67,6 +70,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QMenu *softwareListMenu;
 		QAction *actionAddToFavorites;
 		QAction *actionRemoveFromFavorites;
+		QTimer snapTimer;
 
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();
@@ -74,6 +78,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QString &getSoftwareListXmlData(QString);
 		QString &getXmlData(QString);
 		QStringList &arguments();
+		void displaySoftwareSnap(QString, QString, QPoint);
 
 	public slots:
 		bool load();
@@ -103,6 +108,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void loadError(QProcess::ProcessError);
 		void loadStateChanged(QProcess::ProcessState);
  
+		// other
 		void treeWidgetKnownSoftware_headerSectionClicked(int);
 		void treeWidgetFavoriteSoftware_headerSectionClicked(int);
 		void treeWidgetSearchResults_headerSectionClicked(int);
@@ -110,11 +116,13 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void removeFromFavorites() { on_toolButtonRemoveFromFavorites_clicked(false); }
 		void playActivated() { on_toolButtonPlay_clicked(false); }
 		void playEmbeddedActivated() { on_toolButtonPlayEmbedded_clicked(false); }
+		void cancelSoftwareSnap();
 
 	protected:
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);
 		void hideEvent(QHideEvent *);
+		void leaveEvent(QEvent *);
 };
 
 #endif

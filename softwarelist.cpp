@@ -1,5 +1,7 @@
 #include <QFileInfo>
 #include <QPainter>
+#include <QPixmapCache>
+#include <QDir>
 
 #include "softwarelist.h"
 #include "gamelist.h"
@@ -13,6 +15,8 @@ extern QSettings *qmc2Config;
 extern Gamelist *qmc2Gamelist;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
+extern bool qmc2UseSoftwareSnapFile;
+extern SoftwareSnap *qmc2SoftwareSnap;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QString> softwareListXmlDataCache;
@@ -28,6 +32,11 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 #endif
 
 	setupUi(this);
+
+	if ( !qmc2SoftwareSnap ) qmc2SoftwareSnap = new SoftwareSnap();
+	qmc2SoftwareSnap->hide();
+	snapTimer.setSingleShot(true);
+	connect(&snapTimer, SIGNAL(timeout()), qmc2SoftwareSnap, SLOT(loadSnapshot()));
 
 	systemName = sysName;
 	loadProc = NULL;
@@ -462,6 +471,18 @@ void SoftwareList::hideEvent(QHideEvent *e)
 		e->accept();
 }
 
+void SoftwareList::leaveEvent(QEvent *e)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::leaveEvent(QEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+	cancelSoftwareSnap();
+
+	if ( e )
+		e->accept();
+}
+
 void SoftwareList::showEvent(QShowEvent *e)
 {
 #ifdef QMC2_DEBUG
@@ -774,6 +795,28 @@ void SoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const Q
 }
 
 //#define QMC2_DEBUG
+void SoftwareList::displaySoftwareSnap(QString listName, QString entryName, QPoint position)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::displaySoftwareSnap(QString listName = %1, QString entryName = %2, QPoint position = [%3, %4])").arg(listName).arg(entryName).arg(position.x()).arg(position.y()));
+#endif
+
+	qmc2SoftwareSnap->listName = listName;
+	qmc2SoftwareSnap->entryName = entryName;
+	qmc2SoftwareSnap->position = position;
+	snapTimer.start(QMC2_SWSNAP_DELAY);
+}
+
+void SoftwareList::cancelSoftwareSnap()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::cancelSoftwareSnap()");
+#endif
+
+	snapTimer.stop();
+	if ( qmc2SoftwareSnap )
+		qmc2SoftwareSnap->hide();
+}
 
 void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item, int column)
 {
@@ -781,7 +824,11 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item,
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item = %1 int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
-	// FIXME
+	cancelSoftwareSnap();
+	QRect rect = treeWidgetKnownSoftware->visualItemRect(item);
+	rect.translate(4, 4);
+	QPoint pos = treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.bottomLeft());
+	displaySoftwareSnap(item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME), pos);
 }
 
 void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *item, int column)
@@ -790,7 +837,11 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *it
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *item = %1 int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
-	// FIXME
+	cancelSoftwareSnap();
+	QRect rect = treeWidgetFavoriteSoftware->visualItemRect(item);
+	rect.translate(4, 4);
+	QPoint pos = treeWidgetFavoriteSoftware->viewport()->mapToGlobal(rect.bottomLeft());
+	displaySoftwareSnap(item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME), pos);
 }
 
 void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item, int column)
@@ -799,9 +850,12 @@ void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item,
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item = %1 int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
-	// FIXME
+	cancelSoftwareSnap();
+	QRect rect = treeWidgetSearchResults->visualItemRect(item);
+	rect.translate(4, 4);
+	QPoint pos = treeWidgetSearchResults->viewport()->mapToGlobal(rect.bottomLeft());
+	displaySoftwareSnap(item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME), pos);
 }
-
 //#undef QMC2_DEBUG
 
 QStringList &SoftwareList::arguments()
@@ -988,27 +1042,73 @@ void SoftwareSnap::contextMenuEvent(QContextMenuEvent *e)
 	contextMenu->show();
 }
 
-void SoftwareSnap::copyToClipboard()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::copyToClipboard()");
-#endif
-
-	// FIXME
-}
-
-void SoftwareSnap::saveAs()
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::saveAs()");
-#endif
-
-	// FIXME
-}
-
 void SoftwareSnap::paintEvent(QPaintEvent *e)
 {
 	QPainter p(this);
 	p.eraseRect(rect());
 	p.end();
 }
+
+//#define QMC2_DEBUG
+void SoftwareSnap::loadSnapshot()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::loadSnapshot()");
+#endif
+
+	QPixmap pm;
+	bool pmLoaded = false;
+
+#if QT_VERSION < 0x040600
+	static QPixmap cachedPixmap;
+	if ( QPixmapCache::find("sws_" + listName + "_" + entryName, cachedPixmap) ) {
+		pm = cachedPixmap;
+		pmLoaded = true;
+	}
+#else
+	if ( QPixmapCache::find("sws_" + listName + "_" + entryName, &pm) )
+		pmLoaded = true;
+#endif
+
+	if ( !pmLoaded ) {
+		if ( qmc2UseSoftwareSnapFile ) {
+			// FIXME: add ZIP support here
+		} else {
+#if defined(QMC2_EMUTYPE_MAME)
+			QDir snapDir(qmc2Config->value("MAME/FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
+#elif defined(QMC2_EMUTYPE_MESS)
+			QDir snapDir(qmc2Config->value("MESS/FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
+#endif
+#ifdef QMC2_DEBUG
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::loadSnapshot(): trying to load software snapshot from '%1'").arg(snapDir.absoluteFilePath(entryName + ".png")));
+#endif
+			if ( snapDir.exists(entryName + ".png") ) {
+				QString filePath = snapDir.absoluteFilePath(entryName + ".png");
+				if ( pm.load(filePath) ) {
+					pmLoaded = true;
+					QPixmapCache::insert("sws_" + listName + "_" + entryName, pm); 
+				}
+#ifdef QMC2_DEBUG
+				else
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::loadSnapshot(): software snapshot load failed, file = '%1'").arg(snapDir.absoluteFilePath(entryName + ".png")));
+#endif
+			}
+#ifdef QMC2_DEBUG
+			else
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::loadSnapshot(): software snapshot not found, file = '%1'").arg(snapDir.absoluteFilePath(entryName + ".png")));
+#endif
+		}
+	}
+
+	if ( pmLoaded ) {
+		resize(pm.size());
+		move(position);
+		QPalette pal = palette();
+		pal.setBrush(QPalette::Window, pm);
+		setPalette(pal);
+		showNormal();
+		raise();
+		update();
+	}
+}
+//#undef QMC2_DEBUG

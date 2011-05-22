@@ -213,6 +213,9 @@
 // general polling interval for operations that need to wait until game/machine list reload has finished
 #define QMC2_RELOAD_POLL_INTERVAL	250
 
+// time to wait before trying to load a software snapshot (if any) when hovering over the entries of a software list
+#define QMC2_SWSNAP_DELAY		250
+
 // gamelist sort criteria
 #define QMC2_SORT_BY_DESCRIPTION	0
 #define QMC2_SORT_BY_ROM_STATE		1
