@@ -103,6 +103,7 @@ extern Controller *qmc2Controller;
 extern Marquee *qmc2Marquee;
 extern Title *qmc2Title;
 extern PCB *qmc2PCB;
+extern SoftwareSnap *qmc2SoftwareSnap;
 extern Gamelist *qmc2Gamelist;
 extern ImageChecker *qmc2ImageChecker;
 extern ROMAlyzer *qmc2ROMAlyzer;
@@ -1623,7 +1624,23 @@ void Options::on_pushButtonApply_clicked()
     qmc2PCB->update();
   }
 
-  // FIXME: add reopen-code for a software snap file
+  if ( qmc2SoftwareSnap ) {
+    if ( needReopenSoftwareSnapFile ) {
+      if ( qmc2UseSoftwareSnapFile ) {
+#if defined(QMC2_EMUTYPE_MAME)
+        qmc2SoftwareSnap->snapFile = unzOpen((const char *)config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
+        if ( qmc2SoftwareSnap->snapFile == NULL )
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString()));
+#elif defined(QMC2_EMUTYPE_MESS)
+        qmc2SoftwareSnap->snapFile = unzOpen((const char *)config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
+        if ( qmc2SoftwareSnap->snapFile == NULL )
+          qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString()));
+#endif
+      } else
+        unzClose(qmc2SoftwareSnap->snapFile);
+    }
+    qmc2SoftwareSnap->update();
+  }
 
   if ( needReopenIconFile ) {
     if ( qmc2UseIconFile ) {

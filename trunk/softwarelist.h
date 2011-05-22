@@ -7,6 +7,7 @@
 #include <QTextStream>
 #include <QXmlDefaultHandler>
 #include "ui_softwarelist.h"
+#include "unzip.h"
 
 class SoftwareListXmlHandler : public QXmlDefaultHandler
 {
@@ -27,6 +28,28 @@ class SoftwareListXmlHandler : public QXmlDefaultHandler
 		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
 		bool endElement(const QString &, const QString &, const QString &);
 		bool characters(const QString &);
+};
+
+class SoftwareSnap : public QWidget
+{
+	Q_OBJECT
+
+	public:
+		QMenu *contextMenu;
+		unzFile snapFile;
+
+		SoftwareSnap(QWidget *parent = 0);
+
+	public slots:
+		void copyToClipboard();
+		void saveAs();
+
+	protected:
+		void leaveEvent(QEvent *);
+		void mousePressEvent(QMouseEvent *);
+		void contextMenuEvent(QContextMenuEvent *);
+		void keyPressEvent(QKeyEvent *);
+		void paintEvent(QPaintEvent *);
 };
 
 class SoftwareList : public QWidget, public Ui::SoftwareList
