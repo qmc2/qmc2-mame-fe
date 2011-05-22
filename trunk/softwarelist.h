@@ -91,6 +91,9 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_treeWidgetKnownSoftware_customContextMenuRequested(const QPoint &);
 		void on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &);
 		void on_treeWidgetSearchResults_customContextMenuRequested(const QPoint &);
+		void on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *, int);
+		void on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *, int);
+		void on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *, int);
 
 		// process management
 		void loadStarted();
