@@ -1,4 +1,5 @@
 #include <QFileInfo>
+#include <QPainter>
 
 #include "softwarelist.h"
 #include "gamelist.h"
@@ -886,4 +887,97 @@ bool SoftwareListXmlHandler::characters(const QString &str)
 
 	currentText += QString::fromUtf8(str.toAscii());
 	return true;
+}
+
+SoftwareSnap::SoftwareSnap(QWidget *parent)
+	: QWidget(parent, Qt::Window | Qt::CustomizeWindowHint | Qt::FramelessWindowHint)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::SoftwareSnap(QWidget *parent = %1)").arg((qulonglong)parent));
+#endif
+
+	setWindowTitle(tr("Snapshot viewer"));
+
+	contextMenu = new QMenu(this);
+	contextMenu->hide();
+
+	QString s;
+	QAction *action;
+
+	s = tr("Save as...");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(saveAs()));
+
+	s = tr("Copy to clipboard");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
+}
+
+void SoftwareSnap::leaveEvent(QEvent *)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::leaveEvent(QEvent *)");
+#endif
+
+	if ( contextMenu->isHidden() )
+		hide();
+}
+
+void SoftwareSnap::mousePressEvent(QMouseEvent *e)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::mousePressEvent(QMouseEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+	if ( e->button() != Qt::RightButton )
+		hide();
+}
+
+void SoftwareSnap::keyPressEvent(QKeyEvent *e)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::keyPressEvent(QKeyPressEvent *e)");
+#endif
+
+	if ( e->key() == Qt::Key_Escape )
+		hide();
+}
+
+void SoftwareSnap::contextMenuEvent(QContextMenuEvent *e)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::contextMenuEvent(QContextMenuEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
+	contextMenu->show();
+}
+
+void SoftwareSnap::copyToClipboard()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::copyToClipboard()");
+#endif
+
+	// FIXME
+}
+
+void SoftwareSnap::saveAs()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::saveAs()");
+#endif
+
+	// FIXME
+}
+
+void SoftwareSnap::paintEvent(QPaintEvent *e)
+{
+	QPainter p(this);
+	p.eraseRect(rect());
+	p.end();
 }

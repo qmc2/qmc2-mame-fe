@@ -96,6 +96,7 @@ Controller *qmc2Controller = NULL;
 Marquee *qmc2Marquee = NULL;
 Title *qmc2Title = NULL;
 PCB *qmc2PCB = NULL;
+SoftwareSnap *qmc2SoftwareSnap = NULL;
 About *qmc2About = NULL;
 DocBrowser *qmc2DocBrowser = NULL;
 Welcome *qmc2Welcome = NULL;
