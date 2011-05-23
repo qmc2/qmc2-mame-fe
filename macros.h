@@ -117,9 +117,12 @@
 #define QMC2_SWLIST_SEARCH_PAGE		2
 
 // software snap positions
-#define QMC2_SWSNAP_POS_LEFT		0
-#define QMC2_SWSNAP_POS_CENTER		1
-#define QMC2_SWSNAP_POS_RIGHT		2
+#define QMC2_SWSNAP_POS_ABOVE_LEFT	0
+#define QMC2_SWSNAP_POS_ABOVE_CENTER	1
+#define QMC2_SWSNAP_POS_ABOVE_RIGHT	2
+#define QMC2_SWSNAP_POS_BELOW_LEFT	3
+#define QMC2_SWSNAP_POS_BELOW_CENTER	4
+#define QMC2_SWSNAP_POS_BELOW_RIGHT	5
 
 // logical column indizes of the MESS software lists
 #define QMC2_SWLIST_COLUMN_TITLE	0
