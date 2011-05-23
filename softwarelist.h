@@ -76,7 +76,6 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QString &getSoftwareListXmlData(QString);
 		QString &getXmlData(QString);
 		QStringList &arguments();
-		void displaySoftwareSnap(QString, QString, QPoint);
 
 	public slots:
 		bool load();

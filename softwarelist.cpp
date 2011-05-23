@@ -809,18 +809,6 @@ void SoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const Q
 }
 
 //#define QMC2_DEBUG
-void SoftwareList::displaySoftwareSnap(QString listName, QString entryName, QPoint position)
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::displaySoftwareSnap(QString listName = %1, QString entryName = %2, QPoint position = [%3, %4])").arg(listName).arg(entryName).arg(position.x()).arg(position.y()));
-#endif
-
-	qmc2SoftwareSnap->listName = listName;
-	qmc2SoftwareSnap->entryName = entryName;
-	qmc2SoftwareSnap->position = position;
-	snapTimer.start(QMC2_SWSNAP_DELAY);
-}
-
 void SoftwareList::cancelSoftwareSnap()
 {
 #ifdef QMC2_DEBUG
@@ -839,10 +827,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item,
 #endif
 
 	cancelSoftwareSnap();
-	QRect rect = treeWidgetKnownSoftware->visualItemRect(item);
-	rect.translate(4, 4);
-	QPoint pos = treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.bottomLeft());
-	displaySoftwareSnap(item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME), pos);
+	snapTimer.start(QMC2_SWSNAP_DELAY);
 }
 
 void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *item, int column)
@@ -852,10 +837,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *it
 #endif
 
 	cancelSoftwareSnap();
-	QRect rect = treeWidgetFavoriteSoftware->visualItemRect(item);
-	rect.translate(4, 4);
-	QPoint pos = treeWidgetFavoriteSoftware->viewport()->mapToGlobal(rect.bottomLeft());
-	displaySoftwareSnap(item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME), pos);
+	snapTimer.start(QMC2_SWSNAP_DELAY);
 }
 
 void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item, int column)
@@ -865,10 +847,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item,
 #endif
 
 	cancelSoftwareSnap();
-	QRect rect = treeWidgetSearchResults->visualItemRect(item);
-	rect.translate(4, 4);
-	QPoint pos = treeWidgetSearchResults->viewport()->mapToGlobal(rect.bottomLeft());
-	displaySoftwareSnap(item->text(QMC2_SWLIST_COLUMN_LIST), item->text(QMC2_SWLIST_COLUMN_NAME), pos);
+	snapTimer.start(QMC2_SWSNAP_DELAY);
 }
 //#undef QMC2_DEBUG
 
@@ -1045,22 +1024,38 @@ void SoftwareSnap::loadSnapshot()
 
 	// check if the mouse cursor is still on a software item
 	QTreeWidgetItem *item = NULL;
+	QRect rect;
 	switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
-			if ( qmc2SoftwareList->treeWidgetKnownSoftware->underMouse() )
-				item = qmc2SoftwareList->treeWidgetKnownSoftware->itemAt(qmc2SoftwareList->treeWidgetKnownSoftware->mapFromGlobal(QCursor::pos()));
+			if ( qmc2SoftwareList->treeWidgetKnownSoftware->underMouse() ) {
+				item = qmc2SoftwareList->treeWidgetKnownSoftware->itemAt(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapFromGlobal(QCursor::pos()));
+				rect = qmc2SoftwareList->treeWidgetKnownSoftware->visualItemRect(item);
+				rect.translate(4, 4);
+				position = qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.bottomLeft());
+			}
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
-			if ( qmc2SoftwareList->treeWidgetFavoriteSoftware->underMouse() )
-				item = qmc2SoftwareList->treeWidgetFavoriteSoftware->itemAt(qmc2SoftwareList->treeWidgetFavoriteSoftware->mapFromGlobal(QCursor::pos()));
+			if ( qmc2SoftwareList->treeWidgetFavoriteSoftware->underMouse() ) {
+				item = qmc2SoftwareList->treeWidgetFavoriteSoftware->itemAt(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapFromGlobal(QCursor::pos()));
+				rect = qmc2SoftwareList->treeWidgetFavoriteSoftware->visualItemRect(item);
+				rect.translate(4, 4);
+				position = qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(rect.bottomLeft());
+			}
 			break;
 		case QMC2_SWLIST_SEARCH_PAGE:
-			if ( qmc2SoftwareList->treeWidgetSearchResults->underMouse() )
-				item = qmc2SoftwareList->treeWidgetSearchResults->itemAt(qmc2SoftwareList->treeWidgetSearchResults->mapFromGlobal(QCursor::pos()));
+			if ( qmc2SoftwareList->treeWidgetSearchResults->underMouse() ) {
+				item = qmc2SoftwareList->treeWidgetSearchResults->itemAt(qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapFromGlobal(QCursor::pos()));
+				rect = qmc2SoftwareList->treeWidgetSearchResults->visualItemRect(item);
+				rect.translate(4, 4);
+				position = qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapToGlobal(rect.bottomLeft());
+			}
 			break;
 	}
 	if ( !item )
 		return;
+
+	listName = item->text(QMC2_SWLIST_COLUMN_LIST);
+	entryName = item->text(QMC2_SWLIST_COLUMN_NAME);
 
 	QPixmap pm;
 	bool pmLoaded = false;
@@ -1093,6 +1088,9 @@ void SoftwareSnap::loadSnapshot()
 				if ( pm.load(filePath) ) {
 					pmLoaded = true;
 					QPixmapCache::insert("sws_" + listName + "_" + entryName, pm); 
+#ifdef QMC2_DEBUG
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::loadSnapshot(): software snapshot loaded successfully from '%1'").arg(snapDir.absoluteFilePath(entryName + ".png")));
+#endif
 				}
 #ifdef QMC2_DEBUG
 				else
