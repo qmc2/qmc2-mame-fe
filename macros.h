@@ -221,6 +221,9 @@
 // time to wait before trying to load a software snapshot (if any) when hovering over the entries of a software list
 #define QMC2_SWSNAP_DELAY		250
 
+// time after which the 'forced snapshot' flag is unset automatically
+#define QMC2_SWSNAP_UNFORCE_DELAY	150
+
 // gamelist sort criteria
 #define QMC2_SORT_BY_DESCRIPTION	0
 #define QMC2_SORT_BY_ROM_STATE		1
