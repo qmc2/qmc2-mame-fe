@@ -28,7 +28,7 @@ QString swlBuffer;
 QString swlLastLine;
 bool swlSupported = true;
 
-#define QMC2_DEBUG
+//#define QMC2_DEBUG
 
 SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	: QWidget(parent)
