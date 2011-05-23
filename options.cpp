@@ -1776,6 +1776,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #if defined(QMC2_YOUTUBE_ENABLED)
   QString youTubeCachePath = config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", userScopePath + "/youtube/").toString();
   QDir youTubeCacheDir(youTubeCachePath);
+  youTubeCachePath = youTubeCacheDir.absolutePath();
   if ( !youTubeCacheDir.exists() )
     youTubeCacheDir.mkdir(youTubeCachePath);
   config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory", youTubeCachePath);
@@ -2026,10 +2027,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditROMStateCacheFile->setText(config->value("MAME/FilesAndDirectories/ROMStateCacheFile", userScopePath + "/mame.rsc").toString());
   lineEditSoftwareListCache->setText(config->value("MAME/FilesAndDirectories/SoftwareListCache", userScopePath + "/mame.swl").toString());
   QString mawsCachePath = config->value("MAME/FilesAndDirectories/MAWSCacheDirectory", userScopePath + "/maws/").toString();
-  lineEditMAWSCacheDirectory->setText(mawsCachePath);
   QDir mawsCacheDir(mawsCachePath);
+  mawsCachePath = mawsCacheDir.absolutePath();
   if ( !mawsCacheDir.exists() )
     mawsCacheDir.mkdir(mawsCachePath);
+  lineEditMAWSCacheDirectory->setText(mawsCachePath);
 #if defined(QMC2_SDLMAME)
   lineEditOptionsTemplateFile->setText(config->value("MAME/FilesAndDirectories/OptionsTemplateFile", QMC2_DEFAULT_DATA_PATH + "/opt/SDLMAME/template.xml").toString());
 #elif defined(QMC2_MAME)

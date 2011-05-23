@@ -1,6 +1,9 @@
+[Frontend]
+qmc2-sdlmame\FilesAndDirectories\DataDirectory=DATADIR/qmc2/
+qmc2-sdlmess\FilesAndDirectories\DataDirectory=DATADIR/qmc2/
+
 [MAME]
 FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMAME/template.xml
-FilesAndDirectories\DataDirectory=DATADIR/qmc2/
 FilesAndDirectories\PreviewDirectory=DATADIR/qmc2/prv/
 FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
 FilesAndDirectories\IconDirectory=DATADIR/qmc2/ico/
@@ -12,7 +15,6 @@ FilesAndDirectories\PCBDirectory=DATADIR/qmc2/pcb/
 
 [MESS]
 FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMESS/template.xml
-FilesAndDirectories\DataDirectory=DATADIR/qmc2/
 FilesAndDirectories\PreviewDirectory=DATADIR/qmc2/prv/
 FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
 FilesAndDirectories\IconDirectory=DATADIR/qmc2/ico/

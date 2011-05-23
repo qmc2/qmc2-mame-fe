@@ -125,7 +125,6 @@ Gamelist::Gamelist(QObject *parent)
   emulatorVersion = tr("unknown");
 
   QString imgDir = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory", "data/").toString() + "img/";
-  qmc2SmallGhostImageIcon.addFile(imgDir + "ghost_small.png");
   qmc2UnknownImageIcon.addFile(imgDir + "sphere_blue.png");
   qmc2UnknownBIOSImageIcon.addFile(imgDir + "sphere_blue_bios.png");
   qmc2CorrectImageIcon.addFile(imgDir + "sphere_green.png");
