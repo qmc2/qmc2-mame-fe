@@ -123,6 +123,7 @@
 #define QMC2_SWSNAP_POS_BELOW_LEFT	3
 #define QMC2_SWSNAP_POS_BELOW_CENTER	4
 #define QMC2_SWSNAP_POS_BELOW_RIGHT	5
+#define QMC2_SWSNAP_POS_DISABLE_SNAPS	6
 
 // logical column indizes of the MESS software lists
 #define QMC2_SWLIST_COLUMN_TITLE	0
