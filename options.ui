@@ -848,8 +848,8 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-207</y>
-                <width>421</width>
+                <y>0</y>
+                <width>179</width>
                 <height>525</height>
                </rect>
               </property>
@@ -2210,8 +2210,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>437</width>
-                <height>194</height>
+                <width>438</width>
+                <height>318</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2503,22 +2503,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="0" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxSortOnline">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Sort game list while reloading (slower)</string>
-                   </property>
-                   <property name="text">
-                    <string>Sort while loading</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="4" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxDoubleClickActivation">
                    <property name="sizePolicy">
@@ -2535,7 +2519,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="0" colspan="4">
+                 <item row="7" column="0" colspan="4">
                   <spacer name="verticalSpacer">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -2596,7 +2580,86 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="3">
+                 <item row="0" column="2" colspan="2">
+                  <widget class="QCheckBox" name="checkBoxShowROMStatusIcons">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Display ROM status icons in master lists?</string>
+                   </property>
+                   <property name="text">
+                    <string>Show ROM status icons</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="8" column="0" colspan="4">
+                  <layout class="QHBoxLayout" name="layout8_2">
+                   <item>
+                    <widget class="QLabel" name="labelLegend5Pic">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>Option requires a reload of the gamelist to take effect</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="pixmap">
+                      <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="labelLegendFrontendGamelist">
+                     <property name="toolTip">
+                      <string>Option requires a reload of the entire game list to take effect</string>
+                     </property>
+                     <property name="text">
+                      <string>reload required</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="6" column="0" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxSortOnline">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Sort game list while reloading (slower)</string>
+                   </property>
+                   <property name="text">
+                    <string>Sort while loading</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="labelCursorPosition">
+                   <property name="text">
+                    <string>Cursor position</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
                   <widget class="QComboBox" name="comboBoxCursorPosition">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
@@ -2633,67 +2696,39 @@
                   </widget>
                  </item>
                  <item row="3" column="2">
-                  <widget class="QLabel" name="labelCursoPosition">
+                  <widget class="QLabel" name="labelSoftwareSnapPosition">
                    <property name="text">
-                    <string>Cursor position</string>
+                    <string>Snap position</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="2" colspan="2">
-                  <widget class="QCheckBox" name="checkBoxShowROMStatusIcons">
+                 <item row="3" column="3">
+                  <widget class="QComboBox" name="comboBoxSoftwareSnapPosition">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Display ROM status icons in master lists?</string>
+                    <string>Select the position where sofware snap-shots are displayed within software lists</string>
                    </property>
-                   <property name="text">
-                    <string>Show ROM status icons</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
-                   </property>
+                   <item>
+                    <property name="text">
+                     <string>Left</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Center</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Right</string>
+                    </property>
+                   </item>
                   </widget>
-                 </item>
-                 <item row="7" column="0" colspan="4">
-                  <layout class="QHBoxLayout" name="layout8_2">
-                   <item>
-                    <widget class="QLabel" name="labelLegend5Pic">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>Option requires a reload of the gamelist to take effect</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="pixmap">
-                      <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
-                     </property>
-                     <property name="scaledContents">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="labelLegendFrontendGamelist">
-                     <property name="toolTip">
-                      <string>Option requires a reload of the entire game list to take effect</string>
-                     </property>
-                     <property name="text">
-                      <string>reload required</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
                  </item>
                 </layout>
                </item>
@@ -4607,12 +4642,13 @@
   <tabstop>comboBoxSortOrder</tabstop>
   <tabstop>spinBoxResponsiveness</tabstop>
   <tabstop>spinBoxUpdateDelay</tabstop>
-  <tabstop>checkBoxSortOnline</tabstop>
   <tabstop>comboBoxCursorPosition</tabstop>
+  <tabstop>comboBoxSoftwareSnapPosition</tabstop>
   <tabstop>checkBoxDoubleClickActivation</tabstop>
   <tabstop>checkBoxAutoTriggerROMCheck</tabstop>
   <tabstop>checkBoxPlayOnSublistActivation</tabstop>
   <tabstop>checkBoxHideWhileLoading</tabstop>
+  <tabstop>checkBoxSortOnline</tabstop>
   <tabstop>pushButtonRedefineKeySequence</tabstop>
   <tabstop>pushButtonResetShortcut</tabstop>
   <tabstop>treeWidgetShortcuts</tabstop>

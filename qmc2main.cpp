@@ -247,6 +247,7 @@ int qmc2LastListIndex = 0;
 QAbstractItemView::ScrollHint qmc2CursorPositioningMode = QAbstractItemView::PositionAtTop;
 QMap<QString, int> qmc2XmlGamePositionMap;
 QFont qmc2StartupDefaultFont;
+int qmc2SoftwareSnapPosition = 0;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");

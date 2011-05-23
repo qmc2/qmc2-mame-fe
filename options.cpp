@@ -143,6 +143,7 @@ extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 #endif
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern QFont qmc2StartupDefaultFont;
+extern int qmc2SoftwareSnapPosition;
 
 Options::Options(QWidget *parent)
 #if defined(Q_WS_WIN)
@@ -173,6 +174,8 @@ Options::Options(QWidget *parent)
 #if QMC2_WIP_CODE != 1
   stackedWidgetSWSnap->setVisible(false);
   radioButtonSoftwareSnapSelect->setVisible(false);
+  comboBoxSoftwareSnapPosition->setVisible(false);
+  labelSoftwareSnapPosition->setVisible(false);
 #endif
 
 #if !defined(QMC2_SHOWMEMINFO)
@@ -1014,6 +1017,8 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation", checkBoxPlayOnSublistActivation->isChecked());
   qmc2CursorPositioningMode = (QAbstractItemView::ScrollHint)comboBoxCursorPosition->currentIndex();
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/CursorPosition", qmc2CursorPositioningMode);
+  qmc2SoftwareSnapPosition = comboBoxSoftwareSnapPosition->currentIndex();
+  config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapPosition", qmc2SoftwareSnapPosition);
   qmc2GamelistResponsiveness = spinBoxResponsiveness->value();
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/Responsiveness", qmc2GamelistResponsiveness);
   qmc2UpdateDelay = spinBoxUpdateDelay->value();
@@ -1904,6 +1909,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxPlayOnSublistActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation", false).toBool());
   qmc2CursorPositioningMode = (QAbstractItemView::ScrollHint)config->value(QMC2_FRONTEND_PREFIX + "Gamelist/CursorPosition", QMC2_CURSOR_POS_TOP).toInt();
   comboBoxCursorPosition->setCurrentIndex((int)qmc2CursorPositioningMode);
+  qmc2SoftwareSnapPosition = config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapPosition", QMC2_SWSNAP_POS_LEFT).toInt();
+  comboBoxSoftwareSnapPosition->setCurrentIndex(qmc2SoftwareSnapPosition);
   spinBoxResponsiveness->setValue(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/Responsiveness", 100).toInt());
   qmc2GamelistResponsiveness = spinBoxResponsiveness->value();
   spinBoxUpdateDelay->setValue(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UpdateDelay", 10).toInt());
