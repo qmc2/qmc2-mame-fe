@@ -120,6 +120,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);
 		void hideEvent(QHideEvent *);
+		void mouseMoveEvent(QMouseEvent *);
 		void leaveEvent(QEvent *);
 };
 

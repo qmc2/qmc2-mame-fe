@@ -11,6 +11,9 @@
     <height>289</height>
    </rect>
   </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
   <property name="windowTitle">
    <string>Software list</string>
   </property>
@@ -252,8 +255,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>435</width>
-        <height>176</height>
+        <width>94</width>
+        <height>64</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -340,8 +343,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>435</width>
-        <height>176</height>
+        <width>94</width>
+        <height>90</height>
        </rect>
       </property>
       <attribute name="icon">
