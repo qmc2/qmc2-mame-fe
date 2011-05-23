@@ -1277,10 +1277,11 @@ void SoftwareSnap::loadSnapshot()
 		move(position);
 		QPalette pal = palette();
 		pal.setBrush(QPalette::Window, pm);
+		qmc2SoftwareList->snapForced = true;
 		setPalette(pal);
 		showNormal();
+		update();
 		raise();
-		repaint();
 	}
 
 	snapForcedResetTimer.start(QMC2_SWSNAP_UNFORCE_DELAY);
