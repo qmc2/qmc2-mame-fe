@@ -28,6 +28,7 @@ inf: informational only
   <li>fix: build: corrected the default image directory settings used for /etc/qmc2/qmc2.ini during installation (see <i>inst/qmc2.ini.template</i>)</li>
   <li>fix: minor: put arguments containing white-space characters in double-quotes when presenting/copying the emulator command line</li>
   <li>fix: log file paths weren't correctly set up on the initial run, so logs were written only on subsequent runs</li>
+  <li>fix: corrected a rather old bug within the game/machine-list cache creation code that caused rare (and hard to reproduce) crashes -- thanks to <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=68" target="_blank">RB</a> for triggering me to find it</li>
   <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.142u3 (new option <i>menu</i> for MAME, removed option <i>uimodekey</i> for MAME)</li>
   <li>imp: SDLMESS/MESS templates updated to 0.142u3</li>
   <li>imp: ghost image enhanced, including a derived 'no video' pendant</li>
@@ -185,7 +186,7 @@ inf: informational only
   <li>new: MP3 player: support for available audio effects (depends on Phonon backend capabilities) -- CAUTION: certain effects may cause crashes!</li>
   <li>new: you can now specify the working directory that's used when the emulator is executed in play or demo mode (optional, but recommended)</li>
   <li>new: MP3 player: the playlist now supports <i>drag &amp; drop</i> to move items internally</li>
-  <li>wip: MESS targets only: support for MESS's new <i>-listsoftware</i> feature (new since version 0.138) as a new machine detail -- not really working yet, but basic GUI integration and software list caching are done -- thanks to <a href="http://www.bannister.org/forums/ubbthreads.php?ubb=showprofile&User=1564" target="_blank">etabeta78</a> for the suggestion</li>
+  <li>wip: MESS targets only: support for MESS's new <i>-listsoftware</i> feature (new since version 0.138) as a new machine detail -- not really working yet, but basic GUI integration and software list caching are done -- thanks to <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=1564" target="_blank">etabeta78</a> for the suggestion</li>
   <li>doc: added <a href="faq.html#A1.7.4">Q1.7.4</a> to FAQ</li>
 </ul>
 <p><b>v0.2.b15, 16-MAY-2010:</b></p>
