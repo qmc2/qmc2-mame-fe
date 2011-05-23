@@ -40,17 +40,19 @@ class SoftwareSnap : public QWidget
 		QString entryName;
 		QPoint position;
 		unzFile snapFile;
+		QTreeWidgetItem *myItem;
+		QWidget *focusWidget;
+		QTimer snapForcedResetTimer;
 
 		SoftwareSnap(QWidget *parent = 0);
 
 	public slots:
 		void loadSnapshot();
+		void resetSnapForced();
 
 	protected:
-		void leaveEvent(QEvent *);
-		void mousePressEvent(QMouseEvent *);
-		void keyPressEvent(QKeyEvent *);
 		void paintEvent(QPaintEvent *);
+		void keyPressEvent(QKeyEvent *);
 };
 
 class SoftwareList : public QWidget, public Ui::SoftwareList
@@ -69,6 +71,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QAction *actionAddToFavorites;
 		QAction *actionRemoveFromFavorites;
 		QTimer snapTimer;
+		bool snapForced;
 
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();
