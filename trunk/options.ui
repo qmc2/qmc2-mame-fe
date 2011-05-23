@@ -849,7 +849,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>179</width>
+                <width>421</width>
                 <height>525</height>
                </rect>
               </property>
@@ -2715,17 +2715,32 @@
                    </property>
                    <item>
                     <property name="text">
-                     <string>Left</string>
+                     <string>Above / Left</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>Center</string>
+                     <string>Above / Center</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>Right</string>
+                     <string>Above / Right</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Below / Left</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Below / Center</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Below / Right</string>
                     </property>
                    </item>
                   </widget>
@@ -3733,7 +3748,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>179</width>
-                <height>322</height>
+                <height>319</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
