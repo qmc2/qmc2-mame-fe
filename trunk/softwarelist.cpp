@@ -1030,8 +1030,10 @@ void SoftwareSnap::keyPressEvent(QKeyEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::keyPressEvent(QKeyEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-	hide();
-	resetSnapForced();
+	if ( e->key() == Qt::Key_Escape ) {
+		hide();
+		resetSnapForced();
+	}
 
 	// pass the key press event to the software list (to allow for clean cursor movement)
 	if ( focusWidget ) {
