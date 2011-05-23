@@ -1070,6 +1070,7 @@ void SoftwareSnap::loadSnapshot()
 
 	if ( !qmc2SoftwareList || qmc2SoftwareSnapPosition == QMC2_SWSNAP_POS_DISABLE_SNAPS ) {
 		myItem = NULL;
+		resetSnapForced();
 		return;
 	}
 
