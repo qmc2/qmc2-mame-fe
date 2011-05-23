@@ -1,6 +1,7 @@
 #include <QFileInfo>
 #include <QPainter>
 #include <QPixmapCache>
+#include <QCursor>
 #include <QDir>
 
 #include "softwarelist.h"
@@ -16,6 +17,7 @@ extern Gamelist *qmc2Gamelist;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
 extern bool qmc2UseSoftwareSnapFile;
+extern SoftwareList *qmc2SoftwareList;
 extern SoftwareSnap *qmc2SoftwareSnap;
 
 QMap<QString, QStringList> systemSoftwareListMap;
@@ -474,13 +476,25 @@ void SoftwareList::hideEvent(QHideEvent *e)
 void SoftwareList::leaveEvent(QEvent *e)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::leaveEvent(QEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::leaveEvent((QEvent *e = %1)").arg((qulonglong)e));
 #endif
 
 	cancelSoftwareSnap();
 
 	if ( e )
 		e->accept();
+}
+
+void SoftwareList::mouseMoveEvent(QMouseEvent *e)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::mouseMoveEvent(QMouseEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+	cancelSoftwareSnap();
+
+	if ( e )
+		QWidget::mouseMoveEvent(e);
 }
 
 void SoftwareList::showEvent(QShowEvent *e)
@@ -1025,6 +1039,28 @@ void SoftwareSnap::loadSnapshot()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::loadSnapshot()");
 #endif
+
+	if ( !qmc2SoftwareList )
+		return;
+
+	// check if the mouse cursor is still on a software item
+	QTreeWidgetItem *item = NULL;
+	switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
+		case QMC2_SWLIST_KNOWN_SW_PAGE:
+			if ( qmc2SoftwareList->treeWidgetKnownSoftware->underMouse() )
+				item = qmc2SoftwareList->treeWidgetKnownSoftware->itemAt(qmc2SoftwareList->treeWidgetKnownSoftware->mapFromGlobal(QCursor::pos()));
+			break;
+		case QMC2_SWLIST_FAVORITES_PAGE:
+			if ( qmc2SoftwareList->treeWidgetFavoriteSoftware->underMouse() )
+				item = qmc2SoftwareList->treeWidgetFavoriteSoftware->itemAt(qmc2SoftwareList->treeWidgetFavoriteSoftware->mapFromGlobal(QCursor::pos()));
+			break;
+		case QMC2_SWLIST_SEARCH_PAGE:
+			if ( qmc2SoftwareList->treeWidgetSearchResults->underMouse() )
+				item = qmc2SoftwareList->treeWidgetSearchResults->itemAt(qmc2SoftwareList->treeWidgetSearchResults->mapFromGlobal(QCursor::pos()));
+			break;
+	}
+	if ( !item )
+		return;
 
 	QPixmap pm;
 	bool pmLoaded = false;
