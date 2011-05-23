@@ -303,6 +303,22 @@ void MainWindow::log(char logOrigin, QString message)
 
   QString msg = timeString + ": " + message;
 
+  QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
+  QString defaultEmuLogPath, defaultFrontendLogPath;
+#if defined(QMC2_SDLMAME)
+  defaultFrontendLogPath = userScopePath + "/qmc2-sdlmame.log";
+  defaultEmuLogPath = userScopePath + "/mame.log";
+#elif defined(QMC2_SDLMESS)
+  defaultFrontendLogPath = userScopePath + "/qmc2-sdlmess.log";
+  defaultEmuLogPath = userScopePath + "/mess.log";
+#elif defined(QMC2_MAME)
+  defaultFrontendLogPath = userScopePath + "/qmc2-mame.log";
+  defaultEmuLogPath = userScopePath + "/mame.log";
+#elif defined(QMC2_MESS)
+  defaultFrontendLogPath = userScopePath + "/qmc2-mess.log";
+  defaultEmuLogPath = userScopePath + "/mess.log";
+#endif
+
   bool scrollBarMaximum = false;
 
   switch ( logOrigin ) {
@@ -313,7 +329,7 @@ void MainWindow::log(char logOrigin, QString message)
         if ( !qmc2EarlyStartup )
           QTimer::singleShot(0, this, SLOT(on_tabWidgetLogsAndEmulators_updateCurrent()));
       if ( !qmc2FrontendLogFile )
-        if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", "data/log/qmc2.log").toString(), this)) == NULL ) {
+        if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", defaultFrontendLogPath).toString(), this)) == NULL ) {
           qmc2LogFrontendMutex.unlock();
           return;
         }
@@ -337,9 +353,9 @@ void MainWindow::log(char logOrigin, QString message)
           QTimer::singleShot(0, this, SLOT(on_tabWidgetLogsAndEmulators_updateCurrent()));
       if ( !qmc2EmulatorLogFile ) {
 #if defined(QMC2_EMUTYPE_MAME)
-        if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value("MAME/FilesAndDirectories/LogFile", "data/log/mame.log").toString(), this)) == NULL ) {
+        if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value("MAME/FilesAndDirectories/LogFile", defaultEmuLogPath).toString(), this)) == NULL ) {
 #elif defined(QMC2_EMUTYPE_MESS)
-        if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value("MESS/FilesAndDirectories/LogFile", "data/log/mess.log").toString(), this)) == NULL ) {
+        if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value("MESS/FilesAndDirectories/LogFile", defaultEmuLogPath).toString(), this)) == NULL ) {
 #endif
           qmc2LogEmulatorMutex.unlock();
           return;
