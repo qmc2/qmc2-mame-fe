@@ -15,7 +15,6 @@ class Gamelist : public QObject
   Q_OBJECT
 
   public:
-    QIcon qmc2SmallGhostImageIcon;
     QIcon qmc2UnknownImageIcon;
     QIcon qmc2UnknownBIOSImageIcon;
     QIcon qmc2CorrectImageIcon;
