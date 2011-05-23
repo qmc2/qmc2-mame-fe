@@ -28,7 +28,7 @@ QString swlBuffer;
 QString swlLastLine;
 bool swlSupported = true;
 
-//#define QMC2_DEBUG
+#define QMC2_DEBUG
 
 SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	: QWidget(parent)
@@ -866,6 +866,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item,
 
 	if ( !snapForced ) {
 		cancelSoftwareSnap();
+		if ( qmc2SoftwareSnap ) qmc2SoftwareSnap->myItem = item;
 		snapTimer.start(QMC2_SWSNAP_DELAY);
 	}
 }
@@ -878,6 +879,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *it
 
 	if ( !snapForced ) {
 		cancelSoftwareSnap();
+		if ( qmc2SoftwareSnap ) qmc2SoftwareSnap->myItem = item;
 		snapTimer.start(QMC2_SWSNAP_DELAY);
 	}
 }
@@ -890,6 +892,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item,
 
 	if ( !snapForced ) {
 		cancelSoftwareSnap();
+		if ( qmc2SoftwareSnap ) qmc2SoftwareSnap->myItem = item;
 		snapTimer.start(QMC2_SWSNAP_DELAY);
 	}
 }
@@ -1042,6 +1045,16 @@ void SoftwareSnap::keyPressEvent(QKeyEvent *e)
 	}
 }
 
+void SoftwareSnap::mousePressEvent(QMouseEvent *e)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::mousePressEvent(QMouseEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+	hide();
+	resetSnapForced();
+}
+
 void SoftwareSnap::paintEvent(QPaintEvent *e)
 {
 	QPainter p(this);
@@ -1055,10 +1068,14 @@ void SoftwareSnap::loadSnapshot()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::loadSnapshot()");
 #endif
 
-	if ( !qmc2SoftwareList ) {
+	if ( !qmc2SoftwareList || qmc2SoftwareSnapPosition == QMC2_SWSNAP_POS_DISABLE_SNAPS ) {
 		myItem = NULL;
 		return;
 	}
+
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::loadSnapshot(): snapForced = '%1'").arg(qmc2SoftwareList->snapForced ? "true" : "false"));
+#endif
 
 	// check if the mouse cursor is still on a software item
 	QTreeWidgetItem *item = NULL;
@@ -1091,7 +1108,7 @@ void SoftwareSnap::loadSnapshot()
 	}
 
 	if ( !item || qmc2SoftwareList->snapForced ) {
-		if ( qmc2SoftwareList->snapForced ) {
+		if ( qmc2SoftwareList->snapForced || myItem ) {
 			item = myItem;
 			switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 				case QMC2_SWLIST_KNOWN_SW_PAGE:
