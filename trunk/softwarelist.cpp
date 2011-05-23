@@ -19,6 +19,7 @@ extern bool qmc2EarlyStartup;
 extern bool qmc2UseSoftwareSnapFile;
 extern SoftwareList *qmc2SoftwareList;
 extern SoftwareSnap *qmc2SoftwareSnap;
+extern int qmc2SoftwareSnapPosition;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QString> softwareListXmlDataCache;
@@ -1106,6 +1107,41 @@ void SoftwareSnap::loadSnapshot()
 
 	if ( pmLoaded ) {
 		resize(pm.size());
+		switch ( qmc2SoftwareSnapPosition ) {
+			case QMC2_SWSNAP_POS_RIGHT:
+				rect.translate(-4, 0);
+				switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
+					case QMC2_SWLIST_KNOWN_SW_PAGE:
+						position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.bottomRight()).x() - width() - 4);
+						break;
+					case QMC2_SWLIST_FAVORITES_PAGE:
+						position.setX(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(rect.bottomRight()).x() - width() - 4);
+						break;
+					case QMC2_SWLIST_SEARCH_PAGE:
+						position.setX(qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapToGlobal(rect.bottomRight()).x() - width() - 4);
+						break;
+				}
+				break;
+
+			case QMC2_SWSNAP_POS_CENTER:
+				rect.translate(-4, 0);
+				switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
+					case QMC2_SWLIST_KNOWN_SW_PAGE:
+						position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.center()).x() - width() / 2);
+						break;
+					case QMC2_SWLIST_FAVORITES_PAGE:
+						position.setX(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(rect.center()).x() - width() / 2);
+						break;
+					case QMC2_SWLIST_SEARCH_PAGE:
+						position.setX(qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapToGlobal(rect.center()).x() - width() / 2);
+						break;
+				}
+				break;
+
+			case QMC2_SWSNAP_POS_LEFT:
+			default:
+				break;
+		}
 		move(position);
 		QPalette pal = palette();
 		pal.setBrush(QPalette::Window, pm);

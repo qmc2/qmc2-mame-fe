@@ -111,10 +111,15 @@
 #define QMC2_DEVCONFIG_COLUMN_EXT	4
 #define QMC2_DEVCONFIG_COLUMN_FILE	5
 
-// page indizes for the MESS software list tool box
+// page indizes for the software list tool box
 #define QMC2_SWLIST_KNOWN_SW_PAGE	0
 #define QMC2_SWLIST_FAVORITES_PAGE	1
 #define QMC2_SWLIST_SEARCH_PAGE		2
+
+// software snap positions
+#define QMC2_SWSNAP_POS_LEFT		0
+#define QMC2_SWSNAP_POS_CENTER		1
+#define QMC2_SWSNAP_POS_RIGHT		2
 
 // logical column indizes of the MESS software lists
 #define QMC2_SWLIST_COLUMN_TITLE	0
