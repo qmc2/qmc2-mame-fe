@@ -1612,7 +1612,7 @@ void Gamelist::parse()
     bool endParser = qmc2StopParser;
     qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(FALSE);
 
-    for (lineCounter = 0; xmlLines.count() && !endParser; lineCounter++) {
+    for (lineCounter = 0; lineCounter < xmlLines.count() && !endParser; lineCounter++) {
       while ( !endParser && !xmlLines[lineCounter].contains("<description>") ) {
         lineCounter++;
 #if defined(QMC2_EMUTYPE_MAME)
