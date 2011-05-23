@@ -1068,8 +1068,7 @@ void SoftwareSnap::loadSnapshot()
 		pmLoaded = true;
 	}
 #else
-	if ( QPixmapCache::find("sws_" + listName + "_" + entryName, &pm) )
-		pmLoaded = true;
+	pmLoaded = QPixmapCache::find("sws_" + listName + "_" + entryName, &pm);
 #endif
 
 	if ( !pmLoaded ) {
