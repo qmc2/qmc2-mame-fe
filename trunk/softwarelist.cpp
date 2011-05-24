@@ -866,8 +866,11 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item,
 
 	if ( !snapForced ) {
 		cancelSoftwareSnap();
-		if ( qmc2SoftwareSnap ) qmc2SoftwareSnap->myItem = item;
-		snapTimer.start(QMC2_SWSNAP_DELAY);
+		if ( qmc2SoftwareSnap ) {
+			if ( qmc2SoftwareSnap->myItem != item )
+				snapTimer.start(QMC2_SWSNAP_DELAY);
+			qmc2SoftwareSnap->myItem = item;
+		}
 	}
 }
 
@@ -879,8 +882,11 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *it
 
 	if ( !snapForced ) {
 		cancelSoftwareSnap();
-		if ( qmc2SoftwareSnap ) qmc2SoftwareSnap->myItem = item;
-		snapTimer.start(QMC2_SWSNAP_DELAY);
+		if ( qmc2SoftwareSnap ) {
+			if ( qmc2SoftwareSnap->myItem != item )
+				snapTimer.start(QMC2_SWSNAP_DELAY);
+			qmc2SoftwareSnap->myItem = item;
+		}
 	}
 }
 
@@ -892,8 +898,11 @@ void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item,
 
 	if ( !snapForced ) {
 		cancelSoftwareSnap();
-		if ( qmc2SoftwareSnap ) qmc2SoftwareSnap->myItem = item;
-		snapTimer.start(QMC2_SWSNAP_DELAY);
+		if ( qmc2SoftwareSnap ) {
+			if ( qmc2SoftwareSnap->myItem != item )
+				snapTimer.start(QMC2_SWSNAP_DELAY);
+			qmc2SoftwareSnap->myItem = item;
+		}
 	}
 }
 
@@ -1035,13 +1044,22 @@ void SoftwareSnap::keyPressEvent(QKeyEvent *e)
 	if ( e->key() == Qt::Key_Escape ) {
 		hide();
 		resetSnapForced();
+		QWidget::keyPressEvent(e);
+		return;
 	}
 
 	// pass the key press event to the software list (to allow for clean cursor movement)
 	if ( focusWidget ) {
 		QKeyEvent *keyEvent = new QKeyEvent(QEvent::KeyPress, e->key(), e->modifiers(), e->text(), e->isAutoRepeat(), e->count());
 		qApp->postEvent(focusWidget, keyEvent);
+		if ( qmc2SoftwareList ) {
+			qmc2SoftwareList->snapForced = true;
+			myItem = NULL;
+			snapForcedResetTimer.start(QMC2_SWSNAP_UNFORCE_DELAY);
+		}
 	}
+
+	e->ignore();
 }
 
 void SoftwareSnap::mousePressEvent(QMouseEvent *e)
@@ -1183,6 +1201,8 @@ void SoftwareSnap::loadSnapshot()
 		}
 	}
 
+	focusWidget = QApplication::focusWidget();
+
 	if ( pmLoaded ) {
 		resize(pm.size());
 		switch ( qmc2SoftwareSnapPosition ) {
@@ -1270,7 +1290,6 @@ void SoftwareSnap::loadSnapshot()
 				// already prepared above...
 				break;
 		}
-		focusWidget = QApplication::focusWidget();
 		move(position);
 		QPalette pal = palette();
 		pal.setBrush(QPalette::Window, pm);
