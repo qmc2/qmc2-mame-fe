@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b20, 23-MAY-2011</h3>
+<h3>CHANGES - v0.2.b20, 24-MAY-2011</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b20, 23-MAY-2011:</b></p>
+<p><b>v0.2.b20, 24-MAY-2011:</b></p>
 <ul>
   <li>fix: ROMAlyzer / checksum wizard: correctly handle ROM files when their names contain special characters (i.e. '&amp;')</li>
   <li>fix: corrected the handling of repeated log messages (the repetition counter was correctly logged, but the actual <i>new</i> message was eaten)</li>
@@ -28,8 +28,9 @@ inf: informational only
   <li>fix: build: corrected the default image directory settings used for /etc/qmc2/qmc2.ini during installation (see <i>inst/qmc2.ini.template</i>)</li>
   <li>fix: minor: put arguments containing white-space characters in double-quotes when presenting/copying the emulator command line</li>
   <li>fix: log file paths weren't correctly set up on the initial run, so logs were written only on subsequent runs</li>
-  <li>fix: corrected a rather old bug within the game/machine-list cache creation code that caused rare (and hard to reproduce) crashes -- thanks to <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=68" target="_blank">RB</a> for triggering me to find it</li>
-  <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.142u3 (new option <i>menu</i> for MAME, removed option <i>uimodekey</i> for MAME)</li>
+  <li>fix: corrected a rather old bug within the game/machine-list cache creation code that could've led to rare (and hard to reproduce) crashes</li>
+  <li>fix: ROM status exporter: CSV and HTML output formats didn't honor the specified ROM status filter</li>
+  <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.142u4 (new option <i>menu</i> for MAME, removed option <i>uimodekey</i> for MAME -- the new HLSL options are missing ATM, but we're working on it)</li>
   <li>imp: SDLMESS/MESS templates updated to 0.142u3</li>
   <li>imp: ghost image enhanced, including a derived 'no video' pendant</li>
   <li>imp: improved log output when the validation of the emulator executable fails</li>
