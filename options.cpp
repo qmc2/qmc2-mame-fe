@@ -176,6 +176,7 @@ Options::Options(QWidget *parent)
   radioButtonSoftwareSnapSelect->setVisible(false);
   comboBoxSoftwareSnapPosition->setVisible(false);
   labelSoftwareSnapPosition->setVisible(false);
+  checkBoxSoftwareSnapOnMouseHover->setVisible(false);
 #endif
 
 #if !defined(QMC2_SHOWMEMINFO)
@@ -1019,6 +1020,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/CursorPosition", qmc2CursorPositioningMode);
   qmc2SoftwareSnapPosition = comboBoxSoftwareSnapPosition->currentIndex();
   config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapPosition", qmc2SoftwareSnapPosition);
+  config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapOnMouseHover", checkBoxSoftwareSnapOnMouseHover->isChecked());
   qmc2GamelistResponsiveness = spinBoxResponsiveness->value();
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/Responsiveness", qmc2GamelistResponsiveness);
   qmc2UpdateDelay = spinBoxUpdateDelay->value();
@@ -1911,6 +1913,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   comboBoxCursorPosition->setCurrentIndex((int)qmc2CursorPositioningMode);
   qmc2SoftwareSnapPosition = config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapPosition", QMC2_SWSNAP_POS_BELOW_LEFT).toInt();
   comboBoxSoftwareSnapPosition->setCurrentIndex(qmc2SoftwareSnapPosition);
+  checkBoxSoftwareSnapOnMouseHover->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapOnMouseHover", false).toBool());
   spinBoxResponsiveness->setValue(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/Responsiveness", 100).toInt());
   qmc2GamelistResponsiveness = spinBoxResponsiveness->value();
   spinBoxUpdateDelay->setValue(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UpdateDelay", 10).toInt());
