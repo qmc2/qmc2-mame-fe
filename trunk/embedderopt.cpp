@@ -124,7 +124,7 @@ void EmbedderOptions::on_listWidgetSnapshots_itemPressed(QListWidgetItem *item)
   QPalette pal = snapshotViewer->palette();
   QPainter p;
   p.begin(&pm);
-  p.setPen(QPen(QColor(255, 255, 255, 64), 1));
+  p.setPen(QPen(QColor(0, 0, 0, 64), 1));
   rect = pm.rect();
   rect.setWidth(rect.width() - 1);
   rect.setHeight(rect.height() - 1);

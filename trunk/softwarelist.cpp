@@ -1102,33 +1102,39 @@ void SoftwareSnap::loadSnapshot()
 	QRect rect;
 	switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
-			if ( qmc2SoftwareList->treeWidgetKnownSoftware->underMouse() ) {
+			if ( qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->underMouse() ) {
 				item = qmc2SoftwareList->treeWidgetKnownSoftware->itemAt(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapFromGlobal(QCursor::pos()));
-				rect = qmc2SoftwareList->treeWidgetKnownSoftware->visualItemRect(item);
-				rect.translate(0, 4);
-				position = qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.bottomLeft());
+				if ( item ) {
+					rect = qmc2SoftwareList->treeWidgetKnownSoftware->visualItemRect(item);
+					rect.translate(0, 4);
+					position = qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.bottomLeft());
+				}
 			}
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
-			if ( qmc2SoftwareList->treeWidgetFavoriteSoftware->underMouse() ) {
+			if ( qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->underMouse() ) {
 				item = qmc2SoftwareList->treeWidgetFavoriteSoftware->itemAt(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapFromGlobal(QCursor::pos()));
-				rect = qmc2SoftwareList->treeWidgetFavoriteSoftware->visualItemRect(item);
-				rect.translate(0, 4);
-				position = qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(rect.bottomLeft());
+				if ( item ) {
+					rect = qmc2SoftwareList->treeWidgetFavoriteSoftware->visualItemRect(item);
+					rect.translate(0, 4);
+					position = qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(rect.bottomLeft());
+				}
 			}
 			break;
 		case QMC2_SWLIST_SEARCH_PAGE:
-			if ( qmc2SoftwareList->treeWidgetSearchResults->underMouse() ) {
+			if ( qmc2SoftwareList->treeWidgetSearchResults->viewport()->underMouse() ) {
 				item = qmc2SoftwareList->treeWidgetSearchResults->itemAt(qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapFromGlobal(QCursor::pos()));
-				rect = qmc2SoftwareList->treeWidgetSearchResults->visualItemRect(item);
-				rect.translate(0, 4);
-				position = qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapToGlobal(rect.bottomLeft());
+				if ( item ) {
+					rect = qmc2SoftwareList->treeWidgetSearchResults->visualItemRect(item);
+					rect.translate(0, 4);
+					position = qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapToGlobal(rect.bottomLeft());
+				}
 			}
 			break;
 	}
 
 	if ( !item || qmc2SoftwareList->snapForced ) {
-		if ( qmc2SoftwareList->snapForced && myItem ) {
+		if ( qmc2SoftwareList->snapForced && myItem != NULL ) {
 			item = myItem;
 			switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 				case QMC2_SWLIST_KNOWN_SW_PAGE:
@@ -1299,8 +1305,17 @@ void SoftwareSnap::loadSnapshot()
 		move(position);
 		QPalette pal = palette();
 		pal.setBrush(QPalette::Window, pm);
-		qmc2SoftwareList->snapForced = true;
+		QPainter p;
+		p.begin(&pm);
+		p.setPen(QPen(QColor(0, 0, 0, 64), 1));
+		rect = pm.rect();
+		rect.setWidth(rect.width() - 1);
+		rect.setHeight(rect.height() - 1);
+		p.drawRect(rect);
+		p.end();
 		setPalette(pal);
+		qmc2SoftwareList->snapForced = true;
+		snapForcedResetTimer.start(QMC2_SWSNAP_UNFORCE_DELAY);
 		showNormal();
 		update();
 		raise();
@@ -1308,14 +1323,38 @@ void SoftwareSnap::loadSnapshot()
 		myItem = NULL;
 		resetSnapForced();
 		qmc2SoftwareList->cancelSoftwareSnap();
-		return;
 	}
-
-	snapForcedResetTimer.start(QMC2_SWSNAP_UNFORCE_DELAY);
 }
 
 void SoftwareSnap::resetSnapForced()
 {
-	if ( qmc2SoftwareList )
-		qmc2SoftwareList->snapForced = false;
+	if ( qmc2SoftwareList ) {
+		if ( !qmc2SoftwareList->snapForced ) {
+			QTreeWidgetItem *item = NULL;
+			switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
+				case QMC2_SWLIST_KNOWN_SW_PAGE:
+					if ( qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->underMouse() ) {
+						item = qmc2SoftwareList->treeWidgetKnownSoftware->itemAt(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapFromGlobal(QCursor::pos()));
+						if ( item != myItem )
+							qmc2SoftwareList->cancelSoftwareSnap();
+					}
+					break;
+				case QMC2_SWLIST_FAVORITES_PAGE:
+					if ( qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->underMouse() ) {
+						item = qmc2SoftwareList->treeWidgetFavoriteSoftware->itemAt(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapFromGlobal(QCursor::pos()));
+						if ( item != myItem )
+							qmc2SoftwareList->cancelSoftwareSnap();
+					}
+					break;
+				case QMC2_SWLIST_SEARCH_PAGE:
+					if ( qmc2SoftwareList->treeWidgetSearchResults->viewport()->underMouse() ) {
+						item = qmc2SoftwareList->treeWidgetSearchResults->itemAt(qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapFromGlobal(QCursor::pos()));
+						if ( item != myItem )
+							qmc2SoftwareList->cancelSoftwareSnap();
+					}
+					break;
+			}
+		}
+	}
+	qmc2SoftwareList->snapForced = false;
 }
