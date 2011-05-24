@@ -868,13 +868,12 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item,
 
 	if ( !snapForced ) {
 		if ( qmc2SoftwareSnap ) {
-			if ( qmc2SoftwareSnap->myItem != item ) {
+			if ( qmc2SoftwareSnap->myItem != item )
 				cancelSoftwareSnap();
-				snapTimer.start(QMC2_SWSNAP_DELAY);
-			}
 			qmc2SoftwareSnap->myItem = item;
 		}
 	}
+	snapTimer.start(QMC2_SWSNAP_DELAY);
 }
 
 void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *item, int column)
@@ -885,13 +884,12 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *it
 
 	if ( !snapForced ) {
 		if ( qmc2SoftwareSnap ) {
-			if ( qmc2SoftwareSnap->myItem != item ) {
+			if ( qmc2SoftwareSnap->myItem != item )
 				cancelSoftwareSnap();
-				snapTimer.start(QMC2_SWSNAP_DELAY);
-			}
 			qmc2SoftwareSnap->myItem = item;
 		}
 	}
+	snapTimer.start(QMC2_SWSNAP_DELAY);
 }
 
 void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item, int column)
@@ -902,13 +900,12 @@ void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item,
 
 	if ( !snapForced ) {
 		if ( qmc2SoftwareSnap ) {
-			if ( qmc2SoftwareSnap->myItem != item ) {
+			if ( qmc2SoftwareSnap->myItem != item )
 				cancelSoftwareSnap();
-				snapTimer.start(QMC2_SWSNAP_DELAY);
-			}
 			qmc2SoftwareSnap->myItem = item;
 		}
 	}
+	snapTimer.start(QMC2_SWSNAP_DELAY);
 }
 
 QStringList &SoftwareList::arguments()
@@ -1131,7 +1128,7 @@ void SoftwareSnap::loadSnapshot()
 	}
 
 	if ( !item || qmc2SoftwareList->snapForced ) {
-		if ( qmc2SoftwareList->snapForced || myItem ) {
+		if ( qmc2SoftwareList->snapForced && myItem ) {
 			item = myItem;
 			switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 				case QMC2_SWLIST_KNOWN_SW_PAGE:
@@ -1150,10 +1147,14 @@ void SoftwareSnap::loadSnapshot()
 					position = qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapToGlobal(rect.bottomLeft());
 					break;
 			}
-		} else {
-			myItem = NULL;
-			return;
 		}
+	}
+
+	if ( !item ) {
+		myItem = NULL;
+		resetSnapForced();
+		qmc2SoftwareList->cancelSoftwareSnap();
+		return;
 	}
 
 	listName = item->text(QMC2_SWLIST_COLUMN_LIST);
@@ -1303,6 +1304,11 @@ void SoftwareSnap::loadSnapshot()
 		showNormal();
 		update();
 		raise();
+	} else {
+		myItem = NULL;
+		resetSnapForced();
+		qmc2SoftwareList->cancelSoftwareSnap();
+		return;
 	}
 
 	snapForcedResetTimer.start(QMC2_SWSNAP_UNFORCE_DELAY);
