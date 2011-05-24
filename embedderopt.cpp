@@ -146,7 +146,7 @@ void EmbedderOptions::on_checkBoxNativeSnapshotResolution_toggled(bool enabled)
 }
 
 SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
-  : QWidget(parent, Qt::Window | Qt::CustomizeWindowHint | Qt::FramelessWindowHint)
+  : QWidget(parent, Qt::Tool | Qt::CustomizeWindowHint | Qt::FramelessWindowHint)
 {
 #ifdef QMC2_DEBUG
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SnapshotViewer::SnapshotViewer(QListWidgetItem *item = %1, QWidget *parent = %2)").arg((qulonglong)item).arg((qulonglong)parent));

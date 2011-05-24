@@ -125,6 +125,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void hideEvent(QHideEvent *);
 		void mouseMoveEvent(QMouseEvent *);
 		void leaveEvent(QEvent *);
+		void resizeEvent(QResizeEvent *);
 };
 
 #endif

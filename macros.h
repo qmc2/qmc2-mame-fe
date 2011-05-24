@@ -223,7 +223,7 @@
 #define QMC2_RELOAD_POLL_INTERVAL	250
 
 // time to wait before trying to load a software snapshot (if any) when hovering over the entries of a software list
-#define QMC2_SWSNAP_DELAY		50
+#define QMC2_SWSNAP_DELAY		25
 
 // time after which the 'forced snapshot' flag is unset automatically
 #define QMC2_SWSNAP_UNFORCE_DELAY	100
