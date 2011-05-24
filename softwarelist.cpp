@@ -931,6 +931,36 @@ void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item,
 	}
 }
 
+void SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *item, int column)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
+#endif
+
+	cancelSoftwareSnap();
+	QTimer::singleShot(0, this, SLOT(playActivated()));
+}
+
+void SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *item, int column)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
+#endif
+
+	cancelSoftwareSnap();
+	QTimer::singleShot(0, this, SLOT(playActivated()));
+}
+
+void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *item, int column)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
+#endif
+
+	cancelSoftwareSnap();
+	QTimer::singleShot(0, this, SLOT(playActivated()));
+}
+
 QStringList &SoftwareList::arguments()
 {
 #ifdef QMC2_DEBUG

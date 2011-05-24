@@ -100,6 +100,9 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *, int);
 		void on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *, int);
 		void on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *, int);
+		void on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *, int);
+		void on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *, int);
+		void on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *, int);
 
 		// process management
 		void loadStarted();
