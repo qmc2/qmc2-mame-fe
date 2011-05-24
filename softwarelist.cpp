@@ -854,8 +854,10 @@ void SoftwareList::cancelSoftwareSnap()
 
 	snapForced = false;
 	snapTimer.stop();
-	if ( qmc2SoftwareSnap )
+	if ( qmc2SoftwareSnap ) {
+		qmc2SoftwareSnap->myItem = NULL;
 		qmc2SoftwareSnap->hide();
+	}
 }
 
 void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item, int column)
