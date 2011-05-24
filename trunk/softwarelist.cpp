@@ -867,10 +867,11 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item,
 #endif
 
 	if ( !snapForced ) {
-		cancelSoftwareSnap();
 		if ( qmc2SoftwareSnap ) {
-			if ( qmc2SoftwareSnap->myItem != item )
+			if ( qmc2SoftwareSnap->myItem != item ) {
+				cancelSoftwareSnap();
 				snapTimer.start(QMC2_SWSNAP_DELAY);
+			}
 			qmc2SoftwareSnap->myItem = item;
 		}
 	}
@@ -883,10 +884,11 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *it
 #endif
 
 	if ( !snapForced ) {
-		cancelSoftwareSnap();
 		if ( qmc2SoftwareSnap ) {
-			if ( qmc2SoftwareSnap->myItem != item )
+			if ( qmc2SoftwareSnap->myItem != item ) {
+				cancelSoftwareSnap();
 				snapTimer.start(QMC2_SWSNAP_DELAY);
+			}
 			qmc2SoftwareSnap->myItem = item;
 		}
 	}
@@ -899,10 +901,11 @@ void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item,
 #endif
 
 	if ( !snapForced ) {
-		cancelSoftwareSnap();
 		if ( qmc2SoftwareSnap ) {
-			if ( qmc2SoftwareSnap->myItem != item )
+			if ( qmc2SoftwareSnap->myItem != item ) {
+				cancelSoftwareSnap();
 				snapTimer.start(QMC2_SWSNAP_DELAY);
+			}
 			qmc2SoftwareSnap->myItem = item;
 		}
 	}
