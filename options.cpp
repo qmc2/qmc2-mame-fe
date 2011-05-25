@@ -207,17 +207,14 @@ Options::Options(QWidget *parent)
   spinBoxResponsiveness->setToolTip(tr("Number of item insertions between machine list updates during reload (higher means faster, but makes the GUI less responsive)"));
   spinBoxUpdateDelay->setToolTip(tr("Delay update of any machine details (preview, flyer, info, configuration, ...) by how many milliseconds?"));
   checkBoxSortOnline->setToolTip(tr("Sort machine list while reloading (slower)"));
-  checkBoxScaledCabinet->setVisible(false);
   checkBoxScaledController->setVisible(false);
   checkBoxScaledMarquee->setVisible(false);
   checkBoxScaledTitle->setVisible(false);
   radioButtonIconSelect->setVisible(false);
-  radioButtonCabinetSelect->setVisible(false);
   radioButtonControllerSelect->setVisible(false);
   radioButtonMarqueeSelect->setVisible(false);
   radioButtonTitleSelect->setVisible(false);
   stackedWidgetIcon->setVisible(false);
-  stackedWidgetCabinet->setVisible(false);
   stackedWidgetController->setVisible(false);
   stackedWidgetMarquee->setVisible(false);
   stackedWidgetTitle->setVisible(false);
