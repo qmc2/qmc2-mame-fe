@@ -401,6 +401,14 @@
       <description lang="fr" text="Utilise l'affichage des bezels si l'artwork est activé et disponible"/>     
       <description lang="pt" text="Habilitar molduras se a arte estiver habilitada e disponível"/>
     </option>
+    <option name="use_cpanels" type="bool" default="true">
+      <description lang="us" text="Enable control panels if artwork is enabled and available"/>
+      <description lang="de" text="Steuerungselemente anzeigen, falls vorhanden und aktiviert"/>
+    </option>
+    <option name="use_marquees" type="bool" default="true">
+      <description lang="us" text="Enable marquees if artwork is enabled and available"/>
+      <description lang="de" text="Marquees anzeigen, falls vorhanden und aktiviert"/>
+    </option>
   </section>
   <section name="game_screen">
     <description lang="us" text="Game screen"/>

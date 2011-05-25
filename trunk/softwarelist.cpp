@@ -394,6 +394,7 @@ bool SoftwareList::load()
 		loadProc->start(command, args);
 
 		if ( loadProc ) {
+			// FIXME: this is blocking the GUI shortly
 			if ( loadProc->waitForStarted() ) {
 				while ( loadProc->state() == QProcess::Running ) {
 					loadProc->waitForFinished(100);
@@ -685,6 +686,7 @@ void SoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked = %1)").arg(checked));
 #endif
 
+	// FIXME
 }
 
 void SoftwareList::on_toolButtonPlay_clicked(bool checked)
@@ -1391,7 +1393,6 @@ void SoftwareSnap::loadSnapshot()
 		pal.setBrush(QPalette::Window, pm);
 		setPalette(pal);
 		showNormal();
-		//qmc2SoftwareList->snapForced = true;
 		update();
 		raise();
 		snapForcedResetTimer.start(QMC2_SWSNAP_UNFORCE_DELAY);
