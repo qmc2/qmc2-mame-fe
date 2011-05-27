@@ -81,6 +81,8 @@ qmc2/arch/.svn/text-base/SunOS.cfg.svn-base
 qmc2/arch/.svn/text-base/Windows.cfg.svn-base
 qmc2/arch/Windows/.svn
 qmc2/arch/Windows/.svn/prop-base/which.bat.svn-base
+qmc2/arch/Windows/.svn/text-base/dirname.bat.svn-base
+qmc2/arch/Windows/.svn/text-base/rcgen.bat.svn-base
 qmc2/arch/Windows/.svn/text-base/svnversion.bat.svn-base
 qmc2/arch/Windows/.svn/text-base/which.bat.svn-base
 qmc2/arch/Windows/svnversion.bat
@@ -2386,6 +2388,7 @@ qmc2/.svn/text-base/procmgr.h.svn-base
 qmc2/.svn/text-base/qmc2main.cpp.svn-base
 qmc2/.svn/text-base/qmc2main.h.svn-base
 qmc2/.svn/text-base/qmc2main.ui.svn-base
+qmc2/.svn/text-base/qmc2-mess.rc.svn-base
 qmc2/.svn/text-base/qmc2_phonon.h.svn-base
 qmc2/.svn/text-base/qmc2_prefix.h.svn-base
 qmc2/.svn/text-base/qmc2.pro.svn-base
