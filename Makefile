@@ -21,12 +21,41 @@ ifndef EMULATOR
 EMULATOR = SDLMAME
 endif
 
+# >>> MINGW <<<
+#
+# Enable (1) or disable (0) support for the MinGW (GCC) compiler on Windows.
+#
+# Notes:
+#
+# Building QMC2 through MinGW is currently a WORK IN PROGRESS!
+#
+# Using this option on any other OS than Windows will make the build fail! Also,
+# you'll need a working MinGW GCC installation (plus Qt, SDL and zlib) and this
+# option will enable some assumptions with regard to these requirements!
+#
+# This build method for Windows requires the official MAME development tools
+# package (http://mamedev.org/tools/) plus a large add-on for QMC2 (including
+# Qt and zlib, either for the 32- or the 64-bit architecture -- this is not
+# publicly available at the moment and 'under construction').
+#
+# This is also NOT for users of MS Visual Studio C++ 2008 or 2010 (Express)!
+# See doc/html/us/readme.html#build_win in this case (which is what we still
+# use for the official Win32 packages)!
+#
+ifndef MINGW
+MINGW = 0
+endif
+
 # >>> PREFIX <<<
 #
 # The prefix directory used by the 'make install' target.
 #
 ifndef PREFIX
+ifeq '$(MINGW)' '1'
+PREFIX = .
+else
 PREFIX = /usr/local
+endif
 endif
 
 # >>> QUIET <<<
@@ -70,7 +99,11 @@ endif
 # tell the correct OS name of your system (see also OSREL and MACHINE!).
 #
 ifndef ARCH
+ifeq '$(MINGW)' '1'
+ARCH = Windows
+else
 ARCH = $(shell uname)
+endif
 endif
 
 # >>> OSREL <<<
@@ -79,15 +112,24 @@ endif
 # you're doing :)!
 #
 ifndef OSREL
+ifeq '$(MINGW)' '1'
+OSREL = unknown
+else
 OSREL = $(shell uname -r)
+endif
 endif
 
 # >>> MACHINE <<<
 #
 # Target system's machine/CPU type -- please only change this if you really know
 # what you're doing :)!
+#
 ifndef MACHINE
+ifeq '$(MINGW)' '1'
+MACHINE = $(shell gcc -dumpmachine)
+else
 MACHINE = $(shell uname -m)
+endif
 endif
 
 # >>> DATADIR <<<
@@ -98,7 +140,11 @@ ifndef DATADIR
 ifeq '$(ARCH)' 'Darwin'
 DATADIR = /Library/Application Support
 else
+ifeq '$(MINGW)' '1'
+DATADIR = data
+else
 DATADIR = $(PREFIX)/share
+endif
 endif
 endif
 
@@ -110,7 +156,11 @@ ifndef SYSCONFDIR
 ifeq '$(ARCH)' 'Darwin'
 SYSCONFDIR = /Library/Application Support
 else
+ifeq '$(MINGW)' '1'
+SYSCONFDIR =
+else
 SYSCONFDIR = /etc
+endif
 endif
 endif
 
@@ -123,7 +173,11 @@ ifndef BINDIR
 ifeq '$(ARCH)' 'Darwin'
 BINDIR = /Applications
 else
+ifeq '$(MINGW)' '1'
+BINDIR = .
+else
 BINDIR = $(PREFIX)/bin
+endif
 endif
 endif
 
@@ -298,7 +352,11 @@ endif
 # Enable (1) or disable (0) QMC2's 'variant launching'.
 #
 ifndef VARIANT_LAUNCHER
+ifeq '$(MINGW)' '1'
+VARIANT_LAUNCHER = 0
+else
 VARIANT_LAUNCHER = 1
+endif
 endif
 
 # >>> AUDIT_WILDCARD <<<
@@ -381,7 +439,11 @@ endif
 # FADER_SPEED > 0 .... Fading pause/resume (slower)
 #
 ifndef FADER_SPEED
+ifeq '$(MINGW)' '1'
+FADER_SPEED = 2000
+else
 FADER_SPEED = 500
+endif
 endif
 
 # >>> CC_FLAGS <<<
@@ -437,7 +499,11 @@ endif
 # Specify (overwrite) the Qt mkspec (qmake spec) to be used.
 #
 ifndef MKSPEC
+ifeq '$(MINGW)' '1'
+MKSPEC = win32-g++
+else
 MKSPEC =
+endif
 endif
 
 # >>> XWININFO <<<
@@ -499,16 +565,6 @@ VERSION_MAJOR = 0
 VERSION_MINOR = 2
 VERSION_BETA  = 20
 
-# make sure the emulator target is in capital letters
-ifdef TR
-EMULATOR = $(shell echo $(EMULATOR) | $(TR) [a-z] [A-Z])
-endif
-
-# emulator target fall-back for MAMEUIFX32
-ifeq '$(EMULATOR)' 'MAMEUIFX32'
-EMULATOR = MAME
-endif
-
 # commands are platform/distribution-specific
 include arch/default.cfg
 ifeq '$(OSCFG)' '1'
@@ -523,6 +579,18 @@ DISTCFGFILEEXISTS = $(shell ls "$(DISTCFGFILE)")
 ifeq '$(DISTCFGFILE)' '$(DISTCFGFILEEXISTS)'
 include $(DISTCFGFILE)
 endif
+endif
+
+# make sure the emulator target is in capital letters
+ifdef TR
+QMC2_EMULATOR = $(shell echo $(EMULATOR) | $(TR) [a-z] [A-Z])
+else
+QMC2_EMULATOR = $(EMULATOR)
+endif
+
+# emulator target fall-back for MAMEUIFX32
+ifeq '$(QMC2_EMULATOR)' 'MAMEUIFX32'
+QMC2_EMULATOR = MAME
 endif
 
 # determine the SVN revision (if any)
@@ -563,7 +631,7 @@ DEFINES = DEFINES+=$(VERSIONDEFS) QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV
 ifeq '$(DEBUG)' '2'
 DEFINES += QMC2_DEBUG
 endif
-DEFINES += QMC2_$(EMULATOR)
+DEFINES += QMC2_$(QMC2_EMULATOR)
 
 ifeq '$(ARCH)' 'Darwin'
 DEFINES += QMC2_MAC_UNIVERSAL=$(MAC_UNIVERSAL)
@@ -629,7 +697,7 @@ undef QMAKE_CONF
 endif
 
 # setup TARGET's application icon and generic name
-ifeq '$(EMULATOR)' 'SDLMESS'
+ifeq '$(QMC2_EMULATOR)' 'SDLMESS'
 EMUICO = mess.png
 GENERICNAME = M.E.S.S. Catalog / Launcher II
 else
@@ -637,7 +705,7 @@ EMUICO = mame.png
 GENERICNAME = M.A.M.E. Catalog / Launcher II
 endif
 
-TARGET_NAME = $(PROJECT)-$(shell echo $(EMULATOR) | $(TR) [A-Z] [a-z])
+TARGET_NAME = $(PROJECT)-$(shell echo $(QMC2_EMULATOR) | $(TR) [A-Z] [a-z])
 QMAKE_CONF = TARGET=$(TARGET_NAME)
 ifeq '$(DEBUG)' '0'
 QMAKE_CONF += CONFIG+=warn_off CONFIG+=release
@@ -771,20 +839,26 @@ else
 	+@$(TIME) ($(MAKESILENT) -f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro > /dev/null && $(MAKESILENT) -f $(QMAKEFILE) > /dev/null)
 endif
 endif
+ifneq '$(ARCH)' 'Windows'
 	@$(RM) data/opt/template.xml > /dev/null
-ifeq '$(EMULATOR)' 'SDLMAME'
+endif
+ifeq '$(QMC2_EMULATOR)' 'SDLMAME'
 	@$(LN) -s SDLMAME/template.xml data/opt/template.xml > /dev/null
 endif
-ifeq '$(EMULATOR)' 'SDLMESS'
+ifeq '$(QMC2_EMULATOR)' 'SDLMESS'
 	@$(LN) -s SDLMESS/template.xml data/opt/template.xml > /dev/null
 endif
 	@echo "Build of QMC2 v$(VERSION) complete"
-	@echo "Target emulator: $(EMULATOR)"
+	@echo "Target emulator: $(QMC2_EMULATOR)"
 
 $(QMAKEFILE): $(PROJECT).pro
 	@echo "Configuring build of QMC2 v$(VERSION)"
+ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
-	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
+else
+	@$(shell scripts/setup_imgset.bat "$(IMGSET)" > NUL) 
+endif
+	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
 ifeq '$(ARCH)' 'Darwin'
 	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
 	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
@@ -800,29 +874,37 @@ else
 endif
 else
 ifeq '$(CTIME)' '0'
-	+@$(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro && $(MAKE) -f $(QMAKEFILE)
+	+@$(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro && $(MAKE) -f $(QMAKEFILE)
 else
-	+@$(TIME) ($(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro && $(MAKE) -f $(QMAKEFILE))
+	+@$(TIME) ($(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro && $(MAKE) -f $(QMAKEFILE))
 endif
 endif
+ifneq '$(ARCH)' 'Windows'
 	@$(RM) data/opt/template.xml
-ifeq '$(EMULATOR)' 'SDLMAME'
+endif
+ifeq '$(QMC2_EMULATOR)' 'SDLMAME'
 	@$(LN) -s SDLMAME/template.xml data/opt/template.xml
 endif
-ifeq '$(EMULATOR)' 'SDLMESS'
+ifeq '$(QMC2_EMULATOR)' 'SDLMESS'
 	@$(LN) -s SDLMESS/template.xml data/opt/template.xml
 endif
 	@echo "Build of QMC2 v$(VERSION) complete"
-	@echo "Target emulator: $(EMULATOR)"
+	@echo "Target emulator: $(QMC2_EMULATOR)"
 
 $(QMAKEFILE): $(PROJECT).pro
 	@echo "Configuring build of QMC2 v$(VERSION)"
+ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)") 
-	$(QMAKE) -makefile $(QT_MAKE_SPEC) -o Makefile.qmake VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+else
+	@$(shell scripts/setup_imgset.bat "$(IMGSET)") 
+endif
 ifeq '$(ARCH)' 'Darwin'
+	$(QMAKE) -makefile $(QT_MAKE_SPEC) -o Makefile.qmake VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
 	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 	@$(MV) ./Makefile.qmake.xcodeproj/qt_preprocess.mak.new ./Makefile.qmake.xcodeproj/qt_preprocess.mak
+else
+	$(QMAKE) -makefile $(QT_MAKE_SPEC) -o Makefile.qmake VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_MINGW=$(MINGW) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 endif
 
@@ -880,7 +962,7 @@ ifneq '$(ARCH)' 'Darwin'
 	@echo "Installing $(TARGET_NAME).desktop to $(GLOBAL_DATADIR)/applications"
 	@$(MKDIR) $(GLOBAL_DATADIR)/applications
 	@$(CHMOD) a+rx $(GLOBAL_DATADIR)/applications
-	@$(SED) -e "s*DATADIR*$(DATADIR)*g; s*EMULATOR*$(EMULATOR)*g; s*TARGET*$(TARGET_NAME)*g; s*EMUICO*$(EMUICO)*g; s*GENERICNAME*$(GENERICNAME)*g" < ./inst/$(PROJECT).desktop.template > $(GLOBAL_DATADIR)/applications/$(TARGET_NAME).desktop
+	@$(SED) -e "s*DATADIR*$(DATADIR)*g; s*EMULATOR*$(QMC2_EMULATOR)*g; s*TARGET*$(TARGET_NAME)*g; s*EMUICO*$(EMUICO)*g; s*GENERICNAME*$(GENERICNAME)*g" < ./inst/$(PROJECT).desktop.template > $(GLOBAL_DATADIR)/applications/$(TARGET_NAME).desktop
 endif
 	@echo "Installation complete"
 
@@ -889,7 +971,9 @@ clean: $(QMAKEFILE)
 	@echo "Cleaning up build of QMC2 v$(VERSION)"
 ifeq '$(QUIET)' '0'
 	@$(RM) data/opt/template.xml error.log
+ifneq '$(ARCH)' 'Windows'
 	@$(RM) runonce/runonce
+endif
 ifeq '$(ARCH)' 'Darwin'
 	@$(RM) -r runonce/Makefile.qmake.xcodeproj runonce/build
 	@xcodebuild -project Makefile.qmake.xcodeproj -alltargets -configuration Release clean
@@ -901,13 +985,21 @@ ifeq '$(ARCH)' 'Darwin'
 	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp macx/Info.plist Info.plist Makefile.qmake.xcodeproj/*
 	@$(RMDIR) Makefile.qmake.xcodeproj
 else
+ifneq '$(ARCH)' 'Windows'
 	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE)
+endif
 	@$(MAKE) -f $(QMAKEFILE) distclean
 endif
+ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "classic" "$(RM)" "$(LN)" "$(BASENAME)") 
 else
+	@$(shell scripts/setup_imgset.bat "classic")
+endif
+else
 	@$(RM) data/log/* data/tmp/* data/cat/* data/opt/template.xml error.log > /dev/null
+ifneq '$(ARCH)' 'Windows'
 	@$(RM) runonce/runonce > /dev/null
+endif
 ifeq '$(ARCH)' 'Darwin'
 	@$(RM) -r runonce/Makefile.qmake.xcodeproj runonce/build > /dev/null
 	@xcodebuild -project Makefile.qmake.xcodeproj -alltargets -configuration Release clean > /dev/null
@@ -920,10 +1012,16 @@ ifeq '$(ARCH)' 'Darwin'
 	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp macx/Info.plist Info.plist Makefile.qmake.xcodeproj/* > /dev/null
 	@$(RMDIR) Makefile.qmake.xcodeproj > /dev/null
 else
+ifneq '$(ARCH)' 'Windows'
 	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE) > /dev/null
+endif
 	@$(MAKE) -f $(QMAKEFILE) distclean > /dev/null
 endif
+ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "classic" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
+else
+	@$(shell scripts/setup_imgset.bat "classic")
+endif
 endif
 
 # rules for creation of distribution archives
@@ -1017,7 +1115,7 @@ config:
 	@echo "DISTCC_CC            Command used for distributed cc              $(DISTCC_CC)"
 	@echo "DISTCC_CXX           Command used for distributed c++             $(DISTCC_CXX)"
 	@echo "DISTCFG              Use distribution-specific config (0, 1)      $(DISTCFG)"
-	@echo "EMULATOR             Target emulator (SDLMAME, SDLMESS)           $(EMULATOR)"
+	@echo "EMULATOR             Target emulator (SDLMAME, SDLMESS)           $(QMC2_EMULATOR)"
 	@echo "FADER_SPEED          Audio fading speed (0: fastest, >0: slower)  $(FADER_SPEED)"
 	@echo "FIND                 UNIX command find                            $(FIND)"
 	@echo "GREP                 UNIX command grep                            $(GREP)"
@@ -1037,6 +1135,9 @@ endif
 	@echo "MACHINE              Target system's machine type                 $(MACHINE)"
 	@echo "MAKE                 GNU make command                             $(MAKE)"
 	@echo "MAKESILENT           GNU make command (silent mode)               $(MAKESILENT)"
+ifeq '$(ARCH)' 'Windows'
+	@echo "MINGW                Force use of MinGW on Windows (0, 1)         $(MINGW)"
+endif
 	@echo "MKDIR                UNIX command mkdir                           $(MKDIR)"
 	@echo "MKSPEC               Qt mkspec to be used (empty = default)       $(MKSPEC)"
 	@echo "MV                   UNIX command mv                              $(MV)"
@@ -1061,6 +1162,7 @@ endif
 	@echo "SVNVERSION           UNIX command svnversion (optional)           $(SVNVERSION)"
 	@echo "SYSCONFDIR           System configuration directory               $(SYSCONFDIR)"
 	@echo "TAR                  UNIX command tar                             $(TAR)"
+	@echo "TARGET               Name of the QMC2 'target executable'         $(TARGET_NAME)"
 	@echo "TR                   UNIX command tr                              $(TR)"
 	@echo "TIME                 UNIX command time                            $(TIME)"
 	@echo "VARIANT_LAUNCHER     Enable the QMC2 variant launcher (0, 1)      $(VARIANT_LAUNCHER)"

@@ -176,9 +176,17 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			}
 		}
 		win32 {
-			CONFIG += embed_manifest_exe windows
-			contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
-			contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
+			# use VC++ (default) / MinGW
+			greaterThan(QMC2_MINGW, 1) {
+				CONFIG += windows
+				LIBS += -lSDL -lz
+				contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
+				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
+			} else {
+				CONFIG += embed_manifest_exe windows
+				contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
+				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
+			}
 		}
 	} else {
 		error(Qt $$QT_VERSION is insufficient -- Qt 4.5.0+ required)
