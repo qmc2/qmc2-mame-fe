@@ -117,7 +117,7 @@ endif
 #
 ifndef OSREL
 ifeq '$(MINGW)' '1'
-OSREL = $(shell ver | findstr /i version)
+OSREL = unknown
 else
 OSREL = $(shell uname -r)
 endif
@@ -307,7 +307,7 @@ endif
 # warnings when Qt 4.7+ is used, so it's automatically disabled in this case.
 #
 ifndef PRETTY
-PRETTY = 1
+PRETTY = 0
 endif
 
 # >>> SDLLOCAL <<<
@@ -618,11 +618,9 @@ ifneq '$(ARCH)' 'Windows'
 SVN_REV=$(shell $(SVNVERSION) 2>&1 | $(SED) -e "s/[MS]//g" -e "s/^[[:digit:]]*://" | $(GREP) "^[0-9]*$$")
 else
 # this assumes Tortoise SVN!
-SVN_SUBWCREV_CMD=$(shell arch\\Windows\\which.bat subwcrev)
+SVN_SUBWCREV_CMD=$(shell arch\Windows\which.bat subwcrev)
 ifneq '$(SVN_SUBWCREV_CMD)' ''
-DUMMY=$(shell $(SVN_SUBWCREV_CMD) . scripts\\subwcrev.template scripts\\subwcrev.out)
-SVN_REV=$(shell type scripts\\subwcrev.out)
-DUMMY=$(shell $(RM) scripts\\subwcrev.out)
+SVN_REV=$(shell arch\Windows\svnversion.bat)
 else
 SVN_REV=
 endif
@@ -632,15 +630,19 @@ ifeq '$(SVN_REV)' ''
 SVN_REV=0
 endif
 
+ifneq '$(ARCH)' 'Windows' 
+
 # global QMC2 configuration file
 GLOBAL_QMC2_INI=$(shell echo $(DESTDIR)/$(SYSCONFDIR)/$(PROJECT)/$(PROJECT).ini | $(SED) -e "s*//*/*g")
 
 # global data directory
 GLOBAL_DATADIR=$(shell echo $(DESTDIR)/$(DATADIR) | $(SED) -e "s*//*/*g")
 
+endif
+
 # qmake version check (major release)
 ifndef QMAKEV
-ifeq '$(MINGW)' '1'
+ifeq '$(ARCH)' 'Windows'
 QMAKEV = 2
 else
 QMAKEV = $(shell echo `$(QMAKE) -v` | $(AWK) '{print $$3}' | $(COLRM) 2)
@@ -747,10 +749,10 @@ ifneq '$(ARCH)' 'Windows'
 TARGET_NAME = $(PROJECT)-$(shell echo $(QMC2_EMULATOR) | $(TR) [A-Z] [a-z])
 else
 ifeq '$(QMC2_EMULATOR)' 'MAME'
-TARGET_NAME = $(PROJECT)-mame.exe
+TARGET_NAME = $(PROJECT)-mame
 endif
 ifeq '$(QMC2_EMULATOR)' 'MESS'
-TARGET_NAME = $(PROJECT)-mess.exe
+TARGET_NAME = $(PROJECT)-mess
 endif
 endif
 QMAKE_CONF = TARGET=$(TARGET_NAME)
@@ -903,7 +905,7 @@ $(QMAKEFILE): $(PROJECT).pro
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
 else
-	@$(shell scripts/setup_imgset.bat "$(IMGSET)" > NUL) 
+	@$(shell scripts\\setup_imgset.bat $(IMGSET) > NUL) 
 endif
 	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
 ifeq '$(ARCH)' 'Darwin'
@@ -943,7 +945,7 @@ $(QMAKEFILE): $(PROJECT).pro
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)") 
 else
-	@$(shell scripts/setup_imgset.bat "$(IMGSET)") 
+	@$(shell scripts\\setup_imgset.bat $(IMGSET)) 
 endif
 ifeq '$(ARCH)' 'Darwin'
 	$(QMAKE) -makefile $(QT_MAKE_SPEC) -o Makefile.qmake VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
@@ -1021,8 +1023,8 @@ distclean: clean
 clean: $(QMAKEFILE)
 	@echo "Cleaning up build of QMC2 v$(VERSION)"
 ifeq '$(QUIET)' '0'
-	@$(RM) data/opt/template.xml error.log
 ifneq '$(ARCH)' 'Windows'
+	@$(RM) data/opt/template.xml error.log
 	@$(RM) runonce/runonce
 endif
 ifeq '$(ARCH)' 'Darwin'
@@ -1038,17 +1040,22 @@ ifeq '$(ARCH)' 'Darwin'
 else
 ifneq '$(ARCH)' 'Windows'
 	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE)
-endif
 	@$(MAKE) -f $(QMAKEFILE) distclean
+else
+	@$(MAKE) -f $(QMAKEFILE) distclean
+	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts\subwcrev.out
+	@$(RMDIR) /s /q release > NUL
+	@$(RMDIR) /s /q debug > NUL
+endif
 endif
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "classic" "$(RM)" "$(LN)" "$(BASENAME)") 
 else
-	@$(shell scripts/setup_imgset.bat "classic")
+	@$(shell scripts\\setup_imgset.bat classic)
 endif
 else
-	@$(RM) data/log/* data/tmp/* data/cat/* data/opt/template.xml error.log > /dev/null
 ifneq '$(ARCH)' 'Windows'
+	@$(RM) data/log/* data/tmp/* data/cat/* data/opt/template.xml error.log > /dev/null
 	@$(RM) runonce/runonce > /dev/null
 endif
 ifeq '$(ARCH)' 'Darwin'
@@ -1056,7 +1063,6 @@ ifeq '$(ARCH)' 'Darwin'
 	@xcodebuild -project Makefile.qmake.xcodeproj -alltargets -configuration Release clean > /dev/null
 	@xcodebuild -project Makefile.qmake.xcodeproj -alltargets -configuration Debug clean > /dev/null
 	@$(RM) -r $(TARGET_NAME).app build > /dev/null
-	@echo $(RM) $(dir $(QMAKEFILE))
 	@$(RM) $(wildcard $(dir $(QMAKEFILE))*.mode* $(dir $(QMAKEFILE))*.pbxuser) > /dev/null
 	@# this shouldn't be necessary, but qmake doesn't add a proper clean target to the project
 	@$(RM) $(patsubst %.ui,ui_%.h,$(wildcard *.ui) $(notdir $(wildcard */*.ui))) > /dev/null
@@ -1065,13 +1071,18 @@ ifeq '$(ARCH)' 'Darwin'
 else
 ifneq '$(ARCH)' 'Windows'
 	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE) > /dev/null
-endif
 	@$(MAKE) -f $(QMAKEFILE) distclean > /dev/null
+else
+	@$(MAKE) -f $(QMAKEFILE) distclean > NUL
+	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts\subwcrev.out > NUL
+	@$(RMDIR) /s /q release > NUL
+	@$(RMDIR) /s /q debug > NUL
+endif
 endif
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "classic" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
 else
-	@$(shell scripts/setup_imgset.bat "classic")
+	@$(shell scripts\\setup_imgset.bat classic)
 endif
 endif
 
@@ -1248,13 +1259,19 @@ endif
 # process translations
 QMC2_TRANSLATIONS = us de pl fr pt
 QT_TRANSLATIONS = de pl fr pt
+ifneq '$(ARCH)' 'Windows'
 LBINARIES = $(addsuffix .qm, $(addprefix data/lng/qmc2_, $(QMC2_TRANSLATIONS))) $(addsuffix .qm, $(addprefix data/lng/qt_, $(QT_TRANSLATIONS)))
+else
+LBINARIES = $(addsuffix .qm, $(addprefix data\lng\qmc2_, $(QMC2_TRANSLATIONS))) $(addsuffix .qm, $(addprefix data\lng\qt_, $(QT_TRANSLATIONS)))
+endif
 LREL = $(LRELEASE) $<
 ifeq '$(PRETTY)' '1'
 LREL = @echo [LREL] $< && $(LRELEASE) $< > /dev/null
 endif
 
 lang: $(LBINARIES)
+
+ifneq '$(ARCH)' 'Windows'
 
 # QMC2 translations
 
@@ -1289,5 +1306,43 @@ data/lng/qt_fr.qm: data/lng/qt_fr.ts
 
 data/lng/qt_pt.qm: data/lng/qt_pt.ts
 	$(LREL)
+
+else
+
+# QMC2 translations
+
+data\lng\qmc2_us.qm: data\lng\qmc2_us.ts
+	$(LREL)
+
+data\lng\qmc2_de.qm: data\lng\qmc2_de.ts
+	$(LREL)
+
+data\lng\qmc2_pl.qm: data\lng\qmc2_pl.ts
+	$(LREL)
+
+data\lng\qmc2_fr.qm: data\lng\qmc2_fr.ts
+	$(LREL)
+
+data\lng\qmc2_pt.qm: data\lng\qmc2_pt.ts
+	$(LREL)
+
+# Qt translations
+
+#data\lng\qt_us.qm: data\lng\qt_us.ts
+#	$(LREL)
+
+data\lng\qt_de.qm: data\lng\qt_de.ts
+	$(LREL)
+
+data\lng\qt_pl.qm: data\lng\qt_pl.ts
+	$(LREL)
+
+data\lng\qt_fr.qm: data\lng\qt_fr.ts
+	$(LREL)
+
+data\lng\qt_pt.qm: data\lng\qt_pt.ts
+	$(LREL)
+
+endif
 
 # end of file
