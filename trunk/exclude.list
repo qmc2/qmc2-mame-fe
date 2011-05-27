@@ -78,6 +78,12 @@ qmc2/arch/.svn/text-base/FreeBSD.cfg.svn-base
 qmc2/arch/.svn/text-base/Linux.cfg.svn-base
 qmc2/arch/.svn/text-base/NetBSD.cfg.svn-base
 qmc2/arch/.svn/text-base/SunOS.cfg.svn-base
+qmc2/arch/.svn/text-base/Windows.cfg.svn-base
+qmc2/arch/Windows/.svn
+qmc2/arch/Windows/.svn/prop-base/which.bat.svn-base
+qmc2/arch/Windows/.svn/text-base/svnversion.bat.svn-base
+qmc2/arch/Windows/.svn/text-base/which.bat.svn-base
+qmc2/arch/Windows/svnversion.bat
 qmc2/data/cab/.svn
 qmc2/data/cab/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/cat/.svn
@@ -675,7 +681,6 @@ qmc2/data/img/classic/.svn/prop-base/world.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/zip.png.svn-base
-qmc2/data/img/classic/.svn/props/speeker.png.svn-work
 qmc2/data/img/classic/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/classic/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/classic/.svn/text-base/arcadebackground.png.svn-base
@@ -993,7 +998,6 @@ qmc2/data/img/crazy-black/.svn/prop-base/world.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/zip.png.svn-base
-qmc2/data/img/crazy-black/.svn/props/speeker.png.svn-work
 qmc2/data/img/crazy-black/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/arcadebackground.png.svn-base
@@ -1311,7 +1315,6 @@ qmc2/data/img/crazy/.svn/prop-base/world.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/zip.png.svn-base
-qmc2/data/img/crazy/.svn/props/speeker.png.svn-work
 qmc2/data/img/crazy/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/arcadebackground.png.svn-base
@@ -1946,7 +1949,6 @@ qmc2/data/img/.svn/prop-base/world.png.svn-base
 qmc2/data/img/.svn/prop-base/yes.png.svn-base
 qmc2/data/img/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/.svn/prop-base/zip.png.svn-base
-qmc2/data/img/.svn/props/speeker.png.svn-work
 qmc2/data/img/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/.svn/text-base/activity_red.png.svn-base
 qmc2/data/img/.svn/text-base/arcadebackground.png.svn-base
@@ -2182,7 +2184,6 @@ qmc2/pkg-specs/Debian/.svn/text-base/do_debian_pkg.sh.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/rules.svn-base
 qmc2/pkg-specs/Fedora/.svn
 qmc2/pkg-specs/Fedora/.svn/text-base/README.Fedora-spec.svn-base
-qmc2/pkg-specs/Fedora/.svn/text-base/README.Fedora.svn-base
 qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn
 qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/01qmc-contents.xml.svn-base
 qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/01qmc.xml.svn-base
@@ -2201,7 +2202,6 @@ qmc2/pkg-specs/openSUSE/.svn/text-base/openSUSE-BuildService-WIP.spec.svn-base
 qmc2/pkg-specs/openSUSE/.svn/text-base/README.openSUSE-BuildService.svn-base
 qmc2/pkg-specs/.svn
 qmc2/pkg-specs/Windows/.svn
-qmc2/pkg-specs/Windows/.svn/prop-base/install-en.rtf.svn-base
 qmc2/pkg-specs/Windows/.svn/text-base/gpl-2.0.txt.svn-base
 qmc2/pkg-specs/Windows/.svn/text-base/install-de.rtf.svn-base
 qmc2/pkg-specs/Windows/.svn/text-base/install-en.rtf.svn-base
@@ -2218,11 +2218,13 @@ qmc2/scripts/.svn/prop-base/generate-vcprojects.bat.svn-base
 qmc2/scripts/.svn/prop-base/os-detect.sh.svn-base
 qmc2/scripts/.svn/prop-base/plugin_helper.sh.svn-base
 qmc2/scripts/.svn/prop-base/romalyzer.pl.svn-base
+qmc2/scripts/.svn/prop-base/setup_imgset.bat.svn-base
 qmc2/scripts/.svn/prop-base/setup_imgset.sh.svn-base
 qmc2/scripts/.svn/text-base/generate-vcprojects.bat.svn-base
 qmc2/scripts/.svn/text-base/os-detect.sh.svn-base
 qmc2/scripts/.svn/text-base/plugin_helper.sh.svn-base
 qmc2/scripts/.svn/text-base/romalyzer.pl.svn-base
+qmc2/scripts/.svn/text-base/setup_imgset.bat.svn-base
 qmc2/scripts/.svn/text-base/setup_imgset.sh.svn-base
 qmc2/scripts/.svn/text-base/subwcrev.template.svn-base
 qmc2/.svn
@@ -2303,7 +2305,6 @@ qmc2/.svn/prop-base/toolexec.ui.svn-base
 qmc2/.svn/prop-base/welcome.cpp.svn-base
 qmc2/.svn/prop-base/welcome.h.svn-base
 qmc2/.svn/prop-base/welcome.ui.svn-base
-qmc2/.svn/props/speaker.png.svn-work
 qmc2/.svn/text-base/about.cpp.svn-base
 qmc2/.svn/text-base/about.h.svn-base
 qmc2/.svn/text-base/about.ui.svn-base
