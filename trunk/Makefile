@@ -7,20 +7,6 @@
 # Please don't change anything below the line containing END OF MAKE OPTIONS!
 #
 
-# >>> EMULATOR <<<
-#
-# Specifies the target emulator to be used (important: you need to build QMC2
-# for each target emulator separately; do a "make clean" between the builds!)
-#
-# Supported emulators:
-#
-# UNIX and Mac OS X .... SDLMAME or SDLMESS
-# Windows .............. MAME, MAMEUIFX32 or MESS
-#
-ifndef EMULATOR
-EMULATOR = SDLMAME
-endif
-
 # >>> MINGW <<<
 #
 # Enable (1) or disable (0) support for the MinGW (GCC) compiler on Windows.
@@ -44,6 +30,24 @@ endif
 #
 ifndef MINGW
 MINGW = 0
+endif
+
+# >>> EMULATOR <<<
+#
+# Specifies the target emulator to be used (important: you need to build QMC2
+# for each target emulator separately; do a "make clean" between the builds!)
+#
+# Supported emulators:
+#
+# UNIX and Mac OS X .... SDLMAME (default) or SDLMESS
+# Windows .............. MAME (default), MAMEUIFX32 or MESS
+#
+ifndef EMULATOR
+ifeq '$(MINGW)' '1'
+EMULATOR = MAME
+else
+EMULATOR = SDLMAME
+endif
 endif
 
 # >>> PREFIX <<<
@@ -113,7 +117,7 @@ endif
 #
 ifndef OSREL
 ifeq '$(MINGW)' '1'
-OSREL = unknown
+OSREL = $(shell ver | findstr /i version)
 else
 OSREL = $(shell uname -r)
 endif
@@ -413,7 +417,7 @@ endif
 #
 # Enable (1) or disable (0) prefetching of DNS lookups.
 #
-# This is only supported for Qt >= 4.6  and will be ignored otherwise.
+# This is only supported for Qt >= 4.6 and will be ignored otherwise.
 #
 ifndef BROWSER_PREFETCH_DNS
 BROWSER_PREFETCH_DNS = 0
@@ -566,6 +570,7 @@ VERSION_MINOR = 2
 VERSION_BETA  = 20
 
 # commands are platform/distribution-specific
+ifneq '$(ARCH)' 'Windows'
 include arch/default.cfg
 ifeq '$(OSCFG)' '1'
 OSCFGFILEEXISTS = $(shell ls "arch/$(ARCH).cfg")
@@ -580,12 +585,27 @@ ifeq '$(DISTCFGFILE)' '$(DISTCFGFILEEXISTS)'
 include $(DISTCFGFILE)
 endif
 endif
+else
+include arch/Windows.cfg
+endif
 
 # make sure the emulator target is in capital letters
 ifdef TR
 QMC2_EMULATOR = $(shell echo $(EMULATOR) | $(TR) [a-z] [A-Z])
 else
 QMC2_EMULATOR = $(EMULATOR)
+ifeq '$(EMULATOR)' 'mame'
+QMC2_EMULATOR = MAME
+endif
+ifeq '$(EMULATOR)' 'mess'
+QMC2_EMULATOR = MESS
+endif
+ifeq '$(EMULATOR)' 'sdlmame'
+QMC2_EMULATOR = SDLMAME
+endif
+ifeq '$(EMULATOR)' 'sdlmess'
+QMC2_EMULATOR = SDLMESS
+endif
 endif
 
 # emulator target fall-back for MAMEUIFX32
@@ -594,7 +614,20 @@ QMC2_EMULATOR = MAME
 endif
 
 # determine the SVN revision (if any)
+ifneq '$(ARCH)' 'Windows'
 SVN_REV=$(shell $(SVNVERSION) 2>&1 | $(SED) -e "s/[MS]//g" -e "s/^[[:digit:]]*://" | $(GREP) "^[0-9]*$$")
+else
+# this assumes Tortoise SVN!
+SVN_SUBWCREV_CMD=$(shell arch\\Windows\\which.bat subwcrev)
+ifneq '$(SVN_SUBWCREV_CMD)' ''
+DUMMY=$(shell $(SVN_SUBWCREV_CMD) . scripts\\subwcrev.template scripts\\subwcrev.out)
+SVN_REV=$(shell type scripts\\subwcrev.out)
+DUMMY=$(shell $(RM) scripts\\subwcrev.out)
+else
+SVN_REV=
+endif
+endif
+
 ifeq '$(SVN_REV)' ''
 SVN_REV=0
 endif
@@ -607,8 +640,13 @@ GLOBAL_DATADIR=$(shell echo $(DESTDIR)/$(DATADIR) | $(SED) -e "s*//*/*g")
 
 # qmake version check (major release)
 ifndef QMAKEV
+ifeq '$(MINGW)' '1'
+QMAKEV = 2
+else
 QMAKEV = $(shell echo `$(QMAKE) -v` | $(AWK) '{print $$3}' | $(COLRM) 2)
 endif
+endif
+
 ifeq '$(QMAKEV)' '2'
 
 # version strings used by 'make dist' and 'make snap'
@@ -705,7 +743,16 @@ EMUICO = mame.png
 GENERICNAME = M.A.M.E. Catalog / Launcher II
 endif
 
+ifneq '$(ARCH)' 'Windows'
 TARGET_NAME = $(PROJECT)-$(shell echo $(QMC2_EMULATOR) | $(TR) [A-Z] [a-z])
+else
+ifeq '$(QMC2_EMULATOR)' 'MAME'
+TARGET_NAME = $(PROJECT)-mame.exe
+endif
+ifeq '$(QMC2_EMULATOR)' 'MESS'
+TARGET_NAME = $(PROJECT)-mess.exe
+endif
+endif
 QMAKE_CONF = TARGET=$(TARGET_NAME)
 ifeq '$(DEBUG)' '0'
 QMAKE_CONF += CONFIG+=warn_off CONFIG+=release
@@ -908,6 +955,8 @@ else
 endif
 endif
 
+ifneq '$(ARCH)' 'Windows'
+
 ifeq '$(ARCH)' 'Darwin'
 $(TARGET_NAME).app/Contents/Resources/qt.conf:
 	@$(MACDEPLOYQT) $(TARGET_NAME).app
@@ -965,6 +1014,8 @@ ifneq '$(ARCH)' 'Darwin'
 	@$(SED) -e "s*DATADIR*$(DATADIR)*g; s*EMULATOR*$(QMC2_EMULATOR)*g; s*TARGET*$(TARGET_NAME)*g; s*EMUICO*$(EMUICO)*g; s*GENERICNAME*$(GENERICNAME)*g" < ./inst/$(PROJECT).desktop.template > $(GLOBAL_DATADIR)/applications/$(TARGET_NAME).desktop
 endif
 	@echo "Installation complete"
+
+endif
 
 distclean: clean
 clean: $(QMAKEFILE)
@@ -1024,6 +1075,8 @@ else
 endif
 endif
 
+ifneq '$(ARCH)' 'Windows'
+
 # rules for creation of distribution archives
 NOW = $(shell $(DATE))
 snapshot: snap
@@ -1040,6 +1093,8 @@ dist: clean
 	$(TAR) -c -f - -X $(PROJECT)/exclude.list $(PROJECT) | bzip2 -9 > $(PROJECT)-$(VERSION).tar.bz2 ; \
 	$(TAR) -c -f - -X $(PROJECT)/exclude.list $(PROJECT) | gzip -9 > $(PROJECT)-$(VERSION).tar.gz
 
+endif
+
 else
 distribution: all
 dist: all
@@ -1050,8 +1105,11 @@ clean: all
 install: all
 bin: all
 all:
-	@echo "Error: Wrong Qmake version. Qmake version 2 (Qt 4) required!"
+	@echo "Error: Wrong qmake version. Version 2 (Qt 4) required!"
+
 endif
+
+ifneq '$(ARCH)' 'Windows'
 
 svn-exclude-list: exclude-list
 exclude.list: exclude-list
@@ -1063,6 +1121,8 @@ detect-os: os-detect
 os-detect:
 	@scripts/os-detect.sh
 
+endif
+
 ?: help
 help:
 	@echo "Usage: $(MAKE) [<targets>] [<configuration_options>]"
@@ -1071,15 +1131,25 @@ help:
 	@echo "all (default)   Build QMC2, aliases: $(PROJECT), bin, $(PROJECT)-bin"
 	@echo "clean           Clean up compilation & linkage binaries from source tree"
 	@echo "config          Show current build configurion"
+ifneq '$(ARCH)' 'Windows'
 	@echo "dist            Create source distribution archives (tar.gz and tar.bz2)"
 	@echo "exclude-list    Recreate SVN exclude-list (only needed by developers)"
+endif
 	@echo "help | ?        Show make command line help and current build configuration"
+ifneq '$(ARCH)' 'Windows'
 	@echo "install         Install QMC2 binaries and data files for system-wide use"
+endif
 	@echo "lang            Recreate binary translation files only (if not up to date)"
+ifneq '$(ARCH)' 'Windows'
 	@echo "os-detect       Detect host OS and distribution / version"
 	@echo "snap            Create source distribution archives with date and time stamp"
+endif
 	@echo ""
+ifneq '$(ARCH)' 'Windows'
 	@$(MAKE) config | $(GREP) -v "Entering directory" | $(GREP) -v "Leaving directory"
+else
+	@$(MAKE) config"
+endif
 
 config:
 	@echo "Current build configuration:"
