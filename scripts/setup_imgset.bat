@@ -1,6 +1,6 @@
 @echo off
-IMGSET=$1
-cd data/img
-del *.png *.ico
-copy $IMGSET/*.png .
-copy $IMGSET/*.ico .
+@cd data\img > NUL
+@del /f *.png *.ico > NUL
+@copy /y %1\*.png . > NUL
+@copy /y %1\*.ico . > NUL
+cd ..\..
