@@ -762,6 +762,13 @@ else
 QMAKE_CONF += CONFIG+=warn_on CONFIG+=debug
 endif
 
+# setup library and include paths for MinGW environment
+ifeq '$(ARCH)' 'Windows'
+TEST_FILE=$(shell gcc -print-file-name=libSDL.a)
+MINGW_LIBDIR=$(shell arch\Windows\dirname.bat $(TEST_FILE))
+QMAKE_CONF += QMC2_LIBS=-L$(MINGW_LIBDIR) QMC2_INCLUDEPATH=$(MINGW_LIBDIR)../include
+endif
+
 # optionally setup the qmake spec
 ifdef QT_MAKE_SPEC
 undef QT_MAKE_SPEC
@@ -874,7 +881,19 @@ $(QMAKEFILE): macx/Info.plist
 endif
 
 ifeq '$(QUIET)' '1'
-$(PROJECT)-bin: lang $(QMAKEFILE)
+ifeq '$(ARCH)' 'Windows'
+rcgen: qmc2-mame.rc qmc2-mess.rc
+
+qmc2-mame.rc:
+	@arch\Windows\rcgen.bat > NUL
+
+qmc2-mess.rc:
+	@arch\Windows\rcgen.bat > NUL
+
+$(PROJECT)-bin: lang $(QMAKEFILE) rcgen
+else
+$(PROJECT)-bin: lang $(QMAKEFILE) 
+endif
 ifeq '$(ARCH)' 'Darwin'
 ifeq '$(CTIME)' '0'
 	+@xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null && cd runonce && $(QMAKE) -makefile QMC2_PRETTY_COMPILE=$(PRETTY) -o Makefile.qmake runonce.pro > /dev/null && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null
@@ -882,10 +901,14 @@ else
 	+@$(TIME) (xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null && cd runonce && $(QMAKE) -makefile QMC2_PRETTY_COMPILE=$(PRETTY) -o Makefile.qmake runonce.pro > /dev/null && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null)
 endif
 else
+ifeq '$(ARCH)' 'Windows'
+	+@$(MAKESILENT) -f $(QMAKEFILE) > NUL
+else
 ifeq '$(CTIME)' '0'
 	+@$(MAKESILENT) -f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro > /dev/null && $(MAKESILENT) -f $(QMAKEFILE) > /dev/null
 else
 	+@$(TIME) ($(MAKESILENT) -f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro > /dev/null && $(MAKESILENT) -f $(QMAKEFILE) > /dev/null)
+endif
 endif
 endif
 ifneq '$(ARCH)' 'Windows'
@@ -914,7 +937,19 @@ ifeq '$(ARCH)' 'Darwin'
 	@$(MV) ./Makefile.qmake.xcodeproj/qt_preprocess.mak.new ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 endif
 else
+ifeq '$(ARCH)' 'Windows'
+rcgen: qmc2-mame.rc qmc2-mess.rc
+
+qmc2-mame.rc:
+	@arch\Windows\rcgen.bat
+
+qmc2-mess.rc:
+	@arch\Windows\rcgen.bat
+
+$(PROJECT)-bin: lang $(QMAKEFILE) rcgen
+else
 $(PROJECT)-bin: lang $(QMAKEFILE)
+endif
 ifeq '$(ARCH)' 'Darwin'
 ifeq '$(CTIME)' '0'
 	+@xcodebuild -project Makefile.qmake.xcodeproj -configuration Release && cd runonce && $(QMAKE) -makefile QMC2_PRETTY_COMPILE=$(PRETTY) -o Makefile.qmake runonce.pro && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release
@@ -922,10 +957,14 @@ else
 	+@$(TIME) (xcodebuild -project Makefile.qmake.xcodeproj -configuration Release && cd runonce && $(QMAKE) -makefile QMC2_PRETTY_COMPILE=$(PRETTY) -o Makefile.qmake runonce.pro && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release)
 endif
 else
+ifeq '$(ARCH)' 'Windows'
+	+@$(MAKE) -f $(QMAKEFILE)
+else
 ifeq '$(CTIME)' '0'
 	+@$(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro && $(MAKE) -f $(QMAKEFILE)
 else
 	+@$(TIME) ($(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro && $(MAKE) -f $(QMAKEFILE))
+endif
 endif
 endif
 ifneq '$(ARCH)' 'Windows'
@@ -953,7 +992,7 @@ ifeq '$(ARCH)' 'Darwin'
 	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 	@$(MV) ./Makefile.qmake.xcodeproj/qt_preprocess.mak.new ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 else
-	$(QMAKE) -makefile $(QT_MAKE_SPEC) -o Makefile.qmake VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_MINGW=$(MINGW) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	$(QMAKE) -makefile $(QT_MAKE_SPEC) -o Makefile.qmake VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 endif
 
@@ -1043,7 +1082,7 @@ ifneq '$(ARCH)' 'Windows'
 	@$(MAKE) -f $(QMAKEFILE) distclean
 else
 	@$(MAKE) -f $(QMAKEFILE) distclean
-	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts\subwcrev.out
+	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts\subwcrev.out qmc2-mame.rc qmc2-mess,rc
 	@$(RMDIR) /s /q release > NUL
 	@$(RMDIR) /s /q debug > NUL
 endif
@@ -1051,7 +1090,7 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "classic" "$(RM)" "$(LN)" "$(BASENAME)") 
 else
-	@$(shell scripts\\setup_imgset.bat classic)
+	@$(shell scripts\\setup_imgset.bat classic /l)
 endif
 else
 ifneq '$(ARCH)' 'Windows'
@@ -1082,7 +1121,7 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "classic" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
 else
-	@$(shell scripts\\setup_imgset.bat classic)
+	@$(shell scripts\\setup_imgset.bat classic /l)
 endif
 endif
 

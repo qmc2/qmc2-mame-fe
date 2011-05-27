@@ -9,7 +9,11 @@
 #include <QTimer>
 #include <QStringList>
 #if defined(Q_WS_WIN)
+#if defined(QMC2_MINGW)
+#include <SDL/SDL.h>
+#else
 #include <SDL.h>
+#endif
 #else
 #include <SDL/SDL.h>
 #endif
