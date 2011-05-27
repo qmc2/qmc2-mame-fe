@@ -48,7 +48,11 @@
 
 #if defined(Q_WS_WIN)
 #if QMC2_JOYSTICK == 1
+#if defined(QMC2_MINGW)
+#include <SDL/SDL.h>
+#else
 #include <SDL.h>
+#endif
 #endif
 #include <io.h>
 #else

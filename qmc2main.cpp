@@ -8349,6 +8349,10 @@ void prepareShortcuts()
   qmc2Options->setupShortcutActions();
 }
 
+#if defined(QMC2_MINGW)
+#undef main
+#endif
+
 int main(int argc, char *argv[])
 {
   qsrand(QDateTime::currentDateTime().toTime_t());

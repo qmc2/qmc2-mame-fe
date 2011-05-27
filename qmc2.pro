@@ -177,9 +177,12 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		}
 		win32 {
 			# use VC++ (default) / MinGW
-			greaterThan(QMC2_MINGW, 1) {
+			greaterThan(QMC2_MINGW, 0) {
 				CONFIG += windows
-				LIBS += -lSDL -lz
+				DEFINES += QMC2_MINGW
+				QMAKE_LIBS_QT_ENTRY=
+				LIBS += -lSDL -lSDLmain -lSDL.dll -lz $$quote($$QMC2_LIBS)
+				INCLUDEPATH += $$quote($$QMC2_INCLUDEPATH)
 				contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
 				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
 			} else {
