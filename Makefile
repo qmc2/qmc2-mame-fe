@@ -1131,14 +1131,14 @@ ifneq '$(ARCH)' 'Windows'
 
 # rules for creation of distribution archives
 NOW = $(shell $(DATE))
-snapshot: snap
+snapshot: snap exclude.list
 snap: clean
 	@echo "Creating source distribution snapshot for QMC2 v$(VERSION)-$(NOW)"
 	$(CD) .. ; \
 	$(TAR) -c -f - -X $(PROJECT)/exclude.list $(PROJECT) | bzip2 -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.bz2 ; \
 	$(TAR) -c -f - -X $(PROJECT)/exclude.list $(PROJECT) | gzip -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.gz
 
-distribution: dist
+distribution: dist exclude.list
 dist: clean
 	@echo "Creating source distribution archive for QMC2 v$(VERSION)"
 	$(CD) .. ; \
@@ -1165,8 +1165,13 @@ ifneq '$(ARCH)' 'Windows'
 svn-exclude-list: exclude-list
 exclude.list: exclude-list
 exclude-list:
-	cd .. ; \
-	$(FIND) $(PROJECT) -name "*svn*" | env LOCALE=C sort > $(PROJECT)/exclude.list
+	@echo -n "Creating SVN exclude list... "
+	@cd .. ; \
+	$(FIND) $(PROJECT) -name "*svn*" > $(PROJECT)/exclude.list.new ; \
+	echo "$(PROJECT)/exclude.list" >> $(PROJECT)/exclude.list.new ; \
+	$(CAT) $(PROJECT)/exclude.list.new | env LOCALE=C sort > $(PROJECT)/exclude.list ; \
+	$(RM) $(PROJECT)/exclude.list.new
+	@echo "done"
 
 detect-os: os-detect
 os-detect:
