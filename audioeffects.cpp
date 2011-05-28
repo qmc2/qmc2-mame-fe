@@ -22,6 +22,7 @@ AudioEffectDialog::AudioEffectDialog(QWidget *parent)
 	hide();
 	ignoreHideEvent = false;
 
+#if !defined(QMC2_MINGW)
 	effectDescriptions = Phonon::BackendCapabilities::availableAudioEffects();
 	foreach (Phonon::EffectDescription description, effectDescriptions) {
 		QTreeWidgetItem *effectItem = new QTreeWidgetItem(treeWidgetAudioEffects);
@@ -47,6 +48,9 @@ AudioEffectDialog::AudioEffectDialog(QWidget *parent)
 			treeWidgetAudioEffects->setItemWidget(effectItem, QMC2_AUDIOEFFECT_COLUMN_SETUP, effectSetupButton);
 		}
 	}
+#else
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("FIXME: audio-effect support is currently disabled for MinGW builds"));
+#endif
 	treeWidgetAudioEffects->sortItems(QMC2_AUDIOEFFECT_COLUMN_NAME, Qt::AscendingOrder);
 	treeWidgetAudioEffects->resizeColumnToContents(QMC2_AUDIOEFFECT_COLUMN_ENABLE);
 	treeWidgetAudioEffects->resizeColumnToContents(QMC2_AUDIOEFFECT_COLUMN_SETUP);
