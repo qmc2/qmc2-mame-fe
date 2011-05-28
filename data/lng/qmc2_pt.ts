@@ -1851,7 +1851,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="123"/>
         <source>Machine cabinet image</source>
-        <translation type="unfinished">Imagem de gabinete da máquina</translation>
+        <translation>Imagem de gabinete da máquina</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="377"/>
@@ -8766,7 +8766,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../options.cpp" line="1637"/>
         <location filename="../../options.cpp" line="1641"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível abrir arquivo de snapshot de software. por favor verifique as permissões de acesso para %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1654"/>
@@ -8796,7 +8796,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../options.cpp" line="1898"/>
         <location filename="../../options.cpp" line="2750"/>
         <source>SW snap file</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de snapshot de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1170"/>
@@ -9142,12 +9142,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="2855"/>
         <source>Choose software snap directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha diretório de snapshot de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2869"/>
         <source>Choose ZIP-compressed software snap file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo comprimido ZIP de snapshot de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3051"/>
@@ -9989,7 +9989,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2084"/>
         <source>Switch between specifying a software snap directory or a ZIP-compressed software snap file</source>
-        <translation type="unfinished"></translation>
+        <translation>Trocar entre especificar um diretório de snapshots de software ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2087"/>
@@ -9997,27 +9997,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../options.cpp" line="1898"/>
         <location filename="../../options.cpp" line="2750"/>
         <source>SW snap folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório de snapshot de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2122"/>
         <source>Software snap-shot directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório de snapshots de software (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2135"/>
         <source>Browse software snap-shot directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar pelo diretório de snapshots de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2159"/>
         <source>ZIP-compressed software snap-shot file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo comprimido de snapshots de software (ZIP) (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2172"/>
         <source>Browse ZIP-compressed software snap-shot file</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar o arquivo comprimido ZIP de snapshots de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2194"/>
@@ -10262,37 +10262,37 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2701"/>
         <source>SW snap position</source>
-        <translation type="unfinished"></translation>
+        <translation>Posição do snapshot de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2718"/>
         <source>Above / Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Acima / Esquerda</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2723"/>
         <source>Above / Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Acima / Centro</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2728"/>
         <source>Above / Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Acima / Direita</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2733"/>
         <source>Below / Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Abaixo / Esquerda</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2738"/>
         <source>Below / Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Abaixo / Centro</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2743"/>
         <source>Below / Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Abaixo / Direita</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2773"/>
@@ -10392,22 +10392,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2714"/>
         <source>Select the position where sofware snap-shots are displayed within software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione a posição onde os snapshots de software são mostrados dentro da lista de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2748"/>
         <source>Disable snaps</source>
-        <translation type="unfinished"></translation>
+        <translation>Desabilitar snapshots</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2756"/>
         <source>Display software snap-shots when hovering the software list with the mouse cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar snapshots de software quando o mouse passar pela lista de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2759"/>
         <source>SW snaps on mouse hover</source>
-        <translation type="unfinished"></translation>
+        <translation>Snapshots de software ao passar o mouse</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2871"/>
@@ -14374,7 +14374,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="1089"/>
         <source>Snapshot viewer</source>
-        <translation type="unfinished">Visualizador de snapshots</translation>
+        <translation>Visualizador de snapshots</translation>
     </message>
 </context>
 <context>
