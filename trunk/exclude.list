@@ -2158,6 +2158,7 @@ qmc2/data/tmp/.svn
 qmc2/data/tmp/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/ttl/.svn
 qmc2/data/ttl/.svn/text-base/dirinfo.txt.svn-base
+qmc2/exclude.list
 qmc2/inst/.svn
 qmc2/inst/.svn/text-base/qmc2.desktop.template.svn-base
 qmc2/inst/.svn/text-base/qmc2.ini.template.svn-base
