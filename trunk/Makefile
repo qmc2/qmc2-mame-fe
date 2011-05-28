@@ -21,8 +21,9 @@
 #
 # This build method for Windows requires the official MAME development tools
 # package (http://mamedev.org/tools/) plus a large add-on for QMC2 (including
-# Qt and zlib, either for the 32- or the 64-bit architecture -- this is not
-# publicly available at the moment and 'under construction').
+# Qt and zlib, either for the 32- or the 64-bit architecture). See here:
+#
+# http://qmc2.arcadehits.net/mame-dev-tools-add-on/
 #
 # This is also NOT for users of MS Visual Studio C++ 2008 or 2010 (Express)!
 # See doc/html/us/readme.html#build_win in this case (which is what we still
