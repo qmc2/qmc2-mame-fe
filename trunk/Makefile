@@ -305,7 +305,8 @@ endif
 # Enable (1) or disable (0) 'pretty' compilation output.
 #
 # This is only supported for Qt 4.5 and Qt 4.6. It produces irritating shell
-# warnings when Qt 4.7+ is used, so it's automatically disabled in this case.
+# warnings when Qt 4.7+ is used, so it's automatically / forcedly disabled in
+# this case.
 #
 ifndef PRETTY
 PRETTY = 0
@@ -1157,7 +1158,6 @@ install: all
 bin: all
 all:
 	@echo "Error: Wrong qmake version. Version 2 (Qt 4) required!"
-
 endif
 
 ifneq '$(ARCH)' 'Windows'
@@ -1166,7 +1166,7 @@ svn-exclude-list: exclude-list
 exclude.list: exclude-list
 exclude-list:
 	cd .. ; \
-	$(FIND) qmc2 -name "*svn*" | env LOCALE=C sort > qmc2/exclude.list
+	$(FIND) $(PROJECT) -name "*svn*" | env LOCALE=C sort > $(PROJECT)/exclude.list
 
 detect-os: os-detect
 os-detect:
@@ -1293,7 +1293,11 @@ endif
 	@echo "YOUTUBE              Enable support for YouTube videos (0, 1)     $(YOUTUBE)"
 ifneq '$(SVN_REV)' ''
 	@echo ""
+ifneq '$(SVN_REV)' '0'
 	@echo "The SVN revision of your working copy is $(SVN_REV)."
+else
+	@echo "The SVN revision of your working copy could not be determined."
+endif
 endif
 
 # process translations
