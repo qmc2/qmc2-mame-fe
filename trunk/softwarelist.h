@@ -21,6 +21,7 @@ class SoftwareListXmlHandler : public QXmlDefaultHandler
 		QString softwarePublisher;
 		QString softwareYear;
 		QString softwarePart;
+		QString softwareInterface;
 		QString currentText;
 
 		SoftwareListXmlHandler(QTreeWidget *);
@@ -78,7 +79,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		~SoftwareList();
 
 		QString &getSoftwareListXmlData(QString);
-		QString &getXmlData(QString);
+		QString &getXmlData();
+		QString &lookupMountDevice(QString, QString);
 		QStringList &arguments();
 
 	public slots:

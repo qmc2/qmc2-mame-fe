@@ -1395,9 +1395,11 @@ void MainWindow::on_actionPlay_activated()
 
 #if defined(QMC2_EMUTYPE_MESS)
   qmc2MessMachineName = gameName;
+#endif
 
   if ( qmc2SoftwareList && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_SOFTWARE_LIST_INDEX) )
     args << qmc2SoftwareList->arguments();
+#if defined(QMC2_EMUTYPE_MESS)
   else if ( qmc2MESSDeviceConfigurator && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_DEVICE_INDEX) ) {
     QString configName = qmc2MESSDeviceConfigurator->lineEditConfigurationName->text();
     if ( configName != tr("No devices") ) {
@@ -3808,7 +3810,7 @@ void MainWindow::action_embedEmulator_triggered()
   for (i = 0; i < sl.count(); i++) {
     QTreeWidgetItem *item = sl[i];
     while ( item->parent() ) item = item->parent();
-    gameList << item->text(QMC2_EMUCONTROL_COLUMN_GAME);
+    gameList << item->text(QMC2_EMUCONTROL_COLUMN_GAME).split(":")[0];
     idList << item->text(QMC2_EMUCONTROL_COLUMN_NUMBER);
     statusList << item->text(QMC2_EMUCONTROL_COLUMN_STATUS);
   }
@@ -3817,7 +3819,7 @@ void MainWindow::action_embedEmulator_triggered()
     if ( treeWidgetEmulators->currentItem() ) {
       QTreeWidgetItem *item = treeWidgetEmulators->currentItem();
       while ( item->parent() ) item = item->parent();
-      gameList << item->text(QMC2_EMUCONTROL_COLUMN_GAME);
+      gameList << item->text(QMC2_EMUCONTROL_COLUMN_GAME).split(":")[0];
       idList << item->text(QMC2_EMUCONTROL_COLUMN_NUMBER);
       statusList << item->text(QMC2_EMUCONTROL_COLUMN_STATUS);
     }
