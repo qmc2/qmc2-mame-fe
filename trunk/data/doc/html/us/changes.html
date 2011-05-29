@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b20, 27-MAY-2011</h3>
+<h3>CHANGES - v0.2.b20, 29-MAY-2011</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b20, 27-MAY-2011:</b></p>
+<p><b>v0.2.b20, 29-MAY-2011:</b></p>
 <ul>
   <li>fix: ROMAlyzer / checksum wizard: correctly handle ROM files when their names contain special characters (i.e. '&amp;')</li>
   <li>fix: corrected the handling of repeated log messages (the repetition counter was correctly logged, but the actual <i>new</i> message was eaten)</li>
@@ -48,8 +48,8 @@ inf: informational only
   <li>new: added support to provide lists of available BIOS sets (MAME &amp; MESS) and RAM size options (MESS-only) in the game/machine-specific emulator configuration widgets</li>
   <li>new: MESS targets: added a 'general software folder' setting used as the default directory for the MESS device configurator (when no individual software folder was specified explicitly); when a sub-folder named as the currently selected machine exists in this directory, that folder will be selected automatically</li>
   <li>new: MESS targets: enabled the use of a 'cabinet detail' for MESS as well</li>
+  <li>new: added support for the MinGW (GCC) compiler (you need the <a href="http://mamedev.org/tools" target="_blank">MAME dev-tools</a> plus the <a href="http://qmc2.arcadehits.net/mame-dev-tools-add-on/" target="_blank">QMC2 add-on package</a> for your architecture)</li>
   <li>wip: completing the support for software lists -- basically working, but some planned functionality is still missing, and there are open questions regarding the official way to scan the hash XML data</li>
-  <li>wip: adding support for the MinGW (GCC) compiler (you need the MAME dev-tools plus a not yet publicly available Qt/zlib add-on) -- builds completely now, but the produced binary doesn't work correctly yet</li>
   <li>doc: added <a href="faq.html#A2.14">Q2.14</a>, <a href="faq.html#A2.15">Q2.15</a>, <a href="faq.html#A2.16">Q2.16</a> and <a href="faq.html#A2.17">Q2.17</a> to the FAQ</li>
 </ul>
 <p><b>v0.2.b19, 03-APR-2011:</b></p>
