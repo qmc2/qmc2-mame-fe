@@ -28,8 +28,6 @@ QString swlBuffer;
 QString swlLastLine;
 bool swlSupported = true;
 
-//#define QMC2_DEBUG
-
 SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	: QWidget(parent)
 {
@@ -160,10 +158,68 @@ QString &SoftwareList::getSoftwareListXmlData(QString listName)
 	return softwareListXmlBuffer;
 }
 
-QString &SoftwareList::getXmlData(QString machineName)
+QString &SoftwareList::lookupMountDevice(QString device, QString interface)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::getXmlData(QString machineName = %1)").arg(machineName));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::lookupMountDevice(QString device = %1, QString interface = %2)").arg(device).arg(interface));
+#endif
+
+	static QString softwareListDeviceName;
+
+	QMap<QString, QString> deviceInstanceMap;
+	int i = 0;
+
+	softwareListDeviceName.clear();
+
+#if defined(QMC2_EMUTYPE_MAME)
+	QString s = "<game name=\"" + systemName + "\"";
+	while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
+	while ( !qmc2Gamelist->xmlLines[i].contains("</game>") ) {
+		QString line = qmc2Gamelist->xmlLines[i++].simplified();
+		if ( line.startsWith("<device type=\"") ) {
+			int startIndex = line.indexOf("interface=\"") + 11;
+			int endIndex = line.indexOf("\"", startIndex);
+			QString devInterface = line.mid(startIndex, endIndex - startIndex);
+			line = qmc2Gamelist->xmlLines[i++].simplified();
+			startIndex = line.indexOf("briefname=\"") + 11;
+			endIndex = line.indexOf("\"", startIndex);
+			QString devName = line.mid(startIndex, endIndex - startIndex);
+			if ( !deviceInstanceMap.contains(devInterface) )
+				deviceInstanceMap[devInterface] = devName;
+		}
+	}
+#elif defined(QMC2_EMUTYPE_MESS)
+	QString s = "<machine name=\"" + systemName + "\"";
+	while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
+	while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") ) {
+		QString line = qmc2Gamelist->xmlLines[i++].simplified();
+		if ( line.startsWith("<device type=\"") ) {
+			int startIndex = line.indexOf("interface=\"") + 11;
+			int endIndex = line.indexOf("\"", startIndex);
+			QString devInterface = line.mid(startIndex, endIndex - startIndex);
+			line = qmc2Gamelist->xmlLines[i++].simplified();
+			startIndex = line.indexOf("briefname=\"") + 11;
+			endIndex = line.indexOf("\"", startIndex);
+			QString devName = line.mid(startIndex, endIndex - startIndex);
+			if ( !deviceInstanceMap.contains(devInterface) )
+				deviceInstanceMap[devInterface] = devName;
+		}
+	}
+#endif
+
+	softwareListDeviceName = deviceInstanceMap[interface];
+
+	// fall-back to the passed device name if no match was found 
+	if ( softwareListDeviceName.isEmpty() )
+		softwareListDeviceName = device;
+
+	return softwareListDeviceName;
+}
+
+QString &SoftwareList::getXmlData()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::getXmlData()");
 #endif
 
 	static QString xmlBuffer;
@@ -416,7 +472,7 @@ bool SoftwareList::load()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): validData = %1").arg(validData ? "true" : "false"));
 #endif
 
-	QString xmlData = getXmlData(systemName);
+	QString xmlData = getXmlData();
 
 	QStringList softwareList = systemSoftwareListMap[systemName];
 	if ( !softwareList.contains("NO_SOFTWARE_LIST") ) {
@@ -977,10 +1033,13 @@ QStringList &SoftwareList::arguments()
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
 	if ( selectedItems.count() > 0 ) {
 		QTreeWidgetItem *item = selectedItems[0];
-		foreach (QString device, item->text(QMC2_SWLIST_COLUMN_PART).split(",")) {
-			swlArgs << QString("-%1").arg(device);
+		QStringList interfaces = item->text(QMC2_SWLIST_COLUMN_INTERFACE).split(",");
+		QStringList parts = item->text(QMC2_SWLIST_COLUMN_PART).split(",");
+		for (int i = 0; i < parts.count(); i++) {
+			swlArgs << QString("-%1").arg(lookupMountDevice(parts[i], interfaces[i]));
 			swlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
-			break; // FIXME: for now we just stop after the first "part" because MESS can't handle multiple device parts yet
+			// FIXME: for now we just stop after the first "part" because MESS can't handle multiple device parts yet
+			break;
 		}
 	}
 
@@ -1038,10 +1097,16 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 	} else if ( qName == "part" ) {
 		softwarePart = attributes.value("name");
 		QString parts = softwareItem->text(QMC2_SWLIST_COLUMN_PART);
+		softwareInterface = attributes.value("interface");
+		QString interfaces = softwareItem->text(QMC2_SWLIST_COLUMN_INTERFACE);
 		if ( parts.isEmpty() )
 			softwareItem->setText(QMC2_SWLIST_COLUMN_PART, softwarePart);
 		else
 			softwareItem->setText(QMC2_SWLIST_COLUMN_PART, parts + "," + softwarePart);
+		if ( interfaces.isEmpty() )
+			softwareItem->setText(QMC2_SWLIST_COLUMN_INTERFACE, softwareInterface);
+		else
+			softwareItem->setText(QMC2_SWLIST_COLUMN_INTERFACE, interfaces + "," + softwareInterface);
 	} else if ( qName == "description" || qName == "year" || qName == "publisher" ) {
 		currentText.clear();
 	}

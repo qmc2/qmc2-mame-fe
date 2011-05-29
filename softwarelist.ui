@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>445</width>
-    <height>289</height>
+    <width>464</width>
+    <height>294</height>
    </rect>
   </property>
   <property name="mouseTracking">
@@ -172,8 +172,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>435</width>
-        <height>176</height>
+        <width>454</width>
+        <height>181</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -243,6 +243,11 @@
          </column>
          <column>
           <property name="text">
+           <string>Interface</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
            <string>List</string>
           </property>
          </column>
@@ -255,8 +260,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>94</width>
-        <height>64</height>
+        <width>623</width>
+        <height>308</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -326,6 +331,11 @@
          </column>
          <column>
           <property name="text">
+           <string>Interface</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
            <string>List</string>
           </property>
          </column>
@@ -343,8 +353,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>94</width>
-        <height>90</height>
+        <width>623</width>
+        <height>308</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -429,6 +439,11 @@
          <column>
           <property name="text">
            <string>Part</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Interface</string>
           </property>
          </column>
          <column>
