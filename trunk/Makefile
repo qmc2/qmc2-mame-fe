@@ -1241,6 +1241,11 @@ config:
 	@echo "DISTCC_CC            Command used for distributed cc              $(DISTCC_CC)"
 	@echo "DISTCC_CXX           Command used for distributed c++             $(DISTCC_CXX)"
 	@echo "DISTCFG              Use distribution-specific config (0, 1)      $(DISTCFG)"
+ifeq '$(ARCH)' 'Windows'
+	@echo "EMULATOR             Target emulator (MAME, MESS)                 $(QMC2_EMULATOR)"
+else
+	@echo "EMULATOR             Target emulator (SDLMAME, SDLMESS)           $(QMC2_EMULATOR)"
+endif
 	@echo "EMULATOR             Target emulator (SDLMAME, SDLMESS)           $(QMC2_EMULATOR)"
 	@echo "FADER_SPEED          Audio fading speed (0: fastest, >0: slower)  $(FADER_SPEED)"
 	@echo "FIND                 UNIX command find                            $(FIND)"
