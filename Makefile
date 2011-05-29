@@ -13,8 +13,6 @@
 #
 # Notes:
 #
-# Building QMC2 through MinGW is currently a WORK IN PROGRESS!
-#
 # Using this option on any other OS than Windows will make the build fail! Also,
 # you'll need a working MinGW GCC installation (plus Qt, SDL and zlib) and this
 # option will enable some assumptions with regard to these requirements!
