@@ -21,7 +21,7 @@
 # package (http://mamedev.org/tools/) plus a large add-on for QMC2 (including
 # Qt and zlib, either for the 32- or the 64-bit architecture). See here:
 #
-# http://qmc2.arcadehits.net/mame-dev-tools-add-on/
+# http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon
 #
 # This is also NOT for users of MS Visual Studio C++ 2008 or 2010 (Express)!
 # See doc/html/us/readme.html#build_win in this case (which is what we still
