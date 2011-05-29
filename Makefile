@@ -1092,7 +1092,7 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "classic" "$(RM)" "$(LN)" "$(BASENAME)") 
 else
-	@$(shell scripts\\setup_imgset.bat classic /l)
+	@$(shell scripts\\setup_imgset.bat classic)
 endif
 else
 ifneq '$(ARCH)' 'Windows'
@@ -1123,7 +1123,7 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "classic" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
 else
-	@$(shell scripts\\setup_imgset.bat classic /l)
+	@$(shell scripts\\setup_imgset.bat classic)
 endif
 endif
 
