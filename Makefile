@@ -887,15 +887,16 @@ ifeq '$(ARCH)' 'Windows'
 rcgen: qmc2-mame.rc qmc2-mess.rc
 
 qmc2-mame.rc:
-	@arch\Windows\rcgen.bat > NUL
+	@arch\Windows\rcgen.bat
 
 qmc2-mess.rc:
-	@arch\Windows\rcgen.bat > NUL
+	@arch\Windows\rcgen.bat
 
 $(PROJECT)-bin: lang $(QMAKEFILE) rcgen
 else
 $(PROJECT)-bin: lang $(QMAKEFILE) 
 endif
+	@echo "Updating build of QMC2 v$(VERSION)"
 ifeq '$(ARCH)' 'Darwin'
 ifeq '$(CTIME)' '0'
 	+@xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null && cd runonce && $(QMAKE) -makefile QMC2_PRETTY_COMPILE=$(PRETTY) -o Makefile.qmake runonce.pro > /dev/null && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null
@@ -929,10 +930,11 @@ $(QMAKEFILE): $(PROJECT).pro
 	@echo "Configuring build of QMC2 v$(VERSION)"
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
-else
-	@$(shell scripts\\setup_imgset.bat $(IMGSET) > NUL) 
-endif
 	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
+else
+	@$(shell scripts\\setup_imgset.bat $(IMGSET)) 
+	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) VER_MAJ=$(VERSION_MAJOR) VER_MIN=$(VERSION_MINOR) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+endif
 ifeq '$(ARCH)' 'Darwin'
 	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
 	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
@@ -952,6 +954,7 @@ $(PROJECT)-bin: lang $(QMAKEFILE) rcgen
 else
 $(PROJECT)-bin: lang $(QMAKEFILE)
 endif
+	@echo "Updating build of QMC2 v$(VERSION)"
 ifeq '$(ARCH)' 'Darwin'
 ifeq '$(CTIME)' '0'
 	+@xcodebuild -project Makefile.qmake.xcodeproj -configuration Release && cd runonce && $(QMAKE) -makefile QMC2_PRETTY_COMPILE=$(PRETTY) -o Makefile.qmake runonce.pro && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release
