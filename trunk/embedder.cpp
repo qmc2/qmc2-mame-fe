@@ -333,7 +333,7 @@ void Embedder::simulatePauseKey()
 
 	if ( pauseKeyPressed ) {
 		xev.type = KeyRelease;
-		XSendEvent(xev.display, xev.window, true, KeyPressMask, (XEvent *)&xev);
+		XSendEvent(xev.display, xev.window, true, KeyReleaseMask, (XEvent *)&xev);
 		pauseKeyPressed = false;
 		XFlush(QX11Info::display());
 	} else {
