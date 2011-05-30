@@ -26,18 +26,25 @@ AudioEffectDialog::AudioEffectDialog(QWidget *parent)
 	effectDescriptions = Phonon::BackendCapabilities::availableAudioEffects();
 	foreach (Phonon::EffectDescription description, effectDescriptions) {
 		QTreeWidgetItem *effectItem = new QTreeWidgetItem(treeWidgetAudioEffects);
-		effectItem->setText(QMC2_AUDIOEFFECT_COLUMN_NAME, description.name());
+		QString descriptionName = description.name();
+		effectItem->setText(QMC2_AUDIOEFFECT_COLUMN_NAME, descriptionName);
 		effectItem->setText(QMC2_AUDIOEFFECT_COLUMN_DESC, description.description());
 		QCheckBox *effectEnabler = new QCheckBox(this);
 		checkBoxItemMap[effectEnabler] = effectItem;
-		effectEnablerMap[description.name()] = effectEnabler;
+		effectEnablerMap[descriptionName] = effectEnabler;
 		connect(effectEnabler, SIGNAL(toggled(bool)), this, SLOT(checkBoxToggled(bool)));
-		effectEnabler->setToolTip(tr("Enable effect '%1'").arg(description.name()));
+		effectEnabler->setToolTip(tr("Enable effect '%1'").arg(descriptionName));
 		treeWidgetAudioEffects->setItemWidget(effectItem, QMC2_AUDIOEFFECT_COLUMN_ENABLE, effectEnabler);
-		effectMap[description.name()] = new Phonon::Effect(description);
-		effectWidgetMap[description.name()] = new  Phonon::EffectWidget(effectMap[description.name()]);
-		effectWidgetMap[description.name()]->setWindowFlags(Qt::Dialog);
-		if ( effectMap[description.name()]->parameters().count() > 0 ) {
+		Phonon::Effect *ef = new Phonon::Effect(description);
+		if ( !ef )
+			continue;
+		effectMap[descriptionName] = ef;
+		Phonon::EffectWidget *efw = new Phonon::EffectWidget(effectMap[descriptionName]);
+		if ( !efw )
+			continue;
+		effectWidgetMap[descriptionName] = efw;
+		effectWidgetMap[descriptionName]->setWindowFlags(Qt::Dialog);
+		if ( effectMap[descriptionName]->parameters().count() > 0 ) {
 			QToolButton *effectSetupButton = new QToolButton(this);
 			toolButtonItemMap[effectSetupButton] = effectItem;
 			effectSetupButtonMap[description.name()] = effectSetupButton;
