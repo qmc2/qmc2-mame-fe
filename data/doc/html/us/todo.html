@@ -20,7 +20,7 @@
   <li>Embedded emulators that change their display sizes at runtime (usually during startup) may not be correctly centered initially -- however, we made several improvements related to this in v0.2.b19 so that it should happen only very rarely</li>
   <li>Corrupted PNG images may cause crashes -- if the log file contains corresponding Qt warning or error messages after the crash, please correct your images!! For instance, we've experienced Qt paint engine crashes due to wrong iCCP chunks. After correcting the corrupted PNGs (using <i>convert</i> from ImageMagick) the crashes were history.</li> 
   <li>Both the 'set repair' and 'set rewriter' functions (ROMAlyzer features) only work on ZIPs! As of yet, there's no support for CHDs or ROM sets stored as unzipped files in individual sub-directores.</li>
-  <li>When using MinGW on Windows, the support for Phonon audio-effects causes severe troubles, so it#s disabled programmatically and you'll get a FIXME warning related to this in the front-end log -- when we find the root cause of this issue, it will be enabled again (but it's also not very important)</li>
+  <li>Audio-effect widgets aren't available in MinGW builds (they just crash upon creation, so we disabled them for now).</li>
 </ul>
 <p><b>Work in progress</b></p>
 <ul>
