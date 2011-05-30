@@ -1937,7 +1937,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="123"/>
         <source>Machine cabinet image</source>
-        <translation type="unfinished">Obraz maszyny</translation>
+        <translation>Obraz maszyny</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="387"/>
@@ -1958,12 +1958,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="412"/>
         <source>Choose the YouTube cache directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz katalog bufora YouTube</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="424"/>
         <source>FATAL: can&apos;t create new YouTube cache directory, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można stworzyć katalogu bufora YouTube, ścieżka = %1</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="454"/>
@@ -2168,7 +2168,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="679"/>
         <source>choice</source>
-        <translation type="unfinished"></translation>
+        <translation>wybór</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="683"/>
@@ -2238,12 +2238,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="948"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się uruchomienie MAME w sensownym czasie, poddanie</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="950"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się uruchomienie MESS w sensownym czasie, poddanie</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1006"/>
@@ -2629,12 +2629,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="588"/>
         <source>FATAL: couldn&apos;t determine emulator version, type identification string is &apos;%1&apos; -- please inform developers if you&apos;re sure that this is a valid MAME binary</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się ustalić wersji emulatora, łańcuch identyfikacji typu to &apos;%1&apos; -- proszę poinformować programistów w przypadku pewności, że jest to prawidłowy plik binarny MAME</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="590"/>
         <source>FATAL: couldn&apos;t determine emulator version, type identification string is &apos;%1&apos; -- please inform developers if you&apos;re sure that this is a valid MESS binary</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się ustalić wersji emulatora, łańcuch identyfikacji typu to &apos;%1&apos; -- proszę poinformować programistów w przypadku pewności, że jest to prawidłowy plik binarny MESS</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="607"/>
@@ -3569,13 +3569,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="449"/>
         <location filename="../../gamelist.cpp" line="540"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się uruchomienie MAME w sensownym czasie, poddanie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="451"/>
         <location filename="../../gamelist.cpp" line="542"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się uruchomienie MESS w sensownym czasie, poddanie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="574"/>
@@ -4710,12 +4710,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="175"/>
         <source>Select a file to be mapped to this device instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik który ma być mapowany do tej instancji urządzenia</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="176"/>
         <source>Select file...</source>
-        <translation type="unfinished">Wybierz plik...</translation>
+        <translation>Wybierz plik...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="565"/>
@@ -5100,17 +5100,17 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.ui" line="3226"/>
         <location filename="../../qmc2main.ui" line="3229"/>
         <source>Clear YouTube cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bufor YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3232"/>
         <source>Ctrl+Y</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3240"/>
         <source>Clear ROM state cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bufor stanów ROM-ów</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3243"/>
@@ -5121,7 +5121,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="3254"/>
         <source>Clear game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bufor listy gier</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3257"/>
@@ -5132,7 +5132,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="3268"/>
         <source>Clear XML cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bufor XML</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3271"/>
@@ -5143,7 +5143,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.ui" line="3282"/>
         <source>Clear software list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bufor listy oprogramowania</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3285"/>
@@ -5467,7 +5467,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="631"/>
         <source>restoring main widget layout</source>
-        <translation>przywracanie głównego widżeta głównego</translation>
+        <translation>przywracanie układu widżeta głównego</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="715"/>
@@ -5623,7 +5623,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../qmc2main.cpp" line="1082"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Wpisz szukany ciąg</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1530"/>
@@ -5897,18 +5897,18 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4804"/>
         <source>saving YouTube video info map</source>
-        <translation type="unfinished"></translation>
+        <translation>zapisywanie mapy informacji o filmie YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4827"/>
         <source>done (saving YouTube video info map)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (zapisywanie mapy informacji o filmie YouTube)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4829"/>
         <location filename="../../qmc2main.cpp" line="4831"/>
         <source>failed (saving YouTube video info map)</source>
-        <translation type="unfinished"></translation>
+        <translation>nieudane (zapisywanie mapy informacji o filmie YouTube)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4859"/>
@@ -5918,7 +5918,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4955"/>
         <source>saving current game&apos;s favorite software</source>
-        <translation type="unfinished"></translation>
+        <translation>zapisywanie ulubionego oprogramowania bieżącej gry</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4961"/>
@@ -5983,7 +5983,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5012"/>
         <source>destroying YouTube video widget</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie widżetu filmu YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5136"/>
@@ -6115,7 +6115,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3871"/>
         <source>FATAL: can&apos;t start XWININFO within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie udało się uruchomienie XWININFO w sensownym czasie, poddanie</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5120"/>
@@ -7392,8 +7392,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -7503,13 +7501,13 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="513"/>
         <source>Game</source>
-        <translation type="unfinished"></translation>
+        <translation>Gra</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="533"/>
         <location filename="../../qmc2main.cpp" line="534"/>
         <source>Clear machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bufor listy maszyn</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="535"/>
@@ -7520,7 +7518,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="542"/>
         <source>Machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Maszyna</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1556"/>
@@ -7592,17 +7590,17 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5474"/>
         <source>loading YouTube video info map</source>
-        <translation type="unfinished"></translation>
+        <translation>ładowanie mapy informacji o filmie YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5491"/>
         <source>YouTube index - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Indeks YouTube - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5520"/>
         <source>done (loading YouTube video info map)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (ładowanie mapy informacji o filmie YouTube)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="5521"/>
@@ -8935,7 +8933,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2723"/>
         <source>Above / Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Na górze / pośrodku</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2728"/>
@@ -9008,7 +9006,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2172"/>
         <source>Browse ZIP-compressed software snap-shot file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż skompresowany plik ZIP zrzutów ekranu oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2396"/>
@@ -9058,12 +9056,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2547"/>
         <source>Show ROM status icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokazać ikony stanów ROM-ów</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2714"/>
         <source>Select the position where sofware snap-shots are displayed within software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz pozycję na której w ramach listy oprogramowania są wyświetlane zrzuty ekranu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2748"/>
@@ -9167,7 +9165,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="4183"/>
         <source>General software folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogólny folder oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4209"/>
@@ -9369,7 +9367,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="270"/>
         <source>Clear YouTube cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bufor YouTube</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="287"/>
@@ -9465,7 +9463,7 @@ Ponowić próbę osadzania?</translation>
         <location filename="../../options.cpp" line="331"/>
         <location filename="../../options.cpp" line="338"/>
         <source>Reset to default font</source>
-        <translation type="unfinished"></translation>
+        <translation>Zresetuj do domyślnej czcionki</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="784"/>
@@ -9726,7 +9724,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="2473"/>
         <source>Choose general software folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz ogólny folder oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2499"/>
@@ -9766,12 +9764,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="2855"/>
         <source>Choose software snap directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz katalog zrzutów ekranu oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2869"/>
         <source>Choose ZIP-compressed software snap file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz skompresowany plik ZIP zrzutów ekranu oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3051"/>
@@ -10566,7 +10564,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../options.cpp" line="346"/>
         <location filename="../../options.cpp" line="353"/>
         <source>No style sheet</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak arkusza stylu</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="921"/>
@@ -14073,55 +14071,55 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.ui" line="18"/>
         <source>Software list</source>
-        <translation type="unfinished">Lista oprogramowania</translation>
+        <translation>Lista oprogramowania</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="35"/>
         <location filename="../../softwarelist.ui" line="38"/>
         <source>Reload all information</source>
-        <translation type="unfinished">Przeładuj wszysktie informacje</translation>
+        <translation>Przeładuj wszysktie informacje</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="55"/>
         <location filename="../../softwarelist.ui" line="58"/>
         <source>Select a pre-defined device configuration to be added to the software setup</source>
-        <translation type="unfinished">Wybierz predefiniowaną konfigurację urządzeń do dodania do ustawień oprogramowania</translation>
+        <translation>Wybierz predefiniowaną konfigurację urządzeń do dodania do ustawień oprogramowania</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="62"/>
         <location filename="../../softwarelist.cpp" line="725"/>
         <location filename="../../softwarelist.cpp" line="1049"/>
         <source>No additional devices</source>
-        <translation type="unfinished">Brak dodatkowych urządzeń</translation>
+        <translation>Brak dodatkowych urządzeń</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="89"/>
         <location filename="../../softwarelist.ui" line="92"/>
         <source>Add the currently selected software and device setup to the favorites list</source>
-        <translation type="unfinished">Dodaj obecnie wybrane oprogramowania i ustawienia urządzeń do listy ulubionych</translation>
+        <translation>Dodaj obecnie wybrane oprogramowanie i ustawienia urządzeń do listy ulubionych</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="109"/>
         <location filename="../../softwarelist.ui" line="112"/>
         <source>Remove the currently selected favorite software configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń obecnie wybraną ulubioną konfigurację oprogramowania</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="129"/>
         <location filename="../../softwarelist.ui" line="132"/>
         <source>Play the selected software configuration</source>
-        <translation type="unfinished">Uruchom używając wybranej konfiguracji oprogramowania</translation>
+        <translation>Uruchom używając wybranej konfiguracji oprogramowania</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="149"/>
         <location filename="../../softwarelist.ui" line="152"/>
         <source>Play the selected software configuration (embedded)</source>
-        <translation type="unfinished">Uruchom używając wybranej konfiguracji oprogramowania (tryb osadzony)</translation>
+        <translation>Uruchom używając wybranej konfiguracji oprogramowania (tryb osadzony)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="184"/>
         <source>Known software</source>
-        <translation type="unfinished">Znane oprogramowanie</translation>
+        <translation>Znane oprogramowanie</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="187"/>
@@ -14131,198 +14129,198 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.ui" line="275"/>
         <source>View / manage your favorite software list for the current system</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobacz / zarządzaj listą ulubionego oprogramowania bieżącego systemu</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="368"/>
         <source>Search within the list of known software for the current system</source>
-        <translation type="unfinished"></translation>
+        <translation>Szukanie wśród listy znanego oprogramowania bieżącego systemu</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="202"/>
         <location filename="../../softwarelist.ui" line="205"/>
         <source>List of known software</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista znanego oprogramowania</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="221"/>
         <location filename="../../softwarelist.ui" line="309"/>
         <location filename="../../softwarelist.ui" line="421"/>
         <source>Title</source>
-        <translation type="unfinished">Tytuł</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="226"/>
         <location filename="../../softwarelist.ui" line="314"/>
         <location filename="../../softwarelist.ui" line="426"/>
         <source>Name</source>
-        <translation type="unfinished">Nazwa</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="231"/>
         <location filename="../../softwarelist.ui" line="319"/>
         <location filename="../../softwarelist.ui" line="431"/>
         <source>Publisher</source>
-        <translation type="unfinished">Wydawca</translation>
+        <translation>Wydawca</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="236"/>
         <location filename="../../softwarelist.ui" line="324"/>
         <location filename="../../softwarelist.ui" line="436"/>
         <source>Year</source>
-        <translation type="unfinished">Rok</translation>
+        <translation>Rok</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="241"/>
         <location filename="../../softwarelist.ui" line="329"/>
         <location filename="../../softwarelist.ui" line="441"/>
         <source>Part</source>
-        <translation type="unfinished">Część</translation>
+        <translation>Część</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="246"/>
         <location filename="../../softwarelist.ui" line="334"/>
         <location filename="../../softwarelist.ui" line="446"/>
         <source>Interface</source>
-        <translation type="unfinished">Interfejs</translation>
+        <translation>Interfejs</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="251"/>
         <location filename="../../softwarelist.ui" line="339"/>
         <location filename="../../softwarelist.ui" line="451"/>
         <source>List</source>
-        <translation type="unfinished">Lista</translation>
+        <translation>Lista</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="272"/>
         <source>Favorites</source>
-        <translation type="unfinished">Ulubione</translation>
+        <translation>Ulubione</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="290"/>
         <location filename="../../softwarelist.ui" line="293"/>
         <source>Favorite software configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Ulubione konfiguracje oprogramowania</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="344"/>
         <source>Device configuration</source>
-        <translation type="unfinished">Konfiguracja urządzeń</translation>
+        <translation>Konfiguracja urządzeń</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="365"/>
         <source>Search</source>
-        <translation type="unfinished">Szukaj</translation>
+        <translation>Szukaj</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="383"/>
         <location filename="../../softwarelist.ui" line="386"/>
         <source>Search for known software (not case-sensitive)</source>
-        <translation type="unfinished">Szukaj znanego oprogramowania (bez uwzględniania wielkości liter)</translation>
+        <translation>Szukaj znanego oprogramowania (bez uwzględniania wielkości liter)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="402"/>
         <location filename="../../softwarelist.ui" line="405"/>
         <source>Search results</source>
-        <translation type="unfinished">Wyniki szukania</translation>
+        <translation>Wyniki wyszukiwania</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="53"/>
         <source>Add the currently selected software to the favorites list</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj obecnie wybrane oprogramowanie do listy ulubionych</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="85"/>
         <source>Play selected software</source>
-        <translation type="unfinished">Uruchom wybrane oprogramowanie</translation>
+        <translation>Uruchom wybrane oprogramowanie</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="86"/>
         <source>&amp;Play</source>
-        <translation type="unfinished">&amp;Graj</translation>
+        <translation>&amp;Graj</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="91"/>
         <source>Play selected software (embedded)</source>
-        <translation type="unfinished">Uruchom wybrane oprogramowanie (tryb osadzony)</translation>
+        <translation>Uruchom wybrane oprogramowanie (tryb osadzony)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="92"/>
         <source>Play &amp;embedded</source>
-        <translation type="unfinished">Graj osad&amp;zając</translation>
+        <translation>Graj osad&amp;zając</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="98"/>
         <source>Add to favorite software list</source>
-        <translation type="unfinished">Dodaj do listy ulubionego oprogramowania</translation>
+        <translation>Dodaj do listy ulubionego oprogramowania</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="99"/>
         <source>&amp;Add to favorites</source>
-        <translation type="unfinished">&amp;Dodaj do ulubionych</translation>
+        <translation>&amp;Dodaj do ulubionych</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="103"/>
         <source>Remove from favorite software list</source>
-        <translation type="unfinished">Usuń z listy ulubionego oprogramowania</translation>
+        <translation>Usuń z listy ulubionego oprogramowania</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="104"/>
         <source>&amp;Remove from favorites</source>
-        <translation type="unfinished">&amp;Usuń z ulubionych</translation>
+        <translation>&amp;Usuń z ulubionych</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="155"/>
         <source>WARNING: software list &apos;%1&apos; not found</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie znaleziono listy oprogramowania &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="269"/>
         <source>Known software (%1)</source>
-        <translation type="unfinished">Znane oprogramowanie (%1)</translation>
+        <translation>Znane oprogramowanie (%1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="270"/>
         <source>Favorites (%1)</source>
-        <translation type="unfinished">Ulubione (%1)</translation>
+        <translation>Ulubione (%1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="271"/>
         <source>Search (%1)</source>
-        <translation type="unfinished">Wyszukiwanie (%1)</translation>
+        <translation>Wyszukiwanie (%1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="285"/>
         <location filename="../../softwarelist.cpp" line="464"/>
         <source>Known software (no data available)</source>
-        <translation type="unfinished">Znane oprogramowanie (brak dostępnych danych)</translation>
+        <translation>Znane oprogramowanie (brak dostępnych danych)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="286"/>
         <location filename="../../softwarelist.cpp" line="465"/>
         <source>Favorites (no data available)</source>
-        <translation type="unfinished">Ulubione (brak dostępnych danych)</translation>
+        <translation>Ulubione (brak dostępnych danych)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="287"/>
         <location filename="../../softwarelist.cpp" line="466"/>
         <source>Search (no data available)</source>
-        <translation type="unfinished">Wyszukiwanie (brak dostępnych danych)</translation>
+        <translation>Wyszukiwanie (brak dostępnych danych)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="346"/>
         <source>loading XML software list data from cache</source>
-        <translation type="unfinished">Ładowanie listy XML oprogramowania z bufora</translation>
+        <translation>Ładowanie listy XML oprogramowania z bufora</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="351"/>
         <source>SWL cache - %p%</source>
-        <translation type="unfinished">Bufor LOp - %p%</translation>
+        <translation>Bufor LOp - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="379"/>
         <source>done (loading XML software list data from cache, elapsed time = %1</source>
-        <translation type="unfinished">ukończono (wczytywanie listy XML oprogramowania z bufora, miniony czas = %1)</translation>
+        <translation>ukończono (wczytywanie listy XML oprogramowania z bufora, miniony czas = %1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="387"/>
@@ -14332,17 +14330,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="389"/>
         <source>ERROR: the file name for the MESS software list cache is empty -- please correct this and reload the machine list afterwards</source>
-        <translation type="unfinished">BŁĄD: nazwa pliku bufora listy oprogramowania MESS jest pusta -- proszę to poprawić, a następnie przeładować listę maszyn</translation>
+        <translation>BŁĄD: nazwa pliku bufora listy oprogramowania MESS jest pusta -- proszę to poprawić, a następnie przeładować listę maszyn</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="397"/>
         <source>loading XML software list data and (re)creating cache</source>
-        <translation type="unfinished">wczytywanie danych listy XML oprogramowania i tworzenie (odtwarzanie) bufora</translation>
+        <translation>wczytywanie danych listy XML oprogramowania i tworzenie (odtwarzanie) bufora</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="400"/>
         <source>SWL data - %p%</source>
-        <translation type="unfinished">Dane LOp - %p%</translation>
+        <translation>Dane LOp - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="406"/>
@@ -14352,12 +14350,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="408"/>
         <source>ERROR: can&apos;t open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards</source>
-        <translation type="unfinished">BŁĄD: nie można otworzyć bufora listy oprogramowania MESS do zapisu, ścieżka = %1 -- proszę to sprawdzić/poprawić uprawnienia, a następnie przeładować listę maszyn</translation>
+        <translation>BŁĄD: nie można otworzyć bufora listy oprogramowania MESS do zapisu, ścieżka = %1 -- proszę to sprawdzić/poprawić uprawnienia, a następnie przeładować listę maszyn</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="491"/>
         <source>FATAL: error while parsing XML data for software list &apos;%1&apos;</source>
-        <translation type="unfinished">FATALNIE: błąd podczas parsowania danych XML listy oprogramowania &apos;%1&apos;</translation>
+        <translation>FATALNIE: błąd podczas parsowania danych XML listy oprogramowania &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="607"/>
@@ -14368,23 +14366,23 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../softwarelist.cpp" line="607"/>
         <location filename="../../softwarelist.cpp" line="609"/>
         <source>normal</source>
-        <translation type="unfinished">normalny</translation>
+        <translation>normalny</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="607"/>
         <location filename="../../softwarelist.cpp" line="609"/>
         <source>crashed</source>
-        <translation type="unfinished">przestał działać</translation>
+        <translation>przestał działać</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="609"/>
         <source>WARNING: the external process called to load the MESS software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished">UWAGA: zewnętrzny proces wezwany do wczytania listy oprogramowania MESS nie zakończył się czysto -- exitCode = %1, exitStatus = %2</translation>
+        <translation>UWAGA: zewnętrzny proces wezwany do wczytania listy oprogramowania MESS nie zakończył się czysto -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="613"/>
         <source>done (loading XML software list data and (re)creating cache, elapsed time = %1)</source>
-        <translation type="unfinished">ukończono (wczytywanie listy XML oprogramowania i tworzenie (odtwarzanie) bufora, miniony czas = %1)</translation>
+        <translation>ukończono (wczytywanie listy XML oprogramowania i tworzenie (odtwarzanie) bufora, miniony czas = %1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="666"/>
@@ -14404,7 +14402,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="687"/>
         <source>WARNING: the external process called to load the MESS software lists caused an error -- processError = %1</source>
-        <translation type="unfinished">UWAGA: zewnętrzny proces uruchomiony do wczytania list oprogramowania MESS spowodował błąd -- processError = %1</translation>
+        <translation>UWAGA: zewnętrzny proces uruchomiony do wczytania list oprogramowania MESS spowodował błąd -- processError = %1</translation>
     </message>
 </context>
 <context>
@@ -14412,7 +14410,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="1154"/>
         <source>Snapshot viewer</source>
-        <translation type="unfinished">Przeglądarka zrzutów ekranu</translation>
+        <translation>Przeglądarka zrzutów ekranu</translation>
     </message>
 </context>
 <context>
@@ -14525,29 +14523,29 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../videoitemwidget.cpp" line="171"/>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tytuł:</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="176"/>
         <location filename="../../videoitemwidget.cpp" line="178"/>
         <source>Author:</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor:</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="176"/>
         <source>Open author URL with the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz URL autora w domyślnej przeglądarce</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="184"/>
         <source>Open video URL with the default browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz URL filmu w domyślnej przeglądarce</translation>
     </message>
     <message>
         <location filename="../../videoitemwidget.cpp" line="184"/>
         <location filename="../../videoitemwidget.cpp" line="186"/>
         <source>Video:</source>
-        <translation type="unfinished"></translation>
+        <translation>Film:</translation>
     </message>
 </context>
 <context>
@@ -14816,7 +14814,7 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
         <location filename="../../youtubevideoplayer.ui" line="221"/>
         <location filename="../../youtubevideoplayer.cpp" line="81"/>
         <source>MP4 360P</source>
-        <translation type="unfinished"></translation>
+        <translation>MP4 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="230"/>
@@ -14828,19 +14826,19 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
         <location filename="../../youtubevideoplayer.ui" line="239"/>
         <location filename="../../youtubevideoplayer.cpp" line="83"/>
         <source>MP4 720P</source>
-        <translation type="unfinished"></translation>
+        <translation>MP4 720P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="248"/>
         <location filename="../../youtubevideoplayer.cpp" line="84"/>
         <source>MP4 1080P</source>
-        <translation type="unfinished"></translation>
+        <translation>MP4 1080P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="257"/>
         <location filename="../../youtubevideoplayer.cpp" line="85"/>
         <source>MP4 3072P</source>
-        <translation type="unfinished"></translation>
+        <translation>MP4 3072P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="275"/>
@@ -14906,7 +14904,7 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="96"/>
         <source>Video progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Postęp filmu</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="105"/>
