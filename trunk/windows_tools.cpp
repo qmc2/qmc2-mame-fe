@@ -7,6 +7,9 @@
 // and compile with -DPSAPI_VERSION=1
 // (see http://msdn.microsoft.com/en-us/library/ms682623.aspx)
 
+QString winSearchText;
+HWND winFoundHandle;
+
 HANDLE winFindProcessHandle(QString procName)
 {
 	HANDLE processHandle = NULL;
@@ -22,11 +25,14 @@ HANDLE winFindProcessHandle(QString procName)
 				if ( EnumProcessModules(hProcess, &hMod, sizeof(hMod), &bN) ) {
 					TCHAR processName[MAX_PATH];
 					GetModuleBaseName(hProcess, hMod, processName, sizeof(processName)/sizeof(TCHAR));
-					QString pN((const char *)processName);
+#ifdef UNICODE
+					QString pN = QString::fromUtf16((ushort*)processName);
+#else
+					QString pN = QString::fromLocal8Bit(processName);
+#endif
 					if ( pN == procName ) {
-						// debug
-						printf("processHandle found!\n"); fflush(stdout);
 						processHandle = hProcess;
+						CloseHandle(hProcess);
 						break;
 					}
 				}
@@ -38,13 +44,24 @@ HANDLE winFindProcessHandle(QString procName)
 	return processHandle;
 }
 
-HANDLE winGetProcessHandle(Q_PID pid)
+BOOL CALLBACK winFindWindowHandleCallbackProc(HWND hwnd, LPARAM lParam)
 {
-	HANDLE processHandle = NULL;
+	WCHAR winTitle[QMC2_WIN_MAX_NAMELEN];
+	if ( !GetWindow(hwnd, GW_OWNER) ) {
+		GetWindowText(hwnd, winTitle, QMC2_WIN_MAX_NAMELEN - 1);
+		QString windowTitle = QString::fromWCharArray(winTitle);
+		if ( windowTitle == winSearchText )
+			winFoundHandle = hwnd;
+	}
+	return true;
+}
 
-	// FIXME
-
-	return processHandle;
+HWND winFindWindowHandle(QString windowName)
+{
+	winFoundHandle = NULL;
+	winSearchText = windowName;
+	EnumWindows((WNDENUMPROC)winFindWindowHandleCallbackProc, 0);
+	return winFoundHandle;
 }
 
 #endif

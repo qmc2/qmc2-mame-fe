@@ -182,7 +182,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			greaterThan(QMC2_MINGW, 0) {
 				CONFIG += windows
 				DEFINES += QMC2_MINGW
-				QMAKE_LIBS_QT_ENTRY=
+				QMAKE_LIBS_QT_ENTRY =
+				QMAKE_LFLAGS_CONSOLE =
 				LIBS += -lSDL -lSDLmain -lSDL.dll -lz -lpsapi $$quote($$QMC2_LIBS)
 				INCLUDEPATH += $$quote($$QMC2_INCLUDEPATH)
 				contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc

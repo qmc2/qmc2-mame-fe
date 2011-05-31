@@ -73,6 +73,9 @@
 #if defined(QMC2_YOUTUBE_ENABLED)
 #include "youtubevideoplayer.h"
 #endif
+#if defined(Q_WS_WIN)
+#include "windows_tools.h"
+#endif
 
 #ifdef __APPLE__
 #include <ApplicationServices/ApplicationServices.h>
@@ -2230,10 +2233,26 @@ void MainWindow::on_actionLaunchQMC2MAME_activated()
   OSStatus err;
   FSRef appRef;
   err = LSFindApplicationForInfo(kLSUnknownCreator, CFSTR(QMC2_VARIANT_SDLMAME_BUNDLE_ID), NULL, &appRef, NULL);
-  if ( err == noErr ) {
+  if ( err == noErr )
     err = LSOpenFSRef(&appRef, NULL);
-  }
   launched = err == noErr;
+#elif defined(Q_WS_WIN)
+  HANDLE procHandle = winFindProcessHandle(QMC2_VARIANT_MAME_NAME);
+  if ( procHandle != NULL ) {
+	HWND windowHandle = winFindWindowHandle(QMC2_VARIANT_MAME_TITLE);
+	if ( windowHandle )
+		launched = BringWindowToTop(windowHandle);
+  } else {
+	// we assume that the other variant is in the same directory
+	WCHAR myExecPath[MAX_PATH + 1];
+	GetModuleFileName(NULL, myExecPath, MAX_PATH + 1);
+	QFileInfo fi(QString::fromWCharArray(myExecPath));
+	QDir execDir(fi.path());
+	if ( execDir.exists(QMC2_VARIANT_MAME_NAME) ) {
+		QStringList args;
+		launched = QProcess::startDetached(execDir.path() + "/" + QMC2_VARIANT_MAME_NAME, qApp->arguments());
+	}
+  }
 #else
   QStringList args;
   args << QMC2_VARIANT_SDLMAME_NAME << QMC2_VARIANT_SDLMAME_TITLE << QMC2_VARIANT_SDLMAME_NAME;
@@ -2241,7 +2260,11 @@ void MainWindow::on_actionLaunchQMC2MAME_activated()
 #endif
 
   if ( launched ) {
+#if defined(Q_WS_WIN)
+    log(QMC2_LOG_FRONTEND, tr("variant '%1' launched").arg(QMC2_VARIANT_MAME_NAME));
+#else
     log(QMC2_LOG_FRONTEND, tr("variant '%1' launched").arg(QMC2_VARIANT_SDLMAME_NAME));
+#endif
 
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ExitOnVariantLaunch").toBool() ) {
       // we need to call this twice to make sure active processing gets stopped before QMC2 exits...
@@ -2276,8 +2299,13 @@ void MainWindow::on_actionLaunchQMC2MAME_activated()
 #endif
       showMinimized();
     }
-  } else
+  } else {
+#if defined(Q_WS_WIN)
+    log(QMC2_LOG_FRONTEND, tr("WARNING: failed to launch variant '%1'").arg(QMC2_VARIANT_MAME_NAME));
+#else
     log(QMC2_LOG_FRONTEND, tr("WARNING: failed to launch variant '%1'").arg(QMC2_VARIANT_SDLMAME_NAME));
+#endif
+  }
 }
 
 void MainWindow::on_actionLaunchQMC2MESS_activated()
@@ -2295,10 +2323,26 @@ void MainWindow::on_actionLaunchQMC2MESS_activated()
   OSStatus err;
   FSRef appRef;
   err = LSFindApplicationForInfo(kLSUnknownCreator, CFSTR(QMC2_VARIANT_SDLMESS_BUNDLE_ID), NULL, &appRef, NULL);
-  if ( err == noErr ) {
+  if ( err == noErr )
     err = LSOpenFSRef(&appRef, NULL);
-  }
   launched = err == noErr;
+#elif defined(Q_WS_WIN)
+  HANDLE procHandle = winFindProcessHandle(QMC2_VARIANT_MESS_NAME);
+  if ( procHandle != NULL ) {
+	HWND windowHandle = winFindWindowHandle(QMC2_VARIANT_MESS_TITLE);
+	if ( windowHandle )
+		launched = BringWindowToTop(windowHandle);
+  } else {
+	// we assume that the other variant is in the same directory
+	WCHAR myExecPath[MAX_PATH + 1];
+	GetModuleFileName(NULL, myExecPath, MAX_PATH + 1);
+	QFileInfo fi(QString::fromWCharArray(myExecPath));
+	QDir execDir(fi.path());
+	if ( execDir.exists(QMC2_VARIANT_MESS_NAME) ) {
+		QStringList args;
+		launched = QProcess::startDetached(execDir.path() + "/" + QMC2_VARIANT_MESS_NAME, qApp->arguments());
+	}
+  }
 #else
   QStringList args;
   args << QMC2_VARIANT_SDLMESS_NAME << QMC2_VARIANT_SDLMESS_TITLE << QMC2_VARIANT_SDLMESS_NAME;
@@ -2306,7 +2350,11 @@ void MainWindow::on_actionLaunchQMC2MESS_activated()
 #endif
 
   if ( launched ) {
+#if defined(Q_WS_WIN)
+    log(QMC2_LOG_FRONTEND, tr("variant '%1' launched").arg(QMC2_VARIANT_MESS_NAME));
+#else
     log(QMC2_LOG_FRONTEND, tr("variant '%1' launched").arg(QMC2_VARIANT_SDLMESS_NAME));
+#endif
 
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ExitOnVariantLaunch").toBool() ) {
       // we need to call this twice to make sure active processing gets stopped before QMC2 exits...
@@ -2341,8 +2389,13 @@ void MainWindow::on_actionLaunchQMC2MESS_activated()
 #endif
       showMinimized();
     }
-  } else
+  } else {
+#if defined(Q_WS_WIN)
+    log(QMC2_LOG_FRONTEND, tr("WARNING: failed to launch variant '%1'").arg(QMC2_VARIANT_MESS_NAME));
+#else
     log(QMC2_LOG_FRONTEND, tr("WARNING: failed to launch variant '%1'").arg(QMC2_VARIANT_SDLMESS_NAME));
+#endif
+  }
 }
 
 void MainWindow::on_actionDocumentation_activated()
