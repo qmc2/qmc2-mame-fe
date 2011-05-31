@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.2.b20, 29-MAY-2011</h3>
+<h3>README - v0.2.b20, 31-MAY-2011</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -225,7 +225,7 @@ be kept locally (in $HOME/.qmc2/ on most *NIX or ~/Library/Application Support/q
 However, a symbolic link named <i>qmc2</i> will created in the binary installation directory on <i>make install</i> which links to the binary file that was last installed.</p>
 <p>The system-wide default configuration will be installed to <i>/etc/qmc2/qmc2.ini</i> or <i>/etc/qmc2/qmc2.ini.new</i> (if an older version of that file already exists).
 In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new settings</b> and add them to /etc/qmc2/qmc2.ini manually!</p>
-<p>Note that in order to use the <i>QMC2 variant launcher</i> - one QMC2 variant can launch (or switch to) the other - it is <b>required</b> that all binaries are in your search path (including the <i>runonce</i> launcher wrapper)!</p>
+<p>Note that in order to use the <i>QMC2 variant launcher</i> -- one QMC2 variant can launch (or switch to) the other -- it's <b>required</b> that all binaries are in your search path (including the <i>runonce</i> launcher wrapper)!</p>
 <p><a name="build_win"></a><b>Building the QMC2 binary on Windows</b></p>
 <p>The build steps on Windows using Visual C++ are completely different than the ones on UNIX and Mac OS X. However, since v0.2.b20 we also support MinGW builds on Windows which is more or less the same process as on UNIX and Mac OS X (see MinGW below).</p>
 <p>Using Visual C++ 2008 (Qt 4.5+):</p>
@@ -254,7 +254,8 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
 (<i>release\qmc2-&lt;emulator&gt;.exe</i>), just make sure the current working directory is the top-level QMC2 source path to make it find its data files automatically (most -- if not all -- default paths are relative to the build directory).</p>
 <p>If you would like to create binary packages, all you'd have to do is copy the relevant files (binaries/DLLs and data) into a directory which you package as an archive afterwards (using zip or rar, for example).
 The <i>installation</i> at a user's end would then just be to extract this archive. That's it! There's nothing like a script to support you in that, though.</p>
-<p>Besides the VC runtime DLLs, the required DLLs include: <i>phonon4.dll</i>, <i>phonon_backend\phonon_ds94.dll</i>, <i>imageformats\*.dll</i>, <i>QtCore4.dll</i>, <i>QtGui4.dll</i>, <i>QtOpenGL4.dll</i>, <i>QtTest4.dll</i>, <i>QtXml4.dll</i>, <i>QtXmlPatterns4.dll</i>, <i>QtNetwork4.dll</i>, <i>QtWebKit4.dll</i>, <i>SDL.dll</i> and <i>zlib1.dll</i>.</p>
+<p>Besides the VC runtime DLLs (if built with MSVC), the required DLLs include: <i>phonon4.dll</i>, <i>phonon_backend\phonon_ds94.dll</i>, <i>imageformats\*.dll</i>, <i>QtCore4.dll</i>, <i>QtGui4.dll</i>, <i>QtOpenGL4.dll</i>, <i>QtTest4.dll</i>, <i>QtXml4.dll</i>, <i>QtXmlPatterns4.dll</i>, <i>QtNetwork4.dll</i>, <i>QtWebKit4.dll</i>, <i>SDL.dll</i> and <i>zlib1.dll</i>.</p>
+<p>Note that variant launching on Windows requires that both QMC2 variants (qmc2-mame.exe &amp; qmc2-mess.exe) can be found in the <b>same</b> directory (it will not search in any other paths than the one it was launched from initially)!</p>
 <p>The <a href="credits.html">QMC2-dev team</a> is releasing binary packages for Win32 in exactly this way since v0.2.b8 (only final versions, though). These official packages also include an installer for the VC runtime DLLs (<i>vcredist\vcredist_x86.exe</i>).</p>
 <h3><a name="3."></a>3. Command line arguments and configuration</h3>
 <p>Usage:</p>
