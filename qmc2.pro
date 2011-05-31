@@ -178,11 +178,12 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		win32 {
 			# use VC++ (default) / MinGW
 			SOURCES += windows_tools.cpp
+			DEFINES += PSAPI_VERSION=1
 			greaterThan(QMC2_MINGW, 0) {
 				CONFIG += windows
 				DEFINES += QMC2_MINGW
 				QMAKE_LIBS_QT_ENTRY=
-				LIBS += -lSDL -lSDLmain -lSDL.dll -lz $$quote($$QMC2_LIBS)
+				LIBS += -lSDL -lSDLmain -lSDL.dll -lz -lpsapi $$quote($$QMC2_LIBS)
 				INCLUDEPATH += $$quote($$QMC2_INCLUDEPATH)
 				contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
 				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
