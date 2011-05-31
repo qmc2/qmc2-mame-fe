@@ -176,9 +176,9 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			}
 		}
 		win32 {
-			# use VC++ (default) / MinGW
 			SOURCES += windows_tools.cpp
 			DEFINES += PSAPI_VERSION=1
+			# use VC++ (default) / MinGW
 			greaterThan(QMC2_MINGW, 0) {
 				CONFIG += windows
 				DEFINES += QMC2_MINGW
@@ -189,6 +189,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
 			} else {
 				CONFIG += embed_manifest_exe windows
+				LIBS += psapi.lib
 				contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
 				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
 			}
