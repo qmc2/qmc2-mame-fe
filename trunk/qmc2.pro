@@ -177,6 +177,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		}
 		win32 {
 			# use VC++ (default) / MinGW
+			SOURCES += windows_tools.cpp
 			greaterThan(QMC2_MINGW, 0) {
 				CONFIG += windows
 				DEFINES += QMC2_MINGW

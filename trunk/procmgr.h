@@ -1,5 +1,5 @@
-#ifndef __PROCMGR_H__
-#define __PROCMGR_H__
+#ifndef _PROCMGR_H_
+#define _PROCMGR_H_
 
 #include <QProcess>
 #include <QMap>
