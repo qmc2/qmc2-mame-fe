@@ -7,9 +7,10 @@
 #include <windows.h>
 
 #define QMC2_WIN_MAX_PROCS	4096
+#define QMC2_WIN_MAX_NAMELEN	1024
 
 HANDLE winFindProcessHandle(QString);
-HANDLE winGetProcessHandle(Q_PID pid);
+HWND winFindWindowHandle(QString);
 
 #endif
 
