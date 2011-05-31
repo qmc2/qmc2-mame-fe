@@ -5,14 +5,13 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - TODO</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>TODO - v0.2.b20, 30-MAY-2011</h3>
+<h3>TODO - v0.2.b20, 31-MAY-2011</h3>
 <p><b>Known bugs and restrictions</b></p>
 <ul>
   <li>Certain GUI styles may cause display problems for the emulator configuration widgets</li>
   <li>The built-in joystick GUI control includes support for trackballs -- this is completely untested due to the lack of controllers with trackballs (it should basically work, but be prepared for bugs and unexpected behavior!)</li>
   <li>The icon sizes of all menu actions are not adjusted to the actual font size -- this is a Qt restriction, and I have not yet found a way to work around this restriction... however, it's just a minor/cosmetic issue</li>
   <li>On UNIX / X11 platforms, the QMC2 variant launcher will try to raise a probably already running <i>other</i> variant -- this feature is <b>very</b> dependent on the window manager which may decide to ignore XMapRaised()</li>
-  <li>Variant launching does not work on Windows yet</li>
   <li>MAME/MESS output notifiers are not supported on Windows yet</li>
   <li>The MiniWebBrowser -- used for the MAWS lookup and the documentation browser -- has a fairly restrictive set of features which is tailored to the uses of QMC2.
       It's not even <i>meant</i> to be a full-featured browser. However, when using Qt 4.7.1+, the browser works quite nicely. It even supports plugins (when enabled at compile time).</li>

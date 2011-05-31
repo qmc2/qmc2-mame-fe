@@ -356,11 +356,7 @@ endif
 # Enable (1) or disable (0) QMC2's 'variant launching'.
 #
 ifndef VARIANT_LAUNCHER
-ifeq '$(MINGW)' '1'
-VARIANT_LAUNCHER = 0
-else
 VARIANT_LAUNCHER = 1
-endif
 endif
 
 # >>> AUDIT_WILDCARD <<<
