@@ -397,6 +397,8 @@
 #define QMC2_VARIANT_MESS_NAME		"qmc2-mess.exe"
 #define QMC2_VARIANT_MESS_BUNDLE_ID	""
 #define QMC2_VARIANT_MESS_TITLE		MainWindow::tr("M.E.S.S. Catalog / Launcher II")
+
+// separation for QMC2 variants
 #if defined(QMC2_SDLMAME)
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-sdlmame/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-sdlmame/")
@@ -415,7 +417,7 @@
 #define QMC2_EMUTYPE_MESS
 #endif
 
-// OS X uses ~/Library/Application Support/app rather than ~/.app
+// Mac OS X uses "~/Library/Application Support/app" rather than "~/.app"
 #define QMC2_SYSCONF_PATH		(QString(XSTR(SYSCONFDIR)).replace(QChar(':'), QLatin1String(" ")) + "/qmc2")
 #if defined(Q_WS_MAC)
 #define QMC2_DOT_PATH			(QDir::homePath() + "/Library/Application Support/qmc2")
@@ -424,9 +426,11 @@
 #define QMC2_DOT_PATH			(QDir::homePath() + "/.qmc2")
 #define QMC2_DEFAULT_DATA_PATH		QString("data")
 #endif
+
+// this allows to change the configuration path dynamically (by adding "-qmc2_config_path <alternate_config_path>" on the command line)
 #define QMC2_DYNAMIC_DOT_PATH		(qApp->arguments().indexOf("-qmc2_config_path") >= 0 && qApp->arguments().indexOf("-qmc2_config_path") + 1 <= qApp->arguments().count() ? qApp->arguments()[qApp->arguments().indexOf("-qmc2_config_path") + 1]: QMC2_DOT_PATH)
 
-// determine if memory infomation can be read
+// determine if memory infomation can be made available at all
 #if defined(_SC_PHYS_PAGES) && defined(_SC_PAGESIZE) && defined(_SC_AVPHYS_PAGES)
 #define QMC2_SHOWMEMINFO
 #define QMC2_MEMORY_UPDATE_TIME		500
@@ -438,8 +442,8 @@
 #define QMC2_EMBED_FOCUS_DELAY		100
 #define QMC2_EMBED_PAUSERESUME_DELAY	250
 
-// maximum number of retries to find an emulator window via xwininfo (emulator may need longer to get ready)
-#define QMC2_MAX_XWININFO_RETRIES	3
+// maximum number of retries to find an emulator window via xwininfo (the emulator may need longer to get ready)
+#define QMC2_MAX_XWININFO_RETRIES	5
 
 // responsiveness while loading an additional information source
 #if defined(QMC2_EMUTYPE_MESS)
@@ -448,7 +452,7 @@
 #define QMC2_INFOSOURCE_RESPONSIVENESS	5000
 #endif
 
-// maximum delay before finally killing the external tool (if required to)
+// maximum delay in ms before finally killing an external tool (if required to)
 #define QMC2_TOOL_KILL_WAIT		2000
 
 // supported DB drivers
