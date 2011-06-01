@@ -64,4 +64,26 @@ HWND winFindWindowHandle(QString windowName)
 	return winFoundHandle;
 }
 
+HWND winFindWindowHandleOfProcess(Q_PID processInfo)
+{
+	bool handleFound = false;
+	HWND h = GetTopWindow(0);
+	while ( h )
+	{
+		DWORD pid;
+		DWORD dwThreadID = GetWindowThreadProcessId(h, &pid);
+
+		if ( pid == processInfo->dwProcessId ) {
+			handleFound = true;
+			break;
+		}
+
+         	h = GetNextWindow(h, GW_HWNDNEXT);
+	}
+	if ( handleFound )
+		return h;
+	else
+		return NULL;
+}
+
 #endif

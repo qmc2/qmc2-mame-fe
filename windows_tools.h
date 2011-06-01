@@ -11,6 +11,7 @@
 
 HANDLE winFindProcessHandle(QString);
 HWND winFindWindowHandle(QString);
+HWND winFindWindowHandleOfProcess(Q_PID);
 
 #endif
 
