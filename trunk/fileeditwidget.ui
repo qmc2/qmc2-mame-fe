@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>119</width>
-    <height>24</height>
+    <width>181</width>
+    <height>25</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
@@ -60,14 +60,50 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="2">
+       <widget class="QToolButton" name="toolButtonClear">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="icon">
+         <iconset resource="qmc2.qrc">
+          <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="6"/>
+ <tabstops>
+  <tabstop>lineEditFile</tabstop>
+  <tabstop>toolButtonBrowse</tabstop>
+  <tabstop>toolButtonClear</tabstop>
+ </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>toolButtonClear</sender>
+   <signal>clicked()</signal>
+   <receiver>lineEditFile</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>160</x>
+     <y>9</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>86</x>
+     <y>15</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

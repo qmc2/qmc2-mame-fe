@@ -9,20 +9,24 @@ extern MainWindow *qmc2MainWindow;
 #endif
 extern QString qmc2FileEditStartPath;
 
-FileEditWidget::FileEditWidget(QString filePath, QString filter, QWidget *parent)
+FileEditWidget::FileEditWidget(QString filePath, QString filter, QWidget *parent, bool showClearButton)
   : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: FileEditWidget::FileEditWidget(QString filePath = %1, QString filter = %2, QWidget *parent = %3)").arg(filePath).arg(filter).arg((qulonglong) parent));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: FileEditWidget::FileEditWidget(QString filePath = %1, QString filter = %2, QWidget *parent = %3, bool showClearButton = %4)").arg(filePath).arg(filter).arg((qulonglong) parent).arg(showClearButton));
 #endif
 
   setupUi(this);
+
+  if ( !showClearButton )
+    toolButtonClear->hide();
 
   lineEditFile->setText(filePath);
   browserFilter = filter;
   QFontMetrics fm(QApplication::font());
   QSize iconSize(fm.height() - 2, fm.height() - 2);
   toolButtonBrowse->setIconSize(iconSize);
+  toolButtonClear->setIconSize(iconSize);
 }
 
 FileEditWidget::~FileEditWidget()
