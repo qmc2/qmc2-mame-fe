@@ -48,8 +48,19 @@ QWidget *MESSDeviceFileDelegate::createEditor(QWidget *parent, const QStyleOptio
 #else
     filterString = tr("Valid device files") + " (*.[zZ][iI][pP]";
 #endif
-    for (int i = 0; i < extensions.count(); i++)
-      filterString += QString(" *.%1").arg(extensions[i]);
+    for (int i = 0; i < extensions.count(); i++) {
+      QString ext = extensions[i];
+#if !defined(Q_WS_WIN)
+      QString altExt;
+      for (int j = 0; j < ext.length(); j++) {
+        QChar c = ext[j].toLower();
+	altExt += QString("[%1%2]").arg(c).arg(c.toUpper());
+      }
+      filterString += QString(" *.%1").arg(altExt);
+#else
+      filterString += QString(" *.%1").arg(ext);
+#endif
+    }
     filterString += ");;" + tr("All files") + " (*)";
   }
   FileEditWidget *fileEditWidget = new FileEditWidget("", filterString, parent);
