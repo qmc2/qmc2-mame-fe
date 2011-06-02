@@ -40,19 +40,18 @@ QWidget *MESSDeviceFileDelegate::createEditor(QWidget *parent, const QStyleOptio
 
   int row = index.row();
   QModelIndex sibling = index.sibling(row, QMC2_DEVCONFIG_COLUMN_EXT);
-  QStringList extensions = sibling.model()->data(sibling, Qt::EditRole).toString().split("/");
+  QStringList extensions = sibling.model()->data(sibling, Qt::EditRole).toString().split("/", QString::SkipEmptyParts);
+  QString filterString = tr("All files") + " (*)";
+  if ( extensions.count() > 0 ) {
 #if defined(Q_WS_WIN)
-  QString filterString("(*.zip");
+    filterString = tr("Valid device files") + " (*.zip";
 #else
-  QString filterString("(*.[zZ][iI][pP]");
+    filterString = tr("Valid device files") + " (*.[zZ][iI][pP]";
 #endif
-  int i;
-  for (i = 0; i < extensions.count(); i++) {
-    if ( i < extensions.count() )
-      filterString += " ";
-    filterString += QString("*.%1").arg(extensions[i]);
+    for (int i = 0; i < extensions.count(); i++)
+      filterString += QString(" *.%1").arg(extensions[i]);
+    filterString += ");;" + tr("All files") + " (*)";
   }
-  filterString += ")";
   FileEditWidget *fileEditWidget = new FileEditWidget("", filterString, parent);
   fileEditWidget->installEventFilter(const_cast<MESSDeviceFileDelegate*>(this));
   connect(fileEditWidget, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged(QWidget *)));
