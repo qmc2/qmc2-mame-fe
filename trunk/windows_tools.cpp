@@ -14,7 +14,6 @@ HANDLE winFindProcessHandle(QString procName)
 {
 	HANDLE processHandle = NULL;
 	DWORD procs[QMC2_WIN_MAX_PROCS], bytesNeeded;
-
 	if ( EnumProcesses(procs, sizeof(procs), &bytesNeeded) ) {
 		DWORD numProcesses = bytesNeeded / sizeof(DWORD);
 		for (int i = 0; i < numProcesses; i++) {
@@ -56,10 +55,10 @@ BOOL CALLBACK winFindWindowHandleCallbackProc(HWND hwnd, LPARAM lParam)
 	return true;
 }
 
-HWND winFindWindowHandle(QString windowName)
+HWND winFindWindowHandle(QString windowTitle)
 {
 	winFoundHandle = NULL;
-	winSearchText = windowName;
+	winSearchText = windowTitle;
 	EnumWindows((WNDENUMPROC)winFindWindowHandleCallbackProc, 0);
 	return winFoundHandle;
 }
@@ -67,23 +66,16 @@ HWND winFindWindowHandle(QString windowName)
 HWND winFindWindowHandleOfProcess(Q_PID processInfo)
 {
 	bool handleFound = false;
-	HWND h = GetTopWindow(0);
-	while ( h )
-	{
-		DWORD pid;
-		DWORD dwThreadID = GetWindowThreadProcessId(h, &pid);
-
-		if ( pid == processInfo->dwProcessId ) {
+	HWND windowHandle = GetTopWindow(0);
+	DWORD pid;
+	while ( windowHandle && !handleFound ) {
+		GetWindowThreadProcessId(windowHandle, &pid);
+		if ( pid == processInfo->dwProcessId )
 			handleFound = true;
-			break;
-		}
-
-         	h = GetNextWindow(h, GW_HWNDNEXT);
+		else
+         		windowHandle = GetNextWindow(windowHandle, GW_HWNDNEXT);
 	}
-	if ( handleFound )
-		return h;
-	else
-		return NULL;
+	return handleFound ? windowHandle : NULL;
 }
 
 #endif
