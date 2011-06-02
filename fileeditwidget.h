@@ -10,7 +10,7 @@ class FileEditWidget : public QWidget, public Ui::FileEditWidget
   public:
     QString browserFilter;
 
-    FileEditWidget(QString, QString, QWidget *parent = 0);
+    FileEditWidget(QString, QString, QWidget *parent = 0, bool showClearButton = false);
     ~FileEditWidget();
 
   public slots:
