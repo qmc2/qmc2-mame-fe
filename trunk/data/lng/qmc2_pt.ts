@@ -4726,13 +4726,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="44"/>
         <location filename="../../messdevcfg.cpp" line="53"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos os arquivos</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="47"/>
         <location filename="../../messdevcfg.cpp" line="49"/>
         <source>Valid device files</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos de dispositivo válidos</translation>
     </message>
 </context>
 <context>
