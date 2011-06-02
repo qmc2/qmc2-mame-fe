@@ -14153,7 +14153,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.ui" line="334"/>
         <location filename="../../softwarelist.ui" line="446"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="251"/>
