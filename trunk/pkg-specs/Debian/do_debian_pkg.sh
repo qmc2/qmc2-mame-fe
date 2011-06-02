@@ -2,7 +2,8 @@
 # WARNING: This is just a "make things easier" script. It is not intended to 
 # overwrite any general script. 
 # 
-# @param: version of release (f.i. 0.2b14)
+# @param: version of release (f.i. 0.2.b20)
+# @param: 0 for trunk, 1 for stable
 # 
 # This script creates a debian package from the source folder
 
@@ -50,6 +51,4 @@ else
   cp -a ${RELEASE_FOLDER}/pkg-specs/Debian/* ${RELEASE_FOLDER}/debian/
   rm ${RELEASE_FOLDER}/debian/do_debian_pkg.sh
 
-  cd ${RELEASE_FOLDER}
-  debuild -S -sa
 fi
