@@ -2429,7 +2429,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FileEditWidget</name>
     <message>
-        <location filename="../../fileeditwidget.cpp" line="45"/>
+        <location filename="../../fileeditwidget.cpp" line="49"/>
         <source>Choose file</source>
         <translation>Choisir le fichier</translation>
     </message>
@@ -4565,157 +4565,168 @@ p, li { white-space: pre-wrap; }
         <translation>configuration de périphérique active</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="52"/>
-        <location filename="../../messdevcfg.ui" line="55"/>
+        <location filename="../../messdevcfg.ui" line="67"/>
+        <location filename="../../messdevcfg.ui" line="70"/>
         <source>Name of device configuration</source>
         <translation>Nom de la configuration de périphérique</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="113"/>
-        <location filename="../../messdevcfg.ui" line="116"/>
+        <location filename="../../messdevcfg.ui" line="152"/>
+        <location filename="../../messdevcfg.ui" line="155"/>
         <source>Save current device configuration to list of available configurations</source>
         <translation>Sauvegarde la configuration de périphérique dans la liste des configurations disponibles</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="141"/>
-        <location filename="../../messdevcfg.ui" line="144"/>
+        <location filename="../../messdevcfg.ui" line="180"/>
+        <location filename="../../messdevcfg.ui" line="183"/>
         <source>Device setup of current configuration</source>
         <translation>Paramétrage du périphérique de la configuration courante</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="162"/>
+        <location filename="../../messdevcfg.ui" line="201"/>
         <source>Brief name</source>
         <translation type="unfinished">Nom court</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="197"/>
+        <location filename="../../messdevcfg.ui" line="236"/>
         <source>Available device configurations</source>
         <translation>Configurations de périphérique disponibles</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="212"/>
-        <location filename="../../messdevcfg.ui" line="215"/>
+        <location filename="../../messdevcfg.ui" line="251"/>
+        <location filename="../../messdevcfg.ui" line="254"/>
         <source>List of available device configurations</source>
         <translation>Liste des configurations de périphérique disponibles</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="256"/>
-        <location filename="../../messdevcfg.cpp" line="289"/>
-        <location filename="../../messdevcfg.cpp" line="409"/>
+        <location filename="../../messdevcfg.cpp" line="274"/>
+        <location filename="../../messdevcfg.cpp" line="307"/>
+        <location filename="../../messdevcfg.cpp" line="449"/>
+        <location filename="../../messdevcfg.cpp" line="550"/>
         <source>No devices</source>
         <translation>Pas de périphérique</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="157"/>
+        <location filename="../../messdevcfg.ui" line="196"/>
         <source>Device instance</source>
         <translation>Instance du périphérique</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="167"/>
+        <location filename="../../messdevcfg.ui" line="206"/>
         <source>Type</source>
         <translation>Type</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="172"/>
+        <location filename="../../messdevcfg.ui" line="211"/>
         <source>Tag</source>
         <translation>Tag</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="177"/>
+        <location filename="../../messdevcfg.ui" line="216"/>
         <source>Extensions</source>
         <translation>Extensions</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="182"/>
+        <location filename="../../messdevcfg.ui" line="221"/>
         <source>File</source>
         <translation>Fichier</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="62"/>
-        <location filename="../../messdevcfg.ui" line="65"/>
+        <location filename="../../messdevcfg.ui" line="83"/>
+        <location filename="../../messdevcfg.ui" line="86"/>
         <source>Create a new device configuration</source>
         <translation>Créer une nouvelle configuration de périphérique</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="96"/>
-        <location filename="../../messdevcfg.ui" line="99"/>
+        <location filename="../../messdevcfg.ui" line="129"/>
+        <location filename="../../messdevcfg.ui" line="132"/>
         <source>Remove current device configuration from list of available configurations</source>
         <translation>Supprime la configuration de périphérique dans la liste des configurations disponibles</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="79"/>
-        <location filename="../../messdevcfg.ui" line="82"/>
+        <location filename="../../messdevcfg.ui" line="106"/>
+        <location filename="../../messdevcfg.ui" line="109"/>
         <source>Clone current device configuration</source>
         <translation>Cloner la configuration de périphérique courante</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="324"/>
-        <location filename="../../messdevcfg.cpp" line="326"/>
+        <location filename="../../messdevcfg.cpp" line="342"/>
+        <location filename="../../messdevcfg.cpp" line="344"/>
         <source>%1. copy of </source>
         <translation>%1. copie de </translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="475"/>
+        <location filename="../../messdevcfg.cpp" line="515"/>
         <source>%1. variant of </source>
         <translation>%1. variante de </translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="159"/>
+        <location filename="../../messdevcfg.cpp" line="170"/>
         <source>Play selected game</source>
         <translation>Joue le jeu sélectionné</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="160"/>
+        <location filename="../../messdevcfg.cpp" line="171"/>
         <source>&amp;Play</source>
         <translation>&amp;Jouer</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="142"/>
+        <location filename="../../messdevcfg.cpp" line="153"/>
         <source>Select default device directory</source>
         <translation>Sélectionner le répertoire du périphérique par défaut </translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="143"/>
+        <location filename="../../messdevcfg.cpp" line="154"/>
         <source>&amp;Default device directory for &apos;%1&apos;...</source>
         <translation>&amp;Répertoire du périphérique par défaut pour &apos;%1&apos;...</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="149"/>
+        <location filename="../../messdevcfg.cpp" line="160"/>
         <source>Generate device configurations</source>
         <translation>Générer les configurations de périphériques</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="150"/>
+        <location filename="../../messdevcfg.cpp" line="161"/>
         <source>&amp;Generate configurations for &apos;%1&apos;...</source>
         <translation>&amp;Générer les configurations de &apos;%1&apos;...</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="165"/>
+        <location filename="../../messdevcfg.cpp" line="176"/>
         <source>Play selected game (embedded)</source>
         <translation>Joue le jeu sélectionné (embarqué)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="166"/>
+        <location filename="../../messdevcfg.cpp" line="177"/>
         <source>Play &amp;embedded</source>
         <translation>Jouer &amp;embarqué</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="174"/>
+        <location filename="../../messdevcfg.cpp" line="183"/>
+        <source>Remove configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="184"/>
+        <source>&amp;Remove configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="192"/>
         <source>Select a file to be mapped to this device instance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="175"/>
+        <location filename="../../messdevcfg.cpp" line="193"/>
         <source>Select file...</source>
         <translation type="unfinished">Choisir le fichier...</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="564"/>
+        <location filename="../../messdevcfg.cpp" line="608"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Choisir le répertoire du périphérique par défaut pour &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.ui" line="45"/>
+        <location filename="../../messdevcfg.ui" line="51"/>
         <source>Configuration</source>
         <translation>Configuration</translation>
     </message>
@@ -4724,7 +4735,7 @@ p, li { white-space: pre-wrap; }
     <name>MESSDeviceFileDelegate</name>
     <message>
         <location filename="../../messdevcfg.cpp" line="44"/>
-        <location filename="../../messdevcfg.cpp" line="53"/>
+        <location filename="../../messdevcfg.cpp" line="64"/>
         <source>All files</source>
         <translation type="unfinished"></translation>
     </message>

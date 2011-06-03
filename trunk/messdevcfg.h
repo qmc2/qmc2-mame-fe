@@ -56,6 +56,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     QMenu *deviceConfigurationListMenu;
     QMenu *configurationMenu;
     QMenu *deviceContextMenu;
+    QAction *actionRemoveConfiguration;
 
     MESSDeviceConfigurator(QString, QWidget *);
     ~MESSDeviceConfigurator();
@@ -69,10 +70,10 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     // callback functions
     void on_lineEditConfigurationName_textChanged(const QString &);
     void on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *);
-    void on_pushButtonNewConfiguration_clicked();
-    void on_pushButtonCloneConfiguration_clicked();
-    void on_pushButtonSaveConfiguration_clicked();
-    void on_pushButtonRemoveConfiguration_clicked();
+    void on_toolButtonNewConfiguration_clicked();
+    void on_toolButtonCloneConfiguration_clicked();
+    void on_toolButtonSaveConfiguration_clicked();
+    void on_toolButtonRemoveConfiguration_clicked();
     void on_listWidgetDeviceConfigurations_itemActivated(QListWidgetItem *);
     void on_listWidgetDeviceConfigurations_currentTextChanged(const QString &);
     void on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &);
@@ -80,6 +81,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void actionSelectDefaultDeviceDirectory_triggered();
     void actionGenerateDeviceConfigurations_triggered();
     void actionSelectFile_triggered();
+    void actionRemoveConfiguration_activated();
 
     // other
     void editorDataChanged(const QString &);

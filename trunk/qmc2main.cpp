@@ -1407,7 +1407,7 @@ void MainWindow::on_actionPlay_activated()
     QString configName = qmc2MESSDeviceConfigurator->lineEditConfigurationName->text();
     if ( configName != tr("No devices") ) {
       // make sure the currently edited data is up to date
-      qmc2MESSDeviceConfigurator->on_pushButtonSaveConfiguration_clicked();
+      qmc2MESSDeviceConfigurator->on_toolButtonSaveConfiguration_clicked();
       if ( qmc2MESSDeviceConfigurator->configurationMap.contains(configName) ) {
         QPair<QStringList, QStringList> valuePair = qmc2MESSDeviceConfigurator->configurationMap[configName];
         int i;
