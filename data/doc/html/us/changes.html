@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b20, 02-JUN-2011</h3>
+<h3>CHANGES - v0.2.b20, 03-JUN-2011</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b20, 02-JUN-2011:</b></p>
+<p><b>v0.2.b20, 03-JUN-2011:</b></p>
 <ul>
   <li>fix: ROMAlyzer / checksum wizard: correctly handle ROM files when their names contain special characters (i.e. '&amp;')</li>
   <li>fix: corrected the handling of repeated log messages (the repetition counter was correctly logged, but the actual <i>new</i> message was eaten)</li>
@@ -43,7 +43,7 @@ inf: informational only
   <li>imp: reduced (eliminated?) flickering upon creation of game-/machine-specific emulator configuration widgets</li>
   <li>imp: the game/machine search function now also searches through the 'short names' (or game/machine IDs), so for instance entering 'snes' would also return valid results for MESS</li>
   <li>imp: variant launching now also works on Windows (it's assumed that the 'other' variant exe can be found in the same path as the currently running one)</li>
-  <li>imp: MESS targets: filter by extensions case-insensitively when browsing for device files, plus added a 'clear' button to reset a device instance mapping</li>
+  <li>imp: MESS targets: device condifigurator: modified extension filter to be case-insensitive when browsing for device files, added a 'clear' button to reset a device instance mapping and added a 'remove configuration' action to the context-menu for available device configurations</li>
   <li>new: added command line option <i>-qmc2_config_path</i> to allow for overwriting the path where QMC2 stores its setup, caches etc. -- it's in the user's responsibility to copy/move the data to the desired directory (otherwise QMC2 will start over, which may be wanted behavior, though)</li>
   <li>new: support for game/machine <i>attached</i> YouTube videos (Phonon-based video player)</li>
   <li>new: added 4 new tool-functions to allow for forced removal of any game-/machine- and software-list related cache data stored on disk</li>

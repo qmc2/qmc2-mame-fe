@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>403</width>
-    <height>498</height>
+    <width>566</width>
+    <height>397</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -40,14 +40,29 @@
        <item row="0" column="0">
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QPushButton" name="pushButtonConfiguration">
+          <widget class="QToolButton" name="toolButtonConfiguration">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="text">
             <string>Configuration</string>
+           </property>
+           <property name="popupMode">
+            <enum>QToolButton::InstantPopup</enum>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLineEdit" name="lineEditConfigurationName">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="toolTip">
             <string>Name of device configuration</string>
            </property>
@@ -57,7 +72,13 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButtonNewConfiguration">
+          <widget class="QToolButton" name="toolButtonNewConfiguration">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="toolTip">
             <string>Create a new device configuration</string>
            </property>
@@ -74,7 +95,13 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButtonCloneConfiguration">
+          <widget class="QToolButton" name="toolButtonCloneConfiguration">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="toolTip">
             <string>Clone current device configuration</string>
            </property>
@@ -91,7 +118,13 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButtonRemoveConfiguration">
+          <widget class="QToolButton" name="toolButtonRemoveConfiguration">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="toolTip">
             <string>Remove current device configuration from list of available configurations</string>
            </property>
@@ -108,7 +141,13 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButtonSaveConfiguration">
+          <widget class="QToolButton" name="toolButtonSaveConfiguration">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="toolTip">
             <string>Save current device configuration to list of available configurations</string>
            </property>
@@ -227,12 +266,12 @@
  </widget>
  <layoutdefault spacing="6" margin="6"/>
  <tabstops>
-  <tabstop>pushButtonConfiguration</tabstop>
+  <tabstop>toolButtonConfiguration</tabstop>
   <tabstop>lineEditConfigurationName</tabstop>
-  <tabstop>pushButtonNewConfiguration</tabstop>
-  <tabstop>pushButtonCloneConfiguration</tabstop>
-  <tabstop>pushButtonRemoveConfiguration</tabstop>
-  <tabstop>pushButtonSaveConfiguration</tabstop>
+  <tabstop>toolButtonNewConfiguration</tabstop>
+  <tabstop>toolButtonCloneConfiguration</tabstop>
+  <tabstop>toolButtonRemoveConfiguration</tabstop>
+  <tabstop>toolButtonSaveConfiguration</tabstop>
   <tabstop>treeWidgetDeviceSetup</tabstop>
   <tabstop>listWidgetDeviceConfigurations</tabstop>
  </tabstops>

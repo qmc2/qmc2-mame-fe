@@ -574,11 +574,11 @@ void Options::apply()
 #if defined(QMC2_EMUTYPE_MESS)
   toolButtonBrowseGeneralSoftwareFolder->setIconSize(iconSize);
   if ( qmc2MESSDeviceConfigurator ) {
-    qmc2MESSDeviceConfigurator->pushButtonConfiguration->setIconSize(iconSize);
-    qmc2MESSDeviceConfigurator->pushButtonNewConfiguration->setIconSize(iconSize);
-    qmc2MESSDeviceConfigurator->pushButtonCloneConfiguration->setIconSize(iconSize);
-    qmc2MESSDeviceConfigurator->pushButtonSaveConfiguration->setIconSize(iconSize);
-    qmc2MESSDeviceConfigurator->pushButtonRemoveConfiguration->setIconSize(iconSize);
+    qmc2MESSDeviceConfigurator->toolButtonConfiguration->setIconSize(iconSize);
+    qmc2MESSDeviceConfigurator->toolButtonNewConfiguration->setIconSize(iconSize);
+    qmc2MESSDeviceConfigurator->toolButtonCloneConfiguration->setIconSize(iconSize);
+    qmc2MESSDeviceConfigurator->toolButtonSaveConfiguration->setIconSize(iconSize);
+    qmc2MESSDeviceConfigurator->toolButtonRemoveConfiguration->setIconSize(iconSize);
   }
 #endif
   if ( qmc2SoftwareList ) {
