@@ -2154,6 +2154,8 @@ qmc2/data/pcb/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/prv/.svn
 qmc2/data/prv/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/.svn
+qmc2/data/sws/.svn
+qmc2/data/sws/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/tmp/.svn
 qmc2/data/tmp/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/ttl/.svn
@@ -2174,6 +2176,8 @@ qmc2/minizip/.svn/text-base/unzip.c.svn-base
 qmc2/minizip/.svn/text-base/unzip.h.svn-base
 qmc2/minizip/.svn/text-base/zip.c.svn-base
 qmc2/minizip/.svn/text-base/zip.h.svn-base
+qmc2/pkg-specs/Debian/source/.svn
+qmc2/pkg-specs/Debian/source/.svn/text-base/format.svn-base
 qmc2/pkg-specs/Debian/.svn
 qmc2/pkg-specs/Debian/.svn/prop-base/do_debian_pkg.sh.svn-base
 qmc2/pkg-specs/Debian/.svn/prop-base/rules.svn-base
@@ -2185,6 +2189,7 @@ qmc2/pkg-specs/Debian/.svn/text-base/dirs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/docs.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/do_debian_pkg.sh.svn-base
 qmc2/pkg-specs/Debian/.svn/text-base/rules.svn-base
+qmc2/pkg-specs/Debian/.svn/text-base/substvars.svn-base
 qmc2/pkg-specs/Fedora/.svn
 qmc2/pkg-specs/Fedora/.svn/text-base/README.Fedora-spec.svn-base
 qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn
