@@ -4711,12 +4711,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="183"/>
         <source>Remove configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń konfigurację</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="184"/>
         <source>&amp;Remove configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Usuń konfigurację</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="192"/>
@@ -4745,13 +4745,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="44"/>
         <location filename="../../messdevcfg.cpp" line="64"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation>Wszystkie pliki</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="47"/>
         <location filename="../../messdevcfg.cpp" line="49"/>
         <source>Valid device files</source>
-        <translation type="unfinished"></translation>
+        <translation>Poprawne pliki urządzeń</translation>
     </message>
 </context>
 <context>
@@ -5142,7 +5142,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.ui" line="3243"/>
         <location filename="../../qmc2main.ui" line="3246"/>
         <source>Forcedly clear (remove) the ROM state cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wymuś wyczyszczenie (usunięcie) bufora stanów ROM-ów</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3254"/>
@@ -5153,7 +5153,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.ui" line="3257"/>
         <location filename="../../qmc2main.ui" line="3260"/>
         <source>Forcedly clear (remove) the game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wymuś wyczyszczenie (usunięcie) bufora listy gier</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3268"/>
@@ -5164,7 +5164,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.ui" line="3271"/>
         <location filename="../../qmc2main.ui" line="3274"/>
         <source>Forcedly clear (remove) the XML cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wymuś wyczyszczenie (usunięcie) bufora XML</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3282"/>
@@ -5175,7 +5175,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../qmc2main.ui" line="3285"/>
         <location filename="../../qmc2main.ui" line="3288"/>
         <source>Forcedly clear (remove) the software list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wymuś wyczyszczenie (usunięcie) bufora listy oprogramowania</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2347"/>
@@ -5740,57 +5740,57 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1933"/>
         <source>YouTube on-disk cache cleared (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyszczono dyskowy bufor YouTube (%1)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1965"/>
         <source>ROM state cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunięcie pliku bufora stanów ROM-ów &apos;%1&apos; zostało wymuszone przez użytkownika</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1967"/>
         <source>WARNING: cannot remove the ROM state cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie można usunąć pliku bufora stanów ROM-ów &apos;%1&apos;, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1996"/>
         <source>game list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunięcie pliku bufora listy gier &apos;%1&apos; zostało wymuszone przez użytkownika</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1998"/>
         <source>WARNING: cannot remove the game list cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie można usunąć pliku bufora listy gier &apos;%1&apos;, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2001"/>
         <source>machine list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunięcie pliku bufora listy maszyn &apos;%1&apos; zostało wymuszone przez użytkownika</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2003"/>
         <source>WARNING: cannot remove the machine list cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie można usunąć pliku bufora listy maszyn &apos;%1&apos;, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2032"/>
         <source>XML cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunięcie pliku bufora XML &apos;%1&apos; zostało wymuszone przez użytkownika</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2034"/>
         <source>WARNING: cannot remove the XML cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie można usunąć pliku bufora XML &apos;%1&apos;, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2064"/>
         <source>software list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunięcie pliku bufora listy oprogramowania &apos;%1&apos; zostało wymuszone przez użytkownika</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2066"/>
         <source>WARNING: cannot remove the software list cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie można usunąć pliku bufora listy oprogramowania &apos;%1&apos;, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2652"/>
@@ -7422,8 +7422,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -7545,7 +7543,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../qmc2main.cpp" line="538"/>
         <location filename="../../qmc2main.cpp" line="539"/>
         <source>Forcedly clear (remove) the machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wymuś wyczyszczenie (usunięcie) bufora listy maszyn</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="545"/>
@@ -7637,10 +7635,10 @@ Ponowić próbę osadzania?</translation>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="5574"/>
         <source>%n video info record(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>załadowano %n rekord informacji o filmie</numerusform>
+            <numerusform>załadowano %n rekordy informacji o filmie</numerusform>
+            <numerusform>załadowano %n rekordów informacji o filmie</numerusform>
         </translation>
     </message>
     <message>
@@ -8955,12 +8953,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2701"/>
         <source>SW snap position</source>
-        <translation type="unfinished"></translation>
+        <translation>Położenie zrzutu ekranu oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2718"/>
         <source>Above / Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Na górze / z lewej</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2723"/>
@@ -8970,37 +8968,37 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2728"/>
         <source>Above / Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Na górze / z prawej</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2733"/>
         <source>Below / Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Na dole / z lewej</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2738"/>
         <source>Below / Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Na dole / pośrodku</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2743"/>
         <source>Below / Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Na dole / z prawej</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4122"/>
         <source>Software list cache file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik bufora listy oprogramowania (zapis)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4135"/>
         <source>Browse software list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż plik bufora listy oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4196"/>
         <source>Directory used as the default software folder for the MESS device configurator (if a sub-folder named as the current machine exists, that folder will be selected instead)</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog używany przez konfigurator urządzeń MESS jako domyślny folder oprogramowania (jeżeli istnieje podfolder nazwany jak bieżąca maszyna, będzie on wybrany w zamian)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2659"/>
@@ -9010,7 +9008,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2084"/>
         <source>Switch between specifying a software snap directory or a ZIP-compressed software snap file</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz pomiędzy określeniem katalogu zrzutów ekranu oprogramowania a skompresowanym plikiem ZIP zrzutów ekranu oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2087"/>
@@ -9018,22 +9016,22 @@ Ponowić próbę osadzania?</translation>
         <location filename="../../options.cpp" line="1898"/>
         <location filename="../../options.cpp" line="2750"/>
         <source>SW snap folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog zrzutów ekranu oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2122"/>
         <source>Software snap-shot directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog zrzutów ekranu oprogramowania (odczyt)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2135"/>
         <source>Browse software snap-shot directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż katalog zrzutów ekranu oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2159"/>
         <source>ZIP-compressed software snap-shot file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Skompresowany plik ZIP zrzutów ekranu oprogramowania (odczyt)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2172"/>
@@ -9083,7 +9081,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2544"/>
         <source>Display ROM status icons in master lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetlać ikony stanów ROM-ów na listach głównych?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2547"/>
@@ -9098,17 +9096,17 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2748"/>
         <source>Disable snaps</source>
-        <translation type="unfinished"></translation>
+        <translation>Bez zrzutów</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2756"/>
         <source>Display software snap-shots when hovering the software list with the mouse cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetlanie zrzutów ekranu oprogramowania po najechaniu kursorem na listę oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2759"/>
         <source>SW snaps on mouse hover</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrzuty ekranu oprogramowania po najechaniu kursorem</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3343"/>
@@ -9202,7 +9200,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="4209"/>
         <source>Browse general software folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż ogólny folder oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4227"/>
@@ -9576,7 +9574,7 @@ Ponowić próbę osadzania?</translation>
         <location filename="../../options.cpp" line="1637"/>
         <location filename="../../options.cpp" line="1641"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można otworzyć pliku zrzutu ekranu oprogramowania, proszę sprawdzić uprawnienia dostępu dla %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1654"/>
@@ -10057,7 +10055,7 @@ Ponowić próbę osadzania?</translation>
         <location filename="../../options.cpp" line="1898"/>
         <location filename="../../options.cpp" line="2750"/>
         <source>SW snap file</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik zrzutów ekranu oprogramowania</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3570"/>
@@ -11321,7 +11319,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../gamelist.cpp" line="1955"/>
         <location filename="../../options.cpp" line="1321"/>
         <source>ROM state</source>
-        <translation>stanu ROM-u</translation>
+        <translation>stan ROM-u</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1958"/>
@@ -11471,7 +11469,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1614"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: błąd XML: fatalny błąd w linii %1, kolumna %2: %3</translation>
     </message>
 </context>
 <context>
@@ -14156,7 +14154,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.ui" line="187"/>
         <source>Complete list of known software for the current system</source>
-        <translation type="unfinished"></translation>
+        <translation>Pełna lista znanego oprogramowania na bieżący system</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="275"/>
@@ -14357,7 +14355,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="387"/>
         <source>ERROR: the file name for the MAME software list cache is empty -- please correct this and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>BŁĄD: nazwa pliku bufora listy oprogramowania MAME jest pusta -- proszę to poprawić, a następnie przeładować listę maszyn</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="389"/>
@@ -14377,12 +14375,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="406"/>
         <source>ERROR: can&apos;t open the MAME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>BŁĄD: nie można otworzyć bufora listy oprogramowania MAME do zapisu, ścieżka = %1 -- proszę sprawdzić/poprawić uprawnienia, a następnie przeładować listę maszyn</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="408"/>
         <source>ERROR: can&apos;t open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards</source>
-        <translation>BŁĄD: nie można otworzyć bufora listy oprogramowania MESS do zapisu, ścieżka = %1 -- proszę to sprawdzić/poprawić uprawnienia, a następnie przeładować listę maszyn</translation>
+        <translation>BŁĄD: nie można otworzyć bufora listy oprogramowania MESS do zapisu, ścieżka = %1 -- proszę sprawdzić/poprawić uprawnienia, a następnie przeładować listę maszyn</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="491"/>
@@ -14392,7 +14390,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="607"/>
         <source>WARNING: the external process called to load the MAME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: zewnętrzny proces wezwany do wczytania listy oprogramowania MAME nie zakończył się czysto -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="607"/>
@@ -14419,17 +14417,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="666"/>
         <source>WARNING: the currently selected MAME emulator doesn&apos;t support software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: obecnie wybrany emulator MAME nie obsługuje list oprogramowania</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="668"/>
         <source>WARNING: the currently selected MESS emulator doesn&apos;t support software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: obecnie wybrany emulator MESS nie obsługuje list oprogramowania</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="685"/>
         <source>WARNING: the external process called to load the MAME software lists caused an error -- processError = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: zewnętrzny proces uruchomiony do wczytania list oprogramowania MAME spowodował błąd -- processError = %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="687"/>
@@ -14778,69 +14776,69 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="40"/>
         <source>Attached videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Załączone filmy</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="74"/>
         <source>Start playing / select next video automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozpocznij odtwarzanie / wybierz następny film automatycznie</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="77"/>
         <source>Play-O-Matic</source>
-        <translation type="unfinished"></translation>
+        <translation>Play-O-Matic</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="93"/>
         <source>Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryb:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="112"/>
         <source>Choose the video selection mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz tryb wyboru filmu</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="116"/>
         <source>sequential</source>
-        <translation type="unfinished"></translation>
+        <translation>kolejno</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="121"/>
         <source>random</source>
-        <translation type="unfinished"></translation>
+        <translation>losowo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="138"/>
         <source>Allow videos to be repeated (otherwise stop after last video)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozwalaj na powtarzanie filmów (w przeciwnym wypadku zatrzymaj po ostatnim filmie)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="141"/>
         <source>Allow repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozwalaj na powtarzanie</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="174"/>
         <source>Video player</source>
-        <translation type="unfinished"></translation>
+        <translation>Odtwarzacz filmów</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="196"/>
         <source>Select the preferred video format (automatically falls back to the next available format)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz preferowany format filmu (automatycznie wycofuje się do następnego dostępnego)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="203"/>
         <location filename="../../youtubevideoplayer.cpp" line="79"/>
         <source>FLV 240P</source>
-        <translation type="unfinished"></translation>
+        <translation>FLV 240P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="212"/>
         <location filename="../../youtubevideoplayer.cpp" line="80"/>
         <source>FLV 360P</source>
-        <translation type="unfinished"></translation>
+        <translation>FLV 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="221"/>
@@ -14852,7 +14850,7 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
         <location filename="../../youtubevideoplayer.ui" line="230"/>
         <location filename="../../youtubevideoplayer.cpp" line="82"/>
         <source>FLV 480P</source>
-        <translation type="unfinished"></translation>
+        <translation>FLV 480P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="239"/>
@@ -14876,62 +14874,62 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
         <location filename="../../youtubevideoplayer.ui" line="275"/>
         <location filename="../../youtubevideoplayer.cpp" line="146"/>
         <source>Start / pause / resume video playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom / wstrzymaj / wznów odtwarzanie filmu</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="315"/>
         <source>Remaining playing time</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozostały czas odtwarzania</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="334"/>
         <source>Current buffer fill level</source>
-        <translation type="unfinished"></translation>
+        <translation>Obecny poziom zapełnienia bufora</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="363"/>
         <source>Search videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Szukaj filmów</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="378"/>
         <source>Search pattern -- use the &apos;hint&apos; button to get a suggestion</source>
-        <translation type="unfinished"></translation>
+        <translation>Wzorzec szukania -- użyj przycisku &apos;podpowiedź&apos; aby otrzymać propozycję</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="391"/>
         <source>Search YouTube videos using the specified search pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Szukaj filmów YouTube przy pomocy podanego wzorca</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="435"/>
         <source>Maximum number of results per search request</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksymalna liczba wyników na zapytanie</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="466"/>
         <source>Start index for the search request</source>
-        <translation type="unfinished"></translation>
+        <translation>Początkowy indeks zapytania</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="491"/>
         <source>SI:</source>
-        <translation type="unfinished"></translation>
+        <translation>PI:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="498"/>
         <source>R:</source>
-        <translation type="unfinished"></translation>
+        <translation>W:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="418"/>
         <source>Suggest a search pattern (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaproponuj wzorzec szukania (przytrzymaj dla menu)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="61"/>
         <source>Mute / unmute audio output</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyciszenie / aktywacja wyjścia dźwięku</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="96"/>
@@ -14945,149 +14943,149 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
         <location filename="../../youtubevideoplayer.cpp" line="767"/>
         <location filename="../../youtubevideoplayer.cpp" line="814"/>
         <source>Current buffer fill level: %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Obecny poziom zapełnienia bufora: %1%</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="112"/>
         <location filename="../../youtubevideoplayer.cpp" line="179"/>
         <source>Play this video</source>
-        <translation type="unfinished"></translation>
+        <translation>Odtwarzaj ten film</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="119"/>
         <location filename="../../youtubevideoplayer.cpp" line="161"/>
         <location filename="../../youtubevideoplayer.cpp" line="190"/>
         <source>Copy video URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj URL filmu</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="125"/>
         <location filename="../../youtubevideoplayer.cpp" line="166"/>
         <location filename="../../youtubevideoplayer.cpp" line="195"/>
         <source>Copy author URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj URL autora</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="131"/>
         <source>Paste video URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Wklej URL filmu</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="138"/>
         <source>Remove selected videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybrane filmy</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="154"/>
         <location filename="../../youtubevideoplayer.cpp" line="1241"/>
         <source>Full screen (return with toggle-key)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pełny ekran (powrót za pomocą klawisza przełączającego)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="172"/>
         <location filename="../../youtubevideoplayer.cpp" line="184"/>
         <source>Attach this video</source>
-        <translation type="unfinished"></translation>
+        <translation>Załącz ten film</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="202"/>
         <source>Auto-suggest</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczna sugestia</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="208"/>
         <source>Append...</source>
-        <translation type="unfinished"></translation>
+        <translation>Dołącz...</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="220"/>
         <source>Enter search string</source>
-        <translation type="unfinished">Wpisz szukany ciąg</translation>
+        <translation>Wpisz szukany ciąg</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="324"/>
         <source>Appended string</source>
-        <translation type="unfinished"></translation>
+        <translation>Dołączony ciąg</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="325"/>
         <source>Enter the string to be appended when suggesting a pattern:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź ciąg, który ma być dołączony podczas propozycji wzorca:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="587"/>
         <source>video player: a video with the ID &apos;%1&apos; is already attached, ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: film o ID &apos;%1&apos; jest już załączony, zignorowano</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="797"/>
         <source>video player: playback error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: błąd odtwarzania: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="946"/>
         <source>video player: video info error: status = &apos;%1&apos;, errorCode = &apos;%2&apos;, errorText = &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: błąd informacji o filmie: stan = &apos;%1&apos;, kod błędu = &apos;%2&apos;, tekst błędu = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1010"/>
         <source>video player: video info error: timeout occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: błąd informacji o filmie: przekroczono czas</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1046"/>
         <source>video player: video info error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: błąd informacji o filmie: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1239"/>
         <source>Full screen (press %1 to return)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pełny ekran (powrót za pomocą %1)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1414"/>
         <source>video player: video image info error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: błąd informacji o obrazie: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1445"/>
         <source>video player: search request error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: błąd zapytania: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1473"/>
         <source>video player: search error: can&apos;t parse XML data</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: błąd szukania: nie można parsować danych XML</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1506"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: nie można ustalić ID filmu na podstawie zwróconego URL &apos;%1&apos; -- proszę powiadomić programistów</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1512"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: nie można powiązać zwróconego obrazu z ID filmu &apos;%1&apos; -- proszę powiadomić programistów</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1534"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: nie można zapisać obrazu dla ID filmu &apos;%1&apos; w katalogu bufora YouTube &apos;%2&apos; -- proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1536"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: nie można zapisać obrazu dla ID filmu &apos;%1&apos;, katalog bufora YouTube &apos;%2&apos; nie istnieje -- proszę poprawić</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1538"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: pobieranie obrazu nieudane dla ID filmu &apos;%1&apos;, uzyskany obraz jest nieprawidłowy</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1540"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>odtwarzacz filmów: pobieranie obrazu nieudane dla ID filmu &apos;%1&apos;, tekst błędu = &apos;%2&apos;</translation>
     </message>
 </context>
 </TS>
