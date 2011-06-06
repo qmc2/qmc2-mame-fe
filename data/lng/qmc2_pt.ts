@@ -4597,12 +4597,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="183"/>
         <source>Remove configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover configuração</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="184"/>
         <source>&amp;Remove configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Remover configuração</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="192"/>
