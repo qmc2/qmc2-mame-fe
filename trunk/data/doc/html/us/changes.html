@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.2.b20, 03-JUN-2011</h3>
+<h3>CHANGES - v0.2.b20, 06-JUN-2011</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.2.b20, 03-JUN-2011:</b></p>
+<p><b>v0.2.b20, 06-JUN-2011:</b></p>
 <ul>
   <li>fix: ROMAlyzer / checksum wizard: correctly handle ROM files when their names contain special characters (i.e. '&amp;')</li>
   <li>fix: corrected the handling of repeated log messages (the repetition counter was correctly logged, but the actual <i>new</i> message was eaten)</li>
@@ -30,8 +30,8 @@ inf: informational only
   <li>fix: log file paths weren't correctly set up on the initial run, so logs were written only on subsequent runs</li>
   <li>fix: corrected a rather old bug within the game/machine-list cache creation code that could've led to rare (and hard to reproduce) crashes</li>
   <li>fix: ROM status exporter: CSV and HTML output formats didn't honor the specified ROM status filter</li>
-  <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.142u4 (new option <i>menu</i> for MAME, removed option <i>uimodekey</i> for MAME, changed default value of <i>audio_latency</i> for SDLMAME, added new options <i>use_cpanels</i> and <i>use_marquees</i> for all -- the new HLSL options for MAME are missing ATM, but we're working on it!)</li>
-  <li>imp: SDLMESS/MESS templates updated to 0.142u4 (changed default value of <i>audio_latency</i> for SDLMESS, added new options <i>use_cpanels</i> and <i>use_marquees</i> for all -- the new HLSL options for MESS are missing ATM, but we're working on it!)</li>
+  <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.142u5 (new option <i>menu</i> for MAME, removed option <i>uimodekey</i> for MAME, changed default value of <i>audio_latency</i> for SDLMAME, added new options <i>use_cpanels</i>, <i>use_marquees</i> and <i>confirm_quit</i>for all -- the new HLSL options for MAME are missing ATM, but we're working on it!)</li>
+  <li>imp: SDLMESS/MESS templates updated to 0.142u5 (changed default value of <i>audio_latency</i> for SDLMESS, added new options <i>use_cpanels</i>, <i>use_marquees</i> and <i>confirm_quit</i> for all -- the new HLSL options for MESS are missing ATM, but we're working on it!)</li>
   <li>imp: ghost image enhanced, including a derived 'no video' pendant</li>
   <li>imp: improved log output when the validation of the emulator executable fails</li>
   <li>imp: MESS targets: added new / alternate emulator type identification string ('M.E.S.S.' vs. 'MESS') as used since 0.142 SVN -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=16" target="_blank">bug tracker ID #16</a></li>
