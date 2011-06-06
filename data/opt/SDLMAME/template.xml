@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="SDLMAME" version="0.142u4" format="0.2.4">
+<template emulator="SDLMAME" version="0.142u5" format="0.2.4">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
@@ -652,6 +652,13 @@
       <description lang="pl" text="Rozmiar pamięci RAM (jeśli wspierany przez sterownik)"/>
       <description lang="fr" text="Taille de RAM (si supporté par le driver)"/>
       <description lang="pt" text="Tamanho da RAM (se suportado pelo driver)"/>
+    </option>
+    <option name="confirm_quit" type="bool" default="false">
+      <description lang="us" text="Display quit confirmation box on exit"/>
+      <description lang="de" text="Beim Beenden Bestätigungs-Box anzeigen"/>
+      <description lang="pl" text="Wyświetl okienko potwierdzenia zakończenia"/>
+      <description lang="fr" text="Affiche le dialogue de confirmation à la sortie"/>
+      <description lang="pt" text="Mostrar confirmação ao sair"/>
     </option>
   </section>
   <section name="configuration">
