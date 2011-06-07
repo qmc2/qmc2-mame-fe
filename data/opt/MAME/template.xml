@@ -1198,4 +1198,376 @@
       <choice name="joystick"/>
     </option>
   </section>
+  <section name="hlsl_options">
+    <description lang="us" text="Direct3D HLSL (Pixel Shader 3.0)"/>
+    <description lang="de" text="Direct3D HLSL (Pixel Shader 3.0)"/>
+    <description lang="pl" text="Direct3D HLSL (Pixel Shader 3.0)"/>
+    <description lang="fr" text="Direct3D HLSL (Pixel Shader 3.0)"/>
+    <description lang="pt" text="Direct3D HLSL (Pixel Shader 3.0)"/>
+    <option name="hlsl_enable" type="bool" default="false">
+      <description lang="us" text="Enable HLSL post-processing (Pixel Shader 3.0 required)"/>
+      <description lang="de" text="HLSL Post-Processing aktivieren (benötigt Pixel Shader 3.0)"/>
+      <description lang="pt" text="Habilitar pós processamento HLSL (requer Pixel Shader 3.0)"/>
+    </option>
+    <option name="hlslpath" type="directory" default="hlsl">
+      <description lang="us" text="Path to hlsl files"/>
+      <description lang="de" text="Suchpfad für hlsl-Dateien"/>
+      <description lang="pt" text="Caminho para os arquivos hlsl"/>
+    </option>
+    <option name="hlsl_prescale_size" type="int" default="3">
+      <description lang="us" text="HLSL scaling pre-pass factor (usually 2 or 3)"/>
+      <description lang="de" text="HLSL Pre-Skalierungsfaktor (normalerweie 2 oder 3)"/>
+      <description lang="pt" text="Fator de pré-passagem de escala HLSL (geralmente 2 ou 3)"/>
+    </option>
+    <option name="hlsl_preset" type="int" default="-1">
+      <description lang="us" text="HLSL preset to use (0-5)"/>
+      <description lang="de" text="HLSL Voreinstellung (0-5)"/>
+      <description lang="pt" text="Preset HLSL a ser utilizado (0-5)"/>
+    </option>
+    <option name="hlsl_write" type="file" default="">
+      <description lang="us" text="Enable HLSL AVI writing by specifying an output file (huge disk bandwidth suggested)"/>
+      <description lang="de" text="HLSL AVI-Schreiben durch Angabe einer Ausgabe-Datei aktivieren (große Disk I/O Bandbreite empfohlen)"/>
+      <description lang="pt" text="Habilitar escrita AVI do HLSL especificando um arquivo de saída (disco de alto desempenho recomendado)"/>
+    </option>
+    <option name="hlsl_snap_width" type="int" default="2048">
+      <description lang="us" text="HLSL upscaled-snapshot width"/>
+      <description lang="de" text="HLSL Snapshot-Breite (hochskaliert)"/>
+      <description lang="pt" text="Largura do snapshot HLSL (upscale)"/>
+    </option>
+    <option name="hlsl_snap_height" type="int" default="1536">
+      <description lang="us" text="HLSL upscaled-snapshot height"/>
+      <description lang="de" text="HLSL Snapshot-Höhe (hochskaliert)"/>
+      <description lang="pt" text="Altura do snapshot HLSL (upscale)"/>
+    </option>
+    <option name="shadow_mask_alpha" type="float" default="0">
+      <description lang="us" text="Shadow mask alpha-blend value (1.0 is fully blended, 0.0 is no mask)"/>
+      <description lang="de" text="Wert für 'Shadow Mask Alpha Blending' (1.0 = volle Überlagerung, 0.0 = keine Maske)"/>
+      <description lang="pt" text="Valor da máscara de sombras de mistura alpha (1.0 mistura total, 0.0 sem máscara)"/>
+    </option>
+    <option name="shadow_mask_texture" type="string" default="aperture.png">
+      <description lang="us" text="Shadow mask texture name"/>
+      <description lang="de" text="Name der Shadow Mask Textur"/>
+      <description lang="pt" text="Nome da textura da máscara de sombras"/>
+    </option>
+    <option name="shadow_mask_x_count" type="int" default="640">
+      <description lang="us" text="Shadow mask width, in phosphor dots"/>
+      <description lang="de" text="Breite der Shadow Mask, in 'Phosphor-Dots'"/>
+      <description lang="pt" text="Comprimento da máscara de sombras, em pontos de fósforo"/>
+    </option>
+    <option name="shadow_mask_y_count" type="int" default="480">
+      <description lang="us" text="Shadow mask height, in phosphor dots"/>
+      <description lang="de" text="Höhe der Shadow Mask, in 'Phosphor-Dots'"/>
+      <description lang="pt" text="Altura da máscara de sombras, em pontos de fósforo"/>
+    </option>
+    <option name="shadow_mask_usize" type="float" default="0.1875">
+      <description lang="us" text="Shadow mask texture size in U direction"/>
+      <description lang="de" text="Größe der Shadow Mask Textur in U-Richtung"/>
+      <description lang="pt" text="Tamanho da textura da máscara de sombras na direção U"/>
+    </option>
+    <option name="shadow_mask_vsize" type="float" default="0.1875">
+      <description lang="us" text="Shadow mask texture size in V direction"/>
+      <description lang="de" text="Größe der Shadow Mask Textur in V-Richtung"/>
+      <description lang="pt" text="Tamanho da textura da máscara de sombras na direção V"/>
+    </option>
+    <option name="curvature" type="float" default="0">
+      <description lang="us" text="Screen curvature amount"/>
+      <description lang="de" text="Betrag der Bildschirmkrümmung"/>
+      <description lang="pt" text="Quantidade de curvatura da tela"/>
+    </option>
+    <option name="screen_scale_top" type="float" default="1">
+      <description lang="us" text="Screen scale, top"/>
+      <description lang="de" text="Bildschirm-Skalierung, oben"/>
+      <description lang="pt" text="Escala da tela, topo"/>
+    </option>
+    <option name="screen_scale_bottom" type="float" default="1">
+      <description lang="us" text="Screen scale, bottom"/>
+      <description lang="de" text="Bildschirm-Skalierung, unten"/>
+      <description lang="pt" text="Escala da tela, base"/>
+    </option>
+    <option name="pincushion" type="float" default="0">
+      <description lang="us" text="Pincushion amount"/>
+      <description lang="de" text="Betrag der Kissenverzerrung"/>
+      <description lang="pt" text="Quantidade de pincushion"/>
+    </option>
+    <option name="scanline_alpha" type="float" default="0">
+      <description lang="us" text="Overall alpha scaling value for scanlines"/>
+      <description lang="de" text="Allgemeiner Alpha-Skalierungs-Wert für Abtastzeilen"/>
+      <description lang="pt" text="Valor da escala de alpha geral para scanlines"/>
+    </option>
+    <option name="scanline_size" type="float" default="1">
+      <description lang="us" text="Overall height scaling value for scanlines"/>
+      <description lang="de" text="Allgemeiner Höhen-Skalierungs-Wert für Abtastzeilen"/>
+      <description lang="pt" text="Valor da escala de altura geral para scanlines"/>
+    </option>
+    <option name="scanline_height" type="float" default="0.7">
+      <description lang="us" text="Individual height scaling value for scanlines"/>
+      <description lang="de" text="Individueller Höhen-Skalierungs-Wert für Abtastzeilen"/>
+      <description lang="pt" text="Valor da escala de altura individual para scanlines"/>
+    </option>
+    <option name="scanline_bright_scale" type="float" default="1">
+      <description lang="us" text="Brightness scaling value for scanlines (multiplicative)"/>
+      <description lang="de" text="Wert der Helligkeits-Skalierung für Abtastzeilen (multiplikativ)"/>
+      <description lang="pt" text="Valor da escala de brilho para scanlines (multiplicativo)"/>
+    </option>
+    <option name="scanline_bright_offset" type="float" default="0">
+      <description lang="us" text="Brightness offset value for scanlines (additive)"/>
+      <description lang="de" text="Wert des Helligkeits-Offsets für Abtastzeilen (additiv)"/>
+      <description lang="pt" text="Valor do deslocamento de brilho para scanlines (aditivo)"/>
+    </option>
+    <option name="scanline_jitter" type="float" default="0">
+      <description lang="us" text="Overall interlace jitter scaling value for scanlines"/>
+      <description lang="de" text="Allgemeiner Wert der Bildinstabilität beim Zeilensprung"/>
+      <description lang="pt" text="Valor da escala de variação de interlace geral para scanlines"/>
+    </option>
+    <option name="defocus_x" type="float" default="0">
+      <description lang="us" text="Overall defocus scaling value in screen-relative X direction"/>
+      <description lang="de" text="Allgemeiner Skalierungsfaktor der Defokussierung in X-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Valor da escala de defocus geral na direção X relativa à tela"/>
+    </option>
+    <option name="defocus_y" type="float" default="0">
+      <description lang="us" text="Overall defocus scaling value in screen-relative Y direction"/>
+      <description lang="de" text="Allgemeiner Skalierungsfaktor der Defokussierung in Y-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Valor da escala de defocus geral na direção Y relativa à tela"/>
+    </option>
+    <option name="red_converge_x" type="float" default="0">
+      <description lang="us" text="Red convergence in screen-relative X direction"/>
+      <description lang="de" text="Rot-Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência do vermelho na direção X relativa à tela"/>
+    </option>
+    <option name="red_converge_y" type="float" default="0">
+      <description lang="us" text="Red convergence in screen-relative Y direction"/>
+      <description lang="de" text="Rot-Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência do vermelho na direção Y relativa à tela"/>
+    </option>
+    <option name="green_converge_x" type="float" default="0">
+      <description lang="us" text="Green convergence in screen-relative X direction"/>
+      <description lang="de" text="Grün-Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência do verde na direção X relativa à tela"/>
+    </option>
+    <option name="green_converge_y" type="float" default="0">
+      <description lang="us" text="Green convergence in screen-relative Y direction"/>
+      <description lang="de" text="Grün-Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência do verde na direção Y relativa à tela"/>
+    </option>
+    <option name="blue_converge_x" type="float" default="0">
+      <description lang="us" text="Blue convergence in screen-relative X direction"/>
+      <description lang="de" text="Blau-Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência do azul na direção X relativa à tela"/>
+    </option>
+    <option name="blue_converge_y" type="float" default="0">
+      <description lang="us" text="Blue convergence in screen-relative Y direction"/>
+      <description lang="de" text="Blau-Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência do azul na direção Y relativa à tela"/>
+    </option>
+    <option name="red_radial_converge_x" type="float" default="0">
+      <description lang="us" text="Red radial convergence in screen-relative X direction"/>
+      <description lang="de" text="Radiale Rot-Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência radial do vermelho na direção X relativa à tela"/>
+    </option>
+    <option name="red_radial_converge_y" type="float" default="0">
+      <description lang="us" text="Red radial convergence in screen-relative Y direction"/>
+      <description lang="de" text="Radiale Rot-Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência radial do vermelho na direção Y relativa à tela"/>
+    </option>
+    <option name="green_radial_converge_x" type="float" default="0">
+      <description lang="us" text="Green radial convergence in screen-relative X direction"/>
+      <description lang="de" text="Radiale Grün-Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência radial do verde na direção X relativa à tela"/>
+    </option>
+    <option name="green_radial_converge_y" type="float" default="0">
+      <description lang="us" text="Green radial convergence in screen-relative Y direction"/>
+      <description lang="de" text="Radiale Grün-Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência radial do verde na direção Y relativa à tela"/>
+    </option>
+    <option name="blue_radial_converge_x" type="float" default="0">
+      <description lang="us" text="Blue radial convergence in screen-relative X direction"/>
+      <description lang="de" text="Radiale Blau-Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência radial do azul na direção X relativa à tela"/>
+    </option>
+    <option name="blue_radial_converge_y" type="float" default="0">
+      <description lang="us" text="Blue radial convergence in screen-relative Y direction"/>
+      <description lang="de" text="Radiale Blau-Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência radial do azul na direção Y relativa à tela"/>
+    </option>
+    <option name="red_from_r" type="float" default="1">
+      <description lang="us" text="Red output signal generated by red input signal"/>
+      <description lang="de" text="Rotes Ausgabesignal generiert durch rotes Eingabesignal"/>
+      <description lang="pt" text="Sinal de saída do vermelho gerado pelo sinal de entrada vermelho"/>
+    </option>
+    <option name="red_from_g" type="float" default="0">
+      <description lang="us" text="Red output signal generated by green input signal"/>
+      <description lang="de" text="Rotes Ausgabesignal generiert durch grünes Eingabesignal"/>
+      <description lang="pt" text="Sinal de saída do vermelho gerado pelo sinal de entrada verde"/>
+    </option>
+    <option name="red_from_b" type="float" default="0">
+      <description lang="us" text="Red output signal generated by blue input signal"/>
+      <description lang="de" text="Rotes Ausgabesignal generiert durch blaues Eingabesignal"/>
+      <description lang="pt" text="Sinal de saída do vermelho gerado pelo sinal de entrada azul"/>
+    </option>
+    <option name="green_from_r" type="float" default="0">
+      <description lang="us" text="Green output signal generated by red input signal"/>
+      <description lang="de" text="Grünes Ausgabesignal generiert durch rotes Eingabesignal"/>
+      <description lang="pt" text="Sinal de saída do verde gerado pelo sinal de entrada vermelho"/>
+    </option>
+    <option name="green_from_g" type="float" default="1">
+      <description lang="us" text="Green output signal generated by green input signal"/>
+      <description lang="de" text="Grünes Ausgabesignal generiert durch grünes Eingabesignal"/>
+      <description lang="pt" text="Sinal de saída do verde gerado pelo sinal de entrada verde"/>
+    </option>
+    <option name="green_from_b" type="float" default="0">
+      <description lang="us" text="Green output signal generated by blue input signal"/>
+      <description lang="de" text="Grünes Ausgabesignal generiert durch blaues Eingabesignal"/>
+      <description lang="pt" text="Sinal de saída do verde gerado pelo sinal de entrada azul"/>
+    </option>
+    <option name="blue_from_r" type="float" default="0">
+      <description lang="us" text="Blue output signal generated by red input signal"/>
+      <description lang="de" text="Blaues Ausgabesignal generiert durch rotes Eingabesignal"/>
+      <description lang="pt" text="Sinal de saída do azul gerado pelo sinal de entrada vermelho"/>
+    </option>
+    <option name="blue_from_g" type="float" default="0">
+      <description lang="us" text="Blue output signal generated by green input signal"/>
+      <description lang="de" text="Blaues Ausgabesignal generiert durch grünes Eingabesignal"/>
+      <description lang="pt" text="Sinal de saída do azul gerado pelo sinal de entrada verde"/>
+    </option>
+    <option name="blue_from_b" type="float" default="1">
+      <description lang="us" text="Blue output signal generated by blue input signal"/>
+      <description lang="de" text="Blaues Ausgabesignal generiert durch blaues Eingabesignal"/>
+      <description lang="pt" text="Sinal de saída do azul gerado pelo sinal de entrada azul"/>
+    </option>
+    <option name="saturation" type="float" default="1">
+      <description lang="us" text="Saturation scaling value"/>
+      <description lang="de" text="Wert der Sättigungs-Skalierung"/>
+      <description lang="pt" text="Valor de escala de saturação"/>
+    </option>
+    <option name="red_offset" type="float" default="0">
+      <description lang="us" text="Red signal offset value (additive)"/>
+      <description lang="de" text="Wert des roten Signal-Offsets (additiv)"/>
+      <description lang="pt" text="Valor de deslocamento do sinal vermelho (aditivo)"/>
+    </option>
+    <option name="green_offset" type="float" default="0">
+      <description lang="us" text="Green signal offset value (additive)"/>
+      <description lang="de" text="Wert des grünen Signal-Offsets (additiv)"/>
+      <description lang="pt" text="Valor de deslocamento do sinal verde (aditivo)"/>
+    </option>
+    <option name="blue_offset" type="float" default="0">
+      <description lang="us" text="Blue signal offset value (additive)"/>
+      <description lang="de" text="Wert des blauen Signal-Offsets (additiv)"/>
+      <description lang="pt" text="Valor de deslocamento do sinal azul (aditivo)"/>
+    </option>
+    <option name="red_scale" type="float" default="1">
+      <description lang="us" text="Red signal scaling value (multiplicative)"/>
+      <description lang="de" text="Wert des roten Signal-Offsets (multiplikativ)"/>
+      <description lang="pt" text="Valor de escala do sinal vermelho (multiplicativo)"/>
+    </option>
+    <option name="green_scale" type="float" default="1">
+      <description lang="us" text="Green signal scaling value (multiplicative)"/>
+      <description lang="de" text="Wert des grünen Signal-Offsets (multiplikativ)"/>
+      <description lang="pt" text="Valor de escala do sinal verde (multiplicativo)"/>
+    </option>
+    <option name="blue_scale" type="float" default="1">
+      <description lang="us" text="Blue signal scaling value (multiplicative)"/>
+      <description lang="de" text="Wert des blauen Signal-Offsets (multiplikativ)"/>
+      <description lang="pt" text="Valor de escala do sinal azul (multiplicativo)"/>
+    </option>
+    <option name="red_power" type="float" default="1">
+      <description lang="us" text="Red signal power value (exponential)"/>
+      <description lang="de" text="Rote Signalstärke (exponentiell)"/>
+      <description lang="pt" text="Valor da potência do sinal vermelho (exponencial)"/>
+    </option>
+    <option name="green_power" type="float" default="1">
+      <description lang="us" text="Green signal power value (exponential)"/>
+      <description lang="de" text="Grüne Signalstärke (exponentiell)"/>
+      <description lang="pt" text="Valor da potência do sinal verde (exponencial)"/>
+    </option>
+    <option name="blue_power" type="float" default="1">
+      <description lang="us" text="Blue signal power value (exponential)"/>
+      <description lang="de" text="Blaue Signalstärke (exponentiell)"/>
+      <description lang="pt" text="Valor da potência do sinal azul (exponencial)"/>
+    </option>
+    <option name="red_floor" type="float" default="0">
+      <description lang="us" text="Red signal floor level"/>
+      <description lang="de" text="Niedrigster Wert der roten Signalstärke"/>
+      <description lang="pt" text="Nível base de sinal vermelho"/>
+    </option>
+    <option name="green_floor" type="float" default="0">
+      <description lang="us" text="Green signal floor level"/>
+      <description lang="de" text="Niedrigster Wert der grünen Signalstärke"/>
+      <description lang="pt" text="Nível base de sinal verde"/>
+    </option>
+    <option name="blue_floor" type="float" default="0">
+      <description lang="us" text="Blue signal floor level"/>
+      <description lang="de" text="Niedrigster Wert der blauen Signalstärke"/>
+      <description lang="pt" text="Nível base de sinal azul"/>
+    </option>
+    <option name="red_phosphor_life" type="float" default="0">
+      <description lang="us" text="Red phosphorescence decay rate (0.0 is instant, 1.0 is forever)"/>
+      <description lang="de" text="Rate der Nachleuchtdämpfung für Rot (0.0 = sofort, 1.0 = ewig)"/>
+      <description lang="pt" text="Razão de decaimento da fosforescência do vermelho (0.0 é instantâneo, 1.0 é para sempre)"/>
+    </option>
+    <option name="green_phosphor_life" type="float" default="0">
+      <description lang="us" text="Green phosphorescence decay rate (0.0 is instant, 1.0 is forever)"/>
+      <description lang="de" text="Rate der Nachleuchtdämpfung für Grün (0.0 = sofort, 1.0 = ewig)"/>
+      <description lang="pt" text="Razão de decaimento da fosforescência do verde (0.0 é instantâneo, 1.0 é para sempre)"/>
+    </option>
+    <option name="blue_phosphor_life" type="float" default="0">
+      <description lang="us" text="Blue phosphorescence decay rate (0.0 is instant, 1.0 is forever)"/>
+      <description lang="de" text="Rate der Nachleuchtdämpfung für Blau (0.0 = sofort, 1.0 = ewig)"/>
+      <description lang="pt" text="Razão de decaimento da fosforescência do azul (0.0 é instantâneo, 1.0 é para sempre)"/>
+    </option>
+    <option name="yiq_enable" type="bool" default="false">
+      <description lang="us" text="Enable YIQ-space HLSL post-processing"/>
+      <description lang="de" text="YIQ-Raum HLSL Post-Processing aktivieren"/>
+      <description lang="pt" text="Habilitar pós processamento HLSL do espaço YIQ"/>
+    </option>
+    <option name="yiq_cc" type="float" default="3.59754545">
+      <description lang="us" text="Color carrier frequency for NTSC signal processing"/>
+      <description lang="de" text="Farbträger-Frequenz für NTSC Signalverarbeitung"/>
+      <description lang="pt" text="Frequência da portadora de cor para o processamento de sinal NTSC"/>
+    </option>
+    <option name="yiq_a" type="float" default="0.5">
+      <description lang="us" text="A value for NTSC signal processing"/>
+      <description lang="de" text="A-Wert für NTSC Signalbearbeitung"/>
+      <description lang="pt" text="Valor A para o processamento de sinal NTSC"/>
+    </option>
+    <option name="yiq_b" type="float" default="0.5">
+      <description lang="us" text="B value for NTSC signal processing"/>
+      <description lang="de" text="B-Wert für NTSC Signalbearbeitung"/>
+      <description lang="pt" text="Valor B para o processamento de sinal NTSC"/>
+    </option>
+    <option name="yiq_o" type="float" default="0">
+      <description lang="us" text="Outgoing color carrier phase offset for NTSC signal processing"/>
+      <description lang="de" text="Ausgehende Farbträger-Phasenverschiebung für NTSC Signalverarbeitung"/>
+      <description lang="pt" text="Deslocamento de saída de fase da portadora de cor para o processamento de sinal NTSC"/>
+    </option>
+    <option name="yiq_p" type="float" default="1">
+      <description lang="us" text="Incoming pixel clock scaling value for NTSC signal processing"/>
+      <description lang="de" text="Eingehender Pixel-Clock Skalierungswert für NTSC Signalverarbeitung"/>
+      <description lang="pt" text="Valor de escala do clock do pixel de entrada para o processamento de sinal NTSC"/>
+    </option>
+    <option name="yiq_y" type="float" default="3">
+      <description lang="us" text="Y filter cutoff frequency for NTSC signal processing"/>
+      <description lang="de" text="Y-Filter Grenzfrequenz für NTSC Signalverarbeitung"/>
+      <description lang="pt" text="Frequência de corte do filtro Y para o processamento de sinal NTSC"/>
+    </option>
+    <option name="yiq_i" type="float" default="1.2">
+      <description lang="us" text="I filter cutoff frequency for NTSC signal processing"/>
+      <description lang="de" text="I-Filter Grenzfrequenz für NTSC Signalverarbeitung"/>
+      <description lang="pt" text="Frequência de corte do filtro I para o processamento de sinal NTSC"/>
+    </option>
+    <option name="yiq_q" type="float" default="0.6">
+      <description lang="us" text="Q filter cutoff frequency for NTSC signal processing"/>
+      <description lang="de" text="Q-Filter Grenzfrequenz für NTSC Signalverarbeitung"/>
+      <description lang="pt" text="Frequência de corte do filtro Q para o processamento de sinal NTSC"/>
+    </option>
+    <option name="yiq_scan_time" type="float" default="52.6">
+      <description lang="us" text="Horizontal scanline duration for NTSC signal processing (in usec)"/>
+      <description lang="de" text="Horizontale Verweildauer pro Abtastzeile (in Mikrosekunden) für NTSC Signalverarbeitung"/>
+      <description lang="pt" text="Duração das scanlines horizontais para o processamento de sinal NTSC (em micro-segundos)"/>
+    </option>
+    <option name="yiq_phase_count" type="int" default="2">
+      <description lang="us" text="Phase count value for NTSC signal processing"/>
+      <description lang="de" text="Anzahl der Phasen für NTSC Signalverarbeitung"/>
+      <description lang="pt" text="Valor de contagem de fase para o processamento de sinal NTSC"/>
+    </option>
+  </section>
 </template>
