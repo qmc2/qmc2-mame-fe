@@ -14,9 +14,9 @@ class FloatEditWidget : public QWidget, public Ui::FloatEditWidget
 		~FloatEditWidget();
 
 	public slots:
-		void on_soubleSpinBox0_valueChanged(double) { emit dataChanged(this); }
-		void on_soubleSpinBox1_valueChanged(double) { emit dataChanged(this); }
-		void on_soubleSpinBox2_valueChanged(double) { emit dataChanged(this); }
+		void on_doubleSpinBox0_valueChanged(double) { emit dataChanged(this); }
+		void on_doubleSpinBox1_valueChanged(double) { emit dataChanged(this); }
+		void on_doubleSpinBox2_valueChanged(double) { emit dataChanged(this); }
 
 	signals:
 		void dataChanged(QWidget *);
