@@ -23,6 +23,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			softwarelist.ui \
 			direditwidget.ui \
 			fileeditwidget.ui \
+			floateditwidget.ui \
 			comboeditwidget.ui \
 			detailsetup.ui \
 			miniwebbrowser.ui \
@@ -61,6 +62,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			softwarelist.cpp \
 			direditwidget.cpp \
 			fileeditwidget.cpp \
+			floateditwidget.cpp \
 			comboeditwidget.cpp \
 			detailsetup.cpp \
 			miniwebbrowser.cpp \
@@ -112,6 +114,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			softwarelist.h \
 			direditwidget.h \
 			fileeditwidget.h \
+			floateditwidget.h \
 			comboeditwidget.h \
 			detailsetup.h \
 			miniwebbrowser.h \
