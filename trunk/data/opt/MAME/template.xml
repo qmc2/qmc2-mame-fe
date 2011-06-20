@@ -1319,75 +1319,29 @@
       <description lang="de" text="Allgemeiner Wert der Bildinstabilität beim Zeilensprung"/>
       <description lang="pt" text="Valor da escala de variação de interlace geral para scanlines"/>
     </option>
-    <option name="defocus_x" type="float" default="0">
-      <description lang="us" text="Overall defocus scaling value in screen-relative X direction"/>
-      <description lang="de" text="Allgemeiner Skalierungsfaktor der Defokussierung in X-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Valor da escala de defocus geral na direção X relativa à tela"/>
+    <option name="defocus" type="float2" default="0.0,0.0">
+      <description lang="us" text="Overall defocus scaling in screen-relative coordinates"/>
+      <description lang="de" text="Allgemeiner Skalierungsfaktor der Defokussierung in Bildschirm-relativen Koordinaten"/>
     </option>
-    <option name="defocus_y" type="float" default="0">
-      <description lang="us" text="Overall defocus scaling value in screen-relative Y direction"/>
-      <description lang="de" text="Allgemeiner Skalierungsfaktor der Defokussierung in Y-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Valor da escala de defocus geral na direção Y relativa à tela"/>
+    <option name="converge_x" type="float3" default="0.0,0.0,0.0">
+      <description lang="us" text="Convergence in screen-relative X direction"/>
+      <description lang="de" text="Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência do vermelho na direção X relativa"/>
     </option>
-    <option name="red_converge_x" type="float" default="0">
-      <description lang="us" text="Red convergence in screen-relative X direction"/>
-      <description lang="de" text="Rot-Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Convergência do vermelho na direção X relativa à tela"/>
+    <option name="converge_y" type="float3" default="0.0,0.0,0.0">
+      <description lang="us" text="Convergence in screen-relative Y direction"/>
+      <description lang="de" text="Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência do vermelho na direção Y relativa"/>
     </option>
-    <option name="red_converge_y" type="float" default="0">
-      <description lang="us" text="Red convergence in screen-relative Y direction"/>
-      <description lang="de" text="Rot-Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Convergência do vermelho na direção Y relativa à tela"/>
+    <option name="radial_converge_x" type="float3" default="0.0,0.0,0.0">
+      <description lang="us" text="Radial convergence in screen-relative X direction"/>
+      <description lang="de" text="Radiale Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência radial do vermelho na direção X relativa"/>
     </option>
-    <option name="green_converge_x" type="float" default="0">
-      <description lang="us" text="Green convergence in screen-relative X direction"/>
-      <description lang="de" text="Grün-Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Convergência do verde na direção X relativa à tela"/>
-    </option>
-    <option name="green_converge_y" type="float" default="0">
-      <description lang="us" text="Green convergence in screen-relative Y direction"/>
-      <description lang="de" text="Grün-Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Convergência do verde na direção Y relativa à tela"/>
-    </option>
-    <option name="blue_converge_x" type="float" default="0">
-      <description lang="us" text="Blue convergence in screen-relative X direction"/>
-      <description lang="de" text="Blau-Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Convergência do azul na direção X relativa à tela"/>
-    </option>
-    <option name="blue_converge_y" type="float" default="0">
-      <description lang="us" text="Blue convergence in screen-relative Y direction"/>
-      <description lang="de" text="Blau-Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Convergência do azul na direção Y relativa à tela"/>
-    </option>
-    <option name="red_radial_converge_x" type="float" default="0">
-      <description lang="us" text="Red radial convergence in screen-relative X direction"/>
-      <description lang="de" text="Radiale Rot-Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Convergência radial do vermelho na direção X relativa à tela"/>
-    </option>
-    <option name="red_radial_converge_y" type="float" default="0">
-      <description lang="us" text="Red radial convergence in screen-relative Y direction"/>
-      <description lang="de" text="Radiale Rot-Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Convergência radial do vermelho na direção Y relativa à tela"/>
-    </option>
-    <option name="green_radial_converge_x" type="float" default="0">
-      <description lang="us" text="Green radial convergence in screen-relative X direction"/>
-      <description lang="de" text="Radiale Grün-Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Convergência radial do verde na direção X relativa à tela"/>
-    </option>
-    <option name="green_radial_converge_y" type="float" default="0">
-      <description lang="us" text="Green radial convergence in screen-relative Y direction"/>
-      <description lang="de" text="Radiale Grün-Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Convergência radial do verde na direção Y relativa à tela"/>
-    </option>
-    <option name="blue_radial_converge_x" type="float" default="0">
-      <description lang="us" text="Blue radial convergence in screen-relative X direction"/>
-      <description lang="de" text="Radiale Blau-Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Convergência radial do azul na direção X relativa à tela"/>
-    </option>
-    <option name="blue_radial_converge_y" type="float" default="0">
-      <description lang="us" text="Blue radial convergence in screen-relative Y direction"/>
-      <description lang="de" text="Radiale Blau-Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
-      <description lang="pt" text="Convergência radial do azul na direção Y relativa à tela"/>
+    <option name="radial_converge_y" type="float3" default="0.0,0.0,0.0">
+      <description lang="us" text="Radial convergence in screen-relative Y direction"/>
+      <description lang="de" text="Radiale Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="pt" text="Convergência radial do vermelho na direção Y relativa"/>
     </option>
     <option name="red_from_r" type="float" default="1">
       <description lang="us" text="Red output signal generated by red input signal"/>

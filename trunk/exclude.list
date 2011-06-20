@@ -2351,6 +2351,9 @@ qmc2/.svn/text-base/exclude.list.svn-base
 qmc2/.svn/text-base/fileeditwidget.cpp.svn-base
 qmc2/.svn/text-base/fileeditwidget.h.svn-base
 qmc2/.svn/text-base/fileeditwidget.ui.svn-base
+qmc2/.svn/text-base/floateditwidget.cpp.svn-base
+qmc2/.svn/text-base/floateditwidget.h.svn-base
+qmc2/.svn/text-base/floateditwidget.ui.svn-base
 qmc2/.svn/text-base/flyer.cpp.svn-base
 qmc2/.svn/text-base/flyer.h.svn-base
 qmc2/.svn/text-base/gamelist.cpp.svn-base
