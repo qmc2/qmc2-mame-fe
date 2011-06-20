@@ -1281,16 +1281,6 @@
       <description lang="de" text="Betrag der Bildschirmkrümmung"/>
       <description lang="pt" text="Quantidade de curvatura da tela"/>
     </option>
-    <option name="screen_scale_top" type="float" default="1">
-      <description lang="us" text="Screen scale, top"/>
-      <description lang="de" text="Bildschirm-Skalierung, oben"/>
-      <description lang="pt" text="Escala da tela, topo"/>
-    </option>
-    <option name="screen_scale_bottom" type="float" default="1">
-      <description lang="us" text="Screen scale, bottom"/>
-      <description lang="de" text="Bildschirm-Skalierung, unten"/>
-      <description lang="pt" text="Escala da tela, base"/>
-    </option>
     <option name="pincushion" type="float" default="0">
       <description lang="us" text="Pincushion amount"/>
       <description lang="de" text="Betrag der Kissenverzerrung"/>
