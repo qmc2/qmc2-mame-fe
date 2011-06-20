@@ -48,10 +48,15 @@ class EmulatorOption
     EmulatorOption(QString n, QString sn, QString t, QString dv, QString d, QString v, QTreeWidgetItem *i, bool va, QStringList c = QStringList(), bool vis = true) {
       name = n;
       shortname = sn;
+      type = QMC2_EMUOPT_TYPE_UNKNOWN;
       switch ( t.at(0).toAscii() ) {
         case 'b': type = QMC2_EMUOPT_TYPE_BOOL; break;
         case 'i': type = QMC2_EMUOPT_TYPE_INT; break;
-        case 'f': if ( t.at(1).toAscii() == 'l' ) type = QMC2_EMUOPT_TYPE_FLOAT; else type = QMC2_EMUOPT_TYPE_FILE; break;
+        case 'f': if ( t == "float" || t == "float1" ) type = QMC2_EMUOPT_TYPE_FLOAT;
+                  else if ( t == "file" ) type = QMC2_EMUOPT_TYPE_FILE;
+                  else if ( t == "float2" ) type = QMC2_EMUOPT_TYPE_FLOAT2;
+                  else if ( t == "float3" ) type = QMC2_EMUOPT_TYPE_FLOAT3;
+                  break;
         case 's': type = QMC2_EMUOPT_TYPE_STRING; break;
         case 'd': type = QMC2_EMUOPT_TYPE_DIRECTORY; break;
         case 'c': type = QMC2_EMUOPT_TYPE_COMBO; break;
