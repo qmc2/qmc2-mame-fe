@@ -232,31 +232,41 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
     FloatEditWidget *float2Editor = static_cast<FloatEditWidget *>(editor);
     QStringList subValues = value.split(",");
     int cPos = 0;
-    QLineEdit *lineEdit = float2Editor->doubleSpinBox0->findChild<QLineEdit *>();
-    if ( lineEdit ) cPos = lineEdit->cursorPosition();
-    float2Editor->doubleSpinBox0->setValue(subValues[0].toDouble());
-    if ( lineEdit ) lineEdit->setCursorPosition(cPos);
-    lineEdit = float2Editor->doubleSpinBox1->findChild<QLineEdit *>();
-    if ( lineEdit ) cPos = lineEdit->cursorPosition();
-    float2Editor->doubleSpinBox1->setValue(subValues[1].toDouble());
-    if ( lineEdit ) lineEdit->setCursorPosition(cPos);
+    if ( subValues.count() > 0 ) {
+      QLineEdit *lineEdit = float2Editor->doubleSpinBox0->findChild<QLineEdit *>();
+      if ( lineEdit ) cPos = lineEdit->cursorPosition();
+      float2Editor->doubleSpinBox0->setValue(subValues[0].toDouble());
+      if ( lineEdit ) lineEdit->setCursorPosition(cPos);
+    }
+    if ( subValues.count() > 1 ) {
+      QLineEdit *lineEdit = float2Editor->doubleSpinBox1->findChild<QLineEdit *>();
+      if ( lineEdit ) cPos = lineEdit->cursorPosition();
+      float2Editor->doubleSpinBox1->setValue(subValues[1].toDouble());
+      if ( lineEdit ) lineEdit->setCursorPosition(cPos);
+    }
   } else if ( editor->accessibleName() == "float3Editor" ) {
     QString value = index.model()->data(index, Qt::EditRole).toString();
     FloatEditWidget *float3Editor = static_cast<FloatEditWidget *>(editor);
     QStringList subValues = value.split(",");
     int cPos = 0;
-    QLineEdit *lineEdit = float3Editor->doubleSpinBox0->findChild<QLineEdit *>();
-    if ( lineEdit ) cPos = lineEdit->cursorPosition();
-    float3Editor->doubleSpinBox0->setValue(subValues[0].toDouble());
-    if ( lineEdit ) lineEdit->setCursorPosition(cPos);
-    lineEdit = float3Editor->doubleSpinBox1->findChild<QLineEdit *>();
-    if ( lineEdit ) cPos = lineEdit->cursorPosition();
-    float3Editor->doubleSpinBox1->setValue(subValues[1].toDouble());
-    if ( lineEdit ) lineEdit->setCursorPosition(cPos);
-    lineEdit = float3Editor->doubleSpinBox1->findChild<QLineEdit *>();
-    if ( lineEdit ) cPos = lineEdit->cursorPosition();
-    float3Editor->doubleSpinBox2->setValue(subValues[2].toDouble());
-    if ( lineEdit ) lineEdit->setCursorPosition(cPos);
+    if ( subValues.count() > 0 ) {
+      QLineEdit *lineEdit = float3Editor->doubleSpinBox0->findChild<QLineEdit *>();
+      if ( lineEdit ) cPos = lineEdit->cursorPosition();
+      float3Editor->doubleSpinBox0->setValue(subValues[0].toDouble());
+      if ( lineEdit ) lineEdit->setCursorPosition(cPos);
+    }
+    if ( subValues.count() > 1 ) {
+      QLineEdit *lineEdit = float3Editor->doubleSpinBox1->findChild<QLineEdit *>();
+      if ( lineEdit ) cPos = lineEdit->cursorPosition();
+      float3Editor->doubleSpinBox1->setValue(subValues[1].toDouble());
+      if ( lineEdit ) lineEdit->setCursorPosition(cPos);
+    }
+    if ( subValues.count() > 2 ) {
+      QLineEdit *lineEdit = float3Editor->doubleSpinBox1->findChild<QLineEdit *>();
+      if ( lineEdit ) cPos = lineEdit->cursorPosition();
+      float3Editor->doubleSpinBox2->setValue(subValues[2].toDouble());
+      if ( lineEdit ) lineEdit->setCursorPosition(cPos);
+    }
   } else if ( editor->accessibleName() == "fileEditor" ) {
     QString value = index.model()->data(index, Qt::EditRole).toString();
     FileEditWidget *fileEditor = static_cast<FileEditWidget *>(editor);
