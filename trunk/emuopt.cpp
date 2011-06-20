@@ -374,7 +374,7 @@ EmulatorOptions::EmulatorOptions(QString group, QWidget *parent)
   : QTreeWidget(parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: EmulatorOptions::EmulatorOptions(QString group = \"" + group + "\", QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::EmulatorOptions(QString group = %1, QWidget *parent = %2").arg(group).arg((qulonglong)parent));
 #endif
 
   // initialize
