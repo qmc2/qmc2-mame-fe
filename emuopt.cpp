@@ -262,7 +262,7 @@ void EmulatorOptionDelegate::setEditorData(QWidget *editor, const QModelIndex &i
       if ( lineEdit ) lineEdit->setCursorPosition(cPos);
     }
     if ( subValues.count() > 2 ) {
-      QLineEdit *lineEdit = float3Editor->doubleSpinBox1->findChild<QLineEdit *>();
+      QLineEdit *lineEdit = float3Editor->doubleSpinBox2->findChild<QLineEdit *>();
       if ( lineEdit ) cPos = lineEdit->cursorPosition();
       float3Editor->doubleSpinBox2->setValue(subValues[2].toDouble());
       if ( lineEdit ) lineEdit->setCursorPosition(cPos);
@@ -374,6 +374,7 @@ void EmulatorOptionDelegate::updateEditorGeometry(QWidget *editor, const QStyleO
   if ( editor->accessibleName() == "fileEditor" ) {
     FileEditWidget *fileEditWidget = static_cast<FileEditWidget *>(editor);
     fileEditWidget->toolButtonBrowse->setIconSize(iconSize);
+    fileEditWidget->toolButtonClear->setIconSize(iconSize);
   } else if ( editor->accessibleName() == "directoryEditor" ) {
     DirectoryEditWidget *directoryEditor = static_cast<DirectoryEditWidget *>(editor);
     directoryEditor->toolButtonBrowse->setIconSize(iconSize);
