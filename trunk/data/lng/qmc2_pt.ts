@@ -11500,14 +11500,6 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <source>set rewriter: WARNING: failed to deflate &apos;%1&apos;</source>
         <translation>set rewriter: AVISO: falha ao desinflar &apos;%1&apos;</translation>
     </message>
-    <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="2452"/>
-        <source>checksum wizard: template data loaded, uncompressed size = %n byte(s)</source>
-        <translation>
-            <numerusform>checksum wizard: dados do modelo carregado, tamanho descomprimido = %n byte</numerusform>
-            <numerusform>checksum wizard: dados do modelo carregado, tamanho descomprimido = %n bytes</numerusform>
-        </translation>
-    </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2484"/>
         <source>Repairing set &apos;%1&apos; - %2</source>
@@ -12438,6 +12430,11 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romalyzer.cpp" line="2443"/>
         <source>checksum wizard: successfully identified &apos;%1&apos; from &apos;%2&apos; by CRC, filename in ZIP archive is &apos;%3&apos;</source>
         <translation>checksum wizard: &apos;%1&apos; de &apos;%2&apos; identificado com sucesso pelo CRC, nome do arquivo no pacote ZIP é &apos;%3&apos;</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="2452"/>
+        <source>checksum wizard: template data loaded, uncompressed size = %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2456"/>
