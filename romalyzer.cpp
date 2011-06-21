@@ -1131,6 +1131,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
               quint32 chdVersion = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_VERSION_OFFSET);
               log(tr("  version: %1").arg(chdVersion));
               myItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, tr("CHD v%1").arg(chdVersion));
+	      QLocale locale;
               switch ( chdVersion ) {
                 case 3: {
                   quint32 chdCompression = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_COMPRESSION_OFFSET);
@@ -1138,11 +1139,11 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                   quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
                   log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
                   chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_TOTALHUNKS_OFFSET);
-                  log(tr("  number of total hunks: %1").arg(chdTotalHunks));
+                  log(tr("  number of total hunks: %1").arg(locale.toString(chdTotalHunks)));
                   quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V3_HUNKBYTES_OFFSET);
-                  log(tr("  number of bytes per hunk: %1").arg(chdHunkBytes));
+                  log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
                   quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V3_LOGICALBYTES_OFFSET);
-                  log(tr("  logical size: %n byte(s) (%1)", "", chdLogicalBytes).arg(humanReadable(chdLogicalBytes)));
+                  log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
                   QByteArray md5Data((const char *)(buffer + QMC2_CHD_HEADER_V3_MD5_OFFSET), QMC2_CHD_HEADER_V3_MD5_LENGTH);
                   log(tr("  MD5 checksum: %1").arg(QString(md5Data.toHex())));
                   QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
@@ -1162,11 +1163,11 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                   quint32 chdFlags = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_FLAGS_OFFSET);
                   log(tr("  flags: %1, %2").arg(chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ? tr("has parent") : tr("no parent")).arg(chdFlags & QMC2_CHD_HEADER_FLAG_ALLOWSWRITES ? tr("allows writes") : tr("read only")));
                   chdTotalHunks = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_TOTALHUNKS_OFFSET);
-                  log(tr("  number of total hunks: %1").arg(chdTotalHunks));
+                  log(tr("  number of total hunks: %1").arg(locale.toString(chdTotalHunks)));
                   quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V4_HUNKBYTES_OFFSET);
-                  log(tr("  number of bytes per hunk: %1").arg(chdHunkBytes));
+                  log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
                   quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V4_LOGICALBYTES_OFFSET);
-                  log(tr("  logical size: %n byte(s) (%1)", "", chdLogicalBytes).arg(humanReadable(chdLogicalBytes)));
+                  log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
                   QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
                   log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
                   if ( chdFlags & QMC2_CHD_HEADER_FLAG_HASPARENT ) {
@@ -1662,31 +1663,32 @@ QString ROMAlyzer::humanReadable(quint64 value)
 
   static QString humanReadableString;
   static qreal humanReadableValue;
+  QLocale locale;
 
 #if __WORDSIZE == 64
   if ( (qreal)value / (qreal)QMC2_ONE_KILOBYTE < (qreal)QMC2_ONE_KILOBYTE ) {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_KILOBYTE;
-    humanReadableString = QString::number(humanReadableValue, 'f', 2) + QString(tr(" KB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" KB"));
   } else if ( (qreal)value / (qreal)QMC2_ONE_MEGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_MEGABYTE;
-    humanReadableString = QString::number(humanReadableValue, 'f', 2) + QString(tr(" MB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" MB"));
   } else if ( (qreal)value / (qreal)QMC2_ONE_GIGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_GIGABYTE;
-    humanReadableString = QString::number(humanReadableValue, 'f', 2) + QString(tr(" GB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" GB"));
   } else {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_TERABYTE;
-    humanReadableString = QString::number(humanReadableValue, 'f', 2) + QString(tr(" TB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" TB"));
   }
 #else
   if ( (qreal)value / (qreal)QMC2_ONE_KILOBYTE < (qreal)QMC2_ONE_KILOBYTE ) {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_KILOBYTE;
-    humanReadableString = QString::number(humanReadableValue, 'f', 2) + QString(tr(" KB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" KB"));
   } else if ( (qreal)value / (qreal)QMC2_ONE_MEGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_MEGABYTE;
-    humanReadableString = QString::number(humanReadableValue, 'f', 2) + QString(tr(" MB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" MB"));
   } else {
     humanReadableValue = (qreal)value / (qreal)QMC2_ONE_GIGABYTE;
-    humanReadableString = QString::number(humanReadableValue, 'f', 2) + QString(tr(" GB"));
+    humanReadableString = locale.toString(humanReadableValue, 'f', 2) + QString(tr(" GB"));
   }
 #endif
 

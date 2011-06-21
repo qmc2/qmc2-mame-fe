@@ -30,6 +30,7 @@ inf: informational only
   <li>fix: log file paths weren't correctly set up on the initial run, so logs were written only on subsequent runs</li>
   <li>fix: corrected a rather old bug within the game/machine-list cache creation code that could've led to rare (and hard to reproduce) crashes</li>
   <li>fix: ROM status exporter: CSV and HTML output formats didn't honor the specified ROM status filter</li>
+  <li>fix: ROMAlyzer: corrected (minor) overflow issues caused by using plural-translation with large unsigned numbers (Qt only supports this cleanly for signed integers)</li>
   <li>imp: SDLMAME/MAME/MAMEUIFX32 templates updated to 0.142u6 (new option <i>menu</i> for MAME, removed option <i>uimodekey</i> for MAME, changed default value of <i>audio_latency</i> for SDLMAME, added new options <i>use_cpanels</i>, <i>use_marquees</i> and <i>confirm_quit</i> for all, added many new HLSL options for MAME)</li>
   <li>imp: SDLMESS/MESS templates updated to 0.142u6 (changed default value of <i>audio_latency</i> for SDLMESS, added new options <i>use_cpanels</i>, <i>use_marquees</i> and <i>confirm_quit</i> for all, added many new HLSL options for MESS)</li>
   <li>imp: ghost image enhanced, including a derived 'no video' pendant</li>
@@ -44,6 +45,7 @@ inf: informational only
   <li>imp: the game/machine search function now also searches through the 'short names' (or game/machine IDs), so for instance entering 'snes' would also return valid results for MESS</li>
   <li>imp: variant launching now also works on Windows (it's assumed that the 'other' variant exe can be found in the same path as the currently running one)</li>
   <li>imp: MESS targets: device configurator: modified the extension filter to be case-insensitive when browsing for device files, added a 'clear' button to reset a device instance mapping and added a 'remove configuration' action to the context-menu for available device configurations</li>
+  <li>imp: ROMAlyzer: honor the system locale when logging CHD header information (logical size and other numbers)</li>
   <li>new: added command line option <i>-qmc2_config_path</i> to allow for overwriting the path where QMC2 stores its setup, caches etc. -- it's in the user's responsibility to copy/move the data to the desired directory (otherwise QMC2 will start over, which may be wanted behavior, though)</li>
   <li>new: support for game/machine <i>attached</i> YouTube videos (Phonon-based video player)</li>
   <li>new: added 4 new tool-functions to allow for forced removal of any game-/machine- and software-list related cache data stored on disk</li>
