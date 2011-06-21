@@ -117,7 +117,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
     }
 
     case QMC2_EMUOPT_TYPE_FLOAT2: {
-      FloatEditWidget *float2Editor = new FloatEditWidget(2, parent);
+      FloatEditWidget *float2Editor = new FloatEditWidget(2, ",", parent);
       float2Editor->doubleSpinBox0->setRange(_MIN, _MAX);
       float2Editor->doubleSpinBox0->setSingleStep(0.1);
       float2Editor->doubleSpinBox0->setDecimals(6);
@@ -134,7 +134,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
     }
 
     case QMC2_EMUOPT_TYPE_FLOAT3: {
-      FloatEditWidget *float3Editor = new FloatEditWidget(3, parent);
+      FloatEditWidget *float3Editor = new FloatEditWidget(3, ",", parent);
       float3Editor->doubleSpinBox0->setRange(_MIN, _MAX);
       float3Editor->doubleSpinBox0->setSingleStep(0.1);
       float3Editor->doubleSpinBox0->setDecimals(6);

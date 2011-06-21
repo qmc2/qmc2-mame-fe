@@ -10,7 +10,7 @@ class FloatEditWidget : public QWidget, public Ui::FloatEditWidget
 	public:
 		int numValues;
 
-		FloatEditWidget(int nValues = 3, QWidget *parent = 0);
+		FloatEditWidget(int nValues = 3, QString sep = ",", QWidget *parent = 0);
 		~FloatEditWidget();
 
 	public slots:
