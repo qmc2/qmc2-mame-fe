@@ -2449,7 +2449,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 									templateData += readData;
 								}
 								unzCloseCurrentFile(zipFile);
-								log(tr("checksum wizard: template data loaded, uncompressed size = %n byte(s)", "", templateData.length()));
+								log(tr("checksum wizard: template data loaded, uncompressed size = %1").arg(humanReadable(templateData.length())));
 							}
 						}
 					} else {

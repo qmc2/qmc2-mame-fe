@@ -12528,6 +12528,11 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <translation>asystent sum kontrolnych: pomyślnie zidentyfikowano &apos;%1&apos; z &apos;%2&apos; przy pomocy CRC, nazwa pliku w archiwum ZIP to &apos;%3&apos;</translation>
     </message>
     <message>
+        <location filename="../../romalyzer.cpp" line="2452"/>
+        <source>checksum wizard: template data loaded, uncompressed size = %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../romalyzer.cpp" line="2456"/>
         <source>checksum wizard: FATAL: unable to identify &apos;%1&apos; from &apos;%2&apos; by CRC</source>
         <translation>asystent sum kontrolnych: FATALNIE: nie udało się zidentyfikować &apos;%1&apos; z &apos;%2&apos; przy pomocy CRC</translation>
@@ -12619,15 +12624,6 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romalyzer.cpp" line="2375"/>
         <source>set rewriter: WARNING: failed to deflate &apos;%1&apos;</source>
         <translation>przepisywanie setów na nowo: UWAGA: nie udało się skompresować &apos;%1&apos;</translation>
-    </message>
-    <message numerus="yes">
-        <location filename="../../romalyzer.cpp" line="2452"/>
-        <source>checksum wizard: template data loaded, uncompressed size = %n byte(s)</source>
-        <translation>
-            <numerusform>asystent sum kontrolnych: wczytano dane szablonu, nieskompresowany rozmiar = %n bajt</numerusform>
-            <numerusform>asystent sum kontrolnych: wczytano dane szablonu, nieskompresowany rozmiar = %n bajty</numerusform>
-            <numerusform>asystent sum kontrolnych: wczytano dane szablonu, nieskompresowany rozmiar = %n bajtów</numerusform>
-        </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2601"/>
