@@ -298,6 +298,9 @@
 #define QMC2_EMUOPT_TYPE_FLOAT2		8
 #define QMC2_EMUOPT_TYPE_FLOAT3		9
 
+// default decimals for float values of emulator options
+#define QMC2_EMUOPT_DFLT_DECIMALS	6
+
 // standard sizes
 #define QMC2_ONE_KILOBYTE		1024
 #define QMC2_ONE_MEGABYTE		1048576

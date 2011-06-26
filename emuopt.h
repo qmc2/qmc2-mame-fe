@@ -40,12 +40,13 @@ class EmulatorOption
     QStringList choices;
     bool valid, visible;
     int type;
+    int decimals;
     QTreeWidgetItem *item;
 
     EmulatorOption() {
       valid = false;
     };
-    EmulatorOption(QString n, QString sn, QString t, QString dv, QString d, QString v, QTreeWidgetItem *i, bool va, QStringList c = QStringList(), bool vis = true) {
+    EmulatorOption(QString n, QString sn, QString t, QString dv, QString d, QString v, QTreeWidgetItem *i, bool va, int dec = QMC2_EMUOPT_DFLT_DECIMALS, QStringList c = QStringList(), bool vis = true) {
       name = n;
       shortname = sn;
       type = QMC2_EMUOPT_TYPE_UNKNOWN;
@@ -69,6 +70,7 @@ class EmulatorOption
       valid = va;
       choices = c;
       visible = vis;
+      decimals = dec;
     }
 };
 

@@ -1349,8 +1349,11 @@ void MainWindow::on_actionPlay_activated()
           double gv = qmc2Config->value(globalOptionKey, dv).toDouble();
           if ( !option.valid )
             v = gv;
-          if ( v != dv )
-            args << QString("-%1").arg(option.name) << QString("%1").arg(v);
+          if ( v != dv ) {
+            QString val;
+	    val.setNum(v, 'f', option.decimals);
+            args << QString("-%1").arg(option.name) << val;
+	  }
           break;
         }
 
