@@ -48,6 +48,7 @@ int EmulatorOptions::verticalScrollPosition = 0;
 
 QString optionDescription = "";
 int optionType = QMC2_EMUOPT_TYPE_UNKNOWN;
+int optionDecimals = QMC2_EMUOPT_DFLT_DECIMALS;
 QStringList optionChoices;
 EmulatorOptions *emulatorOptions = NULL;
 
@@ -107,7 +108,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
       QDoubleSpinBox *doubleSpinBoxEditor = new QDoubleSpinBox(parent);
       doubleSpinBoxEditor->setRange(_MIN, _MAX);
       doubleSpinBoxEditor->setSingleStep(0.1);
-      doubleSpinBoxEditor->setDecimals(6);
+      doubleSpinBoxEditor->setDecimals(optionDecimals);
       doubleSpinBoxEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
       doubleSpinBoxEditor->setAccessibleName("doubleSpinBoxEditor");
       if ( !optionDescription.isEmpty() )
@@ -120,10 +121,10 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
       FloatEditWidget *float2Editor = new FloatEditWidget(2, ",", parent);
       float2Editor->doubleSpinBox0->setRange(_MIN, _MAX);
       float2Editor->doubleSpinBox0->setSingleStep(0.1);
-      float2Editor->doubleSpinBox0->setDecimals(6);
+      float2Editor->doubleSpinBox0->setDecimals(optionDecimals);
       float2Editor->doubleSpinBox1->setRange(_MIN, _MAX);
       float2Editor->doubleSpinBox1->setSingleStep(0.1);
-      float2Editor->doubleSpinBox1->setDecimals(6);
+      float2Editor->doubleSpinBox1->setDecimals(optionDecimals);
       float2Editor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
       float2Editor->setAccessibleName("float2Editor");
       if ( !optionDescription.isEmpty() )
@@ -137,13 +138,13 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
       FloatEditWidget *float3Editor = new FloatEditWidget(3, ",", parent);
       float3Editor->doubleSpinBox0->setRange(_MIN, _MAX);
       float3Editor->doubleSpinBox0->setSingleStep(0.1);
-      float3Editor->doubleSpinBox0->setDecimals(6);
+      float3Editor->doubleSpinBox0->setDecimals(optionDecimals);
       float3Editor->doubleSpinBox1->setRange(_MIN, _MAX);
       float3Editor->doubleSpinBox1->setSingleStep(0.1);
-      float3Editor->doubleSpinBox1->setDecimals(6);
+      float3Editor->doubleSpinBox1->setDecimals(optionDecimals);
       float3Editor->doubleSpinBox2->setRange(_MIN, _MAX);
       float3Editor->doubleSpinBox2->setSingleStep(0.1);
-      float3Editor->doubleSpinBox2->setDecimals(6);
+      float3Editor->doubleSpinBox2->setDecimals(optionDecimals);
       float3Editor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
       float3Editor->setAccessibleName("float3Editor");
       if ( !optionDescription.isEmpty() )
@@ -503,6 +504,7 @@ void EmulatorOptions::load(bool overwrite)
 
         case QMC2_EMUOPT_TYPE_FLOAT: {
           optionType = QMC2_EMUOPT_TYPE_FLOAT;
+	  optionDecimals = option.decimals;
           optionChoices.clear();
           double v;
           if ( qmc2GlobalEmulatorOptions != this ) {
@@ -514,7 +516,7 @@ void EmulatorOptions::load(bool overwrite)
             v = qmc2Config->value(option.name, option.dvalue.toDouble()).toDouble(&ok);
           if ( ok ) {
             optionsMap[sectionTitle][i].item->setData(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole, v);
-            optionsMap[sectionTitle][i].value.sprintf("%.6f", v);
+            optionsMap[sectionTitle][i].value.setNum(v, 'f', option.decimals);
             optionsMap[sectionTitle][i].valid = true;
           }
           break;
@@ -522,6 +524,7 @@ void EmulatorOptions::load(bool overwrite)
 
         case QMC2_EMUOPT_TYPE_FLOAT2: {
           optionType = QMC2_EMUOPT_TYPE_FLOAT2;
+	  optionDecimals = option.decimals;
           optionChoices.clear();
           QString v;
           if ( qmc2GlobalEmulatorOptions != this ) {
@@ -539,6 +542,7 @@ void EmulatorOptions::load(bool overwrite)
 
         case QMC2_EMUOPT_TYPE_FLOAT3: {
           optionType = QMC2_EMUOPT_TYPE_FLOAT3;
+	  optionDecimals = option.decimals;
           optionChoices.clear();
           QString v;
           if ( qmc2GlobalEmulatorOptions != this ) {
@@ -662,7 +666,7 @@ void EmulatorOptions::save()
         case QMC2_EMUOPT_TYPE_FLOAT: {
           double v = optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toDouble();
           double gv = qmc2GlobalEmulatorOptions->optionsMap[sectionTitle][i].item->data(QMC2_EMUOPT_COLUMN_VALUE, Qt::EditRole).toDouble();
-          vs.sprintf("%.6f", v);
+          vs.setNum(v, 'f', optionsMap[sectionTitle][i].decimals);
           if ( qmc2GlobalEmulatorOptions == this ) {
             if ( v != optionsMap[sectionTitle][i].dvalue.toDouble() ) {
               optionsMap[sectionTitle][i].value = vs;
@@ -796,6 +800,7 @@ void EmulatorOptions::createMap()
       optionsMap[sectionTitle][i].item = optionItem;
       optionItem->setText(0, emulatorOption.name);
       optionType = emulatorOption.type;
+      optionDecimals = emulatorOption.decimals;
       QTreeWidgetItem *childItem;
       childItem = new QTreeWidgetItem(optionItem);
       childItem->setText(0, tr("Type"));
@@ -1000,10 +1005,13 @@ void EmulatorOptions::createTemplateMap()
           } else if ( elementType == "option" ) {
             bool ignore = false;
 	    bool visible = true;
+	    int decimals = QMC2_EMUOPT_DFLT_DECIMALS;
 	    if ( attributes.hasAttribute("ignore") )
               ignore = attributes.value("ignore") == "true";
             if ( attributes.hasAttribute("visible") )
               visible = attributes.value("visible") == "true";
+            if ( attributes.hasAttribute("decimals") )
+              decimals = attributes.value("decimals").toString().toInt();
             if ( attributes.hasAttribute(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))) )
               ignore = attributes.value(QString("ignore.%1").arg(XSTR(BUILD_OS_NAME))) == "true";
             if ( !ignore ) {
@@ -1017,7 +1025,7 @@ void EmulatorOptions::createTemplateMap()
 	      optionChoices.clear();
               if ( type == "combo" && xmlReader.name().toString() == "choice" )
                 optionChoices = readChoices(&xmlReader);
-              templateMap[sectionTitle].append(EmulatorOption(name, "", type, defaultValue, optionDescription, QString::null, NULL, false, optionChoices, visible));
+              templateMap[sectionTitle].append(EmulatorOption(name, "", type, defaultValue, optionDescription, QString::null, NULL, false, decimals, optionChoices, visible));
 #ifdef QMC2_DEBUG
               qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: elementType = [%1], name = [%2], type = [%3], default = [%4], description = [%5]").
                                   arg(elementType).arg(name).arg(type).arg(defaultValue).arg(optionDescription));
