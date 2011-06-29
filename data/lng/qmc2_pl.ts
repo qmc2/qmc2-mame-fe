@@ -2164,12 +2164,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="816"/>
         <source>float2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="820"/>
         <source>float3</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="832"/>
@@ -7430,8 +7430,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -12286,7 +12284,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romalyzer.cpp" line="1146"/>
         <location filename="../../romalyzer.cpp" line="1170"/>
         <source>  logical size: %1 (%2 B)</source>
-        <translation type="unfinished"></translation>
+        <translation>  rozmiar logiczny: %1 (%2 B)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1207"/>
@@ -12530,7 +12528,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="2452"/>
         <source>checksum wizard: template data loaded, uncompressed size = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>asystent sum kontrolnych: wczytano dane szablonu, nieskompresowany rozmiar = %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2456"/>
