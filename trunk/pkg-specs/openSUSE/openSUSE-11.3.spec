@@ -11,6 +11,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  libqt4-devel
 BuildRequires:  libkde4-devel
+BuildRequires:  libqt4-x11
 BuildRequires:  SDL-devel
 BuildRequires:  make
 BuildRequires:  gcc
