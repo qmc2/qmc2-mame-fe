@@ -2168,12 +2168,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="816"/>
         <source>float2</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="820"/>
         <source>float3</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="824"/>
@@ -11569,7 +11569,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romalyzer.cpp" line="1146"/>
         <location filename="../../romalyzer.cpp" line="1170"/>
         <source>  logical size: %1 (%2 B)</source>
-        <translation type="unfinished"></translation>
+        <translation>  tamanho lógico: %1 (%2 B)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1482"/>
@@ -12434,7 +12434,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="2452"/>
         <source>checksum wizard: template data loaded, uncompressed size = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: modelo de dados carregado, tamanho não comprimido = %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2456"/>
