@@ -9,6 +9,7 @@ Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
 
 BuildRequires:  libqt4-devel
 BuildRequires:  libkde4-devel
+BuildRequires:  libqt4-x11
 BuildRequires:  SDL-devel
 BuildRequires:  make
 BuildRequires:  gcc
