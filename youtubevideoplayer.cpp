@@ -199,14 +199,14 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	connect(action, SIGNAL(triggered()), this, SLOT(copySearchAuthorUrl()));
 
 	menuSuggestButton = new QMenu(0);
-	s = tr("Auto-suggest");
-	action = menuSuggestButton->addAction(s);
+	s = tr("Auto-suggest a search pattern?");
+	action = menuSuggestButton->addAction(tr("Auto-suggest"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setCheckable(true);
 	action->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/AutoSuggest", true).toBool());
 	autoSuggestAction = action;
-	s = tr("Append...");
-	action = menuSuggestButton->addAction(s);
+	s = tr("Enter string to be appended");
+	action = menuSuggestButton->addAction(tr("Append..."));
 	action->setToolTip(s); action->setStatusTip(s);
 	connect(action, SIGNAL(triggered()), this, SLOT(setSuggestorAppendString()));
 	toolButtonSuggest->setMenu(menuSuggestButton);
