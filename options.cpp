@@ -191,14 +191,11 @@ Options::Options(QWidget *parent)
 #if defined(QMC2_EMUTYPE_MESS)
   toolButtonBrowseEmuInfoDB->setVisible(false);
   checkBoxProcessEmuInfoDB->setVisible(false);
-  checkBoxCompressEmuInfoDB->setVisible(false);
+  toolButtonCompressEmuInfoDB->setVisible(false);
   lineEditEmuInfoDB->setVisible(false);
-  labelEmuInfoDB->setVisible(false);
-  labelEmuInfoDBPic->setVisible(false);
-  labelGameInfoDB->setText(tr("Machine info DB"));
-  checkBoxProcessGameInfoDB->setText(tr("Load machine info DB"));
+  checkBoxProcessGameInfoDB->setText(tr("Machine info DB"));
   checkBoxProcessGameInfoDB->setToolTip(tr("Load machine information database (MESS sysinfo.dat)"));
-  checkBoxCompressGameInfoDB->setToolTip(tr("Use in-memory compression for machine info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)"));
+  toolButtonCompressGameInfoDB->setToolTip(tr("Use in-memory compression for machine info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)"));
   lineEditGameInfoDB->setToolTip(tr("Machine information database - MESS sysinfo.dat (read)"));
   toolButtonBrowseGameInfoDB->setToolTip(tr("Browse machine information database (MESS sysinfo.dat)"));
   tabWidgetFrontendSettings->setTabText(QMC2_OPTIONS_FE_MACHINELIST_INDEX, tr("Machine &list"));
@@ -493,16 +490,14 @@ void Options::apply()
   toolButtonBrowseAdditionalEmulatorExecutable->setIconSize(iconSize);
   toolButtonBrowseAdditionalEmulatorWorkingDirectory->setIconSize(iconSize);
   checkBoxProcessEmuInfoDB->setIconSize(iconSize);
-  checkBoxCompressEmuInfoDB->setIconSize(iconSize);
+  toolButtonCompressEmuInfoDB->setIconSize(iconSize);
   checkBoxProcessGameInfoDB->setIconSize(iconSize);
-  checkBoxCompressGameInfoDB->setIconSize(iconSize);
+  toolButtonCompressGameInfoDB->setIconSize(iconSize);
   QPixmap exitPixmap = QPixmap(QString::fromUtf8(":/data/img/exit.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
   QPixmap reloadPixmap = QPixmap(QString::fromUtf8(":/data/img/reload.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
   labelLanguagePic->setPixmap(exitPixmap);
   labelLegend1Pic->setPixmap(exitPixmap);
   labelLegend2Pic->setPixmap(reloadPixmap);
-  labelGameInfoDBPic->setPixmap(reloadPixmap);
-  labelEmuInfoDBPic->setPixmap(reloadPixmap);
   labelLegend3Pic->setPixmap(reloadPixmap);
   labelExecutableFilePic->setPixmap(reloadPixmap);
   labelLegend4Pic->setPixmap(reloadPixmap);
@@ -524,10 +519,10 @@ void Options::apply()
     if ( tabBar ) tabBar->setIconSize(iconSize);
   }
   checkBoxProcessGameInfoDB->setIconSize(iconSize);
-  checkBoxCompressGameInfoDB->setIconSize(iconSize);
+  toolButtonCompressGameInfoDB->setIconSize(iconSize);
 #if defined(QMC2_EMUTYPE_MAME)
   checkBoxProcessEmuInfoDB->setIconSize(iconSize);
-  checkBoxCompressEmuInfoDB->setIconSize(iconSize);
+  toolButtonCompressEmuInfoDB->setIconSize(iconSize);
   if ( qmc2MAWSLookup ) {
     qmc2MAWSLookup->toolButtonBack->setIconSize(iconSize);
     qmc2MAWSLookup->toolButtonForward->setIconSize(iconSize);
@@ -707,19 +702,19 @@ void Options::on_pushButtonApply_clicked()
   needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool() != b);
   bool invalidateGameInfoDB = (config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB").toBool() != b);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB", checkBoxProcessGameInfoDB->isChecked());
-  b = checkBoxCompressGameInfoDB->isChecked();
+  b = toolButtonCompressGameInfoDB->isChecked();
   needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() != b);
   invalidateGameInfoDB |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() != b);
-  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB", checkBoxCompressGameInfoDB->isChecked());
+  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB", toolButtonCompressGameInfoDB->isChecked());
 #if defined(QMC2_EMUTYPE_MAME)
   b = checkBoxProcessEmuInfoDB->isChecked();
   needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() != b);
   bool invalidateEmuInfoDB = (config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() != b);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB", checkBoxProcessEmuInfoDB->isChecked());
-  b = checkBoxCompressEmuInfoDB->isChecked();
+  b = toolButtonCompressEmuInfoDB->isChecked();
   needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool() != b);
   invalidateEmuInfoDB |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool() != b);
-  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB", checkBoxCompressEmuInfoDB->isChecked());
+  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB", toolButtonCompressEmuInfoDB->isChecked());
 #endif
   qmc2ScaledPreview = checkBoxScaledPreview->isChecked();
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ScaledPreview", qmc2ScaledPreview);
@@ -1716,10 +1711,10 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxStandardColorPalette->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/StandardColorPalette", true).toBool());
   checkBoxProgressTexts->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts", false).toBool());
   checkBoxProcessGameInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB", true).toBool());
-  checkBoxCompressGameInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB", false).toBool());
+  toolButtonCompressGameInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB", false).toBool());
 #if defined(QMC2_EMUTYPE_MAME)
   checkBoxProcessEmuInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB", true).toBool());
-  checkBoxCompressEmuInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB", false).toBool());
+  toolButtonCompressEmuInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB", false).toBool());
 #endif
   qmc2ScaledPreview = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledPreview", true).toBool();
   checkBoxScaledPreview->setChecked(qmc2ScaledPreview);
