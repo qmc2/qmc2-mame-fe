@@ -324,7 +324,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="21" column="0" colspan="3">
+                 <item row="21" column="0" colspan="7">
                   <layout class="QHBoxLayout" name="layout3">
                    <item>
                     <widget class="QLabel" name="labelLegend1Pic">
@@ -355,42 +355,6 @@
                      </property>
                      <property name="text">
                       <string>restart required</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item row="21" column="3" colspan="4">
-                  <layout class="QHBoxLayout" name="layout2">
-                   <item>
-                    <widget class="QLabel" name="labelLegend2Pic">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>Option requires a reload of the gamelist to take effect</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="pixmap">
-                      <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
-                     </property>
-                     <property name="scaledContents">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="labelLegendFrontendGUI">
-                     <property name="toolTip">
-                      <string>Option requires a reload of the entire game list to take effect</string>
-                     </property>
-                     <property name="text">
-                      <string>reload required</string>
                      </property>
                     </widget>
                    </item>
@@ -787,8 +751,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>421</width>
-                <height>529</height>
+                <width>205</width>
+                <height>526</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2165,7 +2129,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>430</width>
-                <height>220</height>
+                <height>217</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3717,7 +3681,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>179</width>
-                <height>322</height>
+                <height>319</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">

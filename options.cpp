@@ -221,7 +221,6 @@ Options::Options(QWidget *parent)
   checkBoxUseCatverIni->setVisible(false);
   lineEditCatverIniFile->setVisible(false);
   toolButtonBrowseCatverIniFile->setVisible(false);
-  labelLegendFrontendGUI->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   labelLegendFrontendFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   labelLegendEmulatorFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   checkBoxHideWhileLoading->setToolTip(tr("Hide primary machine list while loading (recommended, much faster)"));
@@ -497,7 +496,6 @@ void Options::apply()
   QPixmap reloadPixmap = QPixmap(QString::fromUtf8(":/data/img/reload.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
   labelLanguagePic->setPixmap(exitPixmap);
   labelLegend1Pic->setPixmap(exitPixmap);
-  labelLegend2Pic->setPixmap(reloadPixmap);
   labelLegend3Pic->setPixmap(reloadPixmap);
   labelExecutableFilePic->setPixmap(reloadPixmap);
   labelLegend4Pic->setPixmap(reloadPixmap);
