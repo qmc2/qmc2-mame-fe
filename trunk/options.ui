@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>492</width>
+    <width>470</width>
     <height>421</height>
    </rect>
   </property>
@@ -58,7 +58,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>446</width>
-                <height>597</height>
+                <height>547</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -324,69 +324,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="20" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxProcessEmuInfoDB">
-                   <property name="toolTip">
-                    <string>Load emulator information database (mameinfo.dat)</string>
-                   </property>
-                   <property name="text">
-                    <string>Load emu info DB</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/reload_small.png</normaloff>:/data/img/reload_small.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="20" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxCompressEmuInfoDB">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="toolTip">
-                    <string>Use in-memory compression for emulator info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</string>
-                   </property>
-                   <property name="text">
-                    <string>Compress data</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/reload_small.png</normaloff>:/data/img/reload_small.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="21" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxProcessGameInfoDB">
-                   <property name="toolTip">
-                    <string>Load game information database (MAME history.dat)</string>
-                   </property>
-                   <property name="text">
-                    <string>Load game info DB</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/reload_small.png</normaloff>:/data/img/reload_small.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="21" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxCompressGameInfoDB">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                   <property name="toolTip">
-                    <string>Use in-memory compression for game info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</string>
-                   </property>
-                   <property name="text">
-                    <string>Compress data</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/reload_small.png</normaloff>:/data/img/reload_small.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="23" column="0" colspan="3">
                   <layout class="QHBoxLayout" name="layout3">
                    <item>
                     <widget class="QLabel" name="labelLegend1Pic">
@@ -422,7 +360,7 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="23" column="3" colspan="4">
+                 <item row="21" column="3" colspan="4">
                   <layout class="QHBoxLayout" name="layout2">
                    <item>
                     <widget class="QLabel" name="labelLegend2Pic">
@@ -511,7 +449,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="22" column="0" colspan="7">
+                 <item row="20" column="0" colspan="7">
                   <spacer name="spacer4">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -849,8 +787,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>442</width>
-                <height>525</height>
+                <width>421</width>
+                <height>529</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -1041,36 +979,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="0">
-                  <layout class="QHBoxLayout" name="layout7">
-                   <item>
-                    <widget class="QLabel" name="labelGameInfoDBPic">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="pixmap">
-                      <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
-                     </property>
-                     <property name="scaledContents">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="labelGameInfoDB">
-                     <property name="text">
-                      <string>Game info DB</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
                  <item row="5" column="1">
                   <widget class="QLineEdit" name="lineEditGameInfoDB">
                    <property name="sizePolicy">
@@ -1101,36 +1009,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="0">
-                  <layout class="QHBoxLayout" name="layout6">
-                   <item>
-                    <widget class="QLabel" name="labelEmuInfoDBPic">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="pixmap">
-                      <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
-                     </property>
-                     <property name="scaledContents">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="labelEmuInfoDB">
-                     <property name="text">
-                      <string>Emu info DB</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
                  <item row="6" column="1">
                   <widget class="QLineEdit" name="lineEditEmuInfoDB">
                    <property name="sizePolicy">
@@ -1154,6 +1032,50 @@
                    </property>
                    <property name="toolTip">
                     <string>Browse emulator information database (mameinfo.dat)</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="0">
+                  <widget class="QCheckBox" name="checkBoxUseCatverIni">
+                   <property name="toolTip">
+                    <string>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</string>
+                   </property>
+                   <property name="text">
+                    <string>Use catver.ini</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="1">
+                  <widget class="QLineEdit" name="lineEditCatverIniFile">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Path to catver.ini (read)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="2">
+                  <widget class="QToolButton" name="toolButtonBrowseCatverIniFile">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse path to catver.ini</string>
                    </property>
                    <property name="icon">
                     <iconset resource="qmc2.qrc">
@@ -1470,54 +1392,21 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="17" column="0" colspan="3">
-                  <spacer name="spacer5">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
+                 <item row="11" column="0">
+                  <widget class="QRadioButton" name="radioButtonCabinetSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying a cabinet directory or a ZIP-compressed cabinet file</string>
                    </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>20</height>
-                    </size>
+                   <property name="text">
+                    <string>Cabinet directory</string>
                    </property>
-                  </spacer>
-                 </item>
-                 <item row="18" column="0" colspan="3">
-                  <layout class="QHBoxLayout" name="layout8">
-                   <item>
-                    <widget class="QLabel" name="labelLegend3Pic">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>Option requires a reload of the gamelist to take effect</string>
-                     </property>
-                     <property name="text">
-                      <string/>
-                     </property>
-                     <property name="pixmap">
-                      <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
-                     </property>
-                     <property name="scaledContents">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="labelLegendFrontendFilesAndDirectories">
-                     <property name="toolTip">
-                      <string>Option requires a reload of the entire game list to take effect</string>
-                     </property>
-                     <property name="text">
-                      <string>reload required</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
                  </item>
                  <item row="11" column="1" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetCabinet">
@@ -1606,13 +1495,13 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="11" column="0">
-                  <widget class="QRadioButton" name="radioButtonCabinetSelect">
+                 <item row="12" column="0">
+                  <widget class="QRadioButton" name="radioButtonControllerSelect">
                    <property name="toolTip">
-                    <string>Switch between specifying a cabinet directory or a ZIP-compressed cabinet file</string>
+                    <string>Switch between specifying a controller directory or a ZIP-compressed controller file</string>
                    </property>
                    <property name="text">
-                    <string>Cabinet directory</string>
+                    <string>Controller directory</string>
                    </property>
                    <property name="checkable">
                     <bool>false</bool>
@@ -1709,13 +1598,13 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="12" column="0">
-                  <widget class="QRadioButton" name="radioButtonControllerSelect">
+                 <item row="13" column="0">
+                  <widget class="QRadioButton" name="radioButtonMarqueeSelect">
                    <property name="toolTip">
-                    <string>Switch between specifying a controller directory or a ZIP-compressed controller file</string>
+                    <string>Switch between specifying a marquee directory or a ZIP-compressed marquee file</string>
                    </property>
                    <property name="text">
-                    <string>Controller directory</string>
+                    <string>Marquee directory</string>
                    </property>
                    <property name="checkable">
                     <bool>false</bool>
@@ -1812,13 +1701,13 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="13" column="0">
-                  <widget class="QRadioButton" name="radioButtonMarqueeSelect">
+                 <item row="14" column="0">
+                  <widget class="QRadioButton" name="radioButtonTitleSelect">
                    <property name="toolTip">
-                    <string>Switch between specifying a marquee directory or a ZIP-compressed marquee file</string>
+                    <string>Switch between specifying a title directory or a ZIP-compressed title file</string>
                    </property>
                    <property name="text">
-                    <string>Marquee directory</string>
+                    <string>Title directory</string>
                    </property>
                    <property name="checkable">
                     <bool>false</bool>
@@ -1913,22 +1802,6 @@
                      </item>
                     </layout>
                    </widget>
-                  </widget>
-                 </item>
-                 <item row="14" column="0">
-                  <widget class="QRadioButton" name="radioButtonTitleSelect">
-                   <property name="toolTip">
-                    <string>Switch between specifying a title directory or a ZIP-compressed title file</string>
-                   </property>
-                   <property name="text">
-                    <string>Title directory</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <property name="autoExclusive">
-                    <bool>false</bool>
-                   </property>
                   </widget>
                  </item>
                  <item row="15" column="0">
@@ -2034,50 +1907,6 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="7" column="0">
-                  <widget class="QCheckBox" name="checkBoxUseCatverIni">
-                   <property name="toolTip">
-                    <string>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</string>
-                   </property>
-                   <property name="text">
-                    <string>Use catver.ini</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="7" column="1">
-                  <widget class="QLineEdit" name="lineEditCatverIniFile">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Path to catver.ini (read)</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="7" column="2">
-                  <widget class="QToolButton" name="toolButtonBrowseCatverIniFile">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Browse path to catver.ini</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="16" column="0">
                   <widget class="QRadioButton" name="radioButtonSoftwareSnapSelect">
                    <property name="toolTip">
@@ -2181,6 +2010,131 @@
                    </widget>
                   </widget>
                  </item>
+                 <item row="17" column="0" colspan="3">
+                  <spacer name="spacer5">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="18" column="0" colspan="3">
+                  <layout class="QHBoxLayout" name="layout8">
+                   <item>
+                    <widget class="QLabel" name="labelLegend3Pic">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>Option requires a reload of the gamelist to take effect</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="pixmap">
+                      <pixmap resource="qmc2.qrc">:/data/img/reload_small.png</pixmap>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="labelLegendFrontendFilesAndDirectories">
+                     <property name="toolTip">
+                      <string>Option requires a reload of the entire game list to take effect</string>
+                     </property>
+                     <property name="text">
+                      <string>reload required</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="5" column="0">
+                  <layout class="QHBoxLayout" name="horizontalLayout">
+                   <item>
+                    <widget class="QCheckBox" name="checkBoxProcessEmuInfoDB">
+                     <property name="toolTip">
+                      <string>Load emulator information database (mameinfo.dat)</string>
+                     </property>
+                     <property name="text">
+                      <string>Emu info DB</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="qmc2.qrc">
+                       <normaloff>:/data/img/reload_small.png</normaloff>:/data/img/reload_small.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QToolButton" name="toolButtonCompressEmuInfoDB">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>Use in-memory compression for emulator info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="qmc2.qrc">
+                       <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="6" column="0">
+                  <layout class="QHBoxLayout" name="horizontalLayout_2">
+                   <item>
+                    <widget class="QCheckBox" name="checkBoxProcessGameInfoDB">
+                     <property name="toolTip">
+                      <string>Load game information database (MAME history.dat)</string>
+                     </property>
+                     <property name="text">
+                      <string>Game info DB</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="qmc2.qrc">
+                       <normaloff>:/data/img/reload_small.png</normaloff>:/data/img/reload_small.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QToolButton" name="toolButtonCompressGameInfoDB">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>Use in-memory compression for game info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="qmc2.qrc">
+                       <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -2210,8 +2164,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>460</width>
-                <height>318</height>
+                <width>430</width>
+                <height>220</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2789,8 +2743,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>460</width>
-                <height>318</height>
+                <width>252</width>
+                <height>39</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2902,8 +2856,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>460</width>
-                <height>318</height>
+                <width>332</width>
+                <height>227</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3359,7 +3313,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>443</width>
+                <width>341</width>
                 <height>432</height>
                </rect>
               </property>
@@ -3762,7 +3716,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>443</width>
+                <width>179</width>
                 <height>322</height>
                </rect>
               </property>
@@ -4596,10 +4550,6 @@
   <tabstop>checkBoxGameStatusIndicatorOnlyWhenRequired</tabstop>
   <tabstop>checkBoxShowGameName</tabstop>
   <tabstop>checkBoxShowGameNameOnlyWhenRequired</tabstop>
-  <tabstop>checkBoxProcessEmuInfoDB</tabstop>
-  <tabstop>checkBoxCompressEmuInfoDB</tabstop>
-  <tabstop>checkBoxProcessGameInfoDB</tabstop>
-  <tabstop>checkBoxCompressGameInfoDB</tabstop>
   <tabstop>lineEditTemporaryFile</tabstop>
   <tabstop>toolButtonBrowseTemporaryFile</tabstop>
   <tabstop>lineEditFrontendLogFile</tabstop>
@@ -4610,8 +4560,12 @@
   <tabstop>toolButtonBrowseHistoryFile</tabstop>
   <tabstop>lineEditDataDirectory</tabstop>
   <tabstop>toolButtonBrowseDataDirectory</tabstop>
+  <tabstop>checkBoxProcessEmuInfoDB</tabstop>
+  <tabstop>toolButtonCompressEmuInfoDB</tabstop>
   <tabstop>lineEditGameInfoDB</tabstop>
   <tabstop>toolButtonBrowseGameInfoDB</tabstop>
+  <tabstop>checkBoxProcessGameInfoDB</tabstop>
+  <tabstop>toolButtonCompressGameInfoDB</tabstop>
   <tabstop>lineEditEmuInfoDB</tabstop>
   <tabstop>toolButtonBrowseEmuInfoDB</tabstop>
   <tabstop>checkBoxUseCatverIni</tabstop>
@@ -4767,8 +4721,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>470</x>
-     <y>561</y>
+     <x>566</x>
+     <y>751</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
@@ -4783,8 +4737,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>556</x>
-     <y>561</y>
+     <x>629</x>
+     <y>751</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -4799,12 +4753,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>109</x>
-     <y>86</y>
+     <x>119</x>
+     <y>81</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1637</x>
-     <y>89</y>
+     <x>613</x>
+     <y>83</y>
     </hint>
    </hints>
   </connection>
@@ -4815,8 +4769,8 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>81</x>
-     <y>86</y>
+     <x>91</x>
+     <y>81</y>
     </hint>
     <hint type="destinationlabel">
      <x>130</x>
@@ -4831,8 +4785,8 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>67</x>
-     <y>86</y>
+     <x>77</x>
+     <y>81</y>
     </hint>
     <hint type="destinationlabel">
      <x>130</x>
@@ -4847,12 +4801,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>123</x>
-     <y>86</y>
+     <x>133</x>
+     <y>81</y>
     </hint>
     <hint type="destinationlabel">
-     <x>99</x>
-     <y>120</y>
+     <x>89</x>
+     <y>109</y>
     </hint>
    </hints>
   </connection>
@@ -4863,44 +4817,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>145</x>
-     <y>201</y>
+     <x>136</x>
+     <y>191</y>
     </hint>
     <hint type="destinationlabel">
-     <x>217</x>
-     <y>203</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBoxProcessGameInfoDB</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>checkBoxCompressGameInfoDB</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>183</x>
-     <y>639</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>523</x>
-     <y>639</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBoxProcessEmuInfoDB</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>checkBoxCompressEmuInfoDB</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
      <x>199</x>
-     <y>613</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>523</x>
-     <y>613</y>
+     <y>192</y>
     </hint>
    </hints>
   </connection>
@@ -4911,12 +4833,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>167</x>
-     <y>562</y>
+     <x>177</x>
+     <y>544</y>
     </hint>
     <hint type="destinationlabel">
-     <x>523</x>
-     <y>562</y>
+     <x>613</x>
+     <y>544</y>
     </hint>
    </hints>
   </connection>
@@ -4927,12 +4849,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>176</x>
-     <y>587</y>
+     <x>186</x>
+     <y>569</y>
     </hint>
     <hint type="destinationlabel">
-     <x>523</x>
-     <y>587</y>
+     <x>613</x>
+     <y>569</y>
     </hint>
    </hints>
   </connection>
@@ -4943,12 +4865,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>156</x>
-     <y>437</y>
+     <x>166</x>
+     <y>419</y>
     </hint>
     <hint type="destinationlabel">
-     <x>523</x>
-     <y>437</y>
+     <x>613</x>
+     <y>419</y>
     </hint>
    </hints>
   </connection>
@@ -4959,12 +4881,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>523</x>
-     <y>437</y>
+     <x>613</x>
+     <y>419</y>
     </hint>
     <hint type="destinationlabel">
-     <x>229</x>
-     <y>437</y>
+     <x>239</x>
+     <y>419</y>
     </hint>
    </hints>
   </connection>

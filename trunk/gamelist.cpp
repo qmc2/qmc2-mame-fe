@@ -192,8 +192,12 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowsePreviewFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseDataDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseGameInfoDB->setEnabled(enable);
+  qmc2Options->toolButtonCompressGameInfoDB->setEnabled(enable);
+  qmc2Options->checkBoxProcessGameInfoDB->setEnabled(enable);
 #if defined(QMC2_EMUTYPE_MAME)
   qmc2Options->toolButtonBrowseEmuInfoDB->setEnabled(enable);
+  qmc2Options->toolButtonCompressEmuInfoDB->setEnabled(enable);
+  qmc2Options->checkBoxProcessEmuInfoDB->setEnabled(enable);
   qmc2Options->toolButtonBrowseMAWSCacheDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseCatverIniFile->setEnabled(enable);
   qmc2Options->checkBoxUseCatverIni->setEnabled(enable);
