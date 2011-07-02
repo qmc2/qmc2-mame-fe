@@ -2060,44 +2060,6 @@
                   </layout>
                  </item>
                  <item row="5" column="0">
-                  <layout class="QHBoxLayout" name="horizontalLayout">
-                   <item>
-                    <widget class="QCheckBox" name="checkBoxProcessEmuInfoDB">
-                     <property name="toolTip">
-                      <string>Load emulator information database (mameinfo.dat)</string>
-                     </property>
-                     <property name="text">
-                      <string>Emu info DB</string>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="qmc2.qrc">
-                       <normaloff>:/data/img/reload_small.png</normaloff>:/data/img/reload_small.png</iconset>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QToolButton" name="toolButtonCompressEmuInfoDB">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="toolTip">
-                      <string>Use in-memory compression for emulator info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</string>
-                     </property>
-                     <property name="icon">
-                      <iconset resource="qmc2.qrc">
-                       <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
-                     </property>
-                     <property name="checkable">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item row="6" column="0">
                   <layout class="QHBoxLayout" name="horizontalLayout_2">
                    <item>
                     <widget class="QCheckBox" name="checkBoxProcessGameInfoDB">
@@ -2123,6 +2085,44 @@
                      </property>
                      <property name="toolTip">
                       <string>Use in-memory compression for game info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="qmc2.qrc">
+                       <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="6" column="0">
+                  <layout class="QHBoxLayout" name="horizontalLayout">
+                   <item>
+                    <widget class="QCheckBox" name="checkBoxProcessEmuInfoDB">
+                     <property name="toolTip">
+                      <string>Load emulator information database (mameinfo.dat)</string>
+                     </property>
+                     <property name="text">
+                      <string>Emu info DB</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="qmc2.qrc">
+                       <normaloff>:/data/img/reload_small.png</normaloff>:/data/img/reload_small.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QToolButton" name="toolButtonCompressEmuInfoDB">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>Use in-memory compression for emulator info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</string>
                      </property>
                      <property name="icon">
                       <iconset resource="qmc2.qrc">
@@ -4560,12 +4560,12 @@
   <tabstop>toolButtonBrowseHistoryFile</tabstop>
   <tabstop>lineEditDataDirectory</tabstop>
   <tabstop>toolButtonBrowseDataDirectory</tabstop>
-  <tabstop>checkBoxProcessEmuInfoDB</tabstop>
-  <tabstop>toolButtonCompressEmuInfoDB</tabstop>
-  <tabstop>lineEditGameInfoDB</tabstop>
-  <tabstop>toolButtonBrowseGameInfoDB</tabstop>
   <tabstop>checkBoxProcessGameInfoDB</tabstop>
   <tabstop>toolButtonCompressGameInfoDB</tabstop>
+  <tabstop>lineEditGameInfoDB</tabstop>
+  <tabstop>toolButtonBrowseGameInfoDB</tabstop>
+  <tabstop>checkBoxProcessEmuInfoDB</tabstop>
+  <tabstop>toolButtonCompressEmuInfoDB</tabstop>
   <tabstop>lineEditEmuInfoDB</tabstop>
   <tabstop>toolButtonBrowseEmuInfoDB</tabstop>
   <tabstop>checkBoxUseCatverIni</tabstop>
