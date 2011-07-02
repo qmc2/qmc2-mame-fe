@@ -911,7 +911,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 				 errorcode = vInfo;
 			 } else if ( vInfo.startsWith("reason=") ) {
 				 vInfo.replace(QRegExp("^reason="), "").replace("+", " ");
-				 errortext = vInfo;
+				 errortext = QUrl::fromPercentEncoding(vInfo.toLatin1());
 			 } else if ( vInfo.startsWith("author=") ) {
 				 vInfo.replace(QRegExp("^author="), "");
 				 debugUrl = QUrl::fromEncoded(vInfo.toAscii());
