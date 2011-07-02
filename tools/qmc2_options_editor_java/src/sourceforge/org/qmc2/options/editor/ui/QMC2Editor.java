@@ -172,6 +172,7 @@ public class QMC2Editor extends Composite {
 			c.getColumn().setMoveable(false);
 			c.getColumn().setText(lang);
 			c.setLabelProvider(new QMC2LabelProvider(lang));
+			c.setEditingSupport(new QMC2EditingSupport(viewer, lang));
 		}
 
 		viewer.getTree().setRedraw(true);
@@ -183,5 +184,4 @@ public class QMC2Editor extends Composite {
 		}
 
 	}
-
 }
