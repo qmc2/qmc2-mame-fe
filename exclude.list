@@ -225,6 +225,7 @@ qmc2/data/img/circles/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/clock.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/clone.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/colors.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/compressed.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/controller.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/dice.png.svn-base
@@ -383,6 +384,7 @@ qmc2/data/img/circles/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/circles/.svn/text-base/clock.png.svn-base
 qmc2/data/img/circles/.svn/text-base/clone.png.svn-base
 qmc2/data/img/circles/.svn/text-base/colors.png.svn-base
+qmc2/data/img/circles/.svn/text-base/compressed.png.svn-base
 qmc2/data/img/circles/.svn/text-base/configure.png.svn-base
 qmc2/data/img/circles/.svn/text-base/controller.png.svn-base
 qmc2/data/img/circles/.svn/text-base/dice.png.svn-base
@@ -542,6 +544,7 @@ qmc2/data/img/classic/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/clock.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/clone.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/colors.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/compressed.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/controller.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/dice.png.svn-base
@@ -700,6 +703,7 @@ qmc2/data/img/classic/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/classic/.svn/text-base/clock.png.svn-base
 qmc2/data/img/classic/.svn/text-base/clone.png.svn-base
 qmc2/data/img/classic/.svn/text-base/colors.png.svn-base
+qmc2/data/img/classic/.svn/text-base/compressed.png.svn-base
 qmc2/data/img/classic/.svn/text-base/configure.png.svn-base
 qmc2/data/img/classic/.svn/text-base/controller.png.svn-base
 qmc2/data/img/classic/.svn/text-base/dice.png.svn-base
@@ -859,6 +863,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/clock.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/clone.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/colors.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/compressed.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/controller.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/dice.png.svn-base
@@ -1017,6 +1022,7 @@ qmc2/data/img/crazy-black/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/clock.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/clone.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/colors.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/compressed.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/configure.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/controller.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/dice.png.svn-base
@@ -1176,6 +1182,7 @@ qmc2/data/img/crazy/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/clock.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/clone.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/colors.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/compressed.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/controller.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/dice.png.svn-base
@@ -1334,6 +1341,7 @@ qmc2/data/img/crazy/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/clock.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/clone.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/colors.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/compressed.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/configure.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/controller.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/dice.png.svn-base
@@ -1493,6 +1501,7 @@ qmc2/data/img/cubes/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/clock.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/clone.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/colors.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/compressed.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/controller.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/dice.png.svn-base
@@ -1651,6 +1660,7 @@ qmc2/data/img/cubes/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/clock.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/clone.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/colors.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/compressed.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/configure.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/controller.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/dice.png.svn-base
@@ -1810,6 +1820,7 @@ qmc2/data/img/.svn/prop-base/circuit.png.svn-base
 qmc2/data/img/.svn/prop-base/clock.png.svn-base
 qmc2/data/img/.svn/prop-base/clone.png.svn-base
 qmc2/data/img/.svn/prop-base/colors.png.svn-base
+qmc2/data/img/.svn/prop-base/compressed.png.svn-base
 qmc2/data/img/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/.svn/prop-base/controller.png.svn-base
 qmc2/data/img/.svn/prop-base/dice.png.svn-base
@@ -1968,6 +1979,7 @@ qmc2/data/img/.svn/text-base/circuit.png.svn-base
 qmc2/data/img/.svn/text-base/clock.png.svn-base
 qmc2/data/img/.svn/text-base/clone.png.svn-base
 qmc2/data/img/.svn/text-base/colors.png.svn-base
+qmc2/data/img/.svn/text-base/compressed.png.svn-base
 qmc2/data/img/.svn/text-base/configure.png.svn-base
 qmc2/data/img/.svn/text-base/controller.png.svn-base
 qmc2/data/img/.svn/text-base/dice.png.svn-base
@@ -2434,6 +2446,38 @@ qmc2/.svn/text-base/windows_tools.h.svn-base
 qmc2/.svn/text-base/youtubevideoplayer.cpp.svn-base
 qmc2/.svn/text-base/youtubevideoplayer.h.svn-base
 qmc2/.svn/text-base/youtubevideoplayer.ui.svn-base
+qmc2/tools/qmc2_options_editor_java/.settings/.svn
+qmc2/tools/qmc2_options_editor_java/.settings/.svn/text-base/org.eclipse.jdt.core.prefs.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/model/.svn
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/model/.svn/text-base/DescriptableItem.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/model/.svn/text-base/Description.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/model/.svn/text-base/Option.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/model/.svn/text-base/QMC2TemplateFile.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/model/.svn/text-base/Section.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/.svn
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/.svn/text-base/QMC2EditorApplication.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2ContentProvider.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2Editor.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2LabelProvider.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/.svn
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/.svn
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/.svn
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/.svn
+qmc2/tools/qmc2_options_editor_java/src/.svn
+qmc2/tools/qmc2_options_editor_java/.svn
+qmc2/tools/qmc2_options_editor_java/.svn/prop-base/org.eclipse.core.commands_3.6.0.I20110111-0800.jar.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/prop-base/org.eclipse.equinox.common_3.6.0.v20110523.jar.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/prop-base/org.eclipse.jface_3.7.0.I20110522-1430.jar.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/prop-base/org.eclipse.osgi_3.7.0.v20110613.jar.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/prop-base/org.eclipse.swt.gtk.linux.x86_64_3.7.0.v3735b.jar.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/text-base/.classpath.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/text-base/org.eclipse.core.commands_3.6.0.I20110111-0800.jar.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/text-base/org.eclipse.equinox.common_3.6.0.v20110523.jar.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/text-base/org.eclipse.jface_3.7.0.I20110522-1430.jar.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/text-base/org.eclipse.osgi_3.7.0.v20110613.jar.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/text-base/org.eclipse.swt.gtk.linux.x86_64_3.7.0.v3735b.jar.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/text-base/.project.svn-base
 qmc2/tools/.svn
 qmc2/tools/template_tool/.svn
 qmc2/tools/template_tool/.svn/text-base/macros.h.svn-base
