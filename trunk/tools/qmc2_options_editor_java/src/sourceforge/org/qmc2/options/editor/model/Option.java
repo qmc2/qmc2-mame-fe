@@ -1,8 +1,12 @@
 package sourceforge.org.qmc2.options.editor.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class Option extends DescriptableItem {
 
@@ -10,11 +14,15 @@ public class Option extends DescriptableItem {
 
 	private final String defaultValue;
 
-	public final static String TAG = "option";
+	private final List<String> choices = new ArrayList<String>();
 
-	public final static String ATTRIBUTE_TYPE = "type";
+	public final static String TAG_OPTION = "option";
 
-	public final static String ATTRIBUTE_DEFAULT = "default";
+	private final static String TAG_CHOICE = "choice";
+
+	private final static String ATTRIBUTE_TYPE = "type";
+
+	private final static String ATTRIBUTE_DEFAULT = "default";
 
 	public Option(String name, String type, String defaultValue) {
 		super(name);
@@ -43,12 +51,27 @@ public class Option extends DescriptableItem {
 
 		option.parseDescriptions(optionNode);
 
+		option.parseChoices(optionNode);
+
 		return option;
+	}
+
+	private void parseChoices(Node optionNode) {
+		NodeList children = optionNode.getChildNodes();
+
+		for (int i = 0; i < children.getLength(); i++) {
+			Node node = children.item(i);
+			if (TAG_CHOICE.equals(node.getNodeName())) {
+				String choice = node.getAttributes()
+						.getNamedItem(ATTRIBUTE_NAME).getNodeValue();
+				choices.add(choice);
+			}
+		}
 	}
 
 	@Override
 	public String getTagName() {
-		return TAG;
+		return TAG_OPTION;
 	}
 
 	@Override
@@ -56,6 +79,12 @@ public class Option extends DescriptableItem {
 		Element option = super.toXML(document);
 		option.setAttribute(ATTRIBUTE_TYPE, type);
 		option.setAttribute(ATTRIBUTE_DEFAULT, defaultValue);
+
+		for (String choice : choices) {
+			Element choiceElement = document.createElement(TAG_CHOICE);
+			choiceElement.setAttribute(ATTRIBUTE_NAME, choice);
+			option.appendChild(choiceElement);
+		}
 
 		return option;
 
