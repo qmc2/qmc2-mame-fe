@@ -70,7 +70,7 @@ public class QMC2TemplateFile {
 
 		templateFile = new QMC2TemplateFile(emulator, version, format);
 
-		NodeList sections = document.getElementsByTagName(Section.TAG);
+		NodeList sections = document.getElementsByTagName(Section.TAG_SECTION);
 
 		for (int i = 0; i < sections.getLength(); i++) {
 			Section s = Section.parseSection(sections.item(i));

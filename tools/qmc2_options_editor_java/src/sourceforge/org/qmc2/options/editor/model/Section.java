@@ -14,7 +14,7 @@ public class Section extends DescriptableItem {
 
 	private final List<Option> options = new ArrayList<Option>();
 
-	public final static String TAG = "section";
+	public final static String TAG_SECTION = "section";
 
 	public Section(String name) {
 		super(name);
@@ -40,7 +40,7 @@ public class Section extends DescriptableItem {
 
 		for (int i = 0; i < options.getLength(); i++) {
 			Node option = options.item(i);
-			if (Option.TAG.equals(option.getNodeName())) {
+			if (Option.TAG_OPTION.equals(option.getNodeName())) {
 				Option o = Option.parseOption(option);
 				o.setParent(section);
 				section.addOption(o);
@@ -62,7 +62,7 @@ public class Section extends DescriptableItem {
 
 	@Override
 	public String getTagName() {
-		return TAG;
+		return TAG_SECTION;
 	}
 
 	@Override
