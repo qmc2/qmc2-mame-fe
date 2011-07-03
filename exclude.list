@@ -22,6 +22,7 @@ qmc2/arch/Linux/.svn/prop-base/Debian_6.0.1.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Debian_6.0.2.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Debian_lenny-sid.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Debian_squeeze-sid.cfg.svn-base
+qmc2/arch/Linux/.svn/prop-base/Debian_wheezy-sid.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Fedora_release_10.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Fedora_release_11.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Fedora_release_12.cfg.svn-base
@@ -47,6 +48,7 @@ qmc2/arch/Linux/.svn/text-base/Debian_6.0.2.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Debian.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Debian_lenny-sid.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Debian_squeeze-sid.cfg.svn-base
+qmc2/arch/Linux/.svn/text-base/Debian_wheezy-sid.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Fedora.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Fedora_release_10.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Fedora_release_11.cfg.svn-base
@@ -2460,6 +2462,8 @@ qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/.svn
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/.svn/text-base/QMC2EditorApplication.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2ContentProvider.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2EditingSupport.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2EditorActivationStrategy.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2Editor.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2LabelProvider.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/.svn
@@ -2468,11 +2472,14 @@ qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/.svn
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/.svn
 qmc2/tools/qmc2_options_editor_java/src/.svn
 qmc2/tools/qmc2_options_editor_java/.svn
+qmc2/tools/qmc2_options_editor_java/.svn/prop-base/build.sh.svn-base
 qmc2/tools/qmc2_options_editor_java/.svn/prop-base/org.eclipse.core.commands_3.6.0.I20110111-0800.jar.svn-base
 qmc2/tools/qmc2_options_editor_java/.svn/prop-base/org.eclipse.equinox.common_3.6.0.v20110523.jar.svn-base
 qmc2/tools/qmc2_options_editor_java/.svn/prop-base/org.eclipse.jface_3.7.0.I20110522-1430.jar.svn-base
 qmc2/tools/qmc2_options_editor_java/.svn/prop-base/org.eclipse.osgi_3.7.0.v20110613.jar.svn-base
 qmc2/tools/qmc2_options_editor_java/.svn/prop-base/org.eclipse.swt.gtk.linux.x86_64_3.7.0.v3735b.jar.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/prop-base/run.sh.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/text-base/build.sh.svn-base
 qmc2/tools/qmc2_options_editor_java/.svn/text-base/.classpath.svn-base
 qmc2/tools/qmc2_options_editor_java/.svn/text-base/org.eclipse.core.commands_3.6.0.I20110111-0800.jar.svn-base
 qmc2/tools/qmc2_options_editor_java/.svn/text-base/org.eclipse.equinox.common_3.6.0.v20110523.jar.svn-base
@@ -2480,6 +2487,8 @@ qmc2/tools/qmc2_options_editor_java/.svn/text-base/org.eclipse.jface_3.7.0.I2011
 qmc2/tools/qmc2_options_editor_java/.svn/text-base/org.eclipse.osgi_3.7.0.v20110613.jar.svn-base
 qmc2/tools/qmc2_options_editor_java/.svn/text-base/org.eclipse.swt.gtk.linux.x86_64_3.7.0.v3735b.jar.svn-base
 qmc2/tools/qmc2_options_editor_java/.svn/text-base/.project.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/text-base/run.sh.svn-base
+qmc2/tools/qmc2_options_editor_java/.svn/text-base/TODO.svn-base
 qmc2/tools/.svn
 qmc2/tools/template_tool/.svn
 qmc2/tools/template_tool/.svn/text-base/macros.h.svn-base
