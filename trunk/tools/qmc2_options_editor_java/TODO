@@ -1,0 +1,10 @@
+Add Menus
+Add Menu actions:
+ - Add language
+ - Remove language
+ - Add Section
+ - Add Option
+ - Remove Section
+ - Remove Option
+
+Add functionality to import sections/options from existing template file
