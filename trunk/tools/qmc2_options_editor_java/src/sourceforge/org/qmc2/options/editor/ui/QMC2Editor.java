@@ -2,12 +2,19 @@ package sourceforge.org.qmc2.options.editor.ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ColumnViewerEditor;
+import org.eclipse.jface.viewers.FocusCellOwnerDrawHighlighter;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
+import org.eclipse.jface.viewers.TreeViewerEditor;
+import org.eclipse.jface.viewers.TreeViewerFocusCellManager;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -22,6 +29,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeColumn;
 
+import sourceforge.org.qmc2.options.editor.model.DescriptableItem;
 import sourceforge.org.qmc2.options.editor.model.QMC2TemplateFile;
 
 public class QMC2Editor extends Composite {
@@ -32,11 +40,14 @@ public class QMC2Editor extends Composite {
 
 	private QMC2TemplateFile templateFile = null;
 
+	private String filter = null;
+
 	public QMC2Editor(Composite parent) {
 		super(parent, SWT.NONE);
 		setLayout(new GridLayout(3, false));
 
 		createFileChooser();
+		createFilterAndSearch();
 
 		viewer = new TreeViewer(this, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL
 				| SWT.BORDER);
@@ -46,7 +57,77 @@ public class QMC2Editor extends Composite {
 		viewer.getTree().setLayoutData(
 				new GridData(SWT.FILL, SWT.FILL, true, true, 3, 1));
 
+		TreeViewerEditor.create(viewer, new TreeViewerFocusCellManager(viewer,
+				new FocusCellOwnerDrawHighlighter(viewer)),
+				new QMC2EditorActivationStrategy(viewer),
+				ColumnViewerEditor.TABBING_HORIZONTAL
+						| ColumnViewerEditor.TABBING_MOVE_TO_ROW_NEIGHBOR
+						| ColumnViewerEditor.TABBING_VERTICAL
+						| ColumnViewerEditor.KEYBOARD_ACTIVATION);
+
+		viewer.addFilter(new ViewerFilter() {
+
+			@Override
+			public boolean select(Viewer viewer, Object parentElement,
+					Object element) {
+				boolean select = false;
+				if (filter != null) {
+					if (element instanceof DescriptableItem) {
+						DescriptableItem item = (DescriptableItem) element;
+						Set<String> languages = item.getLanguages();
+						Iterator<String> iterator = languages.iterator();
+						while (!select && iterator.hasNext()) {
+							String lang = iterator.next();
+							String description = item.getDescription(lang)
+									.toLowerCase();
+							;
+							if (description == null
+									|| !description.contains(filter)) {
+								select = select || false;
+							} else {
+								select = select || true;
+							}
+						}
+						if (item.getName().contains(filter)) {
+							select = select || true;
+						} else {
+							select = select || false;
+						}
+					}
+				} else {
+					select = true;
+				}
+				return select;
+			}
+		});
+
 		createSaveArea();
+
+	}
+
+	private void createFilterAndSearch() {
+		GridData layoutData = new GridData(SWT.LEAD, SWT.TOP, false, false, 1,
+				1);
+		Label filterLabel = new Label(this, SWT.NONE);
+		filterLabel.setText("Filter: ");
+		filterLabel.setLayoutData(layoutData);
+
+		layoutData = new GridData(SWT.FILL, SWT.TOP, true, false, 2, 1);
+		final Text filterText = new Text(this, SWT.SEARCH);
+		filterText.setMessage("Filter...");
+		filterText.setLayoutData(layoutData);
+		filterText.addModifyListener(new ModifyListener() {
+
+			@Override
+			public void modifyText(ModifyEvent arg0) {
+				filter = filterText.getText() == null ? null : filterText
+						.getText().trim().length() == 0 ? null : filterText
+						.getText().toLowerCase();
+
+				viewer.refresh();
+
+			}
+		});
 
 	}
 

@@ -18,6 +18,7 @@ public class QMC2EditingSupport extends EditingSupport {
 		super(viewer);
 		this.lang = language;
 		this.editor = new TextCellEditor((Composite) viewer.getControl());
+
 	}
 
 	@Override
@@ -46,6 +47,7 @@ public class QMC2EditingSupport extends EditingSupport {
 			((DescriptableItem) item).setDescription(lang, value.toString());
 			getViewer().refresh(item);
 		}
+
 	}
 
 }
