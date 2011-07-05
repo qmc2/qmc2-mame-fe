@@ -562,8 +562,7 @@ PROJECT = qmc2
 
 # version
 VERSION_MAJOR = 0
-VERSION_MINOR = 2
-VERSION_BETA  = 21
+VERSION_MINOR = 34
 
 # commands are platform/distribution-specific
 ifneq '$(ARCH)' 'Windows'
@@ -648,13 +647,8 @@ endif
 ifeq '$(QMAKEV)' '2'
 
 # version strings used by 'make dist' and 'make snap'
-ifneq '$(VERSION_BETA)' '0'
-VERSION     = $(VERSION_MAJOR).$(VERSION_MINOR).b$(VERSION_BETA)
-VERSIONDEFS = MAJOR=$(VERSION_MAJOR) MINOR=$(VERSION_MINOR) BETA=$(VERSION_BETA)
-else
 VERSION     = $(VERSION_MAJOR).$(VERSION_MINOR)
 VERSIONDEFS = MAJOR=$(VERSION_MAJOR) MINOR=$(VERSION_MINOR)
-endif
 
 # work around for qmake's issues with spaces in values
 blank =

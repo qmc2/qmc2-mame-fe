@@ -114,9 +114,6 @@ void About::showEvent(QShowEvent *e)
 #endif
           tr("Qt 4 based multi-platform/multi-emulator front end") + "<br>" +
           tr("Version ") + QString::number(MAJOR) + "." + QString::number(MINOR) +
-#ifdef BETA
-          ".b" + QString::number(BETA) +
-#endif
 #if QMC2_SVN_REV > 0
 	  " (" + tr("SVN r%1").arg(QMC2_SVN_REV) + ")" +
 #endif
