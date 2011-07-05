@@ -659,20 +659,6 @@ MainWindow::MainWindow(QWidget *parent)
     tabWidgetGamelist->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt());
     tabWidgetLogsAndEmulators->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", 0).toInt());
     on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex());
-    int i;
-    QVariantList defaultGamelistColumnWidths,
-                 gamelistColumnWidths;
-    defaultGamelistColumnWidths << 300 << 50 << 50 << 100 << 50 << 50 << 100 << 50;
-    gamelistColumnWidths = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistColumnWidths", defaultGamelistColumnWidths).toList();
-    for (i = 0; i < gamelistColumnWidths.count(); i++)
-      treeWidgetGamelist->header()->resizeSection(i, gamelistColumnWidths[i].toInt());
-    treeWidgetGamelist->header()->setDefaultAlignment(Qt::AlignLeft);
-    QVariantList defaultHierarchyColumnWidths,
-                 hierarchyColumnWidths;
-    defaultHierarchyColumnWidths << 300 << 50 << 50 << 100 << 50 << 50 << 100 << 50;
-    hierarchyColumnWidths = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyColumnWidths", defaultHierarchyColumnWidths).toList();
-    for (i = 0; i < hierarchyColumnWidths.count(); i++)
-      treeWidgetHierarchy->header()->resizeSection(i, hierarchyColumnWidths[i].toInt());
     treeWidgetHierarchy->header()->setDefaultAlignment(Qt::AlignLeft);
     treeWidgetGamelist->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState").toByteArray());
     treeWidgetHierarchy->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState").toByteArray());
@@ -4951,15 +4937,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", tabWidgetLogsAndEmulators->currentIndex());
     // save toolbar state
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolbarState", saveState());
-    int i;
-    QVariantList gamelistColumnWidths;
-    for (i = 0; i < treeWidgetGamelist->header()->count(); i++)
-      gamelistColumnWidths << treeWidgetGamelist->header()->sectionSize(i);
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistColumnWidths", gamelistColumnWidths);
-    QVariantList hierarchyColumnWidths;
-    for (i = 0; i < treeWidgetHierarchy->header()->count(); i++)
-      hierarchyColumnWidths << treeWidgetHierarchy->header()->sectionSize(i);
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyColumnWidths", hierarchyColumnWidths);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState", treeWidgetGamelist->header()->saveState());
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState", treeWidgetHierarchy->header()->saveState());
 #if defined(QMC2_EMUTYPE_MAME)
