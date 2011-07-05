@@ -924,8 +924,8 @@ void Options::on_pushButtonApply_clicked()
     if ( comboBoxSortCriteria->count() > QMC2_SORTCRITERIA_VERSION ) {
       comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_VERSION);
       comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_CATEGORY);
-      qmc2MainWindow->treeWidgetGamelist->resizeColumnToContents(qmc2MainWindow->treeWidgetGamelist->header()->logicalIndex(QMC2_GAMELIST_COLUMN_PLAYERS));
-      qmc2MainWindow->treeWidgetHierarchy->resizeColumnToContents(qmc2MainWindow->treeWidgetHierarchy->header()->logicalIndex(QMC2_GAMELIST_COLUMN_PLAYERS));
+      qmc2MainWindow->treeWidgetGamelist->resizeColumnToContents(qmc2MainWindow->treeWidgetGamelist->header()->logicalIndex(QMC2_GAMELIST_COLUMN_DRVSTAT));
+      qmc2MainWindow->treeWidgetHierarchy->resizeColumnToContents(qmc2MainWindow->treeWidgetHierarchy->header()->logicalIndex(QMC2_GAMELIST_COLUMN_DRVSTAT));
     }
     if ( qmc2MainWindow->comboBoxViewSelect->count() > QMC2_VIEWVERSION_INDEX ) {
       qmc2MainWindow->comboBoxViewSelect->removeItem(QMC2_VIEWVERSION_INDEX);
@@ -1328,6 +1328,9 @@ void Options::on_pushButtonApply_clicked()
         case QMC2_SORT_BY_PLAYERS:
           sortCriteria = QObject::tr("players");
           break;
+        case QMC2_SORT_BY_DRVSTAT:
+          sortCriteria = QObject::tr("driver status");
+          break;
 #if defined(QMC2_EMUTYPE_MAME)
         case QMC2_SORT_BY_CATEGORY:
           sortCriteria = QObject::tr("category");
@@ -1442,6 +1445,19 @@ void Options::on_pushButtonApply_clicked()
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_PLAYERS, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_PLAYERS, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+#endif
+      break;
+
+    case QMC2_SORT_BY_DRVSTAT:
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_DRVSTAT, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_DRVSTAT, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+#if defined(QMC2_EMUTYPE_MAME)
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_DRVSTAT, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_DRVSTAT, qmc2SortOrder);
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
 #endif

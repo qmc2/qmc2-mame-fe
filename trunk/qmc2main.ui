@@ -138,7 +138,7 @@
                    <string>List of all supported games</string>
                   </property>
                   <property name="columnCount">
-                   <number>9</number>
+                   <number>10</number>
                   </property>
                   <column>
                    <property name="text">
@@ -177,6 +177,11 @@
                   </column>
                   <column>
                    <property name="text">
+                    <string>Driver status</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
                     <string>Category</string>
                    </property>
                   </column>
@@ -188,6 +193,9 @@
                   <item>
                    <property name="text">
                     <string>Waiting for data...</string>
+                   </property>
+                   <property name="text">
+                    <string/>
                    </property>
                    <property name="text">
                     <string/>
@@ -290,6 +298,11 @@
                   </column>
                   <column>
                    <property name="text">
+                    <string>Driver status</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
                     <string>Category</string>
                    </property>
                   </column>
@@ -301,6 +314,9 @@
                   <item>
                    <property name="text">
                     <string>Waiting for data...</string>
+                   </property>
+                   <property name="text">
+                    <string/>
                    </property>
                    <property name="text">
                     <string/>
@@ -367,7 +383,7 @@
                    <string>List of games viewed by category</string>
                   </property>
                   <property name="columnCount">
-                   <number>9</number>
+                   <number>10</number>
                   </property>
                   <column>
                    <property name="text">
@@ -406,6 +422,11 @@
                   </column>
                   <column>
                    <property name="text">
+                    <string>Driver status</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
                     <string>Category</string>
                    </property>
                   </column>
@@ -417,6 +438,9 @@
                   <item>
                    <property name="text">
                     <string>Waiting for data...</string>
+                   </property>
+                   <property name="text">
+                    <string/>
                    </property>
                    <property name="text">
                     <string/>
@@ -483,7 +507,7 @@
                    <string>List of games viewed by version they were added to the emulator</string>
                   </property>
                   <property name="columnCount">
-                   <number>9</number>
+                   <number>10</number>
                   </property>
                   <column>
                    <property name="text">
@@ -522,6 +546,11 @@
                   </column>
                   <column>
                    <property name="text">
+                    <string>Driver status</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
                     <string>Category</string>
                    </property>
                   </column>
@@ -533,6 +562,9 @@
                   <item>
                    <property name="text">
                     <string>Waiting for data...</string>
+                   </property>
+                   <property name="text">
+                    <string/>
                    </property>
                    <property name="text">
                     <string/>

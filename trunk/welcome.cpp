@@ -240,21 +240,16 @@ bool Welcome::checkConfig()
 
   startupConfig->endGroup();
 
-  int oldMajor = 0, oldMinor = 0, oldBeta = 0;
+  int oldMinor = 0;
   QStringList versionList = startupConfig->value("Version").toString().split(".");
   int oldSvnRevision = startupConfig->value("SVN_Revision").toInt();
   if ( versionList.count() > 1 ) {
-	  oldMajor = versionList[0].toInt();
 	  oldMinor = versionList[1].toInt();
-	  if ( versionList.count() > 2 )
-		  oldBeta = versionList[2].mid(1).toInt();
 #if defined(QMC2_EMUTYPE_MAME)
-	  if ( oldMinor == 2 ) {
-		  if ( oldBeta < 19 || (oldSvnRevision < 2559 && oldSvnRevision > 0 ) ) {
-			  // GLC format change (V3) in QMC2 0.2.b19 / SVN r2559 -- any saved header states for the category- and version-views must be invalidated!
-			  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState");
-			  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState");
-		  }
+	  if ( oldMinor < 34 || (oldSvnRevision < 2938 && oldSvnRevision > 0 ) ) {
+		  // GLC format change (V4) in QMC2 0.34 / SVN r2938 -- any saved header states for the category- and version-views must be invalidated!
+		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState");
+		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState");
 	  }
 #endif
   }
