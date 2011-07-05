@@ -247,12 +247,12 @@ bool Welcome::checkConfig()
 	  oldMinor = versionList[1].toInt();
 #if defined(QMC2_EMUTYPE_MAME)
 	  if ( oldMinor < 34 || (oldSvnRevision < 2939 && oldSvnRevision > 0 ) ) {
-		  // GLC format change (V4) in QMC2 0.34 / SVN r2938 -- any saved header states for the category- and version-views must be invalidated!
+		  // GLC format change (V4) in QMC2 0.34 / SVN r2938 -- any saved header states for game-/machine-list views must be invalidated!
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState");
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState");
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState");
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState");
-		  // ... and remove deprecated settings
+		  // remove settings that are no longer used
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistColumnWidths");
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyColumnWidths");
 	  }
