@@ -751,8 +751,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>205</width>
-                <height>526</height>
+                <width>421</width>
+                <height>529</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2128,8 +2128,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>430</width>
-                <height>217</height>
+                <width>438</width>
+                <height>318</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2312,6 +2312,11 @@
                    <item>
                     <property name="text">
                      <string>Players</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Driver status</string>
                     </property>
                    </item>
                   </widget>

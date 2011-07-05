@@ -121,7 +121,7 @@ Gamelist::Gamelist(QObject *parent)
 
   numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numSearchGames = -1;
   loadProc = verifyProc = NULL;
-  autoROMCheck = FALSE;
+  autoROMCheck = false;
   emulatorVersion = tr("unknown");
 
   QString imgDir = qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/DataDirectory", "data/").toString() + "img/";
@@ -177,7 +177,7 @@ Gamelist::~Gamelist()
 void Gamelist::enableWidgets(bool enable)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::enableWidgets(bool enable = " + QString(enable ? "TRUE" : "FALSE") + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::enableWidgets(bool enable = " + QString(enable ? "true" : "false") + ")");
 #endif
 
   // store widget enablement flag for later dialog setups
@@ -278,8 +278,8 @@ void Gamelist::load()
 
   QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 
-  qmc2ReloadActive = qmc2EarlyReloadActive = TRUE;
-  qmc2StopParser = FALSE;
+  qmc2ReloadActive = qmc2EarlyReloadActive = true;
+  qmc2StopParser = false;
   qmc2GamelistItemMap.clear();
   qmc2GamelistNameMap.clear();
   qmc2GamelistItemByDescriptionMap.clear();
@@ -288,7 +288,7 @@ void Gamelist::load()
   qmc2BiosROMs.clear();
   qmc2HierarchyItemMap.clear();
 
-  enableWidgets(FALSE);
+  enableWidgets(false);
 
   numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numSearchGames = -1;
   qmc2MainWindow->treeWidgetGamelist->clear();
@@ -306,7 +306,7 @@ void Gamelist::load()
 #if defined(QMC2_EMUTYPE_MESS)
   if ( qmc2MESSDeviceConfigurator ) {
     qmc2MESSDeviceConfigurator->save();
-    qmc2MESSDeviceConfigurator->setVisible(FALSE);
+    qmc2MESSDeviceConfigurator->setVisible(false);
     QLayout *vbl = qmc2MainWindow->tabDevices->layout();
     if ( vbl ) delete vbl;
     delete qmc2MESSDeviceConfigurator;
@@ -316,7 +316,7 @@ void Gamelist::load()
   messXmlDataCache.clear();
   if ( qmc2SoftwareList ) {
     qmc2SoftwareList->save();
-    qmc2SoftwareList->setVisible(FALSE);
+    qmc2SoftwareList->setVisible(false);
     QLayout *vbl = qmc2MainWindow->tabSoftwareList->layout();
     if ( vbl ) delete vbl;
     delete qmc2SoftwareList;
@@ -333,7 +333,7 @@ void Gamelist::load()
   qmc2MainWindow->textBrowserEmuInfo->clear();
   qmc2LastEmuInfoItem = NULL;
   if ( qmc2MAWSLookup ) {
-    qmc2MAWSLookup->setVisible(FALSE);
+    qmc2MAWSLookup->setVisible(false);
     QLayout *vbl = qmc2MainWindow->tabMAWS->layout();
     if ( vbl ) delete vbl;
     delete qmc2MAWSLookup;
@@ -345,7 +345,7 @@ void Gamelist::load()
 #if defined(QMC2_YOUTUBE_ENABLED)
   qmc2LastYouTubeItem = NULL;
   if ( qmc2YouTubeWidget ) {
-      qmc2YouTubeWidget->setVisible(FALSE);
+      qmc2YouTubeWidget->setVisible(false);
       QLayout *vbl = qmc2MainWindow->tabYouTube->layout();
       if ( vbl ) delete vbl;
       delete qmc2YouTubeWidget;
@@ -429,7 +429,7 @@ void Gamelist::load()
   args << "-help";
 #endif
   qApp->processEvents();
-  bool commandProcStarted = FALSE;
+  bool commandProcStarted = false;
   int retries = 0;
 #if defined(QMC2_EMUTYPE_MAME)
   commandProc.start(qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString(), args);
@@ -442,7 +442,7 @@ void Gamelist::load()
     qApp->processEvents();
   }
   if ( started ) {
-    commandProcStarted = TRUE;
+    commandProcStarted = true;
     bool commandProcRunning = (commandProc.state() == QProcess::Running);
     while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
       qApp->processEvents();
@@ -520,7 +520,7 @@ void Gamelist::load()
   args << "*";
 #endif
   qApp->processEvents();
-  commandProcStarted = FALSE;
+  commandProcStarted = false;
   retries = 0;
 #if defined(QMC2_EMUTYPE_MAME)
   commandProc.start(qmc2Config->value("MAME/FilesAndDirectories/ExecutableFile").toString(), args);
@@ -533,7 +533,7 @@ void Gamelist::load()
     qApp->processEvents();
   }
   if ( started ) {
-    commandProcStarted = TRUE;
+    commandProcStarted = true;
     bool commandProcRunning = (commandProc.state() == QProcess::Running);
     while ( !commandProc.waitForFinished(QMC2_PROCESS_POLL_TIME) && commandProcRunning ) {
       qApp->processEvents();
@@ -595,8 +595,8 @@ void Gamelist::load()
 #else
       ;
 #endif
-    qmc2ReloadActive = FALSE;
-    enableWidgets(TRUE);
+    qmc2ReloadActive = false;
+    enableWidgets(true);
     return;
   }
 
@@ -612,8 +612,8 @@ void Gamelist::load()
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine supported machines"));
 #endif
-    qmc2ReloadActive = FALSE;
-    enableWidgets(TRUE);
+    qmc2ReloadActive = false;
+    enableWidgets(true);
     return;
   }
 
@@ -625,7 +625,7 @@ void Gamelist::load()
   gamelistBuffer.clear();
 
   // try reading XML output from cache
-  bool xmlCacheOkay = FALSE;
+  bool xmlCacheOkay = false;
 #if defined(QMC2_EMUTYPE_MAME)
   listXMLCache.setFileName(qmc2Config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -644,7 +644,7 @@ void Gamelist::load()
       QStringList words = singleXMLLine.split("\t");
       if ( words.count() > 1 ) { 
           if ( emulatorVersion == words[1] )
-            xmlCacheOkay = TRUE;
+            xmlCacheOkay = true;
       }
     }
     if ( xmlCacheOkay ) {
@@ -702,9 +702,9 @@ void Gamelist::load()
       if ( singleXMLLine != "</mess>" ) {
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: XML machine list cache is incomplete, invalidating XML machine list cache"));
 #endif
-        xmlCacheOkay = FALSE;
+        xmlCacheOkay = false;
       } else
-        qmc2EarlyReloadActive = FALSE;
+        qmc2EarlyReloadActive = false;
     }
   }
 
@@ -713,17 +713,17 @@ void Gamelist::load()
 
   if ( qmc2StopParser ) {
     qmc2MainWindow->progressBarGamelist->reset();
-    qmc2ReloadActive = FALSE;
-    enableWidgets(TRUE);
+    qmc2ReloadActive = false;
+    enableWidgets(true);
     return;
   }
 
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/HideWhileLoading", TRUE).toBool() ) {
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/HideWhileLoading", true).toBool() ) {
     // hide game list
-    qmc2MainWindow->treeWidgetGamelist->setVisible(FALSE);
-    qmc2MainWindow->labelLoadingGamelist->setVisible(TRUE);
-    qmc2MainWindow->treeWidgetHierarchy->setVisible(FALSE);
-    qmc2MainWindow->labelLoadingHierarchy->setVisible(TRUE);
+    qmc2MainWindow->treeWidgetGamelist->setVisible(false);
+    qmc2MainWindow->labelLoadingGamelist->setVisible(true);
+    qmc2MainWindow->treeWidgetHierarchy->setVisible(false);
+    qmc2MainWindow->labelLoadingHierarchy->setVisible(true);
     qApp->processEvents();
   }
 
@@ -733,10 +733,10 @@ void Gamelist::load()
     loadPlayHistory();
 
     // show game list
-    qmc2MainWindow->labelLoadingGamelist->setVisible(FALSE);
-    qmc2MainWindow->treeWidgetGamelist->setVisible(TRUE);
-    qmc2MainWindow->labelLoadingHierarchy->setVisible(FALSE);
-    qmc2MainWindow->treeWidgetHierarchy->setVisible(TRUE);
+    qmc2MainWindow->labelLoadingGamelist->setVisible(false);
+    qmc2MainWindow->treeWidgetGamelist->setVisible(true);
+    qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
+    qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
 
     if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
       switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
@@ -822,10 +822,10 @@ void Gamelist::verify(bool currentOnly)
 #endif
 
   verifyCurrentOnly = currentOnly;
-  qmc2VerifyActive = TRUE;
-  qmc2StopParser = FALSE;
+  qmc2VerifyActive = true;
+  qmc2StopParser = false;
 
-  enableWidgets(FALSE);
+  enableWidgets(false);
 
   verifiedList.clear();
   verifyLastLine.clear();
@@ -934,7 +934,7 @@ void Gamelist::verify(bool currentOnly)
 QString Gamelist::value(QString element, QString attribute, bool translate)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::value(QString element = " + element + ", QString attribute = \"" + attribute + "\", translate = " + QString(translate ? "TRUE" : "FALSE") + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::value(QString element = " + element + ", QString attribute = \"" + attribute + "\", translate = " + QString(translate ? "true" : "false") + ")");
 #endif
 
   QString attributePattern = " " + attribute + "=\"";
@@ -952,7 +952,7 @@ QString Gamelist::value(QString element, QString attribute, bool translate)
 void Gamelist::insertAttributeItems(QTreeWidgetItem *parent, QString element, QStringList attributes, QStringList descriptions, bool translate)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::insertAttributeItems(QTreeWidgetItem *parent = 0x" + QString::number((ulong)parent, 16) + ", QString element = \"" + element + "\", QStringList attributes = ..., QStringList descriptions = ..., translate = " + QString(translate ? "TRUE" : "FALSE") + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::insertAttributeItems(QTreeWidgetItem *parent = 0x" + QString::number((ulong)parent, 16) + ", QString element = \"" + element + "\", QStringList attributes = ..., QStringList descriptions = ..., translate = " + QString(translate ? "true" : "false") + ")");
 #endif
 
   int i;
@@ -1013,7 +1013,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
   attributes << "name" << "sourcefile" << "isbios" << "runnable" << "cloneof" << "romof" << "sampleof";
   descriptions << tr("Name") << tr("Source file") << tr("Is BIOS?") << tr("Runnable") << tr("Clone of") << tr("ROM of") << tr("Sample of");
   element = xmlLines.at(gamePos - 1).simplified();
-  insertAttributeItems(item, element, attributes, descriptions, TRUE);
+  insertAttributeItems(item, element, attributes, descriptions, true);
 
 #if defined(QMC2_EMUTYPE_MAME)
   while ( !xmlLines[gamePos].contains("</game>") ) {
@@ -1042,7 +1042,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       attributes << "bios" << "size" << "crc" << "sha1" << "merge" << "region" << "offset" << "status" << "optional";
       descriptions.clear();
       descriptions << tr("BIOS") << tr("Size") << tr("CRC") << tr("SHA1") << tr("Merge") << tr("Region") << tr("Offset") << tr("Status") << tr("Optional");
-      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
+      insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<chip ") ) {
       childItem = new QTreeWidgetItem(item);
@@ -1052,7 +1052,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       attributes << "tag" << "type" << "clock";
       descriptions.clear();
       descriptions << tr("Tag") << tr("Type") << tr("Clock");
-      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
+      insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<display ") ) {
       childItem = new QTreeWidgetItem(item);
@@ -1061,7 +1061,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       attributes << "type" << "rotate" << "flipx" << "width" << "height" << "refresh" << "pixclock" << "htotal" << "hbend" << "hbstart" << "vtotal" << "vbend" << "vbstart";
       descriptions.clear();
       descriptions << tr("Type") << tr("Rotate") << tr("Flip-X") << tr("Width") << tr("Height") << tr("Refresh") << tr("Pixel clock") << tr("H-Total") << tr("H-Bend") << tr("HB-Start") << tr("V-Total") << tr("V-Bend") << tr("VB-Start");
-      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
+      insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<sound ") ) {
       childItem = new QTreeWidgetItem(item);
@@ -1070,7 +1070,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       attributes << "channels";
       descriptions.clear();
       descriptions << tr("Channels");
-      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
+      insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<input ") ) {
       childItem = new QTreeWidgetItem(item);
@@ -1079,62 +1079,62 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       attributes << "service" << "tilt" << "players" << "buttons" << "coins";
       descriptions.clear();
       descriptions << tr("Service") << tr("Tilt") << tr("Players") << tr("Buttons") << tr("Coins");
-      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
+      insertAttributeItems(childItem, element, attributes, descriptions, true);
 
       gamePos++;
       while ( xmlLines[gamePos].contains("<control ") ) {
         QString subElement = xmlLines[gamePos].simplified();
         QTreeWidgetItem *nextChildItem = new QTreeWidgetItem(childItem);
         nextChildItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Control"));
-        nextChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "type", TRUE));
+        nextChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "type", true));
         attributes.clear();
         attributes << "minimum" << "maximum" << "sensitivity" << "keydelta" << "reverse";
         descriptions.clear();
         descriptions << tr("Minimum") << tr("Maximum") << tr("Sensitivity") << tr("Key Delta") << tr("Reverse");
-        insertAttributeItems(nextChildItem, subElement, attributes, descriptions, TRUE);
+        insertAttributeItems(nextChildItem, subElement, attributes, descriptions, true);
         gamePos++;
       }
     }
     if ( element.contains("<dipswitch ") ) {
       childItem = new QTreeWidgetItem(item);
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("DIP switch"));
-      childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name", TRUE));
+      childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name", true));
 
       gamePos++;
       while ( xmlLines[gamePos].contains("<dipvalue ") ) {
         QString subElement = xmlLines[gamePos].simplified();
         QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
         secondChildItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("DIP value"));
-        secondChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "name", TRUE));
+        secondChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "name", true));
         attributes.clear();
         attributes << "default";
         descriptions.clear();
         descriptions << tr("Default");
-        insertAttributeItems(secondChildItem, subElement, attributes, descriptions, TRUE);
+        insertAttributeItems(secondChildItem, subElement, attributes, descriptions, true);
         gamePos++;
       }
     }
     if ( element.contains("<configuration ") ) {
       childItem = new QTreeWidgetItem(item);
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Configuration"));
-      childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name", TRUE));
+      childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name", true));
       attributes.clear();
       attributes << "tag" << "mask";
       descriptions.clear();
       descriptions << tr("Tag") << tr("Mask");
-      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
+      insertAttributeItems(childItem, element, attributes, descriptions, true);
 
       gamePos++;
       while ( xmlLines[gamePos].contains("<confsetting ") ) {
         QString subElement = xmlLines[gamePos].simplified();
         QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
         secondChildItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Setting"));
-        secondChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "name", TRUE));
+        secondChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "name", true));
         attributes.clear();
         attributes << "value" << "default";
         descriptions.clear();
         descriptions << tr("Value") << tr("Default");
-        insertAttributeItems(secondChildItem, subElement, attributes, descriptions, TRUE);
+        insertAttributeItems(secondChildItem, subElement, attributes, descriptions, true);
         gamePos++;
       }
     }
@@ -1145,7 +1145,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       attributes << "status" << "emulation" << "color" << "sound" << "graphic" << "cocktail" << "protection" << "savestate" << "palettesize";
       descriptions.clear();
       descriptions << tr("Status") << tr("Emulation") << tr("Color") << tr("Sound") << tr("Graphic") << tr("Cocktail") << tr("Protection") << tr("Save state") << tr("Palette size");
-      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
+      insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<biosset ") ) {
       childItem = new QTreeWidgetItem(item);
@@ -1155,7 +1155,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       attributes << "description" << "default";
       descriptions.clear();
       descriptions << tr("Description") << tr("Default");
-      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
+      insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<sample ") ) {
       childItem = new QTreeWidgetItem(item);
@@ -1170,7 +1170,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       attributes << "md5" << "sha1" << "merge" << "region" << "index" << "status" << "optional";
       descriptions.clear();
       descriptions << tr("MD5") << tr("SHA1") << tr("Merge") << tr("Region") << tr("Index") << tr("Status") << tr("Optional");
-      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
+      insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<adjuster ") ) {
       childItem = new QTreeWidgetItem(item);
@@ -1180,7 +1180,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       attributes << "default";
       descriptions.clear();
       descriptions << tr("Default");
-      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
+      insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<softwarelist ") ) {
       childItem = new QTreeWidgetItem(item);
@@ -1190,55 +1190,55 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       attributes << "status";
       descriptions.clear();
       descriptions << tr("Status");
-      insertAttributeItems(childItem, element, attributes, descriptions, TRUE);
+      insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
     if ( element.contains("<category ") ) {
       childItem = new QTreeWidgetItem(item);
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Category"));
-      childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name", TRUE));
+      childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name", true));
 
       gamePos++;
       while ( xmlLines[gamePos].contains("<item ") ) {
         QString subElement = xmlLines[gamePos].simplified();
         QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
         secondChildItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Item"));
-        secondChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "name", TRUE));
+        secondChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "name", true));
         attributes.clear();
         attributes << "default";
         descriptions.clear();
         descriptions << tr("Default");
-        insertAttributeItems(secondChildItem, subElement, attributes, descriptions, TRUE);
+        insertAttributeItems(secondChildItem, subElement, attributes, descriptions, true);
         gamePos++;
       }
     }
     if ( element.contains("<device ") ) {
       childItem = new QTreeWidgetItem(item);
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Device"));
-      childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "type", TRUE));
+      childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "type", true));
       attributes.clear();
       attributes << "tag" << "mandatory" << "interface";
       descriptions.clear();
       descriptions << tr("Tag") << tr("Mandatory") << tr("Interface");
-      insertAttributeItems(childItem, element, attributes, descriptions, FALSE);
+      insertAttributeItems(childItem, element, attributes, descriptions, false);
 
       gamePos++;
       while ( xmlLines[gamePos].contains("<instance ") ) {
         QString subElement = xmlLines[gamePos].simplified();
         QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
         secondChildItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Instance"));
-        secondChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "name", FALSE));
+        secondChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "name", false));
         attributes.clear();
         attributes << "briefname";
         descriptions.clear();
         descriptions << tr("Brief name");
-        insertAttributeItems(secondChildItem, element, attributes, descriptions, FALSE);
+        insertAttributeItems(secondChildItem, element, attributes, descriptions, false);
         gamePos++;
       }
       while ( xmlLines[gamePos].contains("<extension ") ) {
         QString subElement = xmlLines[gamePos].simplified();
         QTreeWidgetItem *secondChildItem = new QTreeWidgetItem(childItem);
         secondChildItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Extension"));
-        secondChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "name", FALSE));
+        secondChildItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(subElement, "name", false));
         gamePos++;
       }
     }
@@ -1257,7 +1257,7 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
         attributes << "default";
         descriptions.clear();
         descriptions << tr("Default");
-        insertAttributeItems(secondChildItem, subElement, attributes, descriptions, FALSE);
+        insertAttributeItems(secondChildItem, subElement, attributes, descriptions, false);
         gamePos++;
       }
       if ( xmlLines[gamePos].contains("</machine>") )
@@ -1277,15 +1277,15 @@ void Gamelist::parse()
 #endif
 
   if ( qmc2StopParser ) {
-    qmc2ReloadActive = FALSE;
-    enableWidgets(TRUE);
+    qmc2ReloadActive = false;
+    enableWidgets(true);
     return;
   }
 
   bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool();
 
   QTime elapsedTime;
-  autoROMCheck = FALSE;
+  autoROMCheck = false;
   qmc2MainWindow->progressBarGamelist->setRange(0, numTotalGames);
 #if defined(QMC2_EMUTYPE_MAME)
   romCache.setFileName(qmc2Config->value("MAME/FilesAndDirectories/ROMStateCacheFile").toString());
@@ -1325,7 +1325,7 @@ void Gamelist::parse()
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n cached ROM state(s) loaded", "", cachedGamesCounter));
     if ( numTotalGames != cachedGamesCounter ) {
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ROM state cache is incomplete or not up to date, please re-check ROMs"));
-      autoROMCheck = TRUE;
+      autoROMCheck = true;
     }
     romCache.close();
     qApp->processEvents();
@@ -1349,7 +1349,7 @@ void Gamelist::parse()
   gamelistCache.setFileName(qmc2Config->value("MESS/FilesAndDirectories/GamelistCacheFile").toString());
 #endif
   gamelistCache.open(QIODevice::ReadOnly | QIODevice::Text);
-  bool reparseGamelist = TRUE;
+  bool reparseGamelist = true;
 
   if ( gamelistCache.isOpen() ) {
     QString line;
@@ -1382,7 +1382,7 @@ void Gamelist::parse()
 #elif defined(QMC2_EMUTYPE_MESS)
         qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("INFORMATION: the machine list cache will now be updated due to a new format"));
 #endif
-	reparseGamelist = TRUE;
+	reparseGamelist = true;
       } else {
 	      int cacheGlcVersion = words[3].toInt();
 	      if ( cacheGlcVersion < QMC2_GLC_VERSION ) {
@@ -1416,7 +1416,7 @@ void Gamelist::parse()
       miscTimer.start();
       numGames = numUnknownGames = 0;
       qmc2MainWindow->progressBarGamelist->reset();
-      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(FALSE);
+      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
       QString readBuffer;
       while ( (!tsGamelistCache.atEnd() || !readBuffer.isEmpty() ) && !qmc2StopParser ) {
         readBuffer += tsGamelistCache.read(QMC2_FILE_BUFFER_SIZE);
@@ -1438,6 +1438,7 @@ void Gamelist::parse()
             bool hasROMs = (words[6] == "1");
             bool hasCHDs = (words[7] == "1");
             QString gamePlayers = words[8];
+            QString gameStatus = words[9];
 
 #ifdef QMC2_DEBUG
             qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: gameName = %1, gameDescription = %2, gameManufacturer = %3, gameYear = %4, gameCloneOf = %5, isBIOS = %6, hasROMs = %7, hasCHDs = %8").
@@ -1464,6 +1465,7 @@ void Gamelist::parse()
             else
               gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, "--");
 	    gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
+	    gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toAscii()));
 #if defined(QMC2_EMUTYPE_MAME)
             if ( useCatverIni ) {
               QString categoryString = qmc2CategoryMap[gameName];
@@ -1542,12 +1544,12 @@ void Gamelist::parse()
 
           if ( numGames % qmc2GamelistResponsiveness == 0 ) {
             qmc2MainWindow->progressBarGamelist->setValue(numGames);
-            qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+            qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
             qmc2MainWindow->labelGamelistStatus->setText(status());
             if ( qmc2Options->config->value(QMC2_FRONTEND_PREFIX + "Gamelist/SortOnline").toBool() )
               qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
             qApp->processEvents();
-            qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(FALSE);
+            qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
           }
         }
 
@@ -1614,7 +1616,7 @@ void Gamelist::parse()
     int lineCounter;
     numGames = numUnknownGames = 0;
     bool endParser = qmc2StopParser;
-    qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(FALSE);
+    qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
 
     for (lineCounter = 0; lineCounter < xmlLines.count() && !endParser; lineCounter++) {
       while ( !endParser && !xmlLines[lineCounter].contains("<description>") ) {
@@ -1639,26 +1641,30 @@ void Gamelist::parse()
 #endif
 
         // find year & manufacturer and determine ROM/CHD requirements
-        bool endGame = FALSE;
+        bool endGame = false;
         int i = lineCounter;
-        QString gameYear = "?", gameManufacturer = "?", gamePlayers = "?";
-        bool yearFound = FALSE, manufacturerFound = FALSE, hasROMs = FALSE, hasCHDs = FALSE, playersFound = FALSE;
+        QString gameYear = "?", gameManufacturer = "?", gamePlayers = "?", gameStatus = "?";
+        bool yearFound = false, manufacturerFound = false, hasROMs = false, hasCHDs = false, playersFound = false;
         while ( !endGame ) {
           QString xmlLine = xmlLines[i];
           if ( xmlLine.contains("<year>") ) {
             gameYear = xmlLine.simplified().remove("<year>").remove("</year>");
-            yearFound = TRUE;
+            yearFound = true;
           } else if ( xmlLine.contains("<manufacturer>") ) {
             gameManufacturer = xmlLine.simplified().remove("<manufacturer>").remove("</manufacturer>").replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">").replace("&quot;", "\"");
-            manufacturerFound = TRUE;
+            manufacturerFound = true;
           } else if ( xmlLine.contains("<rom name") ) {
-            hasROMs = TRUE;
+            hasROMs = true;
           } else if ( xmlLine.contains("<disk name") ) {
-            hasCHDs = TRUE;
+            hasCHDs = true;
           } else if ( xmlLine.contains("<input players") ) {
             int playersPos = xmlLine.indexOf("input players=\"") + 15;
             if ( playersPos >= 0 )
               gamePlayers = xmlLine.mid(playersPos, xmlLine.indexOf("\"", playersPos) - playersPos);
+          } else if ( xmlLine.contains("<driver status") ) {
+            int statusPos = xmlLine.indexOf("driver status=\"") + 15;
+            if ( statusPos >= 0 )
+              gameStatus = xmlLine.mid(statusPos, xmlLine.indexOf("\"", statusPos) - statusPos);
           }
 #if defined(QMC2_EMUTYPE_MAME)
           endGame = xmlLine.contains("</game>") || ( yearFound && manufacturerFound && hasROMs && hasCHDs && playersFound );
@@ -1686,6 +1692,7 @@ void Gamelist::parse()
         else
           gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, "--");
 	gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
+	gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toAscii()));
 #if defined(QMC2_EMUTYPE_MAME)
         if ( useCatverIni ) {
           QString categoryString = qmc2CategoryMap[gameName];
@@ -1763,7 +1770,7 @@ void Gamelist::parse()
           tsGamelistCache << gameName << "\t" << gameDescription << "\t" << gameManufacturer << "\t"
                           << gameYear << "\t" << gameCloneOf << "\t" << isBIOS << "\t"
 			  << (hasROMs ? "1" : "0") << "\t" << (hasCHDs ? "1": "0") << "\t"
-			  << gamePlayers << "\n";
+			  << gamePlayers << "\t" << gameStatus <<"\n";
 
         numGames++;
       }
@@ -1771,12 +1778,12 @@ void Gamelist::parse()
       qmc2MainWindow->progressBarGamelist->setValue(numGames);
 
       if ( numGames % qmc2GamelistResponsiveness == 0 ) {
-        qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+        qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
         qmc2MainWindow->labelGamelistStatus->setText(status());
         if ( qmc2Options->config->value(QMC2_FRONTEND_PREFIX + "Gamelist/SortOnline").toBool() )
           qmc2MainWindow->treeWidgetGamelist->sortItems(qmc2MainWindow->sortCriteriaLogicalIndex(), qmc2SortOrder);
         qApp->processEvents();
-        qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(FALSE);
+        qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
       }
     }
   }
@@ -1804,6 +1811,7 @@ void Gamelist::parse()
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
+    hierarchyItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
 #if defined(QMC2_EMUTYPE_MAME)
     if ( useCatverIni ) {
       hierarchyItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
@@ -1876,6 +1884,7 @@ void Gamelist::parse()
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
+      hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
 #if defined(QMC2_EMUTYPE_MAME)
       if ( useCatverIni ) {
         hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
@@ -1973,6 +1982,12 @@ void Gamelist::parse()
     case QMC2_SORT_BY_ROMTYPES:
       sortCriteria = QObject::tr("ROM types");
       break;
+    case QMC2_SORT_BY_PLAYERS:
+      sortCriteria = QObject::tr("players");
+      break;
+    case QMC2_SORT_BY_DRVSTAT:
+      sortCriteria = QObject::tr("driver status");
+      break;
 #if defined(QMC2_EMUTYPE_MAME)
     case QMC2_SORT_BY_CATEGORY:
       sortCriteria = QObject::tr("category");
@@ -2041,7 +2056,7 @@ void Gamelist::parse()
       QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
     }
   }
-  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
   qmc2MainWindow->labelGamelistStatus->setText(status());
 
   processGamelistElapsedTimer = processGamelistElapsedTimer.addMSecs(parseTimer.elapsed());
@@ -2078,8 +2093,8 @@ void Gamelist::parse()
 
   if ( qmc2StopParser && loadProc )
     loadProc->terminate();
-  qmc2ReloadActive = FALSE;
-  qmc2StartingUp = FALSE;
+  qmc2ReloadActive = false;
+  qmc2StartingUp = false;
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck").toBool() ) {
     if ( autoROMCheck )
       QTimer::singleShot(QMC2_AUTOROMCHECK_DELAY, qmc2MainWindow->actionCheckROMs, SLOT(trigger()));
@@ -2087,7 +2102,7 @@ void Gamelist::parse()
       filter();
   } else
     filter();
-  enableWidgets(TRUE);
+  enableWidgets(true);
 }
 
 void Gamelist::filter()
@@ -2112,10 +2127,10 @@ void Gamelist::filter()
   }
 
   QTime elapsedTime;
-  qmc2StopParser = FALSE;
+  qmc2StopParser = false;
   parseTimer.start();
-  qmc2FilterActive = TRUE;
-  enableWidgets(FALSE);
+  qmc2FilterActive = true;
+  enableWidgets(false);
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("applying ROM state filter"));
   qmc2MainWindow->progressBarGamelist->reset();
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -2134,7 +2149,7 @@ void Gamelist::filter()
   QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
   int i = 0;
   int filterResponse = numGames / QMC2_STATEFILTER_UPDATES;
-  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(FALSE);
+  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
   while ( it.hasNext() && !qmc2StopParser ) {
     if ( i++ % filterResponse == 0 ) {
       qmc2MainWindow->progressBarGamelist->setValue(i);
@@ -2170,12 +2185,12 @@ void Gamelist::filter()
   qmc2MainWindow->progressBarGamelist->setValue(numGames - 1);
   qApp->processEvents();
   qmc2MainWindow->scrollToCurrentItem();
-  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
-  qmc2FilterActive = FALSE;
+  qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
+  qmc2FilterActive = false;
   elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (applying ROM state filter, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-  enableWidgets(TRUE);
-  qmc2StatesTogglesEnabled = TRUE;
+  enableWidgets(true);
+  qmc2StatesTogglesEnabled = true;
   QTimer::singleShot(0, qmc2MainWindow->progressBarGamelist, SLOT(reset()));
 }
 
@@ -2376,7 +2391,7 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML machine list data and (re)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 #endif
   qmc2MainWindow->progressBarGamelist->reset();
-  qmc2EarlyReloadActive = FALSE;
+  qmc2EarlyReloadActive = false;
   if ( loadProc )
     delete loadProc;
   loadProc = NULL;
@@ -2392,10 +2407,10 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
   loadPlayHistory();
 
   // show game list
-  qmc2MainWindow->labelLoadingGamelist->setVisible(FALSE);
-  qmc2MainWindow->treeWidgetGamelist->setVisible(TRUE);
-  qmc2MainWindow->labelLoadingHierarchy->setVisible(FALSE);
-  qmc2MainWindow->treeWidgetHierarchy->setVisible(TRUE);
+  qmc2MainWindow->labelLoadingGamelist->setVisible(false);
+  qmc2MainWindow->treeWidgetGamelist->setVisible(true);
+  qmc2MainWindow->labelLoadingHierarchy->setVisible(false);
+  qmc2MainWindow->treeWidgetHierarchy->setVisible(true);
 
   if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_GAMELIST_INDEX ) {
 	  switch ( qmc2MainWindow->stackedWidgetView->currentIndex() ) {
@@ -2460,39 +2475,39 @@ void Gamelist::loadReadyReadStandardOutput()
       bool newLine = singleXMLLine.endsWith(">");
       if ( newLine ) {
         if ( singleXMLLine.endsWith("<description>") )
-          newLine = FALSE;
+          newLine = false;
         else if ( singleXMLLine.endsWith("<year>") )
-          newLine = FALSE;
+          newLine = false;
         else if ( singleXMLLine.endsWith("<manufacturer>") )
-          newLine = FALSE;
+          newLine = false;
         if ( newLine ) {
-          bool found = FALSE;
+          bool found = false;
           for (i = singleXMLLine.length() - 2; i > 0 && !found; i--)
             found = ( singleXMLLine[i] == '<' );
           if ( found && i == 0 )
-            newLine = FALSE;
+            newLine = false;
         }
       }
       bool needsSpace = singleXMLLine.endsWith("\"");
       if ( needsSpace ) {
-        bool found = FALSE;
-        bool stop = FALSE;
+        bool found = false;
+        bool stop = false;
         for (i = singleXMLLine.length() - 2; i > 1 && !found && !stop; i--) {
           if ( singleXMLLine[i] == '\"' ) {
             if ( singleXMLLine[i - 1] == '=' )
-              found = TRUE;
+              found = true;
             else
-              stop = TRUE;
+              stop = true;
           }
         }
         if ( !found )
-          needsSpace = FALSE;
+          needsSpace = false;
       }
       needsSpace |= endsWithSpace;
       if ( newLine ) {
         if ( singleXMLLine[singleXMLLine.length() - 1].isSpace() )
           singleXMLLine.remove(singleXMLLine.length() - 1, 1);
-        needsSpace = FALSE;
+        needsSpace = false;
       }
       gamelistBuffer += singleXMLLine + QString(needsSpace ? " " : "") + QString(newLine ? "\n" : "");
       if ( listXMLCache.isOpen() )
@@ -2547,10 +2562,10 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::verifyFinished(int exitCode = " + QString::number(exitCode) + ", QProcess::ExitStatus exitStatus = " + QString::number(exitStatus) + "): proc = 0x" + QString::number((ulong)proc, 16));
 #endif
 
-  bool cleanExit = TRUE;
+  bool cleanExit = true;
   if ( exitStatus != QProcess::NormalExit && !qmc2StopParser ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: emulator audit call didn't exit cleanly -- exitCode = %1, exitStatus = %2").arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))));
-    cleanExit = FALSE;
+    cleanExit = false;
   }
 
   bool showROMStatusIcons = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool();
@@ -2766,7 +2781,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
   }
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: C:%1 M:%2 I:%3 N:%4 U:%5").arg(numCorrectGames).arg(numMostlyCorrectGames).arg(numIncorrectGames).arg(numNotFoundGames).arg(numUnknownGames));
   qmc2MainWindow->progressBarGamelist->reset();
-  qmc2VerifyActive = FALSE;
+  qmc2VerifyActive = false;
   if ( verifyProc )
     delete verifyProc;
   verifyProc = NULL;
@@ -2804,7 +2819,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
       QTimer::singleShot(0, qmc2MainWindow, SLOT(scrollToCurrentItem()));
   }
 
-  enableWidgets(TRUE);
+  enableWidgets(true);
 
   filter();
 }
@@ -3065,9 +3080,9 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
     if ( !checkOnly )
       item->setIcon(QMC2_GAMELIST_COLUMN_ICON, qmc2IconMap.value(gameName));
     else
-      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
 
-    return TRUE;
+    return true;
   } else if ( qmc2IconsPreloaded ) {
     // icon wasn't found
     if ( !checkOnly ) {
@@ -3075,9 +3090,9 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
       qmc2IconMap[gameName] = icon;
       item->setIcon(QMC2_GAMELIST_COLUMN_ICON, icon);
     } else
-      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+      qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
 
-    return FALSE;
+    return false;
   }
 
   if ( qmc2UseIconFile ) {
@@ -3130,9 +3145,9 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
               }
             }
             if ( iconCount % qmc2GamelistResponsiveness == 0 ) {
-              qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+              qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
               qApp->processEvents();
-              qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(FALSE);
+              qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
             }
           } while ( unzGoToNextFile(qmc2IconFile) != UNZ_END_OF_LIST_OF_FILE );
         }
@@ -3145,10 +3160,10 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
       elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from ZIP archive, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", iconCount));
-      qmc2IconsPreloaded = TRUE;
+      qmc2IconsPreloaded = true;
 
       if ( checkOnly )
-        qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+        qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
 
       return loadIcon(gameName, item, checkOnly);
     }
@@ -3199,9 +3214,9 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
 #endif
         qmc2IconMap[iconFiles[iconCount].toLower().remove(".png")] = icon;
         if ( iconCount % qmc2GamelistResponsiveness == 0 ) {
-          qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+          qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
           qApp->processEvents();
-          qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(FALSE);
+          qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(false);
         }
       }
       qmc2MainWindow->progressBarGamelist->setRange(0, currentMax);
@@ -3212,19 +3227,19 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
       elapsedTime = elapsedTime.addMSecs(preloadTimer.elapsed());
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (pre-caching icons from directory, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n icon(s) loaded", "", iconCount));
-      qmc2IconsPreloaded = TRUE;
+      qmc2IconsPreloaded = true;
 
       if ( checkOnly )
-        qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+        qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
 
       return loadIcon(gameName, item, checkOnly);
     }
   }
 
   if ( checkOnly )
-    qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(TRUE);
+    qmc2MainWindow->treeWidgetGamelist->setUpdatesEnabled(true);
 
-  return FALSE;
+  return false;
 }
 
 #if defined(QMC2_EMUTYPE_MAME)
@@ -3256,17 +3271,17 @@ void Gamelist::loadCatverIni()
   int entryCounter = 0;
   if ( catverIniFile.open(QFile::ReadOnly) ) {
     QTextStream tsCatverIni(&catverIniFile);
-    bool isVersion = FALSE, isCategory = FALSE;
+    bool isVersion = false, isCategory = false;
     while ( !tsCatverIni.atEnd() ) {
       QString catverLine = tsCatverIni.readLine().simplified().trimmed();
       if ( catverLine.isEmpty() )
         continue;
       if ( catverLine.contains("[Category]") ) {
-        isCategory = TRUE;
-        isVersion = FALSE;
+        isCategory = true;
+        isVersion = false;
       } else if ( catverLine.contains("[VerAdded]") ) {
-        isCategory = FALSE;
-        isVersion = TRUE;
+        isCategory = false;
+        isVersion = true;
       } else {
         QStringList tokens = catverLine.split("=");
         if ( tokens.count() >= 2 ) {
@@ -3353,6 +3368,7 @@ void Gamelist::createCategoryView()
 				gameItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_VERSION, baseItem->text(QMC2_GAMELIST_COLUMN_VERSION));
 				if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
 					switch ( qmc2GamelistStatusMap[gameName][0].toAscii() ) {
@@ -3445,6 +3461,7 @@ void Gamelist::createVersionView()
 				gameItem->setText(QMC2_GAMELIST_COLUMN_NAME, baseItem->text(QMC2_GAMELIST_COLUMN_NAME));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, baseItem->text(QMC2_GAMELIST_COLUMN_RTYPES));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, baseItem->text(QMC2_GAMELIST_COLUMN_PLAYERS));
+				gameItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, baseItem->text(QMC2_GAMELIST_COLUMN_DRVSTAT));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_CATEGORY, baseItem->text(QMC2_GAMELIST_COLUMN_CATEGORY));
 				if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
 					switch ( qmc2GamelistStatusMap[gameName][0].toAscii() ) {
@@ -3516,6 +3533,10 @@ bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
       return (text(QMC2_GAMELIST_COLUMN_PLAYERS).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_PLAYERS).toUpper());
       break;
 
+    case QMC2_SORT_BY_DRVSTAT:
+      return (text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper());
+      break;
+
 #if defined(QMC2_EMUTYPE_MAME)
     case QMC2_SORT_BY_CATEGORY:
       return (text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper());
@@ -3527,7 +3548,7 @@ bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
 #endif
 
     default:
-      return FALSE;
+      return false;
       break;
   }
 }

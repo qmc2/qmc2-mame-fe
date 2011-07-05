@@ -6903,6 +6903,13 @@ void MainWindow::on_treeWidgetGamelist_headerSectionClicked(int logicalIndex)
         qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_PLAYERS);
       break;
 
+    case QMC2_GAMELIST_COLUMN_DRVSTAT:
+      if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_DRVSTAT )
+        qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
+      else
+        qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_DRVSTAT);
+      break;
+
 #if defined(QMC2_EMUTYPE_MAME)
     case QMC2_GAMELIST_COLUMN_CATEGORY:
       if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_CATEGORY )
@@ -8088,6 +8095,10 @@ int MainWindow::sortCriteriaLogicalIndex() {
 
     case QMC2_SORT_BY_PLAYERS:
       return QMC2_GAMELIST_COLUMN_PLAYERS;
+      break;
+
+    case QMC2_SORT_BY_DRVSTAT:
+      return QMC2_GAMELIST_COLUMN_DRVSTAT;
       break;
 
 #if defined(QMC2_EMUTYPE_MAME)
