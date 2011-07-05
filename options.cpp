@@ -674,11 +674,7 @@ void Options::on_pushButtonApply_clicked()
        needManualReload = false;
 
   // General
-#ifdef BETA
-  config->setValue("Version", QString::number(MAJOR) + "." + QString::number(MINOR) + ".b" + QString::number(BETA));
-#else 
   config->setValue("Version", QString::number(MAJOR) + "." + QString::number(MINOR));
-#endif
 #if QMC2_SVN_REV > 0
   config->setValue("SVN_Revision", QMC2_SVN_REV);
 #else
