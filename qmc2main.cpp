@@ -2226,14 +2226,20 @@ void MainWindow::on_actionLaunchQMC2MAME_activated()
     err = LSOpenFSRef(&appRef, NULL);
   launched = err == noErr;
 #elif defined(Q_WS_WIN)
-  HANDLE procHandle = winFindProcessHandle(QMC2_VARIANT_MAME_NAME);
+  QString otherVariantExe = qmc2Config->value("MESS/FilesAndDirectories/MAMEVariantExe", QString()).toString();
+  HANDLE procHandle = NULL;
+  if ( otherVariantExe.isEmpty() )
+	  procHandle = winFindProcessHandle(QMC2_VARIANT_MAME_NAME);
+  else {
+	  QFileInfo fi(otherVariantExe);
+	  procHandle = winFindProcessHandle(fi.fileName());
+  }
   if ( procHandle != NULL ) {
 	HWND windowHandle = winFindWindowHandle(QMC2_VARIANT_MAME_TITLE);
 	if ( windowHandle )
 		launched = BringWindowToTop(windowHandle);
   } else {
 	// if not stated otherwise, we search the other variant in the directory we were started from
-	QString otherVariantExe = qmc2Config->value("MESS/FilesAndDirectories/MAMEVariantExe", QString()).toString();
 	if ( otherVariantExe.isEmpty() ) {
 		WCHAR myExecPath[MAX_PATH + 1];
 		GetModuleFileName(NULL, myExecPath, MAX_PATH + 1);
@@ -2318,14 +2324,20 @@ void MainWindow::on_actionLaunchQMC2MESS_activated()
     err = LSOpenFSRef(&appRef, NULL);
   launched = err == noErr;
 #elif defined(Q_WS_WIN)
-  HANDLE procHandle = winFindProcessHandle(QMC2_VARIANT_MESS_NAME);
+  QString otherVariantExe = qmc2Config->value("MAME/FilesAndDirectories/MESSVariantExe", QString()).toString();
+  HANDLE procHandle = NULL;
+  if ( otherVariantExe.isEmpty() )
+	  procHandle = winFindProcessHandle(QMC2_VARIANT_MESS_NAME);
+  else {
+	  QFileInfo fi(otherVariantExe);
+	  procHandle = winFindProcessHandle(fi.fileName());
+  }
   if ( procHandle != NULL ) {
 	HWND windowHandle = winFindWindowHandle(QMC2_VARIANT_MESS_TITLE);
 	if ( windowHandle )
 		launched = BringWindowToTop(windowHandle);
   } else {
 	// if not stated otherwise, we search the other variant in the directory we were started from
-	QString otherVariantExe = qmc2Config->value("MAME/FilesAndDirectories/MESSVariantExe", QString()).toString();
 	if ( otherVariantExe.isEmpty() ) {
 		WCHAR myExecPath[MAX_PATH + 1];
 		GetModuleFileName(NULL, myExecPath, MAX_PATH + 1);
