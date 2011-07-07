@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.34, 05-JUL-2011</h3>
+<h3>FAQ - v0.34, 07-JUL-2011</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (UNIX/Linux, Mac OS X) distribution comes with an older (or no) version of Qt. What should I do about that?</a></div></p>
@@ -435,8 +435,9 @@ I had to go into the CompizConfig Settings Manager, General Options, Focus &amp;
 <p>Note that enabling the GUI option <i>Minimize on variant launch</i> may help to circumvent most (if not all) of these possible troubles!</p>
 <p>Any information on how to setup other window managers / desktop environments is greatly appreciated!</p>
 <p><b>Windows:</b></p>
-Variant launching on Windows requires that all QMC2 variants can be found in the same directory, but that's how it's installed anyway.
-There's no requirement to add anything to the %PATH% environment variable. So it should work out-of-the-box.</p>
+As per default, variant launching on Windows assumes that all QMC2 variants can be found in the same directory, because that's how it's usually installed (and generally recommended).</p
+<p>However, you can also specify the path to the <i>other</i> variant's exe file explicitly when you would like to use two separate installations or if just rename the exe files (for whatever weird reason).</p>
+<p>There's no requirement to add anything to the %PATH% environment variable or so. It should work out-of-the-box, actually.</p>
 <hr>
 <p><a name="A2.12"></a><b>Q2.12: The MAWS lookup feature is nice, but I would like to use a different catalog. Is it possible?</b></p>
 <p>Yes, within certain restrictions this is possible. All you need to do is change the <i>MAWS base URL</i> that QMC2 uses.</p>
