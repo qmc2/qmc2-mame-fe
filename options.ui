@@ -4116,7 +4116,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Select the exe file for the MAME variant (leave empty when all variants are installed in the same directory)</string>
+                    <string>Specify the exe file for the MAME variant (leave empty when all variants are installed in the same directory)</string>
                    </property>
                   </widget>
                  </item>
@@ -4153,7 +4153,7 @@
                     </sizepolicy>
                    </property>
                    <property name="toolTip">
-                    <string>Select the exe file for the MESS variant (leave empty when all variants are installed in the same directory)</string>
+                    <string>Specify the exe file for the MESS variant (leave empty when all variants are installed in the same directory)</string>
                    </property>
                   </widget>
                  </item>
