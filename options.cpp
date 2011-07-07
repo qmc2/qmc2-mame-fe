@@ -2065,7 +2065,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditExecutableFile->setText(config->value("MAME/FilesAndDirectories/ExecutableFile", "").toString());
   lineEditWorkingDirectory->setText(config->value("MAME/FilesAndDirectories/WorkingDirectory", "").toString());
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
-  lineEditExecutableFile->setText(config->value("MAME/FilesAndDirectories/MESSVariantExe", "").toString());
+  lineEditMESSVariantExe->setText(config->value("MAME/FilesAndDirectories/MESSVariantExe", "").toString());
 #endif
   lineEditEmulatorLogFile->setText(config->value("MAME/FilesAndDirectories/LogFile", userScopePath + "/mame.log").toString());
   lineEditListXMLCache->setText(config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
@@ -2089,7 +2089,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditExecutableFile->setText(config->value("MESS/FilesAndDirectories/ExecutableFile", "").toString());
   lineEditWorkingDirectory->setText(config->value("MESS/FilesAndDirectories/WorkingDirectory", "").toString());
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
-  lineEditExecutableFile->setText(config->value("MESS/FilesAndDirectories/MAMEVariantExe", "").toString());
+  lineEditMAMEVariantExe->setText(config->value("MESS/FilesAndDirectories/MAMEVariantExe", "").toString());
 #endif
   lineEditEmulatorLogFile->setText(config->value("MESS/FilesAndDirectories/LogFile", userScopePath + "/mess.log").toString());
   lineEditListXMLCache->setText(config->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString());
