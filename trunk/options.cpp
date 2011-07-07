@@ -2357,6 +2357,32 @@ void Options::on_toolButtonBrowseExecutableFile_clicked()
   raise();
 }
 
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+void Options::on_toolButtonBrowseMAMEVariantExe_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMAMEVariantExe_clicked()");
+#endif
+
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose MAME variant's exe file"), lineEditMAMEVariantExe->text(), tr("All files (*)"));
+	if ( !s.isNull() )
+		lineEditMAMEVariantExe->setText(s);
+	raise();
+}
+
+void Options::on_toolButtonBrowseMESSVariantExe_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseMESSVariantExe_clicked()");
+#endif
+
+	QString s = QFileDialog::getOpenFileName(this, tr("Choose MESS variant's exe file"), lineEditMESSVariantExe->text(), tr("All files (*)"));
+	if ( !s.isNull() )
+		lineEditMESSVariantExe->setText(s);
+	raise();
+}
+#endif
+
 void Options::on_toolButtonBrowseEmulatorLogFile_clicked()
 {
 #ifdef QMC2_DEBUG
