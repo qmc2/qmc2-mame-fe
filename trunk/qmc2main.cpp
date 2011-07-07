@@ -2232,15 +2232,17 @@ void MainWindow::on_actionLaunchQMC2MAME_activated()
 	if ( windowHandle )
 		launched = BringWindowToTop(windowHandle);
   } else {
-	// we assume that the other variant is in the same directory
-	WCHAR myExecPath[MAX_PATH + 1];
-	GetModuleFileName(NULL, myExecPath, MAX_PATH + 1);
-	QFileInfo fi(QString::fromWCharArray(myExecPath));
-	QDir execDir(fi.path());
-	if ( execDir.exists(QMC2_VARIANT_MAME_NAME) ) {
-		QStringList args;
-		launched = QProcess::startDetached(execDir.path() + "/" + QMC2_VARIANT_MAME_NAME, qApp->arguments());
-	}
+	// if not stated otherwise, we search the other variant in the directory we were started from
+	QString otherVariantExe = qmc2Config->value("MESS/FilesAndDirectories/MAMEVariantExe", QString()).toString();
+	if ( otherVariantExe.isEmpty() ) {
+		WCHAR myExecPath[MAX_PATH + 1];
+		GetModuleFileName(NULL, myExecPath, MAX_PATH + 1);
+		QFileInfo fi(QString::fromWCharArray(myExecPath));
+		QDir execDir(fi.path());
+		if ( execDir.exists(QMC2_VARIANT_MAME_NAME) )
+			launched = QProcess::startDetached(execDir.path() + "/" + QMC2_VARIANT_MAME_NAME, qApp->arguments());
+	} else
+		launched = QProcess::startDetached(otherVariantExe, qApp->arguments());
   }
 #else
   QStringList args;
@@ -2322,15 +2324,17 @@ void MainWindow::on_actionLaunchQMC2MESS_activated()
 	if ( windowHandle )
 		launched = BringWindowToTop(windowHandle);
   } else {
-	// we assume that the other variant is in the same directory
-	WCHAR myExecPath[MAX_PATH + 1];
-	GetModuleFileName(NULL, myExecPath, MAX_PATH + 1);
-	QFileInfo fi(QString::fromWCharArray(myExecPath));
-	QDir execDir(fi.path());
-	if ( execDir.exists(QMC2_VARIANT_MESS_NAME) ) {
-		QStringList args;
-		launched = QProcess::startDetached(execDir.path() + "/" + QMC2_VARIANT_MESS_NAME, qApp->arguments());
-	}
+	// if not stated otherwise, we search the other variant in the directory we were started from
+	QString otherVariantExe = qmc2Config->value("MAME/FilesAndDirectories/MESSVariantExe", QString()).toString();
+	if ( otherVariantExe.isEmpty() ) {
+		WCHAR myExecPath[MAX_PATH + 1];
+		GetModuleFileName(NULL, myExecPath, MAX_PATH + 1);
+		QFileInfo fi(QString::fromWCharArray(myExecPath));
+		QDir execDir(fi.path());
+		if ( execDir.exists(QMC2_VARIANT_MESS_NAME) )
+			launched = QProcess::startDetached(execDir.path() + "/" + QMC2_VARIANT_MESS_NAME, qApp->arguments());
+	} else
+		launched = QProcess::startDetached(otherVariantExe, qApp->arguments());
   }
 #else
   QStringList args;
