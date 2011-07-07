@@ -188,6 +188,25 @@ Options::Options(QWidget *parent)
   checkBoxExitOnVariantLaunch->setVisible(false);
 #endif
 
+#if !defined(QMC2_VARIANT_LAUNCHER) || !defined(Q_WS_WIN)
+  labelMAMEVariantExe->setVisible(false);
+  lineEditMAMEVariantExe->setVisible(false);
+  toolButtonBrowseMAMEVariantExe->setVisible(false);
+  labelMESSVariantExe->setVisible(false);
+  lineEditMESSVariantExe->setVisible(false);
+  toolButtonBrowseMESSVariantExe->setVisible(false);
+#else
+#if defined(QMC2_EMUTYPE_MESS)
+  labelMESSVariantExe->setVisible(false);
+  lineEditMESSVariantExe->setVisible(false);
+  toolButtonBrowseMESSVariantExe->setVisible(false);
+#elif defined(QMC2_EMUTYPE_MAME)
+  labelMAMEVariantExe->setVisible(false);
+  lineEditMAMEVariantExe->setVisible(false);
+  toolButtonBrowseMAMEVariantExe->setVisible(false);
+#endif
+#endif
+
 #if defined(QMC2_EMUTYPE_MESS)
   toolButtonBrowseEmuInfoDB->setVisible(false);
   checkBoxProcessEmuInfoDB->setVisible(false);
@@ -349,6 +368,8 @@ Options::Options(QWidget *parent)
   lineEditStyleSheet->setPlaceholderText(tr("No style sheet"));
   lineEditFont->setPlaceholderText(tr("Default"));
   lineEditLogFont->setPlaceholderText(tr("Default"));
+  lineEditMAMEVariantExe->setPlaceholderText(tr("Search in the folder we were called from"));
+  lineEditMESSVariantExe->setPlaceholderText(tr("Search in the folder we were called from"));
 #endif
 
 #if QMC2_JOYSTICK != 1
@@ -474,6 +495,10 @@ void Options::apply()
   comboBoxSortOrder->setIconSize(iconSize);
   checkBoxShowROMStatusIcons->setIconSize(iconSize);
   toolButtonBrowseExecutableFile->setIconSize(iconSize);
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+  toolButtonBrowseMAMEVariantExe->setIconSize(iconSize);
+  toolButtonBrowseMESSVariantExe->setIconSize(iconSize);
+#endif
   toolButtonBrowseWorkingDirectory->setIconSize(iconSize);
   toolButtonBrowseEmulatorLogFile->setIconSize(iconSize);
   toolButtonBrowseOptionsTemplateFile->setIconSize(iconSize);
@@ -1171,6 +1196,9 @@ void Options::on_pushButtonApply_clicked()
   needReload |= config->value("MAME/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
   config->setValue("MAME/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
   config->setValue("MAME/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+  config->setValue("MAME/FilesAndDirectories/MESSVariantExe", lineEditMESSVariantExe->text());
+#endif
   config->setValue("MAME/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
   config->setValue("MAME/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
   config->setValue("MAME/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
@@ -1186,6 +1214,9 @@ void Options::on_pushButtonApply_clicked()
   needReload |= config->value("MESS/FilesAndDirectories/ExecutableFile").toString() != lineEditExecutableFile->text();
   config->setValue("MESS/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
   config->setValue("MESS/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+  config->setValue("MESS/FilesAndDirectories/MAMEVariantExe", lineEditMAMEVariantExe->text());
+#endif
   config->setValue("MESS/FilesAndDirectories/LogFile", lineEditEmulatorLogFile->text());
   config->setValue("MESS/FilesAndDirectories/ListXMLCache", lineEditListXMLCache->text());
   config->setValue("MESS/FilesAndDirectories/GamelistCacheFile", lineEditGamelistCacheFile->text());
@@ -2033,6 +2064,9 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #if defined(QMC2_EMUTYPE_MAME)
   lineEditExecutableFile->setText(config->value("MAME/FilesAndDirectories/ExecutableFile", "").toString());
   lineEditWorkingDirectory->setText(config->value("MAME/FilesAndDirectories/WorkingDirectory", "").toString());
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+  lineEditExecutableFile->setText(config->value("MAME/FilesAndDirectories/MESSVariantExe", "").toString());
+#endif
   lineEditEmulatorLogFile->setText(config->value("MAME/FilesAndDirectories/LogFile", userScopePath + "/mame.log").toString());
   lineEditListXMLCache->setText(config->value("MAME/FilesAndDirectories/ListXMLCache", userScopePath + "/mame.lxc").toString());
   lineEditGamelistCacheFile->setText(config->value("MAME/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mame.glc").toString());
@@ -2054,6 +2088,9 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #elif defined(QMC2_EMUTYPE_MESS)
   lineEditExecutableFile->setText(config->value("MESS/FilesAndDirectories/ExecutableFile", "").toString());
   lineEditWorkingDirectory->setText(config->value("MESS/FilesAndDirectories/WorkingDirectory", "").toString());
+#if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
+  lineEditExecutableFile->setText(config->value("MESS/FilesAndDirectories/MAMEVariantExe", "").toString());
+#endif
   lineEditEmulatorLogFile->setText(config->value("MESS/FilesAndDirectories/LogFile", userScopePath + "/mess.log").toString());
   lineEditListXMLCache->setText(config->value("MESS/FilesAndDirectories/ListXMLCache", userScopePath + "/mess.lxc").toString());
   lineEditGamelistCacheFile->setText(config->value("MESS/FilesAndDirectories/GamelistCacheFile", userScopePath + "/mess.glc").toString());
