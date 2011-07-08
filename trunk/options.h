@@ -132,6 +132,8 @@ class Options : public QDialog, public Ui::Options
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
     void on_toolButtonBrowseMAMEVariantExe_clicked();
     void on_toolButtonBrowseMESSVariantExe_clicked();
+    void mameVariantSpecifyArguments();
+    void messVariantSpecifyArguments();
 #endif
     void on_toolButtonBrowseDataDirectory_clicked();
     void on_toolButtonBrowseGameInfoDB_clicked();
