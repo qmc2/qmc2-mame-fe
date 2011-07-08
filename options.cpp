@@ -14,6 +14,7 @@
 #include <QLocale>
 #include <QNetworkProxy>
 #include <QScrollBar>
+#include <QInputDialog>
 
 #include "options.h"
 #include "emuopt.h"
@@ -200,10 +201,18 @@ Options::Options(QWidget *parent)
   labelMESSVariantExe->setVisible(false);
   lineEditMESSVariantExe->setVisible(false);
   toolButtonBrowseMESSVariantExe->setVisible(false);
+  QMenu *variantMAMEMenu = new QMenu(0);
+  QAction *variantMAMEAction = variantMAMEMenu->addAction(tr("Specify arguments..."));
+  toolButtonBrowseMAMEVariantExe->setMenu(variantMAMEMenu);
+  connect(variantMAMEAction, SIGNAL(triggered()), this, SLOT(mameVariantSpecifyArguments()));
 #elif defined(QMC2_EMUTYPE_MAME)
   labelMAMEVariantExe->setVisible(false);
   lineEditMAMEVariantExe->setVisible(false);
   toolButtonBrowseMAMEVariantExe->setVisible(false);
+  QMenu *variantMESSMenu = new QMenu(0);
+  QAction *variantMESSAction = variantMESSMenu->addAction(tr("Specify arguments..."));
+  toolButtonBrowseMESSVariantExe->setMenu(variantMESSMenu);
+  connect(variantMESSAction, SIGNAL(triggered()), this, SLOT(messVariantSpecifyArguments()));
 #endif
 #endif
 
@@ -2380,6 +2389,44 @@ void Options::on_toolButtonBrowseMESSVariantExe_clicked()
 	if ( !s.isNull() )
 		lineEditMESSVariantExe->setText(s);
 	raise();
+}
+
+void Options::mameVariantSpecifyArguments()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::mameVariantSpecifyArguments()");
+#endif
+
+#if defined(QMC2_EMUTYPE_MESS)
+	bool ok;
+	QString mameVariantExeArgs = QInputDialog::getText(this,
+							tr("MAME variant arguments"),
+							tr("Specify command line arguments passed to the MAME variant\n(empty means: 'pass the arguments we were called with'):"),
+							QLineEdit::Normal,
+							config->value("MESS/FilesAndDirectories/MAMEVariantExeArguments", "").toString(),
+							&ok);
+	if ( ok )
+		config->setValue("MESS/FilesAndDirectories/MAMEVariantExeArguments", mameVariantExeArgs);
+#endif
+}
+
+void Options::messVariantSpecifyArguments()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::messVariantSpecifyArguments()");
+#endif
+
+#if defined(QMC2_EMUTYPE_MAME)
+	bool ok;
+	QString messVariantExeArgs = QInputDialog::getText(this,
+							tr("MESS variant arguments"),
+							tr("Specify command line arguments passed to the MESS variant\n(empty means: 'pass the arguments we were called with'):"),
+							QLineEdit::Normal,
+							config->value("MAME/FilesAndDirectories/MESSVariantExeArguments", "").toString(),
+							&ok);
+	if ( ok )
+		config->setValue("MAME/FilesAndDirectories/MESSVariantExeArguments", messVariantExeArgs);
+#endif
 }
 #endif
 

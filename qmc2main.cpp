@@ -2227,6 +2227,9 @@ void MainWindow::on_actionLaunchQMC2MAME_activated()
   launched = err == noErr;
 #elif defined(Q_WS_WIN)
   QString otherVariantExe = qmc2Config->value("MESS/FilesAndDirectories/MAMEVariantExe", QString()).toString();
+  QStringList otherVariantArgs = qmc2Config->value("MESS/FilesAndDirectories/MAMEVariantExeArguments", QString()).toString().split(" ", QString::SkipEmptyParts);
+  if ( otherVariantArgs.isEmpty() )
+	  otherVariantArgs = qApp->arguments();
   HANDLE procHandle = NULL;
   if ( otherVariantExe.isEmpty() )
 	  procHandle = winFindProcessHandle(QMC2_VARIANT_MAME_NAME);
@@ -2246,9 +2249,9 @@ void MainWindow::on_actionLaunchQMC2MAME_activated()
 		QFileInfo fi(QString::fromWCharArray(myExecPath));
 		QDir execDir(fi.path());
 		if ( execDir.exists(QMC2_VARIANT_MAME_NAME) )
-			launched = QProcess::startDetached(execDir.path() + "/" + QMC2_VARIANT_MAME_NAME, qApp->arguments());
+			launched = QProcess::startDetached(execDir.path() + "/" + QMC2_VARIANT_MAME_NAME, otherVariantArgs);
 	} else
-		launched = QProcess::startDetached(otherVariantExe, qApp->arguments());
+		launched = QProcess::startDetached(otherVariantExe, otherVariantArgs);
   }
 #else
   QStringList args;
@@ -2325,6 +2328,9 @@ void MainWindow::on_actionLaunchQMC2MESS_activated()
   launched = err == noErr;
 #elif defined(Q_WS_WIN)
   QString otherVariantExe = qmc2Config->value("MAME/FilesAndDirectories/MESSVariantExe", QString()).toString();
+  QStringList otherVariantArgs = qmc2Config->value("MAME/FilesAndDirectories/MESSVariantExeArguments", QString()).toString().split(" ", QString::SkipEmptyParts);
+  if ( otherVariantArgs.isEmpty() )
+	  otherVariantArgs = qApp->arguments();
   HANDLE procHandle = NULL;
   if ( otherVariantExe.isEmpty() )
 	  procHandle = winFindProcessHandle(QMC2_VARIANT_MESS_NAME);
@@ -2344,9 +2350,9 @@ void MainWindow::on_actionLaunchQMC2MESS_activated()
 		QFileInfo fi(QString::fromWCharArray(myExecPath));
 		QDir execDir(fi.path());
 		if ( execDir.exists(QMC2_VARIANT_MESS_NAME) )
-			launched = QProcess::startDetached(execDir.path() + "/" + QMC2_VARIANT_MESS_NAME, qApp->arguments());
+			launched = QProcess::startDetached(execDir.path() + "/" + QMC2_VARIANT_MESS_NAME, otherVariantArgs);
 	} else
-		launched = QProcess::startDetached(otherVariantExe, qApp->arguments());
+		launched = QProcess::startDetached(otherVariantExe, otherVariantArgs);
   }
 #else
   QStringList args;
