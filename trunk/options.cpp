@@ -937,8 +937,6 @@ void Options::on_pushButtonApply_clicked()
     if ( comboBoxSortCriteria->count() - 1 < QMC2_SORTCRITERIA_CATEGORY ) {
       comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
       comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
-      qmc2MainWindow->treeWidgetGamelist->resizeColumnToContents(qmc2MainWindow->treeWidgetGamelist->header()->logicalIndex(QMC2_GAMELIST_COLUMN_VERSION));
-      qmc2MainWindow->treeWidgetHierarchy->resizeColumnToContents(qmc2MainWindow->treeWidgetHierarchy->header()->logicalIndex(QMC2_GAMELIST_COLUMN_VERSION));
     }
     if ( qmc2MainWindow->comboBoxViewSelect->count() - 1 < QMC2_VIEWCATEGORY_INDEX ) {
       qmc2MainWindow->comboBoxViewSelect->insertItem(QMC2_VIEWCATEGORY_INDEX, tr("View games by category (not filtered)"));
@@ -958,8 +956,6 @@ void Options::on_pushButtonApply_clicked()
     if ( comboBoxSortCriteria->count() > QMC2_SORTCRITERIA_VERSION ) {
       comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_VERSION);
       comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_CATEGORY);
-      qmc2MainWindow->treeWidgetGamelist->resizeColumnToContents(qmc2MainWindow->treeWidgetGamelist->header()->logicalIndex(QMC2_GAMELIST_COLUMN_DRVSTAT));
-      qmc2MainWindow->treeWidgetHierarchy->resizeColumnToContents(qmc2MainWindow->treeWidgetHierarchy->header()->logicalIndex(QMC2_GAMELIST_COLUMN_DRVSTAT));
     }
     if ( qmc2MainWindow->comboBoxViewSelect->count() > QMC2_VIEWVERSION_INDEX ) {
       qmc2MainWindow->comboBoxViewSelect->removeItem(QMC2_VIEWVERSION_INDEX);
