@@ -203,16 +203,20 @@ Options::Options(QWidget *parent)
   toolButtonBrowseMESSVariantExe->setVisible(false);
   QMenu *variantMAMEMenu = new QMenu(0);
   QAction *variantMAMEAction = variantMAMEMenu->addAction(tr("Specify arguments..."));
-  toolButtonBrowseMAMEVariantExe->setMenu(variantMAMEMenu);
   connect(variantMAMEAction, SIGNAL(triggered()), this, SLOT(mameVariantSpecifyArguments()));
+  variantMAMEMenu->addSeparator();
+  connect(variantMAMEMenu->addAction(tr("Reset to default (same path assumed)")), SIGNAL(triggered()), lineEditMAMEVariantExe, SLOT(clear()));
+  toolButtonBrowseMAMEVariantExe->setMenu(variantMAMEMenu);
 #elif defined(QMC2_EMUTYPE_MAME)
   labelMAMEVariantExe->setVisible(false);
   lineEditMAMEVariantExe->setVisible(false);
   toolButtonBrowseMAMEVariantExe->setVisible(false);
   QMenu *variantMESSMenu = new QMenu(0);
   QAction *variantMESSAction = variantMESSMenu->addAction(tr("Specify arguments..."));
-  toolButtonBrowseMESSVariantExe->setMenu(variantMESSMenu);
   connect(variantMESSAction, SIGNAL(triggered()), this, SLOT(messVariantSpecifyArguments()));
+  variantMESSMenu->addSeparator();
+  connect(variantMESSMenu->addAction(tr("Reset to default (same path assumed)")), SIGNAL(triggered()), lineEditMESSVariantExe, SLOT(clear()));
+  toolButtonBrowseMESSVariantExe->setMenu(variantMESSMenu);
 #endif
 #endif
 
