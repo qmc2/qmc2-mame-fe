@@ -6956,7 +6956,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.ui" line="425"/>
         <location filename="../../qmc2main.ui" line="549"/>
         <source>Driver status</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado do driver</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2212"/>
@@ -8218,13 +8218,13 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="205"/>
         <location filename="../../options.cpp" line="215"/>
         <source>Specify arguments...</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique os argumentos...</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="208"/>
         <location filename="../../options.cpp" line="218"/>
         <source>Reset to default (same path assumed)</source>
-        <translation type="unfinished"></translation>
+        <translation>Redefinir para o padrão (assumido mesmo caminho)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="228"/>
@@ -8660,7 +8660,7 @@ Tentar novamente?</translation>
         <location filename="../../options.cpp" line="384"/>
         <location filename="../../options.cpp" line="385"/>
         <source>Search in the folder we were called from</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar na pasta de onde fomos executados</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="811"/>
@@ -9071,34 +9071,36 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="2376"/>
         <source>Choose MAME variant&apos;s exe file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo executável da variante do MAME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2388"/>
         <source>Choose MESS variant&apos;s exe file</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo executável da variante do MESS</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2403"/>
         <source>MAME variant arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Argumentos do variante do MAME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2404"/>
         <source>Specify command line arguments passed to the MAME variant
 (empty means: &apos;pass the arguments we were called with&apos;):</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique os argumentos de linha de comando passados para a variante do MAME
+(vazio significa: &apos;use os mesmos argumentos os quais foram passados para nós&apos;):</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2422"/>
         <source>MESS variant arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Argumentos do variante do MESS</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2423"/>
         <source>Specify command line arguments passed to the MESS variant
 (empty means: &apos;pass the arguments we were called with&apos;):</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique os argumentos de linha de comando passados para a variante do MESS
+(vazio significa: &apos;use os mesmos argumentos os quais foram passados para nós&apos;):</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2439"/>
@@ -10465,7 +10467,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2319"/>
         <source>Driver status</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado do driver</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2637"/>
@@ -10896,32 +10898,32 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="4106"/>
         <source>MAME variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>Exe da variante do MAME</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4119"/>
         <source>Specify the exe file for the MAME variant (leave empty when all variants are installed in the same directory)</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique o arquivo exe para a variante do MAME (deixe em branco quando todas as variantes estão instaladas no mesmo diretório)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4132"/>
         <source>Browse MAME variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar exe do variante do MAME</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4143"/>
         <source>MESS variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>Exe da variante do MESS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4156"/>
         <source>Specify the exe file for the MESS variant (leave empty when all variants are installed in the same directory)</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique o arquivo exe para a variante do MESS (deixe em branco quando todas as variantes estão instaladas no mesmo diretório)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4169"/>
         <source>Browse MESS variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar exe do variante do MESS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4180"/>
@@ -11348,7 +11350,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../gamelist.cpp" line="1993"/>
         <location filename="../../options.cpp" line="1372"/>
         <source>driver status</source>
-        <translation type="unfinished"></translation>
+        <translation>estado do driver</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2874"/>
@@ -15040,7 +15042,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="202"/>
         <source>Auto-suggest a search pattern?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sugerir um padrão de busca automaticamente?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="203"/>
@@ -15050,7 +15052,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="208"/>
         <source>Enter string to be appended</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre com o texto a ser anexado</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="209"/>
