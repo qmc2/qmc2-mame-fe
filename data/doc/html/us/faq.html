@@ -38,7 +38,7 @@
 <p><div class="menuitem"><a href="#A2.8">Q2.8: Sometimes when changing the global emulator options, QMC2 complains about an <i>open game/machine-specific emulator configuration</i>. What does this mean?</a></div></p>
 <p><div class="menuitem"><a href="#A2.9">Q2.9: In rare cases, QMC2 <i>hangs</i> during emulation or after the emulator has finished. That's a bug, right?</a></div></p>
 <p><div class="menuitem"><a href="#A2.10">Q2.10: I'm having trouble to set up the emulator configuration. Am I missing something?</a></div></p>
-<p><div class="menuitem"><a href="#A2.11">Q2.11: When I try to launch another QMC2 variant from a currently running one, nothing happens. What's up?</a></div></p>
+<p><div class="menuitem"><a href="#A2.11">Q2.11: What's required to make variant launching work?</a></div></p>
 <p><div class="menuitem"><a href="#A2.12">Q2.12: The MAWS lookup feature is nice, but I would like to use a different catalog. Is it possible?</a></div></p>
 <p><div class="menuitem"><a href="#A2.13">Q2.13: I want to use other/older emulators for specific games. Does QMC2 support that?</a></div></p>
 <p><div class="menuitem"><a href="#A2.14">Q2.14: I'm primarily interested in the (SDL)MESS variant of QMC2. How do I setup any devices to be hooked up to the emulator?</a></div></p>
@@ -414,13 +414,13 @@ Try "mame | less" for example - the behavior will be the same.</p>
 <p>You can pre-configure system-wide overwrites for any template-based defaults by storing them in <i>/etc/qmc2/qmc2.ini</i> on UNIX, or <i>/Library/Application Support/qmc2/qmc2.ini</i> on Mac OS X. System-wide pre-configuration is not supported (and not required) on Windows.</p>
 <p>See also <a href="#A2.8">Q2.8</a>.</p>
 <hr>
-<p><a name="A2.11"></a><b>Q2.11: When I try to launch another QMC2 variant from a currently running one, nothing happens. What's up?</b></p>
+<p><a name="A2.11"></a><b>Q2.11: What's required to make variant launching work?</b></p>
 <p><b>UNIX (X11):</b></p>
 <p>To be able to use the so called <i>QMC2 variant launcher</i> all QMC2-binaries (including the <i>runonce</i> utility!) must be installed in a place which is part of your search path -- make sure the environment variable <i>PATH</i> is setup correctly!</p>
 <p>What the variant launcher effectively tries to do is run the following command:</p>
 <pre>$ runonce qmc2-&lt;variant&gt; '&lt;variant-title&gt;' qmc2-&lt;variant&gt;</pre>
 <p>(&lt;variant&gt; = <i>sdlmame</i>, <i>sdlmess</i> -- &lt;variant-title&gt; = <i>M.A.M.E. Catalog / Launcher II</i>, <i>M.E.S.S. Catalog / Launcher II</i>)</p>
-<p>As long as this doesn't work from a shell/terminal there is few hope it will work from QMC2 -- provided that in both situations the same PATH variable is used, of course.</p>
+<p>As long as this doesn't work from a shell/terminal there's few hope it will work from QMC2 -- provided that in both situations the same PATH variable is used, of course.</p>
 <p>We utilize the <i>runonce</i> utility in order to make sure that the called QMC2 variant will run only <i>once</i> (as the name suggests), and if it already runs, to raise its main window.
 Raising an application window from another program has some restrictions on X11, though. It's highly dependent on the window manager and its setup -- the window manager may simply ignore
 it completely, or it may interprete the event(s) in a different way.</p>
