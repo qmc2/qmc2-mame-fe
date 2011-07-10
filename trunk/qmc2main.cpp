@@ -8494,7 +8494,7 @@ int main(int argc, char *argv[])
 #else
   greeting = QObject::tr("M.A.M.E. Catalog / Launcher II v") +
 #endif
-             QString::number(MAJOR) + "." + QString::number(MINOR) +
+             QString(XSTR(QMC2_VERSION)) +
 #if QMC2_SVN_REV > 0
              ", " + QObject::tr("SVN r%1").arg(QMC2_SVN_REV) +
 #endif
