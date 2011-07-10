@@ -712,7 +712,7 @@ void Options::on_pushButtonApply_clicked()
        needManualReload = false;
 
   // General
-  config->setValue("Version", QString::number(MAJOR) + "." + QString::number(MINOR));
+  config->setValue("Version", QString(XSTR(QMC2_VERSION)));
 #if QMC2_SVN_REV > 0
   config->setValue("SVN_Revision", QMC2_SVN_REV);
 #else

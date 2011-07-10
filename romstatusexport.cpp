@@ -184,7 +184,7 @@ void ROMStatusExporter::exportToASCII()
   maxLength += 2;
     
   if ( checkBoxIncludeHeader->isChecked() ) {
-    QString qmc2Version(QString(XSTR(MAJOR)) + "." + QString(XSTR(MINOR)));
+    QString qmc2Version(XSTR(QMC2_VERSION));
     ts << tr("ROM Status Export - created by QMC2 %1").arg(qmc2Version) << "\n"
        << QString().leftJustified(tr("ROM Status Export - created by QMC2 %1").arg(qmc2Version).length(), '-', TRUE) << "\n\n";
 #if defined(QMC2_SDLMAME)
@@ -480,7 +480,7 @@ void ROMStatusExporter::exportToCSV()
   QString del = lineEditCSVDelimiter->text();
 
   if ( checkBoxIncludeHeader->isChecked() ) {
-    QString qmc2Version(QString(XSTR(MAJOR)) + "." + QString(XSTR(MINOR)));
+    QString qmc2Version(QString(XSTR(QMC2_VERSION)));
     ts << del << tr("ROM Status Export - created by QMC2 %1").arg(qmc2Version) << del << "\n" << del << del << "\n";
 #if defined(QMC2_SDLMAME)
     QString emulatorTarget = tr("SDLMAME");
@@ -697,7 +697,7 @@ void ROMStatusExporter::exportToHTML()
   progressBarExport->reset();
   progressBarExport->setValue(0);
 
-  QString qmc2Version(QString(XSTR(MAJOR)) + "." + QString(XSTR(MINOR)));
+  QString qmc2Version(XSTR(QMC2_VERSION));
 
   ts << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\n"
      << "<html>\n"

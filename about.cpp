@@ -113,7 +113,7 @@ void About::showEvent(QShowEvent *e)
           "<p><font size=\"+1\"><b>QMC2 - M.E.S.S. Catalog / Launcher II</b></font><br>" +
 #endif
           tr("Qt 4 based multi-platform/multi-emulator front end") + "<br>" +
-          tr("Version ") + QString::number(MAJOR) + "." + QString::number(MINOR) +
+          tr("Version ") + QString(XSTR(QMC2_VERSION)) +
 #if QMC2_SVN_REV > 0
 	  " (" + tr("SVN r%1").arg(QMC2_SVN_REV) + ")" +
 #endif
