@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.ColumnViewerEditor;
 import org.eclipse.jface.viewers.FocusCellOwnerDrawHighlighter;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -29,25 +31,37 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeColumn;
 
+import sourceforge.org.qmc2.options.editor.QMC2EditorApplication;
 import sourceforge.org.qmc2.options.editor.model.DescriptableItem;
 import sourceforge.org.qmc2.options.editor.model.QMC2TemplateFile;
+import sourceforge.org.qmc2.options.editor.ui.actions.RedoAction;
+import sourceforge.org.qmc2.options.editor.ui.actions.UndoAction;
+import sourceforge.org.qmc2.options.editor.ui.operations.OperationStack;
 
 public class QMC2Editor extends Composite {
 
 	private final TreeViewer viewer;
 
+	public static final String EDITOR_ID = "sourceforge.org.qmc2.options.editor";
+
 	private String selectedFile = null;
 
 	private QMC2TemplateFile templateFile = null;
 
+	private QMC2EditorApplication window = null;
+
 	private String filter = null;
 
-	public QMC2Editor(Composite parent) {
+	private final OperationStack operationStack = new OperationStack();
+
+	public QMC2Editor(Composite parent, QMC2EditorApplication window) {
 		super(parent, SWT.NONE);
+		this.window = window;
 		setLayout(new GridLayout(3, false));
 
 		createFileChooser();
 		createFilterAndSearch();
+		createBasicActions();
 
 		viewer = new TreeViewer(this, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL
 				| SWT.BORDER);
@@ -103,6 +117,15 @@ public class QMC2Editor extends Composite {
 
 		createSaveArea();
 
+	}
+
+	private void createBasicActions() {
+		IAction undoAction = new UndoAction(this);
+		IAction redoAction = new RedoAction(this);
+		window.getMenuManager(QMC2EditorApplication.MENU_EDIT_ID).add(
+				undoAction);
+		window.getMenuManager(QMC2EditorApplication.MENU_EDIT_ID).add(
+				redoAction);
 	}
 
 	private void createFilterAndSearch() {
@@ -202,6 +225,7 @@ public class QMC2Editor extends Composite {
 						templateFile = QMC2TemplateFile.parse(new File(
 								selectedFile));
 						createColumns(templateFile.getLanguages());
+						operationStack.clear();
 						viewer.setInput(templateFile);
 					} catch (Exception e1) {
 						ErrorDialog.openError(getShell(), "Error",
@@ -253,7 +277,7 @@ public class QMC2Editor extends Composite {
 			c.getColumn().setMoveable(false);
 			c.getColumn().setText(lang);
 			c.setLabelProvider(new QMC2LabelProvider(lang));
-			c.setEditingSupport(new QMC2EditingSupport(viewer, lang));
+			c.setEditingSupport(new QMC2EditingSupport(this, lang));
 		}
 
 		viewer.getTree().setRedraw(true);
@@ -264,5 +288,13 @@ public class QMC2Editor extends Composite {
 			viewer.getTree().getColumn(i).setWidth(columnSize);
 		}
 
+	}
+
+	public ColumnViewer getViewer() {
+		return viewer;
+	}
+
+	public OperationStack getOperationStack() {
+		return operationStack;
 	}
 }
