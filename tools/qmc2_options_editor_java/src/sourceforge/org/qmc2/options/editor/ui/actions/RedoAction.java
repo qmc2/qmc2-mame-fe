@@ -11,7 +11,13 @@ public class RedoAction extends Action {
 	public RedoAction(QMC2Editor editor) {
 		this.editor = editor;
 		setAccelerator(SWT.MOD1 + 'Y');
-		setText("Redo");
+		setText("&Redo");
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return editor.getOperationStack() != null
+				&& editor.getOperationStack().hasRedoOperations();
 	}
 
 	@Override

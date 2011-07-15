@@ -1,14 +1,15 @@
 package sourceforge.org.qmc2.options.editor.ui.operations;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.jface.viewers.ColumnViewer;
+
+import sourceforge.org.qmc2.options.editor.ui.QMC2Editor;
 
 public abstract class AbstractEditorOperation implements IOperation {
 
-	private final ColumnViewer viewer;
+	private final QMC2Editor editor;
 
-	public AbstractEditorOperation(ColumnViewer viewer) {
-		this.viewer = viewer;
+	public AbstractEditorOperation(QMC2Editor editor) {
+		this.editor = editor;
 	}
 
 	public abstract IStatus execute();
@@ -17,8 +18,8 @@ public abstract class AbstractEditorOperation implements IOperation {
 
 	public abstract IStatus undo();
 
-	public ColumnViewer getViewer() {
-		return viewer;
+	protected QMC2Editor getEditor() {
+		return editor;
 	}
 
 }

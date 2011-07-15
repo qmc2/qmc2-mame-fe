@@ -2,9 +2,9 @@ package sourceforge.org.qmc2.options.editor.ui.operations;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jface.viewers.ColumnViewer;
 
 import sourceforge.org.qmc2.options.editor.model.DescriptableItem;
+import sourceforge.org.qmc2.options.editor.ui.QMC2Editor;
 
 public class EditOperation extends AbstractEditorOperation {
 
@@ -16,9 +16,9 @@ public class EditOperation extends AbstractEditorOperation {
 
 	private final String oldValue;
 
-	public EditOperation(ColumnViewer viewer, DescriptableItem item,
-			String lang, String value) {
-		super(viewer);
+	public EditOperation(QMC2Editor editor, DescriptableItem item, String lang,
+			String value) {
+		super(editor);
 		this.item = item;
 		this.lang = lang;
 		this.newValue = value;
@@ -35,7 +35,7 @@ public class EditOperation extends AbstractEditorOperation {
 		IStatus operationStatus = Status.OK_STATUS;
 
 		item.setDescription(lang, newValue);
-		getViewer().update(item, null);
+		getEditor().getViewer().update(item, null);
 
 		return operationStatus;
 	}
@@ -45,7 +45,7 @@ public class EditOperation extends AbstractEditorOperation {
 		IStatus operationStatus = Status.OK_STATUS;
 
 		item.setDescription(lang, oldValue);
-		getViewer().update(item, null);
+		getEditor().getViewer().update(item, null);
 
 		return operationStatus;
 	}
