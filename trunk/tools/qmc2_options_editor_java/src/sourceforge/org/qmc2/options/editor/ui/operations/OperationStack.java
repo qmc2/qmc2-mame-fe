@@ -78,4 +78,12 @@ public final class OperationStack {
 		redoStack.removeAllElements();
 	}
 
+	public boolean hasUndoOperations() {
+		return undoStack.size() > 0;
+	}
+
+	public boolean hasRedoOperations() {
+		return redoStack.size() > 0;
+	}
+
 }

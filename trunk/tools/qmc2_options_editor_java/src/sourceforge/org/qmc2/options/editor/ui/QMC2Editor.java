@@ -1,14 +1,13 @@
 package sourceforge.org.qmc2.options.editor.ui;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IMenuListener;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.ColumnViewerEditor;
 import org.eclipse.jface.viewers.FocusCellOwnerDrawHighlighter;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -28,12 +27,13 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeColumn;
 
-import sourceforge.org.qmc2.options.editor.QMC2EditorApplication;
 import sourceforge.org.qmc2.options.editor.model.DescriptableItem;
 import sourceforge.org.qmc2.options.editor.model.QMC2TemplateFile;
+import sourceforge.org.qmc2.options.editor.ui.actions.AddLanguageAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.RedoAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.UndoAction;
 import sourceforge.org.qmc2.options.editor.ui.operations.OperationStack;
@@ -48,20 +48,16 @@ public class QMC2Editor extends Composite {
 
 	private QMC2TemplateFile templateFile = null;
 
-	private QMC2EditorApplication window = null;
-
 	private String filter = null;
 
 	private final OperationStack operationStack = new OperationStack();
 
-	public QMC2Editor(Composite parent, QMC2EditorApplication window) {
+	public QMC2Editor(Composite parent) {
 		super(parent, SWT.NONE);
-		this.window = window;
 		setLayout(new GridLayout(3, false));
 
 		createFileChooser();
 		createFilterAndSearch();
-		createBasicActions();
 
 		viewer = new TreeViewer(this, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL
 				| SWT.BORDER);
@@ -115,17 +111,23 @@ public class QMC2Editor extends Composite {
 			}
 		});
 
-		createSaveArea();
+		MenuManager manager = new MenuManager();
+		manager.setRemoveAllWhenShown(true);
+		manager.addMenuListener(new IMenuListener() {
+			@Override
+			public void menuAboutToShow(IMenuManager manager) {
+				populateContextMenu(manager);
+			}
+		});
+		Menu m = manager.createContextMenu(viewer.getControl());
+		viewer.getTree().setMenu(m);
 
 	}
 
-	private void createBasicActions() {
-		IAction undoAction = new UndoAction(this);
-		IAction redoAction = new RedoAction(this);
-		window.getMenuManager(QMC2EditorApplication.MENU_EDIT_ID).add(
-				undoAction);
-		window.getMenuManager(QMC2EditorApplication.MENU_EDIT_ID).add(
-				redoAction);
+	private void populateContextMenu(IMenuManager manager) {
+		manager.add(new UndoAction(QMC2Editor.this));
+		manager.add(new RedoAction(QMC2Editor.this));
+		manager.add(new AddLanguageAction(QMC2Editor.this));
 	}
 
 	private void createFilterAndSearch() {
@@ -149,55 +151,6 @@ public class QMC2Editor extends Composite {
 
 				viewer.refresh();
 
-			}
-		});
-
-	}
-
-	private void createSaveArea() {
-		GridData layoutData = new GridData(SWT.TRAIL, SWT.TOP, false, false, 3,
-				1);
-		Button saveButton = new Button(this, SWT.PUSH);
-		saveButton.setText("Save...");
-		saveButton.setLayoutData(layoutData);
-		saveButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				FileDialog dialog = new FileDialog(getShell(), SWT.SAVE);
-				dialog.setFileName(selectedFile);
-				String filename = dialog.open();
-				if (filename != null) {
-					File f = new File(filename);
-					if (!f.exists()) {
-						try {
-							if (!f.createNewFile()) {
-								MessageDialog
-										.openError(getShell(), "Error",
-												"Cannot save to selected file. Check your permissions");
-							}
-						} catch (IOException e1) {
-							MessageDialog.openError(getShell(), "Error",
-									"An exception ocurred creating file for saving: "
-											+ e1.getMessage());
-						}
-					}
-
-					if (f.canWrite() && f.isFile()) {
-
-						try {
-							templateFile.save(f);
-						} catch (Exception e1) {
-							MessageDialog.openError(getShell(), "Error",
-									"An exception ocurred saving template file: "
-											+ e1.getMessage());
-						}
-					} else {
-						MessageDialog
-								.openError(getShell(), "Error",
-										"Cannot save to selected file. Check your permissions");
-					}
-
-				}
 			}
 		});
 
@@ -273,11 +226,7 @@ public class QMC2Editor extends Composite {
 		c.getColumn().setWidth(KEYS_COLUMN_SIZE);
 
 		for (String lang : languages) {
-			c = new TreeViewerColumn(viewer, SWT.NONE);
-			c.getColumn().setMoveable(false);
-			c.getColumn().setText(lang);
-			c.setLabelProvider(new QMC2LabelProvider(lang));
-			c.setEditingSupport(new QMC2EditingSupport(this, lang));
+			c = createColumn(viewer, lang);
 		}
 
 		viewer.getTree().setRedraw(true);
@@ -290,11 +239,28 @@ public class QMC2Editor extends Composite {
 
 	}
 
-	public ColumnViewer getViewer() {
+	public TreeViewerColumn createColumn(TreeViewer viewer, String lang) {
+		TreeViewerColumn c = new TreeViewerColumn(viewer, SWT.NONE);
+		c.getColumn().setMoveable(false);
+		c.getColumn().setText(lang);
+		c.setLabelProvider(new QMC2LabelProvider(lang));
+		c.setEditingSupport(new QMC2EditingSupport(this, lang));
+		return c;
+	}
+
+	public TreeViewer getViewer() {
 		return viewer;
 	}
 
 	public OperationStack getOperationStack() {
 		return operationStack;
+	}
+
+	public String getCurrentFile() {
+		return selectedFile;
+	}
+
+	public QMC2TemplateFile getTemplateFile() {
+		return templateFile;
 	}
 }

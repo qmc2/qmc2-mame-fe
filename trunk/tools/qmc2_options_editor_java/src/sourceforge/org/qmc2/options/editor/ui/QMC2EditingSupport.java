@@ -43,17 +43,24 @@ public class QMC2EditingSupport extends EditingSupport {
 			value = ((DescriptableItem) item).getDescription(lang);
 		}
 
-		return value;
+		return value == null ? "" : value;
 	}
 
 	@Override
 	protected void setValue(Object item, Object value) {
 		if (item instanceof DescriptableItem) {
-			IOperation operation = new EditOperation(getViewer(),
-					(DescriptableItem) item, lang, value.toString());
-			qmc2Editor.getOperationStack().execute(operation);
+			String oldValue = ((DescriptableItem) item).getDescription(lang);
+			if ((value != null && oldValue != null && !oldValue.equals(value
+					.toString()))
+					|| (value != null && oldValue == null)
+					|| (value == null && oldValue != null)) {
+				IOperation operation = new EditOperation(qmc2Editor,
+						(DescriptableItem) item, lang, value.toString());
+				qmc2Editor.getOperationStack().execute(operation);
+
+			}
+
 		}
 
 	}
-
 }

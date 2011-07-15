@@ -12,7 +12,13 @@ public class UndoAction extends Action {
 	public UndoAction(QMC2Editor editor) {
 		this.editor = editor;
 		setAccelerator(SWT.MOD1 + 'Z');
-		setText("Undo");
+		setText("&Undo");
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return editor.getOperationStack() != null
+				&& editor.getOperationStack().hasUndoOperations();
 	}
 
 	@Override

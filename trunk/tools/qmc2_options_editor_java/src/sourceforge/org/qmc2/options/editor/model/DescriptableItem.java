@@ -42,14 +42,26 @@ public abstract class DescriptableItem {
 				language).getDescription() : null;
 	}
 
+	/**
+	 * Set a description to some language. Set value to null or "" to remove
+	 * 
+	 * @param language
+	 *            the language to set the description
+	 * @param value
+	 *            the description
+	 */
 	public void setDescription(String language, String value) {
-		Description descr = descriptionsMap.get(language);
-		if (descr == null) {
-			descr = new Description(language, null);
-			descriptionsMap.put(language, descr);
-			descriptions.add(descr);
+		if (value == null || value.trim().length() == 0) {
+			descriptionsMap.remove(language);
+		} else {
+			Description descr = descriptionsMap.get(language);
+			if (descr == null) {
+				descr = new Description(language, null);
+				descriptionsMap.put(language, descr);
+				descriptions.add(descr);
+			}
+			descr.setDescription(value);
 		}
-		descr.setDescription(value);
 
 	}
 
@@ -88,13 +100,16 @@ public abstract class DescriptableItem {
 		descriptableItem.setAttribute(ATTRIBUTE_NAME, name);
 
 		for (Description description : descriptions) {
-			Element descriptionElement = document
-					.createElement(TAG_DESCRIPTION);
-			descriptionElement.setAttribute(ATTRIBUTE_LANG,
-					description.getLanguage());
-			descriptionElement.setAttribute(ATTRIBUTE_TEXT,
-					description.getDescription());
-			descriptableItem.appendChild(descriptionElement);
+			if (description.getDescription() != null
+					&& description.getDescription().trim().length() > 0) {
+				Element descriptionElement = document
+						.createElement(TAG_DESCRIPTION);
+				descriptionElement.setAttribute(ATTRIBUTE_LANG,
+						description.getLanguage());
+				descriptionElement.setAttribute(ATTRIBUTE_TEXT,
+						description.getDescription());
+				descriptableItem.appendChild(descriptionElement);
+			}
 		}
 
 		return descriptableItem;
