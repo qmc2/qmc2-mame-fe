@@ -1058,6 +1058,7 @@ ifeq '$(QUIET)' '0'
 ifneq '$(ARCH)' 'Windows'
 	@$(RM) data/opt/template.xml error.log
 	@$(RM) runonce/runonce
+	@$(RM) -Rf tools/qmc2_options_editor_java/bin
 endif
 ifeq '$(ARCH)' 'Darwin'
 	@$(RM) -r runonce/Makefile.qmake.xcodeproj runonce/build
@@ -1089,6 +1090,7 @@ else
 ifneq '$(ARCH)' 'Windows'
 	@$(RM) data/log/* data/tmp/* data/cat/* data/opt/template.xml error.log > /dev/null
 	@$(RM) runonce/runonce > /dev/null
+	@$(RM) -Rf tools/qmc2_options_editor_java/bin > /dev/null
 endif
 ifeq '$(ARCH)' 'Darwin'
 	@$(RM) -r runonce/Makefile.qmake.xcodeproj runonce/build > /dev/null
