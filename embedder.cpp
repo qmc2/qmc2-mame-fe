@@ -325,7 +325,7 @@ void Embedder::simulatePauseKey()
 	xev.window = winId;
 	xev.root = qApp->desktop()->winId();
 	xev.subwindow = 0;
-	xev.time = QDateTime::currentDateTime().toTime_t();
+	xev.time = QX11Info::appTime();
 	xev.x = xev.y = xev.x_root = xev.y_root = 1;
 	xev.same_screen = true;
 	xev.keycode = XKeysymToKeycode(xev.display, qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/PauseKey", Qt::Key_P).toInt());
