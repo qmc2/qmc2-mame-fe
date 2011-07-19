@@ -4,6 +4,10 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.eclipse.core.commands.operations.DefaultOperationHistory;
+import org.eclipse.core.commands.operations.IOperationHistory;
+import org.eclipse.core.commands.operations.IUndoContext;
+import org.eclipse.core.commands.operations.UndoContext;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
@@ -34,9 +38,9 @@ import org.eclipse.swt.widgets.TreeColumn;
 import sourceforge.org.qmc2.options.editor.model.DescriptableItem;
 import sourceforge.org.qmc2.options.editor.model.QMC2TemplateFile;
 import sourceforge.org.qmc2.options.editor.ui.actions.AddLanguageAction;
+import sourceforge.org.qmc2.options.editor.ui.actions.AddSectionAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.RedoAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.UndoAction;
-import sourceforge.org.qmc2.options.editor.ui.operations.OperationStack;
 
 public class QMC2Editor extends Composite {
 
@@ -50,7 +54,9 @@ public class QMC2Editor extends Composite {
 
 	private String filter = null;
 
-	private final OperationStack operationStack = new OperationStack();
+	private IOperationHistory operationHistory = new DefaultOperationHistory();
+
+	private IUndoContext undoContext = new UndoContext();
 
 	public QMC2Editor(Composite parent) {
 		super(parent, SWT.NONE);
@@ -128,6 +134,7 @@ public class QMC2Editor extends Composite {
 		manager.add(new UndoAction(QMC2Editor.this));
 		manager.add(new RedoAction(QMC2Editor.this));
 		manager.add(new AddLanguageAction(QMC2Editor.this));
+		manager.add(new AddSectionAction(QMC2Editor.this));
 	}
 
 	private void createFilterAndSearch() {
@@ -178,7 +185,7 @@ public class QMC2Editor extends Composite {
 						templateFile = QMC2TemplateFile.parse(new File(
 								selectedFile));
 						createColumns(templateFile.getLanguages());
-						operationStack.clear();
+						operationHistory = new DefaultOperationHistory();
 						viewer.setInput(templateFile);
 					} catch (Exception e1) {
 						ErrorDialog.openError(getShell(), "Error",
@@ -226,7 +233,7 @@ public class QMC2Editor extends Composite {
 		c.getColumn().setWidth(KEYS_COLUMN_SIZE);
 
 		for (String lang : languages) {
-			c = createColumn(viewer, lang);
+			c = createColumn(viewer, lang, "us".equals(lang) ? 1 : -1);
 		}
 
 		viewer.getTree().setRedraw(true);
@@ -239,8 +246,9 @@ public class QMC2Editor extends Composite {
 
 	}
 
-	public TreeViewerColumn createColumn(TreeViewer viewer, String lang) {
-		TreeViewerColumn c = new TreeViewerColumn(viewer, SWT.NONE);
+	public TreeViewerColumn createColumn(TreeViewer viewer, String lang,
+			int columnIndex) {
+		TreeViewerColumn c = new TreeViewerColumn(viewer, SWT.NONE, columnIndex);
 		c.getColumn().setMoveable(false);
 		c.getColumn().setText(lang);
 		c.setLabelProvider(new QMC2LabelProvider(lang));
@@ -252,8 +260,8 @@ public class QMC2Editor extends Composite {
 		return viewer;
 	}
 
-	public OperationStack getOperationStack() {
-		return operationStack;
+	public IOperationHistory getOperationHistory() {
+		return operationHistory;
 	}
 
 	public String getCurrentFile() {
@@ -262,5 +270,9 @@ public class QMC2Editor extends Composite {
 
 	public QMC2TemplateFile getTemplateFile() {
 		return templateFile;
+	}
+
+	public IUndoContext getUndoContext() {
+		return undoContext;
 	}
 }

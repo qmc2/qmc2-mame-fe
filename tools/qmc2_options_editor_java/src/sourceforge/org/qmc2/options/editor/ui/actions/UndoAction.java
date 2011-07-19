@@ -1,5 +1,7 @@
 package sourceforge.org.qmc2.options.editor.ui.actions;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 
@@ -17,13 +19,20 @@ public class UndoAction extends Action {
 
 	@Override
 	public boolean isEnabled() {
-		return editor.getOperationStack() != null
-				&& editor.getOperationStack().hasUndoOperations();
+		return editor.getOperationHistory() != null
+				&& editor.getOperationHistory()
+						.canUndo(editor.getUndoContext());
 	}
 
 	@Override
 	public void run() {
-		editor.getOperationStack().undo();
+		try {
+			editor.getOperationHistory().undo(editor.getUndoContext(),
+					new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

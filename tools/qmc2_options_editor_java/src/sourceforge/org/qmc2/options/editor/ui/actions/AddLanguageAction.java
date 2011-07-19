@@ -2,6 +2,9 @@ package sourceforge.org.qmc2.options.editor.ui.actions;
 
 import java.util.Locale;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.IUndoableOperation;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
@@ -10,7 +13,6 @@ import org.eclipse.swt.widgets.TreeColumn;
 
 import sourceforge.org.qmc2.options.editor.ui.QMC2Editor;
 import sourceforge.org.qmc2.options.editor.ui.operations.AddLanguageOperation;
-import sourceforge.org.qmc2.options.editor.ui.operations.IOperation;
 
 public class AddLanguageAction extends Action {
 
@@ -73,7 +75,13 @@ public class AddLanguageAction extends Action {
 				});
 		dialog.open();
 		String newLang = dialog.getValue();
-		IOperation operation = new AddLanguageOperation(editor, newLang);
-		editor.getOperationStack().execute(operation);
+		IUndoableOperation operation = new AddLanguageOperation(editor, newLang);
+		try {
+			editor.getOperationHistory().execute(operation,
+					new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

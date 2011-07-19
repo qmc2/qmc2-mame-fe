@@ -1,5 +1,8 @@
 package sourceforge.org.qmc2.options.editor.ui;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.IUndoableOperation;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TextCellEditor;
@@ -7,7 +10,6 @@ import org.eclipse.swt.widgets.Composite;
 
 import sourceforge.org.qmc2.options.editor.model.DescriptableItem;
 import sourceforge.org.qmc2.options.editor.ui.operations.EditOperation;
-import sourceforge.org.qmc2.options.editor.ui.operations.IOperation;
 
 public class QMC2EditingSupport extends EditingSupport {
 
@@ -54,9 +56,15 @@ public class QMC2EditingSupport extends EditingSupport {
 					.toString()))
 					|| (value != null && oldValue == null)
 					|| (value == null && oldValue != null)) {
-				IOperation operation = new EditOperation(qmc2Editor,
+				IUndoableOperation operation = new EditOperation(qmc2Editor,
 						(DescriptableItem) item, lang, value.toString());
-				qmc2Editor.getOperationStack().execute(operation);
+				try {
+					qmc2Editor.getOperationHistory().execute(operation,
+							new NullProgressMonitor(), null);
+				} catch (ExecutionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 			}
 
