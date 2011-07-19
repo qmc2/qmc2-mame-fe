@@ -5,34 +5,29 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jface.viewers.TreeViewerColumn;
 
+import sourceforge.org.qmc2.options.editor.model.Section;
 import sourceforge.org.qmc2.options.editor.ui.QMC2Editor;
 
-public class AddLanguageOperation extends AbstractEditorOperation {
+public class AddSectionOperation extends AbstractEditorOperation {
 
-	private final String lang;
+	private Section section;
 
-	private TreeViewerColumn column;
-
-	public AddLanguageOperation(QMC2Editor editor, String newLang) {
-		super(editor, "Add Language");
-		this.lang = newLang;
-
+	public AddSectionOperation(QMC2Editor editor, Section section) {
+		super(editor, "Add Section");
+		this.section = section;
 	}
 
 	@Override
 	public IStatus execute(IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-
 		return redo(monitor, info);
 	}
 
 	@Override
 	public IStatus redo(IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-		column = getEditor().createColumn(getEditor().getViewer(), lang, -1);
-		column.getColumn().setWidth(100);
+		getEditor().getTemplateFile().addSection(section);
 		getEditor().getViewer().refresh();
 		return Status.OK_STATUS;
 	}
@@ -40,7 +35,7 @@ public class AddLanguageOperation extends AbstractEditorOperation {
 	@Override
 	public IStatus undo(IProgressMonitor monitor, IAdaptable info)
 			throws ExecutionException {
-		column.getColumn().dispose();
+		getEditor().getTemplateFile().removeSection(section.getName());
 		getEditor().getViewer().refresh();
 		return Status.OK_STATUS;
 	}

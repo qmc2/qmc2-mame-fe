@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import sourceforge.org.qmc2.options.editor.ui.QMC2Editor;
 import sourceforge.org.qmc2.options.editor.ui.actions.AddLanguageAction;
+import sourceforge.org.qmc2.options.editor.ui.actions.AddSectionAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.RedoAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.SaveAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.UndoAction;
@@ -85,6 +86,7 @@ public class QMC2EditorApplication extends ApplicationWindow {
 		editMenuManager.add(new UndoAction(editor));
 		editMenuManager.add(new RedoAction(editor));
 		editMenuManager.add(new AddLanguageAction(editor));
+		editMenuManager.add(new AddSectionAction(editor));
 
 		menuMap.put(MENU_FILE_ID, fileMenuManager);
 		menuMap.put(MENU_EDIT_ID, editMenuManager);

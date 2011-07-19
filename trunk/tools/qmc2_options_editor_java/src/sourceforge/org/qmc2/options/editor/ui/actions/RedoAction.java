@@ -1,5 +1,7 @@
 package sourceforge.org.qmc2.options.editor.ui.actions;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 
@@ -16,12 +18,19 @@ public class RedoAction extends Action {
 
 	@Override
 	public boolean isEnabled() {
-		return editor.getOperationStack() != null
-				&& editor.getOperationStack().hasRedoOperations();
+		return editor.getOperationHistory() != null
+				&& editor.getOperationHistory()
+						.canRedo(editor.getUndoContext());
 	}
 
 	@Override
 	public void run() {
-		editor.getOperationStack().redo();
+		try {
+			editor.getOperationHistory().redo(editor.getUndoContext(),
+					new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

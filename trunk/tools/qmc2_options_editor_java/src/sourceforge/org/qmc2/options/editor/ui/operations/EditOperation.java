@@ -1,5 +1,8 @@
 package sourceforge.org.qmc2.options.editor.ui.operations;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 
@@ -18,7 +21,7 @@ public class EditOperation extends AbstractEditorOperation {
 
 	public EditOperation(QMC2Editor editor, DescriptableItem item, String lang,
 			String value) {
-		super(editor);
+		super(editor, "Edit");
 		this.item = item;
 		this.lang = lang;
 		this.newValue = value;
@@ -26,12 +29,14 @@ public class EditOperation extends AbstractEditorOperation {
 	}
 
 	@Override
-	public IStatus execute() {
-		return redo();
+	public IStatus execute(IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
+		return redo(monitor, info);
 	}
 
 	@Override
-	public IStatus redo() {
+	public IStatus redo(IProgressMonitor monitor, IAdaptable info)
+			throws ExecutionException {
 		IStatus operationStatus = Status.OK_STATUS;
 
 		item.setDescription(lang, newValue);
@@ -41,7 +46,7 @@ public class EditOperation extends AbstractEditorOperation {
 	}
 
 	@Override
-	public IStatus undo() {
+	public IStatus undo(IProgressMonitor monitor, IAdaptable info) {
 		IStatus operationStatus = Status.OK_STATUS;
 
 		item.setDescription(lang, oldValue);

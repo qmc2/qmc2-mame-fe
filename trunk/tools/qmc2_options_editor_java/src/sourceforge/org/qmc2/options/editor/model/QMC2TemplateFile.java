@@ -3,8 +3,10 @@ package sourceforge.org.qmc2.options.editor.model;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -23,6 +25,8 @@ import org.w3c.dom.NodeList;
 public class QMC2TemplateFile {
 
 	private final List<Section> sections = new ArrayList<Section>();
+
+	private final Map<String, Section> sectionMap = new HashMap<String, Section>();
 
 	private final String emulator;
 
@@ -46,6 +50,13 @@ public class QMC2TemplateFile {
 
 	public void addSection(Section section) {
 		sections.add(section);
+		sectionMap.put(section.getName(), section);
+	}
+
+	public Section removeSection(String sectionName) {
+		Section s = sectionMap.remove(sectionName);
+		sections.remove(s);
+		return s;
 	}
 
 	public List<Section> getSections() {
