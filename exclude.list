@@ -2453,6 +2453,7 @@ qmc2/.svn/text-base/youtubevideoplayer.ui.svn-base
 qmc2/tools/qmc2_options_editor_java/.settings/.svn
 qmc2/tools/qmc2_options_editor_java/.settings/.svn/text-base/org.eclipse.jdt.core.prefs.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/model/.svn
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/model/.svn/text-base/ComboOption.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/model/.svn/text-base/DescriptableItem.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/model/.svn/text-base/Description.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/model/.svn/text-base/Option.java.svn-base
@@ -2462,15 +2463,17 @@ qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/.svn
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/.svn/text-base/QMC2EditorApplication.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/AddLanguageAction.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/AddSectionAction.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/RedoAction.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/SaveAction.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/UndoAction.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/dialogs/.svn
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/dialogs/.svn/text-base/AddSectionDialog.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/AbstractEditorOperation.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/AddLanguageOperation.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/AddSectionOperation.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/EditOperation.java.svn-base
-qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/IOperation.java.svn-base
-qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/OperationStack.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2ContentProvider.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2EditingSupport.java.svn-base
