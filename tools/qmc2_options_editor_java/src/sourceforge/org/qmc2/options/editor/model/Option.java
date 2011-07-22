@@ -7,7 +7,7 @@ import org.w3c.dom.Node;
 public class Option extends DescriptableItem {
 
 	public enum OptionType {
-		BOOL, COMBO, DIRECTORY, FILE, FLOAT, INT, STRING
+		BOOL, COMBO, DIRECTORY, FILE, FLOAT, FLOAT2, FLOAT3, INT, STRING, UNKNOWN
 	};
 
 	private final String type;
@@ -43,26 +43,38 @@ public class Option extends DescriptableItem {
 		String defaultValue = optionNode.getAttributes()
 				.getNamedItem(ATTRIBUTE_DEFAULT).getNodeValue();
 
-		OptionType optionType = OptionType.valueOf(type.toUpperCase());
+		OptionType optionType = null;
+		try {
+			optionType = OptionType.valueOf(type.toUpperCase());
+		} catch (Exception e) {
+			optionType = OptionType.UNKNOWN;
+		}
+
 		Option option = null;
 
 		switch (optionType) {
 		case COMBO:
-			option = new ComboOption(name, type, defaultValue);
+			option = new ComboOption(name, optionType.name().toLowerCase(),
+					defaultValue);
 			break;
 
-		default:
+		case UNKNOWN:
 			option = new Option(name, type, defaultValue);
+
+		default:
+			option = new Option(name, optionType.name().toLowerCase(),
+					defaultValue);
 			break;
 		}
 
+		option.parseDescriptions(optionNode);
 		option.parseData(optionNode);
 
 		return option;
 	}
 
 	protected void parseData(Node optionNode) {
-		// no extra data
+
 	}
 
 	@Override

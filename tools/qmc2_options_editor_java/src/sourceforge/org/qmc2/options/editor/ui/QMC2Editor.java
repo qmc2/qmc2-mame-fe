@@ -11,7 +11,7 @@ import org.eclipse.core.commands.operations.UndoContext;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ColumnViewerEditor;
 import org.eclipse.jface.viewers.FocusCellOwnerDrawHighlighter;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -188,8 +188,11 @@ public class QMC2Editor extends Composite {
 						operationHistory = new DefaultOperationHistory();
 						viewer.setInput(templateFile);
 					} catch (Exception e1) {
-						ErrorDialog.openError(getShell(), "Error",
-								"Unable to open template file", null);
+						MessageDialog.openError(
+								getShell(),
+								"Error",
+								"Unable to open template file: "
+										+ e1.getMessage());
 					}
 				}
 

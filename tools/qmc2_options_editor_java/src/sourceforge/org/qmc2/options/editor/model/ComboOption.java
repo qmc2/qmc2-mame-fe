@@ -33,6 +33,7 @@ public class ComboOption extends Option {
 
 	@Override
 	protected void parseData(Node optionNode) {
+		super.parseData(optionNode);
 		parseChoices(optionNode);
 	}
 
