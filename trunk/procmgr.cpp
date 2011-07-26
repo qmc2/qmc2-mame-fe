@@ -24,7 +24,7 @@ ProcessManager::ProcessManager(QWidget *parent)
 #endif
 
   procCount = 0;
-#if defined(QMC2_USE_PHONON_API)
+#if QMC2_USE_PHONON_API
   musicWasPlaying = sentPlaySignal = false;
 #if defined(QMC2_YOUTUBE_ENABLED)
   videoWasPlaying = true;
@@ -236,7 +236,7 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4").arg(procMap[proc]).arg(exitCodeString(exitCode)).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))).arg(procMap.count() - 1));
   procMap.remove(proc);
 
-#if defined(QMC2_USE_PHONON_API)
+#if QMC2_USE_PHONON_API
   if ( procMap.count() == 0 && musicWasPlaying ) {
     sentPlaySignal = true;
     QTimer::singleShot(QMC2_AUDIOPLAYER_RESUME_DELAY, qmc2MainWindow, SLOT(on_actionAudioPlayTrack_triggered()));
@@ -280,7 +280,7 @@ void ProcessManager::started()
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 started, PID = %2, running emulators = %3").arg(procMap[proc]).arg((quint64)proc->pid()).arg(procMap.count()));
 
-#if defined(QMC2_USE_PHONON_API)
+#if QMC2_USE_PHONON_API
   if ( qmc2MainWindow->phononAudioPlayer->state() == Phonon::PlayingState && procMap.count() == 1 ) {
     musicWasPlaying = true;
     if ( qmc2MainWindow->checkBoxAudioPause->isChecked() )

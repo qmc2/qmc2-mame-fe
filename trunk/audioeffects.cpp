@@ -1,6 +1,6 @@
 #include "macros.h"
 
-#if QMC2_USE_PHONON_API == 1
+#if QMC2_USE_PHONON_API
 
 #include <QSettings>
 #include "audioeffects.h"
