@@ -16,7 +16,7 @@ class ProcessManager : public QObject
     ushort procCount;
     QString lastCommand;
     QString exitString;
-#if defined(QMC2_USE_PHONON_API)
+#if QMC2_USE_PHONON_API
     bool musicWasPlaying;
     bool sentPlaySignal;
 #if defined(QMC2_YOUTUBE_ENABLED)
