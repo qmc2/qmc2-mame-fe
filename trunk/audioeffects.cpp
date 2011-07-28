@@ -79,6 +79,8 @@ AudioEffectDialog::AudioEffectDialog(QWidget *parent)
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EnabledEffects", validatedEffects);
 	else
 		qmc2Config->remove(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EnabledEffects");
+
+	adjustIconSizes();
 }
 
 AudioEffectDialog::~AudioEffectDialog()
