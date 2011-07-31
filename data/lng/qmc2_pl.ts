@@ -15139,8 +15139,12 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="946"/>
+        <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>video player: video info error: status = &apos;%1&apos;, errorCode = &apos;%2&apos;, errorText = &apos;%3&apos;</source>
-        <translation>odtwarzacz filmów: błąd informacji o filmie: stan = &apos;%1&apos;, kod błędu = &apos;%2&apos;, tekst błędu = &apos;%3&apos;</translation>
+        <translation type="obsolete">odtwarzacz filmów: błąd informacji o filmie: stan = &apos;%1&apos;, kod błędu = &apos;%2&apos;, tekst błędu = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1010"/>

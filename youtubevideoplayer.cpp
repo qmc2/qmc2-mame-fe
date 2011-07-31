@@ -943,7 +943,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 #endif
 
 		if ( status != "ok" ) {
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: video info error: status = '%1', errorCode = '%2', errorText = '%3'").arg(status).arg(errorcode).arg(errortext));
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: video info error: ID = '%1', status = '%2', errorCode = '%3', errorText = '%4'").arg(videoID).arg(status).arg(errorcode).arg(errortext));
 			return QString();
 		}
 

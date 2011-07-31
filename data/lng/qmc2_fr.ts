@@ -15102,7 +15102,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="946"/>
-        <source>video player: video info error: status = &apos;%1&apos;, errorCode = &apos;%2&apos;, errorText = &apos;%3&apos;</source>
+        <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

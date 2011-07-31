@@ -15093,8 +15093,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="946"/>
+        <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
+        <translation>Videospieler: Video-Info Fehler: ID= &apos;%1&apos;, Status = &apos;%2&apos;, Fehler-Code = &apos;%3&apos;, Fehler-Text = &apos;%4&apos;</translation>
+    </message>
+    <message>
+        <source>, ID = %1</source>
+        <translation type="obsolete">, ID = %1</translation>
+    </message>
+    <message>
         <source>video player: video info error: status = &apos;%1&apos;, errorCode = &apos;%2&apos;, errorText = &apos;%3&apos;</source>
-        <translation>Videospieler: Video-Info Fehler: Status = &apos;%1&apos;, Fehler-Code = &apos;%2&apos;, Fehler-Text = &apos;%3&apos;</translation>
+        <translation type="obsolete">Videospieler: Video-Info Fehler: Status = &apos;%1&apos;, Fehler-Code = &apos;%2&apos;, Fehler-Text = &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1010"/>
