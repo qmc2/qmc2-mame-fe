@@ -27,7 +27,7 @@ public abstract class DescriptableItem {
 
 	private Object parent = null;
 
-	private final String name;
+	private String name;
 
 	public DescriptableItem(String name) {
 		this.name = name;
@@ -116,5 +116,9 @@ public abstract class DescriptableItem {
 	}
 
 	public abstract String getTagName();
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }

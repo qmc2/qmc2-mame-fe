@@ -27,7 +27,7 @@ public class AddSectionAction extends Action {
 
 	@Override
 	public void run() {
-		AddSectionDialog dialog = new AddSectionDialog(editor.getShell());
+		AddSectionDialog dialog = new AddSectionDialog(editor.getShell(), null);
 		if (dialog.open() == Window.OK) {
 			IUndoableOperation operation = new AddSectionOperation(editor,
 					dialog.getSection());

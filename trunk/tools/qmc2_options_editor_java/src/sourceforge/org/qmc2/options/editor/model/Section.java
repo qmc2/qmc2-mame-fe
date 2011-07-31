@@ -75,4 +75,13 @@ public class Section extends DescriptableItem {
 		return super.getLanguages();
 	}
 
+	public void removeOption(String name) {
+		List<Option> optionsCopy = new ArrayList<Option>(options);
+		for (Option o : optionsCopy) {
+			if (o.getName().equals(name)) {
+				options.remove(o);
+			}
+		}
+	}
+
 }
