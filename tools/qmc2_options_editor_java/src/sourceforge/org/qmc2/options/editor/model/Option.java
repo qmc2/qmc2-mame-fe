@@ -10,9 +10,9 @@ public class Option extends DescriptableItem {
 		BOOL, COMBO, DIRECTORY, FILE, FLOAT, FLOAT2, FLOAT3, INT, STRING, UNKNOWN
 	};
 
-	private final String type;
+	private String type;
 
-	private final String defaultValue;
+	private String defaultValue;
 
 	public final static String TAG_OPTION = "option";
 
@@ -89,6 +89,16 @@ public class Option extends DescriptableItem {
 		option.setAttribute(ATTRIBUTE_DEFAULT, defaultValue);
 
 		return option;
+
+	}
+
+	public void setDefaultValue(String defaultValue) {
+		this.defaultValue = defaultValue;
+
+	}
+
+	public void setType(String newType) {
+		this.type = newType;
 
 	}
 
