@@ -12135,7 +12135,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romalyzer.cpp" line="806"/>
         <location filename="../../romalyzer.cpp" line="901"/>
         <source>no dump</source>
-        <translation type="unfinished">sem dump</translation>
+        <translation>sem dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="818"/>
@@ -12145,22 +12145,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="952"/>
         <source>good / no dump / skipped</source>
-        <translation type="unfinished"></translation>
+        <translation>bom / sem dump / ignorado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="954"/>
         <source>good / no dump</source>
-        <translation type="unfinished"></translation>
+        <translation>bom / sem dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="972"/>
         <source>bad / no dump / skipped</source>
-        <translation type="unfinished"></translation>
+        <translation>ruim / sem dump / ignorado</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="974"/>
         <source>bad / no dump</source>
-        <translation type="unfinished"></translation>
+        <translation>ruim / sem dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1116"/>
@@ -15113,7 +15113,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="946"/>
         <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>reprodutor de vídeo: erro nas informações do vídeo: ID = &apos;%1&apos;. estado = &apos;%2&apos;, código de erro = &apos;%3&apos;, texto do erro = &apos;%4&apos;</translation>
     </message>
     <message>
         <source>video player: video info error: status = &apos;%1&apos;, errorCode = &apos;%2&apos;, errorText = &apos;%3&apos;</source>
