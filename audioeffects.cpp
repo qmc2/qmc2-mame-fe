@@ -38,7 +38,6 @@ AudioEffectDialog::AudioEffectDialog(QWidget *parent)
 		if ( !ef )
 			continue;
 		effectMap[descriptionName] = ef;
-#if !defined(QMC2_MINGW)
 		Phonon::EffectWidget *efw = new Phonon::EffectWidget(effectMap[descriptionName]);
 		if ( !efw )
 			continue;
@@ -54,17 +53,12 @@ AudioEffectDialog::AudioEffectDialog(QWidget *parent)
 			effectSetupButton->setIcon(QIcon(QString::fromUtf8(":/data/img/work.png")));
 			treeWidgetAudioEffects->setItemWidget(effectItem, QMC2_AUDIOEFFECT_COLUMN_SETUP, effectSetupButton);
 		}
-#endif
 	}
 	treeWidgetAudioEffects->sortItems(QMC2_AUDIOEFFECT_COLUMN_NAME, Qt::AscendingOrder);
 	treeWidgetAudioEffects->resizeColumnToContents(QMC2_AUDIOEFFECT_COLUMN_NAME);
 	treeWidgetAudioEffects->resizeColumnToContents(QMC2_AUDIOEFFECT_COLUMN_DESC);
 	treeWidgetAudioEffects->resizeColumnToContents(QMC2_AUDIOEFFECT_COLUMN_ENABLE);
-#if !defined(QMC2_MINGW)
 	treeWidgetAudioEffects->resizeColumnToContents(QMC2_AUDIOEFFECT_COLUMN_SETUP);
-#else
-	treeWidgetAudioEffects->setColumnHidden(QMC2_AUDIOEFFECT_COLUMN_SETUP, true);
-#endif
 
 	QStringList enabledEffects = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EnabledEffects").toStringList();
 	QStringList validatedEffects;
@@ -231,10 +225,6 @@ void AudioEffectDialog::showEvent(QShowEvent *e)
 		restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/Geometry").toByteArray());
 		treeWidgetAudioEffects->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/AudioEffectDialog/EffectListHeaderState").toByteArray());
 	}
-
-#if defined(QMC2_MINGW)
-	treeWidgetAudioEffects->setColumnHidden(QMC2_AUDIOEFFECT_COLUMN_SETUP, true);
-#endif
 
 	e->accept();
 }
