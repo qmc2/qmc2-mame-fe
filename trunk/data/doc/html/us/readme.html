@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.34, 01-AUG-2011</h3>
+<h3>README - v0.34, 02-AUG-2011</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -247,6 +247,8 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
 <p>Using the MinGW (GCC) compiler (Qt 4.7+):</p>
 <ol>
   <li>Get and install both the <a href="http://mamedev.org/tools" target="_blank">MAME dev-tools</a> and the <a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon" target="_blank">QMC2 add-on</a> package for your platform (the QMC2 add-on extents the MAME dev-tools with Qt 4.7.3+ and zlib 1.2.5+, see <b>README.add-on</b> for installation instructions!).</li>
+  <li>Users of Windows XP should replace the Qt DLLs from <a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon" target="_blank">QMC2 add-on package</a> with the <b>official</b> ones -- install the <i>Qt libraries version 4.7.3</i> from <a href="http://qt.nokia.com/downloads" target="_blank">http://qt.nokia.com/downloads</a> and overwrite the DLLs from the QMC2 add-on package with the official ones!).</li>
+  <li>We meanwhile found out that this is also a good idea on Vista and Windows 7, since the audio-effect widgets only work correctly in this case (opening them just causes QMC2 to crash when the unofficial Qt DLLs are in use).</li>
   <li>Call 'make' as usual, that is like on UNIX or Mac OS X, but add <b>MINGW=1</b> to the make command (i. e. 'make MINGW=1 EMULATOR=MESS').</li>
 </ol>
 <p><b>Installation on Windows</b></p>
