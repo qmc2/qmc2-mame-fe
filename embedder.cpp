@@ -40,6 +40,7 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
   pal.setColor(QPalette::Window, Qt::black);
   embedContainer->setPalette(pal);
 
+  setFocusPolicy(Qt::WheelFocus);
   setFocusProxy(embedContainer);
 
   gridLayout = new QGridLayout(this);
@@ -113,6 +114,8 @@ void Embedder::clientEmbedded()
       qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png")));
   } else
     qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png")));
+
+  forceFocus();
 }
 
 void Embedder::clientClosed()
@@ -281,7 +284,8 @@ void Embedder::adjustIconSizes()
 void Embedder::forceFocus()
 {
 	if ( embedded ) {
-		XSetInputFocus(QX11Info::display(), winId, RevertToParent, QDateTime::currentDateTime().toTime_t());
+		embedContainer->activateWindow();
+		embedContainer->setFocus();
 	} else {
 		activateWindow();
 		setFocus();
