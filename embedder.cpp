@@ -180,6 +180,8 @@ void Embedder::showEvent(QShowEvent *e)
     int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
     qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png")));
   }
+
+  QWidget::showEvent(e);
 }
 
 void Embedder::hideEvent(QHideEvent *e)
@@ -190,6 +192,8 @@ void Embedder::hideEvent(QHideEvent *e)
 
   if ( embedded )
     QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(hideEventDelayed()));
+
+  QWidget::hideEvent(e);
 }
 
 void Embedder::resizeEvent(QResizeEvent *e)
@@ -198,8 +202,10 @@ void Embedder::resizeEvent(QResizeEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
 #endif
 
+	QWidget::resizeEvent(e);
+
 	if ( embedded )
-		QTimer::singleShot(QMC2_EMBED_MAXIMIZE_DELAY, this, SLOT(resizeEventDelayed()));
+		embedContainer->resize(size());
 }
 
 void Embedder::showEventDelayed()
@@ -222,14 +228,6 @@ void Embedder::hideEventDelayed()
 			pause();
 		}
 	}
-}
-
-void Embedder::resizeEventDelayed()
-{
-	// this hack should make the embed container resize to maximium under - virtually - all circumstances
-	embedContainer->hide();
-	embedContainer->resize(qmc2MainWindow->size());
-	embedContainer->showMaximized();
 }
 
 void Embedder::toggleOptions()

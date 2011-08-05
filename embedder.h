@@ -44,7 +44,6 @@ class Embedder : public QWidget
     void resume();
     void showEventDelayed();
     void hideEventDelayed();
-    void resizeEventDelayed();
 
   protected:
     void closeEvent(QCloseEvent *);
