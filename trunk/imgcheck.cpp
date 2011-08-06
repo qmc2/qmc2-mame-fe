@@ -110,10 +110,10 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
       qmc2MainWindow->progressBarGamelist->setFormat(tr("Preview check - %p%"));
     else
       qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-    qmc2MainWindow->progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames);
+    qmc2MainWindow->progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
     qmc2MainWindow->progressBarGamelist->reset();
 
-    if ( qmc2Gamelist->numTotalGames != qmc2Gamelist->numGames )
+    if ( qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices != qmc2Gamelist->numGames )
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: game list not fully loaded, check results may be misleading"));
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -434,10 +434,10 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
       qmc2MainWindow->progressBarGamelist->setFormat(tr("Flyer check - %p%"));
     else
       qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-    qmc2MainWindow->progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames);
+    qmc2MainWindow->progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
     qmc2MainWindow->progressBarGamelist->reset();
 
-    if ( qmc2Gamelist->numTotalGames != qmc2Gamelist->numGames )
+    if ( qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices != qmc2Gamelist->numGames )
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: game list not fully loaded, check results may be misleading"));
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -760,10 +760,10 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
       qmc2MainWindow->progressBarGamelist->setFormat(tr("Icon check - %p%"));
     else
       qmc2MainWindow->progressBarGamelist->setFormat("%p%");
-    qmc2MainWindow->progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames);
+    qmc2MainWindow->progressBarGamelist->setRange(0, qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices);
     qmc2MainWindow->progressBarGamelist->reset();
 
-    if ( qmc2Gamelist->numTotalGames != qmc2Gamelist->numGames )
+    if ( qmc2Gamelist->numTotalGames + qmc2Gamelist->numDevices != qmc2Gamelist->numGames )
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: game list not fully loaded, check results may be misleading"));
 #elif defined(QMC2_EMUTYPE_MESS)

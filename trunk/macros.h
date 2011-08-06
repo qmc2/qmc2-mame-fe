@@ -53,7 +53,7 @@
 #define QMC2_YOUTUBE_INDEX		13
 
 // current format version of the GLC (game list cache)
-#define QMC2_GLC_VERSION		4
+#define QMC2_GLC_VERSION		5
 
 // index positions of special front end tabs (lower right)
 #define QMC2_FRONTENDLOG_INDEX		0

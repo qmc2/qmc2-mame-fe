@@ -232,6 +232,7 @@ Qt::SortOrder qmc2SortOrder = Qt::AscendingOrder;
 QBitArray qmc2Filter;
 unzFile qmc2IconFile = NULL;
 QStringList qmc2BiosROMs;
+QStringList qmc2DeviceROMs;
 KeyPressFilter *qmc2KeyPressFilter = NULL;
 QMap<QString, int> qmc2QtKeyMap;
 #if QMC2_JOYSTICK == 1
@@ -1249,6 +1250,11 @@ void MainWindow::on_actionPlay_activated()
   gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
 #endif
 
+  if ( qmc2DeviceROMs.contains(gameName) ) {
+	   log(QMC2_LOG_FRONTEND, tr("sorry, devices cannot run standalone"));
+	   return;
+  }
+
 #if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2DemoGame.isEmpty() ) {
 #endif
@@ -1637,7 +1643,7 @@ void MainWindow::on_actionCheckROMs_activated()
   } else if ( qmc2ROMAlyzerActive ) {
     log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
   } else {
-    if ( !qmc2Gamelist->autoROMCheck ) {
+    if ( !qmc2Gamelist->autoRomCheck ) {
       switch ( QMessageBox::question(this,
                                      tr("Confirm"),
                                      tr("The ROM verification process may be very time-consuming.\nIt will overwrite existing cached data.\n\nDo you really want to check all ROM states now?"),
@@ -1655,7 +1661,7 @@ void MainWindow::on_actionCheckROMs_activated()
       qmc2Gamelist->verify();
     }
   }
-  qmc2Gamelist->autoROMCheck = false;
+  qmc2Gamelist->autoRomCheck = false;
   qmc2AutomaticReload = false;
 }
 

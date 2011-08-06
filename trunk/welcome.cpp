@@ -256,7 +256,6 @@ bool Welcome::checkConfig()
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistColumnWidths");
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyColumnWidths");
 	  }
-
 #endif
   }
 
