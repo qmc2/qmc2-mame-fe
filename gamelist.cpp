@@ -1894,6 +1894,8 @@ void Gamelist::parse()
       case 'C': 
         if ( qmc2BiosROMs.contains(iValue) ) {
           if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+        } else if ( qmc2DeviceROMs.contains(iValue) ) {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
 	} else {
           if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
 	}
@@ -1903,6 +1905,8 @@ void Gamelist::parse()
       case 'M': 
         if ( qmc2BiosROMs.contains(iValue) ) {
           if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
+        } else if ( qmc2DeviceROMs.contains(iValue) ) {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectDeviceImageIcon);
         } else {
           if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
 	}
@@ -1912,6 +1916,8 @@ void Gamelist::parse()
       case 'I':
         if ( qmc2BiosROMs.contains(iValue) ) {
           if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
+        } else if ( qmc2DeviceROMs.contains(iValue) ) {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectDeviceImageIcon);
 	} else {
           if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
 	}
@@ -1921,6 +1927,8 @@ void Gamelist::parse()
       case 'N':
         if ( qmc2BiosROMs.contains(iValue) ) {
           if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+        } else if ( qmc2DeviceROMs.contains(iValue) ) {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
 	} else {
           if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
 	}
@@ -1930,6 +1938,8 @@ void Gamelist::parse()
       default:
         if ( qmc2BiosROMs.contains(iValue) ) {
           if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+        } else if ( qmc2DeviceROMs.contains(iValue) ) {
+          if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
 	} else {
           if ( showROMStatusIcons ) hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
 	}
@@ -1977,6 +1987,8 @@ void Gamelist::parse()
         case 'C': 
           if ( qmc2BiosROMs.contains(jValue) ) {
             if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+          } else if ( qmc2DeviceROMs.contains(jValue) ) {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
 	  } else {
             if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
 	  }
@@ -1986,6 +1998,8 @@ void Gamelist::parse()
         case 'M': 
           if ( qmc2BiosROMs.contains(jValue) ) {
             if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectBIOSImageIcon);
+          } else if ( qmc2DeviceROMs.contains(jValue) ) {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectDeviceImageIcon);
 	  } else {
             if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2MostlyCorrectImageIcon);
 	  }
@@ -1995,6 +2009,8 @@ void Gamelist::parse()
         case 'I':
           if ( qmc2BiosROMs.contains(jValue) ) {
             if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectBIOSImageIcon);
+          } else if ( qmc2DeviceROMs.contains(jValue) ) {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectDeviceImageIcon);
 	  } else {
             if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2IncorrectImageIcon);
 	  }
@@ -2004,6 +2020,8 @@ void Gamelist::parse()
         case 'N':
           if ( qmc2BiosROMs.contains(jValue) ) {
             if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+          } else if ( qmc2DeviceROMs.contains(jValue) ) {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
 	  } else {
             if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
 	  }
@@ -2013,6 +2031,8 @@ void Gamelist::parse()
         default:
           if ( qmc2BiosROMs.contains(jValue) ) {
             if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownBIOSImageIcon);
+          } else if ( qmc2DeviceROMs.contains(jValue) ) {
+            if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownDeviceImageIcon);
 	  } else {
             if ( showROMStatusIcons ) hierarchySubItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2UnknownImageIcon);
 	  }
