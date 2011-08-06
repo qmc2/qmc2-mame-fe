@@ -1056,6 +1056,11 @@ void Gamelist::parseGameDetail(QTreeWidgetItem *item)
       descriptions << tr("BIOS") << tr("Size") << tr("CRC") << tr("SHA1") << tr("Merge") << tr("Region") << tr("Offset") << tr("Status") << tr("Optional");
       insertAttributeItems(childItem, element, attributes, descriptions, true);
     }
+    if ( element.contains("<device_ref ") ) {
+      childItem = new QTreeWidgetItem(item);
+      childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Device reference"));
+      childItem->setText(QMC2_GAMELIST_COLUMN_ICON, value(element, "name"));
+    }
     if ( element.contains("<chip ") ) {
       childItem = new QTreeWidgetItem(item);
       childItem->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Chip"));
