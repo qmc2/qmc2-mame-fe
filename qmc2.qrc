@@ -118,14 +118,19 @@
         <file>data/img/speaker.png</file>
         <file>data/img/sphere_blue.png</file>
         <file>data/img/sphere_blue_bios.png</file>
+        <file>data/img/sphere_blue_device.png</file>
         <file>data/img/sphere_green.png</file>
         <file>data/img/sphere_green_bios.png</file>
+        <file>data/img/sphere_green_device.png</file>
         <file>data/img/sphere_grey.png</file>
         <file>data/img/sphere_grey_bios.png</file>
+        <file>data/img/sphere_grey_device.png</file>
         <file>data/img/sphere_red.png</file>
         <file>data/img/sphere_red_bios.png</file>
+        <file>data/img/sphere_red_device.png</file>
         <file>data/img/sphere_yellowgreen.png</file>
         <file>data/img/sphere_yellowgreen_bios.png</file>
+        <file>data/img/sphere_yellowgreen_device.png</file>
         <file>data/img/stop.png</file>
         <file>data/img/stop_browser.png</file>
         <file>data/img/swap.png</file>

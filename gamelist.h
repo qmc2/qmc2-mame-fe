@@ -17,14 +17,19 @@ class Gamelist : public QObject
   public:
     QIcon qmc2UnknownImageIcon;
     QIcon qmc2UnknownBIOSImageIcon;
+    QIcon qmc2UnknownDeviceImageIcon;
     QIcon qmc2CorrectImageIcon;
     QIcon qmc2CorrectBIOSImageIcon;
+    QIcon qmc2CorrectDeviceImageIcon;
     QIcon qmc2MostlyCorrectImageIcon;
     QIcon qmc2MostlyCorrectBIOSImageIcon;
+    QIcon qmc2MostlyCorrectDeviceImageIcon;
     QIcon qmc2IncorrectImageIcon;
     QIcon qmc2IncorrectBIOSImageIcon;
+    QIcon qmc2IncorrectDeviceImageIcon;
     QIcon qmc2NotFoundImageIcon;
     QIcon qmc2NotFoundBIOSImageIcon;
+    QIcon qmc2NotFoundDeviceImageIcon;
     QProcess *loadProc;
     QProcess *verifyProc;
     QString gamelistBuffer;
@@ -48,11 +53,13 @@ class Gamelist : public QObject
     int numNotFoundGames;
     int numUnknownGames;
     int numSearchGames;
+    int numDevices;
+    int cachedGamesCounter;
     QString emulatorType;
     QString emulatorVersion;
     bool verifyCurrentOnly;
     QTreeWidgetItem *checkedItem;
-    bool autoROMCheck;
+    bool autoRomCheck;
 
     Gamelist(QObject *parent = 0);
     ~Gamelist();
