@@ -1478,8 +1478,14 @@ void Gamelist::parse()
               gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("CHD"));
             else
               gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, "--");
-	    gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
-	    gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toAscii()));
+            if ( isDevice ) {
+	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, tr("N/A"));
+	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr("N/A"));
+            }
+	    else {
+	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
+	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toAscii()));
+            }
 #if defined(QMC2_EMUTYPE_MAME)
             if ( useCatverIni ) {
               QString categoryString = qmc2CategoryMap[gameName];
@@ -1736,8 +1742,13 @@ void Gamelist::parse()
           gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, tr("CHD"));
         else
           gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, "--");
-	gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
-	gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toAscii()));
+        if ( isDevice ) {
+	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, tr("N/A"));
+	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr("N/A"));
+	} else {
+	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
+	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toAscii()));
+        }
 #if defined(QMC2_EMUTYPE_MAME)
         if ( useCatverIni ) {
           QString categoryString = qmc2CategoryMap[gameName];
