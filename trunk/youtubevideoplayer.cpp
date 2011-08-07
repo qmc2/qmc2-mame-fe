@@ -963,19 +963,24 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 
 		QMap <QString, QUrl> formatToUrlMap;
 		foreach (QString videoInfo, videoInfoList) {
-			if ( videoInfo.startsWith("fmt_url_map=") ) {
-				QStringList fmtUrlMap = videoInfo.replace(QRegExp("^fmt_url_map="), "").split("%2C");
+			if ( videoInfo.startsWith("url_encoded_fmt_stream_map=") ) {
+				QStringList fmtUrlMap = videoInfo.replace(QRegExp("^url_encoded_fmt_stream_map="), "").split(QRegExp("url%3D"), QString::SkipEmptyParts);
 				foreach (QString fmtUrl, fmtUrlMap) {
-					QStringList formatAndUrl = fmtUrl.split("%7C");
-					if ( formatAndUrl.count() > 1 ) {
-						QUrl url = QUrl::fromEncoded(formatAndUrl[1].toAscii());
-						QString urlStr = url.toString();
-						url.setEncodedUrl(urlStr.toAscii());
-#ifdef QMC2_DEBUG
-						printf("%s\t%s\n", (const char *)formatAndUrl[0].toLatin1(), (const char *)url.toString().toLatin1());
-#endif
-						formatToUrlMap[formatAndUrl[0]] = url;
+					QString encodedUrlString = QUrl::fromEncoded(fmtUrl.toLatin1()).toString().remove(QRegExp("\\,$")).remove(QRegExp("\\&fallback_host\\=.*$"));
+					QUrl decodedUrl;
+				    	decodedUrl.setEncodedUrl(encodedUrlString.toLatin1());
+					QString urlString = decodedUrl.toString();
+					QString itagValue;
+					int start = urlString.indexOf("&itag=");
+					if ( start > 0 ) {
+						start += 6;
+						itagValue = urlString.mid(start, urlString.indexOf("&", start) - start);
 					}
+#ifdef QMC2_DEBUG
+					printf("decodedUrl[itag = %s] = %s\n", (const char *)itagValue.toLatin1(), (const char *)decodedUrl.toString().toLatin1());
+#endif
+					if ( !itagValue.isEmpty() )
+						formatToUrlMap[itagValue] = decodedUrl;
 				}
 			}
 		}
