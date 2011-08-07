@@ -24,7 +24,7 @@ inf: informational only
   <li>imp: setup dialog: conflated all formerly split emulator- and game-info DB settings</li>
   <li>imp: MAME/MESS emulator templates updated to 0.143u2</li>
   <li>imp: ROMAlyzer: better 'no dump' indication</li>
-  <li>imp: enabled audio-effect widgets for MinGW builds (they work fine when the <b>official</b> Qt DLLs are being used -- install the <i>Qt libraries version 4.7.3</i> from <a href="http://qt.nokia.com/downloads" target="_blank">http://qt.nokia.com/downloads</a> and overwrite the DLLs from the <a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon" target="_blank">QMC2 add-on package</a> with the official ones)</li>
+  <li>imp: enabled audio-effect widgets for MinGW builds (they work fine when the <b>official</b> Qt DLLs are being used, otherwise set the new <i>AUDIOEFFECTDIALOGS</i> make option to 0 in order to disable them)</li>
   <li>imp: X11 only: minor embedder optimizations regarding widget resizing</li>
   <li>imp: YouTube video player: added support for YouTube's new way of presenting video stream URLs</li>
   <li>new: added a 'driver status' column to all game/machine lists (or views)</li>
