@@ -408,12 +408,8 @@ void Gamelist::load()
   }
 #endif
 
-  // determine emulator version and supported games/machines
-#if defined(QMC2_EMUTYPE_MAME)
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported games"));
-#elif defined(QMC2_EMUTYPE_MESS)
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported machines"));
-#endif
+  // determine emulator version and supported sets
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("determining emulator version and supported sets"));
 
   QStringList args;
   QTime elapsedTime;
@@ -584,11 +580,7 @@ void Gamelist::load()
     numTotalGames = s.split("\n").count() - 2;
 #endif
     elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
-#if defined(QMC2_EMUTYPE_MAME)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported games, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-#elif defined(QMC2_EMUTYPE_MESS)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported machines, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
-#endif
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
   } else {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't create temporary file, please check emulator executable and permissions"));
   }
@@ -613,17 +605,9 @@ void Gamelist::load()
   }
 
   if ( numTotalGames > 0 )
-#if defined(QMC2_EMUTYPE_MAME)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported game(s)", "", numTotalGames));
-#elif defined(QMC2_EMUTYPE_MESS)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported machine(s)", "", numTotalGames));
-#endif
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n supported set(s)", "", numTotalGames));
   else {
-#if defined(QMC2_EMUTYPE_MAME)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine supported games"));
-#elif defined(QMC2_EMUTYPE_MESS)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine supported machines"));
-#endif
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't determine the number of supported sets"));
     qmc2ReloadActive = false;
     enableWidgets(true);
     return;
@@ -2162,12 +2146,13 @@ void Gamelist::parse()
   qmc2MainWindow->labelGamelistStatus->setText(status());
 
   processGamelistElapsedTimer = processGamelistElapsedTimer.addMSecs(parseTimer.elapsed());
+  int numBIOSs = qmc2BiosROMs.count();
 #if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (processing game list, elapsed time = %1)").arg(processGamelistElapsedTimer.toString("mm:ss.zzz")));
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n game(s)", "", numTotalGames) + tr(" and %n device(s) loaded", "", numDevices));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n game(s)", "", numTotalGames - numBIOSs) + tr(", %n BIOS set(s)", "", numBIOSs) + tr(" and %n device(s) loaded", "", numDevices));
 #elif defined(QMC2_EMUTYPE_MESS)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (processing machine list, elapsed time = %1)").arg(processGamelistElapsedTimer.toString("mm:ss.zzz")));
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n machine(s)", "", numTotalGames) + tr(" and %n device(s) loaded", "", numDevices));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("%n machine(s)", "", numTotalGames - numBIOSs) + tr(", %n BIOS set(s)", "", numBIOSs) + tr(" and %n device(s) loaded", "", numDevices));
 #endif
 
   if ( numGames - numDevices != numTotalGames ) {
