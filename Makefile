@@ -31,6 +31,14 @@ ifndef MINGW
 MINGW = 0
 endif
 
+# >>> AUDIOEFFECTDIALOGS <<<
+#
+# Enable (1) or disable (0) support for audio-effect dialogs
+#
+ifndef AUDIOEFFECTDIALOGS
+AUDIOEFFECTDIALOGS = 1
+endif
+
 # >>> EMULATOR <<<
 #
 # Specifies the target emulator to be used (important: you need to build QMC2
@@ -708,6 +716,10 @@ endif
 
 ifeq '$(YOUTUBE)' '1'
 DEFINES += QMC2_YOUTUBE_ENABLED
+endif
+
+ifeq '$(AUDIOEFFECTDIALOGS)' '0'
+DEFINES += QMC2_NOEFFECTDIALOGS
 endif
 
 # setup SDL library and include paths
