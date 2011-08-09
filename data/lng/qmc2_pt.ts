@@ -2767,11 +2767,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>done (determining emulator version and supported games, elapsed time = %1)</source>
-        <translation type="obsolete">feito (determinando versão do emulador e jogos suportador, tempo = %1)</translation>
+        <translation type="obsolete">feito (determinando versão do emulador e jogos suportados, tempo = %1)</translation>
     </message>
     <message>
         <source>done (determining emulator version and supported machines, elapsed time = %1)</source>
-        <translation type="obsolete">feito (determinando versão do emulador e máquinas suportador, tempo = %1)</translation>
+        <translation type="obsolete">feito (determinando versão do emulador e máquinas suportadas, tempo = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="590"/>
@@ -2948,7 +2948,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1010"/>
         <source>Is device?</source>
-        <translation type="unfinished"></translation>
+        <translation>É dispositivo?</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1023"/>
@@ -3016,7 +3016,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1045"/>
         <source>Device reference</source>
-        <translation type="unfinished"></translation>
+        <translation>Referência do dispositivo</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1050"/>
@@ -3381,52 +3381,52 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1730"/>
         <location filename="../../gamelist.cpp" line="1731"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2152"/>
         <source>%n game(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n jogo</numerusform>
+            <numerusform>%n jogos</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2152"/>
         <location filename="../../gamelist.cpp" line="2155"/>
         <source> and %n device(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>e %n dispositivo carregado</numerusform>
+            <numerusform>e %n dispositivos carregados</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2152"/>
         <location filename="../../gamelist.cpp" line="2155"/>
         <source>, %n BIOS set(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>, %n conjuto de BIOS</numerusform>
+            <numerusform>, %n conjutos de BIOS</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2155"/>
         <source>%n machine(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n máquina</numerusform>
+            <numerusform>%n máquinas</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2179"/>
         <location filename="../../gamelist.cpp" line="2909"/>
         <source>ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação do estado da ROM: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2193"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, triggering an automatic ROM check</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: cache de estado de ROM está imcompleto ou desatualizado, iniciando uma checagem automática de ROM</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2196"/>
@@ -3441,25 +3441,25 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="412"/>
         <source>determining emulator version and supported sets</source>
-        <translation type="unfinished"></translation>
+        <translation>determinando versão do emulador e conjuntos suportados</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="583"/>
         <source>done (determining emulator version and supported sets, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (determinando versão do emulador e conjuntos suportados, tempo = %1)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="608"/>
         <source>%n supported set(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n conjunto suportado</numerusform>
+            <numerusform>%n conjuntos suportados</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="610"/>
         <source>FATAL: couldn&apos;t determine the number of supported sets</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível determinar o número de conjuntos suportados</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1336"/>
@@ -5969,7 +5969,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1254"/>
         <source>sorry, devices cannot run standalone</source>
-        <translation type="unfinished"></translation>
+        <translation>desculpe, dispositivos não podem ser executados sozinhos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2059"/>
