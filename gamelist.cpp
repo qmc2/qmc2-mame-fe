@@ -2176,7 +2176,7 @@ void Gamelist::parse()
       f.remove();
     }
   }
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(numTotalGames).arg(numCorrectGames).arg(numMostlyCorrectGames).arg(numIncorrectGames).arg(numNotFoundGames).arg(numUnknownGames));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(numTotalGames + numDevices).arg(numCorrectGames).arg(numMostlyCorrectGames).arg(numIncorrectGames).arg(numNotFoundGames).arg(numUnknownGames));
   qmc2MainWindow->progressBarGamelist->reset();
 
   qmc2ReloadActive = false;
@@ -2906,7 +2906,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (verifying ROM status for all machines, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 #endif
   }
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(numTotalGames).arg(numCorrectGames).arg(numMostlyCorrectGames).arg(numIncorrectGames).arg(numNotFoundGames).arg(numUnknownGames));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6").arg(numTotalGames + numDevices).arg(numCorrectGames).arg(numMostlyCorrectGames).arg(numIncorrectGames).arg(numNotFoundGames).arg(numUnknownGames));
   qmc2MainWindow->progressBarGamelist->reset();
   qmc2VerifyActive = false;
   if ( verifyProc )
