@@ -69,6 +69,9 @@ extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern QTreeWidgetItem *qmc2LastSoftwareListItem;
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 extern QMap<QString, QString> messXmlDataCache;
+extern QMap<QString, QMap<QString, QStringList> > messSystemSlotMap;
+extern QMap<QString, QString> messSlotNameMap;
+extern bool messSystemSlotsSupported;
 #endif
 extern SoftwareList *qmc2SoftwareList;
 extern QMap<QString, QStringList> systemSoftwareListMap;
@@ -326,6 +329,9 @@ void Gamelist::load()
   }
   qmc2LastDeviceConfigItem = NULL;
   messXmlDataCache.clear();
+  messSystemSlotsSupported = true;
+  messSystemSlotMap.clear();
+  messSlotNameMap.clear();
   if ( qmc2SoftwareList ) {
     qmc2SoftwareList->save();
     qmc2SoftwareList->setVisible(false);
@@ -432,7 +438,10 @@ void Gamelist::load()
 
 #if !defined(Q_WS_WIN)
   commandProc.setStandardErrorFile("/dev/null");
+#else
+  commandProc.setStandardErrorFile("NUL");
 #endif
+
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_MAME) || defined(QMC2_MESS)
   args << "-help";
 #endif
@@ -480,9 +489,14 @@ void Gamelist::load()
 #endif
   if ( commandProcStarted && qmc2TempVersion.open(QFile::ReadOnly) ) {
     QTextStream ts(&qmc2TempVersion);
+    qApp->processEvents();
     QString s = ts.readAll();
+    qApp->processEvents();
     qmc2TempVersion.close();
     qmc2TempVersion.remove();
+#if defined(Q_WS_WIN)
+    s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
+#endif
     QStringList versionLines = s.split("\n");
 #if defined(QMC2_EMUTYPE_MAME)
     QStringList versionWords = versionLines.first().split(" ");
@@ -571,14 +585,12 @@ void Gamelist::load()
 #endif
   if ( commandProcStarted && qmc2Temp.open(QFile::ReadOnly) ) {
     QTextStream ts(&qmc2Temp);
-#if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_MAME) || defined(QMC2_MESS)
+    qApp->processEvents();
     QString s = ts.readAll();
-#endif
+    qApp->processEvents();
     qmc2Temp.close();
     qmc2Temp.remove();
-#if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_MAME) || defined(QMC2_MESS)
     numTotalGames = s.split("\n").count() - 2;
-#endif
     elapsedTime = elapsedTime.addMSecs(parseTimer.elapsed());
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (determining emulator version and supported sets, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
   } else {

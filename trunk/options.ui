@@ -58,7 +58,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>446</width>
-                <height>547</height>
+                <height>549</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -219,16 +219,6 @@
                    </property>
                    <property name="text">
                     <string>Show status bar</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="15" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxToolbar">
-                   <property name="toolTip">
-                    <string>Show tool bar</string>
-                   </property>
-                   <property name="text">
-                    <string>Show tool bar</string>
                    </property>
                   </widget>
                  </item>
@@ -722,6 +712,48 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="15" column="3" colspan="4">
+                  <layout class="QHBoxLayout" name="horizontalLayoutToolBarMode">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QCheckBox" name="checkBoxToolbar">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>Show tool bar</string>
+                     </property>
+                     <property name="text">
+                      <string>Show tool bar</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="checkBoxUnifiedTitleAndToolBarOnMac">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="toolTip">
+                      <string>Use a unifed tool- and title-bar on Mac OS X</string>
+                     </property>
+                     <property name="text">
+                      <string>Unify with title</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -751,7 +783,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>205</width>
+                <width>421</width>
                 <height>529</height>
                </rect>
               </property>
@@ -2128,8 +2160,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>430</width>
-                <height>220</height>
+                <width>438</width>
+                <height>318</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2712,8 +2744,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>252</width>
-                <height>39</height>
+                <width>438</width>
+                <height>318</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2825,8 +2857,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>332</width>
-                <height>227</height>
+                <width>438</width>
+                <height>318</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3282,7 +3314,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>341</width>
+                <width>421</width>
                 <height>432</height>
                </rect>
               </property>
@@ -3685,7 +3717,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>421</width>
+                <width>179</width>
                 <height>380</height>
                </rect>
               </property>
@@ -4585,6 +4617,7 @@
   <tabstop>checkBoxStandardColorPalette</tabstop>
   <tabstop>checkBoxStatusbar</tabstop>
   <tabstop>checkBoxToolbar</tabstop>
+  <tabstop>checkBoxUnifiedTitleAndToolBarOnMac</tabstop>
   <tabstop>checkBoxShowMenuBar</tabstop>
   <tabstop>checkBoxProgressTexts</tabstop>
   <tabstop>checkBoxKillEmulatorsOnExit</tabstop>
@@ -4768,8 +4801,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>566</x>
-     <y>751</y>
+     <x>508</x>
+     <y>618</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
@@ -4784,8 +4817,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>629</x>
-     <y>751</y>
+     <x>571</x>
+     <y>618</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -4884,8 +4917,8 @@
      <y>544</y>
     </hint>
     <hint type="destinationlabel">
-     <x>613</x>
-     <y>544</y>
+     <x>538</x>
+     <y>546</y>
     </hint>
    </hints>
   </connection>
@@ -4900,8 +4933,8 @@
      <y>569</y>
     </hint>
     <hint type="destinationlabel">
-     <x>613</x>
-     <y>569</y>
+     <x>538</x>
+     <y>571</y>
     </hint>
    </hints>
   </connection>
@@ -4916,7 +4949,7 @@
      <y>419</y>
     </hint>
     <hint type="destinationlabel">
-     <x>613</x>
+     <x>538</x>
      <y>419</y>
     </hint>
    </hints>
@@ -4928,12 +4961,28 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>613</x>
+     <x>538</x>
      <y>419</y>
     </hint>
     <hint type="destinationlabel">
      <x>239</x>
      <y>419</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBoxToolbar</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBoxUnifiedTitleAndToolBarOnMac</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>345</x>
+     <y>463</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>425</x>
+     <y>462</y>
     </hint>
    </hints>
   </connection>
