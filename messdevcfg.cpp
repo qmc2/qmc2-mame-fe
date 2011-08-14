@@ -340,14 +340,14 @@ bool MESSDeviceConfigurator::readSystemSlots()
 						if ( slotWords.count() > 2 ) {
 							slotOption = slotWords[2];
 							slotDeviceName = slotLine.trimmed();
-							slotDeviceName.remove(QRegExp("^\\w+\\s+\\w+\\s+\\w+\\s+"));
+							slotDeviceName.remove(QRegExp("^\\S+\\s+\\S+\\s+\\S+\\s+"));
 							messSlotNameMap[slotOption] = slotDeviceName;
 							messSystemSlotMap[systemName][slotName] << slotOption;
 						} else {
 							messSystemSlotMap[systemName][slotName].clear();
 						}
 						// DEBUG
-						/*
+						///*
 						printf("systemName = %s\n", (const char *)systemName.toAscii());
 						printf("slotName = %s\n", (const char *)slotName.toAscii());
 						if ( !messSystemSlotMap[systemName][slotName].isEmpty() ) {
@@ -356,17 +356,17 @@ bool MESSDeviceConfigurator::readSystemSlots()
 						} else
 							printf("slotOption = no slot options\n");
 						fflush(stdout);
-						*/
+						//*/
 						// DEBUG
 					} else {
 						systemName = slotWords[0];
 						messSystemSlotMap[systemName].clear();
 						// DEBUG
-						/*
+						///*
 						printf("systemName = %s\n", (const char *)systemName.toAscii());
 						printf("slotName = no slots\n");
 						fflush(stdout);
-						*/
+						//*/
 						// DEBUG
 					}
 				} else {
@@ -374,29 +374,29 @@ bool MESSDeviceConfigurator::readSystemSlots()
 					if ( slotLine[13] == ' ' ) { // this isn't nice, but I see no other way at the moment...
 						slotOption = slotWords[0];
 						slotDeviceName = slotLine.trimmed();
-						slotDeviceName.remove(QRegExp("^\\w+\\s+"));
+						slotDeviceName.remove(QRegExp("^\\S+\\s+"));
 						messSystemSlotMap[systemName][slotName] << slotOption;
 						messSlotNameMap[slotOption] = slotDeviceName;
 						// DEBUG
-						/*
+						///*
 						printf("slotOption = %s\n", (const char *)slotOption.toAscii());
 						printf("slotDeviceName = %s\n", (const char *)slotDeviceName.toAscii());
 						fflush(stdout);
-						*/
+						//*/
 						// DEBUG
 					} else {
 						slotName = slotWords[0];
 						if ( slotWords.count() > 1 ) {
 							slotOption = slotWords[1];
 							slotDeviceName = slotLine.trimmed();
-							slotDeviceName.remove(QRegExp("^\\w+\\s+\\w+\\s+"));
+							slotDeviceName.remove(QRegExp("^\\S+\\s+\\S+\\s+"));
 							messSystemSlotMap[systemName][slotName] << slotOption;
 							messSlotNameMap[slotOption] = slotDeviceName;
 						} else {
 							messSystemSlotMap[systemName][slotName].clear();
 						}
 						// DEBUG
-						/*
+						///*
 						printf("slotName = %s\n", (const char *)slotName.toAscii());
 						if ( !messSystemSlotMap[systemName][slotName].isEmpty() ) {
 							printf("slotOption = %s\n", (const char *)slotOption.toAscii());
@@ -404,7 +404,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 						} else
 							printf("slotOption = no slot options\n");
 						fflush(stdout);
-						*/
+						//*/
 						// DEBUG
 					}
 				}
