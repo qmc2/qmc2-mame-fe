@@ -264,8 +264,6 @@ bool MESSDeviceConfigurator::readSystemSlots()
 
 #if !defined(Q_WS_WIN)
 	commandProc.setStandardErrorFile("/dev/null");
-#else
-	commandProc.setStandardErrorFile("NUL");
 #endif
 
 	QStringList args;
