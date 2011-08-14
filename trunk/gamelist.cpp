@@ -438,8 +438,6 @@ void Gamelist::load()
 
 #if !defined(Q_WS_WIN)
   commandProc.setStandardErrorFile("/dev/null");
-#else
-  commandProc.setStandardErrorFile("NUL");
 #endif
 
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_MAME) || defined(QMC2_MESS)

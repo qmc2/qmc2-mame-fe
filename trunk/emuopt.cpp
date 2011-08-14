@@ -1081,8 +1081,6 @@ void EmulatorOptions::checkTemplateMap()
   commandProc.setStandardOutputFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile").toString());
 #if !defined(Q_WS_WIN)
   commandProc.setStandardErrorFile("/dev/null");
-#else
-  commandProc.setStandardErrorFile("NUL");
 #endif
 
   args << "-noreadconfig" << "-showconfig";
