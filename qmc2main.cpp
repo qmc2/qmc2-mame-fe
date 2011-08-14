@@ -5381,11 +5381,12 @@ void MainWindow::viewFullDetail()
 #endif
 
   comboBoxViewSelect->setCurrentIndex(QMC2_VIEWGAMELIST_INDEX);
-  qApp->processEvents();
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
   tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
   menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/flat.png")));
   treeWidgetGamelist->setFocus();
+  stackedWidgetView->update();
+  qApp->processEvents();
 }
 
 void MainWindow::viewParentClones()
@@ -5395,11 +5396,12 @@ void MainWindow::viewParentClones()
 #endif
 
   comboBoxViewSelect->setCurrentIndex(QMC2_VIEWHIERARCHY_INDEX);
-  qApp->processEvents();
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
   tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
   menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/clone.png")));
   treeWidgetHierarchy->setFocus();
+  stackedWidgetView->update();
+  qApp->processEvents();
 }
 
 #if defined(QMC2_EMUTYPE_MAME)
@@ -5410,7 +5412,6 @@ void MainWindow::viewByCategory()
 #endif
 
   comboBoxViewSelect->setCurrentIndex(QMC2_VIEWCATEGORY_INDEX);
-  qApp->processEvents();
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
   tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
   menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
@@ -5421,6 +5422,8 @@ void MainWindow::viewByCategory()
   } else
     QTimer::singleShot(0, qmc2Gamelist, SLOT(createCategoryView()));
   treeWidgetCategoryView->setFocus();
+  stackedWidgetView->update();
+  qApp->processEvents();
 }
 
 void MainWindow::viewByVersion()
@@ -5428,8 +5431,8 @@ void MainWindow::viewByVersion()
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::viewByVersion()");
 #endif
+
   comboBoxViewSelect->setCurrentIndex(QMC2_VIEWVERSION_INDEX);
-  qApp->processEvents();
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
   tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
   menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
@@ -5440,6 +5443,8 @@ void MainWindow::viewByVersion()
   } else
     QTimer::singleShot(0, qmc2Gamelist, SLOT(createVersionView()));
   treeWidgetVersionView->setFocus();
+  stackedWidgetView->update();
+  qApp->processEvents();
 }
 #endif
 
@@ -7439,25 +7444,19 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
   switch ( index ) {
 	  case QMC2_VIEWGAMELIST_INDEX:
 		  pushButtonSelectRomFilter->setVisible(true);
-		  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/flat.png")));
-		  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
+		  viewFullDetail();
 		  break;
 	  case QMC2_VIEWHIERARCHY_INDEX:
 		  pushButtonSelectRomFilter->setVisible(false);
-		  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
-		  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/clone.png")));
+		  viewParentClones();
 		  break;
 #if defined(QMC2_EMUTYPE_MAME)
 	  case QMC2_VIEWVERSION_INDEX:
 		  pushButtonSelectRomFilter->setVisible(false);
-		  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
-		  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
 		  viewByVersion();
 		  break;
 	  case QMC2_VIEWCATEGORY_INDEX:
 		  pushButtonSelectRomFilter->setVisible(false);
-		  tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
-		  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
 		  viewByCategory();
 		  break;
 #endif
