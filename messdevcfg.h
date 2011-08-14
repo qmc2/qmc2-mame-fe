@@ -53,9 +53,11 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     MESSDeviceFileDelegate fileEditDelegate;
     QString messMachineName;
     QMap<QString, QPair<QStringList, QStringList> > configurationMap;
+    QMap<QString, QPair<QStringList, QStringList> > slotMap;
     QMenu *deviceConfigurationListMenu;
     QMenu *configurationMenu;
     QMenu *deviceContextMenu;
+    QMenu *slotContextMenu;
     QAction *actionRemoveConfiguration;
 
     MESSDeviceConfigurator(QString, QWidget *);
@@ -64,6 +66,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     QString &getXmlData(QString);
 
   public slots:
+    bool readSystemSlots();
     bool load();
     bool save();
 
@@ -78,8 +81,8 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void on_listWidgetDeviceConfigurations_currentTextChanged(const QString &);
     void on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &);
     void on_treeWidgetDeviceSetup_customContextMenuRequested(const QPoint &);
+    void on_treeWidgetSlotOptions_customContextMenuRequested(const QPoint &);
     void actionSelectDefaultDeviceDirectory_triggered();
-    void actionGenerateDeviceConfigurations_triggered();
     void actionSelectFile_triggered();
     void actionRemoveConfiguration_activated();
 

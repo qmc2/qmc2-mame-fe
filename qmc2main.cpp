@@ -694,6 +694,7 @@ MainWindow::MainWindow(QWidget *parent)
     hSplitter->setSizes(splitterSizes);
     vSplitter->setSizes(splitterSizes);
   }
+
   on_actionFullscreenToggle_activated();
 
   // context menus
@@ -1074,6 +1075,9 @@ MainWindow::MainWindow(QWidget *parent)
 
   // restore toolbar state
   restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolbarState", QByteArray()).toByteArray());
+#if defined(Q_WS_MAC)
+  setUnifiedTitleAndToolBarOnMac(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/UnifiedTitleAndToolBarOnMac", false).toBool());
+#endif
 
 #if QMC2_JOYSTICK == 1
   joyIndex = -1;
@@ -1412,6 +1416,9 @@ void MainWindow::on_actionPlay_activated()
 #else
           args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace("~", "$HOME");
 #endif
+        valuePair = qmc2MESSDeviceConfigurator->slotMap[configName];
+        for (i = 0; i < valuePair.first.count(); i++)
+          args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i];
       }
     }
   }
@@ -1466,9 +1473,9 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
 #endif
 
 #if defined(Q_WS_X11)
-  if ( tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || (tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX && !toolButtonEmbedderMaximizeToggle->isChecked()) )
+  if ( tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || (tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX && !toolButtonEmbedderMaximizeToggle->isChecked()) ) {
     hSplitterSizes = hSplitter->sizes();
-  else if ( tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX && toolButtonEmbedderMaximizeToggle->isChecked() ) {
+  } else if ( tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX && toolButtonEmbedderMaximizeToggle->isChecked() ) {
     toolButtonEmbedderMaximizeToggle->setChecked(false);
     menuBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
     statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
@@ -3246,7 +3253,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         QVBoxLayout *layout = new QVBoxLayout;
         layout->setContentsMargins(left, top, right, bottom);
         qmc2MESSDeviceConfigurator = new MESSDeviceConfigurator(machineName, tabDevices);
-        qmc2MESSDeviceConfigurator->load();
+	QTimer::singleShot(0, qmc2MESSDeviceConfigurator, SLOT(load()));
         layout->addWidget(qmc2MESSDeviceConfigurator);
         tabDevices->setLayout(layout);
         qmc2MESSDeviceConfigurator->show();

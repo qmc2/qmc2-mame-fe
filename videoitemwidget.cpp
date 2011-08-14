@@ -18,6 +18,7 @@ VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, Q
 
 	setupUi(this);
 	textBrowserVideoTitle->setObjectName("QMC2_VIDEO_TITLE");
+	setAutoFillBackground(true);
 
 	myVideoPlayer = vPlayer;
 	setType(vType);
@@ -39,6 +40,7 @@ VideoItemWidget::VideoItemWidget(QString vID, QString vTitle, QString vAuthor, i
 
 	setupUi(this);
 	textBrowserVideoTitle->setObjectName("QMC2_VIDEO_TITLE");
+	setAutoFillBackground(true);
 
 	myVideoPlayer = vPlayer;
 	setType(vType);

@@ -1050,6 +1050,8 @@ QStringList &SoftwareList::arguments()
 		qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1/%2").arg(systemName).arg(devConfigName));
 		QStringList instances = qmc2Config->value("Instances").toStringList();
 		QStringList files = qmc2Config->value("Files").toStringList();
+		QStringList slotNames = qmc2Config->value("Slots").toStringList();
+		QStringList slotOptions = qmc2Config->value("SlotOptions").toStringList();
 		qmc2Config->endGroup();
 		for (int i = 0; i < instances.count(); i++) {
 #if defined(Q_WS_WIN)
@@ -1058,6 +1060,8 @@ QStringList &SoftwareList::arguments()
 			swlArgs << QString("-%1").arg(instances[i]) << files[i].replace("~", "$HOME");
 #endif
 		}
+		for (int i = 0; i < slotNames.count(); i++)
+			swlArgs << QString("-%1").arg(slotNames[i]) << slotOptions[i];
 	}
 #endif
 

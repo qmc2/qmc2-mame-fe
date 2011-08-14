@@ -113,6 +113,10 @@
 #define QMC2_DEVCONFIG_COLUMN_EXT	4
 #define QMC2_DEVCONFIG_COLUMN_FILE	5
 
+// logical column indizes of the MESS device configurator's slot setup
+#define QMC2_SLOTCONFIG_COLUMN_SLOT	0
+#define QMC2_SLOTCONFIG_COLUMN_OPTION	1
+
 // page indizes for the software list tool box
 #define QMC2_SWLIST_KNOWN_SW_PAGE	0
 #define QMC2_SWLIST_FAVORITES_PAGE	1

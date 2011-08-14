@@ -171,6 +171,10 @@ Options::Options(QWidget *parent)
 
   setupUi(this);
 
+#if !defined(Q_WS_MAC)
+  checkBoxUnifiedTitleAndToolBarOnMac->setVisible(false);
+#endif
+
   // FIXME: remove the WIP clause when software list support is finished
 #if QMC2_WIP_CODE != 1
   stackedWidgetSWSnap->setVisible(false);
@@ -723,6 +727,9 @@ void Options::on_pushButtonApply_clicked()
 
   // GUI
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", checkBoxToolbar->isChecked());
+#if defined(Q_WS_MAC)
+  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/UnifiedTitleAndToolBarOnMac", checkBoxUnifiedTitleAndToolBarOnMac->isChecked());
+#endif
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout", checkBoxSaveLayout->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout", checkBoxRestoreLayout->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection", checkBoxSaveGameSelection->isChecked());
@@ -1753,6 +1760,9 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 
   // GUI
   checkBoxToolbar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
+#if defined(Q_WS_MAC)
+  checkBoxUnifiedTitleAndToolBarOnMac->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/UnifiedTitleAndToolBarOnMac", false).toBool());
+#endif
   checkBoxSaveLayout->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout", true).toBool());
   checkBoxRestoreLayout->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout", true).toBool());
   checkBoxSaveGameSelection->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection", true).toBool());
