@@ -347,7 +347,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 							messSystemSlotMap[systemName][slotName].clear();
 						}
 						// DEBUG
-						///*
+						/*
 						printf("systemName = %s\n", (const char *)systemName.toAscii());
 						printf("slotName = %s\n", (const char *)slotName.toAscii());
 						if ( !messSystemSlotMap[systemName][slotName].isEmpty() ) {
@@ -356,17 +356,17 @@ bool MESSDeviceConfigurator::readSystemSlots()
 						} else
 							printf("slotOption = no slot options\n");
 						fflush(stdout);
-						//*/
+						*/
 						// DEBUG
 					} else {
 						systemName = slotWords[0];
 						messSystemSlotMap[systemName].clear();
 						// DEBUG
-						///*
+						/*
 						printf("systemName = %s\n", (const char *)systemName.toAscii());
 						printf("slotName = no slots\n");
 						fflush(stdout);
-						//*/
+						*/
 						// DEBUG
 					}
 				} else {
@@ -378,11 +378,11 @@ bool MESSDeviceConfigurator::readSystemSlots()
 						messSystemSlotMap[systemName][slotName] << slotOption;
 						messSlotNameMap[slotOption] = slotDeviceName;
 						// DEBUG
-						///*
+						/*
 						printf("slotOption = %s\n", (const char *)slotOption.toAscii());
 						printf("slotDeviceName = %s\n", (const char *)slotDeviceName.toAscii());
 						fflush(stdout);
-						//*/
+						*/
 						// DEBUG
 					} else {
 						slotName = slotWords[0];
@@ -396,7 +396,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 							messSystemSlotMap[systemName][slotName].clear();
 						}
 						// DEBUG
-						///*
+						/*
 						printf("slotName = %s\n", (const char *)slotName.toAscii());
 						if ( !messSystemSlotMap[systemName][slotName].isEmpty() ) {
 							printf("slotOption = %s\n", (const char *)slotOption.toAscii());
@@ -404,7 +404,7 @@ bool MESSDeviceConfigurator::readSystemSlots()
 						} else
 							printf("slotOption = no slot options\n");
 						fflush(stdout);
-						//*/
+						*/
 						// DEBUG
 					}
 				}
