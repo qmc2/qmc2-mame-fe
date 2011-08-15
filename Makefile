@@ -1218,6 +1218,7 @@ config:
 	@echo "### Option ###       ### Description ###                          ### Value ###" 
 	@echo "ARCADE_OPENGL        Enable use of OpenGL for arcade mode (0, 1)  $(ARCADE_OPENGL)"
 	@echo "ARCH                 Target system's OS / architecture name       $(ARCH)"
+	@echo "AUDIOEFFECTDIALOGS   Enable audio-effect dialogs (0, 1)           $(AUDIOEFFECTDIALOGS)"
 	@echo "AUDIT_WILDCARD       Use wildcards on full audit calls (0, 1)     $(AUDIT_WILDCARD)"
 	@echo "AWK                  UNIX command awk                             $(AWK)"
 	@echo "BASENAME             UNIX command basename                        $(BASENAME)"
