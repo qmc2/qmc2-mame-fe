@@ -538,6 +538,7 @@ MainWindow::MainWindow(QWidget *parent)
   actionClearGamelistCache->setIconText(tr("Clear machine list cache"));
   actionClearGamelistCache->setToolTip(tr("Forcedly clear (remove) the machine list cache"));
   actionClearGamelistCache->setStatusTip(tr("Forcedly clear (remove) the machine list cache"));
+  treeWidgetGamelist->setToolTip(tr("List of all supported machines"));
 #if defined(Q_WS_X11)
   actionPlayEmbedded->setToolTip(tr("Play current machine (embedded)"));
   actionPlayEmbedded->setStatusTip(tr("Play current machine (embedded)"));
