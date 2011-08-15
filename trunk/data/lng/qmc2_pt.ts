@@ -4658,12 +4658,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="139"/>
         <location filename="../../messdevcfg.cpp" line="273"/>
         <source>Reading slot info, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lendo informações de slot, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="142"/>
         <source>Enter configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre o nome da configuração</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="179"/>
@@ -4708,27 +4708,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="275"/>
         <source>loading available system slots</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando slots de sistema disponíveis</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="296"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">FATAL: impossível iniciar o executável do MESS dentro de um tempo razoável, desistindo</translation>
+        <translation>FATAL: impossível iniciar o executável do MESS dentro de um tempo razoável, desistindo</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="297"/>
         <source>Failed to read slot info</source>
-        <translation type="unfinished"></translation>
+        <translation>Falha ao ler informações de slot</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="437"/>
         <source>done (loading available system slots, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando slots de sistema disponíveis, tempo gasto = %1)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="474"/>
         <source>not used</source>
-        <translation type="unfinished"></translation>
+        <translation>não usado</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="512"/>
@@ -4772,7 +4772,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.ui" line="73"/>
         <location filename="../../messdevcfg.ui" line="76"/>
         <source>Device configuration menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Menu de configuração de dispositivo</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="99"/>
@@ -4807,7 +4807,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.ui" line="208"/>
         <source>Device mappings</source>
-        <translation type="unfinished"></translation>
+        <translation>Mapeamentos de dispositivos</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="229"/>
@@ -4848,23 +4848,23 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.ui" line="279"/>
         <source>Slot options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opções de slots</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="300"/>
         <location filename="../../messdevcfg.ui" line="303"/>
         <source>Available slot options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opções de slots disponíveis</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="316"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="321"/>
         <source>Option</source>
-        <translation type="unfinished">Opção</translation>
+        <translation>Opção</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="340"/>
@@ -6024,7 +6024,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="541"/>
         <source>List of all supported machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de todas as máquinas suportadas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="547"/>
@@ -10616,12 +10616,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="748"/>
         <source>Use a unifed tool- and title-bar on Mac OS X</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar uma ferramenta unificada - e barra de títulos no Mac OS X</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="751"/>
         <source>Unify with title</source>
-        <translation type="unfinished"></translation>
+        <translation>Unificar com título</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2351"/>
