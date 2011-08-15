@@ -462,6 +462,15 @@ bool MESSDeviceConfigurator::load()
   xmlReader.setContentHandler(&xmlHandler);
   xmlReader.parse(xmlInputSource);
 
+  if ( treeWidgetDeviceSetup->topLevelItemCount() == 1 ) {
+	  // this avoids delegate-resizing issues when only one item is available
+	  treeWidgetDeviceSetup->setUpdatesEnabled(false);
+	  QTreeWidgetItem *dummyItem = new QTreeWidgetItem(treeWidgetDeviceSetup);
+	  treeWidgetDeviceSetup->openPersistentEditor(dummyItem, QMC2_DEVCONFIG_COLUMN_FILE);
+	  delete treeWidgetDeviceSetup->takeTopLevelItem(1);
+	  treeWidgetDeviceSetup->setUpdatesEnabled(true);
+  }
+
   QMapIterator<QString, QStringList> it(messSystemSlotMap[messMachineName]);
   while ( it.hasNext() ) {
 	  it.next();
