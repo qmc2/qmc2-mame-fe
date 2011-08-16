@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.34, 01-AUG-2011</h3>
+<h3>FAQ - v0.34, 16-AUG-2011</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.5+, but my (UNIX/Linux, Mac OS X) distribution comes with an older (or no) version of Qt. What should I do about that?</a></div></p>
@@ -88,12 +88,13 @@ $ su
 Password:
 # make install</pre>
 <p>Please note that <b>code from the SVN repository may be in an incomplete or even unstable state</b> as it is code under development.
-At some point in time - when several new features were incorporated and the code base stabalizes again - we decide to pick a specific
-SVN revision and publish it as the <i>final</i> release of a respective version. File releases should be more or less working fine and
-can be considered as <i>stable</i>, which does not necessarily mean that they are bug-free :).</p>
-<p>To always provide the community with good working combinations of QMC2 and MAME/MESS, we are striving hard to align QMC2 releases with stable MAME/MESS releases. Although we can't guarantee this in all cases, it's generally a nice approach for not-so-adventurous users and package maintainers.</p>
-<p>Because QMC2's roots are MAME based, we've decided to release a new stable version every time a new stable MAME version gets released. The stable MESS release usually follows within hours or days. As soon as that's available, we'll check the compatibility and post a patch for the MESS variant of QMC2 if required.</p>
-<p>However, we try to keep the SVN repository up to date with the latest intermediate MAME and MESS releases (a.k.a. u-releases).</p>
+   We try to keep the SVN repository up to date with the latest intermediate MAME and MESS releases (a.k.a. u-releases), and since we're
+   in direct contact with the MAME- &amp; MESS-developers, we're also trying to keep up with all relevant 'latest developments'. So it can
+   happen that a development revision of MAME/MESS is required in order to run QMC2's code from SVN!</p>
+<p>To provide the community with good working combinations of QMC2 and MAME/MESS, we are striving hard to align QMC2 releases with
+   stable MAME/MESS releases. Although we can't guarantee this in all cases, it's generally a nice approach for not-so-adventurous users
+   and package maintainers. For quite some time now, we are releasing a new stable version each time a new stable MAME/MESS version gets
+   released -- usually within hours or days!</p>
 <hr>
 <p><a name="A1.4"></a><b>Q1.4: Why aren't you using autoconf/automake (configure)?</b></p>
 <p>Because QMC2 is a Qt based project. We use <i>qmake</i> instead, which fits better in this case and has equivalent functionality with regard to automatic platform configuration (and it's guaranteed to work everywhere where Qt can live).</p>
