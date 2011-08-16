@@ -519,6 +519,7 @@ MainWindow::MainWindow(QWidget *parent)
 #elif defined(QMC2_EMUTYPE_MESS)
   actionLaunchQMC2MESS->setVisible(false);
   actionClearMAWSCache->setVisible(false);
+  actionClearIconCache->setVisible(false);
   actionDemoMode->setVisible(false);
   setWindowTitle(tr("M.E.S.S. Catalog / Launcher II"));
   menu_Tools->removeAction(actionCheckIcons);
@@ -1969,6 +1970,11 @@ void MainWindow::on_actionClearROMStateCache_activated()
 		else
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the ROM state cache file '%1', please check permissions").arg(fileName));
 	}
+
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck").toBool() ) {
+		qmc2Gamelist->autoRomCheck = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck").toBool();
+		log(QMC2_LOG_FRONTEND, tr("triggering an automatic ROM check on next reload"));
+	}
 }
 
 void MainWindow::on_actionClearGamelistCache_activated()
@@ -2068,6 +2074,18 @@ void MainWindow::on_actionClearSoftwareListCache_activated()
 		else
 			log(QMC2_LOG_FRONTEND, tr("WARNING: cannot remove the software list cache file '%1', please check permissions").arg(fileName));
 	}
+}
+
+void MainWindow::on_actionClearAllEmulatorCaches_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearAllEmulatorCaches_activated()");
+#endif
+
+	actionClearROMStateCache->trigger();
+	actionClearGamelistCache->trigger();
+	actionClearXMLCache->trigger();
+	actionClearSoftwareListCache->trigger();
 }
 
 void MainWindow::on_actionRecreateTemplateMap_activated()
@@ -5384,7 +5402,7 @@ void MainWindow::viewFullDetail()
   comboBoxViewSelect->setCurrentIndex(QMC2_VIEWGAMELIST_INDEX);
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
   tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/flat.png")));
-  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/flat.png")));
+  menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/flat.png")));
   treeWidgetGamelist->setFocus();
   stackedWidgetView->update();
   qApp->processEvents();
@@ -5399,7 +5417,7 @@ void MainWindow::viewParentClones()
   comboBoxViewSelect->setCurrentIndex(QMC2_VIEWHIERARCHY_INDEX);
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
   tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/clone.png")));
-  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/clone.png")));
+  menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/clone.png")));
   treeWidgetHierarchy->setFocus();
   stackedWidgetView->update();
   qApp->processEvents();
@@ -5415,7 +5433,7 @@ void MainWindow::viewByCategory()
   comboBoxViewSelect->setCurrentIndex(QMC2_VIEWCATEGORY_INDEX);
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
   tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/category.png")));
-  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
+  menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/category.png")));
   QTreeWidgetItem *item = treeWidgetCategoryView->topLevelItem(0);
   if ( item ) {
     if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
@@ -5436,7 +5454,7 @@ void MainWindow::viewByVersion()
   comboBoxViewSelect->setCurrentIndex(QMC2_VIEWVERSION_INDEX);
   tabWidgetGamelist->setCurrentIndex(QMC2_GAMELIST_INDEX);
   tabWidgetGamelist->setTabIcon(QMC2_GAMELIST_INDEX, QIcon(QString::fromUtf8(":/data/img/version.png")));
-  menu_View->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
+  menuView->setIcon(QIcon(QString::fromUtf8(":/data/img/version.png")));
   QTreeWidgetItem *item = treeWidgetVersionView->topLevelItem(0);
   if ( item ) {
     if ( item->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
