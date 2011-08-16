@@ -2219,7 +2219,7 @@
     <property name="title">
      <string>&amp;Tools</string>
     </property>
-    <widget class="QMenu" name="menuAudio_player">
+    <widget class="QMenu" name="menuAudioPlayer">
      <property name="title">
       <string>&amp;Audio player</string>
      </property>
@@ -2245,6 +2245,13 @@
       <iconset resource="qmc2.qrc">
        <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
      </property>
+     <addaction name="actionClearROMStateCache"/>
+     <addaction name="actionClearGamelistCache"/>
+     <addaction name="actionClearXMLCache"/>
+     <addaction name="actionClearSoftwareListCache"/>
+     <addaction name="separator"/>
+     <addaction name="actionClearAllEmulatorCaches"/>
+     <addaction name="separator"/>
      <addaction name="actionClearImageCache"/>
      <addaction name="actionClearIconCache"/>
      <addaction name="actionClearMAWSCache"/>
@@ -2252,11 +2259,6 @@
      <addaction name="separator"/>
      <addaction name="actionRecreateTemplateMap"/>
      <addaction name="actionCheckTemplateMap"/>
-     <addaction name="separator"/>
-     <addaction name="actionClearROMStateCache"/>
-     <addaction name="actionClearGamelistCache"/>
-     <addaction name="actionClearXMLCache"/>
-     <addaction name="actionClearSoftwareListCache"/>
     </widget>
     <addaction name="actionCheckROMs"/>
     <addaction name="actionCheckSamples"/>
@@ -2272,7 +2274,7 @@
     <addaction name="separator"/>
     <addaction name="actionDemoMode"/>
     <addaction name="separator"/>
-    <addaction name="menuAudio_player"/>
+    <addaction name="menuAudioPlayer"/>
     <addaction name="separator"/>
     <addaction name="menuCleanUp"/>
    </widget>
@@ -2280,7 +2282,7 @@
     <property name="title">
      <string>&amp;Game</string>
     </property>
-    <widget class="QMenu" name="menu_Check">
+    <widget class="QMenu" name="menuCheck">
      <property name="title">
       <string>&amp;Check</string>
      </property>
@@ -2293,7 +2295,7 @@
      <addaction name="separator"/>
      <addaction name="actionRunRomTool"/>
     </widget>
-    <widget class="QMenu" name="menu_View">
+    <widget class="QMenu" name="menuView">
      <property name="title">
       <string>&amp;View</string>
      </property>
@@ -2312,8 +2314,8 @@
     <addaction name="separator"/>
     <addaction name="actionReload"/>
     <addaction name="separator"/>
-    <addaction name="menu_View"/>
-    <addaction name="menu_Check"/>
+    <addaction name="menuView"/>
+    <addaction name="menuCheck"/>
     <addaction name="separator"/>
     <addaction name="actionExitStop"/>
    </widget>
@@ -2321,7 +2323,7 @@
     <property name="title">
      <string>&amp;Display</string>
     </property>
-    <widget class="QMenu" name="menu_Arcade">
+    <widget class="QMenu" name="menuArcade">
      <property name="title">
       <string>&amp;Arcade</string>
      </property>
@@ -2338,7 +2340,7 @@
     </widget>
     <addaction name="actionFullscreenToggle"/>
     <addaction name="separator"/>
-    <addaction name="menu_Arcade"/>
+    <addaction name="menuArcade"/>
     <addaction name="separator"/>
     <addaction name="actionLaunchQMC2MAME"/>
     <addaction name="actionLaunchQMC2MESS"/>
@@ -3387,6 +3389,23 @@
    </property>
    <property name="statusTip">
     <string>Forcedly clear (remove) the software list cache</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionClearAllEmulatorCaches">
+   <property name="text">
+    <string>Clear ALL emulator caches</string>
+   </property>
+   <property name="toolTip">
+    <string>Forcedly clear (remove) ALL emulator related caches</string>
+   </property>
+   <property name="statusTip">
+    <string>Forcedly clear (remove) ALL emulator related caches</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
  </widget>

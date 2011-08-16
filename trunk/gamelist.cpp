@@ -2192,8 +2192,6 @@ void Gamelist::parse()
   qmc2ReloadActive = false;
   qmc2StartingUp = false;
 
-  autoRomCheck = false;
-
   if ( qmc2StopParser ) {
 	  if ( loadProc )
 		  loadProc->terminate();
