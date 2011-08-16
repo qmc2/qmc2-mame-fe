@@ -48,6 +48,10 @@ About::About(QWidget *parent)
   widgetPosValid = FALSE;
   ignoreResizeAndMove = TRUE;
 
+#if defined(QMC2_EMUTYPE_MESS)
+  labelLogoPixmap->setPixmap(QString::fromUtf8(":/data/img/qmc2_mess_logo_big.png"));
+#endif
+
   adjustSize();
 
 #if defined(Q_WS_MAC)

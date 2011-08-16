@@ -261,6 +261,10 @@ Options::Options(QWidget *parent)
   labelLegendEmulatorFilesAndDirectories->setToolTip(tr("Option requires a reload of the entire machine list to take effect"));
   checkBoxHideWhileLoading->setToolTip(tr("Hide primary machine list while loading (recommended, much faster)"));
   tableWidgetRegisteredEmulators->setToolTip(tr("Registered emulators -- you may select one of these in the machine-specific emulator configuration"));
+  checkBoxSaveGameSelection->setText(tr("Save machine selection"));
+  checkBoxSaveGameSelection->setToolTip(tr("Save machine selection on exit and before reloading the machine list"));
+  checkBoxRestoreGameSelection->setText(tr("Restore machine selection"));
+  checkBoxRestoreGameSelection->setToolTip(tr("Restore saved machine selection at start and after reloading the machine list"));
 #elif defined(QMC2_EMUTYPE_MAME)
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));

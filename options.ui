@@ -145,7 +145,7 @@
                  <item row="6" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxSaveGameSelection">
                    <property name="toolTip">
-                    <string>Save game selection at exit and before reloading the gamelist</string>
+                    <string>Save game selection on exit and before reloading the game list</string>
                    </property>
                    <property name="text">
                     <string>Save game selection</string>
@@ -165,7 +165,7 @@
                  <item row="7" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxRestoreGameSelection">
                    <property name="toolTip">
-                    <string>Restore saved game selection at start and after reloading the gamelist</string>
+                    <string>Restore saved game selection at start and after reloading the game list</string>
                    </property>
                    <property name="text">
                     <string>Restore game selection</string>
