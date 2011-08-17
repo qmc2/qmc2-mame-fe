@@ -1,7 +1,6 @@
 package sourceforge.org.qmc2.options.editor.ui;
 
 import java.io.File;
-import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.core.commands.operations.DefaultOperationHistory;
@@ -18,8 +17,6 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.TreeViewerEditor;
 import org.eclipse.jface.viewers.TreeViewerFocusCellManager;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -35,7 +32,6 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeColumn;
 
-import sourceforge.org.qmc2.options.editor.model.DescriptableItem;
 import sourceforge.org.qmc2.options.editor.model.QMC2TemplateFile;
 import sourceforge.org.qmc2.options.editor.ui.actions.AddLanguageAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.AddSectionAction;
@@ -81,41 +77,7 @@ public class QMC2Editor extends Composite {
 						| ColumnViewerEditor.TABBING_VERTICAL
 						| ColumnViewerEditor.KEYBOARD_ACTIVATION);
 
-		viewer.addFilter(new ViewerFilter() {
-
-			@Override
-			public boolean select(Viewer viewer, Object parentElement,
-					Object element) {
-				boolean select = false;
-				if (filter != null) {
-					if (element instanceof DescriptableItem) {
-						DescriptableItem item = (DescriptableItem) element;
-						Set<String> languages = item.getLanguages();
-						Iterator<String> iterator = languages.iterator();
-						while (!select && iterator.hasNext()) {
-							String lang = iterator.next();
-							String description = item.getDescription(lang)
-									.toLowerCase();
-							;
-							if (description == null
-									|| !description.contains(filter)) {
-								select = select || false;
-							} else {
-								select = select || true;
-							}
-						}
-						if (item.getName().contains(filter)) {
-							select = select || true;
-						} else {
-							select = select || false;
-						}
-					}
-				} else {
-					select = true;
-				}
-				return select;
-			}
-		});
+		viewer.addFilter(new QMC2ViewFilter(this));
 
 		MenuManager manager = new MenuManager();
 		manager.setRemoveAllWhenShown(true);
@@ -152,9 +114,9 @@ public class QMC2Editor extends Composite {
 
 			@Override
 			public void modifyText(ModifyEvent arg0) {
-				filter = filterText.getText() == null ? null : filterText
+				setFilter(filterText.getText() == null ? null : filterText
 						.getText().trim().length() == 0 ? null : filterText
-						.getText().toLowerCase();
+						.getText().toLowerCase());
 
 				viewer.refresh();
 
@@ -277,5 +239,13 @@ public class QMC2Editor extends Composite {
 
 	public IUndoContext getUndoContext() {
 		return undoContext;
+	}
+
+	public String getFilter() {
+		return filter;
+	}
+
+	public void setFilter(String filter) {
+		this.filter = filter;
 	}
 }
