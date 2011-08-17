@@ -6046,7 +6046,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1974"/>
         <source>triggering an automatic ROM check on next reload</source>
-        <translation type="unfinished"></translation>
+        <translation>ativando uma verificação de ROM automática na próxima execução</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2071"/>
@@ -7845,13 +7845,13 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3399"/>
         <source>Clear ALL emulator caches</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar TODOS os caches de emulador</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3402"/>
         <location filename="../../qmc2main.ui" line="3405"/>
         <source>Forcedly clear (remove) ALL emulator related caches</source>
-        <translation type="unfinished"></translation>
+        <translation>Forçar limpar (remover) TODOS os caches relacionados à emuladores</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5659"/>
@@ -8396,17 +8396,17 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="226"/>
         <source>Browse emulator information database (messinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por banco de dados de informação de emulador (messinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="227"/>
         <source>Load emulator information database (messinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar base de dados de informações de emulador (messinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="228"/>
         <source>Emulator information database - messinfo.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Banco de dados de informação de emulador - messinfo.dat (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="229"/>
@@ -8482,22 +8482,22 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="261"/>
         <source>Save machine selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar seleção de máquina</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="262"/>
         <source>Save machine selection on exit and before reloading the machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar seleção de máquinas ao sair e antes de recarregar a lista de jogos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="263"/>
         <source>Restore machine selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar seleção de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="264"/>
         <source>Restore saved machine selection at start and after reloading the machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar seleção de máquinas ao iniciar e antes de recarregar a lista de jogos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="266"/>
@@ -8926,7 +8926,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="1288"/>
         <source>invalidating machine info DB</source>
-        <translation type="unfinished">invalidando BD de informações de máquinas</translation>
+        <translation>invalidando BD de informações de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1305"/>
@@ -10672,12 +10672,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="148"/>
         <source>Save game selection on exit and before reloading the game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar seleção de jogos ao sair e antes de recarregar a lista de jogos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="168"/>
         <source>Restore saved game selection at start and after reloading the game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurar seleção de jogos ao iniciar e antes de recarregar a lista de jogos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="748"/>
