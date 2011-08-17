@@ -442,7 +442,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   // FIXME: remove this when arcade mode is ready
 #if QMC2_WIP_CODE != 1
-  menu_Display->removeAction(menu_Arcade->menuAction());
+  menu_Display->removeAction(menuArcade->menuAction());
   actionArcadeToggle->setVisible(false);
 #endif
 
