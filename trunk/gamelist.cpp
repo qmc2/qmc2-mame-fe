@@ -64,6 +64,7 @@ extern Title *qmc2Title;
 extern PCB *qmc2PCB;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern QTreeWidgetItem *qmc2LastGameInfoItem;
+extern QTreeWidgetItem *qmc2LastEmuInfoItem;
 #if defined(QMC2_EMUTYPE_MESS)
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
 extern QTreeWidgetItem *qmc2LastSoftwareListItem;
@@ -93,11 +94,10 @@ extern unzFile qmc2IconFile;
 extern QMap<QString, QIcon> qmc2IconMap;
 extern QStringList qmc2BiosROMs;
 extern QStringList qmc2DeviceROMs;
+extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 #if defined(QMC2_EMUTYPE_MAME)
 extern QTreeWidgetItem *qmc2LastMAWSItem;
 extern MiniWebBrowser *qmc2MAWSLookup;
-extern QTreeWidgetItem *qmc2LastEmuInfoItem;
-extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 extern QMap<QString, QString> qmc2CategoryMap;
 extern QMap<QString, QString> qmc2VersionMap;
 extern QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
@@ -204,10 +204,10 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseGameInfoDB->setEnabled(enable);
   qmc2Options->toolButtonCompressGameInfoDB->setEnabled(enable);
   qmc2Options->checkBoxProcessGameInfoDB->setEnabled(enable);
-#if defined(QMC2_EMUTYPE_MAME)
   qmc2Options->toolButtonBrowseEmuInfoDB->setEnabled(enable);
   qmc2Options->toolButtonCompressEmuInfoDB->setEnabled(enable);
   qmc2Options->checkBoxProcessEmuInfoDB->setEnabled(enable);
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2Options->toolButtonBrowseMAWSCacheDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseCatverIniFile->setEnabled(enable);
   qmc2Options->checkBoxUseCatverIni->setEnabled(enable);
@@ -316,6 +316,7 @@ void Gamelist::load()
 #endif
   qmc2MainWindow->listWidgetSearch->clear();
   qmc2MainWindow->textBrowserGameInfo->clear();
+  qmc2MainWindow->textBrowserEmuInfo->clear();
   qmc2MainWindow->labelGameStatus->setPalette(MainWindow::qmc2StatusColorBlue);
   qmc2CurrentItem = NULL;
 #if defined(QMC2_EMUTYPE_MESS)
@@ -347,9 +348,8 @@ void Gamelist::load()
   swlBuffer.clear();
 #endif
   qmc2LastGameInfoItem = NULL;
-#if defined(QMC2_EMUTYPE_MAME)
-  qmc2MainWindow->textBrowserEmuInfo->clear();
   qmc2LastEmuInfoItem = NULL;
+#if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2MAWSLookup ) {
     qmc2MAWSLookup->setVisible(false);
     QLayout *vbl = qmc2MainWindow->tabMAWS->layout();
@@ -1979,7 +1979,6 @@ void Gamelist::parse()
 #endif
       qmc2HierarchyItemMap[jValue] = hierarchySubItem;
       qmc2ParentMap[jValue] = iValue;
-#if defined(QMC2_EMUTYPE_MAME)
       // "fill up" emulator info data for clones
       if ( !qmc2EmuInfoDB.isEmpty() ) {
         QByteArray *p = qmc2EmuInfoDB[hierarchyItem->text(QMC2_GAMELIST_COLUMN_NAME)];
@@ -1987,7 +1986,6 @@ void Gamelist::parse()
           if ( !qmc2EmuInfoDB.contains(baseItem->text(QMC2_GAMELIST_COLUMN_NAME)) )
             qmc2EmuInfoDB[baseItem->text(QMC2_GAMELIST_COLUMN_NAME)] = p;
       }
-#endif
       switch ( qmc2GamelistStatusMap[jValue][0].toAscii() ) {
         case 'C': 
           if ( qmc2BiosROMs.contains(jValue) ) {
