@@ -110,6 +110,9 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_MACHINEINFO_INDEX] = tr("Machine &info");
   longTitleMap[QMC2_MACHINEINFO_INDEX] = tr("Machine information");
   iconMap[QMC2_MACHINEINFO_INDEX] = QIcon(QString::fromUtf8(":/data/img/info.png"));
+  shortTitleMap[QMC2_EMUINFO_INDEX] = tr("Em&ulator info");
+  longTitleMap[QMC2_EMUINFO_INDEX] = tr("Emulator information");
+  iconMap[QMC2_EMUINFO_INDEX] = QIcon(QString::fromUtf8(":/data/img/info.png"));
   shortTitleMap[QMC2_CONFIG_INDEX] = tr("&Configuration");
   longTitleMap[QMC2_CONFIG_INDEX] = tr("Emulator configuration");
   iconMap[QMC2_CONFIG_INDEX] = QIcon(QString::fromUtf8(":/data/img/work.png"));
@@ -135,6 +138,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   availableDetailList << QMC2_PREVIEW_INDEX
                       << QMC2_FLYER_INDEX
                       << QMC2_MACHINEINFO_INDEX
+                      << QMC2_EMUINFO_INDEX
                       << QMC2_CONFIG_INDEX
                       << QMC2_DEVICE_INDEX
                       << QMC2_PCB_INDEX
@@ -148,6 +152,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_PREVIEW_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PREVIEW_INDEX);
   tabWidgetsMap[QMC2_FLYER_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_FLYER_INDEX);
   tabWidgetsMap[QMC2_MACHINEINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MACHINEINFO_INDEX);
+  tabWidgetsMap[QMC2_EMUINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_EMUINFO_INDEX);
   tabWidgetsMap[QMC2_CONFIG_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONFIG_INDEX);
   tabWidgetsMap[QMC2_DEVICE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_DEVICE_INDEX);
   tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
@@ -217,6 +222,7 @@ void DetailSetup::loadDetail()
     activeDetailList << QMC2_PREVIEW_INDEX
                      << QMC2_FLYER_INDEX
                      << QMC2_MACHINEINFO_INDEX
+                     << QMC2_EMUINFO_INDEX
                      << QMC2_CONFIG_INDEX
                      << QMC2_DEVICE_INDEX
                      << QMC2_PCB_INDEX;

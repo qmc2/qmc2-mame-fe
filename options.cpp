@@ -122,13 +122,11 @@ extern QMap<QString, QString> qmc2JoystickFunctionMap;
 extern KeyPressFilter *qmc2KeyPressFilter;
 extern QMap<QString, int> qmc2QtKeyMap;
 extern QMap<QString, QByteArray *> qmc2GameInfoDB;
+extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
 extern MiniWebBrowser *qmc2MAWSLookup;
 extern MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup;
 extern DetailSetup *qmc2DetailSetup;
 extern QWidget *qmc2DetailSetupParent;
-#if defined(QMC2_EMUTYPE_MAME)
-extern QMap<QString, QByteArray *> qmc2EmuInfoDB;
-#endif
 #if QMC2_JOYSTICK == 1
 extern Joystick *qmc2Joystick;
 #endif
@@ -225,10 +223,9 @@ Options::Options(QWidget *parent)
 #endif
 
 #if defined(QMC2_EMUTYPE_MESS)
-  toolButtonBrowseEmuInfoDB->setVisible(false);
-  checkBoxProcessEmuInfoDB->setVisible(false);
-  toolButtonCompressEmuInfoDB->setVisible(false);
-  lineEditEmuInfoDB->setVisible(false);
+  toolButtonBrowseEmuInfoDB->setToolTip(tr("Browse emulator information database (messinfo.dat)"));
+  checkBoxProcessEmuInfoDB->setToolTip(tr("Load emulator information database (messinfo.dat)"));
+  lineEditEmuInfoDB->setToolTip(tr("Emulator information database - messinfo.dat (read)"));
   checkBoxProcessGameInfoDB->setText(tr("Machine info DB"));
   checkBoxProcessGameInfoDB->setToolTip(tr("Load machine information database (MESS sysinfo.dat)"));
   toolButtonCompressGameInfoDB->setToolTip(tr("Use in-memory compression for machine info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)"));
@@ -482,10 +479,10 @@ void Options::apply()
   toolButtonBrowseROMStateCacheFile->setIconSize(iconSize);
   toolButtonBrowseDataDirectory->setIconSize(iconSize);
   toolButtonBrowseGameInfoDB->setIconSize(iconSize);
+  toolButtonBrowseEmuInfoDB->setIconSize(iconSize);
 #if defined(QMC2_EMUTYPE_MAME)
   qmc2MainWindow->treeWidgetCategoryView->setIconSize(iconSize);
   qmc2MainWindow->treeWidgetVersionView->setIconSize(iconSize);
-  toolButtonBrowseEmuInfoDB->setIconSize(iconSize);
   toolButtonBrowseMAWSCacheDirectory->setIconSize(iconSize);
   checkBoxUseCatverIni->setIconSize(iconSize);
   toolButtonBrowseCatverIniFile->setIconSize(iconSize);
@@ -562,11 +559,7 @@ void Options::apply()
     QTabBar *tabBar = qmc2ImageChecker->tabWidgetImageChecker->findChild<QTabBar *>();
     if ( tabBar ) tabBar->setIconSize(iconSize);
   }
-  checkBoxProcessGameInfoDB->setIconSize(iconSize);
-  toolButtonCompressGameInfoDB->setIconSize(iconSize);
 #if defined(QMC2_EMUTYPE_MAME)
-  checkBoxProcessEmuInfoDB->setIconSize(iconSize);
-  toolButtonCompressEmuInfoDB->setIconSize(iconSize);
   if ( qmc2MAWSLookup ) {
     qmc2MAWSLookup->toolButtonBack->setIconSize(iconSize);
     qmc2MAWSLookup->toolButtonForward->setIconSize(iconSize);
@@ -749,7 +742,6 @@ void Options::on_pushButtonApply_clicked()
   needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() != b);
   invalidateGameInfoDB |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB").toBool() != b);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB", toolButtonCompressGameInfoDB->isChecked());
-#if defined(QMC2_EMUTYPE_MAME)
   b = checkBoxProcessEmuInfoDB->isChecked();
   needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() != b);
   bool invalidateEmuInfoDB = (config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() != b);
@@ -758,7 +750,6 @@ void Options::on_pushButtonApply_clicked()
   needManualReload |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool() != b);
   invalidateEmuInfoDB |= (config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool() != b);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB", toolButtonCompressEmuInfoDB->isChecked());
-#endif
   qmc2ScaledPreview = checkBoxScaledPreview->isChecked();
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ScaledPreview", qmc2ScaledPreview);
   qmc2ScaledFlyer = checkBoxScaledFlyer->isChecked();
@@ -1036,6 +1027,10 @@ void Options::on_pushButtonApply_clicked()
   needManualReload |= (config->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
   invalidateGameInfoDB |= (config->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
   config->setValue("MESS/FilesAndDirectories/GameInfoDB", lineEditGameInfoDB->text());
+  s = lineEditEmuInfoDB->text();
+  needManualReload |= (config->value("MESS/FilesAndDirectories/EmuInfoDB").toString() != s);
+  invalidateEmuInfoDB |= (config->value("MESS/FilesAndDirectories/EmuInfoDB").toString() != s);
+  config->setValue("MESS/FilesAndDirectories/EmuInfoDB", lineEditEmuInfoDB->text());
 #endif
 
   // Gamelist
@@ -1287,7 +1282,11 @@ void Options::on_pushButtonApply_clicked()
     apply();
 
   if ( invalidateGameInfoDB ) {
+#if defined(QMC2_EMUTYPE_MAME)
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("invalidating game info DB"));
+#elif defined(QMC2_EMUTYPE_MESS)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("invalidating machine info DB"));
+#endif
     QMapIterator<QString, QByteArray *> it(qmc2GameInfoDB);
     QList<QByteArray *> deletedRecords;
     while ( it.hasNext() ) {
@@ -1302,7 +1301,6 @@ void Options::on_pushButtonApply_clicked()
     qmc2GameInfoDB.clear();
   }
 
-#if defined(QMC2_EMUTYPE_MAME)
   if ( invalidateEmuInfoDB ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("invalidating emulator info DB"));
     QMapIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
@@ -1318,7 +1316,6 @@ void Options::on_pushButtonApply_clicked()
     deletedRecords.clear();
     qmc2EmuInfoDB.clear();
   }
-#endif
 
   if ( needManualReload )
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1776,10 +1773,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxProgressTexts->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts", false).toBool());
   checkBoxProcessGameInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessGameInfoDB", true).toBool());
   toolButtonCompressGameInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressGameInfoDB", false).toBool());
-#if defined(QMC2_EMUTYPE_MAME)
   checkBoxProcessEmuInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB", true).toBool());
   toolButtonCompressEmuInfoDB->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB", false).toBool());
-#endif
   qmc2ScaledPreview = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledPreview", true).toBool();
   checkBoxScaledPreview->setChecked(qmc2ScaledPreview);
   qmc2ScaledFlyer = config->value(QMC2_FRONTEND_PREFIX + "GUI/ScaledFlyer", true).toBool();
@@ -1956,6 +1951,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   stackedWidgetSWSnap->setCurrentIndex(qmc2UseSoftwareSnapFile ? 1 : 0);
   radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
   lineEditGameInfoDB->setText(config->value("MESS/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
+  lineEditEmuInfoDB->setText(config->value("MESS/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/messinfo.dat").toString());
 #endif
 
   // Gamelist
@@ -2645,7 +2641,6 @@ void Options::on_toolButtonBrowseGameInfoDB_clicked()
   raise();
 }
 
-#if defined(QMC2_EMUTYPE_MAME)
 void Options::on_toolButtonBrowseEmuInfoDB_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -2658,6 +2653,7 @@ void Options::on_toolButtonBrowseEmuInfoDB_clicked()
   raise();
 }
 
+#if defined(QMC2_EMUTYPE_MAME)
 void Options::on_toolButtonBrowseCatverIniFile_clicked()
 {
 #ifdef QMC2_DEBUG

@@ -137,8 +137,8 @@ class Options : public QDialog, public Ui::Options
 #endif
     void on_toolButtonBrowseDataDirectory_clicked();
     void on_toolButtonBrowseGameInfoDB_clicked();
-#if defined(QMC2_EMUTYPE_MAME)
     void on_toolButtonBrowseEmuInfoDB_clicked();
+#if defined(QMC2_EMUTYPE_MAME)
     void on_toolButtonBrowseCatverIniFile_clicked();
 #endif
     void on_toolButtonBrowseWorkingDirectory_clicked();

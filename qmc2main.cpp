@@ -185,14 +185,14 @@ bool qmc2StopParser = false;
 QTreeWidgetItem *qmc2CurrentItem = NULL;
 QTreeWidgetItem *qmc2LastConfigItem = NULL;
 QTreeWidgetItem *qmc2LastGameInfoItem = NULL;
-#if defined(QMC2_EMUTYPE_MAME)
 bool qmc2LoadingEmuInfoDB = false;
 QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
+QMap<QString, QByteArray *> qmc2EmuInfoDB;
+#if defined(QMC2_EMUTYPE_MAME)
 MiniWebBrowser *qmc2MAWSLookup = NULL;
 QTreeWidgetItem *qmc2LastMAWSItem = NULL;
 QCache<QString, QByteArray> qmc2MAWSCache;
 MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup = NULL;
-QMap<QString, QByteArray *> qmc2EmuInfoDB;
 QMap<QString, QString> qmc2CategoryMap;
 QMap<QString, QString> qmc2VersionMap;
 QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
@@ -1573,14 +1573,12 @@ void MainWindow::on_actionReload_activated()
         qmc2Gamelist->enableWidgets(true);
       }
 
-#if defined(QMC2_EMUTYPE_MAME)
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProcessEmuInfoDB").toBool() && qmc2DetailSetup->appliedDetailList.contains(QMC2_EMUINFO_INDEX) )
       if ( qmc2EmuInfoDB.isEmpty() && !qmc2StopParser ) {
         qmc2Gamelist->enableWidgets(false);
         loadEmuInfoDB();
         qmc2Gamelist->enableWidgets(true);
       }
-#endif
 
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveGameSelection").toBool() && !qmc2StartingUp ) {
       if ( qmc2CurrentItem ) {
@@ -3089,7 +3087,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #if defined(QMC2_EMUTYPE_MAME)
     qmc2LastGameInfoItem = qmc2LastEmuInfoItem = qmc2LastConfigItem = NULL;
 #else
-    qmc2LastGameInfoItem = qmc2LastConfigItem = qmc2LastDeviceConfigItem = qmc2LastSoftwareListItem = NULL;
+    qmc2LastGameInfoItem = qmc2LastEmuInfoItem = qmc2LastConfigItem = qmc2LastDeviceConfigItem = qmc2LastSoftwareListItem = NULL;
 #endif
 #if QMC2_OPENGL == 1
     // images painted through OpenGL need extra "clear()'s", otherwise garbage is displayed
@@ -3547,7 +3545,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       }
       break;
 
-#if defined(QMC2_EMUTYPE_MAME)
     case QMC2_EMUINFO_INDEX:
       if ( qmc2CurrentItem != qmc2LastEmuInfoItem ) {
         tabEmuInfo->setUpdatesEnabled(false);
@@ -3584,7 +3581,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         tabEmuInfo->setUpdatesEnabled(true);
       }
       break;
-#endif
 
     default:
       // if local emulator options exits and they are no longer needed, close & destroy them...
@@ -4809,7 +4805,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
        qmc2FilterActive ||
        qmc2ImageCheckActive ||
        qmc2ROMAlyzerActive ||
-       qmc2LoadingGameInfoDB )
+       qmc2LoadingGameInfoDB ||
+       qmc2LoadingEmuInfoDB )
 #endif
   {
     qmc2StopParser = true;
@@ -5202,7 +5199,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
     deletedRecords.clear();
     qmc2GameInfoDB.clear();
   }
-#if defined(QMC2_EMUTYPE_MAME)
   if ( !qmc2EmuInfoDB.isEmpty() ) {
     log(QMC2_LOG_FRONTEND, tr("destroying emulator info DB"));
     QMapIterator<QString, QByteArray *> it(qmc2EmuInfoDB);
@@ -5218,7 +5214,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
     deletedRecords.clear();
     qmc2EmuInfoDB.clear();
   }
-#endif
 
   log(QMC2_LOG_FRONTEND, tr("destroying process manager"));
   if ( qmc2ProcessManager->procMap.count() > 0 ) {
@@ -5656,6 +5651,7 @@ void MainWindow::loadGameInfoDB()
 #endif
   QFile gameInfoDB(pathToGameInfoDB);
   gameInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
+
   if ( gameInfoDB.isOpen() ) {
     qmc2MainWindow->progressBarGamelist->reset();
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -5724,9 +5720,9 @@ void MainWindow::loadGameInfoDB()
               gameInfoString.remove(gameInfoString.length() - 3, gameInfoString.length() - 1);
             QByteArray *gameInfo;
             if ( compressData )
-              gameInfo = new QByteArray(QMC2_COMPRESS(gameInfoString.toAscii())); 
+              gameInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString))); 
             else
-              gameInfo = new QByteArray(gameInfoString.toAscii());
+              gameInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString));
             int i;
             for (i = 0; i < gameWords.count(); i++) {
               if ( !gameWords[i].isEmpty() )
@@ -5797,7 +5793,6 @@ void MainWindow::loadGameInfoDB()
   qmc2MainWindow->progressBarGamelist->reset();
 }
 
-#if defined(QMC2_EMUTYPE_MAME)
 void MainWindow::loadEmuInfoDB()
 {
 #ifdef QMC2_DEBUG
@@ -5827,9 +5822,14 @@ void MainWindow::loadEmuInfoDB()
   qmc2EmuInfoDB.clear();
 
   bool compressData = qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/CompressEmuInfoDB").toBool();
+#if defined(QMC2_EMUTYPE_MAME)
   QString pathToEmuInfoDB = qmc2Config->value("MAME/FilesAndDirectories/EmuInfoDB").toString();
+#elif defined(QMC2_EMUTYPE_MESS)
+  QString pathToEmuInfoDB = qmc2Config->value("MESS/FilesAndDirectories/EmuInfoDB").toString();
+#endif
   QFile emuInfoDB(pathToEmuInfoDB);
   emuInfoDB.open(QIODevice::ReadOnly | QIODevice::Text);
+
   if ( emuInfoDB.isOpen() ) {
     qmc2MainWindow->progressBarGamelist->reset();
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
@@ -5878,9 +5878,9 @@ void MainWindow::loadEmuInfoDB()
               emuInfoString.remove(emuInfoString.length() - 3, emuInfoString.length() - 1);
             QByteArray *emuInfo;
             if ( compressData )
-              emuInfo = new QByteArray(QMC2_COMPRESS(emuInfoString.toAscii())); 
+              emuInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString))); 
             else
-              emuInfo = new QByteArray(emuInfoString.toAscii());
+              emuInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString));
             int i;
             for (i = 0; i < gameWords.count(); i++) {
               if ( !gameWords[i].isEmpty() )
@@ -5926,7 +5926,6 @@ void MainWindow::loadEmuInfoDB()
   qmc2LoadingEmuInfoDB = false;
   qmc2MainWindow->progressBarGamelist->reset();
 }
-#endif
 
 #if QMC2_USE_PHONON_API
 void MainWindow::on_actionAudioPreviousTrack_triggered(bool checked)
