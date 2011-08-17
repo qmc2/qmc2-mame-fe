@@ -3,19 +3,16 @@ package sourceforge.org.qmc2.options.editor.ui.actions;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.window.Window;
 
 import sourceforge.org.qmc2.options.editor.ui.QMC2Editor;
 import sourceforge.org.qmc2.options.editor.ui.dialogs.AddSectionDialog;
 import sourceforge.org.qmc2.options.editor.ui.operations.AddSectionOperation;
 
-public class AddSectionAction extends Action {
-
-	private final QMC2Editor editor;
+public class AddSectionAction extends BaseAction {
 
 	public AddSectionAction(QMC2Editor editor) {
-		this.editor = editor;
+		super(editor);
 		setText("Add &Section");
 	}
 
@@ -40,6 +37,7 @@ public class AddSectionAction extends Action {
 				e.printStackTrace();
 			}
 		}
+		super.run();
 
 	}
 

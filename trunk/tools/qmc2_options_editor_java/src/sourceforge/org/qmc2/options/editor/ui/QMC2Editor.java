@@ -7,6 +7,7 @@ import org.eclipse.core.commands.operations.DefaultOperationHistory;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.commands.operations.UndoContext;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
@@ -17,6 +18,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.TreeViewerEditor;
 import org.eclipse.jface.viewers.TreeViewerFocusCellManager;
+import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -54,8 +56,11 @@ public class QMC2Editor extends Composite {
 
 	private IUndoContext undoContext = new UndoContext();
 
-	public QMC2Editor(Composite parent) {
+	private final ApplicationWindow application;
+
+	public QMC2Editor(Composite parent, ApplicationWindow app) {
 		super(parent, SWT.NONE);
+		this.application = app;
 		setLayout(new GridLayout(3, false));
 
 		createFileChooser();
@@ -149,6 +154,7 @@ public class QMC2Editor extends Composite {
 						createColumns(templateFile.getLanguages());
 						operationHistory = new DefaultOperationHistory();
 						viewer.setInput(templateFile);
+						updateApplicationMenuBar();
 					} catch (Exception e1) {
 						MessageDialog.openError(
 								getShell(),
@@ -247,5 +253,10 @@ public class QMC2Editor extends Composite {
 
 	public void setFilter(String filter) {
 		this.filter = filter;
+	}
+
+	public void updateApplicationMenuBar() {
+		application.getMenuBarManager().update(IAction.TEXT);
+		application.getMenuBarManager().update(IAction.ENABLED);
 	}
 }

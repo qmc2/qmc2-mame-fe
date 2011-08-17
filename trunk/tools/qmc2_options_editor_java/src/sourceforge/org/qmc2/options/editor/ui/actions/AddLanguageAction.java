@@ -5,7 +5,6 @@ import java.util.Locale;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.swt.SWT;
@@ -14,12 +13,10 @@ import org.eclipse.swt.widgets.TreeColumn;
 import sourceforge.org.qmc2.options.editor.ui.QMC2Editor;
 import sourceforge.org.qmc2.options.editor.ui.operations.AddLanguageOperation;
 
-public class AddLanguageAction extends Action {
-
-	private final QMC2Editor editor;
+public class AddLanguageAction extends BaseAction {
 
 	public AddLanguageAction(QMC2Editor editor) {
-		this.editor = editor;
+		super(editor);
 		setAccelerator(SWT.MOD1 + 'A');
 		setText("&Add Language...");
 	}
@@ -83,5 +80,6 @@ public class AddLanguageAction extends Action {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		super.run();
 	}
 }

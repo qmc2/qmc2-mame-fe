@@ -59,7 +59,9 @@ public class QMC2EditorApplication extends ApplicationWindow {
 
 	@Override
 	protected Control createContents(Composite parent) {
-		QMC2Editor editor = new QMC2Editor(parent);
+
+		QMC2Editor editor = new QMC2Editor(parent, this);
+
 		createActions(editor);
 
 		return editor;
