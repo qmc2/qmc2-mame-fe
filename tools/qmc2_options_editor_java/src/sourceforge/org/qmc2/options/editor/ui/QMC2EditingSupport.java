@@ -69,6 +69,7 @@ public class QMC2EditingSupport extends EditingSupport {
 			}
 
 		}
+		qmc2Editor.updateApplicationMenuBar();
 
 	}
 }

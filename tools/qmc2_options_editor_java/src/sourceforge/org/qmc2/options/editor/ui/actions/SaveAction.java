@@ -3,18 +3,16 @@ package sourceforge.org.qmc2.options.editor.ui.actions;
 import java.io.File;
 import java.io.IOException;
 
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 
 import sourceforge.org.qmc2.options.editor.ui.QMC2Editor;
 
-public class SaveAction extends Action {
-	private final QMC2Editor editor;
+public class SaveAction extends BaseAction {
 
 	public SaveAction(QMC2Editor editor) {
-		this.editor = editor;
+		super(editor);
 		setAccelerator(SWT.MOD1 + 'S');
 		setText("&Save...");
 	}
@@ -68,5 +66,6 @@ public class SaveAction extends Action {
 			}
 
 		}
+		super.run();
 	}
 }

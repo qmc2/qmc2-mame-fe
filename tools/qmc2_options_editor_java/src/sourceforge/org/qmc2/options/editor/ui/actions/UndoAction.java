@@ -1,20 +1,17 @@
 package sourceforge.org.qmc2.options.editor.ui.actions;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.jface.action.Action;
 import org.eclipse.swt.SWT;
 
 import sourceforge.org.qmc2.options.editor.ui.QMC2Editor;
 
-public class UndoAction extends Action {
-
-	private final QMC2Editor editor;
+public class UndoAction extends BaseAction {
 
 	public UndoAction(QMC2Editor editor) {
-		this.editor = editor;
+		super(editor);
 		setAccelerator(SWT.MOD1 + 'Z');
-		setText("&Undo");
 	}
 
 	@Override
@@ -33,6 +30,17 @@ public class UndoAction extends Action {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		super.run();
+	}
+
+	@Override
+	public String getText() {
+		IUndoableOperation nextUndoOp = editor.getOperationHistory()
+				.getUndoOperation(editor.getUndoContext());
+
+		return "&Undo"
+				+ (nextUndoOp == null ? "" : (" " + nextUndoOp.getLabel()));
+
 	}
 
 }
