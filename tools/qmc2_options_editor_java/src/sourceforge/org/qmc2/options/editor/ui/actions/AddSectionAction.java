@@ -13,13 +13,12 @@ public class AddSectionAction extends BaseAction {
 
 	public AddSectionAction(QMC2Editor editor) {
 		super(editor);
-		setText("Add &Section");
+		setText("Add &Section...");
 	}
 
 	@Override
 	public boolean isEnabled() {
-
-		return true;
+		return editor.getTemplateFile() != null;
 	}
 
 	@Override

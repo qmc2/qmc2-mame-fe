@@ -7,6 +7,7 @@ import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.TreeColumn;
 
@@ -70,15 +71,17 @@ public class AddLanguageAction extends BaseAction {
 						return errorMsg;
 					}
 				});
-		dialog.open();
-		String newLang = dialog.getValue();
-		IUndoableOperation operation = new AddLanguageOperation(editor, newLang);
-		try {
-			editor.getOperationHistory().execute(operation,
-					new NullProgressMonitor(), null);
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (dialog.open() == Window.OK) {
+			String newLang = dialog.getValue();
+			IUndoableOperation operation = new AddLanguageOperation(editor,
+					newLang);
+			try {
+				editor.getOperationHistory().execute(operation,
+						new NullProgressMonitor(), null);
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		super.run();
 	}

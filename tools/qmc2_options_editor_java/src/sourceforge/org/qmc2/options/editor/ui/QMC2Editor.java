@@ -36,6 +36,7 @@ import org.eclipse.swt.widgets.TreeColumn;
 
 import sourceforge.org.qmc2.options.editor.model.QMC2TemplateFile;
 import sourceforge.org.qmc2.options.editor.ui.actions.AddLanguageAction;
+import sourceforge.org.qmc2.options.editor.ui.actions.AddOptionAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.AddSectionAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.RedoAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.UndoAction;
@@ -102,6 +103,7 @@ public class QMC2Editor extends Composite {
 		manager.add(new RedoAction(QMC2Editor.this));
 		manager.add(new AddLanguageAction(QMC2Editor.this));
 		manager.add(new AddSectionAction(QMC2Editor.this));
+		manager.add(new AddOptionAction(QMC2Editor.this));
 	}
 
 	private void createFilterAndSearch() {
