@@ -726,7 +726,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", checkBoxToolbar->isChecked());
 #if defined(Q_WS_MAC)
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/UnifiedTitleAndToolBarOnMac", checkBoxUnifiedTitleAndToolBarOnMac->isChecked());
-  setUnifiedTitleAndToolBarOnMac(checkBoxUnifiedTitleAndToolBarOnMac->isChecked());
+  qmc2MainWindow->setUnifiedTitleAndToolBarOnMac(checkBoxUnifiedTitleAndToolBarOnMac->isChecked());
 #endif
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout", checkBoxSaveLayout->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout", checkBoxRestoreLayout->isChecked());
