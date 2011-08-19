@@ -46,7 +46,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	systemName = sysName;
 	loadProc = NULL;
-	validData = snapForced = false;
+	validData = snapForced = autoSelectSearchItem = false;
 
 #if defined(QMC2_EMUTYPE_MAME)
 	comboBoxDeviceConfiguration->setVisible(false);
@@ -1074,6 +1074,14 @@ void SoftwareList::on_comboBoxSearch_textChanged_delayed()
 		item->setText(QMC2_SWLIST_COLUMN_INTERFACE, matchItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
 		item->setText(QMC2_SWLIST_COLUMN_LIST, matchItem->text(QMC2_SWLIST_COLUMN_LIST));
 	}
+
+	if ( autoSelectSearchItem ) {
+  		treeWidgetSearchResults->setFocus();
+		if ( treeWidgetSearchResults->currentItem() )
+			treeWidgetSearchResults->currentItem()->setSelected(true);
+	}
+
+	autoSelectSearchItem = false;
 }
 
 void SoftwareList::on_comboBoxSearch_activated(QString pattern)
@@ -1082,6 +1090,7 @@ void SoftwareList::on_comboBoxSearch_activated(QString pattern)
 	log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_comboBoxSearch_activated(QString pattern = %1)").arg(pattern));
 #endif
 
+	autoSelectSearchItem = true;
 	on_comboBoxSearch_textChanged_delayed();
 }
 
