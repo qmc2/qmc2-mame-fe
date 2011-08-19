@@ -64,7 +64,6 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 	public:
 		QProcess *loadProc;
 		QTime loadTimer;
-		bool validData;
 		QFile fileSWLCache;
 		QString systemName;
 		QTextStream tsSWLCache;
@@ -75,6 +74,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QTimer snapTimer;
 		QTimer searchTimer;
 		bool snapForced;
+		bool validData;
+		bool autoSelectSearchItem;
 
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();
