@@ -98,12 +98,12 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	s = tr("Add to favorite software list");
 	actionAddToFavorites = softwareListMenu->addAction(tr("&Add to favorites"));
 	actionAddToFavorites->setToolTip(s); actionAddToFavorites->setStatusTip(s);
-	actionAddToFavorites->setIcon(QIcon(QString::fromUtf8(":/data/img/plus.png")));
+	actionAddToFavorites->setIcon(QIcon(QString::fromUtf8(":/data/img/add_to_favorites.png")));
 	connect(actionAddToFavorites, SIGNAL(triggered()), this, SLOT(addToFavorites()));
 	s = tr("Remove from favorite software list");
 	actionRemoveFromFavorites = softwareListMenu->addAction(tr("&Remove from favorites"));
 	actionRemoveFromFavorites->setToolTip(s); actionRemoveFromFavorites->setStatusTip(s);
-	actionRemoveFromFavorites->setIcon(QIcon(QString::fromUtf8(":/data/img/minus.png")));
+	actionRemoveFromFavorites->setIcon(QIcon(QString::fromUtf8(":/data/img/remove_from_favorites.png")));
 	connect(actionRemoveFromFavorites, SIGNAL(triggered()), this, SLOT(removeFromFavorites()));
 
 	// restore widget states
@@ -115,6 +115,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	connect(treeWidgetKnownSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetKnownSoftware_headerSectionClicked(int)));
 	connect(treeWidgetFavoriteSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetFavoriteSoftware_headerSectionClicked(int)));
 	connect(treeWidgetSearchResults->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetSearchResults_headerSectionClicked(int)));
+	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(on_comboBoxSearch_textChanged_delayed()));
 }
 
 SoftwareList::~SoftwareList()
@@ -849,6 +850,10 @@ void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 #endif
 
 	QList<QTreeWidgetItem *> selectedItems = treeWidgetSearchResults->selectedItems();
+	bool enable = (selectedItems.count() > 0);
+	toolButtonPlay->setEnabled(enable);
+	toolButtonPlayEmbedded->setEnabled(enable);
+	toolButtonRemoveFromFavorites->setEnabled(enable);
 	if ( selectedItems.count() > 0 && qmc2SoftwareSnap ) {
 		QTreeWidgetItem *item = selectedItems[0];
 		if ( item != qmc2SoftwareSnap->myItem )
@@ -1019,6 +1024,67 @@ void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *ite
 	QTimer::singleShot(0, this, SLOT(playActivated()));
 }
 
+void SoftwareList::on_comboBoxSearch_textChanged(QString)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_comboBoxSearch_textChanged(QString)");
+#endif
+
+	searchTimer.start(QMC2_SEARCH_DELAY);
+}
+
+void SoftwareList::on_comboBoxSearch_textChanged_delayed()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_comboBoxSearch_textChanged_delayed()");
+#endif
+
+	searchTimer.stop();
+
+	QString pattern = comboBoxSearch->currentText();
+
+	// easy pattern match
+	if ( !pattern.isEmpty() ) {
+		pattern = "*" + pattern.replace(' ', "* *") + "*";
+		pattern.replace(QString("*^"), "");
+		pattern.replace(QString("$*"), "");
+	}
+
+	treeWidgetSearchResults->clear();
+
+	QList<QTreeWidgetItem *> matches = treeWidgetKnownSoftware->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_SWLIST_COLUMN_TITLE);
+	QList<QTreeWidgetItem *> matchesByShortName = treeWidgetKnownSoftware->findItems(pattern, Qt::MatchContains | Qt::MatchWildcard, QMC2_SWLIST_COLUMN_NAME);
+
+	int i;
+
+	for (i = 0; i < matchesByShortName.count(); i++) {
+		QTreeWidgetItem *item = matchesByShortName[i];
+		if ( !matches.contains(item) )
+			matches.append(item);
+	}
+
+	for (i = 0; i < matches.count(); i++) {
+		QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetSearchResults);
+		QTreeWidgetItem *matchItem = matches.at(i);
+		item->setText(QMC2_SWLIST_COLUMN_TITLE, matchItem->text(QMC2_SWLIST_COLUMN_TITLE));
+		item->setText(QMC2_SWLIST_COLUMN_NAME, matchItem->text(QMC2_SWLIST_COLUMN_NAME));
+		item->setText(QMC2_SWLIST_COLUMN_PUBLISHER, matchItem->text(QMC2_SWLIST_COLUMN_PUBLISHER));
+		item->setText(QMC2_SWLIST_COLUMN_YEAR, matchItem->text(QMC2_SWLIST_COLUMN_YEAR));
+		item->setText(QMC2_SWLIST_COLUMN_PART, matchItem->text(QMC2_SWLIST_COLUMN_PART));
+		item->setText(QMC2_SWLIST_COLUMN_INTERFACE, matchItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
+		item->setText(QMC2_SWLIST_COLUMN_LIST, matchItem->text(QMC2_SWLIST_COLUMN_LIST));
+	}
+}
+
+void SoftwareList::on_comboBoxSearch_activated(QString pattern)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_comboBoxSearch_activated(QString pattern = %1)").arg(pattern));
+#endif
+
+	on_comboBoxSearch_textChanged_delayed();
+}
+
 QStringList &SoftwareList::arguments()
 {
 #ifdef QMC2_DEBUG
@@ -1030,7 +1096,19 @@ QStringList &SoftwareList::arguments()
 	swlArgs.clear();
 
 	// arguments to start a software list entry
-	QList<QTreeWidgetItem *> selectedItems = treeWidgetKnownSoftware->selectedItems();
+	QList<QTreeWidgetItem *> selectedItems;
+	switch ( toolBoxSoftwareList->currentIndex() ) {
+		case QMC2_SWLIST_FAVORITES_PAGE:
+			selectedItems = treeWidgetFavoriteSoftware->selectedItems();
+			break;
+		case QMC2_SWLIST_SEARCH_PAGE:
+			selectedItems = treeWidgetSearchResults->selectedItems();
+			break;
+		case QMC2_SWLIST_KNOWN_SW_PAGE:
+		default:
+			selectedItems = treeWidgetKnownSoftware->selectedItems();
+			break;
+	}
 	if ( selectedItems.count() > 0 ) {
 		QTreeWidgetItem *item = selectedItems[0];
 		QStringList interfaces = item->text(QMC2_SWLIST_COLUMN_INTERFACE).split(",");

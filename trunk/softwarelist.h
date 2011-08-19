@@ -73,6 +73,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QAction *actionAddToFavorites;
 		QAction *actionRemoveFromFavorites;
 		QTimer snapTimer;
+		QTimer searchTimer;
 		bool snapForced;
 
 		SoftwareList(QString, QWidget *);
@@ -105,6 +106,9 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *, int);
 		void on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *, int);
 		void on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *, int);
+		void on_comboBoxSearch_textChanged(QString);
+		void on_comboBoxSearch_textChanged_delayed();
+		void on_comboBoxSearch_activated(QString);
 
 		// process management
 		void loadStarted();
