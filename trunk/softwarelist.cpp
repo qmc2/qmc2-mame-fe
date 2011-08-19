@@ -115,7 +115,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	connect(treeWidgetKnownSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetKnownSoftware_headerSectionClicked(int)));
 	connect(treeWidgetFavoriteSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetFavoriteSoftware_headerSectionClicked(int)));
 	connect(treeWidgetSearchResults->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetSearchResults_headerSectionClicked(int)));
-	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(on_comboBoxSearch_textChanged_delayed()));
+	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxSearch_textChanged_delayed()));
 }
 
 SoftwareList::~SoftwareList()
@@ -1033,10 +1033,10 @@ void SoftwareList::on_comboBoxSearch_textChanged(QString)
 	searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
-void SoftwareList::on_comboBoxSearch_textChanged_delayed()
+void SoftwareList::comboBoxSearch_textChanged_delayed()
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_comboBoxSearch_textChanged_delayed()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::comboBoxSearch_textChanged_delayed()");
 #endif
 
 	searchTimer.stop();
@@ -1091,7 +1091,7 @@ void SoftwareList::on_comboBoxSearch_activated(QString pattern)
 #endif
 
 	autoSelectSearchItem = true;
-	on_comboBoxSearch_textChanged_delayed();
+	comboBoxSearch_textChanged_delayed();
 }
 
 QStringList &SoftwareList::arguments()

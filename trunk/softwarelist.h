@@ -108,8 +108,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *, int);
 		void on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *, int);
 		void on_comboBoxSearch_textChanged(QString);
-		void on_comboBoxSearch_textChanged_delayed();
 		void on_comboBoxSearch_activated(QString);
+		void comboBoxSearch_textChanged_delayed();
 
 		// process management
 		void loadStarted();
