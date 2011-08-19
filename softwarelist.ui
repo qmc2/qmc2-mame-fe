@@ -93,7 +93,7 @@
        </property>
        <property name="icon">
         <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/plus.png</normaloff>:/data/img/plus.png</iconset>
+         <normaloff>:/data/img/add_to_favorites.png</normaloff>:/data/img/add_to_favorites.png</iconset>
        </property>
       </widget>
      </item>
@@ -113,7 +113,7 @@
        </property>
        <property name="icon">
         <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/minus.png</normaloff>:/data/img/minus.png</iconset>
+         <normaloff>:/data/img/remove_from_favorites.png</normaloff>:/data/img/remove_from_favorites.png</iconset>
        </property>
       </widget>
      </item>
@@ -260,8 +260,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>623</width>
-        <height>308</height>
+        <width>454</width>
+        <height>181</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -353,8 +353,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>623</width>
-        <height>308</height>
+        <width>454</width>
+        <height>181</height>
        </rect>
       </property>
       <attribute name="icon">
