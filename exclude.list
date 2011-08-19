@@ -216,6 +216,7 @@ qmc2/data/ico/.svn/text-base/dirinfo.txt.svn-base
 qmc2/data/img/circles/.svn
 qmc2/data/img/circles/.svn/prop-base/activity_green.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/activity_red.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/add_to_favorites.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/arcadebackground.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/arcadecabinet.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/arcadeforeground.png.svn-base
@@ -327,6 +328,7 @@ qmc2/data/img/circles/.svn/prop-base/qt-logo.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/redo.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/reload.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/reload_small.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/remove_from_favorites.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/remove.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/rom.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/search.png.svn-base
@@ -383,6 +385,7 @@ qmc2/data/img/circles/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/zip.png.svn-base
 qmc2/data/img/circles/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/circles/.svn/text-base/activity_red.png.svn-base
+qmc2/data/img/circles/.svn/text-base/add_to_favorites.png.svn-base
 qmc2/data/img/circles/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/circles/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/circles/.svn/text-base/arcadeforeground.png.svn-base
@@ -494,6 +497,7 @@ qmc2/data/img/circles/.svn/text-base/qt-logo.png.svn-base
 qmc2/data/img/circles/.svn/text-base/redo.png.svn-base
 qmc2/data/img/circles/.svn/text-base/reload.png.svn-base
 qmc2/data/img/circles/.svn/text-base/reload_small.png.svn-base
+qmc2/data/img/circles/.svn/text-base/remove_from_favorites.png.svn-base
 qmc2/data/img/circles/.svn/text-base/remove.png.svn-base
 qmc2/data/img/circles/.svn/text-base/rom.png.svn-base
 qmc2/data/img/circles/.svn/text-base/search.png.svn-base
@@ -556,6 +560,7 @@ qmc2/data/img/circles/.svn/tmp/svn-v7cH8Y
 qmc2/data/img/classic/.svn
 qmc2/data/img/classic/.svn/prop-base/activity_green.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/activity_red.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/add_to_favorites.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/arcadebackground.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/arcadecabinet.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/arcadeforeground.png.svn-base
@@ -667,6 +672,7 @@ qmc2/data/img/classic/.svn/prop-base/qt-logo.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/redo.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/reload.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/reload_small.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/remove_from_favorites.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/remove.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/rom.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/search.png.svn-base
@@ -723,6 +729,7 @@ qmc2/data/img/classic/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/zip.png.svn-base
 qmc2/data/img/classic/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/classic/.svn/text-base/activity_red.png.svn-base
+qmc2/data/img/classic/.svn/text-base/add_to_favorites.png.svn-base
 qmc2/data/img/classic/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/classic/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/classic/.svn/text-base/arcadeforeground.png.svn-base
@@ -834,6 +841,7 @@ qmc2/data/img/classic/.svn/text-base/qt-logo.png.svn-base
 qmc2/data/img/classic/.svn/text-base/redo.png.svn-base
 qmc2/data/img/classic/.svn/text-base/reload.png.svn-base
 qmc2/data/img/classic/.svn/text-base/reload_small.png.svn-base
+qmc2/data/img/classic/.svn/text-base/remove_from_favorites.png.svn-base
 qmc2/data/img/classic/.svn/text-base/remove.png.svn-base
 qmc2/data/img/classic/.svn/text-base/rom.png.svn-base
 qmc2/data/img/classic/.svn/text-base/search.png.svn-base
@@ -891,6 +899,7 @@ qmc2/data/img/classic/.svn/text-base/zip.png.svn-base
 qmc2/data/img/crazy-black/.svn
 qmc2/data/img/crazy-black/.svn/prop-base/activity_green.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/activity_red.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/add_to_favorites.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/arcadebackground.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/arcadecabinet.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/arcadeforeground.png.svn-base
@@ -1002,6 +1011,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/qt-logo.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/redo.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/reload.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/reload_small.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/remove_from_favorites.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/remove.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/rom.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/search.png.svn-base
@@ -1058,6 +1068,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/zip.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/activity_red.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/add_to_favorites.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/arcadeforeground.png.svn-base
@@ -1169,6 +1180,7 @@ qmc2/data/img/crazy-black/.svn/text-base/qt-logo.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/redo.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/reload.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/reload_small.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/remove_from_favorites.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/remove.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/rom.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/search.png.svn-base
@@ -1226,6 +1238,7 @@ qmc2/data/img/crazy-black/.svn/text-base/zip.png.svn-base
 qmc2/data/img/crazy/.svn
 qmc2/data/img/crazy/.svn/prop-base/activity_green.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/activity_red.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/add_to_favorites.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/arcadebackground.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/arcadecabinet.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/arcadeforeground.png.svn-base
@@ -1337,6 +1350,7 @@ qmc2/data/img/crazy/.svn/prop-base/qt-logo.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/redo.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/reload.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/reload_small.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/remove_from_favorites.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/remove.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/rom.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/search.png.svn-base
@@ -1393,6 +1407,7 @@ qmc2/data/img/crazy/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/zip.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/activity_red.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/add_to_favorites.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/arcadeforeground.png.svn-base
@@ -1504,6 +1519,7 @@ qmc2/data/img/crazy/.svn/text-base/qt-logo.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/redo.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/reload.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/reload_small.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/remove_from_favorites.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/remove.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/rom.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/search.png.svn-base
@@ -1561,6 +1577,7 @@ qmc2/data/img/crazy/.svn/text-base/zip.png.svn-base
 qmc2/data/img/cubes/.svn
 qmc2/data/img/cubes/.svn/prop-base/activity_green.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/activity_red.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/add_to_favorites.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/arcadebackground.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/arcadecabinet.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/arcadeforeground.png.svn-base
@@ -1672,6 +1689,7 @@ qmc2/data/img/cubes/.svn/prop-base/qt-logo.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/redo.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/reload.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/reload_small.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/remove_from_favorites.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/remove.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/rom.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/search.png.svn-base
@@ -1728,6 +1746,7 @@ qmc2/data/img/cubes/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/zip.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/activity_red.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/add_to_favorites.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/arcadeforeground.png.svn-base
@@ -1839,6 +1858,7 @@ qmc2/data/img/cubes/.svn/text-base/qt-logo.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/redo.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/reload.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/reload_small.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/remove_from_favorites.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/remove.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/rom.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/search.png.svn-base
@@ -1901,6 +1921,7 @@ qmc2/data/img/cubes/.svn/tmp/svn-RKysOS
 qmc2/data/img/.svn
 qmc2/data/img/.svn/prop-base/activity_green.png.svn-base
 qmc2/data/img/.svn/prop-base/activity_red.png.svn-base
+qmc2/data/img/.svn/prop-base/add_to_favorites.png.svn-base
 qmc2/data/img/.svn/prop-base/arcadebackground.png.svn-base
 qmc2/data/img/.svn/prop-base/arcadecabinet.png.svn-base
 qmc2/data/img/.svn/prop-base/arcadeforeground.png.svn-base
@@ -2012,6 +2033,7 @@ qmc2/data/img/.svn/prop-base/qt-logo.png.svn-base
 qmc2/data/img/.svn/prop-base/redo.png.svn-base
 qmc2/data/img/.svn/prop-base/reload.png.svn-base
 qmc2/data/img/.svn/prop-base/reload_small.png.svn-base
+qmc2/data/img/.svn/prop-base/remove_from_favorites.png.svn-base
 qmc2/data/img/.svn/prop-base/remove.png.svn-base
 qmc2/data/img/.svn/prop-base/rom.png.svn-base
 qmc2/data/img/.svn/prop-base/search.png.svn-base
@@ -2068,6 +2090,7 @@ qmc2/data/img/.svn/prop-base/youtube.png.svn-base
 qmc2/data/img/.svn/prop-base/zip.png.svn-base
 qmc2/data/img/.svn/text-base/activity_green.png.svn-base
 qmc2/data/img/.svn/text-base/activity_red.png.svn-base
+qmc2/data/img/.svn/text-base/add_to_favorites.png.svn-base
 qmc2/data/img/.svn/text-base/arcadebackground.png.svn-base
 qmc2/data/img/.svn/text-base/arcadecabinet.png.svn-base
 qmc2/data/img/.svn/text-base/arcadeforeground.png.svn-base
@@ -2179,6 +2202,7 @@ qmc2/data/img/.svn/text-base/qt-logo.png.svn-base
 qmc2/data/img/.svn/text-base/redo.png.svn-base
 qmc2/data/img/.svn/text-base/reload.png.svn-base
 qmc2/data/img/.svn/text-base/reload_small.png.svn-base
+qmc2/data/img/.svn/text-base/remove_from_favorites.png.svn-base
 qmc2/data/img/.svn/text-base/remove.png.svn-base
 qmc2/data/img/.svn/text-base/rom.png.svn-base
 qmc2/data/img/.svn/text-base/search.png.svn-base
@@ -2571,7 +2595,9 @@ qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/.svn
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/.svn/text-base/QMC2EditorApplication.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/AddLanguageAction.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/AddOptionAction.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/AddSectionAction.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/BaseAction.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/RedoAction.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/SaveAction.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/UndoAction.java.svn-base
@@ -2581,6 +2607,7 @@ qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/d
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/AbstractEditorOperation.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/AddLanguageOperation.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/AddOptionOperation.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/AddSectionOperation.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/EditOperation.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn
@@ -2589,6 +2616,7 @@ qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2EditorActivationStrategy.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2Editor.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2LabelProvider.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2ViewFilter.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/.svn
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/.svn
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/.svn
