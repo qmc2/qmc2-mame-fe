@@ -177,10 +177,14 @@ Options::Options(QWidget *parent)
 #if QMC2_WIP_CODE != 1
   stackedWidgetSWSnap->setVisible(false);
   radioButtonSoftwareSnapSelect->setVisible(false);
+  labelSoftwareSnapSelect->setVisible(false);
   comboBoxSoftwareSnapPosition->setVisible(false);
   labelSoftwareSnapPosition->setVisible(false);
   checkBoxSoftwareSnapOnMouseHover->setVisible(false);
 #endif
+
+  // FIXME: ZIP-based software-snap storage isn't supported yet
+  radioButtonSoftwareSnapSelect->setVisible(false);
 
 #if !defined(QMC2_SHOWMEMINFO)
   checkBoxMemoryIndicator->setVisible(false);

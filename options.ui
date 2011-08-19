@@ -782,7 +782,7 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
+                <y>-211</y>
                 <width>421</width>
                 <height>529</height>
                </rect>
@@ -1903,22 +1903,6 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="16" column="0">
-                  <widget class="QRadioButton" name="radioButtonSoftwareSnapSelect">
-                   <property name="toolTip">
-                    <string>Switch between specifying a software snap directory or a ZIP-compressed software snap file</string>
-                   </property>
-                   <property name="text">
-                    <string>SW snap folder</string>
-                   </property>
-                   <property name="checkable">
-                    <bool>false</bool>
-                   </property>
-                   <property name="autoExclusive">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="16" column="1" colspan="2">
                   <widget class="QStackedWidget" name="stackedWidgetSWSnap">
                    <property name="sizePolicy">
@@ -2131,6 +2115,33 @@
                    </item>
                   </layout>
                  </item>
+                 <item row="16" column="0">
+                  <layout class="QHBoxLayout" name="horizontalLayout_3">
+                   <item>
+                    <widget class="QRadioButton" name="radioButtonSoftwareSnapSelect">
+                     <property name="toolTip">
+                      <string>Switch between specifying a software snap directory or a ZIP-compressed software snap file</string>
+                     </property>
+                     <property name="text">
+                      <string>SW snap folder</string>
+                     </property>
+                     <property name="checkable">
+                      <bool>false</bool>
+                     </property>
+                     <property name="autoExclusive">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="labelSoftwareSnapSelect">
+                     <property name="text">
+                      <string>SW snap folder</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -2160,8 +2171,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>438</width>
-                <height>318</height>
+                <width>740</width>
+                <height>559</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2744,8 +2755,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>438</width>
-                <height>318</height>
+                <width>740</width>
+                <height>559</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2857,8 +2868,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>438</width>
-                <height>318</height>
+                <width>740</width>
+                <height>559</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3314,8 +3325,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>421</width>
-                <height>432</height>
+                <width>740</width>
+                <height>559</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
