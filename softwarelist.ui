@@ -86,10 +86,10 @@
         </sizepolicy>
        </property>
        <property name="toolTip">
-        <string>Add the currently selected software and device setup to the favorites list</string>
+        <string>Add the currently selected software and device setup to the favorites list (or overwrite existing favorite)</string>
        </property>
        <property name="statusTip">
-        <string>Add the currently selected software and device setup to the favorites list</string>
+        <string>Add the currently selected software and device setup to the favorites list (or overwrite existing favorite)</string>
        </property>
        <property name="icon">
         <iconset resource="qmc2.qrc">
@@ -260,8 +260,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>454</width>
-        <height>181</height>
+        <width>83</width>
+        <height>64</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -353,8 +353,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>454</width>
-        <height>181</height>
+        <width>83</width>
+        <height>90</height>
        </rect>
       </property>
       <attribute name="icon">

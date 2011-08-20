@@ -23,13 +23,13 @@
 <p><b>Work in progress</b></p>
 <ul>
   <li>Adding a Java (Eclipse/SWT) based editor/translator for emulator templates (see <i>tools/qmc2_options_editor_java</i>) -- thanks to <a href="credits.html#Marcelo">Marcelo Bossoni</a></li>
-  <li>Completing the support for software lists -- the only missing feature is save/restore of favorite software (ZIP-support will be added later)</li>
   <li>Adding support for an optional ROM/CHD database which can be used to store unique copies of all (good) ROMs and CHDs and to retrieve complete sets from it to a local path -- among other things, this can be used to keep different versions of individual ROM/CHD files (due to changing sets) or to just keep your local ROM path clean</li>
   <li>Embedder options: additional functions for the snapshot tool (directly use snapshots as preview- or title-images), add a movie generator, ...</li>
   <li>Arcade mode: partially working, disabled by default (use "make WIP=1 ..." for a preview) -- development frozen: a complete rewrite is planned</li>
 </ul>
 <p><b>Planned changes, new features and improvements</b></p>
 <ul>
+  <li>Add ZIP support for software-snapshots</li>
   <li>Customizable columns for all game-/machine-list views</li>
   <li>Add support for mapping ZIP-file content to device instances through the MESS device configurator (MESS can also handle device files of the form "<i>filename.zip\device-image-file.ext</i>")</li>
   <li>Add a simple 'file picker' tab for freestanding *.bin files to the MESS device configurator</li>
@@ -47,9 +47,9 @@
   <li>Add a joystick &amp; keyboard configurator for MAME and MESS</li>
   <li>Add support for MAME/MESS output notifications on Windows</li>
   <li>Add support for even more game/machine images (hiscores, howtos, ...)</li>
-  <li>Improve the image checker to also support all additional image data (consider a complete rewrite of the image checker)</li>
   <li>Create an improved setup wizard with QWizard</li>
-  <li>Fix case-insensitive obsoleteness checks (image- and sample-checks) on Windows -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=5" target="_blank">bug tracker ID #5</a></li>
+  <li>Fix case-insensitive obsoleteness checks (image- and sample-checks) on Windows -- see <a href="http://sourceforge.net/apps/mantisbt/qmc2/view.php?id=5" target="_blank">bug tracker ID #5</a> (see also next item)</li>
+  <li>Rewrite the image checker and also support all additional image data</li>
   <li>Consider improving the encryption for stored passwords (weak now, but a warning is presented)</li>
 </ul>
 </body>
