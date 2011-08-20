@@ -734,7 +734,48 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked = %1)").arg(checked));
 #endif
 
-	// FIXME
+	QList<QTreeWidgetItem *> selectedItems;
+
+	switch ( toolBoxSoftwareList->currentIndex() ) {
+		case QMC2_SWLIST_KNOWN_SW_PAGE:
+			selectedItems = treeWidgetKnownSoftware->selectedItems();
+			break;
+		case QMC2_SWLIST_SEARCH_PAGE:
+			selectedItems = treeWidgetSearchResults->selectedItems();
+			break;
+		case QMC2_SWLIST_FAVORITES_PAGE:
+		default:
+			return;
+	}
+
+	QTreeWidgetItem *si = NULL;
+
+	if ( selectedItems.count() > 0 )
+		si = selectedItems.at(0);
+
+	if ( si ) {
+		QTreeWidgetItem *item = NULL;
+		QList<QTreeWidgetItem *> matchedItems = treeWidgetFavoriteSoftware->findItems(si->text(QMC2_SWLIST_COLUMN_NAME), Qt::MatchExactly, QMC2_SWLIST_COLUMN_NAME);
+		if ( matchedItems.count() > 0 )
+			item = matchedItems.at(0);
+		else
+			item = new QTreeWidgetItem(treeWidgetFavoriteSoftware);
+		if ( item ) {
+			item->setText(QMC2_SWLIST_COLUMN_TITLE, si->text(QMC2_SWLIST_COLUMN_TITLE));
+			item->setText(QMC2_SWLIST_COLUMN_NAME, si->text(QMC2_SWLIST_COLUMN_NAME));
+			item->setText(QMC2_SWLIST_COLUMN_PUBLISHER, si->text(QMC2_SWLIST_COLUMN_PUBLISHER));
+			item->setText(QMC2_SWLIST_COLUMN_YEAR, si->text(QMC2_SWLIST_COLUMN_YEAR));
+			item->setText(QMC2_SWLIST_COLUMN_PART, si->text(QMC2_SWLIST_COLUMN_PART));
+			item->setText(QMC2_SWLIST_COLUMN_INTERFACE, si->text(QMC2_SWLIST_COLUMN_INTERFACE));
+			item->setText(QMC2_SWLIST_COLUMN_LIST, si->text(QMC2_SWLIST_COLUMN_LIST));
+#if defined(QMC2_EMUTYPE_MESS)
+			if ( comboBoxDeviceConfiguration->currentIndex() > 0 )
+				item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, comboBoxDeviceConfiguration->currentText());
+			else
+				item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, QString());
+#endif
+		}
+	}
 }
 
 void SoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked)
@@ -743,7 +784,20 @@ void SoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked = %1)").arg(checked));
 #endif
 
-	// FIXME
+	if ( toolBoxSoftwareList->currentIndex() != QMC2_SWLIST_FAVORITES_PAGE )
+		return;
+
+	QList<QTreeWidgetItem *> selectedItems = treeWidgetFavoriteSoftware->selectedItems();
+	QTreeWidgetItem *si = NULL;
+
+	if ( selectedItems.count() > 0 )
+		si = selectedItems.at(0);
+
+	if ( si ) {
+		QTreeWidgetItem *itemToBeRemoved = treeWidgetFavoriteSoftware->takeTopLevelItem(treeWidgetFavoriteSoftware->indexOfTopLevelItem(si));
+		if ( itemToBeRemoved )
+			delete itemToBeRemoved;
+	}
 }
 
 void SoftwareList::on_toolButtonPlay_clicked(bool checked)
@@ -797,6 +851,27 @@ void SoftwareList::treeWidgetSearchResults_headerSectionClicked(int index)
 		treeWidgetSearchResults->scrollToItem(selectedItems[0]);
 }
 
+void SoftwareList::on_toolBoxSoftwareList_currentChanged(int index)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolBoxSoftwareList_currentChanged(int index = %1)").arg(index));
+#endif
+
+	switch ( index ) {
+		case QMC2_SWLIST_KNOWN_SW_PAGE:
+			on_treeWidgetKnownSoftware_itemSelectionChanged();
+			break;
+		case QMC2_SWLIST_FAVORITES_PAGE:
+			on_treeWidgetFavoriteSoftware_itemSelectionChanged();
+			break;
+		case QMC2_SWLIST_SEARCH_PAGE:
+			on_treeWidgetSearchResults_itemSelectionChanged();
+			break;
+		default:
+			break;
+	}
+}
+
 void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
@@ -831,6 +906,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 	toolButtonPlay->setEnabled(enable);
 	toolButtonPlayEmbedded->setEnabled(enable);
 	toolButtonRemoveFromFavorites->setEnabled(enable);
+	toolButtonAddToFavorites->setEnabled(false);
 	if ( enable && qmc2SoftwareSnap ) {
 		QTreeWidgetItem *item = selectedItems[0];
 		if ( item != qmc2SoftwareSnap->myItem )
@@ -853,7 +929,8 @@ void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 	bool enable = (selectedItems.count() > 0);
 	toolButtonPlay->setEnabled(enable);
 	toolButtonPlayEmbedded->setEnabled(enable);
-	toolButtonRemoveFromFavorites->setEnabled(enable);
+	toolButtonAddToFavorites->setEnabled(enable);
+	toolButtonRemoveFromFavorites->setEnabled(false);
 	if ( selectedItems.count() > 0 && qmc2SoftwareSnap ) {
 		QTreeWidgetItem *item = selectedItems[0];
 		if ( item != qmc2SoftwareSnap->myItem )

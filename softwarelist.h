@@ -89,7 +89,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool load();
 		bool save();
 
-		// callback functions
+		// auto-connected callback functions
 		void on_toolButtonReload_clicked(bool);
 		void on_toolButtonAddToFavorites_clicked(bool);
 		void on_toolButtonRemoveFromFavorites_clicked(bool);
@@ -109,7 +109,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *, int);
 		void on_comboBoxSearch_textChanged(QString);
 		void on_comboBoxSearch_activated(QString);
-		void comboBoxSearch_textChanged_delayed();
+		void on_toolBoxSoftwareList_currentChanged(int);
 
 		// process management
 		void loadStarted();
@@ -128,6 +128,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void playActivated() { on_toolButtonPlay_clicked(false); }
 		void playEmbeddedActivated() { on_toolButtonPlayEmbedded_clicked(false); }
 		void cancelSoftwareSnap();
+		void comboBoxSearch_textChanged_delayed();
 
 	protected:
 		void closeEvent(QCloseEvent *);
