@@ -96,6 +96,12 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QMenu *menuTabWidgetLogsAndEmulators;
     QMenu *menuHorizontalSplitter;
     QMenu *menuVerticalSplitter;
+    QMenu *menuGamelistHeader;
+    QMenu *menuHierarchyHeader;
+#if defined(QMC2_EMUTYPE_MAME)
+    QMenu *menuCategoryHeader;
+    QMenu *menuVersionHeader;
+#endif
     QAction *actionRomStatusFilterC;
     QAction *actionRomStatusFilterM;
     QAction *actionRomStatusFilterI;
@@ -415,6 +421,18 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_emuSelector_currentIndexChanged(const QString &);
     void checkActivity();
     void enableContextMenuPlayActions(bool);
+
+    // callbacks for list view header context menu requests
+    void treeWidgetGamelistHeader_customContextMenuRequested(const QPoint &);
+    void actionGamelistHeader_triggered();
+    void treeWidgetHierarchyHeader_customContextMenuRequested(const QPoint &);
+    void actionHierarchyHeader_triggered();
+#if defined(QMC2_EMUTYPE_MAME)
+    void treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &);
+    void actionCategoryHeader_triggered();
+    void treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &);
+    void actionVersionHeader_triggered();
+#endif
 
   protected:
     void closeEvent(QCloseEvent *);

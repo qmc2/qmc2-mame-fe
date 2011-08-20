@@ -1053,6 +1053,122 @@ MainWindow::MainWindow(QWidget *parent)
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/swap.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_menuVerticalSplitter_SwapWidgets_activated()));
 
+  QHeaderView *header;
+
+  menuGamelistHeader = new QMenu(0);
+  header = treeWidgetGamelist->header();
+#if defined(QMC2_EMUTYPE_MAME)
+  action = menuGamelistHeader->addAction(tr("Game / Attribute"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_GAME);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_GAME));
+  action = menuGamelistHeader->addAction(tr("Icon / Value"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_ICON);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_ICON));
+#elif defined(QMC2_EMUTYPE_MESS)
+  action = menuGamelistHeader->addAction(tr("Machine / Attribute"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_GAME);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_GAME));
+  action = menuGamelistHeader->addAction(tr("Value"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_ICON);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_ICON));
+#endif
+  action = menuGamelistHeader->addAction(tr("Year"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_YEAR);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_YEAR));
+  action = menuGamelistHeader->addAction(tr("Manufacturer"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_MANU);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_MANU));
+  action = menuGamelistHeader->addAction(tr("Name"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_NAME);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_NAME));
+  action = menuGamelistHeader->addAction(tr("ROM types"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_RTYPES);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_RTYPES));
+  action = menuGamelistHeader->addAction(tr("Players"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_PLAYERS);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_PLAYERS));
+  action = menuGamelistHeader->addAction(tr("Driver status"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_DRVSTAT);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
+#if defined(QMC2_EMUTYPE_MAME)
+  action = menuGamelistHeader->addAction(tr("Category"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
+  action = menuGamelistHeader->addAction(tr("Version"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_VERSION);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION));
+#endif
+  header->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetGamelistHeader_customContextMenuRequested(const QPoint &)));
+
+  menuHierarchyHeader = new QMenu(0);
+  header = treeWidgetHierarchy->header();
+#if defined(QMC2_EMUTYPE_MAME)
+  action = menuHierarchyHeader->addAction(tr("Game / Clones"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_GAME);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_GAME));
+  action = menuHierarchyHeader->addAction(tr("Icon"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_ICON);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_ICON));
+#elif defined(QMC2_EMUTYPE_MESS)
+  action = menuHierarchyHeader->addAction(tr("Machine / Clones"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_GAME);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_GAME));
+#endif
+  action = menuHierarchyHeader->addAction(tr("Year"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_YEAR);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_YEAR));
+  action = menuHierarchyHeader->addAction(tr("Manufacturer"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_MANU);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_MANU));
+  action = menuHierarchyHeader->addAction(tr("Name"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_NAME);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_NAME));
+  action = menuHierarchyHeader->addAction(tr("ROM types"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_RTYPES);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_RTYPES));
+  action = menuHierarchyHeader->addAction(tr("Players"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_PLAYERS);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_PLAYERS));
+  action = menuHierarchyHeader->addAction(tr("Driver status"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_DRVSTAT);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
+#if defined(QMC2_EMUTYPE_MAME)
+  action = menuHierarchyHeader->addAction(tr("Category"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
+  action = menuHierarchyHeader->addAction(tr("Version"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_VERSION);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION));
+#endif
+  header->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetHierarchyHeader_customContextMenuRequested(const QPoint &)));
+
+#if defined(QMC2_EMUTYPE_MAME)
+  menuCategoryHeader = new QMenu(0);
+  header = treeWidgetCategoryView->header();
+  action = menuCategoryHeader->addAction(tr("Category / Game"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_GAME);
+  action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_GAME));
+  action = menuCategoryHeader->addAction(tr("Icon"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_ICON);
+  action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_ICON));
+  action = menuCategoryHeader->addAction(tr("Year"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_YEAR);
+  action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_YEAR));
+  action = menuCategoryHeader->addAction(tr("Manufacturer"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_MANU);
+  action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_MANU));
+  action = menuCategoryHeader->addAction(tr("Name"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_NAME);
+  action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_NAME));
+  action = menuCategoryHeader->addAction(tr("ROM types"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_RTYPES);
+  action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_RTYPES));
+  action = menuCategoryHeader->addAction(tr("Players"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_PLAYERS);
+  action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_PLAYERS));
+  action = menuCategoryHeader->addAction(tr("Driver status"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_DRVSTAT);
+  action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
+  action = menuCategoryHeader->addAction(tr("Version"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_VERSION);
+  action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION));
+  header->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &)));
+
+  menuVersionHeader = new QMenu(0);
+  header = treeWidgetVersionView->header();
+  action = menuVersionHeader->addAction(tr("Version / Game"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_GAME);
+  action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_GAME));
+  action = menuVersionHeader->addAction(tr("Icon"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_ICON);
+  action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_ICON));
+  action = menuVersionHeader->addAction(tr("Year"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_YEAR);
+  action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_YEAR));
+  action = menuVersionHeader->addAction(tr("Manufacturer"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_MANU);
+  action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_MANU));
+  action = menuVersionHeader->addAction(tr("Name"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_NAME);
+  action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_NAME));
+  action = menuVersionHeader->addAction(tr("ROM types"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_RTYPES);
+  action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_RTYPES));
+  action = menuVersionHeader->addAction(tr("Players"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_PLAYERS);
+  action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_PLAYERS));
+  action = menuVersionHeader->addAction(tr("Driver status"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_DRVSTAT);
+  action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_DRVSTAT));
+  action = menuVersionHeader->addAction(tr("Category"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
+  action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
+  header->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &)));
+#endif
+
   // other actions
   connect(actionViewFullDetail, SIGNAL(triggered()), this, SLOT(viewFullDetail()));
   connect(actionViewParentClones, SIGNAL(triggered()), this, SLOT(viewParentClones()));
@@ -2753,6 +2869,13 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 #endif
 
   static int lastTabWidgetGamelistIndex = -1;
+
+  menuGamelistHeader->hide();
+  menuHierarchyHeader->hide();
+#if defined(QMC2_EMUTYPE_MAME)
+  menuCategoryHeader->hide();
+  menuVersionHeader->hide();
+#endif
 
 #if defined(Q_WS_X11)
   bool scrollBarMaximum = false;
@@ -4499,6 +4622,13 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
 {
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_tackedWidgetView_currentChanged(int index = %1)").arg(index));
+#endif
+
+  menuGamelistHeader->hide();
+  menuHierarchyHeader->hide();
+#if defined(QMC2_EMUTYPE_MAME)
+  menuCategoryHeader->hide();
+  menuVersionHeader->hide();
 #endif
 
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", index);
@@ -8165,6 +8295,92 @@ void MainWindow::enableContextMenuPlayActions(bool enable)
 	foreach(QAction *action, contextMenuPlayActions)
 		action->setEnabled(enable);
 }
+
+void MainWindow::treeWidgetGamelistHeader_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetGamelistHeader_customContextMenuRequested(const QPoint &p = ...)");
+#endif
+
+	menuGamelistHeader->move(adjustedWidgetPosition(treeWidgetGamelist->header()->viewport()->mapToGlobal(p), menuGamelistHeader));
+	menuGamelistHeader->show();
+}
+
+void MainWindow::actionGamelistHeader_triggered()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::actionGamelistHeader_triggered()");
+#endif
+
+	QAction *action = (QAction *)sender();
+	if ( action )
+		treeWidgetGamelist->setColumnHidden(action->data().toInt(), !action->isChecked());
+}
+
+void MainWindow::treeWidgetHierarchyHeader_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetHierarchyHeader_customContextMenuRequested(const QPoint &p = ...)");
+#endif
+
+	menuHierarchyHeader->move(adjustedWidgetPosition(treeWidgetHierarchy->header()->viewport()->mapToGlobal(p), menuHierarchyHeader));
+	menuHierarchyHeader->show();
+}
+
+void MainWindow::actionHierarchyHeader_triggered()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::actionHierarchyHeader_triggered()");
+#endif
+
+	QAction *action = (QAction *)sender();
+	if ( action )
+		treeWidgetHierarchy->setColumnHidden(action->data().toInt(), !action->isChecked());
+}
+
+#if defined(QMC2_EMUTYPE_MAME)
+void MainWindow::treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &p = ...)");
+#endif
+
+	menuCategoryHeader->move(adjustedWidgetPosition(treeWidgetCategoryView->header()->viewport()->mapToGlobal(p), menuCategoryHeader));
+	menuCategoryHeader->show();
+}
+
+void MainWindow::actionCategoryHeader_triggered()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::actionCategoryHeader_triggered()");
+#endif
+
+	QAction *action = (QAction *)sender();
+	if ( action )
+		treeWidgetCategoryView->setColumnHidden(action->data().toInt(), !action->isChecked());
+}
+
+void MainWindow::treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &p = ...)");
+#endif
+
+	menuVersionHeader->move(adjustedWidgetPosition(treeWidgetVersionView->header()->viewport()->mapToGlobal(p), menuVersionHeader));
+	menuVersionHeader->show();
+}
+
+void MainWindow::actionVersionHeader_triggered()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::actionVersionHeader_triggered()");
+#endif
+
+	QAction *action = (QAction *)sender();
+	if ( action )
+		treeWidgetVersionView->setColumnHidden(action->data().toInt(), !action->isChecked());
+}
+#endif
 
 #if defined(QMC2_EMUTYPE_MESS)
 // note: - this routine is far from "elegant" but basically works (there may be minor conversion "bugs", though, depending on the quality of the wiki source data)
