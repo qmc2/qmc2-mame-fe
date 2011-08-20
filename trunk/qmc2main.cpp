@@ -8313,8 +8313,20 @@ void MainWindow::actionGamelistHeader_triggered()
 #endif
 
 	QAction *action = (QAction *)sender();
-	if ( action )
-		treeWidgetGamelist->setColumnHidden(action->data().toInt(), !action->isChecked());
+	int visibleColumns = 0;
+	for (int i = 0; i < treeWidgetGamelist->columnCount(); i++) if ( !treeWidgetGamelist->isColumnHidden(i) ) visibleColumns++;
+	if ( action ) {
+		bool visibility = true;
+		if ( action->isChecked() )
+			treeWidgetGamelist->setColumnHidden(action->data().toInt(), false);
+		else if ( visibleColumns > 1 ) {
+			treeWidgetGamelist->setColumnHidden(action->data().toInt(), true);
+			visibility = false;
+		}
+		action->blockSignals(true);
+		action->setChecked(visibility);
+		action->blockSignals(false);
+	}
 }
 
 void MainWindow::treeWidgetHierarchyHeader_customContextMenuRequested(const QPoint &p)
@@ -8334,8 +8346,20 @@ void MainWindow::actionHierarchyHeader_triggered()
 #endif
 
 	QAction *action = (QAction *)sender();
-	if ( action )
-		treeWidgetHierarchy->setColumnHidden(action->data().toInt(), !action->isChecked());
+	int visibleColumns = 0;
+	for (int i = 0; i < treeWidgetHierarchy->columnCount(); i++) if ( !treeWidgetHierarchy->isColumnHidden(i) ) visibleColumns++;
+	if ( action ) {
+		bool visibility = true;
+		if ( action->isChecked() )
+			treeWidgetHierarchy->setColumnHidden(action->data().toInt(), false);
+		else if ( visibleColumns > 1 ) {
+			treeWidgetHierarchy->setColumnHidden(action->data().toInt(), true);
+			visibility = false;
+		}
+		action->blockSignals(true);
+		action->setChecked(visibility);
+		action->blockSignals(false);
+	}
 }
 
 #if defined(QMC2_EMUTYPE_MAME)
@@ -8356,8 +8380,20 @@ void MainWindow::actionCategoryHeader_triggered()
 #endif
 
 	QAction *action = (QAction *)sender();
-	if ( action )
-		treeWidgetCategoryView->setColumnHidden(action->data().toInt(), !action->isChecked());
+	int visibleColumns = 0;
+	for (int i = 0; i < treeWidgetCategoryView->columnCount(); i++) if ( !treeWidgetCategoryView->isColumnHidden(i) ) visibleColumns++;
+	if ( action ) {
+		bool visibility = true;
+		if ( action->isChecked() )
+			treeWidgetCategoryView->setColumnHidden(action->data().toInt(), false);
+		else if ( visibleColumns > 1 ) {
+			treeWidgetCategoryView->setColumnHidden(action->data().toInt(), true);
+			visibility = false;
+		}
+		action->blockSignals(true);
+		action->setChecked(visibility);
+		action->blockSignals(false);
+	}
 }
 
 void MainWindow::treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &p)
@@ -8377,8 +8413,20 @@ void MainWindow::actionVersionHeader_triggered()
 #endif
 
 	QAction *action = (QAction *)sender();
-	if ( action )
-		treeWidgetVersionView->setColumnHidden(action->data().toInt(), !action->isChecked());
+	int visibleColumns = 0;
+	for (int i = 0; i < treeWidgetVersionView->columnCount(); i++) if ( !treeWidgetVersionView->isColumnHidden(i) ) visibleColumns++;
+	if ( action ) {
+		bool visibility = true;
+		if ( action->isChecked() )
+			treeWidgetVersionView->setColumnHidden(action->data().toInt(), false);
+		else if ( visibleColumns > 1 ) {
+			treeWidgetVersionView->setColumnHidden(action->data().toInt(), true);
+			visibility = false;
+		}
+		action->blockSignals(true);
+		action->setChecked(visibility);
+		action->blockSignals(false);
+	}
 }
 #endif
 
