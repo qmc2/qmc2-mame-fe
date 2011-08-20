@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>552</width>
-    <height>337</height>
+    <width>601</width>
+    <height>392</height>
    </rect>
   </property>
   <property name="mouseTracking">
@@ -17,11 +17,11 @@
   <property name="windowTitle">
    <string>Software list</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
    <property name="margin">
     <number>0</number>
    </property>
-   <item row="0" column="0">
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QToolButton" name="toolButtonReload">
@@ -159,7 +159,7 @@
      </item>
     </layout>
    </item>
-   <item row="1" column="0">
+   <item>
     <widget class="QToolBox" name="toolBoxSoftwareList">
      <property name="currentIndex">
       <number>0</number>
@@ -172,8 +172,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>542</width>
-        <height>224</height>
+        <width>591</width>
+        <height>279</height>
        </rect>
       </property>
       <attribute name="icon">
