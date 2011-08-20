@@ -440,15 +440,10 @@ MainWindow::MainWindow(QWidget *parent)
   actionLaunchQMC2MESS->setStatusTip(tr("Launch QMC2 for MESS"));
 #endif
 
-  // FIXME: remove this when arcade mode is ready
+  // FIXME: remove this WIP clause when arcade mode is ready (probably never ;)?)
 #if QMC2_WIP_CODE != 1
   menu_Display->removeAction(menuArcade->menuAction());
   actionArcadeToggle->setVisible(false);
-#endif
-
-  // FIXME: remove the WIP clause when software list support is finished
-#if QMC2_WIP_CODE != 1
-  actionClearSoftwareListCache->setVisible(false);
 #endif
 
   labelGameStatus->setVisible(false);
@@ -3223,15 +3218,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       break;
 #endif
 
-    // FIXME: remove the WIP clause when software list support is finished
-#if QMC2_WIP_CODE == 1
     case QMC2_SOFTWARE_LIST_INDEX:
       if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
 	if ( !qmc2SoftwareListAlreadyLoading ) {
           qmc2SoftwareListAlreadyLoading = true;
-          log(QMC2_LOG_FRONTEND, QString("WIP: note that support for software lists is still under development!"));
           tabSoftwareList->setUpdatesEnabled(false);
           if ( qmc2SoftwareList ) {
+            qmc2SoftwareList->save();
             QLayout *vbl = tabSoftwareList->layout();
             if ( vbl ) delete vbl;
             delete qmc2SoftwareList;
@@ -3252,7 +3245,6 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 	}
       }
       break;
-#endif
 
 #if defined(QMC2_EMUTYPE_MESS)
     case QMC2_DEVICE_INDEX:

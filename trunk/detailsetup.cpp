@@ -51,11 +51,9 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_PCB_INDEX] = tr("&PCB");
   longTitleMap[QMC2_PCB_INDEX] = tr("PCB image");
   iconMap[QMC2_PCB_INDEX] = QIcon(QString::fromUtf8(":/data/img/circuit.png"));
-#if QMC2_WIP_CODE == 1
   shortTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Softwar&e list");
   longTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Software list");
   iconMap[QMC2_SOFTWARE_LIST_INDEX] = QIcon(QString::fromUtf8(":/data/img/pacman.png"));
-#endif
 #if QMC2_YOUTUBE_ENABLED
   shortTitleMap[QMC2_YOUTUBE_INDEX] = tr("&YouTube");
   longTitleMap[QMC2_YOUTUBE_INDEX] = tr("YouTube videos");
@@ -71,10 +69,8 @@ DetailSetup::DetailSetup(QWidget *parent)
                       << QMC2_MARQUEE_INDEX
                       << QMC2_TITLE_INDEX
                       << QMC2_MAWS_INDEX
-                      << QMC2_PCB_INDEX;
-#if QMC2_WIP_CODE == 1
-  availableDetailList << QMC2_SOFTWARE_LIST_INDEX;
-#endif
+                      << QMC2_PCB_INDEX
+                      << QMC2_SOFTWARE_LIST_INDEX;
 #if QMC2_YOUTUBE_ENABLED
   availableDetailList << QMC2_YOUTUBE_INDEX;
 #endif
@@ -89,9 +85,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_TITLE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_TITLE_INDEX);
   tabWidgetsMap[QMC2_MAWS_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MAWS_INDEX);
   tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
-#if QMC2_WIP_CODE == 1
   tabWidgetsMap[QMC2_SOFTWARE_LIST_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SOFTWARE_LIST_INDEX);
-#endif
 #if QMC2_YOUTUBE_ENABLED
   tabWidgetsMap[QMC2_YOUTUBE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX);
 #endif
@@ -125,11 +119,9 @@ DetailSetup::DetailSetup(QWidget *parent)
   shortTitleMap[QMC2_CABINET_INDEX] = tr("Ca&binet");
   longTitleMap[QMC2_CABINET_INDEX] = tr("Machine cabinet image");
   iconMap[QMC2_CABINET_INDEX] = QIcon(QString::fromUtf8(":/data/img/arcadecabinet.png"));
-#if QMC2_WIP_CODE == 1
   shortTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Softwar&e list");
   longTitleMap[QMC2_SOFTWARE_LIST_INDEX] = tr("Software list");
   iconMap[QMC2_SOFTWARE_LIST_INDEX] = QIcon(QString::fromUtf8(":/data/img/pacman.png"));
-#endif
 #if QMC2_YOUTUBE_ENABLED
   shortTitleMap[QMC2_YOUTUBE_INDEX] = tr("&YouTube");
   longTitleMap[QMC2_YOUTUBE_INDEX] = tr("YouTube videos");
@@ -142,10 +134,8 @@ DetailSetup::DetailSetup(QWidget *parent)
                       << QMC2_CONFIG_INDEX
                       << QMC2_DEVICE_INDEX
                       << QMC2_PCB_INDEX
-                      << QMC2_CABINET_INDEX;
-#if QMC2_WIP_CODE == 1
-  availableDetailList << QMC2_SOFTWARE_LIST_INDEX;
-#endif
+                      << QMC2_CABINET_INDEX
+                      << QMC2_SOFTWARE_LIST_INDEX;
 #if QMC2_YOUTUBE_ENABLED
   availableDetailList << QMC2_YOUTUBE_INDEX;
 #endif
@@ -157,9 +147,7 @@ DetailSetup::DetailSetup(QWidget *parent)
   tabWidgetsMap[QMC2_DEVICE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_DEVICE_INDEX);
   tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
   tabWidgetsMap[QMC2_CABINET_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CABINET_INDEX);
-#if QMC2_WIP_CODE == 1
   tabWidgetsMap[QMC2_SOFTWARE_LIST_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SOFTWARE_LIST_INDEX);
-#endif
 #if QMC2_YOUTUBE_ENABLED
   tabWidgetsMap[QMC2_YOUTUBE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_YOUTUBE_INDEX);
   configurableDetailList << QMC2_YOUTUBE_INDEX;
@@ -211,10 +199,8 @@ void DetailSetup::loadDetail()
                      << QMC2_MARQUEE_INDEX
                      << QMC2_TITLE_INDEX
                      << QMC2_MAWS_INDEX
-                     << QMC2_PCB_INDEX;
-#if QMC2_WIP_CODE == 1
-    activeDetailList << QMC2_SOFTWARE_LIST_INDEX;
-#endif
+                     << QMC2_PCB_INDEX
+                     << QMC2_SOFTWARE_LIST_INDEX;
 #if QMC2_YOUTUBE_ENABLED
     activeDetailList << QMC2_YOUTUBE_INDEX;
 #endif
@@ -225,10 +211,8 @@ void DetailSetup::loadDetail()
                      << QMC2_EMUINFO_INDEX
                      << QMC2_CONFIG_INDEX
                      << QMC2_DEVICE_INDEX
-                     << QMC2_PCB_INDEX;
-#if QMC2_WIP_CODE == 1
-    activeDetailList << QMC2_SOFTWARE_LIST_INDEX;
-#endif
+                     << QMC2_PCB_INDEX
+                     << QMC2_SOFTWARE_LIST_INDEX;
 #if QMC2_YOUTUBE_ENABLED
     activeDetailList << QMC2_YOUTUBE_INDEX;
 #endif

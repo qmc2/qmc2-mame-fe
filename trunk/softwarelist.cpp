@@ -495,6 +495,34 @@ bool SoftwareList::load()
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): successfully parsed the XML data for software list '%1'").arg(swList));
 #endif
 		}
+
+		// load favorites
+#if defined(QMC2_EMUTYPE_MAME)
+		QStringList softwareNames = qmc2Config->value(QString("MAME/Favorites/%1/SoftwareNames").arg(systemName)).toStringList();
+#elif defined(QMC2_EMUTYPE_MESS)
+		QStringList softwareNames = qmc2Config->value(QString("MESS/Favorites/%1/SoftwareNames").arg(systemName)).toStringList();
+		QStringList configNames = qmc2Config->value(QString("MESS/Favorites/%1/DeviceConfigs").arg(systemName)).toStringList();
+#endif
+		for (int i = 0; i < softwareNames.count(); i++) {
+			QString software = softwareNames[i];
+			QList<QTreeWidgetItem *> matchedSoftware = treeWidgetKnownSoftware->findItems(software, Qt::MatchExactly | Qt::MatchCaseSensitive, QMC2_SWLIST_COLUMN_NAME);
+			QTreeWidgetItem *swItem = NULL;
+			if ( matchedSoftware.count() > 0 ) swItem = matchedSoftware.at(0);
+			if ( swItem ) {
+				QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetFavoriteSoftware);
+				item->setText(QMC2_SWLIST_COLUMN_TITLE, swItem->text(QMC2_SWLIST_COLUMN_TITLE));
+				item->setText(QMC2_SWLIST_COLUMN_NAME, swItem->text(QMC2_SWLIST_COLUMN_NAME));
+				item->setText(QMC2_SWLIST_COLUMN_PUBLISHER, swItem->text(QMC2_SWLIST_COLUMN_PUBLISHER));
+				item->setText(QMC2_SWLIST_COLUMN_YEAR, swItem->text(QMC2_SWLIST_COLUMN_YEAR));
+				item->setText(QMC2_SWLIST_COLUMN_PART, swItem->text(QMC2_SWLIST_COLUMN_PART));
+				item->setText(QMC2_SWLIST_COLUMN_INTERFACE, swItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
+				item->setText(QMC2_SWLIST_COLUMN_LIST, swItem->text(QMC2_SWLIST_COLUMN_LIST));
+#if defined(QMC2_EMUTYPE_MESS)
+				if ( configNames.count() > i )
+					item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, configNames[i]);
+#endif
+			}
+		}
 	}
 
 	treeWidgetKnownSoftware->setSortingEnabled(true);
@@ -513,7 +541,41 @@ bool SoftwareList::save()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::save()");
 #endif
 
-	// FIXME: save favorites here...
+#if defined(QMC2_EMUTYPE_MAME)
+	qmc2Config->remove(QString("MAME/Favorites/%1").arg(systemName));
+#elif defined(QMC2_EMUTYPE_MESS)
+	qmc2Config->remove(QString("MESS/Favorites/%1").arg(systemName));
+#endif
+
+	QList<QTreeWidgetItem *> itemList = treeWidgetFavoriteSoftware->findItems("*", Qt::MatchWildcard);
+
+	QStringList softwareNames;
+#if defined(QMC2_EMUTYPE_MESS)
+	QStringList configNames;
+	bool onlyEmptyConfigNames = true;
+#endif
+
+	foreach (QTreeWidgetItem *item, itemList) {
+		softwareNames << item->text(QMC2_SWLIST_COLUMN_NAME);
+#if defined(QMC2_EMUTYPE_MESS)
+		QString s = item->text(QMC2_SWLIST_COLUMN_DEVICECFG);
+		if ( !s.isEmpty() ) onlyEmptyConfigNames = false;
+		configNames << s;
+#endif
+	}
+
+	if ( !softwareNames.isEmpty() ) {
+#if defined(QMC2_EMUTYPE_MAME)
+		qmc2Config->setValue(QString("MAME/Favorites/%1/SoftwareNames").arg(systemName), softwareNames);
+#elif defined(QMC2_EMUTYPE_MESS)
+		qmc2Config->setValue(QString("MESS/Favorites/%1/SoftwareNames").arg(systemName), softwareNames);
+		if ( onlyEmptyConfigNames )
+			qmc2Config->remove(QString("MESS/Favorites/%1/DeviceConfigs").arg(systemName));
+		else
+			qmc2Config->setValue(QString("MESS/Favorites/%1/DeviceConfigs").arg(systemName), configNames);
+#endif
+	}
+
 	return true;
 }
 
@@ -744,8 +806,8 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 			selectedItems = treeWidgetSearchResults->selectedItems();
 			break;
 		case QMC2_SWLIST_FAVORITES_PAGE:
-		default:
-			return;
+			selectedItems = treeWidgetFavoriteSoftware->selectedItems();
+			break;
 	}
 
 	QTreeWidgetItem *si = NULL;
@@ -755,7 +817,7 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 
 	if ( si ) {
 		QTreeWidgetItem *item = NULL;
-		QList<QTreeWidgetItem *> matchedItems = treeWidgetFavoriteSoftware->findItems(si->text(QMC2_SWLIST_COLUMN_NAME), Qt::MatchExactly, QMC2_SWLIST_COLUMN_NAME);
+		QList<QTreeWidgetItem *> matchedItems = treeWidgetFavoriteSoftware->findItems(si->text(QMC2_SWLIST_COLUMN_NAME), Qt::MatchExactly | Qt::MatchCaseSensitive, QMC2_SWLIST_COLUMN_NAME);
 		if ( matchedItems.count() > 0 )
 			item = matchedItems.at(0);
 		else
@@ -857,6 +919,7 @@ void SoftwareList::on_toolBoxSoftwareList_currentChanged(int index)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolBoxSoftwareList_currentChanged(int index = %1)").arg(index));
 #endif
 
+	comboBoxDeviceConfiguration->setCurrentIndex(0);
 	switch ( index ) {
 		case QMC2_SWLIST_KNOWN_SW_PAGE:
 			on_treeWidgetKnownSoftware_itemSelectionChanged();
@@ -906,7 +969,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 	toolButtonPlay->setEnabled(enable);
 	toolButtonPlayEmbedded->setEnabled(enable);
 	toolButtonRemoveFromFavorites->setEnabled(enable);
-	toolButtonAddToFavorites->setEnabled(false);
+	toolButtonAddToFavorites->setEnabled(enable);
 	if ( enable && qmc2SoftwareSnap ) {
 		QTreeWidgetItem *item = selectedItems[0];
 		if ( item != qmc2SoftwareSnap->myItem )
@@ -917,6 +980,18 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 		snapTimer.start(QMC2_SWSNAP_DELAY);
 	} else
 		cancelSoftwareSnap();
+	if ( enable ) {
+		QTreeWidgetItem *item = selectedItems[0];
+		QString s = item->text(QMC2_SWLIST_COLUMN_DEVICECFG);
+		if ( !s.isEmpty() ) {
+			int index = comboBoxDeviceConfiguration->findText(s, Qt::MatchExactly | Qt::MatchCaseSensitive);
+			if ( index > 0 )
+				comboBoxDeviceConfiguration->setCurrentIndex(index);
+			else
+				comboBoxDeviceConfiguration->setCurrentIndex(0);
+		} else
+			comboBoxDeviceConfiguration->setCurrentIndex(0);
+	}
 }
 
 void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
