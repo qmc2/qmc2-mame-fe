@@ -69,6 +69,9 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QTextStream tsSWLCache;
 		QStringList swlLines;
 		QMenu *softwareListMenu;
+		QMenu *menuKnownSoftwareHeader;
+		QMenu *menuFavoriteSoftwareHeader;
+		QMenu *menuSearchResultsHeader;
 		QAction *actionAddToFavorites;
 		QAction *actionRemoveFromFavorites;
 		QTimer snapTimer;
@@ -129,6 +132,14 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void playEmbeddedActivated() { on_toolButtonPlayEmbedded_clicked(false); }
 		void cancelSoftwareSnap();
 		void comboBoxSearch_textChanged_delayed();
+
+		// callbacks for software-list header context menu requests
+		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);
+		void actionKnownSoftwareHeader_triggered();
+		void treeWidgetFavoriteSoftwareHeader_customContextMenuRequested(const QPoint &);
+		void actionFavoriteSoftwareHeader_triggered();
+		void treeWidgetSearchResultsHeader_customContextMenuRequested(const QPoint &);
+		void actionSearchResultsHeader_triggered();
 
 	protected:
 		void closeEvent(QCloseEvent *);
