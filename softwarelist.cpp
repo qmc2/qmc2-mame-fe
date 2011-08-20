@@ -66,8 +66,6 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonPlayEmbedded->setIconSize(iconSize);
 #else
 	toolButtonPlayEmbedded->setVisible(false);
-	gridLayout->removeWidget(toolButtonPlay);
-	gridLayout->addWidget(toolButtonPlay, 0, 4, 1, 2);
 #endif
 	toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/flat.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 	toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_FAVORITES_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/favorites.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
