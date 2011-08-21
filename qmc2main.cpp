@@ -1083,8 +1083,10 @@ MainWindow::MainWindow(QWidget *parent)
 #if defined(QMC2_EMUTYPE_MAME)
   action = menuGamelistHeader->addAction(tr("Category"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
+  actionMenuGamelistHeaderCategory = action;
   action = menuGamelistHeader->addAction(tr("Version"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_VERSION);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION));
+  actionMenuGamelistHeaderVersion = action;
 #endif
   header->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetGamelistHeader_customContextMenuRequested(const QPoint &)));
@@ -1115,8 +1117,10 @@ MainWindow::MainWindow(QWidget *parent)
 #if defined(QMC2_EMUTYPE_MAME)
   action = menuHierarchyHeader->addAction(tr("Category"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_CATEGORY);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_CATEGORY));
+  actionMenuHierarchyHeaderCategory = action;
   action = menuHierarchyHeader->addAction(tr("Version"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_VERSION);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_VERSION));
+  actionMenuHierarchyHeaderVersion = action;
 #endif
   header->setContextMenuPolicy(Qt::CustomContextMenu);
   connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetHierarchyHeader_customContextMenuRequested(const QPoint &)));

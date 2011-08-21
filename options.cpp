@@ -935,6 +935,14 @@ void Options::on_pushButtonApply_clicked()
     qmc2MainWindow->actionViewByCategory->setEnabled(true);
     qmc2MainWindow->actionViewByVersion->setVisible(true);
     qmc2MainWindow->actionViewByVersion->setEnabled(true);
+    qmc2MainWindow->actionMenuGamelistHeaderCategory->setVisible(true);
+    qmc2MainWindow->actionMenuGamelistHeaderCategory->setEnabled(true);
+    qmc2MainWindow->actionMenuGamelistHeaderVersion->setVisible(true);
+    qmc2MainWindow->actionMenuGamelistHeaderVersion->setEnabled(true);
+    qmc2MainWindow->actionMenuHierarchyHeaderCategory->setVisible(true);
+    qmc2MainWindow->actionMenuHierarchyHeaderCategory->setEnabled(true);
+    qmc2MainWindow->actionMenuHierarchyHeaderVersion->setVisible(true);
+    qmc2MainWindow->actionMenuHierarchyHeaderVersion->setEnabled(true);
     if ( comboBoxSortCriteria->count() - 1 < QMC2_SORTCRITERIA_CATEGORY ) {
       comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
       comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
@@ -954,6 +962,14 @@ void Options::on_pushButtonApply_clicked()
     qmc2MainWindow->actionViewByCategory->setEnabled(false);
     qmc2MainWindow->actionViewByVersion->setVisible(false);
     qmc2MainWindow->actionViewByVersion->setEnabled(false);
+    qmc2MainWindow->actionMenuGamelistHeaderCategory->setVisible(false);
+    qmc2MainWindow->actionMenuGamelistHeaderCategory->setEnabled(false);
+    qmc2MainWindow->actionMenuGamelistHeaderVersion->setVisible(false);
+    qmc2MainWindow->actionMenuGamelistHeaderVersion->setEnabled(false);
+    qmc2MainWindow->actionMenuHierarchyHeaderCategory->setVisible(false);
+    qmc2MainWindow->actionMenuHierarchyHeaderCategory->setEnabled(false);
+    qmc2MainWindow->actionMenuHierarchyHeaderVersion->setVisible(false);
+    qmc2MainWindow->actionMenuHierarchyHeaderVersion->setEnabled(false);
     if ( comboBoxSortCriteria->count() > QMC2_SORTCRITERIA_VERSION ) {
       comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_VERSION);
       comboBoxSortCriteria->removeItem(QMC2_SORTCRITERIA_CATEGORY);
