@@ -55,6 +55,7 @@ class SoftwareSnap : public QWidget
 		void paintEvent(QPaintEvent *);
 		void mousePressEvent(QMouseEvent *);
 		void keyPressEvent(QKeyEvent *);
+		void leaveEvent(QEvent *);
 };
 
 class SoftwareList : public QWidget, public Ui::SoftwareList
