@@ -101,6 +101,10 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_EMUTYPE_MAME)
     QMenu *menuCategoryHeader;
     QMenu *menuVersionHeader;
+    QAction *actionMenuGamelistHeaderCategory;
+    QAction *actionMenuGamelistHeaderVersion;
+    QAction *actionMenuHierarchyHeaderCategory;
+    QAction *actionMenuHierarchyHeaderVersion;
 #endif
     QAction *actionRomStatusFilterC;
     QAction *actionRomStatusFilterM;
