@@ -1559,7 +1559,6 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 
 	setWindowTitle(tr("Snapshot viewer"));
 	setFocusPolicy(Qt::NoFocus);
-
 	focusWidget = QApplication::focusWidget();
 	snapForcedResetTimer.setSingleShot(true);
 	connect(&snapForcedResetTimer, SIGNAL(timeout()), this, SLOT(resetSnapForced()));
@@ -1613,6 +1612,16 @@ void SoftwareSnap::mousePressEvent(QMouseEvent *e)
 
 	hide();
 	resetSnapForced();
+}
+
+void SoftwareSnap::leaveEvent(QEvent *e)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::leaveEvent(QEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+	if ( !qmc2SoftwareList->snapForced ) hide();
+	QWidget::leaveEvent(e);
 }
 
 void SoftwareSnap::paintEvent(QPaintEvent *e)
