@@ -1310,9 +1310,6 @@ MainWindow::MainWindow(QWidget *parent)
   qApp->processEvents();
 #endif
 
-  // setup intial focus widget
-  on_tabWidgetGamelist_currentChanged(tabWidgetGamelist->currentIndex());
-
   // setup the global network access manager
   qmc2NetworkAccessManager = new QNetworkAccessManager(this);
 
@@ -5424,7 +5421,7 @@ void MainWindow::init()
 #endif
 
 #if QMC2_USE_PHONON_API
-  on_toolButtonAudioSetupEffects_clicked();
+  QTimer::singleShot(0, this, SLOT(on_toolButtonAudioSetupEffects_clicked()));
 #endif
 
   createFifo();
@@ -5440,9 +5437,19 @@ void MainWindow::init()
   // make sure the logs get scrolled to their maxima
   textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
   textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
-  qApp->processEvents();
 
   setUpdatesEnabled(true);
+  update();
+  qApp->processEvents();
+
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() )
+    qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt();
+  else
+    qmc2LastListIndex = 0;
+
+  tabWidgetGamelist->setCurrentIndex(qmc2LastListIndex);
+  on_tabWidgetGamelist_currentChanged(qmc2LastListIndex);
+
   qmc2EarlyStartup = false;
 
   QTimer::singleShot(0, this, SLOT(on_actionReload_activated()));
