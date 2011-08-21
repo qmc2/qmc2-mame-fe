@@ -2870,12 +2870,14 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
 
   static int lastTabWidgetGamelistIndex = -1;
 
-  menuGamelistHeader->hide();
-  menuHierarchyHeader->hide();
+  if ( !qmc2EarlyStartup ) {
+    menuGamelistHeader->hide();
+    menuHierarchyHeader->hide();
 #if defined(QMC2_EMUTYPE_MAME)
-  menuCategoryHeader->hide();
-  menuVersionHeader->hide();
+    menuCategoryHeader->hide();
+    menuVersionHeader->hide();
 #endif
+  }
 
 #if defined(Q_WS_X11)
   bool scrollBarMaximum = false;
@@ -4624,12 +4626,14 @@ void MainWindow::on_stackedWidgetView_currentChanged(int index)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_tackedWidgetView_currentChanged(int index = %1)").arg(index));
 #endif
 
-  menuGamelistHeader->hide();
-  menuHierarchyHeader->hide();
+  if ( !qmc2EarlyStartup ) {
+    menuGamelistHeader->hide();
+    menuHierarchyHeader->hide();
 #if defined(QMC2_EMUTYPE_MAME)
-  menuCategoryHeader->hide();
-  menuVersionHeader->hide();
+    menuCategoryHeader->hide();
+    menuVersionHeader->hide();
 #endif
+  }
 
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GamelistView", index);
 
