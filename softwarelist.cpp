@@ -56,6 +56,10 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	horizontalLayout->removeItem(horizontalSpacer);
 #endif
 
+#if QT_VERSION >= 0x040700
+	comboBoxSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
+#endif
+
 	QFontMetrics fm(QApplication::font());
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
 	toolButtonAddToFavorites->setIconSize(iconSize);
