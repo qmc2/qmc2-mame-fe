@@ -137,6 +137,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/filesave.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(runSetRewriter()));
+  actionRewriteSet = action;
 
   s = tr("Copy to clipboard");
   action = romSetContextMenu->addAction(s);
@@ -2660,12 +2661,12 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 				romFileContextMenu->show();
 			}
 		} else {
-			if ( groupBoxSetRewriter->isChecked() ) {
-				treeWidgetChecksums->setItemSelected(item, true);
-				setRewriterItem = NULL;
-				romSetContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetChecksums->viewport()->mapToGlobal(p), romSetContextMenu));
-				romSetContextMenu->show();
-			}
+			actionRewriteSet->setVisible(groupBoxSetRewriter->isChecked());
+			actionRewriteSet->setEnabled(groupBoxSetRewriter->isChecked());
+			treeWidgetChecksums->setItemSelected(item, true);
+			setRewriterItem = NULL;
+			romSetContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetChecksums->viewport()->mapToGlobal(p), romSetContextMenu));
+			romSetContextMenu->show();
 		}
 }
 

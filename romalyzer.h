@@ -143,6 +143,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     quint64 chdManagerTotalHunks;
     QMenu *romFileContextMenu;
     QMenu *romSetContextMenu;
+    QAction *actionRewriteSet;
     QString currentFilesSHA1Checksum;
     QStringList wizardSelectedSets;
     QMultiMap<QString, QStringList> setRewriterFileMap;
