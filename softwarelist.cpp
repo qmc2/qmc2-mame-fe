@@ -382,6 +382,11 @@ bool SoftwareList::load()
 	treeWidgetSearchResults->header()->setSortIndicatorShown(false);
 
 	if ( swlBuffer.isEmpty() && swlSupported ) {
+          	qmc2MainWindow->tabSoftwareList->setUpdatesEnabled(true);
+		labelLoadingSoftwareLists->setVisible(true);
+		toolBoxSoftwareList->setVisible(false);
+		show();
+
 		swlLines.clear();
 		validData = false;
 		swlCacheOkay = false;
@@ -442,7 +447,7 @@ bool SoftwareList::load()
 					}
 					qmc2MainWindow->progressBarGamelist->reset();
 					elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML software list data from cache, elapsed time = %1").arg(elapsedTime.toString("mm:ss.zzz")));
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML software list data from cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 					validData = true;
 				}
 				if ( fileSWLCache.isOpen() )
@@ -454,11 +459,19 @@ bool SoftwareList::load()
 #elif defined(QMC2_EMUTYPE_MESS)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: the file name for the MESS software list cache is empty -- please correct this and reload the machine list afterwards"));
 #endif
+			labelLoadingSoftwareLists->setVisible(false);
+			toolBoxSoftwareList->setVisible(true);
+
 			return false;
 		}
         }
 
 	if ( !swlCacheOkay ) {
+          	qmc2MainWindow->tabSoftwareList->setUpdatesEnabled(true);
+		labelLoadingSoftwareLists->setVisible(true);
+		toolBoxSoftwareList->setVisible(false);
+		show();
+
 		loadTimer.start();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML software list data and (re)creating cache"));
 
@@ -530,6 +543,10 @@ bool SoftwareList::load()
 			toolBoxSoftwareList->setItemText(QMC2_SWLIST_KNOWN_SW_PAGE, tr("Known software (no data available)"));
 			toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (no data available)"));
 			toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (no data available)"));
+
+			labelLoadingSoftwareLists->setVisible(false);
+			toolBoxSoftwareList->setVisible(true);
+
 			return false;
 		}
 	}
@@ -537,6 +554,9 @@ bool SoftwareList::load()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): validData = %1").arg(validData ? "true" : "false"));
 #endif
+
+	labelLoadingSoftwareLists->setVisible(false);
+	toolBoxSoftwareList->setVisible(true);
 
 	QString xmlData = getXmlData();
 
