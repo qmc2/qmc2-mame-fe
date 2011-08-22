@@ -143,6 +143,10 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
+
+#if defined(Q_WS_MAC)
+  setParent(qmc2MainWindow, Qt::Dialog);
+#endif
 }
 
 ROMAlyzer::~ROMAlyzer()
