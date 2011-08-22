@@ -14519,7 +14519,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.ui" line="89"/>
         <location filename="../../softwarelist.ui" line="92"/>
         <source>Add the currently selected software and device setup to the favorites list (or overwrite existing favorite)</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar software e configuração de dispositivo atualmente selecionados à lista de favoritos (ou sobrescrevendo os favoritos existente)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="221"/>
@@ -14628,7 +14628,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.ui" line="475"/>
         <source>Loading software-lists, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregando listas de softwre, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="54"/>
@@ -14638,7 +14638,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="61"/>
         <source>Enter search string</source>
-        <translation type="unfinished">Entre com o texto de busca</translation>
+        <translation>Entre com o texto de busca</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="88"/>
@@ -14731,7 +14731,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="450"/>
         <source>done (loading XML software list data from cache, elapsed time = %1)</source>
-        <translation type="unfinished">feito (carregando lista de software (XML) do cache, tempo = %1))</translation>
+        <translation>feito (carregando lista de software (XML) do cache, tempo = %1))</translation>
     </message>
     <message>
         <source>done (loading XML software list data from cache, elapsed time = %1</source>
@@ -14830,7 +14830,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="1594"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar para a área de transferência</translation>
     </message>
 </context>
 <context>
