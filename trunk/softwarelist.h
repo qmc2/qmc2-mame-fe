@@ -44,18 +44,22 @@ class SoftwareSnap : public QWidget
 		QTreeWidgetItem *myItem;
 		QWidget *focusWidget;
 		QTimer snapForcedResetTimer;
+		QMenu *contextMenu;
+		bool ctxMenuRequested;
 
 		SoftwareSnap(QWidget *parent = 0);
 
 	public slots:
 		void loadSnapshot();
 		void resetSnapForced();
+		void copyToClipboard();
 
 	protected:
 		void paintEvent(QPaintEvent *);
 		void mousePressEvent(QMouseEvent *);
 		void keyPressEvent(QKeyEvent *);
 		void leaveEvent(QEvent *);
+		void contextMenuEvent(QContextMenuEvent *);
 };
 
 class SoftwareList : public QWidget, public Ui::SoftwareList
