@@ -3,10 +3,13 @@ package sourceforge.org.qmc2.options.editor.ui;
 import java.io.File;
 import java.util.Set;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.DefaultOperationHistory;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IUndoContext;
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.commands.operations.UndoContext;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -14,6 +17,8 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ColumnViewerEditor;
 import org.eclipse.jface.viewers.FocusCellOwnerDrawHighlighter;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.TreeViewerEditor;
@@ -39,6 +44,7 @@ import sourceforge.org.qmc2.options.editor.ui.actions.AddLanguageAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.AddOptionAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.AddSectionAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.RedoAction;
+import sourceforge.org.qmc2.options.editor.ui.actions.RemoveSelectedItemsAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.UndoAction;
 
 public class QMC2Editor extends Composite {
@@ -67,8 +73,8 @@ public class QMC2Editor extends Composite {
 		createFileChooser();
 		createFilterAndSearch();
 
-		viewer = new TreeViewer(this, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL
-				| SWT.BORDER);
+		viewer = new TreeViewer(this, SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL
+				| SWT.BORDER | SWT.FULL_SELECTION);
 		viewer.setContentProvider(new QMC2ContentProvider());
 		viewer.getTree().setHeaderVisible(true);
 		viewer.getTree().setLinesVisible(true);
@@ -95,6 +101,13 @@ public class QMC2Editor extends Composite {
 		});
 		Menu m = manager.createContextMenu(viewer.getControl());
 		viewer.getTree().setMenu(m);
+		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				updateApplicationMenuBar();
+			}
+		});
 
 	}
 
@@ -104,6 +117,7 @@ public class QMC2Editor extends Composite {
 		manager.add(new AddLanguageAction(QMC2Editor.this));
 		manager.add(new AddSectionAction(QMC2Editor.this));
 		manager.add(new AddOptionAction(QMC2Editor.this));
+		manager.add(new RemoveSelectedItemsAction(QMC2Editor.this));
 	}
 
 	private void createFilterAndSearch() {
@@ -260,5 +274,16 @@ public class QMC2Editor extends Composite {
 	public void updateApplicationMenuBar() {
 		application.getMenuBarManager().update(IAction.TEXT);
 		application.getMenuBarManager().update(IAction.ENABLED);
+	}
+
+	public void executeOperation(IUndoableOperation operation) {
+		operation.addContext(undoContext);
+		try {
+			operationHistory
+					.execute(operation, new NullProgressMonitor(), null);
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

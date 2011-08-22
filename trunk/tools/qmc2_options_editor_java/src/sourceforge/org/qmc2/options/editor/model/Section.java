@@ -20,7 +20,15 @@ public class Section extends DescriptableItem {
 		super(name);
 	}
 
+	public void addOption(Option o, int index) {
+		options.add(index, o);
+		for (int i = index + 1; i < options.size(); i++) {
+			options.get(i).setIndex(i);
+		}
+	}
+
 	public void addOption(Option o) {
+		o.setIndex(options.size());
 		options.add(o);
 	}
 
@@ -82,6 +90,10 @@ public class Section extends DescriptableItem {
 				options.remove(o);
 			}
 		}
+		for (int i = 0; i < options.size(); i++) {
+			options.get(i).setIndex(i);
+		}
+
 	}
 
 }
