@@ -370,6 +370,8 @@ bool SoftwareList::load()
 	QString swlCachePath = qmc2Config->value("MESS/FilesAndDirectories/SoftwareListCache").toString();
 #endif
 
+	toolButtonReload->setEnabled(false);
+
 	treeWidgetKnownSoftware->clear();
 	treeWidgetFavoriteSoftware->clear();
 	treeWidgetSearchResults->clear();
@@ -616,6 +618,8 @@ bool SoftwareList::load()
 	treeWidgetFavoriteSoftware->header()->setSortIndicatorShown(true);
 	treeWidgetSearchResults->setSortingEnabled(true);
 	treeWidgetSearchResults->header()->setSortIndicatorShown(true);
+
+	toolButtonReload->setEnabled(true);
 
 	return true;
 }
