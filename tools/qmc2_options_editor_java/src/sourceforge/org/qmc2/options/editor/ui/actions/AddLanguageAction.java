@@ -2,9 +2,7 @@ package sourceforge.org.qmc2.options.editor.ui.actions;
 
 import java.util.Locale;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IUndoableOperation;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
@@ -75,13 +73,7 @@ public class AddLanguageAction extends BaseAction {
 			String newLang = dialog.getValue();
 			IUndoableOperation operation = new AddLanguageOperation(editor,
 					newLang);
-			try {
-				editor.getOperationHistory().execute(operation,
-						new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			editor.executeOperation(operation);
 		}
 		super.run();
 	}

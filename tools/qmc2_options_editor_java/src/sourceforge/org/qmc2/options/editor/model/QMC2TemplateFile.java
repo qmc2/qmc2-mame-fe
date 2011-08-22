@@ -49,13 +49,26 @@ public class QMC2TemplateFile {
 	}
 
 	public void addSection(Section section) {
+		section.setIndex(sections.size());
 		sections.add(section);
+		sectionMap.put(section.getName(), section);
+	}
+
+	public void addSection(Section section, int index) {
+		sections.add(index, section);
+		for (int i = index + 1; i < sections.size(); i++) {
+			sections.get(i).setIndex(i);
+		}
+
 		sectionMap.put(section.getName(), section);
 	}
 
 	public Section removeSection(String sectionName) {
 		Section s = sectionMap.remove(sectionName);
 		sections.remove(s);
+		for (int i = 0; i < sections.size(); i++) {
+			sections.get(i).setIndex(i);
+		}
 		return s;
 	}
 

@@ -1,7 +1,5 @@
 package sourceforge.org.qmc2.options.editor.ui.actions;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.jface.window.Window;
 
@@ -26,14 +24,7 @@ public class AddOptionAction extends BaseAction {
 			Section selectedSection = getCurrentSection();
 			AddOptionOperation operation = new AddOptionOperation(editor,
 					selectedSection, addOptionDialog.getOption());
-			operation.addContext(editor.getUndoContext());
-			try {
-				editor.getOperationHistory().execute(operation,
-						new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			editor.executeOperation(operation);
 		}
 		super.run();
 	}

@@ -20,6 +20,7 @@ import sourceforge.org.qmc2.options.editor.ui.actions.AddLanguageAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.AddOptionAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.AddSectionAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.RedoAction;
+import sourceforge.org.qmc2.options.editor.ui.actions.RemoveSelectedItemsAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.SaveAction;
 import sourceforge.org.qmc2.options.editor.ui.actions.UndoAction;
 
@@ -91,6 +92,7 @@ public class QMC2EditorApplication extends ApplicationWindow {
 		editMenuManager.add(new AddLanguageAction(editor));
 		editMenuManager.add(new AddSectionAction(editor));
 		editMenuManager.add(new AddOptionAction(editor));
+		editMenuManager.add(new RemoveSelectedItemsAction(editor));
 
 		menuMap.put(MENU_FILE_ID, fileMenuManager);
 		menuMap.put(MENU_EDIT_ID, editMenuManager);
