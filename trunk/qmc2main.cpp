@@ -3361,9 +3361,9 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           QVBoxLayout *layout = new QVBoxLayout;
           layout->setContentsMargins(left, top, right, bottom);
           qmc2SoftwareList = new SoftwareList(machineName, tabSoftwareList);
-          qmc2SoftwareList->load();
           layout->addWidget(qmc2SoftwareList);
           tabSoftwareList->setLayout(layout);
+          qmc2SoftwareList->load();
           qmc2SoftwareList->show();
           qmc2LastSoftwareListItem = qmc2CurrentItem;
           tabSoftwareList->setUpdatesEnabled(true);
