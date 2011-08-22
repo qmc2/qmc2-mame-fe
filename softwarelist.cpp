@@ -4,6 +4,7 @@
 #include <QCursor>
 #include <QDir>
 #include <QKeyEvent>
+#include <QClipboard>
 
 #include "softwarelist.h"
 #include "gamelist.h"
@@ -1562,6 +1563,19 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 	focusWidget = QApplication::focusWidget();
 	snapForcedResetTimer.setSingleShot(true);
 	connect(&snapForcedResetTimer, SIGNAL(timeout()), this, SLOT(resetSnapForced()));
+
+	ctxMenuRequested = false;
+	contextMenu = new QMenu(this);
+	contextMenu->hide();
+	
+	QString s;
+	QAction *action;
+
+	s = tr("Copy to clipboard");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
 }
 
 void SoftwareSnap::keyPressEvent(QKeyEvent *e)
@@ -1610,8 +1624,11 @@ void SoftwareSnap::mousePressEvent(QMouseEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::mousePressEvent(QMouseEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-	hide();
-	resetSnapForced();
+	if ( e->button() != Qt::RightButton) {
+		hide();
+		resetSnapForced();
+	} else
+		ctxMenuRequested = true;
 }
 
 void SoftwareSnap::leaveEvent(QEvent *e)
@@ -1620,8 +1637,9 @@ void SoftwareSnap::leaveEvent(QEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::leaveEvent(QEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-	if ( !qmc2SoftwareList->snapForced ) hide();
+	if ( !qmc2SoftwareList->snapForced && !ctxMenuRequested ) hide();
 	QWidget::leaveEvent(e);
+	ctxMenuRequested = false;
 }
 
 void SoftwareSnap::paintEvent(QPaintEvent *e)
@@ -1636,6 +1654,8 @@ void SoftwareSnap::loadSnapshot()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::loadSnapshot()");
 #endif
+
+	ctxMenuRequested = false;
 
 	if ( !qmc2SoftwareList || qmc2SoftwareSnapPosition == QMC2_SWSNAP_POS_DISABLE_SNAPS ) {
 		myItem = NULL;
@@ -1927,4 +1947,25 @@ void SoftwareSnap::resetSnapForced()
 		}
 	}
 	qmc2SoftwareList->snapForced = false;
+}
+
+void SoftwareSnap::contextMenuEvent(QContextMenuEvent *e)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::contextMenuEvent(QContextMenuEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
+	contextMenu->show();
+}
+
+void SoftwareSnap::copyToClipboard()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::copyToClipboard()");
+#endif
+
+	QPixmap pm(size());
+	render(&pm);
+	qApp->clipboard()->setPixmap(pm);
 }
