@@ -2599,6 +2599,7 @@ qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/a
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/AddSectionAction.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/BaseAction.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/RedoAction.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/RemoveSelectedItemsAction.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/SaveAction.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/actions/.svn/text-base/UndoAction.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/dialogs/.svn
@@ -2610,6 +2611,7 @@ qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/o
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/AddOptionOperation.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/AddSectionOperation.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/EditOperation.java.svn-base
+qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/operations/.svn/text-base/RemoveItemsOperation.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2ContentProvider.java.svn-base
 qmc2/tools/qmc2_options_editor_java/src/sourceforge/org/qmc2/options/editor/ui/.svn/text-base/QMC2EditingSupport.java.svn-base
