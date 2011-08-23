@@ -4714,13 +4714,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="232"/>
         <source>Use as default directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar como diretório padrão</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="267"/>
         <location filename="../../messdevcfg.cpp" line="536"/>
         <source>No devices available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum dispositivo disponível</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="322"/>
@@ -4889,48 +4889,48 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.ui" line="330"/>
         <source>File chooser</source>
-        <translation type="unfinished"></translation>
+        <translation>Seletor de arquivo</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="357"/>
         <location filename="../../messdevcfg.ui" line="360"/>
         <source>Select the device instance the file is mapped to</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione a instância de dispositivo para o qual o arquivo está mapeado</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="367"/>
         <location filename="../../messdevcfg.ui" line="370"/>
         <source>Filter files by allowed extensions for the current device instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrar arquivos por extensões permitidas para a instância de dispositivo atual</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="373"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="399"/>
         <location filename="../../messdevcfg.ui" line="402"/>
         <source>Play the selected configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar a configuração selecionada</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="419"/>
         <location filename="../../messdevcfg.ui" line="422"/>
         <source>Play the selected configuration (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar a configuração selecionada (embutido)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="442"/>
         <location filename="../../messdevcfg.ui" line="445"/>
         <source>Choose directory</source>
-        <translation type="unfinished">Escolha a pasta</translation>
+        <translation>Escolha o diretório</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="459"/>
         <location filename="../../messdevcfg.ui" line="462"/>
         <source>Choose a file to map</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha um arquivo para mapear</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="481"/>
@@ -6113,7 +6113,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1524"/>
         <source>No devices available</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum dispositivo disponível</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2105"/>
