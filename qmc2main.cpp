@@ -1517,24 +1517,40 @@ void MainWindow::on_actionPlay_activated()
     args << qmc2SoftwareList->arguments();
 #if defined(QMC2_EMUTYPE_MESS)
   else if ( qmc2MESSDeviceConfigurator && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_DEVICE_INDEX) ) {
-    QString configName = qmc2MESSDeviceConfigurator->lineEditConfigurationName->text();
-    if ( configName != tr("No devices") ) {
-      // make sure the currently edited data is up to date
-      qmc2MESSDeviceConfigurator->on_toolButtonSaveConfiguration_clicked();
-      if ( qmc2MESSDeviceConfigurator->configurationMap.contains(configName) ) {
-        QPair<QStringList, QStringList> valuePair = qmc2MESSDeviceConfigurator->configurationMap[configName];
-        int i;
-        for (i = 0; i < valuePair.first.count(); i++)
+	  switch ( qmc2MESSDeviceConfigurator->tabWidgetDeviceSetup->currentIndex() ) {
+		case QMC2_DEVSETUP_TAB_FILECHOOSER: {
+				QString instance = qmc2MESSDeviceConfigurator->comboBoxDeviceInstanceChooser->currentText();
+				QString file = qmc2MESSDeviceConfigurator->fileModel->fileInfo(qmc2MESSDeviceConfigurator->listViewFileChooser->selectionModel()->selectedIndexes()[0]).absoluteFilePath();
 #if defined(Q_WS_WIN)
-          args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace('/', '\\');
+				args << QString("-%1").arg(instance) << file.replace('/', '\\');
 #else
-          args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace("~", "$HOME");
+				args << QString("-%1").arg(instance) << file.replace("~", "$HOME");
 #endif
-        valuePair = qmc2MESSDeviceConfigurator->slotMap[configName];
-        for (i = 0; i < valuePair.first.count(); i++)
-          args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i];
-      }
-    }
+			}
+			break;
+
+		default: {
+				QString configName = qmc2MESSDeviceConfigurator->lineEditConfigurationName->text();
+				if ( configName != tr("No devices") ) {
+					// make sure the currently edited data is up to date
+					qmc2MESSDeviceConfigurator->on_toolButtonSaveConfiguration_clicked();
+					if ( qmc2MESSDeviceConfigurator->configurationMap.contains(configName) ) {
+						QPair<QStringList, QStringList> valuePair = qmc2MESSDeviceConfigurator->configurationMap[configName];
+						int i;
+						for (i = 0; i < valuePair.first.count(); i++)
+#if defined(Q_WS_WIN)
+							args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace('/', '\\');
+#else
+							args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i].replace("~", "$HOME");
+#endif
+						valuePair = qmc2MESSDeviceConfigurator->slotMap[configName];
+						for (i = 0; i < valuePair.first.count(); i++)
+							args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i];
+					}
+				}
+			}
+			break;
+	  }
   }
 #endif
 

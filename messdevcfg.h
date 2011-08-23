@@ -3,6 +3,7 @@
 
 #include <QItemDelegate>
 #include <QModelIndex>
+#include <QFileSystemModel>
 #include <QXmlDefaultHandler>
 
 #include "ui_messdevcfg.h"
@@ -58,7 +59,13 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     QMenu *configurationMenu;
     QMenu *deviceContextMenu;
     QMenu *slotContextMenu;
+    QMenu *dirChooserContextMenu;
+    QMenu *fileChooserContextMenu;
     QAction *actionRemoveConfiguration;
+    QFileSystemModel *dirModel;
+    QFileSystemModel *fileModel;
+    QModelIndex modelIndexDirModel;
+    QModelIndex modelIndexFileModel;
 
     MESSDeviceConfigurator(QString, QWidget *);
     ~MESSDeviceConfigurator();
@@ -70,7 +77,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     bool load();
     bool save();
 
-    // callback functions
+    // auto-connected callback functions
     void on_lineEditConfigurationName_textChanged(const QString &);
     void on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *);
     void on_toolButtonNewConfiguration_clicked();
@@ -82,12 +89,23 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &);
     void on_treeWidgetDeviceSetup_customContextMenuRequested(const QPoint &);
     void on_treeWidgetSlotOptions_customContextMenuRequested(const QPoint &);
+    void on_tabWidgetDeviceSetup_currentChanged(int);
+    void on_checkBoxChooserFilter_toggled(bool);
+    void on_comboBoxDeviceInstanceChooser_activated(const QString &);
+    void on_treeViewDirChooser_customContextMenuRequested(const QPoint &);
+    void on_listViewFileChooser_customContextMenuRequested(const QPoint &);
+
+    // other callbacks
     void actionSelectDefaultDeviceDirectory_triggered();
     void actionSelectFile_triggered();
     void actionRemoveConfiguration_activated();
+    void treeViewDirChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
+    void listViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
+    void dirChooserUseCurrentAsDefaultDirectory();
 
-    // other
+    // misc
     void editorDataChanged(const QString &);
+    void setupFileChooser();
 
   protected:
     void closeEvent(QCloseEvent *);
