@@ -7,14 +7,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>807</width>
+    <width>733</width>
     <height>601</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MESS device configuration</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_3">
+  <layout class="QGridLayout" name="gridLayout">
    <property name="margin">
     <number>0</number>
    </property>
@@ -278,7 +278,7 @@
           <attribute name="title">
            <string>Slot options</string>
           </attribute>
-          <layout class="QGridLayout" name="gridLayout_4">
+          <layout class="QGridLayout" name="gridLayoutSlotOptions">
            <property name="margin">
             <number>0</number>
            </property>
@@ -321,6 +321,147 @@
                <string>Option</string>
               </property>
              </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tabFileChooser">
+          <attribute name="title">
+           <string>File chooser</string>
+          </attribute>
+          <layout class="QVBoxLayout" name="verticalLayoutFileChooser" stretch="0,1">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="margin">
+            <number>0</number>
+           </property>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayoutFileChooser">
+             <item>
+              <widget class="QLabel" name="labelDeviceInstanceChooser">
+               <property name="text">
+                <string>Device instance</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboBoxDeviceInstanceChooser">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>Select the device instance the file is mapped to</string>
+               </property>
+               <property name="statusTip">
+                <string>Select the device instance the file is mapped to</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBoxChooserFilter">
+               <property name="toolTip">
+                <string>Filter files by allowed extensions for the current device instance</string>
+               </property>
+               <property name="statusTip">
+                <string>Filter files by allowed extensions for the current device instance</string>
+               </property>
+               <property name="text">
+                <string>Filter</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButtonChooserPlay">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>Play the selected configuration</string>
+               </property>
+               <property name="statusTip">
+                <string>Play the selected configuration</string>
+               </property>
+               <property name="icon">
+                <iconset resource="qmc2.qrc">
+                 <normaloff>:/data/img/launch.png</normaloff>:/data/img/launch.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButtonChooserPlayEmbedded">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>Play the selected configuration (embedded)</string>
+               </property>
+               <property name="statusTip">
+                <string>Play the selected configuration (embedded)</string>
+               </property>
+               <property name="icon">
+                <iconset resource="qmc2.qrc">
+                 <normaloff>:/data/img/embed.png</normaloff>:/data/img/embed.png</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QSplitter" name="splitterFileChooser">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <widget class="QTreeView" name="treeViewDirChooser">
+              <property name="contextMenuPolicy">
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
+              <property name="toolTip">
+               <string>Choose directory</string>
+              </property>
+              <property name="statusTip">
+               <string>Choose directory</string>
+              </property>
+              <property name="rootIsDecorated">
+               <bool>false</bool>
+              </property>
+              <property name="uniformRowHeights">
+               <bool>true</bool>
+              </property>
+             </widget>
+             <widget class="QListView" name="listViewFileChooser">
+              <property name="contextMenuPolicy">
+               <enum>Qt::CustomContextMenu</enum>
+              </property>
+              <property name="toolTip">
+               <string>Choose a file to map</string>
+              </property>
+              <property name="statusTip">
+               <string>Choose a file to map</string>
+              </property>
+             </widget>
             </widget>
            </item>
           </layout>
@@ -376,6 +517,12 @@
   <tabstop>toolButtonConfiguration</tabstop>
   <tabstop>treeWidgetDeviceSetup</tabstop>
   <tabstop>treeWidgetSlotOptions</tabstop>
+  <tabstop>comboBoxDeviceInstanceChooser</tabstop>
+  <tabstop>checkBoxChooserFilter</tabstop>
+  <tabstop>toolButtonChooserPlay</tabstop>
+  <tabstop>toolButtonChooserPlayEmbedded</tabstop>
+  <tabstop>treeViewDirChooser</tabstop>
+  <tabstop>listViewFileChooser</tabstop>
   <tabstop>listWidgetDeviceConfigurations</tabstop>
  </tabstops>
  <resources>

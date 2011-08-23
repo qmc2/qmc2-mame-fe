@@ -117,6 +117,11 @@
 #define QMC2_SLOTCONFIG_COLUMN_SLOT	0
 #define QMC2_SLOTCONFIG_COLUMN_OPTION	1
 
+// indizes of the device-setup tabs of the MESS device configurator
+#define QMC2_DEVSETUP_TAB_DEVMAPPINGS	0
+#define QMC2_DEVSETUP_TAB_SLOTCONFIG	1
+#define QMC2_DEVSETUP_TAB_FILECHOOSER	2
+
 // page indizes for the software list tool box
 #define QMC2_SWLIST_KNOWN_SW_PAGE	0
 #define QMC2_SWLIST_FAVORITES_PAGE	1
