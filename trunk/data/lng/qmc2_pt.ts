@@ -2449,22 +2449,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../filesystemmodel.h" line="118"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="118"/>
         <source>Size</source>
-        <translation type="unfinished">Tamanho</translation>
+        <translation>Tamanho</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="118"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation>Tipo</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="118"/>
         <source>Date modified</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificado</translation>
     </message>
 </context>
 <context>
