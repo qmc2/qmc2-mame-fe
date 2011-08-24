@@ -1100,6 +1100,7 @@ void MESSDeviceConfigurator::setupFileChooser()
 
 	connect(treeViewDirChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(treeViewDirChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
 	connect(listViewFileChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(listViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
+	connect(listViewFileChooser->model(), SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(listViewFileChooser_rowsInserted(const QModelIndex &, int, int)));
 
 	connect(toolButtonChooserPlay, SIGNAL(clicked()), qmc2MainWindow, SLOT(on_actionPlay_activated()));
 	connect(toolButtonChooserPlayEmbedded, SIGNAL(clicked()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
@@ -1131,6 +1132,7 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 		delete selectionModel;
 		listViewFileChooser->setRootIndex(fileModel->setRootPath(path));
 		connect(listViewFileChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(listViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
+		connect(listViewFileChooser->model(), SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(listViewFileChooser_rowsInserted(const QModelIndex &, int, int)));
 	}
 }
 
