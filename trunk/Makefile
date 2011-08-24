@@ -31,6 +31,22 @@ ifndef MINGW
 MINGW = 0
 endif
 
+# >>> ALTERNATE_FSM <<<
+#
+# Enable (1) or disable (0) the use of the alternate 'file system model'.
+#
+# We usually use Qt's standard QFileSystemModel, but it appears to be too slow
+# on Windows, so that's the recommended alternative which is supposed to be as
+# fast as the Windows Explorer.
+#
+ifndef ALTERNATE_FSM
+ifeq '$(MINGW)' '1'
+ALTERNATE_FSM = 1
+else
+ALTERNATE_FSM = 0
+endif
+endif
+
 # >>> AUDIOEFFECTDIALOGS <<<
 #
 # Enable (1) or disable (0) support for audio-effect dialogs
@@ -722,6 +738,10 @@ ifeq '$(AUDIOEFFECTDIALOGS)' '0'
 DEFINES += QMC2_NOEFFECTDIALOGS
 endif
 
+ifeq '$(ALTERNATE_FSM)' '1'
+DEFINES += QMC2_ALTERNATE_FSM
+endif
+
 # setup SDL library and include paths
 ifdef SDL_LIBS
 undef SDL_LIBS
@@ -1216,6 +1236,7 @@ config:
 	@echo "Current build configuration:"
 	@echo ""
 	@echo "### Option ###       ### Description ###                          ### Value ###" 
+	@echo "ALTERNATE_FSM        Enable use of alt. file system model (0, 1)  $(ALTERNATE_FSM)"
 	@echo "ARCADE_OPENGL        Enable use of OpenGL for arcade mode (0, 1)  $(ARCADE_OPENGL)"
 	@echo "ARCH                 Target system's OS / architecture name       $(ARCH)"
 	@echo "AUDIOEFFECTDIALOGS   Enable audio-effect dialogs (0, 1)           $(AUDIOEFFECTDIALOGS)"

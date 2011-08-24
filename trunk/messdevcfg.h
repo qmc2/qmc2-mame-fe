@@ -3,8 +3,11 @@
 
 #include <QItemDelegate>
 #include <QModelIndex>
-#include <QFileSystemModel>
 #include <QXmlDefaultHandler>
+#include <QFileSystemModel>
+#if defined(QMC2_ALTERNATE_FSM)
+#include "filesystemmodel.h"
+#endif
 
 #include "ui_messdevcfg.h"
 
@@ -62,10 +65,14 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     QMenu *dirChooserContextMenu;
     QMenu *fileChooserContextMenu;
     QAction *actionRemoveConfiguration;
-    QFileSystemModel *dirModel;
+#if defined(QMC2_ALTERNATE_FSM)
+    FileSystemModel *fileModel;
+#else
     QFileSystemModel *fileModel;
-    QModelIndex modelIndexDirModel;
+#endif
+    QFileSystemModel *dirModel;
     QModelIndex modelIndexFileModel;
+    QModelIndex modelIndexDirModel;
 
     MESSDeviceConfigurator(QString, QWidget *);
     ~MESSDeviceConfigurator();
@@ -102,7 +109,6 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void actionRemoveConfiguration_activated();
     void treeViewDirChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
     void listViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
-    void listViewFileChooser_rowsInserted(const QModelIndex &, int, int) { listViewFileChooser->update(); };
     void dirChooserUseCurrentAsDefaultDirectory();
 
     // misc
