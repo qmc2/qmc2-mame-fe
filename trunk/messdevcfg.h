@@ -94,6 +94,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void on_comboBoxDeviceInstanceChooser_activated(const QString &);
     void on_treeViewDirChooser_customContextMenuRequested(const QPoint &);
     void on_listViewFileChooser_customContextMenuRequested(const QPoint &);
+    void on_listViewFileChooser_activated(const QModelIndex &);
 
     // other callbacks
     void actionSelectDefaultDeviceDirectory_triggered();

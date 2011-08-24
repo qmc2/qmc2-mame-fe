@@ -1221,6 +1221,15 @@ void MESSDeviceConfigurator::on_listViewFileChooser_customContextMenuRequested(c
 	}
 }
 
+void MESSDeviceConfigurator::on_listViewFileChooser_activated(const QModelIndex &index)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_listViewFileChooser_activated(const QModelIndex &index = ...)");
+#endif
+
+	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+}
+
 MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent)
 {
 #ifdef QMC2_DEBUG
