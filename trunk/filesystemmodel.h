@@ -20,10 +20,11 @@ class FileSystemItem : public QObject
 				mFileInfo = QFileInfo(path);
 				mFileName = mFileInfo.fileName();
 				mAbsDirPath = parent->absoluteDirPath();
-				mAbsFilePath = mAbsDirPath + QString("/") + mFileName;
+				mAbsFilePath = mAbsDirPath + QString("/") + path;
+				mFileInfo = QFileInfo(mAbsFilePath);
 			} else {
-				mFileInfo = QFileInfo();
 				mAbsDirPath = path;
+				mFileInfo = QFileInfo();
 			}
 		}
 
@@ -235,20 +236,7 @@ class FileSystemModel : public QAbstractItemModel
 
 		QModelIndex parent(const QModelIndex &index) const
 		{
-			if( !index.isValid() )
-				return QModelIndex();
-
-			FileSystemItem* childItem = getItem(index);
-
-			if ( !childItem )
-				return QModelIndex();
-
-			FileSystemItem *parentItem = childItem->parent();
-
-			if ( !parentItem )
-				return QModelIndex();
-
-			return createIndex(parentItem->childNumber(), NAME, parentItem);
+			return createIndex(mRootItem->childNumber(), NAME, mRootItem);
 		}
 
 		QString absolutePath(const QModelIndex &index)
