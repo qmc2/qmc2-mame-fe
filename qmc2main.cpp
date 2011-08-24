@@ -1522,7 +1522,12 @@ void MainWindow::on_actionPlay_activated()
 				QString instance = qmc2MESSDeviceConfigurator->comboBoxDeviceInstanceChooser->currentText();
 				QModelIndexList indexList = qmc2MESSDeviceConfigurator->listViewFileChooser->selectionModel()->selectedIndexes();
 				if ( indexList.count() > 0 && instance != tr("No devices available") ) {
+#if !defined(QMC2_ALTERNATE_FSM)
 					QString file = qmc2MESSDeviceConfigurator->fileModel->fileInfo(indexList[0]).absoluteFilePath();
+#else
+					QString file = qmc2MESSDeviceConfigurator->fileModel->absolutePath(indexList[0]);
+#endif
+
 #if defined(Q_WS_WIN)
 					args << QString("-%1").arg(instance) << file.replace('/', '\\');
 #else

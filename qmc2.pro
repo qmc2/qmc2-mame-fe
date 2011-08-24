@@ -114,6 +114,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			softwarelist.h \
 			direditwidget.h \
 			fileeditwidget.h \
+			filesystemmodel.h \
 			floateditwidget.h \
 			comboeditwidget.h \
 			detailsetup.h \
