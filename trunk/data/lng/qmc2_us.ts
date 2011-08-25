@@ -4718,7 +4718,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.ui" line="415"/>
         <location filename="../../messdevcfg.ui" line="418"/>
-        <source>Number of files</source>
+        <source>Number of files scanned</source>
         <translation></translation>
     </message>
     <message>

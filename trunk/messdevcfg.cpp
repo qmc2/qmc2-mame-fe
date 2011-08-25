@@ -1095,8 +1095,6 @@ void MESSDeviceConfigurator::setupFileChooser()
 	for (int i = treeViewDirChooser->header()->count(); i > 0; i--) treeViewDirChooser->setColumnHidden(i, true);
 	treeViewDirChooser->setHeaderHidden(true);
 
-	lcdNumberFileCounter->display(0);
-
 #if !defined(QMC2_ALTERNATE_FSM)
 	fileModel = new QFileSystemModel(this);
 	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
@@ -1110,6 +1108,7 @@ void MESSDeviceConfigurator::setupFileChooser()
 		listViewFileChooser->setRootIndex(fileModel->setRootPath(path));
 
 #else
+	lcdNumberFileCounter->display(0);
 	fileModel = new FileSystemModel(this);
 	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
 	fileModel->setCurrentPath(path, false);
@@ -1136,8 +1135,6 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 	toolButtonChooserPlay->setEnabled(false);
 	toolButtonChooserPlayEmbedded->setEnabled(false);
 
-	lcdNumberFileCounter->display(0);
-
 	QString path = dirModel->fileInfo(selected.indexes()[0]).absoluteFilePath();
 #if !defined(QMC2_ALTERNATE_FSM)
 	QFileInfo fi(path);
@@ -1156,6 +1153,8 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 		connect(listViewFileChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(listViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
 	}
 #else
+	lcdNumberFileCounter->display(0);
+	lcdNumberFileCounter->update();
 	fileModel->setCurrentPath(path);
 	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
 #endif
