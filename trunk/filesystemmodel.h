@@ -109,6 +109,8 @@ class FileSystemItem : public QObject
 	Q_OBJECT
 
 	public:
+		QList<FileSystemItem*> mChildren;
+
 		FileSystemItem(QString path, FileSystemItem* parent = 0)
 		{
 			mParent = parent;
@@ -138,8 +140,9 @@ class FileSystemItem : public QObject
 		void setRootPath(const QString &path)
 		{
 			if ( mParent == 0 ) {
-				qDeleteAll(mChildren);
 				mAbsDirPath = path;
+				qDeleteAll(mChildren);
+				mChildren.clear();
 			}
 		}
 
@@ -197,7 +200,6 @@ class FileSystemItem : public QObject
 
 	private:
 		FileSystemItem* mParent;
-		QList<FileSystemItem*> mChildren;
 		QFileInfo mFileInfo;
 		QString mAbsFilePath;
 		QString mAbsDirPath;
@@ -309,9 +311,14 @@ class FileSystemModel : public QAbstractItemModel
 			if ( !item )
 				return QVariant();
 
+			if ( !mRootItem->mChildren.contains(item) )
+				return QVariant();
+
 			if ( role == Qt::DecorationRole /* && index.column() == int(NAME) */ )
 				return mIconFactory->icon(item->fileInfo());
 
+			QVariant data = item->fileName();
+			/*
 			QVariant data;
 			Column col = Column(index.column());
 
@@ -319,7 +326,6 @@ class FileSystemModel : public QAbstractItemModel
 				case NAME:
 					data = item->fileName();
 					break;
-				/*
 				case SIZE:
 					data = item->fileInfo().size();
 					break;
@@ -329,11 +335,11 @@ class FileSystemModel : public QAbstractItemModel
 				case DATE:
 					data = item->fileInfo().lastModified().toString(Qt::LocalDate);
 					break;
-				*/
 				default:
-					data = "";
+					QVariant();
 					break;
 			}
+			*/
 
 			return data;
 		}
