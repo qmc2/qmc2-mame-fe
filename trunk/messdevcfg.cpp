@@ -1210,7 +1210,8 @@ void MESSDeviceConfigurator::on_comboBoxDeviceInstanceChooser_activated(const QS
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_comboBoxDeviceInstanceChooser_activated(const QString &text = %1)").arg(text));
 #endif
 
-	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
+	if ( checkBoxChooserFilter->isChecked() )
+		on_checkBoxChooserFilter_toggled(true);
 }
 
 void MESSDeviceConfigurator::on_treeViewDirChooser_customContextMenuRequested(const QPoint &p)
