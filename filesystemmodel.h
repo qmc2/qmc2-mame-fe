@@ -6,10 +6,12 @@
 #include <QDateTime>
 #include <QFileIconProvider>
 #include <QAbstractItemModel>
+#include <QApplication>
 #include <QThread>
 #include <QMutex>
 #include <QWaitCondition>
 #include <QTimer>
+#include <QTest>
 
 #define QMC2_DIRENTRY_THRESHOLD		100
 
@@ -71,6 +73,8 @@ class DirectoryScannerThread : public QThread
 								printf("DirectoryScannerThread: %s\n", (const char *)entry.toAscii());
 #endif
 							dirEntries.clear();
+							QThread::yieldCurrentThread();
+							QTest::qSleep(1);
 						}
 					}
 					if ( !stopScanning && !quitFlag ) {
