@@ -110,7 +110,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void treeViewDirChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
     void listViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
     void dirChooserUseCurrentAsDefaultDirectory();
-    void fileModel_rowsInserted(const QModelIndex &, int, int) { listViewFileChooser->update(); }
+    void fileModel_rowsInserted(const QModelIndex &, int, int);
 
     // misc
     void editorDataChanged(const QString &);
