@@ -119,7 +119,6 @@ class FileSystemItem : public QObject
 				mFileName = mFileInfo.fileName();
 				mAbsDirPath = parent->absoluteDirPath();
 				mAbsFilePath = mAbsDirPath + QString("/") + path;
-				mFileInfo = QFileInfo(mAbsFilePath);
 			} else {
 				mAbsDirPath = path;
 				mFileInfo = QFileInfo();
@@ -212,11 +211,11 @@ class FileSystemModel : public QAbstractItemModel
 	public:
 		DirectoryScannerThread *dirScanner;
 
-		enum Column {NAME, SIZE, TYPE, DATE, LASTCOLUMN};
+		enum Column {NAME, /* SIZE, TYPE, DATE, */ LASTCOLUMN};
 
 		FileSystemModel(QObject *parent) : QAbstractItemModel(parent), mIconFactory(new QFileIconProvider())
 		{
-			mHeaders << tr("Name") << tr("Size") << tr("Type") << tr("Date modified");
+			mHeaders << tr("Name"); // << tr("Size") << tr("Type") << tr("Date modified");
 			mRootItem = new FileSystemItem("", 0);
 			mCurrentPath = "";
 			mFileCount = mStaleCount = 0;
@@ -244,7 +243,8 @@ class FileSystemModel : public QAbstractItemModel
 					case Qt::DisplayRole:
 						return mHeaders.at(section);
 					case Qt::TextAlignmentRole:
-						return int(SIZE) == section ? Qt::AlignRight : Qt::AlignLeft;
+						return Qt::AlignLeft;
+						//return int(SIZE) == section ? Qt::AlignRight : Qt::AlignLeft;
 				}
 			}
 
@@ -296,8 +296,10 @@ class FileSystemModel : public QAbstractItemModel
 			if ( !index.isValid() )
 				return QVariant();
 
+			/*
 			if( int(SIZE) == index.column() && Qt::TextAlignmentRole == role )
 				return Qt::AlignRight;
+			*/
 
 			if ( role != Qt::DisplayRole && role != Qt::DecorationRole )
 				return QVariant();
@@ -307,7 +309,7 @@ class FileSystemModel : public QAbstractItemModel
 			if ( !item )
 				return QVariant();
 
-			if ( role == Qt::DecorationRole && index.column() == int(NAME) )
+			if ( role == Qt::DecorationRole /* && index.column() == int(NAME) */ )
 				return mIconFactory->icon(item->fileInfo());
 
 			QVariant data;
@@ -317,6 +319,7 @@ class FileSystemModel : public QAbstractItemModel
 				case NAME:
 					data = item->fileName();
 					break;
+				/*
 				case SIZE:
 					data = item->fileInfo().size();
 					break;
@@ -326,6 +329,7 @@ class FileSystemModel : public QAbstractItemModel
 				case DATE:
 					data = item->fileInfo().lastModified().toString(Qt::LocalDate);
 					break;
+				*/
 				default:
 					data = "";
 					break;
