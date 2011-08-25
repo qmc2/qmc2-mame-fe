@@ -2,9 +2,103 @@
 #define _FILESYSTEMMODEL_H_
 
 #include <QDir>
+#include <QDirIterator>
 #include <QDateTime>
 #include <QFileIconProvider>
 #include <QAbstractItemModel>
+#include <QThread>
+#include <QMutex>
+#include <QWaitCondition>
+#include <QTimer>
+
+#define QMC2_DIRENTRY_THRESHOLD		100
+
+class DirectoryScannerThread : public QThread
+{
+	Q_OBJECT
+
+	public:
+		QMutex waitMutex;
+		QWaitCondition waitCondition;
+		bool isScanning;
+		bool stopScanning;
+		bool quitFlag;
+		bool isReady;
+		QString dirPath;
+		QStringList dirEntries;
+		QStringList nameFilters;
+
+		DirectoryScannerThread(QString path, QObject *parent = 0) : QThread(parent)
+		{
+			isReady = isScanning = stopScanning = quitFlag = false;
+			dirPath = path;
+			start();
+		}
+
+		~DirectoryScannerThread()
+		{
+			stopScanning = quitFlag = true;
+			quit();
+		}
+
+	protected:
+		void run()
+		{
+			while ( !quitFlag ) {
+#if defined(QMC2_DEBUG)
+				printf("DirectoryScannerThread: waiting\n");
+#endif
+				waitMutex.lock();
+				isReady = true;
+				waitCondition.wait(&waitMutex);
+				waitMutex.unlock();
+#if defined(QMC2_DEBUG)
+				printf("DirectoryScannerThread: starting scan of %s\n", (const char *)dirPath.toAscii());
+#endif
+				if ( !stopScanning && !quitFlag ) {
+					waitMutex.lock();
+					isScanning = true;
+					stopScanning = false;
+					dirEntries.clear();
+					QDirIterator dirIterator(dirPath, nameFilters, QDir::Files);
+					while ( dirIterator.hasNext() && !stopScanning && !quitFlag ) {
+						dirIterator.next();
+						dirEntries << dirIterator.fileName();
+						if ( dirEntries.count() >= QMC2_DIRENTRY_THRESHOLD ) {
+							emit entriesAvailable(dirEntries);
+#if defined(QMC2_DEBUG)
+							foreach (QString entry, dirEntries)
+								printf("DirectoryScannerThread: %s\n", (const char *)entry.toAscii());
+#endif
+							dirEntries.clear();
+						}
+					}
+					if ( !stopScanning && !quitFlag ) {
+						if ( dirEntries.count() > 0 ) {
+							emit entriesAvailable(dirEntries);
+#if defined(QMC2_DEBUG)
+							foreach (QString entry, dirEntries)
+								printf("DirectoryScannerThread: %s\n", (const char *)entry.toAscii());
+#endif
+						}
+						emit finished();
+					}
+					isScanning = false;
+					waitMutex.unlock();
+				}
+#if defined(QMC2_DEBUG)
+				printf("DirectoryScannerThread: finished scan of %s\n", (const char *)dirPath.toAscii());
+#endif
+			}
+#if defined(QMC2_DEBUG)
+			printf("DirectoryScannerThread: ended\n");
+#endif
+		}
+
+	signals:
+		void entriesAvailable(const QStringList &);
+		void finished();
+};
 
 class FileSystemItem : public QObject
 {
@@ -112,17 +206,29 @@ class FileSystemModel : public QAbstractItemModel
 	Q_OBJECT
 
 	public:
+		DirectoryScannerThread *dirScanner;
+
 		enum Column {NAME, SIZE, TYPE, DATE, LASTCOLUMN};
 
-		FileSystemModel(QObject* parent) : QAbstractItemModel(parent), mIconFactory(new QFileIconProvider())
+		FileSystemModel(QObject *parent) : QAbstractItemModel(parent), mIconFactory(new QFileIconProvider())
 		{
 			mHeaders << tr("Name") << tr("Size") << tr("Type") << tr("Date modified");
 			mRootItem = new FileSystemItem("", 0);
 			mCurrentPath = "";
+			mFileCount = mStaleCount = 0;
+			dirScanner = new DirectoryScannerThread(mRootItem->absoluteDirPath());
+			connect(dirScanner, SIGNAL(entriesAvailable(const QStringList &)), this, SLOT(scannerEntriesAvailable(const QStringList &)));
 		}
 
 		~FileSystemModel()
 		{
+			if ( dirScanner ) {
+				dirScanner->stopScanning = true;
+				dirScanner->quitFlag = true;
+				dirScanner->waitCondition.wakeAll();
+				dirScanner->deleteLater();
+				dirScanner = NULL;
+			}
 			delete mRootItem;
 			delete mIconFactory;
 		}
@@ -141,6 +247,23 @@ class FileSystemModel : public QAbstractItemModel
 			return QVariant();
 		}
 
+		virtual bool canFetchMore(const QModelIndex &) const
+		{
+			return (mStaleCount > 0);
+		}
+
+		virtual void fetchMore(const QModelIndex &)
+		{
+			int itemsToFetch = qMin(QMC2_DIRENTRY_THRESHOLD, mStaleCount);
+			beginInsertRows(QModelIndex(), mFileCount, mFileCount + itemsToFetch - 1);
+			mFileCount += itemsToFetch;
+			mStaleCount -= itemsToFetch;
+			endInsertRows();
+#if defined(QMC2_DEBUG)
+			printf("mFileCount = %d, mStaleCount = %d\n", mFileCount, mStaleCount);
+#endif
+		}
+
 		Qt::ItemFlags flags(const QModelIndex &index) const
 		{
 			if ( !index.isValid() )
@@ -154,9 +277,9 @@ class FileSystemModel : public QAbstractItemModel
 			return LASTCOLUMN;
 		}
 
-		int rowCount(const QModelIndex &parent) const
+		int rowCount(const QModelIndex &) const
 		{
-			return mRootItem->childCount();
+			return mFileCount;
 		}
 
 		QVariant data(const QModelIndex &index, int role) const
@@ -254,13 +377,17 @@ class FileSystemModel : public QAbstractItemModel
 			return mCurrentPath;
 		}
 
-		QModelIndex setCurrentPath(const QString &path)
+		QModelIndex setCurrentPath(const QString &path, bool scan = true)
 		{
+			mCurrentPath = path;
+			if ( dirScanner->isScanning )
+				dirScanner->stopScanning = true;
 			mRootItem->deleteLater();
 			mRootItem = new FileSystemItem(path, 0);
-			mCurrentPath = path;
-			populateItem(mRootItem);
-			return index(path);
+			mFileCount = mStaleCount = 0;
+			if ( scan )
+				populateItems();
+			return rootIndex();
 		}
 
 		void setNameFilters(const QStringList &filters)
@@ -273,14 +400,28 @@ class FileSystemModel : public QAbstractItemModel
 			return setCurrentPath(mCurrentPath);
 		}
 
-	private:
-		void populateItem(FileSystemItem *item)
+	public slots:
+		void scannerEntriesAvailable(const QStringList &entryList)
 		{
-			QDir dir(item->absoluteDirPath());
-			dir.setNameFilters(mNameFilters);
-			QFileInfoList all = dir.entryInfoList(QDir::Files);
-			foreach (QFileInfo one, all)
-				new FileSystemItem(one.fileName(), item);
+			foreach (QString entry, entryList)
+				new FileSystemItem(entry, mRootItem);
+			mStaleCount += entryList.count();
+			fetchMore(QModelIndex());
+#if defined(QMC2_DEBUG)
+			printf("mFileCount = %d, mStaleCount = %d\n", mFileCount, mStaleCount);
+#endif
+		}
+
+	private slots:
+		void populateItems()
+		{
+			if ( dirScanner ) {
+				if ( !dirScanner->isReady ) QTimer::singleShot(0, this, SLOT(populateItems()));
+				dirScanner->dirPath = mRootItem->absoluteDirPath();
+				dirScanner->nameFilters = mNameFilters;
+				dirScanner->stopScanning = false;
+				dirScanner->waitCondition.wakeAll();
+			}
 		}
 
 		FileSystemItem *getItem(const QModelIndex &index) const
@@ -298,6 +439,8 @@ class FileSystemModel : public QAbstractItemModel
 		QStringList mHeaders;
 		QStringList mNameFilters;
 		QFileIconProvider *mIconFactory;
+		int mFileCount;
+		int mStaleCount;
 };
 
 #endif

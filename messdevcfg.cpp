@@ -184,6 +184,8 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   toolButtonCloneConfiguration->setIconSize(iconSize);
   toolButtonSaveConfiguration->setIconSize(iconSize);
   toolButtonRemoveConfiguration->setIconSize(iconSize);
+  toolButtonChooserPlay->setIconSize(iconSize);
+  toolButtonChooserPlayEmbedded->setIconSize(iconSize);
 
   // configuration menu
   configurationMenu = new QMenu(toolButtonConfiguration);
@@ -1102,11 +1104,10 @@ void MESSDeviceConfigurator::setupFileChooser()
 
 #else
 	fileModel = new FileSystemModel(this);
+	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
+	fileModel->setCurrentPath(path, false);
 	listViewFileChooser->setModel(fileModel);
-
-	fileModel->setCurrentPath(path);
 	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
-	listViewFileChooser->setRootIndex(fileModel->rootIndex());
 #endif
 
 	connect(treeViewDirChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(treeViewDirChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
@@ -1147,7 +1148,6 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 #else
 	fileModel->setCurrentPath(path);
 	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
-	listViewFileChooser->setRootIndex(fileModel->rootIndex());
 #endif
 }
 
