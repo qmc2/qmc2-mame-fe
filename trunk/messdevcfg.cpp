@@ -147,6 +147,10 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   toolButtonChooserPlayEmbedded->setVisible(false);
 #endif
 
+#if !defined(QMC2_ALTERNATE_FSM)
+  lcdNumberFileCounter->setVisible(false);
+#endif
+
   dirModel = NULL;
   fileModel = NULL;
 
@@ -1091,8 +1095,11 @@ void MESSDeviceConfigurator::setupFileChooser()
 	for (int i = treeViewDirChooser->header()->count(); i > 0; i--) treeViewDirChooser->setColumnHidden(i, true);
 	treeViewDirChooser->setHeaderHidden(true);
 
+	lcdNumberFileCounter->display(0);
+
 #if !defined(QMC2_ALTERNATE_FSM)
 	fileModel = new QFileSystemModel(this);
+	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
 	fileModel->setFilter(QDir::Files);
 	fileModel->setNameFilterDisables(false);
 	listViewFileChooser->setModel(fileModel);
@@ -1129,6 +1136,8 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 	toolButtonChooserPlay->setEnabled(false);
 	toolButtonChooserPlayEmbedded->setEnabled(false);
 
+	lcdNumberFileCounter->display(0);
+
 	QString path = dirModel->fileInfo(selected.indexes()[0]).absoluteFilePath();
 #if !defined(QMC2_ALTERNATE_FSM)
 	QFileInfo fi(path);
@@ -1136,6 +1145,7 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 		QAbstractItemModel *model = listViewFileChooser->model();
 		QItemSelectionModel *selectionModel = listViewFileChooser->selectionModel();
 		fileModel = new QFileSystemModel(this);
+		connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
 		fileModel->setFilter(QDir::Files);
 		fileModel->setNameFilterDisables(false);
 		on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
@@ -1250,6 +1260,15 @@ void MESSDeviceConfigurator::on_listViewFileChooser_activated(const QModelIndex 
 #endif
 
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+}
+
+void MESSDeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int, int)
+{
+#if defined(QMC2_ALTERNATE_FSM)
+	lcdNumberFileCounter->display(fileModel->rowCount());
+	lcdNumberFileCounter->update();
+#endif
+	listViewFileChooser->update();
 }
 
 MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent)

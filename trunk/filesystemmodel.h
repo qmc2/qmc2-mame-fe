@@ -286,6 +286,11 @@ class FileSystemModel : public QAbstractItemModel
 			return mFileCount;
 		}
 
+		int rowCount() const
+		{
+			return mFileCount;
+		}
+
 		QVariant data(const QModelIndex &index, int role) const
 		{
 			if ( !index.isValid() )
