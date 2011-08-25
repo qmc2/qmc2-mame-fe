@@ -58,6 +58,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     QString messMachineName;
     QMap<QString, QPair<QStringList, QStringList> > configurationMap;
     QMap<QString, QPair<QStringList, QStringList> > slotMap;
+    QMap<QString, QString> extensionInstanceMap;
     QMenu *deviceConfigurationListMenu;
     QMenu *configurationMenu;
     QMenu *deviceContextMenu;
