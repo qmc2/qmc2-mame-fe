@@ -1155,7 +1155,7 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 #else
 	lcdNumberFileCounter->display(0);
 	lcdNumberFileCounter->update();
-	fileModel->setCurrentPath(path);
+	fileModel->setCurrentPath(path, false);
 	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
 #endif
 }
@@ -1199,6 +1199,7 @@ void MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled)
 		fileModel->setNameFilters(QStringList());
 
 #if defined(QMC2_ALTERNATE_FSM)
+	listViewFileChooser->selectionModel()->reset();
 	fileModel->refresh();
 	listViewFileChooser->setRootIndex(fileModel->rootIndex());
 #endif
