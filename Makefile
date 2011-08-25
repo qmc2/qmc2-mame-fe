@@ -31,22 +31,6 @@ ifndef MINGW
 MINGW = 0
 endif
 
-# >>> ALTERNATE_FSM <<<
-#
-# Enable (1) or disable (0) the use of the alternate 'file system model'.
-#
-# We usually use Qt's standard QFileSystemModel, but it appears to be too slow
-# on Windows, so that's the recommended alternative which is supposed to be as
-# fast as the Windows Explorer.
-#
-ifndef ALTERNATE_FSM
-ifeq '$(MINGW)' '1'
-ALTERNATE_FSM = 1
-else
-ALTERNATE_FSM = 0
-endif
-endif
-
 # >>> AUDIOEFFECTDIALOGS <<<
 #
 # Enable (1) or disable (0) support for audio-effect dialogs
@@ -577,6 +561,20 @@ endif
 #
 ifndef YOUTUBE
 YOUTUBE = 1
+endif
+
+# >>> ALTERNATE_FSM <<<
+#
+# Enable (1) or disable (0) the use of QMC2's own performance optimized file
+# system model.
+#
+# If disabled, Qt's QFileSystemModel is used instead, but it is known to be very
+# slow on Windows so it's absolutely necessary there. However, our own FS model
+# is working nicely on Linux and Mac OS X as well, so it's the default on all
+# supported OSs.
+#
+ifndef ALTERNATE_FSM
+ALTERNATE_FSM = 1
 endif
 
 # >>> END OF MAKE OPTIONS -- PLEASE DO NOT CHANGE ANYTHING AFTER THIS LINE <<<
