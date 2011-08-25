@@ -412,10 +412,10 @@
               <item>
                <widget class="QLCDNumber" name="lcdNumberFileCounter">
                 <property name="toolTip">
-                 <string>Number of files</string>
+                 <string>Number of files scanned</string>
                 </property>
                 <property name="statusTip">
-                 <string>Number of files</string>
+                 <string>Number of files scanned</string>
                 </property>
                 <property name="frameShape">
                  <enum>QFrame::NoFrame</enum>
