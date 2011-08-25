@@ -161,6 +161,9 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   tabWidgetDeviceSetup->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DeviceSetupTab", 0).toInt());
   treeWidgetDeviceSetup->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DeviceSetupHeaderState").toByteArray());
   treeWidgetSlotOptions->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/SlotSetupHeaderState").toByteArray());
+  checkBoxChooserAutoSelect->blockSignals(true);
+  checkBoxChooserAutoSelect->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserAutoSelect", false).toBool());
+  checkBoxChooserAutoSelect->blockSignals(false);
   checkBoxChooserFilter->blockSignals(true);
   checkBoxChooserFilter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", false).toBool());
   checkBoxChooserFilter->blockSignals(false);
@@ -271,6 +274,7 @@ MESSDeviceConfigurator::~MESSDeviceConfigurator()
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/vSplitter", QSize(vSplitter->sizes().at(0), vSplitter->sizes().at(1)));
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserSplitter", QSize(splitterFileChooser->sizes().at(0), splitterFileChooser->sizes().at(1)));
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", checkBoxChooserFilter->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserAutoSelect", checkBoxChooserAutoSelect->isChecked());
   if ( comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserDeviceInstance", comboBoxDeviceInstanceChooser->currentText());
 }
@@ -522,12 +526,24 @@ bool MESSDeviceConfigurator::load()
   QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
   QStringList instances;
 
-  foreach (QTreeWidgetItem *item, items)
-	  if ( !item->text(QMC2_DEVCONFIG_COLUMN_NAME).isEmpty() )
-		  instances << item->text(QMC2_DEVCONFIG_COLUMN_NAME);
-
+  extensionInstanceMap.clear();
+  foreach (QTreeWidgetItem *item, items) {
+	  QString instance = item->text(QMC2_DEVCONFIG_COLUMN_NAME);
+	  if ( !instance.isEmpty() ) instances << instance;
+  }
   if ( instances.count() > 0 ) {
 	  qSort(instances);
+	  foreach (QString instance, instances) {
+		  QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems(instance, Qt::MatchExactly);
+		  if ( items.count() > 0 ) {
+			  QStringList extensions = items[0]->text(QMC2_DEVCONFIG_COLUMN_EXT).split("/", QString::SkipEmptyParts);
+			  foreach (QString extension, extensions) {
+				  extension = extension.toLower();
+				  if ( !extensionInstanceMap.contains(extension) )
+					 extensionInstanceMap[extension] = instance;
+			  }
+		  }
+	  }
 	  comboBoxDeviceInstanceChooser->insertItems(0, instances);
 	  QString oldFileChooserDeviceInstance = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserDeviceInstance", QString()).toString();
 	  if ( !oldFileChooserDeviceInstance.isEmpty() ) {
@@ -544,6 +560,7 @@ bool MESSDeviceConfigurator::load()
 	  tabFileChooser->setUpdatesEnabled(true);
 	  tabFileChooser->setEnabled(false);
   }
+
   comboBoxDeviceInstanceChooser->setUpdatesEnabled(true);
 
   if ( treeWidgetDeviceSetup->topLevelItemCount() == 1 ) {
@@ -1110,8 +1127,8 @@ void MESSDeviceConfigurator::setupFileChooser()
 #else
 	lcdNumberFileCounter->display(0);
 	fileModel = new FileSystemModel(this);
-	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
 	fileModel->setCurrentPath(path, false);
+	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
 	listViewFileChooser->setModel(fileModel);
 	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
 #endif
@@ -1169,6 +1186,23 @@ void MESSDeviceConfigurator::listViewFileChooser_selectionChanged(const QItemSel
 	if ( selected.indexes().count() > 0 ) {
 		toolButtonChooserPlay->setEnabled(true);
 		toolButtonChooserPlayEmbedded->setEnabled(true);
+		if ( checkBoxChooserAutoSelect->isChecked() ) {
+#if !defined(QMC2_ALTERNATE_FSM)
+			QString instance = extensionInstanceMap[fileModel->fileInfo(selected.indexes().first()).suffix().toLower()];
+#else
+			QFileInfo fi(fileModel->absolutePath(selected.indexes().first()));
+			QString instance = extensionInstanceMap[fi.suffix().toLower()];
+#endif
+
+			if ( !instance.isEmpty() ) {
+		  		int index = comboBoxDeviceInstanceChooser->findText(instance, Qt::MatchExactly);
+				if ( index >= 0 ) {
+					comboBoxDeviceInstanceChooser->blockSignals(true);
+				  	comboBoxDeviceInstanceChooser->setCurrentIndex(index);
+					comboBoxDeviceInstanceChooser->blockSignals(false);
+				}
+			}
+		}
 	} else {
 		toolButtonChooserPlay->setEnabled(false);
 		toolButtonChooserPlayEmbedded->setEnabled(false);
@@ -1254,10 +1288,10 @@ void MESSDeviceConfigurator::on_listViewFileChooser_customContextMenuRequested(c
 	}
 }
 
-void MESSDeviceConfigurator::on_listViewFileChooser_activated(const QModelIndex &index)
+void MESSDeviceConfigurator::on_listViewFileChooser_activated(const QModelIndex &)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_listViewFileChooser_activated(const QModelIndex &index = ...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_listViewFileChooser_activated(const QModelIndex &)");
 #endif
 
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
@@ -1265,6 +1299,10 @@ void MESSDeviceConfigurator::on_listViewFileChooser_activated(const QModelIndex 
 
 void MESSDeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int, int)
 {
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int, int)");
+#endif
+
 #if defined(QMC2_ALTERNATE_FSM)
 	lcdNumberFileCounter->display(fileModel->rowCount());
 	lcdNumberFileCounter->update();
