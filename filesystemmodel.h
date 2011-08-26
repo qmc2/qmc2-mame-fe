@@ -121,6 +121,7 @@ class FileSystemItem : public QObject
 				mFileName = mFileInfo.fileName();
 				mAbsDirPath = parent->absoluteDirPath();
 				mAbsFilePath = mAbsDirPath + QString("/") + path;
+				mFileInfo = QFileInfo(mAbsFilePath);
 			} else {
 				mAbsDirPath = path;
 				mFileInfo = QFileInfo();
