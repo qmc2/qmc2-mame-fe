@@ -6,12 +6,16 @@
 #include <QDateTime>
 #include <QFileIconProvider>
 #include <QAbstractItemModel>
+#include <QSortFilterProxyModel>
 #include <QApplication>
 #include <QThread>
 #include <QMutex>
 #include <QWaitCondition>
 #include <QTimer>
+#include <QLocale>
 #include <QTest>
+
+#include "macros.h"
 
 #define QMC2_DIRENTRY_THRESHOLD		100
 
@@ -59,6 +63,7 @@ class DirectoryScannerThread : public QThread
 #endif
 				if ( !stopScanning && !quitFlag ) {
 					waitMutex.lock();
+					isReady = false;
 					isScanning = true;
 					stopScanning = false;
 					dirEntries.clear();
@@ -214,17 +219,17 @@ class FileSystemModel : public QAbstractItemModel
 	public:
 		DirectoryScannerThread *dirScanner;
 
-		enum Column {NAME, /* SIZE, TYPE, DATE, */ LASTCOLUMN};
+		enum Column {NAME, SIZE, /*TYPE,*/ DATE, LASTCOLUMN};
 
 		FileSystemModel(QObject *parent) : QAbstractItemModel(parent), mIconFactory(new QFileIconProvider())
 		{
-			mHeaders << tr("Name"); // << tr("Size") << tr("Type") << tr("Date modified");
+			mHeaders << tr("Name") << tr("Size") /*<< tr("Type")*/ << tr("Date modified");
 			mRootItem = new FileSystemItem("", 0);
 			mCurrentPath = "";
 			mFileCount = mStaleCount = 0;
 			dirScanner = new DirectoryScannerThread(mRootItem->absoluteDirPath());
 			connect(dirScanner, SIGNAL(entriesAvailable(const QStringList &)), this, SLOT(scannerEntriesAvailable(const QStringList &)));
-			connect(dirScanner, SIGNAL(finished()), this, SLOT(scannerFinsihed()));
+			connect(dirScanner, SIGNAL(finished()), this, SLOT(scannerFinished()));
 		}
 
 		~FileSystemModel()
@@ -247,8 +252,7 @@ class FileSystemModel : public QAbstractItemModel
 					case Qt::DisplayRole:
 						return mHeaders.at(section);
 					case Qt::TextAlignmentRole:
-						return Qt::AlignLeft;
-						//return int(SIZE) == section ? Qt::AlignRight : Qt::AlignLeft;
+						return int(SIZE) == section || int(DATE) == section ? Qt::AlignRight : Qt::AlignLeft;
 				}
 			}
 
@@ -263,20 +267,19 @@ class FileSystemModel : public QAbstractItemModel
 		virtual void fetchMore(const QModelIndex &)
 		{
 			int itemsToFetch = qMin(QMC2_DIRENTRY_THRESHOLD, mStaleCount);
-			beginInsertRows(QModelIndex(), mFileCount, mFileCount + itemsToFetch - 1);
+			int oldFileCount = mFileCount;
+			beginInsertRows(rootIndex(), mFileCount, mFileCount + itemsToFetch - 1);
 			mFileCount += itemsToFetch;
 			mStaleCount -= itemsToFetch;
 			endInsertRows();
 #if defined(QMC2_DEBUG)
 			printf("mFileCount = %d, mStaleCount = %d\n", mFileCount, mStaleCount);
 #endif
+			//emit dataChanged(createIndex(oldFileCount, 0), createIndex(mFileCount - 1, LASTCOLUMN));
 		}
 
 		Qt::ItemFlags flags(const QModelIndex &index) const
 		{
-			if ( !index.isValid() )
-				return 0;
-
 			return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 		}
 
@@ -300,10 +303,12 @@ class FileSystemModel : public QAbstractItemModel
 			if ( !index.isValid() )
 				return QVariant();
 
-			/*
-			if( int(SIZE) == index.column() && Qt::TextAlignmentRole == role )
-				return Qt::AlignRight;
-			*/
+			if ( role == Qt::TextAlignmentRole ) {
+				if ( int(SIZE) == index.column() || int(DATE) == index.column() )
+					return Qt::AlignRight;
+				else
+					return Qt::AlignLeft;
+			}
 
 			if ( role != Qt::DisplayRole && role != Qt::DecorationRole )
 				return QVariant();
@@ -313,14 +318,14 @@ class FileSystemModel : public QAbstractItemModel
 			if ( !item )
 				return QVariant();
 
+			/*
 			if ( !mRootItem->mChildren.contains(item) )
 				return QVariant();
+			*/
 
-			if ( role == Qt::DecorationRole /* && index.column() == int(NAME) */ )
+			if ( role == Qt::DecorationRole && index.column() == int(NAME) )
 				return mIconFactory->icon(item->fileInfo());
 
-			QVariant data = item->fileName();
-			/*
 			QVariant data;
 			Column col = Column(index.column());
 
@@ -329,11 +334,13 @@ class FileSystemModel : public QAbstractItemModel
 					data = item->fileName();
 					break;
 				case SIZE:
-					data = item->fileInfo().size();
+					data = humanReadable(item->fileInfo().size());
 					break;
+				/*
 				case TYPE:
 					data = mIconFactory->type(item->fileInfo());
 					break;
+				*/
 				case DATE:
 					data = item->fileInfo().lastModified().toString(Qt::LocalDate);
 					break;
@@ -341,9 +348,44 @@ class FileSystemModel : public QAbstractItemModel
 					QVariant();
 					break;
 			}
-			*/
 
 			return data;
+		}
+
+		QString humanReadable(quint64 value) const
+		{
+			static QString hrString;
+			static qreal hrValue;
+			static QLocale locale;
+
+#if __WORDSIZE == 64
+			if ( (qreal)value / (qreal)QMC2_ONE_KILOBYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+				hrValue = (qreal)value / (qreal)QMC2_ONE_KILOBYTE;
+				hrString = locale.toString(hrValue, 'f', 2) + QString(tr(" KB"));
+			} else if ( (qreal)value / (qreal)QMC2_ONE_MEGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+				hrValue = (qreal)value / (qreal)QMC2_ONE_MEGABYTE;
+				hrString = locale.toString(hrValue, 'f', 2) + QString(tr(" MB"));
+			} else if ( (qreal)value / (qreal)QMC2_ONE_GIGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+				hrValue = (qreal)value / (qreal)QMC2_ONE_GIGABYTE;
+				hrString = locale.toString(hrValue, 'f', 2) + QString(tr(" GB"));
+			} else {
+				hrValue = (qreal)value / (qreal)QMC2_ONE_TERABYTE;
+				hrString = locale.toString(hrValue, 'f', 2) + QString(tr(" TB"));
+			}
+#else
+			if ( (qreal)value / (qreal)QMC2_ONE_KILOBYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+				hrValue = (qreal)value / (qreal)QMC2_ONE_KILOBYTE;
+				hrString = locale.toString(hrValue, 'f', 2) + QString(tr(" KB"));
+			} else if ( (qreal)value / (qreal)QMC2_ONE_MEGABYTE < (qreal)QMC2_ONE_KILOBYTE ) {
+				hrValue = (qreal)value / (qreal)QMC2_ONE_MEGABYTE;
+				hrString = locale.toString(hrValue, 'f', 2) + QString(tr(" MB"));
+			} else {
+				hrValue = (qreal)value / (qreal)QMC2_ONE_GIGABYTE;
+				hrString = locale.toString(hrValue, 'f', 2) + QString(tr(" GB"));
+			}
+#endif
+
+			return hrString;
 		}
 
 		QModelIndex rootIndex()
@@ -353,10 +395,17 @@ class FileSystemModel : public QAbstractItemModel
 
 		QModelIndex index(int row, int column, const QModelIndex &parent) const
 		{
+			/*
 			if ( parent.column() != int(NAME) )
 				return QModelIndex();
+			*/
 
-			FileSystemItem *parentItem = getItem(parent);
+			FileSystemItem *parentItem;
+
+			if( parent.isValid() )
+				parentItem = getItem(parent);
+			else
+				parentItem = mRootItem;
 
 			if ( parentItem ) {
 				FileSystemItem *childItem = parentItem->childAt(row);
@@ -367,7 +416,7 @@ class FileSystemModel : public QAbstractItemModel
 			return QModelIndex();
 		}
 
-		QModelIndex index(const QString& path, int column = NAME) const
+		QModelIndex index(const QString &path, int column = NAME) const
 		{
 			if ( !path.isEmpty() ) {
 				FileSystemItem *item = mRootItem->matchPath(path);
@@ -380,7 +429,7 @@ class FileSystemModel : public QAbstractItemModel
 
 		QModelIndex parent(const QModelIndex &index) const
 		{
-			return createIndex(mRootItem->childNumber(), NAME, mRootItem);
+			return createIndex(mRootItem->childNumber(), index.column(), mRootItem);
 		}
 
 		QString absolutePath(const QModelIndex &index)
@@ -403,6 +452,7 @@ class FileSystemModel : public QAbstractItemModel
 			mCurrentPath = path;
 			if ( dirScanner->isScanning )
 				dirScanner->stopScanning = true;
+			mRootItem->setRootPath("");
 			mRootItem->deleteLater();
 			mRootItem = new FileSystemItem(path, 0);
 			mFileCount = mStaleCount = 0;
@@ -422,7 +472,7 @@ class FileSystemModel : public QAbstractItemModel
 		}
 
 	public slots:
-		void scannerFinsihed()
+		void scannerFinished()
 		{
 			emit finished();
 		}
@@ -442,7 +492,7 @@ class FileSystemModel : public QAbstractItemModel
 		void populateItems()
 		{
 			if ( dirScanner ) {
-				if ( !dirScanner->isReady ) QTimer::singleShot(0, this, SLOT(populateItems()));
+				if ( !dirScanner->isReady ) QTimer::singleShot(10, this, SLOT(populateItems()));
 				dirScanner->dirPath = mRootItem->absoluteDirPath();
 				dirScanner->nameFilters = mNameFilters;
 				dirScanner->stopScanning = false;
