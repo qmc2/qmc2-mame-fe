@@ -149,8 +149,9 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
 #if !defined(QMC2_ALTERNATE_FSM)
   lcdNumberFileCounter->setVisible(false);
+#else
+  fileProxyModel = NULL;
 #endif
-
   dirModel = NULL;
   fileModel = NULL;
 
@@ -1117,12 +1118,12 @@ void MESSDeviceConfigurator::setupFileChooser()
 	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
 	fileModel->setFilter(QDir::Files);
 	fileModel->setNameFilterDisables(false);
-	listViewFileChooser->setModel(fileModel);
+	treeViewFileChooser->setModel(fileModel);
 	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
 
 	QFileInfo fi(path);
 	if ( fi.isReadable() )
-		listViewFileChooser->setRootIndex(fileModel->setRootPath(path));
+		treeViewFileChooser->setRootIndex(fileModel->setRootPath(path));
 
 #else
 	fileModelRowInsertionCounter = 0;
@@ -1131,14 +1132,20 @@ void MESSDeviceConfigurator::setupFileChooser()
 	lcdNumberFileCounter->update();
 	fileModel = new FileSystemModel(this);
 	fileModel->setCurrentPath(path, false);
+	fileProxyModel = new QSortFilterProxyModel(this);
+	fileProxyModel->setSourceModel(fileModel);
 	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
 	connect(fileModel, SIGNAL(finished()), this, SLOT(fileModel_finished()));
-	listViewFileChooser->setModel(fileModel);
+	treeViewFileChooser->setModel(fileProxyModel);
+	fileChooserHeaderState = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState").toByteArray();
+  	treeViewFileChooser->header()->restoreState(fileChooserHeaderState);
+	//treeViewFileChooser->setColumnHidden(QMC2_FILECHOOSER_COLUMN_SIZE, true);
+	//treeViewFileChooser->setColumnHidden(QMC2_FILECHOOSER_COLUMN_DATE, true);
 	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
 #endif
 
 	connect(treeViewDirChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(treeViewDirChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
-	connect(listViewFileChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(listViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
+	connect(treeViewFileChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(treeViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
 
 	connect(toolButtonChooserPlay, SIGNAL(clicked()), qmc2MainWindow, SLOT(on_actionPlay_activated()));
 	connect(toolButtonChooserPlayEmbedded, SIGNAL(clicked()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
@@ -1160,33 +1167,33 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 #if !defined(QMC2_ALTERNATE_FSM)
 	QFileInfo fi(path);
 	if ( fi.isReadable() ) {
-		QAbstractItemModel *model = listViewFileChooser->model();
-		QItemSelectionModel *selectionModel = listViewFileChooser->selectionModel();
+		QAbstractItemModel *model = treeViewFileChooser->model();
+		QItemSelectionModel *selectionModel = treeViewFileChooser->selectionModel();
 		fileModel = new QFileSystemModel(this);
 		connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
 		fileModel->setFilter(QDir::Files);
 		fileModel->setNameFilterDisables(false);
 		on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
-		listViewFileChooser->setModel(fileModel);
+		treeViewFileChooser->setModel(fileModel);
 		delete model;
 		delete selectionModel;
-		listViewFileChooser->setRootIndex(fileModel->setRootPath(path));
-		connect(listViewFileChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(listViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
+		treeViewFileChooser->setRootIndex(fileModel->setRootPath(path));
+		connect(treeViewFileChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(treeViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
 	}
 #else
+	fileModel->setCurrentPath(path, false);
 	fileModelRowInsertionCounter = 0;
 	lcdNumberFileCounter->display(0);
 	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
 	lcdNumberFileCounter->update();
-	fileModel->setCurrentPath(path, false);
 	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
 #endif
 }
 
-void MESSDeviceConfigurator::listViewFileChooser_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
+void MESSDeviceConfigurator::treeViewFileChooser_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::listViewFileChooser_selectionChanged(constQItemSelection &selected = ..., const QItemSelection &deselected = ...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::treeViewFileChooser_selectionChanged(constQItemSelection &selected = ..., const QItemSelection &deselected = ...)");
 #endif
 
 	if ( selected.indexes().count() > 0 ) {
@@ -1196,7 +1203,7 @@ void MESSDeviceConfigurator::listViewFileChooser_selectionChanged(const QItemSel
 #if !defined(QMC2_ALTERNATE_FSM)
 			QString instance = extensionInstanceMap[fileModel->fileInfo(selected.indexes().first()).suffix().toLower()];
 #else
-			QFileInfo fi(fileModel->absolutePath(selected.indexes().first()));
+			QFileInfo fi(fileModel->absolutePath(fileProxyModel->mapToSource(selected.indexes().first())));
 			QString instance = extensionInstanceMap[fi.suffix().toLower()];
 #endif
 
@@ -1239,14 +1246,22 @@ void MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled)
 		fileModel->setNameFilters(QStringList());
 
 #if defined(QMC2_ALTERNATE_FSM)
-	listViewFileChooser->selectionModel()->reset();
 	fileModelRowInsertionCounter = 0;
 	lcdNumberFileCounter->display(0);
 	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
 	lcdNumberFileCounter->update();
+	QAbstractItemModel *oldModel = treeViewFileChooser->model();
+  	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState", treeViewFileChooser->header()->saveState());
+	fileProxyModel = new QSortFilterProxyModel(this);
+	fileProxyModel->setSourceModel(fileModel);
+	treeViewFileChooser->setModel(fileProxyModel);
+	fileChooserHeaderState = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState").toByteArray();
+  	treeViewFileChooser->header()->restoreState(fileChooserHeaderState);
+	connect(treeViewFileChooser->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeViewFileChooser_headerClicked(int)));
 	fileModel->refresh();
-	listViewFileChooser->setRootIndex(fileModel->rootIndex());
-	listViewFileChooser->setUpdatesEnabled(false);
+	treeViewFileChooser->setRootIndex(fileProxyModel->mapFromSource(fileModel->rootIndex()));
+	treeViewFileChooser->setUpdatesEnabled(false);
+	oldModel->deleteLater();
 #endif
 }
 
@@ -1286,26 +1301,31 @@ void MESSDeviceConfigurator::dirChooserUseCurrentAsDefaultDirectory()
 	}
 }
 
-void MESSDeviceConfigurator::on_listViewFileChooser_customContextMenuRequested(const QPoint &p)
+void MESSDeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_listViewFileChooser_customContextMenuRequested(const QPoint &p = ...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
-	modelIndexFileModel = listViewFileChooser->indexAt(p);
+	modelIndexFileModel = treeViewFileChooser->indexAt(p);
 	if ( modelIndexFileModel.isValid() ) {
-		fileChooserContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(listViewFileChooser->viewport()->mapToGlobal(p), fileChooserContextMenu));
+		fileChooserContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeViewFileChooser->viewport()->mapToGlobal(p), fileChooserContextMenu));
 		fileChooserContextMenu->show();
 	}
 }
 
-void MESSDeviceConfigurator::on_listViewFileChooser_activated(const QModelIndex &)
+void MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex &)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_listViewFileChooser_activated(const QModelIndex &)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex &)");
 #endif
 
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+}
+
+void MESSDeviceConfigurator::treeViewFileChooser_headerClicked(int)
+{
+  	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState", treeViewFileChooser->header()->saveState());
 }
 
 void MESSDeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int start, int end)
@@ -1322,14 +1342,15 @@ void MESSDeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int sta
 		doUpdate = true;
 	}
 	if ( doUpdate ) {
-		listViewFileChooser->setUpdatesEnabled(true);
-		listViewFileChooser->update();
-		listViewFileChooser->setUpdatesEnabled(false);
+		treeViewFileChooser->setUpdatesEnabled(true);
+		treeViewFileChooser->update();
+		treeViewFileChooser->setUpdatesEnabled(false);
 	}
+
 	lcdNumberFileCounter->display(fileModel->rowCount());
 	lcdNumberFileCounter->update();
 #else
-	listViewFileChooser->update();
+	treeViewFileChooser->update();
 #endif
 }
 
@@ -1340,7 +1361,9 @@ void MESSDeviceConfigurator::fileModel_finished()
 #endif
 
 #if defined(QMC2_ALTERNATE_FSM)
-	listViewFileChooser->setUpdatesEnabled(true);
+	treeViewFileChooser->setUpdatesEnabled(true);
+	treeViewFileChooser->update();
+	treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 #endif
 	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Outline);
 	lcdNumberFileCounter->update();

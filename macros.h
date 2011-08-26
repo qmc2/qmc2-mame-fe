@@ -122,6 +122,11 @@
 #define QMC2_DEVSETUP_TAB_SLOTCONFIG	1
 #define QMC2_DEVSETUP_TAB_FILECHOOSER	2
 
+// file chooser columns
+#define QMC2_FILECHOOSER_COLUMN_NAME	0
+#define QMC2_FILECHOOSER_COLUMN_SIZE	1
+#define QMC2_FILECHOOSER_COLUMN_DATE	2
+
 // page indizes for the software list tool box
 #define QMC2_SWLIST_KNOWN_SW_PAGE	0
 #define QMC2_SWLIST_FAVORITES_PAGE	1

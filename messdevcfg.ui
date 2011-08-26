@@ -509,7 +509,7 @@
                <bool>true</bool>
               </property>
              </widget>
-             <widget class="QListView" name="listViewFileChooser">
+             <widget class="QTreeView" name="treeViewFileChooser">
               <property name="contextMenuPolicy">
                <enum>Qt::CustomContextMenu</enum>
               </property>
@@ -519,6 +519,24 @@
               <property name="statusTip">
                <string>Choose a file to map</string>
               </property>
+              <property name="rootIsDecorated">
+               <bool>false</bool>
+              </property>
+              <property name="itemsExpandable">
+               <bool>false</bool>
+              </property>
+              <property name="sortingEnabled">
+               <bool>true</bool>
+              </property>
+              <property name="allColumnsShowFocus">
+               <bool>true</bool>
+              </property>
+              <property name="expandsOnDoubleClick">
+               <bool>false</bool>
+              </property>
+              <attribute name="headerShowSortIndicator" stdset="0">
+               <bool>true</bool>
+              </attribute>
              </widget>
             </widget>
            </item>
@@ -581,7 +599,7 @@
   <tabstop>toolButtonChooserPlay</tabstop>
   <tabstop>toolButtonChooserPlayEmbedded</tabstop>
   <tabstop>treeViewDirChooser</tabstop>
-  <tabstop>listViewFileChooser</tabstop>
+  <tabstop>treeViewFileChooser</tabstop>
   <tabstop>listWidgetDeviceConfigurations</tabstop>
  </tabstops>
  <resources>

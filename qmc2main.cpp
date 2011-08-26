@@ -1520,12 +1520,14 @@ void MainWindow::on_actionPlay_activated()
 	  switch ( qmc2MESSDeviceConfigurator->tabWidgetDeviceSetup->currentIndex() ) {
 		case QMC2_DEVSETUP_TAB_FILECHOOSER: {
 				QString instance = qmc2MESSDeviceConfigurator->comboBoxDeviceInstanceChooser->currentText();
-				QModelIndexList indexList = qmc2MESSDeviceConfigurator->listViewFileChooser->selectionModel()->selectedIndexes();
+				QModelIndexList indexList = qmc2MESSDeviceConfigurator->treeViewFileChooser->selectionModel()->selectedIndexes();
 				if ( indexList.count() > 0 && instance != tr("No devices available") ) {
 #if !defined(QMC2_ALTERNATE_FSM)
 					QString file = qmc2MESSDeviceConfigurator->fileModel->fileInfo(indexList[0]).absoluteFilePath();
 #else
-					QString file = qmc2MESSDeviceConfigurator->fileModel->absolutePath(indexList[0]);
+					FileSystemModel *fileModel = qmc2MESSDeviceConfigurator->fileModel;
+					QSortFilterProxyModel *fileProxyModel = qmc2MESSDeviceConfigurator->fileProxyModel;
+					QString file = fileModel->absolutePath(fileProxyModel->mapToSource(indexList[0]));
 #endif
 
 #if defined(Q_WS_WIN)

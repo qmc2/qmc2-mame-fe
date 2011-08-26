@@ -6,6 +6,7 @@
 #include <QXmlDefaultHandler>
 #include <QFileSystemModel>
 #if defined(QMC2_ALTERNATE_FSM)
+#include <QSortFilterProxyModel>
 #include "filesystemmodel.h"
 #endif
 
@@ -67,7 +68,9 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     QMenu *fileChooserContextMenu;
     QAction *actionRemoveConfiguration;
 #if defined(QMC2_ALTERNATE_FSM)
+    QByteArray fileChooserHeaderState;
     FileSystemModel *fileModel;
+    QSortFilterProxyModel *fileProxyModel;
     int fileModelRowInsertionCounter;
 #else
     QFileSystemModel *fileModel;
@@ -102,18 +105,19 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void on_checkBoxChooserFilter_toggled(bool);
     void on_comboBoxDeviceInstanceChooser_activated(const QString &);
     void on_treeViewDirChooser_customContextMenuRequested(const QPoint &);
-    void on_listViewFileChooser_customContextMenuRequested(const QPoint &);
-    void on_listViewFileChooser_activated(const QModelIndex &);
+    void on_treeViewFileChooser_customContextMenuRequested(const QPoint &);
+    void on_treeViewFileChooser_activated(const QModelIndex &);
 
     // other callbacks
     void actionSelectDefaultDeviceDirectory_triggered();
     void actionSelectFile_triggered();
     void actionRemoveConfiguration_activated();
     void treeViewDirChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
-    void listViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
+    void treeViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
     void dirChooserUseCurrentAsDefaultDirectory();
     void fileModel_rowsInserted(const QModelIndex &, int, int);
     void fileModel_finished();
+    void treeViewFileChooser_headerClicked(int);
 
     // misc
     void editorDataChanged(const QString &);
