@@ -1125,10 +1125,14 @@ void MESSDeviceConfigurator::setupFileChooser()
 		listViewFileChooser->setRootIndex(fileModel->setRootPath(path));
 
 #else
+	fileModelRowInsertionCounter = 0;
 	lcdNumberFileCounter->display(0);
+	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
+	lcdNumberFileCounter->update();
 	fileModel = new FileSystemModel(this);
 	fileModel->setCurrentPath(path, false);
 	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
+	connect(fileModel, SIGNAL(finished()), this, SLOT(fileModel_finished()));
 	listViewFileChooser->setModel(fileModel);
 	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
 #endif
@@ -1170,7 +1174,9 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 		connect(listViewFileChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(listViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
 	}
 #else
+	fileModelRowInsertionCounter = 0;
 	lcdNumberFileCounter->display(0);
+	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
 	lcdNumberFileCounter->update();
 	fileModel->setCurrentPath(path, false);
 	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
@@ -1234,8 +1240,13 @@ void MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled)
 
 #if defined(QMC2_ALTERNATE_FSM)
 	listViewFileChooser->selectionModel()->reset();
+	fileModelRowInsertionCounter = 0;
+	lcdNumberFileCounter->display(0);
+	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
+	lcdNumberFileCounter->update();
 	fileModel->refresh();
 	listViewFileChooser->setRootIndex(fileModel->rootIndex());
+	listViewFileChooser->setUpdatesEnabled(false);
 #endif
 }
 
@@ -1297,17 +1308,42 @@ void MESSDeviceConfigurator::on_listViewFileChooser_activated(const QModelIndex 
 	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
 }
 
-void MESSDeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int, int)
+void MESSDeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int start, int end)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int, int)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int start = ..., int end = ...)");
 #endif
 
 #if defined(QMC2_ALTERNATE_FSM)
+	fileModelRowInsertionCounter += end - start;
+	bool doUpdate = false;
+	if ( fileModelRowInsertionCounter > 1000 ) {
+		fileModelRowInsertionCounter = 0;
+		doUpdate = true;
+	}
+	if ( doUpdate ) {
+		listViewFileChooser->setUpdatesEnabled(true);
+		listViewFileChooser->update();
+		listViewFileChooser->setUpdatesEnabled(false);
+	}
 	lcdNumberFileCounter->display(fileModel->rowCount());
 	lcdNumberFileCounter->update();
-#endif
+#else
 	listViewFileChooser->update();
+#endif
+}
+
+void MESSDeviceConfigurator::fileModel_finished()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::fileModel_finished()");
+#endif
+
+#if defined(QMC2_ALTERNATE_FSM)
+	listViewFileChooser->setUpdatesEnabled(true);
+#endif
+	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Outline);
+	lcdNumberFileCounter->update();
 }
 
 MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent)

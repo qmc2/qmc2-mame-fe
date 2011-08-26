@@ -223,6 +223,7 @@ class FileSystemModel : public QAbstractItemModel
 			mFileCount = mStaleCount = 0;
 			dirScanner = new DirectoryScannerThread(mRootItem->absoluteDirPath());
 			connect(dirScanner, SIGNAL(entriesAvailable(const QStringList &)), this, SLOT(scannerEntriesAvailable(const QStringList &)));
+			connect(dirScanner, SIGNAL(finished()), this, SLOT(scannerFinsihed()));
 		}
 
 		~FileSystemModel()
@@ -420,6 +421,11 @@ class FileSystemModel : public QAbstractItemModel
 		}
 
 	public slots:
+		void scannerFinsihed()
+		{
+			emit finished();
+		}
+
 		void scannerEntriesAvailable(const QStringList &entryList)
 		{
 			foreach (QString entry, entryList)
@@ -460,6 +466,9 @@ class FileSystemModel : public QAbstractItemModel
 		QFileIconProvider *mIconFactory;
 		int mFileCount;
 		int mStaleCount;
+
+	signals:
+		void finished();
 };
 
 #endif
