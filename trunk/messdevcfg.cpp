@@ -1250,15 +1250,15 @@ void MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled)
 	lcdNumberFileCounter->display(0);
 	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
 	lcdNumberFileCounter->update();
+	fileModel->refresh();
 	QAbstractItemModel *oldModel = treeViewFileChooser->model();
-  	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState", treeViewFileChooser->header()->saveState());
+	fileChooserHeaderState = treeViewFileChooser->header()->saveState();
+  	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState", fileChooserHeaderState);
 	fileProxyModel = new QSortFilterProxyModel(this);
 	fileProxyModel->setSourceModel(fileModel);
 	treeViewFileChooser->setModel(fileProxyModel);
-	fileChooserHeaderState = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState").toByteArray();
   	treeViewFileChooser->header()->restoreState(fileChooserHeaderState);
 	connect(treeViewFileChooser->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeViewFileChooser_headerClicked(int)));
-	fileModel->refresh();
 	treeViewFileChooser->setUpdatesEnabled(false);
 	treeViewFileChooser->setRootIndex(fileProxyModel->mapFromSource(fileModel->rootIndex()));
 	delete oldModel;
