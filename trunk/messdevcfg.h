@@ -68,6 +68,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     QAction *actionRemoveConfiguration;
 #if defined(QMC2_ALTERNATE_FSM)
     FileSystemModel *fileModel;
+    int fileModelRowInsertionCounter;
 #else
     QFileSystemModel *fileModel;
 #endif
@@ -112,6 +113,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void listViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
     void dirChooserUseCurrentAsDefaultDirectory();
     void fileModel_rowsInserted(const QModelIndex &, int, int);
+    void fileModel_finished();
 
     // misc
     void editorDataChanged(const QString &);
