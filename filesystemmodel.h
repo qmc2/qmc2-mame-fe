@@ -450,14 +450,24 @@ class FileSystemModel : public QAbstractItemModel
 		QModelIndex setCurrentPath(const QString &path, bool scan = true)
 		{
 			mCurrentPath = path;
-			if ( dirScanner->isScanning )
-				dirScanner->stopScanning = true;
-			mRootItem->setRootPath("");
-			mRootItem->deleteLater();
-			mRootItem = new FileSystemItem(path, 0);
+
+			if ( dirScanner )
+				if ( dirScanner->isScanning ) {
+					dirScanner->stopScanning = true;
+					while ( dirScanner->isScanning ) QTest::qWait(1);
+				}
+
 			mFileCount = mStaleCount = 0;
+
+			FileSystemItem *oldRootItem = mRootItem;
+
+			mRootItem = new FileSystemItem(path, 0);
+
 			if ( scan )
 				populateItems();
+
+			delete oldRootItem;
+
 			return rootIndex();
 		}
 
