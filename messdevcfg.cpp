@@ -1259,9 +1259,9 @@ void MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled)
   	treeViewFileChooser->header()->restoreState(fileChooserHeaderState);
 	connect(treeViewFileChooser->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeViewFileChooser_headerClicked(int)));
 	fileModel->refresh();
-	treeViewFileChooser->setRootIndex(fileProxyModel->mapFromSource(fileModel->rootIndex()));
 	treeViewFileChooser->setUpdatesEnabled(false);
-	oldModel->deleteLater();
+	treeViewFileChooser->setRootIndex(fileProxyModel->mapFromSource(fileModel->rootIndex()));
+	delete oldModel;
 #endif
 }
 
