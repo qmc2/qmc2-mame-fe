@@ -1242,6 +1242,7 @@ void MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled)
 	lcdNumberFileCounter->display(0);
 	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
 	lcdNumberFileCounter->update();
+	treeViewFileChooser->selectionModel()->reset();
 	treeViewFileChooser->setUpdatesEnabled(false);
 	fileModel->refresh();
 	treeViewFileChooser->setRootIndex(fileModel->rootIndex());
