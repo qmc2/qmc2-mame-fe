@@ -1525,9 +1525,7 @@ void MainWindow::on_actionPlay_activated()
 #if !defined(QMC2_ALTERNATE_FSM)
 					QString file = qmc2MESSDeviceConfigurator->fileModel->fileInfo(indexList[0]).absoluteFilePath();
 #else
-					FileSystemModel *fileModel = qmc2MESSDeviceConfigurator->fileModel;
-					QSortFilterProxyModel *fileProxyModel = qmc2MESSDeviceConfigurator->fileProxyModel;
-					QString file = fileModel->absolutePath(fileProxyModel->mapToSource(indexList[0]));
+					QString file = qmc2MESSDeviceConfigurator->fileModel->absolutePath(indexList[0]);
 #endif
 
 #if defined(Q_WS_WIN)

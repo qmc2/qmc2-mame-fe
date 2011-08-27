@@ -78,8 +78,8 @@ class DirectoryScannerThread : public QThread
 								printf("DirectoryScannerThread: %s\n", (const char *)entry.toAscii());
 #endif
 							dirEntries.clear();
-							QThread::yieldCurrentThread();
-							QTest::qSleep(1);
+							//QThread::yieldCurrentThread();
+							//QTest::qSleep(1);
 						}
 					}
 					if ( !stopScanning && !quitFlag ) {
@@ -275,7 +275,7 @@ class FileSystemModel : public QAbstractItemModel
 #if defined(QMC2_DEBUG)
 			printf("mFileCount = %d, mStaleCount = %d\n", mFileCount, mStaleCount);
 #endif
-			//emit dataChanged(createIndex(oldFileCount, 0), createIndex(mFileCount - 1, LASTCOLUMN));
+			//emit dataChanged(createIndex(oldFileCount, 0), createIndex(mFileCount - 1, LASTCOLUMN - 1));
 		}
 
 		Qt::ItemFlags flags(const QModelIndex &index) const
@@ -283,17 +283,12 @@ class FileSystemModel : public QAbstractItemModel
 			return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 		}
 
-		int columnCount(const QModelIndex &) const
+		virtual int columnCount(const QModelIndex &parent =  QModelIndex()) const
 		{
 			return LASTCOLUMN;
 		}
 
-		int rowCount(const QModelIndex &) const
-		{
-			return mFileCount;
-		}
-
-		int rowCount() const
+		virtual int rowCount(const QModelIndex &parent = QModelIndex()) const
 		{
 			return mFileCount;
 		}
@@ -395,25 +390,12 @@ class FileSystemModel : public QAbstractItemModel
 
 		QModelIndex index(int row, int column, const QModelIndex &parent) const
 		{
-			/*
-			if ( parent.column() != int(NAME) )
-				return QModelIndex();
-			*/
+			FileSystemItem *childItem = mRootItem->childAt(row);
 
-			FileSystemItem *parentItem;
-
-			if( parent.isValid() )
-				parentItem = getItem(parent);
+			if ( childItem )
+				return createIndex(row, column, childItem);
 			else
-				parentItem = mRootItem;
-
-			if ( parentItem ) {
-				FileSystemItem *childItem = parentItem->childAt(row);
-				if ( childItem )
-					return createIndex(row, column, childItem);
-			}
-
-			return QModelIndex();
+				return QModelIndex();
 		}
 
 		QModelIndex index(const QString &path, int column = NAME) const
@@ -429,7 +411,7 @@ class FileSystemModel : public QAbstractItemModel
 
 		QModelIndex parent(const QModelIndex &index) const
 		{
-			return createIndex(mRootItem->childNumber(), index.column(), mRootItem);
+			return createIndex(mRootItem->childNumber(), 0, mRootItem);
 		}
 
 		QString absolutePath(const QModelIndex &index)

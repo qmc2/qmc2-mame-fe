@@ -149,8 +149,6 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
 #if !defined(QMC2_ALTERNATE_FSM)
   lcdNumberFileCounter->setVisible(false);
-#else
-  fileProxyModel = NULL;
 #endif
   dirModel = NULL;
   fileModel = NULL;
@@ -1132,13 +1130,11 @@ void MESSDeviceConfigurator::setupFileChooser()
 	lcdNumberFileCounter->update();
 	fileModel = new FileSystemModel(this);
 	fileModel->setCurrentPath(path, false);
-	fileProxyModel = new QSortFilterProxyModel(this);
-	fileProxyModel->setSourceModel(fileModel);
 	connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
 	connect(fileModel, SIGNAL(finished()), this, SLOT(fileModel_finished()));
-	treeViewFileChooser->setModel(fileProxyModel);
-	fileChooserHeaderState = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState").toByteArray();
-  	treeViewFileChooser->header()->restoreState(fileChooserHeaderState);
+	treeViewFileChooser->setModel(fileModel);
+  	treeViewFileChooser->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState").toByteArray());
+	connect(treeViewFileChooser->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeViewFileChooser_headerClicked(int)));
 	//treeViewFileChooser->setColumnHidden(QMC2_FILECHOOSER_COLUMN_SIZE, true);
 	//treeViewFileChooser->setColumnHidden(QMC2_FILECHOOSER_COLUMN_DATE, true);
 	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
@@ -1182,10 +1178,6 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 	}
 #else
 	fileModel->setCurrentPath(path, false);
-	fileModelRowInsertionCounter = 0;
-	lcdNumberFileCounter->display(0);
-	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
-	lcdNumberFileCounter->update();
 	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
 #endif
 }
@@ -1203,7 +1195,7 @@ void MESSDeviceConfigurator::treeViewFileChooser_selectionChanged(const QItemSel
 #if !defined(QMC2_ALTERNATE_FSM)
 			QString instance = extensionInstanceMap[fileModel->fileInfo(selected.indexes().first()).suffix().toLower()];
 #else
-			QFileInfo fi(fileModel->absolutePath(fileProxyModel->mapToSource(selected.indexes().first())));
+			QFileInfo fi(fileModel->absolutePath(selected.indexes().first()));
 			QString instance = extensionInstanceMap[fi.suffix().toLower()];
 #endif
 
@@ -1250,18 +1242,9 @@ void MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled)
 	lcdNumberFileCounter->display(0);
 	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
 	lcdNumberFileCounter->update();
-	fileModel->refresh();
-	QAbstractItemModel *oldModel = treeViewFileChooser->model();
-	fileChooserHeaderState = treeViewFileChooser->header()->saveState();
-  	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState", fileChooserHeaderState);
-	fileProxyModel = new QSortFilterProxyModel(this);
-	fileProxyModel->setSourceModel(fileModel);
-	treeViewFileChooser->setModel(fileProxyModel);
-  	treeViewFileChooser->header()->restoreState(fileChooserHeaderState);
-	connect(treeViewFileChooser->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeViewFileChooser_headerClicked(int)));
 	treeViewFileChooser->setUpdatesEnabled(false);
-	treeViewFileChooser->setRootIndex(fileProxyModel->mapFromSource(fileModel->rootIndex()));
-	delete oldModel;
+	fileModel->refresh();
+	treeViewFileChooser->setRootIndex(fileModel->rootIndex());
 #endif
 }
 
@@ -1336,17 +1319,12 @@ void MESSDeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int sta
 
 #if defined(QMC2_ALTERNATE_FSM)
 	fileModelRowInsertionCounter += end - start;
-	bool doUpdate = false;
 	if ( fileModelRowInsertionCounter > 1000 ) {
 		fileModelRowInsertionCounter = 0;
-		doUpdate = true;
-	}
-	if ( doUpdate ) {
 		treeViewFileChooser->setUpdatesEnabled(true);
 		treeViewFileChooser->update();
 		treeViewFileChooser->setUpdatesEnabled(false);
 	}
-
 	lcdNumberFileCounter->display(fileModel->rowCount());
 	lcdNumberFileCounter->update();
 #else
@@ -1363,10 +1341,12 @@ void MESSDeviceConfigurator::fileModel_finished()
 #if defined(QMC2_ALTERNATE_FSM)
 	treeViewFileChooser->setUpdatesEnabled(true);
 	treeViewFileChooser->update();
-	treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
-#endif
+	lcdNumberFileCounter->display(fileModel->rowCount());
 	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Outline);
 	lcdNumberFileCounter->update();
+	//fileModel->sort(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
+	//treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
+#endif
 }
 
 MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent)
