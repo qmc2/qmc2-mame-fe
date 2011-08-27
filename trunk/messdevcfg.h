@@ -6,7 +6,6 @@
 #include <QXmlDefaultHandler>
 #include <QFileSystemModel>
 #if defined(QMC2_ALTERNATE_FSM)
-#include <QSortFilterProxyModel>
 #include "filesystemmodel.h"
 #endif
 
@@ -68,9 +67,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     QMenu *fileChooserContextMenu;
     QAction *actionRemoveConfiguration;
 #if defined(QMC2_ALTERNATE_FSM)
-    QByteArray fileChooserHeaderState;
     FileSystemModel *fileModel;
-    QSortFilterProxyModel *fileProxyModel;
     int fileModelRowInsertionCounter;
 #else
     QFileSystemModel *fileModel;
