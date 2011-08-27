@@ -2460,24 +2460,24 @@ p, li { white-space: pre-wrap; }
         <location filename="../../filesystemmodel.h" line="364"/>
         <location filename="../../filesystemmodel.h" line="378"/>
         <source> KB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="367"/>
         <location filename="../../filesystemmodel.h" line="381"/>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="370"/>
         <location filename="../../filesystemmodel.h" line="384"/>
         <source> GB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="373"/>
         <source> TB</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Type</source>
@@ -4946,12 +4946,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.ui" line="389"/>
         <location filename="../../messdevcfg.ui" line="392"/>
         <source>Automatically select the first matching device instance when selecting a file with a valid extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecionar automaticamente a primeira instância condizente quando selecionar um arquivo com a extensão válida</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="395"/>
         <source>Auto-select</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto selecionar</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="402"/>
@@ -4968,7 +4968,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.ui" line="428"/>
         <location filename="../../messdevcfg.ui" line="431"/>
         <source>Number of files scanned</source>
-        <translation type="unfinished"></translation>
+        <translation>Número de arquivos escaneados</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="456"/>
