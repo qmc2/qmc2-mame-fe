@@ -200,13 +200,13 @@ class FileSystemItem : public QObject
 		{
 			switch ( column ) {
 				case SIZE: {
-						QMap<quint64, FileSystemItem *> map;
+						QMultiMap<quint64, FileSystemItem *> map;
 						foreach (FileSystemItem *item, mFiles) map.insert(item->fileInfo().size(), item);
 						mFiles = map.values();
 					}
 					break;
 				case DATE: {
-						QMap<QDateTime, FileSystemItem *> map;
+						QMultiMap<QDateTime, FileSystemItem *> map;
 						foreach (FileSystemItem *item, mFiles) map.insert(item->fileInfo().lastModified(), item);
 						mFiles = map.values();
 					}
