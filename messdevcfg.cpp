@@ -1359,7 +1359,7 @@ void MESSDeviceConfigurator::fileModel_finished()
 	treeViewFileChooser->setUpdatesEnabled(true);
 	treeViewFileChooser->update();
 	//fileModel->sort(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
-	//treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
+	treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 #endif
 }
 

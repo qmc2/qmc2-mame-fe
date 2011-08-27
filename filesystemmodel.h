@@ -114,7 +114,8 @@ class FileSystemItem : public QObject
 	Q_OBJECT
 
 	public:
-		QVector<FileSystemItem*> mFiles;
+		enum Column {NAME, SIZE, /*TYPE,*/ DATE, LASTCOLUMN};
+		QList<FileSystemItem*> mFiles;
 
 		FileSystemItem(QString path, FileSystemItem *parent = 0)
 		{
@@ -194,6 +195,36 @@ class FileSystemItem : public QObject
 			mFiles.append(file);
 		}
 
+
+		void sort(Qt::SortOrder sortOrder = Qt::AscendingOrder, int column = NAME)
+		{
+			switch ( column ) {
+				case SIZE: {
+						QMap<quint64, FileSystemItem *> map;
+						foreach (FileSystemItem *item, mFiles) map.insert(item->fileInfo().size(), item);
+						mFiles = map.values();
+					}
+					break;
+				case DATE: {
+						QMap<QDateTime, FileSystemItem *> map;
+						foreach (FileSystemItem *item, mFiles) map.insert(item->fileInfo().lastModified(), item);
+						mFiles = map.values();
+					}
+					break;
+				//case TYPE:
+				case NAME:
+				default: {
+						QMap<QString, FileSystemItem *> map;
+						foreach (FileSystemItem *item, mFiles) map.insert(item->fileName(), item);
+						mFiles = map.values();
+					}
+					break;
+			}
+
+			if ( sortOrder == Qt::DescendingOrder )
+				for (int k = 0; k < mFiles.size() / 2; k++) mFiles.swap(k, mFiles.size() - (1 + k));
+		}
+
 	private:
 		FileSystemItem* mParent;
 		QFileInfo mFileInfo;
@@ -207,9 +238,8 @@ class FileSystemModel : public QAbstractItemModel
 	Q_OBJECT
 
 	public:
-		DirectoryScannerThread *dirScanner;
-
 		enum Column {NAME, SIZE, /*TYPE,*/ DATE, LASTCOLUMN};
+		DirectoryScannerThread *dirScanner;
 
 		FileSystemModel(QObject *parent) : QAbstractItemModel(parent), mIconFactory(new QFileIconProvider())
 		{
@@ -339,6 +369,28 @@ class FileSystemModel : public QAbstractItemModel
 			return data;
 		}
 
+		virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder)
+		{
+			emit layoutAboutToBeChanged();
+			mRootItem->sort(order, column);
+			emit layoutChanged();
+		}
+
+		virtual QModelIndex index(int row, int column, const QModelIndex &parent) const
+		{
+			FileSystemItem *fileItem = mRootItem->fileAt(row);
+
+			if ( fileItem )
+				return createIndex(row, column, fileItem);
+			else
+				return QModelIndex();
+		}
+
+		virtual QModelIndex parent(const QModelIndex &index) const
+		{
+			return createIndex(0, 0, mRootItem);
+		}
+
 		QString humanReadable(quint64 value) const
 		{
 			static QString hrString;
@@ -375,27 +427,6 @@ class FileSystemModel : public QAbstractItemModel
 			return hrString;
 		}
 
-		QModelIndex rootIndex()
-		{
-			return createIndex(mRootItem->fileNumber(), 0, mRootItem);
-		}
-
-		virtual QModelIndex index(int row, int column, const QModelIndex &parent) const
-		{
-			FileSystemItem *fileItem = mRootItem->fileAt(row);
-
-			if ( fileItem )
-				return createIndex(row, column, fileItem);
-			else
-				return QModelIndex();
-		}
-
-		virtual QModelIndex parent(const QModelIndex &index) const
-		{
-			//return createIndex(mRootItem->fileNumber(), 0, mRootItem);
-			return createIndex(0, 0, mRootItem);
-		}
-
 		QString absolutePath(const QModelIndex &index)
 		{
 			FileSystemItem *item = static_cast<FileSystemItem*>(index.internalPointer());
@@ -404,6 +435,11 @@ class FileSystemModel : public QAbstractItemModel
 				return item->absoluteFilePath();
 			else
 				return QString();
+		}
+
+		QModelIndex rootIndex()
+		{
+			return createIndex(mRootItem->fileNumber(), 0, mRootItem);
 		}
 
 		QString currentPath() const
