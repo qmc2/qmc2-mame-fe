@@ -208,11 +208,11 @@ class FileSystemModel : public QAbstractItemModel
 	public:
 		DirectoryScannerThread *dirScanner;
 
-		enum Column {NAME, /*SIZE, TYPE, DATE,*/ LASTCOLUMN};
+		enum Column {NAME, SIZE, /*TYPE,*/ DATE, LASTCOLUMN};
 
 		FileSystemModel(QObject *parent) : QAbstractItemModel(parent), mIconFactory(new QFileIconProvider())
 		{
-			mHeaders << tr("Name") /*<< tr("Size") << tr("Type")<< tr("Date modified")*/;
+			mHeaders << tr("Name") << tr("Size") /*<< tr("Type")*/ << tr("Date modified");
 			mRootItem = new FileSystemItem("", 0);
 			mCurrentPath = "";
 			mFileCount = mStaleCount = 0;
@@ -241,8 +241,7 @@ class FileSystemModel : public QAbstractItemModel
 					case Qt::DisplayRole:
 						return mHeaders.at(section);
 					case Qt::TextAlignmentRole:
-						//return int(SIZE) == section || int(DATE) == section ? Qt::AlignRight : Qt::AlignLeft;
-						return Qt::AlignLeft;
+						return int(SIZE) == section || int(DATE) == section ? Qt::AlignRight : Qt::AlignLeft;
 				}
 			}
 
@@ -291,12 +290,10 @@ class FileSystemModel : public QAbstractItemModel
 				return QVariant();
 
 			if ( role == Qt::TextAlignmentRole ) {
-				/*
 				if ( int(SIZE) == index.column() || int(DATE) == index.column() )
 					return Qt::AlignRight;
 				else
-				*/
-				return Qt::AlignLeft;
+					return Qt::AlignLeft;
 			}
 
 			if ( role != Qt::DisplayRole && role != Qt::DecorationRole )
@@ -312,10 +309,9 @@ class FileSystemModel : public QAbstractItemModel
 				return QVariant();
 			*/
 
-			if ( role == Qt::DecorationRole /*&& index.column() == int(NAME)*/ )
+			if ( role == Qt::DecorationRole && index.column() == int(NAME) )
 				return mIconFactory->icon(item->fileInfo());
 
-			/*
 			QVariant data;
 			Column col = Column(index.column());
 
@@ -326,9 +322,11 @@ class FileSystemModel : public QAbstractItemModel
 				case SIZE:
 					data = humanReadable(item->fileInfo().size());
 					break;
+				/*
 				case TYPE:
 					data = mIconFactory->type(item->fileInfo());
 					break;
+				*/
 				case DATE:
 					data = item->fileInfo().lastModified().toString(Qt::LocalDate);
 					break;
@@ -336,8 +334,6 @@ class FileSystemModel : public QAbstractItemModel
 					QVariant();
 					break;
 			}
-			*/
-			QVariant data = item->fileName();
 
 			return data;
 		}
