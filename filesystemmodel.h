@@ -114,13 +114,13 @@ class FileSystemItem : public QObject
 	Q_OBJECT
 
 	public:
-		QVector<FileSystemItem*> mChildren;
+		QVector<FileSystemItem*> mFiles;
 
 		FileSystemItem(QString path, FileSystemItem *parent = 0)
 		{
 			mParent = parent;
 			if ( parent ) {
-				parent->addChild(this);
+				parent->addFile(this);
 				mFileInfo = QFileInfo(path);
 				mFileName = mFileInfo.fileName();
 				mAbsDirPath = parent->absoluteDirPath();
@@ -134,31 +134,34 @@ class FileSystemItem : public QObject
 
 		~FileSystemItem()
 		{
-			qDeleteAll(mChildren);
+			qDeleteAll(mFiles);
 		}
 
-		FileSystemItem* childAt(int position)
+		FileSystemItem* fileAt(int position)
 		{
-			return mChildren.value(position, 0);
+			return mFiles.value(position, 0);
 		}
 
 		void setRootPath(const QString &path)
 		{
 			if ( mParent == 0 ) {
 				mAbsDirPath = path;
-				qDeleteAll(mChildren);
-				mChildren.clear();
+				qDeleteAll(mFiles);
+				mFiles.clear();
 			}
 		}
 
-		int childCount() const
+		int fileCount() const
 		{
-			return mChildren.count();
+			return mFiles.count();
 		}
 
-		int childNumber() const
+		int fileNumber() const
 		{
-			return mChildNumber;
+			if ( mParent )
+				return mFiles.indexOf(const_cast<FileSystemItem*>(this));
+			else
+				return 0;
 		}
 
 		FileSystemItem* parent()
@@ -186,10 +189,9 @@ class FileSystemItem : public QObject
 			return mFileInfo;
 		}
 
-		void addChild(FileSystemItem *child)
+		void addFile(FileSystemItem *file)
 		{
-			mChildNumber = mChildren.count();
-			mChildren.append(child);
+			mFiles.append(file);
 		}
 
 	private:
@@ -198,7 +200,6 @@ class FileSystemItem : public QObject
 		QString mAbsFilePath;
 		QString mAbsDirPath;
 		QString mFileName;
-		int mChildNumber;
 };
 
 class FileSystemModel : public QAbstractItemModel
@@ -305,7 +306,7 @@ class FileSystemModel : public QAbstractItemModel
 				return QVariant();
 
 			/*
-			if ( !mRootItem->mChildren.contains(item) )
+			if ( !mRootItem->mFiles.contains(item) )
 				return QVariant();
 			*/
 
@@ -376,22 +377,23 @@ class FileSystemModel : public QAbstractItemModel
 
 		QModelIndex rootIndex()
 		{
-			return createIndex(mRootItem->childNumber(), 0, mRootItem);
+			return createIndex(mRootItem->fileNumber(), 0, mRootItem);
 		}
 
 		virtual QModelIndex index(int row, int column, const QModelIndex &parent) const
 		{
-			FileSystemItem *childItem = mRootItem->childAt(row);
+			FileSystemItem *fileItem = mRootItem->fileAt(row);
 
-			if ( childItem )
-				return createIndex(row, column, childItem);
+			if ( fileItem )
+				return createIndex(row, column, fileItem);
 			else
 				return QModelIndex();
 		}
 
 		virtual QModelIndex parent(const QModelIndex &index) const
 		{
-			return createIndex(mRootItem->childNumber(), 0, mRootItem);
+			//return createIndex(mRootItem->fileNumber(), 0, mRootItem);
+			return createIndex(0, 0, mRootItem);
 		}
 
 		QString absolutePath(const QModelIndex &index)
