@@ -274,6 +274,8 @@ MESSDeviceConfigurator::~MESSDeviceConfigurator()
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserSplitter", QSize(splitterFileChooser->sizes().at(0), splitterFileChooser->sizes().at(1)));
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", checkBoxChooserFilter->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserAutoSelect", checkBoxChooserAutoSelect->isChecked());
+  if ( !fileChooserHeaderState.isEmpty() )
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState", fileChooserHeaderState);
   if ( comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserDeviceInstance", comboBoxDeviceInstanceChooser->currentText());
 }
@@ -1135,8 +1137,8 @@ void MESSDeviceConfigurator::setupFileChooser()
 	treeViewFileChooser->setModel(fileModel);
   	treeViewFileChooser->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState").toByteArray());
 	connect(treeViewFileChooser->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeViewFileChooser_headerClicked(int)));
-	//treeViewFileChooser->setColumnHidden(QMC2_FILECHOOSER_COLUMN_SIZE, true);
-	//treeViewFileChooser->setColumnHidden(QMC2_FILECHOOSER_COLUMN_DATE, true);
+	connect(treeViewFileChooser->header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(treeViewFileChooser_sectionMoved(int, int, int)));
+	connect(treeViewFileChooser->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(treeViewFileChooser_sectionResized(int, int, int)));
 	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
 #endif
 
@@ -1243,7 +1245,6 @@ void MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled)
 	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
 	lcdNumberFileCounter->update();
 	treeViewFileChooser->selectionModel()->reset();
-	treeViewFileChooser->setModel(fileModel);
 	treeViewFileChooser->setUpdatesEnabled(false);
 	fileModel->refresh();
 	treeViewFileChooser->setRootIndex(fileModel->rootIndex());
@@ -1310,7 +1311,18 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex 
 
 void MESSDeviceConfigurator::treeViewFileChooser_headerClicked(int)
 {
-  	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState", treeViewFileChooser->header()->saveState());
+	fileChooserHeaderState = treeViewFileChooser->header()->saveState();
+  	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState", fileChooserHeaderState);
+}
+
+void MESSDeviceConfigurator::treeViewFileChooser_sectionMoved(int, int, int)
+{
+	treeViewFileChooser_headerClicked(0);
+}
+
+void MESSDeviceConfigurator::treeViewFileChooser_sectionResized(int, int, int)
+{
+	treeViewFileChooser_headerClicked(0);
 }
 
 void MESSDeviceConfigurator::fileModel_rowsInserted(const QModelIndex &, int start, int end)
