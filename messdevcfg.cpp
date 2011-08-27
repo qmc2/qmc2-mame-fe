@@ -1243,6 +1243,7 @@ void MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled)
 	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Flat);
 	lcdNumberFileCounter->update();
 	treeViewFileChooser->selectionModel()->reset();
+	treeViewFileChooser->setModel(fileModel);
 	treeViewFileChooser->setUpdatesEnabled(false);
 	fileModel->refresh();
 	treeViewFileChooser->setRootIndex(fileModel->rootIndex());
@@ -1340,11 +1341,11 @@ void MESSDeviceConfigurator::fileModel_finished()
 #endif
 
 #if defined(QMC2_ALTERNATE_FSM)
-	treeViewFileChooser->setUpdatesEnabled(true);
-	treeViewFileChooser->update();
 	lcdNumberFileCounter->display(fileModel->rowCount());
 	lcdNumberFileCounter->setSegmentStyle(QLCDNumber::Outline);
 	lcdNumberFileCounter->update();
+	treeViewFileChooser->setUpdatesEnabled(true);
+	treeViewFileChooser->update();
 	//fileModel->sort(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 	//treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 #endif
