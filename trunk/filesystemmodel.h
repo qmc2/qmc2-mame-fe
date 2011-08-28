@@ -494,8 +494,6 @@ class FileSystemModel : public QAbstractItemModel
 			if ( !mSearchPattern.isEmpty() ) {
 				filterPattern = mSearchPattern;
 				filterPattern = "*" + filterPattern.replace(' ', "* *") + "*";
-				filterPattern.replace(QString("*^"), "");
-				filterPattern.replace(QString("$*"), "");
 			}
 			if ( filterPattern.isEmpty() ) {
 				filteredCount = entryList.count();
