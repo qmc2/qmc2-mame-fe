@@ -105,7 +105,9 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void on_treeViewDirChooser_customContextMenuRequested(const QPoint &);
     void on_treeViewFileChooser_customContextMenuRequested(const QPoint &);
     void on_treeViewFileChooser_activated(const QModelIndex &);
+#if defined(QMC2_ALTERNATE_FSM)
     void on_toolButtonChooserReload_clicked();
+#endif
 
     // other callbacks
     void actionSelectDefaultDeviceDirectory_triggered();

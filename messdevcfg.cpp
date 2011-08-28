@@ -1366,6 +1366,7 @@ void MESSDeviceConfigurator::fileModel_finished()
 #endif
 }
 
+#if defined(QMC2_ALTERNATE_FSM)
 void MESSDeviceConfigurator::on_toolButtonChooserReload_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -1381,6 +1382,7 @@ void MESSDeviceConfigurator::on_toolButtonChooserReload_clicked()
 	toolButtonChooserReload->setEnabled(false);
 	QTimer::singleShot(0, fileModel, SLOT(refresh()));
 }
+#endif
 
 MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent)
 {
