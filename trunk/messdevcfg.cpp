@@ -149,6 +149,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
 #if !defined(QMC2_ALTERNATE_FSM)
   lcdNumberFileCounter->setVisible(false);
+  toolButtonChooserReload->setVisible(false);
 #endif
   dirModel = NULL;
   fileModel = NULL;
@@ -192,6 +193,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   toolButtonRemoveConfiguration->setIconSize(iconSize);
   toolButtonChooserPlay->setIconSize(iconSize);
   toolButtonChooserPlayEmbedded->setIconSize(iconSize);
+  toolButtonChooserReload->setIconSize(iconSize);
 
   // configuration menu
   configurationMenu = new QMenu(toolButtonConfiguration);
@@ -1360,6 +1362,15 @@ void MESSDeviceConfigurator::fileModel_finished()
 	treeViewFileChooser->update();
 	treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 #endif
+}
+
+void MESSDeviceConfigurator::on_toolButtonChooserReload_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_toolButtonChooserReload_clicked()");
+#endif
+
+	fileModel->refresh();
 }
 
 MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent)
