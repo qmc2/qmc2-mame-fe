@@ -4715,7 +4715,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="158"/>
         <source>Enter search string</source>
-        <translation type="unfinished">Entre com o texto de busca</translation>
+        <translation>Entre o texto de busca</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="217"/>
@@ -4972,13 +4972,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.ui" line="418"/>
         <location filename="../../messdevcfg.ui" line="421"/>
         <source>Enter search string (case-insensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Entre o texto de busca (insensível à caixa)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="437"/>
         <location filename="../../messdevcfg.ui" line="440"/>
         <source>Clear search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar texto de busca</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="458"/>
@@ -4990,7 +4990,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.ui" line="493"/>
         <location filename="../../messdevcfg.ui" line="496"/>
         <source>Reload directory contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Recarregar conteúdo do diretório</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="513"/>
@@ -10830,7 +10830,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="3559"/>
         <source>Working directory that&apos;s used when the ROM tool is executed (if empty, QMC2&apos;s current working directory is used)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diretório de trabalho usado quando a ferramenta de ROM é executada (se vazio, o diretório de trabalho atual do QMC2 será usado)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3589"/>
@@ -11158,7 +11158,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="3572"/>
         <source>Browse working directory of the ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por diretório de trabalho da ferramenta de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3612"/>
