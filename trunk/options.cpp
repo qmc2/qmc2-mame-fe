@@ -609,6 +609,7 @@ void Options::apply()
     qmc2MESSDeviceConfigurator->toolButtonChooserPlay->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->toolButtonChooserPlayEmbedded->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->toolButtonChooserReload->setIconSize(iconSize);
+    qmc2MESSDeviceConfigurator->toolButtonChooserClearFilterPattern->setIconSize(iconSize);
   }
 #endif
   if ( qmc2SoftwareList ) {

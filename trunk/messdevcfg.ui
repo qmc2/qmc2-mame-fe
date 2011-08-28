@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>566</width>
-    <height>548</height>
+    <width>641</width>
+    <height>475</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -351,26 +351,16 @@
               <enum>QFrame::Raised</enum>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayoutFrameFileChooser">
-              <property name="topMargin">
+              <property name="spacing">
+               <number>2</number>
+              </property>
+              <property name="margin">
                <number>0</number>
               </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="labelDeviceInstanceChooser">
-                <property name="text">
-                 <string>Device instance</string>
-                </property>
-               </widget>
-              </item>
               <item>
                <widget class="QComboBox" name="comboBoxDeviceInstanceChooser">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -410,17 +400,57 @@
                </widget>
               </item>
               <item>
-               <spacer name="horizontalSpacer">
+               <widget class="Line" name="line2">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Vertical</enum>
                 </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>0</width>
-                  <height>0</height>
-                 </size>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBoxChooserFilterPattern">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
                 </property>
-               </spacer>
+                <property name="toolTip">
+                 <string>Enter search string (case-insensitive)</string>
+                </property>
+                <property name="statusTip">
+                 <string>Enter search string (case-insensitive)</string>
+                </property>
+                <property name="editable">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="toolButtonChooserClearFilterPattern">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Clear search string</string>
+                </property>
+                <property name="statusTip">
+                 <string>Clear search string</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="qmc2.qrc">
+                  <normaloff>:/data/img/broom.png</normaloff>:/data/img/broom.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="Line" name="line1">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+               </widget>
               </item>
               <item>
                <widget class="QLCDNumber" name="lcdNumberFileCounter">
@@ -441,6 +471,13 @@
                 </property>
                 <property name="segmentStyle">
                  <enum>QLCDNumber::Outline</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="Line" name="line3">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
                 </property>
                </widget>
               </item>
@@ -616,6 +653,8 @@
   <tabstop>comboBoxDeviceInstanceChooser</tabstop>
   <tabstop>checkBoxChooserAutoSelect</tabstop>
   <tabstop>checkBoxChooserFilter</tabstop>
+  <tabstop>comboBoxChooserFilterPattern</tabstop>
+  <tabstop>toolButtonChooserClearFilterPattern</tabstop>
   <tabstop>toolButtonChooserReload</tabstop>
   <tabstop>toolButtonChooserPlay</tabstop>
   <tabstop>toolButtonChooserPlayEmbedded</tabstop>
@@ -640,6 +679,22 @@
     <hint type="destinationlabel">
      <x>28</x>
      <y>38</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButtonChooserClearFilterPattern</sender>
+   <signal>clicked()</signal>
+   <receiver>comboBoxChooserFilterPattern</receiver>
+   <slot>clearEditText()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>329</x>
+     <y>92</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>300</x>
+     <y>92</y>
     </hint>
    </hints>
   </connection>
