@@ -782,8 +782,8 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-211</y>
-                <width>421</width>
+                <y>0</y>
+                <width>243</width>
                 <height>529</height>
                </rect>
               </property>
@@ -2171,8 +2171,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>740</width>
-                <height>559</height>
+                <width>430</width>
+                <height>220</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2755,8 +2755,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>740</width>
-                <height>559</height>
+                <width>252</width>
+                <height>39</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2868,8 +2868,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>740</width>
-                <height>559</height>
+                <width>332</width>
+                <height>227</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3324,9 +3324,9 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>740</width>
-                <height>559</height>
+                <y>-143</y>
+                <width>421</width>
+                <height>461</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3520,14 +3520,14 @@
                       </property>
                      </widget>
                     </item>
-                    <item row="1" column="0">
+                    <item row="2" column="0">
                      <widget class="QLabel" name="labelRomArguments">
                       <property name="text">
                        <string>Arguments</string>
                       </property>
                      </widget>
                     </item>
-                    <item row="1" column="1" colspan="2">
+                    <item row="2" column="1" colspan="2">
                      <widget class="QLineEdit" name="lineEditRomToolArguments">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -3537,6 +3537,46 @@
                       </property>
                       <property name="toolTip">
                        <string>ROM tool argument list (i. e. &quot;$ID$ $DESCRIPTION$&quot;)</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="labelRomToolWorkingDirectory">
+                      <property name="text">
+                       <string>Working directory</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QLineEdit" name="lineEditRomToolWorkingDirectory">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="toolTip">
+                       <string>Working directory that's used when the ROM tool is executed (if empty, QMC2's current working directory is used)</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="2">
+                     <widget class="QToolButton" name="toolButtonBrowseRomToolWorkingDirectory">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="toolTip">
+                       <string>Browse working directory of the ROM tool</string>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="qmc2.qrc">
+                        <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                       </property>
                      </widget>
                     </item>
@@ -4415,6 +4455,12 @@
                </item>
                <item row="3" column="4">
                 <widget class="QLineEdit" name="lineEditAdditionalEmulatorExecutableFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="toolTip">
                   <string>Command to execute the emulator (path to the executable file)</string>
                  </property>
@@ -4422,6 +4468,12 @@
                </item>
                <item row="3" column="5">
                 <widget class="QToolButton" name="toolButtonBrowseAdditionalEmulatorExecutable">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="toolTip">
                   <string>Browse emulator executable file</string>
                  </property>
@@ -4487,6 +4539,12 @@
                </item>
                <item row="4" column="5">
                 <widget class="QToolButton" name="toolButtonBrowseAdditionalEmulatorWorkingDirectory">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="toolTip">
                   <string>Browse working directory</string>
                  </property>
@@ -4749,6 +4807,8 @@
   <tabstop>lineEditFileRemovalToolArguments</tabstop>
   <tabstop>lineEditRomTool</tabstop>
   <tabstop>toolButtonBrowseRomTool</tabstop>
+  <tabstop>lineEditRomToolWorkingDirectory</tabstop>
+  <tabstop>toolButtonBrowseRomToolWorkingDirectory</tabstop>
   <tabstop>lineEditRomToolArguments</tabstop>
   <tabstop>checkBoxCopyToolOutput</tabstop>
   <tabstop>checkBoxCloseToolDialog</tabstop>

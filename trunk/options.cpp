@@ -518,6 +518,7 @@ void Options::apply()
   toolButtonBrowseZipTool->setIconSize(iconSize);
   toolButtonBrowseFileRemovalTool->setIconSize(iconSize);
   toolButtonBrowseRomTool->setIconSize(iconSize);
+  toolButtonBrowseRomToolWorkingDirectory->setIconSize(iconSize);
   pushButtonRedefineKeySequence->setIconSize(iconSize);
   pushButtonResetShortcut->setIconSize(iconSize);
   toolButtonAddEmulator->setIconSize(iconSize);
@@ -1143,6 +1144,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/FileRemovalToolArguments", lineEditFileRemovalToolArguments->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/RomTool", lineEditRomTool->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", lineEditRomToolArguments->text());
+  config->setValue(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", lineEditRomToolWorkingDirectory->text());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput", checkBoxCopyToolOutput->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "Tools/CloseToolDialog", checkBoxCloseToolDialog->isChecked());
   config->setValue("Network/HTTPProxy/Enable", groupBoxHTTPProxy->isChecked());
@@ -2077,6 +2079,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 #endif
   lineEditRomTool->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool", "").toString());
   lineEditRomToolArguments->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments", "$ID$ $DESCRIPTION$").toString());
+  lineEditRomToolWorkingDirectory->setText(config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory", "").toString());
   checkBoxCopyToolOutput->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput", true).toBool());
   checkBoxCloseToolDialog->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Tools/CloseToolDialog", false).toBool());
 
@@ -2513,6 +2516,18 @@ void Options::on_toolButtonBrowseRomTool_clicked()
   raise();
 }
 
+void Options::on_toolButtonBrowseRomToolWorkingDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseRomToolWorkingDirectory_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), lineEditRomToolWorkingDirectory->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() )
+    lineEditRomToolWorkingDirectory->setText(s);
+  raise();
+}
+
 void Options::on_toolButtonBrowseFavoritesFile_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -2544,8 +2559,10 @@ void Options::on_toolButtonBrowseGamelistCacheFile_clicked()
 #endif
 
   QString s = QFileDialog::getOpenFileName(this, tr("Choose gamelist cache file"), lineEditGamelistCacheFile->text(), tr("All files (*)"));
-  if ( !s.isNull() )
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
     lineEditGamelistCacheFile->setText(s);
+  }
   raise();
 }
 

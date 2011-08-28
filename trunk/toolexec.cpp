@@ -8,7 +8,7 @@
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 
-ToolExecutor::ToolExecutor(QWidget *parent, QString &command, QStringList &args)
+ToolExecutor::ToolExecutor(QWidget *parent, QString &command, QStringList &args, QString workDir)
   : QDialog(parent)
 {
 #ifdef QMC2_DEBUG
@@ -27,6 +27,7 @@ ToolExecutor::ToolExecutor(QWidget *parent, QString &command, QStringList &args)
   toolCommand = command;
   toolArgs = args;
   toolProc = new QProcess(this);
+  if ( !workDir.isEmpty() ) toolProc->setWorkingDirectory(workDir);
   connect(toolProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(toolError(QProcess::ProcessError)));
   connect(toolProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(toolFinished(int, QProcess::ExitStatus)));
   connect(toolProc, SIGNAL(readyReadStandardOutput()), this, SLOT(toolReadyReadStandardOutput()));
