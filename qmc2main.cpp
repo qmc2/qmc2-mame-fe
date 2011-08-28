@@ -1951,12 +1951,13 @@ void MainWindow::on_actionRunRomTool_activated()
 
   QString command = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomTool").toString();
   QStringList args = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolArguments").toString().split(" ");
+  QString wd = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/RomToolWorkingDirectory").toString();
   QString gameID = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
   QString gameDescription = qmc2GamelistDescriptionMap[gameID];
   QStringList newArgs;
   foreach (QString argument, args)
     newArgs << argument.replace("$ID$", gameID).replace("$DESCRIPTION$", gameDescription);
-  ToolExecutor romTool(this, command, newArgs);
+  ToolExecutor romTool(this, command, newArgs, wd);
   romTool.exec();
 }
 

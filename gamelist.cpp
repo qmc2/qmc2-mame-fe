@@ -261,6 +261,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseZipTool->setEnabled(enable);
   qmc2Options->toolButtonBrowseFileRemovalTool->setEnabled(enable);
   qmc2Options->toolButtonBrowseRomTool->setEnabled(enable);
+  qmc2Options->toolButtonBrowseRomToolWorkingDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseAdditionalEmulatorExecutable->setEnabled(enable);
   qmc2Options->toolButtonBrowseAdditionalEmulatorWorkingDirectory->setEnabled(enable);
 #if QMC2_USE_PHONON_API

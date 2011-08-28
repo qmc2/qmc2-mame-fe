@@ -13,7 +13,7 @@ class ToolExecutor : public QDialog, public Ui::ToolExecutor
     QStringList toolArgs;
     QProcess *toolProc;
 
-    ToolExecutor(QWidget *, QString &, QStringList &);
+    ToolExecutor(QWidget *, QString &, QStringList &, QString workDir = QString());
     ~ToolExecutor();
 
   public slots:
