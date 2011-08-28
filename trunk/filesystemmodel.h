@@ -476,6 +476,7 @@ class FileSystemModel : public QAbstractItemModel
 			mNameFilters = filters;
 		}
 
+	public slots:
 		QModelIndex refresh()
 		{
 			return setCurrentPath(mCurrentPath);
