@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>641</width>
-    <height>475</height>
+    <width>619</width>
+    <height>531</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -371,10 +371,19 @@
                 <property name="statusTip">
                  <string>Select the device instance the file is mapped to</string>
                 </property>
+                <property name="sizeAdjustPolicy">
+                 <enum>QComboBox::AdjustToContents</enum>
+                </property>
                </widget>
               </item>
               <item>
                <widget class="QCheckBox" name="checkBoxChooserAutoSelect">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="toolTip">
                  <string>Automatically select the first matching device instance when selecting a file with a valid extension</string>
                 </property>
@@ -388,6 +397,12 @@
               </item>
               <item>
                <widget class="QCheckBox" name="checkBoxChooserFilter">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="toolTip">
                  <string>Filter files by allowed extensions for the current device instance</string>
                 </property>
@@ -409,7 +424,7 @@
               <item>
                <widget class="QComboBox" name="comboBoxChooserFilterPattern">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -454,6 +469,12 @@
               </item>
               <item>
                <widget class="QLCDNumber" name="lcdNumberFileCounter">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="toolTip">
                  <string>Number of files scanned</string>
                 </property>
