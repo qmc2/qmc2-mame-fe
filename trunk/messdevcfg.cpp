@@ -1248,6 +1248,7 @@ void MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled)
 	lcdNumberFileCounter->update();
 	treeViewFileChooser->selectionModel()->reset();
 	treeViewFileChooser->setUpdatesEnabled(false);
+	toolButtonChooserReload->setEnabled(false);
 	QTimer::singleShot(0, fileModel, SLOT(refresh()));
 	treeViewFileChooser->setRootIndex(fileModel->rootIndex());
 #endif
@@ -1361,6 +1362,7 @@ void MESSDeviceConfigurator::fileModel_finished()
 	treeViewFileChooser->setUpdatesEnabled(true);
 	treeViewFileChooser->update();
 	treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
+	toolButtonChooserReload->setEnabled(true);
 #endif
 }
 
@@ -1370,6 +1372,7 @@ void MESSDeviceConfigurator::on_toolButtonChooserReload_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_toolButtonChooserReload_clicked()");
 #endif
 
+	toolButtonChooserReload->setEnabled(false);
 	QTimer::singleShot(0, fileModel, SLOT(refresh()));
 }
 
