@@ -150,6 +150,13 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 #if !defined(QMC2_ALTERNATE_FSM)
   lcdNumberFileCounter->setVisible(false);
   toolButtonChooserReload->setVisible(false);
+  comboBoxChooserFilterPattern->setVisible(false);
+  toolButtonChooserClearFilterPattern->setVisible(false);
+#else
+  connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxChooserFilterPattern_textChanged_delayed()));
+#if QT_VERSION >= 0x040700
+  comboBoxChooserFilterPattern->lineEdit()->setPlaceholderText(tr("Enter search string"));
+#endif
 #endif
   dirModel = NULL;
   fileModel = NULL;
@@ -194,6 +201,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   toolButtonChooserPlay->setIconSize(iconSize);
   toolButtonChooserPlayEmbedded->setIconSize(iconSize);
   toolButtonChooserReload->setIconSize(iconSize);
+  toolButtonChooserClearFilterPattern->setIconSize(iconSize);
 
   // configuration menu
   configurationMenu = new QMenu(toolButtonConfiguration);
@@ -1249,6 +1257,8 @@ void MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled)
 	treeViewFileChooser->selectionModel()->reset();
 	treeViewFileChooser->setUpdatesEnabled(false);
 	toolButtonChooserReload->setEnabled(false);
+	comboBoxChooserFilterPattern->setEnabled(false);
+	toolButtonChooserClearFilterPattern->setEnabled(false);
 	QTimer::singleShot(0, fileModel, SLOT(refresh()));
 	treeViewFileChooser->setRootIndex(fileModel->rootIndex());
 #endif
@@ -1363,6 +1373,11 @@ void MESSDeviceConfigurator::fileModel_finished()
 	treeViewFileChooser->update();
 	treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 	toolButtonChooserReload->setEnabled(true);
+	comboBoxChooserFilterPattern->setEnabled(true);
+	toolButtonChooserClearFilterPattern->setEnabled(true);
+	if ( comboBoxChooserFilterPatternHadFocus )
+		comboBoxChooserFilterPattern->setFocus();
+	comboBoxChooserFilterPatternHadFocus = false;
 #endif
 }
 
@@ -1380,7 +1395,33 @@ void MESSDeviceConfigurator::on_toolButtonChooserReload_clicked()
 	treeViewFileChooser->selectionModel()->reset();
 	treeViewFileChooser->setUpdatesEnabled(false);
 	toolButtonChooserReload->setEnabled(false);
+	comboBoxChooserFilterPattern->setEnabled(false);
+	toolButtonChooserClearFilterPattern->setEnabled(false);
 	QTimer::singleShot(0, fileModel, SLOT(refresh()));
+}
+
+void MESSDeviceConfigurator::on_comboBoxChooserFilterPattern_textChanged(QString)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_comboBoxChooserFilterPattern_textChanged(QString)");
+#endif
+
+	searchTimer.start(QMC2_SEARCH_DELAY * 2);
+}
+
+void MESSDeviceConfigurator::comboBoxChooserFilterPattern_textChanged_delayed()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::comboBoxChooserFilterPattern_textChanged_delayed()");
+#endif
+
+	searchTimer.stop();
+
+	if ( fileModel ) {
+		fileModel->setSearchPattern(comboBoxChooserFilterPattern->currentText());
+		comboBoxChooserFilterPatternHadFocus = comboBoxChooserFilterPattern->hasFocus();
+		on_toolButtonChooserReload_clicked();
+	}
 }
 #endif
 

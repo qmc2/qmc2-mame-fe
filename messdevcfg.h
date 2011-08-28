@@ -68,6 +68,8 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     QAction *actionRemoveConfiguration;
     QByteArray fileChooserHeaderState;
 #if defined(QMC2_ALTERNATE_FSM)
+    QTimer searchTimer;
+    bool comboBoxChooserFilterPatternHadFocus;
     FileSystemModel *fileModel;
     int fileModelRowInsertionCounter;
 #else
@@ -107,6 +109,8 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void on_treeViewFileChooser_activated(const QModelIndex &);
 #if defined(QMC2_ALTERNATE_FSM)
     void on_toolButtonChooserReload_clicked();
+    void on_comboBoxChooserFilterPattern_textChanged(QString);
+    void comboBoxChooserFilterPattern_textChanged_delayed();
 #endif
 
     // other callbacks

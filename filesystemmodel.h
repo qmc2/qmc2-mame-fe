@@ -115,7 +115,6 @@ class FileSystemItem : public QObject
 
 	public:
 		enum Column {NAME, SIZE, /*TYPE,*/ DATE, LASTCOLUMN};
-		QList<FileSystemItem*> mFiles;
 
 		FileSystemItem(QString path, FileSystemItem *parent = 0)
 		{
@@ -195,7 +194,6 @@ class FileSystemItem : public QObject
 			mFiles.append(file);
 		}
 
-
 		void sort(Qt::SortOrder sortOrder = Qt::AscendingOrder, int column = NAME)
 		{
 			switch ( column ) {
@@ -227,6 +225,7 @@ class FileSystemItem : public QObject
 
 	private:
 		FileSystemItem* mParent;
+		QList<FileSystemItem*> mFiles;
 		QFileInfo mFileInfo;
 		QString mAbsFilePath;
 		QString mAbsDirPath;
@@ -334,11 +333,6 @@ class FileSystemModel : public QAbstractItemModel
 
 			if ( !item )
 				return QVariant();
-
-			/*
-			if ( !mRootItem->mFiles.contains(item) )
-				return QVariant();
-			*/
 
 			if ( role == Qt::DecorationRole && index.column() == int(NAME) )
 				return mIconFactory->icon(item->fileInfo());
@@ -482,6 +476,11 @@ class FileSystemModel : public QAbstractItemModel
 			return setCurrentPath(mCurrentPath);
 		}
 
+		void setSearchPattern(QString str)
+		{
+			mSearchPattern = str;
+		}
+
 	private slots:
 		void scannerFinished()
 		{
@@ -490,9 +489,26 @@ class FileSystemModel : public QAbstractItemModel
 
 		void scannerEntriesAvailable(const QStringList &entryList)
 		{
-			foreach (QString entry, entryList)
-				new FileSystemItem(entry, mRootItem);
-			mStaleCount += entryList.count();
+			QString filterPattern;
+			int filteredCount = 0;
+			if ( !mSearchPattern.isEmpty() ) {
+				filterPattern = mSearchPattern;
+				filterPattern = "*" + filterPattern.replace(' ', "* *") + "*";
+				filterPattern.replace(QString("*^"), "");
+				filterPattern.replace(QString("$*"), "");
+			}
+			if ( filterPattern.isEmpty() ) {
+				filteredCount = entryList.count();
+				foreach (QString entry, entryList)
+					new FileSystemItem(entry, mRootItem);
+			} else {
+				foreach (QString entry, entryList)
+					if ( entry.indexOf(QRegExp(filterPattern, Qt::CaseInsensitive, QRegExp::Wildcard)) >= 0 ) {
+						new FileSystemItem(entry, mRootItem);
+						filteredCount++;
+					}
+			}
+			mStaleCount += filteredCount;
 			fetchMore(QModelIndex());
 #if defined(QMC2_DEBUG)
 			printf("mFileCount = %d, mStaleCount = %d\n", mFileCount, mStaleCount);
@@ -525,6 +541,7 @@ class FileSystemModel : public QAbstractItemModel
 		QStringList mHeaders;
 		QStringList mNameFilters;
 		QFileIconProvider *mIconFactory;
+		QString mSearchPattern;
 		int mFileCount;
 		int mStaleCount;
 
