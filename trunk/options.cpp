@@ -610,6 +610,9 @@ void Options::apply()
     qmc2MESSDeviceConfigurator->toolButtonChooserPlayEmbedded->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->toolButtonChooserReload->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->toolButtonChooserClearFilterPattern->setIconSize(iconSize);
+    qmc2MESSDeviceConfigurator->toolButtonChooserAutoSelect->setIconSize(iconSize);
+    qmc2MESSDeviceConfigurator->toolButtonChooserFilter->setIconSize(iconSize);
+    qmc2MESSDeviceConfigurator->toolButtonChooserProcessZIPs->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->comboBoxDeviceInstanceChooser->setIconSize(iconSize);
     qmc2MESSDeviceConfigurator->treeWidgetDeviceSetup->setIconSize(iconSize);
   }

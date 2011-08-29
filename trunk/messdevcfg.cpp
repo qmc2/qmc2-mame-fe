@@ -20,6 +20,7 @@ extern Gamelist *qmc2Gamelist;
 extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
 extern QString qmc2FileEditStartPath;
+extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
 QMap<QString, QString> messXmlDataCache;
 QList<FileEditWidget *> messFileEditWidgetList;
@@ -140,6 +141,8 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   setEnabled(false);
   lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
 
+  toolButtonChooserProcessZIPs->setVisible(false);
+
 #if QT_VERSION >= 0x040700
   lineEditConfigurationName->setPlaceholderText(tr("Enter configuration name"));
 #endif
@@ -170,12 +173,13 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   tabWidgetDeviceSetup->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DeviceSetupTab", 0).toInt());
   treeWidgetDeviceSetup->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DeviceSetupHeaderState").toByteArray());
   treeWidgetSlotOptions->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/SlotSetupHeaderState").toByteArray());
-  checkBoxChooserAutoSelect->blockSignals(true);
-  checkBoxChooserAutoSelect->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserAutoSelect", false).toBool());
-  checkBoxChooserAutoSelect->blockSignals(false);
-  checkBoxChooserFilter->blockSignals(true);
-  checkBoxChooserFilter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", false).toBool());
-  checkBoxChooserFilter->blockSignals(false);
+  toolButtonChooserAutoSelect->blockSignals(true);
+  toolButtonChooserAutoSelect->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserAutoSelect", false).toBool());
+  toolButtonChooserAutoSelect->blockSignals(false);
+  toolButtonChooserFilter->blockSignals(true);
+  toolButtonChooserFilter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", false).toBool());
+  toolButtonChooserFilter->blockSignals(false);
+  toolButtonChooserProcessZIPs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserProcessZIPs", false).toBool());
 
   QList<int> splitterSizes;
   QSize splitterSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserSplitter").toSize();
@@ -204,6 +208,9 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   toolButtonChooserPlayEmbedded->setIconSize(iconSize);
   toolButtonChooserReload->setIconSize(iconSize);
   toolButtonChooserClearFilterPattern->setIconSize(iconSize);
+  toolButtonChooserAutoSelect->setIconSize(iconSize);
+  toolButtonChooserFilter->setIconSize(iconSize);
+  toolButtonChooserProcessZIPs->setIconSize(iconSize);
   comboBoxDeviceInstanceChooser->setIconSize(iconSize);
   treeWidgetDeviceSetup->setIconSize(iconSize);
 
@@ -303,8 +310,9 @@ MESSDeviceConfigurator::~MESSDeviceConfigurator()
   if ( tabWidgetDeviceSetup->currentIndex() != QMC2_DEVSETUP_TAB_FILECHOOSER )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/vSplitter", QSize(vSplitter->sizes().at(0), vSplitter->sizes().at(1)));
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserSplitter", QSize(splitterFileChooser->sizes().at(0), splitterFileChooser->sizes().at(1)));
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", checkBoxChooserFilter->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserAutoSelect", checkBoxChooserAutoSelect->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", toolButtonChooserFilter->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserAutoSelect", toolButtonChooserAutoSelect->isChecked());
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserProcessZIPs", toolButtonChooserProcessZIPs->isChecked());
   if ( !fileChooserHeaderState.isEmpty() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState", fileChooserHeaderState);
   if ( comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
@@ -1151,7 +1159,7 @@ void MESSDeviceConfigurator::setupFileChooser()
 	fileModel->setFilter(QDir::Files);
 	fileModel->setNameFilterDisables(false);
 	treeViewFileChooser->setModel(fileModel);
-	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
+	on_toolButtonChooserFilter_toggled(toolButtonChooserFilter->isChecked());
 
 	QFileInfo fi(path);
 	if ( fi.isReadable() )
@@ -1171,7 +1179,7 @@ void MESSDeviceConfigurator::setupFileChooser()
 	connect(treeViewFileChooser->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeViewFileChooser_headerClicked(int)));
 	connect(treeViewFileChooser->header(), SIGNAL(sectionMoved(int, int, int)), this, SLOT(treeViewFileChooser_sectionMoved(int, int, int)));
 	connect(treeViewFileChooser->header(), SIGNAL(sectionResized(int, int, int)), this, SLOT(treeViewFileChooser_sectionResized(int, int, int)));
-	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
+	on_toolButtonChooserFilter_toggled(toolButtonChooserFilter->isChecked());
 #endif
 
 	connect(treeViewDirChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(treeViewDirChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
@@ -1180,8 +1188,15 @@ void MESSDeviceConfigurator::setupFileChooser()
 	connect(toolButtonChooserPlay, SIGNAL(clicked()), qmc2MainWindow, SLOT(on_actionPlay_activated()));
 	connect(toolButtonChooserPlayEmbedded, SIGNAL(clicked()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
 
+	QTimer::singleShot(QMC2_DIRCHOOSER_INIT_WAIT, this, SLOT(dirChooserDelayedInit()));
+
 	tabFileChooser->setUpdatesEnabled(true);
 	tabFileChooser->setEnabled(true);
+}
+
+void MESSDeviceConfigurator::dirChooserDelayedInit()
+{
+	treeViewDirChooser->scrollTo(treeViewDirChooser->currentIndex(), qmc2CursorPositioningMode);
 }
 
 void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSelection &selected, const QItemSelection &deselected)
@@ -1194,6 +1209,7 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 	toolButtonChooserPlayEmbedded->setEnabled(false);
 
 	QString path = dirModel->fileInfo(selected.indexes()[0]).absoluteFilePath();
+
 #if !defined(QMC2_ALTERNATE_FSM)
 	QFileInfo fi(path);
 	if ( fi.isReadable() ) {
@@ -1203,7 +1219,7 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 		connect(fileModel, SIGNAL(rowsInserted(const QModelIndex &, int, int)), this, SLOT(fileModel_rowsInserted(const QModelIndex &, int, int)));
 		fileModel->setFilter(QDir::Files);
 		fileModel->setNameFilterDisables(false);
-		on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
+		on_toolButtonChooserFilter_toggled(toolButtonChooserFilter->isChecked());
 		treeViewFileChooser->setModel(fileModel);
 		delete model;
 		delete selectionModel;
@@ -1212,7 +1228,7 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 	}
 #else
 	fileModel->setCurrentPath(path, false);
-	on_checkBoxChooserFilter_toggled(checkBoxChooserFilter->isChecked());
+	on_toolButtonChooserFilter_toggled(toolButtonChooserFilter->isChecked());
 #endif
 }
 
@@ -1225,7 +1241,7 @@ void MESSDeviceConfigurator::treeViewFileChooser_selectionChanged(const QItemSel
 	if ( selected.indexes().count() > 0 ) {
 		toolButtonChooserPlay->setEnabled(true);
 		toolButtonChooserPlayEmbedded->setEnabled(true);
-		if ( checkBoxChooserAutoSelect->isChecked() ) {
+		if ( toolButtonChooserAutoSelect->isChecked() ) {
 #if !defined(QMC2_ALTERNATE_FSM)
 			QString instance = extensionInstanceMap[fileModel->fileInfo(selected.indexes().first()).suffix().toLower()];
 #else
@@ -1248,10 +1264,10 @@ void MESSDeviceConfigurator::treeViewFileChooser_selectionChanged(const QItemSel
 	}
 }
 
-void MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled)
+void MESSDeviceConfigurator::on_toolButtonChooserFilter_toggled(bool enabled)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled = %1)").arg(enabled));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_toolButtonChooserFilter_toggled(bool enabled = %1)").arg(enabled));
 #endif
 
 	if ( enabled ) {
@@ -1291,8 +1307,8 @@ void MESSDeviceConfigurator::on_comboBoxDeviceInstanceChooser_activated(const QS
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_comboBoxDeviceInstanceChooser_activated(const QString &text = %1)").arg(text));
 #endif
 
-	if ( checkBoxChooserFilter->isChecked() )
-		on_checkBoxChooserFilter_toggled(true);
+	if ( toolButtonChooserFilter->isChecked() )
+		on_toolButtonChooserFilter_toggled(true);
 }
 
 void MESSDeviceConfigurator::on_treeViewDirChooser_customContextMenuRequested(const QPoint &p)

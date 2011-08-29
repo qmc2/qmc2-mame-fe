@@ -102,7 +102,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void on_treeWidgetDeviceSetup_customContextMenuRequested(const QPoint &);
     void on_treeWidgetSlotOptions_customContextMenuRequested(const QPoint &);
     void on_tabWidgetDeviceSetup_currentChanged(int);
-    void on_checkBoxChooserFilter_toggled(bool);
+    void on_toolButtonChooserFilter_toggled(bool);
     void on_comboBoxDeviceInstanceChooser_activated(const QString &);
     void on_treeViewDirChooser_customContextMenuRequested(const QPoint &);
     void on_treeViewFileChooser_customContextMenuRequested(const QPoint &);
@@ -120,6 +120,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void treeViewDirChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
     void treeViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &);
     void dirChooserUseCurrentAsDefaultDirectory();
+    void dirChooserDelayedInit();
     void fileModel_rowsInserted(const QModelIndex &, int, int);
     void fileModel_finished();
     void treeViewFileChooser_headerClicked(int);

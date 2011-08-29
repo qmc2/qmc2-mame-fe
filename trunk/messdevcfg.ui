@@ -377,9 +377,9 @@
                </widget>
               </item>
               <item>
-               <widget class="QCheckBox" name="checkBoxChooserAutoSelect">
+               <widget class="QToolButton" name="toolButtonChooserAutoSelect">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -390,15 +390,19 @@
                 <property name="statusTip">
                  <string>Automatically select the first matching device instance when selecting a file with a valid extension</string>
                 </property>
-                <property name="text">
-                 <string>Auto-select</string>
+                <property name="icon">
+                 <iconset resource="qmc2.qrc">
+                  <normaloff>:/data/img/ok.png</normaloff>:/data/img/ok.png</iconset>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QCheckBox" name="checkBoxChooserFilter">
+               <widget class="QToolButton" name="toolButtonChooserFilter">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
@@ -409,8 +413,35 @@
                 <property name="statusTip">
                  <string>Filter files by allowed extensions for the current device instance</string>
                 </property>
-                <property name="text">
-                 <string>Filter</string>
+                <property name="icon">
+                 <iconset resource="qmc2.qrc">
+                  <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="toolButtonChooserProcessZIPs">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Process ZIP contents</string>
+                </property>
+                <property name="statusTip">
+                 <string>Process ZIP contents</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="qmc2.qrc">
+                  <normaloff>:/data/img/compressed.png</normaloff>:/data/img/compressed.png</iconset>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -466,9 +497,6 @@
                 </property>
                 <property name="statusTip">
                  <string>Number of files scanned</string>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::NoFrame</enum>
                 </property>
                 <property name="numDigits">
                  <number>6</number>
@@ -651,8 +679,9 @@
   <tabstop>treeWidgetDeviceSetup</tabstop>
   <tabstop>treeWidgetSlotOptions</tabstop>
   <tabstop>comboBoxDeviceInstanceChooser</tabstop>
-  <tabstop>checkBoxChooserAutoSelect</tabstop>
-  <tabstop>checkBoxChooserFilter</tabstop>
+  <tabstop>toolButtonChooserAutoSelect</tabstop>
+  <tabstop>toolButtonChooserFilter</tabstop>
+  <tabstop>toolButtonChooserProcessZIPs</tabstop>
   <tabstop>comboBoxChooserFilterPattern</tabstop>
   <tabstop>toolButtonChooserClearFilterPattern</tabstop>
   <tabstop>toolButtonChooserReload</tabstop>
