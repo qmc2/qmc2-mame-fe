@@ -126,9 +126,11 @@ class FileSystemItem : public QObject
 				mAbsDirPath = parent->absoluteDirPath();
 				mAbsFilePath = mAbsDirPath + QString("/") + path;
 				mFileInfo = QFileInfo(mAbsFilePath);
+				mIsArchive = mFileName.toLower().endsWith(".zip");
 			} else {
 				mAbsDirPath = path;
 				mFileInfo = QFileInfo();
+				mIsArchive = false;
 			}
 		}
 
@@ -189,6 +191,11 @@ class FileSystemItem : public QObject
 			return mFileInfo;
 		}
 
+		bool isArchive() const
+		{
+			return mIsArchive;
+		}
+
 		void addFile(FileSystemItem *file)
 		{
 			mFiles.append(file);
@@ -230,6 +237,7 @@ class FileSystemItem : public QObject
 		QString mAbsFilePath;
 		QString mAbsDirPath;
 		QString mFileName;
+		bool mIsArchive;
 };
 
 class FileSystemModel : public QAbstractItemModel

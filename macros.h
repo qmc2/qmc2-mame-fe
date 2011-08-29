@@ -246,6 +246,9 @@
 // time after which the 'forced snapshot' flag is unset automatically
 #define QMC2_SWSNAP_UNFORCE_DELAY	100
 
+// init delay for the dir chooser
+#define QMC2_DIRCHOOSER_INIT_WAIT	250
+
 // gamelist sort criteria
 #define QMC2_SORT_BY_DESCRIPTION	0
 #define QMC2_SORT_BY_ROM_STATE		1
