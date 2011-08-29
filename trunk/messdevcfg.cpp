@@ -25,6 +25,7 @@ QMap<QString, QString> messXmlDataCache;
 QList<FileEditWidget *> messFileEditWidgetList;
 QMap<QString, QMap<QString, QStringList> > messSystemSlotMap;
 QMap<QString, QString> messSlotNameMap;
+QMap<QString, QIcon> messDevIconMap;
 bool messSystemSlotsSupported = true;
 
 MESSDeviceFileDelegate::MESSDeviceFileDelegate(QObject *parent)
@@ -203,6 +204,8 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   toolButtonChooserPlayEmbedded->setIconSize(iconSize);
   toolButtonChooserReload->setIconSize(iconSize);
   toolButtonChooserClearFilterPattern->setIconSize(iconSize);
+  comboBoxDeviceInstanceChooser->setIconSize(iconSize);
+  treeWidgetDeviceSetup->setIconSize(iconSize);
 
   // configuration menu
   configurationMenu = new QMenu(toolButtonConfiguration);
@@ -269,6 +272,23 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
   connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
 #endif
+
+  if ( messDevIconMap.isEmpty() ) {
+	  messDevIconMap["cartridge"] = QIcon(QString::fromUtf8(":/data/img/dev_cartridge.png"));
+	  messDevIconMap["cassette"] = QIcon(QString::fromUtf8(":/data/img/dev_cassette.png"));
+	  messDevIconMap["cdrom"] = QIcon(QString::fromUtf8(":/data/img/dev_cdrom.png"));
+	  messDevIconMap["cylinder"] = QIcon(QString::fromUtf8(":/data/img/dev_cylinder.png"));
+	  messDevIconMap["floppydisk"] = QIcon(QString::fromUtf8(":/data/img/dev_floppydisk.png"));
+	  messDevIconMap["harddisk"] = QIcon(QString::fromUtf8(":/data/img/dev_harddisk.png"));
+	  messDevIconMap["magtape"] = QIcon(QString::fromUtf8(":/data/img/dev_magtape.png"));
+	  messDevIconMap["memcard"] = QIcon(QString::fromUtf8(":/data/img/dev_memcard.png"));
+	  messDevIconMap["parallel"] = QIcon(QString::fromUtf8(":/data/img/dev_parallel.png"));
+	  messDevIconMap["printer"] = QIcon(QString::fromUtf8(":/data/img/dev_printer.png"));
+	  messDevIconMap["punchtape"] = QIcon(QString::fromUtf8(":/data/img/dev_punchtape.png"));
+	  messDevIconMap["quickload"] = QIcon(QString::fromUtf8(":/data/img/dev_quickload.png"));
+	  messDevIconMap["serial"] = QIcon(QString::fromUtf8(":/data/img/dev_serial.png"));
+	  messDevIconMap["snapshot"] = QIcon(QString::fromUtf8(":/data/img/dev_snapshot.png"));
+  }
 }
 
 MESSDeviceConfigurator::~MESSDeviceConfigurator()
@@ -554,9 +574,10 @@ bool MESSDeviceConfigurator::load()
 				  if ( !extensionInstanceMap.contains(extension) )
 					 extensionInstanceMap[extension] = instance;
 			  }
+			  QString devType = items[0]->text(QMC2_DEVCONFIG_COLUMN_TYPE);
+			  comboBoxDeviceInstanceChooser->addItem(messDevIconMap[devType], instance);
 		  }
 	  }
-	  comboBoxDeviceInstanceChooser->insertItems(0, instances);
 	  QString oldFileChooserDeviceInstance = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserDeviceInstance", QString()).toString();
 	  if ( !oldFileChooserDeviceInstance.isEmpty() ) {
 		  int index = comboBoxDeviceInstanceChooser->findText(oldFileChooserDeviceInstance, Qt::MatchExactly);
@@ -1472,6 +1493,7 @@ bool MESSDeviceConfiguratorXmlHandler::endElement(const QString &namespaceURI, c
       if ( !instance.isEmpty() ) {
         QTreeWidgetItem *deviceItem = new QTreeWidgetItem(parentTreeWidget);
         deviceItem->setText(QMC2_DEVCONFIG_COLUMN_NAME, instance);
+        if ( !deviceType.isEmpty() ) deviceItem->setIcon(QMC2_DEVCONFIG_COLUMN_NAME, messDevIconMap[deviceType]);
         deviceItem->setText(QMC2_DEVCONFIG_COLUMN_BRIEF, deviceBriefName);
         deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TYPE, deviceType);
         deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TAG, deviceTag);
