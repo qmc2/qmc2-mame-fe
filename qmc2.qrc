@@ -25,6 +25,20 @@
         <file>data/img/compressed.png</file>
         <file>data/img/configure.png</file>
         <file>data/img/controller.png</file>
+        <file>data/img/dev_cartridge.png</file>
+        <file>data/img/dev_cassette.png</file>
+        <file>data/img/dev_cdrom.png</file>
+        <file>data/img/dev_cylinder.png</file>
+        <file>data/img/dev_floppydisk.png</file>
+        <file>data/img/dev_harddisk.png</file>
+        <file>data/img/dev_magtape.png</file>
+        <file>data/img/dev_memcard.png</file>
+        <file>data/img/dev_parallel.png</file>
+        <file>data/img/dev_printer.png</file>
+        <file>data/img/dev_punchtape.png</file>
+        <file>data/img/dev_quickload.png</file>
+        <file>data/img/dev_serial.png</file>
+        <file>data/img/dev_snapshot.png</file>
         <file>data/img/dice.png</file>
         <file>data/img/disk.png</file>
         <file>data/img/disk2.png</file>
