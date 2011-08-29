@@ -1469,14 +1469,16 @@ bool MESSDeviceConfiguratorXmlHandler::endElement(const QString &namespaceURI, c
 
   if ( qName == "device" ) {
     foreach (QString instance, deviceInstances) {
-      QTreeWidgetItem *deviceItem = new QTreeWidgetItem(parentTreeWidget);
-      deviceItem->setText(QMC2_DEVCONFIG_COLUMN_NAME, instance);
-      deviceItem->setText(QMC2_DEVCONFIG_COLUMN_BRIEF, deviceBriefName);
-      deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TYPE, deviceType);
-      deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TAG, deviceTag);
-      deviceItem->setText(QMC2_DEVCONFIG_COLUMN_EXT, deviceExtensions.join("/"));
-      parentTreeWidget->openPersistentEditor(deviceItem, QMC2_DEVCONFIG_COLUMN_FILE);
-      deviceItem->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, QString());
+      if ( !instance.isEmpty() ) {
+        QTreeWidgetItem *deviceItem = new QTreeWidgetItem(parentTreeWidget);
+        deviceItem->setText(QMC2_DEVCONFIG_COLUMN_NAME, instance);
+        deviceItem->setText(QMC2_DEVCONFIG_COLUMN_BRIEF, deviceBriefName);
+        deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TYPE, deviceType);
+        deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TAG, deviceTag);
+        deviceItem->setText(QMC2_DEVCONFIG_COLUMN_EXT, deviceExtensions.join("/"));
+        parentTreeWidget->openPersistentEditor(deviceItem, QMC2_DEVCONFIG_COLUMN_FILE);
+        deviceItem->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, QString());
+      }
     }
   }
 
