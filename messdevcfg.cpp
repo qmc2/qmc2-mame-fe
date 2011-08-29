@@ -1259,7 +1259,6 @@ void MESSDeviceConfigurator::on_checkBoxChooserFilter_toggled(bool enabled)
 	treeViewFileChooser->selectionModel()->reset();
 	treeViewFileChooser->setUpdatesEnabled(false);
 	toolButtonChooserReload->setEnabled(false);
-	toolButtonChooserClearFilterPattern->setEnabled(false);
 	QTimer::singleShot(0, fileModel, SLOT(refresh()));
 	treeViewFileChooser->setRootIndex(fileModel->rootIndex());
 #endif
@@ -1374,7 +1373,6 @@ void MESSDeviceConfigurator::fileModel_finished()
 	treeViewFileChooser->update();
 	treeViewFileChooser->sortByColumn(treeViewFileChooser->header()->sortIndicatorSection(), treeViewFileChooser->header()->sortIndicatorOrder());
 	toolButtonChooserReload->setEnabled(true);
-	toolButtonChooserClearFilterPattern->setEnabled(true);
 	if ( comboBoxChooserFilterPatternHadFocus )
 		comboBoxChooserFilterPattern->setFocus();
 	comboBoxChooserFilterPatternHadFocus = false;
@@ -1396,7 +1394,6 @@ void MESSDeviceConfigurator::on_toolButtonChooserReload_clicked()
 	treeViewFileChooser->selectionModel()->reset();
 	treeViewFileChooser->setUpdatesEnabled(false);
 	toolButtonChooserReload->setEnabled(false);
-	toolButtonChooserClearFilterPattern->setEnabled(false);
 	QTimer::singleShot(0, fileModel, SLOT(refresh()));
 }
 
