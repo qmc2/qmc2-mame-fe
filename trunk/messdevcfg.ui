@@ -415,13 +415,6 @@
                </widget>
               </item>
               <item>
-               <widget class="Line" name="line2">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-               </widget>
-              </item>
-              <item>
                <widget class="QComboBox" name="comboBoxChooserFilterPattern">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -461,13 +454,6 @@
                </widget>
               </item>
               <item>
-               <widget class="Line" name="line1">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-               </widget>
-              </item>
-              <item>
                <widget class="QLCDNumber" name="lcdNumberFileCounter">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
@@ -492,13 +478,6 @@
                 </property>
                 <property name="segmentStyle">
                  <enum>QLCDNumber::Outline</enum>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="Line" name="line3">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
                 </property>
                </widget>
               </item>
