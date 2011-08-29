@@ -39,7 +39,7 @@ ifndef AUDIOEFFECTDIALOGS
 AUDIOEFFECTDIALOGS = 1
 endif
 
-# >>> EMULATOR <<<
+# >>> EMULATOR / EMU <<<
 #
 # Specifies the target emulator to be used (important: you need to build QMC2
 # for each target emulator separately; do a "make clean" between the builds!)
@@ -51,9 +51,17 @@ endif
 #
 ifndef EMULATOR
 ifeq '$(MINGW)' '1'
+ifdef EMU
+EMULATOR = $(EMU)
+else
 EMULATOR = MAME
+endif
+else
+ifdef EMU
+EMULATOR = $(EMU)
 else
 EMULATOR = SDLMAME
+endif
 endif
 endif
 
