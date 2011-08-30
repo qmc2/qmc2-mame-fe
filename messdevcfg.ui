@@ -358,6 +358,29 @@
                <number>0</number>
               </property>
               <item>
+               <widget class="QToolButton" name="toolButtonChooserSaveConfiguration">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Save selected instance / file as a new device configuration</string>
+                </property>
+                <property name="statusTip">
+                 <string>Save selected instance / file as a new device configuration</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="qmc2.qrc">
+                  <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QComboBox" name="comboBoxDeviceInstanceChooser">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
@@ -431,10 +454,10 @@
                  </sizepolicy>
                 </property>
                 <property name="toolTip">
-                 <string>Process ZIP contents</string>
+                 <string>Process ZIP contents on item activation</string>
                 </property>
                 <property name="statusTip">
-                 <string>Process ZIP contents</string>
+                 <string>Process ZIP contents on item activation</string>
                 </property>
                 <property name="icon">
                  <iconset resource="qmc2.qrc">
@@ -581,12 +604,6 @@
               <property name="contextMenuPolicy">
                <enum>Qt::CustomContextMenu</enum>
               </property>
-              <property name="toolTip">
-               <string>Choose directory</string>
-              </property>
-              <property name="statusTip">
-               <string>Choose directory</string>
-              </property>
               <property name="rootIsDecorated">
                <bool>false</bool>
               </property>
@@ -598,16 +615,7 @@
               <property name="contextMenuPolicy">
                <enum>Qt::CustomContextMenu</enum>
               </property>
-              <property name="toolTip">
-               <string>Choose a file to map</string>
-              </property>
-              <property name="statusTip">
-               <string>Choose a file to map</string>
-              </property>
               <property name="rootIsDecorated">
-               <bool>false</bool>
-              </property>
-              <property name="itemsExpandable">
                <bool>false</bool>
               </property>
               <property name="sortingEnabled">
@@ -617,7 +625,7 @@
                <bool>true</bool>
               </property>
               <property name="expandsOnDoubleClick">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <attribute name="headerShowSortIndicator" stdset="0">
                <bool>true</bool>
@@ -678,6 +686,7 @@
   <tabstop>toolButtonConfiguration</tabstop>
   <tabstop>treeWidgetDeviceSetup</tabstop>
   <tabstop>treeWidgetSlotOptions</tabstop>
+  <tabstop>toolButtonChooserSaveConfiguration</tabstop>
   <tabstop>comboBoxDeviceInstanceChooser</tabstop>
   <tabstop>toolButtonChooserAutoSelect</tabstop>
   <tabstop>toolButtonChooserFilter</tabstop>

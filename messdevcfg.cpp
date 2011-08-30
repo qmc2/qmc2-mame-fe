@@ -137,11 +137,11 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
   tabFileChooser->setUpdatesEnabled(false);
 
+  toolButtonChooserSaveConfiguration->setVisible(false);
+
   tabWidgetDeviceSetup->setCornerWidget(toolButtonConfiguration, Qt::TopRightCorner);
   setEnabled(false);
   lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
-
-  toolButtonChooserProcessZIPs->setVisible(false);
 
 #if QT_VERSION >= 0x040700
   lineEditConfigurationName->setPlaceholderText(tr("Enter configuration name"));
@@ -156,6 +156,8 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   toolButtonChooserReload->setVisible(false);
   comboBoxChooserFilterPattern->setVisible(false);
   toolButtonChooserClearFilterPattern->setVisible(false);
+  toolButtonChooserProcessZIPs->setVisible(false);
+  toolButtonChooserFilter->setVisible(false);
 #else
   connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxChooserFilterPattern_textChanged_delayed()));
 #if QT_VERSION >= 0x040700
@@ -211,8 +213,10 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   toolButtonChooserAutoSelect->setIconSize(iconSize);
   toolButtonChooserFilter->setIconSize(iconSize);
   toolButtonChooserProcessZIPs->setIconSize(iconSize);
+  toolButtonChooserSaveConfiguration->setIconSize(iconSize);
   comboBoxDeviceInstanceChooser->setIconSize(iconSize);
   treeWidgetDeviceSetup->setIconSize(iconSize);
+  treeWidgetSlotOptions->setIconSize(iconSize);
 
   // configuration menu
   configurationMenu = new QMenu(toolButtonConfiguration);
@@ -627,6 +631,7 @@ bool MESSDeviceConfigurator::load()
 	  	cb->insertItems(1, slotOptions);
 	  QTreeWidgetItem *slotItem = new QTreeWidgetItem(treeWidgetSlotOptions);
 	  slotItem->setText(QMC2_SLOTCONFIG_COLUMN_SLOT, slotName);
+	  slotItem->setIcon(QMC2_SLOTCONFIG_COLUMN_SLOT, QIcon(QString::fromUtf8(":/data/img/slot.png")));
 	  treeWidgetSlotOptions->setItemWidget(slotItem, QMC2_SLOTCONFIG_COLUMN_OPTION, cb);
   }
 
@@ -1131,6 +1136,7 @@ void MESSDeviceConfigurator::setupFileChooser()
 
 	toolButtonChooserPlay->setEnabled(false);
 	toolButtonChooserPlayEmbedded->setEnabled(false);
+	toolButtonChooserSaveConfiguration->setEnabled(false);
 
 	QString group = QString("MESS/Configuration/Devices/%1").arg(messMachineName);
 	QString path = qmc2Config->value(group + "/DefaultDeviceDirectory", "").toString();
@@ -1207,6 +1213,7 @@ void MESSDeviceConfigurator::treeViewDirChooser_selectionChanged(const QItemSele
 
 	toolButtonChooserPlay->setEnabled(false);
 	toolButtonChooserPlayEmbedded->setEnabled(false);
+	toolButtonChooserSaveConfiguration->setEnabled(false);
 
 	QString path = dirModel->fileInfo(selected.indexes()[0]).absoluteFilePath();
 
@@ -1241,6 +1248,7 @@ void MESSDeviceConfigurator::treeViewFileChooser_selectionChanged(const QItemSel
 	if ( selected.indexes().count() > 0 ) {
 		toolButtonChooserPlay->setEnabled(true);
 		toolButtonChooserPlayEmbedded->setEnabled(true);
+		toolButtonChooserSaveConfiguration->setEnabled(true);
 		if ( toolButtonChooserAutoSelect->isChecked() ) {
 #if !defined(QMC2_ALTERNATE_FSM)
 			QString instance = extensionInstanceMap[fileModel->fileInfo(selected.indexes().first()).suffix().toLower()];
@@ -1261,6 +1269,7 @@ void MESSDeviceConfigurator::treeViewFileChooser_selectionChanged(const QItemSel
 	} else {
 		toolButtonChooserPlay->setEnabled(false);
 		toolButtonChooserPlayEmbedded->setEnabled(false);
+		toolButtonChooserSaveConfiguration->setEnabled(false);
 	}
 }
 
@@ -1297,7 +1306,7 @@ void MESSDeviceConfigurator::on_toolButtonChooserFilter_toggled(bool enabled)
 	treeViewFileChooser->setUpdatesEnabled(false);
 	toolButtonChooserReload->setEnabled(false);
 	QTimer::singleShot(0, fileModel, SLOT(refresh()));
-	treeViewFileChooser->setRootIndex(fileModel->rootIndex());
+	//treeViewFileChooser->setRootIndex(fileModel->rootIndex());
 #endif
 }
 
@@ -1350,13 +1359,17 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(c
 	}
 }
 
-void MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex &)
+void MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex &index)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex &)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex &index = ...)");
 #endif
 
-	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+	if ( toolButtonChooserProcessZIPs->isChecked() && fileModel->isZip(index) ) {
+		fileModel->openZip(index);
+	} else {
+		QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+	}
 }
 
 void MESSDeviceConfigurator::treeViewFileChooser_headerClicked(int)
@@ -1437,7 +1450,7 @@ void MESSDeviceConfigurator::on_toolButtonChooserReload_clicked()
 void MESSDeviceConfigurator::on_comboBoxChooserFilterPattern_textChanged(QString)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_comboBoxChooserFilterPattern_textChanged(QString)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_comboBoxChooserFilterPattern_textChanged(QString)");
 #endif
 
 	searchTimer.start(QMC2_SEARCH_DELAY * 2);
@@ -1446,7 +1459,7 @@ void MESSDeviceConfigurator::on_comboBoxChooserFilterPattern_textChanged(QString
 void MESSDeviceConfigurator::comboBoxChooserFilterPattern_textChanged_delayed()
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::comboBoxChooserFilterPattern_textChanged_delayed()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::comboBoxChooserFilterPattern_textChanged_delayed()");
 #endif
 
 	searchTimer.stop();
@@ -1458,6 +1471,14 @@ void MESSDeviceConfigurator::comboBoxChooserFilterPattern_textChanged_delayed()
 	}
 }
 #endif
+
+void MESSDeviceConfigurator::on_toolButtonChooserSaveConfiguration_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_toolButtonChooserSaveConfiguration_clicked()");
+#endif
+
+}
 
 MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent)
 {

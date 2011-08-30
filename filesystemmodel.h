@@ -16,6 +16,7 @@
 #include <QTest>
 
 #include "macros.h"
+#include "unzip.h"
 
 #define QMC2_DIRENTRY_THRESHOLD		250
 
@@ -116,7 +117,7 @@ class FileSystemItem : public QObject
 	public:
 		enum Column {NAME, SIZE, /*TYPE,*/ DATE, LASTCOLUMN};
 
-		FileSystemItem(QString path, FileSystemItem *parent = 0)
+		FileSystemItem(QString path, FileSystemItem *parent = 0, bool archiveMember = false, quint64 uncompressedSize = 0, QDateTime entryDate = QDateTime()) : QObject(parent)
 		{
 			mParent = parent;
 			if ( parent ) {
@@ -126,11 +127,20 @@ class FileSystemItem : public QObject
 				mAbsDirPath = parent->absoluteDirPath();
 				mAbsFilePath = mAbsDirPath + QString("/") + path;
 				mFileInfo = QFileInfo(mAbsFilePath);
-				mIsArchive = mFileName.toLower().endsWith(".zip");
+				mIsArchiveMember = archiveMember;
+				mUncompressedSize = uncompressedSize;
+				mEntryDate = entryDate;
+				if ( mIsArchiveMember ) {
+					mIsArchive = false;
+					mFileName = path;
+					mAbsFilePath = parent->absoluteFilePath() + "\\" + path;
+					mFileInfo = QFileInfo(path);
+				} else
+					mIsArchive = mFileName.toLower().endsWith(".zip");
 			} else {
 				mAbsDirPath = path;
 				mFileInfo = QFileInfo();
-				mIsArchive = false;
+				mIsArchiveMember = mIsArchive = false;
 			}
 		}
 
@@ -139,18 +149,9 @@ class FileSystemItem : public QObject
 			qDeleteAll(mFiles);
 		}
 
-		FileSystemItem* fileAt(int position)
+		FileSystemItem *fileAt(int position)
 		{
 			return mFiles.value(position, 0);
-		}
-
-		void setRootPath(const QString &path)
-		{
-			if ( mParent == 0 ) {
-				mAbsDirPath = path;
-				qDeleteAll(mFiles);
-				mFiles.clear();
-			}
 		}
 
 		int fileCount() const
@@ -161,12 +162,12 @@ class FileSystemItem : public QObject
 		int fileNumber() const
 		{
 			if ( mParent )
-				return mFiles.indexOf(const_cast<FileSystemItem*>(this));
+				return mParent->mFiles.indexOf(const_cast<FileSystemItem *>(this));
 			else
 				return 0;
 		}
 
-		FileSystemItem* parent()
+		FileSystemItem *itemParent()
 		{
 			return mParent;
 		}
@@ -184,6 +185,22 @@ class FileSystemItem : public QObject
 		QString fileName() const
 		{
 			return mFileName;
+		}
+
+		QDateTime fileDate() const
+		{
+			if ( mIsArchiveMember )
+				return mEntryDate;
+			else
+				return mFileInfo.lastModified();
+		}
+
+		quint64 fileSize() const
+		{
+			if ( mIsArchiveMember )
+				return mUncompressedSize;
+			else
+				return mFileInfo.size();
 		}
 
 		QFileInfo fileInfo() const
@@ -206,13 +223,13 @@ class FileSystemItem : public QObject
 			switch ( column ) {
 				case SIZE: {
 						QMultiMap<quint64, FileSystemItem *> map;
-						foreach (FileSystemItem *item, mFiles) map.insert(item->fileInfo().size(), item);
+						foreach (FileSystemItem *item, mFiles) map.insert(item->fileSize(), item);
 						mFiles = map.values();
 					}
 					break;
 				case DATE: {
 						QMultiMap<QDateTime, FileSystemItem *> map;
-						foreach (FileSystemItem *item, mFiles) map.insert(item->fileInfo().lastModified(), item);
+						foreach (FileSystemItem *item, mFiles) map.insert(item->fileDate(), item);
 						mFiles = map.values();
 					}
 					break;
@@ -238,6 +255,9 @@ class FileSystemItem : public QObject
 		QString mAbsDirPath;
 		QString mFileName;
 		bool mIsArchive;
+		bool mIsArchiveMember;
+		quint64 mUncompressedSize;
+		QDateTime mEntryDate;
 };
 
 class FileSystemModel : public QAbstractItemModel
@@ -251,7 +271,7 @@ class FileSystemModel : public QAbstractItemModel
 		FileSystemModel(QObject *parent) : QAbstractItemModel(parent), mIconFactory(new QFileIconProvider())
 		{
 			mHeaders << tr("Name") << tr("Size") /*<< tr("Type")*/ << tr("Date modified");
-			mRootItem = new FileSystemItem("", 0);
+			mRootItem = new FileSystemItem("");
 			mCurrentPath = "";
 			mFileCount = mStaleCount = 0;
 			dirScanner = new DirectoryScannerThread(mRootItem->absoluteDirPath());
@@ -286,25 +306,31 @@ class FileSystemModel : public QAbstractItemModel
 			return QVariant();
 		}
 
-		virtual bool canFetchMore(const QModelIndex &) const
+		virtual bool canFetchMore(const QModelIndex &parent) const
 		{
-			return (mStaleCount > 0);
+			FileSystemItem *parentItem = getItem(parent);
+			if ( parentItem == mRootItem )
+				return (mStaleCount > 0);
+			else 
+				return false;
 		}
 
-		virtual void fetchMore(const QModelIndex &)
+		virtual void fetchMore(const QModelIndex &parent)
 		{
-			emit layoutAboutToBeChanged();
+			FileSystemItem *parentItem = getItem(parent);
 
-			int itemsToFetch = qMin(QMC2_DIRENTRY_THRESHOLD, mStaleCount);
-			int oldFileCount = mFileCount;
-			beginInsertRows(rootIndex(), mFileCount, mFileCount + itemsToFetch - 1);
-			mFileCount += itemsToFetch;
-			mStaleCount -= itemsToFetch;
-			endInsertRows();
+			if ( parentItem == mRootItem ) {
+				emit layoutAboutToBeChanged();
+				int itemsToFetch = qMin(QMC2_DIRENTRY_THRESHOLD, mStaleCount);
+				beginInsertRows(QModelIndex(), mFileCount, mFileCount + itemsToFetch - 1);
+				mFileCount += itemsToFetch;
+				mStaleCount -= itemsToFetch;
+				endInsertRows();
+				emit layoutChanged();
 #if defined(QMC2_DEBUG)
-			printf("mFileCount = %d, mStaleCount = %d\n", mFileCount, mStaleCount);
+				printf("mFileCount = %d, mStaleCount = %d\n", mFileCount, mStaleCount);
 #endif
-			emit layoutChanged();
+			}
 		}
 
 		virtual Qt::ItemFlags flags(const QModelIndex &index) const
@@ -312,14 +338,58 @@ class FileSystemModel : public QAbstractItemModel
 			return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 		}
 
-		virtual int columnCount(const QModelIndex &parent =  QModelIndex()) const
+		virtual int columnCount(const QModelIndex &parent = QModelIndex()) const
 		{
 			return LASTCOLUMN;
 		}
 
 		virtual int rowCount(const QModelIndex &parent = QModelIndex()) const
 		{
-			return mFileCount;
+			FileSystemItem *parentItem = getItem(parent);
+			if ( parentItem == mRootItem )
+				return mFileCount;
+			else if ( parentItem->itemParent() == mRootItem && parent.column() == int(NAME) )
+				return parentItem->fileCount();
+			else
+				return 0;
+		}
+
+		virtual QModelIndex index(int row, int column, const QModelIndex &parent) const
+		{
+#if defined(QMC2_DEBUG)
+			printf("index requested for row = %d, column = %d\n", row, column);
+#endif
+			if ( parent.isValid() && parent.column() != int(NAME) )
+				return QModelIndex();
+
+			FileSystemItem *childItem = getItem(parent)->fileAt(row);
+
+			if ( childItem )
+				return createIndex(row, column, childItem);
+			else
+				return QModelIndex();
+
+			/*
+			FileSystemItem *fileItem = mRootItem->fileAt(row);
+
+			if ( fileItem )
+				return createIndex(row, column, fileItem);
+			else
+				return QModelIndex();
+			*/
+		}
+
+		virtual QModelIndex parent(const QModelIndex &index) const
+		{
+			if ( !index.isValid() )
+				return QModelIndex();
+
+			FileSystemItem *parentItem = getItem(index)->itemParent();
+
+			if ( !parentItem || parentItem == mRootItem )
+				return QModelIndex();
+
+			return createIndex(parentItem->fileNumber(), NAME, parentItem);
 		}
 
 		virtual QVariant data(const QModelIndex &index, int role) const
@@ -353,7 +423,7 @@ class FileSystemModel : public QAbstractItemModel
 					data = item->fileName();
 					break;
 				case SIZE:
-					data = humanReadable(item->fileInfo().size());
+					data = humanReadable(item->fileSize());
 					break;
 				/*
 				case TYPE:
@@ -361,7 +431,7 @@ class FileSystemModel : public QAbstractItemModel
 					break;
 				*/
 				case DATE:
-					data = item->fileInfo().lastModified().toString(Qt::LocalDate);
+					data = item->fileDate().toString(Qt::LocalDate);
 					break;
 				default:
 					QVariant();
@@ -374,23 +444,9 @@ class FileSystemModel : public QAbstractItemModel
 		virtual void sort(int column, Qt::SortOrder order = Qt::AscendingOrder)
 		{
 			emit layoutAboutToBeChanged();
+			reset();
 			mRootItem->sort(order, column);
 			emit layoutChanged();
-		}
-
-		virtual QModelIndex index(int row, int column, const QModelIndex &parent) const
-		{
-			FileSystemItem *fileItem = mRootItem->fileAt(row);
-
-			if ( fileItem )
-				return createIndex(row, column, fileItem);
-			else
-				return QModelIndex();
-		}
-
-		virtual QModelIndex parent(const QModelIndex &index) const
-		{
-			return createIndex(0, 0, mRootItem);
 		}
 
 		QString humanReadable(quint64 value) const
@@ -398,7 +454,6 @@ class FileSystemModel : public QAbstractItemModel
 			static QString hrString;
 			static qreal hrValue;
 			static QLocale locale;
-
 #if __WORDSIZE == 64
 			if ( (qreal)value / (qreal)QMC2_ONE_KILOBYTE < (qreal)QMC2_ONE_KILOBYTE ) {
 				hrValue = (qreal)value / (qreal)QMC2_ONE_KILOBYTE;
@@ -425,7 +480,6 @@ class FileSystemModel : public QAbstractItemModel
 				hrString = locale.toString(hrValue, 'f', 2) + QString(tr(" GB"));
 			}
 #endif
-
 			return hrString;
 		}
 
@@ -439,9 +493,9 @@ class FileSystemModel : public QAbstractItemModel
 				return QString();
 		}
 
-		QModelIndex rootIndex()
+		QModelIndex firstIndex() const
 		{
-			return createIndex(mRootItem->fileNumber(), 0, mRootItem);
+			return createIndex(0, NAME, mRootItem->fileAt(0));
 		}
 
 		QString currentPath() const
@@ -461,21 +515,90 @@ class FileSystemModel : public QAbstractItemModel
 
 			mFileCount = mStaleCount = 0;
 
-			FileSystemItem *oldRootItem = mRootItem;
+			beginRemoveRows(QModelIndex(), 0, mRootItem->fileCount() - 1);
+			delete mRootItem;
+			endRemoveRows();
 
 			mRootItem = new FileSystemItem(path, 0);
 
 			if ( scan )
 				populateItems();
 
-			delete oldRootItem;
-
-			return rootIndex();
+			return firstIndex();
 		}
 
 		void setNameFilters(const QStringList &filters)
 		{
 			mNameFilters = filters;
+		}
+
+		virtual bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex()) {
+			FileSystemItem *parentItem = getItem(parent);
+			if ( parentItem->itemParent() == mRootItem && parent.column() == int(NAME) ) {
+				if ( mZipEntryList.count() > 0 ) {
+					emit layoutAboutToBeChanged();
+					beginInsertRows(parent, row, row + mZipEntryList.count() - 1);
+					for (int i = 0; i < mZipEntryList.count(); i++)
+						new FileSystemItem(mZipEntryList[i], parentItem, true, mZipEntrySizes[i], mZipEntryDates[i]);
+					endInsertRows();
+					emit layoutChanged();
+				}
+				return true;
+			} else
+				return false;
+		}
+
+		void openZip(const QModelIndex &index)
+		{
+			if ( !index.isValid() )
+				return;
+
+			FileSystemItem *fileItem = getItem(index);
+
+			if ( !fileItem || fileItem == mRootItem || fileItem->fileCount() > 0 )
+				return;
+
+			unzFile zipFile = unzOpen((const char *)fileItem->absoluteFilePath().toAscii());
+
+			if ( zipFile ) {
+		  		char zipFileName[QMC2_ZIP_BUFFER_SIZE];
+				unz_file_info zipInfo;
+				int row = 0;
+				QStringList entryList;
+				mZipEntryList.clear();
+				mZipEntrySizes.clear();
+				mZipEntryDates.clear();
+				do {
+					if ( unzGetCurrentFileInfo(zipFile, &zipInfo, zipFileName, QMC2_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
+						mZipEntryList << zipFileName;
+						mZipEntrySizes << zipInfo.uncompressed_size;
+						struct tm *t;
+						time_t clock = time(NULL);
+						t = localtime(&clock);
+						t->tm_isdst = -1;
+						t->tm_sec  = (((int)zipInfo.dosDate) <<  1) & 0x3e;
+						t->tm_min  = (((int)zipInfo.dosDate) >>  5) & 0x3f;
+						t->tm_hour = (((int)zipInfo.dosDate) >> 11) & 0x1f;
+						t->tm_mday = (int)(zipInfo.dosDate >> 16) & 0x1f;
+						t->tm_mon  = ((int)(zipInfo.dosDate >> 21) & 0x0f) - 1;
+						t->tm_year = ((int)(zipInfo.dosDate >> 25) & 0x7f) + 80;
+						mZipEntryDates << QDateTime::fromTime_t(mktime(t));
+					}
+				} while ( unzGoToNextFile(zipFile) == UNZ_OK );
+				unzClose(zipFile);
+				insertRows(0, row -  1, index);
+			}
+		}
+
+		bool isZip(const QModelIndex &index) {
+			FileSystemItem *item = getItem(index);
+			if ( item ) {
+				if ( item->itemParent() != mRootItem )
+					return false;
+				else
+					return item->isArchive();
+			} else
+				return false;
 		}
 
 	public slots:
@@ -546,6 +669,9 @@ class FileSystemModel : public QAbstractItemModel
 		QString mCurrentPath;
 		QStringList mHeaders;
 		QStringList mNameFilters;
+		QStringList mZipEntryList;
+		QList<quint64> mZipEntrySizes;
+		QList<QDateTime> mZipEntryDates;
 		QFileIconProvider *mIconFactory;
 		QString mSearchPattern;
 		int mFileCount;
