@@ -4770,7 +4770,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="286"/>
         <location filename="../../messdevcfg.cpp" line="1364"/>
         <source>&amp;Open archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Abrir arquivo compactado</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="328"/>
@@ -4830,7 +4830,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="1364"/>
         <source>&amp;Close archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fechar arquivo compactado</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="15"/>
@@ -4955,7 +4955,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.ui" line="369"/>
         <location filename="../../messdevcfg.ui" line="372"/>
         <source>Save selected instance / file as a new device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar instância selecionada  / arquivar como nova configuração de dispositivo</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="392"/>
@@ -4973,7 +4973,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.ui" line="457"/>
         <location filename="../../messdevcfg.ui" line="460"/>
         <source>Process ZIP contents on item activation</source>
-        <translation type="unfinished"></translation>
+        <translation>Processar o conteúdo do ZIP na ativação do item</translation>
     </message>
     <message>
         <source>Auto-select</source>
