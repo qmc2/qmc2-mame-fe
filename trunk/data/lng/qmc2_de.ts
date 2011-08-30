@@ -2428,35 +2428,35 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FileSystemModel</name>
     <message>
-        <location filename="../../filesystemmodel.h" line="273"/>
+        <location filename="../../filesystemmodel.h" line="274"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="273"/>
+        <location filename="../../filesystemmodel.h" line="274"/>
         <source>Size</source>
         <translation>Größe</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="460"/>
-        <location filename="../../filesystemmodel.h" line="474"/>
+        <location filename="../../filesystemmodel.h" line="461"/>
+        <location filename="../../filesystemmodel.h" line="475"/>
         <source> KB</source>
         <translation> KB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="463"/>
-        <location filename="../../filesystemmodel.h" line="477"/>
+        <location filename="../../filesystemmodel.h" line="464"/>
+        <location filename="../../filesystemmodel.h" line="478"/>
         <source> MB</source>
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="466"/>
-        <location filename="../../filesystemmodel.h" line="480"/>
+        <location filename="../../filesystemmodel.h" line="467"/>
+        <location filename="../../filesystemmodel.h" line="481"/>
         <source> GB</source>
         <translation> GB</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="469"/>
+        <location filename="../../filesystemmodel.h" line="470"/>
         <source> TB</source>
         <translation> TB</translation>
     </message>
@@ -2465,7 +2465,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Typ</translation>
     </message>
     <message>
-        <location filename="../../filesystemmodel.h" line="273"/>
+        <location filename="../../filesystemmodel.h" line="274"/>
         <source>Date modified</source>
         <translation>Letzte Änderung</translation>
     </message>
@@ -4671,8 +4671,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="37"/>
-        <location filename="../../messdevcfg.cpp" line="1112"/>
-        <location filename="../../messdevcfg.cpp" line="1117"/>
+        <location filename="../../messdevcfg.cpp" line="1120"/>
+        <location filename="../../messdevcfg.cpp" line="1125"/>
         <source>Active device configuration</source>
         <translation>Aktive Geräte-Konfiguration</translation>
     </message>
@@ -4838,10 +4838,10 @@ p, li { white-space: pre-wrap; }
         <translation>Liste der verfügbaren Geräte-Konfigurationen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="665"/>
-        <location filename="../../messdevcfg.cpp" line="706"/>
-        <location filename="../../messdevcfg.cpp" line="867"/>
-        <location filename="../../messdevcfg.cpp" line="985"/>
+        <location filename="../../messdevcfg.cpp" line="673"/>
+        <location filename="../../messdevcfg.cpp" line="714"/>
+        <location filename="../../messdevcfg.cpp" line="875"/>
+        <location filename="../../messdevcfg.cpp" line="993"/>
         <source>No devices</source>
         <translation>Keine Geräte</translation>
     </message>
@@ -4889,13 +4889,13 @@ p, li { white-space: pre-wrap; }
         <translation>Aktuelle Geräte-Konfiguration klonen</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="742"/>
-        <location filename="../../messdevcfg.cpp" line="744"/>
+        <location filename="../../messdevcfg.cpp" line="750"/>
+        <location filename="../../messdevcfg.cpp" line="752"/>
         <source>%1. copy of </source>
         <translation>%1. Kopie von </translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="950"/>
+        <location filename="../../messdevcfg.cpp" line="958"/>
         <source>%1. variant of </source>
         <translation>%1. Variante von </translation>
     </message>
@@ -4907,7 +4907,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="142"/>
-        <location filename="../../messdevcfg.cpp" line="373"/>
+        <location filename="../../messdevcfg.cpp" line="381"/>
         <source>Reading slot info, please wait...</source>
         <translation>Lese Slot-Infos, bitte warten...</translation>
     </message>
@@ -4983,40 +4983,51 @@ p, li { white-space: pre-wrap; }
         <translation>Als Standard Geräte-Verzeichnis verwenden</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="320"/>
-        <location filename="../../messdevcfg.cpp" line="602"/>
+        <location filename="../../messdevcfg.cpp" line="286"/>
+        <location filename="../../messdevcfg.cpp" line="1364"/>
+        <source>&amp;Open archive</source>
+        <translation>&amp;Archiv öffnen</translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="328"/>
+        <location filename="../../messdevcfg.cpp" line="610"/>
         <source>No devices available</source>
         <translation>Keine Geräte verfügbar</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="375"/>
+        <location filename="../../messdevcfg.cpp" line="383"/>
         <source>loading available system slots</source>
         <translation>Lade verfügbare System-Slots</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="396"/>
+        <location filename="../../messdevcfg.cpp" line="404"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
         <translation>FATAL: kann ausführbare MESS Datei nicht in einem angemessenen Zeitraum starten, gebe auf</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="397"/>
+        <location filename="../../messdevcfg.cpp" line="405"/>
         <source>Failed to read slot info</source>
         <translation>Fehler beim Lesen der Slot-Infos</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="537"/>
+        <location filename="../../messdevcfg.cpp" line="545"/>
         <source>done (loading available system slots, elapsed time = %1)</source>
         <translation>Fertig (Lade verfügbare System-Slots, benötigte Zeit = %1)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="627"/>
+        <location filename="../../messdevcfg.cpp" line="635"/>
         <source>not used</source>
         <translation>nicht verwendet</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1055"/>
+        <location filename="../../messdevcfg.cpp" line="1063"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Standard Geräte-Verzeichnis für &apos;%1&apos; auswählen</translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="1364"/>
+        <source>&amp;Close archive</source>
+        <translation>&amp;Archiv schließen</translation>
     </message>
     <message>
         <source>Configuration</source>

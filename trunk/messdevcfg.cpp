@@ -135,9 +135,9 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
   setupUi(this);
 
-  tabFileChooser->setUpdatesEnabled(false);
-
   toolButtonChooserSaveConfiguration->setVisible(false);
+
+  tabFileChooser->setUpdatesEnabled(false);
 
   tabWidgetDeviceSetup->setCornerWidget(toolButtonConfiguration, Qt::TopRightCorner);
   setEnabled(false);
@@ -282,6 +282,14 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
   connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
+#endif
+#if defined(QMC2_ALTERNATE_FSM)
+  fileChooserContextMenu->addSeparator();
+  action = fileChooserContextMenu->addAction(tr("&Open archive"));
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/compressed.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_toggleArchive()));
+  actionChooserToggleArchive = action;
 #endif
 
   if ( messDevIconMap.isEmpty() ) {
@@ -1354,6 +1362,11 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_customContextMenuRequested(c
 
 	modelIndexFileModel = treeViewFileChooser->indexAt(p);
 	if ( modelIndexFileModel.isValid() ) {
+		if ( fileModel->isZip(modelIndexFileModel) ) {
+			actionChooserToggleArchive->setText(treeViewFileChooser->isExpanded(modelIndexFileModel) ? tr("&Close archive") : tr("&Open archive"));
+			actionChooserToggleArchive->setVisible(true);
+		} else
+			actionChooserToggleArchive->setVisible(false);
 		fileChooserContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeViewFileChooser->viewport()->mapToGlobal(p), fileChooserContextMenu));
 		fileChooserContextMenu->show();
 	}
@@ -1369,6 +1382,24 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex 
 		fileModel->openZip(index);
 	} else {
 		QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+	}
+}
+
+void MESSDeviceConfigurator::treeViewFileChooser_toggleArchive()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::treeViewFileChooser_toggleArchive()");
+#endif
+
+	QModelIndexList selected = treeViewFileChooser->selectionModel()->selectedIndexes();
+
+	if ( selected.count() > 0 ) {
+		if ( treeViewFileChooser->isExpanded(selected[0]) ) {
+			treeViewFileChooser->setExpanded(selected[0], false);
+		} else {
+			fileModel->openZip(selected[0]);
+			treeViewFileChooser->setExpanded(selected[0], true);
+		}
 	}
 }
 
