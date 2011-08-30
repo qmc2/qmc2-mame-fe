@@ -17,6 +17,7 @@
 
 #include "macros.h"
 #include "unzip.h"
+#include <time.h>
 
 #define QMC2_DIRENTRY_THRESHOLD		250
 
