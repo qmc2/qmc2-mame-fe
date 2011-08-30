@@ -4938,7 +4938,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="286"/>
         <location filename="../../messdevcfg.cpp" line="1364"/>
         <source>&amp;Open archive</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="328"/>
@@ -4979,7 +4979,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="1364"/>
         <source>&amp;Close archive</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
