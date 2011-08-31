@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>561</width>
-    <height>609</height>
+    <width>511</width>
+    <height>630</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -947,7 +947,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
+          <item row="2" column="0">
            <widget class="QLabel" name="labelSetRewriterGeneralSettings">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -960,7 +960,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
+          <item row="2" column="1">
            <widget class="QCheckBox" name="checkBoxSetRewriterWhileAnalyzing">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -976,7 +976,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="2">
+          <item row="2" column="2">
            <widget class="QCheckBox" name="checkBoxSetRewriterSelfContainedSets">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -992,7 +992,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="3">
+          <item row="2" column="3">
            <widget class="QCheckBox" name="checkBoxSetRewriterGoodSetsOnly">
             <property name="toolTip">
              <string>Rewrite sets only when they are 'good' (otherwise, 'bad' sets will be included)</string>
@@ -1002,7 +1002,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="3" column="0">
            <widget class="QLabel" name="labelSetRewriterReproductionType">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -1015,7 +1015,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
+          <item row="3" column="1">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
              <widget class="QRadioButton" name="radioButtonSetRewriterZipArchives">
@@ -1054,7 +1054,7 @@
             </item>
            </layout>
           </item>
-          <item row="2" column="2">
+          <item row="3" column="2">
            <widget class="QCheckBox" name="checkBoxSetRewriterUniqueCRCs">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -1070,7 +1070,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="3" colspan="4">
+          <item row="3" column="3" colspan="4">
            <widget class="QRadioButton" name="radioButtonSetRewriterIndividualDirectories">
             <property name="enabled">
              <bool>false</bool>
@@ -1083,7 +1083,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="4" colspan="3">
+          <item row="2" column="4" colspan="3">
            <spacer name="horizontalSpacer_3">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -1106,6 +1106,49 @@
             </property>
             <property name="toolTip">
              <string>Browse output path for the set rewriter</string>
+            </property>
+            <property name="icon">
+             <iconset resource="qmc2.qrc">
+              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelSetRewriterAdditionalRomPath">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Additional ROM path</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="5">
+           <widget class="QLineEdit" name="lineEditSetRewriterAdditionalRomPath">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Specify an additional source ROM path used when the set rewriter is active</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="6">
+           <widget class="QToolButton" name="toolButtonBrowseSetRewriterAdditionalRomPath">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Browse additional ROM path</string>
             </property>
             <property name="icon">
              <iconset resource="qmc2.qrc">
@@ -1439,6 +1482,8 @@
   <tabstop>groupBoxSetRewriter</tabstop>
   <tabstop>lineEditSetRewriterOutputPath</tabstop>
   <tabstop>toolButtonBrowseSetRewriterOutputPath</tabstop>
+  <tabstop>lineEditSetRewriterAdditionalRomPath</tabstop>
+  <tabstop>toolButtonBrowseSetRewriterAdditionalRomPath</tabstop>
   <tabstop>checkBoxSetRewriterWhileAnalyzing</tabstop>
   <tabstop>checkBoxSetRewriterSelfContainedSets</tabstop>
   <tabstop>checkBoxSetRewriterGoodSetsOnly</tabstop>

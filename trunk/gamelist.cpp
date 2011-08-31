@@ -277,6 +277,7 @@ void Gamelist::enableWidgets(bool enable)
     }
     if ( qmc2ROMAlyzer->groupBoxSetRewriter->isChecked() )
       qmc2ROMAlyzer->toolButtonBrowseSetRewriterOutputPath->setEnabled(enable);
+      qmc2ROMAlyzer->toolButtonBrowseSetRewriterAdditionalRomPath->setEnabled(enable);
 #if defined(QMC2_DATABASE_ENABLED)
     if ( qmc2ROMAlyzer->groupBoxDatabase->isChecked() )
       qmc2ROMAlyzer->toolButtonBrowseDatabaseOutputPath->setEnabled(enable);
