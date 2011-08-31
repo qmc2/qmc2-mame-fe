@@ -649,10 +649,12 @@ void ROMAlyzer::analyze()
       }
       setsInMemory++;
 
+      QLocale locale;
+
       // analyze game
       log(tr("analyzing '%1'").arg(gameName));
       setRewriterSetCount = analyzerList.count() - i;
-      labelStatus->setText(tr("Analyzing '%1'").arg(gameName) + QString(" - %1").arg(setRewriterSetCount));
+      labelStatus->setText(tr("Analyzing '%1'").arg(gameName) + QString(" - %1").arg(locale.toString(setRewriterSetCount)));
 
       // step 1: retrieve XML data, insert item with game name
       QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetChecksums);
@@ -2092,8 +2094,10 @@ void ROMAlyzer::runSetRewriter()
 	if ( !outPath.endsWith("/") ) outPath += "/";
 	outPath += setRewriterSetName + ".zip";
 
+	QLocale locale;
+
 	QString savedStatusText = labelStatus->text();
-	labelStatus->setText(tr("Reading '%1' - %2").arg(setRewriterSetName).arg(setRewriterSetCount));
+	labelStatus->setText(tr("Reading '%1' - %2").arg(setRewriterSetName).arg(locale.toString(setRewriterSetCount)));
 	progressBar->setRange(0, setRewriterFileMap.count());
 	progressBar->reset();
 	qApp->processEvents();
@@ -2158,7 +2162,7 @@ void ROMAlyzer::runSetRewriter()
 		}
 		if ( !outputDataMap.isEmpty() ) {
 			log(tr("set rewriter: writing new %1 set '%2' in '%3'").arg(modeString).arg(setRewriterSetName).arg(outPath));
-			labelStatus->setText(tr("Writing '%1' - %2").arg(setRewriterSetName).arg(setRewriterSetCount));
+			labelStatus->setText(tr("Writing '%1' - %2").arg(setRewriterSetName).arg(locale.toString(setRewriterSetCount)));
 			if ( writeAllZipData(outPath, &outputDataMap, true, progressBar) )
 				log(tr("set rewriter: new %1 set '%2' in '%3' successfully created").arg(modeString).arg(setRewriterSetName).arg(outPath));
 			else {
