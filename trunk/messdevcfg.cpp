@@ -135,7 +135,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
   setupUi(this);
 
-  //toolButtonChooserSaveConfiguration->setVisible(false);
+  toolButtonChooserSaveConfiguration->setVisible(false);
 
   tabFileChooser->setUpdatesEnabled(false);
 
