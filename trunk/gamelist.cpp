@@ -2459,14 +2459,15 @@ QString Gamelist::status()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::status()");
 #endif
 
+  QLocale locale;
   QString statusString = "<b>";
-  statusString += "<font color=black>" + tr("L:") + QString(numGames > -1 ? QString::number(numGames) : "?") + "</font>\n";
-  statusString += "<font color=#00cc00>" + tr("C:") + QString(numCorrectGames > -1 ? QString::number(numCorrectGames) : "?") + "</font>\n";
-  statusString += "<font color=#a2c743>" + tr("M:") + QString(numMostlyCorrectGames > -1 ? QString::number(numMostlyCorrectGames) : "?") + "</font>\n";
-  statusString += "<font color=#f90000>" + tr("I:") + QString(numIncorrectGames > -1 ? QString::number(numIncorrectGames) : "?") + "</font>\n";
-  statusString += "<font color=#7f7f7f>" + tr("N:") + QString(numNotFoundGames > -1 ? QString::number(numNotFoundGames) : "?") + "</font>\n";
-  statusString += "<font color=#0000f9>" + tr("U:") + QString(numUnknownGames > -1 ? QString::number(numUnknownGames) : "?") + "</font>\n";
-  statusString += "<font color=chocolate>" + tr("S:") + QString(numSearchGames > -1 ? QString::number(numSearchGames) : "?") + "</font>";
+  statusString += "<font color=black>" + tr("L:") + QString(numGames > -1 ? locale.toString(numGames) : "?") + "</font>\n";
+  statusString += "<font color=#00cc00>" + tr("C:") + QString(numCorrectGames > -1 ? locale.toString(numCorrectGames) : "?") + "</font>\n";
+  statusString += "<font color=#a2c743>" + tr("M:") + QString(numMostlyCorrectGames > -1 ? locale.toString(numMostlyCorrectGames) : "?") + "</font>\n";
+  statusString += "<font color=#f90000>" + tr("I:") + QString(numIncorrectGames > -1 ? locale.toString(numIncorrectGames) : "?") + "</font>\n";
+  statusString += "<font color=#7f7f7f>" + tr("N:") + QString(numNotFoundGames > -1 ? locale.toString(numNotFoundGames) : "?") + "</font>\n";
+  statusString += "<font color=#0000f9>" + tr("U:") + QString(numUnknownGames > -1 ? locale.toString(numUnknownGames) : "?") + "</font>\n";
+  statusString += "<font color=chocolate>" + tr("S:") + QString(numSearchGames > -1 ? locale.toString(numSearchGames) : "?") + "</font>";
   statusString += "</b>";
 
   return statusString;
