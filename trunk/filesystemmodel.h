@@ -275,6 +275,7 @@ class FileSystemModel : public QAbstractItemModel
 			mRootItem = new FileSystemItem("");
 			mCurrentPath = "";
 			mFileCount = mStaleCount = 0;
+			mBreakZipScan = false;
 			dirScanner = new DirectoryScannerThread(mRootItem->absoluteDirPath());
 			connect(dirScanner, SIGNAL(entriesAvailable(const QStringList &)), this, SLOT(scannerEntriesAvailable(const QStringList &)));
 			connect(dirScanner, SIGNAL(finished()), this, SLOT(scannerFinished()));
@@ -510,6 +511,7 @@ class FileSystemModel : public QAbstractItemModel
 		QModelIndex setCurrentPath(const QString &path, bool scan = true)
 		{
 			mCurrentPath = path;
+			mBreakZipScan = true;
 
 			if ( dirScanner )
 				if ( dirScanner->isScanning ) {
@@ -572,6 +574,8 @@ class FileSystemModel : public QAbstractItemModel
 				mZipEntryList.clear();
 				mZipEntrySizes.clear();
 				mZipEntryDates.clear();
+				mBreakZipScan = false;
+				// the zip-entry lists currently carry only one entry at time (better GUI response)
 				do {
 					if ( unzGetCurrentFileInfo(zipFile, &zipInfo, zipFileName, QMC2_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
 						mZipEntryList << zipFileName;
@@ -588,9 +592,14 @@ class FileSystemModel : public QAbstractItemModel
 						t->tm_year = ((int)(zipInfo.dosDate >> 25) & 0x7f) + 80;
 						mZipEntryDates << QDateTime::fromTime_t(mktime(t));
 					}
-				} while ( unzGoToNextFile(zipFile) == UNZ_OK );
+					insertRows(row, 1, index);
+					mZipEntryList.clear();
+					mZipEntrySizes.clear();
+					mZipEntryDates.clear();
+					row++;
+				} while ( unzGoToNextFile(zipFile) == UNZ_OK && !mBreakZipScan );
 				unzClose(zipFile);
-				insertRows(0, row -  1, index);
+				mBreakZipScan = false;
 			}
 		}
 
@@ -603,6 +612,11 @@ class FileSystemModel : public QAbstractItemModel
 					return item->isArchive();
 			} else
 				return false;
+		}
+
+		void breakZipScan()
+		{
+			mBreakZipScan = true;
 		}
 
 	public slots:
@@ -680,6 +694,7 @@ class FileSystemModel : public QAbstractItemModel
 		QString mSearchPattern;
 		int mFileCount;
 		int mStaleCount;
+		bool mBreakZipScan;
 
 	signals:
 		void finished();
