@@ -413,8 +413,11 @@ class FileSystemModel : public QAbstractItemModel
 			if ( !item )
 				return QVariant();
 
-			if ( role == Qt::DecorationRole && index.column() == int(NAME) )
-				return mIconFactory->icon(item->fileInfo());
+			if ( role == Qt::DecorationRole && index.column() == int(NAME) ) {
+				QIcon icon = mIconFactory->icon(item->fileInfo());
+				if ( icon.isNull() ) icon = mIconFactory->icon(QFileIconProvider::File); // icon fall-back
+				return icon;
+			}
 
 			QVariant data;
 			Column col = Column(index.column());
