@@ -416,7 +416,12 @@ class FileSystemModel : public QAbstractItemModel
 
 			if ( role == Qt::DecorationRole && index.column() == int(NAME) ) {
 				QIcon icon = mIconFactory->icon(item->fileInfo());
-				if ( icon.isNull() ) icon = mIconFactory->icon(QFileIconProvider::File); // icon fall-back
+				if ( icon.isNull() ) { // icon fall-back
+					if ( item->fileName().endsWith("/") )
+						icon = mIconFactory->icon(QFileIconProvider::Folder);
+					else
+						icon = mIconFactory->icon(QFileIconProvider::File);
+				}
 				return icon;
 			}
 
