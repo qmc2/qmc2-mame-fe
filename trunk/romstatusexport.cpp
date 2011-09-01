@@ -205,20 +205,19 @@ void ROMStatusExporter::exportToASCII()
   }
 
   QLocale locale;
-  int numLength = locale.toString(qmc2Gamelist->numGames).length();
   if ( checkBoxIncludeStatistics->isChecked() ) {
     ts << tr("Overall ROM Status") << "\n"
        << QString().leftJustified(tr("Overall ROM Status").length(), '-', true) << "\n\n";
 #if defined(QMC2_EMUTYPE_MAME)
-    ts << tr("Total games") << " " << QString().leftJustified(maxLength - tr("Total games").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numGames).rightJustified(numLength) << "\n";
+    ts << tr("Total games") << " " << QString().leftJustified(maxLength - tr("Total games").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numGames) << "\n";
 #elif defined(QMC2_EMUTYPE_MESS)
-    ts << tr("Total machines") << " " << QString().leftJustified(maxLength - tr("Total machines").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numGames).rightJustified(numLength) << "\n";
+    ts << tr("Total machines") << " " << QString().leftJustified(maxLength - tr("Total machines").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numGames) << "\n";
 #endif
-    ts << tr("Correct") << " " << QString().leftJustified(maxLength - tr("Correct").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numCorrectGames).rightJustified(numLength) << "\n";
-    ts << tr("Mostly correct") << " " << QString().leftJustified(maxLength - tr("Mostly correct").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numMostlyCorrectGames).rightJustified(numLength) << "\n";
-    ts << tr("Incorrect") << " " << QString().leftJustified(maxLength - tr("Incorrect").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numIncorrectGames).rightJustified(numLength) << "\n";
-    ts << tr("Not found") << " " << QString().leftJustified(maxLength - tr("Not found").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numNotFoundGames).rightJustified(numLength) << "\n";
-    ts << tr("Unknown") << " " << QString().leftJustified(maxLength - tr("Unknown").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numUnknownGames).rightJustified(numLength) << "\n\n";
+    ts << tr("Correct") << " " << QString().leftJustified(maxLength - tr("Correct").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numCorrectGames) << "\n";
+    ts << tr("Mostly correct") << " " << QString().leftJustified(maxLength - tr("Mostly correct").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numMostlyCorrectGames) << "\n";
+    ts << tr("Incorrect") << " " << QString().leftJustified(maxLength - tr("Incorrect").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numIncorrectGames) << "\n";
+    ts << tr("Not found") << " " << QString().leftJustified(maxLength - tr("Not found").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numNotFoundGames) << "\n";
+    ts << tr("Unknown") << " " << QString().leftJustified(maxLength - tr("Unknown").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numUnknownGames) << "\n\n";
   }
 
   ts << tr("Detailed ROM Status") << "\n"
