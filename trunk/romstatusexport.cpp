@@ -169,11 +169,7 @@ void ROMStatusExporter::exportToASCII()
   headerStrings << tr("Emulator")
                 << tr("Date")
                 << tr("Time")
-#if defined(QMC2_EMUTYPE_MAME)
-                << tr("Total games")
-#elif defined(QMC2_EMUTYPE_MESS)
-                << tr("Total machines")
-#endif
+                << tr("Total sets")
                 << tr("Correct")
                 << tr("Mostly correct")
                 << tr("Incorrect")
@@ -208,11 +204,7 @@ void ROMStatusExporter::exportToASCII()
   if ( checkBoxIncludeStatistics->isChecked() ) {
     ts << tr("Overall ROM Status") << "\n"
        << QString().leftJustified(tr("Overall ROM Status").length(), '-', true) << "\n\n";
-#if defined(QMC2_EMUTYPE_MAME)
-    ts << tr("Total games") << " " << QString().leftJustified(maxLength - tr("Total games").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numGames) << "\n";
-#elif defined(QMC2_EMUTYPE_MESS)
-    ts << tr("Total machines") << " " << QString().leftJustified(maxLength - tr("Total machines").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numGames) << "\n";
-#endif
+    ts << tr("Total sets") << " " << QString().leftJustified(maxLength - tr("Total sets").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numGames) << "\n";
     ts << tr("Correct") << " " << QString().leftJustified(maxLength - tr("Correct").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numCorrectGames) << "\n";
     ts << tr("Mostly correct") << " " << QString().leftJustified(maxLength - tr("Mostly correct").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numMostlyCorrectGames) << "\n";
     ts << tr("Incorrect") << " " << QString().leftJustified(maxLength - tr("Incorrect").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numIncorrectGames) << "\n";
@@ -503,11 +495,7 @@ void ROMStatusExporter::exportToCSV()
   if ( checkBoxIncludeStatistics->isChecked() ) {
     QLocale locale;
     ts << del << tr("Overall ROM Status") << del << "\n" << del << del << "\n";
-#if defined(QMC2_EMUTYPE_MAME)
-    ts << del << tr("Total games") << del << sep << del << locale.toString(qmc2Gamelist->numGames) << del << "\n";
-#elif defined(QMC2_EMUTYPE_MESS)
-    ts << del << tr("Total machines") << del << sep << del << locale.toString(qmc2Gamelist->numGames) << del << "\n";
-#endif
+    ts << del << tr("Total sets") << del << sep << del << locale.toString(qmc2Gamelist->numGames) << del << "\n";
     ts << del << tr("Correct") << del << sep << del << locale.toString(qmc2Gamelist->numCorrectGames) << del << "\n";
     ts << del << tr("Mostly correct") << del << sep << del << locale.toString(qmc2Gamelist->numMostlyCorrectGames) << del << "\n";
     ts << del << tr("Incorrect") << del << sep << del << locale.toString(qmc2Gamelist->numIncorrectGames) << del << "\n";
@@ -742,11 +730,7 @@ void ROMStatusExporter::exportToHTML()
        << "<p>\n"
        << "<table border=\"" << spinBoxHTMLBorderWidth->value() << "\">\n"
        << "<tr>\n"
-#if defined(QMC2_EMUTYPE_MAME)
-       << "  <td nowrap>" << tr("Total games") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numGames) << "</td>\n"
-#elif defined(QMC2_EMUTYPE_MESS)
-       << "  <td nowrap>" << tr("Total machines") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numGames) << "</td>\n"
-#endif
+       << "  <td nowrap>" << tr("Total sets") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numGames) << "</td>\n"
        << "</tr>\n<tr>\n"
        << "  <td nowrap>" << tr("Correct") << "</td><td nowrap align=\"right\">" << locale.toString(qmc2Gamelist->numCorrectGames) << "</td>\n"
        << "</tr>\n<tr>\n"
