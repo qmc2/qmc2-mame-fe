@@ -543,7 +543,7 @@ class FileSystemModel : public QAbstractItemModel
 			mNameFilters = filters;
 		}
 
-		virtual bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex()) {
+		virtual bool insertRows(int row, int /*count*/, const QModelIndex &parent = QModelIndex()) {
 			FileSystemItem *parentItem = getItem(parent);
 			if ( parentItem->itemParent() == mRootItem && parent.column() == int(NAME) ) {
 				if ( mZipEntryList.count() > 0 ) {
@@ -575,12 +575,11 @@ class FileSystemModel : public QAbstractItemModel
 		  		char zipFileName[QMC2_ZIP_BUFFER_SIZE];
 				unz_file_info zipInfo;
 				int row = 0;
-				QStringList entryList;
 				mZipEntryList.clear();
 				mZipEntrySizes.clear();
 				mZipEntryDates.clear();
 				mBreakZipScan = false;
-				// the zip-entry lists currently carry only one entry at time (better GUI response)
+				// the zip-entry lists currently carry only one entry at time for better GUI response
 				do {
 					if ( unzGetCurrentFileInfo(zipFile, &zipInfo, zipFileName, QMC2_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
 						mZipEntryList << zipFileName;

@@ -3093,10 +3093,12 @@ void MainWindow::scrollToCurrentItem()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::scrollToCurrentItem()");
 #endif
 
-  QTreeWidgetItem *ci = treeWidgetGamelist->currentItem();
+  QTreeWidgetItem *ci;
 
   if ( qmc2CurrentItem )
     ci = qmc2CurrentItem;
+  else
+    ci = treeWidgetGamelist->currentItem();
 
   if ( ci ) {
     if ( ci->text(QMC2_GAMELIST_COLUMN_GAME) == tr("Waiting for data...") )
