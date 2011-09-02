@@ -77,6 +77,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
   Q_OBJECT
 
   public:
+    bool isActiveState;
     QTimer searchTimer;
     QTimer updateTimer;
     QPixmap qmc2GhostImagePixmap;
@@ -165,12 +166,24 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     // game menu
     void on_actionPlay_activated();
     void on_actionPlayEmbedded_activated();
+    void on_actionPlayTagged_activated();
+    void on_actionPlayEmbeddedTagged_activated();
     void on_actionToFavorites_activated();
+    void on_actionToFavoritesTagged_activated();
     void on_actionReload_activated();
     void on_actionExitStop_activated();
     void on_actionCheckCurrentROM_activated();
+    void on_actionCheckROMStateTagged_activated();
     void on_actionAnalyseCurrentROM_activated();
+    void on_actionAnalyseROMTagged_activated();
     void on_actionRunRomTool_activated();
+    void on_actionRunRomToolTagged_activated();
+    void on_actionSetTag_activated();
+    void on_actionUnsetTag_activated();
+    void on_actionToggleTag_activated();
+    void on_actionTagAll_activated();
+    void on_actionUntagAll_activated();
+    void on_actionInvertTags_activated();
 
     // arcade menu
     void on_actionArcadeToggle_activated();
@@ -382,7 +395,15 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_YOUTUBE_ENABLED)
     void loadYouTubeVideoInfoMap();
 #endif
+    void on_treeWidgetGamelist_itemEntered(QTreeWidgetItem *, int);
+    void on_treeWidgetGamelist_itemPressed(QTreeWidgetItem *, int);
+    void on_treeWidgetHierarchy_itemEntered(QTreeWidgetItem *, int);
+    void on_treeWidgetHierarchy_itemPressed(QTreeWidgetItem *, int);
 #if defined(QMC2_EMUTYPE_MAME)
+    void on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *, int);
+    void on_treeWidgetCategoryView_itemPressed(QTreeWidgetItem *, int);
+    void on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *, int);
+    void on_treeWidgetVersionView_itemPressed(QTreeWidgetItem *, int);
     void mawsLoadStarted();
     void mawsLoadFinished(bool);
     void mawsQuickLinksSetVisible(bool);

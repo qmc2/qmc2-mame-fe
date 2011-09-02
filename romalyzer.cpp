@@ -101,7 +101,7 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   adjustIconSizes();
   pushButtonPause->setVisible(false);
 
-  wizardSearch = false;
+  wizardSearch = quickSearch = false;
 
   QFont logFont;
   logFont.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());
@@ -560,8 +560,8 @@ void ROMAlyzer::analyze()
   log(tr("determining list of machines to analyze"));
 #endif
 
-  if ( wizardSearch ) {
-    // simple case: the checksum wizard doesn't use any wild-cards -- no need to search
+  if ( wizardSearch || quickSearch ) {
+    // two simple cases: the checksum wizard doesn't use any wild-cards, same holds for tagged sets --> no need to search!
     analyzerList = patternList;
     analyzerList.sort();
   } else {
@@ -598,6 +598,8 @@ void ROMAlyzer::analyze()
       labelStatus->setText(tr("Idle"));
     }
   }
+
+  quickSearch = false;
 
   if ( !qmc2StopParser ) {
 #if defined(QMC2_EMUTYPE_MAME)

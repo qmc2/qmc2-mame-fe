@@ -147,11 +147,16 @@
                    <string>List of all supported games</string>
                   </property>
                   <property name="columnCount">
-                   <number>10</number>
+                   <number>11</number>
                   </property>
                   <column>
                    <property name="text">
                     <string>Game / Attribute</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Tag</string>
                    </property>
                   </column>
                   <column>
@@ -230,6 +235,9 @@
                    <property name="text">
                     <string/>
                    </property>
+                   <property name="text">
+                    <string/>
+                   </property>
                   </item>
                  </widget>
                 </item>
@@ -280,6 +288,11 @@
                   </column>
                   <column>
                    <property name="text">
+                    <string>Tag</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
                     <string>Icon</string>
                    </property>
                   </column>
@@ -326,6 +339,9 @@
                   <item>
                    <property name="text">
                     <string>Waiting for data...</string>
+                   </property>
+                   <property name="text">
+                    <string/>
                    </property>
                    <property name="text">
                     <string/>
@@ -398,11 +414,16 @@
                    <string>List of games viewed by category</string>
                   </property>
                   <property name="columnCount">
-                   <number>10</number>
+                   <number>11</number>
                   </property>
                   <column>
                    <property name="text">
                     <string>Category / Game</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Tag</string>
                    </property>
                   </column>
                   <column>
@@ -453,6 +474,9 @@
                   <item>
                    <property name="text">
                     <string>Waiting for data...</string>
+                   </property>
+                   <property name="text">
+                    <string/>
                    </property>
                    <property name="text">
                     <string/>
@@ -525,11 +549,16 @@
                    <string>List of games viewed by version they were added to the emulator</string>
                   </property>
                   <property name="columnCount">
-                   <number>10</number>
+                   <number>11</number>
                   </property>
                   <column>
                    <property name="text">
                     <string>Version / Game</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Tag</string>
                    </property>
                   </column>
                   <column>
@@ -580,6 +609,9 @@
                   <item>
                    <property name="text">
                     <string>Waiting for data...</string>
+                   </property>
+                   <property name="text">
+                    <string/>
                    </property>
                    <property name="text">
                     <string/>
@@ -812,10 +844,10 @@
               </sizepolicy>
              </property>
              <property name="toolTip">
-              <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search</string>
+              <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search - T:Tagged</string>
              </property>
              <property name="statusTip">
-              <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search</string>
+              <string>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search - T:Tagged</string>
              </property>
              <property name="text">
               <string>&lt;b&gt;&lt;font color=black&gt;L:?&lt;/font&gt; &lt;font color=#00cc00&gt;C:?&lt;/font&gt; &lt;font color=#a2c743&gt;M:?&lt;/font&gt; &lt;font color=#f90000&gt;I:?&lt;/font&gt; &lt;font color=#7f7f7f&gt;N:?&lt;/font&gt; &lt;font color=#0000f9&gt;U:?&lt;/font&gt; &lt;font color=chocolate&gt;S:?&lt;/font&gt;&lt;/b&gt;</string>
@@ -2291,9 +2323,13 @@
        <normaloff>:/data/img/warning.png</normaloff>:/data/img/warning.png</iconset>
      </property>
      <addaction name="actionCheckCurrentROM"/>
+     <addaction name="actionCheckROMStateTagged"/>
+     <addaction name="separator"/>
      <addaction name="actionAnalyseCurrentROM"/>
+     <addaction name="actionAnalyseROMTagged"/>
      <addaction name="separator"/>
      <addaction name="actionRunRomTool"/>
+     <addaction name="actionRunRomToolTagged"/>
     </widget>
     <widget class="QMenu" name="menuView">
      <property name="title">
@@ -2308,14 +2344,36 @@
      <addaction name="actionViewByCategory"/>
      <addaction name="actionViewByVersion"/>
     </widget>
+    <widget class="QMenu" name="menuTag">
+     <property name="title">
+      <string>&amp;Tag</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qmc2.qrc">
+       <normaloff>:/data/img/tag.png</normaloff>:/data/img/tag.png</iconset>
+     </property>
+     <addaction name="actionSetTag"/>
+     <addaction name="actionUnsetTag"/>
+     <addaction name="actionToggleTag"/>
+     <addaction name="separator"/>
+     <addaction name="actionTagAll"/>
+     <addaction name="actionUntagAll"/>
+     <addaction name="actionInvertTags"/>
+    </widget>
     <addaction name="actionPlay"/>
+    <addaction name="actionPlayTagged"/>
+    <addaction name="separator"/>
     <addaction name="actionPlayEmbedded"/>
+    <addaction name="actionPlayEmbeddedTagged"/>
+    <addaction name="separator"/>
     <addaction name="actionToFavorites"/>
+    <addaction name="actionToFavoritesTagged"/>
     <addaction name="separator"/>
     <addaction name="actionReload"/>
     <addaction name="separator"/>
     <addaction name="menuView"/>
     <addaction name="menuCheck"/>
+    <addaction name="menuTag"/>
     <addaction name="separator"/>
     <addaction name="actionExitStop"/>
    </widget>
@@ -2457,27 +2515,6 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
-   </property>
-   <property name="shortcutContext">
-    <enum>Qt::ApplicationShortcut</enum>
-   </property>
-  </action>
-  <action name="actionExitStop">
-   <property name="icon">
-    <iconset resource="qmc2.qrc">
-     <normaloff>:/data/img/exit.png</normaloff>:/data/img/exit.png</iconset>
-   </property>
-   <property name="text">
-    <string>E&amp;xit / Stop</string>
-   </property>
-   <property name="toolTip">
-    <string>Exit program / Stop any active processing</string>
-   </property>
-   <property name="statusTip">
-    <string>Exit program / Stop any active processing</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+X</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -2805,6 +2842,30 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionAnalyseROMTagged">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/search_multiple.png</normaloff>:/data/img/search_multiple.png</iconset>
+   </property>
+   <property name="text">
+    <string>Analyse ROM (tagged)...</string>
+   </property>
+   <property name="iconText">
+    <string>Analyse ROM (tagged)</string>
+   </property>
+   <property name="toolTip">
+    <string>Analyse all tagged sets with ROMAlyzer</string>
+   </property>
+   <property name="statusTip">
+    <string>Analyse all tagged sets with ROMAlyzer</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+D</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -3239,6 +3300,9 @@
    <property name="shortcut">
     <string>Ctrl+Shift+P</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionDemoMode">
    <property name="icon">
@@ -3253,9 +3317,6 @@
    </property>
    <property name="statusTip">
     <string>Open the demo mode dialog</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+D</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -3319,6 +3380,27 @@
    </property>
    <property name="shortcut">
     <string>F9</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionRunRomToolTagged">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/process_multiple.png</normaloff>:/data/img/process_multiple.png</iconset>
+   </property>
+   <property name="text">
+    <string>Run external ROM tool (tagged)...</string>
+   </property>
+   <property name="toolTip">
+    <string>Run tool to process ROM data externally for all tagged sets</string>
+   </property>
+   <property name="statusTip">
+    <string>Run tool to process ROM data externally for all tagged sets</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+F9</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -3403,6 +3485,231 @@
    </property>
    <property name="statusTip">
     <string>Forcedly clear (remove) ALL emulator related caches</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionPlayTagged">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/launch_multiple.png</normaloff>:/data/img/launch_multiple.png</iconset>
+   </property>
+   <property name="text">
+    <string>Play (tagged)</string>
+   </property>
+   <property name="toolTip">
+    <string>Play all tagged games</string>
+   </property>
+   <property name="statusTip">
+    <string>Play all tagged games</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionPlayEmbeddedTagged">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/embed_multiple.png</normaloff>:/data/img/embed_multiple.png</iconset>
+   </property>
+   <property name="text">
+    <string>Play embedded (tagged)</string>
+   </property>
+   <property name="toolTip">
+    <string>Play all tagged games (embedded)</string>
+   </property>
+   <property name="statusTip">
+    <string>Play all tagged games (embedded)</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionToFavoritesTagged">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/favorites_multiple.png</normaloff>:/data/img/favorites_multiple.png</iconset>
+   </property>
+   <property name="text">
+    <string>To favorites (tagged)</string>
+   </property>
+   <property name="toolTip">
+    <string>Add all tagged games to favorites</string>
+   </property>
+   <property name="statusTip">
+    <string>Add all tagged games to favorites</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+F</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionCheckROMStateTagged">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/rom_multiple.png</normaloff>:/data/img/rom_multiple.png</iconset>
+   </property>
+   <property name="text">
+    <string>ROM state (tagged)</string>
+   </property>
+   <property name="toolTip">
+    <string>Check ROM states of all tagged sets</string>
+   </property>
+   <property name="statusTip">
+    <string>Check ROM states of all tagged sets</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionExitStop">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/exit.png</normaloff>:/data/img/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>E&amp;xit / Stop</string>
+   </property>
+   <property name="toolTip">
+    <string>Exit program / Stop any active processing</string>
+   </property>
+   <property name="statusTip">
+    <string>Exit program / Stop any active processing</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionSetTag">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/tagged.png</normaloff>:/data/img/tagged.png</iconset>
+   </property>
+   <property name="text">
+    <string>Set tag</string>
+   </property>
+   <property name="toolTip">
+    <string>Set tag mark</string>
+   </property>
+   <property name="statusTip">
+    <string>Set tag mark</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+T</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionUnsetTag">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/untagged.png</normaloff>:/data/img/untagged.png</iconset>
+   </property>
+   <property name="text">
+    <string>Unset tag</string>
+   </property>
+   <property name="toolTip">
+    <string>Unset tag mark</string>
+   </property>
+   <property name="statusTip">
+    <string>Unset tag mark</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+U</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionToggleTag">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/invert_tag.png</normaloff>:/data/img/invert_tag.png</iconset>
+   </property>
+   <property name="text">
+    <string>Toggle tag</string>
+   </property>
+   <property name="toolTip">
+    <string>Toggle tag mark</string>
+   </property>
+   <property name="statusTip">
+    <string>Toggle tag mark</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+G</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionTagAll">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/tagged_all.png</normaloff>:/data/img/tagged_all.png</iconset>
+   </property>
+   <property name="text">
+    <string>Tag all</string>
+   </property>
+   <property name="toolTip">
+    <string>Set tag mark for all sets</string>
+   </property>
+   <property name="statusTip">
+    <string>Set tag mark for all sets</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+L</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionUntagAll">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/untagged_all.png</normaloff>:/data/img/untagged_all.png</iconset>
+   </property>
+   <property name="text">
+    <string>Untag all</string>
+   </property>
+   <property name="toolTip">
+    <string>Unset all tag marks</string>
+   </property>
+   <property name="statusTip">
+    <string>Unset all tag marks</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+N</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionInvertTags">
+   <property name="icon">
+    <iconset resource="qmc2.qrc">
+     <normaloff>:/data/img/invert_tag_all.png</normaloff>:/data/img/invert_tag_all.png</iconset>
+   </property>
+   <property name="text">
+    <string>Invert all tags</string>
+   </property>
+   <property name="toolTip">
+    <string>Invert all tag marks</string>
+   </property>
+   <property name="statusTip">
+    <string>Invert all tag marks</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+I</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
