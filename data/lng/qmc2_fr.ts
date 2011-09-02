@@ -1530,34 +1530,34 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DemoModeDialog</name>
     <message>
-        <location filename="../../demomode.cpp" line="103"/>
+        <location filename="../../demomode.cpp" line="105"/>
         <source>demo mode stopped</source>
         <translation>Mode démo stoppé</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="276"/>
-        <location filename="../../demomode.cpp" line="105"/>
+        <location filename="../../demomode.ui" line="263"/>
+        <location filename="../../demomode.cpp" line="107"/>
         <source>Run &amp;demo</source>
         <translation>Jouer la &amp;démo</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="273"/>
-        <location filename="../../demomode.cpp" line="106"/>
+        <location filename="../../demomode.ui" line="260"/>
+        <location filename="../../demomode.cpp" line="108"/>
         <source>Run demo now</source>
         <translation>Jouer la démo maintenant</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="122"/>
+        <location filename="../../demomode.cpp" line="124"/>
         <source>please wait for reload to finish and try again</source>
         <translation>merci de patienter pendant le rechargement puis ré-essayer</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="126"/>
+        <location filename="../../demomode.cpp" line="128"/>
         <source>please wait for ROM verification to finish and try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../demomode.cpp" line="157"/>
+        <location filename="../../demomode.cpp" line="169"/>
         <source>demo mode started -- %n game(s) selected by filter</source>
         <translation>
             <numerusform>mode démo démarré -- %n jeu sélectionné par le filtre</numerusform>
@@ -1565,17 +1565,17 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="159"/>
+        <location filename="../../demomode.cpp" line="171"/>
         <source>Stop &amp;demo</source>
         <translation>Stopper la &amp;démo</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="160"/>
+        <location filename="../../demomode.cpp" line="172"/>
         <source>Stop demo now</source>
         <translation>Stopper la démo maintenant</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="223"/>
+        <location filename="../../demomode.cpp" line="235"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
         <translation>démarrage de l&apos;émulation de &apos;%1&apos; en mode démo</translation>
     </message>
@@ -1625,52 +1625,62 @@ p, li { white-space: pre-wrap; }
         <translation>Nombre de secondes à jouer un émulateur en mode démo</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="178"/>
+        <location filename="../../demomode.ui" line="213"/>
+        <source>Use only tagged games</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../demomode.ui" line="216"/>
+        <source>Tagged</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../demomode.ui" line="289"/>
         <source>Pause (seconds)</source>
         <translation>Pause (secondes)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="185"/>
+        <location filename="../../demomode.ui" line="296"/>
         <source>Number of seconds to pause between emulator runs</source>
         <translation>Nombre de secondes de pause entre les sessions d&apos;émulateurs</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="203"/>
+        <location filename="../../demomode.ui" line="174"/>
         <source>Start emulators in full screen mode (otherwise use windowed mode)</source>
         <translation>Démarrer les émulateurs en plein écran (écrase le mode fenêtré)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="206"/>
+        <location filename="../../demomode.ui" line="177"/>
         <source>Full screen</source>
         <translation>Plein écran</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="219"/>
+        <location filename="../../demomode.ui" line="190"/>
         <source>Maximize emulators when in windowed mode</source>
         <translation>Maximiser l&apos;émulation en mode fenêtré</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="222"/>
+        <location filename="../../demomode.ui" line="193"/>
         <source>Maximized</source>
         <translation>Maximisé</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="232"/>
+        <location filename="../../demomode.ui" line="203"/>
         <source>Embed windowed emulators</source>
         <translation>Embarquer les émulateurs en fenêtre</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="235"/>
+        <location filename="../../demomode.ui" line="206"/>
         <source>Embedded</source>
         <translation>Embarqué</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="244"/>
+        <location filename="../../demomode.ui" line="231"/>
         <source>Close this dialog (and stop running demo)</source>
         <translation>Fermer cette fenêtre (et stopper la démo)</translation>
     </message>
     <message>
-        <location filename="../../demomode.ui" line="247"/>
+        <location filename="../../demomode.ui" line="234"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>

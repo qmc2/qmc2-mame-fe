@@ -25,26 +25,27 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
 #endif
 
   setupUi(this);
-  demoModeRunning = FALSE;
+  demoModeRunning = false;
   emuProcess = NULL;
 #if !defined(Q_WS_X11)
-  checkBoxEmbedded->setVisible(FALSE);
+  checkBoxEmbedded->setVisible(false);
 #endif
 
   clearStatus();
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() )
     restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Geometry").toByteArray());
-  toolButtonSelectC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectC", TRUE).toBool());
-  toolButtonSelectM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectM", TRUE).toBool());
-  toolButtonSelectI->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectI", FALSE).toBool());
-  toolButtonSelectN->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectN", FALSE).toBool());
-  toolButtonSelectU->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectU", FALSE).toBool());
-  checkBoxFullScreen->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/FullScreen", TRUE).toBool());
-  checkBoxMaximized->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Maximized", FALSE).toBool());
+  toolButtonSelectC->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectC", true).toBool());
+  toolButtonSelectM->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectM", true).toBool());
+  toolButtonSelectI->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectI", false).toBool());
+  toolButtonSelectN->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectN", false).toBool());
+  toolButtonSelectU->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectU", false).toBool());
+  checkBoxFullScreen->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/FullScreen", true).toBool());
+  checkBoxMaximized->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Maximized", false).toBool());
 #if defined(Q_WS_X11)
-  checkBoxEmbedded->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Embedded", FALSE).toBool());
+  checkBoxEmbedded->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Embedded", false).toBool());
 #endif
+  checkBoxTagged->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged", false).toBool());
   spinBoxSecondsToRun->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", 60).toInt());
   spinBoxPauseSeconds->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", 2).toInt());
 }
@@ -87,6 +88,7 @@ void DemoModeDialog::closeEvent(QCloseEvent *e)
 #if defined(Q_WS_X11)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Embedded",checkBoxEmbedded->isChecked());
 #endif
+  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged",checkBoxTagged->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/SecondsToRun", spinBoxSecondsToRun->value());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/PauseSeconds", spinBoxPauseSeconds->value());
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
@@ -101,7 +103,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 
   if ( demoModeRunning ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode stopped"));
-    demoModeRunning = FALSE;
+    demoModeRunning = false;
     pushButtonRunDemo->setText(tr("Run &demo"));
     pushButtonRunDemo->setToolTip(tr("Run demo now"));
     qmc2DemoGame = "";
@@ -127,35 +129,45 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
       return;
     }
     selectedGames.clear();
-    foreach (QString game, qmc2GamelistItemMap.keys()) {
-      if ( qmc2BiosROMs.contains(game) ) continue;
-      QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
-      if ( !gameItem ) continue;
-      switch ( gameItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
-        case QMC2_ROMSTATE_CHAR_C:
-          if ( toolButtonSelectC->isChecked() ) selectedGames << game;
-          break;
+    if ( checkBoxTagged->isChecked() ) {
+	    foreach (QString game, qmc2GamelistItemMap.keys()) {
+		    if ( qmc2BiosROMs.contains(game) ) continue;
+		    QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
+		    if ( !gameItem ) continue;
+		    if ( gameItem->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked )
+			    selectedGames << game;
+	    }
+    } else {
+	    foreach (QString game, qmc2GamelistItemMap.keys()) {
+	      if ( qmc2BiosROMs.contains(game) ) continue;
+	      QTreeWidgetItem *gameItem = qmc2GamelistItemMap[game];
+	      if ( !gameItem ) continue;
+	      switch ( gameItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
+		case QMC2_ROMSTATE_CHAR_C:
+		  if ( toolButtonSelectC->isChecked() ) selectedGames << game;
+		  break;
 
-        case QMC2_ROMSTATE_CHAR_M:
-          if ( toolButtonSelectM->isChecked() ) selectedGames << game;
-          break;
+		case QMC2_ROMSTATE_CHAR_M:
+		  if ( toolButtonSelectM->isChecked() ) selectedGames << game;
+		  break;
 
-        case QMC2_ROMSTATE_CHAR_I:
-          if ( toolButtonSelectI->isChecked() ) selectedGames << game;
-          break;
+		case QMC2_ROMSTATE_CHAR_I:
+		  if ( toolButtonSelectI->isChecked() ) selectedGames << game;
+		  break;
 
-        case QMC2_ROMSTATE_CHAR_N:
-          if ( toolButtonSelectN->isChecked() ) selectedGames << game;
-          break;
+		case QMC2_ROMSTATE_CHAR_N:
+		  if ( toolButtonSelectN->isChecked() ) selectedGames << game;
+		  break;
 
-        case QMC2_ROMSTATE_CHAR_U:
-        default:
-          if ( toolButtonSelectU->isChecked() ) selectedGames << game;
-          break;
-      }
+		case QMC2_ROMSTATE_CHAR_U:
+		default:
+		  if ( toolButtonSelectU->isChecked() ) selectedGames << game;
+		  break;
+	      }
+	    }
     }
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode started -- %n game(s) selected by filter", "", selectedGames.count()));
-    demoModeRunning = TRUE;
+    demoModeRunning = true;
     pushButtonRunDemo->setText(tr("Stop &demo"));
     pushButtonRunDemo->setToolTip(tr("Stop demo now"));
     qmc2MainWindow->actionCheckROMs->setEnabled(false);
