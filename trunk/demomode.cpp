@@ -166,7 +166,12 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
 	      }
 	    }
     }
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode started -- %n game(s) selected by filter", "", selectedGames.count()));
+    if ( selectedGames.count() > 0 )
+	    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode started -- %n game(s) selected by filter", "", selectedGames.count()));
+    else {
+	    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("demo mode cannot start -- no games selected by filter"));
+	    return;
+    }
     demoModeRunning = true;
     pushButtonRunDemo->setText(tr("Stop &demo"));
     pushButtonRunDemo->setToolTip(tr("Stop demo now"));

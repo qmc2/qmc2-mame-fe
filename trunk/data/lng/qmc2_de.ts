@@ -1538,7 +1538,7 @@ p, li { white-space: pre-wrap; }
         <translation>Bitte warte bis die ROM Verifikation abgeschlossen wurde und versuche es dann erneut</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../demomode.cpp" line="169"/>
+        <location filename="../../demomode.cpp" line="170"/>
         <source>demo mode started -- %n game(s) selected by filter</source>
         <translation>
             <numerusform>Demo Modus gestartet -- %n Spiel durch Filter ausgewählt</numerusform>
@@ -1546,17 +1546,22 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="171"/>
+        <location filename="../../demomode.cpp" line="172"/>
+        <source>demo mode cannot start -- no games selected by filter</source>
+        <translation>Demo Modus kann nicht gestartet werden -- kein Spiel durch Filter ausgewählt</translation>
+    </message>
+    <message>
+        <location filename="../../demomode.cpp" line="176"/>
         <source>Stop &amp;demo</source>
         <translation>&amp;Demo anhalten</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="172"/>
+        <location filename="../../demomode.cpp" line="177"/>
         <source>Stop demo now</source>
         <translation>Demo jetzt anhalten</translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="235"/>
+        <location filename="../../demomode.cpp" line="240"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
         <translation>Starte Emulation im Demo Modus für &apos;%1&apos;</translation>
     </message>
@@ -3736,8 +3741,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1493"/>
         <location filename="../../gamelist.cpp" line="1756"/>
-        <location filename="../../gamelist.cpp" line="3546"/>
-        <location filename="../../gamelist.cpp" line="3641"/>
+        <location filename="../../gamelist.cpp" line="3554"/>
+        <location filename="../../gamelist.cpp" line="3657"/>
         <source>?</source>
         <translation>?</translation>
     </message>
@@ -3924,12 +3929,12 @@ p, li { white-space: pre-wrap; }
         <translation>%1 Kategorie- / %2 Versions-Datensätze geladen</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3529"/>
+        <location filename="../../gamelist.cpp" line="3537"/>
         <source>Category view - %p%</source>
         <translation>Kategorieansicht - %p%</translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3624"/>
+        <location filename="../../gamelist.cpp" line="3640"/>
         <source>Version view - %p%</source>
         <translation>Versionsansicht - %p%</translation>
     </message>
