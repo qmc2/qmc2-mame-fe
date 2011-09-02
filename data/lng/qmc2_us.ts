@@ -1538,7 +1538,7 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message numerus="yes">
-        <location filename="../../demomode.cpp" line="169"/>
+        <location filename="../../demomode.cpp" line="170"/>
         <source>demo mode started -- %n game(s) selected by filter</source>
         <translation>
             <numerusform>demo mode started -- %n game selected by filter</numerusform>
@@ -1546,17 +1546,22 @@ p, li { white-space: pre-wrap; }
         </translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="171"/>
+        <location filename="../../demomode.cpp" line="172"/>
+        <source>demo mode cannot start -- no games selected by filter</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../demomode.cpp" line="176"/>
         <source>Stop &amp;demo</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="172"/>
+        <location filename="../../demomode.cpp" line="177"/>
         <source>Stop demo now</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../demomode.cpp" line="235"/>
+        <location filename="../../demomode.cpp" line="240"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
         <translation></translation>
     </message>
@@ -3144,8 +3149,8 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1493"/>
         <location filename="../../gamelist.cpp" line="1756"/>
-        <location filename="../../gamelist.cpp" line="3546"/>
-        <location filename="../../gamelist.cpp" line="3641"/>
+        <location filename="../../gamelist.cpp" line="3554"/>
+        <location filename="../../gamelist.cpp" line="3657"/>
         <source>?</source>
         <translation></translation>
     </message>
@@ -3371,12 +3376,12 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3529"/>
+        <location filename="../../gamelist.cpp" line="3537"/>
         <source>Category view - %p%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../gamelist.cpp" line="3624"/>
+        <location filename="../../gamelist.cpp" line="3640"/>
         <source>Version view - %p%</source>
         <translation></translation>
     </message>
