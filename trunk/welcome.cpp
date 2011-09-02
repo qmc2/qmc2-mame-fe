@@ -249,6 +249,8 @@ bool Welcome::checkConfig()
 		  // GLC format change (V5) in QMC2 0.34 / new tag column since SVN r3158 -- any saved header states for game-/machine-list views must be invalidated!
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState");
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState");
+		  startupConfig->remove(QMC2_FRONTEND_PREFIX_OTHER + "Layout/MainWidget/GamelistHeaderState");
+		  startupConfig->remove(QMC2_FRONTEND_PREFIX_OTHER + "Layout/MainWidget/HierarchyHeaderState");
 #if defined(QMC2_EMUTYPE_MAME)
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/CategoryViewHeaderState");
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState");
@@ -256,6 +258,8 @@ bool Welcome::checkConfig()
 		  // remove settings that are no longer used
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistColumnWidths");
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyColumnWidths");
+		  startupConfig->remove(QMC2_FRONTEND_PREFIX_OTHER + "Layout/MainWidget/GamelistColumnWidths");
+		  startupConfig->remove(QMC2_FRONTEND_PREFIX_OTHER + "Layout/MainWidget/HierarchyColumnWidths");
 	  }
   }
 

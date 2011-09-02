@@ -435,18 +435,22 @@
 // separation for QMC2 variants
 #if defined(QMC2_SDLMAME)
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-sdlmame/")
+#define QMC2_FRONTEND_PREFIX_OTHER	QString("Frontend/qmc2-sdlmess/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-sdlmame/")
 #define QMC2_EMUTYPE_MAME
 #elif defined(QMC2_SDLMESS)
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-sdlmess/")
+#define QMC2_FRONTEND_PREFIX_OTHER	QString("Frontend/qmc2-sdlmame/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-sdlmess/")
 #define QMC2_EMUTYPE_MESS
 #elif defined(QMC2_MAME)
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-mame/")
+#define QMC2_FRONTEND_PREFIX_OTHER	QString("Frontend/qmc2-mess/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-mame/")
 #define QMC2_EMUTYPE_MAME
 #elif defined(QMC2_MESS)
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-mess/")
+#define QMC2_FRONTEND_PREFIX_OTHER	QString("Frontend/qmc2-mame/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-mess/")
 #define QMC2_EMUTYPE_MESS
 #endif
