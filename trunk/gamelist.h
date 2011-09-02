@@ -55,6 +55,7 @@ class Gamelist : public QObject
     int numSearchGames;
     int numDevices;
     int cachedGamesCounter;
+    int numTaggedSets;
     QString emulatorType;
     QString emulatorVersion;
     bool verifyCurrentOnly;

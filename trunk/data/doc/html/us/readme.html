@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.34, 01-SEP-2011</h3>
+<h3>README - v0.34, 02-SEP-2011</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -115,6 +115,7 @@ use with the MAME variant).
   <li>Freely adjustable layout of the main widget's major sub-widgets</li>
   <li>MAME targets only: <i>demo mode</i> to run random games for a specific period of time (in a mode suitable for demo purposes)</li>
   <li>Support for software-lists, including favorites management, search feature and sneak previews in-game/run-time snap-shots</li>
+  <li>Item tagging and related 'batch-mode' operations</li>
 </ul>
 <h3><a name="2."></a>2. Build and installation instructions</h3>
 <p>Please see <a href="faq.html#A1.7">this FAQ section</a> for instructions on specific distributions.</p>
@@ -344,9 +345,15 @@ The letters - and their colors - have the following meanings:
     </tr>
     <tr>
       <td style="text-align: left; vertical-align: top;"><b>S</b></td>
-      <td style="text-align: left; vertical-align: top;">brown</td>
+      <td style="text-align: left; vertical-align: top;">chocolate</td>
       <td style="text-align: left; vertical-align: top;">--</td>
       <td style="text-align: left; vertical-align: top;"><p>Number of game/machine-matches for the current <b>S</b>earch-pattern (if any)</p></td>
+    </tr>
+    <tr>
+      <td style="text-align: left; vertical-align: top;"><b>T</b></td>
+      <td style="text-align: left; vertical-align: top;">sandybrown</td>
+      <td style="text-align: left; vertical-align: top;">--</td>
+      <td style="text-align: left; vertical-align: top;"><p>Number of sets currently <b>T</b>agged</p></td>
     </tr>
   </tbody>
 </table>
@@ -444,6 +451,10 @@ has been enabled) are also not filtered.</p>
       <td style="vertical-align: top;">Copy the currently selected game/machine to the list of favorites</td>
     </tr>
     <tr>
+      <td style="vertical-align: top;">Ctrl+Shift+F</td>
+      <td style="vertical-align: top;">Copy all tagged games/machines to the list of favorites</td>
+    </tr>
+    <tr>
       <td style="vertical-align: top;">Ctrl+R</td>
       <td style="vertical-align: top;">Reload the entire game/machine list</td>
     </tr>
@@ -492,8 +503,16 @@ has been enabled) are also not filtered.</p>
       <td style="vertical-align: top;">Check current game's/machine's ROM state individually and update its state in the ROM state cache</td>
     </tr>
     <tr>
+      <td style="vertical-align: top;">Ctrl+Shift+S</td>
+      <td style="vertical-align: top;">Check the ROM states of all tagged sets individually and update their states in the ROM state cache</td>
+    </tr>
+    <tr>
       <td style="vertical-align: top;">Ctrl+D</td>
       <td style="vertical-align: top;">Analyse (deep-scan) current ROM with the ROMAlyzer</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Shift+D</td>
+      <td style="vertical-align: top;">Analyse (deep-scan) tagged ROMs with the ROMAlyzer</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+Z</td>
@@ -504,8 +523,28 @@ has been enabled) are also not filtered.</p>
       <td style="vertical-align: top;">Export current ROM status to file</td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">Ctrl+G (reserved)</td>
-      <td style="vertical-align: top;">Tag/untag the currently selected game/machine</td>
+      <td style="vertical-align: top;">Ctrl+Shift+T</td>
+      <td style="vertical-align: top;">Tag the currently selected game/machine</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Shift+U</td>
+      <td style="vertical-align: top;">Untag the currently selected game/machine</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Shift+G</td>
+      <td style="vertical-align: top;">Toggle tag mark of currently selected game/machine</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Shift+L</td>
+      <td style="vertical-align: top;">Tag all games/machines</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Shift+N</td>
+      <td style="vertical-align: top;">Untag all games/machines</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">Ctrl+Shift+I</td>
+      <td style="vertical-align: top;">Invert all tag marks</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+1</td>
@@ -558,10 +597,6 @@ has been enabled) are also not filtered.</p>
     <tr>
       <td style="vertical-align: top;">Ctrl+Shift+A (WIP)</td>
       <td style="vertical-align: top;">Setup arcade mode</td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top;">Ctrl+Shift+D</td>
-      <td style="vertical-align: top;">MAME only: demo mode (run random games for demo purposes)</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">F5</td>

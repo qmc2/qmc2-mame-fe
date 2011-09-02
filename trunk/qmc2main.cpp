@@ -397,6 +397,7 @@ MainWindow::MainWindow(QWidget *parent)
  
   qmc2StartupDefaultFont = qApp->font();
   desktopGeometry = qApp->desktop()->geometry();
+  isActiveState = false;
 
   // remember the default style
   qmc2DefaultStyle = QApplication::style()->objectName();
@@ -429,6 +430,13 @@ MainWindow::MainWindow(QWidget *parent)
 #else
   sliderAudioVolume->setVisible(false);
   checkBoxAudioFade->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+#endif
+
+  treeWidgetGamelist->setMouseTracking(true);
+  treeWidgetHierarchy->setMouseTracking(true);
+#if defined(QMC2_EMUTYPE_MAME)
+  treeWidgetCategoryView->setMouseTracking(true);
+  treeWidgetVersionView->setMouseTracking(true);
 #endif
 
 #if defined(Q_WS_WIN)
@@ -492,6 +500,7 @@ MainWindow::MainWindow(QWidget *parent)
   widgetEmbeddedEmus = tabWidgetGamelist->widget(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
 #else
   actionPlayEmbedded->setVisible(false);
+  actionPlayEmbeddedTagged->setVisible(false);
 #endif
   tabWidgetEmbeddedEmulators->removeTab(0);
   tabWidgetGamelist->removeTab(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
@@ -530,6 +539,8 @@ MainWindow::MainWindow(QWidget *parent)
   listWidgetPlayed->setStatusTip(tr("Machines last played"));
   actionPlay->setToolTip(tr("Play current machine"));
   actionPlay->setStatusTip(tr("Play current machine"));
+  actionPlayTagged->setToolTip(tr("Play all tagged machines"));
+  actionPlayTagged->setStatusTip(tr("Play all tagged machines"));
   actionClearGamelistCache->setText(tr("Clear machine list cache"));
   actionClearGamelistCache->setIconText(tr("Clear machine list cache"));
   actionClearGamelistCache->setToolTip(tr("Forcedly clear (remove) the machine list cache"));
@@ -538,6 +549,8 @@ MainWindow::MainWindow(QWidget *parent)
 #if defined(Q_WS_X11)
   actionPlayEmbedded->setToolTip(tr("Play current machine (embedded)"));
   actionPlayEmbedded->setStatusTip(tr("Play current machine (embedded)"));
+  actionPlayEmbeddedTagged->setToolTip(tr("Play all tagged machines (embedded)"));
+  actionPlayEmbeddedTagged->setStatusTip(tr("Play all tagged machines (embedded)"));
 #endif
 #if defined(Q_WS_WIN)
   treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_MACHINE, tr("Machine"));
@@ -546,6 +559,8 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
   actionToFavorites->setToolTip(tr("Add current machine to favorites"));
   actionToFavorites->setStatusTip(tr("Add current machine to favorites"));
+  actionToFavoritesTagged->setToolTip(tr("Add all tagged machines to favorites"));
+  actionToFavoritesTagged->setStatusTip(tr("Add all tagged machines to favorites"));
   actionReload->setToolTip(tr("Reload entire machine list"));
   actionReload->setStatusTip(tr("Reload entire machine list"));
   actionViewFullDetail->setToolTip(tr("View machine list with full detail"));
@@ -583,6 +598,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
   qmc2Gamelist = new Gamelist(this);
+  labelGamelistStatus->setText(qmc2Gamelist->status());
 
   statusBar()->setVisible(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar").toBool());
 
@@ -1060,11 +1076,15 @@ MainWindow::MainWindow(QWidget *parent)
 #if defined(QMC2_EMUTYPE_MAME)
   action = menuGamelistHeader->addAction(tr("Game / Attribute"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_GAME);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_GAME));
+  action = menuGamelistHeader->addAction(tr("Tag"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_TAG);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_TAG));
   action = menuGamelistHeader->addAction(tr("Icon / Value"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_ICON);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_GAMELIST_COLUMN_ICON));
 #elif defined(QMC2_EMUTYPE_MESS)
   action = menuGamelistHeader->addAction(tr("Machine / Attribute"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_GAME);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_GAME));
+  action = menuGamelistHeader->addAction(tr("Tag"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_TAG);
+  action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_TAG));
   action = menuGamelistHeader->addAction(tr("Value"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_ICON);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_ICON));
 #endif
@@ -1096,11 +1116,15 @@ MainWindow::MainWindow(QWidget *parent)
 #if defined(QMC2_EMUTYPE_MAME)
   action = menuHierarchyHeader->addAction(tr("Game / Clones"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_GAME);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_GAME));
+  action = menuHierarchyHeader->addAction(tr("Tag"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_TAG);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_TAG));
   action = menuHierarchyHeader->addAction(tr("Icon"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_ICON);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_ICON));
 #elif defined(QMC2_EMUTYPE_MESS)
   action = menuHierarchyHeader->addAction(tr("Machine / Clones"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_GAME);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_GAME));
+  action = menuHierarchyHeader->addAction(tr("Tag"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_TAG);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_TAG));
 #endif
   action = menuHierarchyHeader->addAction(tr("Year"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_YEAR);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_YEAR));
@@ -1130,6 +1154,8 @@ MainWindow::MainWindow(QWidget *parent)
   header = treeWidgetCategoryView->header();
   action = menuCategoryHeader->addAction(tr("Category / Game"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_GAME);
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_GAME));
+  action = menuCategoryHeader->addAction(tr("Tag"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_TAG);
+  action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_TAG));
   action = menuCategoryHeader->addAction(tr("Icon"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_ICON);
   action->setChecked(!treeWidgetCategoryView->isColumnHidden(QMC2_GAMELIST_COLUMN_ICON));
   action = menuCategoryHeader->addAction(tr("Year"), this, SLOT(actionCategoryHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_YEAR);
@@ -1153,6 +1179,8 @@ MainWindow::MainWindow(QWidget *parent)
   header = treeWidgetVersionView->header();
   action = menuVersionHeader->addAction(tr("Version / Game"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_GAME);
   action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_GAME));
+  action = menuVersionHeader->addAction(tr("Tag"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_TAG);
+  action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_TAG));
   action = menuVersionHeader->addAction(tr("Icon"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_ICON);
   action->setChecked(!treeWidgetVersionView->isColumnHidden(QMC2_GAMELIST_COLUMN_ICON));
   action = menuVersionHeader->addAction(tr("Year"), this, SLOT(actionVersionHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_YEAR);
@@ -7069,6 +7097,13 @@ void MainWindow::on_treeWidgetGamelist_headerSectionClicked(int logicalIndex)
         qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_DESCRIPTION);
       break;
 
+    case QMC2_GAMELIST_COLUMN_TAG:
+      if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_TAG )
+        qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
+      else
+        qmc2Options->comboBoxSortCriteria->setCurrentIndex(QMC2_SORTCRITERIA_TAG);
+      break;
+
     case QMC2_GAMELIST_COLUMN_YEAR:
       if ( qmc2Options->comboBoxSortCriteria->currentIndex() == QMC2_SORTCRITERIA_YEAR )
         qmc2Options->comboBoxSortOrder->setCurrentIndex(qmc2Options->comboBoxSortOrder->currentIndex() == 0 ? 1 : 0);
@@ -8230,8 +8265,6 @@ void MainWindow::checkActivity()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkActivity()");
 #endif
 
-  static bool isActiveState = false;
-
 #if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2ReloadActive ||
        qmc2VerifyActive ||
@@ -8270,6 +8303,10 @@ int MainWindow::sortCriteriaLogicalIndex() {
     case QMC2_SORT_BY_DESCRIPTION:
     case QMC2_SORT_BY_ROM_STATE:
       return QMC2_GAMELIST_COLUMN_GAME;
+      break;
+
+    case QMC2_SORT_BY_TAG:
+      return QMC2_GAMELIST_COLUMN_TAG;
       break;
 
     case QMC2_SORT_BY_YEAR:
@@ -8404,7 +8441,147 @@ void MainWindow::actionHierarchyHeader_triggered()
 	}
 }
 
+void MainWindow::on_treeWidgetGamelist_itemEntered(QTreeWidgetItem *item, int column)
+{
+	if ( column == QMC2_GAMELIST_COLUMN_TAG ) {
+		if ( qApp->mouseButtons() == Qt::LeftButton && qApp->activeWindow() ) {
+			QPoint cPos = treeWidgetGamelist->viewport()->mapFromGlobal(QCursor::pos());
+			if ( treeWidgetGamelist->itemAt(cPos) == item ) {
+				Qt::CheckState cs = (item->checkState(column) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+				bool wasTagged = (cs != Qt::Checked);
+				item->setCheckState(column, cs);
+				QString gameName = item->text(QMC2_GAMELIST_COLUMN_NAME);
+				item = qmc2HierarchyItemMap[gameName];
+				if ( item )
+					item->setCheckState(column, cs);
 #if defined(QMC2_EMUTYPE_MAME)
+				item = qmc2CategoryItemMap[gameName];
+				if ( item )
+					item->setCheckState(column, cs);
+				item = qmc2VersionItemMap[gameName];
+				if ( item )
+					item->setCheckState(column, cs);
+#endif
+				if ( wasTagged )
+					qmc2Gamelist->numTaggedSets--;
+				else
+					qmc2Gamelist->numTaggedSets++;
+				labelGamelistStatus->setText(qmc2Gamelist->status());
+			}
+		}
+	}
+}
+
+void MainWindow::on_treeWidgetGamelist_itemPressed(QTreeWidgetItem *item, int column)
+{
+	on_treeWidgetGamelist_itemEntered(item, column);
+}
+
+void MainWindow::on_treeWidgetHierarchy_itemEntered(QTreeWidgetItem *item, int column)
+{
+	if ( column == QMC2_GAMELIST_COLUMN_TAG ) {
+		if ( qApp->mouseButtons() == Qt::LeftButton ) {
+			QPoint cPos = treeWidgetHierarchy->viewport()->mapFromGlobal(QCursor::pos());
+			if ( treeWidgetHierarchy->itemAt(cPos) == item ) {
+				Qt::CheckState cs = (item->checkState(column) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+				bool wasTagged = (cs != Qt::Checked);
+				item->setCheckState(column, cs);
+				QString gameName = item->text(QMC2_GAMELIST_COLUMN_NAME);
+				item = qmc2GamelistItemMap[gameName];
+				if ( item )
+					item->setCheckState(column, cs);
+#if defined(QMC2_EMUTYPE_MAME)
+				item = qmc2CategoryItemMap[gameName];
+				if ( item )
+					item->setCheckState(column, cs);
+				item = qmc2VersionItemMap[gameName];
+				if ( item )
+					item->setCheckState(column, cs);
+#endif
+				if ( wasTagged )
+					qmc2Gamelist->numTaggedSets--;
+				else
+					qmc2Gamelist->numTaggedSets++;
+				labelGamelistStatus->setText(qmc2Gamelist->status());
+			}
+		}
+	}
+}
+
+void MainWindow::on_treeWidgetHierarchy_itemPressed(QTreeWidgetItem *item, int column)
+{
+	on_treeWidgetHierarchy_itemEntered(item, column);
+}
+
+#if defined(QMC2_EMUTYPE_MAME)
+void MainWindow::on_treeWidgetCategoryView_itemEntered(QTreeWidgetItem *item, int column)
+{
+	if ( column == QMC2_GAMELIST_COLUMN_TAG ) {
+		if ( qApp->mouseButtons() == Qt::LeftButton ) {
+			QPoint cPos = treeWidgetCategoryView->viewport()->mapFromGlobal(QCursor::pos());
+			if ( treeWidgetCategoryView->itemAt(cPos) == item ) {
+				Qt::CheckState cs = (item->checkState(column) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+				bool wasTagged = (cs != Qt::Checked);
+				item->setCheckState(column, cs);
+				QString gameName = item->text(QMC2_GAMELIST_COLUMN_NAME);
+				item = qmc2GamelistItemMap[gameName];
+				if ( item )
+					item->setCheckState(column, cs);
+				item = qmc2HierarchyItemMap[gameName];
+				if ( item )
+					item->setCheckState(column, cs);
+				item = qmc2VersionItemMap[gameName];
+				if ( item )
+					item->setCheckState(column, cs);
+				if ( wasTagged )
+					qmc2Gamelist->numTaggedSets--;
+				else
+					qmc2Gamelist->numTaggedSets++;
+				labelGamelistStatus->setText(qmc2Gamelist->status());
+			}
+		}
+	}
+}
+
+void MainWindow::on_treeWidgetCategoryView_itemPressed(QTreeWidgetItem *item, int column)
+{
+	on_treeWidgetCategoryView_itemEntered(item, column);
+}
+
+void MainWindow::on_treeWidgetVersionView_itemEntered(QTreeWidgetItem *item, int column)
+{
+	if ( column == QMC2_GAMELIST_COLUMN_TAG ) {
+		if ( qApp->mouseButtons() == Qt::LeftButton ) {
+			QPoint cPos = treeWidgetVersionView->viewport()->mapFromGlobal(QCursor::pos());
+			if ( treeWidgetVersionView->itemAt(cPos) == item ) {
+				Qt::CheckState cs = (item->checkState(column) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+				bool wasTagged = (cs != Qt::Checked);
+				item->setCheckState(column, cs);
+				QString gameName = item->text(QMC2_GAMELIST_COLUMN_NAME);
+				item = qmc2GamelistItemMap[gameName];
+				if ( item )
+					item->setCheckState(column, cs);
+				item = qmc2HierarchyItemMap[gameName];
+				if ( item )
+					item->setCheckState(column, cs);
+				item = qmc2CategoryItemMap[gameName];
+				if ( item )
+					item->setCheckState(column, cs);
+				if ( wasTagged )
+					qmc2Gamelist->numTaggedSets--;
+				else
+					qmc2Gamelist->numTaggedSets++;
+				labelGamelistStatus->setText(qmc2Gamelist->status());
+			}
+		}
+	}
+}
+
+void MainWindow::on_treeWidgetVersionView_itemPressed(QTreeWidgetItem *item, int column)
+{
+	on_treeWidgetVersionView_itemEntered(item, column);
+}
+
 void MainWindow::treeWidgetCategoryViewHeader_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
@@ -8471,6 +8648,447 @@ void MainWindow::actionVersionHeader_triggered()
 	}
 }
 #endif
+
+void MainWindow::on_actionPlayTagged_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlayTagged_activated()");
+#endif
+
+	progressBarGamelist->reset();
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		progressBarGamelist->setFormat(tr("Play tagged - %p%"));
+	else
+		progressBarGamelist->setFormat("%p%");
+	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+	qApp->processEvents();
+	int count = 0;
+
+	QTreeWidgetItem *oldCurrentItem = qmc2CurrentItem;
+	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+	QTreeWidgetItem *item;
+	while ( it.hasNext() ) {
+		progressBarGamelist->setValue(count++);
+		it.next();
+		item = qmc2GamelistItemMap[it.key()];
+		if ( item ) {
+			if ( item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked ) {
+				qApp->processEvents();
+				qmc2CurrentItem = item;
+				on_actionPlay_activated();
+			}
+		}
+	}
+	qmc2CurrentItem = oldCurrentItem;
+	progressBarGamelist->reset();
+}
+
+void MainWindow::on_actionPlayEmbeddedTagged_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlayEmbeddedTagged_activated()");
+#endif
+
+	progressBarGamelist->reset();
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		progressBarGamelist->setFormat(tr("Play tagged - %p%"));
+	else
+		progressBarGamelist->setFormat("%p%");
+	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+	qApp->processEvents();
+	int count = 0;
+
+	QTreeWidgetItem *oldCurrentItem = qmc2CurrentItem;
+	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+	QTreeWidgetItem *item;
+	while ( it.hasNext() ) {
+		progressBarGamelist->setValue(count++);
+		it.next();
+		item = qmc2GamelistItemMap[it.key()];
+		if ( item ) {
+			if ( item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked ) {
+				qApp->processEvents();
+				qmc2CurrentItem = item;
+				qmc2StartEmbedded = true;
+				on_actionPlay_activated();
+				QTest::qWait(2*QMC2_EMBED_DELAY);
+			}
+		}
+	}
+	qmc2CurrentItem = oldCurrentItem;
+	progressBarGamelist->reset();
+}
+
+void MainWindow::on_actionToFavoritesTagged_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToFavoritesTagged_activated()");
+#endif
+
+	progressBarGamelist->reset();
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		progressBarGamelist->setFormat(tr("Add favorites - %p%"));
+	else
+		progressBarGamelist->setFormat("%p%");
+	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+	qApp->processEvents();
+	int count = 0;
+
+	QTreeWidgetItem *oldCurrentItem = qmc2CurrentItem;
+	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+	QTreeWidgetItem *item;
+	while ( it.hasNext() ) {
+		progressBarGamelist->setValue(count++);
+		it.next();
+		item = qmc2GamelistItemMap[it.key()];
+		if ( item ) {
+			if ( item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked ) {
+				qApp->processEvents();
+				qmc2CurrentItem = item;
+				on_actionToFavorites_activated();
+			}
+		}
+	}
+	qmc2CurrentItem = oldCurrentItem;
+	progressBarGamelist->reset();
+}
+
+void MainWindow::on_actionCheckROMStateTagged_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckROMStateTagged_activated()");
+#endif
+
+	if ( isActiveState ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)"));
+		return;
+	}
+
+	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+	QTreeWidgetItem *item;
+	while ( it.hasNext() && !qmc2StopParser ) {
+		it.next();
+		item = qmc2GamelistItemMap[it.key()];
+		if ( item ) {
+			if ( item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked ) {
+				qApp->processEvents();
+				qmc2CurrentItem = item;
+				on_actionCheckCurrentROM_activated();
+				while ( qmc2VerifyActive && !qmc2StopParser )
+					QTest::qWait(QMC2_TAGGEDROMCHECK_DELAY);
+			}
+		}
+	}
+}
+
+void MainWindow::on_actionAnalyseROMTagged_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAnalyseROMTagged_activated()");
+#endif
+
+	if ( isActiveState ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)"));
+		return;
+	}
+
+	QStringList setsToAnalyze;
+	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+	QTreeWidgetItem *item;
+	while ( it.hasNext() ) {
+		it.next();
+		item = qmc2GamelistItemMap[it.key()];
+		if ( item )
+			if ( item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked )
+				setsToAnalyze << item->text(QMC2_GAMELIST_COLUMN_NAME);
+	}
+
+	if ( !qmc2ROMAlyzer )
+		qmc2ROMAlyzer = new ROMAlyzer(this);
+
+	qmc2ROMAlyzer->quickSearch = true;
+	qmc2ROMAlyzer->lineEditGames->setText(setsToAnalyze.join(" "));
+
+	if ( qmc2ROMAlyzer->isHidden() )
+		qmc2ROMAlyzer->show();
+	else if ( qmc2ROMAlyzer->isMinimized() )
+		qmc2ROMAlyzer->showNormal();
+
+	if ( qmc2ROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2ROMAlyzer->tabReport && qmc2ROMAlyzer->tabWidgetAnalysis->currentWidget() != qmc2ROMAlyzer->tabLog )
+		qmc2ROMAlyzer->tabWidgetAnalysis->setCurrentWidget(qmc2ROMAlyzer->tabReport);
+
+	QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(raise()));
+	QTimer::singleShot(0, qmc2ROMAlyzer->pushButtonAnalyze, SLOT(click()));
+}
+
+void MainWindow::on_actionRunRomToolTagged_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionRunRomToolTagged_activated()");
+#endif
+
+	if ( isActiveState ) {
+		log(QMC2_LOG_FRONTEND, tr("please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)"));
+		return;
+	}
+
+	progressBarGamelist->reset();
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		progressBarGamelist->setFormat(tr("ROM tool tagged - %p%"));
+	else
+		progressBarGamelist->setFormat("%p%");
+	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+	qApp->processEvents();
+	int count = 0;
+
+	QTreeWidgetItem *oldCurrentItem = qmc2CurrentItem;
+	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+	QTreeWidgetItem *item;
+	while ( it.hasNext() && !qmc2StopParser ) {
+		progressBarGamelist->setValue(count++);
+		it.next();
+		item = qmc2GamelistItemMap[it.key()];
+		if ( item ) {
+			if ( item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked ) {
+				qApp->processEvents();
+				qmc2CurrentItem = item;
+				on_actionRunRomTool_activated();
+			}
+		}
+	}
+	qmc2CurrentItem = oldCurrentItem;
+	progressBarGamelist->reset();
+}
+
+void MainWindow::on_actionSetTag_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSetTag_activated()");
+#endif
+
+	if ( !qmc2CurrentItem )
+		return;
+
+	bool wasUntagged = false;
+	QString gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
+	QTreeWidgetItem *item = qmc2GamelistItemMap[gameName];
+	if ( item ) {
+		wasUntagged = (item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Unchecked);
+		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
+	}
+	item = qmc2HierarchyItemMap[gameName];
+	if ( item )
+		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
+#if defined(QMC2_EMUTYPE_MAME)
+	item = qmc2CategoryItemMap[gameName];
+	if ( item )
+		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
+	item = qmc2VersionItemMap[gameName];
+	if ( item )
+		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
+#endif
+	if ( wasUntagged ) {
+		qmc2Gamelist->numTaggedSets++;
+		labelGamelistStatus->setText(qmc2Gamelist->status());
+	}
+}
+
+void MainWindow::on_actionUnsetTag_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionUnsetTag_activated()");
+#endif
+
+	if ( !qmc2CurrentItem )
+		return;
+
+	bool wasTagged = false;
+	QString gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
+	QTreeWidgetItem *item = qmc2GamelistItemMap[gameName];
+	if ( item ) {
+		wasTagged = (item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked);
+		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+	}
+	item = qmc2HierarchyItemMap[gameName];
+	if ( item )
+		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+#if defined(QMC2_EMUTYPE_MAME)
+	item = qmc2CategoryItemMap[gameName];
+	if ( item )
+		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+	item = qmc2VersionItemMap[gameName];
+	if ( item )
+		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+#endif
+	if ( wasTagged ) {
+		qmc2Gamelist->numTaggedSets--;
+		labelGamelistStatus->setText(qmc2Gamelist->status());
+	}
+}
+
+void MainWindow::on_actionToggleTag_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToggleTag_activated()");
+#endif
+
+	if ( !qmc2CurrentItem )
+		return;
+
+	QString gameName = qmc2CurrentItem->text(QMC2_GAMELIST_COLUMN_NAME);
+	QTreeWidgetItem *item = qmc2GamelistItemMap[gameName];
+	if ( item ) {
+		Qt::CheckState cs = (item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+		bool wasTagged = (cs != Qt::Checked);
+		item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+		item = qmc2HierarchyItemMap[gameName];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+#if defined(QMC2_EMUTYPE_MAME)
+		item = qmc2CategoryItemMap[gameName];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+		item = qmc2VersionItemMap[gameName];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+#endif
+		if ( wasTagged )
+			qmc2Gamelist->numTaggedSets--;
+		else
+			qmc2Gamelist->numTaggedSets++;
+		labelGamelistStatus->setText(qmc2Gamelist->status());
+	}
+}
+
+void MainWindow::on_actionTagAll_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionTagAll_activated()");
+#endif
+
+	progressBarGamelist->reset();
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		progressBarGamelist->setFormat(tr("Tag - %p%"));
+	else
+		progressBarGamelist->setFormat("%p%");
+	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+	qApp->processEvents();
+	int count = 0;
+
+	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+	QTreeWidgetItem *item;
+	while ( it.hasNext() ) {
+		progressBarGamelist->setValue(count++);
+		it.next();
+		item = qmc2GamelistItemMap[it.key()];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
+		item = qmc2HierarchyItemMap[it.key()];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
+#if defined(QMC2_EMUTYPE_MAME)
+		item = qmc2CategoryItemMap[it.key()];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
+		item = qmc2VersionItemMap[it.key()];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Checked);
+#endif
+		qmc2Gamelist->numTaggedSets++;
+		labelGamelistStatus->setText(qmc2Gamelist->status());
+	}
+	progressBarGamelist->reset();
+	qmc2Gamelist->numTaggedSets = qmc2Gamelist->numGames;
+	labelGamelistStatus->setText(qmc2Gamelist->status());
+}
+
+void MainWindow::on_actionUntagAll_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionUntagAll_activated()");
+#endif
+
+	progressBarGamelist->reset();
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		progressBarGamelist->setFormat(tr("Untag - %p%"));
+	else
+		progressBarGamelist->setFormat("%p%");
+	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+	qApp->processEvents();
+	int count = 0;
+
+	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+	QTreeWidgetItem *item;
+	while ( it.hasNext() ) {
+		progressBarGamelist->setValue(count++);
+		it.next();
+		item = qmc2GamelistItemMap[it.key()];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+		item = qmc2HierarchyItemMap[it.key()];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+#if defined(QMC2_EMUTYPE_MAME)
+		item = qmc2CategoryItemMap[it.key()];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+		item = qmc2VersionItemMap[it.key()];
+		if ( item )
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
+#endif
+		qmc2Gamelist->numTaggedSets--;
+		labelGamelistStatus->setText(qmc2Gamelist->status());
+	}
+	progressBarGamelist->reset();
+	qmc2Gamelist->numTaggedSets = 0;
+	labelGamelistStatus->setText(qmc2Gamelist->status());
+}
+
+void MainWindow::on_actionInvertTags_activated()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionInvertTags_activated()");
+#endif
+
+	progressBarGamelist->reset();
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
+		progressBarGamelist->setFormat(tr("Invert tag - %p%"));
+	else
+		progressBarGamelist->setFormat("%p%");
+	progressBarGamelist->setRange(0, qmc2Gamelist->numGames);
+	qApp->processEvents();
+	int count = 0;
+
+	QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
+	QTreeWidgetItem *item;
+	while ( it.hasNext() ) {
+		progressBarGamelist->setValue(count++);
+		it.next();
+		item = qmc2GamelistItemMap[it.key()];
+		if ( item ) {
+			Qt::CheckState cs = (item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Unchecked ? Qt::Checked : Qt::Unchecked);
+			bool wasTagged = (cs != Qt::Checked);
+			item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+			item = qmc2HierarchyItemMap[it.key()];
+			if ( item )
+				item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+#if defined(QMC2_EMUTYPE_MAME)
+			item = qmc2CategoryItemMap[it.key()];
+			if ( item )
+				item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+			item = qmc2VersionItemMap[it.key()];
+			if ( item )
+				item->setCheckState(QMC2_GAMELIST_COLUMN_TAG, cs);
+#endif
+			if ( wasTagged )
+				qmc2Gamelist->numTaggedSets--;
+			else
+				qmc2Gamelist->numTaggedSets++;
+			labelGamelistStatus->setText(qmc2Gamelist->status());
+		}
+	}
+	progressBarGamelist->reset();
+}
 
 #if defined(QMC2_EMUTYPE_MESS)
 // note: - this routine is far from "elegant" but basically works (there may be minor conversion "bugs", though, depending on the quality of the wiki source data)
@@ -8664,14 +9282,13 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+5"].second = qmc2MainWindow->actionCheckIcons;
   qmc2ShortcutMap["Ctrl+A"].second = qmc2MainWindow->actionAbout;
   qmc2ShortcutMap["Ctrl+D"].second = qmc2MainWindow->actionAnalyseCurrentROM;
+  qmc2ShortcutMap["Ctrl+Shift+D"].second = qmc2MainWindow->actionAnalyseROMTagged;
   qmc2ShortcutMap["Ctrl+E"].second = qmc2MainWindow->actionExportROMStatus;
   qmc2ShortcutMap["Ctrl+F"].second = qmc2MainWindow->actionToFavorites;
+  qmc2ShortcutMap["Ctrl+Shift+F"].second = qmc2MainWindow->actionToFavoritesTagged;
   qmc2ShortcutMap["Ctrl+H"].second = qmc2MainWindow->actionDocumentation;
   qmc2ShortcutMap["Ctrl+I"].second = qmc2MainWindow->actionClearImageCache;
   qmc2ShortcutMap["Ctrl+Shift+A"].second = qmc2MainWindow->actionArcadeSetup;
-#if defined(QMC2_EMUTYPE_MAME)
-  qmc2ShortcutMap["Ctrl+Shift+D"].second = qmc2MainWindow->actionDemoMode;
-#endif
   qmc2ShortcutMap["Ctrl+M"].second = qmc2MainWindow->actionClearMAWSCache;
   qmc2ShortcutMap["Ctrl+N"].second = qmc2MainWindow->actionClearIconCache;
   qmc2ShortcutMap["Ctrl+O"].second = qmc2MainWindow->actionOptions;
@@ -8682,6 +9299,7 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+Q"].second = qmc2MainWindow->actionAboutQt;
   qmc2ShortcutMap["Ctrl+R"].second = qmc2MainWindow->actionReload;
   qmc2ShortcutMap["Ctrl+S"].second = qmc2MainWindow->actionCheckCurrentROM;
+  qmc2ShortcutMap["Ctrl+Shift+S"].second = qmc2MainWindow->actionCheckROMStateTagged;
   qmc2ShortcutMap["Ctrl+T"].second = qmc2MainWindow->actionRecreateTemplateMap;
   qmc2ShortcutMap["Ctrl+C"].second = qmc2MainWindow->actionCheckTemplateMap;
   qmc2ShortcutMap["Ctrl+X"].second = qmc2MainWindow->actionExitStop;
@@ -8698,6 +9316,12 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+Alt+1"].second = qmc2MainWindow->actionLaunchQMC2MAME;
   qmc2ShortcutMap["Ctrl+Alt+2"].second = qmc2MainWindow->actionLaunchQMC2MESS;
 #endif
+  qmc2ShortcutMap["Ctrl+Shift+T"].second = qmc2MainWindow->actionSetTag;
+  qmc2ShortcutMap["Ctrl+Shift+U"].second = qmc2MainWindow->actionUnsetTag;
+  qmc2ShortcutMap["Ctrl+Shift+G"].second = qmc2MainWindow->actionToggleTag;
+  qmc2ShortcutMap["Ctrl+Shift+L"].second = qmc2MainWindow->actionTagAll;
+  qmc2ShortcutMap["Ctrl+Shift+N"].second = qmc2MainWindow->actionUntagAll;
+  qmc2ShortcutMap["Ctrl+Shift+I"].second = qmc2MainWindow->actionInvertTags;
   qmc2ShortcutMap["F5"].second = qmc2MainWindow->actionViewFullDetail;
   qmc2ShortcutMap["F6"].second = qmc2MainWindow->actionViewParentClones;
 #if defined(QMC2_EMUTYPE_MAME)
@@ -8705,6 +9329,7 @@ void prepareShortcuts()
   qmc2ShortcutMap["F8"].second = qmc2MainWindow->actionViewByVersion;
 #endif
   qmc2ShortcutMap["F9"].second = qmc2MainWindow->actionRunRomTool;
+  qmc2ShortcutMap["Ctrl+Shift+F9"].second = qmc2MainWindow->actionRunRomToolTagged;
   qmc2ShortcutMap["F11"].second = qmc2MainWindow->actionFullscreenToggle;
   qmc2ShortcutMap["F12"].second = qmc2MainWindow->actionArcadeToggle;
   qmc2ShortcutMap["Meta+F"].second = qmc2MainWindow->actionArcadeShowFPS;

@@ -272,14 +272,13 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+5"] = QPair<QString, QAction *>(tr("Check icon images"), NULL);
   qmc2ShortcutMap["Ctrl+A"] = QPair<QString, QAction *>(tr("About QMC2"), NULL);
   qmc2ShortcutMap["Ctrl+D"] = QPair<QString, QAction *>(tr("Analyze current game"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+D"] = QPair<QString, QAction *>(tr("Analyze tagged sets"), NULL);
   qmc2ShortcutMap["Ctrl+E"] = QPair<QString, QAction *>(tr("Export ROM Status"), NULL);
   qmc2ShortcutMap["Ctrl+F"] = QPair<QString, QAction *>(tr("Copy game to favorites"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+F"] = QPair<QString, QAction *>(tr("Copy tagged sets to favorites"), NULL);
   qmc2ShortcutMap["Ctrl+H"] = QPair<QString, QAction *>(tr("Online documentation"), NULL);
   qmc2ShortcutMap["Ctrl+I"] = QPair<QString, QAction *>(tr("Clear image cache"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+A"] = QPair<QString, QAction *>(tr("Setup arcade mode"), NULL);
-#if defined(QMC2_EMUTYPE_MAME)
-  qmc2ShortcutMap["Ctrl+Shift+D"] = QPair<QString, QAction *>(tr("Demo mode"), NULL);
-#endif
   qmc2ShortcutMap["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear MAWS cache"), NULL);
   qmc2ShortcutMap["Ctrl+N"] = QPair<QString, QAction *>(tr("Clear icon cache"), NULL);
   qmc2ShortcutMap["Ctrl+O"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
@@ -290,6 +289,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Q"] = QPair<QString, QAction *>(tr("About Qt"), NULL);
   qmc2ShortcutMap["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload gamelist"), NULL);
   qmc2ShortcutMap["Ctrl+S"] = QPair<QString, QAction *>(tr("Check game's ROM state"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+S"] = QPair<QString, QAction *>(tr("Check states of tagged ROMs"), NULL);
   qmc2ShortcutMap["Ctrl+T"] = QPair<QString, QAction *>(tr("Recreate template map"), NULL);
   qmc2ShortcutMap["Ctrl+C"] = QPair<QString, QAction *>(tr("Check template map"), NULL);
   qmc2ShortcutMap["Ctrl+X"] = QPair<QString, QAction *>(tr("Stop processing / exit QMC2"), NULL);
@@ -311,6 +311,12 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Alt+2"] = QPair<QString, QAction *>(tr("Launch QMC2 for SDLMESS"), NULL);
 #endif
 #endif
+  qmc2ShortcutMap["Ctrl+Shift+T"] = QPair<QString, QAction *>(tr("Tag current set"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+U"] = QPair<QString, QAction *>(tr("Untag current set"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+G"] = QPair<QString, QAction *>(tr("Toggle tag mark"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+L"] = QPair<QString, QAction *>(tr("Tag all sets"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+N"] = QPair<QString, QAction *>(tr("Untag all sets"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+I"] = QPair<QString, QAction *>(tr("Invert all tags"), NULL);
   qmc2ShortcutMap["F5"] = QPair<QString, QAction *>(tr("Gamelist with full detail"), NULL);
   qmc2ShortcutMap["F6"] = QPair<QString, QAction *>(tr("Parent / clone hierarchy"), NULL);
 #if defined(QMC2_EMUTYPE_MAME)
@@ -318,6 +324,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["F8"] = QPair<QString, QAction *>(tr("View games by version"), NULL);
 #endif
   qmc2ShortcutMap["F9"] = QPair<QString, QAction *>(tr("Run external ROM tool"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+F9"] = QPair<QString, QAction *>(tr("Run ROM tool for tagged sets"), NULL);
   qmc2ShortcutMap["F11"] = QPair<QString, QAction *>(tr("Toggle full screen"), NULL);
   qmc2ShortcutMap["F12"] = QPair<QString, QAction *>(tr("Toggle arcade mode"), NULL);
   qmc2ShortcutMap["Meta+F"] = QPair<QString, QAction *>(tr("Show FPS (arcade mode)"), NULL);
@@ -1381,6 +1388,9 @@ void Options::on_pushButtonApply_clicked()
         case QMC2_SORT_BY_ROM_STATE:
           sortCriteria = QObject::tr("ROM state");
           break;
+        case QMC2_SORT_BY_TAG:
+          sortCriteria = QObject::tr("tag");
+          break;
         case QMC2_SORT_BY_YEAR:
           sortCriteria = QObject::tr("year");
           break;
@@ -1452,6 +1462,19 @@ void Options::on_pushButtonApply_clicked()
 #if defined(QMC2_EMUTYPE_MAME)
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_GAME, qmc2SortOrder);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_GAME, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
+#endif
+      break;
+
+    case QMC2_SORT_BY_TAG:
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_TAG, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_TAG, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetGamelist->header()->setSortIndicatorShown(true);
+      qmc2MainWindow->treeWidgetHierarchy->header()->setSortIndicatorShown(true);
+#if defined(QMC2_EMUTYPE_MAME)
+      qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_TAG, qmc2SortOrder);
+      qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicator(QMC2_GAMELIST_COLUMN_TAG, qmc2SortOrder);
       qmc2MainWindow->treeWidgetCategoryView->header()->setSortIndicatorShown(true);
       qmc2MainWindow->treeWidgetVersionView->header()->setSortIndicatorShown(true);
 #endif

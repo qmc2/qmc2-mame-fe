@@ -124,7 +124,7 @@ Gamelist::Gamelist(QObject *parent)
 #endif
 
   numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numSearchGames = numDevices = -1;
-  cachedGamesCounter = 0;
+  cachedGamesCounter = numTaggedSets = 0;
   loadProc = verifyProc = NULL;
   emulatorVersion = tr("unknown");
   autoRomCheck = false;
@@ -308,6 +308,7 @@ void Gamelist::load()
   enableWidgets(false);
 
   numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numSearchGames = numDevices = -1;
+  numTaggedSets = 0;
   qmc2MainWindow->treeWidgetGamelist->clear();
   qmc2MainWindow->treeWidgetHierarchy->clear();
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1456,6 +1457,8 @@ void Gamelist::parse()
 #endif
 
             GamelistItem *gameDescriptionItem = new GamelistItem(qmc2MainWindow->treeWidgetGamelist);
+            gameDescriptionItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+            gameDescriptionItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
 
             if ( !gameCloneOf.isEmpty() )
               qmc2HierarchyMap[gameCloneOf].append(gameName);
@@ -1882,6 +1885,8 @@ void Gamelist::parse()
     if ( iDescription.isEmpty() )
       continue;
     GamelistItem *hierarchyItem = new GamelistItem(qmc2MainWindow->treeWidgetHierarchy);
+    hierarchyItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+    hierarchyItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_GAME, iDescription);
     QTreeWidgetItem *baseItem = qmc2GamelistItemMap[iValue];
     hierarchyItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
@@ -1965,6 +1970,8 @@ void Gamelist::parse()
       if ( jDescription.isEmpty() )
         continue;
       GamelistItem *hierarchySubItem = new GamelistItem(hierarchyItem);
+      hierarchySubItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+      hierarchySubItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, Qt::Unchecked);
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_GAME, jDescription);
       baseItem = qmc2GamelistItemMap[jValue];
       hierarchySubItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
@@ -2062,6 +2069,9 @@ void Gamelist::parse()
       break;
     case QMC2_SORT_BY_ROM_STATE:
       sortCriteria = QObject::tr("ROM state");
+      break;
+    case QMC2_SORT_BY_TAG:
+      sortCriteria = QObject::tr("tag");
       break;
     case QMC2_SORT_BY_YEAR:
       sortCriteria = QObject::tr("year");
@@ -2467,7 +2477,8 @@ QString Gamelist::status()
   statusString += "<font color=#f90000>" + tr("I:") + QString(numIncorrectGames > -1 ? locale.toString(numIncorrectGames) : "?") + "</font>\n";
   statusString += "<font color=#7f7f7f>" + tr("N:") + QString(numNotFoundGames > -1 ? locale.toString(numNotFoundGames) : "?") + "</font>\n";
   statusString += "<font color=#0000f9>" + tr("U:") + QString(numUnknownGames > -1 ? locale.toString(numUnknownGames) : "?") + "</font>\n";
-  statusString += "<font color=chocolate>" + tr("S:") + QString(numSearchGames > -1 ? locale.toString(numSearchGames) : "?") + "</font>";
+  statusString += "<font color=chocolate>" + tr("S:") + QString(numSearchGames > -1 ? locale.toString(numSearchGames) : "?") + "</font>\n";
+  statusString += "<font color=sandybrown>" + tr("T:") + QString(numTaggedSets > -1 ? locale.toString(numTaggedSets) : "?") + "</font>";
   statusString += "</b>";
 
   return statusString;
@@ -3544,6 +3555,8 @@ void Gamelist::createCategoryView()
 					categoryItem->setText(QMC2_GAMELIST_COLUMN_GAME, category);
 				}
 				QTreeWidgetItem *gameItem = new QTreeWidgetItem(categoryItem);
+				gameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+				gameItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, baseItem->checkState(QMC2_GAMELIST_COLUMN_TAG));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_GAME, baseItem->text(QMC2_GAMELIST_COLUMN_GAME));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
@@ -3637,6 +3650,8 @@ void Gamelist::createVersionView()
 					versionItem->setText(QMC2_GAMELIST_COLUMN_GAME, version);
 				}
 				QTreeWidgetItem *gameItem = new QTreeWidgetItem(versionItem);
+				gameItem->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled);
+				gameItem->setCheckState(QMC2_GAMELIST_COLUMN_TAG, baseItem->checkState(QMC2_GAMELIST_COLUMN_TAG));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_GAME, baseItem->text(QMC2_GAMELIST_COLUMN_GAME));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_YEAR, baseItem->text(QMC2_GAMELIST_COLUMN_YEAR));
 				gameItem->setText(QMC2_GAMELIST_COLUMN_MANU, baseItem->text(QMC2_GAMELIST_COLUMN_MANU));
@@ -3693,6 +3708,10 @@ bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
 
     case QMC2_SORT_BY_ROM_STATE:
       return (whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() < otherItem.whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii());
+      break;
+
+    case QMC2_SORT_BY_TAG:
+      return (int(checkState(QMC2_GAMELIST_COLUMN_TAG)) < int(otherItem.checkState(QMC2_GAMELIST_COLUMN_TAG)));
       break;
 
     case QMC2_SORT_BY_YEAR:
