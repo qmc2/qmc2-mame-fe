@@ -3329,11 +3329,11 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
                 unzCloseCurrentFile(qmc2IconFile);
 #if QT_VERSION < 0x040600
                 if ( pm.loadFromData(imageData) )
-                  qmc2IconMap[gameFileName.toLower().remove(QRegExp("(\\.png|\\.ico)"))] = QIcon(pm);
+                  qmc2IconMap[gameFileName.toLower().remove(QRegExp("(\\.png|\\.ico)$"))] = QIcon(pm);
 #else
                 QPixmap iconPixmap;
                 if ( iconPixmap.loadFromData(imageData) )
-                  qmc2IconMap[gameFileName.toLower().remove(QRegExp("(\\.png|\\.ico)"))] = QIcon(iconPixmap);
+                  qmc2IconMap[gameFileName.toLower().remove(QRegExp("(\\.png|\\.ico)$"))] = QIcon(iconPixmap);
 #endif
               }
             }
