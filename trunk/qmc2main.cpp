@@ -8443,7 +8443,7 @@ void MainWindow::actionHierarchyHeader_triggered()
 
 void MainWindow::on_treeWidgetGamelist_itemEntered(QTreeWidgetItem *item, int column)
 {
-	if ( column == QMC2_GAMELIST_COLUMN_TAG ) {
+	if ( column == QMC2_GAMELIST_COLUMN_TAG && item->parent() == NULL ) {
 		if ( qApp->mouseButtons() == Qt::LeftButton && qApp->activeWindow() ) {
 			QPoint cPos = treeWidgetGamelist->viewport()->mapFromGlobal(QCursor::pos());
 			if ( treeWidgetGamelist->itemAt(cPos) == item ) {
