@@ -3309,7 +3309,8 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
               qApp->processEvents();
             }
             if ( unzGetCurrentFileInfo(qmc2IconFile, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK ) {
-              QString gameFileName = unzFileName;
+              QFileInfo fi(unzFileName);
+              QString gameFileName = fi.fileName();
 #ifdef QMC2_DEBUG
               qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: loading %1").arg(gameFileName));
 #endif
