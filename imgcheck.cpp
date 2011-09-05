@@ -71,7 +71,6 @@ ImageChecker::ImageChecker(QWidget *parent)
   checkBoxPreviewsSelectGame->setToolTip(tr("Select machine in machine list if selected in check lists?"));
   checkBoxFlyersSelectGame->setText(tr("Select machine"));
   checkBoxFlyersSelectGame->setToolTip(tr("Select machine in machine list if selected in check lists?"));
-  tabWidgetImageChecker->removeTab(QMC2_ICON_INDEX);
 #endif
 
   QFont f;
@@ -838,6 +837,7 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("check pass 2: obsolete files: reading ZIP directory"));
       qApp->processEvents();
       QStringList fileList;
+      QStringList fileNameList;
       i = 0;
       unz_global_info unzGlobalInfo;
       if ( unzGetGlobalInfo(qmc2IconFile, &unzGlobalInfo) == UNZ_OK ) {
@@ -852,8 +852,10 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
               qmc2MainWindow->progressBarGamelist->setValue(i);
               qApp->processEvents();
             }
-            if ( unzGetCurrentFileInfo(qmc2IconFile, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK )
-              fileList << unzFileName;
+            if ( unzGetCurrentFileInfo(qmc2IconFile, NULL, unzFileName, QMC2_MAX_PATH_LENGTH, NULL, 0, NULL, 0) == UNZ_OK ) {
+              fileNameList << unzFileName;
+	      fileList << QString(unzFileName).remove(QRegExp("(\\.[pP][nN][gG]|\\.[iI][cC][oO])$"));
+            }
           } while ( unzGoToNextFile(qmc2IconFile) != UNZ_END_OF_LIST_OF_FILE );
         }
         qmc2MainWindow->progressBarGamelist->setRange(0, fileList.count());
@@ -870,10 +872,10 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
         }
 #if defined(Q_WS_WIN)
         if ( !fileNames.contains(fileList[i], Qt::CaseInsensitive) )
-          obsoleteFiles << fileList[i];
+          obsoleteFiles << fileNameList[i];
 #else
         if ( !fileNames.contains(fileList[i]) )
-          obsoleteFiles << fileList[i];
+          obsoleteFiles << fileNameList[i];
 #endif
         qApp->processEvents();
       }

@@ -234,11 +234,9 @@ Options::Options(QWidget *parent)
   checkBoxScaledController->setVisible(false);
   checkBoxScaledMarquee->setVisible(false);
   checkBoxScaledTitle->setVisible(false);
-  radioButtonIconSelect->setVisible(false);
   radioButtonControllerSelect->setVisible(false);
   radioButtonMarqueeSelect->setVisible(false);
   radioButtonTitleSelect->setVisible(false);
-  stackedWidgetIcon->setVisible(false);
   stackedWidgetController->setVisible(false);
   stackedWidgetMarquee->setVisible(false);
   stackedWidgetTitle->setVisible(false);

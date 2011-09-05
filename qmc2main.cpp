@@ -523,10 +523,8 @@ MainWindow::MainWindow(QWidget *parent)
 #elif defined(QMC2_EMUTYPE_MESS)
   actionLaunchQMC2MESS->setVisible(false);
   actionClearMAWSCache->setVisible(false);
-  actionClearIconCache->setVisible(false);
   actionDemoMode->setVisible(false);
   setWindowTitle(tr("M.E.S.S. Catalog / Launcher II"));
-  menu_Tools->removeAction(actionCheckIcons);
   treeWidgetGamelist->headerItem()->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Machine / Attribute"));
   treeWidgetHierarchy->headerItem()->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Machine / Clones"));
   tabWidgetGamelist->setTabText(QMC2_GAMELIST_INDEX, tr("M&achine list"));
@@ -589,8 +587,6 @@ MainWindow::MainWindow(QWidget *parent)
   qmc2Options->checkBoxShowGameName->setText(tr("Show machine name"));
   qmc2Options->checkBoxShowGameName->setToolTip(tr("Show machine's description at the bottom of any images"));
   qmc2Options->checkBoxShowGameNameOnlyWhenRequired->setToolTip(tr("Show machine's description only when the machine list is not visible due to the current layout"));
-  treeWidgetGamelist->headerItem()->setText(QMC2_GAMELIST_COLUMN_ICON, tr("Value"));
-  actionCheckIcons->setVisible(false);
   labelLoadingGamelist->setText(tr("Loading machine list, please wait..."));
   labelLoadingHierarchy->setText(tr("Loading machine list, please wait..."));
   comboBoxSearch->setToolTip(tr("Search for machines (not case-sensitive)"));
@@ -1085,7 +1081,7 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_GAME));
   action = menuGamelistHeader->addAction(tr("Tag"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_TAG);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_TAG));
-  action = menuGamelistHeader->addAction(tr("Value"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_ICON);
+  action = menuGamelistHeader->addAction(tr("Icon / Value"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_ICON);
   action->setChecked(!treeWidgetGamelist->isColumnHidden(QMC2_MACHINELIST_COLUMN_ICON));
 #endif
   action = menuGamelistHeader->addAction(tr("Year"), this, SLOT(actionGamelistHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_YEAR);
@@ -1125,6 +1121,8 @@ MainWindow::MainWindow(QWidget *parent)
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_GAME));
   action = menuHierarchyHeader->addAction(tr("Tag"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_TAG);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_TAG));
+  action = menuHierarchyHeader->addAction(tr("Icon"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_MACHINELIST_COLUMN_ICON);
+  action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_MACHINELIST_COLUMN_ICON));
 #endif
   action = menuHierarchyHeader->addAction(tr("Year"), this, SLOT(actionHierarchyHeader_triggered())); action->setCheckable(true); action->setData(QMC2_GAMELIST_COLUMN_YEAR);
   action->setChecked(!treeWidgetHierarchy->isColumnHidden(QMC2_GAMELIST_COLUMN_YEAR));
@@ -1331,11 +1329,6 @@ MainWindow::MainWindow(QWidget *parent)
   connect(treeWidgetVersionView->header(), SIGNAL(sectionClicked(int)), this, SLOT(on_treeWidgetVersionView_headerSectionClicked(int)));
   treeWidgetCategoryView->header()->setClickable(true);
   treeWidgetVersionView->header()->setClickable(true);
-#endif
-
-#if defined(QMC2_EMUTYPE_MESS)
-  treeWidgetHierarchy->hideColumn(QMC2_MACHINELIST_COLUMN_ICON);
-  qApp->processEvents();
 #endif
 
   // setup the global network access manager
