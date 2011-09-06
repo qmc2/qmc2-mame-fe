@@ -1335,7 +1335,6 @@ MainWindow::MainWindow(QWidget *parent)
   qmc2NetworkAccessManager = new QNetworkAccessManager(this);
 
   // URL replacement regexp
-  //QString urlChar = QLatin1String("\\+\\-\\w\\./#@&;:=\\?~%_,\\!\\$\\*\\(\\)");
   QString urlChar = QLatin1String("\\+\\-\\w\\./#@&;:=\\?~%_,\\!\\$\\*");
   urlSectionRegExp = QString("[%1]+").arg(urlChar);
 
