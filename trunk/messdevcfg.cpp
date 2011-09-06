@@ -5,6 +5,8 @@
 #include <QFileDialog>
 #include <QStringList>
 #include <QComboBox>
+#include <QInputDialog>
+#include <QMessageBox>
 
 #include "messdevcfg.h"
 #include "gamelist.h"
@@ -135,7 +137,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
   setupUi(this);
 
-  toolButtonChooserSaveConfiguration->setVisible(false);
+  //toolButtonChooserSaveConfiguration->setVisible(false);
 
   tabFileChooser->setUpdatesEnabled(false);
 
@@ -1509,6 +1511,52 @@ void MESSDeviceConfigurator::on_toolButtonChooserSaveConfiguration_clicked()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_toolButtonChooserSaveConfiguration_clicked()");
 #endif
 
+	QString instance = comboBoxDeviceInstanceChooser->currentText();
+	QModelIndexList indexList = treeViewFileChooser->selectionModel()->selectedIndexes();
+	if ( indexList.count() > 0 && instance != tr("No devices available") ) {
+#if !defined(QMC2_ALTERNATE_FSM)
+		QString file = fileModel->fileInfo(indexList[0]).absoluteFilePath();
+#else
+		QString file = fileModel->absolutePath(indexList[0]);
+#endif
+
+		QString targetName;
+		bool goOn = false;
+		do {
+			QFileInfo fi(file);
+			QString sourceName = fi.completeBaseName();
+			targetName = sourceName;
+			int copies = 0;
+			while ( configurationMap.contains(targetName) )
+				targetName = tr("%1. variant of ").arg(++copies) + sourceName;
+			bool ok;
+			QString text = QInputDialog::getText(this, tr("Choose a unique configuration name"), tr("Unique configuration name:"), QLineEdit::Normal, targetName, &ok);
+			if ( ok && !text.isEmpty() ) {
+				if ( configurationMap.contains(text) ) {
+					switch ( QMessageBox::question(this, tr("Name conflict"), tr("A configuration named '%1' already exists.\n\nDo you want to choose a different name?").arg(text), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) ) {
+						case QMessageBox::Yes:
+							goOn = true;
+							break;
+						case QMessageBox::No:
+						default:
+							goOn = false;
+							break;
+					}
+				} else {
+					targetName = text;
+					QStringList instances;
+					QStringList files;
+					instances << instance;
+					files << file;
+					configurationMap[targetName].first = instances;
+					configurationMap[targetName].second = files;
+					listWidgetDeviceConfigurations->insertItem(listWidgetDeviceConfigurations->count(), targetName);
+					goOn = false;
+				}
+			} else
+				goOn = false;
+		} while ( goOn );
+	}
 }
 
 MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent)
