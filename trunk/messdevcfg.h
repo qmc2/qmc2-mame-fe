@@ -113,6 +113,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void on_toolButtonChooserReload_clicked();
     void on_comboBoxChooserFilterPattern_textChanged(QString);
 #endif
+    void on_splitterFileChooser_splitterMoved(int, int);
 
     // other callbacks
     void actionSelectDefaultDeviceDirectory_triggered();
