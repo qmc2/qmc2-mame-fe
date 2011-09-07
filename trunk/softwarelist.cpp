@@ -1268,7 +1268,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *ite
 void SoftwareList::on_comboBoxSearch_textChanged(QString)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_comboBoxSearch_textChanged(QString)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_comboBoxSearch_textChanged(QString)");
 #endif
 
 	searchTimer.start(QMC2_SEARCH_DELAY);
@@ -1277,7 +1277,7 @@ void SoftwareList::on_comboBoxSearch_textChanged(QString)
 void SoftwareList::comboBoxSearch_textChanged_delayed()
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::comboBoxSearch_textChanged_delayed()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::comboBoxSearch_textChanged_delayed()");
 #endif
 
 	searchTimer.stop();
@@ -1328,7 +1328,7 @@ void SoftwareList::comboBoxSearch_textChanged_delayed()
 void SoftwareList::on_comboBoxSearch_activated(QString pattern)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_comboBoxSearch_activated(QString pattern = %1)").arg(pattern));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_comboBoxSearch_activated(QString pattern = %1)").arg(pattern));
 #endif
 
 	autoSelectSearchItem = true;
@@ -1399,7 +1399,7 @@ QStringList &SoftwareList::arguments()
 void SoftwareList::treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &p = ...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
 	menuKnownSoftwareHeader->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetKnownSoftware->header()->viewport()->mapToGlobal(p), menuKnownSoftwareHeader));
@@ -1409,7 +1409,7 @@ void SoftwareList::treeWidgetKnownSoftwareHeader_customContextMenuRequested(cons
 void SoftwareList::actionKnownSoftwareHeader_triggered()
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::actionKnownSoftwareHeader_triggered()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::actionKnownSoftwareHeader_triggered()");
 #endif
 
 	QAction *action = (QAction *)sender();
@@ -1432,7 +1432,7 @@ void SoftwareList::actionKnownSoftwareHeader_triggered()
 void SoftwareList::treeWidgetFavoriteSoftwareHeader_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::treeWidgetFavoriteSoftwareHeader_customContextMenuRequested(const QPoint &p = ...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::treeWidgetFavoriteSoftwareHeader_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
 	menuFavoriteSoftwareHeader->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetFavoriteSoftware->header()->viewport()->mapToGlobal(p), menuFavoriteSoftwareHeader));
@@ -1442,7 +1442,7 @@ void SoftwareList::treeWidgetFavoriteSoftwareHeader_customContextMenuRequested(c
 void SoftwareList::actionFavoriteSoftwareHeader_triggered()
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::actionFavoriteSoftwareHeader_triggered()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::actionFavoriteSoftwareHeader_triggered()");
 #endif
 
 	QAction *action = (QAction *)sender();
@@ -1465,7 +1465,7 @@ void SoftwareList::actionFavoriteSoftwareHeader_triggered()
 void SoftwareList::treeWidgetSearchResultsHeader_customContextMenuRequested(const QPoint &p)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::treeWidgetSearchResultsHeader_customContextMenuRequested(const QPoint &p = ...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::treeWidgetSearchResultsHeader_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
 	menuSearchResultsHeader->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetSearchResults->header()->viewport()->mapToGlobal(p), menuSearchResultsHeader));
@@ -1475,7 +1475,7 @@ void SoftwareList::treeWidgetSearchResultsHeader_customContextMenuRequested(cons
 void SoftwareList::actionSearchResultsHeader_triggered()
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::actionSearchResultsHeader_triggered()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::actionSearchResultsHeader_triggered()");
 #endif
 
 	QAction *action = (QAction *)sender();
