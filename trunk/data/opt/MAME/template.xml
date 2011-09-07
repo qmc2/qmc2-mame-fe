@@ -1209,6 +1209,14 @@
       <description lang="de" text="HLSL Post-Processing aktivieren (benötigt Pixel Shader 3.0)"/>
       <description lang="pt" text="Habilitar pós processamento HLSL (requer Pixel Shader 3.0)"/>
     </option>
+    <option name="hlsl_ini_read" type="bool" default="false">
+      <description lang="us" text="Enable HLSL INI reading"/>
+      <description lang="de" text="Einlesen von HLSL INI Dateien aktivieren"/>
+    </option>
+    <option name="hlsl_ini_write" type="bool" default="false">
+      <description lang="us" text="Enable HLSL INI writing"/>
+      <description lang="de" text="Schreiben von HLSL INI Dateien aktivieren"/>
+    </option>
     <option name="hlslpath" type="directory" default="hlsl">
       <description lang="us" text="Path to hlsl files"/>
       <description lang="de" text="Suchpfad für hlsl-Dateien"/>
