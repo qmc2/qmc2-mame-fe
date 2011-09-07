@@ -5,6 +5,9 @@
 #include <QDir>
 #include <QKeyEvent>
 #include <QClipboard>
+#if defined(Q_WS_MAC)
+#include <QTest>
+#endif
 
 #include "softwarelist.h"
 #include "gamelist.h"
@@ -534,7 +537,11 @@ bool SoftwareList::load()
 			// FIXME: this is blocking the GUI shortly
 			if ( loadProc->waitForStarted() ) {
 				while ( loadProc->state() == QProcess::Running ) {
-					loadProc->waitForFinished(100);
+#if defined(Q_WS_MAC)
+					QTest::qWait(10);
+#else
+					loadProc->waitForFinished(10);
+#endif
 					qApp->processEvents();
 				}
 			} else
