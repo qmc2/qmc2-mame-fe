@@ -169,6 +169,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 #endif
   dirModel = NULL;
   fileModel = NULL;
+  fileChooserSetup = false;
 
   messMachineName = machineName;
   dontIgnoreNameChange = false;
@@ -610,7 +611,8 @@ bool MESSDeviceConfigurator::load()
 			  comboBoxDeviceInstanceChooser->blockSignals(false);
 		  }
 	  }
-	  QTimer::singleShot(0, this, SLOT(setupFileChooser()));
+	  if ( tabWidgetDeviceSetup->currentIndex() == QMC2_DEVSETUP_TAB_FILECHOOSER )
+	  	QTimer::singleShot(0, this, SLOT(setupFileChooser()));
   } else {
 	  comboBoxDeviceInstanceChooser->insertItem(0, tr("No devices available"));
 	  tabFileChooser->setUpdatesEnabled(true);
@@ -1133,6 +1135,9 @@ void MESSDeviceConfigurator::on_tabWidgetDeviceSetup_currentChanged(int index)
 			frameConfiguration->hide();
 			groupBoxAvailableDeviceConfigurations->hide();
 			groupBoxActiveDeviceConfiguration->setTitle("");
+			if ( !fileChooserSetup )
+				if ( comboBoxDeviceInstanceChooser->count() > 0 && comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
+	  				QTimer::singleShot(0, this, SLOT(setupFileChooser()));
 			break;
 		default:
 			break;
@@ -1144,6 +1149,14 @@ void MESSDeviceConfigurator::setupFileChooser()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::setupFileChooser()");
 #endif
+
+	if ( fileChooserSetup ) {
+		tabFileChooser->setUpdatesEnabled(true);
+		tabFileChooser->setEnabled(true);
+		return;
+	}
+
+	fileChooserSetup = true;
 
 	toolButtonChooserPlay->setEnabled(false);
 	toolButtonChooserPlayEmbedded->setEnabled(false);
