@@ -1567,7 +1567,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.cpp" line="172"/>
         <source>demo mode cannot start -- no games selected by filter</source>
-        <translation type="unfinished"></translation>
+        <translation>modo demonstração não pode iniciar -- nenhum jogo selecionado pelo filtro</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="176"/>
@@ -1632,12 +1632,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="213"/>
         <source>Use only tagged games</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar somente jogos etiquetados</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="216"/>
         <source>Tagged</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiquetados</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="289"/>
@@ -3850,7 +3850,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="2475"/>
         <source>T:</source>
-        <translation type="unfinished"></translation>
+        <translation>T:</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2499"/>
@@ -4857,24 +4857,26 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="1533"/>
         <source>Choose a unique configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha um nome de configuração único</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1533"/>
         <source>Unique configuration name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome de configuração único:</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1536"/>
         <source>Name conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Conflito de nome</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1536"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>
-        <translation type="unfinished"></translation>
+        <translation>Uma configuração com o nome &apos;%1&apos; já existe
+
+Você quer escolher um nome diferente?</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="15"/>
@@ -4957,7 +4959,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../messdevcfg.ui" line="260"/>
         <source>Tag</source>
-        <translation></translation>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="265"/>
@@ -6237,7 +6239,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="540"/>
         <location filename="../../qmc2main.cpp" line="541"/>
         <source>Play all tagged machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar todas as máquinas etiquetadas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="546"/>
@@ -6248,7 +6250,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="550"/>
         <location filename="../../qmc2main.cpp" line="551"/>
         <source>Play all tagged machines (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar todas as máquinas etiquetadas (embutido)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="554"/>
@@ -6259,7 +6261,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="560"/>
         <location filename="../../qmc2main.cpp" line="561"/>
         <source>Add all tagged machines to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar todas as máquinas etiquetadas aos favoritos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1216"/>
@@ -6594,39 +6596,39 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="8652"/>
         <location filename="../../qmc2main.cpp" line="8686"/>
         <source>Play tagged - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar etiquetados - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8722"/>
         <source>Add favorites - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar aos favoritos - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8755"/>
         <location filename="../../qmc2main.cpp" line="8783"/>
         <location filename="../../qmc2main.cpp" line="8823"/>
         <source>please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)</source>
-        <translation type="unfinished"></translation>
+        <translation>por favor espere a atividade atual terminar e tente novamente (essa opração em lote só pode ser executada exclusivamente)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8829"/>
         <source>ROM tool tagged - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferramenta de ROM com etiquetados - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8963"/>
         <source>Tag - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiquetar - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9005"/>
         <source>Untag - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover Etiqueta - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9047"/>
         <source>Invert tag - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverter etiqueta - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4157"/>
@@ -7499,56 +7501,56 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3499"/>
         <source>Play (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar (etiquetados)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3502"/>
         <location filename="../../qmc2main.ui" line="3505"/>
         <source>Play all tagged games</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar todos os jogos etiquetados</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3517"/>
         <source>Play embedded (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar embutido (etiquetados)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3520"/>
         <location filename="../../qmc2main.ui" line="3523"/>
         <source>Play all tagged games (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar todos os jogos etiquetados (embutido)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3535"/>
         <source>To favorites (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Para favoritos (etiquetados)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3538"/>
         <location filename="../../qmc2main.ui" line="3541"/>
         <source>Add all tagged games to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar todos os jogos etiquetados aos favoritos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3544"/>
         <source>Ctrl+Shift+F</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3556"/>
         <source>ROM state (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado da ROM (etiquetadas)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3559"/>
         <location filename="../../qmc2main.ui" line="3562"/>
         <source>Check ROM states of all tagged sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Checar o estado da ROM de todos os conjuntos etiquetados</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3565"/>
         <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3577"/>
@@ -7583,18 +7585,18 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="1155"/>
         <location filename="../../qmc2main.cpp" line="1180"/>
         <source>Tag</source>
-        <translation type="unfinished">Etiqueta</translation>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="847"/>
         <location filename="../../qmc2main.ui" line="850"/>
         <source>L:Listed - C:Correct - M:Mostly correct - I:Incorrect - N:Not found - U:Unknown - S:Search - T:Tagged</source>
-        <translation type="unfinished"></translation>
+        <translation>L:Listado - C:Correto - M:Maioria correto - I:Incorreto - N:Não encontrado - D:Desconhecido - B:Busca - E: Etiquetados</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2349"/>
         <source>&amp;Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>E&amp;tiquetar</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2532"/>
@@ -7829,18 +7831,18 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2856"/>
         <source>Analyse ROM (tagged)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisar ROM (etiquetada)...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2859"/>
         <source>Analyse ROM (tagged)</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisar ROM (etiquetada)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2862"/>
         <location filename="../../qmc2main.ui" line="2865"/>
         <source>Analyse all tagged sets with ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisar todos os conjuntos etiquetados com o ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2880"/>
@@ -8141,98 +8143,98 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3598"/>
         <source>Set tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Colocar etiqueta</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3601"/>
         <location filename="../../qmc2main.ui" line="3604"/>
         <source>Set tag mark</source>
-        <translation type="unfinished"></translation>
+        <translation>Colocar marca da etiqueta</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3607"/>
         <source>Ctrl+Shift+T</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3619"/>
         <source>Unset tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover etiqueta</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3622"/>
         <location filename="../../qmc2main.ui" line="3625"/>
         <source>Unset tag mark</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover marca da etiqueta</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3628"/>
         <source>Ctrl+Shift+U</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3640"/>
         <source>Toggle tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar/Remover etiqueta</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3643"/>
         <location filename="../../qmc2main.ui" line="3646"/>
         <source>Toggle tag mark</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar/Remover marca da etiqueta</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3649"/>
         <source>Ctrl+Shift+G</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3661"/>
         <source>Tag all</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiquetar todos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3664"/>
         <location filename="../../qmc2main.ui" line="3667"/>
         <source>Set tag mark for all sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Colocar marca de etiqueta para todos os conjuntos</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3670"/>
         <source>Ctrl+Shift+L</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3682"/>
         <source>Untag all</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover todas as etiquetas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3685"/>
         <location filename="../../qmc2main.ui" line="3688"/>
         <source>Unset all tag marks</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover todas as marcas de etiquetas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3691"/>
         <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3703"/>
         <source>Invert all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverter todas as etiquetas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3706"/>
         <location filename="../../qmc2main.ui" line="3709"/>
         <source>Invert all tag marks</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverter todas as marcas de etiquetas</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3712"/>
         <source>Ctrl+Shift+I</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2868"/>
@@ -8290,18 +8292,18 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3394"/>
         <source>Run external ROM tool (tagged)...</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar ferramenta de ROM externa (etiquetados)...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3397"/>
         <location filename="../../qmc2main.ui" line="3400"/>
         <source>Run tool to process ROM data externally for all tagged sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar ferramenta para processar dados da ROM externamente para todos os conjuntos etiquetados</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3403"/>
         <source>Ctrl+Shift+F9</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3411"/>
@@ -9065,7 +9067,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="273"/>
         <source>Analyze tagged sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisar conjuntos etiquetados</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="274"/>
@@ -9080,7 +9082,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="276"/>
         <source>Copy tagged sets to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar conjuntos etiquetados para os favoritos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="277"/>
@@ -9144,7 +9146,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="290"/>
         <source>Check states of tagged ROMs</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar o estados das ROMs etiquetadas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="291"/>
@@ -9219,32 +9221,32 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="312"/>
         <source>Tag current set</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiquetar conjunto atual</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="313"/>
         <source>Untag current set</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover etiqueta do conjunto atual</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="314"/>
         <source>Toggle tag mark</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternar marca da etiqueta</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="315"/>
         <source>Tag all sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiquetar todos os conjuntos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="316"/>
         <source>Untag all sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Remover etiqueta de todos os conjuntos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="317"/>
         <source>Invert all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverter todas as etiquetas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="318"/>
@@ -9274,7 +9276,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="325"/>
         <source>Run ROM tool for tagged sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar ferramenta de ROM para os conjuntos etiquetados</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="326"/>
@@ -11264,7 +11266,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2337"/>
         <source>Tag</source>
-        <translation type="unfinished">Etiqueta</translation>
+        <translation>Etiqueta</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2367"/>
@@ -12134,7 +12136,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../gamelist.cpp" line="2068"/>
         <location filename="../../options.cpp" line="1390"/>
         <source>tag</source>
-        <translation type="unfinished"></translation>
+        <translation>etiqueta</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2071"/>
@@ -13255,7 +13257,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="1794"/>
         <source>Choose additional ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o caminho adicional das ROMs</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1940"/>
@@ -13722,12 +13724,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1125"/>
         <source>Additional ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Caminho adicional de ROM</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1151"/>
         <source>Browse additional ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar por caminho de ROM adicional</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1178"/>
@@ -14070,7 +14072,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.ui" line="1138"/>
         <source>Specify an additional source ROM path used when the set rewriter is active</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifique um caminho adicional de ROM usado quando o set rewriter (reescritor de conjuntos) está ativo</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1208"/>
@@ -14235,7 +14237,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../romstatusexport.cpp" line="498"/>
         <location filename="../../romstatusexport.cpp" line="733"/>
         <source>Total sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Conjuntos totais</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="174"/>
