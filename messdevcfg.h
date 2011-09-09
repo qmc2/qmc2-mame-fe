@@ -79,6 +79,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     QFileSystemModel *dirModel;
     QModelIndex modelIndexFileModel;
     QModelIndex modelIndexDirModel;
+    bool fileChooserSetup;
 
     MESSDeviceConfigurator(QString, QWidget *);
     ~MESSDeviceConfigurator();
