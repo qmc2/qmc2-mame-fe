@@ -639,6 +639,14 @@ MainWindow::MainWindow(QWidget *parent)
   pcbLayout->setContentsMargins(left, top, right, bottom);
   tabPCB->setLayout(pcbLayout);
 
+  // remove column-width restrictions
+  treeWidgetGamelist->header()->setMinimumSectionSize(0);
+  treeWidgetHierarchy->header()->setMinimumSectionSize(0);
+#if defined(QMC2_EMUTYPE_MAME)
+  treeWidgetCategoryView->header()->setMinimumSectionSize(0);
+  treeWidgetVersionView->header()->setMinimumSectionSize(0);
+#endif
+
   // restore layout
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() ) {
     log(QMC2_LOG_FRONTEND, tr("restoring main widget layout"));
