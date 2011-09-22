@@ -527,7 +527,7 @@ void ROMAlyzer::analyze()
 
   if ( groupBoxSetRewriter->isChecked() )
     if ( !lineEditSetRewriterAdditionalRomPath->text().isEmpty() )
-      myRomPath += ";" + lineEditSetRewriterAdditionalRomPath->text();
+      myRomPath = lineEditSetRewriterAdditionalRomPath->text() + ";" + myRomPath;
 
   myRomPath.replace("~", QDir::homePath());
   myRomPath.replace("$HOME", QDir::homePath());
