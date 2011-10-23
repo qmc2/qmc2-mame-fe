@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="SDLMESS" version="0.143u7" format="0.2.4">
+<template emulator="SDLMESS" version="0.143u8" format="0.2.4">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
@@ -617,6 +617,14 @@
       <description lang="pl" text="Ustawia klawisz przełączający pomiędzy pełnym a częściowym trybem interfejsu użytkownika"/>
       <description lang="fr" text="Spécifier la touche à utiliser pour basculer entre l'interface complète ou partielle"/>
       <description lang="pt" text="Especificar a tecla usada para alternar entre interface total ou parcial"/>
+    </option>
+    <option name="joystick_contradictory" type="bool" default="false">
+      <description lang="us" text="Enable contradictory direction digital joystick input at the same time"/>
+      <description lang="de" text="Joystick Eingabe gleichzeitig in entgegengesetzten Richtungen aktivieren"/>
+    </option>
+    <option name="coin_impulse" type="int" default="0">
+      <description lang="us" text="Set coin impulse time (n &lt; 0: disable impulse; n == 0: obey driver; n &gt; 0: set time)"/>
+      <description lang="de" text="Münz-Impuls Zeit setzen (n &lt; 0: Impuls deaktivieren; n == 0: Treiber gehorchen; n &gt; 0: Zeit setzen)"/>
     </option>
   </section>
   <section name="misc">
