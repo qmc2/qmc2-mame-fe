@@ -1,3 +1,51 @@
+qmc2 (0.34) testing; urgency=low
+
+  * New upstream release (Closes: #598846)
+  * inf: note that the versioning pattern has changed: we now just count the releases and follow the simple scheme '0.XX', where XX is the release number
+  * fix: MAME targets: don't auto-resize the last column in the game/machine list views when toggling the use of catver.ini (it annoys more than it helps)
+  * fix: build: corrected compile-time bugs related to builds with PHONON=0
+  * fix: adjust icon sizes when showing the audio-effect dialog initially
+  * fix: removed flicker on changing game-/machine-list views
+  * fix: corrected a few MESS-specific phrases
+  * fix: corrected delegate-sizing issues when there's only one device instance in the MESS device setup
+  * fix: Mac OS X: set ROMAlyzer's parent widget in order to avoid context-menu displacement
+  * fix: ROMAlyzer: the ROM set's context-menu should be available also when the set rewriter hasn't been enabled
+  * fix: MAME targets: category- and version-views were not created initially when switched to via the view-selector combo-box
+  * fix: MAME targets: demo-mode: avoid floating-point exception when no games were selected by the filter
+  * imp: updated minizip to version 1.01h
+  * imp: YouTube video player: decode (percent-)encoded error messages before logging them
+  * imp: setup dialog: conflated all formerly split emulator- and game-info DB settings
+  * imp: MAME/MESS emulator templates updated to 0.143u9
+  * imp: ROMAlyzer: better 'no dump' indication
+  * imp: enabled audio-effect widgets for MinGW builds (they work fine when the official Qt DLLs are being used, otherwise set the new AUDIOEFFECTDIALOGS make option to 0 in order to disable them)
+  * imp: X11 only: minor embedder optimizations regarding widget resizing
+  * imp: YouTube video player: added support for YouTube's new way of presenting video stream URLs
+  * imp: general overhaul of the main-widget's layout parameters to allow for a somewhat more 'compact' design
+  * imp: the working directory of the external ROM tool can be specified now
+  * imp: build: added EMU as an alias for the EMULATOR make option
+  * imp: locale-aware statistics in the ROM status exporter and the GUI's ROM status bar
+  * imp: updated redistributed Qt translations from Qt 4.7.4
+  * new: added a 'driver status' column to all game/machine lists (or views)
+  * new: Windows only: the other variant's exe file can now be specified explicitly (the default is to search for it only in the directory where the calling variant was started from) -- this works also when you rename the exe files; you can additionally specify the command line arguments passed to the other variant (note that this is an independent setting and would also be used when the variant exe is not overwritten!)
+  * new: support for MAME's/MESS's new device-referencing (new since 0.143u2+ SVN)
+  * new: Mac OS X only: the tool-bar can now optionally be unified with the title-bar
+  * new: MESS targets: support for machine-specific device slots / slot options, integrated with the MESS device configurator
+  * new: the MESS variants now use their own logo, and all variants use new unified applications icons -- thanks to Anna Wu
+  * new: added a new tool-function to allow for forced removal of ALL emulator related caches at once
+  * new: added support for the new 'messinfo.dat' file from AntoPISA (see http://www.progettosnaps.net/messinfo/)
+  * new: completed the support for software-lists in MAME and MESS (ZIP-support for software-snaps will be added later)
+  * new: customizable columns in all game-/machine-list and software-list views
+  * new: MESS targets: a new 'file chooser' dialog has been added to the MESS device configurator as an easy-to-use alternative to the manual setup
+  * new: MESS targets: device type icons are now displayed to better symbolize MESS device instances
+  * new: ROMAlyzer: you can specify an additional source ROM path for the set rewriter in order to allow for merging updates
+  * new: added support for item-tagging and a number of related operations that can now also be performed for tagged games/machines
+  * new: for ZIP-archived icons (actually the only practical way to store them) support for ICO format has been added -- this means that for instance MAMU's icon can now be used directly, w/o conversion to PNGs!
+  * new: icons are now also supported for all MESS targets
+  * wip: adding a Java (Eclipse/SWT) based editor/translator for emulator templates (see tools/qmc2_options_editor_java) -- thanks to Marcelo Bossoni
+
+
+ -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Mon, 31 Oct 2011 18:33:00 -0300
+
 qmc2 (0.2.b20) testing; urgency=low
 
   * New Upstream Release
