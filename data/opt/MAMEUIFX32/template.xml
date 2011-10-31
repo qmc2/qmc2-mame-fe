@@ -691,11 +691,13 @@
     <option name="joystick_contradictory" type="bool" default="false">
       <description lang="us" text="Enable contradictory direction digital joystick input at the same time"/>
       <description lang="de" text="Joystick Eingabe gleichzeitig in entgegengesetzten Richtungen aktivieren"/>
+      <description lang="pl" text="Włącz jednoczesne wejście cyfrowego dżojstika w przeciwnych kierunkach"/>
       <description lang="pt" text="Habilitar entrada de joystick digital com direção contraditória simultaneamente"/>
     </option>
     <option name="coin_impulse" type="int" default="0">
       <description lang="us" text="Set coin impulse time (n &lt; 0: disable impulse; n == 0: obey driver; n &gt; 0: set time)"/>
       <description lang="de" text="Münz-Impuls Zeit setzen (n &lt; 0: Impuls deaktivieren; n == 0: Treiber gehorchen; n &gt; 0: Zeit setzen)"/>
+      <description lang="pl" text="Ustaw czas inpulsu monety (n &lt; 0: wyłącz impuls; n == 0: według sterownika; n &gt; 0: ustawienie czasu)"/>
       <description lang="pt" text="Definir tempo de impulso da moeda (n &lt; 0: desabilitar; n == 0: obedecer driver; n &gt; 0: definir tempo)"/>
     </option>
   </section>
