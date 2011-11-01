@@ -571,6 +571,7 @@
     <option name="hide_cursor" type="bool" default="true">
       <description lang="us" text="Hide cursor in full screen or if mouse is enabled"/>
       <description lang="de" text="Zeiger verstecken, wenn im Vollbild-Modus oder Maus-Eingabe aktiviert ist"/>
+      <description lang="pl" text="Ukrywanie kursora w trybie pełnoekranowym oraz gdy mysz jest włączona"/>
       <description lang="pt" text="Esconder cursor em tela cheia ou se o mouse estiver habilitado"/>
     </option>
     <option name="multikeyboard" type="bool" default="false">
