@@ -3560,13 +3560,13 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 
         // emulator selector (default, or one of the registered emulators)
 #if defined(QMC2_EMUTYPE_MAME)
-        labelEmuSelector = new QLabel(tr("Emulator for this game"), configWidget);
+        labelEmuSelector = new QLabel(tr("Emulator for this game") + ":", configWidget);
 #elif defined(QMC2_EMUTYPE_MESS)
-        labelEmuSelector = new QLabel(tr("Emulator for this machine"), configWidget);
+        labelEmuSelector = new QLabel(tr("Emulator for this machine") + ":", configWidget);
 #endif
         labelEmuSelector->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
         comboBoxEmuSelector = new QComboBox(configWidget);
-        comboBoxEmuSelector->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
+        comboBoxEmuSelector->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
 #if defined(QMC2_EMUTYPE_MAME)
         qmc2Config->beginGroup("MAME/RegisteredEmulators");
 #elif defined(QMC2_EMUTYPE_MESS)
