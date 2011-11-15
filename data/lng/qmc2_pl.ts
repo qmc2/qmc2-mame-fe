@@ -3345,7 +3345,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="2475"/>
         <source>T:</source>
-        <translation>T:</translation>
+        <translation>Z:</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2915"/>
