@@ -23,11 +23,7 @@ class Title : public QWidget
 
   public:
     unzFile titleFile;
-#if QT_VERSION < 0x040600
-    QPixmap *currentTitlePixmap;
-#else
     QPixmap currentTitlePixmap;
-#endif
     QMenu *contextMenu;
 
     Title(QWidget *parent = 0);

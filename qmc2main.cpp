@@ -425,12 +425,10 @@ MainWindow::MainWindow(QWidget *parent)
   // hide memory indicator initially
   progressBarMemory->setVisible(false);
 
-#if QT_VERSION < 0x040600
-  dialAudioVolume->setVisible(false);
-#else
+  // FIXME: this widget is no longer required
   sliderAudioVolume->setVisible(false);
+
   checkBoxAudioFade->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-#endif
 
   treeWidgetGamelist->setMouseTracking(true);
   treeWidgetHierarchy->setMouseTracking(true);
@@ -1220,9 +1218,7 @@ MainWindow::MainWindow(QWidget *parent)
   connect(&activityCheckTimer, SIGNAL(timeout()), this, SLOT(checkActivity()));
   activityState = false;
 
-#if QT_VERSION >= 0x040700
   comboBoxSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
-#endif
 
   // restore toolbar state
   restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolbarState", QByteArray()).toByteArray());
@@ -1256,13 +1252,8 @@ MainWindow::MainWindow(QWidget *parent)
   checkBoxAudioShuffle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Shuffle", false).toBool());
   checkBoxAudioPause->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Pause", true).toBool());
   checkBoxAudioFade->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Fade", true).toBool());
-#if QT_VERSION < 0x040600
-  sliderAudioVolume->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Volume", 50).toInt());
-  phononAudioOutput->setVolume((qreal)sliderAudioVolume->value()/100.0);
-#else
   dialAudioVolume->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "AudioPlayer/Volume", 50).toInt());
   phononAudioOutput->setVolume((qreal)dialAudioVolume->value()/100.0);
-#endif
   toolButtonAudioPreviousTrack->setDefaultAction(actionAudioPreviousTrack);
   toolButtonAudioNextTrack->setDefaultAction(actionAudioNextTrack);
   toolButtonAudioStopTrack->setDefaultAction(actionAudioStopTrack);
@@ -2350,8 +2341,7 @@ void MainWindow::on_actionFullscreenToggle_activated()
       if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry") )
         restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Geometry").toByteArray());
     }
-#if QT_VERSION >= 0x040600
-    // we need to tweak full screen startup for Qt 4.6+ to ensure that raising the window works
+    // we need to tweak full screen startup to ensure that raising the window works
     if ( qmc2EarlyStartup ) {
       setUpdatesEnabled(true);
       showNormal();
@@ -2362,9 +2352,6 @@ void MainWindow::on_actionFullscreenToggle_activated()
       qApp->processEvents();
       setUpdatesEnabled(false);
     }
-#else
-    showFullScreen();
-#endif
   } else {
 #if defined(QMC2_YOUTUBE_ENABLED)
     bool youTubeWasPlaying = false;
@@ -5193,11 +5180,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Shuffle", checkBoxAudioShuffle->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Pause", checkBoxAudioPause->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Fade", checkBoxAudioFade->isChecked());
-#if QT_VERSION < 0x040600
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Volume", sliderAudioVolume->value());
-#else
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "AudioPlayer/Volume", dialAudioVolume->value());
-#endif
 #endif
 
   // download manager widget
@@ -6496,11 +6479,7 @@ void MainWindow::on_actionAudioRaiseVolume_triggered(bool checked)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioRaiseVolume_triggered(bool checked = ...)");
 #endif
 
-#if QT_VERSION < 0x040600
-  sliderAudioVolume->setValue(sliderAudioVolume->value() + sliderAudioVolume->pageStep());
-#else
   dialAudioVolume->setValue(dialAudioVolume->value() + dialAudioVolume->pageStep());
-#endif
 }
 
 void MainWindow::on_actionAudioLowerVolume_triggered(bool checked)
@@ -6509,11 +6488,7 @@ void MainWindow::on_actionAudioLowerVolume_triggered(bool checked)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAudioLowerVolume_triggered(bool checked = ...)");
 #endif
 
-#if QT_VERSION < 0x040600
-  sliderAudioVolume->setValue(sliderAudioVolume->value() - sliderAudioVolume->pageStep());
-#else
   dialAudioVolume->setValue(dialAudioVolume->value() - dialAudioVolume->pageStep());
-#endif
 }
 
 void MainWindow::on_sliderAudioVolume_valueChanged(int value)
@@ -6589,11 +6564,7 @@ void MainWindow::audioFade(int faderFunction)
   log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::audioFade(int faderFunction = %1)").arg(faderFunction));
 #endif
 
-#if QT_VERSION < 0x040600
-  int currentVolume = sliderAudioVolume->value();
-#else
   int currentVolume = dialAudioVolume->value();
-#endif
   int updateCounter;
   double vol;
   double volStep = (double)currentVolume / (double)QMC2_AUDIOPLAYER_FADER_TIMEOUT;
@@ -6612,11 +6583,7 @@ void MainWindow::audioFade(int faderFunction)
       updateCounter = 0;
       for (vol = currentVolume; vol > 0.0; vol -= volStep) {
         updateCounter++;
-#if QT_VERSION < 0x040600
-        sliderAudioVolume->setValue((int)vol);
-#else
         dialAudioVolume->setValue((int)vol);
-#endif
         if ( updateCounter % 10 == 0 )
           qApp->processEvents();
         QTest::qSleep(1);
@@ -6633,11 +6600,7 @@ void MainWindow::audioFade(int faderFunction)
       break;
 
     case QMC2_AUDIOPLAYER_FADER_PLAY:
-#if QT_VERSION < 0x040600
-      sliderAudioVolume->setValue(0);
-#else
       dialAudioVolume->setValue(0);
-#endif
       actionAudioPauseTrack->setChecked(false);
       actionAudioStopTrack->setChecked(false);
       actionAudioPlayTrack->setChecked(true);
@@ -6653,11 +6616,7 @@ void MainWindow::audioFade(int faderFunction)
       updateCounter = 0;
       for (vol = 0; vol <= currentVolume; vol += volStep) {
         updateCounter++;
-#if QT_VERSION < 0x040600
-        sliderAudioVolume->setValue((int)vol);
-#else
         dialAudioVolume->setValue((int)vol);
-#endif
         if ( updateCounter % 10 == 0 )
           qApp->processEvents();
         QTest::qSleep(1);
@@ -6671,11 +6630,7 @@ void MainWindow::audioFade(int faderFunction)
       toolButtonAudioStopTrack->setEnabled(true);
       break;
   }
-#if QT_VERSION < 0x040600
-  sliderAudioVolume->setValue(currentVolume);
-#else
   dialAudioVolume->setValue(currentVolume);
-#endif
 }
 
 void MainWindow::audioMetaDataChanged()
@@ -7804,13 +7759,7 @@ void MainWindow::createMawsQuickLinksMenu()
   connect(toolButtonMAWSQuickLinks, SIGNAL(menuHidden()), this, SLOT(mawsQuickLinksMenuHidden()));
 
   // we have to force a background widget update when the browser is scrolled to correctly redraw the MAWS QDL tool button
-#if QT_VERSION <= 0x040502
-  // for Qt versions <= 4.5.2 we can directly call update()
-  connect(toolButtonMAWSQuickLinks, SIGNAL(paintFinished()), qmc2MAWSLookup->webViewBrowser, SLOT(update()));
-#else
-  // for Qt versions >= 4.5.3 we need to delay it
   connect(toolButtonMAWSQuickLinks, SIGNAL(paintFinished()), qmc2MAWSLookup->webViewBrowser, SLOT(delayedUpdate()));
-#endif
 
   menuMAWSQuickLinks = new QMenu(toolButtonMAWSQuickLinks);
 

@@ -26,11 +26,9 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
   embedded = pauseKeyPressed = pausing = resuming = false;
   isPaused = currentlyPaused;
 
-#if QT_VERSION >= 0x040700
   setAttribute(Qt::WA_NativeWindow);
   setAttribute(Qt::WA_DontCreateNativeAncestors);
   createWinId();
-#endif
 
   embedContainer = new QX11EmbedContainer(this);
   embedContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);

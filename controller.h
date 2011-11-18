@@ -23,11 +23,7 @@ class Controller : public QWidget
 
   public:
     unzFile controllerFile;
-#if QT_VERSION < 0x040600
-    QPixmap *currentControllerPixmap;
-#else
     QPixmap currentControllerPixmap;
-#endif
     QMenu *contextMenu;
 
     Controller(QWidget *parent = 0);

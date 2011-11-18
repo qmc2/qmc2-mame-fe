@@ -23,11 +23,7 @@ class Cabinet : public QWidget
 
   public:
     unzFile cabinetFile;
-#if QT_VERSION < 0x040600
-    QPixmap *currentCabinetPixmap;
-#else
     QPixmap currentCabinetPixmap;
-#endif
     QMenu *contextMenu;
 
     Cabinet(QWidget *parent = 0);

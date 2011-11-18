@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.35, 15-NOV-2011</h3>
+<h3>README - v0.35, 18-NOV-2011</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -119,7 +119,6 @@ use with the MAME variant).
 </ul>
 <h3><a name="2."></a>2. Build and installation instructions</h3>
 <p>Please see <a href="faq.html#A1.7">this FAQ section</a> for instructions on specific distributions.</p>
-<p><b>Note that we recommend to use Qt 4.7.2+ on all platforms. The Qt versions below are just the <i>absolute minimum</i> requirements. Newer functionality may not work as expected when an older version of Qt is used!</b></p>
 <table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
   <tbody>
     <tr>
@@ -127,16 +126,15 @@ use with the MAME variant).
       <td style="vertical-align: top; background-color: #ab967e; font-weight: bold;">Where to get</td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">UNIX &amp; Windows: Qt 4.5.2+<br>Mac OS X: Qt 4.6.3+</td>
-      <td style="vertical-align: top;"><a href="http://download.qt.nokia.com/qt/source/" target="_blank">http://download.qt.nokia.com/qt/source/</a><br>
-                                       <a href="http://download.qt.nokia.com/qt/source/qt-mac-opensource-4.7.4.dmg">http://download.qt.nokia.com/qt/source/qt-mac-opensource-4.7.4.dmg</a></td>
+      <td style="vertical-align: top;">All: Qt 4.7.0+</td>
+      <td style="vertical-align: top;"><a href="http://download.qt.nokia.com/qt/source/" target="_blank">http://download.qt.nokia.com/qt/source/</a></td>
     </tr>
     <tr>
       <td style="vertical-align: top;">UNIX &amp; Mac OS X: GNU make 3.80+</td>
       <td style="vertical-align: top;"><a href="http://ftp.gnu.org/gnu/make/" target="_blank">http://ftp.gnu.org/gnu/make/</a></td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">Mac OS X: Xcode 3.2+</td>
+      <td style="vertical-align: top;">Mac OS X: Xcode 3.2.x</td>
       <td style="vertical-align: top;"><a href="http://developer.apple.com/technologies/xcode.html" target="_blank">http://developer.apple.com/technologies/xcode.html</a></td>
     </tr>
     <tr>
@@ -229,23 +227,12 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
 <p>Note that in order to use the <i>QMC2 variant launcher</i> -- one QMC2 variant can launch (or switch to) the other -- it's <b>required</b> that all binaries are in your search path (including the <i>runonce</i> launcher wrapper)!</p>
 <p><a name="build_win"></a><b>Building the QMC2 binary on Windows</b></p>
 <p>The build steps on Windows using Visual C++ are completely different than the ones on UNIX and Mac OS X. However, since v0.2.b20 we also support MinGW builds on Windows which is more or less the same process as on UNIX and Mac OS X (see MinGW below).</p>
-<p>Using Visual C++ 2008 (Qt 4.5+):</p>
-<ol>
-  <li>Install all software requirements mentioned above.</li>
-  <li>Extract all contents from the QMC2 source distribution archive into a directory (or use the code from the SVN repo: <a href="http://tortoisesvn.tigris.org/" target="_blank">TortoiseSVN</a> is a nicely working SVN client for Windows which we use ourselves).</li>
-  <li>For correct embedding of <i>static</i> images that QMC2 uses (mostly icons) it's necessary to copy <b>all</b> image files from <i>data\img\classic\</i> to <i>data\img\</i>, overwriting the existing symbolic links (this is due to the fact that we are relinking the images on UNIX and Mac OS X, but on Windows this doesn't work). If you'd like to exchange some images with those in other image sets (see sub-directories below <i>data\img\</i>, i. e. <i>crazy\</i> or <i>crazy-black\</i>), copy these files over the ones that are in <i>data\img\</i> now.</li>
-  <li>Edit the batch script <i>scripts\generate-vcprojects.bat</i> and adjust the path variables at the beginning of the script. Note that the script requires <a href="http://gnuwin32.sourceforge.net/packages/sed.htm" target="_blank">sed for Windows</a> (and optionally <a href="http://tortoisesvn.tigris.org/" target="_blank">TortoiseSVN</a> when using code from the SVN repo).</li>
-  <li>Make sure the current working directory is the top-level path of where you extracted the QMC2 sources and run <i>scripts\generate-vcprojects.bat</i>. This will create two additional sub-directories (<i>debug\</i> and <i>release\</i>) and generate two VC++ project files: <i>qmc2-mame.vcproj</i> and <i>qmc2-mess.vcproj</i>.</li>
-  <li>Open one (or both) of the project files in Visual C++ 2008 Express (double-clicking the .vcproj files should also work).</li>
-  <li>Select <i>Build</i> from the project's context menu to create the front end executable, which you will find in the <i>release\</i> sub-directory after it has been successfully built.</li>
-  <li>If you're going to build both variants, don't forget to <i>clean up</i> the project before you start the second build process!</li>
-</ol>
-<p>Using Visual C++ 2010 (Qt 4.7+):</p>
+<p>Using Visual C++ 2010:</p>
 <ol>
   <li>The process is basically the same as with VC++ 2008, but make sure to uncomment the line containing <i>set QMAKESPEC=win32-msvc2010</i> when editing <i>scripts\generate-vcprojects.bat</i>.</li>
   <li>As with VC++ 2008, the project file generator will produce two files, but this time they will be named a bit differently: <i>qmc2-mame.vcxproj</i> and <i>qmc2-mess.vcxproj</i> -- which is all you need to build each QMC2 variant through VC++ 2010.</li>
 </ol>
-<p>Using the MinGW (GCC) compiler (Qt 4.7+):</p>
+<p>Using the MinGW (GCC) compiler:</p>
 <ol>
   <li>Get and install both the <a href="http://mamedev.org/tools" target="_blank">MAME dev-tools</a> and the <a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon" target="_blank">QMC2 add-on</a> package for your platform (the QMC2 add-on extends the MAME dev-tools with Qt 4.7.4+ and zlib 1.2.5+, see <b>README.add-on</b> for installation instructions!).</li>
   <li>Users of Windows XP should replace the Qt DLLs from the <a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon" target="_blank">QMC2 add-on package</a> with the <b>official</b> ones from Nokia -- install the <i>Qt libraries version 4.7.4</i> from <a href="http://qt.nokia.com/downloads" target="_blank">http://qt.nokia.com/downloads</a> and overwrite the DLLs from the QMC2 add-on package with the official ones!</li>
@@ -420,7 +407,6 @@ has been enabled) are also not filtered.</p>
 <p>Since v0.2.b10, QMC2 supports dynamic loading of style sheets from within the GUI.
    It loads the style sheet before the GUI style is set up, so the GUI style may overload parts of the theme with its settings.
    This means that not every combination might look as expected, others may fit better.</p>
-<p>When using style sheets, make sure you're using <b>at least Qt 4.5.2</b>! Older versions may crash due to QtWebKit related issues.</p>
 <p>Compatible style sheets can be found here: <a href="http://qmc2.arcadehits.net/wordpress/style-sheets/" target="_blank">http://qmc2.arcadehits.net/wordpress/style-sheets/</a>.</p>
 <p>To install a style sheet, simply unpack the archive somewhere in your file system.
    Then select the style sheet (.qss file) from within QMC2 to activate it.

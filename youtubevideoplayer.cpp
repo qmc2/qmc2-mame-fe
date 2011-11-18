@@ -216,9 +216,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	imageDownloadManager = new QNetworkAccessManager(this);
 	connect(imageDownloadManager, SIGNAL(finished(QNetworkReply *)), this, SLOT(imageDownloadFinished(QNetworkReply *)));
 
-#if QT_VERSION >= 0x040700
 	lineEditSearchString->setPlaceholderText(tr("Enter search string"));
-#endif
 
 	QTimer::singleShot(100, this, SLOT(init()));
 }
@@ -592,11 +590,7 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 
 	bool pixmapFound = false;
 	QPixmap imagePixmap;
-#if QT_VERSION < 0x040600
-	pixmapFound = QPixmapCache::find("yt_" + id, imagePixmap);
-#else
 	pixmapFound = QPixmapCache::find("yt_" + id, &imagePixmap);
-#endif
 	if ( !pixmapFound ) {
 		QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 		if ( youTubeCacheDir.exists() ) {
@@ -1323,11 +1317,7 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 
 		bool pixmapFound = false;
 		QPixmap imagePixmap;
-#if QT_VERSION < 0x040600
-		pixmapFound = QPixmapCache::find("yt_" + viw->videoID, imagePixmap);
-#else
 		pixmapFound = QPixmapCache::find("yt_" + viw->videoID, &imagePixmap);
-#endif
 		if ( !pixmapFound ) {
 			QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 			if ( youTubeCacheDir.exists() ) {
@@ -1523,12 +1513,7 @@ void YouTubeVideoPlayer::imageDownloadFinished(QNetworkReply *reply)
 
 	if ( reply->error() == QNetworkReply::NoError ) {
 		QImageReader imageReader(reply);
-#if QT_VERSION < 0x040700
-		QImage image = imageReader.read();
-		QPixmap pm = QPixmap::fromImage(image);
-#else
 		QPixmap pm = QPixmap::fromImageReader(&imageReader);
-#endif
 		if ( !pm.isNull() ) {
 			QPixmapCache::insert("yt_" + videoID, pm);
 			viw->setImage(pm, true);

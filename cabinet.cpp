@@ -108,19 +108,6 @@ void Cabinet::paintEvent(QPaintEvent *e)
 
   QString gameName = topLevelItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
 
-#if QT_VERSION < 0x040600
-  static QPixmap cachedPixmap;
-  if ( QPixmapCache::find("cab_" + gameName, cachedPixmap) ) {
-    currentCabinetPixmap = &cachedPixmap;
-  } else {
-    qmc2CurrentItem = topLevelItem;
-    loadCabinet(gameName, gameName);
-  }
-  if ( qmc2ScaledCabinet )
-    drawScaledImage(currentCabinetPixmap, &p);
-  else
-    drawCenteredImage(currentCabinetPixmap, &p);
-#else
   if ( !QPixmapCache::find("cab_" + gameName, &currentCabinetPixmap) ) {
     qmc2CurrentItem = topLevelItem;
     loadCabinet(gameName, gameName);
@@ -129,7 +116,6 @@ void Cabinet::paintEvent(QPaintEvent *e)
     drawScaledImage(&currentCabinetPixmap, &p);
   else
     drawCenteredImage(&currentCabinetPixmap, &p);
-#endif
 }
 
 bool Cabinet::loadCabinet(QString gameName, QString onBehalfOf, bool checkOnly, QString *fileName)
@@ -138,13 +124,8 @@ bool Cabinet::loadCabinet(QString gameName, QString onBehalfOf, bool checkOnly, 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Cabinet::loadCabinet(QString gameName = %1, QString onBehalfOf = %2, bool checkOnly = %3, QString *fileName = %4)").arg(gameName).arg(onBehalfOf).arg(checkOnly).arg((qulonglong)fileName));
 #endif
 
-#if QT_VERSION < 0x040600
-  static QPixmap pm;
-  static char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
-#else
   QPixmap pm;
   char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
-#endif
 
   if ( fileName )
     *fileName = "";
@@ -178,11 +159,7 @@ bool Cabinet::loadCabinet(QString gameName, QString onBehalfOf, bool checkOnly, 
     if ( !checkOnly ) {
       if ( fileOk ) {
         QPixmapCache::insert("cab_" + onBehalfOf, pm); 
-#if QT_VERSION < 0x040600
-        currentCabinetPixmap = &pm;
-#else
         currentCabinetPixmap = pm;
-#endif
       } else {
         QString parentName = qmc2ParentMap[gameName];
         if ( qmc2ParentImageFallback && !parentName.isEmpty() ) {
@@ -190,11 +167,7 @@ bool Cabinet::loadCabinet(QString gameName, QString onBehalfOf, bool checkOnly, 
         } else {
           if ( !qmc2RetryLoadingImages )
             QPixmapCache::insert("cab_" + onBehalfOf, qmc2MainWindow->qmc2GhostImagePixmap);
-#if QT_VERSION < 0x040600
-          currentCabinetPixmap = &qmc2MainWindow->qmc2GhostImagePixmap;
-#else
           currentCabinetPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
-#endif
         }
       }
     }
@@ -214,11 +187,7 @@ bool Cabinet::loadCabinet(QString gameName, QString onBehalfOf, bool checkOnly, 
     } else {
       if ( pm.load(imagePath, "PNG") ) {
         QPixmapCache::insert("cab_" + onBehalfOf, pm); 
-#if QT_VERSION < 0x040600
-        currentCabinetPixmap = &pm;
-#else
         currentCabinetPixmap = pm;
-#endif
         fileOk = TRUE;
       } else {
         QString parentName = qmc2ParentMap[gameName];
@@ -227,11 +196,7 @@ bool Cabinet::loadCabinet(QString gameName, QString onBehalfOf, bool checkOnly, 
         } else {
           if ( !qmc2RetryLoadingImages )
             QPixmapCache::insert("cab_" + onBehalfOf, qmc2MainWindow->qmc2GhostImagePixmap);
-#if QT_VERSION < 0x040600
-          currentCabinetPixmap = &qmc2MainWindow->qmc2GhostImagePixmap;
-#else
           currentCabinetPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
-#endif
           fileOk = FALSE;
         }
       }
@@ -352,11 +317,7 @@ void Cabinet::copyToClipboard()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Cabinet::copyToClipboard()");
 #endif
 
-#if QT_VERSION < 0x040600
-  qApp->clipboard()->setPixmap(*currentCabinetPixmap);
-#else
   qApp->clipboard()->setPixmap(currentCabinetPixmap);
-#endif
 }
 
 void Cabinet::contextMenuEvent(QContextMenuEvent *e)

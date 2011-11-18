@@ -60,9 +60,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	horizontalLayout->removeItem(horizontalSpacer);
 #endif
 
-#if QT_VERSION >= 0x040700
 	comboBoxSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
-#endif
 
 	QFontMetrics fm(QApplication::font());
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
@@ -1777,17 +1775,7 @@ void SoftwareSnap::loadSnapshot()
 	myItem = item;
 
 	QPixmap pm;
-	bool pmLoaded = false;
-
-#if QT_VERSION < 0x040600
-	static QPixmap cachedPixmap;
-	if ( QPixmapCache::find("sws_" + listName + "_" + entryName, cachedPixmap) ) {
-		pm = cachedPixmap;
-		pmLoaded = true;
-	}
-#else
-	pmLoaded = QPixmapCache::find("sws_" + listName + "_" + entryName, &pm);
-#endif
+	bool pmLoaded = QPixmapCache::find("sws_" + listName + "_" + entryName, &pm);
 
 	if ( !pmLoaded ) {
 		if ( qmc2UseSoftwareSnapFile ) {

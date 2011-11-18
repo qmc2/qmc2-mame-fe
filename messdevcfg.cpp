@@ -144,10 +144,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   tabWidgetDeviceSetup->setCornerWidget(toolButtonConfiguration, Qt::TopRightCorner);
   setEnabled(false);
   lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
-
-#if QT_VERSION >= 0x040700
   lineEditConfigurationName->setPlaceholderText(tr("Enter configuration name"));
-#endif
 
 #if !defined(Q_WS_X11)
   toolButtonChooserPlayEmbedded->setVisible(false);
@@ -162,9 +159,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   toolButtonChooserFilter->setVisible(false);
 #else
   connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxChooserFilterPattern_textChanged_delayed()));
-#if QT_VERSION >= 0x040700
   comboBoxChooserFilterPattern->lineEdit()->setPlaceholderText(tr("Enter search string"));
-#endif
   comboBoxChooserFilterPatternHadFocus = false;
 #endif
   dirModel = NULL;

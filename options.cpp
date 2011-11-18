@@ -381,13 +381,11 @@ Options::Options(QWidget *parent)
   toolButtonBrowseStyleSheet->setMenu(styleSheetButtonMenu);
   connect(action, SIGNAL(triggered()), lineEditStyleSheet, SLOT(clear()));
 
-#if QT_VERSION >= 0x040700
   lineEditStyleSheet->setPlaceholderText(tr("No style sheet"));
   lineEditFont->setPlaceholderText(tr("Default"));
   lineEditLogFont->setPlaceholderText(tr("Default"));
   lineEditMAMEVariantExe->setPlaceholderText(tr("Search in the folder we were called from"));
   lineEditMESSVariantExe->setPlaceholderText(tr("Search in the folder we were called from"));
-#endif
 
 #if QMC2_JOYSTICK != 1
   tabWidgetFrontendSettings->removeTab(tabWidgetFrontendSettings->indexOf(tabFrontendJoystick));
