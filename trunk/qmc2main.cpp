@@ -425,9 +425,6 @@ MainWindow::MainWindow(QWidget *parent)
   // hide memory indicator initially
   progressBarMemory->setVisible(false);
 
-  // FIXME: this widget is no longer required
-  sliderAudioVolume->setVisible(false);
-
   checkBoxAudioFade->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
   treeWidgetGamelist->setMouseTracking(true);
@@ -6491,15 +6488,6 @@ void MainWindow::on_actionAudioLowerVolume_triggered(bool checked)
   dialAudioVolume->setValue(dialAudioVolume->value() - dialAudioVolume->pageStep());
 }
 
-void MainWindow::on_sliderAudioVolume_valueChanged(int value)
-{
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_sliderAudioVolume_valueChanged(int value = %1)").arg(value));
-#endif
-
-  phononAudioOutput->setVolume((qreal)value/100.0);
-}
-
 void MainWindow::on_dialAudioVolume_valueChanged(int value)
 {
 #ifdef QMC2_DEBUG
@@ -6688,7 +6676,6 @@ void MainWindow::on_toolButtonAudioAddURL_clicked() { ; }
 void MainWindow::on_toolButtonAudioRemoveTracks_clicked() { ; }
 void MainWindow::on_toolButtonAudioSetupEffects_clicked() { ; }
 void MainWindow::on_listWidgetAudioPlaylist_itemSelectionChanged() { ; }
-void MainWindow::on_sliderAudioVolume_valueChanged(int) { ; }
 void MainWindow::on_dialAudioVolume_valueChanged(int) { ; }
 void MainWindow::on_actionAudioRaiseVolume_triggered(bool) { ; }
 void MainWindow::on_actionAudioLowerVolume_triggered(bool) { ; }
