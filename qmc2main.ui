@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>684</width>
-    <height>426</height>
+    <width>693</width>
+    <height>425</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -2065,25 +2065,6 @@
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QSlider" name="sliderAudioVolume">
-              <property name="toolTip">
-               <string>Audio player volume</string>
-              </property>
-              <property name="statusTip">
-               <string>Audio player volume</string>
-              </property>
-              <property name="maximum">
-               <number>100</number>
-              </property>
-              <property name="sliderPosition">
-               <number>50</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
            </layout>
           </item>
          </layout>
@@ -2234,8 +2215,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>684</width>
-     <height>19</height>
+     <width>693</width>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Help">
@@ -3753,7 +3734,6 @@
   <tabstop>checkBoxAudioShuffle</tabstop>
   <tabstop>checkBoxAudioPause</tabstop>
   <tabstop>checkBoxAudioFade</tabstop>
-  <tabstop>sliderAudioVolume</tabstop>
   <tabstop>treeWidgetDownloads</tabstop>
   <tabstop>pushButtonClearFinishedDownloads</tabstop>
   <tabstop>pushButtonReloadSelectedDownloads</tabstop>
