@@ -56,6 +56,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	comboBoxDeviceConfiguration->setVisible(false);
 	QString altText = tr("Add the currently selected software to the favorites list");
 	toolButtonAddToFavorites->setToolTip(altText); toolButtonAddToFavorites->setStatusTip(altText);
+	treeWidgetFavoriteSoftware->setColumnCount(QMC2_SWLIST_COLUMN_DEVICECFG);
 #elif defined(QMC2_EMUTYPE_MESS)
 	horizontalLayout->removeItem(horizontalSpacer);
 #endif
