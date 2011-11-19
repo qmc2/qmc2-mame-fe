@@ -507,6 +507,7 @@ void Options::apply()
   toolButtonShowI->setIconSize(iconSize);
   toolButtonShowN->setIconSize(iconSize);
   toolButtonShowU->setIconSize(iconSize);
+  checkBoxRomStateFilter->setIconSize(iconSize);
   comboBoxSortOrder->setIconSize(iconSize);
   checkBoxShowROMStatusIcons->setIconSize(iconSize);
   toolButtonBrowseExecutableFile->setIconSize(iconSize);
@@ -1100,6 +1101,33 @@ void Options::on_pushButtonApply_clicked()
   newFilter.setBit(QMC2_ROMSTATE_INT_U, toolButtonShowU->isChecked());
   needFilter = (qmc2Filter != newFilter);
   qmc2Filter = newFilter;
+
+  bool oldRSF = config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool();
+  if ( checkBoxRomStateFilter->isChecked() ) {
+	  qmc2MainWindow->pushButtonSelectRomFilter->setVisible(true);
+	  qmc2MainWindow->actionRomStatusFilterC->setEnabled(true);
+	  qmc2MainWindow->actionRomStatusFilterM->setEnabled(true);
+	  qmc2MainWindow->actionRomStatusFilterI->setEnabled(true);
+	  qmc2MainWindow->actionRomStatusFilterN->setEnabled(true);
+	  qmc2MainWindow->actionRomStatusFilterU->setEnabled(true);
+	  config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true);
+	  if ( !oldRSF ) {
+		  needReload = true;
+		  needFilter = true;
+	  }
+  } else {
+	  qmc2MainWindow->pushButtonSelectRomFilter->setVisible(false);
+	  qmc2MainWindow->actionRomStatusFilterC->setEnabled(false);
+	  qmc2MainWindow->actionRomStatusFilterM->setEnabled(false);
+	  qmc2MainWindow->actionRomStatusFilterI->setEnabled(false);
+	  qmc2MainWindow->actionRomStatusFilterN->setEnabled(false);
+	  qmc2MainWindow->actionRomStatusFilterU->setEnabled(false);
+	  config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", false);
+	  if ( oldRSF ) {
+		  needReload = true;
+		  needFilter = false;
+	  }
+  }
 
   // Shortcuts / Keys
   QMapIterator<QString, QPair<QString, QAction *> > it(qmc2ShortcutMap);
@@ -2027,7 +2055,16 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   toolButtonShowN->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_N]);
   qmc2Filter.setBit(QMC2_ROMSTATE_INT_U, config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowU", true).toBool());
   toolButtonShowU->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_U]);
-
+  bool rsf = config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool();
+  checkBoxRomStateFilter->setChecked(rsf);
+  if ( !qmc2EarlyStartup ) {
+	  qmc2MainWindow->pushButtonSelectRomFilter->setVisible(rsf);
+	  qmc2MainWindow->actionRomStatusFilterC->setEnabled(rsf);
+	  qmc2MainWindow->actionRomStatusFilterM->setEnabled(rsf);
+	  qmc2MainWindow->actionRomStatusFilterI->setEnabled(rsf);
+	  qmc2MainWindow->actionRomStatusFilterN->setEnabled(rsf);
+	  qmc2MainWindow->actionRomStatusFilterU->setEnabled(rsf);
+  }
   if ( qmc2MainWindow ) {
     qmc2StatesTogglesEnabled = false;
     qmc2MainWindow->actionRomStatusFilterC->setChecked(qmc2Filter[QMC2_ROMSTATE_INT_C]);

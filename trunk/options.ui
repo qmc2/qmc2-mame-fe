@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>470</width>
-    <height>421</height>
+    <height>447</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -58,7 +58,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>446</width>
-                <height>549</height>
+                <height>551</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -783,7 +783,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>421</width>
+                <width>262</width>
                 <height>529</height>
                </rect>
               </property>
@@ -2171,20 +2171,13 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>438</width>
-                <height>318</height>
+                <width>493</width>
+                <height>325</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_1">
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="labelROMStateFilter">
-                   <property name="text">
-                    <string>ROM state filter</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="0" column="1">
                   <layout class="QHBoxLayout" name="horizontalLayout_7">
                    <item>
@@ -2731,6 +2724,20 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="0" column="0">
+                  <widget class="QCheckBox" name="checkBoxRomStateFilter">
+                   <property name="toolTip">
+                    <string>Enable ROM state filtering?</string>
+                   </property>
+                   <property name="text">
+                    <string>ROM state filter</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -2760,8 +2767,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>438</width>
-                <height>318</height>
+                <width>273</width>
+                <height>39</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2873,8 +2880,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>438</width>
-                <height>318</height>
+                <width>363</width>
+                <height>230</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3330,8 +3337,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>421</width>
-                <height>461</height>
+                <width>382</width>
+                <height>467</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3773,8 +3780,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>179</width>
-                <height>377</height>
+                <width>191</width>
+                <height>380</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -4328,7 +4335,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>145</width>
+                <width>156</width>
                 <height>211</height>
                </rect>
               </property>
@@ -4766,6 +4773,7 @@
   <tabstop>toolButtonBrowseSoftwareSnapDirectory</tabstop>
   <tabstop>lineEditSoftwareSnapFile</tabstop>
   <tabstop>toolButtonBrowseSoftwareSnapFile</tabstop>
+  <tabstop>checkBoxRomStateFilter</tabstop>
   <tabstop>toolButtonShowC</tabstop>
   <tabstop>toolButtonShowM</tabstop>
   <tabstop>toolButtonShowI</tabstop>
