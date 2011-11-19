@@ -233,7 +233,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface)
 
 	static QString softwareListDeviceName;
 
-	QMap<QString, QString> deviceInstanceMap;
+	QMap<QString, QStringList> deviceInstanceMap;
 	int i = 0;
 
 	softwareListDeviceName.clear();
@@ -251,8 +251,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface)
 			startIndex = line.indexOf("briefname=\"") + 11;
 			endIndex = line.indexOf("\"", startIndex);
 			QString devName = line.mid(startIndex, endIndex - startIndex);
-			if ( !deviceInstanceMap.contains(devInterface) )
-				deviceInstanceMap[devInterface] = devName;
+			deviceInstanceMap[devInterface] << devName;
 		}
 	}
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -268,13 +267,18 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface)
 			startIndex = line.indexOf("briefname=\"") + 11;
 			endIndex = line.indexOf("\"", startIndex);
 			QString devName = line.mid(startIndex, endIndex - startIndex);
-			if ( !deviceInstanceMap.contains(devInterface) )
-				deviceInstanceMap[devInterface] = devName;
+			deviceInstanceMap[devInterface] << devName;
 		}
 	}
 #endif
 
-	softwareListDeviceName = deviceInstanceMap[interface];
+	QStringList briefNames = deviceInstanceMap[interface];
+	if ( !briefNames.isEmpty() ) {
+		if ( briefNames.contains(device) )
+			softwareListDeviceName = device;
+		else
+			softwareListDeviceName = briefNames[0];
+	}
 
 	// fall-back to the passed device name if no match was found 
 	if ( softwareListDeviceName.isEmpty() )
@@ -1371,8 +1375,6 @@ QStringList &SoftwareList::arguments()
 		for (int i = 0; i < parts.count(); i++) {
 			swlArgs << QString("-%1").arg(lookupMountDevice(parts[i], interfaces[i]));
 			swlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
-			// FIXME: for now we just stop after the first "part" because MESS can't handle multiple device parts yet
-			break;
 		}
 	}
 
