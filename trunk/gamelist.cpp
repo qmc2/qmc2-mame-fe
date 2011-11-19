@@ -213,6 +213,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->checkBoxUseCatverIni->setEnabled(enable);
 #endif
   qmc2Options->checkBoxShowROMStatusIcons->setEnabled(enable);
+  qmc2Options->checkBoxRomStateFilter->setEnabled(enable);
   qmc2Options->toolButtonBrowseSoftwareListCache->setEnabled(enable);
 #if defined(QMC2_EMUTYPE_MESS)
   qmc2Options->toolButtonBrowseGeneralSoftwareFolder->setEnabled(enable);
