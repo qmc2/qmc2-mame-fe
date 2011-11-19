@@ -2210,7 +2210,7 @@ void Gamelist::parse()
 
   if ( autoRomCheck )
 	  QTimer::singleShot(QMC2_AUTOROMCHECK_DELAY, qmc2MainWindow->actionCheckROMs, SLOT(trigger()));
-  else
+  else if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool() )
 	  filter();
 
   enableWidgets(true);
@@ -2960,7 +2960,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
   enableWidgets(true);
 
-  filter();
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/EnableRomStateFilter", true).toBool() ) filter();
 }
 
 void Gamelist::verifyReadyReadStandardOutput()
