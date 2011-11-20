@@ -1375,7 +1375,7 @@ QStringList &SoftwareList::arguments()
 		QStringList parts = item->text(QMC2_SWLIST_COLUMN_PART).split(",");
 		for (int i = 0; i < parts.count(); i++) {
 			swlArgs << QString("-%1").arg(lookupMountDevice(parts[i], interfaces[i]));
-			swlArgs << QString("%1:%2").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME));
+			swlArgs << QString("%1:%2:%3").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg(parts[i]);
 		}
 	}
 
