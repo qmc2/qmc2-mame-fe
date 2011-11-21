@@ -287,8 +287,14 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 #endif
 		softwareListDeviceName = briefNames[0];
 
+	if ( successfullLookups.contains(softwareListDeviceName) )
+		softwareListDeviceName.clear();
+
 	if ( mountList != NULL )
 		*mountList = briefNames;
+
+	if ( !softwareListDeviceName.isEmpty() )
+		successfullLookups << softwareListDeviceName;
 
 	return softwareListDeviceName;
 }
@@ -1483,6 +1489,7 @@ QStringList &SoftwareList::arguments()
 			while ( item->parent() ) item = item->parent();
 			QStringList interfaces = item->text(QMC2_SWLIST_COLUMN_INTERFACE).split(",");
 			QStringList parts = item->text(QMC2_SWLIST_COLUMN_PART).split(",");
+			successfullLookups.clear();
 			for (int i = 0; i < parts.count(); i++) {
 				QString mountDev = lookupMountDevice(parts[i], interfaces[i]);
 				if ( !mountDev.isEmpty() ) {
@@ -1643,6 +1650,7 @@ void SoftwareList::checkMountDevicesSelection()
 	QTreeWidgetItemIterator it(treeWidget);
 	if ( mountDevice == QObject::tr("Auto mount") ) {
 		while ( *it ) {
+			if ( !(*it)->parent() ) successfullLookups.clear();
 			QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
 			if ( comboBox ) {
 				comboBox->blockSignals(true);
@@ -2209,8 +2217,11 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 //	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
 #endif
 
-	if ( qName == "software" )
+	if ( qName == "software" ) {
 		softwareValid = ( attributes.value("name") == parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_NAME) );
+		if ( softwareValid )
+			qmc2SoftwareList->successfullLookups.clear();
+	}
 
 	if ( !softwareValid )
 		return true;
