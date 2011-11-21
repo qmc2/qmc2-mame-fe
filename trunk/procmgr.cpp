@@ -9,9 +9,7 @@
 extern MainWindow *qmc2MainWindow;
 extern bool qmc2GuiReady;
 extern bool qmc2StartEmbedded;
-#if defined(QMC2_EMUTYPE_MESS)
-extern QString qmc2MessMachineName;
-#endif
+extern QString qmc2DriverName;
 #if defined(QMC2_YOUTUBE_ENABLED)
 extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 #endif
@@ -253,11 +251,7 @@ void ProcessManager::started()
   procItem->setText(QMC2_EMUCONTROL_COLUMN_PID, QString::number((quint64)(proc->pid())));
   procItem->setIcon(QMC2_EMUCONTROL_COLUMN_LED0, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
   procItem->setIcon(QMC2_EMUCONTROL_COLUMN_LED1, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
-#if defined(QMC2_EMUTYPE_MAME)
-  procItem->setText(QMC2_EMUCONTROL_COLUMN_GAME, lastCommand.split(" ").last());
-#elif defined(QMC2_EMUTYPE_MESS)
-  procItem->setText(QMC2_EMUCONTROL_COLUMN_GAME, qmc2MessMachineName);
-#endif
+  procItem->setText(QMC2_EMUCONTROL_COLUMN_GAME, qmc2DriverName);
 #if defined(Q_WS_WIN)
   QString emuCommandLine = lastCommand;
   procItem->setText(QMC2_EMUCONTROL_COLUMN_COMMAND, emuCommandLine.replace('/', '\\'));

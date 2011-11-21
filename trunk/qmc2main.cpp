@@ -112,9 +112,9 @@ QWidget *qmc2DetailSetupParent = NULL;
 ArcadeView *qmc2ArcadeView = NULL;
 ArcadeSetupDialog *qmc2ArcadeSetupDialog = NULL;
 SoftwareList *qmc2SoftwareList = NULL;
+QString qmc2DriverName = "";
 #if defined(QMC2_EMUTYPE_MESS)
 MESSDeviceConfigurator *qmc2MESSDeviceConfigurator = NULL;
-QString qmc2MessMachineName = "";
 QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
 #endif
 QTreeWidgetItem *qmc2LastSoftwareListItem = NULL;
@@ -1525,9 +1525,7 @@ void MainWindow::on_actionPlay_activated()
 
   args << gameName;
 
-#if defined(QMC2_EMUTYPE_MESS)
-  qmc2MessMachineName = gameName;
-#endif
+  qmc2DriverName = gameName;
 
   if ( qmc2SoftwareList && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_SOFTWARE_LIST_INDEX) )
     args << qmc2SoftwareList->arguments();
