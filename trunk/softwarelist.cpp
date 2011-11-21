@@ -618,7 +618,7 @@ bool SoftwareList::load()
 			QTreeWidgetItem *swItem = NULL;
 			if ( matchedSoftware.count() > 0 ) swItem = matchedSoftware.at(0);
 			if ( swItem ) {
-				QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetFavoriteSoftware);
+				SoftwareItem *item = new SoftwareItem(treeWidgetFavoriteSoftware);
 				item->setText(QMC2_SWLIST_COLUMN_TITLE, swItem->text(QMC2_SWLIST_COLUMN_TITLE));
 				item->setText(QMC2_SWLIST_COLUMN_NAME, swItem->text(QMC2_SWLIST_COLUMN_NAME));
 				item->setText(QMC2_SWLIST_COLUMN_PUBLISHER, swItem->text(QMC2_SWLIST_COLUMN_PUBLISHER));
@@ -626,7 +626,7 @@ bool SoftwareList::load()
 				item->setText(QMC2_SWLIST_COLUMN_PART, swItem->text(QMC2_SWLIST_COLUMN_PART));
 				item->setText(QMC2_SWLIST_COLUMN_INTERFACE, swItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
 				item->setText(QMC2_SWLIST_COLUMN_LIST, swItem->text(QMC2_SWLIST_COLUMN_LIST));
-				QTreeWidgetItem *subItem = new QTreeWidgetItem(item);
+				SoftwareItem *subItem = new SoftwareItem(item);
 				subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
 #if defined(QMC2_EMUTYPE_MESS)
 				if ( configNames.count() > i )
@@ -929,13 +929,13 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 		si = selectedItems.at(0);
 
 	if ( si ) {
-		QTreeWidgetItem *item = NULL;
+		SoftwareItem *item = NULL;
 		QList<QTreeWidgetItem *> matchedItems = treeWidgetFavoriteSoftware->findItems(si->text(QMC2_SWLIST_COLUMN_NAME), Qt::MatchExactly | Qt::MatchCaseSensitive, QMC2_SWLIST_COLUMN_NAME);
 		if ( matchedItems.count() > 0 )
-			item = matchedItems.at(0);
+			item = (SoftwareItem *)matchedItems.at(0);
 		else {
-			item = new QTreeWidgetItem(treeWidgetFavoriteSoftware);
-			QTreeWidgetItem *subItem = new QTreeWidgetItem(item);
+			item = new SoftwareItem(treeWidgetFavoriteSoftware);
+			SoftwareItem *subItem = new SoftwareItem(item);
 			subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
 		}
 		if ( item ) {
@@ -1137,7 +1137,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 	toolButtonPlayEmbedded->setEnabled(enable);
 	toolButtonAddToFavorites->setEnabled(enable);
 	if ( enable && qmc2SoftwareSnap ) {
-		QTreeWidgetItem *item = selectedItems[0];
+		SoftwareItem *item = (SoftwareItem *)selectedItems[0];
 		if ( item != qmc2SoftwareSnap->myItem )
 			cancelSoftwareSnap();
 		qmc2SoftwareSnap->snapForcedResetTimer.stop();
@@ -1161,7 +1161,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 	toolButtonRemoveFromFavorites->setEnabled(enable);
 	toolButtonAddToFavorites->setEnabled(enable);
 	if ( enable && qmc2SoftwareSnap ) {
-		QTreeWidgetItem *item = selectedItems[0];
+		SoftwareItem *item = (SoftwareItem *)selectedItems[0];
 		if ( item != qmc2SoftwareSnap->myItem )
 			cancelSoftwareSnap();
 		qmc2SoftwareSnap->snapForcedResetTimer.stop();
@@ -1198,7 +1198,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 	toolButtonAddToFavorites->setEnabled(enable);
 	toolButtonRemoveFromFavorites->setEnabled(false);
 	if ( selectedItems.count() > 0 && qmc2SoftwareSnap ) {
-		QTreeWidgetItem *item = selectedItems[0];
+		SoftwareItem *item = (SoftwareItem *)selectedItems[0];
 		if ( item != qmc2SoftwareSnap->myItem )
 			cancelSoftwareSnap();
 		qmc2SoftwareSnap->snapForcedResetTimer.stop();
@@ -1290,7 +1290,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item,
 		if ( qmc2SoftwareSnap ) {
 			if ( qmc2SoftwareSnap->myItem != item ) {
 				cancelSoftwareSnap();
-				qmc2SoftwareSnap->myItem = item;
+				qmc2SoftwareSnap->myItem = (SoftwareItem *)item;
 				snapTimer.start(QMC2_SWSNAP_DELAY);
 			}
 		}
@@ -1310,7 +1310,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *it
 		if ( qmc2SoftwareSnap ) {
 			if ( qmc2SoftwareSnap->myItem != item ) {
 				cancelSoftwareSnap();
-				qmc2SoftwareSnap->myItem = item;
+				qmc2SoftwareSnap->myItem = (SoftwareItem *)item;
 				snapTimer.start(QMC2_SWSNAP_DELAY);
 			}
 		}
@@ -1330,7 +1330,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item,
 		if ( qmc2SoftwareSnap ) {
 			if ( qmc2SoftwareSnap->myItem != item ) {
 				cancelSoftwareSnap();
-				qmc2SoftwareSnap->myItem = item;
+				qmc2SoftwareSnap->myItem = (SoftwareItem *)item;
 				snapTimer.start(QMC2_SWSNAP_DELAY);
 			}
 		}
@@ -1407,8 +1407,8 @@ void SoftwareList::comboBoxSearch_textChanged_delayed()
 	}
 
 	for (i = 0; i < matches.count(); i++) {
-		QTreeWidgetItem *item = new QTreeWidgetItem(treeWidgetSearchResults);
-		QTreeWidgetItem *subItem = new QTreeWidgetItem(item);
+		SoftwareItem *item = new SoftwareItem(treeWidgetSearchResults);
+		SoftwareItem *subItem = new SoftwareItem(item);
 		subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
 		QTreeWidgetItem *matchItem = matches.at(i);
 		item->setText(QMC2_SWLIST_COLUMN_TITLE, matchItem->text(QMC2_SWLIST_COLUMN_TITLE));
@@ -1624,12 +1624,12 @@ void SoftwareList::actionSearchResultsHeader_triggered()
 	}
 }
 
-void SoftwareList::checkMountDevicesSelection()
+void SoftwareList::checkMountDeviceSelection()
 {
 	QComboBox *comboBoxSender = (QComboBox *)sender();
 
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::checkMountDevicesSelection()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::checkMountDeviceSelection()");
 #endif
 
 	QTreeWidget *treeWidget;
@@ -1648,6 +1648,7 @@ void SoftwareList::checkMountDevicesSelection()
 	QString mountDevice = comboBoxSender->currentText();
 
 	QTreeWidgetItemIterator it(treeWidget);
+
 	if ( mountDevice == QObject::tr("Auto mount") ) {
 		while ( *it ) {
 			if ( !(*it)->parent() ) successfullLookups.clear();
@@ -1728,8 +1729,8 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 		softwareListName = attributes.value("name");
 	} else if ( qName == "software" ) {
 		softwareName = attributes.value("name");
-		softwareItem = new QTreeWidgetItem(parentTreeWidget);
-		QTreeWidgetItem *subItem = new QTreeWidgetItem(softwareItem);
+		softwareItem = new SoftwareItem(parentTreeWidget);
+		SoftwareItem *subItem = new SoftwareItem(softwareItem);
 		subItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Waiting for data..."));
 		softwareItem->setText(QMC2_SWLIST_COLUMN_NAME, softwareName);
 		softwareItem->setText(QMC2_SWLIST_COLUMN_LIST, softwareListName);
@@ -1975,7 +1976,7 @@ void SoftwareSnap::loadSnapshot()
 
 	listName = item->text(QMC2_SWLIST_COLUMN_LIST);
 	entryName = item->text(QMC2_SWLIST_COLUMN_NAME);
-	myItem = item;
+	myItem = (SoftwareItem *)item;
 
 	QPixmap pm;
 	bool pmLoaded = QPixmapCache::find("sws_" + listName + "_" + entryName, &pm);
@@ -2198,7 +2199,7 @@ SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item)
 //	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::SoftwareListXmlHandler(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
-	parentTreeWidgetItem = item;
+	parentTreeWidgetItem = (SoftwareItem *)item;
 	softwareValid = false;
 	partItem = romItem = NULL;
 }
@@ -2227,7 +2228,7 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 		return true;
 
 	if ( qName == "part" ) {
-		partItem = new QTreeWidgetItem(parentTreeWidgetItem);
+		partItem = new SoftwareItem(parentTreeWidgetItem);
 		partItem->setText(QMC2_SWLIST_COLUMN_PART, attributes.value("name"));
 		partItem->setText(QMC2_SWLIST_COLUMN_INTERFACE, attributes.value("interface"));
 		partItem->setText(QMC2_SWLIST_COLUMN_LIST, parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_LIST));
@@ -2251,13 +2252,13 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 					partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Mounted on:") + " " + mountDev);
 			}
 			parentTreeWidgetItem->treeWidget()->setItemWidget(partItem, QMC2_SWLIST_COLUMN_PUBLISHER, comboBoxMountDevices);
-			QObject::connect(comboBoxMountDevices, SIGNAL(currentIndexChanged(int)), qmc2SoftwareList, SLOT(checkMountDevicesSelection()));
+			QObject::connect(comboBoxMountDevices, SIGNAL(currentIndexChanged(int)), qmc2SoftwareList, SLOT(checkMountDeviceSelection()));
 		}
 	} else if ( qName == "rom" ) {
 		if ( partItem != NULL ) {
 			QString romName = attributes.value("name");
 			if ( !romName.isEmpty() ) {
-				romItem = new QTreeWidgetItem(partItem);
+				romItem = new SoftwareItem(partItem);
 				romItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Name:") + " " + romName);
 				romItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Size:") + " " + attributes.value("size"));
 				romItem->setText(QMC2_SWLIST_COLUMN_PUBLISHER, QObject::tr("CRC:") + " " + attributes.value("crc"));
