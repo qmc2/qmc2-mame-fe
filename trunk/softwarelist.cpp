@@ -279,7 +279,11 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 	QStringList briefNames = deviceInstanceMap[interface];
 	if ( briefNames.contains(device) )
 		softwareListDeviceName = device;
+#if defined(QMC2_EMUTYPE_MESS)
 	else if ( briefNames.count() == 1 )
+#else
+	else if ( briefNames.count() > 0 )
+#endif
 		softwareListDeviceName = briefNames[0];
 
 	if ( mountList != NULL )
