@@ -247,15 +247,26 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 	while ( !qmc2Gamelist->xmlLines[i].contains("</game>") ) {
 		QString line = qmc2Gamelist->xmlLines[i++].simplified();
 		if ( line.startsWith("<device type=\"") ) {
-			int startIndex = line.indexOf("interface=\"") + 11;
-			int endIndex = line.indexOf("\"", startIndex);
-			QString devInterface = line.mid(startIndex, endIndex - startIndex);
-			line = qmc2Gamelist->xmlLines[i++].simplified();
-			startIndex = line.indexOf("briefname=\"") + 11;
-			endIndex = line.indexOf("\"", startIndex);
-			QString devName = line.mid(startIndex, endIndex - startIndex);
-			if ( !devName.isEmpty() )
-				deviceInstanceMap[devInterface] << devName;
+			int startIndex = line.indexOf("interface=\"");
+			int endIndex;
+			if ( startIndex >= 0 ) {
+				startIndex += 11;
+				int endIndex = line.indexOf("\"", startIndex);
+				QString devInterface = line.mid(startIndex, endIndex - startIndex);
+				line = qmc2Gamelist->xmlLines[i++].simplified();
+				startIndex = line.indexOf("briefname=\"") + 11;
+				endIndex = line.indexOf("\"", startIndex);
+				QString devName = line.mid(startIndex, endIndex - startIndex);
+				if ( !devName.isEmpty() )
+					deviceInstanceMap[devInterface] << devName;
+			} else {
+				line = qmc2Gamelist->xmlLines[i++].simplified();
+				startIndex = line.indexOf("briefname=\"") + 11;
+				endIndex = line.indexOf("\"", startIndex);
+				QString devName = line.mid(startIndex, endIndex - startIndex);
+				if ( !devName.isEmpty() )
+					deviceInstanceMap[devName] << devName;
+			}
 		}
 	}
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -264,27 +275,35 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 	while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") ) {
 		QString line = qmc2Gamelist->xmlLines[i++].simplified();
 		if ( line.startsWith("<device type=\"") ) {
-			int startIndex = line.indexOf("interface=\"") + 11;
-			int endIndex = line.indexOf("\"", startIndex);
-			QString devInterface = line.mid(startIndex, endIndex - startIndex);
-			line = qmc2Gamelist->xmlLines[i++].simplified();
-			startIndex = line.indexOf("briefname=\"") + 11;
-			endIndex = line.indexOf("\"", startIndex);
-			QString devName = line.mid(startIndex, endIndex - startIndex);
-			if ( !devName.isEmpty() )
-				deviceInstanceMap[devInterface] << devName;
+			int startIndex = line.indexOf("interface=\"");
+			int endIndex;
+			if ( startIndex >= 0 ) {
+				startIndex += 11;
+				int endIndex = line.indexOf("\"", startIndex);
+				QString devInterface = line.mid(startIndex, endIndex - startIndex);
+				line = qmc2Gamelist->xmlLines[i++].simplified();
+				startIndex = line.indexOf("briefname=\"") + 11;
+				endIndex = line.indexOf("\"", startIndex);
+				QString devName = line.mid(startIndex, endIndex - startIndex);
+				if ( !devName.isEmpty() )
+					deviceInstanceMap[devInterface] << devName;
+			} else {
+				line = qmc2Gamelist->xmlLines[i++].simplified();
+				startIndex = line.indexOf("briefname=\"") + 11;
+				endIndex = line.indexOf("\"", startIndex);
+				QString devName = line.mid(startIndex, endIndex - startIndex);
+				if ( !devName.isEmpty() )
+					deviceInstanceMap[devName] << devName;
+			}
 		}
 	}
 #endif
 
 	QStringList briefNames = deviceInstanceMap[interface];
+
 	if ( briefNames.contains(device) )
 		softwareListDeviceName = device;
-#if defined(QMC2_EMUTYPE_MESS)
-	else if ( briefNames.count() == 1 )
-#else
 	else if ( briefNames.count() > 0 )
-#endif
 		softwareListDeviceName = briefNames[0];
 
 	if ( successfullLookups.contains(softwareListDeviceName) )
