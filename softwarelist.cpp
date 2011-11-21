@@ -52,6 +52,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	systemName = sysName;
 	loadProc = NULL;
 	validData = snapForced = autoSelectSearchItem = false;
+	autoMounted = true;
 
 #if defined(QMC2_EMUTYPE_MAME)
 	comboBoxDeviceConfiguration->setVisible(false);
@@ -373,6 +374,7 @@ bool SoftwareList::load()
 #endif
 
 	bool swlCacheOkay = true;
+	autoMounted = true;
 	validData = swlSupported;
 #if defined(QMC2_EMUTYPE_MAME)
 	QString swlCachePath = qmc2Config->value("MAME/FilesAndDirectories/SoftwareListCache").toString();
@@ -1455,16 +1457,17 @@ QStringList &SoftwareList::arguments()
 			treeWidget = treeWidgetKnownSoftware;
 			break;
 	}
+
 	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
+
 	if ( selectedItems.count() > 0 ) {
 		QTreeWidgetItemIterator it(treeWidget);
 		QStringList manualMounts;
-		bool mountedManually = false;
-		while ( *it ) {
-			QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
-			if ( comboBox ) {
-				if ( comboBox->currentIndex() > 0 ) {
-					mountedManually = true;
+		if ( !autoMounted ) {
+			// manually mounted
+			while ( *it ) {
+				QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
+				if ( comboBox ) {
 					if ( comboBox->currentIndex() > 1 ) {
 						swlArgs << QString("-%1").arg(comboBox->currentText());
 						QTreeWidgetItem *item = *it;
@@ -1472,11 +1475,10 @@ QStringList &SoftwareList::arguments()
 						swlArgs << QString("%1:%2:%3").arg((*it)->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)).arg((*it)->text(QMC2_SWLIST_COLUMN_PART));
 					}
 				}
+				it++;
 			}
-			it++;
-		}
-
-		if ( !mountedManually ) {
+		} else {
+			// automatically mounted
 			QTreeWidgetItem *item = selectedItems[0];
 			while ( item->parent() ) item = item->parent();
 			QStringList interfaces = item->text(QMC2_SWLIST_COLUMN_INTERFACE).split(",");
@@ -1654,6 +1656,7 @@ void SoftwareList::checkMountDevicesSelection()
 			}
 			it++;
 		}
+		autoMounted = true;
 	} else if ( mountDevice == QObject::tr("Don't mount") ) {
 		while ( *it ) {
 			QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
@@ -1669,6 +1672,7 @@ void SoftwareList::checkMountDevicesSelection()
 			}
 			it++;
 		}
+		autoMounted = false;
 	} else {
 		while ( *it ) {
 			QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
@@ -1685,6 +1689,7 @@ void SoftwareList::checkMountDevicesSelection()
 			}
 			it++;
 		}
+		autoMounted = false;
 	}
 }
 
@@ -2220,14 +2225,20 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 			partItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Data area:") + " " + attributes.value("name"));
 			QStringList mountList;
 			QString mountDev = qmc2SoftwareList->lookupMountDevice(partItem->text(QMC2_SWLIST_COLUMN_PART), partItem->text(QMC2_SWLIST_COLUMN_INTERFACE), &mountList);
-			if ( mountDev.isEmpty() )
-				partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
-			else
-				partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Mounted on:") + " " + mountDev);
 			QComboBox *comboBoxMountDevices = new QComboBox(parentTreeWidgetItem->treeWidget());
 			mountList.prepend(QObject::tr("Don't mount"));
 			mountList.prepend(QObject::tr("Auto mount"));
 			comboBoxMountDevices->insertItems(0, mountList);
+			if ( !qmc2SoftwareList->autoMounted ) {
+				comboBoxMountDevices->setCurrentIndex(1); // ==> don't mount
+				partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
+			} else {
+				comboBoxMountDevices->setCurrentIndex(0); // ==> auto mount
+				if ( mountDev.isEmpty() )
+					partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
+				else
+					partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Mounted on:") + " " + mountDev);
+			}
 			parentTreeWidgetItem->treeWidget()->setItemWidget(partItem, QMC2_SWLIST_COLUMN_PUBLISHER, comboBoxMountDevices);
 			QObject::connect(comboBoxMountDevices, SIGNAL(currentIndexChanged(int)), qmc2SoftwareList, SLOT(checkMountDevicesSelection()));
 		}
