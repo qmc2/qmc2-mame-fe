@@ -1657,8 +1657,16 @@ void SoftwareList::checkMountDevicesSelection()
 	} else if ( mountDevice == QObject::tr("Don't mount") ) {
 		while ( *it ) {
 			QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
-			if ( comboBox == comboBoxSender )
-				(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
+			if ( comboBox ) {
+				if ( comboBox == comboBoxSender )
+					(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
+				else if ( comboBox->currentIndex() == 0 ) {
+					comboBox->blockSignals(true);
+					comboBox->setCurrentIndex(1); // => don't mount
+					comboBox->blockSignals(false);
+					(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
+				}
+			}
 			it++;
 		}
 	} else {
