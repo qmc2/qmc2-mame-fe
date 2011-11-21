@@ -10,11 +10,30 @@
 #include "ui_softwarelist.h"
 #include "unzip.h"
 
+class SoftwareItem : public QTreeWidgetItem
+{
+	public:
+		SoftwareItem(QTreeWidget *parent) : QTreeWidgetItem(parent) { ; }
+		SoftwareItem(QTreeWidgetItem *parent) : QTreeWidgetItem(parent) { ; }
+		SoftwareItem(SoftwareItem *parent) : QTreeWidgetItem((QTreeWidgetItem *)parent) { ; }
+
+	protected:
+		bool operator<(const QTreeWidgetItem &other) const
+		{
+			if ( parent() != NULL )
+				return false;
+			if ( other.parent() != NULL )
+				return false;
+			int col = treeWidget()->sortColumn();
+			return ( text(col) < other.text(col) );
+		}
+};
+
 class SoftwareListXmlHandler : public QXmlDefaultHandler
 {
 	public:
 		QTreeWidget *parentTreeWidget;
-		QTreeWidgetItem *softwareItem;
+		SoftwareItem *softwareItem;
 		QString softwareListName;
 		QString softwareName;
 		QString softwareTitle;
@@ -35,9 +54,9 @@ class SoftwareListXmlHandler : public QXmlDefaultHandler
 class SoftwareEntryXmlHandler : public QXmlDefaultHandler
 {
 	public:
-		QTreeWidgetItem *parentTreeWidgetItem;
-		QTreeWidgetItem *partItem;
-		QTreeWidgetItem *romItem;
+		SoftwareItem *parentTreeWidgetItem;
+		SoftwareItem *partItem;
+		SoftwareItem *romItem;
 		bool softwareValid;
 		QString currentText;
 
@@ -58,7 +77,7 @@ class SoftwareSnap : public QWidget
 		QString entryName;
 		QPoint position;
 		unzFile snapFile;
-		QTreeWidgetItem *myItem;
+		SoftwareItem *myItem;
 		QWidget *focusWidget;
 		QTimer snapForcedResetTimer;
 		QMenu *contextMenu;
@@ -159,7 +178,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void playEmbeddedActivated() { on_toolButtonPlayEmbedded_clicked(false); }
 		void cancelSoftwareSnap();
 		void comboBoxSearch_textChanged_delayed();
-		void checkMountDevicesSelection();
+		void checkMountDeviceSelection();
 
 		// callbacks for software-list header context menu requests
 		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);
