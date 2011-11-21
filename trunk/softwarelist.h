@@ -39,9 +39,6 @@ class SoftwareEntryXmlHandler : public QXmlDefaultHandler
 		QTreeWidgetItem *partItem;
 		QTreeWidgetItem *romItem;
 		bool softwareValid;
-		QString softwarePart;
-		QString softwareRom;
-		QString softwareInterface;
 		QString currentText;
 
 		SoftwareEntryXmlHandler(QTreeWidgetItem *);

@@ -2192,15 +2192,17 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 //	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
 #endif
 
-	if ( qName == "software" ) {
+	if ( qName == "software" )
 		softwareValid = ( attributes.value("name") == parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_NAME) );
-	} else if ( qName == "part" ) {
-		if ( softwareValid ) {
-			partItem = new QTreeWidgetItem(parentTreeWidgetItem);
-			partItem->setText(QMC2_SWLIST_COLUMN_PART, attributes.value("name"));
-			partItem->setText(QMC2_SWLIST_COLUMN_INTERFACE, attributes.value("interface"));
-			partItem->setText(QMC2_SWLIST_COLUMN_LIST, parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_LIST));
-		}
+
+	if ( !softwareValid )
+		return true;
+
+	if ( qName == "part" ) {
+		partItem = new QTreeWidgetItem(parentTreeWidgetItem);
+		partItem->setText(QMC2_SWLIST_COLUMN_PART, attributes.value("name"));
+		partItem->setText(QMC2_SWLIST_COLUMN_INTERFACE, attributes.value("interface"));
+		partItem->setText(QMC2_SWLIST_COLUMN_LIST, parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_LIST));
 	} else if ( qName == "dataarea" ) {
 		if ( partItem != NULL ) {
 			partItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Data area:") + " " + attributes.value("name"));
