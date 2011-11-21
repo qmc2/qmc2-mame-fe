@@ -2228,7 +2228,7 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 			QString romName = attributes.value("name");
 			if ( !romName.isEmpty() ) {
 				romItem = new QTreeWidgetItem(partItem);
-				romItem->setText(QMC2_SWLIST_COLUMN_TITLE, romName);
+				romItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Name:") + " " + romName);
 				romItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Size:") + " " + attributes.value("size"));
 				romItem->setText(QMC2_SWLIST_COLUMN_PUBLISHER, QObject::tr("CRC:") + " " + attributes.value("crc"));
 			}
