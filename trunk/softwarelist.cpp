@@ -2213,9 +2213,9 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 			QComboBox *comboBoxMountDevices = new QComboBox(parentTreeWidgetItem->treeWidget());
 			mountList.prepend(QObject::tr("Don't mount"));
 			mountList.prepend(QObject::tr("Auto mount"));
+			comboBoxMountDevices->insertItems(0, mountList);
 			parentTreeWidgetItem->treeWidget()->setItemWidget(partItem, QMC2_SWLIST_COLUMN_PUBLISHER, comboBoxMountDevices);
 			QObject::connect(comboBoxMountDevices, SIGNAL(currentIndexChanged(int)), qmc2SoftwareList, SLOT(checkMountDevicesSelection()));
-			comboBoxMountDevices->insertItems(0, mountList);
 		}
 	} else if ( qName == "rom" ) {
 		if ( partItem != NULL ) {
