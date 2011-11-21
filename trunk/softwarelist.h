@@ -32,6 +32,26 @@ class SoftwareListXmlHandler : public QXmlDefaultHandler
 		bool characters(const QString &);
 };
 
+class SoftwareEntryXmlHandler : public QXmlDefaultHandler
+{
+	public:
+		QTreeWidgetItem *parentTreeWidgetItem;
+		QTreeWidgetItem *partItem;
+		QTreeWidgetItem *romItem;
+		bool softwareValid;
+		QString softwarePart;
+		QString softwareRom;
+		QString softwareInterface;
+		QString currentText;
+
+		SoftwareEntryXmlHandler(QTreeWidgetItem *);
+		~SoftwareEntryXmlHandler();
+		
+		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
+		bool endElement(const QString &, const QString &, const QString &);
+		bool characters(const QString &);
+};
+
 class SoftwareSnap : public QWidget
 {
 	Q_OBJECT
@@ -90,7 +110,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 
 		QString &getSoftwareListXmlData(QString);
 		QString &getXmlData();
-		QString &lookupMountDevice(QString, QString);
+		QString &lookupMountDevice(QString, QString, QStringList *mountList = NULL);
 		QStringList &arguments();
 
 	public slots:
@@ -115,6 +135,9 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *, int);
 		void on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *, int);
 		void on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *, int);
+		void on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *);
+		void on_treeWidgetFavoriteSoftware_itemExpanded(QTreeWidgetItem *);
+		void on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *);
 		void on_comboBoxSearch_textChanged(QString);
 		void on_comboBoxSearch_activated(QString);
 		void on_toolBoxSoftwareList_currentChanged(int);
@@ -137,6 +160,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void playEmbeddedActivated() { on_toolButtonPlayEmbedded_clicked(false); }
 		void cancelSoftwareSnap();
 		void comboBoxSearch_textChanged_delayed();
+		void checkMountDevicesSelection();
 
 		// callbacks for software-list header context menu requests
 		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);
