@@ -102,6 +102,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool validData;
 		bool autoSelectSearchItem;
 		bool autoMounted;
+		QStringList successfullLookups;
 
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();
