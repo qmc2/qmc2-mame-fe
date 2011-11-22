@@ -123,6 +123,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool autoSelectSearchItem;
 		bool autoMounted;
 		QStringList successfulLookups;
+		int cachedDeviceLookupPosition;
 
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();
