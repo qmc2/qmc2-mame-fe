@@ -28,6 +28,7 @@ extern int qmc2SoftwareSnapPosition;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QString> softwareListXmlDataCache;
+QMap<QString, int> deviceLookupPositionMap;
 QString swlBuffer;
 QString swlLastLine;
 QString swlSelectedMountDevice;
@@ -237,13 +238,14 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 	static QString softwareListDeviceName;
 
 	QMap<QString, QStringList> deviceInstanceMap;
-	int i = 0;
+	int i = deviceLookupPositionMap[systemName];
 
 	softwareListDeviceName.clear();
 
 #if defined(QMC2_EMUTYPE_MAME)
 	QString s = "<game name=\"" + systemName + "\"";
 	while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
+	if ( qmc2Gamelist->xmlLines[i].contains(s) ) deviceLookupPositionMap[systemName] = i - 1;
 	while ( !qmc2Gamelist->xmlLines[i].contains("</game>") ) {
 		QString line = qmc2Gamelist->xmlLines[i++].simplified();
 		if ( line.startsWith("<device type=\"") ) {
@@ -272,6 +274,7 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 #elif defined(QMC2_EMUTYPE_MESS)
 	QString s = "<machine name=\"" + systemName + "\"";
 	while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
+	if ( qmc2Gamelist->xmlLines[i].contains(s) ) deviceLookupPositionMap[systemName] = i - 1;
 	while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") ) {
 		QString line = qmc2Gamelist->xmlLines[i++].simplified();
 		if ( line.startsWith("<device type=\"") ) {
@@ -419,6 +422,8 @@ bool SoftwareList::load()
 	treeWidgetFavoriteSoftware->header()->setSortIndicatorShown(false);
 	treeWidgetSearchResults->setSortingEnabled(false);
 	treeWidgetSearchResults->header()->setSortIndicatorShown(false);
+
+	deviceLookupPositionMap.clear();
 
 	if ( swlBuffer.isEmpty() && swlSupported ) {
           	qmc2MainWindow->tabSoftwareList->setUpdatesEnabled(true);
