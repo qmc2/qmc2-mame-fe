@@ -56,6 +56,7 @@ class SoftwareEntryXmlHandler : public QXmlDefaultHandler
 	public:
 		SoftwareItem *parentTreeWidgetItem;
 		SoftwareItem *partItem;
+		SoftwareItem *dataareaItem;
 		SoftwareItem *romItem;
 		bool softwareValid;
 		QString currentText;
@@ -121,7 +122,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool validData;
 		bool autoSelectSearchItem;
 		bool autoMounted;
-		QStringList successfullLookups;
+		QStringList successfulLookups;
 
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();
