@@ -966,7 +966,7 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 			item->setText(QMC2_SWLIST_COLUMN_INTERFACE, si->text(QMC2_SWLIST_COLUMN_INTERFACE));
 			item->setText(QMC2_SWLIST_COLUMN_LIST, si->text(QMC2_SWLIST_COLUMN_LIST));
 #if defined(QMC2_EMUTYPE_MESS)
-			if ( comboBoxDeviceConfiguration->currentIndex() > 0 )
+			if ( comboBoxDeviceConfiguration->currentIndex() > QMC2_SWLIST_MSEL_AUTO_MOUNT )
 				item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, comboBoxDeviceConfiguration->currentText());
 			else
 				item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, QString());
@@ -1496,7 +1496,7 @@ QStringList &SoftwareList::arguments()
 			while ( *it ) {
 				QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
 				if ( comboBox ) {
-					if ( comboBox->currentIndex() > 1 ) {
+					if ( comboBox->currentIndex() > QMC2_SWLIST_MSEL_DONT_MOUNT ) {
 						swlArgs << QString("-%1").arg(comboBox->currentText());
 						QTreeWidgetItem *item = *it;
 						while ( item->parent() ) item = item->parent();
@@ -1677,7 +1677,7 @@ void SoftwareList::checkMountDeviceSelection()
 			QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
 			if ( comboBox ) {
 				comboBox->blockSignals(true);
-				comboBox->setCurrentIndex(0); // => auto mount
+				comboBox->setCurrentIndex(QMC2_SWLIST_MSEL_AUTO_MOUNT); // => auto mount
 				comboBox->blockSignals(false);
 				QString itemMountDev = lookupMountDevice((*it)->text(QMC2_SWLIST_COLUMN_PART), (*it)->text(QMC2_SWLIST_COLUMN_INTERFACE));
 				if ( itemMountDev.isEmpty() )
@@ -1694,9 +1694,9 @@ void SoftwareList::checkMountDeviceSelection()
 			if ( comboBox ) {
 				if ( comboBox == comboBoxSender )
 					(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
-				else if ( comboBox->currentIndex() == 0 ) {
+				else if ( comboBox->currentIndex() == QMC2_SWLIST_MSEL_AUTO_MOUNT ) {
 					comboBox->blockSignals(true);
-					comboBox->setCurrentIndex(1); // => don't mount
+					comboBox->setCurrentIndex(QMC2_SWLIST_MSEL_DONT_MOUNT); // => don't mount
 					comboBox->blockSignals(false);
 					(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
 				}
@@ -1711,7 +1711,7 @@ void SoftwareList::checkMountDeviceSelection()
 				if ( comboBox != comboBoxSender ) {
 					if ( comboBox->currentText() == mountDevice || comboBox->currentText() == QObject::tr("Auto mount") ) {
 						comboBox->blockSignals(true);
-						comboBox->setCurrentIndex(1); // => don't mount
+						comboBox->setCurrentIndex(QMC2_SWLIST_MSEL_DONT_MOUNT); // => don't mount
 						comboBox->blockSignals(false);
 						(*it)->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
 					}
@@ -2263,11 +2263,12 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 				mountList.prepend(QObject::tr("Don't mount"));
 				mountList.prepend(QObject::tr("Auto mount"));
 				comboBoxMountDevices->insertItems(0, mountList);
+				comboBoxMountDevices->insertSeparator(QMC2_SWLIST_MSEL_SEPARATOR);
 				if ( !qmc2SoftwareList->autoMounted ) {
-					comboBoxMountDevices->setCurrentIndex(1); // ==> don't mount
+					comboBoxMountDevices->setCurrentIndex(QMC2_SWLIST_MSEL_DONT_MOUNT); // ==> don't mount
 					partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
 				} else {
-					comboBoxMountDevices->setCurrentIndex(0); // ==> auto mount
+					comboBoxMountDevices->setCurrentIndex(QMC2_SWLIST_MSEL_AUTO_MOUNT); // ==> auto mount
 					if ( mountDev.isEmpty() )
 						partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
 					else
