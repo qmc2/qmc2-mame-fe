@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QTime>
 #include <QNetworkReply>
+#include <QWidgetAction>
 #include "ui_qmc2main.h"
 #include "ui_options.h"
 #include "macros.h"
@@ -148,6 +149,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QTimer activityCheckTimer;
     bool activityState;
     QString urlSectionRegExp;
+
+    QWidgetAction *widgetActionToolbarSearch;
+    QComboBox *comboBoxToolbarSearch;
 
     static QColor qmc2StatusColorGreen;
     static QColor qmc2StatusColorYellowGreen;
@@ -457,6 +461,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &);
     void actionVersionHeader_triggered();
 #endif
+    void comboBoxToolbarSearch_textChanged(const QString &);
+    void comboBoxToolbarSearch_activated(const QString &);
 
   protected:
     void closeEvent(QCloseEvent *);
