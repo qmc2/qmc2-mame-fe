@@ -306,12 +306,10 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 
 	if ( briefNames.contains(device) )
 		softwareListDeviceName = device;
-	else if ( briefNames.count() > 0 ) {
-		for (int i = 0; i < briefNames.count() && softwareListDeviceName.isEmpty(); i++) {
+	else for (int i = 0; i < briefNames.count() && softwareListDeviceName.isEmpty(); i++) {
 			softwareListDeviceName = briefNames[i];
 			if ( successfulLookups.contains(softwareListDeviceName) )
 				softwareListDeviceName.clear();
-		}
 	}
 
 	if ( successfulLookups.contains(softwareListDeviceName) )
