@@ -134,6 +134,11 @@
 #define QMC2_SWLIST_FAVORITES_PAGE	1
 #define QMC2_SWLIST_SEARCH_PAGE		2
 
+// mounter-selection indizes
+#define QMC2_SWLIST_MSEL_AUTO_MOUNT	0
+#define QMC2_SWLIST_MSEL_SEPARATOR	1
+#define QMC2_SWLIST_MSEL_DONT_MOUNT	2
+
 // software snap positions
 #define QMC2_SWSNAP_POS_ABOVE_LEFT	0
 #define QMC2_SWSNAP_POS_ABOVE_CENTER	1
