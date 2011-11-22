@@ -408,6 +408,25 @@ MainWindow::MainWindow(QWidget *parent)
 
   setupUi(this);
 
+  // toolbar's search combo
+  comboBoxToolbarSearch = new QComboBox(this);
+  comboBoxToolbarSearch->setEditable(true);
+  comboBoxToolbarSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
+#if defined(QMC2_EMUTYPE_MAME)
+  comboBoxToolbarSearch->setToolTip(tr("Search for games (not case-sensitive)"));
+  comboBoxToolbarSearch->setStatusTip(tr("Search for games"));
+#elif defined(QMC2_EMUTYPE_MESS)
+  comboBoxToolbarSearch->setToolTip(tr("Search for machines (not case-sensitive)"));
+  comboBoxToolbarSearch->setStatusTip(tr("Search for machines"));
+#endif
+  comboBoxToolbarSearch->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
+  widgetActionToolbarSearch = new QWidgetAction(this);
+  widgetActionToolbarSearch->setDefaultWidget(comboBoxToolbarSearch);
+  toolbar->addSeparator();
+  toolbar->addAction(widgetActionToolbarSearch);
+  connect(comboBoxToolbarSearch, SIGNAL(activated(const QString &)), this, SLOT(comboBoxToolbarSearch_activated(const QString &)));
+  connect(comboBoxToolbarSearch, SIGNAL(textChanged(const QString &)), this, SLOT(comboBoxToolbarSearch_textChanged(const QString &)));
+
   // save splitter widgets at index 0 for later comparison
   hSplitterWidget0 = hSplitter->widget(0);
   vSplitterWidget0 = vSplitter->widget(0);
@@ -9178,6 +9197,21 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 	return wikiText;
 }
 #endif
+
+void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
+{
+	comboBoxSearch->lineEdit()->setText(text);
+	tabWidgetGamelist->blockSignals(true);
+	tabWidgetGamelist->setCurrentIndex(QMC2_SEARCH_INDEX);
+	tabWidgetGamelist->blockSignals(false);
+	QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
+}
+
+void MainWindow::comboBoxToolbarSearch_textChanged(const QString &text)
+{
+	if ( tabWidgetGamelist->currentIndex() == QMC2_SEARCH_INDEX )
+		comboBoxSearch->lineEdit()->setText(text);
+}
 
 void myQtMessageHandler(QtMsgType type, const char *msg)
 {
