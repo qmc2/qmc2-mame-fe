@@ -2282,9 +2282,16 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 		}
 	} else if ( qName == "dataarea" ) {
 		if ( partItem != NULL ) {
-			QString daName = attributes.value("name");
 			dataareaItem = new SoftwareItem(partItem);
-			dataareaItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Data area:") + " " + daName);
+			dataareaItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Data area:") + " " + attributes.value("name"));
+			QString s = attributes.value("size");
+			if ( !s.isEmpty() )
+				dataareaItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Size:") + " " + s);
+		}
+	} else if ( qName == "diskarea" ) {
+		if ( partItem != NULL ) {
+			dataareaItem = new SoftwareItem(partItem);
+			dataareaItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Disk area:") + " " + attributes.value("name"));
 			QString s = attributes.value("size");
 			if ( !s.isEmpty() )
 				dataareaItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Size:") + " " + s);
@@ -2300,7 +2307,18 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 					romItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Size:") + " " + s);
 				s = attributes.value("crc");
 				if ( !s.isEmpty() )
-					romItem->setText(QMC2_SWLIST_COLUMN_PUBLISHER, QObject::tr("CRC:") + " " + attributes.value("crc"));
+					romItem->setText(QMC2_SWLIST_COLUMN_PUBLISHER, QObject::tr("CRC:") + " " + s);
+			}
+		}
+	} else if ( qName == "disk" ) {
+		if ( dataareaItem != NULL ) {
+			QString diskName = attributes.value("name");
+			if ( !diskName.isEmpty() ) {
+				romItem = new SoftwareItem(dataareaItem);
+				romItem->setText(QMC2_SWLIST_COLUMN_TITLE, diskName);
+				QString s = attributes.value("sha1");
+				if ( !s.isEmpty() )
+					romItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("SHA1:") + " " + s);
 			}
 		}
 	}
@@ -2318,7 +2336,7 @@ bool SoftwareEntryXmlHandler::endElement(const QString &namespaceURI, const QStr
 		softwareValid = false;
 	} else if ( qName == "part" ) {
 		partItem = NULL;
-	} else if ( qName == "dataarea" ) {
+	} else if ( qName == "dataarea" || qName == "diskarea" ) {
 		dataareaItem = NULL;
 	} else if ( qName == "rom" ) {
 		romItem = NULL;

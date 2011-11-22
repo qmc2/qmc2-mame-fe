@@ -12277,20 +12277,31 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2287"/>
+        <location filename="../../softwarelist.cpp" line="2286"/>
         <source>Data area:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2290"/>
-        <location filename="../../softwarelist.cpp" line="2300"/>
+        <location filename="../../softwarelist.cpp" line="2289"/>
+        <location filename="../../softwarelist.cpp" line="2297"/>
+        <location filename="../../softwarelist.cpp" line="2307"/>
         <source>Size:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../softwarelist.cpp" line="2303"/>
+        <location filename="../../softwarelist.cpp" line="2294"/>
+        <source>Disk area:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="2310"/>
         <source>CRC:</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../../softwarelist.cpp" line="2321"/>
+        <source>SHA1:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
