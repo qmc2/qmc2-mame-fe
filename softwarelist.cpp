@@ -306,14 +306,14 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 	else if ( briefNames.count() > 0 )
 		softwareListDeviceName = briefNames[0];
 
-	if ( successfullLookups.contains(softwareListDeviceName) )
+	if ( successfulLookups.contains(softwareListDeviceName) )
 		softwareListDeviceName.clear();
 
 	if ( mountList != NULL )
 		*mountList = briefNames;
 
 	if ( !softwareListDeviceName.isEmpty() )
-		successfullLookups << softwareListDeviceName;
+		successfulLookups << softwareListDeviceName;
 
 	return softwareListDeviceName;
 }
@@ -1063,6 +1063,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *item
 			delete childItem;
 			QXmlInputSource xmlInputSource;
 			xmlInputSource.setData(softwareListXml);
+			successfulLookups.clear();
 			SoftwareEntryXmlHandler xmlHandler(item);
 			QXmlSimpleReader xmlReader;
 			xmlReader.setContentHandler(&xmlHandler);
@@ -1087,6 +1088,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemExpanded(QTreeWidgetItem *i
 			delete childItem;
 			QXmlInputSource xmlInputSource;
 			xmlInputSource.setData(softwareListXml);
+			successfulLookups.clear();
 			SoftwareEntryXmlHandler xmlHandler(item);
 			QXmlSimpleReader xmlReader;
 			xmlReader.setContentHandler(&xmlHandler);
@@ -1111,6 +1113,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *item
 			delete childItem;
 			QXmlInputSource xmlInputSource;
 			xmlInputSource.setData(softwareListXml);
+			successfulLookups.clear();
 			SoftwareEntryXmlHandler xmlHandler(item);
 			QXmlSimpleReader xmlReader;
 			xmlReader.setContentHandler(&xmlHandler);
@@ -1508,7 +1511,7 @@ QStringList &SoftwareList::arguments()
 			while ( item->parent() ) item = item->parent();
 			QStringList interfaces = item->text(QMC2_SWLIST_COLUMN_INTERFACE).split(",");
 			QStringList parts = item->text(QMC2_SWLIST_COLUMN_PART).split(",");
-			successfullLookups.clear();
+			successfulLookups.clear();
 			for (int i = 0; i < parts.count(); i++) {
 				QString mountDev = lookupMountDevice(parts[i], interfaces[i]);
 				if ( !mountDev.isEmpty() ) {
@@ -1670,7 +1673,7 @@ void SoftwareList::checkMountDeviceSelection()
 
 	if ( mountDevice == QObject::tr("Auto mount") ) {
 		while ( *it ) {
-			if ( !(*it)->parent() ) successfullLookups.clear();
+			if ( !(*it)->parent() ) successfulLookups.clear();
 			QComboBox *comboBox = (QComboBox *)treeWidget->itemWidget(*it, QMC2_SWLIST_COLUMN_PUBLISHER);
 			if ( comboBox ) {
 				comboBox->blockSignals(true);
@@ -2220,7 +2223,7 @@ SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item)
 
 	parentTreeWidgetItem = (SoftwareItem *)item;
 	softwareValid = false;
-	partItem = romItem = NULL;
+	partItem = dataareaItem = romItem = NULL;
 }
 
 SoftwareEntryXmlHandler::~SoftwareEntryXmlHandler()
@@ -2240,47 +2243,64 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 	if ( qName == "software" ) {
 		softwareValid = ( attributes.value("name") == parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_NAME) );
 		if ( softwareValid )
-			qmc2SoftwareList->successfullLookups.clear();
+			qmc2SoftwareList->successfulLookups.clear();
 	}
 
 	if ( !softwareValid )
 		return true;
 
 	if ( qName == "part" ) {
-		partItem = new SoftwareItem(parentTreeWidgetItem);
-		partItem->setText(QMC2_SWLIST_COLUMN_PART, attributes.value("name"));
-		partItem->setText(QMC2_SWLIST_COLUMN_INTERFACE, attributes.value("interface"));
-		partItem->setText(QMC2_SWLIST_COLUMN_LIST, parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_LIST));
-	} else if ( qName == "dataarea" ) {
-		if ( partItem != NULL ) {
-			partItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Data area:") + " " + attributes.value("name"));
+		if ( partItem == NULL ) {
+			partItem = new SoftwareItem(parentTreeWidgetItem);
+			partItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Part:") + " " + attributes.value("name"));
+			partItem->setText(QMC2_SWLIST_COLUMN_PART, attributes.value("name"));
+			partItem->setText(QMC2_SWLIST_COLUMN_INTERFACE, attributes.value("interface"));
+			partItem->setText(QMC2_SWLIST_COLUMN_LIST, parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_LIST));
 			QStringList mountList;
 			QString mountDev = qmc2SoftwareList->lookupMountDevice(partItem->text(QMC2_SWLIST_COLUMN_PART), partItem->text(QMC2_SWLIST_COLUMN_INTERFACE), &mountList);
-			QComboBox *comboBoxMountDevices = new QComboBox(parentTreeWidgetItem->treeWidget());
-			mountList.prepend(QObject::tr("Don't mount"));
-			mountList.prepend(QObject::tr("Auto mount"));
-			comboBoxMountDevices->insertItems(0, mountList);
-			if ( !qmc2SoftwareList->autoMounted ) {
-				comboBoxMountDevices->setCurrentIndex(1); // ==> don't mount
-				partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
-			} else {
-				comboBoxMountDevices->setCurrentIndex(0); // ==> auto mount
-				if ( mountDev.isEmpty() )
+			if ( mountList.count() > 0 ) {
+				QComboBox *comboBoxMountDevices = new QComboBox(parentTreeWidgetItem->treeWidget());
+				mountList.prepend(QObject::tr("Don't mount"));
+				mountList.prepend(QObject::tr("Auto mount"));
+				comboBoxMountDevices->insertItems(0, mountList);
+				if ( !qmc2SoftwareList->autoMounted ) {
+					comboBoxMountDevices->setCurrentIndex(1); // ==> don't mount
 					partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
-				else
-					partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Mounted on:") + " " + mountDev);
+				} else {
+					comboBoxMountDevices->setCurrentIndex(0); // ==> auto mount
+					if ( mountDev.isEmpty() )
+						partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Not mounted"));
+					else
+						partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Mounted on:") + " " + mountDev);
+				}
+				parentTreeWidgetItem->treeWidget()->setItemWidget(partItem, QMC2_SWLIST_COLUMN_PUBLISHER, comboBoxMountDevices);
+				QObject::connect(comboBoxMountDevices, SIGNAL(currentIndexChanged(int)), qmc2SoftwareList, SLOT(checkMountDeviceSelection()));
+			} else {
+				partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("No mount device"));
+				partItem->setText(QMC2_SWLIST_COLUMN_PUBLISHER, QObject::tr("Unmanaged"));
 			}
-			parentTreeWidgetItem->treeWidget()->setItemWidget(partItem, QMC2_SWLIST_COLUMN_PUBLISHER, comboBoxMountDevices);
-			QObject::connect(comboBoxMountDevices, SIGNAL(currentIndexChanged(int)), qmc2SoftwareList, SLOT(checkMountDeviceSelection()));
+		}
+	} else if ( qName == "dataarea" ) {
+		if ( partItem != NULL ) {
+			QString daName = attributes.value("name");
+			dataareaItem = new SoftwareItem(partItem);
+			dataareaItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Data area:") + " " + daName);
+			QString s = attributes.value("size");
+			if ( !s.isEmpty() )
+				dataareaItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Size:") + " " + s);
 		}
 	} else if ( qName == "rom" ) {
-		if ( partItem != NULL ) {
+		if ( dataareaItem != NULL ) {
 			QString romName = attributes.value("name");
 			if ( !romName.isEmpty() ) {
-				romItem = new SoftwareItem(partItem);
-				romItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Name:") + " " + romName);
-				romItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Size:") + " " + attributes.value("size"));
-				romItem->setText(QMC2_SWLIST_COLUMN_PUBLISHER, QObject::tr("CRC:") + " " + attributes.value("crc"));
+				romItem = new SoftwareItem(dataareaItem);
+				romItem->setText(QMC2_SWLIST_COLUMN_TITLE, romName);
+				QString s = attributes.value("size");
+				if ( !s.isEmpty() )
+					romItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Size:") + " " + s);
+				s = attributes.value("crc");
+				if ( !s.isEmpty() )
+					romItem->setText(QMC2_SWLIST_COLUMN_PUBLISHER, QObject::tr("CRC:") + " " + attributes.value("crc"));
 			}
 		}
 	}
@@ -2298,6 +2318,8 @@ bool SoftwareEntryXmlHandler::endElement(const QString &namespaceURI, const QStr
 		softwareValid = false;
 	} else if ( qName == "part" ) {
 		partItem = NULL;
+	} else if ( qName == "dataarea" ) {
+		dataareaItem = NULL;
 	} else if ( qName == "rom" ) {
 		romItem = NULL;
 	}
