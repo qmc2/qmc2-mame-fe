@@ -123,7 +123,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	connect(treeWidgetKnownSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetKnownSoftware_headerSectionClicked(int)));
 	connect(treeWidgetFavoriteSoftware->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetFavoriteSoftware_headerSectionClicked(int)));
 	connect(treeWidgetSearchResults->header(), SIGNAL(sectionClicked(int)), this, SLOT(treeWidgetSearchResults_headerSectionClicked(int)));
-	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxSearch_textChanged_delayed()));
+	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxSearch_editTextChanged_delayed()));
 
 	QHeaderView *header;
 
@@ -1397,19 +1397,19 @@ void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *ite
 	QTimer::singleShot(0, this, SLOT(playActivated()));
 }
 
-void SoftwareList::on_comboBoxSearch_textChanged(QString)
+void SoftwareList::on_comboBoxSearch_editTextChanged(const QString &)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_comboBoxSearch_textChanged(QString)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_comboBoxSearch_editTextChanged(const QString &)");
 #endif
 
 	searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
-void SoftwareList::comboBoxSearch_textChanged_delayed()
+void SoftwareList::comboBoxSearch_editTextChanged_delayed()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::comboBoxSearch_textChanged_delayed()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::comboBoxSearch_editTextChanged_delayed()");
 #endif
 
 	searchTimer.stop();
@@ -1459,14 +1459,14 @@ void SoftwareList::comboBoxSearch_textChanged_delayed()
 	autoSelectSearchItem = false;
 }
 
-void SoftwareList::on_comboBoxSearch_activated(QString pattern)
+void SoftwareList::on_comboBoxSearch_activated(const QString &pattern)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_comboBoxSearch_activated(QString pattern = %1)").arg(pattern));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_comboBoxSearch_activated(const QString &pattern = %1)").arg(pattern));
 #endif
 
 	autoSelectSearchItem = true;
-	comboBoxSearch_textChanged_delayed();
+	comboBoxSearch_editTextChanged_delayed();
 }
 
 QStringList &SoftwareList::arguments()

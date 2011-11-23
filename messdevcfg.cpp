@@ -158,7 +158,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
   toolButtonChooserProcessZIPs->setVisible(false);
   toolButtonChooserFilter->setVisible(false);
 #else
-  connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxChooserFilterPattern_textChanged_delayed()));
+  connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxChooserFilterPattern_editTextChanged_delayed()));
   comboBoxChooserFilterPattern->lineEdit()->setPlaceholderText(tr("Enter search string"));
   comboBoxChooserFilterPatternHadFocus = false;
 #endif
@@ -1489,19 +1489,19 @@ void MESSDeviceConfigurator::on_toolButtonChooserReload_clicked()
 	QTimer::singleShot(0, fileModel, SLOT(refresh()));
 }
 
-void MESSDeviceConfigurator::on_comboBoxChooserFilterPattern_textChanged(QString)
+void MESSDeviceConfigurator::on_comboBoxChooserFilterPattern_editTextChanged(const QString &)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_comboBoxChooserFilterPattern_textChanged(QString)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_comboBoxChooserFilterPattern_editTextChanged(const QString &)");
 #endif
 
 	searchTimer.start(QMC2_SEARCH_DELAY * 2);
 }
 
-void MESSDeviceConfigurator::comboBoxChooserFilterPattern_textChanged_delayed()
+void MESSDeviceConfigurator::comboBoxChooserFilterPattern_editTextChanged_delayed()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::comboBoxChooserFilterPattern_textChanged_delayed()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::comboBoxChooserFilterPattern_editTextChanged_delayed()");
 #endif
 
 	searchTimer.stop();

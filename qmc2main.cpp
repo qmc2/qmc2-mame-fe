@@ -408,7 +408,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   setupUi(this);
 
-  // toolbar's search combo
+  // toolbar's search combo-box
   comboBoxToolbarSearch = new QComboBox(this);
   comboBoxToolbarSearch->setEditable(true);
   comboBoxToolbarSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
@@ -425,7 +425,7 @@ MainWindow::MainWindow(QWidget *parent)
   toolbar->addSeparator();
   toolbar->addAction(widgetActionToolbarSearch);
   connect(comboBoxToolbarSearch, SIGNAL(activated(const QString &)), this, SLOT(comboBoxToolbarSearch_activated(const QString &)));
-  connect(comboBoxToolbarSearch, SIGNAL(textChanged(const QString &)), this, SLOT(comboBoxToolbarSearch_textChanged(const QString &)));
+  connect(comboBoxToolbarSearch, SIGNAL(editTextChanged(const QString &)), this, SLOT(comboBoxToolbarSearch_textChanged(const QString &)));
 
   // save splitter widgets at index 0 for later comparison
   hSplitterWidget0 = hSplitter->widget(0);
@@ -1229,7 +1229,7 @@ MainWindow::MainWindow(QWidget *parent)
   connect(actionViewByVersion, SIGNAL(triggered()), this, SLOT(viewByVersion()));
 #endif
   connect(comboBoxViewSelect, SIGNAL(currentIndexChanged(int)), stackedWidgetView, SLOT(setCurrentIndex(int)));
-  connect(&searchTimer, SIGNAL(timeout()), this, SLOT(on_comboBoxSearch_textChanged_delayed()));
+  connect(&searchTimer, SIGNAL(timeout()), this, SLOT(on_comboBoxSearch_editTextChanged_delayed()));
   connect(&updateTimer, SIGNAL(timeout()), this, SLOT(on_treeWidgetGamelist_itemSelectionChanged_delayed()));
   connect(&activityCheckTimer, SIGNAL(timeout()), this, SLOT(checkActivity()));
   activityState = false;
@@ -2710,16 +2710,16 @@ void MainWindow::destroyArcadeView()
   }
 }
 
-void MainWindow::on_comboBoxSearch_textChanged(QString)
+void MainWindow::on_comboBoxSearch_editTextChanged(const QString &)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_comboBoxSearch_textChanged(QString)");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_comboBoxSearch_editTextChanged(const QString &)");
 #endif
 
   searchTimer.start(QMC2_SEARCH_DELAY);
 }
 
-void MainWindow::on_comboBoxSearch_textChanged_delayed()
+void MainWindow::on_comboBoxSearch_editTextChanged_delayed()
 {
   searchTimer.stop();
 
@@ -2752,20 +2752,16 @@ void MainWindow::on_comboBoxSearch_textChanged_delayed()
   qmc2Gamelist->numSearchGames = matches.count();
   labelGamelistStatus->setText(qmc2Gamelist->status());
 
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_comboBoxSearch_textChanged_delayed(QString pattern = \"" + pattern + "\"): matches.count() = " + QString::number(matches.count()));
-#endif
-
   QTimer::singleShot(0, this, SLOT(checkCurrentSearchSelection()));
 }
 
-void MainWindow::on_comboBoxSearch_activated(QString pattern)
+void MainWindow::on_comboBoxSearch_activated(const QString &pattern)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_comboBoxSearch_activated(QString pattern = \"" + pattern + "\")");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_comboBoxSearch_activated(const QString &pattern = \"" + pattern + "\")");
 #endif
 
-  on_comboBoxSearch_textChanged_delayed();
+  on_comboBoxSearch_editTextChanged_delayed();
   if ( tabWidgetGamelist->currentWidget() != tabSearch ) {
     tabWidgetGamelist->blockSignals(true);
     tabWidgetGamelist->setCurrentWidget(tabSearch);
