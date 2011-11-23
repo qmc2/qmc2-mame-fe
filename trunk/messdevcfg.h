@@ -112,7 +112,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void on_toolButtonChooserSaveConfiguration_clicked();
 #if defined(QMC2_ALTERNATE_FSM)
     void on_toolButtonChooserReload_clicked();
-    void on_comboBoxChooserFilterPattern_textChanged(QString);
+    void on_comboBoxChooserFilterPattern_editTextChanged(const QString &);
 #endif
     void on_splitterFileChooser_splitterMoved(int, int);
 
@@ -130,7 +130,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
     void treeViewFileChooser_sectionMoved(int, int, int);
     void treeViewFileChooser_sectionResized(int, int, int);
 #if defined(QMC2_ALTERNATE_FSM)
-    void comboBoxChooserFilterPattern_textChanged_delayed();
+    void comboBoxChooserFilterPattern_editTextChanged_delayed();
     void treeViewFileChooser_toggleArchive();
 #endif
 

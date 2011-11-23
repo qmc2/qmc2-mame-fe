@@ -230,9 +230,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_actionAboutQt_activated();
 
     // search widget
-    void on_comboBoxSearch_textChanged(QString);
-    void on_comboBoxSearch_textChanged_delayed();
-    void on_comboBoxSearch_activated(QString);
+    void on_comboBoxSearch_editTextChanged(const QString &);
+    void on_comboBoxSearch_editTextChanged_delayed();
+    void on_comboBoxSearch_activated(const QString &);
     void on_listWidgetSearch_currentTextChanged(QString);
     void on_listWidgetSearch_itemActivated(QListWidgetItem *);
     void on_listWidgetSearch_currentItemChanged(QListWidgetItem *, QListWidgetItem *);

@@ -158,8 +158,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *);
 		void on_treeWidgetFavoriteSoftware_itemExpanded(QTreeWidgetItem *);
 		void on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *);
-		void on_comboBoxSearch_textChanged(QString);
-		void on_comboBoxSearch_activated(QString);
+		void on_comboBoxSearch_editTextChanged(const QString &);
+		void on_comboBoxSearch_activated(const QString &);
 		void on_toolBoxSoftwareList_currentChanged(int);
 
 		// process management
@@ -179,7 +179,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void playActivated() { on_toolButtonPlay_clicked(false); }
 		void playEmbeddedActivated() { on_toolButtonPlayEmbedded_clicked(false); }
 		void cancelSoftwareSnap();
-		void comboBoxSearch_textChanged_delayed();
+		void comboBoxSearch_editTextChanged_delayed();
 		void checkMountDeviceSelection();
 
 		// callbacks for software-list header context menu requests
