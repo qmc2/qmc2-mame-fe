@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>576</width>
-    <height>344</height>
+    <width>523</width>
+    <height>329</height>
    </rect>
   </property>
   <property name="mouseTracking">
@@ -76,6 +76,29 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonExport">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Export the current software-list to an ASCII or CSV formatted file (or the clipboard)</string>
+       </property>
+       <property name="text">
+        <string>Export</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextBesideIcon</enum>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QToolButton" name="toolButtonAddToFavorites">
@@ -172,7 +195,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>566</width>
+        <width>513</width>
         <height>192</height>
        </rect>
       </property>
@@ -257,7 +280,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>566</width>
+        <width>513</width>
         <height>192</height>
        </rect>
       </property>
@@ -347,8 +370,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>566</width>
-        <height>207</height>
+        <width>513</width>
+        <height>192</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -476,6 +499,7 @@
  <tabstops>
   <tabstop>toolButtonReload</tabstop>
   <tabstop>comboBoxDeviceConfiguration</tabstop>
+  <tabstop>toolButtonExport</tabstop>
   <tabstop>toolButtonAddToFavorites</tabstop>
   <tabstop>toolButtonRemoveFromFavorites</tabstop>
   <tabstop>toolButtonPlay</tabstop>

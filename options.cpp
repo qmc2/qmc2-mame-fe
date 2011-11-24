@@ -624,6 +624,7 @@ void Options::apply()
   }
 #endif
   if ( qmc2SoftwareList ) {
+    qmc2SoftwareList->toolButtonExport->setIconSize(iconSize);
     qmc2SoftwareList->toolButtonAddToFavorites->setIconSize(iconSize);
     qmc2SoftwareList->toolButtonRemoveFromFavorites->setIconSize(iconSize);
     qmc2SoftwareList->toolButtonPlay->setIconSize(iconSize);
@@ -634,6 +635,7 @@ void Options::apply()
     qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/flat.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
     qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_FAVORITES_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/favorites.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
     qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_SEARCH_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/hint.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+    if ( qmc2SoftwareList->exporter ) QTimer::singleShot(0, qmc2SoftwareList->exporter, SLOT(adjustIconSizes()));
   }
   qmc2MainWindow->pushButtonClearFinishedDownloads->setIconSize(iconSize);
   qmc2MainWindow->pushButtonReloadSelectedDownloads->setIconSize(iconSize);

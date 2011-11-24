@@ -19,6 +19,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			itemselect.ui \
 			romalyzer.ui \
 			romstatusexport.ui \
+			swlistexport.ui \
 			messdevcfg.ui \
 			softwarelist.ui \
 			direditwidget.ui \
@@ -58,6 +59,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			joystick.cpp \
 			joyfuncscan.cpp \
 			romstatusexport.cpp \
+			swlistexport.cpp \
 			messdevcfg.cpp \
 			softwarelist.cpp \
 			direditwidget.cpp \
@@ -110,6 +112,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			joystick.h \
 			joyfuncscan.h \
 			romstatusexport.h \
+			swlistexport.h \
 			messdevcfg.h \
 			softwarelist.h \
 			direditwidget.h \

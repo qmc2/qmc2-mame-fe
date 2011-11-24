@@ -42,6 +42,10 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	setupUi(this);
 
+#if QMC2_WIP_CODE != 1
+	toolButtonExport->setVisible(false);
+#endif
+
 	if ( !qmc2SoftwareSnap )
 		qmc2SoftwareSnap = new SoftwareSnap();
 
@@ -51,6 +55,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	systemName = sysName;
 	loadProc = NULL;
+	exporter = NULL;
 	validData = snapForced = autoSelectSearchItem = false;
 	autoMounted = true;
 	cachedDeviceLookupPosition = 0;
@@ -68,6 +73,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	QFontMetrics fm(QApplication::font());
 	QSize iconSize(fm.height() - 2, fm.height() - 2);
+	toolButtonExport->setIconSize(iconSize);
 	toolButtonAddToFavorites->setIconSize(iconSize);
 	toolButtonRemoveFromFavorites->setIconSize(iconSize);
 	toolButtonPlay->setIconSize(iconSize);
@@ -82,6 +88,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_SEARCH_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/hint.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 
 	toolBoxSoftwareList->setEnabled(false);
+	toolButtonExport->setEnabled(false);
 	toolButtonAddToFavorites->setEnabled(false);
 	toolButtonRemoveFromFavorites->setEnabled(false);
 	toolButtonPlay->setEnabled(false);
@@ -194,6 +201,9 @@ SoftwareList::~SoftwareList()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::~SoftwareList()");
 #endif
 
+	if ( exporter )
+		exporter->close();
+
 	// save widget states
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/KnownSoftwareHeaderState", treeWidgetKnownSoftware->header()->saveState());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/FavoriteSoftwareHeaderState", treeWidgetFavoriteSoftware->header()->saveState());
@@ -222,8 +232,12 @@ QString &SoftwareList::getSoftwareListXmlData(QString listName)
 		softwareListXmlBuffer += "</softwarelist>";
 		if ( i < swlLinesMax ) {
 			softwareListXmlDataCache[listName] = softwareListXmlBuffer;
-		} else
+		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: software list '%1' not found").arg(listName));
+			toolBoxSoftwareList->setEnabled(false);
+			toolButtonExport->setEnabled(false);
+			softwareListXmlBuffer.clear();
+		}
 	}
 
 	return softwareListXmlBuffer;
@@ -378,6 +392,7 @@ QString &SoftwareList::getXmlData()
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (%1)").arg(swlString));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(swlString));
 		toolBoxSoftwareList->setEnabled(true);
+		toolButtonExport->setEnabled(true);
 
 #if defined(QMC2_EMUTYPE_MESS)
 		// load available device configurations, if any...
@@ -616,20 +631,22 @@ bool SoftwareList::load()
 		swlLines = swlBuffer.split("\n");
 		foreach (QString swList, softwareList) {
 			QString softwareListXml = getSoftwareListXmlData(swList);
+			if ( !softwareListXml.isEmpty() ) {
 #ifdef QMC2_DEBUG
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): XML data for software list '%1' follows:\n%2").arg(swList).arg(softwareListXml));
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): XML data for software list '%1' follows:\n%2").arg(swList).arg(softwareListXml));
 #endif
-			QXmlInputSource xmlInputSource;
-			xmlInputSource.setData(softwareListXml);
-			SoftwareListXmlHandler xmlHandler(treeWidgetKnownSoftware);
-			QXmlSimpleReader xmlReader;
-			xmlReader.setContentHandler(&xmlHandler);
-			if ( !xmlReader.parse(xmlInputSource) )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list '%1'").arg(swList));
+				QXmlInputSource xmlInputSource;
+				xmlInputSource.setData(softwareListXml);
+				SoftwareListXmlHandler xmlHandler(treeWidgetKnownSoftware);
+				QXmlSimpleReader xmlReader;
+				xmlReader.setContentHandler(&xmlHandler);
+				if ( !xmlReader.parse(xmlInputSource) )
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list '%1'").arg(swList));
 #ifdef QMC2_DEBUG
-			else
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): successfully parsed the XML data for software list '%1'").arg(swList));
+				else
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): successfully parsed the XML data for software list '%1'").arg(swList));
 #endif
+			}
 		}
 
 		// load favorites
@@ -928,6 +945,20 @@ void SoftwareList::on_toolButtonReload_clicked(bool checked)
 	comboBoxDeviceConfiguration->insertItem(0, tr("No additional devices"));
 
 	QTimer::singleShot(0, this, SLOT(load()));
+}
+
+void SoftwareList::on_toolButtonExport_clicked(bool checked)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonExport_clicked(bool checked = %1)").arg(checked));
+#endif
+
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("WIP: the software-list exporter isn't working yet!").arg(checked));
+
+	if ( !exporter )
+		exporter = new SoftwareListExporter(this);
+
+	exporter->show();
 }
 
 void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)

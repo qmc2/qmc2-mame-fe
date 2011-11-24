@@ -9,6 +9,7 @@
 #include <QXmlDefaultHandler>
 #include "ui_softwarelist.h"
 #include "unzip.h"
+#include "swlistexport.h"
 
 class SoftwareItem : public QTreeWidgetItem
 {
@@ -124,6 +125,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool autoMounted;
 		QStringList successfulLookups;
 		int cachedDeviceLookupPosition;
+		SoftwareListExporter *exporter;
 
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();
@@ -139,6 +141,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 
 		// auto-connected callback functions
 		void on_toolButtonReload_clicked(bool);
+		void on_toolButtonExport_clicked(bool);
 		void on_toolButtonAddToFavorites_clicked(bool);
 		void on_toolButtonRemoveFromFavorites_clicked(bool);
 		void on_toolButtonPlay_clicked(bool);
