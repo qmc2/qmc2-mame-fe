@@ -953,7 +953,7 @@ void SoftwareList::on_toolButtonExport_clicked(bool checked)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonExport_clicked(bool checked = %1)").arg(checked));
 #endif
 
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("WIP: the software-list exporter isn't working yet!").arg(checked));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "WIP: the software-list exporter isn't working yet!");
 
 	if ( !exporter )
 		exporter = new SoftwareListExporter(this);
