@@ -30,12 +30,17 @@ ROMStatusExporter::ROMStatusExporter(QWidget *parent)
 
   setupUi(this);
 
+  exportListAutoCorrected = false;
+
 #if defined(QMC2_SDLMESS)
   comboBoxSortCriteria->setItemText(QMC2_SORTCRITERIA_DESCRIPTION, tr("Machine description"));
   comboBoxSortCriteria->setItemText(QMC2_SORTCRITERIA_MACHINENAME, tr("Machine name"));
 #endif
 
   pushButtonExport->setEnabled(qmc2WidgetsEnabled);
+
+  comboBoxOutputFormat->insertSeparator(QMC2_ROMSTATUSEXPORT_FORMAT_SEP_INDEX);
+  comboBoxOutputFormat->insertItem(QMC2_ROMSTATUSEXPORT_FORMAT_ALL_INDEX, tr("All formats"));
 
   // restore settings
   comboBoxOutputFormat->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/OutputFormat", 0).toInt());
@@ -48,7 +53,10 @@ ROMStatusExporter::ROMStatusExporter(QWidget *parent)
   comboBoxSortOrder->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/SortOrder", 0).toInt());
   checkBoxIncludeHeader->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/IncludeHeader", true).toBool());
   checkBoxIncludeStatistics->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/IncludeStatistics", true).toBool());
-  checkBoxExportToClipboard->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/ExportToClipboard", false).toBool());
+  if ( comboBoxOutputFormat->currentIndex() <= QMC2_ROMSTATUSEXPORT_FORMAT_HTML_INDEX )
+    checkBoxExportToClipboard->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/ExportToClipboard", false).toBool());
+  else
+    checkBoxExportToClipboard->setChecked(false);
   checkBoxOverwriteBlindly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/OverwriteBlindly", false).toBool());
   lineEditASCIIFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/ASCIIFile", "data/tmp/rom-status.txt").toString());
   spinBoxASCIIColumnWidth->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMStatusExporter/ASCIIColumnWidth", 0).toInt());
@@ -958,6 +966,12 @@ void ROMStatusExporter::on_pushButtonExport_clicked()
       exportToHTML();
       break;
 
+    case QMC2_ROMSTATUSEXPORT_FORMAT_ALL_INDEX:
+      exportToASCII();
+      exportToCSV();
+      exportToHTML();
+      break;
+
     default:
       break;
   }
@@ -970,4 +984,27 @@ void ROMStatusExporter::on_comboBoxOutputFormat_currentIndexChanged(int index)
 #endif
 
   stackedWidgetOutputParams->setCurrentIndex(index);
+
+  if ( index > QMC2_ROMSTATUSEXPORT_FORMAT_HTML_INDEX ) {
+    exportListAutoCorrected = true;
+    checkBoxExportToClipboard->setChecked(false);
+  }
+
+  exportListAutoCorrected = false;
+}
+
+void ROMStatusExporter::on_checkBoxExportToClipboard_toggled(bool enable)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMStatusExporter::on_checkBoxExportToClipboard_toggled(bool enable = %1)").arg(enable));
+#endif
+
+  if ( enable ) {
+    if ( comboBoxOutputFormat->currentIndex() > QMC2_ROMSTATUSEXPORT_FORMAT_HTML_INDEX && !exportListAutoCorrected ) {
+      exportListAutoCorrected = true;
+      comboBoxOutputFormat->setCurrentIndex(0);
+    }
+  }
+
+  exportListAutoCorrected = false;
 }

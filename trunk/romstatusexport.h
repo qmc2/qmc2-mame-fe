@@ -7,12 +7,16 @@
 #define QMC2_ROMSTATUSEXPORT_FORMAT_ASCII_INDEX		0
 #define QMC2_ROMSTATUSEXPORT_FORMAT_CSV_INDEX		1
 #define QMC2_ROMSTATUSEXPORT_FORMAT_HTML_INDEX		2
+#define QMC2_ROMSTATUSEXPORT_FORMAT_SEP_INDEX		3
+#define QMC2_ROMSTATUSEXPORT_FORMAT_ALL_INDEX		4
 
 class ROMStatusExporter : public QDialog, public Ui::ROMStatusExporter
 {
   Q_OBJECT
 
   public:
+    bool exportListAutoCorrected;
+
     ROMStatusExporter(QWidget *parent = 0);
     ~ROMStatusExporter();
 
@@ -29,6 +33,7 @@ class ROMStatusExporter : public QDialog, public Ui::ROMStatusExporter
     void on_toolButtonBrowseHTMLFile_clicked();
     void on_pushButtonExport_clicked();
     void on_comboBoxOutputFormat_currentIndexChanged(int);
+    void on_checkBoxExportToClipboard_toggled(bool);
 
   protected:
     void closeEvent(QCloseEvent *);
