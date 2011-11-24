@@ -38,7 +38,8 @@ qmc2/arch/Linux/.svn/prop-base/openSUSE_11.1.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/openSUSE_11.2.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/openSUSE_11.3.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/openSUSE_11.4.cfg.svn-base
-qmc2/arch/Linux/.svn/prop-base/openSUSE_12.1_Milestone_2.cfg.svn-base
+qmc2/arch/Linux/.svn/prop-base/openSUSE_12.1.cfg.svn-base
+qmc2/arch/Linux/.svn/prop-base/openSUSE_12.2_Milestone_0.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Yellow_Dog_Linux_release_6.0.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Yellow_Dog_Linux_release_6.1.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Yellow_Dog_Linux_release_6.2.cfg.svn-base
@@ -66,7 +67,8 @@ qmc2/arch/Linux/.svn/text-base/openSUSE_11.1.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/openSUSE_11.2.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/openSUSE_11.3.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/openSUSE_11.4.cfg.svn-base
-qmc2/arch/Linux/.svn/text-base/openSUSE_12.1_Milestone_2.cfg.svn-base
+qmc2/arch/Linux/.svn/text-base/openSUSE_12.1.cfg.svn-base
+qmc2/arch/Linux/.svn/text-base/openSUSE_12.2_Milestone_0.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/openSUSE.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Yellow_Dog_Linux.cfg.svn-base
 qmc2/arch/Linux/.svn/text-base/Yellow_Dog_Linux_release_6.0.cfg.svn-base
@@ -608,8 +610,10 @@ qmc2/data/img/circles/.svn/text-base/world.png.svn-base
 qmc2/data/img/circles/.svn/text-base/yes.png.svn-base
 qmc2/data/img/circles/.svn/text-base/youtube.png.svn-base
 qmc2/data/img/circles/.svn/text-base/zip.png.svn-base
+qmc2/data/img/circles/.svn/tmp/svn-4AlkdG
 qmc2/data/img/circles/.svn/tmp/svn-g85hDO
 qmc2/data/img/circles/.svn/tmp/svn-i2cMYm
+qmc2/data/img/circles/.svn/tmp/svn-RANuFc
 qmc2/data/img/circles/.svn/tmp/svn-rwU9kV
 qmc2/data/img/circles/.svn/tmp/svn-Uf2rIt
 qmc2/data/img/circles/.svn/tmp/svn-v7cH8Y
@@ -1403,6 +1407,8 @@ qmc2/data/img/crazy-black/.svn/text-base/world.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/yes.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/youtube.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/zip.png.svn-base
+qmc2/data/img/crazy-black/.svn/tmp/svn-CyUitt
+qmc2/data/img/crazy-black/.svn/tmp/svn-kPDfGB
 qmc2/data/img/crazy/.svn
 qmc2/data/img/crazy/.svn/prop-base/activity_green.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/activity_red.png.svn-base
@@ -1798,6 +1804,8 @@ qmc2/data/img/crazy/.svn/text-base/world.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/yes.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/youtube.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/zip.png.svn-base
+qmc2/data/img/crazy/.svn/tmp/svn-iW2bOA
+qmc2/data/img/crazy/.svn/tmp/svn-ZvtcqO
 qmc2/data/img/cubes/.svn
 qmc2/data/img/cubes/.svn/prop-base/activity_green.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/activity_red.png.svn-base
@@ -2194,8 +2202,10 @@ qmc2/data/img/cubes/.svn/text-base/yes.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/youtube.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/zip.png.svn-base
 qmc2/data/img/cubes/.svn/tmp/svn-4B713f
+qmc2/data/img/cubes/.svn/tmp/svn-9E40uZ
 qmc2/data/img/cubes/.svn/tmp/svn-ii1pmm
 qmc2/data/img/cubes/.svn/tmp/svn-KA3KcO
+qmc2/data/img/cubes/.svn/tmp/svn-Ln8lix
 qmc2/data/img/cubes/.svn/tmp/svn-Mv6pWH
 qmc2/data/img/cubes/.svn/tmp/svn-RKysOS
 qmc2/data/img/.svn
@@ -2686,9 +2696,9 @@ qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/03qmc.xml.svn-base
 qmc2/pkg-specs/Mac OS X/QMC2.pmdoc/.svn/text-base/index.xml.svn-base
 qmc2/pkg-specs/Mac OS X/.svn
 qmc2/pkg-specs/openSUSE/.svn
-qmc2/pkg-specs/openSUSE/.svn/text-base/openSUSE-11.2.spec.svn-base
 qmc2/pkg-specs/openSUSE/.svn/text-base/openSUSE-11.3.spec.svn-base
 qmc2/pkg-specs/openSUSE/.svn/text-base/openSUSE-11.4.spec.svn-base
+qmc2/pkg-specs/openSUSE/.svn/text-base/openSUSE-12.1.spec.svn-base
 qmc2/pkg-specs/openSUSE/.svn/text-base/openSUSE-BuildService.spec.svn-base
 qmc2/pkg-specs/openSUSE/.svn/text-base/openSUSE-BuildService-WIP.spec.svn-base
 qmc2/pkg-specs/openSUSE/.svn/text-base/README.openSUSE-BuildService.svn-base
@@ -2903,6 +2913,9 @@ qmc2/.svn/text-base/SDLMain_tmpl.m.svn-base
 qmc2/.svn/text-base/softwarelist.cpp.svn-base
 qmc2/.svn/text-base/softwarelist.h.svn-base
 qmc2/.svn/text-base/softwarelist.ui.svn-base
+qmc2/.svn/text-base/swlistexport.cpp.svn-base
+qmc2/.svn/text-base/swlistexport.h.svn-base
+qmc2/.svn/text-base/swlistexport.ui.svn-base
 qmc2/.svn/text-base/title.cpp.svn-base
 qmc2/.svn/text-base/title.h.svn-base
 qmc2/.svn/text-base/toolexec.cpp.svn-base
