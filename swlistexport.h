@@ -15,6 +15,8 @@ class SoftwareListExporter : public QDialog, public Ui::SoftwareListExporter
 
 	public:
 		QStringList columnNames;
+		QStringList columnNamesUntranslated;
+		QStringList defaultColumnActivation;
 		bool exportListAutoCorrected;
 
 		SoftwareListExporter(QWidget *parent = 0);
