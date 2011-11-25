@@ -2,12 +2,16 @@
 #define _SWLISTEXPORT_H_
 
 #include <Qt>
+#include "softwarelist.h"
 #include "ui_swlistexport.h"
 
 #define QMC2_SWLISTEXPORT_FORMAT_ASCII_INDEX		0
 #define QMC2_SWLISTEXPORT_FORMAT_CSV_INDEX		1
 #define QMC2_SWLISTEXPORT_FORMAT_SEP_INDEX		2
 #define QMC2_SWLISTEXPORT_FORMAT_ALL_INDEX		3
+
+
+class SoftwareList;
 
 class SoftwareListExporter : public QDialog, public Ui::SoftwareListExporter
 {
@@ -18,6 +22,7 @@ class SoftwareListExporter : public QDialog, public Ui::SoftwareListExporter
 		QStringList columnNamesUntranslated;
 		QStringList defaultColumnActivation;
 		bool exportListAutoCorrected;
+		SoftwareList *softwareList;
 
 		SoftwareListExporter(QWidget *parent = 0);
 		~SoftwareListExporter();
@@ -27,6 +32,7 @@ class SoftwareListExporter : public QDialog, public Ui::SoftwareListExporter
 
 	public slots:
 		void adjustIconSizes();
+		void saveSettings() { closeEvent(NULL); }
 
 		// automatically connected slots
 		void on_toolButtonBrowseASCIIFile_clicked();

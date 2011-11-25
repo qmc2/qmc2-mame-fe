@@ -11,6 +11,8 @@
 #include "unzip.h"
 #include "swlistexport.h"
 
+class SoftwareListExporter;
+
 class SoftwareItem : public QTreeWidgetItem
 {
 	public:
