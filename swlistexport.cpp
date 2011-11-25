@@ -1,11 +1,6 @@
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QTextStream>
-#include <QClipboard>
-#include <QListWidget>
+#include <QtGui>
 
 #include "swlistexport.h"
-#include "softwarelist.h"
 #include "macros.h"
 #include "options.h"
 #include "qmc2main.h"
@@ -24,6 +19,8 @@ SoftwareListExporter::SoftwareListExporter(QWidget *parent)
 
 	setupUi(this);
 
+	softwareList = (SoftwareList *)parent;
+
 	exportListAutoCorrected = false;
 
 	columnNames << tr("Title") << tr("Name") << tr("Publisher") << tr("Year") << tr("Part") << tr("Interface") << tr("List");
@@ -33,7 +30,7 @@ SoftwareListExporter::SoftwareListExporter(QWidget *parent)
 	comboBoxOutputFormat->insertSeparator(QMC2_SWLISTEXPORT_FORMAT_SEP_INDEX);
 	comboBoxOutputFormat->insertItem(QMC2_SWLISTEXPORT_FORMAT_ALL_INDEX, tr("Both formats"));
 
-	setWindowTitle(tr("Export software-list for '%1'").arg(((SoftwareList *)parent)->systemName));
+	setWindowTitle(tr("Export software-list for '%1'").arg(softwareList->systemName));
 
 	// restore settings
 	comboBoxOutputFormat->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/OutputFormat", 0).toInt());
@@ -45,9 +42,9 @@ SoftwareListExporter::SoftwareListExporter(QWidget *parent)
 	else
 		checkBoxExportToClipboard->setChecked(false);
 	checkBoxOverwriteBlindly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/OverwriteBlindly", false).toBool());
-	lineEditASCIIFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ASCIIFile", "data/tmp/$ID$-softlist.txt").toString());
+	lineEditASCIIFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ASCIIFile", "data/tmp/softlist-$ID$.txt").toString());
 	spinBoxASCIIColumnWidth->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ASCIIColumnWidth", 0).toInt());
-	lineEditCSVFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/CSVFile", "data/tmp/$ID$-softlist.csv").toString());
+	lineEditCSVFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/CSVFile", "data/tmp/softlist-$ID$.csv").toString());
 	lineEditCSVSeparator->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/CSVSeparator", ";").toString());
 	lineEditCSVDelimiter->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/CSVDelimiter", "\"").toString());
 
@@ -109,7 +106,7 @@ void SoftwareListExporter::hideEvent(QHideEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListExporter::hideEvent(QHideEvent *e = %1)").arg((qulonglong) e));
 #endif
 
-	closeEvent(NULL);
+	saveSettings();
 
 	if ( e )
 		e->accept();
@@ -157,7 +154,23 @@ void SoftwareListExporter::exportToASCII()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListExporter::exportToASCII()"));
 #endif
 
-	QFile exportFile(lineEditASCIIFile->text());
+	QTreeWidget *treeWidget = NULL;
+	switch ( softwareList->toolBoxSoftwareList->currentIndex() ) {
+		case QMC2_SWLIST_KNOWN_SW_PAGE:
+			treeWidget = softwareList->treeWidgetKnownSoftware;
+			break;
+		case QMC2_SWLIST_FAVORITES_PAGE:
+			treeWidget = softwareList->treeWidgetFavoriteSoftware;
+			break;
+		case QMC2_SWLIST_SEARCH_PAGE:
+			treeWidget = softwareList->treeWidgetSearchResults;
+			break;
+		default:
+			break;
+	}
+	if ( !treeWidget ) return;
+
+	QFile exportFile(lineEditASCIIFile->text().replace("$ID$", softwareList->systemName));
 	QString clipboardBuffer;
 	QTextStream ts;
 	if ( !checkBoxExportToClipboard->isChecked() ) {
@@ -185,269 +198,81 @@ void SoftwareListExporter::exportToASCII()
 
 	setEnabled(false);
 
-/*
-  progressBarExport->setRange(0, qmc2Gamelist->numGames);
-  progressBarExport->reset();
-  progressBarExport->setValue(0);
+	progressBarExport->setRange(0, treeWidget->topLevelItemCount() * 2);
+	progressBarExport->reset();
+	progressBarExport->setValue(0);
 
-  int maxLength = 0;
-  QStringList headerStrings;
-  headerStrings << tr("Emulator")
-                << tr("Date")
-                << tr("Time")
-                << tr("Total sets")
-                << tr("Correct")
-                << tr("Mostly correct")
-                << tr("Incorrect")
-                << tr("Not found")
-                << tr("Unknown");
-  foreach (QString s, headerStrings)
-    if ( s.length() > maxLength )
-      maxLength = s.length();
-  maxLength += 2;
-    
-  if ( checkBoxIncludeHeader->isChecked() ) {
-    QString qmc2Version(XSTR(QMC2_VERSION));
-    ts << tr("ROM Status Export - created by QMC2 %1").arg(qmc2Version) << "\n"
-       << QString().leftJustified(tr("ROM Status Export - created by QMC2 %1").arg(qmc2Version).length(), '-', true) << "\n\n";
-#if defined(QMC2_SDLMAME)
-    QString emulatorTarget = tr("SDLMAME");
-#elif defined(QMC2_SDLMESS)
-    QString emulatorTarget = tr("SDLMESS");
-#elif defined(QMC2_MAME)
-    QString emulatorTarget = tr("MAME");
-#elif defined(QMC2_MESS)
-    QString emulatorTarget = tr("MESS");
-#else
-    QString emulatorTarget = tr("unknown");
-#endif
-    ts << tr("Emulator") << " " << QString().leftJustified(maxLength - tr("Emulator").length(), '.', true) << " " << emulatorTarget << " " << qmc2Gamelist->emulatorVersion << "\n";
-    ts << tr("Date") << " " << QString().leftJustified(maxLength - tr("Date").length(), '.', true) << " " << QDate::currentDate().toString() << "\n";
-    ts << tr("Time") << " " << QString().leftJustified(maxLength - tr("Time").length(), '.', true) << " " << QTime::currentTime().toString() << "\n\n";
-  }
+	QMap<QString, int> maxColumnWidth;
+	int maxLength = qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ASCIIColumnWidth", 0).toInt();
+	bool columnWidthLimited = maxLength > 0;
+	QStringList orderedColumns = qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ColumnOrder", columnNamesUntranslated).toStringList();
+	QStringList columnActivation = qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ColumnActivation", defaultColumnActivation).toStringList();
+	QStringList headerNames;
+	QList<int> columnIndexes;
+	for (int i = 0; i < orderedColumns.count(); i++) {
+		QString headerName = columnNames[columnNamesUntranslated.indexOf(orderedColumns[i])];
+		if ( columnActivation[i] == "true" ) {
+			maxColumnWidth[headerName] = columnWidthLimited ? MIN(headerName.length(), maxLength) : headerName.length();
+			headerNames << headerName;
+			columnIndexes << columnNamesUntranslated.indexOf(orderedColumns[i]);
+		}
+	}
 
-  QLocale locale;
-  if ( checkBoxIncludeStatistics->isChecked() ) {
-    ts << tr("Overall ROM Status") << "\n"
-       << QString().leftJustified(tr("Overall ROM Status").length(), '-', true) << "\n\n";
-    ts << tr("Total sets") << " " << QString().leftJustified(maxLength - tr("Total sets").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numGames) << "\n";
-    ts << tr("Correct") << " " << QString().leftJustified(maxLength - tr("Correct").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numCorrectGames) << "\n";
-    ts << tr("Mostly correct") << " " << QString().leftJustified(maxLength - tr("Mostly correct").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numMostlyCorrectGames) << "\n";
-    ts << tr("Incorrect") << " " << QString().leftJustified(maxLength - tr("Incorrect").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numIncorrectGames) << "\n";
-    ts << tr("Not found") << " " << QString().leftJustified(maxLength - tr("Not found").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numNotFoundGames) << "\n";
-    ts << tr("Unknown") << " " << QString().leftJustified(maxLength - tr("Unknown").length(), '.', true) << " " << locale.toString(qmc2Gamelist->numUnknownGames) << "\n\n";
-  }
+	int sortCriteria = qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/SortCriteria", 0).toInt();
+	QMultiMap<QString, QTreeWidgetItem *> exportMap;
+	int count = 0;
+	for (; count < treeWidget->topLevelItemCount(); count++) {
+		progressBarExport->setValue(count);
+		QTreeWidgetItem *item = treeWidget->topLevelItem(count);
+		if ( item )
+			exportMap.insert(item->text(sortCriteria), item);
+		for (int j = 0; j < columnIndexes.count(); j++) {
+			QString text = item->text(columnIndexes[j]);
+			QString headerName = headerNames[j];
+			if ( text.length() > maxColumnWidth[headerName] )
+				maxColumnWidth[headerName] = columnWidthLimited ? MIN(text.length(), maxLength) : text.length();
+		}
+	}
 
-  ts << tr("Detailed ROM Status") << "\n"
-     << QString().leftJustified(tr("Detailed ROM Status").length(), '-', true) << "\n\n";
+	if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/IncludeColumnHeaders", true).toBool() ) {
+		for (int i = 0; i < headerNames.count(); i++)
+			ts << headerNames[i].leftJustified(maxColumnWidth[headerNames[i]], ' ', true) << "  ";
+		ts << "\n";
+		for (int i = 0; i < headerNames.count(); i++)
+			ts << QString("-").leftJustified(maxColumnWidth[headerNames[i]], '-', true) << "  ";
+		ts << "\n";
+	}
 
-  // create a sorted multi-map as export data...
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("sorting, filtering and analyzing export data"));
+	QMapIterator<QString, QTreeWidgetItem *> itExport(exportMap);
+	bool ascendingOrder = qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/SortOrder", 0).toInt() == 0;
+	bool showMoreChars = maxLength > 3;
+	while ( ascendingOrder ? itExport.hasNext() : itExport.hasPrevious() ) {
+		if  ( ascendingOrder ) itExport.next(); else itExport.previous();
+		QList<QTreeWidgetItem *> itemList = exportMap.values(itExport.key());
+		for (int i = 0; i < itemList.count(); i++) {
+			progressBarExport->setValue(++count);
+			QTreeWidgetItem *item = itemList[i];
+			for (int j = 0; j < columnIndexes.count(); j++) {
+				QString s = item->text(columnIndexes[j]);
+				int w = maxColumnWidth[headerNames[j]];
+				if ( showMoreChars && s.length() > w )
+					ts << s.left(w - 3).leftJustified(w, '.', true) << "  ";
+				else
+					ts << s.leftJustified(w, ' ', true) << "  ";
+			}
+			ts << "\n";
+		}
+	}
 
-  int maxDescriptionColumnWidth = tr("Description").length();
-  int maxNameColumnWidth = tr("Name").length();
-  int maxStateColumnWidth = tr("Status").length();
-  int maxManufacturerColumnWidth = tr("Manufacturer").length();
-  int maxYearColumnWidth = tr("Year").length();
-  int maxRomTypesColumnWidth = tr("ROM types").length();
+	progressBarExport->reset();
 
-  QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
-  QMultiMap<QString, QTreeWidgetItem *> exportMap;
-  int i = 0;
-  while ( it.hasNext() && !qmc2StopParser ) {
-    progressBarExport->setValue(++i);
-    qApp->processEvents();
-    it.next();
-
-    QString translatedState;
-    switch ( it.value()->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
-      case QMC2_ROMSTATE_CHAR_C:
-        if ( !toolButtonExportC->isChecked() )
-          continue;
-        else
-          translatedState = tr("correct");
-        break;
-
-      case QMC2_ROMSTATE_CHAR_M:
-        if ( !toolButtonExportM->isChecked() )
-          continue;
-        else
-          translatedState = tr("mostly correct");
-        break;
-
-      case QMC2_ROMSTATE_CHAR_I:
-        if ( !toolButtonExportI->isChecked() )
-          continue;
-        else
-          translatedState = tr("incorrect");
-        break;
-
-      case QMC2_ROMSTATE_CHAR_N:
-        if ( !toolButtonExportN->isChecked() )
-          continue;
-        else
-          translatedState = tr("not found");
-        break;
-
-      case QMC2_ROMSTATE_CHAR_U:
-      default:
-        if ( !toolButtonExportU->isChecked() )
-          continue;
-        else
-          translatedState = tr("unknown");
-        break;
-    }
-
-    switch ( comboBoxSortCriteria->currentIndex() ) {
-      case QMC2_SORT_BY_DESCRIPTION:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_GAME), it.value());
-        break;
-
-      case QMC2_SORT_BY_ROM_STATE:
-        exportMap.insert(it.value()->whatsThis(QMC2_GAMELIST_COLUMN_GAME), it.value());
-        break;
-
-      case QMC2_SORT_BY_YEAR:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_YEAR), it.value());
-        break;
-
-      case QMC2_SORT_BY_MANUFACTURER:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_MANU), it.value());
-        break;
-
-      case QMC2_SORT_BY_NAME:
-        exportMap.insert(it.key(), it.value());
-        break;
-
-      case QMC2_SORT_BY_ROMTYPES:
-        exportMap.insert(it.value()->text(QMC2_GAMELIST_COLUMN_RTYPES), it.value());
-        break;
-
-      default:
-        break;
-    }
-
-    if ( it.value()->text(QMC2_GAMELIST_COLUMN_GAME).length() > maxDescriptionColumnWidth )
-      maxDescriptionColumnWidth = it.value()->text(QMC2_GAMELIST_COLUMN_GAME).length();
-    if ( it.key().length() > maxNameColumnWidth )
-      maxNameColumnWidth = it.key().length();
-    if ( it.value()->text(QMC2_GAMELIST_COLUMN_MANU).length() > maxManufacturerColumnWidth )
-      maxManufacturerColumnWidth = it.value()->text(QMC2_GAMELIST_COLUMN_MANU).length();
-    if ( it.value()->text(QMC2_GAMELIST_COLUMN_YEAR).length() > maxYearColumnWidth )
-      maxYearColumnWidth = it.value()->text(QMC2_GAMELIST_COLUMN_YEAR).length();
-    if ( translatedState.length() > maxStateColumnWidth )
-      maxStateColumnWidth = translatedState.length();
-    if ( it.value()->text(QMC2_GAMELIST_COLUMN_RTYPES).length() > maxRomTypesColumnWidth )
-      maxRomTypesColumnWidth = it.value()->text(QMC2_GAMELIST_COLUMN_RTYPES).length();
-  }
-
-  // truncate column widths if applicable...
-  if ( spinBoxASCIIColumnWidth->value() > 0 ) {
-    maxDescriptionColumnWidth = MIN(maxDescriptionColumnWidth, spinBoxASCIIColumnWidth->value());
-    maxNameColumnWidth = MIN(maxNameColumnWidth, spinBoxASCIIColumnWidth->value());
-    maxManufacturerColumnWidth = MIN(maxManufacturerColumnWidth, spinBoxASCIIColumnWidth->value());
-    maxYearColumnWidth = MIN(maxYearColumnWidth, spinBoxASCIIColumnWidth->value());
-    maxStateColumnWidth = MIN(maxStateColumnWidth, spinBoxASCIIColumnWidth->value());
-    maxRomTypesColumnWidth = MIN(maxRomTypesColumnWidth, spinBoxASCIIColumnWidth->value());
-  }
-
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (sorting, filtering and analyzing export data)"));
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("writing export data"));
-
-  ts << tr("Name").leftJustified(maxNameColumnWidth, ' ', true) << "  "
-     << tr("Status").leftJustified(maxStateColumnWidth, ' ', true) << "  "
-     << tr("Description").leftJustified(maxDescriptionColumnWidth, ' ', true) << "  "
-     << tr("Year").leftJustified(maxYearColumnWidth, ' ', true) << "  "
-     << tr("Manufacturer").leftJustified(maxManufacturerColumnWidth, ' ', true) << "  "
-     << tr("ROM types").leftJustified(maxRomTypesColumnWidth, ' ', true)
-     << "\n";
-  ts << QString("-").leftJustified(maxNameColumnWidth, '-', true) << "  "
-     << QString("-").leftJustified(maxStateColumnWidth, '-', true) << "  "
-     << QString("-").leftJustified(maxDescriptionColumnWidth, '-', true) << "  "
-     << QString("-").leftJustified(maxYearColumnWidth, '-', true) << "  "
-     << QString("-").leftJustified(maxManufacturerColumnWidth, '-', true) << "  "
-     << QString("-").leftJustified(maxRomTypesColumnWidth, '-', true)
-     << "\n";
-
-  QMapIterator<QString, QTreeWidgetItem *> itExport(exportMap);
-  i = 0;
-  bool ascendingOrder = (comboBoxSortOrder->currentIndex() == 0);
-  bool showMoreChars = ( spinBoxASCIIColumnWidth->value() > 3 );
-  if ( !ascendingOrder )
-    itExport.toBack();
-  while ( ( ( ascendingOrder && itExport.hasNext() ) || ( !ascendingOrder && itExport.hasPrevious() ) ) && !qmc2StopParser ) {
-    progressBarExport->setValue(++i);
-    qApp->processEvents();
-
-    if ( ascendingOrder )
-      itExport.next();
-    else
-      itExport.previous();
-
-    QString s = itExport.value()->text(QMC2_GAMELIST_COLUMN_NAME);
-    if ( showMoreChars && s.length() > maxNameColumnWidth )
-      ts << s.left(maxNameColumnWidth - 3).leftJustified(maxNameColumnWidth, '.', true) << "  ";
-    else
-      ts << s.leftJustified(maxNameColumnWidth, ' ', true) << "  ";
-    switch ( itExport.value()->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
-      case QMC2_ROMSTATE_CHAR_C:
-        s = tr("correct");
-        break;
-
-      case QMC2_ROMSTATE_CHAR_M:
-	s = tr("mostly correct");
-        break;
-
-      case QMC2_ROMSTATE_CHAR_I:
-	s = tr("incorrect");
-        break;
-
-      case QMC2_ROMSTATE_CHAR_N:
-	s = tr("not found");
-        break;
-
-      case QMC2_ROMSTATE_CHAR_U:
-      default:
-	s = tr("unknown");
-        break;
-    }
-    if ( showMoreChars && s.length() > maxStateColumnWidth )
-      ts << s.left(maxStateColumnWidth - 3).leftJustified(maxStateColumnWidth, '.', true) << "  ";
-    else
-      ts << s.leftJustified(maxStateColumnWidth, ' ', true) << "  ";
-    s = itExport.value()->text(QMC2_GAMELIST_COLUMN_GAME);
-    if ( showMoreChars && s.length() > maxDescriptionColumnWidth )
-      ts << s.left(maxDescriptionColumnWidth - 3).leftJustified(maxDescriptionColumnWidth, '.', true) << "  ";
-    else
-      ts << s.leftJustified(maxDescriptionColumnWidth, ' ', true) << "  ";
-    s = itExport.value()->text(QMC2_GAMELIST_COLUMN_YEAR);
-    if ( showMoreChars && s.length() > maxYearColumnWidth )
-      ts << s.left(maxYearColumnWidth - 3).leftJustified(maxYearColumnWidth, '.', true) << "  ";
-    else
-      ts << s.leftJustified(maxYearColumnWidth, ' ', true) << "  ";
-    s = itExport.value()->text(QMC2_GAMELIST_COLUMN_MANU);
-    if ( showMoreChars && s.length() > maxManufacturerColumnWidth )
-      ts << s.left(maxManufacturerColumnWidth - 3).leftJustified(maxManufacturerColumnWidth, '.', true) << "  ";
-    else
-      ts << s.leftJustified(maxManufacturerColumnWidth, ' ', true) << "  ";
-    s = itExport.value()->text(QMC2_GAMELIST_COLUMN_RTYPES);
-    if ( showMoreChars && s.length() > maxRomTypesColumnWidth )
-      ts << s.left(maxRomTypesColumnWidth - 3).leftJustified(maxRomTypesColumnWidth, '.', true) << "\n";
-    else
-      ts << s.leftJustified(maxRomTypesColumnWidth, ' ', true) << "\n";
-  }
-
-  progressBarExport->reset();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (writing export data)"));
-
-  if ( checkBoxExportToClipboard->isChecked() ) {
-    qApp->clipboard()->setText(clipboardBuffer);
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (exporting ROM status in ASCII format to clipboard)"));
-  } else {
-    exportFile.close();
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (exporting ROM status in ASCII format to '%1')").arg(QFileInfo(exportFile).filePath()));
-  }
-*/
+	if ( checkBoxExportToClipboard->isChecked() ) {
+		qApp->clipboard()->setText(clipboardBuffer);
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (exporting current software-list in ASCII format to clipboard)"));
+	} else {
+		exportFile.close();
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (exporting current software-list in ASCII format to '%1')").arg(QFileInfo(exportFile).filePath()));
+	}
 
 	setEnabled(true);
 }
@@ -458,7 +283,7 @@ void SoftwareListExporter::exportToCSV()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListExporter::exportToCSV()"));
 #endif
 
-	QFile exportFile(lineEditCSVFile->text());
+	QFile exportFile(lineEditCSVFile->text().replace("$ID$", softwareList->systemName));
 	QString clipboardBuffer;
 	QTextStream ts;
 	if ( !checkBoxExportToClipboard->isChecked() ) {
@@ -673,8 +498,10 @@ void SoftwareListExporter::on_toolButtonBrowseASCIIFile_clicked()
 #endif
 
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose ASCII export file"), lineEditASCIIFile->text(), tr("All files (*)"));
+
 	if ( !s.isNull() )
 		lineEditASCIIFile->setText(s);
+
 	raise();
 }
 
@@ -685,8 +512,10 @@ void SoftwareListExporter::on_toolButtonBrowseCSVFile_clicked()
 #endif
 
 	QString s = QFileDialog::getOpenFileName(this, tr("Choose CSV export file"), lineEditCSVFile->text(), tr("All files (*)"));
+
 	if ( !s.isNull() )
 		lineEditCSVFile->setText(s);
+
 	raise();
 }
 
@@ -695,6 +524,8 @@ void SoftwareListExporter::on_pushButtonExport_clicked()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareListExporter::on_pushButtonExport_clicked()");
 #endif
+
+	saveSettings();
 
 	switch ( comboBoxOutputFormat->currentIndex() ) {
 		case QMC2_SWLISTEXPORT_FORMAT_ASCII_INDEX:
