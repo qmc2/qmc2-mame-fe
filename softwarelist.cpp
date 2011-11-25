@@ -42,10 +42,6 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	setupUi(this);
 
-#if QMC2_WIP_CODE != 1
-	toolButtonExport->setVisible(false);
-#endif
-
 	if ( !qmc2SoftwareSnap )
 		qmc2SoftwareSnap = new SoftwareSnap();
 
@@ -952,8 +948,6 @@ void SoftwareList::on_toolButtonExport_clicked(bool checked)
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonExport_clicked(bool checked = %1)").arg(checked));
 #endif
-
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "WIP: the software-list exporter isn't working yet!");
 
 	if ( !exporter )
 		exporter = new SoftwareListExporter(this);
