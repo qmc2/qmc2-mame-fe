@@ -27,11 +27,45 @@ SoftwareListExporter::SoftwareListExporter(QWidget *parent)
 	exportListAutoCorrected = false;
 
 	columnNames << tr("Title") << tr("Name") << tr("Publisher") << tr("Year") << tr("Part") << tr("Interface") << tr("List");
+	columnNamesUntranslated << "Title" << "Name" << "Publisher" << "Year" << "Part" << "Interface" << "List";
+	defaultColumnActivation << "true" << "true" << "true" << "true" << "true" << "true" << "true";
 
 	comboBoxOutputFormat->insertSeparator(QMC2_SWLISTEXPORT_FORMAT_SEP_INDEX);
 	comboBoxOutputFormat->insertItem(QMC2_SWLISTEXPORT_FORMAT_ALL_INDEX, tr("Both formats"));
 
 	setWindowTitle(tr("Export software-list for '%1'").arg(((SoftwareList *)parent)->systemName));
+
+	// restore settings
+	comboBoxOutputFormat->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/OutputFormat", 0).toInt());
+	comboBoxSortCriteria->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/SortCriteria", 0).toInt());
+	comboBoxSortOrder->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/SortOrder", 0).toInt());
+	checkBoxIncludeColumnHeaders->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/IncludeColumnHeaders", true).toBool());
+	if ( comboBoxOutputFormat->currentIndex() <= QMC2_SWLISTEXPORT_FORMAT_CSV_INDEX )
+		checkBoxExportToClipboard->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ExportToClipboard", false).toBool());
+	else
+		checkBoxExportToClipboard->setChecked(false);
+	checkBoxOverwriteBlindly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/OverwriteBlindly", false).toBool());
+	lineEditASCIIFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ASCIIFile", "data/tmp/$ID$-softlist.txt").toString());
+	spinBoxASCIIColumnWidth->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ASCIIColumnWidth", 0).toInt());
+	lineEditCSVFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/CSVFile", "data/tmp/$ID$-softlist.csv").toString());
+	lineEditCSVSeparator->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/CSVSeparator", ";").toString());
+	lineEditCSVDelimiter->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/CSVDelimiter", "\"").toString());
+
+	listWidgetColumns->clear();
+
+	QStringList orderedColumns = qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ColumnOrder", columnNamesUntranslated).toStringList();
+	QStringList columnActivation = qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ColumnActivation", defaultColumnActivation).toStringList();
+
+	// make sure all columns are included, otherwise reset column order & activation
+	if ( orderedColumns.toSet() != columnNamesUntranslated.toSet() ) {
+		orderedColumns = columnNamesUntranslated;
+		columnActivation = defaultColumnActivation;
+	}
+	for (int col = 0; col < orderedColumns.count(); col++) {
+		QListWidgetItem *item = new QListWidgetItem(columnNames[columnNamesUntranslated.indexOf(orderedColumns[col])], listWidgetColumns);
+		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsUserCheckable);
+		item->setCheckState(columnActivation[col] == "true" ? Qt::Checked : Qt::Unchecked);
+	}
 }
 
 SoftwareListExporter::~SoftwareListExporter()
@@ -63,37 +97,7 @@ void SoftwareListExporter::showEvent(QShowEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListExporter::showEvent(QShowEvent *e = %1)").arg((qulonglong) e));
 #endif
 
-	listWidgetColumns->clear();
-
 	adjustIconSizes();
-
-	// restore settings
-	comboBoxOutputFormat->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/OutputFormat", 0).toInt());
-	comboBoxSortCriteria->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/SortCriteria", 0).toInt());
-	comboBoxSortOrder->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/SortOrder", 0).toInt());
-	checkBoxIncludeColumnHeaders->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/IncludeColumnHeaders", true).toBool());
-	if ( comboBoxOutputFormat->currentIndex() <= QMC2_SWLISTEXPORT_FORMAT_CSV_INDEX )
-		checkBoxExportToClipboard->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ExportToClipboard", false).toBool());
-	else
-		checkBoxExportToClipboard->setChecked(false);
-	checkBoxOverwriteBlindly->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/OverwriteBlindly", false).toBool());
-	lineEditASCIIFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ASCIIFile", "data/tmp/$ID$-softlist.txt").toString());
-	spinBoxASCIIColumnWidth->setValue(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ASCIIColumnWidth", 0).toInt());
-	lineEditCSVFile->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/CSVFile", "data/tmp/$ID$-softlist.csv").toString());
-	lineEditCSVSeparator->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/CSVSeparator", ";").toString());
-	lineEditCSVDelimiter->setText(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/CSVDelimiter", "\"").toString());
-
-	//QStringList orderedColumns;
-	for (int col = 0; col < columnNames.count(); col++) {
-		QListWidgetItem *item = new QListWidgetItem(columnNames[col], listWidgetColumns);
-		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsUserCheckable);
-		item->setCheckState(Qt::Checked);
-
-		/*
-		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + QString("SoftwareListExporter/Column/%1").arg(columnNames[i]), true).toBool() ) {
-		}
-		*/
-	}
 
 	if ( e )
 		e->accept();
@@ -129,6 +133,19 @@ void SoftwareListExporter::closeEvent(QCloseEvent *e)
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/CSVFile", lineEditCSVFile->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/CSVSeparator", lineEditCSVSeparator->text());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/CSVDelimiter", lineEditCSVDelimiter->text());
+
+	QStringList orderedColumns;
+	QStringList columnActivation;
+	for (int col = 0; col < listWidgetColumns->count(); col++) {
+		QListWidgetItem *item = listWidgetColumns->item(col);
+		orderedColumns << columnNamesUntranslated[columnNames.indexOf(item->text())];
+		if ( item->checkState() == Qt::Checked )
+			columnActivation << "true";
+		else
+			columnActivation << "false";
+	}
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ColumnOrder", orderedColumns);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareListExporter/ColumnActivation", columnActivation);
 
 	if ( e )
 		e->accept();
