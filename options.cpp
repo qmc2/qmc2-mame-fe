@@ -627,6 +627,7 @@ void Options::apply()
     qmc2SoftwareList->toolButtonExport->setIconSize(iconSize);
     qmc2SoftwareList->toolButtonAddToFavorites->setIconSize(iconSize);
     qmc2SoftwareList->toolButtonRemoveFromFavorites->setIconSize(iconSize);
+    qmc2SoftwareList->toolButtonFavoritesOptions->setIconSize(iconSize);
     qmc2SoftwareList->toolButtonPlay->setIconSize(iconSize);
 #if defined(Q_WS_X11)
     qmc2SoftwareList->toolButtonPlayEmbedded->setIconSize(iconSize);
