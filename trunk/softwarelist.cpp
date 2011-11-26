@@ -1,10 +1,4 @@
-#include <QFileInfo>
-#include <QPainter>
-#include <QPixmapCache>
-#include <QCursor>
-#include <QDir>
-#include <QKeyEvent>
-#include <QClipboard>
+#include <QtGui>
 #if defined(Q_WS_MAC)
 #include <QTest>
 #endif
@@ -72,6 +66,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonExport->setIconSize(iconSize);
 	toolButtonAddToFavorites->setIconSize(iconSize);
 	toolButtonRemoveFromFavorites->setIconSize(iconSize);
+	toolButtonFavoritesOptions->setIconSize(iconSize);
 	toolButtonPlay->setIconSize(iconSize);
 	toolButtonReload->setIconSize(iconSize);
 #if defined(Q_WS_X11)
@@ -87,6 +82,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonExport->setEnabled(false);
 	toolButtonAddToFavorites->setEnabled(false);
 	toolButtonRemoveFromFavorites->setEnabled(false);
+	toolButtonFavoritesOptions->setEnabled(false);
 	toolButtonPlay->setEnabled(false);
 	toolButtonPlayEmbedded->setEnabled(false);
 	comboBoxDeviceConfiguration->setEnabled(false);
@@ -116,6 +112,21 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	actionRemoveFromFavorites->setToolTip(s); actionRemoveFromFavorites->setStatusTip(s);
 	actionRemoveFromFavorites->setIcon(QIcon(QString::fromUtf8(":/data/img/remove_from_favorites.png")));
 	connect(actionRemoveFromFavorites, SIGNAL(triggered()), this, SLOT(removeFromFavorites()));
+
+	// favorites options menu
+	favoritesOptionsMenu = new QMenu(this);
+	s = tr("Load favorites from a file...");
+	action = favoritesOptionsMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(loadFavoritesFromFile()));
+	s = tr("Save favorites to a file...");
+	action = favoritesOptionsMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/filesaveas.png")));
+	actionSaveFavoritesToFile = action;
+	connect(action, SIGNAL(triggered()), this, SLOT(saveFavoritesToFile()));
+	toolButtonFavoritesOptions->setMenu(favoritesOptionsMenu);
 
 	// restore widget states
 	treeWidgetKnownSoftware->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/KnownSoftwareHeaderState").toByteArray());
@@ -674,6 +685,8 @@ bool SoftwareList::load()
 #endif
 			}
 		}
+		actionSaveFavoritesToFile->setEnabled(softwareNames.count() > 0);
+		toolButtonFavoritesOptions->setEnabled(true);
 	}
 
 	treeWidgetKnownSoftware->setSortingEnabled(true);
@@ -934,6 +947,7 @@ void SoftwareList::on_toolButtonReload_clicked(bool checked)
 	toolBoxSoftwareList->setEnabled(false);
 	toolButtonAddToFavorites->setEnabled(false);
 	toolButtonRemoveFromFavorites->setEnabled(false);
+	toolButtonFavoritesOptions->setEnabled(false);
 	toolButtonPlay->setEnabled(false);
 	toolButtonPlayEmbedded->setEnabled(false);
 	comboBoxDeviceConfiguration->setEnabled(false);
@@ -1006,6 +1020,8 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 #endif
 		}
 	}
+
+	actionSaveFavoritesToFile->setEnabled(treeWidgetFavoriteSoftware->topLevelItemCount() > 0);
 }
 
 void SoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked)
@@ -1030,6 +1046,8 @@ void SoftwareList::on_toolButtonRemoveFromFavorites_clicked(bool checked)
 		if ( itemToBeRemoved )
 			delete itemToBeRemoved;
 	}
+
+	actionSaveFavoritesToFile->setEnabled(treeWidgetFavoriteSoftware->topLevelItemCount() > 0);
 }
 
 void SoftwareList::on_toolButtonPlay_clicked(bool checked)
@@ -1754,6 +1772,124 @@ void SoftwareList::checkMountDeviceSelection()
 			it++;
 		}
 		autoMounted = false;
+	}
+}
+
+void SoftwareList::loadFavoritesFromFile()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::loadFavoritesFromFile()");
+#endif
+
+	QString proposedName = systemName + ".fav";
+
+	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "SoftwareList/LastFavoritesStoragePath") )
+		proposedName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareList/LastFavoritesStoragePath").toString());
+
+	QString filePath = QFileDialog::getOpenFileName(this, tr("Choose file to merge favorites from"), proposedName, tr("All files (*)"));
+
+	if ( !filePath.isEmpty() ) {
+		QFileInfo fiFilePath(filePath);
+		QString storagePath = fiFilePath.absolutePath();
+		if ( !storagePath.endsWith("/") ) storagePath.append("/");
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareList/LastFavoritesStoragePath", storagePath);
+
+		// import software-list favorites
+		QFile favoritesFile(filePath);
+		if ( favoritesFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading software-favorites for '%1' from '%2'").arg(systemName).arg(filePath));
+			QTextStream ts(&favoritesFile);
+			int lineCounter = 0;
+			while ( !ts.atEnd() ){
+				QString line = ts.readLine().trimmed();
+				lineCounter++;
+				if ( !line.startsWith("#") && !line.isEmpty()) {
+					QStringList words = line.split("\t");
+					if ( words.count() > 1 ) {
+						QString listName = words[0];
+						QString entryName = words[1];
+						QList<QTreeWidgetItem *> matchedItems = treeWidgetFavoriteSoftware->findItems(entryName, Qt::MatchExactly | Qt::MatchCaseSensitive, QMC2_SWLIST_COLUMN_NAME);
+						if ( matchedItems.count() <= 0 ) {
+							matchedItems = treeWidgetKnownSoftware->findItems(entryName, Qt::MatchExactly | Qt::MatchCaseSensitive, QMC2_SWLIST_COLUMN_NAME);
+							if ( matchedItems.count() > 0 ) {
+								SoftwareItem *knowSoftwareItem = (SoftwareItem *)matchedItems.at(0);
+								SoftwareItem *item = new SoftwareItem(treeWidgetFavoriteSoftware);
+								SoftwareItem *subItem = new SoftwareItem(item);
+								subItem->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Waiting for data..."));
+								item->setText(QMC2_SWLIST_COLUMN_TITLE, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_TITLE));
+								item->setText(QMC2_SWLIST_COLUMN_NAME, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_NAME));
+								item->setText(QMC2_SWLIST_COLUMN_PUBLISHER, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_PUBLISHER));
+								item->setText(QMC2_SWLIST_COLUMN_YEAR, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_YEAR));
+								item->setText(QMC2_SWLIST_COLUMN_PART, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_PART));
+								item->setText(QMC2_SWLIST_COLUMN_INTERFACE, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_INTERFACE));
+								item->setText(QMC2_SWLIST_COLUMN_LIST, knowSoftwareItem->text(QMC2_SWLIST_COLUMN_LIST));
+#if defined(QMC2_EMUTYPE_MESS)
+								if ( words.count() > 2 )
+									item->setText(QMC2_SWLIST_COLUMN_DEVICECFG, words[2]);
+#endif
+								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("entry '%1:%2' successfully imported").arg(listName).arg(entryName));
+							} else
+								qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: entry '%1:%2' cannot be associated with any known software for this system (line %3 ignored)").arg(listName).arg(entryName).arg(lineCounter));
+						} else
+							qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: a favorite entry for '%1:%2' already exists (line %3 ignored)").arg(listName).arg(entryName).arg(lineCounter));
+					} else
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: syntax error on line %1 (ignored)").arg(lineCounter));
+				}
+			}
+			favoritesFile.close();
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading software-favorites for '%1' from '%2')").arg(systemName).arg(filePath));
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open '%1' for reading, please check permissions").arg(filePath));
+	}
+}
+
+void SoftwareList::saveFavoritesToFile()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::saveFavoritesToFile()");
+#endif
+
+	QString proposedName = systemName + ".fav";
+
+	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "SoftwareList/LastFavoritesStoragePath") )
+		proposedName.prepend(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SoftwareList/LastFavoritesStoragePath").toString());
+
+	QString filePath = QFileDialog::getSaveFileName(this, tr("Choose file to store favorites to"), proposedName, tr("All files (*)"));
+
+	if ( !filePath.isEmpty() ) {
+		QFileInfo fiFilePath(filePath);
+		QString storagePath = fiFilePath.absolutePath();
+		if ( !storagePath.endsWith("/") ) storagePath.append("/");
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "SoftwareList/LastFavoritesStoragePath", storagePath);
+
+		// export software-list favorites
+		QFile favoritesFile(filePath);
+		if ( favoritesFile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("saving software-favorites for '%1' to '%2'").arg(systemName).arg(filePath));
+			QTextStream ts(&favoritesFile);
+#if defined(QMC2_EMUTYPE_MESS)
+			ts << QString("# MESS software-list favorites export for driver '%1'\n").arg(systemName);
+			ts << QString("# Format: <list-name><TAB><entry-name>[<TAB><additional-device-configuration>]\n");
+#elif defined(QMC2_EMUTYPE_MAME)
+			ts << QString("# MAME software-list favorites export for driver '%1'\n").arg(systemName);
+			ts << QString("# Format: <list-name><TAB><entry-name>\n");
+#endif
+			for (int i = 0; i < treeWidgetFavoriteSoftware->topLevelItemCount(); i++) {
+				QTreeWidgetItem *item = treeWidgetFavoriteSoftware->topLevelItem(i);
+				if ( item ) {
+					ts << item->text(QMC2_SWLIST_COLUMN_LIST) << "\t" << item->text(QMC2_SWLIST_COLUMN_NAME);
+#if defined(QMC2_EMUTYPE_MESS)
+					if ( !item->text(QMC2_SWLIST_COLUMN_DEVICECFG).isEmpty() )
+						ts << "\t" << item->text(QMC2_SWLIST_COLUMN_DEVICECFG);
+#endif
+					ts << "\n";
+				}
+
+			}
+			favoritesFile.close();
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (saving software-favorites for '%1' to '%2')").arg(systemName).arg(filePath));
+		} else
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open '%1' for writing, please check permissions").arg(filePath));
 	}
 }
 

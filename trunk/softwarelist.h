@@ -114,11 +114,13 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QTextStream tsSWLCache;
 		QStringList swlLines;
 		QMenu *softwareListMenu;
+		QMenu *favoritesOptionsMenu;
 		QMenu *menuKnownSoftwareHeader;
 		QMenu *menuFavoriteSoftwareHeader;
 		QMenu *menuSearchResultsHeader;
 		QAction *actionAddToFavorites;
 		QAction *actionRemoveFromFavorites;
+		QAction *actionSaveFavoritesToFile;
 		QTimer snapTimer;
 		QTimer searchTimer;
 		bool snapForced;
@@ -186,6 +188,8 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void cancelSoftwareSnap();
 		void comboBoxSearch_editTextChanged_delayed();
 		void checkMountDeviceSelection();
+		void loadFavoritesFromFile();
+		void saveFavoritesToFile();
 
 		// callbacks for software-list header context menu requests
 		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);

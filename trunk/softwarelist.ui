@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>523</width>
+    <width>413</width>
     <height>329</height>
    </rect>
   </property>
@@ -72,7 +72,7 @@
        <property name="sizeHint" stdset="0">
         <size>
          <width>0</width>
-         <height>20</height>
+         <height>0</height>
         </size>
        </property>
       </spacer>
@@ -97,6 +97,26 @@
        </property>
        <property name="toolButtonStyle">
         <enum>Qt::ToolButtonTextBesideIcon</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonFavoritesOptions">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Open options menu for the favorites list</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/favorites_multiple.png</normaloff>:/data/img/favorites_multiple.png</iconset>
+       </property>
+       <property name="popupMode">
+        <enum>QToolButton::InstantPopup</enum>
        </property>
       </widget>
      </item>
@@ -195,7 +215,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>513</width>
+        <width>403</width>
         <height>192</height>
        </rect>
       </property>
@@ -209,7 +229,7 @@
       <attribute name="toolTip">
        <string>Complete list of known software for the current system</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_2">
+      <layout class="QGridLayout" name="gridLayoutKnownSoftware">
        <property name="margin">
         <number>0</number>
        </property>
@@ -280,8 +300,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>513</width>
-        <height>192</height>
+        <width>83</width>
+        <height>64</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -294,7 +314,7 @@
       <attribute name="toolTip">
        <string>View / manage your favorite software list for the current system</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_3">
+      <layout class="QGridLayout" name="gridLayoutFavoriteSoftware">
        <property name="margin">
         <number>0</number>
        </property>
@@ -370,8 +390,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>513</width>
-        <height>192</height>
+        <width>83</width>
+        <height>90</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -384,7 +404,7 @@
       <attribute name="toolTip">
        <string>Search within the list of known software for the current system</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_4">
+      <layout class="QGridLayout" name="gridLayoutSearchSoftware">
        <property name="margin">
         <number>0</number>
        </property>
@@ -500,6 +520,7 @@
   <tabstop>toolButtonReload</tabstop>
   <tabstop>comboBoxDeviceConfiguration</tabstop>
   <tabstop>toolButtonExport</tabstop>
+  <tabstop>toolButtonFavoritesOptions</tabstop>
   <tabstop>toolButtonAddToFavorites</tabstop>
   <tabstop>toolButtonRemoveFromFavorites</tabstop>
   <tabstop>toolButtonPlay</tabstop>
