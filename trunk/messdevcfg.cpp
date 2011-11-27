@@ -1,12 +1,4 @@
-#include <QList>
-#include <QMap>
-#include <QHeaderView>
-#include <QFileInfo>
-#include <QFileDialog>
-#include <QStringList>
-#include <QComboBox>
-#include <QInputDialog>
-#include <QMessageBox>
+#include <QtGui>
 
 #include "messdevcfg.h"
 #include "gamelist.h"
@@ -32,326 +24,323 @@ QMap<QString, QIcon> messDevIconMap;
 bool messSystemSlotsSupported = true;
 
 MESSDeviceFileDelegate::MESSDeviceFileDelegate(QObject *parent)
-  : QItemDelegate(parent)
+	: QItemDelegate(parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::MESSDeviceFileDelegate(QObject *parent = %1)").arg((qulonglong)parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::MESSDeviceFileDelegate(QObject *parent = %1)").arg((qulonglong)parent));
 #endif
 
-  messFileEditWidgetList.clear();
+	messFileEditWidgetList.clear();
 }
 
 QWidget *MESSDeviceFileDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::createEditor(QWidget *parent = %1, const QStyleOptionViewItem &option, const QModelIndex &index)").arg((qulonglong)parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::createEditor(QWidget *parent = %1, const QStyleOptionViewItem &option, const QModelIndex &index)").arg((qulonglong)parent));
 #endif
 
-  int row = index.row();
-  QModelIndex sibling = index.sibling(row, QMC2_DEVCONFIG_COLUMN_EXT);
-  QStringList extensions = sibling.model()->data(sibling, Qt::EditRole).toString().split("/", QString::SkipEmptyParts);
-  QString filterString = tr("All files") + " (*)";
-  if ( extensions.count() > 0 ) {
+	int row = index.row();
+	QModelIndex sibling = index.sibling(row, QMC2_DEVCONFIG_COLUMN_EXT);
+	QStringList extensions = sibling.model()->data(sibling, Qt::EditRole).toString().split("/", QString::SkipEmptyParts);
+	QString filterString = tr("All files") + " (*)";
+	if ( extensions.count() > 0 ) {
 #if defined(Q_WS_WIN)
-    filterString = tr("Valid device files") + " (*.zip";
+		filterString = tr("Valid device files") + " (*.zip";
 #else
-    filterString = tr("Valid device files") + " (*.[zZ][iI][pP]";
+		filterString = tr("Valid device files") + " (*.[zZ][iI][pP]";
 #endif
-    for (int i = 0; i < extensions.count(); i++) {
-      QString ext = extensions[i];
+		for (int i = 0; i < extensions.count(); i++) {
+			QString ext = extensions[i];
 #if !defined(Q_WS_WIN)
-      QString altExt;
-      for (int j = 0; j < ext.length(); j++) {
-        QChar c = ext[j].toLower();
-	altExt += QString("[%1%2]").arg(c).arg(c.toUpper());
-      }
-      filterString += QString(" *.%1").arg(altExt);
+			QString altExt;
+			for (int j = 0; j < ext.length(); j++) {
+				QChar c = ext[j].toLower();
+				altExt += QString("[%1%2]").arg(c).arg(c.toUpper());
+			}
+			filterString += QString(" *.%1").arg(altExt);
 #else
-      filterString += QString(" *.%1").arg(ext);
+			filterString += QString(" *.%1").arg(ext);
 #endif
-    }
-    filterString += ");;" + tr("All files") + " (*)";
-  }
-  FileEditWidget *fileEditWidget = new FileEditWidget("", filterString, parent, true);
-  fileEditWidget->installEventFilter(const_cast<MESSDeviceFileDelegate*>(this));
-  connect(fileEditWidget, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged(QWidget *)));
-  messFileEditWidgetList.insert(row, fileEditWidget);
-
-  return fileEditWidget;
+		}
+		filterString += ");;" + tr("All files") + " (*)";
+	}
+	FileEditWidget *fileEditWidget = new FileEditWidget("", filterString, parent, true);
+	fileEditWidget->installEventFilter(const_cast<MESSDeviceFileDelegate*>(this));
+	connect(fileEditWidget, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged(QWidget *)));
+	messFileEditWidgetList.insert(row, fileEditWidget);
+	return fileEditWidget;
 }
 
 void MESSDeviceFileDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::setEditorData(QWidget *editor = %1, const QModelIndex &index)").arg((qulonglong)editor));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::setEditorData(QWidget *editor = %1, const QModelIndex &index)").arg((qulonglong)editor));
 #endif
 
-  QString value = index.model()->data(index, Qt::EditRole).toString();
-  FileEditWidget *fileEditWidget = static_cast<FileEditWidget *>(editor);
-  int cPos = fileEditWidget->lineEditFile->cursorPosition();
-  fileEditWidget->lineEditFile->setText(value);
-  fileEditWidget->lineEditFile->setCursorPosition(cPos);
+	QString value = index.model()->data(index, Qt::EditRole).toString();
+	FileEditWidget *fileEditWidget = static_cast<FileEditWidget *>(editor);
+	int cPos = fileEditWidget->lineEditFile->cursorPosition();
+	fileEditWidget->lineEditFile->setText(value);
+	fileEditWidget->lineEditFile->setCursorPosition(cPos);
 }
 
 void MESSDeviceFileDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::setModelData(QWidget *editor = %1, QAbstractItemModel *model = %2, const QModelIndex &index)").arg((qulonglong)editor).arg((qulonglong)model));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::setModelData(QWidget *editor = %1, QAbstractItemModel *model = %2, const QModelIndex &index)").arg((qulonglong)editor).arg((qulonglong)model));
 #endif
 
-  FileEditWidget *fileEditWidget = static_cast<FileEditWidget*>(editor);
-  QString v = fileEditWidget->lineEditFile->text();
-  model->setData(index, v);
+	FileEditWidget *fileEditWidget = static_cast<FileEditWidget*>(editor);
+	QString v = fileEditWidget->lineEditFile->text();
+	model->setData(index, v);
 }
 
 void MESSDeviceFileDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::updateEditorGeometry(QWidget *editor = %1, const QStyleOptionViewItem &option, const QModelIndex &index)").arg((qulonglong)editor));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::updateEditorGeometry(QWidget *editor = %1, const QStyleOptionViewItem &option, const QModelIndex &index)").arg((qulonglong)editor));
 #endif
 
-  editor->setGeometry(option.rect);
-  QFontMetrics fm(QApplication::font());
-  QSize iconSize(fm.height() - 2, fm.height() - 2);
-  FileEditWidget *fileEditWidget = static_cast<FileEditWidget *>(editor);
-  fileEditWidget->toolButtonBrowse->setIconSize(iconSize);
+	editor->setGeometry(option.rect);
+	QFontMetrics fm(QApplication::font());
+	QSize iconSize(fm.height() - 2, fm.height() - 2);
+	FileEditWidget *fileEditWidget = static_cast<FileEditWidget *>(editor);
+	fileEditWidget->toolButtonBrowse->setIconSize(iconSize);
 }
 
 void MESSDeviceFileDelegate::dataChanged(QWidget *widget)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::dataChanged(QWidget *widget = %1)").arg((qulonglong)widget));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceFileDelegate::dataChanged(QWidget *widget = %1)").arg((qulonglong)widget));
 #endif
 
-  emit commitData(widget);
-  FileEditWidget *fileEditWidget = static_cast<FileEditWidget*>(widget);
-  emit editorDataChanged(fileEditWidget->lineEditFile->text());
+	emit commitData(widget);
+	FileEditWidget *fileEditWidget = static_cast<FileEditWidget*>(widget);
+	emit editorDataChanged(fileEditWidget->lineEditFile->text());
 }
 
 MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *parent)
-  : QWidget(parent)
+	: QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName = %1, QWidget *parent = %2)").arg(machineName).arg((qulonglong)parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName = %1, QWidget *parent = %2)").arg(machineName).arg((qulonglong)parent));
 #endif
 
-  setupUi(this);
+	setupUi(this);
 
-  //toolButtonChooserSaveConfiguration->setVisible(false);
+	tabFileChooser->setUpdatesEnabled(false);
 
-  tabFileChooser->setUpdatesEnabled(false);
-
-  tabWidgetDeviceSetup->setCornerWidget(toolButtonConfiguration, Qt::TopRightCorner);
-  setEnabled(false);
-  lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
-  lineEditConfigurationName->setPlaceholderText(tr("Enter configuration name"));
+	tabWidgetDeviceSetup->setCornerWidget(toolButtonConfiguration, Qt::TopRightCorner);
+	setEnabled(false);
+	lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
+	lineEditConfigurationName->setPlaceholderText(tr("Enter configuration name"));
 
 #if !defined(Q_WS_X11)
-  toolButtonChooserPlayEmbedded->setVisible(false);
+	toolButtonChooserPlayEmbedded->setVisible(false);
 #endif
 
 #if !defined(QMC2_ALTERNATE_FSM)
-  lcdNumberFileCounter->setVisible(false);
-  toolButtonChooserReload->setVisible(false);
-  comboBoxChooserFilterPattern->setVisible(false);
-  toolButtonChooserClearFilterPattern->setVisible(false);
-  toolButtonChooserProcessZIPs->setVisible(false);
-  toolButtonChooserFilter->setVisible(false);
+	lcdNumberFileCounter->setVisible(false);
+	toolButtonChooserReload->setVisible(false);
+	comboBoxChooserFilterPattern->setVisible(false);
+	toolButtonChooserClearFilterPattern->setVisible(false);
+	toolButtonChooserProcessZIPs->setVisible(false);
+	toolButtonChooserFilter->setVisible(false);
 #else
-  connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxChooserFilterPattern_editTextChanged_delayed()));
-  comboBoxChooserFilterPattern->lineEdit()->setPlaceholderText(tr("Enter search string"));
-  comboBoxChooserFilterPatternHadFocus = false;
+	connect(&searchTimer, SIGNAL(timeout()), this, SLOT(comboBoxChooserFilterPattern_editTextChanged_delayed()));
+	comboBoxChooserFilterPattern->lineEdit()->setPlaceholderText(tr("Enter search string"));
+	comboBoxChooserFilterPatternHadFocus = false;
 #endif
-  dirModel = NULL;
-  fileModel = NULL;
-  fileChooserSetup = false;
+	dirModel = NULL;
+	fileModel = NULL;
+	fileChooserSetup = false;
 
-  messMachineName = machineName;
-  dontIgnoreNameChange = false;
-  treeWidgetDeviceSetup->setItemDelegateForColumn(QMC2_DEVCONFIG_COLUMN_FILE, &fileEditDelegate);
-  connect(&fileEditDelegate, SIGNAL(editorDataChanged(const QString &)), this, SLOT(editorDataChanged(const QString &)));
-  tabWidgetDeviceSetup->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DeviceSetupTab", 0).toInt());
-  treeWidgetDeviceSetup->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DeviceSetupHeaderState").toByteArray());
-  treeWidgetSlotOptions->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/SlotSetupHeaderState").toByteArray());
-  toolButtonChooserAutoSelect->blockSignals(true);
-  toolButtonChooserAutoSelect->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserAutoSelect", false).toBool());
-  toolButtonChooserAutoSelect->blockSignals(false);
-  toolButtonChooserFilter->blockSignals(true);
-  toolButtonChooserFilter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", false).toBool());
-  toolButtonChooserFilter->blockSignals(false);
-  toolButtonChooserProcessZIPs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserProcessZIPs", false).toBool());
+	messMachineName = machineName;
+	dontIgnoreNameChange = false;
+	treeWidgetDeviceSetup->setItemDelegateForColumn(QMC2_DEVCONFIG_COLUMN_FILE, &fileEditDelegate);
+	connect(&fileEditDelegate, SIGNAL(editorDataChanged(const QString &)), this, SLOT(editorDataChanged(const QString &)));
+	tabWidgetDeviceSetup->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DeviceSetupTab", 0).toInt());
+	treeWidgetDeviceSetup->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DeviceSetupHeaderState").toByteArray());
+	treeWidgetSlotOptions->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/SlotSetupHeaderState").toByteArray());
+	toolButtonChooserAutoSelect->blockSignals(true);
+	toolButtonChooserAutoSelect->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserAutoSelect", false).toBool());
+	toolButtonChooserAutoSelect->blockSignals(false);
+	toolButtonChooserFilter->blockSignals(true);
+	toolButtonChooserFilter->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", false).toBool());
+	toolButtonChooserFilter->blockSignals(false);
+	toolButtonChooserProcessZIPs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserProcessZIPs", false).toBool());
 
-  QList<int> splitterSizes;
-  QSize splitterSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserSplitter").toSize();
-  if ( splitterSize.width() > 0 || splitterSize.height() > 0 )
-    splitterSizes << splitterSize.width() << splitterSize.height();
-  else
-    splitterSizes << 30 << 70;
-  splitterFileChooser->setSizes(splitterSizes);
+	QList<int> splitterSizes;
+	QSize splitterSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserSplitter").toSize();
+	if ( splitterSize.width() > 0 || splitterSize.height() > 0 )
+		splitterSizes << splitterSize.width() << splitterSize.height();
+	else
+		splitterSizes << 30 << 70;
+	splitterFileChooser->setSizes(splitterSizes);
 
-  QList<int> vSplitterSizes;
-  QSize vSplitterSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/vSplitter").toSize();
-  if ( vSplitterSize.width() > 0 || vSplitterSize.height() > 0 )
-    vSplitterSizes << vSplitterSize.width() << vSplitterSize.height();
-  else
-    vSplitterSizes << 100 << 100;
-  vSplitter->setSizes(vSplitterSizes);
+	QList<int> vSplitterSizes;
+	QSize vSplitterSize = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/vSplitter").toSize();
+	if ( vSplitterSize.width() > 0 || vSplitterSize.height() > 0 )
+		vSplitterSizes << vSplitterSize.width() << vSplitterSize.height();
+	else
+		vSplitterSizes << 100 << 100;
+	vSplitter->setSizes(vSplitterSizes);
 
-  QFontMetrics fm(QApplication::font());
-  QSize iconSize(fm.height() - 2, fm.height() - 2);
-  toolButtonConfiguration->setIconSize(iconSize);
-  toolButtonNewConfiguration->setIconSize(iconSize);
-  toolButtonCloneConfiguration->setIconSize(iconSize);
-  toolButtonSaveConfiguration->setIconSize(iconSize);
-  toolButtonRemoveConfiguration->setIconSize(iconSize);
-  toolButtonChooserPlay->setIconSize(iconSize);
-  toolButtonChooserPlayEmbedded->setIconSize(iconSize);
-  toolButtonChooserReload->setIconSize(iconSize);
-  toolButtonChooserClearFilterPattern->setIconSize(iconSize);
-  toolButtonChooserAutoSelect->setIconSize(iconSize);
-  toolButtonChooserFilter->setIconSize(iconSize);
-  toolButtonChooserProcessZIPs->setIconSize(iconSize);
-  toolButtonChooserSaveConfiguration->setIconSize(iconSize);
-  comboBoxDeviceInstanceChooser->setIconSize(iconSize);
-  treeWidgetDeviceSetup->setIconSize(iconSize);
-  treeWidgetSlotOptions->setIconSize(iconSize);
+	QFontMetrics fm(QApplication::font());
+	QSize iconSize(fm.height() - 2, fm.height() - 2);
+	toolButtonConfiguration->setIconSize(iconSize);
+	toolButtonNewConfiguration->setIconSize(iconSize);
+	toolButtonCloneConfiguration->setIconSize(iconSize);
+	toolButtonSaveConfiguration->setIconSize(iconSize);
+	toolButtonRemoveConfiguration->setIconSize(iconSize);
+	toolButtonChooserPlay->setIconSize(iconSize);
+	toolButtonChooserPlayEmbedded->setIconSize(iconSize);
+	toolButtonChooserReload->setIconSize(iconSize);
+	toolButtonChooserClearFilterPattern->setIconSize(iconSize);
+	toolButtonChooserAutoSelect->setIconSize(iconSize);
+	toolButtonChooserFilter->setIconSize(iconSize);
+	toolButtonChooserProcessZIPs->setIconSize(iconSize);
+	toolButtonChooserSaveConfiguration->setIconSize(iconSize);
+	comboBoxDeviceInstanceChooser->setIconSize(iconSize);
+	treeWidgetDeviceSetup->setIconSize(iconSize);
+	treeWidgetSlotOptions->setIconSize(iconSize);
 
-  // configuration menu
-  configurationMenu = new QMenu(toolButtonConfiguration);
-  QString s = tr("Select default device directory");
-  QAction *action = configurationMenu->addAction(tr("&Default device directory for '%1'...").arg(messMachineName));
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(actionSelectDefaultDeviceDirectory_triggered()));
-  toolButtonConfiguration->setMenu(configurationMenu);
+	// configuration menu
+	configurationMenu = new QMenu(toolButtonConfiguration);
+	QString s = tr("Select default device directory");
+	QAction *action = configurationMenu->addAction(tr("&Default device directory for '%1'...").arg(messMachineName));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(actionSelectDefaultDeviceDirectory_triggered()));
+	toolButtonConfiguration->setMenu(configurationMenu);
 
-  // device configuration list context menu
-  deviceConfigurationListMenu = new QMenu(this);
-  s = tr("Play selected game");
-  action = deviceConfigurationListMenu->addAction(tr("&Play"));
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
-  connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_activated()));
+	// device configuration list context menu
+	deviceConfigurationListMenu = new QMenu(this);
+	s = tr("Play selected game");
+	action = deviceConfigurationListMenu->addAction(tr("&Play"));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
+	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_activated()));
 #if defined(Q_WS_X11)
-  s = tr("Play selected game (embedded)");
-  action = deviceConfigurationListMenu->addAction(tr("Play &embedded"));
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
-  connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
+	s = tr("Play selected game (embedded)");
+	action = deviceConfigurationListMenu->addAction(tr("Play &embedded"));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
+	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
 #endif
-  deviceConfigurationListMenu->addSeparator();
-  s = tr("Remove configuration");
-  action = deviceConfigurationListMenu->addAction(tr("&Remove configuration"));
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/remove.png")));
-  actionRemoveConfiguration = action;
-  connect(action, SIGNAL(triggered()), this, SLOT(actionRemoveConfiguration_activated()));
+	deviceConfigurationListMenu->addSeparator();
+	s = tr("Remove configuration");
+	action = deviceConfigurationListMenu->addAction(tr("&Remove configuration"));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/remove.png")));
+	actionRemoveConfiguration = action;
+	connect(action, SIGNAL(triggered()), this, SLOT(actionRemoveConfiguration_activated()));
 
-  // device instance list context menu
-  deviceContextMenu = new QMenu(this);
-  s = tr("Select a file to be mapped to this device instance");
-  action = deviceContextMenu->addAction(tr("Select file..."));
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(actionSelectFile_triggered()));
+	// device instance list context menu
+	deviceContextMenu = new QMenu(this);
+	s = tr("Select a file to be mapped to this device instance");
+	action = deviceContextMenu->addAction(tr("Select file..."));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(actionSelectFile_triggered()));
 
-  // slot options context menu
-  slotContextMenu = new QMenu(this);
-  // FIXME: initially left blank :)
+	// slot options context menu
+	slotContextMenu = new QMenu(this);
+	// FIXME: initially left blank :)
 
-  // directory chooser context menu
-  dirChooserContextMenu = new QMenu(this);
-  s = tr("Use as default directory");
-  action = dirChooserContextMenu->addAction(s);
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(dirChooserUseCurrentAsDefaultDirectory()));
+	// directory chooser context menu
+	dirChooserContextMenu = new QMenu(this);
+	s = tr("Use as default directory");
+	action = dirChooserContextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/fileopen.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(dirChooserUseCurrentAsDefaultDirectory()));
 
-  // file chooser context menu
-  fileChooserContextMenu = new QMenu(this);
-  s = tr("Play selected game");
-  action = fileChooserContextMenu->addAction(tr("&Play"));
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
-  connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_activated()));
+	// file chooser context menu
+	fileChooserContextMenu = new QMenu(this);
+	s = tr("Play selected game");
+	action = fileChooserContextMenu->addAction(tr("&Play"));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
+	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_activated()));
 #if defined(Q_WS_X11)
-  s = tr("Play selected game (embedded)");
-  action = fileChooserContextMenu->addAction(tr("Play &embedded"));
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
-  connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
+	s = tr("Play selected game (embedded)");
+	action = fileChooserContextMenu->addAction(tr("Play &embedded"));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
+	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
 #endif
 #if defined(QMC2_ALTERNATE_FSM)
-  fileChooserContextMenu->addSeparator();
-  action = fileChooserContextMenu->addAction(tr("&Open archive"));
-  action->setToolTip(s); action->setStatusTip(s);
-  action->setIcon(QIcon(QString::fromUtf8(":/data/img/compressed.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_toggleArchive()));
-  actionChooserToggleArchive = action;
+	fileChooserContextMenu->addSeparator();
+	action = fileChooserContextMenu->addAction(tr("&Open archive"));
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/compressed.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(treeViewFileChooser_toggleArchive()));
+	actionChooserToggleArchive = action;
 #endif
 
-  if ( messDevIconMap.isEmpty() ) {
-	  messDevIconMap["cartridge"] = QIcon(QString::fromUtf8(":/data/img/dev_cartridge.png"));
-	  messDevIconMap["cassette"] = QIcon(QString::fromUtf8(":/data/img/dev_cassette.png"));
-	  messDevIconMap["cdrom"] = QIcon(QString::fromUtf8(":/data/img/dev_cdrom.png"));
-	  messDevIconMap["cylinder"] = QIcon(QString::fromUtf8(":/data/img/dev_cylinder.png"));
-	  messDevIconMap["floppydisk"] = QIcon(QString::fromUtf8(":/data/img/dev_floppydisk.png"));
-	  messDevIconMap["harddisk"] = QIcon(QString::fromUtf8(":/data/img/dev_harddisk.png"));
-	  messDevIconMap["magtape"] = QIcon(QString::fromUtf8(":/data/img/dev_magtape.png"));
-	  messDevIconMap["memcard"] = QIcon(QString::fromUtf8(":/data/img/dev_memcard.png"));
-	  messDevIconMap["parallel"] = QIcon(QString::fromUtf8(":/data/img/dev_parallel.png"));
-	  messDevIconMap["printer"] = QIcon(QString::fromUtf8(":/data/img/dev_printer.png"));
-	  messDevIconMap["punchtape"] = QIcon(QString::fromUtf8(":/data/img/dev_punchtape.png"));
-	  messDevIconMap["quickload"] = QIcon(QString::fromUtf8(":/data/img/dev_quickload.png"));
-	  messDevIconMap["serial"] = QIcon(QString::fromUtf8(":/data/img/dev_serial.png"));
-	  messDevIconMap["snapshot"] = QIcon(QString::fromUtf8(":/data/img/dev_snapshot.png"));
-  }
+	if ( messDevIconMap.isEmpty() ) {
+		messDevIconMap["cartridge"] = QIcon(QString::fromUtf8(":/data/img/dev_cartridge.png"));
+		messDevIconMap["cassette"] = QIcon(QString::fromUtf8(":/data/img/dev_cassette.png"));
+		messDevIconMap["cdrom"] = QIcon(QString::fromUtf8(":/data/img/dev_cdrom.png"));
+		messDevIconMap["cylinder"] = QIcon(QString::fromUtf8(":/data/img/dev_cylinder.png"));
+		messDevIconMap["floppydisk"] = QIcon(QString::fromUtf8(":/data/img/dev_floppydisk.png"));
+		messDevIconMap["harddisk"] = QIcon(QString::fromUtf8(":/data/img/dev_harddisk.png"));
+		messDevIconMap["magtape"] = QIcon(QString::fromUtf8(":/data/img/dev_magtape.png"));
+		messDevIconMap["memcard"] = QIcon(QString::fromUtf8(":/data/img/dev_memcard.png"));
+		messDevIconMap["parallel"] = QIcon(QString::fromUtf8(":/data/img/dev_parallel.png"));
+		messDevIconMap["printer"] = QIcon(QString::fromUtf8(":/data/img/dev_printer.png"));
+		messDevIconMap["punchtape"] = QIcon(QString::fromUtf8(":/data/img/dev_punchtape.png"));
+		messDevIconMap["quickload"] = QIcon(QString::fromUtf8(":/data/img/dev_quickload.png"));
+		messDevIconMap["serial"] = QIcon(QString::fromUtf8(":/data/img/dev_serial.png"));
+		messDevIconMap["snapshot"] = QIcon(QString::fromUtf8(":/data/img/dev_snapshot.png"));
+	}
 }
 
 MESSDeviceConfigurator::~MESSDeviceConfigurator()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::~MESSDeviceConfigurator()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::~MESSDeviceConfigurator()");
 #endif
 
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DeviceSetupHeaderState", treeWidgetDeviceSetup->header()->saveState());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/SlotSetupHeaderState", treeWidgetSlotOptions->header()->saveState());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DeviceSetupTab", tabWidgetDeviceSetup->currentIndex());
-  if ( tabWidgetDeviceSetup->currentIndex() != QMC2_DEVSETUP_TAB_FILECHOOSER )
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/vSplitter", QSize(vSplitter->sizes().at(0), vSplitter->sizes().at(1)));
-  else
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserSplitter", QSize(splitterFileChooser->sizes().at(0), splitterFileChooser->sizes().at(1)));
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", toolButtonChooserFilter->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserAutoSelect", toolButtonChooserAutoSelect->isChecked());
-  qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserProcessZIPs", toolButtonChooserProcessZIPs->isChecked());
-  if ( !fileChooserHeaderState.isEmpty() )
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState", fileChooserHeaderState);
-  if ( comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserDeviceInstance", comboBoxDeviceInstanceChooser->currentText());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DeviceSetupHeaderState", treeWidgetDeviceSetup->header()->saveState());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/SlotSetupHeaderState", treeWidgetSlotOptions->header()->saveState());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/DeviceSetupTab", tabWidgetDeviceSetup->currentIndex());
+	if ( tabWidgetDeviceSetup->currentIndex() != QMC2_DEVSETUP_TAB_FILECHOOSER )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/vSplitter", QSize(vSplitter->sizes().at(0), vSplitter->sizes().at(1)));
+	else
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserSplitter", QSize(splitterFileChooser->sizes().at(0), splitterFileChooser->sizes().at(1)));
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserFilter", toolButtonChooserFilter->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserAutoSelect", toolButtonChooserAutoSelect->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserProcessZIPs", toolButtonChooserProcessZIPs->isChecked());
+	if ( !fileChooserHeaderState.isEmpty() )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserHeaderState", fileChooserHeaderState);
+	if ( comboBoxDeviceInstanceChooser->currentText() != tr("No devices available") )
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserDeviceInstance", comboBoxDeviceInstanceChooser->currentText());
 }
 
 QString &MESSDeviceConfigurator::getXmlData(QString machineName)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::getXmlData(QString machineName = %1)").arg(machineName));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::getXmlData(QString machineName = %1)").arg(machineName));
 #endif
 
-  static QString xmlBuffer;
+	static QString xmlBuffer;
 
-  xmlBuffer = messXmlDataCache[machineName];
+	xmlBuffer = messXmlDataCache[machineName];
 
-  if ( xmlBuffer.isEmpty() ) {
-    int i = 0;
-    QString s = "<machine name=\"" + machineName + "\"";
-    while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-    xmlBuffer = "<?xml version=\"1.0\"?>\n";
-    while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
-      xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
-    xmlBuffer += "</machine>\n";
-    messXmlDataCache[machineName] = xmlBuffer;
-  }
+	if ( xmlBuffer.isEmpty() ) {
+		int i = 0;
+		QString s = "<machine name=\"" + machineName + "\"";
+		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
+		xmlBuffer = "<?xml version=\"1.0\"?>\n";
+		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
+			xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
+		xmlBuffer += "</machine>\n";
+		messXmlDataCache[machineName] = xmlBuffer;
+	}
 
-  return xmlBuffer;
+	return xmlBuffer;
 }
 
 bool MESSDeviceConfigurator::readSystemSlots()
@@ -553,286 +542,290 @@ bool MESSDeviceConfigurator::readSystemSlots()
 bool MESSDeviceConfigurator::load()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::load()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::load()");
 #endif
 
-  if ( messSystemSlotMap.isEmpty() && messSystemSlotsSupported )
-	  if ( !readSystemSlots() ) {
-		  tabFileChooser->setUpdatesEnabled(true);
-		  return false;
-	  }
+	if ( messSystemSlotMap.isEmpty() && messSystemSlotsSupported )
+		if ( !readSystemSlots() ) {
+			tabFileChooser->setUpdatesEnabled(true);
+			return false;
+		}
 
-  setEnabled(true);
+	setEnabled(true);
 
-  QString xmlBuffer = getXmlData(messMachineName);
+	QString xmlBuffer = getXmlData(messMachineName);
   
-  QXmlInputSource xmlInputSource;
-  xmlInputSource.setData(xmlBuffer);
-  MESSDeviceConfiguratorXmlHandler xmlHandler(treeWidgetDeviceSetup);
-  QXmlSimpleReader xmlReader;
-  xmlReader.setContentHandler(&xmlHandler);
-  xmlReader.parse(xmlInputSource);
+	QXmlInputSource xmlInputSource;
+	xmlInputSource.setData(xmlBuffer);
+	MESSDeviceConfiguratorXmlHandler xmlHandler(treeWidgetDeviceSetup);
+	QXmlSimpleReader xmlReader;
+	xmlReader.setContentHandler(&xmlHandler);
+	xmlReader.parse(xmlInputSource);
 
-  comboBoxDeviceInstanceChooser->setUpdatesEnabled(false);
-  QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
-  QStringList instances;
+	comboBoxDeviceInstanceChooser->setUpdatesEnabled(false);
+	QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
+	QStringList instances;
 
-  extensionInstanceMap.clear();
-  foreach (QTreeWidgetItem *item, items) {
-	  QString instance = item->text(QMC2_DEVCONFIG_COLUMN_NAME);
-	  if ( !instance.isEmpty() ) instances << instance;
-  }
-  if ( instances.count() > 0 ) {
-	  qSort(instances);
-	  foreach (QString instance, instances) {
-		  QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems(instance, Qt::MatchExactly);
-		  if ( items.count() > 0 ) {
-			  QStringList extensions = items[0]->text(QMC2_DEVCONFIG_COLUMN_EXT).split("/", QString::SkipEmptyParts);
-			  foreach (QString extension, extensions) {
-				  extension = extension.toLower();
-				  if ( !extensionInstanceMap.contains(extension) )
-					 extensionInstanceMap[extension] = instance;
-			  }
-			  QString devType = items[0]->text(QMC2_DEVCONFIG_COLUMN_TYPE);
-			  comboBoxDeviceInstanceChooser->addItem(messDevIconMap[devType], instance);
-		  }
-	  }
-	  QString oldFileChooserDeviceInstance = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserDeviceInstance", QString()).toString();
-	  if ( !oldFileChooserDeviceInstance.isEmpty() ) {
-		  int index = comboBoxDeviceInstanceChooser->findText(oldFileChooserDeviceInstance, Qt::MatchExactly);
-		  if ( index >= 0 ) {
-			  comboBoxDeviceInstanceChooser->blockSignals(true);
-			  comboBoxDeviceInstanceChooser->setCurrentIndex(index);
-			  comboBoxDeviceInstanceChooser->blockSignals(false);
-		  }
-	  }
-	  if ( tabWidgetDeviceSetup->currentIndex() == QMC2_DEVSETUP_TAB_FILECHOOSER )
-	  	QTimer::singleShot(0, this, SLOT(setupFileChooser()));
-  } else {
-	  comboBoxDeviceInstanceChooser->insertItem(0, tr("No devices available"));
-	  tabFileChooser->setUpdatesEnabled(true);
-	  tabFileChooser->setEnabled(false);
-  }
+	extensionInstanceMap.clear();
+	foreach (QTreeWidgetItem *item, items) {
+		QString instance = item->text(QMC2_DEVCONFIG_COLUMN_NAME);
+		if ( !instance.isEmpty() )
+			instances << instance;
+	}
 
-  comboBoxDeviceInstanceChooser->setUpdatesEnabled(true);
+	if ( instances.count() > 0 ) {
+		qSort(instances);
+		foreach (QString instance, instances) {
+			QList<QTreeWidgetItem *> items = treeWidgetDeviceSetup->findItems(instance, Qt::MatchExactly);
+			if ( items.count() > 0 ) {
+				QStringList extensions = items[0]->text(QMC2_DEVCONFIG_COLUMN_EXT).split("/", QString::SkipEmptyParts);
+				foreach (QString extension, extensions) {
+					extension = extension.toLower();
+					if ( !extensionInstanceMap.contains(extension) )
+						extensionInstanceMap[extension] = instance;
+				}
+				QString devType = items[0]->text(QMC2_DEVCONFIG_COLUMN_TYPE);
+				comboBoxDeviceInstanceChooser->addItem(messDevIconMap[devType], instance);
+			}
+		}
+		QString oldFileChooserDeviceInstance = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserDeviceInstance", QString()).toString();
+		if ( !oldFileChooserDeviceInstance.isEmpty() ) {
+			int index = comboBoxDeviceInstanceChooser->findText(oldFileChooserDeviceInstance, Qt::MatchExactly);
+			if ( index >= 0 ) {
+				comboBoxDeviceInstanceChooser->blockSignals(true);
+				comboBoxDeviceInstanceChooser->setCurrentIndex(index);
+				comboBoxDeviceInstanceChooser->blockSignals(false);
+			}
+		}
+		if ( tabWidgetDeviceSetup->currentIndex() == QMC2_DEVSETUP_TAB_FILECHOOSER )
+			QTimer::singleShot(0, this, SLOT(setupFileChooser()));
+	} else {
+		comboBoxDeviceInstanceChooser->insertItem(0, tr("No devices available"));
+		tabFileChooser->setUpdatesEnabled(true);
+		tabFileChooser->setEnabled(false);
+	}
 
-  if ( treeWidgetDeviceSetup->topLevelItemCount() == 1 ) {
-	  // this avoids delegate-resizing issues when only one item is available
-	  treeWidgetDeviceSetup->setUpdatesEnabled(false);
-	  QTreeWidgetItem *dummyItem = new QTreeWidgetItem(treeWidgetDeviceSetup);
-	  treeWidgetDeviceSetup->openPersistentEditor(dummyItem, QMC2_DEVCONFIG_COLUMN_FILE);
-	  delete treeWidgetDeviceSetup->takeTopLevelItem(1);
-	  treeWidgetDeviceSetup->setUpdatesEnabled(true);
-  }
+	comboBoxDeviceInstanceChooser->setUpdatesEnabled(true);
 
-  QMapIterator<QString, QStringList> it(messSystemSlotMap[messMachineName]);
-  while ( it.hasNext() ) {
-	  it.next();
-	  QString slotName = it.key();
-	  QStringList slotOptions;
-	  foreach (QString s, it.value())
-		  slotOptions << QString("%1 (%2)").arg(s).arg(messSlotNameMap[s]);
-	  QComboBox *cb = new QComboBox(0);
-	  cb->setAutoFillBackground(true);
-	  cb->insertItem(0, tr("not used"));
-	  if ( slotOptions.count() > 0 )
-	  	cb->insertItems(1, slotOptions);
-	  QTreeWidgetItem *slotItem = new QTreeWidgetItem(treeWidgetSlotOptions);
-	  slotItem->setText(QMC2_SLOTCONFIG_COLUMN_SLOT, slotName);
-	  slotItem->setIcon(QMC2_SLOTCONFIG_COLUMN_SLOT, QIcon(QString::fromUtf8(":/data/img/slot.png")));
-	  treeWidgetSlotOptions->setItemWidget(slotItem, QMC2_SLOTCONFIG_COLUMN_OPTION, cb);
-  }
+	if ( treeWidgetDeviceSetup->topLevelItemCount() == 1 ) {
+		// this avoids delegate-resizing issues when only one item is available
+		treeWidgetDeviceSetup->setUpdatesEnabled(false);
+		QTreeWidgetItem *dummyItem = new QTreeWidgetItem(treeWidgetDeviceSetup);
+		treeWidgetDeviceSetup->openPersistentEditor(dummyItem, QMC2_DEVCONFIG_COLUMN_FILE);
+		delete treeWidgetDeviceSetup->takeTopLevelItem(1);
+		treeWidgetDeviceSetup->setUpdatesEnabled(true);
+	}
 
-  configurationMap.clear();
-  slotMap.clear();
+	QMapIterator<QString, QStringList> it(messSystemSlotMap[messMachineName]);
+	while ( it.hasNext() ) {
+		it.next();
+		QString slotName = it.key();
+		QStringList slotOptions;
+		foreach (QString s, it.value())
+			slotOptions << QString("%1 (%2)").arg(s).arg(messSlotNameMap[s]);
+		QComboBox *cb = new QComboBox(0);
+		cb->setAutoFillBackground(true);
+		cb->insertItem(0, tr("not used"));
+		if ( slotOptions.count() > 0 )
+			cb->insertItems(1, slotOptions);
+		QTreeWidgetItem *slotItem = new QTreeWidgetItem(treeWidgetSlotOptions);
+		slotItem->setText(QMC2_SLOTCONFIG_COLUMN_SLOT, slotName);
+		slotItem->setIcon(QMC2_SLOTCONFIG_COLUMN_SLOT, QIcon(QString::fromUtf8(":/data/img/slot.png")));
+		treeWidgetSlotOptions->setItemWidget(slotItem, QMC2_SLOTCONFIG_COLUMN_OPTION, cb);
+	}
 
-  qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1").arg(messMachineName));
-  QString selectedConfiguration = qmc2Config->value("SelectedConfiguration").toString();
-  QStringList configurationList = qmc2Config->childGroups();
+	configurationMap.clear();
+	slotMap.clear();
 
-  foreach (QString configName, configurationList) {
-    configurationMap[configName].first = qmc2Config->value(QString("%1/Instances").arg(configName)).toStringList();
-    configurationMap[configName].second = qmc2Config->value(QString("%1/Files").arg(configName)).toStringList();
-    slotMap[configName].first = qmc2Config->value(QString("%1/Slots").arg(configName), QStringList()).toStringList();
-    slotMap[configName].second = qmc2Config->value(QString("%1/SlotOptions").arg(configName), QStringList()).toStringList();
-    QListWidgetItem *item = new QListWidgetItem(configName, listWidgetDeviceConfigurations);
-    if ( selectedConfiguration == configName ) listWidgetDeviceConfigurations->setCurrentItem(item);
-  }
+	qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1").arg(messMachineName));
+	QString selectedConfiguration = qmc2Config->value("SelectedConfiguration").toString();
+	QStringList configurationList = qmc2Config->childGroups();
 
-  qmc2FileEditStartPath = qmc2Config->value("DefaultDeviceDirectory").toString();
+	foreach (QString configName, configurationList) {
+		configurationMap[configName].first = qmc2Config->value(QString("%1/Instances").arg(configName)).toStringList();
+		configurationMap[configName].second = qmc2Config->value(QString("%1/Files").arg(configName)).toStringList();
+		slotMap[configName].first = qmc2Config->value(QString("%1/Slots").arg(configName), QStringList()).toStringList();
+		slotMap[configName].second = qmc2Config->value(QString("%1/SlotOptions").arg(configName), QStringList()).toStringList();
+		QListWidgetItem *item = new QListWidgetItem(configName, listWidgetDeviceConfigurations);
+		if ( selectedConfiguration == configName )
+			listWidgetDeviceConfigurations->setCurrentItem(item);
+	}
 
-  qmc2Config->endGroup();
+	qmc2FileEditStartPath = qmc2Config->value("DefaultDeviceDirectory").toString();
 
-  // use the 'general software folder' as fall-back, if applicable
-  if ( qmc2FileEditStartPath.isEmpty() ) {
-    qmc2FileEditStartPath = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
-    QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + messMachineName);
-    if ( machineSoftwareFolder.exists() )
-      qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
-  }
+	qmc2Config->endGroup();
 
-  dontIgnoreNameChange = true;
-  QListWidgetItem *noDeviceItem = new QListWidgetItem(tr("No devices"), listWidgetDeviceConfigurations);
-  if ( listWidgetDeviceConfigurations->currentItem() == NULL )
-    listWidgetDeviceConfigurations->setCurrentItem(noDeviceItem);
-  dontIgnoreNameChange = false;
+	// use the 'general software folder' as fall-back, if applicable
+	if ( qmc2FileEditStartPath.isEmpty() ) {
+		qmc2FileEditStartPath = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
+		QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + messMachineName);
+		if ( machineSoftwareFolder.exists() )
+			qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
+	}
 
-  return true;
+	dontIgnoreNameChange = true;
+	QListWidgetItem *noDeviceItem = new QListWidgetItem(tr("No devices"), listWidgetDeviceConfigurations);
+	if ( listWidgetDeviceConfigurations->currentItem() == NULL )
+		listWidgetDeviceConfigurations->setCurrentItem(noDeviceItem);
+	dontIgnoreNameChange = false;
+
+	return true;
 }
 
 bool MESSDeviceConfigurator::save()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::save()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::save()");
 #endif
 
-  QString group = QString("MESS/Configuration/Devices/%1").arg(messMachineName);
-  QString devDir = qmc2Config->value(QString("%1/DefaultDeviceDirectory").arg(group), "").toString();
+	QString group = QString("MESS/Configuration/Devices/%1").arg(messMachineName);
+	QString devDir = qmc2Config->value(QString("%1/DefaultDeviceDirectory").arg(group), "").toString();
 
-  qmc2Config->remove(group);
-  qmc2Config->beginGroup(group);
+	qmc2Config->remove(group);
+	qmc2Config->beginGroup(group);
 
-  if ( configurationMap.count() > 0 ) {
-    foreach (QString configName, configurationMap.keys()) {
-      QPair<QStringList, QStringList> config = configurationMap[configName];
-      qmc2Config->setValue(QString("%1/Instances").arg(configName), config.first);
-      qmc2Config->setValue(QString("%1/Files").arg(configName), config.second);
-      QPair<QStringList, QStringList> slotConfig = slotMap[configName];
-      if ( slotConfig.first.isEmpty() ) {
-	      qmc2Config->remove(QString("%1/Slots").arg(configName));
-	      qmc2Config->remove(QString("%1/SlotOptions").arg(configName));
-      } else {
-	      qmc2Config->setValue(QString("%1/Slots").arg(configName), slotConfig.first);
-	      qmc2Config->setValue(QString("%1/SlotOptions").arg(configName), slotConfig.second);
-      }
-    }
-  }
+	if ( configurationMap.count() > 0 ) {
+		foreach (QString configName, configurationMap.keys()) {
+			QPair<QStringList, QStringList> config = configurationMap[configName];
+			qmc2Config->setValue(QString("%1/Instances").arg(configName), config.first);
+			qmc2Config->setValue(QString("%1/Files").arg(configName), config.second);
+			QPair<QStringList, QStringList> slotConfig = slotMap[configName];
+			if ( slotConfig.first.isEmpty() ) {
+				qmc2Config->remove(QString("%1/Slots").arg(configName));
+				qmc2Config->remove(QString("%1/SlotOptions").arg(configName));
+			} else {
+				qmc2Config->setValue(QString("%1/Slots").arg(configName), slotConfig.first);
+				qmc2Config->setValue(QString("%1/SlotOptions").arg(configName), slotConfig.second);
+			}
+		}
+	}
 
-  if ( !devDir.isEmpty() )
-    qmc2Config->setValue("DefaultDeviceDirectory", devDir);
+	if ( !devDir.isEmpty() )
+		qmc2Config->setValue("DefaultDeviceDirectory", devDir);
 
-  QListWidgetItem *curItem = listWidgetDeviceConfigurations->currentItem();
-  if ( curItem != NULL ) {
-    if ( curItem->text() == tr("No devices") )
-      qmc2Config->remove("SelectedConfiguration");
-    else
-      qmc2Config->setValue("SelectedConfiguration", curItem->text());
-  }
+	QListWidgetItem *curItem = listWidgetDeviceConfigurations->currentItem();
+	if ( curItem != NULL ) {
+		if ( curItem->text() == tr("No devices") )
+			qmc2Config->remove("SelectedConfiguration");
+		else
+			qmc2Config->setValue("SelectedConfiguration", curItem->text());
+	}
 
-  qmc2Config->endGroup();
+	qmc2Config->endGroup();
 
-  return true;
+	return true;
 }
 
 void MESSDeviceConfigurator::on_toolButtonNewConfiguration_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_toolButtonNewConfiguration_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_toolButtonNewConfiguration_clicked()");
 #endif
 
-  dontIgnoreNameChange = true;
-  lineEditConfigurationName->clear();
-  toolButtonCloneConfiguration->setEnabled(false);
-  toolButtonSaveConfiguration->setEnabled(false);
-  toolButtonRemoveConfiguration->setEnabled(false);
-  treeWidgetDeviceSetup->setEnabled(true);
-  treeWidgetSlotOptions->setEnabled(true);
-  lineEditConfigurationName->setFocus();
+	dontIgnoreNameChange = true;
+	lineEditConfigurationName->clear();
+	toolButtonCloneConfiguration->setEnabled(false);
+	toolButtonSaveConfiguration->setEnabled(false);
+	toolButtonRemoveConfiguration->setEnabled(false);
+	treeWidgetDeviceSetup->setEnabled(true);
+	treeWidgetSlotOptions->setEnabled(true);
+	lineEditConfigurationName->setFocus();
 }
 
 void MESSDeviceConfigurator::on_toolButtonCloneConfiguration_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_toolButtonCloneConfiguration_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_toolButtonCloneConfiguration_clicked()");
 #endif
 
-  // create a clone of an existing device configuration
-  QString sourceName = lineEditConfigurationName->text();
-  int copies = 1;
-  QString targetName = tr("%1. copy of ").arg(copies) + sourceName;
-  while ( configurationMap.contains(targetName) )
-    targetName = tr("%1. copy of ").arg(++copies) + sourceName;
+	// create a clone of an existing device configuration
+	QString sourceName = lineEditConfigurationName->text();
+	int copies = 1;
+	QString targetName = tr("%1. copy of ").arg(copies) + sourceName;
+	while ( configurationMap.contains(targetName) )
+		targetName = tr("%1. copy of ").arg(++copies) + sourceName;
 
-  configurationMap.insert(targetName, configurationMap[sourceName]);
-  slotMap.insert(targetName, slotMap[sourceName]);
-  listWidgetDeviceConfigurations->insertItem(listWidgetDeviceConfigurations->count(), targetName);
-  
-  dontIgnoreNameChange = true;
-  lineEditConfigurationName->setText(targetName);
+	configurationMap.insert(targetName, configurationMap[sourceName]);
+	slotMap.insert(targetName, slotMap[sourceName]);
+	listWidgetDeviceConfigurations->insertItem(listWidgetDeviceConfigurations->count(), targetName);
+
+	dontIgnoreNameChange = true;
+	lineEditConfigurationName->setText(targetName);
 }
 
 void MESSDeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_toolButtonSaveConfiguration_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_toolButtonSaveConfiguration_clicked()");
 #endif
 
-  QString cfgName = lineEditConfigurationName->text();
+	QString cfgName = lineEditConfigurationName->text();
 
-  if ( cfgName.isEmpty() )
-    return;
+	if ( cfgName.isEmpty() )
+		return;
 
-  QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(cfgName, Qt::MatchExactly);
-  if ( matchedItemList.count() > 0 ) {
-    // save device configuration
-    QList<QTreeWidgetItem *> allItems = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
-    QStringList instances, files;
-    foreach (QTreeWidgetItem *item, allItems) {
-      QString fileName = item->data(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole).toString();
-      if ( !fileName.isEmpty() ) {
-        instances << item->data(QMC2_DEVCONFIG_COLUMN_NAME, Qt::EditRole).toString();
-        files << fileName;
-      }
-    }
-    configurationMap[cfgName].first = instances;
-    configurationMap[cfgName].second = files;
-    // save slot setup
-    QList<QTreeWidgetItem *> allSlotItems = treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard);
-    QStringList slotNames, slotOptions;
-    foreach (QTreeWidgetItem *item, allSlotItems) {
-      QString slotName = item->data(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::EditRole).toString();
-      if ( !slotName.isEmpty() ) {
-	QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
-	if ( cb )
-		if ( cb->currentIndex() > 0 ) {
-        		slotNames << slotName;
-			slotOptions << cb->currentText().split(" ")[0];
+	QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(cfgName, Qt::MatchExactly);
+	if ( matchedItemList.count() > 0 ) {
+		// save device configuration
+		QList<QTreeWidgetItem *> allItems = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
+		QStringList instances, files;
+		foreach (QTreeWidgetItem *item, allItems) {
+			QString fileName = item->data(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole).toString();
+			if ( !fileName.isEmpty() ) {
+				instances << item->data(QMC2_DEVCONFIG_COLUMN_NAME, Qt::EditRole).toString();
+				files << fileName;
+			}
 		}
-      }
-    }
-    slotMap[cfgName].first = slotNames;
-    slotMap[cfgName].second = slotOptions;
-  } else {
-    // add new device configuration
-    listWidgetDeviceConfigurations->insertItem(listWidgetDeviceConfigurations->count(), cfgName);
-    dontIgnoreNameChange = true;
-    on_toolButtonSaveConfiguration_clicked();
-  }
+		configurationMap[cfgName].first = instances;
+		configurationMap[cfgName].second = files;
 
-  on_lineEditConfigurationName_textChanged(lineEditConfigurationName->text());
+		// save slot setup
+		QList<QTreeWidgetItem *> allSlotItems = treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard);
+		QStringList slotNames, slotOptions;
+		foreach (QTreeWidgetItem *item, allSlotItems) {
+			QString slotName = item->data(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::EditRole).toString();
+			if ( !slotName.isEmpty() ) {
+				QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
+				if ( cb )
+					if ( cb->currentIndex() > 0 ) {
+						slotNames << slotName;
+						slotOptions << cb->currentText().split(" ")[0];
+					}
+			}
+		}
+		slotMap[cfgName].first = slotNames;
+		slotMap[cfgName].second = slotOptions;
+	} else {
+		// add new device configuration
+		listWidgetDeviceConfigurations->insertItem(listWidgetDeviceConfigurations->count(), cfgName);
+		dontIgnoreNameChange = true;
+		on_toolButtonSaveConfiguration_clicked();
+	}
+
+	on_lineEditConfigurationName_textChanged(lineEditConfigurationName->text());
 }
 
 void MESSDeviceConfigurator::on_toolButtonRemoveConfiguration_clicked()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_toolButtonRemoveConfiguration_clicked()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::on_toolButtonRemoveConfiguration_clicked()");
 #endif
 
-  QString cfgName = lineEditConfigurationName->text();
+	QString cfgName = lineEditConfigurationName->text();
 
-  QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(cfgName, Qt::MatchExactly);
-  if ( matchedItemList.count() > 0 ) {
-    configurationMap.remove(cfgName);
-    slotMap.remove(cfgName);
-    int row = listWidgetDeviceConfigurations->row(matchedItemList[0]);
-    QListWidgetItem *prevItem = NULL;
-    if ( row > 0 )
-      prevItem = listWidgetDeviceConfigurations->item(row - 1);
-    QListWidgetItem *item = listWidgetDeviceConfigurations->takeItem(row);
-    delete item;
-    if ( prevItem )
-      listWidgetDeviceConfigurations->setCurrentItem(prevItem);
-  }
+	QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(cfgName, Qt::MatchExactly);
+	if ( matchedItemList.count() > 0 ) {
+		configurationMap.remove(cfgName);
+		slotMap.remove(cfgName);
+		int row = listWidgetDeviceConfigurations->row(matchedItemList[0]);
+		QListWidgetItem *prevItem = NULL;
+		if ( row > 0 )
+			prevItem = listWidgetDeviceConfigurations->item(row - 1);
+		QListWidgetItem *item = listWidgetDeviceConfigurations->takeItem(row);
+		delete item;
+		if ( prevItem )
+			listWidgetDeviceConfigurations->setCurrentItem(prevItem);
+	}
 }
 
 void MESSDeviceConfigurator::actionRemoveConfiguration_activated()
@@ -861,146 +854,145 @@ void MESSDeviceConfigurator::actionRemoveConfiguration_activated()
 void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemActivated(QListWidgetItem *item)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong) item));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong) item));
 #endif
 
-  QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
 }
 
 void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString &text)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString &text = %1)").arg(text));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString &text = %1)").arg(text));
 #endif
 
-  toolButtonSaveConfiguration->setEnabled(false);
-  if ( text == tr("No devices") ) {
-    toolButtonCloneConfiguration->setEnabled(false);
-    toolButtonSaveConfiguration->setEnabled(false);
-    toolButtonRemoveConfiguration->setEnabled(false);
-    treeWidgetDeviceSetup->setEnabled(false);
-    treeWidgetSlotOptions->setEnabled(false);
-  } else if ( !text.isEmpty() ) {
-    QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(text, Qt::MatchExactly);
-    if ( matchedItemList.count() > 0 ) {
-      toolButtonRemoveConfiguration->setEnabled(true);
-      toolButtonSaveConfiguration->setEnabled(true);
-      toolButtonCloneConfiguration->setEnabled(true);
-    } else {
-      toolButtonRemoveConfiguration->setEnabled(false);
-      toolButtonSaveConfiguration->setEnabled(true);
-      toolButtonCloneConfiguration->setEnabled(false);
-    }
-    treeWidgetDeviceSetup->setEnabled(true);
-    treeWidgetSlotOptions->setEnabled(true);
-  } else {
-    toolButtonCloneConfiguration->setEnabled(false);
-    toolButtonSaveConfiguration->setEnabled(false);
-    toolButtonRemoveConfiguration->setEnabled(false);
-    treeWidgetDeviceSetup->setEnabled(true);
-    treeWidgetSlotOptions->setEnabled(true);
-  }
+	toolButtonSaveConfiguration->setEnabled(false);
+	if ( text == tr("No devices") ) {
+		toolButtonCloneConfiguration->setEnabled(false);
+		toolButtonSaveConfiguration->setEnabled(false);
+		toolButtonRemoveConfiguration->setEnabled(false);
+		treeWidgetDeviceSetup->setEnabled(false);
+		treeWidgetSlotOptions->setEnabled(false);
+	} else if ( !text.isEmpty() ) {
+		QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(text, Qt::MatchExactly);
+		if ( matchedItemList.count() > 0 ) {
+			toolButtonRemoveConfiguration->setEnabled(true);
+			toolButtonSaveConfiguration->setEnabled(true);
+			toolButtonCloneConfiguration->setEnabled(true);
+		} else {
+			toolButtonRemoveConfiguration->setEnabled(false);
+			toolButtonSaveConfiguration->setEnabled(true);
+			toolButtonCloneConfiguration->setEnabled(false);
+		}
+		treeWidgetDeviceSetup->setEnabled(true);
+		treeWidgetSlotOptions->setEnabled(true);
+	} else {
+		toolButtonCloneConfiguration->setEnabled(false);
+		toolButtonSaveConfiguration->setEnabled(false);
+		toolButtonRemoveConfiguration->setEnabled(false);
+		treeWidgetDeviceSetup->setEnabled(true);
+		treeWidgetSlotOptions->setEnabled(true);
+	}
 
-  if ( dontIgnoreNameChange ) {
-    QList<QTreeWidgetItem *> setupItemList = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
-    foreach (QTreeWidgetItem *setupItem, setupItemList)
-      setupItem->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, QString());
+	if ( dontIgnoreNameChange ) {
+		QList<QTreeWidgetItem *> setupItemList = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
+		foreach (QTreeWidgetItem *setupItem, setupItemList)
+			setupItem->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, QString());
 
-    QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(text, Qt::MatchExactly);
-    if ( matchedItemList.count() > 0 ) {
-      matchedItemList[0]->setSelected(true);
-      listWidgetDeviceConfigurations->setCurrentItem(matchedItemList[0]);
-      listWidgetDeviceConfigurations->scrollToItem(matchedItemList[0]);
-      QString configName = matchedItemList[0]->text();
-      if ( configurationMap.contains(configName) ) {
-        QPair<QStringList, QStringList> valuePair = configurationMap[configName];
-        int i;
-        for (i = 0; i < valuePair.first.count(); i++) {
-          QList<QTreeWidgetItem *> itemList = treeWidgetDeviceSetup->findItems(valuePair.first[i], Qt::MatchExactly);
-          if ( itemList.count() > 0 )
-            itemList[0]->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, valuePair.second[i]);
-        }
-      }
-      if ( slotMap.contains(configName) ) {
-	      QPair<QStringList, QStringList> valuePair = slotMap[configName];
-	      for (int i = 0; i < valuePair.first.count(); i++) {
-		      QList<QTreeWidgetItem *> itemList = treeWidgetSlotOptions->findItems(valuePair.first[i], Qt::MatchExactly);
-		      if ( itemList.count() > 0 ) {
-			      QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(itemList[0], QMC2_SLOTCONFIG_COLUMN_OPTION);
-			      if ( cb ) {
-				      int index = cb->findText(QString("%1 (%2)").arg(valuePair.second[i]).arg(messSlotNameMap[valuePair.second[i]]));
-				      if ( index >= 0 )
-					      cb->setCurrentIndex(index);
-			      }
-		      }
-	      }
-      }
-    } else {
-      listWidgetDeviceConfigurations->clearSelection();
-      toolButtonRemoveConfiguration->setEnabled(false);
-      toolButtonCloneConfiguration->setEnabled(false);
-    }
-  }
-  dontIgnoreNameChange = false;
+		QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(text, Qt::MatchExactly);
+		if ( matchedItemList.count() > 0 ) {
+			matchedItemList[0]->setSelected(true);
+			listWidgetDeviceConfigurations->setCurrentItem(matchedItemList[0]);
+			listWidgetDeviceConfigurations->scrollToItem(matchedItemList[0]);
+			QString configName = matchedItemList[0]->text();
+			if ( configurationMap.contains(configName) ) {
+				QPair<QStringList, QStringList> valuePair = configurationMap[configName];
+				for (int i = 0; i < valuePair.first.count(); i++) {
+					QList<QTreeWidgetItem *> itemList = treeWidgetDeviceSetup->findItems(valuePair.first[i], Qt::MatchExactly);
+					if ( itemList.count() > 0 )
+						itemList[0]->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, valuePair.second[i]);
+				}
+			}
+			if ( slotMap.contains(configName) ) {
+				QPair<QStringList, QStringList> valuePair = slotMap[configName];
+				for (int i = 0; i < valuePair.first.count(); i++) {
+					QList<QTreeWidgetItem *> itemList = treeWidgetSlotOptions->findItems(valuePair.first[i], Qt::MatchExactly);
+					if ( itemList.count() > 0 ) {
+						QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(itemList[0], QMC2_SLOTCONFIG_COLUMN_OPTION);
+						if ( cb ) {
+							int index = cb->findText(QString("%1 (%2)").arg(valuePair.second[i]).arg(messSlotNameMap[valuePair.second[i]]));
+							if ( index >= 0 )
+								cb->setCurrentIndex(index);
+						}
+					}
+				}
+			}
+		} else {
+			listWidgetDeviceConfigurations->clearSelection();
+			toolButtonRemoveConfiguration->setEnabled(false);
+			toolButtonCloneConfiguration->setEnabled(false);
+		}
+	}
+	dontIgnoreNameChange = false;
 }
 
 void MESSDeviceConfigurator::editorDataChanged(const QString &text)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::editorDataChanged(const QString &text = %1)").arg(text));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::editorDataChanged(const QString &text = %1)").arg(text));
 #endif
 
-  if ( lineEditConfigurationName->text().isEmpty() && !text.isEmpty() ) {
-    int copies = 0;
-    QString sourceName = text;
-    QFileInfo fi(sourceName);
-    sourceName = fi.completeBaseName();
-    QString targetName = sourceName;
-    while ( configurationMap.contains(targetName) )
-      targetName = tr("%1. variant of ").arg(++copies) + sourceName;
-    lineEditConfigurationName->setText(targetName);
-  }
+	if ( lineEditConfigurationName->text().isEmpty() && !text.isEmpty() ) {
+		int copies = 0;
+		QString sourceName = text;
+		QFileInfo fi(sourceName);
+		sourceName = fi.completeBaseName();
+		QString targetName = sourceName;
+		while ( configurationMap.contains(targetName) )
+			targetName = tr("%1. variant of ").arg(++copies) + sourceName;
+		lineEditConfigurationName->setText(targetName);
+	}
 }
 
 void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_currentTextChanged(const QString &text)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_currentTextChanged(const QString &text = %1)").arg(text));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_currentTextChanged(const QString &text = %1)").arg(text));
 #endif
 
-  dontIgnoreNameChange = true;
-  lineEditConfigurationName->setText(text);
-  dontIgnoreNameChange = false;
+	dontIgnoreNameChange = true;
+	lineEditConfigurationName->setText(text);
+	dontIgnoreNameChange = false;
 }
 
 void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *item)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem * = %1)").arg((qulonglong)item));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem * = %1)").arg((qulonglong)item));
 #endif
 
-  dontIgnoreNameChange = true;
-  lineEditConfigurationName->setText(item->text());
-  dontIgnoreNameChange = false;
+	dontIgnoreNameChange = true;
+	lineEditConfigurationName->setText(item->text());
+	dontIgnoreNameChange = false;
 }
 
 void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &point)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &point = (%1, %2))").arg(point.x()).arg(point.y()));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &point = (%1, %2))").arg(point.x()).arg(point.y()));
 #endif
 
-  QListWidgetItem *item = listWidgetDeviceConfigurations->itemAt(point);
-  if ( item ) {
-    if ( item->text() == tr("No devices") )
-      actionRemoveConfiguration->setVisible(false);
-    else
-      actionRemoveConfiguration->setVisible(true);
-    listWidgetDeviceConfigurations->setCurrentItem(item);
-    listWidgetDeviceConfigurations->setItemSelected(item, true);
-    deviceConfigurationListMenu->move(listWidgetDeviceConfigurations->viewport()->mapToGlobal(point));
-    deviceConfigurationListMenu->show();
-  }
+	QListWidgetItem *item = listWidgetDeviceConfigurations->itemAt(point);
+	if ( item ) {
+		if ( item->text() == tr("No devices") )
+			actionRemoveConfiguration->setVisible(false);
+		else
+			actionRemoveConfiguration->setVisible(true);
+		listWidgetDeviceConfigurations->setCurrentItem(item);
+		listWidgetDeviceConfigurations->setItemSelected(item, true);
+		deviceConfigurationListMenu->move(listWidgetDeviceConfigurations->viewport()->mapToGlobal(point));
+		deviceConfigurationListMenu->show();
+	}
 }
 
 void MESSDeviceConfigurator::on_treeWidgetDeviceSetup_customContextMenuRequested(const QPoint &p)
@@ -1047,66 +1039,66 @@ void MESSDeviceConfigurator::actionSelectFile_triggered()
 void MESSDeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::actionSelectDefaultDeviceDirectory_triggered()");
 #endif
 
-  QString group = QString("MESS/Configuration/Devices/%1").arg(messMachineName);
-  QString path = qmc2Config->value(group + "/DefaultDeviceDirectory", "").toString();
+	QString group = QString("MESS/Configuration/Devices/%1").arg(messMachineName);
+	QString path = qmc2Config->value(group + "/DefaultDeviceDirectory", "").toString();
 
-  if ( path.isEmpty() ) {
-    path = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
-    QDir machineSoftwareFolder(path + "/" + messMachineName);
-    if ( machineSoftwareFolder.exists() )
-      path = machineSoftwareFolder.canonicalPath();
-  }
+	if ( path.isEmpty() ) {
+		path = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
+		QDir machineSoftwareFolder(path + "/" + messMachineName);
+		if ( machineSoftwareFolder.exists() )
+			path = machineSoftwareFolder.canonicalPath();
+	}
 
-  qmc2Config->beginGroup(group);
+	qmc2Config->beginGroup(group);
 
-  QString s = QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(messMachineName), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
-  if ( !s.isEmpty() )
-    qmc2Config->setValue("DefaultDeviceDirectory", s);
-  qmc2FileEditStartPath = qmc2Config->value("DefaultDeviceDirectory").toString();
+	QString s = QFileDialog::getExistingDirectory(this, tr("Choose default device directory for '%1'").arg(messMachineName), path, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+	if ( !s.isEmpty() )
+		qmc2Config->setValue("DefaultDeviceDirectory", s);
+	qmc2FileEditStartPath = qmc2Config->value("DefaultDeviceDirectory").toString();
 
-  qmc2Config->endGroup();
+	qmc2Config->endGroup();
 
-  if ( qmc2FileEditStartPath.isEmpty() ) {
-    qmc2FileEditStartPath = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
-    QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + messMachineName);
-    if ( machineSoftwareFolder.exists() )
-      qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
-  }
+	if ( qmc2FileEditStartPath.isEmpty() ) {
+		qmc2FileEditStartPath = qmc2Config->value("MESS/FilesAndDirectories/GeneralSoftwareFolder", ".").toString();
+		QDir machineSoftwareFolder(qmc2FileEditStartPath + "/" + messMachineName);
+		if ( machineSoftwareFolder.exists() )
+			qmc2FileEditStartPath = machineSoftwareFolder.canonicalPath();
+	}
 }
 
 void MESSDeviceConfigurator::closeEvent(QCloseEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  if ( e )
-    e->accept();
+	if ( e )
+		e->accept();
 }
 
 void MESSDeviceConfigurator::hideEvent(QHideEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  save();
+	save();
 
-  if ( e )
-    e->accept();
+	if ( e )
+		e->accept();
 }
 
 void MESSDeviceConfigurator::showEvent(QShowEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-  if ( e )
-    e->accept();
+	if ( e )
+		e->accept();
 }
 
 void MESSDeviceConfigurator::on_tabWidgetDeviceSetup_currentChanged(int index)
@@ -1580,16 +1572,16 @@ void MESSDeviceConfigurator::on_splitterFileChooser_splitterMoved(int, int)
 MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent = %1)").arg((qulonglong) parent));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent = %1)").arg((qulonglong) parent));
 #endif
 
-  parentTreeWidget = parent;
+	parentTreeWidget = parent;
 }
 
 MESSDeviceConfiguratorXmlHandler::~MESSDeviceConfiguratorXmlHandler()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::~MESSDeviceConfiguratorXmlHandler()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::~MESSDeviceConfiguratorXmlHandler()");
 #endif
 
 }
@@ -1597,55 +1589,55 @@ MESSDeviceConfiguratorXmlHandler::~MESSDeviceConfiguratorXmlHandler()
 bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::startElement(...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::startElement(...)");
 #endif
 
-  if ( qName == "device" ) {
-    deviceType = attributes.value("type");
-    deviceTag = attributes.value("tag");
-    deviceInstances.clear();
-    deviceExtensions.clear();
-    deviceBriefName.clear();
-  } else if ( qName == "instance" ) {
-    deviceInstances << attributes.value("name");
-    deviceBriefName = attributes.value("briefname");
-  } else if ( qName == "extension" ) {
-    deviceExtensions << attributes.value("name");
-  }
+	if ( qName == "device" ) {
+		deviceType = attributes.value("type");
+		deviceTag = attributes.value("tag");
+		deviceInstances.clear();
+		deviceExtensions.clear();
+		deviceBriefName.clear();
+	} else if ( qName == "instance" ) {
+		deviceInstances << attributes.value("name");
+		deviceBriefName = attributes.value("briefname");
+	} else if ( qName == "extension" )
+		deviceExtensions << attributes.value("name");
 
-  return true;
+	return true;
 }
 
 bool MESSDeviceConfiguratorXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::endElement(...)");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::endElement(...)");
 #endif
 
-  if ( qName == "device" ) {
-    foreach (QString instance, deviceInstances) {
-      if ( !instance.isEmpty() ) {
-        QTreeWidgetItem *deviceItem = new QTreeWidgetItem(parentTreeWidget);
-        deviceItem->setText(QMC2_DEVCONFIG_COLUMN_NAME, instance);
-        if ( !deviceType.isEmpty() ) deviceItem->setIcon(QMC2_DEVCONFIG_COLUMN_NAME, messDevIconMap[deviceType]);
-        deviceItem->setText(QMC2_DEVCONFIG_COLUMN_BRIEF, deviceBriefName);
-        deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TYPE, deviceType);
-        deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TAG, deviceTag);
-        deviceItem->setText(QMC2_DEVCONFIG_COLUMN_EXT, deviceExtensions.join("/"));
-        parentTreeWidget->openPersistentEditor(deviceItem, QMC2_DEVCONFIG_COLUMN_FILE);
-        deviceItem->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, QString());
-      }
-    }
-  }
+	if ( qName == "device" ) {
+		foreach (QString instance, deviceInstances) {
+			if ( !instance.isEmpty() ) {
+				QTreeWidgetItem *deviceItem = new QTreeWidgetItem(parentTreeWidget);
+				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_NAME, instance);
+				if ( !deviceType.isEmpty() )
+					deviceItem->setIcon(QMC2_DEVCONFIG_COLUMN_NAME, messDevIconMap[deviceType]);
+				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_BRIEF, deviceBriefName);
+				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TYPE, deviceType);
+				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_TAG, deviceTag);
+				deviceItem->setText(QMC2_DEVCONFIG_COLUMN_EXT, deviceExtensions.join("/"));
+				parentTreeWidget->openPersistentEditor(deviceItem, QMC2_DEVCONFIG_COLUMN_FILE);
+				deviceItem->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, QString());
+			}
+		}
+	}
 
-  return true;
+	return true;
 }
 
 bool MESSDeviceConfiguratorXmlHandler::characters(const QString &str)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfiguratorXmlHandler::characters(const QString &str = %1)").arg(str));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfiguratorXmlHandler::characters(const QString &str = %1)").arg(str));
 #endif
 
-  return true;
+	return true;
 }
