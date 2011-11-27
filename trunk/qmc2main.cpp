@@ -1569,6 +1569,16 @@ void MainWindow::on_actionPlay_activated()
 #else
 					args << QString("-%1").arg(instance) << file.replace("~", "$HOME");
 #endif
+					QList<QTreeWidgetItem *> allSlotItems = qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard);
+					foreach (QTreeWidgetItem *item, allSlotItems) {
+						QString slotName = item->data(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::EditRole).toString();
+						if ( !slotName.isEmpty() ) {
+							QComboBox *cb = (QComboBox *)qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
+							if ( cb )
+								if ( cb->currentIndex() > 0 )
+									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+						}
+					}
 				}
 			}
 			break;
@@ -1590,6 +1600,17 @@ void MainWindow::on_actionPlay_activated()
 						valuePair = qmc2MESSDeviceConfigurator->slotMap[configName];
 						for (i = 0; i < valuePair.first.count(); i++)
 							args << QString("-%1").arg(valuePair.first[i]) << valuePair.second[i];
+					}
+				} else {
+					QList<QTreeWidgetItem *> allSlotItems = qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard);
+					foreach (QTreeWidgetItem *item, allSlotItems) {
+						QString slotName = item->data(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::EditRole).toString();
+						if ( !slotName.isEmpty() ) {
+							QComboBox *cb = (QComboBox *)qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
+							if ( cb )
+								if ( cb->currentIndex() > 0 )
+									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+						}
 					}
 				}
 			}

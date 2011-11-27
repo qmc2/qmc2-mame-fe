@@ -85,9 +85,11 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		~MESSDeviceConfigurator();
 
 		QString &getXmlData(QString);
+		QString &getXmlDataWithEnabledSlots(QString, QString);
 
 	public slots:
 		bool readSystemSlots();
+		bool refreshDeviceMap();
 		bool load();
 		bool save();
 
@@ -133,6 +135,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		void comboBoxChooserFilterPattern_editTextChanged_delayed();
 		void treeViewFileChooser_toggleArchive();
 #endif
+		void slotOptionChanged(int);
 
 // misc
 		void editorDataChanged(const QString &);
