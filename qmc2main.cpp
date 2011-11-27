@@ -3466,7 +3466,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         qmc2MESSDeviceConfigurator = new MESSDeviceConfigurator(machineName, tabDevices);
 	QTimer::singleShot(0, qmc2MESSDeviceConfigurator, SLOT(load()));
         layout->addWidget(qmc2MESSDeviceConfigurator);
-        tabDevices->setLayout(layout);
+        if ( !tabDevices->layout() )
+          tabDevices->setLayout(layout);
         qmc2MESSDeviceConfigurator->show();
         qmc2LastDeviceConfigItem = qmc2CurrentItem;
         tabDevices->setUpdatesEnabled(true);

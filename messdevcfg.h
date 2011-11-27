@@ -56,6 +56,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		bool dontIgnoreNameChange;
 		bool refreshRunning;
 		bool updateSlots;
+		bool fileChooserSetup;
 		MESSDeviceFileDelegate fileEditDelegate;
 		QString messMachineName;
 		QMap<QString, QPair<QStringList, QStringList> > configurationMap;
@@ -81,7 +82,8 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		QFileSystemModel *dirModel;
 		QModelIndex modelIndexFileModel;
 		QModelIndex modelIndexDirModel;
-		bool fileChooserSetup;
+		QString normalXmlBuffer;
+		QString slotXmlBuffer;
 
 		MESSDeviceConfigurator(QString, QWidget *);
 		~MESSDeviceConfigurator();
