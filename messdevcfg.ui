@@ -284,9 +284,6 @@
            </property>
            <item row="0" column="0">
             <widget class="QTreeWidget" name="treeWidgetSlotOptions">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
                <horstretch>0</horstretch>
