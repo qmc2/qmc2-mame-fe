@@ -670,8 +670,11 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 		treeWidgetDeviceSetup->setUpdatesEnabled(true);
 	}
 
-	if ( !configName.isEmpty() )
-		on_listWidgetDeviceConfigurations_itemClicked(itemList[0]);
+	if ( !configName.isEmpty() ) {
+		dontIgnoreNameChange = true;
+		on_lineEditConfigurationName_textChanged(configName);
+		dontIgnoreNameChange = false;
+	}
 }
 
 bool MESSDeviceConfigurator::load()
