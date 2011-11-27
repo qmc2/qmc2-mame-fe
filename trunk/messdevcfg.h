@@ -54,6 +54,8 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 
 	public:
 		bool dontIgnoreNameChange;
+		bool refreshRunning;
+		bool updateSlots;
 		MESSDeviceFileDelegate fileEditDelegate;
 		QString messMachineName;
 		QMap<QString, QPair<QStringList, QStringList> > configurationMap;
