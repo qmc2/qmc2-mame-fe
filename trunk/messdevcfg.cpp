@@ -325,9 +325,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName,
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName = %1, QString configName = %2)").arg(machineName).arg(configName));
 #endif
 
-	static QString xmlBuffer;
-
-	xmlBuffer.clear();
+	slotXmlBuffer.clear();
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
 	QProcess commandProc;
@@ -356,8 +354,6 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName,
 	}
 
 	args << "-listxml";
-	
-	qApp->processEvents();
 
 	bool commandProcStarted = false;
 	int retries = 0;
@@ -376,7 +372,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName,
 		}
 	} else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
-		return xmlBuffer;
+		return slotXmlBuffer;
 	}
 
 #if defined(QMC2_SDLMESS)
@@ -391,30 +387,31 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName,
 
 	if ( commandProcStarted && qmc2TempXml.open(QFile::ReadOnly) ) {
 		QTextStream ts(&qmc2TempXml);
-		qApp->processEvents();
-		xmlBuffer = ts.readAll();
-		qApp->processEvents();
+		slotXmlBuffer = ts.readAll();
 #if defined(Q_WS_WIN)
-		xmlBuffer.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
+		slotXmlBuffer.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
 		qmc2TempXml.close();
 		qmc2TempXml.remove();
+		if ( !slotXmlBuffer.isEmpty() ) {
+			QStringList xmlLines = slotXmlBuffer.split("\n");
+			qApp->processEvents();
+			slotXmlBuffer.clear();
+			if ( !xmlLines.isEmpty() ) {
+				int i = 0;
+				QString s = "<machine name=\"" + machineName + "\"";
+				while ( !xmlLines[i].contains(s) && i < xmlLines.count() ) i++;
+				slotXmlBuffer = "<?xml version=\"1.0\"?>\n";
+				if ( i < xmlLines.count() ) {
+					while ( !xmlLines[i].contains("</machine>") && i < xmlLines.count() )
+						slotXmlBuffer += xmlLines[i++].simplified() + "\n";
+					slotXmlBuffer += "</machine>\n";
+				}
+			}
+		}
 	}
 
-	QStringList xmlLines = xmlBuffer.split("\n");
-	qApp->processEvents();
-	xmlBuffer.clear();
-	if ( !xmlLines.isEmpty() ) {
-		int i = 0;
-		QString s = "<machine name=\"" + machineName + "\"";
-		while ( !xmlLines[i].contains(s) ) i++;
-		xmlBuffer = "<?xml version=\"1.0\"?>\n";
-		while ( !xmlLines[i].contains("</machine>") )
-			xmlBuffer += xmlLines[i++].simplified() + "\n";
-		xmlBuffer += "</machine>\n";
-	}
-
-	return xmlBuffer;
+	return slotXmlBuffer;
 }
 
 QString &MESSDeviceConfigurator::getXmlData(QString machineName)
@@ -423,22 +420,20 @@ QString &MESSDeviceConfigurator::getXmlData(QString machineName)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::getXmlData(QString machineName = %1)").arg(machineName));
 #endif
 
-	static QString xmlBuffer;
+	normalXmlBuffer = messXmlDataCache[machineName];
 
-	xmlBuffer = messXmlDataCache[machineName];
-
-	if ( xmlBuffer.isEmpty() ) {
+	if ( normalXmlBuffer.isEmpty() ) {
 		int i = 0;
 		QString s = "<machine name=\"" + machineName + "\"";
 		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-		xmlBuffer = "<?xml version=\"1.0\"?>\n";
+		normalXmlBuffer = "<?xml version=\"1.0\"?>\n";
 		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
-			xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
-		xmlBuffer += "</machine>\n";
-		messXmlDataCache[machineName] = xmlBuffer;
+			normalXmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
+		normalXmlBuffer += "</machine>\n";
+		messXmlDataCache[machineName] = normalXmlBuffer;
 	}
 
-	return xmlBuffer;
+	return normalXmlBuffer;
 }
 
 bool MESSDeviceConfigurator::readSystemSlots()
@@ -1096,13 +1091,13 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 						}
 					}
 				}
+				refreshDeviceMap();
 			}
 		} else {
 			listWidgetDeviceConfigurations->clearSelection();
 			toolButtonRemoveConfiguration->setEnabled(false);
 			toolButtonCloneConfiguration->setEnabled(false);
 		}
-		refreshDeviceMap();
 	}
 	dontIgnoreNameChange = false;
 }
