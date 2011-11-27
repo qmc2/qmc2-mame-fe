@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="SDLMESS" version="0.144" format="0.2.4">
+<template emulator="SDLMESS" version="0.144u1" format="0.2.4">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
@@ -610,13 +610,6 @@
       <description lang="pl" text="Decyduje, czy ma być używana naturalna klawiatura"/>
       <description lang="fr" text="Spécifier l'utilisation du clavier naturel ou pas"/>
       <description lang="pt" text="Especificar se deve ser usado teclado natural ou não"/>
-    </option>
-    <option name="uimodekey" type="string" default="SCRLOCK" default.Darwin="DELETE">
-      <description lang="us" text="Specifies the key used to toggle between full and partial UI mode"/>
-      <description lang="de" text="Gibt an, welche Taste für das Umschalten zwischen vollem und partiellem UI Modus verwendet wird"/>
-      <description lang="pl" text="Ustawia klawisz przełączający pomiędzy pełnym a częściowym trybem interfejsu użytkownika"/>
-      <description lang="fr" text="Spécifier la touche à utiliser pour basculer entre l'interface complète ou partielle"/>
-      <description lang="pt" text="Especificar a tecla usada para alternar entre interface total ou parcial"/>
     </option>
     <option name="joystick_contradictory" type="bool" default="false">
       <description lang="us" text="Enable contradictory direction digital joystick input at the same time"/>
@@ -1411,6 +1404,13 @@
       <description lang="pl" text="Plik mapy klawiatury"/>
       <description lang="fr" text="Fichier pour le mapping de clavier"/>
       <description lang="pt" text="Arquivo de mapeamento de teclado"/>
+    </option>
+    <option name="uimodekey" type="string" default="SCRLOCK" default.Darwin="DELETE">
+      <description lang="us" text="Specifies the key used to toggle between full and partial UI mode"/>
+      <description lang="de" text="Gibt an, welche Taste für das Umschalten zwischen vollem und partiellem UI Modus verwendet wird"/>
+      <description lang="pl" text="Ustawia klawisz przełączający pomiędzy pełnym a częściowym trybem interfejsu użytkownika"/>
+      <description lang="fr" text="Spécifier la touche à utiliser pour basculer entre l'interface complète ou partielle"/>
+      <description lang="pt" text="Especificar a tecla usada para alternar entre interface total ou parcial"/>
     </option>
   </section>
   <section name="joystick_mapping">
