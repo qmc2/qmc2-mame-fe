@@ -59,6 +59,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	horizontalLayout->removeItem(horizontalSpacer);
 #endif
 
+	oldMin = 0;
+	oldMax = 1;
 	comboBoxSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
 
 	QFontMetrics fm(QApplication::font());
@@ -851,8 +853,8 @@ void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( fileSWLCache.isOpen() )
 		fileSWLCache.close();
 
-	qmc2MainWindow->progressBarGamelist->reset();
 	qmc2MainWindow->progressBarGamelist->setRange(oldMin, oldMax);
+	qmc2MainWindow->progressBarGamelist->reset();
 }
 
 void SoftwareList::loadReadyReadStandardOutput()
