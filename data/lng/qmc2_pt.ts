@@ -11195,7 +11195,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2730"/>
         <source>Enable ROM state filtering?</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar filtro por estado da ROM?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2849"/>
@@ -12266,7 +12266,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="1765"/>
         <location filename="../../softwarelist.cpp" line="2435"/>
         <source>Auto mount</source>
-        <translation type="unfinished"></translation>
+        <translation>Montar automaticamente</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1737"/>
@@ -12276,67 +12276,67 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="2440"/>
         <location filename="../../softwarelist.cpp" line="2444"/>
         <source>Not mounted</source>
-        <translation type="unfinished"></translation>
+        <translation>Não montado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1739"/>
         <location filename="../../softwarelist.cpp" line="1772"/>
         <location filename="../../softwarelist.cpp" line="2446"/>
         <source>Mounted on:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mointado em:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1744"/>
         <location filename="../../softwarelist.cpp" line="2434"/>
         <source>Don&apos;t mount</source>
-        <translation type="unfinished"></translation>
+        <translation>Não montar</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1927"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Aguardando dados...</translation>
+        <translation>Aguardando por dados...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2426"/>
         <source>Part:</source>
-        <translation type="unfinished"></translation>
+        <translation>Parte:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2451"/>
         <source>No mount device</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum dispositivo montado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2452"/>
         <source>Unmanaged</source>
-        <translation type="unfinished"></translation>
+        <translation>Não gerenciado</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2458"/>
         <source>Data area:</source>
-        <translation type="unfinished"></translation>
+        <translation>Área de dados:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2461"/>
         <location filename="../../softwarelist.cpp" line="2469"/>
         <location filename="../../softwarelist.cpp" line="2479"/>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2466"/>
         <source>Disk area:</source>
-        <translation type="unfinished"></translation>
+        <translation>Área do disco:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2482"/>
         <source>CRC:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2493"/>
         <source>SHA1:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -14215,7 +14215,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romstatusexport.cpp" line="43"/>
         <source>All formats</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos os formatos</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="182"/>
@@ -15061,17 +15061,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.ui" line="89"/>
         <source>Export the current software-list to an ASCII or CSV formatted file (or the clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar a lista de software atual para um arquivo em formato CSV ou ASCII (ou para a área de transferência)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="92"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="112"/>
         <source>Open options menu for the favorites list</source>
-        <translation type="unfinished"></translation>
+        <translation>Abrir menu de opções para a lista de favoritos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="132"/>
@@ -15241,12 +15241,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../softwarelist.cpp" line="118"/>
         <source>Load favorites from a file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregar favoritos de um arquivo...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="123"/>
         <source>Save favorites to a file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar favoritos para um arquivo...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="245"/>
@@ -15345,7 +15345,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="1487"/>
         <location filename="../../softwarelist.cpp" line="1820"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Aguardando dados...</translation>
+        <translation>Aguardando por dados...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="838"/>
@@ -15399,80 +15399,80 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.cpp" line="1149"/>
         <location filename="../../softwarelist.cpp" line="1174"/>
         <source>FATAL: error while parsing XML data for software list entry &apos;%1:%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: erro durante a análise dos dados do XML para a entrada da lista de software &apos;%1:%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1126"/>
         <location filename="../../softwarelist.cpp" line="1151"/>
         <location filename="../../softwarelist.cpp" line="1176"/>
         <source>FATAL: couldn&apos;t find XML data for software list &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível encontrar dados para a lista de software &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1791"/>
         <source>Choose file to merge favorites from</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolher arquivo de origem para mesclar os favoritos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1791"/>
         <location filename="../../softwarelist.cpp" line="1859"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos os arquivos (*)</translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1802"/>
         <source>loading software-favorites for &apos;%1&apos; from &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>carregando favoritos de software para &apos;%1&apos; de &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1832"/>
         <source>entry &apos;%1:%2&apos; successfully imported</source>
-        <translation type="unfinished"></translation>
+        <translation>entrada &apos;%1:%2&apos; importada com sucesso</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1834"/>
         <source>WARNING: entry &apos;%1:%2&apos; cannot be associated with any known software for this system (line %3 ignored)</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: entrada &apos;%1:%2&apos; não pode ser associada com qualquer software conhecido para esse sistema (linha %3 ignorada)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1836"/>
         <source>WARNING: a favorite entry for &apos;%1:%2&apos; already exists (line %3 ignored)</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: uma entrada de favorito para &apos;%1:%2&apos; já existe (linha %3 ignorada)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1838"/>
         <source>WARNING: syntax error on line %1 (ignored)</source>
-        <translation type="unfinished"></translation>
+        <translation>AVISO: erro de sintaxe na linha %1 (ignorada)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1842"/>
         <source>done (loading software-favorites for &apos;%1&apos; from &apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (carregando favoritos de software para &apos;%1&apos; de &apos;%2&apos;)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1844"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for reading, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível abrir &apos;%1&apos; para leitura. por favor verifique as permissões</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1859"/>
         <source>Choose file to store favorites to</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o arquivo para guardar os favoritos</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1870"/>
         <source>saving software-favorites for &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>salvando favoritos de software para &apos;%1&apos; de &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1892"/>
         <source>done (saving software-favorites for &apos;%1&apos; to &apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (salvando favoritos de software para &apos;%1&apos; de &apos;%2&apos;)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1894"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossível abrir &apos;%1&apos; para escrita. por favor verifique as permissões</translation>
     </message>
 </context>
 <context>
@@ -15480,329 +15480,329 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../swlistexport.ui" line="33"/>
         <source>Browse ASCII export file</source>
-        <translation type="unfinished">Procurar pelo arquivo de exportação ASCII</translation>
+        <translation>Procurar pelo arquivo de exportação ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="36"/>
         <source>ASCII file</source>
-        <translation type="unfinished">Arquivo ASCII</translation>
+        <translation>Arquivo ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="56"/>
         <source>ASCII export file -- use $ID$ as a placeholder for the current driver</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de exportação ASCII -- use $ID$ como um placeholder para o driver atual</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="63"/>
         <source>Column width</source>
-        <translation type="unfinished">Tamanho da coluna</translation>
+        <translation>Tamanho da coluna</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="79"/>
         <source>Maximum column width for ASCII export (0 = unlimited)</source>
-        <translation type="unfinished">Tamanho máximo da coluna para exportação ASCII (0 = ilimitado)</translation>
+        <translation>Tamanho máximo da coluna para exportação ASCII (0 = ilimitado)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="82"/>
         <source>unlimited</source>
-        <translation type="unfinished">ilimitado</translation>
+        <translation>ilimitado</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="134"/>
         <source>Browse CSV export file</source>
-        <translation type="unfinished">Procurar pelo arquivo de exportação CSV</translation>
+        <translation>Procurar pelo arquivo de exportação CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="137"/>
         <source>CSV file</source>
-        <translation type="unfinished">Arquivo CSV</translation>
+        <translation>Arquivo CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="157"/>
         <source>CSV export file -- use $ID$ as a placeholder for the current driver</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de exportação CSV -- use $ID$ como um placeholder para o driver atual</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="164"/>
         <source>Separator</source>
-        <translation type="unfinished">Separador</translation>
+        <translation>Separador</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="192"/>
         <source>Field separator for CSV export</source>
-        <translation type="unfinished">Separador de campo para exportação em CSV</translation>
+        <translation>Separador de campo para exportação em CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="195"/>
         <source>;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="221"/>
         <source>Delimiter</source>
-        <translation type="unfinished">Delimitador</translation>
+        <translation>Delimitador</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="249"/>
         <source>Text delimiter for CSV export</source>
-        <translation type="unfinished">Delimitador de texto para exportação em CSV</translation>
+        <translation>Delimitador de texto para exportação em CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="252"/>
         <source>&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="301"/>
         <source>Select the columns you want to export and the order in which they are to be listed (drag &amp; drop entries around)</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione as colunas que você deseja exportar e a ordem na qual elas deverão ser listadas (arraste as entradas para ordenar)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="314"/>
         <location filename="../../swlistexport.ui" line="500"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Title</source>
-        <translation type="unfinished">Título</translation>
+        <translation>Título</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="319"/>
         <location filename="../../swlistexport.ui" line="505"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="324"/>
         <location filename="../../swlistexport.ui" line="510"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Publisher</source>
-        <translation type="unfinished">Editor</translation>
+        <translation>Editor</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="329"/>
         <location filename="../../swlistexport.ui" line="515"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Year</source>
-        <translation type="unfinished">Ano</translation>
+        <translation>Ano</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="334"/>
         <location filename="../../swlistexport.ui" line="520"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Part</source>
-        <translation type="unfinished"></translation>
+        <translation>Parte</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="339"/>
         <location filename="../../swlistexport.ui" line="525"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Interface</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="344"/>
         <location filename="../../swlistexport.ui" line="530"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>List</source>
-        <translation type="unfinished">Lista</translation>
+        <translation>Lista</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="354"/>
         <source>Export now!</source>
-        <translation type="unfinished">Exportar agora!</translation>
+        <translation>Exportar agora!</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="357"/>
         <source>&amp;Export</source>
-        <translation type="unfinished">&amp;Exportar</translation>
+        <translation>&amp;Exportar</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="368"/>
         <source>Close software-list export</source>
-        <translation type="unfinished"></translation>
+        <translation>Fechar exportação da lista de software</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="371"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Fechar</translation>
+        <translation>&amp;Fechar</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="382"/>
         <source>Export progress indicator</source>
-        <translation type="unfinished">Indicador de progresso da exportação</translation>
+        <translation>Indicador de progresso da exportação</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="388"/>
         <source>%p%</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="403"/>
         <source>Sort criteria</source>
-        <translation type="unfinished">Critério de ordenação</translation>
+        <translation>Critério de ordenação</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="416"/>
         <source>Sort order</source>
-        <translation type="unfinished">Ordem</translation>
+        <translation>Ordem</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="429"/>
         <source>Output format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato de saída</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="442"/>
         <source>Select output format</source>
-        <translation type="unfinished">Selecione o formato de saída</translation>
+        <translation>Selecione o formato de saída</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="446"/>
         <source>ASCII</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="451"/>
         <source>CSV</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="465"/>
         <source>Select sort order</source>
-        <translation type="unfinished">Selecione a ordem</translation>
+        <translation>Selecione a ordem</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="469"/>
         <source>Ascending</source>
-        <translation type="unfinished">Ascendente</translation>
+        <translation>Ascendente</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="478"/>
         <source>Descending</source>
-        <translation type="unfinished">Descendente</translation>
+        <translation>Descendente</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="496"/>
         <source>Select sort criteria</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o critério de ordenação</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="538"/>
         <source>Overwrite existing files without asking what to do</source>
-        <translation type="unfinished">Sobrescrever arquivos existentes sem perguntar</translation>
+        <translation>Sobrescrever arquivos existentes sem perguntar</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="541"/>
         <source>Overwrite files blindly</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobrescerver arquivos cegamente</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="551"/>
         <source>Export to the system clipboard instead of a file</source>
-        <translation type="unfinished">Exportar para a área de transferência ao invés de um arquivo</translation>
+        <translation>Exportar para a área de transferência ao invés de um arquivo</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="554"/>
         <source>Export to clipboard</source>
-        <translation type="unfinished">Exportar para a área de transferência</translation>
+        <translation>Exportar para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="564"/>
         <source>Include column header texts</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir textos do cabeçalho das colunas</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="567"/>
         <source>Include column headers</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir cabeçalhos das colunas</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="31"/>
         <source>Both formats</source>
-        <translation type="unfinished"></translation>
+        <translation>Ambos os formatos</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="33"/>
         <source>Export software-list for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar lista de software para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="180"/>
         <location filename="../../swlistexport.cpp" line="312"/>
         <source>Confirm</source>
-        <translation type="unfinished">Confirmar</translation>
+        <translation>Confirmar</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="180"/>
         <location filename="../../swlistexport.cpp" line="312"/>
         <source>Overwrite existing file?</source>
-        <translation type="unfinished">Sobrescrever arquivo existente?</translation>
+        <translation>Sobrescrever arquivo existente?</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="191"/>
         <source>exporting current software-list in ASCII format to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>exportando lista de software atual no formato ASCII para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="193"/>
         <source>WARNING: can&apos;t open ASCII export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished">AVISO: impossível abrir o arquivo de exportação para ASCII &apos;%1&apos; para escrita, por favor verifique as permissões</translation>
+        <translation>AVISO: impossível abrir o arquivo de exportação para ASCII &apos;%1&apos; para escrita, por favor verifique as permissões</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="198"/>
         <source>exporting current software-list in ASCII format to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>exportando lista de software atual no formato ASCII para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="274"/>
         <source>done (exporting current software-list in ASCII format to clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (exportando lista de software atual no formato ASCII para a área de transferência)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="277"/>
         <source>done (exporting current software-list in ASCII format to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (exportando lista de software atual no formato ASCII para &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="323"/>
         <source>exporting current software-list in CSV format to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>exportando lista de software atual no formato CSV para &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="325"/>
         <source>WARNING: can&apos;t open CSV export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished">AVISO: impossível abrir o arquivo de exportação para CSV &apos;%1&apos; para escrita, por favor verifique as permissões</translation>
+        <translation>AVISO: impossível abrir o arquivo de exportação para CSV &apos;%1&apos; para escrita, por favor verifique as permissões</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="330"/>
         <source>exporting current software-list in CSV format to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>exportando lista de software atual no formato CSV para a área de transferência</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="389"/>
         <source>done (exporting current software-list in CSV format to clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (exportando lista de software atual no formato CSV para a área de transferência)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="392"/>
         <source>done (exporting current software-list in CSV format to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>feito (exportando lista de software atual no formato CSV para &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="404"/>
         <source>Choose ASCII export file</source>
-        <translation type="unfinished">Escolha arquivo de exportação em ASCII</translation>
+        <translation>Escolha arquivo de exportação em ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="404"/>
         <location filename="../../swlistexport.cpp" line="418"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Todos os arquivos (*)</translation>
+        <translation>Todos os arquivos (*)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="418"/>
         <source>Choose CSV export file</source>
-        <translation type="unfinished">Escolha arquivo de exportação em CSV</translation>
+        <translation>Escolha arquivo de exportação em CSV</translation>
     </message>
 </context>
 <context>
