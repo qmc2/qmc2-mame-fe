@@ -65,9 +65,9 @@ extern PCB *qmc2PCB;
 extern QTreeWidgetItem *qmc2CurrentItem;
 extern QTreeWidgetItem *qmc2LastGameInfoItem;
 extern QTreeWidgetItem *qmc2LastEmuInfoItem;
+extern QTreeWidgetItem *qmc2LastSoftwareListItem;
 #if defined(QMC2_EMUTYPE_MESS)
 extern QTreeWidgetItem *qmc2LastDeviceConfigItem;
-extern QTreeWidgetItem *qmc2LastSoftwareListItem;
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
 extern QMap<QString, QString> messXmlDataCache;
 extern QMap<QString, QMap<QString, QStringList> > messSystemSlotMap;
@@ -337,6 +337,7 @@ void Gamelist::load()
   messSystemSlotsSupported = true;
   messSystemSlotMap.clear();
   messSlotNameMap.clear();
+#endif
   if ( qmc2SoftwareList ) {
     qmc2SoftwareList->save();
     qmc2SoftwareList->setVisible(false);
@@ -350,7 +351,6 @@ void Gamelist::load()
   systemSoftwareListMap.clear();
   softwareListXmlDataCache.clear();
   swlBuffer.clear();
-#endif
   qmc2LastGameInfoItem = NULL;
   qmc2LastEmuInfoItem = NULL;
 #if defined(QMC2_EMUTYPE_MAME)
