@@ -403,9 +403,16 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName,
 				while ( !xmlLines[i].contains(s) && i < xmlLines.count() ) i++;
 				slotXmlBuffer = "<?xml version=\"1.0\"?>\n";
 				if ( i < xmlLines.count() ) {
-					while ( !xmlLines[i].contains("</machine>") && i < xmlLines.count() )
+					while ( i < xmlLines.count() && !xmlLines[i].contains("</machine>") )
 						slotXmlBuffer += xmlLines[i++].simplified() + "\n";
-					slotXmlBuffer += "</machine>\n";
+					if ( i == xmlLines.count() && !xmlLines[i - 1].contains("</machine>") ) {
+						qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(machineName));
+						slotXmlBuffer.clear();
+					} else
+						slotXmlBuffer += "</machine>\n";
+				} else {
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: invalid XML data retrieved for '%1'").arg(machineName));
+					slotXmlBuffer.clear();
 				}
 			}
 		}
@@ -613,7 +620,11 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 	MESSDeviceConfiguratorXmlHandler xmlHandler(treeWidgetDeviceSetup);
 	QXmlSimpleReader xmlReader;
 	xmlReader.setContentHandler(&xmlHandler);
-	xmlReader.parse(xmlInputSource);
+	if ( !xmlReader.parse(xmlInputSource) ) {
+		refreshRunning = false;
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for '%1'").arg(messMachineName));
+		return false;
+	}
 
 	comboBoxDeviceInstanceChooser->setUpdatesEnabled(false);
 
@@ -1483,7 +1494,6 @@ void MESSDeviceConfigurator::on_toolButtonChooserFilter_toggled(bool enabled)
 	treeViewFileChooser->setUpdatesEnabled(false);
 	toolButtonChooserReload->setEnabled(false);
 	QTimer::singleShot(0, fileModel, SLOT(refresh()));
-	//treeViewFileChooser->setRootIndex(fileModel->rootIndex());
 #endif
 }
 
