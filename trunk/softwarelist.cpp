@@ -488,7 +488,9 @@ bool SoftwareList::load()
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML software list data from cache"));
 					QTime elapsedTime;
 					loadTimer.start();
-					
+
+					oldMin = qmc2MainWindow->progressBarGamelist->minimum();
+					oldMax = qmc2MainWindow->progressBarGamelist->maximum();
 					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 						qmc2MainWindow->progressBarGamelist->setFormat(tr("SWL cache - %p%"));
 					else
@@ -517,6 +519,7 @@ bool SoftwareList::load()
 						qmc2MainWindow->progressBarGamelist->setValue(swlBuffer.length());
 					}
 					qmc2MainWindow->progressBarGamelist->reset();
+					qmc2MainWindow->progressBarGamelist->setRange(oldMin, oldMax);
 					elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML software list data from cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 					validData = true;
@@ -546,6 +549,8 @@ bool SoftwareList::load()
 		loadTimer.start();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML software list data and (re)creating cache"));
 
+		oldMin = qmc2MainWindow->progressBarGamelist->minimum();
+		oldMax = qmc2MainWindow->progressBarGamelist->maximum();
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 			qmc2MainWindow->progressBarGamelist->setFormat(tr("SWL data - %p%"));
 		else
@@ -846,8 +851,8 @@ void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	if ( fileSWLCache.isOpen() )
 		fileSWLCache.close();
 
-	qmc2MainWindow->progressBarGamelist->setRange(0, 1);
 	qmc2MainWindow->progressBarGamelist->reset();
+	qmc2MainWindow->progressBarGamelist->setRange(oldMin, oldMax);
 }
 
 void SoftwareList::loadReadyReadStandardOutput()

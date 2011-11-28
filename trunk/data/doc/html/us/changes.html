@@ -17,6 +17,8 @@ inf: informational only
 <p><b>v0.35, 28-NOV-2011:</b></p>
 <ul>
   <li>fix: minor: hide the software-list favorites column 'device configuration' for MAME targets as it's a MESS-only feature</li>
+  <li>fix: minor: corrected the main progress-bar's visual behavior when ROM status checking and software-list caching are running in parallel</li>
+  <li>fix: MAME targets: the software-list widget wasn't cleared upon reload</li>
   <li>imp: ROM status exporter: additional output-format choice ('all formats') to export the ROM states to all three formats at once</li>
   <li>imp: when a software-list can't be found (though it's expected to exist), leave the software-list widget disabled and don't try to parse the invalid XML (a warning will still be logged since this is actually an emulator bug, but probably also a wanted/known situation as told by <a href="http://forums.bannister.org/ubbthreads.php?ubb=showprofile&User=1564" target="_blank">etabeta78</a>)</li>
   <li>imp: MAME/MESS emulator templates updated to 0.144u1</li>

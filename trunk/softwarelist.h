@@ -130,6 +130,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QStringList successfulLookups;
 		int cachedDeviceLookupPosition;
 		SoftwareListExporter *exporter;
+		int oldMax, oldMin;
 
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();
