@@ -997,6 +997,7 @@ void SoftwareList::on_toolButtonAddToFavorites_clicked(bool checked)
 		si = selectedItems.at(0);
 
 	if ( si ) {
+		while ( si->parent() ) si = si->parent();
 		SoftwareItem *item = NULL;
 		QList<QTreeWidgetItem *> matchedItems = treeWidgetFavoriteSoftware->findItems(si->text(QMC2_SWLIST_COLUMN_NAME), Qt::MatchExactly | Qt::MatchCaseSensitive, QMC2_SWLIST_COLUMN_NAME);
 		if ( matchedItems.count() > 0 )
