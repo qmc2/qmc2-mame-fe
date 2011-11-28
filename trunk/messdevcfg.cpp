@@ -400,7 +400,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName,
 			if ( !xmlLines.isEmpty() ) {
 				int i = 0;
 				QString s = "<machine name=\"" + machineName + "\"";
-				while ( !xmlLines[i].contains(s) && i < xmlLines.count() ) i++;
+				while ( i < xmlLines.count() && !xmlLines[i].contains(s) ) i++;
 				slotXmlBuffer = "<?xml version=\"1.0\"?>\n";
 				if ( i < xmlLines.count() ) {
 					while ( i < xmlLines.count() && !xmlLines[i].contains("</machine>") )
