@@ -61,6 +61,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	oldMin = 0;
 	oldMax = 1;
+	oldFmt = qmc2MainWindow->progressBarGamelist->format();
+
 	comboBoxSearch->lineEdit()->setPlaceholderText(tr("Enter search string"));
 
 	QFontMetrics fm(QApplication::font());
@@ -455,6 +457,10 @@ bool SoftwareList::load()
 	cachedDeviceLookupPosition = 0;
 
 	if ( swlBuffer.isEmpty() && swlSupported ) {
+		oldMin = qmc2MainWindow->progressBarGamelist->minimum();
+		oldMax = qmc2MainWindow->progressBarGamelist->maximum();
+		oldFmt = qmc2MainWindow->progressBarGamelist->format();
+
           	qmc2MainWindow->tabSoftwareList->setUpdatesEnabled(true);
 		labelLoadingSoftwareLists->setVisible(true);
 		toolBoxSoftwareList->setVisible(false);
@@ -491,8 +497,6 @@ bool SoftwareList::load()
 					QTime elapsedTime;
 					loadTimer.start();
 
-					oldMin = qmc2MainWindow->progressBarGamelist->minimum();
-					oldMax = qmc2MainWindow->progressBarGamelist->maximum();
 					if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 						qmc2MainWindow->progressBarGamelist->setFormat(tr("SWL cache - %p%"));
 					else
@@ -551,8 +555,6 @@ bool SoftwareList::load()
 		loadTimer.start();
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading XML software list data and (re)creating cache"));
 
-		oldMin = qmc2MainWindow->progressBarGamelist->minimum();
-		oldMax = qmc2MainWindow->progressBarGamelist->maximum();
 		if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
 			qmc2MainWindow->progressBarGamelist->setFormat(tr("SWL data - %p%"));
 		else
@@ -854,6 +856,7 @@ void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		fileSWLCache.close();
 
 	qmc2MainWindow->progressBarGamelist->setRange(oldMin, oldMax);
+	qmc2MainWindow->progressBarGamelist->setFormat(oldFmt);
 	qmc2MainWindow->progressBarGamelist->reset();
 }
 
