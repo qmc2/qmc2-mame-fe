@@ -1995,6 +1995,8 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::SoftwareSnap(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
+	snapFile = NULL;
+
 	setWindowTitle(tr("Snapshot viewer"));
 	setFocusPolicy(Qt::NoFocus);
 	focusWidget = QApplication::focusWidget();
@@ -2013,6 +2015,16 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
+}
+
+SoftwareSnap::~SoftwareSnap()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::~SoftwareSnap()");
+#endif
+
+	if ( qmc2UseSoftwareSnapFile && snapFile )
+		unzClose(snapFile);
 }
 
 void SoftwareSnap::keyPressEvent(QKeyEvent *e)
@@ -2187,8 +2199,44 @@ void SoftwareSnap::loadSnapshot()
 
 	if ( !pmLoaded ) {
 		if ( qmc2UseSoftwareSnapFile ) {
-			// FIXME: add ZIP support here
+			// try loading image from ZIP
+			if ( !snapFile ) {
+#if defined(QMC2_EMUTYPE_MAME)
+				snapFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
+				if ( snapFile == NULL )
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString()));
+#elif defined(QMC2_EMUTYPE_MESS)
+				snapFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
+				if ( snapFile == NULL )
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString()));
+#endif
+			}
+			if ( snapFile ) {
+				bool fileOk = true;
+				QByteArray imageData;
+				QString pathInZip = listName + "/" + entryName + ".png";
+				if ( unzLocateFile(snapFile, (const char *)pathInZip.toAscii(), 0) == UNZ_OK ) {
+					if ( unzOpenCurrentFile(snapFile) == UNZ_OK ) {
+						char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
+						int len;
+						while ( (len = unzReadCurrentFile(snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
+							for (int i = 0; i < len; i++)
+								imageData += imageBuffer[i];
+						}
+						unzCloseCurrentFile(snapFile);
+					} else
+						fileOk = false;
+				} else
+					fileOk = false;
+				if ( fileOk ) {
+					if ( pm.loadFromData(imageData, "PNG") ) {
+						pmLoaded = true;
+						QPixmapCache::insert("sws_" + listName + "_" + entryName, pm);
+					}
+				}
+			}
 		} else {
+			// try loading image from folder
 #if defined(QMC2_EMUTYPE_MAME)
 			QDir snapDir(qmc2Config->value("MAME/FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
 #elif defined(QMC2_EMUTYPE_MESS)

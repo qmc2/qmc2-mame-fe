@@ -173,9 +173,6 @@ Options::Options(QWidget *parent)
   checkBoxUnifiedTitleAndToolBarOnMac->setVisible(false);
 #endif
 
-  // FIXME: ZIP-based software-snap storage isn't supported yet!
-  radioButtonSoftwareSnapSelect->setVisible(false);
-
 #if !defined(QMC2_SHOWMEMINFO)
   checkBoxMemoryIndicator->setVisible(false);
 #endif

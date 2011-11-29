@@ -88,6 +88,7 @@ class SoftwareSnap : public QWidget
 		bool ctxMenuRequested;
 
 		SoftwareSnap(QWidget *parent = 0);
+		~SoftwareSnap();
 
 	public slots:
 		void loadSnapshot();
