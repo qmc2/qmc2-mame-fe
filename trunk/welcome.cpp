@@ -24,7 +24,7 @@ Welcome::Welcome(QWidget *parent)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::Welcome(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
 #endif
 
-  checkOkay = FALSE;
+  checkOkay = false;
   hide();
   if ( !checkConfig() ) {
     setupUi(this);
@@ -37,16 +37,16 @@ Welcome::Welcome(QWidget *parent)
     QString emulatorName = tr("SDLMAME");
 #elif defined(QMC2_SDLMESS)
     QString emulatorName = tr("SDLMESS");
-    labelSamplePath->setVisible(FALSE);
-    lineEditSamplePath->setVisible(FALSE);
-    toolButtonBrowseSamplePath->setVisible(FALSE);
+    labelSamplePath->setVisible(false);
+    lineEditSamplePath->setVisible(false);
+    toolButtonBrowseSamplePath->setVisible(false);
 #elif defined(QMC2_MAME)
     QString emulatorName = tr("MAME");
 #elif defined(QMC2_MESS)
     QString emulatorName = tr("MESS");
-    labelSamplePath->setVisible(FALSE);
-    lineEditSamplePath->setVisible(FALSE);
-    toolButtonBrowseSamplePath->setVisible(FALSE);
+    labelSamplePath->setVisible(false);
+    lineEditSamplePath->setVisible(false);
+    toolButtonBrowseSamplePath->setVisible(false);
 #else
     QString emulatorName = tr("Unsupported emulator");
 #endif
@@ -54,7 +54,7 @@ Welcome::Welcome(QWidget *parent)
     show();
     adjustSize();
   } else {
-    checkOkay = TRUE;
+    checkOkay = true;
     QTimer::singleShot(0, this, SLOT(on_pushButtonOkay_clicked()));
   }
 }
@@ -188,7 +188,7 @@ bool Welcome::checkConfig()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::checkConfig()");
 #endif
 
-  bool configOkay = TRUE;
+  bool configOkay = true;
 
 #if !defined(Q_WS_WIN)
   QSettings::setPath(QSettings::IniFormat, QSettings::SystemScope, QMC2_SYSCONF_PATH);
@@ -219,24 +219,24 @@ bool Welcome::checkConfig()
 
   setupLanguage();
 
-  if ( startupConfig->value("GUI/CheckSingleInstance", TRUE).toBool() ) {
+  if ( startupConfig->value("GUI/CheckSingleInstance", true).toBool() ) {
     if ( startupConfig->value(QString("InstanceRunning")).toBool() ) {
       switch ( QMessageBox::question(this, tr("Single-instance check"),
                                            tr("It appears that another instance of %1 is already running.\nHowever, this can also be the leftover of a previous crash.\n\nExit now, accept once or ignore completely?").arg(variant),
                                            tr("&Exit"), tr("&Once"), tr("&Ignore"), 0, 0) ) {
          case 0:
-           startupConfig->setValue("GUI/CheckSingleInstance", TRUE);
+           startupConfig->setValue("GUI/CheckSingleInstance", true);
            qApp->quit();
-           return FALSE;
+           return false;
            break;
 
          case 1:
-           startupConfig->setValue("GUI/CheckSingleInstance", TRUE);
+           startupConfig->setValue("GUI/CheckSingleInstance", true);
            break;
 
          case 2: 
          default:
-           startupConfig->setValue("GUI/CheckSingleInstance", FALSE);
+           startupConfig->setValue("GUI/CheckSingleInstance", false);
            break;
       }
     }

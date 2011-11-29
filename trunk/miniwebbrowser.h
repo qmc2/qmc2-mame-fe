@@ -19,9 +19,9 @@ class BrowserWidget : public QWebView
 
     BrowserWidget(QWidget *parent = NULL) : QWebView(parent)
     {
-      bwuDelayTimer.setSingleShot(TRUE);
+      bwuDelayTimer.setSingleShot(true);
       lastMouseClickPosition = QPoint(-1, -1);
-      mouseCurrentlyOnView = FALSE;
+      mouseCurrentlyOnView = false;
     }
 
   public slots:
@@ -45,14 +45,14 @@ class BrowserWidget : public QWebView
     void enterEvent(QEvent *e)
     {
       QWebView::enterEvent(e);
-      mouseCurrentlyOnView = TRUE;
-      emit mouseOnView(TRUE);
+      mouseCurrentlyOnView = true;
+      emit mouseOnView(true);
     }
     void leaveEvent(QEvent *e)
     {
       QWebView::leaveEvent(e);
-      mouseCurrentlyOnView = FALSE;
-      emit mouseOnView(FALSE);
+      mouseCurrentlyOnView = false;
+      emit mouseOnView(false);
     }
 };
 

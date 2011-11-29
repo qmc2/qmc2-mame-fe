@@ -65,22 +65,22 @@ ArcadeScene::ArcadeScene(QObject *parent)
   statusBackgroundItem->setPos((width() - scaleX(statusTextItem->boundingRect().width())) / 2, height() - scaleY(2.0) - fmHeight);
   statusBackgroundItem->setBrush(QColor(0, 0, 0, 128));
   statusBackgroundItem->setZValue(QMC2_SCENE_LOG_Z - 1);
-  statusBackgroundItem->setVisible(FALSE);
+  statusBackgroundItem->setVisible(false);
   addItem(statusBackgroundItem);
 
   progressBar = new QProgressBar();
   progressBarProxy = addWidget(progressBar);
   progressBarProxy->scale(scaleFactorX, scaleFactorY);
   progressBarProxy->setPos((width() - scaleX(progressBarProxy->boundingRect().width())) / 2, height() - scaleY(2.0) - fmHeight * 2);
-  progressBarProxy->setVisible(FALSE);
+  progressBarProxy->setVisible(false);
   progressBarProxy->setZValue(QMC2_SCENE_LOG_Z);
 
   connect(this, SIGNAL(changed(const QList<QRectF> &)), this, SLOT(hasChanged(const QList<QRectF> &)));
   connect(&frameCounterTimer, SIGNAL(timeout()), this, SLOT(updateFrameCounters()));
   frameCounterTimer.start(QMC2_SCENE_FRAMECOUNTER_TIMEOUT);
 
-  consoleShown = FALSE;
-  animationPaused = FALSE;
+  consoleShown = false;
+  animationPaused = false;
   frames = 0;
   frameTime.start();
 }
@@ -193,11 +193,11 @@ void ArcadeScene::setStatus(QString message)
   double fmHeight = scaleY(fontMetrics.height());
   statusTextItem->setText(message);
   statusTextItem->setPos((width() - scaleX(statusTextItem->boundingRect().width())) / 2, height() - scaleY(2.0) - fmHeight); 
-  statusTextItem->setVisible(TRUE);
+  statusTextItem->setVisible(true);
   QRectF r = statusTextItem->boundingRect();
   statusBackgroundItem->setRect(scaleX(r.x()), scaleY(r.y()), scaleX(r.width()), scaleY(r.height()));
   statusBackgroundItem->setPos((width() - scaleX(statusTextItem->boundingRect().width())) / 2, height() - scaleY(2.0) - fmHeight);
-  statusBackgroundItem->setVisible(TRUE);
+  statusBackgroundItem->setVisible(true);
   arcadeStatusMutex.unlock();
 }
 
@@ -214,18 +214,18 @@ void ArcadeScene::clearStatus(QString message)
     messageList.removeAll(message);
 
   if ( messageList.isEmpty() ) {
-    statusTextItem->setVisible(FALSE);
-    statusBackgroundItem->setVisible(FALSE);
+    statusTextItem->setVisible(false);
+    statusBackgroundItem->setVisible(false);
   } else {
     QFontMetrics fontMetrics(sceneFont);
     double fmHeight = scaleY(fontMetrics.height());
     statusTextItem->setText(messageList.last());
     statusTextItem->setPos((width() - scaleX(statusTextItem->boundingRect().width())) / 2, height() - scaleY(2.0) - fmHeight); 
-    statusTextItem->setVisible(TRUE);
+    statusTextItem->setVisible(true);
     QRectF r = statusTextItem->boundingRect();
     statusBackgroundItem->setRect(scaleX(r.x()), scaleY(r.y()), scaleX(r.width()), scaleY(r.height()));
     statusBackgroundItem->setPos((width() - scaleX(statusTextItem->boundingRect().width())) / 2, height() - scaleY(2.0) - fmHeight);
-    statusBackgroundItem->setVisible(TRUE);
+    statusBackgroundItem->setVisible(true);
   }
   arcadeStatusMutex.unlock();
 }
@@ -237,10 +237,10 @@ void ArcadeScene::setProgress(int progress)
 #endif
 
   if ( progress < 0 ) {
-    progressBarProxy->setVisible(FALSE);
+    progressBarProxy->setVisible(false);
     progressBar->reset();
   } else {
-    progressBarProxy->setVisible(TRUE);
+    progressBarProxy->setVisible(true);
     progressBar->setValue(progress);
   }
   qApp->processEvents();
@@ -286,9 +286,9 @@ void ArcadeScene::toggleConsole()
 #endif
 
   if ( consoleShown ) {
-    consoleShown = FALSE;
+    consoleShown = false;
   } else {
-    consoleShown = TRUE;
+    consoleShown = true;
   }
 }
 
@@ -325,7 +325,7 @@ void ArcadeScene::showFps()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ArcadeScene::showFps()");
 #endif
 
-  fpsShown = TRUE;
+  fpsShown = true;
   fpsBackgroundItem->setVisible(fpsShown);
   fpsTextItem->setVisible(fpsShown);
 }
@@ -336,7 +336,7 @@ void ArcadeScene::hideFps()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ArcadeScene::hideFps()");
 #endif
 
-  fpsShown = FALSE;
+  fpsShown = false;
   fpsBackgroundItem->setVisible(fpsShown);
   fpsTextItem->setVisible(fpsShown);
 }

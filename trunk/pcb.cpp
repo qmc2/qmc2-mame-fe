@@ -130,7 +130,7 @@ bool PCB::loadPCB(QString gameName, QString onBehalfOf, bool checkOnly, QString 
   if ( fileName )
     *fileName = "";
 
-  bool fileOk = TRUE;
+  bool fileOk = true;
 
   if ( qmc2UsePCBFile ) {
     // use PCB file
@@ -149,9 +149,9 @@ bool PCB::loadPCB(QString gameName, QString onBehalfOf, bool checkOnly, QString 
         }
         unzCloseCurrentFile(pcbFile);
       } else
-        fileOk = FALSE;
+        fileOk = false;
     } else
-      fileOk = FALSE;
+      fileOk = false;
 
     if ( fileOk )
       fileOk = pm.loadFromData(imageData, "PNG");
@@ -188,7 +188,7 @@ bool PCB::loadPCB(QString gameName, QString onBehalfOf, bool checkOnly, QString 
       if ( pm.load(imagePath, "PNG") ) {
         QPixmapCache::insert("pcb_" + onBehalfOf, pm); 
         currentPCBPixmap = pm;
-        fileOk = TRUE;
+        fileOk = true;
       } else {
         QString parentName = qmc2ParentMap[gameName];
         if ( qmc2ParentImageFallback && !parentName.isEmpty() ) {
@@ -197,7 +197,7 @@ bool PCB::loadPCB(QString gameName, QString onBehalfOf, bool checkOnly, QString 
           if ( !qmc2RetryLoadingImages )
             QPixmapCache::insert("pcb_" + onBehalfOf, qmc2MainWindow->qmc2GhostImagePixmap);
           currentPCBPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
-          fileOk = FALSE;
+          fileOk = false;
         }
       }
     }
@@ -228,19 +228,19 @@ void PCB::drawCenteredImage(QPixmap *pm, QPainter *p)
 
   p->drawPixmap(posx, posy, *pm);
 
-  bool drawGameName = FALSE;
+  bool drawGameName = false;
   if ( qmc2ShowGameName ) {
     if ( qmc2ShowGameNameOnlyWhenRequired ) {
       if ( qmc2MainWindow->hSplitter->sizes()[0] == 0 || qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_GAMELIST_INDEX ) {
-        drawGameName = TRUE;
+        drawGameName = true;
       } else {
-        drawGameName = FALSE;
+        drawGameName = false;
       }
     } else {
-      drawGameName = TRUE;
+      drawGameName = true;
     }
   } else
-    drawGameName = FALSE;
+    drawGameName = false;
 
   if ( drawGameName ) {
     // draw game/machine title

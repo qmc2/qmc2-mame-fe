@@ -98,7 +98,7 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
   if ( lockProcessing() ) {
     // check previews
     QTime checkTimer, elapsedTime;
-    pushButtonPreviewsRemoveObsolete->setEnabled(FALSE);
+    pushButtonPreviewsRemoveObsolete->setEnabled(false);
     checkTimer.start();
     if ( qmc2UsePreviewFile )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("checking previews from ZIP archive"));
@@ -125,12 +125,12 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
     pushButtonIconsCheck->setText(tr("&Stop check"));
 
     // avoid changes to preview source during check
-    qmc2Options->radioButtonPreviewSelect->setEnabled(FALSE);
-    qmc2Options->stackedWidgetPreview->setEnabled(FALSE);
-    qmc2Options->lineEditPreviewFile->setEnabled(FALSE);
-    qmc2Options->lineEditPreviewDirectory->setEnabled(FALSE);
-    qmc2Options->toolButtonBrowsePreviewFile->setEnabled(FALSE);
-    qmc2Options->toolButtonBrowsePreviewDirectory->setEnabled(FALSE);
+    qmc2Options->radioButtonPreviewSelect->setEnabled(false);
+    qmc2Options->stackedWidgetPreview->setEnabled(false);
+    qmc2Options->lineEditPreviewFile->setEnabled(false);
+    qmc2Options->lineEditPreviewDirectory->setEnabled(false);
+    qmc2Options->toolButtonBrowsePreviewFile->setEnabled(false);
+    qmc2Options->toolButtonBrowsePreviewDirectory->setEnabled(false);
 
     // check pass 1: found and missing previews
     listWidgetPreviewsFound->clear();
@@ -141,7 +141,7 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
     labelPreviewsObsolete->setText(tr("Obsolete: 0"));
     QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
     int i = -1, lastCheckTimer = 0;
-    qmc2StopParser = FALSE;
+    qmc2StopParser = false;
     QStringList foundPreviews, missingPreviews;
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("check pass 1: found and missing previews"));
     QStringList fileNames;
@@ -160,7 +160,7 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
       it.next();
       QString gameName = it.key();
       QString fileName;
-      if ( qmc2Preview->loadPreview(gameName, gameName, TRUE, &fileName) )
+      if ( qmc2Preview->loadPreview(gameName, gameName, true, &fileName) )
         foundPreviews << gameName;
       else
         missingPreviews << gameName;
@@ -265,12 +265,12 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
     qmc2MainWindow->progressBarGamelist->reset();
 
     // reallow changes to preview source after check
-    qmc2Options->radioButtonPreviewSelect->setEnabled(TRUE);
-    qmc2Options->stackedWidgetPreview->setEnabled(TRUE);
-    qmc2Options->lineEditPreviewFile->setEnabled(TRUE);
-    qmc2Options->lineEditPreviewDirectory->setEnabled(TRUE);
-    qmc2Options->toolButtonBrowsePreviewFile->setEnabled(TRUE);
-    qmc2Options->toolButtonBrowsePreviewDirectory->setEnabled(TRUE);
+    qmc2Options->radioButtonPreviewSelect->setEnabled(true);
+    qmc2Options->stackedWidgetPreview->setEnabled(true);
+    qmc2Options->lineEditPreviewFile->setEnabled(true);
+    qmc2Options->lineEditPreviewDirectory->setEnabled(true);
+    qmc2Options->toolButtonBrowsePreviewFile->setEnabled(true);
+    qmc2Options->toolButtonBrowsePreviewDirectory->setEnabled(true);
 
     // log check timing
     elapsedTime = elapsedTime.addMSecs(checkTimer.elapsed());
@@ -289,7 +289,7 @@ void ImageChecker::on_pushButtonPreviewsCheck_clicked()
     pushButtonIconsCheck->setText(tr("&Check icons"));
 
     // release lock
-    qmc2ImageCheckActive = FALSE;
+    qmc2ImageCheckActive = false;
   }
 }
 
@@ -336,7 +336,7 @@ void ImageChecker::on_pushButtonPreviewsRemoveObsolete_clicked()
       }
     }
 
-    qmc2Preview->setUpdatesEnabled(FALSE);
+    qmc2Preview->setUpdatesEnabled(false);
     unzClose(qmc2Preview->previewFile);
     ToolExecutor zipRemovalTool(this, command, args);
     zipRemovalTool.exec();
@@ -345,7 +345,7 @@ void ImageChecker::on_pushButtonPreviewsRemoveObsolete_clicked()
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2Preview->previewFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/PreviewFile").toString().toAscii());
 #endif
-    qmc2Preview->setUpdatesEnabled(TRUE);
+    qmc2Preview->setUpdatesEnabled(true);
   } else {
 #if defined(Q_WS_WIN)
     QString command = "cmd.exe";
@@ -422,7 +422,7 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
   if ( lockProcessing() ) {
     // check flyers
     QTime checkTimer, elapsedTime;
-    pushButtonFlyersRemoveObsolete->setEnabled(FALSE);
+    pushButtonFlyersRemoveObsolete->setEnabled(false);
     checkTimer.start();
     if ( qmc2UseFlyerFile )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("checking flyers from ZIP archive"));
@@ -449,12 +449,12 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
     pushButtonIconsCheck->setText(tr("&Stop check"));
 
     // avoid changes to flyer source during check
-    qmc2Options->radioButtonFlyerSelect->setEnabled(FALSE);
-    qmc2Options->stackedWidgetFlyer->setEnabled(FALSE);
-    qmc2Options->lineEditFlyerFile->setEnabled(FALSE);
-    qmc2Options->lineEditFlyerDirectory->setEnabled(FALSE);
-    qmc2Options->toolButtonBrowseFlyerFile->setEnabled(FALSE);
-    qmc2Options->toolButtonBrowseFlyerDirectory->setEnabled(FALSE);
+    qmc2Options->radioButtonFlyerSelect->setEnabled(false);
+    qmc2Options->stackedWidgetFlyer->setEnabled(false);
+    qmc2Options->lineEditFlyerFile->setEnabled(false);
+    qmc2Options->lineEditFlyerDirectory->setEnabled(false);
+    qmc2Options->toolButtonBrowseFlyerFile->setEnabled(false);
+    qmc2Options->toolButtonBrowseFlyerDirectory->setEnabled(false);
 
     // check pass 1: found and missing flyers
     listWidgetFlyersFound->clear();
@@ -465,7 +465,7 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
     labelFlyersObsolete->setText(tr("Obsolete: 0"));
     QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
     int i = -1, lastCheckTimer = 0;
-    qmc2StopParser = FALSE;
+    qmc2StopParser = false;
     QStringList foundFlyers, missingFlyers;
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("check pass 1: found and missing flyers"));
     QStringList fileNames;
@@ -484,7 +484,7 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
       it.next();
       QString gameName = it.key();
       QString fileName;
-      if ( qmc2Flyer->loadFlyer(gameName, gameName, TRUE, &fileName) )
+      if ( qmc2Flyer->loadFlyer(gameName, gameName, true, &fileName) )
         foundFlyers << gameName;
       else
         missingFlyers << gameName;
@@ -589,12 +589,12 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
     qmc2MainWindow->progressBarGamelist->reset();
 
     // reallow changes to flyer source after check
-    qmc2Options->radioButtonFlyerSelect->setEnabled(TRUE);
-    qmc2Options->stackedWidgetFlyer->setEnabled(TRUE);
-    qmc2Options->lineEditFlyerFile->setEnabled(TRUE);
-    qmc2Options->lineEditFlyerDirectory->setEnabled(TRUE);
-    qmc2Options->toolButtonBrowseFlyerFile->setEnabled(TRUE);
-    qmc2Options->toolButtonBrowseFlyerDirectory->setEnabled(TRUE);
+    qmc2Options->radioButtonFlyerSelect->setEnabled(true);
+    qmc2Options->stackedWidgetFlyer->setEnabled(true);
+    qmc2Options->lineEditFlyerFile->setEnabled(true);
+    qmc2Options->lineEditFlyerDirectory->setEnabled(true);
+    qmc2Options->toolButtonBrowseFlyerFile->setEnabled(true);
+    qmc2Options->toolButtonBrowseFlyerDirectory->setEnabled(true);
 
     // log check timing
     elapsedTime = elapsedTime.addMSecs(checkTimer.elapsed());
@@ -613,7 +613,7 @@ void ImageChecker::on_pushButtonFlyersCheck_clicked()
     pushButtonIconsCheck->setText(tr("&Check icons"));
 
     // release lock
-    qmc2ImageCheckActive = FALSE;
+    qmc2ImageCheckActive = false;
   }
 }
 
@@ -660,7 +660,7 @@ void ImageChecker::on_pushButtonFlyersRemoveObsolete_clicked()
       }
     }
 
-    qmc2Flyer->setUpdatesEnabled(FALSE);
+    qmc2Flyer->setUpdatesEnabled(false);
     unzClose(qmc2Flyer->flyerFile);
     ToolExecutor zipRemovalTool(this, command, args);
     zipRemovalTool.exec();
@@ -669,7 +669,7 @@ void ImageChecker::on_pushButtonFlyersRemoveObsolete_clicked()
 #elif defined(QMC2_EMUTYPE_MESS)
     qmc2Flyer->flyerFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/FlyerFile").toString().toAscii());
 #endif
-    qmc2Flyer->setUpdatesEnabled(TRUE);
+    qmc2Flyer->setUpdatesEnabled(true);
   } else {
 #if defined(Q_WS_WIN)
     QString command = "cmd.exe";
@@ -746,7 +746,7 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
   if ( lockProcessing() ) {
     // check icons
     QTime checkTimer, elapsedTime;
-    pushButtonIconsRemoveObsolete->setEnabled(FALSE);
+    pushButtonIconsRemoveObsolete->setEnabled(false);
     checkTimer.start();
     if ( checkBoxIconsClearCache->isChecked() )
       qmc2MainWindow->on_actionClearIconCache_activated();
@@ -775,12 +775,12 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
     pushButtonIconsCheck->setText(tr("&Stop check"));
 
     // avoid changes to icon source during check
-    qmc2Options->radioButtonIconSelect->setEnabled(FALSE);
-    qmc2Options->stackedWidgetIcon->setEnabled(FALSE);
-    qmc2Options->lineEditIconFile->setEnabled(FALSE);
-    qmc2Options->lineEditIconDirectory->setEnabled(FALSE);
-    qmc2Options->toolButtonBrowseIconFile->setEnabled(FALSE);
-    qmc2Options->toolButtonBrowseIconDirectory->setEnabled(FALSE);
+    qmc2Options->radioButtonIconSelect->setEnabled(false);
+    qmc2Options->stackedWidgetIcon->setEnabled(false);
+    qmc2Options->lineEditIconFile->setEnabled(false);
+    qmc2Options->lineEditIconDirectory->setEnabled(false);
+    qmc2Options->toolButtonBrowseIconFile->setEnabled(false);
+    qmc2Options->toolButtonBrowseIconDirectory->setEnabled(false);
 
     // check pass 1: found and missing icons
     listWidgetIconsFound->clear();
@@ -791,7 +791,7 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
     labelIconsObsolete->setText(tr("Obsolete: 0"));
     QMapIterator<QString, QTreeWidgetItem *> it(qmc2GamelistItemMap);
     int i = -1, lastCheckTimer = 0;
-    qmc2StopParser = FALSE;
+    qmc2StopParser = false;
     QStringList foundIcons, missingIcons;
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("check pass 1: found and missing icons"));
     QStringList fileNames;
@@ -810,7 +810,7 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
       it.next();
       QString gameName = it.key();
       QString fileName;
-      if ( qmc2Gamelist->loadIcon(gameName, NULL, TRUE, &fileName) )
+      if ( qmc2Gamelist->loadIcon(gameName, NULL, true, &fileName) )
         foundIcons << gameName;
       else
         missingIcons << gameName;
@@ -916,12 +916,12 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
     qmc2MainWindow->progressBarGamelist->reset();
 
     // reallow changes to icon source after check
-    qmc2Options->radioButtonIconSelect->setEnabled(TRUE);
-    qmc2Options->stackedWidgetIcon->setEnabled(TRUE);
-    qmc2Options->lineEditIconFile->setEnabled(TRUE);
-    qmc2Options->lineEditIconDirectory->setEnabled(TRUE);
-    qmc2Options->toolButtonBrowseIconFile->setEnabled(TRUE);
-    qmc2Options->toolButtonBrowseIconDirectory->setEnabled(TRUE);
+    qmc2Options->radioButtonIconSelect->setEnabled(true);
+    qmc2Options->stackedWidgetIcon->setEnabled(true);
+    qmc2Options->lineEditIconFile->setEnabled(true);
+    qmc2Options->lineEditIconDirectory->setEnabled(true);
+    qmc2Options->toolButtonBrowseIconFile->setEnabled(true);
+    qmc2Options->toolButtonBrowseIconDirectory->setEnabled(true);
 
     // log check timing
     elapsedTime = elapsedTime.addMSecs(checkTimer.elapsed());
@@ -940,7 +940,7 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
     pushButtonIconsCheck->setText(tr("&Check icons"));
 
     // release lock
-    qmc2ImageCheckActive = FALSE;
+    qmc2ImageCheckActive = false;
   }
 }
 
@@ -1070,37 +1070,37 @@ bool ImageChecker::lockProcessing()
 
   if ( qmc2ReloadActive ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for reload to finish and try again"));
-    return FALSE;
+    return false;
   }
 
   if ( qmc2ROMAlyzerActive ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROMAlyzer to finish the current analysis and try again"));
-    return FALSE;
+    return false;
   }
 
   if ( qmc2FilterActive ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROM state filter to finish and try again"));
-    return FALSE;
+    return false;
   }
 
   if ( qmc2VerifyActive ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for ROM verification to finish and try again"));
-    return FALSE;
+    return false;
   }
 
   if ( qmc2SampleCheckActive ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please wait for sample check to finish and try again"));
-    return FALSE;
+    return false;
   }
 
   if ( qmc2ImageCheckActive ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("stopping image check upon user request"));
-    qmc2StopParser = TRUE;
-    return FALSE;
+    qmc2StopParser = true;
+    return false;
   }
 
-  qmc2ImageCheckActive = TRUE;
-  return TRUE;
+  qmc2ImageCheckActive = true;
+  return true;
 }
 
 void ImageChecker::selectItem(QString gameName)
@@ -1116,7 +1116,7 @@ void ImageChecker::selectItem(QString gameName)
         qmc2MainWindow->treeWidgetGamelist->clearSelection();
         qmc2MainWindow->treeWidgetGamelist->setCurrentItem(gameItem);
         qmc2MainWindow->treeWidgetGamelist->scrollToItem(gameItem, qmc2CursorPositioningMode);
-        gameItem->setSelected(TRUE);
+        gameItem->setSelected(true);
       }
       break;
     }
@@ -1126,7 +1126,7 @@ void ImageChecker::selectItem(QString gameName)
         qmc2MainWindow->treeWidgetHierarchy->clearSelection();
         qmc2MainWindow->treeWidgetHierarchy->setCurrentItem(hierarchyItem);
         qmc2MainWindow->treeWidgetHierarchy->scrollToItem(hierarchyItem, qmc2CursorPositioningMode);
-        hierarchyItem->setSelected(TRUE);
+        hierarchyItem->setSelected(true);
       }
       break;
     }
@@ -1137,7 +1137,7 @@ void ImageChecker::selectItem(QString gameName)
         qmc2MainWindow->treeWidgetCategoryView->clearSelection();
         qmc2MainWindow->treeWidgetCategoryView->setCurrentItem(categoryItem);
         qmc2MainWindow->treeWidgetCategoryView->scrollToItem(categoryItem, qmc2CursorPositioningMode);
-        categoryItem->setSelected(TRUE);
+        categoryItem->setSelected(true);
       }
       break;
     }
@@ -1147,7 +1147,7 @@ void ImageChecker::selectItem(QString gameName)
         qmc2MainWindow->treeWidgetVersionView->clearSelection();
         qmc2MainWindow->treeWidgetVersionView->setCurrentItem(versionItem);
         qmc2MainWindow->treeWidgetVersionView->scrollToItem(versionItem, qmc2CursorPositioningMode);
-        versionItem->setSelected(TRUE);
+        versionItem->setSelected(true);
       }
       break;
     }
@@ -1183,7 +1183,7 @@ void ImageChecker::closeEvent(QCloseEvent *e)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Position", pos());
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Size", size());
     if ( !qmc2CleaningUp )
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Visible", FALSE);
+      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Visible", false);
   }
 
   if ( e )
@@ -1210,13 +1210,13 @@ void ImageChecker::showEvent(QShowEvent *e)
     restoreLayout();
 
   // restore settings
-  checkBoxPreviewsSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/Previews/SelectGame", TRUE).toBool());
-  checkBoxFlyersSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/Flyers/SelectGame", TRUE).toBool());
-  checkBoxIconsSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/Icons/SelectGame", TRUE).toBool());
-  checkBoxIconsClearCache->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/Icons/ClearCache", TRUE).toBool());
+  checkBoxPreviewsSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/Previews/SelectGame", true).toBool());
+  checkBoxFlyersSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/Flyers/SelectGame", true).toBool());
+  checkBoxIconsSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/Icons/SelectGame", true).toBool());
+  checkBoxIconsClearCache->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/Icons/ClearCache", true).toBool());
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Visible", TRUE);
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Visible", true);
 
   if ( e )
     e->accept();

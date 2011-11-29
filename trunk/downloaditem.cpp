@@ -106,7 +106,7 @@ void ItemDownloader::init()
   progressWidget->setValue(-1);
   progressWidget->setFormat(networkReply->url().toString());
   downloadItem->setIcon(QMC2_DOWNLOAD_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/download.png")));
-  downloadItem->progressWidget->setEnabled(TRUE);
+  downloadItem->progressWidget->setEnabled(true);
   downloadItem->setWhatsThis(0, "downloading");
   downloadItem->setToolTip(QMC2_DOWNLOAD_COLUMN_PROGRESS,
                            tr("Source URL: %1").arg(networkReply->url().toString()) + "\n" +
@@ -176,7 +176,7 @@ void ItemDownloader::error(QNetworkReply::NetworkError code)
     downloadItem->setIcon(QMC2_DOWNLOAD_COLUMN_STATUS, QIcon(QString::fromUtf8(":/data/img/warning.png")));
   }
   downloadItem->treeWidget->resizeColumnToContents(QMC2_DOWNLOAD_COLUMN_STATUS);
-  progressWidget->setEnabled(FALSE);
+  progressWidget->setEnabled(false);
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("download aborted: reason = %1, URL = %2, local path = %3, reply ID = %4")
                       .arg(networkReply->errorString()).arg(networkReply->url().toString()).arg(localPath).arg((qulonglong)networkReply));
@@ -240,10 +240,10 @@ void ItemDownloader::finished()
                              tr("Status: %1").arg(tr("download finished")) + "\n" +
                              tr("Total size: %1").arg(progressWidget->maximum()) + "\n" +
                              tr("Downloaded: %1 (%2%)").arg(progressWidget->value()).arg(((double)progressWidget->value()/(double)progressWidget->maximum()) * 100));
-    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", FALSE).toBool() )
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Downloads/RemoveFinished", false).toBool() )
       QTimer::singleShot(QMC2_DOWNLOAD_CLEANUP_DELAY, qmc2MainWindow, SLOT(on_pushButtonClearFinishedDownloads_clicked()));
   }
-  progressWidget->setEnabled(FALSE);
+  progressWidget->setEnabled(false);
 
   // close connection and file
   networkReply->close();

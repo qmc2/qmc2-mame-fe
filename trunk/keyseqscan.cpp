@@ -113,30 +113,30 @@ void KeySequenceScanner::keyPressEvent(QKeyEvent *event)
 
     if ( onlyOneKey ) {
       if ( words.count() > 0 ) {
-        pushButtonOk->setEnabled(TRUE);
+        pushButtonOk->setEnabled(true);
       } else {
-        pushButtonOk->setEnabled(FALSE);
+        pushButtonOk->setEnabled(false);
         animSeq = 0;
         animTimer.start(QMC2_ANIMATION_TIMEOUT);
       }
     } else if ( specialKey ) {
       if ( (words.count() != 1 && currentKeySequence != "+") || labelKeySequence->text().endsWith("??") ) {
-        pushButtonOk->setEnabled(FALSE);
+        pushButtonOk->setEnabled(false);
         animSeq = 0;
         animTimer.start(QMC2_ANIMATION_TIMEOUT);
       } else {
-        pushButtonOk->setEnabled(TRUE);
+        pushButtonOk->setEnabled(true);
       }
     } else if ( labelKeySequence->text().endsWith("??") ) {
-      pushButtonOk->setEnabled(FALSE);
+      pushButtonOk->setEnabled(false);
       if ( labelKeySequence->text() == "??" ) {
         animSeq = 0;
         animTimer.start(QMC2_ANIMATION_TIMEOUT);
       }
     } else
-      pushButtonOk->setEnabled(TRUE);
+      pushButtonOk->setEnabled(true);
   } else {
-    pushButtonOk->setEnabled(FALSE);
+    pushButtonOk->setEnabled(false);
     animationTimeout();
     animTimer.start(QMC2_ANIMATION_TIMEOUT);
   }
@@ -173,28 +173,28 @@ void KeySequenceScanner::keyReleaseEvent(QKeyEvent *event)
 
     if ( onlyOneKey ) {
       if ( words.count() > 0 ) {
-        pushButtonOk->setEnabled(TRUE);
+        pushButtonOk->setEnabled(true);
       } else {
-        pushButtonOk->setEnabled(FALSE);
+        pushButtonOk->setEnabled(false);
         animSeq = 0;
         animTimer.start(QMC2_ANIMATION_TIMEOUT);
       }
     } else if ( specialKey ) {
       if ( (words.count() != 1 && currentKeySequence != "+") || labelKeySequence->text().endsWith("??") ) {
-        pushButtonOk->setEnabled(FALSE);
+        pushButtonOk->setEnabled(false);
         animSeq = 0;
         animTimer.start(QMC2_ANIMATION_TIMEOUT);
       } else {
-        pushButtonOk->setEnabled(TRUE);
+        pushButtonOk->setEnabled(true);
       }
     } else if ( labelKeySequence->text().endsWith("??") ) {
-      pushButtonOk->setEnabled(FALSE);
+      pushButtonOk->setEnabled(false);
       if ( labelKeySequence->text() == "??" ) {
         animSeq = 0;
         animTimer.start(QMC2_ANIMATION_TIMEOUT);
       }
     } else
-      pushButtonOk->setEnabled(TRUE);
+      pushButtonOk->setEnabled(true);
   }
 
   event->accept();

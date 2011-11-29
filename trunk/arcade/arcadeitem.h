@@ -19,8 +19,8 @@ class ArcadeItem : public QObject, public QGraphicsItem
     ~ArcadeItem();
 
   public slots:
-    virtual void startAnimation() { animationPaused = FALSE; }
-    virtual void stopAnimation() { animationPaused = TRUE; }
+    virtual void startAnimation() { animationPaused = false; }
+    virtual void stopAnimation() { animationPaused = true; }
     virtual void toggleAnimation();
     virtual void setScale(double x = 1.0, double y = 1.0) { scaleFactorX = x; scaleFactorY = y; }
 

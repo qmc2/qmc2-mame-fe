@@ -276,27 +276,27 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #endif
 
     // audio player functions
-    void on_actionAudioPreviousTrack_triggered(bool checked = FALSE);
+    void on_actionAudioPreviousTrack_triggered(bool checked = false);
     void on_toolButtonAudioPreviousTrack_resetButton();
-    void on_actionAudioNextTrack_triggered(bool checked = FALSE);
+    void on_actionAudioNextTrack_triggered(bool checked = false);
     void on_toolButtonAudioNextTrack_resetButton();
-    void on_actionAudioFastBackward_triggered(bool checked = FALSE);
-    void on_toolButtonAudioFastBackward_clicked(bool checked = FALSE);
+    void on_actionAudioFastBackward_triggered(bool checked = false);
+    void on_toolButtonAudioFastBackward_clicked(bool checked = false);
     void on_toolButtonAudioFastBackward_resetButton();
-    void on_actionAudioFastForward_triggered(bool checked = FALSE);
-    void on_toolButtonAudioFastForward_clicked(bool checked = FALSE);
+    void on_actionAudioFastForward_triggered(bool checked = false);
+    void on_toolButtonAudioFastForward_clicked(bool checked = false);
     void on_toolButtonAudioFastForward_resetButton();
-    void on_actionAudioStopTrack_triggered(bool checked = FALSE);
-    void on_actionAudioPauseTrack_triggered(bool checked = FALSE);
-    void on_actionAudioPlayTrack_triggered(bool checked = FALSE);
+    void on_actionAudioStopTrack_triggered(bool checked = false);
+    void on_actionAudioPauseTrack_triggered(bool checked = false);
+    void on_actionAudioPlayTrack_triggered(bool checked = false);
     void on_toolButtonAudioAddTracks_clicked();
     void on_toolButtonAudioAddURL_clicked();
     void on_toolButtonAudioRemoveTracks_clicked();
     void on_toolButtonAudioSetupEffects_clicked();
     void on_listWidgetAudioPlaylist_itemSelectionChanged();
     void on_dialAudioVolume_valueChanged(int);
-    void on_actionAudioRaiseVolume_triggered(bool checked = FALSE);
-    void on_actionAudioLowerVolume_triggered(bool checked = FALSE);
+    void on_actionAudioRaiseVolume_triggered(bool checked = false);
+    void on_actionAudioLowerVolume_triggered(bool checked = false);
     void audioFinished();
     void audioTick(qint64);
     void audioTotalTimeChanged(qint64);
@@ -431,7 +431,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_treeWidgetVersionView_itemSelectionChanged();
     void on_treeWidgetVersionView_customContextMenuRequested(const QPoint &);
 #endif
-    void createFifo(bool logFifoCreation = TRUE);
+    void createFifo(bool logFifoCreation = true);
     void recreateFifo();
     void processFifoData();
     void on_hSplitter_splitterMoved(int, int);

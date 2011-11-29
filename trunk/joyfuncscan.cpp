@@ -92,7 +92,7 @@ void JoystickFunctionScanner::on_joystickAxisValueChanged(int axis, int value)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickFunctionScanner::on_joystickAxisValueChanged(int axis = %1, int value = %2)").arg(axis).arg(value));
 #endif
 
-  if ( qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Enabled").arg(joyIndex).arg(axis), TRUE).toBool() ) {
+  if ( qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "Joystick/%1/Axis%2Enabled").arg(joyIndex).arg(axis), true).toBool() ) {
     animTimer.stop();
     if ( value < 0 )
       labelJoystickFunction->setText(QString("A%1-").arg(axis));
@@ -110,7 +110,7 @@ void JoystickFunctionScanner::on_joystickButtonValueChanged(int button, bool val
 
   animTimer.stop();
   labelJoystickFunction->setText(QString("B%1").arg(button));
-  pushButtonOk->setEnabled(TRUE);
+  pushButtonOk->setEnabled(true);
 }
 
 void JoystickFunctionScanner::on_joystickHatValueChanged(int hat, int value)
@@ -122,7 +122,7 @@ void JoystickFunctionScanner::on_joystickHatValueChanged(int hat, int value)
   if ( value != 0 ) {
     animTimer.stop();
     labelJoystickFunction->setText(QString("H%1:%2").arg(hat).arg(value));
-    pushButtonOk->setEnabled(TRUE);
+    pushButtonOk->setEnabled(true);
   }
 }
 
@@ -136,7 +136,7 @@ void JoystickFunctionScanner::on_joystickTrackballValueChanged(int trackball, in
   labelJoystickFunction->setText(QString("T%1:X%2,Y%3").arg(trackball)
                                  .arg(deltaX < 0 ? "-" : deltaX > 0 ? "+" : "=")
                                  .arg(deltaY < 0 ? "-" : deltaY > 0 ? "+" : "="));
-  pushButtonOk->setEnabled(TRUE);
+  pushButtonOk->setEnabled(true);
 }
 
 void JoystickFunctionScanner::closeEvent(QCloseEvent *e)

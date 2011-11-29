@@ -67,7 +67,7 @@ class Gamelist : public QObject
 
   public slots:
     void load();
-    void verify(bool currentOnly = FALSE);
+    void verify(bool currentOnly = false);
     void save();
 #if defined(QMC2_EMUTYPE_MAME)
     void loadCatverIni();
@@ -95,13 +95,13 @@ class Gamelist : public QObject
     void verifyStateChanged(QProcess::ProcessState);
 
     // internal methods
-    QString value(QString, QString, bool translate = FALSE);
+    QString value(QString, QString, bool translate = false);
     void parse();
     void parseGameDetail(QTreeWidgetItem *);
-    void insertAttributeItems(QTreeWidgetItem *, QString, QStringList, QStringList, bool translate = FALSE);
-    void enableWidgets(bool enable = TRUE);
+    void insertAttributeItems(QTreeWidgetItem *, QString, QStringList, QStringList, bool translate = false);
+    void enableWidgets(bool enable = true);
     void filter();
-    bool loadIcon(QString, QTreeWidgetItem *, bool checkOnly = FALSE, QString *fileName = NULL);
+    bool loadIcon(QString, QTreeWidgetItem *, bool checkOnly = false, QString *fileName = NULL);
 };
 
 class GamelistItem : public QTreeWidgetItem

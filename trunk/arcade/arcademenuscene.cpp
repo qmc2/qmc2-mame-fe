@@ -103,7 +103,7 @@ void ArcadeMenuScene::startAnimation()
 #endif
 
   animationTimer.start(QMC2_MENUSCENE_ANIMATION_TIMEOUT);
-  animationPaused = FALSE;
+  animationPaused = false;
 }
 
 void ArcadeMenuScene::stopAnimation()
@@ -113,5 +113,5 @@ void ArcadeMenuScene::stopAnimation()
 #endif
 
   animationTimer.stop();
-  animationPaused = TRUE;
+  animationPaused = true;
 }

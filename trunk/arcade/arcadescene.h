@@ -39,8 +39,8 @@ class ArcadeScene : public QGraphicsScene
     ~ArcadeScene();
 
     virtual void toggleConsole();
-    virtual void startAnimation() { animationPaused = FALSE; }
-    virtual void stopAnimation() { animationPaused = TRUE; }
+    virtual void startAnimation() { animationPaused = false; }
+    virtual void stopAnimation() { animationPaused = true; }
     virtual void toggleAnimation();
     virtual void showFps();
     virtual void hideFps();
