@@ -44,7 +44,7 @@ SampleChecker::SampleChecker(QWidget *parent)
 
   setupUi(this);
 
-  checkBoxSamplesSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SampleChecker/SelectGame", TRUE).toBool());
+  checkBoxSamplesSelectGame->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "SampleChecker/SelectGame", true).toBool());
   verifyProc = NULL;
 }
 
@@ -83,7 +83,7 @@ void SampleChecker::closeEvent(QCloseEvent *e)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Position", pos());
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Size", size());
     if ( !qmc2CleaningUp )
-      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible", FALSE);
+      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible", false);
   }
   if ( e )
     e->accept();
@@ -109,7 +109,7 @@ void SampleChecker::showEvent(QShowEvent *e)
     restoreLayout();
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
-    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible", TRUE);
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible", true);
 
   if ( e )
     e->accept();
@@ -122,8 +122,8 @@ void SampleChecker::verify()
 #endif
 
 #if defined(QMC2_EMUTYPE_MAME)
-  qmc2SampleCheckActive = TRUE;
-  qmc2StopParser = FALSE;
+  qmc2SampleCheckActive = true;
+  qmc2StopParser = false;
 
   sampleSets.clear();
   stdoutLastLine = "";
@@ -136,7 +136,7 @@ void SampleChecker::verify()
   labelSamplesBad->setText(tr("Bad: 0"));
   listWidgetSamplesObsolete->clear();
   labelSamplesObsolete->setText(tr("Obsolete: 0"));
-  pushButtonSamplesRemoveObsolete->setEnabled(FALSE);
+  pushButtonSamplesRemoveObsolete->setEnabled(false);
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("check pass 1: sample status"));
   
   QStringList args;
@@ -230,7 +230,7 @@ void SampleChecker::verifyObsolete()
   pushButtonSamplesRemoveObsolete->setEnabled(listWidgetSamplesObsolete->count() > 0);
 
   pushButtonSamplesCheck->setText(tr("&Check samples"));
-  qmc2SampleCheckActive = FALSE;
+  qmc2SampleCheckActive = false;
 }
 
 void SampleChecker::verifyReadyReadStandardOutput()
@@ -379,7 +379,7 @@ void SampleChecker::on_pushButtonSamplesCheck_clicked()
 
   if ( qmc2SampleCheckActive ) {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("stopping sample check upon user request"));
-    qmc2StopParser = TRUE;
+    qmc2StopParser = true;
     return;
   }
 
@@ -477,7 +477,7 @@ void SampleChecker::selectItem(QString gameName)
         qmc2MainWindow->treeWidgetGamelist->clearSelection();
         qmc2MainWindow->treeWidgetGamelist->setCurrentItem(gameItem);
         qmc2MainWindow->treeWidgetGamelist->scrollToItem(gameItem, qmc2CursorPositioningMode);
-        gameItem->setSelected(TRUE);
+        gameItem->setSelected(true);
       }
       break;
     }
@@ -487,7 +487,7 @@ void SampleChecker::selectItem(QString gameName)
         qmc2MainWindow->treeWidgetHierarchy->clearSelection();
         qmc2MainWindow->treeWidgetHierarchy->setCurrentItem(hierarchyItem);
         qmc2MainWindow->treeWidgetHierarchy->scrollToItem(hierarchyItem, qmc2CursorPositioningMode);
-        hierarchyItem->setSelected(TRUE);
+        hierarchyItem->setSelected(true);
       }
       break;
     }
@@ -498,7 +498,7 @@ void SampleChecker::selectItem(QString gameName)
         qmc2MainWindow->treeWidgetCategoryView->clearSelection();
         qmc2MainWindow->treeWidgetCategoryView->setCurrentItem(categoryItem);
         qmc2MainWindow->treeWidgetCategoryView->scrollToItem(categoryItem, qmc2CursorPositioningMode);
-        categoryItem->setSelected(TRUE);
+        categoryItem->setSelected(true);
       }
       break;
     }
@@ -508,7 +508,7 @@ void SampleChecker::selectItem(QString gameName)
         qmc2MainWindow->treeWidgetVersionView->clearSelection();
         qmc2MainWindow->treeWidgetVersionView->setCurrentItem(versionItem);
         qmc2MainWindow->treeWidgetVersionView->scrollToItem(versionItem, qmc2CursorPositioningMode);
-        versionItem->setSelected(TRUE);
+        versionItem->setSelected(true);
       }
       break;
     }

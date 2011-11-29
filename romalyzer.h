@@ -118,7 +118,7 @@ class ROMAlyzerXmlHandler : public QXmlDefaultHandler
     QBrush brownBrush;
     QBrush greyBrush;
 
-    ROMAlyzerXmlHandler(QTreeWidgetItem *, bool expand = FALSE, bool scroll = FALSE);
+    ROMAlyzerXmlHandler(QTreeWidgetItem *, bool expand = false, bool scroll = false);
     ~ROMAlyzerXmlHandler();
 
     bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
@@ -202,7 +202,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void animationTimeout();
     void analyze();
     void selectItem(QString);
-    void enableSearchEdit() { lineEditSearchString->setEnabled(TRUE); }
+    void enableSearchEdit() { lineEditSearchString->setEnabled(true); }
     void adjustIconSizes();
 #if defined(QMC2_DATABASE_ENABLED)
     void resetDatabaseConnectionCheckButton();

@@ -32,7 +32,7 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
 #endif
 
   // restore settings
-  checkBoxNativeSnapshotResolution->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", TRUE).toBool());
+  checkBoxNativeSnapshotResolution->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Embedder/NativeSnapshotResolution", true).toBool());
 
   adjustIconSizes();
 }
@@ -207,7 +207,7 @@ void SnapshotViewer::mousePressEvent(QMouseEvent *e)
 #endif
 
   if ( e->button() != Qt::RightButton ) {
-    myItem->setSelected(TRUE);
+    myItem->setSelected(true);
     hide();
   }
 }
@@ -219,7 +219,7 @@ void SnapshotViewer::keyPressEvent(QKeyEvent *e)
 #endif
 
   if ( e->key() == Qt::Key_Escape ) {
-    myItem->setSelected(TRUE);
+    myItem->setSelected(true);
     hide();
   }
 }

@@ -130,7 +130,7 @@ bool Marquee::loadMarquee(QString gameName, QString onBehalfOf, bool checkOnly, 
   if ( fileName )
     *fileName = "";
 
-  bool fileOk = TRUE;
+  bool fileOk = true;
 
   if ( qmc2UseMarqueeFile ) {
     // use marquee file
@@ -149,9 +149,9 @@ bool Marquee::loadMarquee(QString gameName, QString onBehalfOf, bool checkOnly, 
         }
         unzCloseCurrentFile(marqueeFile);
       } else
-        fileOk = FALSE;
+        fileOk = false;
     } else
-      fileOk = FALSE;
+      fileOk = false;
 
     if ( fileOk )
       fileOk = pm.loadFromData(imageData, "PNG");
@@ -188,7 +188,7 @@ bool Marquee::loadMarquee(QString gameName, QString onBehalfOf, bool checkOnly, 
       if ( pm.load(imagePath, "PNG") ) {
         QPixmapCache::insert("mrq_" + onBehalfOf, pm); 
         currentMarqueePixmap = pm;
-        fileOk = TRUE;
+        fileOk = true;
       } else {
         QString parentName = qmc2ParentMap[gameName];
         if ( qmc2ParentImageFallback && !parentName.isEmpty() ) {
@@ -197,7 +197,7 @@ bool Marquee::loadMarquee(QString gameName, QString onBehalfOf, bool checkOnly, 
           if ( !qmc2RetryLoadingImages )
             QPixmapCache::insert("mrq_" + onBehalfOf, qmc2MainWindow->qmc2GhostImagePixmap);
           currentMarqueePixmap = qmc2MainWindow->qmc2GhostImagePixmap;
-          fileOk = FALSE;
+          fileOk = false;
         }
       }
     }
@@ -228,19 +228,19 @@ void Marquee::drawCenteredImage(QPixmap *pm, QPainter *p)
 
   p->drawPixmap(posx, posy, *pm);
 
-  bool drawGameName = FALSE;
+  bool drawGameName = false;
   if ( qmc2ShowGameName ) {
     if ( qmc2ShowGameNameOnlyWhenRequired ) {
       if ( qmc2MainWindow->hSplitter->sizes()[0] == 0 || qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_GAMELIST_INDEX ) {
-        drawGameName = TRUE;
+        drawGameName = true;
       } else {
-        drawGameName = FALSE;
+        drawGameName = false;
       }
     } else {
-      drawGameName = TRUE;
+      drawGameName = true;
     }
   } else
-    drawGameName = FALSE;
+    drawGameName = false;
 
   if ( drawGameName ) {
     // draw game/machine title

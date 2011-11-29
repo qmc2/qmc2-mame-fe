@@ -41,7 +41,7 @@ class Joystick : public QObject
 
     Joystick(QObject *parent = 0,
              int joystickEventTimeout = QMC2_SDL_JOYSTICK_DEFAULT_EVENT_TIMEOUT,
-             bool doAutoRepeat = TRUE,
+             bool doAutoRepeat = true,
              int autoRepeatDelay = QMC2_SDL_JOYSTICK_DEFAULT_AUTOREPEAT_DELAY);
     ~Joystick();
     bool open(int);

@@ -46,9 +46,9 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   toolButtonHome->setIconSize(iconSize);
   toolButtonLoad->setIconSize(iconSize);
 
-  firstTimeLoadStarted = TRUE;
-  firstTimeLoadProgress = TRUE;
-  firstTimeLoadFinished = TRUE;
+  firstTimeLoadStarted = true;
+  firstTimeLoadProgress = true;
+  firstTimeLoadFinished = true;
  
   iconCache.setMaxCost(QMC2_BROWSER_ICONCACHE_SIZE);
 
@@ -78,9 +78,9 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
   connect(toolButtonStop, SIGNAL(clicked()), webViewBrowser, SLOT(stop()));
 
   // hide page actions we don't provide
-  webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(FALSE);
-  webViewBrowser->pageAction(QWebPage::OpenFrameInNewWindow)->setVisible(FALSE);
-  webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(FALSE);
+  webViewBrowser->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(false);
+  webViewBrowser->pageAction(QWebPage::OpenFrameInNewWindow)->setVisible(false);
+  webViewBrowser->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(false);
 
   // change provided page actions to better fit our usage / integrate into QMC2's look
   webViewBrowser->pageAction(QWebPage::OpenLink)->setText(tr("Open link"));
@@ -110,44 +110,44 @@ MiniWebBrowser::MiniWebBrowser(QWidget *parent)
 
   // setup browser settings
   webViewBrowser->page()->settings()->setIconDatabasePath(QMC2_DYNAMIC_DOT_PATH);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, TRUE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::AutoLoadImages, true);
 #if defined(QMC2_BROWSER_JAVASCRIPT_ENABLED)
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, TRUE);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, FALSE);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanAccessClipboard, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, false);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptCanAccessClipboard, false);
 #else
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
 #endif
 #if defined(QMC2_BROWSER_JAVA_ENABLED)
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavaEnabled, TRUE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavaEnabled, true);
 #else
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavaEnabled, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::JavaEnabled, false);
 #endif
 #if defined(QMC2_BROWSER_PLUGINS_ENABLED)
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, TRUE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, true);
 #else
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, false);
 #endif
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PrivateBrowsingEnabled, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PrivateBrowsingEnabled, false);
 #if defined(QMC2_BROWSER_EXTRAS_ENABLED)
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, TRUE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
 #else
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, false);
 #endif
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::LinksIncludedInFocusChain, FALSE);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::ZoomTextOnly, FALSE);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PrintElementBackgrounds, FALSE);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineStorageDatabaseEnabled, FALSE);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineWebApplicationCacheEnabled, FALSE);
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::LocalStorageDatabaseEnabled, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::LinksIncludedInFocusChain, false);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::ZoomTextOnly, false);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::PrintElementBackgrounds, false);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineStorageDatabaseEnabled, false);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::OfflineWebApplicationCacheEnabled, false);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::LocalStorageDatabaseEnabled, false);
 #if defined(QMC2_BROWSER_PREFETCH_DNS_ENABLED)
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, TRUE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, true);
 #else
-  webViewBrowser->page()->settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, FALSE);
+  webViewBrowser->page()->settings()->setAttribute(QWebSettings::DnsPrefetchEnabled, false);
 #endif
 
   // we want to detect/handle unsupported content
-  webViewBrowser->page()->setForwardUnsupportedContent(TRUE);
+  webViewBrowser->page()->setForwardUnsupportedContent(true);
 
   // status bar timeout connection
   connect(&statusTimer, SIGNAL(timeout()), this, SLOT(statusTimeout()));
@@ -275,20 +275,20 @@ void MiniWebBrowser::webViewBrowser_loadStarted()
   progressBar->show();
 
   if ( firstTimeLoadStarted ) {
-    firstTimeLoadStarted = FALSE;
+    firstTimeLoadStarted = false;
     homeUrl = webViewBrowser->url();
     webViewBrowser->history()->clear();
-    toolButtonStop->setEnabled(TRUE);
-    toolButtonReload->setEnabled(FALSE);
-    toolButtonBack->setEnabled(FALSE);
-    toolButtonForward->setEnabled(FALSE);
-    toolButtonHome->setEnabled(TRUE);
+    toolButtonStop->setEnabled(true);
+    toolButtonReload->setEnabled(false);
+    toolButtonBack->setEnabled(false);
+    toolButtonForward->setEnabled(false);
+    toolButtonHome->setEnabled(true);
   } else {
-    toolButtonStop->setEnabled(TRUE);
-    toolButtonReload->setEnabled(FALSE);
+    toolButtonStop->setEnabled(true);
+    toolButtonReload->setEnabled(false);
     toolButtonBack->setEnabled(webViewBrowser->history()->canGoBack());
     toolButtonForward->setEnabled(webViewBrowser->history()->canGoForward());
-    toolButtonHome->setEnabled(TRUE);
+    toolButtonHome->setEnabled(true);
   }
 
   QTimer::singleShot(0, this, SLOT(webViewBrowser_iconChanged()));
@@ -306,12 +306,12 @@ void MiniWebBrowser::webViewBrowser_loadProgress(int progress)
   progressBar->setValue(progress);
 
   if ( firstTimeLoadProgress ) {
-    firstTimeLoadProgress = FALSE;
+    firstTimeLoadProgress = false;
     homeUrl = webViewBrowser->url();
     webViewBrowser->history()->clear();
-    toolButtonBack->setEnabled(FALSE);
-    toolButtonForward->setEnabled(FALSE);
-    toolButtonHome->setEnabled(TRUE);
+    toolButtonBack->setEnabled(false);
+    toolButtonForward->setEnabled(false);
+    toolButtonHome->setEnabled(true);
   } else {
     QTimer::singleShot(0, this, SLOT(webViewBrowser_iconChanged()));
     toolButtonBack->setEnabled(webViewBrowser->history()->canGoBack());
@@ -333,18 +333,18 @@ void MiniWebBrowser::webViewBrowser_loadFinished(bool ok)
   progressBar->hide();
 
   if ( firstTimeLoadFinished ) {
-    firstTimeLoadFinished = FALSE;
+    firstTimeLoadFinished = false;
     homeUrl = webViewBrowser->url();
     webViewBrowser->history()->clear();
-    toolButtonBack->setEnabled(FALSE);
-    toolButtonForward->setEnabled(FALSE);
+    toolButtonBack->setEnabled(false);
+    toolButtonForward->setEnabled(false);
   } else {
     toolButtonBack->setEnabled(webViewBrowser->history()->canGoBack());
     toolButtonForward->setEnabled(webViewBrowser->history()->canGoForward());
   }
-  toolButtonStop->setEnabled(FALSE);
-  toolButtonReload->setEnabled(TRUE);
-  toolButtonHome->setEnabled(TRUE);
+  toolButtonStop->setEnabled(false);
+  toolButtonReload->setEnabled(true);
+  toolButtonHome->setEnabled(true);
 
   QTimer::singleShot(250, this, SLOT(webViewBrowser_iconChanged()));
 }
@@ -357,7 +357,7 @@ void MiniWebBrowser::webViewBrowser_statusBarMessage(const QString &message)
 
   if ( !message.isEmpty() ) {
     statusTimer.stop();
-    labelStatus->setVisible(TRUE);
+    labelStatus->setVisible(true);
     QFont f(font());
     f.setPointSize(f.pointSize() - 2);
     labelStatus->setFont(f);
@@ -406,7 +406,7 @@ void MiniWebBrowser::webViewBrowser_linkHovered(const QString &link, const QStri
   
   if ( !link.isEmpty() ) {
     statusTimer.stop();
-    labelStatus->setVisible(TRUE);
+    labelStatus->setVisible(true);
     QFont f(font());
     f.setPointSize(f.pointSize() - 2);
     labelStatus->setFont(f);
@@ -442,7 +442,7 @@ void MiniWebBrowser::statusTimeout()
 #endif
 
   statusTimer.stop();
-  labelStatus->setVisible(FALSE);
+  labelStatus->setVisible(false);
 }
 
 void MiniWebBrowser::processPageActionDownloadRequested(const QNetworkRequest &request)

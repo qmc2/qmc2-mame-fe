@@ -62,10 +62,10 @@ bool Joystick::open(int stick)
                         arg(stick).arg(numAxes).arg(numButtons).arg(numHats).arg(numTrackballs));
 #endif
     joystickTimer.start(eventTimeout);
-    return TRUE;
+    return true;
   } else {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: couldn't open SDL joystick #%1").arg(stick));
-    return FALSE;
+    return false;
   }
 }
 

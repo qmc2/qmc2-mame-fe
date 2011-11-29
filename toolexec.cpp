@@ -55,7 +55,7 @@ void ToolExecutor::execute()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ToolExecutor::execute()");
 #endif
 
-  pushButtonOk->setEnabled(FALSE);
+  pushButtonOk->setEnabled(false);
   toolProc->start(toolCommand, toolArgs);
   textBrowserToolOutput->append(tr("### tool started, output below ###"));
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput").toBool() )
@@ -79,7 +79,7 @@ void ToolExecutor::toolFinished(int exitCode, QProcess::ExitStatus exitStatus)
   textBrowserToolOutput->append(tr("### tool finished, exit code = %1, exit status = %2 ###").arg(exitCode).arg(exitStatus));
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput").toBool() )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("tool control: ") + tr("### tool finished, exit code = %1, exit status = %2 ###").arg(exitCode).arg(exitStatus));
-  pushButtonOk->setEnabled(TRUE);
+  pushButtonOk->setEnabled(true);
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CloseToolDialog", false).toBool() )
     QTimer::singleShot(0, this, SLOT(accept()));
@@ -126,7 +126,7 @@ void ToolExecutor::toolError(QProcess::ProcessError processError)
   textBrowserToolOutput->append(tr("### tool error, process error = %1 ###").arg(processError));
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CopyToolOutput").toBool() )
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("tool control: ") + tr("### tool error, process error = %1 ###").arg(processError));
-  pushButtonOk->setEnabled(TRUE);
+  pushButtonOk->setEnabled(true);
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Tools/CloseToolDialog", false).toBool() )
     QTimer::singleShot(0, this, SLOT(accept()));

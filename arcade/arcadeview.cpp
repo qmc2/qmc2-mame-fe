@@ -35,7 +35,7 @@ ArcadeView *arcadeView = NULL;
 QMutex arcadeScreenshotMutex;
 QImage *arcadeScreenshotImage = NULL;
 QQueue<QString> arcadeMessageQueue;
-bool exitArcade = FALSE;
+bool exitArcade = false;
 
 ArcadeView::ArcadeView(QWidget *parent)
   : QGraphicsView(parent)
@@ -63,7 +63,7 @@ ArcadeView::ArcadeView(QWidget *parent)
   setupGraphicsMode();
 
   // scene init
-  setInteractive(TRUE);
+  setInteractive(true);
   menuScene = new ArcadeMenuScene(this);
   setScene(menuScene);
 
@@ -120,9 +120,9 @@ void ArcadeView::toggleFullscreen()
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ArcadeView: Switching to windowed mode"));
     showNormal();
     emit switchedToWindowedMode();
-    qmc2Config->setValue(QMC2_ARCADE_PREFIX + "Graphics/Fullscreen", FALSE);
+    qmc2Config->setValue(QMC2_ARCADE_PREFIX + "Graphics/Fullscreen", false);
     if ( qmc2ArcadeSetupDialog )
-      qmc2ArcadeSetupDialog->checkBoxGraphicsFullscreen->setChecked(FALSE);
+      qmc2ArcadeSetupDialog->checkBoxGraphicsFullscreen->setChecked(false);
   } else {
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ArcadeView: Switching to full screen mode"));
     if ( arcadeSettings->graphicsSwitchResolution() ) {
@@ -131,9 +131,9 @@ void ArcadeView::toggleFullscreen()
     }
     showFullScreen();
     emit switchedToFullscreenMode();
-    qmc2Config->setValue(QMC2_ARCADE_PREFIX + "Graphics/Fullscreen", TRUE);
+    qmc2Config->setValue(QMC2_ARCADE_PREFIX + "Graphics/Fullscreen", true);
     if ( qmc2ArcadeSetupDialog )
-      qmc2ArcadeSetupDialog->checkBoxGraphicsFullscreen->setChecked(TRUE);
+      qmc2ArcadeSetupDialog->checkBoxGraphicsFullscreen->setChecked(true);
   }
 }
 
@@ -168,7 +168,7 @@ void ArcadeView::setupGraphicsMode()
     // check for OpenGL support
     if ( !QGLFormat::hasOpenGL() ) {
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ArcadeView: This system does not appear to support OpenGL -- reverting to non-OpenGL / software renderer"));
-      arcadeSettings->setGraphicsUseOpenGL(FALSE);
+      arcadeSettings->setGraphicsUseOpenGL(false);
     }
   }
   if ( arcadeSettings->graphicsUseOpenGL() ) {
@@ -177,7 +177,7 @@ void ArcadeView::setupGraphicsMode()
 
     if ( widget->format().swapInterval() == -1 && arcadeSettings->openGLSyncToScreen() ) {
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ArcadeView: This system does not appear to support vertical syncing -- disabling SyncToScreen"));
-      arcadeSettings->setOpenGLSyncToScreen(FALSE);
+      arcadeSettings->setOpenGLSyncToScreen(false);
     }
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ArcadeView: OpenGL: SyncToScreen: %1").arg(arcadeSettings->openGLSyncToScreen() ? tr("on") : tr("off")));
     widget->format().setSwapInterval(arcadeSettings->openGLSyncToScreen() ? 1 : 0);
@@ -199,13 +199,13 @@ void ArcadeView::setupGraphicsMode()
     widget->format().setDirectRendering(arcadeSettings->openGLDirectRendering());
     if ( !QGLFormat::hasOpenGLOverlays() && arcadeSettings->openGLOverlay() ) {
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ArcadeView: This system does not appear to support OpenGL overlays -- disabling OpenGL overlays"));
-      arcadeSettings->setOpenGLOverlay(FALSE);
+      arcadeSettings->setOpenGLOverlay(false);
     }
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ArcadeView: OpenGL: Overlay: %1").arg(arcadeSettings->openGLOverlay() ? tr("on") : tr("off")));
     widget->format().setOverlay(arcadeSettings->openGLOverlay());
     if ( widget->format().samples() == -1 && arcadeSettings->openGLMultiSample() ) {
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ArcadeView: This system does not appear to support OpenGL multi sampling -- disabling MultiSample"));
-      arcadeSettings->setOpenGLMultiSample(FALSE);
+      arcadeSettings->setOpenGLMultiSample(false);
     }
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ArcadeView: OpenGL: MultiSample: %1").arg(arcadeSettings->openGLMultiSample() ? tr("on") : tr("off")));
     widget->format().setSampleBuffers(arcadeSettings->openGLMultiSample());
@@ -267,7 +267,7 @@ void ArcadeView::keyPressEvent(QKeyEvent *event)
   qApp->processEvents();
   if ( qmc2MainWindow->stackedWidgetView->currentIndex() == QMC2_VIEWHIERARCHY_INDEX ) {
     if ( qmc2CurrentItem )
-      qmc2CurrentItem->setExpanded(FALSE);
+      qmc2CurrentItem->setExpanded(false);
     qmc2MainWindow->scrollToCurrentItem();
   }
 }
@@ -386,9 +386,9 @@ void ArcadeView::showEvent(QShowEvent *event)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ArcadeView::showEvent(QShowEvent *event = %1)").arg((qulonglong)event));
 #endif
 
-  static bool firstCall = TRUE;
+  static bool firstCall = true;
 
-  exitArcade = FALSE;
+  exitArcade = false;
 
   if ( arcadeScreenshotSaverThread && !firstCall )
     arcadeScreenshotSaverThread->start();
@@ -408,7 +408,7 @@ void ArcadeView::showEvent(QShowEvent *event)
     }
   }
 
-  firstCall = FALSE;
+  firstCall = false;
 
   // call the baseclass handler
   QGraphicsView::showEvent(event);
@@ -420,7 +420,7 @@ void ArcadeView::closeEvent(QCloseEvent *event)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ArcadeView::closeEvent(QCloseEvent *event = %1)").arg((qulonglong)event));
 #endif
 
-  exitArcade = TRUE;
+  exitArcade = true;
   arcadeScreenshotSaverWaitCondition.wakeAll();
   arcadeScreenshotSaverThread->quit();
   arcadeScreenshotSaverThread->wait();
@@ -428,7 +428,7 @@ void ArcadeView::closeEvent(QCloseEvent *event)
   // call the baseclass handler
   if ( event != NULL )
     QGraphicsView::closeEvent(event);
-  qmc2MainWindow->actionArcadeToggle->setChecked(FALSE);
+  qmc2MainWindow->actionArcadeToggle->setChecked(false);
 }
 
 void ArcadeView::hideEvent(QHideEvent *event)

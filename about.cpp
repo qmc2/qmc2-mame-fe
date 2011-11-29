@@ -45,8 +45,8 @@ About::About(QWidget *parent)
   setupUi(this);
 
   widgetSize = QSize(-1, -1);
-  widgetPosValid = FALSE;
-  ignoreResizeAndMove = TRUE;
+  widgetPosValid = false;
+  ignoreResizeAndMove = true;
 
 #if defined(QMC2_EMUTYPE_MESS)
   labelLogoPixmap->setPixmap(QString::fromUtf8(":/data/img/qmc2_mess_logo_big.png"));
@@ -89,7 +89,7 @@ void About::showEvent(QShowEvent *e)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: About::showEvent(QShowEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
 #endif
 
-  ignoreResizeAndMove = TRUE;
+  ignoreResizeAndMove = true;
 
 #if defined(QMC2_SHOWMEMINFO)
   // get memory information
@@ -188,7 +188,7 @@ void About::showEvent(QShowEvent *e)
   if ( widgetPosValid )
     move(widgetPos);
 
-  ignoreResizeAndMove = FALSE;
+  ignoreResizeAndMove = false;
 
   e->accept();
 }
@@ -213,7 +213,7 @@ void About::moveEvent(QMoveEvent *e)
 
   if ( !ignoreResizeAndMove ) {
     widgetPos = pos();
-    widgetPosValid = TRUE;
+    widgetPosValid = true;
   }
 
   e->accept();
