@@ -783,7 +783,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>262</width>
+                <width>421</width>
                 <height>529</height>
                </rect>
               </property>
@@ -2116,31 +2116,20 @@
                   </layout>
                  </item>
                  <item row="16" column="0">
-                  <layout class="QHBoxLayout" name="horizontalLayout_3">
-                   <item>
-                    <widget class="QRadioButton" name="radioButtonSoftwareSnapSelect">
-                     <property name="toolTip">
-                      <string>Switch between specifying a software snap directory or a ZIP-compressed software snap file</string>
-                     </property>
-                     <property name="text">
-                      <string>SW snap folder</string>
-                     </property>
-                     <property name="checkable">
-                      <bool>false</bool>
-                     </property>
-                     <property name="autoExclusive">
-                      <bool>false</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLabel" name="labelSoftwareSnapSelect">
-                     <property name="text">
-                      <string>SW snap folder</string>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
+                  <widget class="QRadioButton" name="radioButtonSoftwareSnapSelect">
+                   <property name="toolTip">
+                    <string>Switch between specifying a software snap directory or a ZIP-compressed software snap file</string>
+                   </property>
+                   <property name="text">
+                    <string>SW snap folder</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                   <property name="autoExclusive">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -2172,7 +2161,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>493</width>
-                <height>325</height>
+                <height>222</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
