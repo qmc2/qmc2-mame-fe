@@ -5527,6 +5527,9 @@ void MainWindow::init()
 
   QTimer::singleShot(0, this, SLOT(on_actionReload_activated()));
   activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
+
+  // make sure the current detail's tab header is shown
+  QTimer::singleShot(0, qmc2DetailSetup, SLOT(saveDetail()));
 }
 
 void MainWindow::setupStyle(QString styleName)
