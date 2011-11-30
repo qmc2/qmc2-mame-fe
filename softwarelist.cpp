@@ -2073,10 +2073,9 @@ void SoftwareSnap::mousePressEvent(QMouseEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::mousePressEvent(QMouseEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-	if ( e->button() != Qt::RightButton) {
+	if ( e->button() != Qt::RightButton)
 		hide();
-		resetSnapForced();
-	} else
+	else
 		ctxMenuRequested = true;
 }
 
