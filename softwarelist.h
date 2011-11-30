@@ -82,7 +82,6 @@ class SoftwareSnap : public QWidget
 		QPoint position;
 		unzFile snapFile;
 		SoftwareItem *myItem;
-		QWidget *focusWidget;
 		QTimer snapForcedResetTimer;
 		QMenu *contextMenu;
 		bool ctxMenuRequested;
@@ -98,7 +97,6 @@ class SoftwareSnap : public QWidget
 	protected:
 		void paintEvent(QPaintEvent *);
 		void mousePressEvent(QMouseEvent *);
-		void keyPressEvent(QKeyEvent *);
 		void leaveEvent(QEvent *);
 		void contextMenuEvent(QContextMenuEvent *);
 };

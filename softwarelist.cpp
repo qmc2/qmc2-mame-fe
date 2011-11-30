@@ -1993,7 +1993,6 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 
 	setWindowTitle(tr("Snapshot viewer"));
 	setFocusPolicy(Qt::NoFocus);
-	focusWidget = QApplication::focusWidget();
 	snapForcedResetTimer.setSingleShot(true);
 	connect(&snapForcedResetTimer, SIGNAL(timeout()), this, SLOT(resetSnapForced()));
 
@@ -2019,46 +2018,6 @@ SoftwareSnap::~SoftwareSnap()
 
 	if ( qmc2UseSoftwareSnapFile && snapFile )
 		unzClose(snapFile);
-}
-
-void SoftwareSnap::keyPressEvent(QKeyEvent *e)
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::keyPressEvent(QKeyEvent *e = %1)").arg((qulonglong)e));
-#endif
-
-	// pass the key press event to the software list (to allow for clean cursor movement)
-	if ( focusWidget ) {
-		QKeyEvent *keyEvent = new QKeyEvent(QEvent::KeyPress, e->key(), e->modifiers(), e->text(), e->isAutoRepeat(), e->count());
-		qApp->postEvent(focusWidget, keyEvent);
-		if ( qmc2SoftwareList ) {
-			qmc2SoftwareList->snapForced = true;
-			myItem = NULL;
-			snapForcedResetTimer.start(QMC2_SWSNAP_UNFORCE_DELAY);
-		}
-	} else if ( qmc2SoftwareList ) {
-		switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
-			case QMC2_SWLIST_KNOWN_SW_PAGE:
-				focusWidget = qmc2SoftwareList->treeWidgetKnownSoftware;
-				break;
-			case QMC2_SWLIST_FAVORITES_PAGE:
-				focusWidget = qmc2SoftwareList->treeWidgetFavoriteSoftware;
-				break;
-			case QMC2_SWLIST_SEARCH_PAGE:
-				focusWidget = qmc2SoftwareList->treeWidgetSearchResults;
-				break;
-		}
-		if ( focusWidget ) {
-			QKeyEvent *keyEvent = new QKeyEvent(QEvent::KeyPress, e->key(), e->modifiers(), e->text(), e->isAutoRepeat(), e->count());
-			qApp->postEvent(focusWidget, keyEvent);
-			qmc2SoftwareList->snapForced = true;
-			myItem = NULL;
-			snapForcedResetTimer.start(QMC2_SWSNAP_UNFORCE_DELAY);
-		}
-	} else
-		hide();
-
-	e->ignore();
 }
 
 void SoftwareSnap::mousePressEvent(QMouseEvent *e)
@@ -2264,8 +2223,6 @@ void SoftwareSnap::loadSnapshot()
 #endif
 		}
 	}
-
-	focusWidget = QApplication::focusWidget();
 
 	if ( pmLoaded ) {
 		resize(pm.size());
