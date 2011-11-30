@@ -37,7 +37,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	setupUi(this);
 
 	if ( !qmc2SoftwareSnap )
-		qmc2SoftwareSnap = new SoftwareSnap();
+		qmc2SoftwareSnap = new SoftwareSnap(qmc2MainWindow);
 
 	qmc2SoftwareSnap->hide();
 	snapTimer.setSingleShot(true);
