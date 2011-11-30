@@ -1224,8 +1224,6 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 	toolButtonAddToFavorites->setEnabled(enable);
 	if ( enable && qmc2SoftwareSnap ) {
 		SoftwareItem *item = (SoftwareItem *)selectedItems[0];
-		if ( item != qmc2SoftwareSnap->myItem )
-			cancelSoftwareSnap();
 		qmc2SoftwareSnap->snapForcedResetTimer.stop();
 		snapForced = true;
 		qmc2SoftwareSnap->myItem = item;
@@ -1248,8 +1246,6 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 	toolButtonAddToFavorites->setEnabled(enable);
 	if ( enable && qmc2SoftwareSnap ) {
 		SoftwareItem *item = (SoftwareItem *)selectedItems[0];
-		if ( item != qmc2SoftwareSnap->myItem )
-			cancelSoftwareSnap();
 		qmc2SoftwareSnap->snapForcedResetTimer.stop();
 		snapForced = true;
 		qmc2SoftwareSnap->myItem = item;
@@ -1285,8 +1281,6 @@ void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 	toolButtonRemoveFromFavorites->setEnabled(false);
 	if ( selectedItems.count() > 0 && qmc2SoftwareSnap ) {
 		SoftwareItem *item = (SoftwareItem *)selectedItems[0];
-		if ( item != qmc2SoftwareSnap->myItem )
-			cancelSoftwareSnap();
 		qmc2SoftwareSnap->snapForcedResetTimer.stop();
 		snapForced = true;
 		qmc2SoftwareSnap->myItem = item;
@@ -1301,8 +1295,9 @@ void SoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(const Q
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetKnownSoftware_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
-	QTreeWidgetItem *item = treeWidgetKnownSoftware->itemAt(p);
+	cancelSoftwareSnap();
 
+	QTreeWidgetItem *item = treeWidgetKnownSoftware->itemAt(p);
 	if ( !item )
 		return;
 
@@ -1319,8 +1314,9 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(cons
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
-	QTreeWidgetItem *item = treeWidgetFavoriteSoftware->itemAt(p);
+	cancelSoftwareSnap();
 
+	QTreeWidgetItem *item = treeWidgetFavoriteSoftware->itemAt(p);
 	if ( !item )
 		return;
 
@@ -1337,8 +1333,9 @@ void SoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const Q
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::on_treeWidgetSearchResults_customContextMenuRequested(const QPoint &p = ...)");
 #endif
 
-	QTreeWidgetItem *item = treeWidgetSearchResults->itemAt(p);
+	cancelSoftwareSnap();
 
+	QTreeWidgetItem *item = treeWidgetSearchResults->itemAt(p);
 	if ( !item )
 		return;
 
@@ -1375,7 +1372,6 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *item,
 	if ( !snapForced ) {
 		if ( qmc2SoftwareSnap ) {
 			if ( qmc2SoftwareSnap->myItem != item ) {
-				cancelSoftwareSnap();
 				qmc2SoftwareSnap->myItem = (SoftwareItem *)item;
 				snapTimer.start(QMC2_SWSNAP_DELAY);
 			}
@@ -1395,7 +1391,6 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *it
 	if ( !snapForced ) {
 		if ( qmc2SoftwareSnap ) {
 			if ( qmc2SoftwareSnap->myItem != item ) {
-				cancelSoftwareSnap();
 				qmc2SoftwareSnap->myItem = (SoftwareItem *)item;
 				snapTimer.start(QMC2_SWSNAP_DELAY);
 			}
@@ -1415,7 +1410,6 @@ void SoftwareList::on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *item,
 	if ( !snapForced ) {
 		if ( qmc2SoftwareSnap ) {
 			if ( qmc2SoftwareSnap->myItem != item ) {
-				cancelSoftwareSnap();
 				qmc2SoftwareSnap->myItem = (SoftwareItem *)item;
 				snapTimer.start(QMC2_SWSNAP_DELAY);
 			}
