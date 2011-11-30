@@ -1989,7 +1989,7 @@ bool SoftwareListXmlHandler::characters(const QString &str)
 }
 
 SoftwareSnap::SoftwareSnap(QWidget *parent)
-	: QWidget(parent, Qt::Tool | Qt::CustomizeWindowHint | Qt::FramelessWindowHint)
+	: QWidget(parent, Qt::ToolTip)
 {
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::SoftwareSnap(QWidget *parent = %1)").arg((qulonglong)parent));
