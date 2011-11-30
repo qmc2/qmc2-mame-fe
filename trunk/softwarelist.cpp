@@ -2280,15 +2280,15 @@ void SoftwareSnap::loadSnapshot()
 				rect.translate(0, -4);
 				switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 					case QMC2_SWLIST_KNOWN_SW_PAGE:
-						position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.center()).x() - width() / 2);
+						position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->rect().center()).x() - width() / 2);
 						position.setY(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.topLeft()).y() - height() - 4);
 						break;
 					case QMC2_SWLIST_FAVORITES_PAGE:
-						position.setX(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(rect.center()).x() - width() / 2);
+						position.setX(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->rect().center()).x() - width() / 2);
 						position.setY(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(rect.topLeft()).y() - height() - 4);
 						break;
 					case QMC2_SWLIST_SEARCH_PAGE:
-						position.setX(qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapToGlobal(rect.center()).x() - width() / 2);
+						position.setX(qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetSearchResults->viewport()->rect().center()).x() - width() / 2);
 						position.setY(qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapToGlobal(rect.topLeft()).y() - height() - 4);
 						break;
 				}
@@ -2344,13 +2344,13 @@ void SoftwareSnap::loadSnapshot()
 			case QMC2_SWSNAP_POS_BELOW_CENTER:
 				switch ( qmc2SoftwareList->toolBoxSoftwareList->currentIndex() ) {
 					case QMC2_SWLIST_KNOWN_SW_PAGE:
-						position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(rect.center()).x() - width() / 2);
+						position.setX(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetKnownSoftware->viewport()->rect().center()).x() - width() / 2);
 						break;
 					case QMC2_SWLIST_FAVORITES_PAGE:
-						position.setX(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(rect.center()).x() - width() / 2);
+						position.setX(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetFavoriteSoftware->viewport()->rect().center()).x() - width() / 2);
 						break;
 					case QMC2_SWLIST_SEARCH_PAGE:
-						position.setX(qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapToGlobal(rect.center()).x() - width() / 2);
+						position.setX(qmc2SoftwareList->treeWidgetSearchResults->viewport()->mapToGlobal(qmc2SoftwareList->treeWidgetSearchResults->viewport()->rect().center()).x() - width() / 2);
 						break;
 				}
 				break;
