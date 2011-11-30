@@ -2038,8 +2038,9 @@ void SoftwareSnap::enterEvent(QEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::enterEvent(QEvent *e = %1)").arg((qulonglong)e));
 #endif
 
+	if ( contextMenu->isVisible() )
+		QTimer::singleShot(0, contextMenu, SLOT(hide()));
 	ctxMenuRequested = false;
-	if ( contextMenu->isVisible() ) contextMenu->hide();
 	QWidget::enterEvent(e);
 }
 
