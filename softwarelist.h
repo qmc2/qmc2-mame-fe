@@ -97,6 +97,7 @@ class SoftwareSnap : public QWidget
 	protected:
 		void paintEvent(QPaintEvent *);
 		void mousePressEvent(QMouseEvent *);
+		void enterEvent(QEvent *);
 		void leaveEvent(QEvent *);
 		void contextMenuEvent(QContextMenuEvent *);
 };
