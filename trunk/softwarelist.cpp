@@ -2032,6 +2032,17 @@ void SoftwareSnap::mousePressEvent(QMouseEvent *e)
 		ctxMenuRequested = true;
 }
 
+void SoftwareSnap::enterEvent(QEvent *e)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::enterEvent(QEvent *e = %1)").arg((qulonglong)e));
+#endif
+
+	ctxMenuRequested = false;
+	if ( contextMenu->isVisible() ) contextMenu->hide();
+	QWidget::enterEvent(e);
+}
+
 void SoftwareSnap::leaveEvent(QEvent *e)
 {
 #ifdef QMC2_DEBUG
@@ -2039,8 +2050,8 @@ void SoftwareSnap::leaveEvent(QEvent *e)
 #endif
 
 	if ( !qmc2SoftwareList->snapForced && !ctxMenuRequested ) hide();
+	ctxMenuRequested = contextMenu->isVisible();
 	QWidget::leaveEvent(e);
-	ctxMenuRequested = false;
 }
 
 void SoftwareSnap::paintEvent(QPaintEvent *e)
