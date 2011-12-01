@@ -4184,7 +4184,7 @@ void MainWindow::action_embedEmulator_triggered()
       if ( embeddedEmusIndex < 0 )
         tabWidgetGamelist->addTab(widgetEmbeddedEmus, QIcon(QString::fromUtf8(":/data/img/embed.png")), tr("Embedded emulators"));
       log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg(winIdList[0]));
-      Embedder *embedder = new Embedder(gameName, gameID, winIdList[0].toInt(0, 16), (gameStatus == tr("paused")), this);
+      Embedder *embedder = new Embedder(gameName, gameID, winIdList[0].toInt(0, 16), (gameStatus == tr("paused")), this, qmc2IconMap[gameName]);
       connect(embedder, SIGNAL(closing()), this, SLOT(closeEmbeddedEmuTab()));
       tabWidgetEmbeddedEmulators->addTab(embedder, QString("#%1 - %2").arg(gameID).arg(qmc2GamelistDescriptionMap[gameName]));
 
@@ -6866,7 +6866,7 @@ void MainWindow::processFifoData()
 	      }
 	      if ( embedder ) {
 		      embedder->isPaused = false;
-		      tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png")));
+		      tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, embedder->iconRunning);
 	      }
 #endif
             } else if ( msgWhat == "STOP" ) {
@@ -6882,7 +6882,7 @@ void MainWindow::processFifoData()
 	      }
 	      if ( embedder ) {
 		      embedder->isPaused = false;
-		      tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_red.png")));
+		      tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, embedder->iconStopped);
 	      }
 #endif
             } else {
@@ -6918,13 +6918,13 @@ void MainWindow::processFifoData()
 		      il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("paused"));
 		      if ( embedder ) {
 			      embedder->isPaused = true;
-			      tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_yellow.png")));
+			      tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, embedder->iconPaused);
 		      }
 	      } else {
 		      il[0]->setText(QMC2_EMUCONTROL_COLUMN_STATUS, tr("running"));
 		      if ( embedder ) {
 			      embedder->isPaused = false;
-			      tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png")));
+			      tabWidgetEmbeddedEmulators->setTabIcon(embedderIndex, embedder->iconRunning);
 		      }
 	      }
 #else
