@@ -37,7 +37,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	setupUi(this);
 
 	if ( !qmc2SoftwareSnap )
-		qmc2SoftwareSnap = new SoftwareSnap(qmc2MainWindow);
+		qmc2SoftwareSnap = new SoftwareSnap(0);
 
 	qmc2SoftwareSnap->hide();
 	snapTimer.setSingleShot(true);
@@ -780,6 +780,8 @@ void SoftwareList::leaveEvent(QEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::leaveEvent(QEvent *e = %1)").arg((qulonglong)e));
 #endif
 
+	snapForced = false;
+
 	if ( qmc2SoftwareSnap )
 		if ( qmc2SoftwareSnap->geometry().contains(QCursor::pos()) ) {
 			snapForced = true;
@@ -788,8 +790,26 @@ void SoftwareList::leaveEvent(QEvent *e)
 
 	if ( !snapForced )
 		cancelSoftwareSnap();
+	else
+		QTimer::singleShot(QMC2_SWSNAP_UNFORCE_DELAY, this, SLOT(checkSoftwareSnap()));
 
 	QWidget::leaveEvent(e);
+}
+
+void SoftwareList::checkSoftwareSnap()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::checkSoftwareSnap()");
+#endif
+
+	if ( qmc2SoftwareSnap && qmc2SoftwareSnap->isVisible() ) {
+		if ( !qmc2SoftwareSnap->geometry().contains(QCursor::pos()) && !qmc2SoftwareSnap->ctxMenuRequested )
+			cancelSoftwareSnap();
+		else {
+			qmc2SoftwareSnap->ctxMenuRequested = qmc2SoftwareSnap->contextMenu->isVisible();
+			QTimer::singleShot(QMC2_SWSNAP_UNFORCE_DELAY, this, SLOT(checkSoftwareSnap()));
+		}
+	}
 }
 
 void SoftwareList::resizeEvent(QResizeEvent *e)
@@ -1989,13 +2009,12 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::SoftwareSnap(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
-	snapFile = NULL;
-
-	setWindowTitle(tr("Snapshot viewer"));
+	//setWindowTitle(tr("Snapshot viewer"));
 	setFocusPolicy(Qt::NoFocus);
 	snapForcedResetTimer.setSingleShot(true);
 	connect(&snapForcedResetTimer, SIGNAL(timeout()), this, SLOT(resetSnapForced()));
 
+	snapFile = NULL;
 	ctxMenuRequested = false;
 	contextMenu = new QMenu(this);
 	contextMenu->hide();
@@ -2041,6 +2060,7 @@ void SoftwareSnap::enterEvent(QEvent *e)
 	if ( contextMenu->isVisible() )
 		QTimer::singleShot(0, contextMenu, SLOT(hide()));
 	ctxMenuRequested = false;
+
 	QWidget::enterEvent(e);
 }
 
@@ -2050,8 +2070,13 @@ void SoftwareSnap::leaveEvent(QEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::leaveEvent(QEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-	if ( !qmc2SoftwareList->snapForced && !ctxMenuRequested ) hide();
+	if ( !qmc2SoftwareList->snapForced && !ctxMenuRequested )
+		hide();
+	else if ( !qmc2SoftwareList->snapForced )
+		QTimer::singleShot(QMC2_SWSNAP_UNFORCE_DELAY, qmc2SoftwareList, SLOT(checkSoftwareSnap()));
+
 	ctxMenuRequested = contextMenu->isVisible();
+
 	QWidget::leaveEvent(e);
 }
 

@@ -192,6 +192,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void checkMountDeviceSelection();
 		void loadFavoritesFromFile();
 		void saveFavoritesToFile();
+		void checkSoftwareSnap();
 
 		// callbacks for software-list header context menu requests
 		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);

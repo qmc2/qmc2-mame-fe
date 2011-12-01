@@ -5455,24 +5455,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
   e->accept();
 }
 
-void MainWindow::showEvent(QShowEvent *e)
-{
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::showEvent(QShowEvent *e = 0x" + QString::number((qulonglong)e, 16) + ")");
-#endif
-
-  e->accept();
-}
-
-void MainWindow::hideEvent(QHideEvent *e)
-{
-#ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::hideEvent(QHideEvent *e = 0x" + QString::number((qulonglong)e, 16) + ")");
-#endif
-
-  e->accept();
-}
-
 void MainWindow::init()
 {
 #ifdef QMC2_DEBUG

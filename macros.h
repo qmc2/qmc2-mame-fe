@@ -252,7 +252,7 @@
 #define QMC2_SWSNAP_DELAY		10
 
 // time after which the 'forced snapshot' flag is unset automatically
-#define QMC2_SWSNAP_UNFORCE_DELAY	100
+#define QMC2_SWSNAP_UNFORCE_DELAY	50
 
 // init delay for the dir chooser
 #define QMC2_DIRCHOOSER_INIT_WAIT	250
