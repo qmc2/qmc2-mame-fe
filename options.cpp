@@ -455,10 +455,11 @@ void Options::apply()
   lineEditLogFont->setFont(logFont);
 
   QSize iconSize(fm.height() - 2, fm.height() - 2);
+  QSize iconSizeMiddle = iconSize + QSize(2, 2);
   QSize iconSizeLarge = iconSize + QSize(4, 4);
-  qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSize);
-  qmc2MainWindow->treeWidgetHierarchy->setIconSize(iconSize);
-  qmc2MainWindow->treeWidgetEmulators->setIconSize(iconSize);
+  qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSizeMiddle);
+  qmc2MainWindow->treeWidgetHierarchy->setIconSize(iconSizeMiddle);
+  qmc2MainWindow->treeWidgetEmulators->setIconSize(iconSizeMiddle);
   pushButtonApply->setIconSize(iconSize);
   pushButtonRestore->setIconSize(iconSize);
   pushButtonDefault->setIconSize(iconSize);
