@@ -466,8 +466,6 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
   protected:
     void closeEvent(QCloseEvent *);
-    void showEvent(QShowEvent *);
-    void hideEvent(QHideEvent *);
 };
 
 #endif
