@@ -13,11 +13,11 @@ extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 extern bool qmc2FifoIsOpen;
 
-Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWidget *parent)
+Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWidget *parent, QIcon icon)
     : QWidget(parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::Embedder(QString name = %1, QString id = %2, WId wid = %3, bool currentlyPaused = %4, QWidget *parent = %5)").arg(name).arg(id).arg((qulonglong)wid).arg(currentlyPaused).arg((qulonglong)parent));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::Embedder(QString name = %1, QString id = %2, WId wid = %3, bool currentlyPaused = %4, QWidget *parent = %5, ...)").arg(name).arg(id).arg((qulonglong)wid).arg(currentlyPaused).arg((qulonglong)parent));
 #endif
 
   gameName = name;
@@ -53,6 +53,52 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
   connect(embedContainer, SIGNAL(clientIsEmbedded()), SLOT(clientEmbedded()));
   connect(embedContainer, SIGNAL(clientClosed()), SLOT(clientClosed()));
   connect(embedContainer, SIGNAL(error(QX11EmbedContainer::Error)), SLOT(clientError(QX11EmbedContainer::Error)));
+
+  if ( icon.isNull() ) {
+	  iconRunning = QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png"));
+	  iconPaused = QIcon(QString::fromUtf8(":/data/img/trafficlight_yellow.png"));
+	  iconStopped = QIcon(QString::fromUtf8(":/data/img/trafficlight_red.png"));
+	  iconUnknown = QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png"));
+  } else {
+	  QPainter p;
+	  p.setBackgroundMode(Qt::TransparentMode);
+	  QPixmap pm(128, 64);
+	  QPixmap pmStatus;
+	  QPixmap pmIcon = icon.pixmap(icon.actualSize(QSize(64, 64))).scaled(64, 64, Qt::KeepAspectRatioByExpanding);
+	  pmIcon.setMask(pmIcon.createMaskFromColor(QColor(255, 255, 255), Qt::MaskInColor));
+
+	  pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png")).pixmap(64, 64);
+	  pm.fill(Qt::transparent);
+	  p.begin(&pm);
+	  p.drawPixmap(0, 0, pmStatus);
+	  p.drawPixmap(64, 0, pmIcon);
+	  p.end();
+	  iconRunning = QIcon(pm);
+
+	  pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_yellow.png")).pixmap(64, 64);
+	  pm.fill(Qt::transparent);
+	  p.begin(&pm);
+	  p.drawPixmap(0, 0, pmStatus);
+	  p.drawPixmap(64, 0, pmIcon);
+	  p.end();
+	  iconPaused = QIcon(pm);
+
+	  pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_red.png")).pixmap(64, 64);
+	  pm.fill(Qt::transparent);
+	  p.begin(&pm);
+	  p.drawPixmap(0, 0, pmStatus);
+	  p.drawPixmap(64, 0, pmIcon);
+	  p.end();
+	  iconStopped = QIcon(pm);
+
+	  pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png")).pixmap(64, 64);
+	  pm.fill(Qt::transparent);
+	  p.begin(&pm);
+	  p.drawPixmap(0, 0, pmStatus);
+	  p.drawPixmap(64, 0, pmIcon);
+	  p.end();
+	  iconUnknown = QIcon(pm);
+  }
 
   embedderOptions = NULL;
   optionsShown = false;
@@ -107,11 +153,11 @@ void Embedder::clientEmbedded()
 
   if ( qmc2FifoIsOpen ) {
     if ( isPaused )
-      qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_yellow.png")));
+      qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconPaused);
     else
-      qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png")));
+      qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconRunning);
   } else
-    qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png")));
+    qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconUnknown);
 
   forceFocus();
 }
@@ -179,7 +225,7 @@ void Embedder::showEvent(QShowEvent *e)
 
   if ( !qmc2FifoIsOpen ) {
     int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
-    qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png")));
+    qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconUnknown);
   }
 
   QWidget::showEvent(e);
@@ -277,6 +323,7 @@ void Embedder::adjustIconSizes()
   QSize releaseButtonSize(baseSize, baseSize);
   optionsButton->setFixedSize(optionsButtonSize);
   releaseButton->setFixedSize(releaseButtonSize);
+  tabBar->setIconSize(optionsButtonSize);
 }
 
 void Embedder::forceFocus()
