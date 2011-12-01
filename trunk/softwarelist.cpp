@@ -2423,6 +2423,7 @@ void SoftwareSnap::contextMenuEvent(QContextMenuEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::contextMenuEvent(QContextMenuEvent *e = %1)").arg((qulonglong)e));
 #endif
 
+	ctxMenuRequested = true;
 	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
 	contextMenu->show();
 }
