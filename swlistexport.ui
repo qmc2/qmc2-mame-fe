@@ -103,7 +103,7 @@
         </spacer>
        </item>
        <item row="2" column="0" colspan="3">
-        <spacer name="verticalSpacer_2">
+        <spacer name="verticalSpacer2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -273,7 +273,7 @@
         </spacer>
        </item>
        <item row="2" column="0" colspan="6">
-        <spacer name="verticalSpacer_3">
+        <spacer name="verticalSpacer3">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -572,7 +572,7 @@
     </widget>
    </item>
    <item row="6" column="0" colspan="3">
-    <spacer name="verticalSpacer">
+    <spacer name="verticalSpacer1">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -587,7 +587,6 @@
   </layout>
   <zorder>stackedWidgetOutputParams</zorder>
   <zorder>listWidgetColumns</zorder>
-  <zorder></zorder>
   <zorder>labelSortCriteria</zorder>
   <zorder>labelSortOrder</zorder>
   <zorder>labelOutputFormat</zorder>
@@ -597,7 +596,6 @@
   <zorder>checkBoxOverwriteBlindly</zorder>
   <zorder>checkBoxExportToClipboard</zorder>
   <zorder>checkBoxIncludeColumnHeaders</zorder>
-  <zorder>verticalSpacer</zorder>
  </widget>
  <tabstops>
   <tabstop>comboBoxOutputFormat</tabstop>
