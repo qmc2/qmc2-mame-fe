@@ -39,6 +39,8 @@ class MESSDeviceConfiguratorXmlHandler : public QXmlDefaultHandler
 		QString deviceBriefName;
 		QStringList deviceInstances;
 		QStringList deviceExtensions;
+		QString slotName;
+		QMap<QString, QString> defaultSlotOptions;
 
 		MESSDeviceConfiguratorXmlHandler(QTreeWidget *);
 		~MESSDeviceConfiguratorXmlHandler();
@@ -141,7 +143,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 #endif
 		void slotOptionChanged(int);
 
-// misc
+		// misc
 		void editorDataChanged(const QString &);
 		void setupFileChooser();
 

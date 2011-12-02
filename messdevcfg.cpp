@@ -781,13 +781,24 @@ bool MESSDeviceConfigurator::load()
 		it.next();
 		QString slotName = it.key();
 		QStringList slotOptions;
-		foreach (QString s, it.value())
+		QStringList slotOptionsShort;
+		foreach (QString s, it.value()) {
 			slotOptions << QString("%1 (%2)").arg(s).arg(messSlotNameMap[s]);
+			slotOptionsShort << s;
+		}
 		QComboBox *cb = new QComboBox(0);
 		cb->setAutoFillBackground(true);
-		cb->insertItem(0, tr("not used"));
-		if ( slotOptions.count() > 0 )
-			cb->insertItems(1, slotOptions);
+		QString defaultSlotOption = xmlHandler.defaultSlotOptions[slotName];
+		if ( defaultSlotOption.isEmpty() ) {
+			cb->insertItem(0, tr("not used"));
+			if ( slotOptions.count() > 0 )
+				cb->insertItems(1, slotOptions);
+		} else {
+			if ( slotOptions.count() > 0 ) {
+				cb->insertItems(0, slotOptions);
+				cb->setCurrentIndex(slotOptionsShort.indexOf(defaultSlotOption));
+			}
+		}
 		QTreeWidgetItem *slotItem = new QTreeWidgetItem(treeWidgetSlotOptions);
 		slotItem->setText(QMC2_SLOTCONFIG_COLUMN_SLOT, slotName);
 		slotItem->setIcon(QMC2_SLOTCONFIG_COLUMN_SLOT, QIcon(QString::fromUtf8(":/data/img/slot.png")));
@@ -1777,8 +1788,14 @@ bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &namespaceURI,
 	} else if ( qName == "instance" ) {
 		deviceInstances << attributes.value("name");
 		deviceBriefName = attributes.value("briefname");
-	} else if ( qName == "extension" )
+	} else if ( qName == "extension" ) {
 		deviceExtensions << attributes.value("name");
+	} else if ( qName == "slot" ) {
+		slotName = attributes.value("name");
+	} else if ( qName == "slotoption" ) {
+		if ( attributes.value("default") == "yes" )
+			defaultSlotOptions[slotName] = attributes.value("name");
+	}
 
 	return true;
 }
