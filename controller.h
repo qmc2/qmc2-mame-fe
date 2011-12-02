@@ -25,6 +25,7 @@ class Controller : public QWidget
     unzFile controllerFile;
     QPixmap currentControllerPixmap;
     QMenu *contextMenu;
+    QString myCacheKey;
 
     Controller(QWidget *parent = 0);
     ~Controller();
@@ -34,6 +35,7 @@ class Controller : public QWidget
     void drawScaledImage(QPixmap *, QPainter *);
     bool loadController(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
     void copyToClipboard();
+    void refresh();
 
   protected:
     void paintEvent(QPaintEvent *);

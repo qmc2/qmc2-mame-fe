@@ -25,6 +25,7 @@ class Cabinet : public QWidget
     unzFile cabinetFile;
     QPixmap currentCabinetPixmap;
     QMenu *contextMenu;
+    QString myCacheKey;
 
     Cabinet(QWidget *parent = 0);
     ~Cabinet();
@@ -34,6 +35,7 @@ class Cabinet : public QWidget
     void drawScaledImage(QPixmap *, QPainter *);
     bool loadCabinet(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
     void copyToClipboard();
+    void refresh();
 
   protected:
     void paintEvent(QPaintEvent *);

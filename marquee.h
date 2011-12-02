@@ -25,6 +25,7 @@ class Marquee : public QWidget
     unzFile marqueeFile;
     QPixmap currentMarqueePixmap;
     QMenu *contextMenu;
+    QString myCacheKey;
 
     Marquee(QWidget *parent = 0);
     ~Marquee();
@@ -34,6 +35,7 @@ class Marquee : public QWidget
     void drawScaledImage(QPixmap *, QPainter *);
     bool loadMarquee(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
     void copyToClipboard();
+    void refresh();
 
   protected:
     void paintEvent(QPaintEvent *);

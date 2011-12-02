@@ -2027,6 +2027,11 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
+	s = tr("Refresh");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
 }
 
 SoftwareSnap::~SoftwareSnap()
@@ -2384,10 +2389,19 @@ void SoftwareSnap::loadSnapshot()
 		update();
 		raise();
 		snapForcedResetTimer.start(QMC2_SWSNAP_UNFORCE_DELAY);
+		myCacheKey = "sws_" + listName + "_" + entryName;
 	} else {
 		myItem = NULL;
 		resetSnapForced();
 		qmc2SoftwareList->cancelSoftwareSnap();
+	}
+}
+
+void SoftwareSnap::refresh()
+{
+	if ( !myCacheKey.isEmpty() ) {
+		QPixmapCache::remove(myCacheKey);
+		repaint();
 	}
 }
 

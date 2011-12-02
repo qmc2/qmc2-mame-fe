@@ -53,6 +53,11 @@ Preview::Preview(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
+  s = tr("Refresh");
+  action = contextMenu->addAction(s);
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
 
 #if defined(QMC2_EMUTYPE_MAME)
   setToolTip(tr("Game preview image"));
@@ -114,10 +119,19 @@ void Preview::paintEvent(QPaintEvent *e)
     qmc2CurrentItem = topLevelItem;
     loadPreview(gameName, gameName);
   }
+  myCacheKey = gameName;
   if ( qmc2ScaledPreview )
     drawScaledImage(&currentPreviewPixmap, &p);
   else
     drawCenteredImage(&currentPreviewPixmap, &p);
+}
+
+void Preview::refresh()
+{
+	if ( !myCacheKey.isEmpty() ) {
+		QPixmapCache::remove(myCacheKey);
+		repaint();
+	}
 }
 
 bool Preview::loadPreview(QString gameName, QString onBehalfOf, bool checkOnly, QString *fileName)

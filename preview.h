@@ -25,6 +25,7 @@ class Preview : public QWidget
     unzFile previewFile;
     QPixmap currentPreviewPixmap;
     QMenu *contextMenu;
+    QString myCacheKey;
 
     Preview(QWidget *parent);
     ~Preview();
@@ -34,6 +35,7 @@ class Preview : public QWidget
     void drawScaledImage(QPixmap *, QPainter *);
     bool loadPreview(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
     void copyToClipboard();
+    void refresh();
 
   protected:
     void paintEvent(QPaintEvent *);
