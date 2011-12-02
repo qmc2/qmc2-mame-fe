@@ -25,6 +25,7 @@ class Title : public QWidget
     unzFile titleFile;
     QPixmap currentTitlePixmap;
     QMenu *contextMenu;
+    QString myCacheKey;
 
     Title(QWidget *parent = 0);
     ~Title();
@@ -34,6 +35,7 @@ class Title : public QWidget
     void drawScaledImage(QPixmap *, QPainter *);
     bool loadTitle(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
     void copyToClipboard();
+    void refresh();
 
   protected:
     void paintEvent(QPaintEvent *);

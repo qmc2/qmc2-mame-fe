@@ -25,6 +25,7 @@ class Flyer : public QWidget
     unzFile flyerFile;
     QPixmap currentFlyerPixmap;
     QMenu *contextMenu;
+    QString myCacheKey;
 
     Flyer(QWidget *parent = 0);
     ~Flyer();
@@ -34,6 +35,7 @@ class Flyer : public QWidget
     void drawScaledImage(QPixmap *, QPainter *);
     bool loadFlyer(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
     void copyToClipboard();
+    void refresh();
 
   protected:
     void paintEvent(QPaintEvent *);

@@ -85,6 +85,7 @@ class SoftwareSnap : public QWidget
 		QTimer snapForcedResetTimer;
 		QMenu *contextMenu;
 		bool ctxMenuRequested;
+		QString myCacheKey;
 
 		SoftwareSnap(QWidget *parent = 0);
 		~SoftwareSnap();
@@ -93,6 +94,7 @@ class SoftwareSnap : public QWidget
 		void loadSnapshot();
 		void resetSnapForced();
 		void copyToClipboard();
+		void refresh();
 
 	protected:
 		void paintEvent(QPaintEvent *);

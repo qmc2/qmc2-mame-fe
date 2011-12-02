@@ -25,6 +25,7 @@ class PCB : public QWidget
     unzFile pcbFile;
     QPixmap currentPCBPixmap;
     QMenu *contextMenu;
+    QString myCacheKey;
 
     PCB(QWidget *parent = 0);
     ~PCB();
@@ -34,6 +35,7 @@ class PCB : public QWidget
     void drawScaledImage(QPixmap *, QPainter *);
     bool loadPCB(QString, QString, bool checkOnly = FALSE, QString *fileName = NULL);
     void copyToClipboard();
+    void refresh();
 
   protected:
     void paintEvent(QPaintEvent *);
