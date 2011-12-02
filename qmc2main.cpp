@@ -691,6 +691,7 @@ MainWindow::MainWindow(QWidget *parent)
     tabWidgetGamelist->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt());
     tabWidgetLogsAndEmulators->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", 0).toInt());
     on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex());
+    tabWidgetSoftwareDetail->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailTab", 0).toInt());
     treeWidgetHierarchy->header()->setDefaultAlignment(Qt::AlignLeft);
     treeWidgetGamelist->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState").toByteArray());
     treeWidgetHierarchy->header()->restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/HierarchyHeaderState").toByteArray());
@@ -719,6 +720,7 @@ MainWindow::MainWindow(QWidget *parent)
     tabWidgetGamelist->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::North).toInt());
     tabWidgetGameDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::North).toInt());
     tabWidgetLogsAndEmulators->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::North).toInt());
+    tabWidgetSoftwareDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::North).toInt());
   } else {
     QList<int> splitterSizes;
     splitterSizes << 100 << 100;
@@ -5190,6 +5192,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/MachineDetailTab", tabWidgetGameDetail->currentIndex());
 #endif
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/LogsAndEmulatorsTab", tabWidgetLogsAndEmulators->currentIndex());
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailTab", tabWidgetSoftwareDetail->currentIndex());
     // save toolbar state
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/ToolbarState", saveState());
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistHeaderState", treeWidgetGamelist->header()->saveState());
@@ -7282,6 +7285,7 @@ void MainWindow::on_menuTabWidgetLogsAndEmulators_North_activated()
 #endif
 
   tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::North);
+  tabWidgetSoftwareDetail->setTabPosition(QTabWidget::North);
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::North);
 }
@@ -7293,6 +7297,7 @@ void MainWindow::on_menuTabWidgetLogsAndEmulators_South_activated()
 #endif
 
   tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::South);
+  tabWidgetSoftwareDetail->setTabPosition(QTabWidget::South);
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::South);
 }
@@ -7304,6 +7309,7 @@ void MainWindow::on_menuTabWidgetLogsAndEmulators_West_activated()
 #endif
 
   tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::West);
+  tabWidgetSoftwareDetail->setTabPosition(QTabWidget::West);
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::West);
 }
@@ -7315,6 +7321,7 @@ void MainWindow::on_menuTabWidgetLogsAndEmulators_East_activated()
 #endif
 
   tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::East);
+  tabWidgetSoftwareDetail->setTabPosition(QTabWidget::East);
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::East);
 }

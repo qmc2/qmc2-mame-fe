@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>413</width>
-    <height>329</height>
+    <width>558</width>
+    <height>331</height>
    </rect>
   </property>
   <property name="mouseTracking">
@@ -40,6 +40,29 @@
        <property name="icon">
         <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButtonToggleSoftwareInfo">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Toggle detailed software information</string>
+       </property>
+       <property name="statusTip">
+        <string>Toggle detailed software information</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/info.png</normaloff>:/data/img/info.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -205,7 +228,7 @@
    <item>
     <widget class="QToolBox" name="toolBoxSoftwareList">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <property name="tabSpacing">
       <number>0</number>
@@ -215,7 +238,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>403</width>
+        <width>548</width>
         <height>192</height>
        </rect>
       </property>
@@ -300,8 +323,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>83</width>
-        <height>64</height>
+        <width>548</width>
+        <height>192</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -390,8 +413,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>83</width>
-        <height>90</height>
+        <width>548</width>
+        <height>194</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -518,6 +541,7 @@
  <layoutdefault spacing="6" margin="6"/>
  <tabstops>
   <tabstop>toolButtonReload</tabstop>
+  <tabstop>toolButtonToggleSoftwareInfo</tabstop>
   <tabstop>comboBoxDeviceConfiguration</tabstop>
   <tabstop>toolButtonExport</tabstop>
   <tabstop>toolButtonFavoritesOptions</tabstop>

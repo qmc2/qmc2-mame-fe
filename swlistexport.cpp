@@ -95,6 +95,7 @@ void SoftwareListExporter::showEvent(QShowEvent *e)
 #endif
 
 	adjustIconSizes();
+	adjustSize();
 
 	if ( e )
 		e->accept();
