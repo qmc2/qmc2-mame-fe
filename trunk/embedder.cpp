@@ -61,7 +61,6 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 	  iconUnknown = QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png"));
   } else {
 	  QPainter p;
-	  p.setBackgroundMode(Qt::TransparentMode);
 	  QPixmap pm(128, 64);
 	  QPixmap pmStatus;
 	  QPixmap pmIcon = icon.pixmap(icon.actualSize(QSize(64, 64))).scaled(64, 64, Qt::KeepAspectRatioByExpanding);
@@ -70,6 +69,7 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 	  pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_green.png")).pixmap(64, 64);
 	  pm.fill(Qt::transparent);
 	  p.begin(&pm);
+	  p.setBackgroundMode(Qt::TransparentMode);
 	  p.drawPixmap(0, 0, pmStatus);
 	  p.drawPixmap(64, 0, pmIcon);
 	  p.end();
@@ -78,6 +78,7 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 	  pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_yellow.png")).pixmap(64, 64);
 	  pm.fill(Qt::transparent);
 	  p.begin(&pm);
+	  p.setBackgroundMode(Qt::TransparentMode);
 	  p.drawPixmap(0, 0, pmStatus);
 	  p.drawPixmap(64, 0, pmIcon);
 	  p.end();
@@ -86,6 +87,7 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 	  pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_red.png")).pixmap(64, 64);
 	  pm.fill(Qt::transparent);
 	  p.begin(&pm);
+	  p.setBackgroundMode(Qt::TransparentMode);
 	  p.drawPixmap(0, 0, pmStatus);
 	  p.drawPixmap(64, 0, pmIcon);
 	  p.end();
@@ -94,6 +96,7 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 	  pmStatus = QIcon(QString::fromUtf8(":/data/img/trafficlight_off.png")).pixmap(64, 64);
 	  pm.fill(Qt::transparent);
 	  p.begin(&pm);
+	  p.setBackgroundMode(Qt::TransparentMode);
 	  p.drawPixmap(0, 0, pmStatus);
 	  p.drawPixmap(64, 0, pmIcon);
 	  p.end();
