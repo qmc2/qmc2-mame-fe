@@ -329,7 +329,7 @@ void Embedder::adjustIconSizes()
   int baseSize = fm.height() + 2;
   QSize optionsButtonSize(2 * baseSize, baseSize);
   QSize releaseButtonSize(baseSize, baseSize);
-  optionsButton->setFixedSize(optionsButtonSize);
+  optionsButton->setFixedSize(optionsButtonSize + QSize(0, 2));
   releaseButton->setFixedSize(releaseButtonSize);
   tabBar->setIconSize(optionsButtonSize);
 }
