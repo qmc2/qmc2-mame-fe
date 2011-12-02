@@ -36,6 +36,10 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 
 	setupUi(this);
 
+#if QMC2_WIP_CODE != 1
+	toolButtonToggleSoftwareInfo->hide();
+#endif
+
 	if ( !qmc2SoftwareSnap )
 		qmc2SoftwareSnap = new SoftwareSnap(0);
 
@@ -73,6 +77,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonFavoritesOptions->setIconSize(iconSize);
 	toolButtonPlay->setIconSize(iconSize);
 	toolButtonReload->setIconSize(iconSize);
+	toolButtonToggleSoftwareInfo->setIconSize(iconSize);
 #if defined(Q_WS_X11)
 	toolButtonPlayEmbedded->setIconSize(iconSize);
 #else
@@ -83,6 +88,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_SEARCH_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/hint.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 
 	toolBoxSoftwareList->setEnabled(false);
+	toolButtonToggleSoftwareInfo->setEnabled(false);
 	toolButtonExport->setEnabled(false);
 	toolButtonAddToFavorites->setEnabled(false);
 	toolButtonRemoveFromFavorites->setEnabled(false);
@@ -249,6 +255,7 @@ QString &SoftwareList::getSoftwareListXmlData(QString listName)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: software list '%1' not found").arg(listName));
 			toolBoxSoftwareList->setEnabled(false);
 			toolButtonExport->setEnabled(false);
+			toolButtonToggleSoftwareInfo->setEnabled(false);
 			softwareListXmlBuffer.clear();
 		}
 	}
@@ -406,6 +413,7 @@ QString &SoftwareList::getXmlData()
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(swlString));
 		toolBoxSoftwareList->setEnabled(true);
 		toolButtonExport->setEnabled(true);
+		toolButtonToggleSoftwareInfo->setEnabled(true);
 
 #if defined(QMC2_EMUTYPE_MESS)
 		// load available device configurations, if any...
@@ -963,6 +971,19 @@ void SoftwareList::loadStateChanged(QProcess::ProcessState processState)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadStateChanged(QProcess::ProcessState processState = %1)").arg(processState));
 #endif
 
+}
+
+void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked = %1)").arg(checked));
+#endif
+
+	if ( checked ) {
+		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
+	} else {
+		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+	}
 }
 
 void SoftwareList::on_toolButtonReload_clicked(bool checked)
@@ -2075,9 +2096,10 @@ void SoftwareSnap::leaveEvent(QEvent *e)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::leaveEvent(QEvent *e = %1)").arg((qulonglong)e));
 #endif
 
-	if ( !qmc2SoftwareList->snapForced && !ctxMenuRequested )
+	if ( !qmc2SoftwareList->snapForced && !ctxMenuRequested ) {
+		myItem = NULL;
 		hide();
-	else if ( !qmc2SoftwareList->snapForced )
+	}  else if ( !qmc2SoftwareList->snapForced )
 		QTimer::singleShot(QMC2_SWSNAP_UNFORCE_DELAY, qmc2SoftwareList, SLOT(checkSoftwareSnap()));
 
 	ctxMenuRequested = contextMenu->isVisible();

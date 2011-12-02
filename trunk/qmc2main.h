@@ -257,6 +257,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_tabWidgetGamelist_customContextMenuRequested(const QPoint &);
     void on_tabWidgetGameDetail_customContextMenuRequested(const QPoint &);
     void on_tabWidgetLogsAndEmulators_customContextMenuRequested(const QPoint &);
+    void on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPoint &p) { on_tabWidgetLogsAndEmulators_customContextMenuRequested(p); }
     void on_hSplitter_customContextMenuRequested(const QPoint &);
     void on_vSplitter_customContextMenuRequested(const QPoint &);
 

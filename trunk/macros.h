@@ -134,6 +134,15 @@
 #define QMC2_SWLIST_FAVORITES_PAGE	1
 #define QMC2_SWLIST_SEARCH_PAGE		2
 
+// page indizes for the software detail widget
+#define QMC2_SWINFO_SNAPSHOT_PAGE	0
+#define QMC2_SWINFO_PROJECTMESS_PAGE	1
+#define QMC2_SWINFO_NOTES_PAGE		2
+
+// page indizes for the 'special' stacked-widget
+#define QMC2_SPECIAL_DEFAULT_PAGE	0
+#define QMC2_SPECIAL_SOFTWARE_PAGE	1
+
 // mounter-selection indizes
 #define QMC2_SWLIST_MSEL_AUTO_MOUNT	0
 #define QMC2_SWLIST_MSEL_SEPARATOR	1
