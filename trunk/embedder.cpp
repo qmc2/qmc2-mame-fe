@@ -120,6 +120,14 @@ void Embedder::embed()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::embed()"));
 #endif
 
+  // serious hack to access the tab bar without sub-classing from QTabWidget ;)
+  QTabBar *tabBar = qmc2MainWindow->tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
+  int index = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
+  if ( tabBar ) {
+	  adjustIconSizes();
+	  tabBar->setTabIcon(index, iconUnknown);
+  }
+
   nativeResolution = QPixmap::grabWindow(winId).size();
   embedContainer->embedClient(winId);
 }
