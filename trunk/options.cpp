@@ -169,6 +169,10 @@ Options::Options(QWidget *parent)
 
   setupUi(this);
 
+#if !defined(QMC2_WIP_ENABLED)
+  checkBoxAutoDisableSoftwareSnap->setVisible(false);
+#endif
+
 #if !defined(Q_WS_MAC)
   checkBoxUnifiedTitleAndToolBarOnMac->setVisible(false);
 #endif
@@ -1076,6 +1080,7 @@ void Options::on_pushButtonApply_clicked()
   qmc2SoftwareSnapPosition = comboBoxSoftwareSnapPosition->currentIndex();
   config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapPosition", qmc2SoftwareSnapPosition);
   config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapOnMouseHover", checkBoxSoftwareSnapOnMouseHover->isChecked());
+  config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AutoDisableSoftwareSnap", checkBoxAutoDisableSoftwareSnap->isChecked());
   qmc2GamelistResponsiveness = spinBoxResponsiveness->value();
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/Responsiveness", qmc2GamelistResponsiveness);
   qmc2UpdateDelay = spinBoxUpdateDelay->value();
@@ -2039,6 +2044,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   qmc2SoftwareSnapPosition = config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapPosition", QMC2_SWSNAP_POS_BELOW_LEFT).toInt();
   comboBoxSoftwareSnapPosition->setCurrentIndex(qmc2SoftwareSnapPosition);
   checkBoxSoftwareSnapOnMouseHover->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapOnMouseHover", false).toBool());
+  checkBoxAutoDisableSoftwareSnap->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AutoDisableSoftwareSnap", true).toBool());
   spinBoxResponsiveness->setValue(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/Responsiveness", 100).toInt());
   qmc2GamelistResponsiveness = spinBoxResponsiveness->value();
   spinBoxUpdateDelay->setValue(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/UpdateDelay", 10).toInt());
