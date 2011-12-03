@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>470</width>
+    <width>517</width>
     <height>447</height>
    </rect>
   </property>
@@ -57,7 +57,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>446</width>
+                <width>468</width>
                 <height>551</height>
                </rect>
               </property>
@@ -783,7 +783,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>421</width>
+                <width>610</width>
                 <height>529</height>
                </rect>
               </property>
@@ -2160,8 +2160,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>493</width>
-                <height>222</height>
+                <width>627</width>
+                <height>416</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2456,7 +2456,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="0" colspan="2">
+                 <item row="6" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxDoubleClickActivation">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -2472,7 +2472,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="0" colspan="4">
+                 <item row="8" column="0" colspan="4">
                   <spacer name="verticalSpacer">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -2505,7 +2505,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="0" colspan="4">
+                 <item row="9" column="0" colspan="4">
                   <layout class="QHBoxLayout" name="layout8_2">
                    <item>
                     <widget class="QLabel" name="labelLegend5Pic">
@@ -2600,7 +2600,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="2" colspan="2">
+                 <item row="6" column="2" colspan="2">
                   <widget class="QCheckBox" name="checkBoxPlayOnSublistActivation">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -2616,7 +2616,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="0" colspan="2">
+                 <item row="7" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxHideWhileLoading">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -2632,7 +2632,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="2" colspan="2">
+                 <item row="7" column="2" colspan="2">
                   <widget class="QCheckBox" name="checkBoxSortOnline">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -2727,6 +2727,16 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="5" column="0" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxAutoDisableSoftwareSnap">
+                   <property name="toolTip">
+                    <string>Automatically disable SW snaps when software-detail is visible (may be annoying)</string>
+                   </property>
+                   <property name="text">
+                    <string>No SW snaps for visible details</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -2756,8 +2766,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>273</width>
-                <height>39</height>
+                <width>627</width>
+                <height>416</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2869,8 +2879,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>363</width>
-                <height>230</height>
+                <width>627</width>
+                <height>416</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3326,7 +3336,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>382</width>
+                <width>610</width>
                 <height>467</height>
                </rect>
               </property>

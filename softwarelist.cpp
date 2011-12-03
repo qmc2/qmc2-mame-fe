@@ -2211,6 +2211,12 @@ void SoftwareSnap::loadSnapshot()
 		return;
 	}
 
+	if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE && qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/AutoDisableSoftwareSnap", true).toBool() ) {
+		myItem = NULL;
+		resetSnapForced();
+		return;
+	}
+
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::loadSnapshot(): snapForced = '%1'").arg(qmc2SoftwareList->snapForced ? "true" : "false"));
 #endif
