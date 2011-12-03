@@ -32,8 +32,8 @@
 #error You must use Qt >= 4.5.0!
 #endif
 
-class Ui_MainWindow;
-class Ui_Dialog;
+class Ui_HTMLEditorMainWindow;
+class Ui_InsertHtmlDialog;
 
 class QLabel;
 class QSlider;
@@ -101,13 +101,13 @@ private slots:
     void changeZoom(int);
 
 private:
-    Ui_MainWindow *ui;
+    Ui_HTMLEditorMainWindow *ui;
     QString fileName;
     bool sourceDirty;
     QLabel *zoomLabel;
     QSlider *zoomSlider;
     Highlighter *highlighter;
-    Ui_Dialog *ui_dialog;
+    Ui_InsertHtmlDialog *ui_dialog;
     QDialog *insertHtmlDialog;
 };
 

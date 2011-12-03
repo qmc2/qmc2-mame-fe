@@ -2234,7 +2234,7 @@
                <normaloff>:/data/img/camera.png</normaloff>:/data/img/camera.png</iconset>
              </attribute>
              <attribute name="title">
-              <string>Snapshot</string>
+              <string>Snapsh&amp;ot</string>
              </attribute>
             </widget>
             <widget class="QWidget" name="tabProjectMESS">
@@ -2243,7 +2243,7 @@
                <normaloff>:/data/img/project_mess.png</normaloff>:/data/img/project_mess.png</iconset>
              </attribute>
              <attribute name="title">
-              <string>ProjectMESS</string>
+              <string>Project&amp;MESS</string>
              </attribute>
             </widget>
             <widget class="QWidget" name="tabNotes">
@@ -2252,7 +2252,7 @@
                <normaloff>:/data/img/notes.png</normaloff>:/data/img/notes.png</iconset>
              </attribute>
              <attribute name="title">
-              <string>Notes</string>
+              <string>&amp;Notes</string>
              </attribute>
             </widget>
            </widget>
