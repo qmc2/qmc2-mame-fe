@@ -427,6 +427,10 @@ MainWindow::MainWindow(QWidget *parent)
   connect(comboBoxToolbarSearch, SIGNAL(activated(const QString &)), this, SLOT(comboBoxToolbarSearch_activated(const QString &)));
   connect(comboBoxToolbarSearch, SIGNAL(editTextChanged(const QString &)), this, SLOT(comboBoxToolbarSearch_textChanged(const QString &)));
 
+#if defined(QMC2_EMUTYPE_MAME)
+  tabWidgetSoftwareDetail->removeTab(tabWidgetSoftwareDetail->indexOf(tabProjectMESS));
+#endif
+
   // save splitter widgets at index 0 for later comparison
   hSplitterWidget0 = hSplitter->widget(0);
   vSplitterWidget0 = vSplitter->widget(0);
