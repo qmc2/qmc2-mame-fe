@@ -27,7 +27,7 @@ EmbedderOptions::EmbedderOptions(QWidget *parent)
 
   snapshotViewer = NULL;
 
-#if QMC2_WIP_CODE != 1
+#if !defined(QMC2_WIP_ENABLED)
   tabWidgetEmbedderOptions->removeTab(tabWidgetEmbedderOptions->indexOf(tabMovies));
 #endif
 
@@ -161,7 +161,7 @@ SnapshotViewer::SnapshotViewer(QListWidgetItem *item, QWidget *parent)
   QString s;
   QAction *action;
 
-#if QMC2_WIP_CODE == 1
+#if defined(QMC2_WIP_ENABLED)
   s = tr("Use as preview");
   action = contextMenu->addAction(s);
   action->setToolTip(s); action->setStatusTip(s);
