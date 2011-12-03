@@ -19,6 +19,7 @@ extern bool qmc2UseSoftwareSnapFile;
 extern SoftwareList *qmc2SoftwareList;
 extern SoftwareSnap *qmc2SoftwareSnap;
 extern int qmc2SoftwareSnapPosition;
+extern bool qmc2IgnoreItemActivation;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QString> softwareListXmlDataCache;
@@ -1513,8 +1514,19 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *ite
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
-	cancelSoftwareSnap();
-	QTimer::singleShot(0, this, SLOT(playActivated()));
+	if ( !qmc2IgnoreItemActivation ) {
+		cancelSoftwareSnap();
+		QTimer::singleShot(0, this, SLOT(playActivated()));
+	}
+	qmc2IgnoreItemActivation = false;
+}
+
+void SoftwareList::on_treeWidgetKnownSoftware_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
+		qmc2IgnoreItemActivation = true;
+		item->setExpanded(!item->isExpanded());
+	}
 }
 
 void SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *item, int column)
@@ -1523,8 +1535,19 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
-	cancelSoftwareSnap();
-	QTimer::singleShot(0, this, SLOT(playActivated()));
+	if ( !qmc2IgnoreItemActivation ) {
+		cancelSoftwareSnap();
+		QTimer::singleShot(0, this, SLOT(playActivated()));
+	}
+	qmc2IgnoreItemActivation = false;
+}
+
+void SoftwareList::on_treeWidgetFavoriteSoftware_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
+		qmc2IgnoreItemActivation = true;
+		item->setExpanded(!item->isExpanded());
+	}
 }
 
 void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *item, int column)
@@ -1533,8 +1556,19 @@ void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *ite
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *item = %1, int column = %2)").arg((qulonglong)item).arg(column));
 #endif
 
-	cancelSoftwareSnap();
-	QTimer::singleShot(0, this, SLOT(playActivated()));
+	if ( !qmc2IgnoreItemActivation ) {
+		cancelSoftwareSnap();
+		QTimer::singleShot(0, this, SLOT(playActivated()));
+	}
+	qmc2IgnoreItemActivation = false;
+}
+
+void SoftwareList::on_treeWidgetSearchResults_itemDoubleClicked(QTreeWidgetItem *item, int column)
+{
+	if ( !qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation").toBool() ) {
+		qmc2IgnoreItemActivation = true;
+		item->setExpanded(!item->isExpanded());
+	}
 }
 
 void SoftwareList::on_comboBoxSearch_editTextChanged(const QString &)
