@@ -156,22 +156,25 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_toolButtonPlay_clicked(bool);
 		void on_toolButtonPlayEmbedded_clicked(bool);
 		void on_treeWidgetKnownSoftware_itemSelectionChanged();
-		void on_treeWidgetFavoriteSoftware_itemSelectionChanged();
-		void on_treeWidgetSearchResults_itemSelectionChanged();
 		void on_treeWidgetKnownSoftware_customContextMenuRequested(const QPoint &);
-		void on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &);
-		void on_treeWidgetSearchResults_customContextMenuRequested(const QPoint &);
 		void on_treeWidgetKnownSoftware_itemEntered(QTreeWidgetItem *, int);
-		void on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *, int);
-		void on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *, int);
 		void on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *, int);
-		void on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *, int);
-		void on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *, int);
+		void on_treeWidgetKnownSoftware_itemDoubleClicked(QTreeWidgetItem *item, int column);
 		void on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *);
-		void on_treeWidgetFavoriteSoftware_itemExpanded(QTreeWidgetItem *);
-		void on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *);
 		void on_treeWidgetKnownSoftware_itemClicked(QTreeWidgetItem *, int) { on_treeWidgetKnownSoftware_itemSelectionChanged(); }
+		void on_treeWidgetFavoriteSoftware_itemSelectionChanged();
+		void on_treeWidgetFavoriteSoftware_customContextMenuRequested(const QPoint &);
+		void on_treeWidgetFavoriteSoftware_itemEntered(QTreeWidgetItem *, int);
+		void on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *, int);
+		void on_treeWidgetFavoriteSoftware_itemDoubleClicked(QTreeWidgetItem *item, int column);
+		void on_treeWidgetFavoriteSoftware_itemExpanded(QTreeWidgetItem *);
 		void on_treeWidgetFavoriteSoftware_itemClicked(QTreeWidgetItem *, int) { on_treeWidgetFavoriteSoftware_itemSelectionChanged(); }
+		void on_treeWidgetSearchResults_itemSelectionChanged();
+		void on_treeWidgetSearchResults_customContextMenuRequested(const QPoint &);
+		void on_treeWidgetSearchResults_itemEntered(QTreeWidgetItem *, int);
+		void on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *, int);
+		void on_treeWidgetSearchResults_itemDoubleClicked(QTreeWidgetItem *item, int column);
+		void on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *);
 		void on_treeWidgetSearchResults_itemClicked(QTreeWidgetItem *, int) { on_treeWidgetSearchResults_itemSelectionChanged(); }
 		void on_comboBoxSearch_editTextChanged(const QString &);
 		void on_comboBoxSearch_activated(const QString &);
