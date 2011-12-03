@@ -308,6 +308,8 @@ void Gamelist::load()
 
   enableWidgets(false);
 
+  qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+
   numGames = numTotalGames = numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numUnknownGames = numNotFoundGames = numSearchGames = numDevices = -1;
   numTaggedSets = 0;
   qmc2MainWindow->treeWidgetGamelist->clear();
