@@ -34,7 +34,9 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			embedderopt.ui \
 			demomode.ui \
 			audioeffects.ui \
-			arcade/arcadesetupdialog.ui
+			arcade/arcadesetupdialog.ui \
+			htmleditor/htmleditor.ui \
+			htmleditor/inserthtmldialog.ui
 		SOURCES += qmc2main.cpp \
 			options.cpp \
 			docbrowser.cpp \
@@ -87,7 +89,9 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			arcade/arcademenuscene.cpp \
 			arcade/arcadesettings.cpp \
 			arcade/arcadescreenshotsaverthread.cpp \
-			arcade/arcadesetupdialog.cpp
+			arcade/arcadesetupdialog.cpp \
+			htmleditor/htmleditor.cpp \
+			htmleditor/highlighter.cpp
 		HEADERS += qmc2main.h \
 			options.h \
 			docbrowser.h \
@@ -142,7 +146,9 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			arcade/arcademenuscene.h \
 			arcade/arcadesettings.h \
 			arcade/arcadescreenshotsaverthread.h \
-			arcade/arcadesetupdialog.h
+			arcade/arcadesetupdialog.h \
+			htmleditor/htmleditor.h \
+			htmleditor/highlighter.h
 		PRECOMPILED_HEADER = qmc2_prefix.h
 		TRANSLATIONS += data/lng/qmc2_us.ts \
 			data/lng/qmc2_de.ts \
