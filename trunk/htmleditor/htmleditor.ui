@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>HTMLEditorMainWindow</class>
+ <widget class="QMainWindow" name="HTMLEditorMainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -32,9 +32,9 @@
       <property name="documentMode">
        <bool>true</bool>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="tabWYSIWIG">
        <attribute name="title">
-        <string>Tab 1</string>
+        <string>WYSIWIG</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="margin">
@@ -51,9 +51,9 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="tabHTML">
        <attribute name="title">
-        <string>Tab 2</string>
+        <string>HTML</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <property name="margin">
@@ -92,8 +92,6 @@
     <addaction name="actionFileOpen"/>
     <addaction name="actionFileSave"/>
     <addaction name="actionFileSaveAs"/>
-    <addaction name="separator"/>
-    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu_Edit">
     <property name="title">
@@ -225,8 +223,14 @@
    <property name="text">
     <string>&amp;New</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+N</string>
+   <property name="iconText">
+    <string>New file</string>
+   </property>
+   <property name="toolTip">
+    <string>New file</string>
+   </property>
+   <property name="statusTip">
+    <string>New file</string>
    </property>
   </action>
   <action name="actionFileOpen">
@@ -237,8 +241,14 @@
    <property name="text">
     <string>&amp;Open...</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+O</string>
+   <property name="iconText">
+    <string>Open file</string>
+   </property>
+   <property name="toolTip">
+    <string>Open file</string>
+   </property>
+   <property name="statusTip">
+    <string>Open file</string>
    </property>
   </action>
   <action name="actionFileSave">
@@ -249,13 +259,25 @@
    <property name="text">
     <string>&amp;Save</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
+   <property name="iconText">
+    <string>Save file</string>
+   </property>
+   <property name="toolTip">
+    <string>Save file</string>
+   </property>
+   <property name="statusTip">
+    <string>Save file</string>
    </property>
   </action>
   <action name="actionFileSaveAs">
    <property name="text">
-    <string>Save &amp;As...</string>
+    <string>Save &amp;as...</string>
+   </property>
+   <property name="iconText">
+    <string>Save file under a different name</string>
+   </property>
+   <property name="toolTip">
+    <string>Save file under a different name</string>
    </property>
   </action>
   <action name="actionEditUndo">
@@ -266,8 +288,8 @@
    <property name="text">
     <string>&amp;Undo</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+Z</string>
+   <property name="statusTip">
+    <string>Undo</string>
    </property>
   </action>
   <action name="actionEditRedo">
@@ -278,8 +300,8 @@
    <property name="text">
     <string>&amp;Redo</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+Y</string>
+   <property name="statusTip">
+    <string>Redo</string>
    </property>
   </action>
   <action name="actionEditCut">
@@ -290,8 +312,8 @@
    <property name="text">
     <string>Cu&amp;t</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+X</string>
+   <property name="statusTip">
+    <string>Cut</string>
    </property>
   </action>
   <action name="actionEditCopy">
@@ -302,8 +324,8 @@
    <property name="text">
     <string>&amp;Copy</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+C</string>
+   <property name="statusTip">
+    <string>Copy</string>
    </property>
   </action>
   <action name="actionEditPaste">
@@ -314,8 +336,8 @@
    <property name="text">
     <string>&amp;Paste</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+V</string>
+   <property name="statusTip">
+    <string>Paste</string>
    </property>
   </action>
   <action name="actionEditSelectAll">
@@ -341,8 +363,8 @@
    <property name="text">
     <string>&amp;Bold</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+B</string>
+   <property name="statusTip">
+    <string>Bold</string>
    </property>
   </action>
   <action name="actionFormatItalic">
@@ -356,8 +378,8 @@
    <property name="text">
     <string>&amp;Italic</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+I</string>
+   <property name="statusTip">
+    <string>Italic</string>
    </property>
   </action>
   <action name="actionFormatUnderline">
@@ -371,8 +393,8 @@
    <property name="text">
     <string>&amp;Underline</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+U</string>
+   <property name="statusTip">
+    <string>Underline</string>
    </property>
   </action>
   <action name="actionFormatStrikethrough">
@@ -386,6 +408,9 @@
    <property name="text">
     <string>&amp;Strikethrough</string>
    </property>
+   <property name="statusTip">
+    <string>Strikethrough</string>
+   </property>
   </action>
   <action name="actionFormatAlignLeft">
    <property name="icon">
@@ -393,7 +418,10 @@
      <normaloff>:/htmleditor/images/format-justify-left.png</normaloff>:/htmleditor/images/format-justify-left.png</iconset>
    </property>
    <property name="text">
-    <string>Align &amp;Left</string>
+    <string>Align &amp;left</string>
+   </property>
+   <property name="statusTip">
+    <string>Align left</string>
    </property>
   </action>
   <action name="actionFormatAlignCenter">
@@ -402,7 +430,10 @@
      <normaloff>:/htmleditor/images/format-justify-center.png</normaloff>:/htmleditor/images/format-justify-center.png</iconset>
    </property>
    <property name="text">
-    <string>Align &amp;Center</string>
+    <string>Align &amp;center</string>
+   </property>
+   <property name="statusTip">
+    <string>Align center</string>
    </property>
   </action>
   <action name="actionFormatAlignRight">
@@ -411,7 +442,10 @@
      <normaloff>:/htmleditor/images/format-justify-right.png</normaloff>:/htmleditor/images/format-justify-right.png</iconset>
    </property>
    <property name="text">
-    <string>Align &amp;Right</string>
+    <string>Align &amp;right</string>
+   </property>
+   <property name="statusTip">
+    <string>Align right</string>
    </property>
   </action>
   <action name="actionFormatAlignJustify">
@@ -420,7 +454,10 @@
      <normaloff>:/htmleditor/images/format-justify-fill.png</normaloff>:/htmleditor/images/format-justify-fill.png</iconset>
    </property>
    <property name="text">
-    <string>Align &amp;Justify</string>
+    <string>Align &amp;justied</string>
+   </property>
+   <property name="statusTip">
+    <string>Align justied</string>
    </property>
   </action>
   <action name="actionFormatIncreaseIndent">
@@ -429,7 +466,10 @@
      <normaloff>:/htmleditor/images/format-indent-more.png</normaloff>:/htmleditor/images/format-indent-more.png</iconset>
    </property>
    <property name="text">
-    <string>I&amp;ncrease Indent</string>
+    <string>I&amp;ncrease indent</string>
+   </property>
+   <property name="statusTip">
+    <string>Increase indent</string>
    </property>
   </action>
   <action name="actionFormatDecreaseIndent">
@@ -438,7 +478,10 @@
      <normaloff>:/htmleditor/images/format-indent-less.png</normaloff>:/htmleditor/images/format-indent-less.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Decrease Indent</string>
+    <string>&amp;Decrease indent</string>
+   </property>
+   <property name="statusTip">
+    <string>Decrease indent</string>
    </property>
   </action>
   <action name="actionFormatBulletedList">
@@ -450,7 +493,10 @@
      <normaloff>:/htmleditor/images/bulleted-list.png</normaloff>:/htmleditor/images/bulleted-list.png</iconset>
    </property>
    <property name="text">
-    <string>Bulle&amp;ted List</string>
+    <string>Bulle&amp;ted list</string>
+   </property>
+   <property name="statusTip">
+    <string>Bulleted list</string>
    </property>
   </action>
   <action name="actionFormatNumberedList">
@@ -462,7 +508,10 @@
      <normaloff>:/htmleditor/images/numbered-list.png</normaloff>:/htmleditor/images/numbered-list.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Numbered List</string>
+    <string>&amp;Numbered list</string>
+   </property>
+   <property name="statusTip">
+    <string>Numbered list</string>
    </property>
   </action>
   <action name="actionInsertImage">
@@ -471,7 +520,10 @@
      <normaloff>:/htmleditor/images/image-x-generic.png</normaloff>:/htmleditor/images/image-x-generic.png</iconset>
    </property>
    <property name="text">
-    <string>Insert &amp;Image...</string>
+    <string>Insert &amp;image...</string>
+   </property>
+   <property name="statusTip">
+    <string>Insert image</string>
    </property>
   </action>
   <action name="actionCreateLink">
@@ -480,7 +532,10 @@
      <normaloff>:/htmleditor/images/text-html.png</normaloff>:/htmleditor/images/text-html.png</iconset>
    </property>
    <property name="text">
-    <string>Create Link...</string>
+    <string>Create &amp;link...</string>
+   </property>
+   <property name="statusTip">
+    <string>Create link</string>
    </property>
   </action>
   <action name="actionZoomOut">
@@ -489,7 +544,10 @@
      <normaloff>:/htmleditor/images/list-remove.png</normaloff>:/htmleditor/images/list-remove.png</iconset>
    </property>
    <property name="text">
-    <string>Zoom Out</string>
+    <string>Zoom out</string>
+   </property>
+   <property name="statusTip">
+    <string>Zoom out</string>
    </property>
   </action>
   <action name="actionZoomIn">
@@ -498,15 +556,10 @@
      <normaloff>:/htmleditor/images/list-add.png</normaloff>:/htmleditor/images/list-add.png</iconset>
    </property>
    <property name="text">
-    <string>Zoom In</string>
+    <string>Zoom in</string>
    </property>
-  </action>
-  <action name="actionExit">
-   <property name="text">
-    <string>E&amp;xit</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Q</string>
+   <property name="statusTip">
+    <string>Zoom in</string>
    </property>
   </action>
   <action name="actionStyleParagraph">
@@ -556,22 +609,34 @@
   </action>
   <action name="actionFormatFontName">
    <property name="text">
-    <string>&amp;Font Name...</string>
+    <string>&amp;Font name...</string>
+   </property>
+   <property name="statusTip">
+    <string>Font name</string>
    </property>
   </action>
   <action name="actionFormatTextColor">
    <property name="text">
-    <string>Text &amp;Color...</string>
+    <string>Text &amp;color...</string>
+   </property>
+   <property name="statusTip">
+    <string>Text color</string>
    </property>
   </action>
   <action name="actionFormatBackgroundColor">
    <property name="text">
-    <string>Bac&amp;kground Color...</string>
+    <string>Bac&amp;kground color...</string>
+   </property>
+   <property name="statusTip">
+    <string>Background color</string>
    </property>
   </action>
   <action name="actionFormatFontSize">
    <property name="text">
-    <string>Font Si&amp;ze...</string>
+    <string>Font si&amp;ze...</string>
+   </property>
+   <property name="statusTip">
+    <string>Font size</string>
    </property>
   </action>
   <action name="actionInsertHtml">
@@ -580,9 +645,15 @@
      <normaloff>:/htmleditor/images/insert-html.png</normaloff>:/htmleditor/images/insert-html.png</iconset>
    </property>
    <property name="text">
-    <string>Insert HTML...</string>
+    <string>Insert &amp;HTML...</string>
+   </property>
+   <property name="iconText">
+    <string>Insert HTML</string>
    </property>
    <property name="toolTip">
+    <string>Insert HTML</string>
+   </property>
+   <property name="statusTip">
     <string>Insert HTML</string>
    </property>
   </action>

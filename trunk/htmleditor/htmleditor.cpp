@@ -40,15 +40,15 @@
 
 HtmlEditor::HtmlEditor(QWidget *parent)
         : QMainWindow(parent)
-        , ui(new Ui_MainWindow)
+        , ui(new Ui_HTMLEditorMainWindow)
         , sourceDirty(true)
         , highlighter(0)
         , ui_dialog(0)
         , insertHtmlDialog(0)
 {
     ui->setupUi(this);
-    ui->tabWidget->setTabText(0, "Normal View");
-    ui->tabWidget->setTabText(1, "HTML Source");
+    ui->tabWidget->setTabText(0, tr("WYSIWIG"));
+    ui->tabWidget->setTabText(1, tr("HTML"));
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), SLOT(changeTab(int)));
     resize(600, 600);
 
@@ -74,7 +74,6 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     connect(ui->actionFileOpen, SIGNAL(triggered()), SLOT(fileOpen()));
     connect(ui->actionFileSave, SIGNAL(triggered()), SLOT(fileSave()));
     connect(ui->actionFileSaveAs, SIGNAL(triggered()), SLOT(fileSaveAs()));
-    connect(ui->actionExit, SIGNAL(triggered()), SLOT(close()));
     connect(ui->actionInsertImage, SIGNAL(triggered()), SLOT(insertImage()));
     connect(ui->actionCreateLink, SIGNAL(triggered()), SLOT(createLink()));
     connect(ui->actionInsertHtml, SIGNAL(triggered()), SLOT(insertHtml()));
@@ -128,13 +127,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 
     setCurrentFileName(QString());
 
-    QString initialFile = ":/example.html";
-    const QStringList args = QCoreApplication::arguments();
-    if (args.count() == 2)
-        initialFile = args.at(1);
-
-    if (!load(initialFile))
-        fileNew();
+    fileNew();
 
     adjustActions();
     adjustSource();
@@ -192,8 +185,8 @@ void HtmlEditor::fileNew()
 
 void HtmlEditor::fileOpen()
 {
-    QString fn = QFileDialog::getOpenFileName(this, tr("Open File..."),
-                 QString(), tr("HTML-Files (*.htm *.html);;All Files (*)"));
+    QString fn = QFileDialog::getOpenFileName(this, tr("Open file..."),
+                 QString(), tr("HTML files (*.htm *.html);;All files (*)"));
     if (!fn.isEmpty())
         load(fn);
 }
@@ -220,7 +213,7 @@ bool HtmlEditor::fileSave()
 bool HtmlEditor::fileSaveAs()
 {
     QString fn = QFileDialog::getSaveFileName(this, tr("Save as..."),
-                 QString(), tr("HTML-Files (*.htm *.html);;All Files (*)"));
+                 QString(), tr("HTML files (*.htm *.html);;All files (*)"));
     if (fn.isEmpty())
         return false;
     if (!(fn.endsWith(".htm", Qt::CaseInsensitive) || fn.endsWith(".html", Qt::CaseInsensitive)))
@@ -299,7 +292,7 @@ void HtmlEditor::insertHtml()
     if (!insertHtmlDialog) {
         insertHtmlDialog = new QDialog(this);
         if (!ui_dialog)
-            ui_dialog = new Ui_Dialog;
+            ui_dialog = new Ui_InsertHtmlDialog;
         ui_dialog->setupUi(insertHtmlDialog);
         connect(ui_dialog->buttonBox, SIGNAL(accepted()),
                 insertHtmlDialog, SLOT(accept()));
@@ -485,7 +478,7 @@ void HtmlEditor::formatFontSize()
     sizes << "xx-large";
 
     bool ok = false;
-    QString size = QInputDialog::getItem(this, tr("Font Size"), tr("Select font size:"),
+    QString size = QInputDialog::getItem(this, tr("Font size"), tr("Select font size:"),
                                         sizes, sizes.indexOf("medium"), false, &ok);
 
     if (ok)
@@ -599,7 +592,6 @@ void HtmlEditor::setCurrentFileName(const QString &fileName)
     else
         shownName = QFileInfo(fileName).fileName();
 
-    setWindowTitle(tr("%1[*] - %2").arg(shownName).arg(tr("HTML Editor")));
     setWindowModified(false);
 
     bool allowSave = true;
