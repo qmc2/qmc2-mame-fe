@@ -467,7 +467,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
   // FIXME: remove this WIP clause when arcade mode is ready (probably never ;)?)
-#if QMC2_WIP_CODE != 1
+#if !defined(QMC2_WIP_ENABLED)
   menu_Display->removeAction(menuArcade->menuAction());
   actionArcadeToggle->setVisible(false);
 #endif
@@ -3305,31 +3305,37 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           QPainter pFlyer(qmc2Flyer);
           qmc2Flyer->drawCenteredImage(0, &pFlyer);
         }
+        break;
 
       case QMC2_CABINET_INDEX: {
           QPainter pCabinet(qmc2Cabinet);
           qmc2Cabinet->drawCenteredImage(0, &pCabinet);
         }
+        break;
 
       case QMC2_CONTROLLER_INDEX: {
           QPainter pController(qmc2Controller);
           qmc2Controller->drawCenteredImage(0, &pController);
         }
+        break;
 
       case QMC2_MARQUEE_INDEX: {
           QPainter pMarquee(qmc2Marquee);
           qmc2Marquee->drawCenteredImage(0, &pMarquee);
         }
+        break;
 
       case QMC2_TITLE_INDEX: {
           QPainter pTitle(qmc2Title);
           qmc2Title->drawCenteredImage(0, &pTitle);
         }
+        break;
 
       case QMC2_PCB_INDEX: {
           QPainter pPCB(qmc2PCB);
           qmc2PCB->drawCenteredImage(0, &pPCB);
         }
+        break;
 
       default:
         break;
@@ -3394,6 +3400,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       break;
   }
 
+  stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+
   int left, top, right, bottom;
   switch ( qmc2DetailSetup->appliedDetailList[currentIndex] ) {
 #if defined(QMC2_YOUTUBE_ENABLED)
@@ -3451,7 +3459,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           tabSoftwareList->setUpdatesEnabled(true);
           qmc2SoftwareListAlreadyLoading = false;
 	}
-      }
+      } else if ( qmc2SoftwareList )
+        qmc2SoftwareList->on_toolButtonToggleSoftwareInfo_clicked(qmc2SoftwareList->toolButtonToggleSoftwareInfo->isChecked());
       break;
 
 #if defined(QMC2_EMUTYPE_MESS)
