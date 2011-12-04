@@ -99,7 +99,6 @@ Controller *qmc2Controller = NULL;
 Marquee *qmc2Marquee = NULL;
 Title *qmc2Title = NULL;
 PCB *qmc2PCB = NULL;
-SoftwareSnap *qmc2SoftwareSnap = NULL;
 About *qmc2About = NULL;
 DocBrowser *qmc2DocBrowser = NULL;
 Welcome *qmc2Welcome = NULL;
@@ -112,6 +111,8 @@ QWidget *qmc2DetailSetupParent = NULL;
 ArcadeView *qmc2ArcadeView = NULL;
 ArcadeSetupDialog *qmc2ArcadeSetupDialog = NULL;
 SoftwareList *qmc2SoftwareList = NULL;
+SoftwareSnap *qmc2SoftwareSnap = NULL;
+SoftwareSnapshot *qmc2SoftwareSnapshot = NULL;
 QString qmc2DriverName = "";
 #if defined(QMC2_EMUTYPE_MESS)
 MESSDeviceConfigurator *qmc2MESSDeviceConfigurator = NULL;
@@ -3132,6 +3133,37 @@ void MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int currentIndex)
     default:
       break;
   }
+}
+
+void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
+{
+#ifdef QMC2_DEBUG
+       	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int i = " + QString::number(currentIndex) + ")");
+#endif
+
+	switch ( currentIndex ) {
+		case QMC2_SWINFO_SNAPSHOT_PAGE:
+			if ( !qmc2SoftwareSnapshot ) {
+				qmc2SoftwareSnapshot = new SoftwareSnapshot(tabSnapshot);
+				QHBoxLayout *layout = new QHBoxLayout;
+				layout->addWidget(qmc2SoftwareSnapshot);
+				int left, top, right, bottom;
+				gridLayout->getContentsMargins(&left, &top, &right, &bottom);
+				layout->setContentsMargins(left, top, right, bottom);
+				tabSnapshot->setLayout(layout);
+			}
+			qmc2SoftwareSnapshot->update();
+			break;
+
+		case QMC2_SWINFO_PROJECTMESS_PAGE:
+			break;
+
+		case QMC2_SWINFO_NOTES_PAGE:
+			break;
+
+		default:
+			break;
+	}
 }
 
 void MainWindow::scrollToCurrentItem()
