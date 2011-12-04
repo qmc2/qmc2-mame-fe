@@ -3400,7 +3400,20 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       break;
   }
 
-  stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+  // 'special widgets': switch back to the default page, if applicable
+  switch ( qmc2DetailSetup->appliedDetailList[tabWidgetGameDetail->currentIndex()] )
+  {
+	  case QMC2_SOFTWARE_LIST_INDEX:
+		  if ( qmc2SoftwareList )
+			  qmc2SoftwareList->on_toolButtonToggleSoftwareInfo_clicked(qmc2SoftwareList->toolButtonToggleSoftwareInfo->isChecked());
+		  else
+			  stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+		  break;
+
+	  default:
+		  stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+		  break;
+  }
 
   int left, top, right, bottom;
   switch ( qmc2DetailSetup->appliedDetailList[currentIndex] ) {
@@ -3459,8 +3472,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           tabSoftwareList->setUpdatesEnabled(true);
           qmc2SoftwareListAlreadyLoading = false;
 	}
-      } else if ( qmc2SoftwareList )
-        qmc2SoftwareList->on_toolButtonToggleSoftwareInfo_clicked(qmc2SoftwareList->toolButtonToggleSoftwareInfo->isChecked());
+      }
       break;
 
 #if defined(QMC2_EMUTYPE_MESS)
