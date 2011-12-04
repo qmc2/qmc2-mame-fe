@@ -999,6 +999,7 @@ void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
 
 	if ( !treeWidget ) {
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
 		return;
 	}
 
@@ -1007,8 +1008,10 @@ void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
 
 	if ( checked )
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
-	else
+	else {
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
+	}
 #endif
 }
 
