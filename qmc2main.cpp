@@ -3122,19 +3122,11 @@ void MainWindow::on_tabWidgetLogsAndEmulators_currentChanged(int currentIndex)
 
   switch ( currentIndex ) {
     case QMC2_FRONTENDLOG_INDEX:
-      if ( !qmc2EarlyStartup ) {
-        textBrowserFrontendLog->update();
-        qApp->processEvents();
-      }
-      textBrowserFrontendLog->verticalScrollBar()->setValue(textBrowserFrontendLog->verticalScrollBar()->maximum());
+      textBrowserFrontendLog->horizontalScrollBar()->setValue(0);
       break;
 
     case QMC2_EMULATORLOG_INDEX:
-      if ( !qmc2EarlyStartup ) {
-        textBrowserEmulatorLog->update();
-        qApp->processEvents();
-      }
-      textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
+      textBrowserEmulatorLog->horizontalScrollBar()->setValue(0);
       break;
 
     default:
