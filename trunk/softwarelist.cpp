@@ -1306,8 +1306,10 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 #if defined(QMC2_WIP_ENABLED)
 		if ( toolButtonToggleSoftwareInfo->isChecked() )
 			qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
-		else
+		else {
 			qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+			qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
+		}
 #endif
 		currentItem = item;
 		while ( currentItem->parent() ) currentItem = currentItem->parent();
@@ -1315,6 +1317,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 			qmc2MainWindow->on_tabWidgetSoftwareDetail_updateCurrent();
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
 		cancelSoftwareSnap();
 		currentItem = NULL;
 	}
@@ -1341,8 +1344,10 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 #if defined(QMC2_WIP_ENABLED)
 		if ( toolButtonToggleSoftwareInfo->isChecked() )
 			qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
-		else
+		else {
 			qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+			qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
+		}
 #endif
 		currentItem = item;
 		while ( currentItem->parent() ) currentItem = currentItem->parent();
@@ -1350,6 +1355,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 			qmc2MainWindow->on_tabWidgetSoftwareDetail_updateCurrent();
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
 		cancelSoftwareSnap();
 		currentItem = NULL;
 	}
@@ -1389,8 +1395,10 @@ void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 #if defined(QMC2_WIP_ENABLED)
 		if ( toolButtonToggleSoftwareInfo->isChecked() )
 			qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
-		else
+		else {
 			qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+			qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
+		}
 #endif
 		currentItem = item;
 		while ( currentItem->parent() ) currentItem = currentItem->parent();
@@ -1398,6 +1406,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 			qmc2MainWindow->on_tabWidgetSoftwareDetail_updateCurrent();
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
 		cancelSoftwareSnap();
 		currentItem = NULL;
 	}
