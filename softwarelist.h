@@ -7,9 +7,13 @@
 #include <QFile>
 #include <QTextStream>
 #include <QXmlDefaultHandler>
+#if QMC2_OPENGL == 1
+#include <QGLWidget>
+#endif
 #include "ui_softwarelist.h"
 #include "unzip.h"
 #include "swlistexport.h"
+
 
 class SoftwareListExporter;
 
@@ -72,6 +76,7 @@ class SoftwareEntryXmlHandler : public QXmlDefaultHandler
 		bool characters(const QString &);
 };
 
+// 'floating' snapshot-viewer
 class SoftwareSnap : public QWidget
 {
 	Q_OBJECT
@@ -101,6 +106,35 @@ class SoftwareSnap : public QWidget
 		void mousePressEvent(QMouseEvent *);
 		void enterEvent(QEvent *);
 		void leaveEvent(QEvent *);
+		void contextMenuEvent(QContextMenuEvent *);
+};
+
+// 'embedded' snapshot-viewer
+#if QMC2_OPENGL == 1
+class SoftwareSnapshot : public QGLWidget
+#else
+class SoftwareSnapshot : public QWidget
+#endif
+{
+	Q_OBJECT
+
+	public:
+		QPixmap currentSnapshotPixmap;
+		QMenu *contextMenu;
+		QString myCacheKey;
+
+		SoftwareSnapshot(QWidget *parent = 0);
+		~SoftwareSnapshot();
+
+	public slots:
+		void drawCenteredImage(QPixmap *, QPainter *);
+		void drawScaledImage(QPixmap *, QPainter *);
+		bool loadSnapshot(QString, QString);
+		void copyToClipboard();
+		void refresh();
+
+	protected:
+		void paintEvent(QPaintEvent *);
 		void contextMenuEvent(QContextMenuEvent *);
 };
 
@@ -134,6 +168,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		SoftwareListExporter *exporter;
 		int oldMax, oldMin;
 		QString oldFmt;
+		QTreeWidgetItem *currentItem;
 
 		SoftwareList(QString, QWidget *);
 		~SoftwareList();

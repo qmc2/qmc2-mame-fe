@@ -20,6 +20,9 @@ extern SoftwareList *qmc2SoftwareList;
 extern SoftwareSnap *qmc2SoftwareSnap;
 extern int qmc2SoftwareSnapPosition;
 extern bool qmc2IgnoreItemActivation;
+extern bool qmc2SmoothScaling;
+extern bool qmc2RetryLoadingImages;
+extern bool qmc2ShowGameName;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QString> softwareListXmlDataCache;
@@ -51,6 +54,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	systemName = sysName;
 	loadProc = NULL;
 	exporter = NULL;
+	currentItem = NULL;
 	validData = snapForced = autoSelectSearchItem = false;
 	autoMounted = true;
 	cachedDeviceLookupPosition = 0;
@@ -1006,9 +1010,10 @@ void SoftwareList::on_toolButtonToggleSoftwareInfo_clicked(bool checked)
 	QList<QTreeWidgetItem *> selectedItems = treeWidget->selectedItems();
 	checked &= (selectedItems.count() > 0);
 
-	if ( checked )
+	if ( checked ) {
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
-	else {
+		qmc2MainWindow->on_tabWidgetSoftwareDetail_updateCurrent();
+	} else {
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
 	}
@@ -1304,9 +1309,14 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 		else
 			qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 #endif
+		currentItem = item;
+		while ( currentItem->parent() ) currentItem = currentItem->parent();
+		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
+			qmc2MainWindow->on_tabWidgetSoftwareDetail_updateCurrent();
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		cancelSoftwareSnap();
+		currentItem = NULL;
 	}
 }
 
@@ -1334,9 +1344,14 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 		else
 			qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 #endif
+		currentItem = item;
+		while ( currentItem->parent() ) currentItem = currentItem->parent();
+		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
+			qmc2MainWindow->on_tabWidgetSoftwareDetail_updateCurrent();
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		cancelSoftwareSnap();
+		currentItem = NULL;
 	}
 	if ( enable ) {
 		QTreeWidgetItem *item = selectedItems[0];
@@ -1377,9 +1392,14 @@ void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 		else
 			qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 #endif
+		currentItem = item;
+		while ( currentItem->parent() ) currentItem = currentItem->parent();
+		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
+			qmc2MainWindow->on_tabWidgetSoftwareDetail_updateCurrent();
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		cancelSoftwareSnap();
+		currentItem = NULL;
 	}
 }
 
@@ -2116,7 +2136,6 @@ SoftwareSnap::SoftwareSnap(QWidget *parent)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::SoftwareSnap(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
-	//setWindowTitle(tr("Snapshot viewer"));
 	setFocusPolicy(Qt::NoFocus);
 	snapForcedResetTimer.setSingleShot(true);
 	connect(&snapForcedResetTimer, SIGNAL(timeout()), this, SLOT(resetSnapForced()));
@@ -2147,8 +2166,10 @@ SoftwareSnap::~SoftwareSnap()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnap::~SoftwareSnap()");
 #endif
 
-	if ( qmc2UseSoftwareSnapFile && snapFile )
+	if ( qmc2UseSoftwareSnapFile && snapFile ) {
 		unzClose(snapFile);
+		snapFile = NULL;
+	}
 }
 
 void SoftwareSnap::mousePressEvent(QMouseEvent *e)
@@ -2376,27 +2397,13 @@ void SoftwareSnap::loadSnapshot()
 #elif defined(QMC2_EMUTYPE_MESS)
 			QDir snapDir(qmc2Config->value("MESS/FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
 #endif
-#ifdef QMC2_DEBUG
-			qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::loadSnapshot(): trying to load software snapshot from '%1'").arg(snapDir.absoluteFilePath(entryName + ".png")));
-#endif
 			if ( snapDir.exists(entryName + ".png") ) {
 				QString filePath = snapDir.absoluteFilePath(entryName + ".png");
 				if ( pm.load(filePath) ) {
 					pmLoaded = true;
 					QPixmapCache::insert("sws_" + listName + "_" + entryName, pm); 
-#ifdef QMC2_DEBUG
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::loadSnapshot(): software snapshot loaded successfully from '%1'").arg(snapDir.absoluteFilePath(entryName + ".png")));
-#endif
 				}
-#ifdef QMC2_DEBUG
-				else
-					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::loadSnapshot(): software snapshot load failed, file = '%1'").arg(snapDir.absoluteFilePath(entryName + ".png")));
-#endif
 			}
-#ifdef QMC2_DEBUG
-			else
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnap::loadSnapshot(): software snapshot not found, file = '%1'").arg(snapDir.absoluteFilePath(entryName + ".png")));
-#endif
 		}
 	}
 
@@ -2726,4 +2733,244 @@ bool SoftwareEntryXmlHandler::characters(const QString &str)
 
 	currentText += QString::fromUtf8(str.toAscii());
 	return true;
+}
+
+SoftwareSnapshot::SoftwareSnapshot(QWidget *parent)
+#if QMC2_OPENGL == 1
+	: QGLWidget(parent)
+#else
+	: QWidget(parent)
+#endif
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnapshot::SoftwareSnapshot(QWidget *parent = %1)").arg((qulonglong)parent));
+#endif
+
+	contextMenu = new QMenu(this);
+	contextMenu->hide();
+
+	QString s;
+	QAction *action;
+
+	s = tr("Copy to clipboard");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(copyToClipboard()));
+	s = tr("Refresh");
+	action = contextMenu->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/reload.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(refresh()));
+}
+
+SoftwareSnapshot::~SoftwareSnapshot()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareSnapshot::~SoftwareSnapshot()");
+#endif
+
+	if ( qmc2UseSoftwareSnapFile && qmc2SoftwareSnap->snapFile ) {
+		unzClose(qmc2SoftwareSnap->snapFile);
+		qmc2SoftwareSnap->snapFile = NULL;
+	}
+}
+
+void SoftwareSnapshot::paintEvent(QPaintEvent *e)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnapshot::paintEvent(QPaintEvent *e = %1").arg((qulonglong)e));
+#endif
+
+	QPainter p(this);
+
+	if ( !qmc2SoftwareList->currentItem ) {
+		drawCenteredImage(0, &p); // clear snapshot widget
+		return;
+	}
+
+	QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
+	QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
+
+	if ( !QPixmapCache::find("sws_" + listName + "_" + entryName, &currentSnapshotPixmap) )
+		loadSnapshot(listName, entryName);
+	
+	myCacheKey = "sws_" + listName + "_" + entryName;
+	drawScaledImage(&currentSnapshotPixmap, &p);
+}
+
+void SoftwareSnapshot::refresh()
+{
+	if ( !myCacheKey.isEmpty() ) {
+		QPixmapCache::remove(myCacheKey);
+		repaint();
+	}
+}
+
+bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnapshot::loadSnapshot(QString listName = %1, QString entryName = %2)").arg(listName).arg(entryName));
+#endif
+
+	QPixmap pm;
+
+	bool fileOk = true;
+	if ( qmc2UseSoftwareSnapFile ) {
+		// try loading image from ZIP
+		if ( !qmc2SoftwareSnap->snapFile ) {
+#if defined(QMC2_EMUTYPE_MAME)
+			qmc2SoftwareSnap->snapFile = unzOpen((const char *)qmc2Config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
+			if ( qmc2SoftwareSnap->snapFile == NULL )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(qmc2Config->value("MAME/FilesAndDirectories/SoftwareSnapFile").toString()));
+#elif defined(QMC2_EMUTYPE_MESS)
+			qmc2SoftwareSnap->snapFile = unzOpen((const char *)qmc2Config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString().toAscii());
+			if ( qmc2SoftwareSnap->snapFile == NULL )
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't open software snap-shot file, please check access permissions for %1").arg(qmc2Config->value("MESS/FilesAndDirectories/SoftwareSnapFile").toString()));
+#endif
+		}
+
+		if ( qmc2SoftwareSnap->snapFile ) {
+			QByteArray imageData;
+			QString pathInZip = listName + "/" + entryName + ".png";
+			if ( unzLocateFile(qmc2SoftwareSnap->snapFile, (const char *)pathInZip.toAscii(), 0) == UNZ_OK ) {
+				if ( unzOpenCurrentFile(qmc2SoftwareSnap->snapFile) == UNZ_OK ) {
+					char imageBuffer[QMC2_ZIP_BUFFER_SIZE];
+					int len;
+					while ( (len = unzReadCurrentFile(qmc2SoftwareSnap->snapFile, &imageBuffer, QMC2_ZIP_BUFFER_SIZE)) > 0 ) {
+						for (int i = 0; i < len; i++)
+							imageData += imageBuffer[i];
+					}
+					unzCloseCurrentFile(qmc2SoftwareSnap->snapFile);
+				} else
+					fileOk = false;
+			} else
+				fileOk = false;
+			if ( fileOk ) {
+				if ( pm.loadFromData(imageData, "PNG") )
+					QPixmapCache::insert("sws_" + listName + "_" + entryName, pm);
+				else
+					fileOk = false;
+			}
+		}
+	} else {
+		// try loading image from folder
+#if defined(QMC2_EMUTYPE_MAME)
+		QDir snapDir(qmc2Config->value("MAME/FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
+#elif defined(QMC2_EMUTYPE_MESS)
+		QDir snapDir(qmc2Config->value("MESS/FilesAndDirectories/SoftwareSnapDirectory").toString() + "/" + listName);
+#endif
+		if ( snapDir.exists(entryName + ".png") ) {
+			QString filePath = snapDir.absoluteFilePath(entryName + ".png");
+			if ( pm.load(filePath) ) {
+				fileOk = true;
+				QPixmapCache::insert("sws_" + listName + "_" + entryName, pm); 
+			} else
+				fileOk = false;
+		}
+	}
+
+	if ( !fileOk ) {
+		if ( !qmc2RetryLoadingImages )
+			QPixmapCache::insert("sws_" + listName + "_"+ entryName, qmc2MainWindow->qmc2GhostImagePixmap);
+		currentSnapshotPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
+        } else
+		currentSnapshotPixmap = pm;
+
+	return fileOk;
+}
+
+void SoftwareSnapshot::drawCenteredImage(QPixmap *pm, QPainter *p)
+{
+	p->eraseRect(rect());
+
+	if ( pm == NULL ) {
+		p->end();
+		return;
+	}
+
+	// last resort if pm->load() retrieved a null pixmap...
+	if ( pm->isNull() )
+		pm = &qmc2MainWindow->qmc2GhostImagePixmap;
+
+	int posx = (rect().width() - pm->width()) / 2;
+	int posy = (rect().height() - pm->height()) / 2;
+
+	p->drawPixmap(posx, posy, *pm);
+
+	bool drawEntryName = false;
+	if ( qmc2ShowGameName ) {
+		// draw entry title
+		QString title = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);
+		QFont f(qApp->font());
+		f.setWeight(QFont::Bold);
+		p->setFont(f);
+		QFontMetrics fm(f);
+		QRect r = rect();
+		int adjustment = fm.height() / 2;
+		r = r.adjusted(+adjustment, +adjustment, -adjustment, -adjustment);
+		QRect outerRect = p->boundingRect(r, Qt::AlignCenter | Qt::TextWordWrap, title);
+		r.setTop(r.bottom() - outerRect.height());
+		r = p->boundingRect(r, Qt::AlignCenter | Qt::TextWordWrap, title);
+		r = r.adjusted(-adjustment, -adjustment, +adjustment, +adjustment);
+		r.setBottom(rect().bottom());
+		p->setPen(QPen(QColor(255, 255, 255, 0)));
+		p->fillRect(r, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
+		p->setPen(QPen(QColor(255, 255, 255, 255)));
+		p->drawText(r, Qt::AlignCenter | Qt::TextWordWrap, title);
+	}
+
+	p->end();
+}
+
+void SoftwareSnapshot::drawScaledImage(QPixmap *pm, QPainter *p)
+{
+	if ( pm == NULL ) {
+		p->eraseRect(rect());
+		p->end();
+		return;
+	}
+
+	// last resort if pm->load() retrieved a null pixmap...
+	if ( pm->isNull() )
+		pm = &qmc2MainWindow->qmc2GhostImagePixmap;
+
+	double desired_width;
+	double desired_height;
+
+	if ( pm->width() > pm->height() ) {
+		desired_width  = contentsRect().width();
+		desired_height = (double)pm->height() * (desired_width / (double)pm->width());
+		if ( desired_height > contentsRect().height() ) {
+			desired_height = contentsRect().height();
+			desired_width  = (double)pm->width() * (desired_height / (double)pm->height());
+		}
+	} else {
+		desired_height = contentsRect().height();
+		desired_width  = (double)pm->width() * (desired_height / (double)pm->height());
+		if ( desired_width > contentsRect().width() ) {
+			desired_width = contentsRect().width();
+			desired_height = (double)pm->height() * (desired_width / (double)pm->width());
+		}
+	}
+
+	QPixmap pmScaled;
+
+	if ( qmc2SmoothScaling )
+		pmScaled = pm->scaled((int)desired_width, (int)desired_height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	else
+		pmScaled = pm->scaled((int)desired_width, (int)desired_height, Qt::KeepAspectRatio, Qt::FastTransformation);
+
+	drawCenteredImage(&pmScaled, p);
+}
+
+void SoftwareSnapshot::copyToClipboard()
+{
+	qApp->clipboard()->setPixmap(currentSnapshotPixmap);
+}
+
+void SoftwareSnapshot::contextMenuEvent(QContextMenuEvent *e)
+{
+	contextMenu->move(qmc2MainWindow->adjustedWidgetPosition(mapToGlobal(e->pos()), contextMenu));
+	contextMenu->show();
 }
