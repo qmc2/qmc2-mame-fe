@@ -1623,6 +1623,21 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
   return effectiveFile;
 }
 
+void ROMAlyzer::on_tabWidgetAnalysis_currentChanged(int index)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_tabWidgetAnalysis_currentChanged(int index = %1)").arg(index));
+#endif
+
+	switch ( index ) {
+		case QMC2_ROMALYZER_PAGE_LOG:
+			textBrowserLog->horizontalScrollBar()->setValue(0);
+			break;
+		default:
+			break;
+	}
+}
+
 void ROMAlyzer::on_treeWidgetChecksums_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
