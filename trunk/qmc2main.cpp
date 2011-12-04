@@ -603,13 +603,27 @@ MainWindow::MainWindow(QWidget *parent)
   qmc2Options->checkBoxGameStatusIndicator->setText(tr("Machine status indicator"));
   qmc2Options->checkBoxGameStatusIndicator->setToolTip(tr("Show vertical machine status indicator in machine details"));
   qmc2Options->checkBoxGameStatusIndicatorOnlyWhenRequired->setToolTip(tr("Show the machine status indicator only when the machine list is not visible due to the current layout"));
+#if !defined(QMC2_WIP_ENABLED)
   qmc2Options->checkBoxShowGameName->setText(tr("Show machine name"));
   qmc2Options->checkBoxShowGameName->setToolTip(tr("Show machine's description at the bottom of any images"));
   qmc2Options->checkBoxShowGameNameOnlyWhenRequired->setToolTip(tr("Show machine's description only when the machine list is not visible due to the current layout"));
+#endif
   labelLoadingGamelist->setText(tr("Loading machine list, please wait..."));
   labelLoadingHierarchy->setText(tr("Loading machine list, please wait..."));
   comboBoxSearch->setToolTip(tr("Search for machines (not case-sensitive)"));
   comboBoxSearch->setStatusTip(tr("Search for machines"));
+#endif
+
+#if defined(QMC2_WIP_ENABLED)
+#if defined(QMC2_EMUTYPE_MAME)
+  qmc2Options->checkBoxShowGameName->setText(tr("Show game/software titles"));
+  qmc2Options->checkBoxShowGameName->setToolTip(tr("Show game- or software-titles at the bottom of any images"));
+  qmc2Options->checkBoxShowGameNameOnlyWhenRequired->setToolTip(tr("Show game titles only when the game list is not visible due to the current layout"));
+#elif defined(QMC2_EMUTYPE_MESS)
+  qmc2Options->checkBoxShowGameName->setText(tr("Show machine/software titles"));
+  qmc2Options->checkBoxShowGameName->setToolTip(tr("Show machine- or software-titles at the bottom of any images"));
+  qmc2Options->checkBoxShowGameNameOnlyWhenRequired->setToolTip(tr("Show machine titles only when the machine list is not visible due to the current layout"));
+#endif
 #endif
 
   qmc2Gamelist = new Gamelist(this);
