@@ -23,6 +23,7 @@ extern bool qmc2IgnoreItemActivation;
 extern bool qmc2SmoothScaling;
 extern bool qmc2RetryLoadingImages;
 extern bool qmc2ShowGameName;
+extern int qmc2UpdateDelay;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QString> softwareListXmlDataCache;
@@ -218,6 +219,9 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action->setChecked(!treeWidgetSearchResults->isColumnHidden(QMC2_SWLIST_COLUMN_LIST));
 	header->setContextMenuPolicy(Qt::CustomContextMenu);
 	connect(header, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(treeWidgetSearchResultsHeader_customContextMenuRequested(const QPoint &)));
+
+	// detail update timer
+	connect(&detailUpdateTimer, SIGNAL(timeout()), this, SLOT(updateDetail()));
 }
 
 SoftwareList::~SoftwareList()
@@ -827,6 +831,16 @@ void SoftwareList::checkSoftwareSnap()
 	}
 }
 
+void SoftwareList::updateDetail()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::updateDetail()");
+#endif
+
+	detailUpdateTimer.stop();
+	qmc2MainWindow->on_tabWidgetSoftwareDetail_updateCurrent();
+}
+
 void SoftwareList::resizeEvent(QResizeEvent *e)
 {
 #ifdef QMC2_DEBUG
@@ -1314,7 +1328,7 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemSelectionChanged()
 		currentItem = item;
 		while ( currentItem->parent() ) currentItem = currentItem->parent();
 		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
-			qmc2MainWindow->on_tabWidgetSoftwareDetail_updateCurrent();
+			detailUpdateTimer.start(qmc2UpdateDelay);
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
@@ -1352,7 +1366,7 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemSelectionChanged()
 		currentItem = item;
 		while ( currentItem->parent() ) currentItem = currentItem->parent();
 		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
-			qmc2MainWindow->on_tabWidgetSoftwareDetail_updateCurrent();
+			detailUpdateTimer.start(qmc2UpdateDelay);
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());
@@ -1403,7 +1417,7 @@ void SoftwareList::on_treeWidgetSearchResults_itemSelectionChanged()
 		currentItem = item;
 		while ( currentItem->parent() ) currentItem = currentItem->parent();
 		if ( qmc2MainWindow->stackedWidgetSpecial->currentIndex() == QMC2_SPECIAL_SOFTWARE_PAGE )
-			qmc2MainWindow->on_tabWidgetSoftwareDetail_updateCurrent();
+			detailUpdateTimer.start(qmc2UpdateDelay);
 	} else {
 		qmc2MainWindow->stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		qmc2MainWindow->on_tabWidgetLogsAndEmulators_currentChanged(qmc2MainWindow->tabWidgetLogsAndEmulators->currentIndex());

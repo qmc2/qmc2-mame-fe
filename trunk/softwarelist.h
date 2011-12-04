@@ -159,6 +159,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		QAction *actionSaveFavoritesToFile;
 		QTimer snapTimer;
 		QTimer searchTimer;
+		QTimer detailUpdateTimer;
 		bool snapForced;
 		bool validData;
 		bool autoSelectSearchItem;
@@ -237,6 +238,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void loadFavoritesFromFile();
 		void saveFavoritesToFile();
 		void checkSoftwareSnap();
+		void updateDetail();
 
 		// callbacks for software-list header context menu requests
 		void treeWidgetKnownSoftwareHeader_customContextMenuRequested(const QPoint &);
