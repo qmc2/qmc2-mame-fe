@@ -3194,6 +3194,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					qmc2ProjectMESS = new MiniWebBrowser(tabProjectMESS);
 					layout->addWidget(qmc2ProjectMESS);
 					tabProjectMESS->setLayout(layout);
+					connect(qmc2ProjectMESS->webViewBrowser, SIGNAL(loadStarted()), this, SLOT(projectMessLoadStarted()));
 				}
 				QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
 				QString entryTitle = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);
@@ -3210,14 +3211,14 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 									QString("(<a href=\"%1\">%1</a>)").arg(projectMessUrl) + "</p></center></body></html>",
 								QUrl(projectMessUrl)
 								);
+					connect(qmc2ProjectMESS->webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(projectMessLoadFinished(bool)));
 					qmc2ProjectMESS->webViewBrowser->load(QUrl(projectMessUrl));
 				} else {
 					qmc2ProjectMESS->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2ProjectMESSCache[listName + "_" + entryName])), QUrl(projectMessUrl));
 				}
+				qmc2ProjectMESS->homeUrl = QUrl(projectMessUrl);
 				qmc2LastProjectMESSItem = qmc2SoftwareList->currentItem;
 				tabProjectMESS->setUpdatesEnabled(true);
-				connect(qmc2ProjectMESS->webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(projectMessLoadFinished(bool)));
-				connect(qmc2ProjectMESS->webViewBrowser, SIGNAL(loadStarted()), this, SLOT(projectMessLoadStarted()));
 			}
 			break;
 #endif
@@ -7787,11 +7788,14 @@ void MainWindow::projectMessLoadFinished(bool ok)
 	if ( qmc2SoftwareList->currentItem && qmc2ProjectMESS && ok ) {
 		// store compressed page to in-memory cache
 		QString cacheKey = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST) + "_" + qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
+		if ( qmc2ProjectMESSCache.contains(cacheKey) ) qmc2ProjectMESSCache.remove(cacheKey);
 		QByteArray data = QMC2_COMPRESS(qmc2ProjectMESS->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
-		if ( qmc2ProjectMESSCache.contains(cacheKey) )
-			qmc2ProjectMESSCache.remove(cacheKey);
 		qmc2ProjectMESSCache.insert(cacheKey, new QByteArray(data), data.size());
+		//log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::projectMessLoadFinished(): size = %1, comp size = %2").arg(qmc2ProjectMESS->webViewBrowser->page()->mainFrame()->toHtml().size()).arg(data.size()));
 	}
+
+	// we only want to know this ONCE
+	disconnect(qmc2ProjectMESS->webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(projectMessLoadFinished(bool)));
 }
 #endif
 
