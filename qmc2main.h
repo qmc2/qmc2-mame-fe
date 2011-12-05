@@ -433,6 +433,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_treeWidgetVersionView_currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
     void on_treeWidgetVersionView_itemSelectionChanged();
     void on_treeWidgetVersionView_customContextMenuRequested(const QPoint &);
+#elif defined(QMC2_EMUTYPE_MESS)
+    void projectMessLoadStarted();
+    void projectMessLoadFinished(bool);
 #endif
     void createFifo(bool logFifoCreation = true);
     void recreateFifo();
