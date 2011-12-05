@@ -3187,7 +3187,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 #if defined(QMC2_EMUTYPE_MESS)
 		case QMC2_SWINFO_PROJECTMESS_PAGE:
 			if ( qmc2SoftwareList->currentItem != qmc2LastProjectMESSItem ) {
-				tabProjectMESS->setUpdatesEnabled(false);
 				if ( !qmc2ProjectMESS ) {
 					QVBoxLayout *layout = new QVBoxLayout;
 					layout->setContentsMargins(left, top, right, bottom);
@@ -3203,6 +3202,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2ProjectMESS->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
 				qmc2ProjectMESS->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
 				qmc2ProjectMESS->webViewBrowser->setStatusTip(tr("ProjectMESS page for '%1' / '%2'").arg(listName).arg(entryTitle));
+				// FIXME: there's currently a bug in QWebView->setHtml() so that it executes JavaScript twice... let's hope the best for Qt 4.8's WebKit update!!
 				if ( !qmc2ProjectMESSCache.contains(listName + "_" + entryName) ) {
 					QColor color = qmc2ProjectMESS->webViewBrowser->palette().color(QPalette::WindowText);
 					qmc2ProjectMESS->webViewBrowser->setHtml(
@@ -3218,7 +3218,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				}
 				qmc2ProjectMESS->homeUrl = QUrl(projectMessUrl);
 				qmc2LastProjectMESSItem = qmc2SoftwareList->currentItem;
-				tabProjectMESS->setUpdatesEnabled(true);
 			}
 			break;
 #endif
@@ -7791,7 +7790,6 @@ void MainWindow::projectMessLoadFinished(bool ok)
 		if ( qmc2ProjectMESSCache.contains(cacheKey) ) qmc2ProjectMESSCache.remove(cacheKey);
 		QByteArray data = QMC2_COMPRESS(qmc2ProjectMESS->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
 		qmc2ProjectMESSCache.insert(cacheKey, new QByteArray(data), data.size());
-		//log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::projectMessLoadFinished(): size = %1, comp size = %2").arg(qmc2ProjectMESS->webViewBrowser->page()->mainFrame()->toHtml().size()).arg(data.size()));
 	}
 
 	// we only want to know this ONCE
