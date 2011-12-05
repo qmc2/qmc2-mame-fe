@@ -3202,7 +3202,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 				qmc2ProjectMESS->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
 				qmc2ProjectMESS->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
 				qmc2ProjectMESS->webViewBrowser->setStatusTip(tr("ProjectMESS page for '%1' / '%2'").arg(listName).arg(entryTitle));
-				// FIXME: there's currently a bug in QWebView->setHtml() so that it executes JavaScript twice... let's hope the best for Qt 4.8's WebKit update!!
 				if ( !qmc2ProjectMESSCache.contains(listName + "_" + entryName) ) {
 					QColor color = qmc2ProjectMESS->webViewBrowser->palette().color(QPalette::WindowText);
 					qmc2ProjectMESS->webViewBrowser->setHtml(
@@ -3214,7 +3213,10 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					connect(qmc2ProjectMESS->webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(projectMessLoadFinished(bool)));
 					qmc2ProjectMESS->webViewBrowser->load(QUrl(projectMessUrl));
 				} else {
+					// FIXME: There's currently a bug in QWebView->setHtml() so that it executes JavaScript twice.
+					//        The temporary fix is to reload the page -- let's hope the best for Qt 4.8's WebKit update!
 					qmc2ProjectMESS->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2ProjectMESSCache[listName + "_" + entryName])), QUrl(projectMessUrl));
+					qmc2ProjectMESS->webViewBrowser->load(QUrl(projectMessUrl));
 				}
 				qmc2ProjectMESS->homeUrl = QUrl(projectMessUrl);
 				qmc2LastProjectMESSItem = qmc2SoftwareList->currentItem;
