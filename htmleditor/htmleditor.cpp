@@ -82,7 +82,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     connect(ui->actionZoomOut, SIGNAL(triggered()), SLOT(zoomOut()));
     connect(ui->actionZoomIn, SIGNAL(triggered()), SLOT(zoomIn()));
 
-    // these are forward to internal QWebView
+    // these are forwarded to the internal QWebView
     FORWARD_ACTION(ui->actionEditUndo, QWebPage::Undo);
     FORWARD_ACTION(ui->actionEditRedo, QWebPage::Redo);
     FORWARD_ACTION(ui->actionEditCut, QWebPage::Cut);
@@ -94,6 +94,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 
     // Qt 4.5.0 has a bug: always returns 0 for QWebPage::SelectAll
     connect(ui->actionEditSelectAll, SIGNAL(triggered()), SLOT(editSelectAll()));
+    // FIXME: still required?
 
     connect(ui->actionStyleParagraph, SIGNAL(triggered()), SLOT(styleParagraph()));
     connect(ui->actionStyleHeading1, SIGNAL(triggered()), SLOT(styleHeading1()));
@@ -109,7 +110,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
      connect(ui->actionFormatTextColor, SIGNAL(triggered()), SLOT(formatTextColor()));
     connect(ui->actionFormatBackgroundColor, SIGNAL(triggered()), SLOT(formatBackgroundColor()));
 
-    // no page action exists yet for these, so use execCommand trick
+    // no page actions exist for these yet, so use execCommand trick
     connect(ui->actionFormatStrikethrough, SIGNAL(triggered()), SLOT(formatStrikeThrough()));
     connect(ui->actionFormatAlignLeft, SIGNAL(triggered()), SLOT(formatAlignLeft()));
     connect(ui->actionFormatAlignCenter, SIGNAL(triggered()), SLOT(formatAlignCenter()));
@@ -120,8 +121,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     connect(ui->actionFormatNumberedList, SIGNAL(triggered()), SLOT(formatNumberedList()));
     connect(ui->actionFormatBulletedList, SIGNAL(triggered()), SLOT(formatBulletedList()));
 
-
-    // necessary to sync our actions
+    // it's necessary to sync our actions
     connect(ui->webView->page(), SIGNAL(selectionChanged()), SLOT(adjustActions()));
 
     connect(ui->webView->page(), SIGNAL(contentsChanged()), SLOT(adjustSource()));
@@ -133,7 +133,6 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 
     adjustActions();
     adjustSource();
-    //setWindowModified(false);
     changeZoom(100);
 }
 
@@ -168,7 +167,6 @@ void HtmlEditor::fileNew()
         ui->webView->setFocus();
         ui->webView->page()->setContentEditable(true);
         setCurrentFileName(QString());
-        //setWindowModified(false);
 
         // quirk in QWebView: need an initial mouse click to show the cursor
         int mx = ui->webView->width() / 2;
@@ -208,7 +206,6 @@ bool HtmlEditor::fileSave()
         success = (c >= data.length());
     }
 
-    //setWindowModified(false);
     return success;
 }
 
@@ -522,7 +519,6 @@ void HtmlEditor::adjustActions()
 
 void HtmlEditor::adjustSource()
 {
-    //setWindowModified(true);
     sourceDirty = true;
 
     if (ui->tabWidget->currentIndex() == 1)
@@ -587,17 +583,4 @@ bool HtmlEditor::load(const QString &f)
 void HtmlEditor::setCurrentFileName(const QString &fileName)
 {
     this->fileName = fileName;
-
-    QString shownName;
-    if (fileName.isEmpty())
-        shownName = "untitled";
-    else
-        shownName = QFileInfo(fileName).fileName();
-
-    //setWindowModified(false);
-
-    bool allowSave = true;
-    if (fileName.isEmpty() || fileName.startsWith(QLatin1String(":/")))
-        allowSave = false;
-    ui->actionFileSave->setEnabled(allowSave);
 }
