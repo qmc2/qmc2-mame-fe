@@ -76,6 +76,7 @@
 #if defined(Q_WS_WIN)
 #include "windows_tools.h"
 #endif
+#include "htmleditor/htmleditor.h"
 
 #ifdef __APPLE__
 #include <ApplicationServices/ApplicationServices.h>
@@ -205,6 +206,8 @@ MiniWebBrowser *qmc2ProjectMESS = NULL;
 QTreeWidgetItem *qmc2LastProjectMESSItem = NULL;
 QCache<QString, QByteArray> qmc2ProjectMESSCache;
 #endif
+QTreeWidgetItem *qmc2LastSoftwareNotesItem = NULL;
+HtmlEditor *qmc2SoftwareNotesEditor = NULL;
 #if defined(QMC2_YOUTUBE_ENABLED)
 YouTubeVideoPlayer *qmc2YouTubeWidget = NULL;
 QTreeWidgetItem *qmc2LastYouTubeItem = NULL;
@@ -3225,6 +3228,20 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 #endif
 
 		case QMC2_SWINFO_NOTES_PAGE:
+			if ( qmc2SoftwareList->currentItem != qmc2LastSoftwareNotesItem ) {
+				if ( !qmc2SoftwareNotesEditor ) {
+					QVBoxLayout *layout = new QVBoxLayout;
+					layout->setContentsMargins(left, top, right, bottom);
+					qmc2SoftwareNotesEditor = new HtmlEditor(tabNotes);
+					layout->addWidget(qmc2SoftwareNotesEditor);
+					tabNotes->setLayout(layout);
+				}
+				QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
+				QString entryTitle = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);
+				QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
+
+				qmc2LastSoftwareNotesItem = qmc2SoftwareList->currentItem;
+			}
 			break;
 
 		default:

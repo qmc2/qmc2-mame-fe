@@ -47,10 +47,12 @@ HtmlEditor::HtmlEditor(QWidget *parent)
         , insertHtmlDialog(0)
 {
     ui->setupUi(this);
+
+    setWindowFlags(Qt::SubWindow | Qt::CustomizeWindowHint);
+
     ui->tabWidget->setTabText(0, tr("WYSIWIG"));
     ui->tabWidget->setTabText(1, tr("HTML"));
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), SLOT(changeTab(int)));
-    resize(600, 600);
 
     highlighter = new Highlighter(ui->plainTextEdit->document());
 
@@ -131,7 +133,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 
     adjustActions();
     adjustSource();
-    setWindowModified(false);
+    //setWindowModified(false);
     changeZoom(100);
 }
 
@@ -166,7 +168,7 @@ void HtmlEditor::fileNew()
         ui->webView->setFocus();
         ui->webView->page()->setContentEditable(true);
         setCurrentFileName(QString());
-        setWindowModified(false);
+        //setWindowModified(false);
 
         // quirk in QWebView: need an initial mouse click to show the cursor
         int mx = ui->webView->width() / 2;
@@ -206,7 +208,7 @@ bool HtmlEditor::fileSave()
         success = (c >= data.length());
     }
 
-    setWindowModified(false);
+    //setWindowModified(false);
     return success;
 }
 
@@ -520,7 +522,7 @@ void HtmlEditor::adjustActions()
 
 void HtmlEditor::adjustSource()
 {
-    setWindowModified(true);
+    //setWindowModified(true);
     sourceDirty = true;
 
     if (ui->tabWidget->currentIndex() == 1)
@@ -592,7 +594,7 @@ void HtmlEditor::setCurrentFileName(const QString &fileName)
     else
         shownName = QFileInfo(fileName).fileName();
 
-    setWindowModified(false);
+    //setWindowModified(false);
 
     bool allowSave = true;
     if (fileName.isEmpty() || fileName.startsWith(QLatin1String(":/")))

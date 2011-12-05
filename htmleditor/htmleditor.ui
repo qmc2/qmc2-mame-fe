@@ -346,10 +346,10 @@
      <normaloff>:/htmleditor/images/edit-select-all.png</normaloff>:/htmleditor/images/edit-select-all.png</iconset>
    </property>
    <property name="text">
-    <string>Select A&amp;ll</string>
+    <string>Select a&amp;ll</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+A</string>
+   <property name="statusTip">
+    <string>Select all</string>
    </property>
   </action>
   <action name="actionFormatBold">
