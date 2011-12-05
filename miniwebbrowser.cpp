@@ -214,6 +214,11 @@ void MiniWebBrowser::on_toolButtonLoad_clicked()
   }
 }
 
+void MiniWebBrowser::on_spinBoxZoom_valueChanged(int zoom)
+{
+	webViewBrowser->setZoomFactor((double)zoom/100.0);
+}
+
 void MiniWebBrowser::webViewBrowser_linkClicked(const QUrl url)
 {
 #ifdef QMC2_DEBUG

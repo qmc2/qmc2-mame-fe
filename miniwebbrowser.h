@@ -77,6 +77,7 @@ class MiniWebBrowser : public QWidget, public Ui::MiniWebBrowser
     void on_comboBoxURL_activated();
     void on_toolButtonHome_clicked();
     void on_toolButtonLoad_clicked();
+    void on_spinBoxZoom_valueChanged(int);
 
     // page actions
     void processPageActionDownloadRequested(const QNetworkRequest &);

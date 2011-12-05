@@ -133,7 +133,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="5">
+   <item row="0" column="6">
     <widget class="QComboBox" name="comboBoxURL">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
@@ -158,7 +158,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="6">
+   <item row="0" column="7">
     <widget class="QToolButton" name="toolButtonLoad">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -178,7 +178,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="7">
+   <item row="1" column="0" colspan="8">
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="0">
       <widget class="QLabel" name="labelStatus">
@@ -235,6 +235,37 @@
      </item>
     </layout>
    </item>
+   <item row="0" column="5">
+    <widget class="QSpinBox" name="spinBoxZoom">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Set zoom factor</string>
+     </property>
+     <property name="statusTip">
+      <string>Set zoom factor</string>
+     </property>
+     <property name="suffix">
+      <string> %</string>
+     </property>
+     <property name="minimum">
+      <number>10</number>
+     </property>
+     <property name="maximum">
+      <number>400</number>
+     </property>
+     <property name="singleStep">
+      <number>10</number>
+     </property>
+     <property name="value">
+      <number>100</number>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="6"/>
@@ -245,6 +276,8 @@
   <tabstop>toolButtonStop</tabstop>
   <tabstop>toolButtonHome</tabstop>
   <tabstop>toolButtonLoad</tabstop>
+  <tabstop>spinBoxZoom</tabstop>
+  <tabstop>comboBoxURL</tabstop>
  </tabstops>
  <resources>
   <include location="qmc2.qrc"/>
