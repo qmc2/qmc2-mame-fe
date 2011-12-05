@@ -383,12 +383,18 @@
 // MAWS image links base URL (default)
 #define QMC2_MAWS_IMGLINKS_BASE_URL	"http://maws.mameworld.info/maws/"
 
-// MAWS web cache size (in-memory, 8M fixed for now)
+// MAWS web cache size (in-memory, 8 MB fixed for now)
 #define QMC2_MAWS_CACHE_SIZE		8 * QMC2_ONE_MEGABYTE
 
 // delay creation of MAWS quick download menu for how many milliseconds
 // (use same delay to start auto downloads)
 #define QMC2_MAWS_QDL_DELAY		250
+
+// ProjectMESS base URL (default)
+#define QMC2_PROJECT_MESS_BASE_URL	"http://www.progettoemma.net/mess/gioco.php?game=%1&list=%2"
+
+// ProjectMESS cache size (in-memory, 8 MB fixed for now)
+#define QMC2_PROJECT_MESS_CACHE_SIZE	8 * QMC2_ONE_MEGABYTE
 
 // delay forced background widget updates for how many milliseconds
 #define QMC2_MAWS_BWU_DELAY		25

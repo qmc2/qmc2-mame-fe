@@ -200,6 +200,10 @@ QMap<QString, QTreeWidgetItem *> qmc2CategoryItemMap;
 QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 QTreeWidgetItem *qmc2CategoryViewSelectedItem = NULL;
 QTreeWidgetItem *qmc2VersionViewSelectedItem = NULL;
+#elif defined(QMC2_EMUTYPE_MESS)
+MiniWebBrowser *qmc2ProjectMESS = NULL;
+QTreeWidgetItem *qmc2LastProjectMESSItem = NULL;
+QCache<QString, QByteArray> qmc2ProjectMESSCache;
 #endif
 #if defined(QMC2_YOUTUBE_ENABLED)
 YouTubeVideoPlayer *qmc2YouTubeWidget = NULL;
@@ -531,6 +535,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 #if !defined(QMC2_YOUTUBE_ENABLED)
   actionClearYouTubeCache->setVisible(false);
+#endif
+
+#if defined(QMC2_EMUTYPE_MESS)
+  qmc2ProjectMESSCache.setMaxCost(QMC2_PROJECT_MESS_CACHE_SIZE);
 #endif
 
 #if defined(QMC2_EMUTYPE_MAME)
@@ -3155,22 +3163,64 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
        	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int i = " + QString::number(currentIndex) + ")");
 #endif
 
+	if ( !qmc2SoftwareList )
+		return;
+
+	if ( !qmc2SoftwareList->currentItem )
+		return;
+
+	int left, top, right, bottom;
+	gridLayout->getContentsMargins(&left, &top, &right, &bottom);
+
 	switch ( currentIndex ) {
 		case QMC2_SWINFO_SNAPSHOT_PAGE:
 			if ( !qmc2SoftwareSnapshot ) {
 				qmc2SoftwareSnapshot = new SoftwareSnapshot(tabSnapshot);
 				QHBoxLayout *layout = new QHBoxLayout;
 				layout->addWidget(qmc2SoftwareSnapshot);
-				int left, top, right, bottom;
-				gridLayout->getContentsMargins(&left, &top, &right, &bottom);
 				layout->setContentsMargins(left, top, right, bottom);
 				tabSnapshot->setLayout(layout);
 			}
 			qmc2SoftwareSnapshot->update();
 			break;
 
+#if defined(QMC2_EMUTYPE_MESS)
 		case QMC2_SWINFO_PROJECTMESS_PAGE:
+			if ( qmc2SoftwareList->currentItem != qmc2LastProjectMESSItem ) {
+				tabProjectMESS->setUpdatesEnabled(false);
+				if ( !qmc2ProjectMESS ) {
+					QVBoxLayout *layout = new QVBoxLayout;
+					layout->setContentsMargins(left, top, right, bottom);
+					qmc2ProjectMESS = new MiniWebBrowser(tabProjectMESS);
+					layout->addWidget(qmc2ProjectMESS);
+					tabProjectMESS->setLayout(layout);
+				}
+				QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
+				QString entryTitle = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);
+				QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
+				QString projectMessUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "ProjectMESS/BaseURL", QMC2_PROJECT_MESS_BASE_URL).toString().arg(entryName).arg(listName);
+				qmc2ProjectMESS->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
+				qmc2ProjectMESS->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
+				qmc2ProjectMESS->webViewBrowser->setStatusTip(tr("ProjectMESS page for '%1' / '%2'").arg(listName).arg(entryTitle));
+				if ( !qmc2ProjectMESSCache.contains(listName + "_" + entryName) ) {
+					QColor color = qmc2ProjectMESS->webViewBrowser->palette().color(QPalette::WindowText);
+					qmc2ProjectMESS->webViewBrowser->setHtml(
+								QString("<html><head></head><body><center><p><font color=\"#%1%2%3\"<b>").arg(color.red()).arg(color.green()).arg(color.blue()) +
+									tr("Fetching ProjectMESS page for '%1' / '%2', please wait...").arg(listName).arg(entryTitle) + "</font></b></p><p>" +
+									QString("(<a href=\"%1\">%1</a>)").arg(projectMessUrl) + "</p></center></body></html>",
+								QUrl(projectMessUrl)
+								);
+					qmc2ProjectMESS->webViewBrowser->load(QUrl(projectMessUrl));
+				} else {
+					qmc2ProjectMESS->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2ProjectMESSCache[listName + "_" + entryName])), QUrl(projectMessUrl));
+				}
+				qmc2LastProjectMESSItem = qmc2SoftwareList->currentItem;
+				tabProjectMESS->setUpdatesEnabled(true);
+				connect(qmc2ProjectMESS->webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(projectMessLoadFinished(bool)));
+				connect(qmc2ProjectMESS->webViewBrowser, SIGNAL(loadStarted()), this, SLOT(projectMessLoadStarted()));
+			}
 			break;
+#endif
 
 		case QMC2_SWINFO_NOTES_PAGE:
 			break;
@@ -7718,6 +7768,32 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 		  break;
   }
 }
+
+#if defined(QMC2_EMUTYPE_MESS)
+void MainWindow::projectMessLoadStarted()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::projectMessLoadStarted()");
+#endif
+
+}
+
+void MainWindow::projectMessLoadFinished(bool ok)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::projectMessLoadFinished(bool ok = %1)").arg(ok));
+#endif
+
+	if ( qmc2SoftwareList->currentItem && qmc2ProjectMESS && ok ) {
+		// store compressed page to in-memory cache
+		QString cacheKey = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST) + "_" + qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
+		QByteArray data = QMC2_COMPRESS(qmc2ProjectMESS->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
+		if ( qmc2ProjectMESSCache.contains(cacheKey) )
+			qmc2ProjectMESSCache.remove(cacheKey);
+		qmc2ProjectMESSCache.insert(cacheKey, new QByteArray(data), data.size());
+	}
+}
+#endif
 
 #if defined(QMC2_EMUTYPE_MAME)
 void MainWindow::mawsLoadStarted()
