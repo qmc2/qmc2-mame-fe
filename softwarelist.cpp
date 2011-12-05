@@ -2802,7 +2802,7 @@ SoftwareSnapshot::~SoftwareSnapshot()
 void SoftwareSnapshot::paintEvent(QPaintEvent *e)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnapshot::paintEvent(QPaintEvent *e = %1").arg((qulonglong)e));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareSnapshot::paintEvent(QPaintEvent *e = %1)").arg((qulonglong)e));
 #endif
 
 	QPainter p(this);
@@ -2817,8 +2817,7 @@ void SoftwareSnapshot::paintEvent(QPaintEvent *e)
 
 	if ( !QPixmapCache::find("sws_" + listName + "_" + entryName, &currentSnapshotPixmap) )
 		loadSnapshot(listName, entryName);
-	
-	myCacheKey = "sws_" + listName + "_" + entryName;
+
 	drawScaledImage(&currentSnapshotPixmap, &p);
 }
 
@@ -2899,6 +2898,8 @@ bool SoftwareSnapshot::loadSnapshot(QString listName, QString entryName)
 		currentSnapshotPixmap = qmc2MainWindow->qmc2GhostImagePixmap;
         } else
 		currentSnapshotPixmap = pm;
+
+	myCacheKey = "sws_" + listName + "_" + entryName;
 
 	return fileOk;
 }
