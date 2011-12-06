@@ -80,8 +80,12 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     connect(ui->actionInsertImage, SIGNAL(triggered()), SLOT(insertImage()));
     connect(ui->actionCreateLink, SIGNAL(triggered()), SLOT(createLink()));
     connect(ui->actionInsertHtml, SIGNAL(triggered()), SLOT(insertHtml()));
+    connect(ui->actionInsertTable, SIGNAL(triggered()), SLOT(insertTable()));
     connect(ui->actionZoomOut, SIGNAL(triggered()), SLOT(zoomOut()));
     connect(ui->actionZoomIn, SIGNAL(triggered()), SLOT(zoomIn()));
+
+    // FIXME: this is not working yet, so we disable the action
+    ui->actionInsertTable->setEnabled(false);
 
     // these are forwarded to the internal QWebView
     FORWARD_ACTION(ui->actionEditUndo, QWebPage::Undo);
@@ -129,8 +133,9 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     // web-page connections
     connect(ui->webView->page(), SIGNAL(linkHovered(const QString &, const QString &, const QString &)), SLOT(linkHovered(const QString &, const QString &, const QString &)));
 
-    // this effectively *disables* link-following
+    // this effectively *disables* internal link-following
     ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    connect(ui->webView, SIGNAL(linkClicked(QUrl)), SLOT(openLink(QUrl)));
     ui->webView->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(false);
     ui->webView->pageAction(QWebPage::OpenFrameInNewWindow)->setVisible(false);
     ui->webView->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(false);
@@ -142,9 +147,6 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     ui->webView->pageAction(QWebPage::Reload)->setVisible(false);
 
     ui->webView->setFocus();
-
-    setCurrentFileName(QString());
-
     fileNew();
 
     adjustActions();
@@ -178,33 +180,36 @@ bool HtmlEditor::maybeSave()
 
 void HtmlEditor::fileNew()
 {
-    if (maybeSave()) {
-        ui->webView->setHtml("<p></p>");
-        ui->webView->setFocus();
-        ui->webView->page()->setContentEditable(true);
-        setCurrentFileName(QString());
+    ui->webView->page()->setContentEditable(true);
+    setCurrentFileName(QString());
 
-        // quirk in QWebView: need an initial mouse click to show the cursor
-        int mx = ui->webView->width() / 2;
-        int my = ui->webView->height() / 2;
-        QPoint center = QPoint(mx, my);
-        QMouseEvent *e1 = new QMouseEvent(QEvent::MouseButtonPress, center,
-                                          Qt::LeftButton, Qt::LeftButton,
-                                          Qt::NoModifier);
-        QMouseEvent *e2 = new QMouseEvent(QEvent::MouseButtonRelease, center,
-                                          Qt::LeftButton, Qt::LeftButton,
-                                          Qt::NoModifier);
-        QApplication::postEvent(ui->webView, e1);
-        QApplication::postEvent(ui->webView, e2);
-    }
+    // quirk in QWebView: need an initial mouse click to show the cursor
+    int mx = ui->webView->width() / 2;
+    int my = ui->webView->height() / 2;
+    QPoint center = QPoint(mx, my);
+    ui->webView->setFocus();
+    QMouseEvent *e1 = new QMouseEvent(QEvent::MouseButtonPress, center,
+                                      Qt::LeftButton, Qt::LeftButton,
+                                      Qt::NoModifier);
+    QMouseEvent *e2 = new QMouseEvent(QEvent::MouseButtonRelease, center,
+                                      Qt::LeftButton, Qt::LeftButton,
+                                      Qt::NoModifier);
+    QApplication::postEvent(ui->webView, e1);
+    QApplication::postEvent(ui->webView, e2);
+
+    ui->webView->setHtml("");
+    QTimer::singleShot(25, this, SLOT(styleParagraph()));
+    QTimer::singleShot(50, this, SLOT(adjustSource()));
 }
 
 void HtmlEditor::fileOpen()
 {
     QString fn = QFileDialog::getOpenFileName(this, tr("Open file..."),
                  QString(), tr("HTML files (*.htm *.html);;All files (*)"));
-    if (!fn.isEmpty())
+    if (!fn.isEmpty()) {
         load(fn);
+        adjustSource();
+    }
 }
 
 bool HtmlEditor::fileSave()
@@ -322,6 +327,10 @@ void HtmlEditor::insertHtml()
         execCommand("insertHTML", ui_dialog->plainTextEdit->toPlainText());
 
     delete hilite;
+}
+
+void HtmlEditor::insertTable()
+{
 }
 
 void HtmlEditor::zoomOut()
@@ -551,10 +560,8 @@ void HtmlEditor::changeTab(int index)
 
 void HtmlEditor::openLink(const QUrl &url)
 {
-    QString msg = QString(tr("Open %1 ?")).arg(url.toString());
-    if (QMessageBox::question(this, tr("Open link"), msg,
-                              QMessageBox::Open | QMessageBox::Cancel) ==
-            QMessageBox::Open)
+    QString msg = QString(tr("Open '%1' in default browser?")).arg(url.toString());
+    if (QMessageBox::question(this, tr("Open link"), msg, QMessageBox::Open | QMessageBox::Cancel) == QMessageBox::Open)
         QDesktopServices::openUrl(url);
 }
 
@@ -588,8 +595,6 @@ bool HtmlEditor::load(const QString &f)
     QByteArray data = file.readAll();
     ui->webView->setContent(data, "text/html");
     ui->webView->page()->setContentEditable(true);
-    ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    connect(ui->webView, SIGNAL(linkClicked(QUrl)), SLOT(openLink(QUrl)));
 
     setCurrentFileName(f);
     return true;
