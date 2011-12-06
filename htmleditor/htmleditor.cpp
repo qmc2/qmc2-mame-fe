@@ -162,9 +162,11 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     ui->webView->setFocus();
     fileNew();
 
+    changeZoom(100);
+
+    adjustIconSizes();
     adjustActions();
     adjustSource();
-    changeZoom(100);
 }
 
 HtmlEditor::~HtmlEditor()
@@ -632,4 +634,14 @@ void HtmlEditor::setCurrentFileName(const QString &fileName)
 void HtmlEditor::linkHovered(const QString &link, const QString &title, const QString &textContent)
 {
     QToolTip::showText(QCursor::pos(), link);
+}
+
+void HtmlEditor::adjustIconSizes()
+{
+    QFont f;
+    f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
+    QFontMetrics fm(f);
+    QSize iconSize = QSize(fm.height(), fm.height());
+    ui->formatToolBar->setIconSize(iconSize);
+    ui->standardToolBar->setIconSize(iconSize);
 }
