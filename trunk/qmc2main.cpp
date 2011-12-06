@@ -5371,12 +5371,20 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
 #if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2SoftwareList ) {
+    if ( qmc2SoftwareNotesEditor ) {
+      qmc2SoftwareNotesEditor->close();
+      delete qmc2SoftwareNotesEditor;
+    }
     log(QMC2_LOG_FRONTEND, tr("saving current game's favorite software"));
     qmc2SoftwareList->save();
     delete qmc2SoftwareList;
   }
 #elif defined(QMC2_EMUTYPE_MESS)
   if ( qmc2SoftwareList ) {
+    if ( qmc2SoftwareNotesEditor ) {
+      qmc2SoftwareNotesEditor->close();
+      delete qmc2SoftwareNotesEditor;
+    }
     log(QMC2_LOG_FRONTEND, tr("saving current machine's favorite software"));
     qmc2SoftwareList->save();
     delete qmc2SoftwareList;
