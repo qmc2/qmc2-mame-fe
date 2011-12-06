@@ -48,6 +48,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // this 'trick' allows a nested QMainWindow :)
     setWindowFlags(Qt::SubWindow | Qt::CustomizeWindowHint);
 
     ui->tabWidget->setTabText(0, tr("WYSIWIG"));
@@ -60,7 +61,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Minimum);
     ui->standardToolBar->insertWidget(ui->actionZoomOut, spacer);
 
-    zoomLabel = new QLabel;
+    zoomLabel = new QLabel(this);
     ui->standardToolBar->insertWidget(ui->actionZoomOut, zoomLabel);
 
     zoomSlider = new QSlider(this);
@@ -107,7 +108,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     connect(ui->actionStyleAddress, SIGNAL(triggered()), SLOT(styleAddress()));
     connect(ui->actionFormatFontName, SIGNAL(triggered()), SLOT(formatFontName()));
     connect(ui->actionFormatFontSize, SIGNAL(triggered()), SLOT(formatFontSize()));
-     connect(ui->actionFormatTextColor, SIGNAL(triggered()), SLOT(formatTextColor()));
+    connect(ui->actionFormatTextColor, SIGNAL(triggered()), SLOT(formatTextColor()));
     connect(ui->actionFormatBackgroundColor, SIGNAL(triggered()), SLOT(formatBackgroundColor()));
 
     // no page actions exist for these yet, so use execCommand trick
@@ -123,8 +124,23 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 
     // it's necessary to sync our actions
     connect(ui->webView->page(), SIGNAL(selectionChanged()), SLOT(adjustActions()));
-
     connect(ui->webView->page(), SIGNAL(contentsChanged()), SLOT(adjustSource()));
+
+    // web-page connections
+    connect(ui->webView->page(), SIGNAL(linkHovered(const QString &, const QString &, const QString &)), SLOT(linkHovered(const QString &, const QString &, const QString &)));
+
+    // this effectively *disables* link-following
+    ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    ui->webView->pageAction(QWebPage::OpenImageInNewWindow)->setVisible(false);
+    ui->webView->pageAction(QWebPage::OpenFrameInNewWindow)->setVisible(false);
+    ui->webView->pageAction(QWebPage::OpenLinkInNewWindow)->setVisible(false);
+    ui->webView->pageAction(QWebPage::OpenLink)->setVisible(false);
+    ui->webView->pageAction(QWebPage::DownloadLinkToDisk)->setVisible(false);
+    ui->webView->pageAction(QWebPage::Back)->setVisible(false);
+    ui->webView->pageAction(QWebPage::Forward)->setVisible(false);
+    ui->webView->pageAction(QWebPage::Stop)->setVisible(false);
+    ui->webView->pageAction(QWebPage::Reload)->setVisible(false);
+
     ui->webView->setFocus();
 
     setCurrentFileName(QString());
@@ -216,7 +232,7 @@ bool HtmlEditor::fileSaveAs()
     if (fn.isEmpty())
         return false;
     if (!(fn.endsWith(".htm", Qt::CaseInsensitive) || fn.endsWith(".html", Qt::CaseInsensitive)))
-        fn += ".htm"; // default
+        fn += ".html"; // default
     setCurrentFileName(fn);
     return fileSave();
 }
@@ -224,11 +240,11 @@ bool HtmlEditor::fileSaveAs()
 void HtmlEditor::insertImage()
 {
     QString filters;
-    filters += tr("Common Graphics (*.png *.jpg *.jpeg *.gif);;");
+    filters += tr("Common graphics formats (*.png *.jpg *.jpeg *.gif);;");
     filters += tr("Portable Network Graphics (PNG) (*.png);;");
-    filters += tr("JPEG (*.jpg *.jpeg);;");
-    filters += tr("Graphics Interchange Format (*.gif);;");
-    filters += tr("All Files (*)");
+    filters += tr("Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;");
+    filters += tr("Graphics Interchange Format (GIF) (*.gif);;");
+    filters += tr("All files (*)");
 
     QString fn = QFileDialog::getOpenFileName(this, tr("Open image..."),
                  QString(), filters);
@@ -277,8 +293,7 @@ static QUrl guessUrlFromString(const QString &string)
 
 void HtmlEditor::createLink()
 {
-    QString link = QInputDialog::getText(this, tr("Create link"),
-                                         "Enter URL");
+    QString link = QInputDialog::getText(this, tr("Create link"), "Enter URL");
     if (!link.isEmpty()) {
         QUrl url = guessUrlFromString(link);
         if (url.isValid())
@@ -550,7 +565,7 @@ void HtmlEditor::changeZoom(int percent)
     qreal factor = static_cast<qreal>(percent) / 100;
     ui->webView->setZoomFactor(factor);
 
-    zoomLabel->setText(tr(" Zoom: %1% ").arg(percent));
+    zoomLabel->setText(tr("Zoom: %1%").arg(percent));
     zoomSlider->setValue(percent);
 }
 
@@ -583,4 +598,9 @@ bool HtmlEditor::load(const QString &f)
 void HtmlEditor::setCurrentFileName(const QString &fileName)
 {
     this->fileName = fileName;
+}
+
+void HtmlEditor::linkHovered(const QString &link, const QString &title, const QString &textContent)
+{
+    QToolTip::showText(QCursor::pos(), link);
 }

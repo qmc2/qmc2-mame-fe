@@ -4394,110 +4394,110 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>HtmlEditor</name>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="152"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="167"/>
         <source>HTML Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="153"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="168"/>
         <source>The document has been modified.
 Do you want to save your changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="53"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="54"/>
         <source>WYSIWIG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="54"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="55"/>
         <source>HTML</source>
         <translation type="unfinished">HTML</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="190"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="204"/>
         <source>Open file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="191"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="218"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="205"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="231"/>
         <source>HTML files (*.htm *.html);;All files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="217"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="230"/>
         <source>Save as...</source>
         <translation type="unfinished">Zapisz jako...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="230"/>
-        <source>Common Graphics (*.png *.jpg *.jpeg *.gif);;</source>
+        <location filename="../../htmleditor/htmleditor.cpp" line="243"/>
+        <source>Common graphics formats (*.png *.jpg *.jpeg *.gif);;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="231"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="244"/>
         <source>Portable Network Graphics (PNG) (*.png);;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="232"/>
-        <source>JPEG (*.jpg *.jpeg);;</source>
+        <location filename="../../htmleditor/htmleditor.cpp" line="245"/>
+        <source>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="233"/>
-        <source>Graphics Interchange Format (*.gif);;</source>
+        <location filename="../../htmleditor/htmleditor.cpp" line="246"/>
+        <source>Graphics Interchange Format (GIF) (*.gif);;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="234"/>
-        <source>All Files (*)</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../htmleditor/htmleditor.cpp" line="247"/>
+        <source>All files (*)</source>
+        <translation type="unfinished">Wszystkie pliki (*)</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="236"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="249"/>
         <source>Open image...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="283"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="296"/>
         <source>Create link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="464"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="476"/>
         <source>Font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="464"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="476"/>
         <source>Select font:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="483"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="495"/>
         <source>Select font size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="483"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="495"/>
         <source>Font size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="543"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="554"/>
         <source>Open %1 ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="544"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="555"/>
         <source>Open link</source>
         <translation type="unfinished">Otwórz element docelowy</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="557"/>
-        <source> Zoom: %1% </source>
+        <location filename="../../htmleditor/htmleditor.cpp" line="568"/>
+        <source>Zoom: %1%</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -9383,25 +9383,25 @@ Ponowić próbę osadzania?</translation>
         <translation>Wpisz żądany adres URL</translation>
     </message>
     <message>
+        <location filename="../../miniwebbrowser.ui" line="167"/>
         <location filename="../../miniwebbrowser.ui" line="170"/>
-        <location filename="../../miniwebbrowser.ui" line="173"/>
         <source>Load URL</source>
         <translation>Idź do adresu URL</translation>
     </message>
     <message>
+        <location filename="../../miniwebbrowser.ui" line="202"/>
         <location filename="../../miniwebbrowser.ui" line="205"/>
-        <location filename="../../miniwebbrowser.ui" line="208"/>
         <source>Current progress loading URL</source>
         <translation>Postęp ładowania bieżącego adresu URL</translation>
     </message>
     <message>
+        <location filename="../../miniwebbrowser.ui" line="244"/>
         <location filename="../../miniwebbrowser.ui" line="247"/>
-        <location filename="../../miniwebbrowser.ui" line="250"/>
         <source>Set zoom factor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.ui" line="253"/>
+        <location filename="../../miniwebbrowser.ui" line="250"/>
         <source> %</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9457,7 +9457,7 @@ Ponowić próbę osadzania?</translation>
         <translation>Zbadaj</translation>
     </message>
     <message>
-        <location filename="../../miniwebbrowser.cpp" line="480"/>
+        <location filename="../../miniwebbrowser.cpp" line="485"/>
         <source>WARNING: invalid network reply and/or network error</source>
         <translation>UWAGA: niepoprawna odpowiedź sieci lub błąd sieci</translation>
     </message>

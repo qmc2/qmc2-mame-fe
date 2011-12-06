@@ -182,6 +182,8 @@ void MiniWebBrowser::on_comboBoxURL_activated()
     int i = comboBoxURL->findText(text);
     if ( i >= 0 )
       comboBoxURL->setCurrentIndex(i);
+    comboBoxURL->lineEdit()->setCursorPosition(0);
+    webViewBrowser->setFocus();
   }
 
   QTimer::singleShot(0, toolButtonLoad, SLOT(animateClick()));
@@ -210,6 +212,7 @@ void MiniWebBrowser::on_toolButtonLoad_clicked()
       if ( !text.toLower().startsWith("http://") )
         text.prepend("http://");
     comboBoxURL->setEditText(text);
+    comboBoxURL->lineEdit()->setCursorPosition(0);
     webViewBrowser->load(QUrl(text, QUrl::TolerantMode));
   }
 }
@@ -257,6 +260,7 @@ void MiniWebBrowser::webViewBrowser_urlChanged(const QUrl url)
     comboBoxURL->insertItem(0, itemIcon, itemText);
   }
   comboBoxURL->setCurrentIndex(0);
+  comboBoxURL->lineEdit()->setCursorPosition(0);
 
   QTimer::singleShot(0, this, SLOT(webViewBrowser_iconChanged()));
 }
@@ -400,6 +404,7 @@ void MiniWebBrowser::webViewBrowser_iconChanged()
     }
     comboBoxURL->setItemIcon(i, pageIcon);
     comboBoxURL->setCurrentIndex(i);
+    comboBoxURL->lineEdit()->setCursorPosition(0);
   }
 }
 
