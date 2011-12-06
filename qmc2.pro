@@ -36,7 +36,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			audioeffects.ui \
 			arcade/arcadesetupdialog.ui \
 			htmleditor/htmleditor.ui \
-			htmleditor/inserthtmldialog.ui
+			htmleditor/inserthtmldialog.ui \
+			htmleditor/tablepropertydialog.ui
 		SOURCES += qmc2main.cpp \
 			options.cpp \
 			docbrowser.cpp \
