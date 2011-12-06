@@ -3982,394 +3982,409 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="116"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="102"/>
+        <source>Insert &amp;image</source>
+        <translation>&amp;Bild einfügen</translation>
+    </message>
+    <message>
+        <location filename="../../htmleditor/htmleditor.ui" line="127"/>
         <source>F&amp;ormat</source>
         <translation>&amp;Format</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="120"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="131"/>
         <source>St&amp;yle</source>
         <translation>St&amp;yle</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="134"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="145"/>
         <source>&amp;Align</source>
         <translation>&amp;Ausrichten</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="167"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="178"/>
         <source>Standard</source>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="191"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="202"/>
         <source>Formatting</source>
         <translation>Formatierung</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="226"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="237"/>
         <source>&amp;New</source>
         <translation>&amp;Neu</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="229"/>
-        <location filename="../../htmleditor/htmleditor.ui" line="232"/>
-        <location filename="../../htmleditor/htmleditor.ui" line="235"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="240"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="243"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="246"/>
         <source>New file</source>
         <translation>Neue Datei</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="244"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="255"/>
         <source>&amp;Open...</source>
         <translation>&amp;Öffnen...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="247"/>
-        <location filename="../../htmleditor/htmleditor.ui" line="250"/>
-        <location filename="../../htmleditor/htmleditor.ui" line="253"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="258"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="261"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="264"/>
         <source>Open file</source>
         <translation>Datei öffnen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="262"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="273"/>
         <source>&amp;Save</source>
         <translation>&amp;Speichern</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="265"/>
-        <location filename="../../htmleditor/htmleditor.ui" line="268"/>
-        <location filename="../../htmleditor/htmleditor.ui" line="271"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="276"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="279"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="282"/>
         <source>Save file</source>
         <translation>Datei speichern</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="276"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="287"/>
         <source>Save &amp;as...</source>
         <translation>Speichern &amp;unter...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="279"/>
-        <location filename="../../htmleditor/htmleditor.ui" line="282"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="290"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="293"/>
         <source>Save file under a different name</source>
         <translation>Datei unter einem anderen Namen speichern</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="291"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="302"/>
         <source>&amp;Undo</source>
         <translation>&amp;Rückgängig</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="294"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="305"/>
         <source>Undo</source>
         <translation>Rückgängig</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="303"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="314"/>
         <source>&amp;Redo</source>
         <translation>&amp;Wiederholen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="306"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="317"/>
         <source>Redo</source>
         <translation>Wiederholen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="315"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="326"/>
         <source>Cu&amp;t</source>
         <translation>Au&amp;sschneiden</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="318"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="329"/>
         <source>Cut</source>
         <translation>Ausschneiden</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="327"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="338"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopieren</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="330"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="341"/>
         <source>Copy</source>
         <translation>Kopieren</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="339"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="350"/>
         <source>&amp;Paste</source>
         <translation>&amp;Einfügen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="342"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="353"/>
         <source>Paste</source>
         <translation>Einfügen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="351"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="362"/>
         <source>Select a&amp;ll</source>
         <translation>&amp;Alles auswählen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="354"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="365"/>
         <source>Select all</source>
         <translation>Alles auswählen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="366"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="377"/>
         <source>&amp;Bold</source>
         <translation>&amp;Fett</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="369"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="380"/>
         <source>Bold</source>
         <translation>Fett</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="381"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="392"/>
         <source>&amp;Italic</source>
         <translation>&amp;Kursiv</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="384"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="395"/>
         <source>Italic</source>
         <translation>Kursiv</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="396"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="407"/>
         <source>&amp;Underline</source>
         <translation>&amp;Unterstrichen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="399"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="410"/>
         <source>Underline</source>
         <translation>Unterstrichen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="411"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="422"/>
         <source>&amp;Strikethrough</source>
         <translation>&amp;Durchgestrichen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="414"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="425"/>
         <source>Strikethrough</source>
         <translation>Durchgestrichen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="423"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="434"/>
         <source>Align &amp;left</source>
         <translation>&amp;Linksbündig</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="426"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="437"/>
         <source>Align left</source>
         <translation>Linksbündig</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="435"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="446"/>
         <source>Align &amp;center</source>
         <translation>&amp;Zentriert</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="438"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="449"/>
         <source>Align center</source>
         <translation>Zentriert</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="447"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="458"/>
         <source>Align &amp;right</source>
         <translation>&amp;Rechtsbündig</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="450"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="461"/>
         <source>Align right</source>
         <translation>Rechtsbündig</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="459"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="470"/>
         <source>Align &amp;justied</source>
         <translation>&amp;Blocksatz</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="462"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="473"/>
         <source>Align justied</source>
         <translation>Blocksatz</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="471"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="482"/>
         <source>I&amp;ncrease indent</source>
         <translation>&amp;Mehr einrücken</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="474"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="485"/>
         <source>Increase indent</source>
         <translation>Mehr einrücken</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="483"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="494"/>
         <source>&amp;Decrease indent</source>
         <translation>&amp;Weniger einrücken</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="486"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="497"/>
         <source>Decrease indent</source>
         <translation>Weniger einrücken</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="498"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="509"/>
         <source>Bulle&amp;ted list</source>
         <translation>&amp;Stichpunktliste</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="501"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="512"/>
         <source>Bulleted list</source>
         <translation>Stichpunktliste</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="513"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="524"/>
         <source>&amp;Numbered list</source>
         <translation>&amp;Nummerierte Liste</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="516"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="527"/>
         <source>Numbered list</source>
         <translation>Nummerierte Liste</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="525"/>
-        <source>Insert &amp;image...</source>
-        <translation>&amp;Bild einfügen...</translation>
+        <location filename="../../htmleditor/htmleditor.ui" line="536"/>
+        <source>From &amp;file...</source>
+        <translation>Aus &amp;Datei...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="528"/>
-        <source>Insert image</source>
-        <translation>Bild einfügen</translation>
+        <location filename="../../htmleditor/htmleditor.ui" line="539"/>
+        <source>Insert image from file</source>
+        <translation>Bild aus Datei einfügen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="537"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="548"/>
+        <source>From &amp;URL...</source>
+        <translation>Aus &amp;URL...</translation>
+    </message>
+    <message>
+        <location filename="../../htmleditor/htmleditor.ui" line="551"/>
+        <source>Insert image from URL</source>
+        <translation>Bild aus URL einfügen</translation>
+    </message>
+    <message>
+        <location filename="../../htmleditor/htmleditor.ui" line="560"/>
         <source>Create &amp;link...</source>
         <translation>&amp;Link erzeugen...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="540"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="563"/>
         <source>Create link</source>
         <translation>Link erzeugen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="549"/>
-        <location filename="../../htmleditor/htmleditor.ui" line="552"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="572"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="575"/>
         <source>Zoom out</source>
         <translation>Zoom -</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="561"/>
-        <location filename="../../htmleditor/htmleditor.ui" line="564"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="584"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="587"/>
         <source>Zoom in</source>
         <translation>Zoom +</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="569"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="592"/>
         <source>&amp;Paragraph</source>
         <translation>&amp;Absatz</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="574"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="597"/>
         <source>Heading &amp;1</source>
         <translation>Überschrifst &amp;1</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="579"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="602"/>
         <source>Heading &amp;2</source>
         <translation>Überschrifst &amp;2</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="584"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="607"/>
         <source>Heading &amp;3</source>
         <translation>Überschrifst &amp;3</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="589"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="612"/>
         <source>Heading &amp;4</source>
         <translation>Überschrifst &amp;4</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="594"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="617"/>
         <source>Heading &amp;5</source>
         <translation>Überschrifst &amp;5</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="599"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="622"/>
         <source>Heading &amp;6</source>
         <translation>Überschrifst &amp;6</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="604"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="627"/>
         <source>Pre&amp;formatted</source>
         <translation>Vor&amp;formatiert</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="609"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="632"/>
         <source>&amp;Address</source>
         <translation>&amp;Adresse</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="614"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="637"/>
         <source>&amp;Font name...</source>
         <translation>Schri&amp;ftname...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="617"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="640"/>
         <source>Font name</source>
         <translation>Schriftname</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="622"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="645"/>
         <source>Text &amp;color...</source>
         <translation>Te&amp;xtfarbe...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="625"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="648"/>
         <source>Text color</source>
         <translation>Textfarbe</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="630"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="653"/>
         <source>Bac&amp;kground color...</source>
         <translation>Hinter&amp;grundfarbe...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="633"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="656"/>
         <source>Background color</source>
         <translation>Hintergrundfarbe</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="638"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="661"/>
         <source>Font si&amp;ze...</source>
         <translation>Schrift&amp;größe...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="641"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="664"/>
         <source>Font size</source>
         <translation>Schriftgröße</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="650"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="673"/>
         <source>Insert &amp;HTML...</source>
         <translation>&amp;HTML einfügen...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="653"/>
-        <location filename="../../htmleditor/htmleditor.ui" line="656"/>
-        <location filename="../../htmleditor/htmleditor.ui" line="659"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="676"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="679"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="682"/>
         <source>Insert HTML</source>
         <translation>HTML einfügen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="668"/>
-        <location filename="../../htmleditor/htmleditor.ui" line="676"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="691"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="699"/>
         <source>Insert &amp;table...</source>
         <translation>&amp;Tabelle einfügen...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.ui" line="671"/>
+        <location filename="../../htmleditor/htmleditor.ui" line="694"/>
         <source>Insert table</source>
         <translation>Tabelle einfügen</translation>
     </message>
@@ -4377,12 +4392,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>HtmlEditor</name>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="169"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="170"/>
         <source>HTML Editor</source>
         <translation>HTML Editor</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="170"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="171"/>
         <source>The document has been modified.
 Do you want to save your changes?</source>
         <translation>Das Dokument wurde verändert.
@@ -4399,88 +4414,99 @@ Sollen die Änderungen gespeichert werden?</translation>
         <translation>HTML</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="207"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="208"/>
         <source>Open file...</source>
         <translation>Datei öffnen...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="208"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="236"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="209"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="237"/>
         <source>HTML files (*.htm *.html);;All files (*)</source>
         <translation>HTML-Dateien (*.htm *.html);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="235"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="236"/>
         <source>Save as...</source>
         <translation>Speichern unter...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="248"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="249"/>
         <source>Common graphics formats (*.png *.jpg *.jpeg *.gif);;</source>
         <translation>Gängige Grafikformate (*.png *.jpg *.jpeg *.gif);;</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="249"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="250"/>
         <source>Portable Network Graphics (PNG) (*.png);;</source>
         <translation>Portable Network Graphics (PNG) (*.png);;</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="250"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="251"/>
         <source>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</source>
         <translation>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="251"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="252"/>
         <source>Graphics Interchange Format (GIF) (*.gif);;</source>
         <translation>Graphics Interchange Format (GIF) (*.gif);;</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="252"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="253"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="254"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="255"/>
         <source>Open image...</source>
         <translation>Bilddatei öffnen...</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="301"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="268"/>
+        <source>Insert image from URL</source>
+        <translation>Bild aus URL einfügen</translation>
+    </message>
+    <message>
+        <location filename="../../htmleditor/htmleditor.cpp" line="268"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="312"/>
+        <source>Enter URL:</source>
+        <translation>URL eingeben:</translation>
+    </message>
+    <message>
+        <location filename="../../htmleditor/htmleditor.cpp" line="312"/>
         <source>Create link</source>
         <translation>Link erzeugen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="485"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="496"/>
         <source>Font</source>
         <translation>Schriftart</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="485"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="496"/>
         <source>Select font:</source>
         <translation>Schriftart auswählen:</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="504"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="515"/>
         <source>Select font size:</source>
         <translation>Schriftgröße auswählen:</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="504"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="515"/>
         <source>Font size</source>
         <translation>Schriftgröße</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="563"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="574"/>
         <source>Open &apos;%1&apos; in default browser?</source>
         <translation>Link &apos;%1&apos; in Standardbrowser öffnen?</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="564"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="575"/>
         <source>Open link</source>
         <translation>Link öffnen</translation>
     </message>
     <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="575"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="586"/>
         <source>Zoom: %1%</source>
         <translation>Zoom: %1%</translation>
     </message>

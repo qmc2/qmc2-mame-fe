@@ -97,6 +97,17 @@
     <property name="title">
      <string>&amp;Edit</string>
     </property>
+    <widget class="QMenu" name="menuInsertImage">
+     <property name="title">
+      <string>Insert &amp;image</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../qmc2.qrc">
+       <normaloff>:/htmleditor/images/image-x-generic.png</normaloff>:/htmleditor/images/image-x-generic.png</iconset>
+     </property>
+     <addaction name="actionInsertImageFromFile"/>
+     <addaction name="actionInsertImageFromUrl"/>
+    </widget>
     <addaction name="actionEditUndo"/>
     <addaction name="actionEditRedo"/>
     <addaction name="separator"/>
@@ -106,7 +117,7 @@
     <addaction name="separator"/>
     <addaction name="actionEditSelectAll"/>
     <addaction name="separator"/>
-    <addaction name="actionInsertImage"/>
+    <addaction name="menuInsertImage"/>
     <addaction name="actionCreateLink"/>
     <addaction name="actionInsertTable"/>
     <addaction name="actionInsertHtml"/>
@@ -212,7 +223,7 @@
    <addaction name="actionFormatNumberedList"/>
    <addaction name="actionFormatBulletedList"/>
    <addaction name="separator"/>
-   <addaction name="actionInsertImage"/>
+   <addaction name="menuInsertImage"/>
    <addaction name="actionCreateLink"/>
    <addaction name="actionInsertTable"/>
    <addaction name="actionInsertHtml"/>
@@ -516,16 +527,28 @@
     <string>Numbered list</string>
    </property>
   </action>
-  <action name="actionInsertImage">
+  <action name="actionInsertImageFromFile">
    <property name="icon">
     <iconset resource="../qmc2.qrc">
-     <normaloff>:/htmleditor/images/image-x-generic.png</normaloff>:/htmleditor/images/image-x-generic.png</iconset>
+     <normaloff>:/htmleditor/images/document-open.png</normaloff>:/htmleditor/images/document-open.png</iconset>
    </property>
    <property name="text">
-    <string>Insert &amp;image...</string>
+    <string>From &amp;file...</string>
    </property>
    <property name="statusTip">
-    <string>Insert image</string>
+    <string>Insert image from file</string>
+   </property>
+  </action>
+  <action name="actionInsertImageFromUrl">
+   <property name="icon">
+    <iconset resource="../qmc2.qrc">
+     <normaloff>:/htmleditor/images/text-html.png</normaloff>:/htmleditor/images/text-html.png</iconset>
+   </property>
+   <property name="text">
+    <string>From &amp;URL...</string>
+   </property>
+   <property name="statusTip">
+    <string>Insert image from URL</string>
    </property>
   </action>
   <action name="actionCreateLink">
