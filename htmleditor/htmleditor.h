@@ -99,6 +99,7 @@ private slots:
     void changeTab(int);
     void openLink(const QUrl&);
     void changeZoom(int);
+    void linkHovered(const QString &, const QString &, const QString &);
 
 private:
     Ui_HTMLEditorMainWindow *ui;
