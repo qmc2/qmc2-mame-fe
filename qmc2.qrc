@@ -222,5 +222,6 @@
         <file>htmleditor/images/list-remove.png</file>
         <file>htmleditor/images/list-add.png</file>
         <file>htmleditor/images/insert-html.png</file>
+        <file>htmleditor/images/insert-table.png</file>
     </qresource>
 </RCC>

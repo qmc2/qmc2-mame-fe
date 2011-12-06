@@ -84,7 +84,7 @@
      <height>20</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_File">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>&amp;File</string>
     </property>
@@ -93,7 +93,7 @@
     <addaction name="actionFileSave"/>
     <addaction name="actionFileSaveAs"/>
    </widget>
-   <widget class="QMenu" name="menu_Edit">
+   <widget class="QMenu" name="menuEdit">
     <property name="title">
      <string>&amp;Edit</string>
     </property>
@@ -108,13 +108,14 @@
     <addaction name="separator"/>
     <addaction name="actionInsertImage"/>
     <addaction name="actionCreateLink"/>
+    <addaction name="actionInsertTable"/>
     <addaction name="actionInsertHtml"/>
    </widget>
-   <widget class="QMenu" name="menuF_ormat">
+   <widget class="QMenu" name="menuFormat">
     <property name="title">
      <string>F&amp;ormat</string>
     </property>
-    <widget class="QMenu" name="menuSt_yle">
+    <widget class="QMenu" name="menuStyle">
      <property name="title">
       <string>St&amp;yle</string>
      </property>
@@ -128,7 +129,7 @@
      <addaction name="actionStylePreformatted"/>
      <addaction name="actionStyleAddress"/>
     </widget>
-    <widget class="QMenu" name="menu_Align">
+    <widget class="QMenu" name="menuAlign">
      <property name="title">
       <string>&amp;Align</string>
      </property>
@@ -137,8 +138,8 @@
      <addaction name="actionFormatAlignRight"/>
      <addaction name="actionFormatAlignJustify"/>
     </widget>
-    <addaction name="menuSt_yle"/>
-    <addaction name="menu_Align"/>
+    <addaction name="menuStyle"/>
+    <addaction name="menuAlign"/>
     <addaction name="separator"/>
     <addaction name="actionFormatBold"/>
     <addaction name="actionFormatItalic"/>
@@ -157,9 +158,9 @@
     <addaction name="actionFormatTextColor"/>
     <addaction name="actionFormatBackgroundColor"/>
    </widget>
-   <addaction name="menu_File"/>
-   <addaction name="menu_Edit"/>
-   <addaction name="menuF_ormat"/>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuFormat"/>
   </widget>
   <widget class="QToolBar" name="standardToolBar">
    <property name="windowTitle">
@@ -213,6 +214,7 @@
    <addaction name="separator"/>
    <addaction name="actionInsertImage"/>
    <addaction name="actionCreateLink"/>
+   <addaction name="actionInsertTable"/>
    <addaction name="actionInsertHtml"/>
   </widget>
   <action name="actionFileNew">
@@ -655,6 +657,23 @@
    </property>
    <property name="statusTip">
     <string>Insert HTML</string>
+   </property>
+  </action>
+  <action name="actionInsertTable">
+   <property name="icon">
+    <iconset resource="../qmc2.qrc">
+     <normaloff>:/htmleditor/images/insert-table.png</normaloff>:/htmleditor/images/insert-table.png</iconset>
+   </property>
+   <property name="text">
+    <string>Insert &amp;table...</string>
+   </property>
+   <property name="statusTip">
+    <string>Insert table</string>
+   </property>
+  </action>
+  <action name="actionInsertTable_2">
+   <property name="text">
+    <string>Insert &amp;table...</string>
    </property>
   </action>
  </widget>

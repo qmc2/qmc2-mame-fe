@@ -92,6 +92,7 @@ private slots:
     void insertImage();
     void createLink();
     void insertHtml();
+    void insertTable();
     void zoomOut();
     void zoomIn();
     void adjustActions();
