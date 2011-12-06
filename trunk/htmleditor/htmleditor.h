@@ -104,6 +104,7 @@ public slots:
     void openLink(const QUrl&);
     void changeZoom(int);
     void linkHovered(const QString &, const QString &, const QString &);
+    void adjustIconSizes();
 
 private:
     Ui_HTMLEditorMainWindow *ui;

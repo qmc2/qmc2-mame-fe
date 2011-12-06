@@ -54,6 +54,7 @@
 #include "youtubevideoplayer.h"
 #endif
 #endif
+#include "htmleditor/htmleditor.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -143,6 +144,7 @@ extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern QFont qmc2StartupDefaultFont;
 extern int qmc2SoftwareSnapPosition;
+extern HtmlEditor *qmc2SoftwareNotesEditor;
 
 Options::Options(QWidget *parent)
 #if defined(Q_WS_WIN)
@@ -640,6 +642,7 @@ void Options::apply()
     qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_FAVORITES_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/favorites.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
     qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_SEARCH_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/hint.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
     if ( qmc2SoftwareList->exporter ) QTimer::singleShot(0, qmc2SoftwareList->exporter, SLOT(adjustIconSizes()));
+    if ( qmc2SoftwareNotesEditor ) qmc2SoftwareNotesEditor->adjustIconSizes();
   }
   qmc2MainWindow->pushButtonClearFinishedDownloads->setIconSize(iconSize);
   qmc2MainWindow->pushButtonReloadSelectedDownloads->setIconSize(iconSize);
@@ -649,11 +652,13 @@ void Options::apply()
   qmc2MainWindow->comboBoxViewSelect->setIconSize(iconSize);
 
   QTabBar *tabBar = qmc2MainWindow->tabWidgetGamelist->findChild<QTabBar *>();
-  if ( tabBar ) tabBar->setIconSize(iconSize);
+  if ( tabBar ) tabBar->setIconSize(iconSizeMiddle);
   tabBar = qmc2MainWindow->tabWidgetGameDetail->findChild<QTabBar *>();
-  if ( tabBar ) tabBar->setIconSize(iconSize);
+  if ( tabBar ) tabBar->setIconSize(iconSizeMiddle);
   tabBar = qmc2MainWindow->tabWidgetLogsAndEmulators->findChild<QTabBar *>();
-  if ( tabBar ) tabBar->setIconSize(iconSize);
+  if ( tabBar ) tabBar->setIconSize(iconSizeMiddle);
+  tabBar = qmc2MainWindow->tabWidgetSoftwareDetail->findChild<QTabBar *>();
+  if ( tabBar ) tabBar->setIconSize(iconSizeMiddle);
 
   qmc2MainWindow->toolbar->setIconSize(iconSizeLarge);
 
