@@ -29,6 +29,7 @@
 
 #include "ui_htmleditor.h"
 #include "ui_inserthtmldialog.h"
+#include "ui_tablepropertydialog.h"
 
 #include <QtGui>
 #include <QtWebKit>
@@ -49,6 +50,8 @@ HtmlEditor::HtmlEditor(QWidget *parent)
         , highlighter(0)
         , ui_dialog(0)
         , insertHtmlDialog(0)
+        , ui_tablePropertyDialog(0)
+        , tablePropertyDialog(0)
 {
     ui->setupUi(this);
 
@@ -96,9 +99,6 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     connect(ui->actionInsertTable, SIGNAL(triggered()), SLOT(insertTable()));
     connect(ui->actionZoomOut, SIGNAL(triggered()), SLOT(zoomOut()));
     connect(ui->actionZoomIn, SIGNAL(triggered()), SLOT(zoomIn()));
-
-    // FIXME: this is not working yet, so we disable the action
-    ui->actionInsertTable->setEnabled(false);
 
     // these are forwarded to the internal QWebView
     FORWARD_ACTION(ui->actionEditUndo, QWebPage::Undo);
@@ -357,6 +357,37 @@ void HtmlEditor::insertHtml()
 
 void HtmlEditor::insertTable()
 {
+    if (!tablePropertyDialog) {
+        tablePropertyDialog = new QDialog(this);
+        if (!ui_tablePropertyDialog)
+            ui_tablePropertyDialog = new Ui_TablePropertyDialog;
+        ui_tablePropertyDialog->setupUi(tablePropertyDialog);
+    }
+    
+    ui_tablePropertyDialog->spinBoxRows->setValue(1);
+    ui_tablePropertyDialog->spinBoxColumns->setValue(1);
+    ui_tablePropertyDialog->lineEditProperties->setText("border=1 width=100%");
+    tablePropertyDialog->adjustSize();
+
+    if (tablePropertyDialog->exec() == QDialog::Accepted) {
+        QString properties = ui_tablePropertyDialog->lineEditProperties->text().simplified();
+        int rows = ui_tablePropertyDialog->spinBoxRows->value();
+        int cols = ui_tablePropertyDialog->spinBoxColumns->value();
+        //QString tableTag = QString("<table style=\"%1\">").arg(style);
+        QString tableTag;
+       	if ( properties.isEmpty() )
+            tableTag = QString("<table>");
+        else
+            tableTag = QString("<table %1>").arg(properties);
+        for (int i = 0; i < rows; i++) {
+            tableTag += "<tr>";
+            for (int j = 0; j < cols; j++)
+                tableTag += "<td><br></td>";
+            tableTag += "</tr>";
+        }
+        tableTag += "</table>";
+        execCommand("insertHTML", tableTag);
+    }
 }
 
 void HtmlEditor::zoomOut()

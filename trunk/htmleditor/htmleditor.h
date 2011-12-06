@@ -34,6 +34,7 @@
 
 class Ui_HTMLEditorMainWindow;
 class Ui_InsertHtmlDialog;
+class Ui_TablePropertyDialog;
 
 class QLabel;
 class QSlider;
@@ -115,6 +116,8 @@ private:
     Highlighter *highlighter;
     Ui_InsertHtmlDialog *ui_dialog;
     QDialog *insertHtmlDialog;
+    Ui_TablePropertyDialog *ui_tablePropertyDialog;
+    QDialog *tablePropertyDialog;
 };
 
 #endif // HTML_EDITOR_H
