@@ -22,6 +22,8 @@
 ****************************************************************************/
 
 
+#include "macros.h"
+
 #include "htmleditor.h"
 #include "highlighter.h"
 
@@ -37,6 +39,8 @@
     connect(ui->webView->pageAction(action2), \
             SIGNAL(changed()), SLOT(adjustActions()));
 
+// external global variables
+extern QSettings *qmc2Config;
 
 HtmlEditor::HtmlEditor(QWidget *parent)
         : QMainWindow(parent)
@@ -50,6 +54,9 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 
     // this 'trick' allows a nested QMainWindow :)
     setWindowFlags(Qt::SubWindow | Qt::CustomizeWindowHint);
+
+    if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "HtmlEditor/WidgetState") )
+	    restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "HtmlEditor/WidgetState", QByteArray()).toByteArray());
 
     ui->tabWidget->setTabText(0, tr("WYSIWIG"));
     ui->tabWidget->setTabText(1, tr("HTML"));
@@ -162,6 +169,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 
 HtmlEditor::~HtmlEditor()
 {
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "HtmlEditor/WidgetState", saveState());
     delete ui;
     delete ui_dialog;
 }

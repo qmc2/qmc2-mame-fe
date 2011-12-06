@@ -63,7 +63,7 @@ private:
     void execCommand(const QString &cmd, const QString &arg);
     bool queryCommandState(const QString&);
 
-private slots:
+public slots:
     void fileNew();
     void fileOpen();
     bool fileSave();
