@@ -73,6 +73,11 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     connect(zoomSlider, SIGNAL(valueChanged(int)), SLOT(changeZoom(int)));
     ui->standardToolBar->insertWidget(ui->actionZoomIn, zoomSlider);
 
+    // popup the 'insert image' menu when the tool-bar button is pressed
+    QToolButton *tb = (QToolButton *)ui->formatToolBar->widgetForAction(ui->menuInsertImage->menuAction());
+    if ( tb ) tb->setPopupMode(QToolButton::InstantPopup);
+
+    // menu actions
     connect(ui->actionFileNew, SIGNAL(triggered()), SLOT(fileNew()));
     connect(ui->actionFileOpen, SIGNAL(triggered()), SLOT(fileOpen()));
     connect(ui->actionFileSave, SIGNAL(triggered()), SLOT(fileSave()));
