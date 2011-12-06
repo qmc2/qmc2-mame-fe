@@ -77,7 +77,8 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     connect(ui->actionFileOpen, SIGNAL(triggered()), SLOT(fileOpen()));
     connect(ui->actionFileSave, SIGNAL(triggered()), SLOT(fileSave()));
     connect(ui->actionFileSaveAs, SIGNAL(triggered()), SLOT(fileSaveAs()));
-    connect(ui->actionInsertImage, SIGNAL(triggered()), SLOT(insertImage()));
+    connect(ui->actionInsertImageFromFile, SIGNAL(triggered()), SLOT(insertImageFromFile()));
+    connect(ui->actionInsertImageFromUrl, SIGNAL(triggered()), SLOT(insertImageFromUrl()));
     connect(ui->actionCreateLink, SIGNAL(triggered()), SLOT(createLink()));
     connect(ui->actionInsertHtml, SIGNAL(triggered()), SLOT(insertHtml()));
     connect(ui->actionInsertTable, SIGNAL(triggered()), SLOT(insertTable()));
@@ -242,7 +243,7 @@ bool HtmlEditor::fileSaveAs()
     return fileSave();
 }
 
-void HtmlEditor::insertImage()
+void HtmlEditor::insertImageFromFile()
 {
     QString filters;
     filters += tr("Common graphics formats (*.png *.jpg *.jpeg *.gif);;");
@@ -262,8 +263,18 @@ void HtmlEditor::insertImage()
     execCommand("insertImage", url.toString());
 }
 
+void HtmlEditor::insertImageFromUrl()
+{
+    QString link = QInputDialog::getText(this, tr("Insert image from URL"), tr("Enter URL:"));
+    if (!link.isEmpty()) {
+        QUrl url = guessUrlFromString(link);
+        if (url.isValid())
+            execCommand("insertImage", url.toString());
+    }
+}
+
 // shamelessly copied from Qt Demo Browser
-static QUrl guessUrlFromString(const QString &string)
+QUrl HtmlEditor::guessUrlFromString(const QString &string)
 {
     QString urlStr = string.trimmed();
     QRegExp test(QLatin1String("^[a-zA-Z]+\\:.*"));
@@ -298,7 +309,7 @@ static QUrl guessUrlFromString(const QString &string)
 
 void HtmlEditor::createLink()
 {
-    QString link = QInputDialog::getText(this, tr("Create link"), "Enter URL");
+    QString link = QInputDialog::getText(this, tr("Create link"), tr("Enter URL:"));
     if (!link.isEmpty()) {
         QUrl url = guessUrlFromString(link);
         if (url.isValid())

@@ -47,6 +47,8 @@ public:
     HtmlEditor(QWidget *parent = 0);
     ~HtmlEditor();
 
+    static QUrl guessUrlFromString(const QString &string);
+
 protected:
     virtual void closeEvent(QCloseEvent *e);
 
@@ -89,7 +91,8 @@ private slots:
     void formatFontSize();
     void formatTextColor();
     void formatBackgroundColor();
-    void insertImage();
+    void insertImageFromFile();
+    void insertImageFromUrl();
     void createLink();
     void insertHtml();
     void insertTable();
