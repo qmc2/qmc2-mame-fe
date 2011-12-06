@@ -175,7 +175,7 @@
   </widget>
   <widget class="QToolBar" name="standardToolBar">
    <property name="windowTitle">
-    <string>Standard</string>
+    <string>Standard tool-bar</string>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
@@ -199,7 +199,7 @@
   </widget>
   <widget class="QToolBar" name="formatToolBar">
    <property name="windowTitle">
-    <string>Formatting</string>
+    <string>Formatting tool-bar</string>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
