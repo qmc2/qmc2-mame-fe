@@ -466,6 +466,7 @@ void Options::apply()
   qmc2MainWindow->treeWidgetGamelist->setIconSize(iconSizeMiddle);
   qmc2MainWindow->treeWidgetHierarchy->setIconSize(iconSizeMiddle);
   qmc2MainWindow->treeWidgetEmulators->setIconSize(iconSizeMiddle);
+  qmc2MainWindow->floatToggleButtonSoftwareDetail->setIconSize(iconSizeMiddle);
   pushButtonApply->setIconSize(iconSize);
   pushButtonRestore->setIconSize(iconSize);
   pushButtonDefault->setIconSize(iconSize);
