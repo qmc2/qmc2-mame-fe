@@ -4,7 +4,7 @@ Release:        1
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II
 Distribution:   openSUSE 11.4
 Group:          Applications/Emulators
-License:        GPLv2
+License:        GPL-2
 URL:            http://qmc2.arcadehits.net/wordpress
 Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
