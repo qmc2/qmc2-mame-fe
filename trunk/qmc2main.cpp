@@ -332,15 +332,9 @@ void MainWindow::log(char logOrigin, QString message)
   defaultEmuLogPath = userScopePath + "/mess.log";
 #endif
 
-  bool scrollBarMaximum = false;
-
   switch ( logOrigin ) {
     case QMC2_LOG_FRONTEND:
-      scrollBarMaximum = (textBrowserFrontendLog->verticalScrollBar()->value() == textBrowserFrontendLog->verticalScrollBar()->maximum());
       textBrowserFrontendLog->appendPlainText(msg);
-      if ( scrollBarMaximum )
-        if ( !qmc2EarlyStartup )
-          QTimer::singleShot(0, this, SLOT(on_tabWidgetLogsAndEmulators_updateCurrent()));
       if ( !qmc2FrontendLogFile )
         if ( (qmc2FrontendLogFile = new QFile(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/LogFile", defaultFrontendLogPath).toString(), this)) == NULL ) {
           qmc2LogFrontendMutex.unlock();
@@ -359,11 +353,7 @@ void MainWindow::log(char logOrigin, QString message)
       break;
 
     case QMC2_LOG_EMULATOR:
-      scrollBarMaximum = (textBrowserEmulatorLog->verticalScrollBar()->value() == textBrowserEmulatorLog->verticalScrollBar()->maximum());
       textBrowserEmulatorLog->appendPlainText(msg);
-      if ( scrollBarMaximum )
-        if ( !qmc2EarlyStartup )
-          QTimer::singleShot(0, this, SLOT(on_tabWidgetLogsAndEmulators_updateCurrent()));
       if ( !qmc2EmulatorLogFile ) {
 #if defined(QMC2_EMUTYPE_MAME)
         if ( (qmc2EmulatorLogFile = new QFile(qmc2Config->value("MAME/FilesAndDirectories/LogFile", defaultEmuLogPath).toString(), this)) == NULL ) {
@@ -2996,11 +2986,6 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
   }
 
 #if defined(Q_WS_X11)
-  bool scrollBarMaximum = false;
-  if ( textBrowserFrontendLog->isVisible() )
-    scrollBarMaximum = (textBrowserFrontendLog->verticalScrollBar()->value() == textBrowserFrontendLog->verticalScrollBar()->maximum());
-  else if ( textBrowserEmulatorLog->isVisible() )
-    scrollBarMaximum = (textBrowserEmulatorLog->verticalScrollBar()->value() == textBrowserEmulatorLog->verticalScrollBar()->maximum());
   if ( hSplitterSizes.count() > 1 && currentIndex != QMC2_EMBED_INDEX )
     hSplitter->setSizes(hSplitterSizes);
 #endif
@@ -3117,12 +3102,6 @@ void MainWindow::on_tabWidgetGamelist_currentChanged(int currentIndex)
     default:
       break;
   }
-
-#if defined(Q_WS_X11)
-  if ( scrollBarMaximum )
-    if ( !qmc2EarlyStartup )
-      QTimer::singleShot(0, this, SLOT(on_tabWidgetLogsAndEmulators_updateCurrent()));
-#endif
 
   qmc2Preview->update();
   qmc2Flyer->update();
@@ -4494,13 +4473,6 @@ void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
 	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on = %1)").arg(on));
 #endif
 
-	bool scrollBarMaximum = false;
-
-	if ( textBrowserFrontendLog->isVisible() )
-		scrollBarMaximum = (textBrowserFrontendLog->verticalScrollBar()->value() == textBrowserFrontendLog->verticalScrollBar()->maximum());
-	else if ( textBrowserEmulatorLog->isVisible() )
-		scrollBarMaximum = (textBrowserEmulatorLog->verticalScrollBar()->value() == textBrowserEmulatorLog->verticalScrollBar()->maximum());
-
 	if ( on ) {
 		menuBar()->hide();
 		statusBar()->hide();
@@ -4523,10 +4495,6 @@ void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
 		frameStatus->show();
 		toolButtonEmbedderMaximizeToggle->setIcon(QIcon(QString::fromUtf8(":/data/img/maximize.png")));
 	}
-
-	if ( scrollBarMaximum )
-		if ( !qmc2EarlyStartup )
-			QTimer::singleShot(0, this, SLOT(on_tabWidgetLogsAndEmulators_updateCurrent()));
 }
 
 void MainWindow::on_embedderOptionsMenu_KillEmulator_activated()
@@ -9410,6 +9378,7 @@ void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
 		stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		stackedWidgetSpecial->removeWidget(tabWidgetSoftwareDetail);
 		tabWidgetSoftwareDetail->setParent(this);
+		tabWidgetSoftwareDetail->setAttribute(Qt::WA_ShowWithoutActivating);
 		tabWidgetSoftwareDetail->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 		tabWidgetSoftwareDetail->setWindowIcon(qApp->windowIcon());
 		tabWidgetSoftwareDetail->setWindowTitle(tr("Software detail"));
@@ -9417,7 +9386,7 @@ void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
 			tabWidgetSoftwareDetail->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailGeometry").toByteArray());
 		if ( qmc2SoftwareList ) {
 			tabWidgetSoftwareDetail->showNormal();
-			activateWindow();
+			tabWidgetSoftwareDetail->raise();
 		}
 	}
 }
@@ -9439,9 +9408,9 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 			if ( qmc2SoftwareList ) {
 				if ( !floatToggleButtonSoftwareDetail->isChecked() ) {
 					stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
-					tabWidgetSoftwareDetail->showNormal();
-					activateWindow();
 					qmc2SoftwareList->detailUpdateTimer.start(qmc2UpdateDelay);
+					tabWidgetSoftwareDetail->showNormal();
+					tabWidgetSoftwareDetail->raise();
 				} else
 					stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
 			} else
