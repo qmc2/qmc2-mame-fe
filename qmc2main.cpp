@@ -518,7 +518,6 @@ MainWindow::MainWindow(QWidget *parent)
   floatToggleButtonSoftwareDetail->setToolTip(tr("Dock / undock this widget"));
   floatToggleButtonSoftwareDetail->setIcon(QIcon(QString::fromUtf8(":/data/img/dock.png")));
   tabWidgetSoftwareDetail->setCornerWidget(floatToggleButtonSoftwareDetail, Qt::TopRightCorner);
-  connect(floatToggleButtonSoftwareDetail, SIGNAL(toggled(bool)), this, SLOT(floatToggleButtonSoftwareDetail_toggled(bool)));
 
   widgetEmbeddedEmus = tabWidgetGamelist->widget(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
 #else
@@ -1376,6 +1375,9 @@ MainWindow::MainWindow(QWidget *parent)
   treeWidgetCategoryView->header()->setClickable(true);
   treeWidgetVersionView->header()->setClickable(true);
 #endif
+
+  // connections for dock/undock buttons
+  connect(floatToggleButtonSoftwareDetail, SIGNAL(toggled(bool)), this, SLOT(floatToggleButtonSoftwareDetail_toggled(bool)));
 
   // setup the global network access manager
   qmc2NetworkAccessManager = new QNetworkAccessManager(this);
@@ -5618,8 +5620,6 @@ void MainWindow::init()
   textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
 
   setUpdatesEnabled(true);
-  update();
-  qApp->processEvents();
 
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/RestoreLayout").toBool() )
     qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt();
