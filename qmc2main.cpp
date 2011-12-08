@@ -523,6 +523,13 @@ MainWindow::MainWindow(QWidget *parent)
   embedderCornerWidget->setLayout(embedderCornerLayout);
   tabWidgetEmbeddedEmulators->setCornerWidget(embedderCornerWidget, Qt::TopRightCorner);
 
+  floatToggleButtonSoftwareDetail = new QToolButton(tabWidgetSoftwareDetail);
+  floatToggleButtonSoftwareDetail->setCheckable(true);
+  floatToggleButtonSoftwareDetail->setToolTip(tr("Dock / undock this widget"));
+  floatToggleButtonSoftwareDetail->setIcon(QIcon(QString::fromUtf8(":/data/img/dock.png")));
+  tabWidgetSoftwareDetail->setCornerWidget(floatToggleButtonSoftwareDetail, Qt::TopRightCorner);
+  connect(floatToggleButtonSoftwareDetail, SIGNAL(toggled(bool)), this, SLOT(floatToggleButtonSoftwareDetail_toggled(bool)));
+
   widgetEmbeddedEmus = tabWidgetGamelist->widget(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
 #else
   actionPlayEmbedded->setVisible(false);
@@ -751,11 +758,13 @@ MainWindow::MainWindow(QWidget *parent)
     tabWidgetGameDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::North).toInt());
     tabWidgetLogsAndEmulators->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::North).toInt());
     tabWidgetSoftwareDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::North).toInt());
+    floatToggleButtonSoftwareDetail->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailDocked", true).toBool());
   } else {
     QList<int> splitterSizes;
     splitterSizes << 100 << 100;
     hSplitter->setSizes(splitterSizes);
     vSplitter->setSizes(splitterSizes);
+    floatToggleButtonSoftwareDetail->setChecked(true);
   }
 
   on_actionFullscreenToggle_activated();
@@ -3514,11 +3523,11 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 		  if ( qmc2SoftwareList )
 			  qmc2SoftwareList->on_toolButtonToggleSoftwareInfo_clicked(qmc2SoftwareList->toolButtonToggleSoftwareInfo->isChecked());
 		  else
-			  stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+			  stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		  break;
 
 	  default:
-		  stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+		  stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 		  break;
   }
 
@@ -5334,6 +5343,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/VersionViewHeaderState", treeWidgetVersionView->header()->saveState());
 #endif
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/EmulatorControlHeaderState", treeWidgetEmulators->header()->saveState());
+
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailDocked", floatToggleButtonSoftwareDetail->isChecked());
+    if ( !floatToggleButtonSoftwareDetail->isChecked() )
+      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailGeometry", tabWidgetSoftwareDetail->saveGeometry());
   }
 
 #if QMC2_USE_PHONON_API
@@ -5655,6 +5668,8 @@ void MainWindow::init()
 
   // make sure the current detail's tab header is shown
   QTimer::singleShot(0, qmc2DetailSetup, SLOT(saveDetail()));
+
+  floatToggleButtonSoftwareDetail_toggled(floatToggleButtonSoftwareDetail->isChecked());
 }
 
 void MainWindow::setupStyle(QString styleName)
@@ -9375,6 +9390,69 @@ QString &MainWindow::messWikiToHtml(QString &wikiText)
 	return wikiText;
 }
 #endif
+
+void MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::floatToggleButtonSoftwareDetail_toggled(bool checked = %1)").arg(checked));
+#endif
+
+	if ( qmc2EarlyStartup )
+		return;
+
+	if ( checked ) {
+		if ( tabWidgetSoftwareDetail->parent() == this ) {
+			qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailGeometry", tabWidgetSoftwareDetail->saveGeometry());
+			stackedWidgetSpecial->insertWidget(QMC2_SPECIAL_SOFTWARE_PAGE, tabWidgetSoftwareDetail);
+			stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
+		}
+	} else {
+		stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+		stackedWidgetSpecial->removeWidget(tabWidgetSoftwareDetail);
+		tabWidgetSoftwareDetail->setParent(this);
+		tabWidgetSoftwareDetail->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+		tabWidgetSoftwareDetail->setWindowIcon(qApp->windowIcon());
+		tabWidgetSoftwareDetail->setWindowTitle(tr("Software detail"));
+		if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailGeometry") )
+			tabWidgetSoftwareDetail->restoreGeometry(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailGeometry").toByteArray());
+		if ( qmc2SoftwareList ) {
+			tabWidgetSoftwareDetail->showNormal();
+			activateWindow();
+		}
+	}
+}
+
+void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::stackedWidgetSpecial_setCurrentIndex(int index = %1)").arg(index));
+#endif
+
+	switch ( index ) {
+		case QMC2_SPECIAL_DEFAULT_PAGE:
+			stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+			if ( tabWidgetSoftwareDetail->parent() == this )
+				tabWidgetSoftwareDetail->hide();
+			break;
+
+		case QMC2_SPECIAL_SOFTWARE_PAGE:
+			if ( qmc2SoftwareList ) {
+				if ( !floatToggleButtonSoftwareDetail->isChecked() ) {
+					stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
+					tabWidgetSoftwareDetail->showNormal();
+					activateWindow();
+					qmc2SoftwareList->detailUpdateTimer.start(qmc2UpdateDelay);
+				} else
+					stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
+			} else
+				stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_SOFTWARE_PAGE);
+			break;
+
+		default:
+			stackedWidgetSpecial->setCurrentIndex(index);
+			break;
+	}
+}
 
 void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 {

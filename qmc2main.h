@@ -159,6 +159,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     static QColor qmc2StatusColorBlue;
     static QColor qmc2StatusColorGrey;
 
+    QToolButton *floatToggleButtonSoftwareDetail;
+
     int sortCriteriaLogicalIndex();
     QPoint adjustedWidgetPosition(QPoint, QWidget *);
     QStringList &getXmlChoices(QString, QString, QString optionAttribute = QString());
@@ -455,6 +457,10 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_emuSelector_currentIndexChanged(const QString &);
     void checkActivity();
     void enableContextMenuPlayActions(bool);
+
+    // float toggle button callbacks for 'special' widgets
+    void floatToggleButtonSoftwareDetail_toggled(bool);
+    void stackedWidgetSpecial_setCurrentIndex(int);
 
     // callbacks for list view header context menu requests
     void treeWidgetGamelistHeader_customContextMenuRequested(const QPoint &);
