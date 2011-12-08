@@ -513,12 +513,6 @@ MainWindow::MainWindow(QWidget *parent)
   embedderCornerWidget->setLayout(embedderCornerLayout);
   tabWidgetEmbeddedEmulators->setCornerWidget(embedderCornerWidget, Qt::TopRightCorner);
 
-  floatToggleButtonSoftwareDetail = new QToolButton(tabWidgetSoftwareDetail);
-  floatToggleButtonSoftwareDetail->setCheckable(true);
-  floatToggleButtonSoftwareDetail->setToolTip(tr("Dock / undock this widget"));
-  floatToggleButtonSoftwareDetail->setIcon(QIcon(QString::fromUtf8(":/data/img/dock.png")));
-  tabWidgetSoftwareDetail->setCornerWidget(floatToggleButtonSoftwareDetail, Qt::TopRightCorner);
-
   widgetEmbeddedEmus = tabWidgetGamelist->widget(tabWidgetGamelist->indexOf(tabEmbeddedEmus));
 #else
   actionPlayEmbedded->setVisible(false);
@@ -539,6 +533,12 @@ MainWindow::MainWindow(QWidget *parent)
 #if defined(QMC2_EMUTYPE_MESS)
   qmc2ProjectMESSCache.setMaxCost(QMC2_PROJECT_MESS_CACHE_SIZE);
 #endif
+
+  floatToggleButtonSoftwareDetail = new QToolButton(tabWidgetSoftwareDetail);
+  floatToggleButtonSoftwareDetail->setCheckable(true);
+  floatToggleButtonSoftwareDetail->setToolTip(tr("Dock / undock this widget"));
+  floatToggleButtonSoftwareDetail->setIcon(QIcon(QString::fromUtf8(":/data/img/dock.png")));
+  tabWidgetSoftwareDetail->setCornerWidget(floatToggleButtonSoftwareDetail, Qt::TopRightCorner);
 
 #if defined(QMC2_EMUTYPE_MAME)
   actionLaunchQMC2MAME->setVisible(false);
