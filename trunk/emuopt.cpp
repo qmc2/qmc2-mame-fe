@@ -50,6 +50,7 @@ QString optionDescription = "";
 int optionType = QMC2_EMUOPT_TYPE_UNKNOWN;
 int optionDecimals = QMC2_EMUOPT_DFLT_DECIMALS;
 QStringList optionChoices;
+QString optionPart = "";
 EmulatorOptions *emulatorOptions = NULL;
 
 EmulatorOptionDelegate::EmulatorOptionDelegate(QObject *parent)
@@ -156,7 +157,7 @@ QWidget *EmulatorOptionDelegate::createEditor(QWidget *parent, const QStyleOptio
     }
 
     case QMC2_EMUOPT_TYPE_FILE: {
-      FileEditWidget *fileEditor = new FileEditWidget("", tr("All files (*)"), parent);
+      FileEditWidget *fileEditor = new FileEditWidget("", tr("All files (*)"), optionPart, parent);
       fileEditor->installEventFilter(const_cast<EmulatorOptionDelegate*>(this));
       fileEditor->setAccessibleName("fileEditor");
       if ( !optionDescription.isEmpty() ) {
@@ -486,6 +487,7 @@ void EmulatorOptions::load(bool overwrite)
         case QMC2_EMUOPT_TYPE_INT: {
           optionType = QMC2_EMUOPT_TYPE_INT;
           optionChoices.clear();
+	  optionPart.clear();
           int v;
           if ( qmc2GlobalEmulatorOptions != this ) {
             if ( overwrite )
@@ -506,6 +508,7 @@ void EmulatorOptions::load(bool overwrite)
           optionType = QMC2_EMUOPT_TYPE_FLOAT;
 	  optionDecimals = option.decimals;
           optionChoices.clear();
+	  optionPart.clear();
           double v;
           if ( qmc2GlobalEmulatorOptions != this ) {
             if ( overwrite )
@@ -526,6 +529,7 @@ void EmulatorOptions::load(bool overwrite)
           optionType = QMC2_EMUOPT_TYPE_FLOAT2;
 	  optionDecimals = option.decimals;
           optionChoices.clear();
+	  optionPart.clear();
           QString v;
           if ( qmc2GlobalEmulatorOptions != this ) {
             if ( overwrite )
@@ -544,6 +548,7 @@ void EmulatorOptions::load(bool overwrite)
           optionType = QMC2_EMUOPT_TYPE_FLOAT3;
 	  optionDecimals = option.decimals;
           optionChoices.clear();
+	  optionPart.clear();
           QString v;
           if ( qmc2GlobalEmulatorOptions != this ) {
             if ( overwrite )
@@ -561,6 +566,7 @@ void EmulatorOptions::load(bool overwrite)
         case QMC2_EMUOPT_TYPE_BOOL: {
           optionType = QMC2_EMUOPT_TYPE_BOOL;
           optionChoices.clear();
+	  optionPart.clear();
           bool v;
           if ( qmc2GlobalEmulatorOptions != this ) {
             if ( overwrite )
@@ -587,6 +593,10 @@ void EmulatorOptions::load(bool overwrite)
             optionChoices = option.choices;
           else
             optionChoices.clear();
+          if ( optionType == QMC2_EMUOPT_TYPE_FILE )
+            optionPart = option.part;
+          else
+            optionPart.clear();
           QString v;
           if ( qmc2GlobalEmulatorOptions != this ) {
             if ( overwrite )
@@ -865,6 +875,7 @@ void EmulatorOptions::createMap()
       if ( !emulatorOption.description.isEmpty() ) {
         optionDescription = emulatorOption.description;
 	optionChoices = emulatorOption.choices;
+	optionPart = emulatorOption.part;
         optionItem->setToolTip(0, optionDescription);
         childItem = new QTreeWidgetItem(optionItem);
         childItem->setText(0, tr("Description"));
@@ -1025,7 +1036,10 @@ void EmulatorOptions::createTemplateMap()
 	      optionChoices.clear();
               if ( type == "combo" && xmlReader.name().toString() == "choice" )
                 optionChoices = readChoices(&xmlReader);
-              templateMap[sectionTitle].append(EmulatorOption(name, "", type, defaultValue, optionDescription, QString::null, NULL, false, decimals, optionChoices, visible));
+	      optionPart.clear();
+	      if ( type == "file" && attributes.hasAttribute("part") )
+                optionPart = attributes.value("part").toString();
+              templateMap[sectionTitle].append(EmulatorOption(name, "", type, defaultValue, optionDescription, QString::null, optionPart, NULL, false, decimals, optionChoices, visible));
 #ifdef QMC2_DEBUG
               qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: elementType = [%1], name = [%2], type = [%3], default = [%4], description = [%5]").
                                   arg(elementType).arg(name).arg(type).arg(defaultValue).arg(optionDescription));

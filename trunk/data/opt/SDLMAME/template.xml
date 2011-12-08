@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<template emulator="SDLMAME" version="0.144u2" format="0.2.4">
+<template emulator="SDLMAME" version="0.144u2" format="0.2.5">
   <section name="search_paths">
     <description lang="us" text="Search paths"/>
     <description lang="de" text="Suchpfade"/>
@@ -808,7 +808,7 @@
       <description lang="fr" text="Autorise un rapport de valeur non-intègre"/>      
       <description lang="pt" text="Permitir fatores de esticamento não inteiros"/>
     </option>
-    <option name="effect" type="file" default="none">
+    <option name="effect" type="file" default="none" part="basename">
       <description lang="us" text="Name of a PNG file to use for visual effects, or 'none'"/>
       <description lang="de" text="Name einer PNG Datei für visuelle Effekte, oder 'none'"/>
       <description lang="pl" text="Nazwa pliku PNG do użycia dla efektów wizualnych, albo 'none'"/>

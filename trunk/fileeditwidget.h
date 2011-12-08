@@ -5,20 +5,21 @@
 
 class FileEditWidget : public QWidget, public Ui::FileEditWidget
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    QString browserFilter;
+       	public:
+		QString browserFilter;
+		QString browserPart;
 
-    FileEditWidget(QString, QString, QWidget *parent = 0, bool showClearButton = false);
-    ~FileEditWidget();
+		FileEditWidget(QString, QString, QString part = "", QWidget *parent = 0, bool showClearButton = false);
+		~FileEditWidget();
 
-  public slots:
-    void on_toolButtonBrowse_clicked();
-    void on_lineEditFile_textChanged(const QString &) { emit dataChanged(this); }
+	public slots:
+		void on_toolButtonBrowse_clicked();
+		void on_lineEditFile_textChanged(const QString &) { emit dataChanged(this); }
 
-  signals:
-    void dataChanged(QWidget *);
+	signals:
+		void dataChanged(QWidget *);
 };
 
 #endif

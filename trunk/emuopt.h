@@ -36,7 +36,7 @@ class EmulatorOptionDelegate : public QStyledItemDelegate
 class EmulatorOption
 {
   public:
-    QString name, shortname, dvalue, description, value;
+    QString name, shortname, dvalue, description, value, part;
     QStringList choices;
     bool valid, visible;
     int type;
@@ -46,7 +46,7 @@ class EmulatorOption
     EmulatorOption() {
       valid = false;
     };
-    EmulatorOption(QString n, QString sn, QString t, QString dv, QString d, QString v, QTreeWidgetItem *i, bool va, int dec = QMC2_EMUOPT_DFLT_DECIMALS, QStringList c = QStringList(), bool vis = true) {
+    EmulatorOption(QString n, QString sn, QString t, QString dv, QString d, QString v, QString p, QTreeWidgetItem *i, bool va, int dec = QMC2_EMUOPT_DFLT_DECIMALS, QStringList c = QStringList(), bool vis = true) {
       name = n;
       shortname = sn;
       type = QMC2_EMUOPT_TYPE_UNKNOWN;
@@ -66,6 +66,7 @@ class EmulatorOption
       dvalue = dv;
       description = d;
       value = v;
+      part = p;
       item = i;
       valid = va;
       choices = c;
