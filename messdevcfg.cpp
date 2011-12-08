@@ -64,7 +64,7 @@ QWidget *MESSDeviceFileDelegate::createEditor(QWidget *parent, const QStyleOptio
 		}
 		filterString += ");;" + tr("All files") + " (*)";
 	}
-	FileEditWidget *fileEditWidget = new FileEditWidget("", filterString, parent, true);
+	FileEditWidget *fileEditWidget = new FileEditWidget("", filterString, "", parent, true);
 	fileEditWidget->installEventFilter(const_cast<MESSDeviceFileDelegate*>(this));
 	connect(fileEditWidget, SIGNAL(dataChanged(QWidget *)), this, SLOT(dataChanged(QWidget *)));
 	messFileEditWidgetList.insert(row, fileEditWidget);
