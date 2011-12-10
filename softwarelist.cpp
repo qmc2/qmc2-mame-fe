@@ -677,6 +677,7 @@ bool SoftwareList::load()
 				SoftwareListXmlHandler xmlHandler(treeWidgetKnownSoftware);
 				QXmlSimpleReader xmlReader;
 				xmlReader.setContentHandler(&xmlHandler);
+				qApp->processEvents();
 				if ( !xmlReader.parse(xmlInputSource) )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list '%1'").arg(swList));
 #ifdef QMC2_DEBUG

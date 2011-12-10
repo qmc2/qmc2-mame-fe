@@ -58,7 +58,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>468</width>
-                <height>551</height>
+                <height>576</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -245,26 +245,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="17" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxKillEmulatorsOnExit">
-                   <property name="toolTip">
-                    <string>Kill emulators on exit?</string>
-                   </property>
-                   <property name="text">
-                    <string>Kill emulators</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="17" column="3" colspan="4">
-                  <widget class="QCheckBox" name="checkBoxCheckSingleInstance">
-                   <property name="toolTip">
-                    <string>Check for other instances of this QMC2 variant on startup</string>
-                   </property>
-                   <property name="text">
-                    <string>Check single instance</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="18" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxGameStatusIndicator">
                    <property name="toolTip">
@@ -314,7 +294,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="21" column="0" colspan="7">
+                 <item row="22" column="0" colspan="7">
                   <layout class="QHBoxLayout" name="layout3">
                    <item>
                     <widget class="QLabel" name="labelLegend1Pic">
@@ -403,7 +383,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="20" column="0" colspan="7">
+                 <item row="21" column="0" colspan="7">
                   <spacer name="spacer4">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -754,6 +734,36 @@
                    </item>
                   </layout>
                  </item>
+                 <item row="20" column="0" colspan="7">
+                  <widget class="QCheckBox" name="checkBoxCheckSingleInstance">
+                   <property name="toolTip">
+                    <string>Check for other instances of this QMC2 variant on startup</string>
+                   </property>
+                   <property name="text">
+                    <string>Check single instance</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="17" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxKillEmulatorsOnExit">
+                   <property name="toolTip">
+                    <string>Kill emulators on exit?</string>
+                   </property>
+                   <property name="text">
+                    <string>Kill emulators</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="17" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxMinimizeOnEmuLaunch">
+                   <property name="toolTip">
+                    <string>Minimize when launching emulators?</string>
+                   </property>
+                   <property name="text">
+                    <string>Minimize on emulator launch</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -783,8 +793,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>610</width>
-                <height>529</height>
+                <width>636</width>
+                <height>598</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2160,8 +2170,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>627</width>
-                <height>416</height>
+                <width>636</width>
+                <height>598</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2766,8 +2776,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>627</width>
-                <height>416</height>
+                <width>485</width>
+                <height>342</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2879,8 +2889,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>627</width>
-                <height>416</height>
+                <width>485</width>
+                <height>342</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3336,7 +3346,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>610</width>
+                <width>468</width>
                 <height>467</height>
                </rect>
               </property>
@@ -3779,7 +3789,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>191</width>
+                <width>468</width>
                 <height>380</height>
                </rect>
               </property>
@@ -4700,12 +4710,13 @@
   <tabstop>checkBoxUnifiedTitleAndToolBarOnMac</tabstop>
   <tabstop>checkBoxShowMenuBar</tabstop>
   <tabstop>checkBoxProgressTexts</tabstop>
+  <tabstop>checkBoxMinimizeOnEmuLaunch</tabstop>
   <tabstop>checkBoxKillEmulatorsOnExit</tabstop>
-  <tabstop>checkBoxCheckSingleInstance</tabstop>
   <tabstop>checkBoxGameStatusIndicator</tabstop>
   <tabstop>checkBoxGameStatusIndicatorOnlyWhenRequired</tabstop>
   <tabstop>checkBoxShowGameName</tabstop>
   <tabstop>checkBoxShowGameNameOnlyWhenRequired</tabstop>
+  <tabstop>checkBoxCheckSingleInstance</tabstop>
   <tabstop>lineEditTemporaryFile</tabstop>
   <tabstop>toolButtonBrowseTemporaryFile</tabstop>
   <tabstop>lineEditFrontendLogFile</tabstop>
@@ -4787,6 +4798,7 @@
   <tabstop>checkBoxAutoTriggerROMCheck</tabstop>
   <tabstop>comboBoxSoftwareSnapPosition</tabstop>
   <tabstop>checkBoxSoftwareSnapOnMouseHover</tabstop>
+  <tabstop>checkBoxAutoDisableSoftwareSnap</tabstop>
   <tabstop>checkBoxDoubleClickActivation</tabstop>
   <tabstop>checkBoxPlayOnSublistActivation</tabstop>
   <tabstop>checkBoxHideWhileLoading</tabstop>
