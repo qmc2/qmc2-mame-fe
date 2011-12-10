@@ -59,7 +59,7 @@
        </property>
        <property name="icon">
         <iconset resource="qmc2.qrc">
-         <normaloff>:/data/img/info.png</normaloff>:/data/img/info.png</iconset>
+         <normaloff>:/data/img/detail.png</normaloff>:/data/img/detail.png</iconset>
        </property>
        <property name="checkable">
         <bool>true</bool>
