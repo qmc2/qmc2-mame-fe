@@ -1,5 +1,5 @@
-#include <QHeaderView>
-#include <QFileInfo>
+#include <QtGui>
+
 #include "procmgr.h"
 #include "qmc2main.h"
 #include "embedder.h"
@@ -13,6 +13,7 @@ extern QString qmc2DriverName;
 #if defined(QMC2_YOUTUBE_ENABLED)
 extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 #endif
+extern QWidgetList qmc2AutoMinimizedWidgets;
 
 ProcessManager::ProcessManager(QWidget *parent)
   : QObject(parent)
@@ -236,6 +237,8 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
 			  QTimer::singleShot(QMC2_VIDEOPLAYER_RESUME_DELAY, qmc2YouTubeWidget->videoPlayer, SLOT(play()));
 #endif
 #endif
+
+  if ( !qmc2AutoMinimizedWidgets.isEmpty() ) foreach (QWidget *w, qmc2AutoMinimizedWidgets) w->showNormal();
 }
 
 void ProcessManager::started()

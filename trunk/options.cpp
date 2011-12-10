@@ -188,6 +188,10 @@ Options::Options(QWidget *parent)
   checkBoxExitOnVariantLaunch->setVisible(false);
 #endif
 
+#if defined(Q_WS_X11)
+  checkBoxMinimizeOnEmuLaunch->setToolTip(tr("Minimize when launching (non-embedded) emulators?"));
+#endif
+
 #if !defined(QMC2_VARIANT_LAUNCHER) || !defined(Q_WS_WIN)
   labelMAMEVariantExe->setVisible(false);
   lineEditMAMEVariantExe->setVisible(false);
@@ -837,6 +841,7 @@ void Options::on_pushButtonApply_clicked()
   }
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/PixmapCacheSize", oldCacheSize);
   QPixmapCache::setCacheLimit(oldCacheSize * 1024);
+  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", checkBoxMinimizeOnEmuLaunch->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/KillEmulatorsOnExit", checkBoxKillEmulatorsOnExit->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", checkBoxShowMenuBar->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/CheckSingleInstance", checkBoxCheckSingleInstance->isChecked());
@@ -1895,6 +1900,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   lineEditLogFont->setFont(f);
   int pixmapCacheSize = config->value(QMC2_FRONTEND_PREFIX + "GUI/PixmapCacheSize", 64).toInt();
   spinBoxPixmapCacheSize->setValue(pixmapCacheSize);
+  checkBoxMinimizeOnEmuLaunch->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool());
   checkBoxKillEmulatorsOnExit->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/KillEmulatorsOnExit", true).toBool());
   checkBoxShowMenuBar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
   checkBoxCheckSingleInstance->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CheckSingleInstance", true).toBool());

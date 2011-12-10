@@ -260,6 +260,7 @@ QAbstractItemView::ScrollHint qmc2CursorPositioningMode = QAbstractItemView::Pos
 QMap<QString, int> qmc2XmlGamePositionMap;
 QFont qmc2StartupDefaultFont;
 int qmc2SoftwareSnapPosition = 0;
+QWidgetList qmc2AutoMinimizedWidgets;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -1444,6 +1445,16 @@ void MainWindow::on_actionPlay_activated()
   if ( !qmc2CurrentItem )
 #endif
     return;
+
+  qmc2AutoMinimizedWidgets.clear();
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool() && !qmc2StartEmbedded ) {
+    foreach (QWidget *w, qApp->topLevelWidgets()) {
+      if ( w->isVisible () ) {
+      	qmc2AutoMinimizedWidgets << w;
+      	w->showMinimized();
+      }
+    }
+  }
 
   QString gameName;
 
