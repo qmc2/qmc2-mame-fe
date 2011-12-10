@@ -32,14 +32,14 @@ pushd sdlmess
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3
+    CXX_FLAGS=-O3 CC_FLAGS=-O3 MAKE="make %{?_smp_mflags}"
 popd
 
 pushd sdlmame
 make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 WIP=0 OPENGL=0 \
-    CXX_FLAGS=-O3 CC_FLAGS=-O3
+    CXX_FLAGS=-O3 CC_FLAGS=-O3 MAKE="make %{?_smp_mflags}"
 popd
 
 %install

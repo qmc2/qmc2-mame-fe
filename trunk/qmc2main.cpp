@@ -1446,6 +1446,8 @@ void MainWindow::on_actionPlay_activated()
 #endif
     return;
 
+  qApp->processEvents();
+
   qmc2AutoMinimizedWidgets.clear();
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool() && !qmc2StartEmbedded ) {
     foreach (QWidget *w, qApp->topLevelWidgets()) {
