@@ -96,6 +96,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QMenu *menuTabWidgetGamelist;
     QMenu *menuTabWidgetGameDetail;
     QMenu *menuTabWidgetLogsAndEmulators;
+    QMenu *menuTabWidgetSoftwareDetail;
     QMenu *menuHorizontalSplitter;
     QMenu *menuVerticalSplitter;
     QMenu *menuGamelistHeader;
@@ -241,7 +242,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_listWidgetSearch_itemPressed(QListWidgetItem *);
     void on_listWidgetSearch_itemSelectionChanged();
 
-    // favorites && played widgets
+    // favorites & played widgets
     void on_listWidgetFavorites_currentTextChanged(QString);
     void on_listWidgetFavorites_itemSelectionChanged();
     void on_listWidgetFavorites_itemActivated(QListWidgetItem *);
@@ -259,7 +260,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_tabWidgetGamelist_customContextMenuRequested(const QPoint &);
     void on_tabWidgetGameDetail_customContextMenuRequested(const QPoint &);
     void on_tabWidgetLogsAndEmulators_customContextMenuRequested(const QPoint &);
-    void on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPoint &p) { on_tabWidgetLogsAndEmulators_customContextMenuRequested(p); }
+    void on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPoint &p);
     void on_hSplitter_customContextMenuRequested(const QPoint &);
     void on_vSplitter_customContextMenuRequested(const QPoint &);
 
@@ -337,6 +338,10 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_menuTabWidgetLogsAndEmulators_South_activated();
     void on_menuTabWidgetLogsAndEmulators_West_activated();
     void on_menuTabWidgetLogsAndEmulators_East_activated();
+    void on_menuTabWidgetSoftwareDetail_North_activated();
+    void on_menuTabWidgetSoftwareDetail_South_activated();
+    void on_menuTabWidgetSoftwareDetail_West_activated();
+    void on_menuTabWidgetSoftwareDetail_East_activated();
 
     // memory indicator
     void on_memoryUpdateTimer_timeout();

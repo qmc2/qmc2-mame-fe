@@ -746,7 +746,7 @@ MainWindow::MainWindow(QWidget *parent)
     tabWidgetGamelist->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::North).toInt());
     tabWidgetGameDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::North).toInt());
     tabWidgetLogsAndEmulators->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::North).toInt());
-    tabWidgetSoftwareDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::North).toInt());
+    tabWidgetSoftwareDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::North).toInt());
     floatToggleButtonSoftwareDetail->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/SoftwareDetailDocked", true).toBool());
   } else {
     QList<int> splitterSizes;
@@ -1091,6 +1091,28 @@ MainWindow::MainWindow(QWidget *parent)
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
   connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetLogsAndEmulators_East_activated()));
+
+  menuTabWidgetSoftwareDetail = new QMenu(0);
+  s = tr("Set tab position north");
+  action = menuTabWidgetSoftwareDetail->addAction(tr("&North"));
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/north.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetSoftwareDetail_North_activated()));
+  s = tr("Set tab position south");
+  action = menuTabWidgetSoftwareDetail->addAction(tr("&South"));
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/south.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetSoftwareDetail_South_activated()));
+  s = tr("Set tab position west");
+  action = menuTabWidgetSoftwareDetail->addAction(tr("&West"));
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/west.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetSoftwareDetail_West_activated()));
+  s = tr("Set tab position east");
+  action = menuTabWidgetSoftwareDetail->addAction(tr("&East"));
+  action->setToolTip(s); action->setStatusTip(s);
+  action->setIcon(QIcon(QString::fromUtf8(":/data/img/east.png")));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_menuTabWidgetSoftwareDetail_East_activated()));
 
   // splitter context menus
   menuHorizontalSplitter = new QMenu(0);
@@ -7408,7 +7430,6 @@ void MainWindow::on_menuTabWidgetLogsAndEmulators_North_activated()
 #endif
 
   tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::North);
-  tabWidgetSoftwareDetail->setTabPosition(QTabWidget::North);
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::North);
 }
@@ -7420,7 +7441,6 @@ void MainWindow::on_menuTabWidgetLogsAndEmulators_South_activated()
 #endif
 
   tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::South);
-  tabWidgetSoftwareDetail->setTabPosition(QTabWidget::South);
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::South);
 }
@@ -7432,7 +7452,6 @@ void MainWindow::on_menuTabWidgetLogsAndEmulators_West_activated()
 #endif
 
   tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::West);
-  tabWidgetSoftwareDetail->setTabPosition(QTabWidget::West);
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::West);
 }
@@ -7444,7 +7463,6 @@ void MainWindow::on_menuTabWidgetLogsAndEmulators_East_activated()
 #endif
 
   tabWidgetLogsAndEmulators->setTabPosition(QTabWidget::East);
-  tabWidgetSoftwareDetail->setTabPosition(QTabWidget::East);
   if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/LogsAndEmulators/TabPosition", QTabWidget::East);
 }
@@ -7458,6 +7476,62 @@ void MainWindow::on_tabWidgetLogsAndEmulators_customContextMenuRequested(const Q
   if ( !tabWidgetLogsAndEmulators->currentWidget()->childrenRect().contains(p, true) ) {
     menuTabWidgetLogsAndEmulators->move(adjustedWidgetPosition(tabWidgetLogsAndEmulators->mapToGlobal(p), menuTabWidgetLogsAndEmulators));
     menuTabWidgetLogsAndEmulators->show();
+  }
+}
+
+void MainWindow::on_menuTabWidgetSoftwareDetail_North_activated()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetSoftwareDetail_North_activated()"));
+#endif
+
+  tabWidgetSoftwareDetail->setTabPosition(QTabWidget::North);
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::North);
+}
+
+void MainWindow::on_menuTabWidgetSoftwareDetail_South_activated()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetSoftwareDetail_South_activated()"));
+#endif
+
+  tabWidgetSoftwareDetail->setTabPosition(QTabWidget::South);
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::South);
+}
+
+void MainWindow::on_menuTabWidgetSoftwareDetail_West_activated()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetSoftwareDetail_West_activated()"));
+#endif
+
+  tabWidgetSoftwareDetail->setTabPosition(QTabWidget::West);
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::West);
+}
+
+void MainWindow::on_menuTabWidgetSoftwareDetail_East_activated()
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_menuTabWidgetSoftwareDetail_East_activated()"));
+#endif
+
+  tabWidgetSoftwareDetail->setTabPosition(QTabWidget::East);
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/SaveLayout").toBool() )
+    qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareDetail/TabPosition", QTabWidget::East);
+}
+
+void MainWindow::on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPoint &p)
+{
+#ifdef QMC2_DEBUG
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetSoftwareDetail_customContextMenuRequested(const QPoint &p = ...)");
+#endif
+
+  if ( !tabWidgetSoftwareDetail->currentWidget()->childrenRect().contains(p, true) ) {
+    menuTabWidgetSoftwareDetail->move(adjustedWidgetPosition(tabWidgetSoftwareDetail->mapToGlobal(p), menuTabWidgetSoftwareDetail));
+    menuTabWidgetSoftwareDetail->show();
   }
 }
 
