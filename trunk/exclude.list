@@ -237,6 +237,7 @@ qmc2/data/img/circles/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/compressed.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/controller.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/detail.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/dev_cartridge.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/dev_cassette.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/dev_cdrom.png.svn-base
@@ -436,6 +437,7 @@ qmc2/data/img/circles/.svn/text-base/colors.png.svn-base
 qmc2/data/img/circles/.svn/text-base/compressed.png.svn-base
 qmc2/data/img/circles/.svn/text-base/configure.png.svn-base
 qmc2/data/img/circles/.svn/text-base/controller.png.svn-base
+qmc2/data/img/circles/.svn/text-base/detail.png.svn-base
 qmc2/data/img/circles/.svn/text-base/dev_cartridge.png.svn-base
 qmc2/data/img/circles/.svn/text-base/dev_cassette.png.svn-base
 qmc2/data/img/circles/.svn/text-base/dev_cdrom.png.svn-base
@@ -643,6 +645,7 @@ qmc2/data/img/classic/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/compressed.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/controller.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/detail.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/dev_cartridge.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/dev_cassette.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/dev_cdrom.png.svn-base
@@ -842,6 +845,7 @@ qmc2/data/img/classic/.svn/text-base/colors.png.svn-base
 qmc2/data/img/classic/.svn/text-base/compressed.png.svn-base
 qmc2/data/img/classic/.svn/text-base/configure.png.svn-base
 qmc2/data/img/classic/.svn/text-base/controller.png.svn-base
+qmc2/data/img/classic/.svn/text-base/detail.png.svn-base
 qmc2/data/img/classic/.svn/text-base/dev_cartridge.png.svn-base
 qmc2/data/img/classic/.svn/text-base/dev_cassette.png.svn-base
 qmc2/data/img/classic/.svn/text-base/dev_cdrom.png.svn-base
@@ -1042,6 +1046,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/compressed.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/controller.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/detail.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/dev_cartridge.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/dev_cassette.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/dev_cdrom.png.svn-base
@@ -1241,6 +1246,7 @@ qmc2/data/img/crazy-black/.svn/text-base/colors.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/compressed.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/configure.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/controller.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/detail.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/dev_cartridge.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/dev_cassette.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/dev_cdrom.png.svn-base
@@ -1443,6 +1449,7 @@ qmc2/data/img/crazy/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/compressed.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/controller.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/detail.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/dev_cartridge.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/dev_cassette.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/dev_cdrom.png.svn-base
@@ -1642,6 +1649,7 @@ qmc2/data/img/crazy/.svn/text-base/colors.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/compressed.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/configure.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/controller.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/detail.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/dev_cartridge.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/dev_cassette.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/dev_cdrom.png.svn-base
@@ -1844,6 +1852,7 @@ qmc2/data/img/cubes/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/compressed.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/controller.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/detail.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/dev_cartridge.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/dev_cassette.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/dev_cdrom.png.svn-base
@@ -2043,6 +2052,7 @@ qmc2/data/img/cubes/.svn/text-base/colors.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/compressed.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/configure.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/controller.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/detail.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/dev_cartridge.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/dev_cassette.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/dev_cdrom.png.svn-base
@@ -2250,6 +2260,7 @@ qmc2/data/img/.svn/prop-base/colors.png.svn-base
 qmc2/data/img/.svn/prop-base/compressed.png.svn-base
 qmc2/data/img/.svn/prop-base/configure.png.svn-base
 qmc2/data/img/.svn/prop-base/controller.png.svn-base
+qmc2/data/img/.svn/prop-base/detail.png.svn-base
 qmc2/data/img/.svn/prop-base/dev_cartridge.png.svn-base
 qmc2/data/img/.svn/prop-base/dev_cassette.png.svn-base
 qmc2/data/img/.svn/prop-base/dev_cdrom.png.svn-base
@@ -2449,6 +2460,7 @@ qmc2/data/img/.svn/text-base/colors.png.svn-base
 qmc2/data/img/.svn/text-base/compressed.png.svn-base
 qmc2/data/img/.svn/text-base/configure.png.svn-base
 qmc2/data/img/.svn/text-base/controller.png.svn-base
+qmc2/data/img/.svn/text-base/detail.png.svn-base
 qmc2/data/img/.svn/text-base/dev_cartridge.png.svn-base
 qmc2/data/img/.svn/text-base/dev_cassette.png.svn-base
 qmc2/data/img/.svn/text-base/dev_cdrom.png.svn-base
