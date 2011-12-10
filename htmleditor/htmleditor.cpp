@@ -46,7 +46,8 @@ extern QSettings *qmc2Config;
 HtmlEditor::HtmlEditor(QWidget *parent)
         : QMainWindow(parent)
         , ui(new Ui_HTMLEditorMainWindow)
-        , sourceDirty(true)
+        , htmlDirty(true)
+        , wysiwigDirty(true)
         , highlighter(0)
         , ui_dialog(0)
         , insertHtmlDialog(0)
@@ -141,7 +142,8 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 
     // it's necessary to sync our actions
     connect(ui->webView->page(), SIGNAL(selectionChanged()), SLOT(adjustActions()));
-    connect(ui->webView->page(), SIGNAL(contentsChanged()), SLOT(adjustSource()));
+    connect(ui->webView->page(), SIGNAL(contentsChanged()), SLOT(adjustHTML()));
+    connect(ui->plainTextEdit, SIGNAL(textChanged()), SLOT(adjustWYSIWIG()));
 
     // web-page connections
     connect(ui->webView->page(), SIGNAL(linkHovered(const QString &, const QString &, const QString &)), SLOT(linkHovered(const QString &, const QString &, const QString &)));
@@ -166,7 +168,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 
     adjustIconSizes();
     adjustActions();
-    adjustSource();
+    adjustHTML();
 }
 
 HtmlEditor::~HtmlEditor()
@@ -215,7 +217,7 @@ void HtmlEditor::fileNew()
 
     ui->webView->setHtml("");
     QTimer::singleShot(25, this, SLOT(styleParagraph()));
-    QTimer::singleShot(50, this, SLOT(adjustSource()));
+    QTimer::singleShot(50, this, SLOT(adjustHTML()));
 }
 
 void HtmlEditor::fileOpen()
@@ -224,7 +226,7 @@ void HtmlEditor::fileOpen()
                  QString(), tr("HTML files (*.htm *.html);;All files (*)"));
     if (!fn.isEmpty()) {
         load(fn);
-        adjustSource();
+        adjustHTML();
     }
 }
 
@@ -598,9 +600,17 @@ void HtmlEditor::adjustActions()
     ui->actionFormatBulletedList->setChecked(queryCommandState("insertUnorderedList"));
 }
 
-void HtmlEditor::adjustSource()
+void HtmlEditor::adjustWYSIWIG()
 {
-    sourceDirty = true;
+    wysiwigDirty = true;
+
+    if (ui->tabWidget->currentIndex() == 0)
+        changeTab(0);
+}
+
+void HtmlEditor::adjustHTML()
+{
+    htmlDirty = true;
 
     if (ui->tabWidget->currentIndex() == 1)
         changeTab(1);
@@ -608,11 +618,24 @@ void HtmlEditor::adjustSource()
 
 void HtmlEditor::changeTab(int index)
 {
-    if (sourceDirty && (index == 1)) {
-        QString content = ui->webView->page()->mainFrame()->toHtml();
-        ui->plainTextEdit->setPlainText(content);
-        sourceDirty = false;
-    }
+	switch ( index ) {
+		case 0:
+			if ( wysiwigDirty ) {
+				ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
+				wysiwigDirty = false;
+			}
+			break;
+
+		case 1:
+			if ( htmlDirty ) {
+				ui->plainTextEdit->setPlainText(ui->webView->page()->mainFrame()->toHtml());
+				htmlDirty = false;
+			}
+			break;
+
+		default:
+			break;
+	}
 }
 
 void HtmlEditor::openLink(const QUrl &url)
