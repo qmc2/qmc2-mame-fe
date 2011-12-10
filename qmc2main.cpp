@@ -1446,18 +1446,6 @@ void MainWindow::on_actionPlay_activated()
 #endif
     return;
 
-  qApp->processEvents();
-
-  qmc2AutoMinimizedWidgets.clear();
-  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool() && !qmc2StartEmbedded ) {
-    foreach (QWidget *w, qApp->topLevelWidgets()) {
-      if ( w->isVisible () ) {
-      	qmc2AutoMinimizedWidgets << w;
-      	w->showMinimized();
-      }
-    }
-  }
-
   QString gameName;
 
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1514,6 +1502,16 @@ void MainWindow::on_actionPlay_activated()
 #endif
         // start game/machine
         qmc2ProcessManager->process(qmc2ProcessManager->start(emuCommand, emuArgs, true, emuWorkDir));
+
+        qmc2AutoMinimizedWidgets.clear();
+        if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool() && !qmc2StartEmbedded ) {
+          foreach (QWidget *w, qApp->topLevelWidgets()) {
+            if ( w->isVisible () ) {
+              qmc2AutoMinimizedWidgets << w;
+              w->showMinimized();
+            }
+          }
+        }
       }
     }
   }
@@ -1697,6 +1695,16 @@ void MainWindow::on_actionPlay_activated()
 
   // start game/machine
   qmc2ProcessManager->process(qmc2ProcessManager->start(command, args, true, workingDirectory));
+
+  qmc2AutoMinimizedWidgets.clear();
+  if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool() && !qmc2StartEmbedded ) {
+    foreach (QWidget *w, qApp->topLevelWidgets()) {
+      if ( w->isVisible () ) {
+        qmc2AutoMinimizedWidgets << w;
+        w->showMinimized();
+      }
+    }
+  }
 
 #if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2DemoGame.isEmpty() ) {
