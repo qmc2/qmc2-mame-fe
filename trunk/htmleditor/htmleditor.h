@@ -100,7 +100,8 @@ public slots:
     void zoomOut();
     void zoomIn();
     void adjustActions();
-    void adjustSource();
+    void adjustWYSIWIG();
+    void adjustHTML();
     void changeTab(int);
     void openLink(const QUrl&);
     void changeZoom(int);
@@ -110,7 +111,8 @@ public slots:
 private:
     Ui_HTMLEditorMainWindow *ui;
     QString fileName;
-    bool sourceDirty;
+    bool htmlDirty;
+    bool wysiwigDirty;
     QLabel *zoomLabel;
     QSlider *zoomSlider;
     Highlighter *highlighter;
