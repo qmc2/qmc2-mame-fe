@@ -4487,22 +4487,17 @@ Sollen die Änderungen gespeichert werden?</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="546"/>
-        <source>XXS</source>
-        <translation>XXS</translation>
-    </message>
-    <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="546"/>
         <source>XS</source>
         <translation>XS</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="546"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="548"/>
         <source>S</source>
         <translation>S</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="546"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="548"/>
         <source>M</source>
         <translation>M</translation>
     </message>

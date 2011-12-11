@@ -543,9 +543,9 @@ void HtmlEditor::formatFontName()
 void HtmlEditor::formatFontSize()
 {
 	QStringList sizes;
-	sizes << tr("XXS") << tr("XS") << tr("S") << tr("M") << tr("L") << tr("XL") << tr("XXL");
+	sizes << tr("XS") << tr("S") << tr("M") << tr("L") << tr("XL") << tr("XXL");
 	bool ok = false;
-	QString size = QInputDialog::getItem(this, tr("Font size"), tr("Font size:"), sizes, sizes.indexOf(tr("S")), false, &ok);
+	QString size = QInputDialog::getItem(this, tr("Font size"), tr("Font size:"), sizes, sizes.indexOf(tr("M")), false, &ok);
 
 	if ( ok )
 		execCommand("fontSize", QString::number(sizes.indexOf(size) + 1));
