@@ -248,6 +248,7 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowsePCBFile->setEnabled(enable);
   qmc2Options->toolButtonBrowseSoftwareSnapDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseSoftwareSnapFile->setEnabled(enable);
+  qmc2Options->toolButtonBrowseSoftwareNotesFolder->setEnabled(enable);
   qmc2Options->toolButtonShowC->setEnabled(enable);
   qmc2Options->toolButtonShowM->setEnabled(enable);
   qmc2Options->toolButtonShowI->setEnabled(enable);
