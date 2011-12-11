@@ -133,6 +133,7 @@ extern Joystick *qmc2Joystick;
 #endif
 #if defined(QMC2_EMUTYPE_MESS)
 extern MESSDeviceConfigurator *qmc2MESSDeviceConfigurator;
+extern MiniWebBrowser *qmc2ProjectMESS;
 #endif
 extern SoftwareList *qmc2SoftwareList;
 #if QMC2_USE_PHONON_API
@@ -652,6 +653,16 @@ void Options::apply()
     qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_SEARCH_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/hint.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
     if ( qmc2SoftwareList->exporter ) QTimer::singleShot(0, qmc2SoftwareList->exporter, SLOT(adjustIconSizes()));
     if ( qmc2SoftwareNotesEditor ) qmc2SoftwareNotesEditor->adjustIconSizes();
+#if defined(QMC2_EMUTYPE_MESS)
+    if ( qmc2ProjectMESS ) {
+      qmc2ProjectMESS->toolButtonBack->setIconSize(iconSize);
+      qmc2ProjectMESS->toolButtonForward->setIconSize(iconSize);
+      qmc2ProjectMESS->toolButtonReload->setIconSize(iconSize);
+      qmc2ProjectMESS->toolButtonStop->setIconSize(iconSize);
+      qmc2ProjectMESS->toolButtonHome->setIconSize(iconSize);
+      qmc2ProjectMESS->toolButtonLoad->setIconSize(iconSize);
+    }
+#endif
   }
   qmc2MainWindow->pushButtonClearFinishedDownloads->setIconSize(iconSize);
   qmc2MainWindow->pushButtonReloadSelectedDownloads->setIconSize(iconSize);
