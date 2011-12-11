@@ -3114,7 +3114,7 @@ void Options::on_toolButtonBrowseSoftwareSnapFile_clicked()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareSnapFile_clicked()");
 #endif
 
-  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed software snap file"), lineEditPCBFile->text(), tr("All files (*)"));
+  QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed software snap file"), lineEditSoftwareSnapFile->text(), tr("All files (*)"));
   if ( !s.isNull() )
     lineEditSoftwareSnapFile->setText(s);
   raise();
