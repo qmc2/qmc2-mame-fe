@@ -3591,7 +3591,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
 	if ( !qmc2SoftwareListAlreadyLoading ) {
           qmc2SoftwareListAlreadyLoading = true;
-          tabSoftwareList->setUpdatesEnabled(false);
+          //tabSoftwareList->setUpdatesEnabled(false);
           if ( qmc2SoftwareList ) {
             qmc2SoftwareList->save();
             QLayout *vbl = tabSoftwareList->layout();
@@ -3609,7 +3609,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           qmc2SoftwareList->load();
           qmc2SoftwareList->show();
           qmc2LastSoftwareListItem = qmc2CurrentItem;
-          tabSoftwareList->setUpdatesEnabled(true);
+          //tabSoftwareList->setUpdatesEnabled(true);
           qmc2SoftwareListAlreadyLoading = false;
 	}
       }

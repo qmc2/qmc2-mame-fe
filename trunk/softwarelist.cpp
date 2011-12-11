@@ -668,6 +668,13 @@ bool SoftwareList::load()
 		swlLines = swlBuffer.split("\n");
 		foreach (QString swList, softwareList) {
 			QString softwareListXml = getSoftwareListXmlData(swList);
+			if ( softwareListXml.size() > QMC2_SWLIST_SIZE_THRESHOLD ) {
+				toolBoxSoftwareList->setVisible(false);
+				labelLoadingSoftwareLists->setText(tr("Loading software-list '%1', please wait...").arg(swList));
+				labelLoadingSoftwareLists->setVisible(true);
+				qmc2MainWindow->tabSoftwareList->update();
+				qApp->processEvents();
+			}
 			if ( !softwareListXml.isEmpty() ) {
 #ifdef QMC2_DEBUG
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): XML data for software list '%1' follows:\n%2").arg(swList).arg(softwareListXml));
@@ -677,7 +684,6 @@ bool SoftwareList::load()
 				SoftwareListXmlHandler xmlHandler(treeWidgetKnownSoftware);
 				QXmlSimpleReader xmlReader;
 				xmlReader.setContentHandler(&xmlHandler);
-				qApp->processEvents();
 				if ( !xmlReader.parse(xmlInputSource) )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list '%1'").arg(swList));
 #ifdef QMC2_DEBUG
@@ -686,6 +692,9 @@ bool SoftwareList::load()
 #endif
 			}
 		}
+		labelLoadingSoftwareLists->setVisible(false);
+		labelLoadingSoftwareLists->setText(tr("Loading software-lists, please wait..."));
+		toolBoxSoftwareList->setVisible(true);
 
 		// load favorites
 #if defined(QMC2_EMUTYPE_MAME)

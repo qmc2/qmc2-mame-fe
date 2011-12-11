@@ -551,4 +551,7 @@
 #define QMC2_SWINFO_NOTES_PAGE		1
 #endif
 
+// size-threshold for displaying "loading software-list xxx, please wait..." when loading software-lists
+#define QMC2_SWLIST_SIZE_THRESHOLD	5 * QMC2_ONE_MEGABYTE
+
 #endif
