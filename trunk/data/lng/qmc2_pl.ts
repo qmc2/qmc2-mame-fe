@@ -4514,22 +4514,17 @@ Do you want to save your changes?</source>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="546"/>
-        <source>XXS</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../htmleditor/htmleditor.cpp" line="546"/>
         <source>XS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="546"/>
-        <location filename="../../htmleditor/htmleditor.cpp" line="548"/>
         <source>S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="546"/>
+        <location filename="../../htmleditor/htmleditor.cpp" line="548"/>
         <source>M</source>
         <translation type="unfinished"></translation>
     </message>
