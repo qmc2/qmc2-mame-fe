@@ -1,1 +1,2 @@
-The "sws" directory is the default place to store images of software-list entries, a.k.a. software snapshots.
+The "sws" directory is the default place to store images of software-list
+entries, a.k.a. software snaps.

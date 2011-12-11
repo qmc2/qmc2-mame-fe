@@ -1,0 +1,2 @@
+The "swn" directory is the default place to store personal (rich-text / HTML)
+notes about software-list entries.

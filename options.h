@@ -128,6 +128,7 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonBrowsePCBFile_clicked();
     void on_toolButtonBrowseSoftwareSnapDirectory_clicked();
     void on_toolButtonBrowseSoftwareSnapFile_clicked();
+    void on_toolButtonBrowseSoftwareNotesFolder_clicked();
     void on_toolButtonBrowseExecutableFile_clicked();
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
     void on_toolButtonBrowseMAMEVariantExe_clicked();

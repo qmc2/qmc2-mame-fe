@@ -173,6 +173,9 @@ Options::Options(QWidget *parent)
 
 #if !defined(QMC2_WIP_ENABLED)
   checkBoxAutoDisableSoftwareSnap->setVisible(false);
+  labelSoftwareNotesFolder->setVisible(false);
+  lineEditSoftwareNotesFolder->setVisible(false);
+  toolButtonBrowseSoftwareNotesFolder->setVisible(false);
 #endif
 
 #if !defined(Q_WS_MAC)
@@ -511,6 +514,7 @@ void Options::apply()
   toolButtonBrowsePCBFile->setIconSize(iconSize);
   toolButtonBrowseSoftwareSnapDirectory->setIconSize(iconSize);
   toolButtonBrowseSoftwareSnapFile->setIconSize(iconSize);
+  toolButtonBrowseSoftwareNotesFolder->setIconSize(iconSize);
   toolButtonShowC->setIconSize(iconSize);
   toolButtonShowM->setIconSize(iconSize);
   toolButtonShowI->setIconSize(iconSize);
@@ -947,6 +951,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/UseSoftwareSnapFile", qmc2UseSoftwareSnapFile);
   config->setValue("MAME/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
   config->setValue("MAME/FilesAndDirectories/SoftwareSnapFile", lineEditSoftwareSnapFile->text());
+  config->setValue("MAME/FilesAndDirectories/SoftwareNotesFolder", lineEditSoftwareNotesFolder->text());
   s = lineEditGameInfoDB->text();
   needManualReload |= (config->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
   invalidateGameInfoDB |= (config->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
@@ -1067,6 +1072,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/UseSoftwareSnapFile", qmc2UseSoftwareSnapFile);
   config->setValue("MESS/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
   config->setValue("MESS/FilesAndDirectories/SoftwareSnapFile", lineEditSoftwareSnapFile->text());
+  config->setValue("MESS/FilesAndDirectories/SoftwareNotesFolder", lineEditSoftwareNotesFolder->text());
   s = lineEditGameInfoDB->text();
   needManualReload |= (config->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
   invalidateGameInfoDB |= (config->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
@@ -1983,6 +1989,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   qmc2UseSoftwareSnapFile = config->value("MAME/FilesAndDirectories/UseSoftwareSnapFile", false).toBool();
   stackedWidgetSWSnap->setCurrentIndex(qmc2UseSoftwareSnapFile ? 1 : 0);
   radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
+  lineEditSoftwareNotesFolder->setText(config->value("MAME/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
   lineEditGameInfoDB->setText(config->value("MAME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
   lineEditEmuInfoDB->setText(config->value("MAME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
   lineEditCatverIniFile->setText(config->value("MAME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
@@ -2040,6 +2047,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   qmc2UseSoftwareSnapFile = config->value("MESS/FilesAndDirectories/UseSoftwareSnapFile", false).toBool();
   stackedWidgetSWSnap->setCurrentIndex(qmc2UseSoftwareSnapFile ? 1 : 0);
   radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
+  lineEditSoftwareNotesFolder->setText(config->value("MESS/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
   lineEditGameInfoDB->setText(config->value("MESS/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
   lineEditEmuInfoDB->setText(config->value("MESS/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/messinfo.dat").toString());
 #endif
@@ -3109,6 +3117,20 @@ void Options::on_toolButtonBrowseSoftwareSnapFile_clicked()
   QString s = QFileDialog::getOpenFileName(this, tr("Choose ZIP-compressed software snap file"), lineEditPCBFile->text(), tr("All files (*)"));
   if ( !s.isNull() )
     lineEditSoftwareSnapFile->setText(s);
+  raise();
+}
+
+void Options::on_toolButtonBrowseSoftwareNotesFolder_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonBrowseSoftwareNotesFolder_clicked()");
+#endif
+
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose software notes folder"), lineEditSoftwareNotesFolder->text(), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() ) {
+    if ( !s.endsWith("/") ) s += "/";
+    lineEditSoftwareNotesFolder->setText(s);
+  }
   raise();
 }
 
