@@ -134,11 +134,6 @@
 #define QMC2_SWLIST_FAVORITES_PAGE	1
 #define QMC2_SWLIST_SEARCH_PAGE		2
 
-// page indizes for the software detail widget
-#define QMC2_SWINFO_SNAPSHOT_PAGE	0
-#define QMC2_SWINFO_PROJECTMESS_PAGE	1
-#define QMC2_SWINFO_NOTES_PAGE		2
-
 // page indizes for the 'special' stacked-widget
 #define QMC2_SPECIAL_DEFAULT_PAGE	0
 #define QMC2_SPECIAL_SOFTWARE_PAGE	1
@@ -545,5 +540,15 @@
 
 // X11 only: time (in ms) between KeyPress and KeyRelease events when simulating keys sent to an emulator
 #define QMC2_XKEYEVENT_TRANSITION_TIME	50
+
+// page indizes for the software detail widget
+#if defined(QMC2_EMUTYPE_MESS)
+#define QMC2_SWINFO_SNAPSHOT_PAGE	0
+#define QMC2_SWINFO_PROJECTMESS_PAGE	1
+#define QMC2_SWINFO_NOTES_PAGE		2
+#elif defined(QMC2_EMUTYPE_MAME)
+#define QMC2_SWINFO_SNAPSHOT_PAGE	0
+#define QMC2_SWINFO_NOTES_PAGE		1
+#endif
 
 #endif
