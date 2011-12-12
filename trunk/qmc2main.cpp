@@ -120,7 +120,6 @@ MESSDeviceConfigurator *qmc2MESSDeviceConfigurator = NULL;
 QTreeWidgetItem *qmc2LastDeviceConfigItem = NULL;
 #endif
 QTreeWidgetItem *qmc2LastSoftwareListItem = NULL;
-bool qmc2SoftwareListAlreadyLoading = false;
 #if QMC2_USE_PHONON_API
 AudioEffectDialog *qmc2AudioEffectDialog = NULL;
 QString qmc2AudioLastIndividualTrack = "";
@@ -3420,6 +3419,11 @@ void MainWindow::checkCurrentPlayedSelection()
   listWidgetPlayed->blockSignals(false);
 }
 
+void MainWindow::softwareLoadInterrupted()
+{
+  on_tabWidgetGameDetail_currentChanged(qmc2DetailSetup->appliedDetailList.indexOf(QMC2_SOFTWARE_LIST_INDEX));
+}
+
 void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 {
 #ifdef QMC2_DEBUG
@@ -3428,7 +3432,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 
   if ( !qmc2CurrentItem || qmc2EarlyReloadActive ) {
 #if defined(QMC2_EMUTYPE_MAME)
-    qmc2LastGameInfoItem = qmc2LastEmuInfoItem = qmc2LastConfigItem = NULL;
+    qmc2LastGameInfoItem = qmc2LastEmuInfoItem = qmc2LastConfigItem = qmc2LastSoftwareListItem = NULL;
 #else
     qmc2LastGameInfoItem = qmc2LastEmuInfoItem = qmc2LastConfigItem = qmc2LastDeviceConfigItem = qmc2LastSoftwareListItem = NULL;
 #endif
@@ -3588,30 +3592,34 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 
     case QMC2_SOFTWARE_LIST_INDEX:
+      if ( qmc2SoftwareList ) {
+        if ( qmc2SoftwareList->isLoading ) {
+          qmc2SoftwareList->interruptLoad = true;
+          qmc2LastSoftwareListItem = NULL;
+	  QTimer::singleShot(0, this, SLOT(softwareLoadInterrupted()));
+	  return;
+        }
+      }
       if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
-	if ( !qmc2SoftwareListAlreadyLoading ) {
-          qmc2SoftwareListAlreadyLoading = true;
-          //tabSoftwareList->setUpdatesEnabled(false);
-          if ( qmc2SoftwareList ) {
-            qmc2SoftwareList->save();
-            QLayout *vbl = tabSoftwareList->layout();
-            if ( vbl ) delete vbl;
-            delete qmc2SoftwareList;
-            qmc2SoftwareList = NULL;
-          }
-          QString machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
-          gridLayout->getContentsMargins(&left, &top, &right, &bottom);
-          QVBoxLayout *layout = new QVBoxLayout;
-          layout->setContentsMargins(left, top, right, bottom);
-          qmc2SoftwareList = new SoftwareList(machineName, tabSoftwareList);
-          layout->addWidget(qmc2SoftwareList);
-          tabSoftwareList->setLayout(layout);
-          qmc2SoftwareList->load();
-          qmc2SoftwareList->show();
-          qmc2LastSoftwareListItem = qmc2CurrentItem;
-          //tabSoftwareList->setUpdatesEnabled(true);
-          qmc2SoftwareListAlreadyLoading = false;
-	}
+        tabSoftwareList->setUpdatesEnabled(false);
+        if ( qmc2SoftwareList ) {
+          if ( qmc2SoftwareList->fullyLoaded ) qmc2SoftwareList->save();
+          QLayout *vbl = tabSoftwareList->layout();
+          if ( vbl ) delete vbl;
+          delete qmc2SoftwareList;
+          qmc2SoftwareList = NULL;
+        }
+        QString machineName = qmc2CurrentItem->child(0)->text(QMC2_MACHINELIST_COLUMN_ICON);
+        gridLayout->getContentsMargins(&left, &top, &right, &bottom);
+        QVBoxLayout *layout = new QVBoxLayout;
+        layout->setContentsMargins(left, top, right, bottom);
+        qmc2SoftwareList = new SoftwareList(machineName, tabSoftwareList);
+        layout->addWidget(qmc2SoftwareList);
+        tabSoftwareList->setLayout(layout);
+        qmc2LastSoftwareListItem = qmc2CurrentItem;
+        qmc2SoftwareList->show();
+        tabSoftwareList->setUpdatesEnabled(true);
+        qmc2SoftwareList->load();
       }
       break;
 
@@ -5175,6 +5183,13 @@ void MainWindow::closeEvent(QCloseEvent *e)
     return;
   }
 
+  if ( qmc2SoftwareList && qmc2SoftwareList->isLoading ) {
+    qmc2SoftwareList->interruptLoad = true;
+    log(QMC2_LOG_FRONTEND, tr("stopping current processing upon user request"));
+    e->ignore();
+    return;
+  }
+
   if ( !qmc2Options->applied ) {
     switch ( QMessageBox::question(this, tr("Confirm"),
                                    tr("Your configuration changes have not been applied yet.\nReally quit?"),
@@ -5401,8 +5416,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
       qmc2SoftwareNotesEditor->close();
       delete qmc2SoftwareNotesEditor;
     }
-    log(QMC2_LOG_FRONTEND, tr("saving current game's favorite software"));
-    qmc2SoftwareList->save();
+    if ( qmc2SoftwareList->fullyLoaded ) {
+      log(QMC2_LOG_FRONTEND, tr("saving current game's favorite software"));
+      qmc2SoftwareList->save();
+    }
     delete qmc2SoftwareList;
   }
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -5411,8 +5428,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
       qmc2SoftwareNotesEditor->close();
       delete qmc2SoftwareNotesEditor;
     }
-    log(QMC2_LOG_FRONTEND, tr("saving current machine's favorite software"));
-    qmc2SoftwareList->save();
+    if ( qmc2SoftwareList->fullyLoaded ) {
+      log(QMC2_LOG_FRONTEND, tr("saving current machine's favorite software"));
+      qmc2SoftwareList->save();
+    }
     delete qmc2SoftwareList;
   }
   if ( qmc2MESSDeviceConfigurator ) {
@@ -8485,14 +8504,16 @@ void MainWindow::checkActivity()
        qmc2SampleCheckActive ||
        qmc2ROMAlyzerActive ||
        qmc2LoadingGameInfoDB ||
-       qmc2LoadingEmuInfoDB )
+       qmc2LoadingEmuInfoDB ||
+       (qmc2SoftwareList && qmc2SoftwareList->isLoading) )
 #else
   if ( qmc2ReloadActive ||
        qmc2VerifyActive ||
        qmc2FilterActive ||
        qmc2ImageCheckActive ||
        qmc2ROMAlyzerActive ||
-       qmc2LoadingGameInfoDB )
+       qmc2LoadingGameInfoDB ||
+       (qmc2SoftwareList && qmc2SoftwareList->isLoading) )
 #endif
   {
     activityState = !activityState;
