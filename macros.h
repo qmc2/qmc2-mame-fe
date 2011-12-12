@@ -556,6 +556,7 @@
 
 // when loading software-lists, be 'responsive' on every n'th start of an XML element
 #define QMC2_SWLIST_LOAD_RESPONSE	500
-#define QMC2_SWLIST_LOAD_RESPONSE_LONG	2500
+#define QMC2_SWLIST_LOAD_RESPONSE_LONG	1000
+#define QMC2_SWLIST_LOAD_ANIM_DELAY	5000
 
 #endif

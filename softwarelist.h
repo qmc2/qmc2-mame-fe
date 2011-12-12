@@ -67,17 +67,18 @@ class SoftwareEntryXmlHandler : public QXmlDefaultHandler
 		SoftwareItem *dataareaItem;
 		SoftwareItem *romItem;
 		bool softwareValid;
-		bool firstItem;
+		bool success;
 		QString softwareName;
-		//QString currentText;
 		int elementCounter;
+		int animSequenceCounter;
+		QList<QTreeWidgetItem *> partItems;
+		QMap<QTreeWidgetItem *, QComboBox *> comboBoxes;
 
 		SoftwareEntryXmlHandler(QTreeWidgetItem *);
 		~SoftwareEntryXmlHandler();
 		
 		bool startElement(const QString &, const QString &, const QString &, const QXmlAttributes &);
 		bool endElement(const QString &, const QString &, const QString &);
-		bool characters(const QString &);
 };
 
 // 'floating' snapshot-viewer
