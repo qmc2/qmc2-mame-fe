@@ -713,6 +713,7 @@ bool SoftwareList::load()
 		QStringList softwareNames = qmc2Config->value(QString("MESS/Favorites/%1/SoftwareNames").arg(systemName)).toStringList();
 		QStringList configNames = qmc2Config->value(QString("MESS/Favorites/%1/DeviceConfigs").arg(systemName)).toStringList();
 #endif
+
 		for (int i = 0; i < softwareNames.count() && !interruptLoad; i++) {
 			if ( interruptLoad ) break;
 			QString software = softwareNames[i];
@@ -750,7 +751,7 @@ bool SoftwareList::load()
 	toolButtonReload->setEnabled(true);
 
 	isLoading = false;
-	fullyLoaded = true;
+	fullyLoaded = !interruptLoad;
 	return true;
 }
 
@@ -759,6 +760,9 @@ bool SoftwareList::save()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareList::save()");
 #endif
+
+	if ( !fullyLoaded )
+		return false;
 
 #if defined(QMC2_EMUTYPE_MAME)
 	qmc2Config->remove(QString("MAME/Favorites/%1").arg(systemName));
@@ -2655,7 +2659,7 @@ void SoftwareSnap::copyToClipboard()
 SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item)
 {
 #ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::SoftwareListXmlHandler(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
 	parentTreeWidgetItem = (SoftwareItem *)item;
@@ -2666,7 +2670,7 @@ SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item)
 SoftwareEntryXmlHandler::~SoftwareEntryXmlHandler()
 {
 #ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareEntryXmlHandler::~SoftwareListXmlHandler()");
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SoftwareEntryXmlHandler::~SoftwareEntryXmlHandler()");
 #endif
 
 }
