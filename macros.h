@@ -552,9 +552,9 @@
 #endif
 
 // size-threshold for displaying "loading software-list xxx, please wait..." when loading software-lists
-#define QMC2_SWLIST_SIZE_THRESHOLD	1 * QMC2_ONE_MEGABYTE
+#define QMC2_SWLIST_SIZE_THRESHOLD	512 * QMC2_ONE_KILOBYTE
 
 // when loading software-lists, be 'responsive' on every n'th start of an XML element
-#define QMC2_SWLIST_LOAD_RESPONSE	5000
+#define QMC2_SWLIST_LOAD_RESPONSE	500
 
 #endif

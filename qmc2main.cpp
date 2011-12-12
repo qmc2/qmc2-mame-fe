@@ -3603,7 +3603,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       if ( qmc2CurrentItem != qmc2LastSoftwareListItem ) {
         tabSoftwareList->setUpdatesEnabled(false);
         if ( qmc2SoftwareList ) {
-          if ( qmc2SoftwareList->fullyLoaded ) qmc2SoftwareList->save();
+          qmc2SoftwareList->save();
           QLayout *vbl = tabSoftwareList->layout();
           if ( vbl ) delete vbl;
           delete qmc2SoftwareList;
