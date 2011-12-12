@@ -320,7 +320,7 @@
 #define QMC2_TAGGEDROMCHECK_DELAY	100
 
 // interval in milliseconds between activity checks
-#define QMC2_ACTIVITY_CHECK_INTERVAL	1000
+#define QMC2_ACTIVITY_CHECK_INTERVAL	500
 
 // emulator option types
 #define QMC2_EMUOPT_TYPE_UNKNOWN	0

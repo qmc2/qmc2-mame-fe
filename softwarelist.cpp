@@ -484,6 +484,7 @@ bool SoftwareList::load()
 		oldFmt = qmc2MainWindow->progressBarGamelist->format();
 
           	qmc2MainWindow->tabSoftwareList->setUpdatesEnabled(true);
+		labelLoadingSoftwareLists->setText(tr("Loading software-lists, please wait..."));
 		labelLoadingSoftwareLists->setVisible(true);
 		toolBoxSoftwareList->setVisible(false);
 		show();
@@ -702,9 +703,8 @@ bool SoftwareList::load()
 			}
 		}
 
-		labelLoadingSoftwareLists->setVisible(false);
-		labelLoadingSoftwareLists->setText(tr("Loading software-lists, please wait..."));
-		toolBoxSoftwareList->setVisible(true);
+		QTimer::singleShot(0, labelLoadingSoftwareLists, SLOT(hide()));
+		QTimer::singleShot(0, toolBoxSoftwareList, SLOT(show()));
 
 		// load favorites
 #if defined(QMC2_EMUTYPE_MAME)
