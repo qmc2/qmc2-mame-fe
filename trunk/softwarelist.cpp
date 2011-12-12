@@ -1241,16 +1241,17 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *item
 	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == tr("Waiting for data...") ) {
 		QString softwareListXml = getSoftwareListXmlData(item->text(QMC2_SWLIST_COLUMN_LIST));
 		if ( !softwareListXml.isEmpty() ) {
-			QTreeWidgetItem *childItem = item->takeChild(0);
-			delete childItem;
 			QXmlInputSource xmlInputSource;
 			xmlInputSource.setData(softwareListXml);
 			successfulLookups.clear();
 			SoftwareEntryXmlHandler xmlHandler(item);
 			QXmlSimpleReader xmlReader;
 			xmlReader.setContentHandler(&xmlHandler);
+			treeWidgetKnownSoftware->setSortingEnabled(false);
+			qApp->processEvents();
 			if ( !xmlReader.parse(xmlInputSource) )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
+			treeWidgetKnownSoftware->setSortingEnabled(true);
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't find XML data for software list '%1'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)));
 		}
@@ -1266,16 +1267,17 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemExpanded(QTreeWidgetItem *i
 	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == tr("Waiting for data...") ) {
 		QString softwareListXml = getSoftwareListXmlData(item->text(QMC2_SWLIST_COLUMN_LIST));
 		if ( !softwareListXml.isEmpty() ) {
-			QTreeWidgetItem *childItem = item->takeChild(0);
-			delete childItem;
 			QXmlInputSource xmlInputSource;
 			xmlInputSource.setData(softwareListXml);
 			successfulLookups.clear();
 			SoftwareEntryXmlHandler xmlHandler(item);
 			QXmlSimpleReader xmlReader;
 			xmlReader.setContentHandler(&xmlHandler);
+			treeWidgetFavoriteSoftware->setSortingEnabled(false);
+			qApp->processEvents();
 			if ( !xmlReader.parse(xmlInputSource) )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
+			treeWidgetFavoriteSoftware->setSortingEnabled(true);
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't find XML data for software list '%1'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)));
 		}
@@ -1291,16 +1293,17 @@ void SoftwareList::on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *item
 	if ( item->child(0)->text(QMC2_SWLIST_COLUMN_TITLE) == tr("Waiting for data...") ) {
 		QString softwareListXml = getSoftwareListXmlData(item->text(QMC2_SWLIST_COLUMN_LIST));
 		if ( !softwareListXml.isEmpty() ) {
-			QTreeWidgetItem *childItem = item->takeChild(0);
-			delete childItem;
 			QXmlInputSource xmlInputSource;
 			xmlInputSource.setData(softwareListXml);
 			successfulLookups.clear();
 			SoftwareEntryXmlHandler xmlHandler(item);
 			QXmlSimpleReader xmlReader;
 			xmlReader.setContentHandler(&xmlHandler);
+			treeWidgetSearchResults->setSortingEnabled(false);
+			qApp->processEvents();
 			if ( !xmlReader.parse(xmlInputSource) )
 				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
+			treeWidgetSearchResults->setSortingEnabled(true);
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't find XML data for software list '%1'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)));
 		}
@@ -2665,8 +2668,11 @@ SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item)
 #endif
 
 	parentTreeWidgetItem = (SoftwareItem *)item;
+	softwareName = parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_NAME);
 	softwareValid = false;
+	firstItem = true;
 	partItem = dataareaItem = romItem = NULL;
+	elementCounter = 0;
 }
 
 SoftwareEntryXmlHandler::~SoftwareEntryXmlHandler()
@@ -2683,8 +2689,13 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 //	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
 #endif
 
+	if ( ++elementCounter % QMC2_SWLIST_LOAD_RESPONSE_LONG == 0 ) {
+		parentTreeWidgetItem->treeWidget()->viewport()->update();
+		qApp->processEvents();
+	}
+
 	if ( qName == "software" ) {
-		softwareValid = ( attributes.value("name") == parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_NAME) );
+		softwareValid = ( attributes.value("name") == softwareName );
 		if ( softwareValid )
 			qmc2SoftwareList->successfulLookups.clear();
 	}
@@ -2694,6 +2705,11 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 
 	if ( qName == "part" ) {
 		if ( partItem == NULL ) {
+			if ( firstItem ) {
+				QTreeWidgetItem *childItem = parentTreeWidgetItem->takeChild(0);
+				delete childItem;
+				firstItem = false;
+			}
 			partItem = new SoftwareItem(parentTreeWidgetItem);
 			partItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Part:") + " " + attributes.value("name"));
 			partItem->setText(QMC2_SWLIST_COLUMN_PART, attributes.value("name"));
@@ -2776,6 +2792,9 @@ bool SoftwareEntryXmlHandler::endElement(const QString &namespaceURI, const QStr
 //	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::endElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2)").arg(localName).arg(qName));
 #endif
 
+	if ( !softwareValid )
+		return true;
+
 	if ( qName == "software" ) {
 		softwareValid = false;
 	} else if ( qName == "part" ) {
@@ -2795,7 +2814,7 @@ bool SoftwareEntryXmlHandler::characters(const QString &str)
 //	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::characters(const QString &str = ...)"));
 #endif
 
-	currentText += QString::fromUtf8(str.toAscii());
+	//currentText += QString::fromUtf8(str.toAscii());
 	return true;
 }
 

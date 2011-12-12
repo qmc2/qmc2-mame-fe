@@ -67,7 +67,10 @@ class SoftwareEntryXmlHandler : public QXmlDefaultHandler
 		SoftwareItem *dataareaItem;
 		SoftwareItem *romItem;
 		bool softwareValid;
-		QString currentText;
+		bool firstItem;
+		QString softwareName;
+		//QString currentText;
+		int elementCounter;
 
 		SoftwareEntryXmlHandler(QTreeWidgetItem *);
 		~SoftwareEntryXmlHandler();
