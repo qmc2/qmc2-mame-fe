@@ -342,6 +342,12 @@ void Gamelist::load()
   messSlotNameMap.clear();
 #endif
   if ( qmc2SoftwareList ) {
+    if ( qmc2SoftwareList->isLoading ) {
+      qmc2SoftwareList->interruptLoad = true;
+      qmc2LastSoftwareListItem = NULL;
+      QTimer::singleShot(0, this, SLOT(load()));
+      return;
+    }
     qmc2SoftwareList->save();
     qmc2SoftwareList->setVisible(false);
     QLayout *vbl = qmc2MainWindow->tabSoftwareList->layout();
