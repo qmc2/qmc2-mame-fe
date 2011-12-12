@@ -56,7 +56,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	loadProc = NULL;
 	exporter = NULL;
 	currentItem = NULL;
-	validData = snapForced = autoSelectSearchItem = false;
+	validData = snapForced = autoSelectSearchItem = interruptLoad = isLoading = fullyLoaded = false;
 	autoMounted = true;
 	cachedDeviceLookupPosition = 0;
 
@@ -255,9 +255,9 @@ QString &SoftwareList::getSoftwareListXmlData(QString listName)
 		int i = 0;
 		int swlLinesMax = swlLines.count() - 1;
 		QString s = "<softwarelist name=\"" + listName + "\"";
-		while ( !swlLines[i].startsWith(s) && i < swlLinesMax ) i++;
+		while ( !swlLines[i].startsWith(s) && i < swlLinesMax && !interruptLoad ) i++;
 		softwareListXmlBuffer = "<?xml version=\"1.0\"?>\n";
-		while ( !swlLines[i].startsWith("</softwarelist>") && i < swlLinesMax )
+		while ( !swlLines[i].startsWith("</softwarelist>") && i < swlLinesMax && !interruptLoad )
 			softwareListXmlBuffer += swlLines[i++].simplified() + "\n";
 		softwareListXmlBuffer += "</softwarelist>";
 		if ( i < swlLinesMax ) {
@@ -382,8 +382,8 @@ QString &SoftwareList::getXmlData()
 		int i = 0;
 #if defined(QMC2_EMUTYPE_MAME)
 		QString s = "<game name=\"" + systemName + "\"";
-		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-		while ( !qmc2Gamelist->xmlLines[i].contains("</game>") ) {
+		while ( !qmc2Gamelist->xmlLines[i].contains(s) && !interruptLoad ) i++;
+		while ( !qmc2Gamelist->xmlLines[i].contains("</game>") && !interruptLoad ) {
 			QString line = qmc2Gamelist->xmlLines[i++].simplified();
 			if ( line.startsWith("<softwarelist name=\"") ) {
 				int startIndex = line.indexOf("\"") + 1;
@@ -393,8 +393,8 @@ QString &SoftwareList::getXmlData()
 		}
 #elif defined(QMC2_EMUTYPE_MESS)
 		QString s = "<machine name=\"" + systemName + "\"";
-		while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") ) {
+		while ( !qmc2Gamelist->xmlLines[i].contains(s) && !interruptLoad ) i++;
+		while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") && !interruptLoad ) {
 			QString line = qmc2Gamelist->xmlLines[i++].simplified();
 			if ( line.startsWith("<softwarelist name=\"") ) {
 				int startIndex = line.indexOf("\"") + 1;
@@ -453,6 +453,9 @@ bool SoftwareList::load()
 
 	bool swlCacheOkay = true;
 	autoMounted = true;
+	interruptLoad = false;
+	isLoading = true;
+	fullyLoaded = false;
 	validData = swlSupported;
 #if defined(QMC2_EMUTYPE_MAME)
 	QString swlCachePath = qmc2Config->value("MAME/FilesAndDirectories/SoftwareListCache").toString();
@@ -484,6 +487,7 @@ bool SoftwareList::load()
 		labelLoadingSoftwareLists->setVisible(true);
 		toolBoxSoftwareList->setVisible(false);
 		show();
+		qApp->processEvents();
 
 		swlLines.clear();
 		validData = false;
@@ -561,6 +565,7 @@ bool SoftwareList::load()
 			labelLoadingSoftwareLists->setVisible(false);
 			toolBoxSoftwareList->setVisible(true);
 
+			isLoading = false;
 			return false;
 		}
         }
@@ -585,6 +590,7 @@ bool SoftwareList::load()
 #elif defined(QMC2_EMUTYPE_MESS)
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards").arg(swlCachePath));
 #endif
+			isLoading = false;
 			return false;
 		}
 
@@ -650,6 +656,7 @@ bool SoftwareList::load()
 			labelLoadingSoftwareLists->setVisible(false);
 			toolBoxSoftwareList->setVisible(true);
 
+			isLoading = false;
 			return false;
 		}
 	}
@@ -664,10 +671,12 @@ bool SoftwareList::load()
 	QString xmlData = getXmlData();
 
 	QStringList softwareList = systemSoftwareListMap[systemName];
-	if ( !softwareList.contains("NO_SOFTWARE_LIST") ) {
+	if ( !softwareList.contains("NO_SOFTWARE_LIST") && !interruptLoad ) {
 		swlLines = swlBuffer.split("\n");
 		foreach (QString swList, softwareList) {
+			if ( interruptLoad ) break;
 			QString softwareListXml = getSoftwareListXmlData(swList);
+			if ( interruptLoad ) break;
 			if ( softwareListXml.size() > QMC2_SWLIST_SIZE_THRESHOLD ) {
 				toolBoxSoftwareList->setVisible(false);
 				labelLoadingSoftwareLists->setText(tr("Loading software-list '%1', please wait...").arg(swList));
@@ -684,7 +693,7 @@ bool SoftwareList::load()
 				SoftwareListXmlHandler xmlHandler(treeWidgetKnownSoftware);
 				QXmlSimpleReader xmlReader;
 				xmlReader.setContentHandler(&xmlHandler);
-				if ( !xmlReader.parse(xmlInputSource) )
+				if ( !xmlReader.parse(xmlInputSource) && !interruptLoad )
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list '%1'").arg(swList));
 #ifdef QMC2_DEBUG
 				else
@@ -692,6 +701,7 @@ bool SoftwareList::load()
 #endif
 			}
 		}
+
 		labelLoadingSoftwareLists->setVisible(false);
 		labelLoadingSoftwareLists->setText(tr("Loading software-lists, please wait..."));
 		toolBoxSoftwareList->setVisible(true);
@@ -703,7 +713,8 @@ bool SoftwareList::load()
 		QStringList softwareNames = qmc2Config->value(QString("MESS/Favorites/%1/SoftwareNames").arg(systemName)).toStringList();
 		QStringList configNames = qmc2Config->value(QString("MESS/Favorites/%1/DeviceConfigs").arg(systemName)).toStringList();
 #endif
-		for (int i = 0; i < softwareNames.count(); i++) {
+		for (int i = 0; i < softwareNames.count() && !interruptLoad; i++) {
+			if ( interruptLoad ) break;
 			QString software = softwareNames[i];
 			QList<QTreeWidgetItem *> matchedSoftware = treeWidgetKnownSoftware->findItems(software, Qt::MatchExactly | Qt::MatchCaseSensitive, QMC2_SWLIST_COLUMN_NAME);
 			QTreeWidgetItem *swItem = NULL;
@@ -738,6 +749,8 @@ bool SoftwareList::load()
 
 	toolButtonReload->setEnabled(true);
 
+	isLoading = false;
+	fullyLoaded = true;
 	return true;
 }
 
@@ -2087,6 +2100,7 @@ SoftwareListXmlHandler::SoftwareListXmlHandler(QTreeWidget *parent)
 #endif
 
 	parentTreeWidget = parent;
+	elementCounter = 0;
 }
 
 SoftwareListXmlHandler::~SoftwareListXmlHandler()
@@ -2102,6 +2116,12 @@ bool SoftwareListXmlHandler::startElement(const QString &namespaceURI, const QSt
 #ifdef QMC2_DEBUG
 //	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListXmlHandler::startElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2, const QXmlAttributes &attributes = ...)").arg(localName).arg(qName));
 #endif
+
+	if ( qmc2SoftwareList->interruptLoad )
+		return false;
+
+	if ( ++elementCounter % QMC2_SWLIST_LOAD_RESPONSE == 0 )
+		qApp->processEvents();
 
 	if ( qName == "softwarelist" ) {
 		softwareListName = attributes.value("name");
@@ -2137,6 +2157,9 @@ bool SoftwareListXmlHandler::endElement(const QString &namespaceURI, const QStri
 #ifdef QMC2_DEBUG
 //	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareListXmlHandler::endElement(const QString &namespaceURI = ..., const QString &localName = %1, const QString &qName = %2)").arg(localName).arg(qName));
 #endif
+
+	if ( qmc2SoftwareList->interruptLoad )
+		return false;
 
 	if ( qName == "description" ) {
 		softwareTitle = currentText;

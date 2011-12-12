@@ -462,6 +462,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_emuSelector_currentIndexChanged(const QString &);
     void checkActivity();
     void enableContextMenuPlayActions(bool);
+    void softwareLoadInterrupted();
 
     // float toggle button callbacks for 'special' widgets
     void floatToggleButtonSoftwareDetail_toggled(bool);

@@ -49,6 +49,7 @@ class SoftwareListXmlHandler : public QXmlDefaultHandler
 		QString softwarePart;
 		QString softwareInterface;
 		QString currentText;
+		int elementCounter;
 
 		SoftwareListXmlHandler(QTreeWidget *);
 		~SoftwareListXmlHandler();
@@ -164,6 +165,9 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool validData;
 		bool autoSelectSearchItem;
 		bool autoMounted;
+		bool interruptLoad;
+		bool isLoading;
+		bool fullyLoaded;
 		QStringList successfulLookups;
 		int cachedDeviceLookupPosition;
 		SoftwareListExporter *exporter;
