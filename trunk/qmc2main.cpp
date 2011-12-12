@@ -8496,6 +8496,9 @@ void MainWindow::checkActivity()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::checkActivity()");
 #endif
 
+  // resync timer (as far as possible)
+  activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
+
 #if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2ReloadActive ||
        qmc2VerifyActive ||
@@ -8521,14 +8524,16 @@ void MainWindow::checkActivity()
       actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/activity_green.png")));
     else
       actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/activity_red.png")));
-    toolbar->repaint();
+    toolbar->update();
     isActiveState = true;
   } else {
-    if ( isActiveState )
+    if ( isActiveState ) {
       actionExitStop->setIcon(QIcon(QString::fromUtf8(":/data/img/exit.png")));
+      toolbar->update();
+      activityState = false;
+    }
     isActiveState = false;
   }
-  activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 }
 
 int MainWindow::sortCriteriaLogicalIndex() {
