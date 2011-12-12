@@ -405,6 +405,8 @@ QString &SoftwareList::getXmlData()
 #endif
 		if ( softwareList.isEmpty() )
 			softwareList << "NO_SOFTWARE_LIST";
+		else
+			softwareList.sort();
 		systemSoftwareListMap[systemName] = softwareList;
 #ifdef QMC2_DEBUG
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: systemSoftwareListMap[%1] = %2").arg(systemName).arg(softwareList.join(", ")));
