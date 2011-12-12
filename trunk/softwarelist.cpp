@@ -1247,10 +1247,15 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemExpanded(QTreeWidgetItem *item
 			SoftwareEntryXmlHandler xmlHandler(item);
 			QXmlSimpleReader xmlReader;
 			xmlReader.setContentHandler(&xmlHandler);
+			xmlReader.setFeature("http://xml.org/sax/features/namespaces", false);
+			xmlReader.setFeature("http://trolltech.com/xml/features/report-whitespace-only-CharData", false);
 			treeWidgetKnownSoftware->setSortingEnabled(false);
+			item->child(0)->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Searching"));
+			treeWidgetKnownSoftware->viewport()->update();
 			qApp->processEvents();
 			if ( !xmlReader.parse(xmlInputSource) )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
+				if ( !xmlHandler.success )
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
 			treeWidgetKnownSoftware->setSortingEnabled(true);
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't find XML data for software list '%1'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)));
@@ -1273,10 +1278,15 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemExpanded(QTreeWidgetItem *i
 			SoftwareEntryXmlHandler xmlHandler(item);
 			QXmlSimpleReader xmlReader;
 			xmlReader.setContentHandler(&xmlHandler);
+			xmlReader.setFeature("http://xml.org/sax/features/namespaces", false);
+			xmlReader.setFeature("http://trolltech.com/xml/features/report-whitespace-only-CharData", false);
 			treeWidgetFavoriteSoftware->setSortingEnabled(false);
+			item->child(0)->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Searching"));
+			treeWidgetFavoriteSoftware->viewport()->update();
 			qApp->processEvents();
 			if ( !xmlReader.parse(xmlInputSource) )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
+				if ( !xmlHandler.success )
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
 			treeWidgetFavoriteSoftware->setSortingEnabled(true);
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't find XML data for software list '%1'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)));
@@ -1299,10 +1309,15 @@ void SoftwareList::on_treeWidgetSearchResults_itemExpanded(QTreeWidgetItem *item
 			SoftwareEntryXmlHandler xmlHandler(item);
 			QXmlSimpleReader xmlReader;
 			xmlReader.setContentHandler(&xmlHandler);
+			xmlReader.setFeature("http://xml.org/sax/features/namespaces", false);
+			xmlReader.setFeature("http://trolltech.com/xml/features/report-whitespace-only-CharData", false);
 			treeWidgetSearchResults->setSortingEnabled(false);
+			item->child(0)->setText(QMC2_SWLIST_COLUMN_TITLE, tr("Searching"));
+			treeWidgetSearchResults->viewport()->update();
 			qApp->processEvents();
 			if ( !xmlReader.parse(xmlInputSource) )
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
+				if ( !xmlHandler.success )
+					qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: error while parsing XML data for software list entry '%1:%2'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)).arg(item->text(QMC2_SWLIST_COLUMN_NAME)));
 			treeWidgetSearchResults->setSortingEnabled(true);
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: couldn't find XML data for software list '%1'").arg(item->text(QMC2_SWLIST_COLUMN_LIST)));
@@ -2669,10 +2684,9 @@ SoftwareEntryXmlHandler::SoftwareEntryXmlHandler(QTreeWidgetItem *item)
 
 	parentTreeWidgetItem = (SoftwareItem *)item;
 	softwareName = parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_NAME);
-	softwareValid = false;
-	firstItem = true;
+	softwareValid = success = false;
 	partItem = dataareaItem = romItem = NULL;
-	elementCounter = 0;
+	elementCounter = animSequenceCounter = 0;
 }
 
 SoftwareEntryXmlHandler::~SoftwareEntryXmlHandler()
@@ -2690,35 +2704,43 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 #endif
 
 	if ( ++elementCounter % QMC2_SWLIST_LOAD_RESPONSE_LONG == 0 ) {
+		QTreeWidgetItem *item = parentTreeWidgetItem->child(0);
+		if ( elementCounter % QMC2_SWLIST_LOAD_ANIM_DELAY == 0 ) {
+			if ( item->text(QMC2_SWLIST_COLUMN_TITLE).startsWith(QObject::tr("Searching")) ) {
+				QString dot(".");
+				item->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Searching") + dot.repeated(++animSequenceCounter));
+			}
+		}
 		parentTreeWidgetItem->treeWidget()->viewport()->update();
 		qApp->processEvents();
 	}
 
-	if ( qName == "software" ) {
-		softwareValid = ( attributes.value("name") == softwareName );
-		if ( softwareValid )
-			qmc2SoftwareList->successfulLookups.clear();
-	}
+	if ( !softwareValid ) {
+		if ( qName == "software" ) {
+			softwareValid = ( attributes.value("name") == softwareName );
+			if ( softwareValid ) {
+				qmc2SoftwareList->successfulLookups.clear();
+				parentTreeWidgetItem->child(0)->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Updating"));
+				parentTreeWidgetItem->treeWidget()->viewport()->update();
+				qApp->processEvents();
+			}
+		}
 
-	if ( !softwareValid )
 		return true;
+	}
 
 	if ( qName == "part" ) {
 		if ( partItem == NULL ) {
-			if ( firstItem ) {
-				QTreeWidgetItem *childItem = parentTreeWidgetItem->takeChild(0);
-				delete childItem;
-				firstItem = false;
-			}
-			partItem = new SoftwareItem(parentTreeWidgetItem);
+			partItem = new SoftwareItem((QTreeWidget *)NULL);
 			partItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Part:") + " " + attributes.value("name"));
 			partItem->setText(QMC2_SWLIST_COLUMN_PART, attributes.value("name"));
 			partItem->setText(QMC2_SWLIST_COLUMN_INTERFACE, attributes.value("interface"));
 			partItem->setText(QMC2_SWLIST_COLUMN_LIST, parentTreeWidgetItem->text(QMC2_SWLIST_COLUMN_LIST));
 			QStringList mountList;
 			QString mountDev = qmc2SoftwareList->lookupMountDevice(partItem->text(QMC2_SWLIST_COLUMN_PART), partItem->text(QMC2_SWLIST_COLUMN_INTERFACE), &mountList);
+			QComboBox *comboBoxMountDevices = NULL;
 			if ( mountList.count() > 0 ) {
-				QComboBox *comboBoxMountDevices = new QComboBox(parentTreeWidgetItem->treeWidget());
+				comboBoxMountDevices = new QComboBox;
 				mountList.prepend(QObject::tr("Don't mount"));
 				mountList.prepend(QObject::tr("Auto mount"));
 				comboBoxMountDevices->insertItems(0, mountList);
@@ -2739,8 +2761,14 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 				partItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("No mount device"));
 				partItem->setText(QMC2_SWLIST_COLUMN_PUBLISHER, QObject::tr("Unmanaged"));
 			}
+			partItems << partItem;
+			comboBoxes[partItem] = comboBoxMountDevices;
 		}
-	} else if ( qName == "dataarea" ) {
+
+		return true;
+	}
+
+	if ( qName == "dataarea" ) {
 		if ( partItem != NULL ) {
 			dataareaItem = new SoftwareItem(partItem);
 			dataareaItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Data area:") + " " + attributes.value("name"));
@@ -2748,7 +2776,11 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 			if ( !s.isEmpty() )
 				dataareaItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Size:") + " " + s);
 		}
-	} else if ( qName == "diskarea" ) {
+
+		return true;
+	}
+
+	if ( qName == "diskarea" ) {
 		if ( partItem != NULL ) {
 			dataareaItem = new SoftwareItem(partItem);
 			dataareaItem->setText(QMC2_SWLIST_COLUMN_TITLE, QObject::tr("Disk area:") + " " + attributes.value("name"));
@@ -2756,7 +2788,11 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 			if ( !s.isEmpty() )
 				dataareaItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("Size:") + " " + s);
 		}
-	} else if ( qName == "rom" ) {
+
+		return true;
+	}
+
+	if ( qName == "rom" ) {
 		if ( dataareaItem != NULL ) {
 			QString romName = attributes.value("name");
 			if ( !romName.isEmpty() ) {
@@ -2770,7 +2806,11 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 					romItem->setText(QMC2_SWLIST_COLUMN_PUBLISHER, QObject::tr("CRC:") + " " + s);
 			}
 		}
-	} else if ( qName == "disk" ) {
+
+		return true;
+	}
+
+	if ( qName == "disk" ) {
 		if ( dataareaItem != NULL ) {
 			QString diskName = attributes.value("name");
 			if ( !diskName.isEmpty() ) {
@@ -2781,6 +2821,8 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 					romItem->setText(QMC2_SWLIST_COLUMN_NAME, QObject::tr("SHA1:") + " " + s);
 			}
 		}
+
+		return true;
 	}
 
 	return true;
@@ -2796,25 +2838,39 @@ bool SoftwareEntryXmlHandler::endElement(const QString &namespaceURI, const QStr
 		return true;
 
 	if ( qName == "software" ) {
-		softwareValid = false;
-	} else if ( qName == "part" ) {
-		partItem = NULL;
-	} else if ( qName == "dataarea" || qName == "diskarea" ) {
-		dataareaItem = NULL;
-	} else if ( qName == "rom" ) {
-		romItem = NULL;
+		// stop here...
+		parentTreeWidgetItem->treeWidget()->setUpdatesEnabled(false);
+		QTreeWidgetItem *childItem = parentTreeWidgetItem->takeChild(0);
+		delete childItem;
+		parentTreeWidgetItem->addChildren(partItems);
+		for (int i = 0; i < partItems.count(); i++) {
+			QTreeWidgetItem *item = partItems[i];
+			QComboBox *cb = comboBoxes[item];
+			if ( cb )
+				parentTreeWidgetItem->treeWidget()->setItemWidget(item, QMC2_SWLIST_COLUMN_PUBLISHER, cb);
+		}
+		parentTreeWidgetItem->treeWidget()->setUpdatesEnabled(true);
+		parentTreeWidgetItem->treeWidget()->viewport()->update();
+		qApp->processEvents();
+		success = true;
+		return false;
 	}
 
-	return true;
-}
+	if ( qName == "part" ) {
+		partItem = NULL;
+		return true;
+	}
 
-bool SoftwareEntryXmlHandler::characters(const QString &str)
-{
-#ifdef QMC2_DEBUG
-//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareEntryXmlHandler::characters(const QString &str = ...)"));
-#endif
+	if ( qName == "dataarea" || qName == "diskarea" ) {
+		dataareaItem = NULL;
+		return true;
+	}
 
-	//currentText += QString::fromUtf8(str.toAscii());
+	if ( qName == "rom" ) {
+		romItem = NULL;
+		return true;
+	}
+
 	return true;
 }
 
