@@ -823,9 +823,9 @@ void Gamelist::load()
     connect(loadProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(loadError(QProcess::ProcessError)));
     connect(loadProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(loadFinished(int, QProcess::ExitStatus)));
     connect(loadProc, SIGNAL(readyReadStandardOutput()), this, SLOT(loadReadyReadStandardOutput()));
-    connect(loadProc, SIGNAL(readyReadStandardError()), this, SLOT(loadReadyReadStandardError()));
     connect(loadProc, SIGNAL(started()), this, SLOT(loadStarted()));
     connect(loadProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(loadStateChanged(QProcess::ProcessState)));
+    loadProc->setProcessChannelMode(QProcess::MergedChannels);
     loadProc->start(command, args);
   }
 }
@@ -944,9 +944,9 @@ void Gamelist::verify(bool currentOnly)
   connect(verifyProc, SIGNAL(error(QProcess::ProcessError)), this, SLOT(verifyError(QProcess::ProcessError)));
   connect(verifyProc, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(verifyFinished(int, QProcess::ExitStatus)));
   connect(verifyProc, SIGNAL(readyReadStandardOutput()), this, SLOT(verifyReadyReadStandardOutput()));
-  connect(verifyProc, SIGNAL(readyReadStandardError()), this, SLOT(verifyReadyReadStandardError()));
   connect(verifyProc, SIGNAL(started()), this, SLOT(verifyStarted()));
   connect(verifyProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(verifyStateChanged(QProcess::ProcessState)));
+  verifyProc->setProcessChannelMode(QProcess::MergedChannels);
   verifyProc->start(command, args);
 }
 
@@ -2499,8 +2499,7 @@ void Gamelist::loadStarted()
 void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
 #ifdef QMC2_DEBUG
-  QProcess *proc = (QProcess *)sender();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadFinished(int exitCode = " + QString::number(exitCode) + ", QProcess::ExitStatus exitStatus = " + QString::number(exitStatus) + "): proc = 0x" + QString::number((ulong)proc, 16));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadFinished(int exitCode = " + QString::number(exitCode) + ", QProcess::ExitStatus exitStatus = " + QString::number(exitStatus) + "): proc = 0x" + QString::number((ulong)loadProc, 16));
 #endif
 
   if ( exitStatus != QProcess::NormalExit && !qmc2StopParser )
@@ -2562,13 +2561,11 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
 void Gamelist::loadReadyReadStandardOutput()
 {
-  QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadReadyReadStandardOutput(): proc = 0x" + QString::number((ulong)proc, 16));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadReadyReadStandardOutput(): proc = 0x" + QString::number((ulong)loadProc, 16));
 #endif
 
-  QString s = proc->readAllStandardOutput();
+  QString s = loadProc->readAllStandardOutput();
   bool endsWithSpace = s.endsWith(" ");
   bool startWithSpace = s.startsWith(" ");
 
@@ -2645,15 +2642,6 @@ void Gamelist::loadReadyReadStandardOutput()
 #endif
 }
 
-void Gamelist::loadReadyReadStandardError()
-{
-#ifdef QMC2_DEBUG
-  QProcess *proc = (QProcess *)sender();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadReadyReadStandardError(): proc = 0x" + QString::number((ulong)proc, 16));
-#endif
-
-}
-
 void Gamelist::loadError(QProcess::ProcessError processError)
 {
 #ifdef QMC2_DEBUG
@@ -2681,9 +2669,11 @@ void Gamelist::verifyStarted()
 void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
 #ifdef QMC2_DEBUG
-  QProcess *proc = (QProcess *)sender();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::verifyFinished(int exitCode = " + QString::number(exitCode) + ", QProcess::ExitStatus exitStatus = " + QString::number(exitStatus) + "): proc = 0x" + QString::number((ulong)proc, 16));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::verifyFinished(int exitCode = " + QString::number(exitCode) + ", QProcess::ExitStatus exitStatus = " + QString::number(exitStatus) + "): proc = 0x" + QString::number((ulong)verifyProc, 16));
 #endif
+
+  if ( !verifyProc->atEnd() )
+	  verifyReadyReadStandardOutput();
 
   bool cleanExit = true;
   if ( exitStatus != QProcess::NormalExit && !qmc2StopParser ) {
@@ -2975,16 +2965,14 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 
 void Gamelist::verifyReadyReadStandardOutput()
 {
-  QProcess *proc = (QProcess *)sender();
-
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::verifyReadyReadStandardOutput(): proc = 0x" + QString::number((ulong)proc, 16));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::verifyReadyReadStandardOutput(): proc = %1").arg((qulonglong) verifyProc));
 #endif
 
   // process rom verification output
   int i;
   QString romName, romState, romStateLong; 
-  QString s = verifyLastLine + proc->readAllStandardOutput();
+  QString s = verifyLastLine + verifyProc->readAllStandardOutput();
 #if defined(Q_WS_WIN)
   s.replace("\r\n", "\n"); // convert WinDOS's "0x0D 0x0A" to just "0x0A" 
 #endif
@@ -3225,15 +3213,6 @@ void Gamelist::verifyReadyReadStandardOutput()
 
   qmc2MainWindow->progressBarGamelist->setValue(numVerifyRoms);
   qmc2MainWindow->labelGamelistStatus->setText(status());
-}
-
-void Gamelist::verifyReadyReadStandardError()
-{
-#ifdef QMC2_DEBUG
-  QProcess *proc = (QProcess *)sender();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::verifyReadyReadStandardError(): proc = 0x" + QString::number((ulong)proc, 16));
-#endif
-
 }
 
 void Gamelist::verifyError(QProcess::ProcessError processError)
