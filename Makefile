@@ -908,7 +908,7 @@ $(PROJECT): $(PROJECT)-bin
 	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' < $< > $@
 
 ifeq '$(ARCH)' 'Darwin'
-$(QMAKEFILE): macx/Info.plist
+$(QMAKEFILE): arch/Darwin/Info.plist
 endif
 
 ifeq '$(QUIET)' '1'
@@ -1110,7 +1110,7 @@ ifeq '$(ARCH)' 'Darwin'
 	@$(RM) $(wildcard $(dir $(QMAKEFILE))*.mode* $(dir $(QMAKEFILE))*.pbxuser)
 	@# this shouldn't be necessary, but qmake doesn't add a proper clean target to the project
 	@$(RM) $(patsubst %.ui,ui_%.h,$(wildcard *.ui) $(notdir $(wildcard */*.ui)))
-	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp macx/Info.plist Info.plist Makefile.qmake.xcodeproj/*
+	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp arch/Darwin/Info.plist Info.plist Makefile.qmake.xcodeproj/*
 	@$(RMDIR) Makefile.qmake.xcodeproj
 else
 ifneq '$(ARCH)' 'Windows'
@@ -1142,7 +1142,7 @@ ifeq '$(ARCH)' 'Darwin'
 	@$(RM) $(wildcard $(dir $(QMAKEFILE))*.mode* $(dir $(QMAKEFILE))*.pbxuser) > /dev/null
 	@# this shouldn't be necessary, but qmake doesn't add a proper clean target to the project
 	@$(RM) $(patsubst %.ui,ui_%.h,$(wildcard *.ui) $(notdir $(wildcard */*.ui))) > /dev/null
-	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp macx/Info.plist Info.plist Makefile.qmake.xcodeproj/* > /dev/null
+	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp arch/Darwin/Info.plist Info.plist Makefile.qmake.xcodeproj/* > /dev/null
 	@$(RMDIR) Makefile.qmake.xcodeproj > /dev/null
 else
 ifneq '$(ARCH)' 'Windows'

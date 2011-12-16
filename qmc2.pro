@@ -183,7 +183,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			greaterThan(QMC2_MAC_UNIVERSAL, 0) {
 				CONFIG += x86 ppc
 			}
-			QMAKE_INFO_PLIST = macx/Info.plist
+			QMAKE_INFO_PLIST = arch/Darwin/Info.plist
 		} else {
 			!win32 {
 				LIBS += -lSDL -lz -lX11
