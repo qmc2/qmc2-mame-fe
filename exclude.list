@@ -16,6 +16,8 @@ qmc2/arcade/.svn/text-base/arcadesetupdialog.h.svn-base
 qmc2/arcade/.svn/text-base/arcadesetupdialog.ui.svn-base
 qmc2/arcade/.svn/text-base/arcadeview.cpp.svn-base
 qmc2/arcade/.svn/text-base/arcadeview.h.svn-base
+qmc2/arch/Darwin/.svn
+qmc2/arch/Darwin/.svn/text-base/Info.plist.in.svn-base
 qmc2/arch/Linux/.svn
 qmc2/arch/Linux/.svn/prop-base/Debian_5.0.cfg.svn-base
 qmc2/arch/Linux/.svn/prop-base/Debian_6.0.1.cfg.svn-base
@@ -2763,8 +2765,6 @@ qmc2/inst/.svn
 qmc2/inst/.svn/text-base/qmc2.desktop.template.svn-base
 qmc2/inst/.svn/text-base/qmc2.ini.template.svn-base
 qmc2/inst/.svn/text-base/romdb_mysql.sql.svn-base
-qmc2/macx/.svn
-qmc2/macx/.svn/text-base/Info.plist.in.svn-base
 qmc2/minizip/.svn
 qmc2/minizip/.svn/text-base/crypt.h.svn-base
 qmc2/minizip/.svn/text-base/ioapi.c.svn-base
