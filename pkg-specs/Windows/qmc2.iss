@@ -38,3 +38,13 @@ Name: "{group}\{cm:ProgramOnTheWeb,QMC2}"; Filename: "http://qmc2.arcadehits.net
 Name: "{group}\{cm:UninstallProgram,QMC2}"; Filename: "{uninstallexe}"
 Name: "{group}\QMC2 (M.A.M.E.)"; Filename: "{app}\qmc2-mame.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\mame.ico"
 Name: "{group}\QMC2 (M.E.S.S.)"; Filename: "{app}\qmc2-mess.exe"; WorkingDir: "{app}"; IconFilename: "{app}\data\img\mess.ico"
+
+[CustomMessages]
+English.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
+French.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
+German.InstallVCRuntimeEnv=VC++ 2010 Laufzeit-Umgebung installieren
+Polish.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
+Portuguese.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
+
+[Run]
+Filename: "{app}\vcredist\vcredist_x86.exe"; Description: "{cm:InstallVCRuntimeEnv}"; Flags: postinstall runascurrentuser nowait unchecked skipifdoesntexist
