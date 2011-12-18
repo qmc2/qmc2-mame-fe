@@ -1,15 +1,8 @@
 #ifndef _ROMALYZER_H_
 #define _ROMALYZER_H_
 
-#include <QXmlDefaultHandler>
-#include <QTreeWidgetItem>
-#include <QByteArray>
-#include <QStringList>
-#include <QTimer>
-#include <QTime>
-#include <QProcess>
-#include <QMap>
-#include <QMenu>
+#include <QtGui>
+#include <QtXml>
 #include "romdbmgr.h"
 
 #include "ui_romalyzer.h"
