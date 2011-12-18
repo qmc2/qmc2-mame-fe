@@ -99,8 +99,6 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	connect(videoPlayer->mediaObject(), SIGNAL(bufferStatus(int)), this, SLOT(videoBufferStatus(int)));
 	connect(videoPlayer, SIGNAL(finished()), this, SLOT(videoFinished()));
 
-	adjustIconSizes();
-
 	progressBarBufferStatus->setValue(0);
 	progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
 
@@ -218,6 +216,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 
 	lineEditSearchString->setPlaceholderText(tr("Enter search string"));
 
+	QTimer::singleShot(0, this, SLOT(adjustIconSizes()));
 	QTimer::singleShot(100, this, SLOT(init()));
 }
 
@@ -228,6 +227,10 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 #endif
 
 	// clean up
+	if ( videoPlayer ) {
+		disconnect(videoPlayer);
+		delete videoPlayer;
+	}
 	if ( menuAttachedVideos ) {
 		disconnect(menuAttachedVideos);
 		delete menuAttachedVideos;
@@ -271,10 +274,6 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 	if ( imageDownloadManager ) {
 		disconnect(imageDownloadManager);
 		delete imageDownloadManager;
-	}
-	if ( videoPlayer ) {
-		disconnect(videoPlayer);
-		delete videoPlayer;
 	}
 }
 
@@ -333,6 +332,9 @@ void YouTubeVideoPlayer::loadNullVideo()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::loadNullVideo()");
 #endif
+
+	if ( forcedExit )
+		return;
 
 	currentVideoID.clear();
 	currentVideoAuthor.clear();
@@ -650,6 +652,9 @@ void YouTubeVideoPlayer::init()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::init()");
 #endif
 
+	if ( forcedExit )
+		return;
+
 	QStringList attachedVideos = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID), QStringList()).toStringList();
 	foreach(QString vid, attachedVideos ) {
 		if ( qmc2YouTubeVideoInfoMap.contains(vid) ) {
@@ -659,7 +664,8 @@ void YouTubeVideoPlayer::init()
 			attachVideoById(vid); // this is more expensive
 	}
 
-	QTimer::singleShot(1000, this, SLOT(updateAttachedVideoInfoImages()));
+	if ( forcedExit )
+		return;
 
 	if ( checkBoxPlayOMatic->isChecked() ) {
 		QList<QListWidgetItem *> il = listWidgetAttachedVideos->findItems("*", Qt::MatchWildcard);
@@ -670,6 +676,8 @@ void YouTubeVideoPlayer::init()
 			QTimer::singleShot(0, this, SLOT(loadNullVideo()));
 	} else
 		QTimer::singleShot(0, this, SLOT(loadNullVideo()));
+
+	QTimer::singleShot(100, this, SLOT(updateAttachedVideoInfoImages()));
 }
 
 void YouTubeVideoPlayer::adjustIconSizes()
@@ -677,6 +685,9 @@ void YouTubeVideoPlayer::adjustIconSizes()
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::adjustIconSizes()"));
 #endif
+
+	if ( forcedExit )
+		return;
 
 	QFont f;
 	f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());

@@ -3568,13 +3568,14 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       if ( qmc2CurrentItem != qmc2LastYouTubeItem ) {
           tabYouTube->setUpdatesEnabled(false);
           if ( qmc2YouTubeWidget ) {
+            qmc2YouTubeWidget->saveSettings();
+            qmc2YouTubeWidget->forcedExit = true;
             if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
               qmc2YouTubeWidget->videoPlayer->stop();
-            qmc2YouTubeWidget->forcedExit = true;
             QLayout *vbl = tabYouTube->layout();
             if ( vbl ) delete vbl;
-	    qmc2YouTubeWidget->saveSettings();
-            qmc2YouTubeWidget->deleteLater();
+            qmc2YouTubeWidget->close();
+            delete qmc2YouTubeWidget;
             qmc2YouTubeWidget = NULL;
           }
           gridLayout->getContentsMargins(&left, &top, &right, &bottom);
@@ -5300,6 +5301,28 @@ void MainWindow::closeEvent(QCloseEvent *e)
   }
 #endif
 
+#if QMC2_USE_PHONON_API
+  log(QMC2_LOG_FRONTEND, tr("disconnecting audio source from audio sink"));
+  phononAudioPath.disconnect();
+  if ( qmc2AudioEffectDialog ) {
+    log(QMC2_LOG_FRONTEND, tr("destroying audio effects dialog"));
+    qmc2AudioEffectDialog->close();
+    delete qmc2AudioEffectDialog;
+  }
+#if defined(QMC2_YOUTUBE_ENABLED)
+  if ( qmc2YouTubeWidget ) {
+    log(QMC2_LOG_FRONTEND, tr("destroying YouTube video widget"));
+    qmc2YouTubeWidget->saveSettings();
+    qmc2YouTubeWidget->forcedExit = true;
+    if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
+      qmc2YouTubeWidget->videoPlayer->stop();
+    qmc2YouTubeWidget->close();
+    delete qmc2YouTubeWidget;
+    qmc2YouTubeWidget = NULL;
+  }
+#endif
+#endif
+
   if ( listWidgetFavorites->count() > 0 )
     qmc2Gamelist->saveFavorites();
 
@@ -5467,27 +5490,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #endif
   delete qmc2Gamelist;
 
-#if QMC2_USE_PHONON_API
-  log(QMC2_LOG_FRONTEND, tr("disconnecting audio source from audio sink"));
-  phononAudioPath.disconnect();
-  if ( qmc2AudioEffectDialog ) {
-    log(QMC2_LOG_FRONTEND, tr("destroying audio effects dialog"));
-    qmc2AudioEffectDialog->close();
-    delete qmc2AudioEffectDialog;
-  }
-#if defined(QMC2_YOUTUBE_ENABLED)
-  if ( qmc2YouTubeWidget ) {
-    qmc2YouTubeWidget->saveSettings();
-    if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
-      qmc2YouTubeWidget->videoPlayer->stop();
-    qmc2YouTubeWidget->forcedExit = true;
-    log(QMC2_LOG_FRONTEND, tr("destroying YouTube video widget"));
-    delete qmc2YouTubeWidget;
-  }
-#endif
-  qApp->processEvents();
-#endif
-
   if ( qmc2Preview ) {
     log(QMC2_LOG_FRONTEND, tr("destroying preview"));
     delete qmc2Preview;
@@ -5637,9 +5639,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
   qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), false);
 
+  qInstallMsgHandler(0);
   delete qmc2KeyPressFilter;
   delete qmc2Options;
-  qInstallMsgHandler(0);
   e->accept();
 }
 
