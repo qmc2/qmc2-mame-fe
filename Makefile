@@ -1235,6 +1235,9 @@ ifneq '$(ARCH)' 'Windows'
 	@echo "os-detect       Detect host OS and distribution / version"
 	@echo "snap            Create source distribution archives with date and time stamp"
 endif
+ifeq '$(ARCH)' 'Darwin'
+	@echo "xcode-project   Create XCode project and stop, alias: xcp"
+endif
 	@echo ""
 ifneq '$(ARCH)' 'Windows'
 	@$(MAKE) config | $(GREP) -v "Entering directory" | $(GREP) -v "Leaving directory"
