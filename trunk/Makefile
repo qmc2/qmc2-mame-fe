@@ -903,11 +903,11 @@ bin: $(PROJECT)-bin
 
 $(PROJECT): $(PROJECT)-bin
 
+ifeq '$(ARCH)' 'Darwin'
 # put the version and SCM revision in the Info.plist for OS X
 %.plist: %.plist.in
 	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' < $< > $@
 
-ifeq '$(ARCH)' 'Darwin'
 $(QMAKEFILE): arch/Darwin/Info.plist
 endif
 
@@ -1345,6 +1345,11 @@ ifneq '$(SVN_REV)' '0'
 else
 	@echo "The SVN revision of your working copy could not be determined."
 endif
+endif
+
+ifeq '$(ARCH)' 'Darwin'
+xcp: $(QMAKEFILE)
+xcode-project: $(QMAKEFILE)
 endif
 
 # process translations
