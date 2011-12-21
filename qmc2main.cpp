@@ -9859,5 +9859,10 @@ int main(int argc, char *argv[])
   qmc2GlobalEmulatorOptions->pseudoConstructor();
 
   // finally run the application
-  return qmc2App.exec();
+  int retCode = qmc2App.exec();
+
+  // wait for all application threads to finish
+  QThreadPool::globalInstance()->waitForDone();
+
+  return retCode;
 }
