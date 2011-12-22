@@ -2399,6 +2399,7 @@ void MainWindow::on_actionFullscreenToggle_activated()
   if ( qmc2YouTubeWidget )
 	  if ( qmc2YouTubeWidget->videoPlayer->videoWidget()->isFullScreen() ) {
 		  qmc2YouTubeWidget->videoPlayer->videoWidget()->setFullScreen(false);
+		  qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
 		  qApp->processEvents();
 		  if ( windowState() & Qt::WindowFullScreen )
 			  actionFullscreenToggle->setChecked(true);
@@ -5317,7 +5318,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     if ( qmc2YouTubeWidget->videoPlayer->isPlaying() || qmc2YouTubeWidget->videoPlayer->isPaused() )
       qmc2YouTubeWidget->videoPlayer->stop();
     qmc2YouTubeWidget->close();
-    delete qmc2YouTubeWidget;
+    qmc2YouTubeWidget->deleteLater();
     qmc2YouTubeWidget = NULL;
   }
 #endif

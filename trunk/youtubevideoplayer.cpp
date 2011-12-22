@@ -37,6 +37,8 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	videoPlayer->videoWidget()->setScaleMode(Phonon::VideoWidget::FitInView);
 	videoPlayer->videoWidget()->setAspectRatio(Phonon::VideoWidget::AspectRatioAuto);
 
+	videoOverlayWidget = new VideoOverlayWidget(videoPlayer->videoWidget());
+
 	toolButtonPlayPause->setEnabled(false);
 	toolButtonSearch->setEnabled(false);
 	comboBoxPreferredFormat->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/PreferredFormat", YOUTUBE_FORMAT_MP4_1080P_INDEX).toInt());
@@ -227,6 +229,10 @@ YouTubeVideoPlayer::~YouTubeVideoPlayer()
 #endif
 
 	// clean up
+	if ( videoOverlayWidget ) {
+		disconnect(videoOverlayWidget);
+		delete videoOverlayWidget;
+	}
 	if ( videoPlayer ) {
 		disconnect(videoPlayer);
 		delete videoPlayer;
@@ -562,7 +568,15 @@ void YouTubeVideoPlayer::goFullScreen()
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: YouTubeVideoPlayer::goFullScreen()");
 #endif
 
-	videoPlayer->videoWidget()->setFullScreen(!videoPlayer->videoWidget()->isFullScreen());
+	if ( !videoPlayer->videoWidget()->isFullScreen() ) {
+		videoPlayer->videoWidget()->setFullScreen(true);
+		QString keySeq = qmc2CustomShortcutMap["F11"];
+		if ( !keySeq.isEmpty() )
+			videoOverlayWidget->showMessage(tr("Full-screen mode -- press %1 to return to windowed mode").arg(keySeq), 4000);
+		else
+			videoOverlayWidget->showMessage(tr("Full-screen mode -- press toggle-key to return to windowed mode"), 4000);
+	} else
+		videoPlayer->videoWidget()->setFullScreen(false);
 }
 
 void YouTubeVideoPlayer::attachVideoById(QString id)
@@ -751,6 +765,7 @@ void YouTubeVideoPlayer::videoBufferStatus(int percentFilled)
 
 	progressBarBufferStatus->setValue(percentFilled);
 	progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(percentFilled));
+	videoOverlayWidget->showMessage(tr("Buffering: %1%").arg(percentFilled));
 }
 
 void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State oldState)
@@ -771,6 +786,7 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 			progressBarBufferStatus->setValue(0);
 			progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
 		case Phonon::BufferingState:
+			videoOverlayWidget->showMessage(tr("Loading"));
 			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
 			toolButtonPlayPause->setEnabled(false);
 			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
@@ -787,6 +803,7 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 			toolButtonPlayPause->setEnabled(true);
 			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_play.png")));
 			videoMenuPlayPauseAction->setEnabled(true);
+			videoOverlayWidget->showMessage(tr("Playing"));
 			break;
 		case Phonon::PausedState:
 			if ( loadOnly ) {
@@ -797,9 +814,27 @@ void YouTubeVideoPlayer::videoStateChanged(Phonon::State newState, Phonon::State
 			toolButtonPlayPause->setEnabled(true);
 			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_pause.png")));
 			videoMenuPlayPauseAction->setEnabled(true);
+			videoOverlayWidget->showMessage(tr("Paused"));
 			break;
 		case Phonon::ErrorState:
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: playback error: %1").arg(videoPlayer->mediaObject()->errorString()));
+			videoOverlayWidget->showMessage(tr("Video playback error: %1").arg(videoPlayer->mediaObject()->errorString()), 4000);
+			if ( loadOnly ) {
+				loadOnly = false;
+				videoPlayer->audioOutput()->setMuted(isMuted);
+			}
+			toolButtonPlayPause->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
+			toolButtonPlayPause->setEnabled(!currentVideoID.isEmpty());
+			videoMenuPlayPauseAction->setIcon(QIcon(QString::fromUtf8(":/data/img/media_stop.png")));
+			videoMenuPlayPauseAction->setEnabled(!currentVideoID.isEmpty());
+			labelPlayingTime->setText("--:--:--");
+			// serious hack to access the seekSlider's slider object
+			privateSeekSlider = seekSlider->findChild<QSlider *>();
+			if ( privateSeekSlider )
+				privateSeekSlider->setValue(0);
+			progressBarBufferStatus->setValue(0);
+			progressBarBufferStatus->setToolTip(tr("Current buffer fill level: %1%").arg(0));
+			break;
 		case Phonon::StoppedState:
 		default:
 			if ( loadOnly ) {
@@ -862,6 +897,8 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 #endif
 
 	static QUrl videoUrl;
+
+	videoOverlayWidget->showMessage(tr("Fetching info for video ID '%1'").arg(videoID));
 
 	availableFormats.clear();
 	currentFormat = bestAvailableFormat = YOUTUBE_FORMAT_UNKNOWN_INDEX;
@@ -949,6 +986,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 
 		if ( status != "ok" ) {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: video info error: ID = '%1', status = '%2', errorCode = '%3', errorText = '%4'").arg(videoID).arg(status).arg(errorcode).arg(errortext));
+			videoOverlayWidget->showMessage(tr("Video info error: %1").arg(errortext), 4000);
 			return QString();
 		}
 
@@ -1018,6 +1056,7 @@ QUrl YouTubeVideoPlayer::getVideoStreamUrl(QString videoID, QStringList *videoIn
 		return QString();
 	} else if ( timeoutOccurred ) {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: video info error: timeout occurred"));
+		videoOverlayWidget->showMessage(tr("Video info error: timeout occurred"), 4000);
 		return QString();
 	}
 
@@ -1054,6 +1093,7 @@ void YouTubeVideoPlayer::videoInfoError(QNetworkReply::NetworkError error)
 
 	viError = true;
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: video info error: %1").arg(videoInfoReply->errorString()));
+	videoOverlayWidget->showMessage(tr("Video info error: %1").arg(videoInfoReply->errorString()), 4000);
 }
 
 void YouTubeVideoPlayer::videoInfoFinished()
@@ -1113,13 +1153,13 @@ void YouTubeVideoPlayer::on_toolBox_currentChanged(int page)
 #endif
 
 	switch ( page ) {
-		case YOUTUBE_ATTACHED_VIDEOS_PAGE:
-			break;
 		case YOUTUBE_VIDEO_PLAYER_PAGE:
 			break;
+		case YOUTUBE_ATTACHED_VIDEOS_PAGE:
 		case YOUTUBE_SEARCH_VIDEO_PAGE:
-			break;
 		default:
+			videoOverlayWidget->clearMessage();
+			break;
 			break;
 	}
 }
@@ -1418,6 +1458,7 @@ void YouTubeVideoPlayer::videoImageError(QNetworkReply::NetworkError error)
 
 	vimgError = true;
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("video player: video image info error: %1").arg(videoInfoReply->errorString()));
+	videoOverlayWidget->showMessage(tr("Video info error: %1").arg(videoInfoReply->errorString()), 4000);
 }
 
 void YouTubeVideoPlayer::videoImageFinished()

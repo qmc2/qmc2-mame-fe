@@ -3,8 +3,10 @@
 #ifndef _YOUTUBEVIDEOPLAYER_H_
 #define _YOUTUBEVIDEOPLAYER_H_
 
+#include <QtGui>
+#include <QtXml>
 #include <QtNetwork>
-#include <QXmlDefaultHandler>
+
 #include "ui_youtubevideoplayer.h"
 #include "videoitemwidget.h"
 
@@ -49,6 +51,83 @@ class YouTubeVideoInfo
 
 		YouTubeVideoInfo() { ; }
 		YouTubeVideoInfo(QString t, QString a) { title = t; author = a; }
+};
+
+class VideoOverlayWidget : public QWidget
+{
+	Q_OBJECT
+
+	public:
+		VideoOverlayWidget(QWidget *parent = 0) : QWidget(parent, Qt::Tool | Qt::CustomizeWindowHint | Qt::FramelessWindowHint | Qt::X11BypassWindowManagerHint | Qt::WindowStaysOnTopHint)
+		{
+			hide();
+			setAttribute(Qt::WA_TransparentForMouseEvents);
+			setAttribute(Qt::WA_NoSystemBackground);
+			setAttribute(Qt::WA_TranslucentBackground);
+			setAttribute(Qt::WA_ShowWithoutActivating);
+			connect(&clearMessageTimer, SIGNAL(timeout()), this, SLOT(clearMessage()));
+		}
+
+	public slots:
+		void showMessage(QString message, int timeout = 2000)
+		{
+			if ( parentWidget()->isVisible() ) {
+				QRect r;
+				messageText = message;
+				if ( parentWidget()->isFullScreen() )
+					r = qApp->desktop()->rect();
+				else
+					r = parentWidget()->rect();
+				QFont f(qApp->font());
+				f.setWeight(QFont::Bold);
+				QFontMetrics fm(f);
+				QRect adjRect = fm.boundingRect(r, Qt::AlignCenter, "W");
+				r = fm.boundingRect(r, Qt::AlignCenter | Qt::TextWordWrap, messageText);
+				r.adjust(-adjRect.width()*2, -adjRect.height(), +adjRect.width()*2, +adjRect.height());
+				int myHeight = r.height();
+				if ( parentWidget()->isFullScreen() )
+					r.setBottom(qApp->desktop()->rect().bottom());
+				else
+					r.setBottom(parentWidget()->rect().bottom());
+				r.setTop(r.bottom() - myHeight);
+				resize(r.size());
+				move(parentWidget()->mapToGlobal(r.topLeft()));
+				show();
+				repaint();
+				clearMessageTimer.start(timeout);
+			} else
+				hide();
+		}
+
+		void clearMessage()
+		{
+			clearMessageTimer.stop();
+			messageText.clear();
+			hide();
+		}
+
+	protected:
+		void paintEvent(QPaintEvent *)
+		{
+			if ( !messageText.isEmpty() && parentWidget()->isVisible() ) {
+				QPainter p;
+				p.begin(this);
+				QRect r = rect();
+				QFont f(qApp->font());
+				f.setWeight(QFont::Bold);
+				p.setFont(f);
+				QFontMetrics fm(f);
+				p.fillRect(r, QBrush(QColor(0, 0, 0, 128), Qt::SolidPattern));
+				p.setPen(QPen(QColor(255, 255, 255, 255)));
+				p.drawText(r, Qt::AlignCenter | Qt::TextWordWrap, messageText);
+				p.end();
+			} else
+				hide();
+		}
+
+	private:
+		QString messageText;
+		QTimer clearMessageTimer;
 };
 
 class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
@@ -98,6 +177,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QMenu *menuSearchResults;
 		QMenu *menuVideoPlayer;
 		QMenu *menuSuggestButton;
+		VideoOverlayWidget *videoOverlayWidget;
 
 		QUrl getVideoStreamUrl(QString, QStringList *videoInfoStringList = NULL, bool videoInfoOnly = false);
 		QString indexToFormat(int);
