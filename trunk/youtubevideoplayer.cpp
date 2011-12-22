@@ -669,6 +669,8 @@ void YouTubeVideoPlayer::init()
 	if ( forcedExit )
 		return;
 
+	videoPlayer->videoWidget()->resize(videoPlayer->size());
+
 	QStringList attachedVideos = qmc2Config->value(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID), QStringList()).toStringList();
 	foreach(QString vid, attachedVideos ) {
 		if ( qmc2YouTubeVideoInfoMap.contains(vid) ) {

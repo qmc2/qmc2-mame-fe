@@ -3594,6 +3594,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 
     case QMC2_SOFTWARE_LIST_INDEX:
+#if defined(QMC2_YOUTUBE_ENABLED)
+      if ( qmc2YouTubeWidget )
+	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+#endif
       if ( qmc2SoftwareList ) {
         if ( qmc2SoftwareList->isLoading ) {
           qmc2SoftwareList->interruptLoad = true;
@@ -3627,6 +3631,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 
 #if defined(QMC2_EMUTYPE_MESS)
     case QMC2_DEVICE_INDEX:
+#if defined(QMC2_YOUTUBE_ENABLED)
+      if ( qmc2YouTubeWidget )
+	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+#endif
       if ( qmc2CurrentItem != qmc2LastDeviceConfigItem ) {
         tabDevices->setUpdatesEnabled(false);
         if ( qmc2MESSDeviceConfigurator ) {
@@ -3653,6 +3661,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 
 #elif defined(QMC2_EMUTYPE_MAME)
     case QMC2_MAWS_INDEX:
+#if defined(QMC2_YOUTUBE_ENABLED)
+      if ( qmc2YouTubeWidget )
+	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+#endif
       if ( qmc2CurrentItem != qmc2LastMAWSItem ) {
         tabMAWS->setUpdatesEnabled(false);
         if ( qmc2MAWSLookup ) {
@@ -3725,6 +3737,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 #endif
 
     case QMC2_CONFIG_INDEX:
+#if defined(QMC2_YOUTUBE_ENABLED)
+      if ( qmc2YouTubeWidget )
+	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+#endif
       if ( qmc2CurrentItem != qmc2LastConfigItem ) {
         QWidget *configWidget = qmc2DetailSetup->tabWidgetsMap[QMC2_CONFIG_INDEX];
 
@@ -3863,6 +3879,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       break;
 
     case QMC2_GAMEINFO_INDEX:
+#if defined(QMC2_YOUTUBE_ENABLED)
+      if ( qmc2YouTubeWidget )
+	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+#endif
       if ( qmc2CurrentItem != qmc2LastGameInfoItem ) {
         tabGameInfo->setUpdatesEnabled(false);
         QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
@@ -3918,6 +3938,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       break;
 
     case QMC2_EMUINFO_INDEX:
+#if defined(QMC2_YOUTUBE_ENABLED)
+      if ( qmc2YouTubeWidget )
+	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+#endif
       if ( qmc2CurrentItem != qmc2LastEmuInfoItem ) {
         tabEmuInfo->setUpdatesEnabled(false);
         QString gameName = qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
@@ -3955,6 +3979,10 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
       break;
 
     default:
+#if defined(QMC2_YOUTUBE_ENABLED)
+      if ( qmc2YouTubeWidget )
+	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+#endif
       // if local emulator options exits and they are no longer needed, close & destroy them...
       if ( qmc2EmulatorOptions ) {
         QWidget *configWidget = qmc2DetailSetup->tabWidgetsMap[QMC2_CONFIG_INDEX];
