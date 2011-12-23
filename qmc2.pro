@@ -177,6 +177,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 
 		# platform specific stuff
 		macx {
+			QMAKESPEC = macx-xcode
 			OBJECTIVE_SOURCES += SDLMain_tmpl.m
 			HEADERS += SDLMain_tmpl.h
 			LIBS += -framework SDL -framework Cocoa -lz
