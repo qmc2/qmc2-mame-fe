@@ -2768,6 +2768,18 @@ bool SoftwareEntryXmlHandler::startElement(const QString &namespaceURI, const QS
 		return true;
 	}
 
+	if ( qName == "feature" ) {
+		if ( partItem != NULL ) {
+			if ( attributes.value("name") == "part id" ) {
+				QString partTitle = attributes.value("value");
+				if ( !partTitle.isEmpty() )
+					partItem->setText(QMC2_SWLIST_COLUMN_TITLE, partItem->text(QMC2_SWLIST_COLUMN_TITLE) + " (" + partTitle + ")");
+			}
+		}
+
+		return true;
+	}
+
 	if ( qName == "dataarea" ) {
 		if ( partItem != NULL ) {
 			dataareaItem = new SoftwareItem(partItem);
