@@ -168,6 +168,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		bool isMuted;
 		bool pausedByHideEvent;
 		bool forcedExit;
+		bool fullyLoaded;
 		QSlider *privateSeekSlider;
 		QToolButton *privateMuteButton;
 		QList<int> availableFormats;

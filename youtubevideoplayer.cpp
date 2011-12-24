@@ -86,7 +86,7 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 		<< tr("MP4 1080P")
 		<< tr("MP4 3072P");
 
-	forcedExit = loadOnly = isMuted = pausedByHideEvent = viError = viFinished = vimgError = vimgFinished = false;
+	forcedExit = loadOnly = isMuted = pausedByHideEvent = viError = viFinished = vimgError = vimgFinished = fullyLoaded = false;
 	videoInfoReply = videoImageReply = searchRequestReply = NULL;
 	videoInfoManager = videoImageManager = searchRequestManager = NULL;
 	currentFormat = bestAvailableFormat = YOUTUBE_FORMAT_UNKNOWN_INDEX;
@@ -299,16 +299,18 @@ void YouTubeVideoPlayer::saveSettings()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SuggestorAppendString", suggestorAppendString);
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "YouTubeWidget/SearchResultsPerRequest", spinBoxResultsPerRequest->value());
 
-	QList<QListWidgetItem *> il = listWidgetAttachedVideos->findItems("*", Qt::MatchWildcard);
-	QStringList attachedVideos;
-	foreach (QListWidgetItem *item, il) {
-		VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
-		attachedVideos << viw->videoID;
+	if ( fullyLoaded ) {
+		QList<QListWidgetItem *> il = listWidgetAttachedVideos->findItems("*", Qt::MatchWildcard);
+		QStringList attachedVideos;
+		foreach (QListWidgetItem *item, il) {
+			VideoItemWidget *viw = (VideoItemWidget *)listWidgetAttachedVideos->itemWidget(item);
+			attachedVideos << viw->videoID;
+		}
+		if ( attachedVideos.isEmpty() )
+			qmc2Config->remove(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID));
+		else
+			qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID), attachedVideos);
 	}
-	if ( attachedVideos.isEmpty() )
-		qmc2Config->remove(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID));
-	else
-		qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "YouTubeVideos/%1").arg(mySetID), attachedVideos);
 
 	// serious hack to access the volume slider's tool button object
 	privateMuteButton = volumeSlider->findChild<QToolButton *>();
@@ -693,6 +695,7 @@ void YouTubeVideoPlayer::init()
 	} else
 		QTimer::singleShot(0, this, SLOT(loadNullVideo()));
 
+	fullyLoaded = true;
 	QTimer::singleShot(100, this, SLOT(updateAttachedVideoInfoImages()));
 }
 
