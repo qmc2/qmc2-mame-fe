@@ -449,9 +449,6 @@ QString &SoftwareList::getXmlData()
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_FAVORITES_PAGE, tr("Favorites (%1)").arg(swlString));
 		toolBoxSoftwareList->setItemText(QMC2_SWLIST_SEARCH_PAGE, tr("Search (%1)").arg(swlString));
 		toolBoxSoftwareList->setEnabled(true);
-		toolButtonExport->setEnabled(true);
-		toolButtonToggleSoftwareInfo->setEnabled(true);
-		toolButtonCompatFilterToggle->setEnabled(true);
 
 #if defined(QMC2_EMUTYPE_MESS)
 		// load available device configurations, if any...
@@ -776,6 +773,7 @@ bool SoftwareList::load()
 		}
 		actionSaveFavoritesToFile->setEnabled(softwareNames.count() > 0);
 		toolButtonFavoritesOptions->setEnabled(true);
+		toolButtonExport->setEnabled(true);
 	}
 
 	treeWidgetKnownSoftware->setSortingEnabled(true);
@@ -786,6 +784,8 @@ bool SoftwareList::load()
 	treeWidgetSearchResults->header()->setSortIndicatorShown(true);
 
 	toolButtonReload->setEnabled(true);
+	toolButtonToggleSoftwareInfo->setEnabled(true);
+	toolButtonCompatFilterToggle->setEnabled(true);
 
 	isLoading = false;
 	fullyLoaded = !interruptLoad;
