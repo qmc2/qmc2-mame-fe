@@ -172,6 +172,8 @@ void ROMAlyzer::adjustIconSizes()
   f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
   QFontMetrics fm(f);
   QSize iconSize = QSize(fm.height() - 2, fm.height() - 2);
+  QSize iconSizeMiddle = iconSize + QSize(2, 2);
+  QSize iconSizeLarge = iconSize + QSize(4, 4);
   pushButtonAnalyze->setIconSize(iconSize);
   pushButtonPause->setIconSize(iconSize);
   pushButtonClose->setIconSize(iconSize);
@@ -186,7 +188,7 @@ void ROMAlyzer::adjustIconSizes()
 #if defined(QMC2_DATABASE_ENABLED)
   toolButtonBrowseDatabaseOutputPath->setIconSize(iconSize);
 #endif
-  treeWidgetChecksums->setIconSize(iconSize);
+  treeWidgetChecksums->setIconSize(iconSizeMiddle);
   pushButtonChecksumWizardSearch->setIconSize(iconSize);
 }
 

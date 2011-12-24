@@ -44,6 +44,29 @@
       </widget>
      </item>
      <item>
+      <widget class="QToolButton" name="toolButtonCompatFilterToggle">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Toggle filtering of compatible software titles</string>
+       </property>
+       <property name="statusTip">
+        <string>Toggle filtering of compatible software titles</string>
+       </property>
+       <property name="icon">
+        <iconset resource="qmc2.qrc">
+         <normaloff>:/data/img/filter.png</normaloff>:/data/img/filter.png</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QToolButton" name="toolButtonToggleSoftwareInfo">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
@@ -228,7 +251,7 @@
    <item>
     <widget class="QToolBox" name="toolBoxSoftwareList">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <property name="tabSpacing">
       <number>0</number>
@@ -414,7 +437,7 @@
         <x>0</x>
         <y>0</y>
         <width>548</width>
-        <height>194</height>
+        <height>193</height>
        </rect>
       </property>
       <attribute name="icon">
@@ -541,6 +564,7 @@
  <layoutdefault spacing="6" margin="6"/>
  <tabstops>
   <tabstop>toolButtonReload</tabstop>
+  <tabstop>toolButtonCompatFilterToggle</tabstop>
   <tabstop>toolButtonToggleSoftwareInfo</tabstop>
   <tabstop>comboBoxDeviceConfiguration</tabstop>
   <tabstop>toolButtonExport</tabstop>

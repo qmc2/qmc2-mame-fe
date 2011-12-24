@@ -647,6 +647,7 @@ void Options::apply()
     qmc2SoftwareList->toolButtonPlayEmbedded->setIconSize(iconSize);
 #endif
     qmc2SoftwareList->toolButtonToggleSoftwareInfo->setIconSize(iconSize);
+    qmc2SoftwareList->toolButtonCompatFilterToggle->setIconSize(iconSize);
     qmc2SoftwareList->toolButtonReload->setIconSize(iconSize);
     qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_KNOWN_SW_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/flat.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
     qmc2SoftwareList->toolBoxSoftwareList->setItemIcon(QMC2_SWLIST_FAVORITES_PAGE, QIcon(QPixmap(QString::fromUtf8(":/data/img/favorites.png")).scaled(iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation)));

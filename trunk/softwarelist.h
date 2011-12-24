@@ -49,6 +49,7 @@ class SoftwareListXmlHandler : public QXmlDefaultHandler
 		QString softwarePart;
 		QString softwareInterface;
 		QString currentText;
+		QStringList compatFilters;
 		int elementCounter;
 
 		SoftwareListXmlHandler(QTreeWidget *);
@@ -196,6 +197,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		void on_toolButtonExport_clicked(bool);
 		void on_toolButtonAddToFavorites_clicked(bool);
 		void on_toolButtonToggleSoftwareInfo_clicked(bool);
+		void on_toolButtonCompatFilterToggle_clicked(bool);
 		void on_toolButtonRemoveFromFavorites_clicked(bool);
 		void on_toolButtonPlay_clicked(bool);
 		void on_toolButtonPlayEmbedded_clicked(bool);
