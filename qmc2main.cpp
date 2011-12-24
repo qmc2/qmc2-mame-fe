@@ -271,6 +271,7 @@ QColor MainWindow::qmc2StatusColorGrey = QColor("#7f7f7f");
 // extern global variables
 extern bool exitArcade;
 extern QMap<QString, QStringList> systemSoftwareListMap;
+extern QMap<QString, QStringList> systemSoftwareFilterMap;
 extern QMap<QString, QString> softwareListXmlDataCache;
 
 void MainWindow::log(char logOrigin, QString message)
@@ -2311,6 +2312,7 @@ void MainWindow::on_actionClearXMLCache_activated()
 	}
 	softwareListXmlDataCache.clear();
 	systemSoftwareListMap.clear();
+	systemSoftwareFilterMap.clear();
 }
 
 void MainWindow::on_actionClearSoftwareListCache_activated()

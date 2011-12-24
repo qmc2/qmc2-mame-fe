@@ -76,6 +76,7 @@ extern bool messSystemSlotsSupported;
 #endif
 extern SoftwareList *qmc2SoftwareList;
 extern QMap<QString, QStringList> systemSoftwareListMap;
+extern QMap<QString, QStringList> systemSoftwareFilterMap;
 extern QMap<QString, QString> softwareListXmlDataCache;
 extern QString swlBuffer;
 extern bool swlSupported;
@@ -358,6 +359,7 @@ void Gamelist::load()
   qmc2LastSoftwareListItem = NULL;
   swlSupported = true;
   systemSoftwareListMap.clear();
+  systemSoftwareFilterMap.clear();
   softwareListXmlDataCache.clear();
   swlBuffer.clear();
   qmc2LastGameInfoItem = NULL;
