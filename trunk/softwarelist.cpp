@@ -1112,7 +1112,12 @@ void SoftwareList::on_toolButtonCompatFilterToggle_clicked(bool checked)
 		for (int i = 0; i < compatList.count() && !showItem; i++)
 			for (int j = 0; j < compatFilters.count() && !showItem; j++)
 				showItem = (compatList[i] == compatFilters[j]);
-		item->setHidden(!showItem);
+		if ( !showItem ) {
+			item->setHidden(true);
+			if ( item->isSelected() )
+				item->setSelected(false);
+		} else
+			item->setHidden(false);
 	}
 	for (int count = 0; count < treeWidgetFavoriteSoftware->topLevelItemCount(); count++) {
 		QTreeWidgetItem *item = treeWidgetFavoriteSoftware->topLevelItem(count);
@@ -1121,7 +1126,12 @@ void SoftwareList::on_toolButtonCompatFilterToggle_clicked(bool checked)
 		for (int i = 0; i < compatList.count() && !showItem; i++)
 			for (int j = 0; j < compatFilters.count() && !showItem; j++)
 				showItem = (compatList[i] == compatFilters[j]);
-		item->setHidden(!showItem);
+		if ( !showItem ) {
+			item->setHidden(true);
+			if ( item->isSelected() )
+				item->setSelected(false);
+		} else
+			item->setHidden(false);
 	}
 	for (int count = 0; count < treeWidgetSearchResults->topLevelItemCount(); count++) {
 		QTreeWidgetItem *item = treeWidgetSearchResults->topLevelItem(count);
@@ -1130,7 +1140,12 @@ void SoftwareList::on_toolButtonCompatFilterToggle_clicked(bool checked)
 		for (int i = 0; i < compatList.count() && !showItem; i++)
 			for (int j = 0; j < compatFilters.count() && !showItem; j++)
 				showItem = (compatList[i] == compatFilters[j]);
-		item->setHidden(!showItem);
+		if ( !showItem ) {
+			item->setHidden(true);
+			if ( item->isSelected() )
+				item->setSelected(false);
+		} else
+			item->setHidden(false);
 	}
 }
 
