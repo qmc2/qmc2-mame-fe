@@ -3551,7 +3551,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
   switch ( qmc2DetailSetup->appliedDetailList[tabWidgetGameDetail->currentIndex()] )
   {
 	  case QMC2_SOFTWARE_LIST_INDEX:
-		  if ( qmc2SoftwareList )
+		  if ( qmc2SoftwareList && qmc2CurrentItem == qmc2LastSoftwareListItem )
 			  qmc2SoftwareList->on_toolButtonToggleSoftwareInfo_clicked(qmc2SoftwareList->toolButtonToggleSoftwareInfo->isChecked());
 		  else
 			  stackedWidgetSpecial_setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
