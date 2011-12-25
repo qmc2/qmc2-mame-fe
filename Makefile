@@ -402,11 +402,12 @@ endif
 #
 # Enable (1) or disable (0) Netscape/Mozilla plugins in the 'MiniWebBrowser'?
 #
-# Caution: browser plugins may be buggy and can cause crashes! However, when
-# Qt 4.7+ is used, browser plugins should work fine.
+# Caution: browser plugins may be buggy and can cause crashes! However, since
+# Qt 4.7, browser plugins work quite nicely so they're enabled now as per
+# default.
 #
 ifndef BROWSER_PLUGINS
-BROWSER_PLUGINS = 0
+BROWSER_PLUGINS = 1
 endif
 
 # >>> BROWSER_JAVA <<<
