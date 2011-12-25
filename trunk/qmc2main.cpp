@@ -3692,11 +3692,14 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         QColor color = qmc2MAWSLookup->webViewBrowser->palette().color(QPalette::WindowText);
         QString driverName = qmc2Gamelist->lookupDriverName(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON));
         if ( driverName.isEmpty() ) {
-          qmc2MAWSLookup->webViewBrowser->setHtml(
-                                  QString("<html><head></head><body><center><p><font color=\"#%1%2%3\"<b>").arg(color.red()).arg(color.green()).arg(color.blue()) +
-                                  tr("Fetching MESS wiki page for all drivers, please wait...") +
-                                  "</font></b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(messWikiUrl) + "</p></center></body></html>",
-                                  QUrl(messWikiUrl));
+          if ( qmc2MAWSCache.contains("QMC2_MESS_WIKI_ALL_DRIVERS") )
+            qmc2MAWSLookup->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2MAWSCache["QMC2_MESS_WIKI_ALL_DRIVERS"])), QUrl(messWikiUrl));
+          else
+            qmc2MAWSLookup->webViewBrowser->setHtml(
+                                    QString("<html><head></head><body><center><p><font color=\"#%1%2%3\"<b>").arg(color.red()).arg(color.green()).arg(color.blue()) +
+                                    tr("Fetching MESS wiki page for all drivers, please wait...") +
+                                    "</font></b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(messWikiUrl) + "</p></center></body></html>",
+                                    QUrl(messWikiUrl));
           qmc2MAWSLookup->webViewBrowser->load(QUrl(messWikiUrl));
 	} else if ( !qmc2MAWSCache.contains(driverName) ) {
           qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MESS wiki page for driver '%1'").arg(driverName));
@@ -8482,11 +8485,11 @@ void MainWindow::messWikiLoadFinished(bool ok)
 	if ( ok ) {
 		QByteArray messWikiData = QMC2_COMPRESS(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
     		QString driverName = qmc2Gamelist->lookupDriverName(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON));
-		if ( !driverName.isEmpty() ) {
-			if ( qmc2MAWSCache.contains(driverName) )
-				qmc2MAWSCache.remove(driverName);
-			qmc2MAWSCache.insert(driverName, new QByteArray(messWikiData), messWikiData.size());
-		}
+		if ( driverName.isEmpty() )
+			driverName = "QMC2_MESS_WIKI_ALL_DRIVERS";
+		if ( qmc2MAWSCache.contains(driverName) )
+			qmc2MAWSCache.remove(driverName);
+		qmc2MAWSCache.insert(driverName, new QByteArray(messWikiData), messWikiData.size());
 	}
 }
 #endif
