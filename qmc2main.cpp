@@ -3679,19 +3679,28 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           delete qmc2MAWSLookup;
           qmc2MAWSLookup = NULL;
         }
-        QString driverName = qmc2Gamelist->lookupDriverName(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON));
         gridLayout->getContentsMargins(&left, &top, &right, &bottom);
         QVBoxLayout *layout = new QVBoxLayout;
         layout->setContentsMargins(left, top, right, bottom);
         qmc2MAWSLookup = new MiniWebBrowser(tabMAWS);
         qmc2MAWSLookup->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
         qmc2MAWSLookup->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
-        qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MESS wiki page for driver '%1'").arg(driverName));
+        qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MESS wiki page for all drivers"));
         layout->addWidget(qmc2MAWSLookup);
         tabMAWS->setLayout(layout);
-        QString messWikiUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MESSWiki/BaseURL", QMC2_MESS_WIKI_BASE_URL).toString().arg(driverName);
-        if ( !qmc2MAWSCache.contains(driverName) ) {
-          QColor color = qmc2MAWSLookup->webViewBrowser->palette().color(QPalette::WindowText);
+        QString messWikiUrl = QMC2_MESS_WIKI_BASE_URL;
+        QColor color = qmc2MAWSLookup->webViewBrowser->palette().color(QPalette::WindowText);
+        QString driverName = qmc2Gamelist->lookupDriverName(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON));
+        if ( driverName.isEmpty() ) {
+          qmc2MAWSLookup->webViewBrowser->setHtml(
+                                  QString("<html><head></head><body><center><p><font color=\"#%1%2%3\"<b>").arg(color.red()).arg(color.green()).arg(color.blue()) +
+                                  tr("Fetching MESS wiki page for all drivers, please wait...") +
+                                  "</font></b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(messWikiUrl) + "</p></center></body></html>",
+                                  QUrl(messWikiUrl));
+          qmc2MAWSLookup->webViewBrowser->load(QUrl(messWikiUrl));
+	} else if ( !qmc2MAWSCache.contains(driverName) ) {
+          qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MESS wiki page for driver '%1'").arg(driverName));
+          messWikiUrl = QString(QMC2_MESS_WIKI_PATTERN_URL).arg(driverName);
           qmc2MAWSLookup->webViewBrowser->setHtml(
                                   QString("<html><head></head><body><center><p><font color=\"#%1%2%3\"<b>").arg(color.red()).arg(color.green()).arg(color.blue()) +
                                   tr("Fetching MESS wiki page for driver '%1', please wait...").arg(driverName) +
@@ -3700,6 +3709,8 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           qmc2MAWSLookup->webViewBrowser->load(QUrl(messWikiUrl));
         } else {
           // FIXME: There's currently a bug in QWebView::setHtml() so that it executes JavaScript twice.
+          qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MESS wiki page for driver '%1'").arg(driverName));
+          messWikiUrl = QString(QMC2_MESS_WIKI_PATTERN_URL).arg(driverName);
           qmc2MAWSLookup->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2MAWSCache[driverName])), QUrl(messWikiUrl));
           qmc2MAWSLookup->webViewBrowser->load(QUrl(messWikiUrl));
         }
@@ -8471,9 +8482,11 @@ void MainWindow::messWikiLoadFinished(bool ok)
 	if ( ok ) {
 		QByteArray messWikiData = QMC2_COMPRESS(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
     		QString driverName = qmc2Gamelist->lookupDriverName(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON));
-		if ( qmc2MAWSCache.contains(driverName) )
-        		qmc2MAWSCache.remove(driverName);
-		qmc2MAWSCache.insert(driverName, new QByteArray(messWikiData), messWikiData.size());
+		if ( !driverName.isEmpty() ) {
+			if ( qmc2MAWSCache.contains(driverName) )
+				qmc2MAWSCache.remove(driverName);
+			qmc2MAWSCache.insert(driverName, new QByteArray(messWikiData), messWikiData.size());
+		}
 	}
 }
 #endif
