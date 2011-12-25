@@ -1,13 +1,7 @@
 #ifndef _GAMELIST_H_
 #define _GAMELIST_H_
 
-#include <QString>
-#include <QTime>
-#include <QProcess>
-#include <QIcon>
-#include <QFile>
-#include <QTreeWidget>
-#include <QTextStream>
+#include <QtGui>
 #include "macros.h"
 
 class Gamelist : public QObject
@@ -61,7 +55,9 @@ class Gamelist : public QObject
     bool verifyCurrentOnly;
     QTreeWidgetItem *checkedItem;
     bool autoRomCheck;
+    QMap<QString, QString> driverNameMap;
 
+    QString lookupDriverName(QString);
     Gamelist(QObject *parent = 0);
     ~Gamelist();
 

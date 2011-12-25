@@ -207,9 +207,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_actionDemoMode_activated();
     void on_actionClearImageCache_activated();
     void on_actionClearIconCache_activated();
-#if defined(QMC2_EMUTYPE_MAME)
     void on_actionClearMAWSCache_activated();
-#endif
 #if defined(QMC2_YOUTUBE_ENABLED)
     void on_actionClearYouTubeCache_activated();
 #endif
@@ -441,6 +439,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_treeWidgetVersionView_itemSelectionChanged();
     void on_treeWidgetVersionView_customContextMenuRequested(const QPoint &);
 #elif defined(QMC2_EMUTYPE_MESS)
+    void messWikiLoadStarted();
+    void messWikiLoadFinished(bool);
     void projectMessLoadStarted();
     void projectMessLoadFinished(bool);
 #endif

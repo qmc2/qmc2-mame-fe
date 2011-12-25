@@ -110,6 +110,9 @@ DetailSetup::DetailSetup(QWidget *parent)
 	shortTitleMap[QMC2_DEVICE_INDEX] = tr("De&vices");
 	longTitleMap[QMC2_DEVICE_INDEX] = tr("Device configuration");
 	iconMap[QMC2_DEVICE_INDEX] = QIcon(QString::fromUtf8(":/data/img/tape.png"));
+	shortTitleMap[QMC2_MESS_WIKI_INDEX] = tr("MESS &Wiki");
+	longTitleMap[QMC2_MESS_WIKI_INDEX] = tr("MESS wiki (web lookup)");
+	iconMap[QMC2_MESS_WIKI_INDEX] = QIcon(QString::fromUtf8(":/data/img/internet.png"));
 	shortTitleMap[QMC2_PCB_INDEX] = tr("&PCB");
 	longTitleMap[QMC2_PCB_INDEX] = tr("PCB image");
 	iconMap[QMC2_PCB_INDEX] = QIcon(QString::fromUtf8(":/data/img/circuit.png"));
@@ -130,6 +133,7 @@ DetailSetup::DetailSetup(QWidget *parent)
 			<< QMC2_EMUINFO_INDEX
 			<< QMC2_CONFIG_INDEX
 			<< QMC2_DEVICE_INDEX
+			<< QMC2_MESS_WIKI_INDEX
 			<< QMC2_PCB_INDEX
 			<< QMC2_CABINET_INDEX
 			<< QMC2_SOFTWARE_LIST_INDEX;
@@ -142,6 +146,7 @@ DetailSetup::DetailSetup(QWidget *parent)
 	tabWidgetsMap[QMC2_EMUINFO_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_EMUINFO_INDEX);
 	tabWidgetsMap[QMC2_CONFIG_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CONFIG_INDEX);
 	tabWidgetsMap[QMC2_DEVICE_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_DEVICE_INDEX);
+	tabWidgetsMap[QMC2_MESS_WIKI_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_MESS_WIKI_INDEX);
 	tabWidgetsMap[QMC2_PCB_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_PCB_INDEX);
 	tabWidgetsMap[QMC2_CABINET_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_CABINET_INDEX);
 	tabWidgetsMap[QMC2_SOFTWARE_LIST_INDEX] = qmc2MainWindow->tabWidgetGameDetail->widget(QMC2_SOFTWARE_LIST_INDEX);
@@ -205,6 +210,7 @@ void DetailSetup::loadDetail()
 				<< QMC2_EMUINFO_INDEX
 				<< QMC2_CONFIG_INDEX
 				<< QMC2_DEVICE_INDEX
+				<< QMC2_MESS_WIKI_INDEX
 				<< QMC2_PCB_INDEX
 				<< QMC2_SOFTWARE_LIST_INDEX;
 #if QMC2_YOUTUBE_ENABLED
@@ -352,7 +358,7 @@ void DetailSetup::on_pushButtonConfigureDetail_clicked()
 					QString currentUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MAWS/BaseURL", QMC2_MAWS_BASE_URL).toString();
 					suggestedUrls << QMC2_MAWS_BASE_URL
 						<< "http://maws.mameworld.info/minimaws/romset/%1"
-						<< "http://www.arcadehits.net/index.php?p=roms&zip=%1";
+						<< "http://www.arcadehits.net/index.php?p=roms&jeu=%1";
 					if ( !suggestedUrls.contains(currentUrl) ) suggestedUrls << currentUrl;
 					int current = suggestedUrls.indexOf(currentUrl);
 					QString baseUrl = QInputDialog::getItem(this,

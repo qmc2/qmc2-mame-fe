@@ -3645,7 +3645,6 @@ void Gamelist::createVersionView()
 				if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() ) {
 					switch ( qmc2GamelistStatusMap[gameName][0].toAscii() ) {
 						case 'C':
-							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2CorrectBIOSImageIcon : qmc2CorrectImageIcon);
 							break;
 						case 'M':
 							gameItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2BiosROMs.contains(gameName) ? qmc2MostlyCorrectBIOSImageIcon : qmc2MostlyCorrectImageIcon);
@@ -3677,6 +3676,40 @@ void Gamelist::createVersionView()
 }
 #endif
 
+QString Gamelist::lookupDriverName(QString systemName)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::lookupDriverName(QString systemName = %1)").arg(systemName));
+#endif
+
+	QString driverName = driverNameMap[systemName];
+
+	if ( driverName.isEmpty() ) {
+		int i = 0;
+#if defined(QMC2_EMUTYPE_MAME) 
+		QString s = "<game name=\"" + systemName + "\"";
+		while ( !xmlLines[i].contains(s) ) i++;
+		QString line = xmlLines[i].simplified();
+		int startIndex = line.indexOf("sourcefile=\"") + 12;
+		int endIndex = line.indexOf("\"", startIndex);
+		driverName = line.mid(startIndex, endIndex - startIndex); 
+#elif defined(QMC2_EMUTYPE_MESS)
+		QString s = "<machine name=\"" + systemName + "\"";
+		while ( !xmlLines[i].contains(s) ) i++;
+		QString line = xmlLines[i].simplified();
+		int startIndex = line.indexOf("sourcefile=\"") + 12;
+		int endIndex = line.indexOf("\"", startIndex);
+		driverName = line.mid(startIndex, endIndex - startIndex); 
+#endif
+		QFileInfo fi(driverName);
+		driverName = fi.baseName();
+		if ( !driverName.isEmpty() )
+			driverNameMap[systemName] = driverName;
+	}
+
+	return driverName;
+}
+
 bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
 {
 #ifdef QMC2_DEBUG
@@ -3686,52 +3719,40 @@ bool GamelistItem::operator<(const QTreeWidgetItem &otherItem) const
   switch ( qmc2SortCriteria ) {
     case QMC2_SORT_BY_DESCRIPTION:
       return (text(QMC2_GAMELIST_COLUMN_GAME).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_GAME).toUpper());
-      break;
 
     case QMC2_SORT_BY_ROM_STATE:
       return (whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() < otherItem.whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii());
-      break;
 
     case QMC2_SORT_BY_TAG:
       return (int(checkState(QMC2_GAMELIST_COLUMN_TAG)) < int(otherItem.checkState(QMC2_GAMELIST_COLUMN_TAG)));
-      break;
 
     case QMC2_SORT_BY_YEAR:
       return (text(QMC2_GAMELIST_COLUMN_YEAR) < otherItem.text(QMC2_GAMELIST_COLUMN_YEAR));
-      break;
 
     case QMC2_SORT_BY_MANUFACTURER:
       return (text(QMC2_GAMELIST_COLUMN_MANU).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_MANU).toUpper());
-      break;
 
     case QMC2_SORT_BY_NAME:
       return (text(QMC2_GAMELIST_COLUMN_NAME).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_NAME).toUpper());
-      break;
 
     case QMC2_SORT_BY_ROMTYPES:
       return (text(QMC2_GAMELIST_COLUMN_RTYPES).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_RTYPES).toUpper());
-      break;
 
     case QMC2_SORT_BY_PLAYERS:
       return (text(QMC2_GAMELIST_COLUMN_PLAYERS).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_PLAYERS).toUpper());
-      break;
 
     case QMC2_SORT_BY_DRVSTAT:
       return (text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_DRVSTAT).toUpper());
-      break;
 
 #if defined(QMC2_EMUTYPE_MAME)
     case QMC2_SORT_BY_CATEGORY:
       return (text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_CATEGORY).toUpper());
-      break;
 
     case QMC2_SORT_BY_VERSION:
       return (text(QMC2_GAMELIST_COLUMN_VERSION).toUpper() < otherItem.text(QMC2_GAMELIST_COLUMN_VERSION).toUpper());
-      break;
 #endif
 
     default:
       return false;
-      break;
   }
 }
