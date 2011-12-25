@@ -189,10 +189,10 @@ QTreeWidgetItem *qmc2LastGameInfoItem = NULL;
 bool qmc2LoadingEmuInfoDB = false;
 QTreeWidgetItem *qmc2LastEmuInfoItem = NULL;
 QMap<QString, QByteArray *> qmc2EmuInfoDB;
-#if defined(QMC2_EMUTYPE_MAME)
 MiniWebBrowser *qmc2MAWSLookup = NULL;
 QTreeWidgetItem *qmc2LastMAWSItem = NULL;
 QCache<QString, QByteArray> qmc2MAWSCache;
+#if defined(QMC2_EMUTYPE_MAME)
 MawsQuickDownloadSetup *qmc2MawsQuickDownloadSetup = NULL;
 QMap<QString, QString> qmc2CategoryMap;
 QMap<QString, QString> qmc2VersionMap;
@@ -548,8 +548,8 @@ MainWindow::MainWindow(QWidget *parent)
   treeWidgetEmulators->headerItem()->setText(QMC2_EMUCONTROL_COLUMN_GAME, tr("Game"));
 #endif
 #elif defined(QMC2_EMUTYPE_MESS)
+  qmc2MAWSCache.setMaxCost(QMC2_MESS_WIKI_CACHE_SIZE);
   actionLaunchQMC2MESS->setVisible(false);
-  actionClearMAWSCache->setVisible(false);
   actionDemoMode->setVisible(false);
   setWindowTitle(tr("M.E.S.S. Catalog / Launcher II"));
   treeWidgetGamelist->headerItem()->setText(QMC2_GAMELIST_COLUMN_GAME, tr("Machine / Attribute"));
@@ -571,6 +571,10 @@ MainWindow::MainWindow(QWidget *parent)
   actionClearGamelistCache->setToolTip(tr("Forcedly clear (remove) the machine list cache"));
   actionClearGamelistCache->setStatusTip(tr("Forcedly clear (remove) the machine list cache"));
   treeWidgetGamelist->setStatusTip(tr("List of all supported machines"));
+  actionClearMAWSCache->setText(tr("Clear MESS wiki cache"));
+  actionClearMAWSCache->setIconText(tr("Clear MESS wiki cache"));
+  actionClearMAWSCache->setToolTip(tr("Clear MESS wiki cache"));
+  actionClearMAWSCache->setStatusTip(tr("Clear MESS wiki cache"));
 #if defined(Q_WS_X11)
   actionPlayEmbedded->setToolTip(tr("Play current machine (embedded)"));
   actionPlayEmbedded->setStatusTip(tr("Play current machine (embedded)"));
@@ -2149,7 +2153,6 @@ void MainWindow::on_actionClearIconCache_activated()
   log(QMC2_LOG_FRONTEND, tr("icon cache cleared"));
 }
 
-#if defined(QMC2_EMUTYPE_MAME)
 void MainWindow::on_actionClearMAWSCache_activated()
 {
 #ifdef QMC2_DEBUG
@@ -2158,6 +2161,7 @@ void MainWindow::on_actionClearMAWSCache_activated()
 
   QString cacheStatus = tr("freed %n byte(s) in %1", "", qmc2MAWSCache.totalCost()).arg(tr("%n entry(s)", "", qmc2MAWSCache.count()));
   qmc2MAWSCache.clear();
+#if defined(QMC2_EMUTYPE_MAME)
   log(QMC2_LOG_FRONTEND, tr("MAWS in-memory cache cleared (%1)").arg(cacheStatus));
   QDir mawsCacheDir(qmc2Config->value("MAME/FilesAndDirectories/MAWSCacheDirectory").toString());
   qulonglong removedBytes = 0;
@@ -2176,8 +2180,10 @@ void MainWindow::on_actionClearMAWSCache_activated()
   }
   cacheStatus = tr("removed %n byte(s) in %1", "", removedBytes).arg(tr("%n file(s)", "", removedFiles));
   log(QMC2_LOG_FRONTEND, tr("MAWS on-disk cache cleared (%1)").arg(cacheStatus));
-}
+#elif defined(QMC2_EMUTYPE_MESS)
+  log(QMC2_LOG_FRONTEND, tr("MESS wiki in-memory cache cleared (%1)").arg(cacheStatus));
 #endif
+}
 
 #if defined(QMC2_YOUTUBE_ENABLED)
 void MainWindow::on_actionClearYouTubeCache_activated()
@@ -3251,8 +3257,7 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					connect(qmc2ProjectMESS->webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(projectMessLoadFinished(bool)));
 					qmc2ProjectMESS->webViewBrowser->load(QUrl(projectMessUrl));
 				} else {
-					// FIXME: There's currently a bug in QWebView->setHtml() so that it executes JavaScript twice.
-					//        The temporary fix is to reload the page -- let's hope the best for Qt 4.8's WebKit update!
+					// FIXME: There's currently a bug in QWebView::setHtml() so that it executes JavaScript twice.
 					qmc2ProjectMESS->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2ProjectMESSCache[listName + "_" + entryName])), QUrl(projectMessUrl));
 					qmc2ProjectMESS->webViewBrowser->load(QUrl(projectMessUrl));
 				}
@@ -3658,6 +3663,50 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
         qmc2MESSDeviceConfigurator->show();
         qmc2LastDeviceConfigItem = qmc2CurrentItem;
         tabDevices->setUpdatesEnabled(true);
+      }
+      break;
+
+    case QMC2_MESS_WIKI_INDEX:
+#if defined(QMC2_YOUTUBE_ENABLED)
+      if ( qmc2YouTubeWidget )
+	      qmc2YouTubeWidget->videoOverlayWidget->clearMessage();
+#endif
+      if ( qmc2CurrentItem != qmc2LastMAWSItem ) {
+        tabMAWS->setUpdatesEnabled(false);
+        if ( qmc2MAWSLookup ) {
+          QLayout *vbl = tabMAWS->layout();
+          if ( vbl ) delete vbl;
+          delete qmc2MAWSLookup;
+          qmc2MAWSLookup = NULL;
+        }
+        QString driverName = qmc2Gamelist->lookupDriverName(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON));
+        gridLayout->getContentsMargins(&left, &top, &right, &bottom);
+        QVBoxLayout *layout = new QVBoxLayout;
+        layout->setContentsMargins(left, top, right, bottom);
+        qmc2MAWSLookup = new MiniWebBrowser(tabMAWS);
+        qmc2MAWSLookup->webViewBrowser->settings()->setFontFamily(QWebSettings::StandardFont, qApp->font().family());
+        qmc2MAWSLookup->webViewBrowser->settings()->setFontSize(QWebSettings::MinimumFontSize, qApp->font().pointSize());
+        qmc2MAWSLookup->webViewBrowser->setStatusTip(tr("MESS wiki page for driver '%1'").arg(driverName));
+        layout->addWidget(qmc2MAWSLookup);
+        tabMAWS->setLayout(layout);
+        QString messWikiUrl = qmc2Config->value(QMC2_FRONTEND_PREFIX + "MESSWiki/BaseURL", QMC2_MESS_WIKI_BASE_URL).toString().arg(driverName);
+        if ( !qmc2MAWSCache.contains(driverName) ) {
+          QColor color = qmc2MAWSLookup->webViewBrowser->palette().color(QPalette::WindowText);
+          qmc2MAWSLookup->webViewBrowser->setHtml(
+                                  QString("<html><head></head><body><center><p><font color=\"#%1%2%3\"<b>").arg(color.red()).arg(color.green()).arg(color.blue()) +
+                                  tr("Fetching MESS wiki page for driver '%1', please wait...").arg(driverName) +
+                                  "</font></b></p><p>" + QString("(<a href=\"%1\">%1</a>)").arg(messWikiUrl) + "</p></center></body></html>",
+                                  QUrl(messWikiUrl));
+          qmc2MAWSLookup->webViewBrowser->load(QUrl(messWikiUrl));
+        } else {
+          // FIXME: There's currently a bug in QWebView::setHtml() so that it executes JavaScript twice.
+          qmc2MAWSLookup->webViewBrowser->setHtml(QString(QMC2_UNCOMPRESS(*qmc2MAWSCache[driverName])), QUrl(messWikiUrl));
+          qmc2MAWSLookup->webViewBrowser->load(QUrl(messWikiUrl));
+        }
+        qmc2LastMAWSItem = qmc2CurrentItem;
+        connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(loadFinished(bool)), this, SLOT(messWikiLoadFinished(bool)));
+        connect(qmc2MAWSLookup->webViewBrowser, SIGNAL(loadStarted()), this, SLOT(messWikiLoadStarted()));
+        tabMAWS->setUpdatesEnabled(true);
       }
       break;
 
@@ -5566,6 +5615,11 @@ void MainWindow::closeEvent(QCloseEvent *e)
     log(QMC2_LOG_FRONTEND, tr("destroying MAWS quick download setup"));
     qmc2MawsQuickDownloadSetup->close();
     delete qmc2MawsQuickDownloadSetup;
+  }
+#elif defined(QMC2_EMUTYPE_MESS)
+  if ( qmc2MAWSLookup ) {
+    log(QMC2_LOG_FRONTEND, tr("destroying MESS wiki lookup"));
+    delete qmc2MAWSLookup;
   }
 #endif
   if ( qmc2ImageChecker ) {
@@ -8397,6 +8451,30 @@ void MainWindow::storeMawsIcon()
     } else
       log(QMC2_LOG_FRONTEND, tr("FATAL: icon image for '%1' couldn't be stored as '%2'").arg(gameName).arg(filePath));
   }
+}
+
+#elif defined(QMC2_EMUTYPE_MESS)
+void MainWindow::messWikiLoadStarted()
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::messWikiLoadStarted()");
+#endif
+
+}
+
+void MainWindow::messWikiLoadFinished(bool ok)
+{
+#ifdef QMC2_DEBUG
+	log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::messWikiLoadFinished(bool ok = %1)").arg(ok));
+#endif
+
+	if ( ok ) {
+		QByteArray messWikiData = QMC2_COMPRESS(qmc2MAWSLookup->webViewBrowser->page()->mainFrame()->toHtml().toLatin1());
+    		QString driverName = qmc2Gamelist->lookupDriverName(qmc2CurrentItem->child(0)->text(QMC2_GAMELIST_COLUMN_ICON));
+		if ( qmc2MAWSCache.contains(driverName) )
+        		qmc2MAWSCache.remove(driverName);
+		qmc2MAWSCache.insert(driverName, new QByteArray(messWikiData), messWikiData.size());
+	}
 }
 #endif
 
