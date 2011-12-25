@@ -377,7 +377,8 @@
 #define QMC2_MAWS_BASE_URL		"http://maws.mameworld.info/maws/romset/%1"
 
 // MESS Wiki base URL (default)
-#define QMC2_MESS_WIKI_BASE_URL		"http://www.mess.org/mess:drivers:%1"
+#define QMC2_MESS_WIKI_PATTERN_URL	"http://www.mess.org/mess:drivers:%1"
+#define QMC2_MESS_WIKI_BASE_URL		"http://www.mess.org/mess:drivers"
 
 // MAWS image links base URL (default)
 #define QMC2_MAWS_IMGLINKS_BASE_URL	"http://maws.mameworld.info/maws/"

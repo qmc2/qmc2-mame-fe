@@ -3690,21 +3690,29 @@ QString Gamelist::lookupDriverName(QString systemName)
 		QString s = "<game name=\"" + systemName + "\"";
 		while ( !xmlLines[i].contains(s) ) i++;
 		QString line = xmlLines[i].simplified();
-		int startIndex = line.indexOf("sourcefile=\"") + 12;
-		int endIndex = line.indexOf("\"", startIndex);
-		driverName = line.mid(startIndex, endIndex - startIndex); 
+		int startIndex = line.indexOf("sourcefile=\"");
+		if ( startIndex > 0 ) {
+			startIndex += 12;
+			int endIndex = line.indexOf("\"", startIndex);
+			driverName = line.mid(startIndex, endIndex - startIndex); 
+		}
 #elif defined(QMC2_EMUTYPE_MESS)
 		QString s = "<machine name=\"" + systemName + "\"";
 		while ( !xmlLines[i].contains(s) ) i++;
 		QString line = xmlLines[i].simplified();
-		int startIndex = line.indexOf("sourcefile=\"") + 12;
-		int endIndex = line.indexOf("\"", startIndex);
-		driverName = line.mid(startIndex, endIndex - startIndex); 
+		int startIndex = line.indexOf("sourcefile=\"");
+		if ( startIndex > 0 ) {
+			startIndex += 12;
+			int endIndex = line.indexOf("\"", startIndex);
+			driverName = line.mid(startIndex, endIndex - startIndex); 
+		}
 #endif
-		QFileInfo fi(driverName);
-		driverName = fi.baseName();
-		if ( !driverName.isEmpty() )
+
+		if ( !driverName.isEmpty() ) {
+			QFileInfo fi(driverName);
+			driverName = fi.baseName();
 			driverNameMap[systemName] = driverName;
+		}
 	}
 
 	return driverName;
