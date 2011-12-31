@@ -1111,14 +1111,16 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
   bool chdManagerFixCHDs = checkBoxFixCHDs->isChecked();
   bool chdManagerUpdateCHDs = checkBoxUpdateCHDs->isChecked();
   bool chdManagerEnabled = groupBoxCHDManager->isChecked() && (chdManagerVerifyCHDs || chdManagerUpdateCHDs);
+  bool needProgressWidget;
   QProgressBar *progressWidget;
-  QWidget *oldItemWidget;
+  //QWidget *oldItemWidget;
   qint64 totalSize, myProgress, sizeLeft, len;
 
   // search for file in ROM paths (first search for "game/file", then "file" in "game.zip"), load file data when found
   foreach (QString romPath, romPaths) {
     progressWidget = NULL;
-    oldItemWidget = NULL;
+    //oldItemWidget = NULL;
+    needProgressWidget = false;
     QString filePath(romPath + "/" + gameName + "/" + fileName);
     if ( isCHD ) {
       filePath += ".chd";
@@ -1144,16 +1146,19 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
           progressBarFileIO->setRange(0, totalSize);
 	  progressBarFileIO->reset();
           if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD ) {
-            bool needProgressWidget = true;
-            if ( isCHD && !chdManagerEnabled ) needProgressWidget = false;
+            if ( isCHD && !chdManagerEnabled )
+              needProgressWidget = false;
+            else
+              needProgressWidget = true;
             if ( needProgressWidget ) {
               progressWidget = new QProgressBar(0);
               progressWidget->setRange(0, totalSize);
               progressWidget->setValue(0);
-              oldItemWidget = treeWidgetChecksums->itemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
+              //oldItemWidget = treeWidgetChecksums->itemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
               treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, progressWidget);
             }
-          }
+          } else
+            needProgressWidget = false;
           sizeLeft = totalSize;
           if ( calcSHA1 )
             sha1Hash.reset();
@@ -1437,7 +1442,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
               sizeLeft -= len;
               myProgress = totalSize - sizeLeft;
               progressBarFileIO->setValue(myProgress);
-              if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD )
+              if ( needProgressWidget )
                 if ( progressWidget ) progressWidget->setValue(myProgress);
               progressBarFileIO->update();
               qApp->processEvents();
@@ -1450,9 +1455,12 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
           romFile.close();
           effectiveFile = filePath;
           *isZipped = false;
-          if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD ) {
-            if ( progressWidget ) progressWidget->reset();
-            if ( oldItemWidget ) treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, oldItemWidget);
+          if ( needProgressWidget ) {
+            if ( progressWidget ) {
+              progressWidget->reset();
+              treeWidgetChecksums->removeItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
+            }
+            //if ( oldItemWidget ) treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, oldItemWidget);
             if ( progressWidget ) delete progressWidget;
           }
           progressBarFileIO->reset();
@@ -1521,11 +1529,12 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                 log(tr("loading '%1' with CRC '%2' from '%3' as '%4'%5").arg(fn).arg(wantedCRC).arg(filePath).arg(myItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(*mergeUsed ? tr(" (merged)") : ""));
                 progressBarFileIO->setRange(0, totalSize);
                 progressBarFileIO->reset();
-                if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD ) {
+		needProgressWidget = totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD;
+                if ( needProgressWidget ) {
                   progressWidget = new QProgressBar(0);
                   progressWidget->setRange(0, totalSize);
                   progressWidget->setValue(0);
-                  oldItemWidget = treeWidgetChecksums->itemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
+                  //oldItemWidget = treeWidgetChecksums->itemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
                   treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, progressWidget);
                 }
                 sizeLeft = totalSize;
@@ -1544,7 +1553,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                   sizeLeft -= len;
                   myProgress = totalSize - sizeLeft;
                   progressBarFileIO->setValue(myProgress);
-                  if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD )
+                  if ( needProgressWidget )
                     progressWidget->setValue(myProgress);
                   progressBarFileIO->update();
                   qApp->processEvents();
@@ -1578,10 +1587,13 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                   *sha1Str = sha1Hash.result().toHex();
                 if ( calcMD5 )
                   *md5Str = md5Hash.result().toHex();
-                if ( totalSize > QMC2_ROMALYZER_PROGRESS_THRESHOLD ) {
-                  progressWidget->reset();
-                  treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, oldItemWidget);
-                  delete progressWidget;
+                if ( needProgressWidget ) {
+                  if ( progressWidget ) {
+                    progressWidget->reset();
+                    treeWidgetChecksums->removeItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
+                  }
+                  //if ( oldItemWidget ) treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, oldItemWidget);
+                  if ( progressWidget ) delete progressWidget;
                 }
                 progressBarFileIO->reset();
               } else
