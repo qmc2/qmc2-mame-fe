@@ -36,6 +36,8 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 
 	videoPlayer->videoWidget()->setScaleMode(Phonon::VideoWidget::FitInView);
 	videoPlayer->videoWidget()->setAspectRatio(Phonon::VideoWidget::AspectRatioAuto);
+	videoPlayer->setPalette(Qt::black);
+	videoPlayer->setAutoFillBackground(true);
 
 	videoOverlayWidget = new VideoOverlayWidget(videoPlayer->videoWidget());
 
