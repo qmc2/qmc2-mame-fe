@@ -15,10 +15,6 @@
         <file>data/img/category.png</file>
         <file>data/img/cd.png</file>
         <file>data/img/circuit.png</file>
-        <file>data/img/qmc2_logo_big.png</file>
-        <file>data/img/qmc2_logo_small.png</file>
-        <file>data/img/qmc2_mess_logo_big.png</file>
-        <file>data/img/qmc2_mess_logo_small.png</file>
         <file>data/img/clock.png</file>
         <file>data/img/clone.png</file>
         <file>data/img/colors.png</file>
@@ -131,6 +127,12 @@
         <file>data/img/process.png</file>
         <file>data/img/process_multiple.png</file>
         <file>data/img/project_mess.png</file>
+        <file>data/img/qmc2_logo_big.png</file>
+        <file>data/img/qmc2_logo_small.png</file>
+        <file>data/img/qmc2_mess_logo_big.png</file>
+        <file>data/img/qmc2_mess_logo_small.png</file>
+        <file>data/img/qmc2_mame_splash.png</file>
+        <file>data/img/qmc2_mess_splash.png</file>
         <file>data/img/qt-logo.png</file>
         <file>data/img/redo.png</file>
         <file>data/img/reload.png</file>
