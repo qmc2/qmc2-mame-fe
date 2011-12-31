@@ -865,6 +865,8 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/KillEmulatorsOnExit", checkBoxKillEmulatorsOnExit->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", checkBoxShowMenuBar->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/CheckSingleInstance", checkBoxCheckSingleInstance->isChecked());
+  qmc2SuppressQtMessages = checkBoxSuppressQtMessages->isChecked();
+  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SuppressQtMessages", qmc2SuppressQtMessages);
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", checkBoxGameStatusIndicator->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", checkBoxGameStatusIndicatorOnlyWhenRequired->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", checkBoxShowGameName->isChecked());
@@ -1926,6 +1928,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxKillEmulatorsOnExit->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/KillEmulatorsOnExit", true).toBool());
   checkBoxShowMenuBar->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowMenuBar", true).toBool());
   checkBoxCheckSingleInstance->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CheckSingleInstance", true).toBool());
+  qmc2SuppressQtMessages = config->value(QMC2_FRONTEND_PREFIX + "GUI/SuppressQtMessages", false).toBool();
+  checkBoxSuppressQtMessages->setChecked(qmc2SuppressQtMessages);
   checkBoxGameStatusIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", false).toBool());
   checkBoxGameStatusIndicatorOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", true).toBool());
   checkBoxShowGameName->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", false).toBool());
@@ -3747,6 +3751,7 @@ void Options::on_treeWidgetJoystickMappings_itemActivated(QTreeWidgetItem *item)
       joystick->close();
     if ( joystick->open(comboBoxSelectJoysticks->currentIndex()) ) {
       // suppress strange Qt warning messages (this works - basta! :)
+      bool saveSQM = qmc2SuppressQtMessages;
       qmc2SuppressQtMessages = true;
       JoystickFunctionScanner joyFuncScanner(joystick, this);
       if ( joyFuncScanner.exec() == QDialog::Accepted ) {
@@ -3755,7 +3760,7 @@ void Options::on_treeWidgetJoystickMappings_itemActivated(QTreeWidgetItem *item)
         pushButtonRemoveJoystickMapping->setEnabled(item->text(1).length() > 0);
         QTimer::singleShot(0, this, SLOT(checkJoystickMappings()));
       }
-      qmc2SuppressQtMessages = false;
+      qmc2SuppressQtMessages = saveSQM;
     }
   }
 }

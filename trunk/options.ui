@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>517</width>
-    <height>447</height>
+    <width>600</width>
+    <height>473</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -56,9 +56,9 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>0</y>
-                <width>468</width>
-                <height>576</height>
+                <y>-213</y>
+                <width>551</width>
+                <height>579</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -734,16 +734,6 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="20" column="0" colspan="7">
-                  <widget class="QCheckBox" name="checkBoxCheckSingleInstance">
-                   <property name="toolTip">
-                    <string>Check for other instances of this QMC2 variant on startup</string>
-                   </property>
-                   <property name="text">
-                    <string>Check single instance</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="17" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxKillEmulatorsOnExit">
                    <property name="toolTip">
@@ -761,6 +751,26 @@
                    </property>
                    <property name="text">
                     <string>Minimize on emulator launch</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="20" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxCheckSingleInstance">
+                   <property name="toolTip">
+                    <string>Check for other instances of this QMC2 variant on startup</string>
+                   </property>
+                   <property name="text">
+                    <string>Check single instance</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="20" column="3" colspan="4">
+                  <widget class="QCheckBox" name="checkBoxSuppressQtMessages">
+                   <property name="toolTip">
+                    <string>Suppress all messages sent through either the QDebug class or one of the qDebug() / qCritical() / qWarning() / qFatal() functions</string>
+                   </property>
+                   <property name="text">
+                    <string>Suppress Qt messages</string>
                    </property>
                   </widget>
                  </item>
@@ -793,7 +803,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>468</width>
+                <width>551</width>
                 <height>558</height>
                </rect>
               </property>
@@ -2207,8 +2217,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>493</width>
-                <height>325</height>
+                <width>568</width>
+                <height>366</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2813,8 +2823,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>485</width>
-                <height>342</height>
+                <width>568</width>
+                <height>366</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2926,8 +2936,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>485</width>
-                <height>342</height>
+                <width>568</width>
+                <height>366</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3383,8 +3393,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>468</width>
-                <height>467</height>
+                <width>551</width>
+                <height>478</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -3826,7 +3836,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>191</width>
+                <width>218</width>
                 <height>380</height>
                </rect>
               </property>
@@ -4381,8 +4391,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>156</width>
-                <height>211</height>
+                <width>178</width>
+                <height>213</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_22">
@@ -4754,6 +4764,7 @@
   <tabstop>checkBoxShowGameName</tabstop>
   <tabstop>checkBoxShowGameNameOnlyWhenRequired</tabstop>
   <tabstop>checkBoxCheckSingleInstance</tabstop>
+  <tabstop>checkBoxSuppressQtMessages</tabstop>
   <tabstop>lineEditTemporaryFile</tabstop>
   <tabstop>toolButtonBrowseTemporaryFile</tabstop>
   <tabstop>lineEditFrontendLogFile</tabstop>
