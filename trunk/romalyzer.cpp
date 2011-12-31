@@ -1113,13 +1113,11 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
   bool chdManagerEnabled = groupBoxCHDManager->isChecked() && (chdManagerVerifyCHDs || chdManagerUpdateCHDs);
   bool needProgressWidget;
   QProgressBar *progressWidget;
-  //QWidget *oldItemWidget;
   qint64 totalSize, myProgress, sizeLeft, len;
 
   // search for file in ROM paths (first search for "game/file", then "file" in "game.zip"), load file data when found
   foreach (QString romPath, romPaths) {
     progressWidget = NULL;
-    //oldItemWidget = NULL;
     needProgressWidget = false;
     QString filePath(romPath + "/" + gameName + "/" + fileName);
     if ( isCHD ) {
@@ -1154,7 +1152,6 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
               progressWidget = new QProgressBar(0);
               progressWidget->setRange(0, totalSize);
               progressWidget->setValue(0);
-              //oldItemWidget = treeWidgetChecksums->itemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
               treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, progressWidget);
             }
           } else
@@ -1460,7 +1457,6 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
               progressWidget->reset();
               treeWidgetChecksums->removeItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
             }
-            //if ( oldItemWidget ) treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, oldItemWidget);
             if ( progressWidget ) delete progressWidget;
           }
           progressBarFileIO->reset();
@@ -1534,7 +1530,6 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                   progressWidget = new QProgressBar(0);
                   progressWidget->setRange(0, totalSize);
                   progressWidget->setValue(0);
-                  //oldItemWidget = treeWidgetChecksums->itemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
                   treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, progressWidget);
                 }
                 sizeLeft = totalSize;
@@ -1592,7 +1587,6 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                     progressWidget->reset();
                     treeWidgetChecksums->removeItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS);
                   }
-                  //if ( oldItemWidget ) treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, oldItemWidget);
                   if ( progressWidget ) delete progressWidget;
                 }
                 progressBarFileIO->reset();
