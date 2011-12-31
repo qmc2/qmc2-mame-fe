@@ -20,6 +20,7 @@
 #include <QMutex>
 #include <QtWebKit>
 #include <QNetworkAccessManager>
+#include <QSplashScreen>
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS)
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -260,6 +261,7 @@ QMap<QString, int> qmc2XmlGamePositionMap;
 QFont qmc2StartupDefaultFont;
 int qmc2SoftwareSnapPosition = 0;
 QWidgetList qmc2AutoMinimizedWidgets;
+QSplashScreen *qmc2SplashScreen;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -9837,8 +9839,10 @@ int main(int argc, char *argv[])
   Q_INIT_RESOURCE(qmc2);
 #if defined(QMC2_EMUTYPE_MESS)
   qmc2App.setWindowIcon(QIcon(QString::fromUtf8(":/data/img/mess.png")));
+  QPixmap splashPixmap(QString::fromUtf8(":/data/img/qmc2_mess_splash.png"));
 #elif defined(QMC2_EMUTYPE_MAME)
   qmc2App.setWindowIcon(QIcon(QString::fromUtf8(":/data/img/mame.png")));
+  QPixmap splashPixmap(QString::fromUtf8(":/data/img/qmc2_mame_splash.png"));
 #endif
 
   // check configuration
@@ -9848,7 +9852,14 @@ int main(int argc, char *argv[])
     checkReturn = qmc2Welcome->exec();
   delete qmc2Welcome;
   if ( checkReturn != QDialog::Accepted )
-    exit(1);
+    return 1;
+
+  // setup splash screen
+  qmc2SplashScreen = new QSplashScreen(splashPixmap);
+  qmc2SplashScreen->setPalette(Qt::white);
+  qmc2SplashScreen->show();
+  qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...").arg(XSTR(QMC2_VERSION)) + "\n\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
+  qApp->processEvents();
 
   // setup key event filter
   qmc2KeyPressFilter = new KeyPressFilter(0);
@@ -9859,6 +9870,7 @@ int main(int argc, char *argv[])
   qmc2Config = qmc2Options->config;
   qmc2ProcessManager = new ProcessManager(0);
   qmc2MainWindow = new MainWindow(0);
+  qmc2SplashScreen->finish(qmc2MainWindow);
 
   // prepare & restore game/machine detail setup
   qmc2DetailSetup = new DetailSetup(qmc2MainWindow);
