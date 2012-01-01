@@ -5752,7 +5752,7 @@ void MainWindow::init()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::init()");
 #endif
 
-  qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)) + "\n\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
+  qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)) + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
   qmc2SplashScreen->show();
   qmc2SplashScreen->raise();
   qApp->processEvents();
@@ -9865,10 +9865,10 @@ int main(int argc, char *argv[])
   qmc2SplashScreen->setPalette(Qt::transparent);
   qmc2SplashScreen->setAttribute(Qt::WA_ShowWithoutActivating);
   qmc2SplashScreen->setMask(splashPixmap.mask());
-  qmc2SplashScreen->setWindowOpacity(0.75);
+  qmc2SplashScreen->setWindowOpacity(0.8);
 #if defined(Q_WS_X11)
   qmc2SplashScreen->show();
-  qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...") + "\n\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
+  qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...") + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
   qApp->processEvents();
 #endif
 
