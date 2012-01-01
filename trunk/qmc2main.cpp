@@ -9865,9 +9865,11 @@ int main(int argc, char *argv[])
   qmc2SplashScreen->setAttribute(Qt::WA_ShowWithoutActivating);
   qmc2SplashScreen->setMask(splashPixmap.mask());
   qmc2SplashScreen->setWindowOpacity(0.75);
+#if defined(Q_WS_X11)
   qmc2SplashScreen->show();
   qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...") + "\n\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
   qApp->processEvents();
+#endif
 
   // setup key event filter
   qmc2KeyPressFilter = new KeyPressFilter(0);
