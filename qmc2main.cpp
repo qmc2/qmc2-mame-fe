@@ -9856,8 +9856,12 @@ int main(int argc, char *argv[])
 
   // setup splash screen
   qmc2SplashScreen = new QSplashScreen(splashPixmap);
-  qmc2SplashScreen->setPalette(Qt::white);
+  qmc2SplashScreen->setPalette(Qt::transparent);
+  qmc2SplashScreen->setAttribute(Qt::WA_ShowWithoutActivating);
+  qmc2SplashScreen->setMask(splashPixmap.mask());
+  qmc2SplashScreen->setWindowOpacity(0.75);
   qmc2SplashScreen->show();
+  qApp->processEvents();
   qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...").arg(XSTR(QMC2_VERSION)) + "\n\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
   qApp->processEvents();
 
@@ -9997,9 +10001,9 @@ int main(int argc, char *argv[])
 
   // finally run the application
   int retCode = qmc2App.exec();
+  qmc2SplashScreen->deleteLater();
 
   // wait for all application threads to finish
   QThreadPool::globalInstance()->waitForDone();
-
   return retCode;
 }
