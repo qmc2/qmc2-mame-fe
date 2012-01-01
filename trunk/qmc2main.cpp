@@ -9862,7 +9862,6 @@ int main(int argc, char *argv[])
 
   // setup splash screen
   qmc2SplashScreen = new QSplashScreen(splashPixmap);
-  qmc2SplashScreen->setPalette(Qt::transparent);
   qmc2SplashScreen->setAttribute(Qt::WA_ShowWithoutActivating);
   qmc2SplashScreen->setMask(splashPixmap.mask());
   qmc2SplashScreen->setWindowOpacity(0.8);
