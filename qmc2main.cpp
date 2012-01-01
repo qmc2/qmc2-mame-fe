@@ -5752,6 +5752,9 @@ void MainWindow::init()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::init()");
 #endif
 
+  qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)) + "\n\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
+  QTimer::singleShot(QMC2_SPLASH_DURATION, qmc2SplashScreen, SLOT(hide()));
+
 #if defined(Q_WS_MAC)
   bool isShown = qmc2Options->isVisible();
   qmc2Options->setParent(this, Qt::Dialog);
@@ -9861,8 +9864,7 @@ int main(int argc, char *argv[])
   qmc2SplashScreen->setMask(splashPixmap.mask());
   qmc2SplashScreen->setWindowOpacity(0.75);
   qmc2SplashScreen->show();
-  qApp->processEvents();
-  qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...").arg(XSTR(QMC2_VERSION)) + "\n\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
+  qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...") + "\n\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
   qApp->processEvents();
 
   // setup key event filter
@@ -9874,7 +9876,6 @@ int main(int argc, char *argv[])
   qmc2Config = qmc2Options->config;
   qmc2ProcessManager = new ProcessManager(0);
   qmc2MainWindow = new MainWindow(0);
-  qmc2SplashScreen->finish(qmc2MainWindow);
 
   // prepare & restore game/machine detail setup
   qmc2DetailSetup = new DetailSetup(qmc2MainWindow);
