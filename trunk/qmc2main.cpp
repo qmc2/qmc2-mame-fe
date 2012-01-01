@@ -5753,6 +5753,7 @@ void MainWindow::init()
 #endif
 
   qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)) + "\n\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
+  qmc2SplashScreen->show();
   qmc2SplashScreen->raise();
   qApp->processEvents();
   QTimer::singleShot(QMC2_SPLASH_DURATION, qmc2SplashScreen, SLOT(hide()));
