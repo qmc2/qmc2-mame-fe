@@ -44,7 +44,7 @@
 #include "messdevcfg.h"
 #endif
 #include "softwarelist.h"
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
 #include "embedder.h"
 #include "embedderopt.h"
 #endif
@@ -192,7 +192,7 @@ Options::Options(QWidget *parent)
   checkBoxExitOnVariantLaunch->setVisible(false);
 #endif
 
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
   checkBoxMinimizeOnEmuLaunch->setToolTip(tr("Minimize when launching (non-embedded) emulators?"));
 #endif
 
@@ -296,7 +296,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+N"] = QPair<QString, QAction *>(tr("Clear icon cache"), NULL);
   qmc2ShortcutMap["Ctrl+O"] = QPair<QString, QAction *>(tr("Open options dialog"), NULL);
   qmc2ShortcutMap["Ctrl+P"] = QPair<QString, QAction *>(tr("Play (independent)"), NULL);
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
   qmc2ShortcutMap["Ctrl+Shift+P"] = QPair<QString, QAction *>(tr("Play (embedded)"), NULL);
 #endif
   qmc2ShortcutMap["Ctrl+Q"] = QPair<QString, QAction *>(tr("About Qt"), NULL);
@@ -448,7 +448,7 @@ void Options::apply()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::apply()");
 #endif
 
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
   if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() ) {
     qmc2MainWindow->statusBar()->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Statusbar", true).toBool());
     qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
@@ -647,7 +647,7 @@ void Options::apply()
     qmc2SoftwareList->toolButtonRemoveFromFavorites->setIconSize(iconSize);
     qmc2SoftwareList->toolButtonFavoritesOptions->setIconSize(iconSize);
     qmc2SoftwareList->toolButtonPlay->setIconSize(iconSize);
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
     qmc2SoftwareList->toolButtonPlayEmbedded->setIconSize(iconSize);
 #endif
     qmc2SoftwareList->toolButtonToggleSoftwareInfo->setIconSize(iconSize);
@@ -687,7 +687,7 @@ void Options::apply()
 
   qmc2MainWindow->toolbar->setIconSize(iconSizeLarge);
 
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
   int i;
   for (i = 0; i < qmc2MainWindow->tabWidgetEmbeddedEmulators->count(); i++) {
     Embedder *embedder = (Embedder *)qmc2MainWindow->tabWidgetEmbeddedEmulators->widget(i);
@@ -696,7 +696,9 @@ void Options::apply()
       embedder->embedderOptions->adjustIconSizes();
   }
   qmc2MainWindow->toolButtonEmbedderMaximizeToggle->setIconSize(iconSizeLarge);
+#if defined(Q_WS_X11)
   qmc2MainWindow->toolButtonEmbedderAutoPause->setIconSize(iconSizeLarge);
+#endif
 #endif
 
   if ( qmc2DetailSetup )
@@ -2335,7 +2337,7 @@ void Options::applyDelayed()
   qmc2MainWindow->on_tabWidgetGameDetail_currentChanged(qmc2MainWindow->tabWidgetGameDetail->currentIndex());
 
   // hide / show the menu bar
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
   if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
     qmc2MainWindow->menuBar()->setVisible(checkBoxShowMenuBar->isChecked());
 #else

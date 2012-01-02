@@ -27,7 +27,7 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
   setupUi(this);
   demoModeRunning = false;
   emuProcess = NULL;
-#if !defined(Q_WS_X11)
+#if !defined(Q_WS_X11) && !defined(Q_WS_WIN)
   checkBoxEmbedded->setVisible(false);
 #endif
 
@@ -42,7 +42,7 @@ DemoModeDialog::DemoModeDialog(QWidget *parent)
   toolButtonSelectU->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/SelectU", false).toBool());
   checkBoxFullScreen->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/FullScreen", true).toBool());
   checkBoxMaximized->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Maximized", false).toBool());
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
   checkBoxEmbedded->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Embedded", false).toBool());
 #endif
   checkBoxTagged->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged", false).toBool());
@@ -85,7 +85,7 @@ void DemoModeDialog::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/SelectU", toolButtonSelectU->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/FullScreen", checkBoxFullScreen->isChecked());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Maximized", checkBoxMaximized->isChecked());
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Embedded",checkBoxEmbedded->isChecked());
 #endif
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "DemoMode/Tagged",checkBoxTagged->isChecked());
@@ -114,7 +114,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
     }
     qmc2MainWindow->actionCheckROMs->setEnabled(true);
     qmc2MainWindow->actionPlay->setEnabled(true);
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
     qmc2MainWindow->actionPlayEmbedded->setEnabled(true);
 #endif
     qmc2MainWindow->enableContextMenuPlayActions(true);
@@ -177,7 +177,7 @@ void DemoModeDialog::on_pushButtonRunDemo_clicked()
     pushButtonRunDemo->setToolTip(tr("Stop demo now"));
     qmc2MainWindow->actionCheckROMs->setEnabled(false);
     qmc2MainWindow->actionPlay->setEnabled(false);
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
     qmc2MainWindow->actionPlayEmbedded->setEnabled(false);
 #endif
     qmc2MainWindow->enableContextMenuPlayActions(false);
@@ -239,7 +239,7 @@ void DemoModeDialog::startNextEmu()
   QString gameDescription = qmc2GamelistDescriptionMap[qmc2DemoGame];
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("starting emulation in demo mode for '%1'").arg(gameDescription));
   setStatus(gameDescription);
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
   if ( checkBoxEmbedded->isChecked() && !checkBoxFullScreen->isChecked() )
     QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
   else

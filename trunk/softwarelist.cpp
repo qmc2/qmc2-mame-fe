@@ -86,7 +86,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	toolButtonExport->setIconSize(iconSize);
 	toolButtonToggleSoftwareInfo->setIconSize(iconSize);
 	toolButtonCompatFilterToggle->setIconSize(iconSize);
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
 	toolButtonPlayEmbedded->setIconSize(iconSize);
 #else
 	toolButtonPlayEmbedded->setVisible(false);
@@ -113,7 +113,7 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), this, SLOT(playActivated()));
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
 	s = tr("Play selected software (embedded)");
 	action = softwareListMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);

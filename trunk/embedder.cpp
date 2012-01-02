@@ -1,10 +1,16 @@
 #include <QtGui>
 
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
 
+#if defined(Q_WS_X11)
 #include <QX11Info>
 #include <X11/Xlib.h>
 #include <X11/keysym.h>
+#elif defined(Q_WS_WIN)
+#include <QTest>
+#include "windows_tools.h"
+#include "procmgr.h"
+#endif
 #include "embedder.h"
 #include "qmc2main.h"
 #include "macros.h"
@@ -12,6 +18,12 @@
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 extern bool qmc2FifoIsOpen;
+
+#if defined(Q_WS_WIN)
+#define QMC2_EMBEDDED_STYLE	(LONG)(WS_VISIBLE | WS_CHILDWINDOW | WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_MAXIMIZE)
+#define QMC2_RELEASED_STYLE	(LONG)(WS_VISIBLE | WS_OVERLAPPEDWINDOW)
+extern ProcessManager *qmc2ProcessManager;
+#endif
 
 Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWidget *parent, QIcon icon)
     : QWidget(parent)
@@ -23,14 +35,20 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
   gameName = name;
   gameID = id;
   winId = wid;
+#if defined(Q_WS_X11)
   embedded = pauseKeyPressed = pausing = resuming = false;
   isPaused = currentlyPaused;
+#endif
 
   setAttribute(Qt::WA_NativeWindow);
   setAttribute(Qt::WA_DontCreateNativeAncestors);
   createWinId();
 
+#if defined(Q_WS_X11)
   embedContainer = new QX11EmbedContainer(this);
+#elif defined(Q_WS_WIN)
+  embedContainer = new QWidget(this);
+#endif
   embedContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   embedContainer->setObjectName("QMC2_EMBED_CONTAINER");
   embedContainer->setAutoFillBackground(true);
@@ -50,6 +68,7 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
   gridLayout->addWidget(embedContainer, 1, 0);
   setLayout(gridLayout);
 
+#if defined(Q_WS_X11)
   connect(embedContainer, SIGNAL(clientIsEmbedded()), SLOT(clientEmbedded()));
   connect(embedContainer, SIGNAL(clientClosed()), SLOT(clientClosed()));
   connect(embedContainer, SIGNAL(error(QX11EmbedContainer::Error)), SLOT(clientError(QX11EmbedContainer::Error)));
@@ -102,6 +121,12 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 	  p.end();
 	  iconUnknown = QIcon(pm);
   }
+#elif defined(Q_WS_WIN)
+  windowHandle = winId;
+  embeddingWindow = releasingWindow = checkingWindow = updatingWindow = fullScreen = false;
+  connect(&checkTimer, SIGNAL(timeout()), this, SLOT(checkWindow()));
+  iconUnknown = icon;
+#endif
 
   embedderOptions = NULL;
   optionsShown = false;
@@ -112,7 +137,7 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
 Embedder::~Embedder()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::~Embedder()"));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::~Embedder()"));
 #endif
 
 }
@@ -120,33 +145,90 @@ Embedder::~Embedder()
 void Embedder::embed()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::embed()"));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::embed()"));
 #endif
 
-  // serious hack to access the tab bar without sub-classing from QTabWidget ;)
-  QTabBar *tabBar = qmc2MainWindow->tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
-  int index = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
-  if ( tabBar ) {
-	  adjustIconSizes();
-	  tabBar->setTabIcon(index, iconUnknown);
-  }
+#if defined(Q_WS_WIN)
+	if ( embeddingWindow || releasingWindow )
+		return;
+#endif
 
-  nativeResolution = QPixmap::grabWindow(winId).size();
-  embedContainer->embedClient(winId);
+	// serious hack to access the tab bar without sub-classing from QTabWidget ;)
+	QTabBar *tabBar = qmc2MainWindow->tabWidgetEmbeddedEmulators->findChild<QTabBar *>();
+	int index = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
+	if ( tabBar ) {
+		adjustIconSizes();
+#if defined(Q_WS_X11)
+		tabBar->setTabIcon(index, iconUnknown);
+#elif defined(Q_WS_WIN)
+		if ( !iconUnknown.isNull() )
+			tabBar->setTabIcon(index, iconUnknown);
+#endif
+	}
+
+#if defined(Q_WS_X11)
+	nativeResolution = QPixmap::grabWindow(winId).size();
+  	embedContainer->embedClient(winId);
+#elif defined(Q_WS_WIN)
+	windowHandle = winId;
+	if ( windowHandle ) {
+		embeddingWindow = true;
+		RECT windowRect;
+		GetWindowRect(windowHandle, &windowRect);
+		originalRect = QRect(windowRect.left, windowRect.top, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top);
+		nativeResolution = originalRect.size();
+		ShowWindow(windowHandle, SW_HIDE);
+		SetParent(windowHandle, embedContainer->winId());
+		SetWindowLong(windowHandle, GWL_STYLE, QMC2_EMBEDDED_STYLE);
+		MoveWindow(windowHandle, 0, 0, embedContainer->width(), embedContainer->height(), true);
+		ShowWindow(windowHandle, SW_SHOW);
+		UpdateWindow(windowHandle);
+		EnableWindow(windowHandle, true);
+		SetFocus(windowHandle);
+		fullScreen = false;
+		embeddingWindow = false;
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = %2").arg(gameID).arg((qulonglong)windowHandle));
+		embedded = true;
+		checkTimer.start(200);
+	}
+#endif
 }
 
 void Embedder::release()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::release()"));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::release()"));
 #endif
 
-  embedded = false;
-  embedContainer->clearFocus();
-  embedContainer->discardClient();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
+	embedded = false;
+	embedContainer->clearFocus();
+#if defined(Q_WS_X11)
+	embedContainer->discardClient();
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
+#elif defined(Q_WS_WIN)
+	checkTimer.stop();
+	releasingWindow = true;
+	if ( windowHandle ) {
+		if ( checkingWindow || updatingWindow ) {
+			QTimer::singleShot(10, this, SLOT(release()));
+			return;
+		}
+		ShowWindow(windowHandle, SW_HIDE);
+		SetParent(windowHandle, NULL);
+		SetWindowLong(windowHandle, GWL_STYLE, QMC2_RELEASED_STYLE);
+		MoveWindow(windowHandle, originalRect.x(), originalRect.y(), originalRect.width(), originalRect.height(), true);
+		SetWindowLong(windowHandle, GWL_STYLE, QMC2_RELEASED_STYLE);
+		ShowWindow(windowHandle, SW_NORMAL);
+		qmc2MainWindow->raise();
+		qmc2MainWindow->activateWindow();
+	}
+	windowHandle = winId = 0;
+	releasingWindow = false;
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(gameID).arg((qulonglong)winId));
+#endif
 }
 
+#if defined(Q_WS_X11)
 void Embedder::clientEmbedded()
 {
 #ifdef QMC2_DEBUG
@@ -173,20 +255,6 @@ void Embedder::clientEmbedded()
   forceFocus();
 }
 
-void Embedder::clientClosed()
-{
-#ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientClosed()"));
-#endif
-
-  if ( embedded )
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 closed, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
-
-  embedded = false;
-
-  emit closing();
-}
-
 void Embedder::clientError(QX11EmbedContainer::Error error)
 {
 #ifdef QMC2_DEBUG
@@ -203,6 +271,23 @@ void Embedder::clientError(QX11EmbedContainer::Error error)
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: embedder: unknown error, window ID = 0x%1").arg(QString::number(winId, 16)));
       break;
   }
+
+  emit closing();
+}
+#endif
+
+void Embedder::clientClosed()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::clientClosed()"));
+#endif
+
+#if defined(Q_WS_X11)
+  if ( embedded )
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 closed, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
+#endif
+
+  embedded = false;
 
   emit closing();
 }
@@ -231,6 +316,7 @@ void Embedder::showEvent(QShowEvent *e)
   if ( qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
     QTimer::singleShot(0, qmc2MainWindow->menuBar(), SLOT(hide()));
 
+#if defined(Q_WS_X11)
   if ( embedded )
     QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(showEventDelayed()));
 
@@ -238,6 +324,7 @@ void Embedder::showEvent(QShowEvent *e)
     int myIndex = qmc2MainWindow->tabWidgetEmbeddedEmulators->indexOf(this);
     qmc2MainWindow->tabWidgetEmbeddedEmulators->setTabIcon(myIndex, iconUnknown);
   }
+#endif
 
   QWidget::showEvent(e);
 }
@@ -248,8 +335,10 @@ void Embedder::hideEvent(QHideEvent *e)
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Embedder::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
 #endif
 
+#if defined(Q_WS_X11)
   if ( embedded )
     QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(hideEventDelayed()));
+#endif
 
   QWidget::hideEvent(e);
 }
@@ -262,10 +351,18 @@ void Embedder::resizeEvent(QResizeEvent *e)
 
 	QWidget::resizeEvent(e);
 
-	if ( embedded )
+	if ( embedded ) {
 		embedContainer->resize(size());
+#if defined(Q_WS_WIN)
+		if ( windowHandle ) {
+			MoveWindow(windowHandle, 0, 0, embedContainer->width(), embedContainer->height(), true);
+			UpdateWindow(windowHandle);
+		}
+#endif
+	}
 }
 
+#if defined(Q_WS_X11)
 void Embedder::showEventDelayed()
 {
 	if ( isVisible() ) {
@@ -287,6 +384,7 @@ void Embedder::hideEventDelayed()
 		}
 	}
 }
+#endif
 
 void Embedder::toggleOptions()
 {
@@ -348,6 +446,8 @@ void Embedder::forceFocus()
 	}
 }
 
+#if defined(Q_WS_X11)
+
 void Embedder::pause()
 {
 	if ( !isPaused ) {
@@ -401,5 +501,103 @@ void Embedder::simulatePauseKey()
 		QTimer::singleShot(QMC2_XKEYEVENT_TRANSITION_TIME, this, SLOT(simulatePauseKey()));
 	}
 }
+
+#elif defined(Q_WS_WIN)
+
+void Embedder::checkWindow()
+{
+	if ( embeddingWindow || releasingWindow || updatingWindow )
+		return;
+
+	if ( !embedded || !windowHandle )
+		return;
+
+	checkingWindow = true;
+
+	LONG currentStyle = GetWindowLong(windowHandle, GWL_STYLE);
+	if ( currentStyle == 0 ) {
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("window ID for emulator #%1 lost, looking for replacement").arg(gameID));
+		qApp->processEvents();
+		HWND hwnd = NULL;
+		int retries = 0;
+		Q_PID gamePid = qmc2ProcessManager->getPid(gameID.toInt());
+		while ( gamePid && !hwnd && retries++ < 10 ) {
+#if defined(QMC2_EMUTYPE_MAME)
+			hwnd = winFindWindowHandleOfProcess(gamePid, "MAME:");
+#elif defined(QMC2_EMUTYPE_MESS)
+			hwnd = winFindWindowHandleOfProcess(gamePid, "MESS:");
+#endif
+			if ( !hwnd )
+				QTest::qWait(50);
+		}
+		if ( releasingWindow || !embedded ) {
+			checkingWindow = false;
+			return;
+		}
+		if ( hwnd && hwnd != windowHandle ) {
+			HWND oldHandle = windowHandle;
+			windowHandle = winId = hwnd;
+			ShowWindow(windowHandle, SW_HIDE);
+			SetParent(windowHandle, embedContainer->winId());
+			SetWindowLong(windowHandle, GWL_STYLE, QMC2_EMBEDDED_STYLE);
+			MoveWindow(windowHandle, 0, 0, embedContainer->width(), embedContainer->height(), true);
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("using replacement window ID %1 for emulator #%2").arg((qulonglong)windowHandle).arg(gameID));
+			UpdateWindow(windowHandle);
+			ShowWindow(windowHandle, SW_SHOW);
+			EnableWindow(windowHandle, true);
+			SetFocus(windowHandle);
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("no replacement window ID found for emulator #%1, closing embedder").arg(gameID));
+			windowHandle = winId = 0;
+			QTimer::singleShot(0, this, SLOT(clientClosed()));
+		}
+		fullScreen = false;
+	} else if ( currentStyle != QMC2_EMBEDDED_STYLE ) {
+		if ( currentStyle & WS_OVERLAPPEDWINDOW ) {
+			fullScreen = false;
+			QTimer::singleShot(0, this, SLOT(updateWindow()));
+		} else {
+			if ( !fullScreen ) {
+				ShowWindow(windowHandle, SW_HIDE);
+				SetParent(windowHandle, NULL);
+				SetWindowLong(windowHandle, GWL_STYLE, currentStyle | WS_POPUP);
+				MoveWindow(windowHandle, 0, 0, qApp->desktop()->width(), qApp->desktop()->height(), true);
+				UpdateWindow(windowHandle);
+				ShowWindow(windowHandle, SW_SHOW);
+				EnableWindow(windowHandle, true);
+				SetFocus(windowHandle);
+			}
+			fullScreen = true;
+		}
+	} else if ( GetFocus() != windowHandle ) {
+		if ( QApplication::activeWindow() == qmc2MainWindow && qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
+			if ( qmc2MainWindow->tabWidgetEmbeddedEmulators->currentWidget() == this )
+				QTimer::singleShot(0, this, SLOT(updateWindow()));
+	}
+
+	checkingWindow = false;
+}
+
+void Embedder::updateWindow()
+{
+	if ( embeddingWindow || releasingWindow || updatingWindow )
+		return;
+
+	updatingWindow = true;
+
+	if ( windowHandle > 0 ) {
+		ShowWindow(windowHandle, SW_HIDE);
+		SetParent(windowHandle, embedContainer->winId());
+		SetWindowLong(windowHandle, GWL_STYLE, QMC2_EMBEDDED_STYLE);
+		MoveWindow(windowHandle, 0, 0, embedContainer->width(), embedContainer->height(), true);
+		ShowWindow(windowHandle, SW_SHOW);
+		EnableWindow(windowHandle, true);
+		SetFocus(windowHandle);
+	}
+
+	updatingWindow = false;
+}
+
+#endif
 
 #endif

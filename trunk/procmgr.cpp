@@ -204,7 +204,7 @@ void ProcessManager::finished(int exitCode, QProcess::ExitStatus exitStatus)
   QList<QTreeWidgetItem *> il = qmc2MainWindow->treeWidgetEmulators->findItems(QString::number(procMap[proc]), Qt::MatchStartsWith);
   if ( il.count() > 0 ) {
     QTreeWidgetItem *item = qmc2MainWindow->treeWidgetEmulators->takeTopLevelItem(qmc2MainWindow->treeWidgetEmulators->indexOfTopLevelItem(il[0]));
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
     Embedder *embedder = NULL;
     int embedderIndex = -1;
     for (int j = 0; j < qmc2MainWindow->tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
@@ -284,7 +284,7 @@ void ProcessManager::started()
 #endif
 #endif
 
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
   if ( qmc2StartEmbedded ) {
     qmc2MainWindow->treeWidgetEmulators->clearSelection();
     procItem->setSelected(true);
@@ -362,4 +362,13 @@ QString &ProcessManager::exitCodeString(int exitCode, bool textOnly)
 		exitString = QString("%1 (%2)").arg(exitCode).arg(exitCodeText);
 
 	return exitString;
+}
+
+Q_PID ProcessManager::getPid(int id)
+{
+	QProcess *proc = process(id);
+	if ( proc )
+		return proc->pid();
+	else
+		return QProcess().pid();
 }
