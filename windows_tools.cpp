@@ -8,6 +8,7 @@
 // (see http://msdn.microsoft.com/en-us/library/ms682623.aspx)
 
 QString winSearchText;
+QMap<HWND, QString> winWindowMap;
 HWND winFoundHandle;
 
 HANDLE winFindProcessHandle(QString procName)
@@ -16,7 +17,7 @@ HANDLE winFindProcessHandle(QString procName)
 	DWORD procs[QMC2_WIN_MAX_PROCS], bytesNeeded;
 	if ( EnumProcesses(procs, sizeof(procs), &bytesNeeded) ) {
 		DWORD numProcesses = bytesNeeded / sizeof(DWORD);
-		for (int i = 0; i < numProcesses; i++) {
+		for (uint i = 0; i < numProcesses; i++) {
 			HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, false, procs[i]);
 			if ( hProcess != NULL ) {
 				HMODULE hMod;
@@ -51,6 +52,7 @@ BOOL CALLBACK winFindWindowHandleCallbackProc(HWND hwnd, LPARAM lParam)
 		QString windowTitle = QString::fromWCharArray(winTitle);
 		if ( windowTitle == winSearchText )
 			winFoundHandle = hwnd;
+		winWindowMap[hwnd] = windowTitle;
 	}
 	return true;
 }
@@ -59,20 +61,34 @@ HWND winFindWindowHandle(QString windowTitle)
 {
 	winFoundHandle = NULL;
 	winSearchText = windowTitle;
+	winWindowMap.clear();
 	EnumWindows((WNDENUMPROC)winFindWindowHandleCallbackProc, 0);
 	return winFoundHandle;
 }
 
-HWND winFindWindowHandleOfProcess(Q_PID processInfo)
+void winRefreshWindowMap()
+{
+	winFindWindowHandle("DUMMY");
+}
+
+HWND winFindWindowHandleOfProcess(Q_PID processInfo, QString subString)
 {
 	bool handleFound = false;
 	HWND windowHandle = GetTopWindow(0);
 	DWORD pid;
 	while ( windowHandle && !handleFound ) {
 		GetWindowThreadProcessId(windowHandle, &pid);
-		if ( pid == processInfo->dwProcessId )
-			handleFound = true;
-		else
+		if ( pid == processInfo->dwProcessId ) {
+			if ( !subString.isEmpty() ) {
+				WCHAR winTitle[QMC2_WIN_MAX_NAMELEN];
+				GetWindowText(windowHandle, winTitle, QMC2_WIN_MAX_NAMELEN - 1);
+				QString windowTitle = QString::fromWCharArray(winTitle);
+				if ( windowTitle.contains(subString) )
+					handleFound = true;
+			} else
+				handleFound = true;
+		}
+		if ( !handleFound )
          		windowHandle = GetNextWindow(windowHandle, GW_HWNDNEXT);
 	}
 	return handleFound ? windowHandle : NULL;

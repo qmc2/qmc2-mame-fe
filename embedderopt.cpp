@@ -1,7 +1,7 @@
 #include "embedderopt.h"
 #include "embedder.h"
 
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
 
 #include "gamelist.h"
 #include "qmc2main.h"
@@ -307,4 +307,5 @@ void SnapshotViewer::paintEvent(QPaintEvent *e)
   p.eraseRect(rect());
   p.end();
 }
+
 #endif

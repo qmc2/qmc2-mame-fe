@@ -38,6 +38,7 @@ class ProcessManager : public QObject
     void kill(QProcess *);
     void kill(ushort);
     QString &exitCodeString(int, bool textOnly = false);
+    Q_PID getPid(int);
 
   public slots:
     void started();

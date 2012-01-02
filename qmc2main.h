@@ -135,11 +135,13 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 #if defined(QMC2_SHOWMEMINFO)
     QTimer memoryUpdateTimer;
 #endif
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
     QWidget *widgetEmbeddedEmus;
     QWidget *embedderCornerWidget;
     QHBoxLayout *embedderCornerLayout;
     QToolButton *toolButtonEmbedderMaximizeToggle;
+#endif
+#if defined(Q_WS_X11)
     QToolButton *toolButtonEmbedderAutoPause;
     QMenu *menuAutoPause;
 #endif
@@ -370,9 +372,8 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_pushButtonCurrentEmulatorOptionsSelectExportFile_clicked();
     void on_pushButtonCurrentEmulatorOptionsImportFromFile_clicked(QString useFileName = QString());
     void on_pushButtonCurrentEmulatorOptionsSelectImportFile_clicked();
-#if defined(Q_WS_X11)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
     void action_embedEmulator_triggered();
-    void action_embedderScanPauseKey_triggered();
     void on_tabWidgetEmbeddedEmulators_tabCloseRequested(int);
     void on_embedderOptions_toggled(bool);
     void closeEmbeddedEmuTab();
@@ -381,6 +382,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_embedderOptionsMenu_TerminateEmulator_activated();
     void on_embedderOptionsMenu_ToFavorites_activated();
     void on_embedderOptionsMenu_CopyCommand_activated();
+#endif
+#if defined(Q_WS_X11)
+    void action_embedderScanPauseKey_triggered();
 #endif
     void action_terminateEmulator_triggered();
     void action_killEmulator_triggered();

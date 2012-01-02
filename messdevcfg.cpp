@@ -135,7 +135,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
 	lineEditConfigurationName->setPlaceholderText(tr("Enter configuration name"));
 
-#if !defined(Q_WS_X11)
+#if !defined(Q_WS_X11) && !defined(Q_WS_WIN)
 	toolButtonChooserPlayEmbedded->setVisible(false);
 #endif
 
@@ -221,8 +221,8 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_activated()));
-#if defined(Q_WS_X11)
-	s = tr("Play selected game (embedded)");
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+	s = tr("Play selected machine (embedded)");
 	action = deviceConfigurationListMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
@@ -263,8 +263,8 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
 	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_activated()));
-#if defined(Q_WS_X11)
-	s = tr("Play selected game (embedded)");
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+	s = tr("Play selected machine (embedded)");
 	action = fileChooserContextMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
