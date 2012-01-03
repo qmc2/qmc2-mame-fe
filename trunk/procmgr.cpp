@@ -118,6 +118,7 @@ void ProcessManager::terminate(QProcess *proc)
 #endif
 
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("terminating emulator #%1, PID = %2").arg(procMap[proc]).arg((quint64)proc->pid()));
+
   proc->terminate();
 }
 
@@ -128,9 +129,18 @@ void ProcessManager::terminate(ushort index)
 #endif
 
   QProcess *proc = process(index);
-  if ( proc )
+  if ( proc ) {
+#if defined(Q_WS_WIN)
+    Embedder *embedder = NULL;
+    for (int j = 0; j < qmc2MainWindow->tabWidgetEmbeddedEmulators->count() && embedder == NULL; j++) {
+	if ( qmc2MainWindow->tabWidgetEmbeddedEmulators->tabText(j).startsWith(QString("#%1 - ").arg(index)) )
+		embedder = (Embedder *)qmc2MainWindow->tabWidgetEmbeddedEmulators->widget(j);
+    }
+    if ( embedder )
+	embedder->release();
+#endif
     terminate(proc);
-  else
+  } else
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: ProcessManager::terminate(ushort index = %1): trying to terminate a null process").arg(index));
 }
 

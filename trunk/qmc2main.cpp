@@ -4462,20 +4462,16 @@ void MainWindow::action_embedEmulator_triggered()
 #elif defined(Q_WS_WIN)
     QList<WId> winIdList;
     int wininfoRetries = 0;
-#if defined(QMC2_EMUTYPE_MAME)
-    QString regExp = QString("*MAME:*%1*").arg(qmc2GamelistDescriptionMap[gameName]);
-#elif defined(QMC2_EMUTYPE_MESS)
-    QString regExp = QString("*MESS:*%1*").arg(qmc2GamelistDescriptionMap[gameName]);
-#else
-    QString regExp;
-#endif
     while ( winIdList.isEmpty() && wininfoRetries++ < QMC2_MAX_WININFO_RETRIES ) {
-	winRefreshWindowMap();
-	QMapIterator<HWND, QString> it(winWindowMap);
-	while ( it.hasNext() ) {
-		it.next();
-		if ( it.value().contains(QRegExp(regExp, Qt::CaseSensitive, QRegExp::Wildcard)) )
-			winIdList << (WId)it.key();
+	Q_PID gamePid = qmc2ProcessManager->getPid(gameID.toInt());
+	if ( gamePid ) {
+#if defined(QMC2_EMUTYPE_MAME)
+		HWND hwnd = winFindWindowHandleOfProcess(gamePid, "MAME:");
+#elif defined(QMC2_EMUTYPE_MESS)
+		HWND hwnd = winFindWindowHandleOfProcess(gamePid, "MESS:");
+#endif
+		if ( hwnd )
+			winIdList << (WId)hwnd;
 	}
 	if ( winIdList.isEmpty() && wininfoRetries <= QMC2_MAX_WININFO_RETRIES )
 		QTest::qWait(QMC2_WININFO_DELAY);
@@ -4490,14 +4486,14 @@ void MainWindow::action_embedEmulator_triggered()
       log(QMC2_LOG_FRONTEND, tr("WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding").arg(gameID).arg((qulonglong)winIdList[0]));
 #endif
 
-    if ( winIdList.count() > 0 ) {
+    if ( !winIdList.isEmpty() ) {
       int embeddedEmusIndex = tabWidgetGamelist->indexOf(widgetEmbeddedEmus);
       if ( tabWidgetGamelist->currentIndex() != embeddedEmusIndex )
         qmc2LastListIndex = tabWidgetGamelist->currentIndex();
       if ( embeddedEmusIndex < 0 )
         tabWidgetGamelist->addTab(widgetEmbeddedEmus, QIcon(QString::fromUtf8(":/data/img/embed.png")), tr("Embedded emulators"));
 #if defined(Q_WS_X11)
-      log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg(winIdList[0]));
+      log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = 0x%2").arg(gameID).arg(winIdList[0]));
       Embedder *embedder = new Embedder(gameName, gameID, winIdList[0].toInt(0, 16), (gameStatus == tr("paused")), this, qmc2IconMap[gameName]);
 #elif defined(Q_WS_WIN)
       log(QMC2_LOG_FRONTEND, tr("embedding emulator #%1, window ID = %2").arg(gameID).arg((qulonglong)winIdList[0]));
@@ -4693,6 +4689,12 @@ void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
 		frameStatus->show();
 		toolButtonEmbedderMaximizeToggle->setIcon(QIcon(QString::fromUtf8(":/data/img/maximize.png")));
 	}
+#if defined(Q_WS_WIN)
+	Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->currentWidget();
+	if ( embedder )
+		if ( embedder->embedderOptions )
+			QTimer::singleShot(0, embedder->embedderOptions, SLOT(setFocus()));
+#endif
 }
 
 void MainWindow::on_embedderOptionsMenu_KillEmulator_activated()
