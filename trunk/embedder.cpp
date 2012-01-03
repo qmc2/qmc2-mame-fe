@@ -216,8 +216,8 @@ void Embedder::release()
 	qmc2MainWindow->activateWindow();
 	SetWindowPos(windowHandle, HWND_NOTOPMOST, originalRect.x(), originalRect.y(), originalRect.width(), originalRect.height(), SWP_SHOWWINDOW | SWP_NOACTIVATE | SWP_DRAWFRAME);
 	UpdateWindow(windowHandle);
-	windowHandle = winId = 0;
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(gameID).arg((qulonglong)winId));
+	windowHandle = winId = 0;
 	releasingWindow = false;
 #endif
 }
