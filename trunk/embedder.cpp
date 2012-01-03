@@ -173,10 +173,11 @@ void Embedder::embed()
 	windowHandle = winId;
 	if ( windowHandle ) {
 		embeddingWindow = true;
-		RECT windowRect;
+		RECT windowRect, clientRect;
+		GetClientRect(windowHandle, &clientRect);
+		nativeResolution = clientRect.size();
 		GetWindowRect(windowHandle, &windowRect);
 		originalRect = QRect(windowRect.left, windowRect.top, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top);
-		nativeResolution = originalRect.size();
 		ShowWindow(windowHandle, SW_HIDE);
 		SetParent(windowHandle, embedContainer->winId());
 		SetWindowLong(windowHandle, GWL_STYLE, QMC2_EMBEDDED_STYLE);
@@ -521,14 +522,14 @@ void Embedder::checkWindow()
 		HWND hwnd = NULL;
 		int retries = 0;
 		Q_PID gamePid = qmc2ProcessManager->getPid(gameID.toInt());
-		while ( gamePid && !hwnd && retries++ < 10 ) {
+		while ( gamePid && !hwnd && retries++ < QMC2_MAX_WININFO_RETRIES ) {
 #if defined(QMC2_EMUTYPE_MAME)
 			hwnd = winFindWindowHandleOfProcess(gamePid, "MAME:");
 #elif defined(QMC2_EMUTYPE_MESS)
 			hwnd = winFindWindowHandleOfProcess(gamePid, "MESS:");
 #endif
 			if ( !hwnd )
-				QTest::qWait(50);
+				QTest::qWait(QMC2_WININFO_DELAY);
 		}
 		if ( releasingWindow || !embedded ) {
 			checkingWindow = false;

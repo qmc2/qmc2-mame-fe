@@ -503,7 +503,8 @@
 
 // maximum number of retries to find an emulator window via (x)wininfo (the emulator may need longer to get ready)
 #define QMC2_MAX_XWININFO_RETRIES	5
-#define QMC2_MAX_WININFO_RETRIES	QMC2_MAX_XWININFO_RETRIES
+#define QMC2_MAX_WININFO_RETRIES	10
+#define QMC2_WININFO_DELAY		50
 
 // responsiveness while loading an additional information source
 #if defined(QMC2_EMUTYPE_MESS)

@@ -4477,6 +4477,8 @@ void MainWindow::action_embedEmulator_triggered()
 		if ( it.value().contains(QRegExp(regExp, Qt::CaseSensitive, QRegExp::Wildcard)) )
 			winIdList << (WId)it.key();
 	}
+	if ( winIdList.isEmpty() && wininfoRetries <= QMC2_MAX_WININFO_RETRIES )
+		QTest::qWait(QMC2_WININFO_DELAY);
     }
 #endif
 
