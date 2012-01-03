@@ -175,7 +175,7 @@ void Embedder::embed()
 		embeddingWindow = true;
 		RECT windowRect, clientRect;
 		GetClientRect(windowHandle, &clientRect);
-		nativeResolution = clientRect.size();
+		nativeResolution = QRect(clientRect.left, clientRect.top, clientRect.right - clientRect.left, clientRect.bottom - clientRect.top).size();
 		GetWindowRect(windowHandle, &windowRect);
 		originalRect = QRect(windowRect.left, windowRect.top, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top);
 		ShowWindow(windowHandle, SW_HIDE);
