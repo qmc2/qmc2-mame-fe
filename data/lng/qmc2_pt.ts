@@ -1878,12 +1878,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="113"/>
         <source>MESS &amp;Wiki</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Wiki do MESS</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="114"/>
         <source>MESS wiki (web lookup)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiki do MESS (consulta a web)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="120"/>
@@ -2052,7 +2052,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="227"/>
         <source>emulator #%1 released, window ID = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador #%1 liberado, ID da janela = %2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="240"/>
@@ -2067,17 +2067,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="519"/>
         <source>window ID for emulator #%1 lost, looking for replacement</source>
-        <translation type="unfinished"></translation>
+        <translation>perdido o ID da janela para o emulador #%1, procurando por um substituto </translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="544"/>
         <source>using replacement window ID %1 for emulator #%2</source>
-        <translation type="unfinished"></translation>
+        <translation>usando janela substituta com ID %1 para o emulador #%2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="550"/>
         <source>no replacement window ID found for emulator #%1, closing embedder</source>
-        <translation type="unfinished"></translation>
+        <translation>nenhuma ID para janela substituta encontrada para o emulador #%1, fechando embedder</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="271"/>
@@ -2087,7 +2087,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="190"/>
         <source>emulator #%1 embedded, window ID = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador #%1 embutido, ID da janela = 0x%2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="266"/>
@@ -5428,7 +5428,7 @@ Deseja salvar suas alterações?</translation>
         <location filename="../../messdevcfg.cpp" line="225"/>
         <location filename="../../messdevcfg.cpp" line="267"/>
         <source>Play selected machine (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jogar máquina selecionada (embutida)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="625"/>
@@ -6870,7 +6870,7 @@ Sair mesmo assim?</translation>
         <location filename="../../qmc2main.cpp" line="583"/>
         <location filename="../../qmc2main.cpp" line="584"/>
         <source>Clear MESS wiki cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache do wiki do MESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="638"/>
@@ -6915,7 +6915,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2191"/>
         <source>MESS wiki in-memory cache cleared (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache em memória do wiki do MESS limpo (%1)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2257"/>
@@ -6945,23 +6945,23 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3695"/>
         <source>MESS wiki page for all drivers</source>
-        <translation type="unfinished"></translation>
+        <translation>Página do wiki do MESS para todos os drivers</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3712"/>
         <location filename="../../qmc2main.cpp" line="3722"/>
         <source>MESS wiki page for driver &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Página do wiki do MESS para o driver &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3707"/>
         <source>Fetching MESS wiki page for all drivers, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixando página do wiki do MESS para todos os drivers, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3716"/>
         <source>Fetching MESS wiki page for driver &apos;%1&apos;, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Baixando página do wiki do MESS para &apos;%1&apos;, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5456"/>
@@ -6971,7 +6971,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5685"/>
         <source>destroying MESS wiki lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>destruindo lookup do wiki do MESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5724"/>
@@ -7022,7 +7022,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5810"/>
         <source>Welcome to QMC2 v%1!</source>
-        <translation type="unfinished"></translation>
+        <translation>Bem vindo ao QMC2 v%1!</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5917"/>
@@ -9821,7 +9821,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="294"/>
         <source>Clear MESS wiki cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpar cache do wiki do MESS</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="296"/>
@@ -11992,12 +11992,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="770"/>
         <source>Suppress all messages sent through either the QDebug class or one of the qDebug() / qCritical() / qWarning() / qFatal() functions</source>
-        <translation type="unfinished"></translation>
+        <translation>Suprimir todas as mensagens enviadas pela classe QDebug ou pelas funções qDebug() / qCritical() / qWarning() / qFatal() </translation>
     </message>
     <message>
         <location filename="../../options.ui" line="773"/>
         <source>Suppress Qt messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Suprimir mensagens do Qt</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2157"/>
@@ -13012,7 +13012,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../qmc2main.cpp" line="9925"/>
         <source>Setting up the GUI, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurando a Interface, por favor espere...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9966"/>
@@ -15950,7 +15950,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <location filename="../../softwarelist.ui" line="55"/>
         <location filename="../../softwarelist.ui" line="58"/>
         <source>Toggle filtering of compatible software titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar/Desabilitar filtro de títulos de software compatíveis</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="78"/>
@@ -17367,12 +17367,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="579"/>
         <source>Full-screen mode -- press %1 to return to windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo tela cheia -- pressione %1 para retornar para o modo janela</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="581"/>
         <source>Full-screen mode -- press toggle-key to return to windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo tela cheia -- pressione tecla de alternância para retornar para o modo janela</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="605"/>
@@ -17382,22 +17382,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="775"/>
         <source>Buffering: %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregando: %1%</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="796"/>
         <source>Loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Carregando</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="813"/>
         <source>Playing</source>
-        <translation type="unfinished"></translation>
+        <translation>Executando</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="824"/>
         <source>Paused</source>
-        <translation type="unfinished">Pausado</translation>
+        <translation>Pausado</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="827"/>
@@ -17407,12 +17407,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="828"/>
         <source>Video playback error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro reproduzindo vídeo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="908"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Obtendo informações para o vídeo com ID &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="995"/>
@@ -17424,7 +17424,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../youtubevideoplayer.cpp" line="1103"/>
         <location filename="../../youtubevideoplayer.cpp" line="1468"/>
         <source>Video info error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro obtendo informações do vídeo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1065"/>
@@ -17434,7 +17434,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1066"/>
         <source>Video info error: timeout occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro obtendo informações do vídeo: tempo esgotado</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1102"/>
