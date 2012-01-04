@@ -159,22 +159,6 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		RESOURCES += qmc2.qrc
 		QMAKE_MAKEFILE = Makefile.qmake
 
-		unix {
-			# produce pretty (silent) compile output (only when the Qt version is less than 4.7)
-			greaterThan(QMC2_PRETTY_COMPILE, 0) { 
-				!greaterThan(QT_MAJOR_VERSION, 4) {
-				        !greaterThan(QT_MINOR_VERSION, 6) {
-						!isEmpty(QMAKE_CXX):QMAKE_CXX = @echo [C++ ] $< && $$QMAKE_CXX
-						!isEmpty(QMAKE_CC):QMAKE_CC = @echo [CC\\ \\ ] $< && $$QMAKE_CC
-						!isEmpty(QMAKE_LINK):QMAKE_LINK = @echo [LINK] $@ && $$QMAKE_LINK
-						!isEmpty(QMAKE_MOC):QMAKE_MOC = @echo [MOC ] `echo $@ | sed -e \'s/moc_//g\' | sed -e \'s/.cpp/.h/g\'` && $$QMAKE_MOC
-						!isEmpty(QMAKE_UIC):QMAKE_UIC = @echo [UIC ] $< && $$QMAKE_UIC
-						!isEmpty(QMAKE_RCC):QMAKE_RCC = @echo [RCC ] $< && $$QMAKE_RCC
-					}
-				}
-			}
-		}
-
 		# platform specific stuff
 		macx {
 			QMAKESPEC = macx-xcode
