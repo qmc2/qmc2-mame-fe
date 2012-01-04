@@ -261,7 +261,7 @@ QMap<QString, int> qmc2XmlGamePositionMap;
 QFont qmc2StartupDefaultFont;
 int qmc2SoftwareSnapPosition = 0;
 QWidgetList qmc2AutoMinimizedWidgets;
-QSplashScreen *qmc2SplashScreen;
+QSplashScreen *qmc2SplashScreen = NULL;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -5811,11 +5811,13 @@ void MainWindow::init()
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::init()");
 #endif
 
-  qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)) + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
-  qmc2SplashScreen->show();
-  qmc2SplashScreen->raise();
-  qApp->processEvents();
-  QTimer::singleShot(QMC2_SPLASH_DURATION, qmc2SplashScreen, SLOT(hide()));
+  if ( qmc2SplashScreen ) {
+	qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)) + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
+	qmc2SplashScreen->show();
+	qmc2SplashScreen->raise();
+	qApp->processEvents();
+	QTimer::singleShot(QMC2_SPLASH_DURATION, qmc2SplashScreen, SLOT(hide()));
+  }
 
 #if defined(Q_WS_MAC)
   bool isShown = qmc2Options->isVisible();
@@ -9915,20 +9917,27 @@ int main(int argc, char *argv[])
   qmc2Welcome = new Welcome(0);
   if ( !qmc2Welcome->checkOkay )
     checkReturn = qmc2Welcome->exec();
+  bool showSplashScreen = qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/ShowSplashScreen", true).toBool();
+  QFont splashFont = qApp->font();
+  if ( !qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString().isEmpty() )
+    splashFont.fromString(qmc2Welcome->startupConfig->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
   delete qmc2Welcome;
   if ( checkReturn != QDialog::Accepted )
     return 1;
 
   // setup splash screen
-  qmc2SplashScreen = new QSplashScreen(splashPixmap);
-  qmc2SplashScreen->setAttribute(Qt::WA_ShowWithoutActivating);
-  qmc2SplashScreen->setMask(splashPixmap.mask());
-  qmc2SplashScreen->setWindowOpacity(0.8);
+  if ( showSplashScreen ) {
+	qmc2SplashScreen = new QSplashScreen(splashPixmap);
+	qmc2SplashScreen->setFont(splashFont);
+	qmc2SplashScreen->setAttribute(Qt::WA_ShowWithoutActivating);
+	qmc2SplashScreen->setMask(splashPixmap.mask());
+	qmc2SplashScreen->setWindowOpacity(0.8);
 #if defined(Q_WS_X11)
-  qmc2SplashScreen->show();
-  qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...") + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
-  qApp->processEvents();
+	qmc2SplashScreen->show();
+	qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...") + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
+	qApp->processEvents();
 #endif
+  }
 
   // setup key event filter
   qmc2KeyPressFilter = new KeyPressFilter(0);
@@ -10065,9 +10074,12 @@ int main(int argc, char *argv[])
 
   // finally run the application
   int retCode = qmc2App.exec();
-  qmc2SplashScreen->deleteLater();
+
+  if ( qmc2SplashScreen )
+  	qmc2SplashScreen->deleteLater();
 
   // wait for all application threads to finish
   QThreadPool::globalInstance()->waitForDone();
+
   return retCode;
 }

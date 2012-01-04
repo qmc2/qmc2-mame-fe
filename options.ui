@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>473</height>
+    <width>651</width>
+    <height>755</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -56,9 +56,9 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-213</y>
-                <width>551</width>
-                <height>579</height>
+                <y>0</y>
+                <width>619</width>
+                <height>648</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
@@ -93,6 +93,26 @@
                     </widget>
                    </item>
                   </layout>
+                 </item>
+                 <item row="8" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxScaledPreview">
+                   <property name="toolTip">
+                    <string>Scale image to fit frame size (otherwise use original size)</string>
+                   </property>
+                   <property name="text">
+                    <string>Scaled preview</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxSaveLayout">
+                   <property name="toolTip">
+                    <string>Save window layout at exit</string>
+                   </property>
+                   <property name="text">
+                    <string>Save layout</string>
+                   </property>
+                  </widget>
                  </item>
                  <item row="0" column="1" colspan="2">
                   <widget class="QComboBox" name="comboBoxLanguage">
@@ -132,16 +152,6 @@
                    </item>
                   </widget>
                  </item>
-                 <item row="6" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxSaveLayout">
-                   <property name="toolTip">
-                    <string>Save window layout at exit</string>
-                   </property>
-                   <property name="text">
-                    <string>Save layout</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="6" column="3" colspan="4">
                   <widget class="QCheckBox" name="checkBoxSaveGameSelection">
                    <property name="toolTip">
@@ -152,13 +162,13 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxRestoreLayout">
+                 <item row="9" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxScaledCabinet">
                    <property name="toolTip">
-                    <string>Restore saved window layout at start</string>
+                    <string>Scale image to fit frame size (otherwise use original size)</string>
                    </property>
                    <property name="text">
-                    <string>Restore layout</string>
+                    <string>Scaled cabinet</string>
                    </property>
                   </widget>
                  </item>
@@ -172,23 +182,13 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxScaledPreview">
+                 <item row="7" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxRestoreLayout">
                    <property name="toolTip">
-                    <string>Scale image to fit frame size (otherwise use original size)</string>
+                    <string>Restore saved window layout at start</string>
                    </property>
                    <property name="text">
-                    <string>Scaled preview</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="9" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxScaledCabinet">
-                   <property name="toolTip">
-                    <string>Scale image to fit frame size (otherwise use original size)</string>
-                   </property>
-                   <property name="text">
-                    <string>Scaled cabinet</string>
+                    <string>Restore layout</string>
                    </property>
                   </widget>
                  </item>
@@ -268,6 +268,16 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="12" column="0" colspan="3">
+                  <widget class="QCheckBox" name="checkBoxRetryLoadingImages">
+                   <property name="toolTip">
+                    <string>Retry loading images which weren't found before?</string>
+                   </property>
+                   <property name="text">
+                    <string>Retry loading images</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="19" column="0" colspan="3">
                   <widget class="QCheckBox" name="checkBoxShowGameName">
                    <property name="toolTip">
@@ -294,7 +304,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="22" column="0" colspan="7">
+                 <item row="23" column="0" colspan="7">
                   <layout class="QHBoxLayout" name="layout3">
                    <item>
                     <widget class="QLabel" name="labelLegend1Pic">
@@ -383,7 +393,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="21" column="0" colspan="7">
+                 <item row="22" column="0" colspan="7">
                   <spacer name="spacer4">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -547,16 +557,6 @@
                    </property>
                    <property name="text">
                     <string>Smooth scaling</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="12" column="0" colspan="3">
-                  <widget class="QCheckBox" name="checkBoxRetryLoadingImages">
-                   <property name="toolTip">
-                    <string>Retry loading images which weren't found before?</string>
-                   </property>
-                   <property name="text">
-                    <string>Retry loading images</string>
                    </property>
                   </widget>
                  </item>
@@ -774,6 +774,16 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="21" column="0" colspan="7">
+                  <widget class="QCheckBox" name="checkBoxShowSplashScreen">
+                   <property name="toolTip">
+                    <string>Show splash screen when starting up?</string>
+                   </property>
+                   <property name="text">
+                    <string>Show splash screen</string>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -803,8 +813,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>551</width>
-                <height>558</height>
+                <width>619</width>
+                <height>648</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2217,8 +2227,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>568</width>
-                <height>366</height>
+                <width>619</width>
+                <height>648</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -2823,8 +2833,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>568</width>
-                <height>366</height>
+                <width>619</width>
+                <height>648</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
@@ -2936,8 +2946,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>568</width>
-                <height>366</height>
+                <width>619</width>
+                <height>648</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
@@ -3393,8 +3403,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>551</width>
-                <height>478</height>
+                <width>619</width>
+                <height>648</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_2">
@@ -4765,6 +4775,7 @@
   <tabstop>checkBoxShowGameNameOnlyWhenRequired</tabstop>
   <tabstop>checkBoxCheckSingleInstance</tabstop>
   <tabstop>checkBoxSuppressQtMessages</tabstop>
+  <tabstop>checkBoxShowSplashScreen</tabstop>
   <tabstop>lineEditTemporaryFile</tabstop>
   <tabstop>toolButtonBrowseTemporaryFile</tabstop>
   <tabstop>lineEditFrontendLogFile</tabstop>

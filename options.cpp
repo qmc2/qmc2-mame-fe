@@ -869,6 +869,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/CheckSingleInstance", checkBoxCheckSingleInstance->isChecked());
   qmc2SuppressQtMessages = checkBoxSuppressQtMessages->isChecked();
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/SuppressQtMessages", qmc2SuppressQtMessages);
+  config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowSplashScreen", checkBoxShowSplashScreen->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", checkBoxGameStatusIndicator->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", checkBoxGameStatusIndicatorOnlyWhenRequired->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", checkBoxShowGameName->isChecked());
@@ -1932,6 +1933,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxCheckSingleInstance->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/CheckSingleInstance", true).toBool());
   qmc2SuppressQtMessages = config->value(QMC2_FRONTEND_PREFIX + "GUI/SuppressQtMessages", false).toBool();
   checkBoxSuppressQtMessages->setChecked(qmc2SuppressQtMessages);
+  checkBoxShowSplashScreen->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowSplashScreen", true).toBool());
   checkBoxGameStatusIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicator", false).toBool());
   checkBoxGameStatusIndicatorOnlyWhenRequired->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/GameStatusIndicatorOnlyWhenRequired", true).toBool());
   checkBoxShowGameName->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ShowGameName", false).toBool());

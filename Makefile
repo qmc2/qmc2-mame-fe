@@ -81,8 +81,6 @@ endif
 #
 # Compile and link QMC2 'quietly' (1) or show all command lines completely (0)?
 #
-# See also PRETTY below!
-#
 ifndef QUIET
 QUIET = 0
 endif
@@ -312,18 +310,6 @@ endif
 #
 ifndef DISTCC
 DISTCC = 0
-endif
-
-# >>> PRETTY <<<
-#
-# Enable (1) or disable (0) 'pretty' compilation output.
-#
-# This is only supported for Qt 4.5 and Qt 4.6. It produces irritating shell
-# warnings when Qt 4.7+ is used, so it's automatically / forcedly disabled in
-# this case.
-#
-ifndef PRETTY
-PRETTY = 0
 endif
 
 # >>> SDLLOCAL <<<
@@ -929,18 +915,18 @@ endif
 	@echo "Updating build of QMC2 v$(VERSION)"
 ifeq '$(ARCH)' 'Darwin'
 ifeq '$(CTIME)' '0'
-	+@xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null && cd runonce && $(QMAKE) -makefile QMC2_PRETTY_COMPILE=$(PRETTY) -o Makefile.qmake runonce.pro > /dev/null && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null
+	+@xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake runonce.pro > /dev/null && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null
 else
-	+@$(TIME) (xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null && cd runonce && $(QMAKE) -makefile QMC2_PRETTY_COMPILE=$(PRETTY) -o Makefile.qmake runonce.pro > /dev/null && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null)
+	+@$(TIME) (xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake runonce.pro > /dev/null && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null)
 endif
 else
 ifeq '$(ARCH)' 'Windows'
 	+@$(MAKESILENT) -f $(QMAKEFILE) > NUL
 else
 ifeq '$(CTIME)' '0'
-	+@$(MAKESILENT) -f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro > /dev/null && $(MAKESILENT) -f $(QMAKEFILE) > /dev/null
+	+@$(MAKESILENT) -f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) runonce.pro > /dev/null && $(MAKESILENT) -f $(QMAKEFILE) > /dev/null
 else
-	+@$(TIME) ($(MAKESILENT) -f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro > /dev/null && $(MAKESILENT) -f $(QMAKEFILE) > /dev/null)
+	+@$(TIME) ($(MAKESILENT) -f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) runonce.pro > /dev/null && $(MAKESILENT) -f $(QMAKEFILE) > /dev/null)
 endif
 endif
 endif
@@ -960,10 +946,10 @@ $(QMAKEFILE): $(PROJECT).pro
 	@echo "Configuring build of QMC2 v$(VERSION)"
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
-	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
+	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $< > /dev/null
 else
 	@$(shell scripts\\setup_imgset.bat $(IMGSET)) 
-	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 ifeq '$(ARCH)' 'Darwin'
 	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
@@ -987,18 +973,18 @@ endif
 	@echo "Updating build of QMC2 v$(VERSION)"
 ifeq '$(ARCH)' 'Darwin'
 ifeq '$(CTIME)' '0'
-	+@xcodebuild -project Makefile.qmake.xcodeproj -configuration Release && cd runonce && $(QMAKE) -makefile QMC2_PRETTY_COMPILE=$(PRETTY) -o Makefile.qmake runonce.pro && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release
+	+@xcodebuild -project Makefile.qmake.xcodeproj -configuration Release && cd runonce && $(QMAKE) -makefile -o Makefile.qmake runonce.pro && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release
 else
-	+@$(TIME) (xcodebuild -project Makefile.qmake.xcodeproj -configuration Release && cd runonce && $(QMAKE) -makefile QMC2_PRETTY_COMPILE=$(PRETTY) -o Makefile.qmake runonce.pro && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release)
+	+@$(TIME) (xcodebuild -project Makefile.qmake.xcodeproj -configuration Release && cd runonce && $(QMAKE) -makefile -o Makefile.qmake runonce.pro && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release)
 endif
 else
 ifeq '$(ARCH)' 'Windows'
 	+@$(MAKE) -f $(QMAKEFILE)
 else
 ifeq '$(CTIME)' '0'
-	+@$(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro && $(MAKE) -f $(QMAKEFILE)
+	+@$(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) runonce.pro && $(MAKE) -f $(QMAKEFILE)
 else
-	+@$(TIME) ($(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) runonce.pro && $(MAKE) -f $(QMAKEFILE))
+	+@$(TIME) ($(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) runonce.pro && $(MAKE) -f $(QMAKEFILE))
 endif
 endif
 endif
@@ -1022,12 +1008,12 @@ else
 	@$(shell scripts\\setup_imgset.bat $(IMGSET)) 
 endif
 ifeq '$(ARCH)' 'Darwin'
-	$(QMAKE) -makefile $(QT_MAKE_SPEC) -o Makefile.qmake VERSION=$(VERSION) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
 	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 	@$(MV) ./Makefile.qmake.xcodeproj/qt_preprocess.mak.new ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 else
-	$(QMAKE) -makefile $(QT_MAKE_SPEC) -o Makefile.qmake VERSION=$(VERSION) QMC2_MINGW=$(MINGW) QMC2_PRETTY_COMPILE=$(PRETTY) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 endif
 
@@ -1319,7 +1305,6 @@ endif
 	@echo "OSREL                Target system's OS release                   $(OSREL)"
 	@echo "PHONON               Enable Phonon based features (0, 1)          $(PHONON)"
 	@echo "PREFIX               Prefix directory for install target          $(PREFIX)"
-	@echo "PRETTY               Use qmake hacks for pretty compile output    $(PRETTY)"
 	@echo "QMAKE                Qt make (qmake) command                      $(QMAKE)"
 	@echo "QMAKEFILE            Qt generated Makefile name                   $(QMAKEFILE)"
 	@echo "QT_TRANSLATION       Specify path to Qt translations or 'qmc2'    $(QT_TRANSLATION)"
@@ -1365,9 +1350,6 @@ else
 LBINARIES = $(addsuffix .qm, $(addprefix data\lng\qmc2_, $(QMC2_TRANSLATIONS))) $(addsuffix .qm, $(addprefix data\lng\qt_, $(QT_TRANSLATIONS)))
 endif
 LREL = $(LRELEASE) $<
-ifeq '$(PRETTY)' '1'
-LREL = @echo [LREL] $< && $(LRELEASE) $< > /dev/null
-endif
 
 lang: $(LBINARIES)
 
