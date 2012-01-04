@@ -501,9 +501,11 @@
 #define QMC2_EMBED_FOCUS_DELAY		100
 #define QMC2_EMBED_PAUSERESUME_DELAY	250
 
-// maximum number of retries to find an emulator window via (x)wininfo (the emulator may need longer to get ready)
+// maximum number of retries to find an emulator window via xwininfo (the emulator may need longer to get ready)
 #define QMC2_MAX_XWININFO_RETRIES	5
-#define QMC2_MAX_WININFO_RETRIES	10
+
+// same for the Windows world (we'll wait for up to a second for the emulator to get ready)
+#define QMC2_MAX_WININFO_RETRIES	20
 #define QMC2_WININFO_DELAY		50
 
 // responsiveness while loading an additional information source
