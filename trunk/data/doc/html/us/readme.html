@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.35, 01-JAN-2012</h3>
+<h3>README - v0.35, 04-JAN-2012</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -111,7 +111,7 @@ use with the MAME variant).
   <li>Freely adjust the order and visibility of available game/machine details</li>
   <li>MAWS web lookup for all MAME variants, including automatic caching of all successfully loaded MAWS ROM set pages</li>
   <li>MAWS quick download: when visiting a game's MAWS page, automatically download available image data usable by QMC2</li>
-  <li>X11 platforms only: optional/on-demand embedding of emulator windows</li>
+  <li>X11 and Windows platforms: optional / on-demand embedding of emulator windows</li>
   <li>Freely adjustable layout of the main widget's major sub-widgets</li>
   <li>MAME targets only: <i>demo mode</i> to run random games for a specific period of time (in a mode suitable for demo purposes)</li>
   <li>Support for software-lists, including favorites management, search feature and sneak previews in-game/run-time snap-shots</li>
@@ -430,7 +430,7 @@ has been enabled) are also not filtered.</p>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+Shift+P</td>
-      <td style="vertical-align: top;">X11 only: Play the currently selected game/machine (start emulation) in embedded mode</td>
+      <td style="vertical-align: top;">X11 and Windows only: Play the currently selected game/machine (start emulation) in embedded mode</td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Ctrl+F</td>
@@ -681,11 +681,9 @@ QMC2. All other cases will be ignored, which means that it does not influence th
 the joystick movements, button presses etc... it will just not react on them while the emulator (or any other application) has focus.</p>
 <p>However, there are two exceptions to this rule:</p>
 <ul>
-<li>For embedded emulators, mixing/sharing the joystick control between QMC2 and an emulator is not supported (well, <i>not recommended</i>,
-because there WILL be influences on both sides -- it's virtually impossible to cleanly avoid those focus related issues, because SDLMAME and
-SDLMESS are no XEmbed client applications).</li>
-<li>When QMC2 is in joystick test- or calibration-mode, it will not only receive all joystick events, but also react on them with widget updates.
-This is not really a problem and could be used for debugging purposes, but should normally be avoided because it eats some CPU cycles for no real use.</li>
+	<li>For embedded emulators, mixing / sharing the joystick control between QMC2 and an emulator is <b>not supported</b> (well, <i>not recommended</i>)</li>
+	<li>When QMC2 is in joystick test- or calibration-mode, it will not only receive all joystick events, but also react on them with widget updates.
+	    This is not really a problem and could be used for debugging purposes, but should normally be avoided because it eats some CPU cycles for no real use.</li>
 </ul>
 <h3><a name="7."></a>7. External tools and tool argument syntax</h3>
 <p>External tools like <i>zip</i> (on all platforms), <i>rm</i> (on UNIX and Mac OS X) or <i>del</i> (on Windows) are used for specific operations which weren't natively built into QMC2.</p>
