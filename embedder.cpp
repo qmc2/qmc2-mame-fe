@@ -541,16 +541,23 @@ void Embedder::checkWindow()
 			ShowWindow(windowHandle, SW_SHOW);
 			EnableWindow(windowHandle, true);
 			SetFocus(windowHandle);
+			checkingWindow = false;
+			return;
 		} else {
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("no replacement window ID found for emulator #%1, closing embedder").arg(gameID));
+			checkTimer.stop();
 			windowHandle = winId = 0;
 			QTimer::singleShot(0, this, SLOT(clientClosed()));
+			checkingWindow = false;
+			return;
 		}
 		fullScreen = false;
 	} else if ( currentStyle != QMC2_EMBEDDED_STYLE ) {
 		if ( currentStyle & WS_OVERLAPPEDWINDOW ) {
 			fullScreen = false;
 			QTimer::singleShot(0, this, SLOT(updateWindow()));
+			checkingWindow = false;
+			return;
 		} else {
 			if ( !fullScreen ) {
 				ShowWindow(windowHandle, SW_HIDE);
@@ -566,9 +573,18 @@ void Embedder::checkWindow()
 		}
 	} else if ( GetFocus() != windowHandle ) {
 		if ( QApplication::activeWindow() == qmc2MainWindow && qmc2MainWindow->tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
-			if ( qmc2MainWindow->tabWidgetEmbeddedEmulators->currentWidget() == this )
+			if ( qmc2MainWindow->tabWidgetEmbeddedEmulators->currentWidget() == this ) {
 				QTimer::singleShot(0, this, SLOT(updateWindow()));
+				checkingWindow = false;
+				return;
+			}
 	}
+
+	RECT cR;
+	GetClientRect(windowHandle, &cR);
+	QRect clientRect(cR.left, cR.top, cR.right - cR.left, cR.bottom - cR.top);
+	if ( clientRect.size() != embedContainer->rect().size() )
+		QTimer::singleShot(0, this, SLOT(updateWindow()));
 
 	checkingWindow = false;
 }
