@@ -4689,12 +4689,6 @@ void MainWindow::on_toolButtonEmbedderMaximizeToggle_toggled(bool on)
 		frameStatus->show();
 		toolButtonEmbedderMaximizeToggle->setIcon(QIcon(QString::fromUtf8(":/data/img/maximize.png")));
 	}
-#if defined(Q_WS_WIN)
-	Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->currentWidget();
-	if ( embedder )
-		if ( embedder->embedderOptions )
-			QTimer::singleShot(0, embedder->embedderOptions, SLOT(setFocus()));
-#endif
 }
 
 void MainWindow::on_embedderOptionsMenu_KillEmulator_activated()
