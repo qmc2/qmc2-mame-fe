@@ -126,6 +126,12 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
   embeddingWindow = releasingWindow = checkingWindow = updatingWindow = fullScreen = false;
   connect(&checkTimer, SIGNAL(timeout()), this, SLOT(checkWindow()));
   iconUnknown = icon;
+  RECT wR, cR;
+  GetWindowRect(windowHandle, &wR);
+  GetClientRect(windowHandle, &cR);
+  ShowWindow(windowHandle, SW_HIDE);
+  originalRect = QRect(wR.left, wR.top, wR.right - wR.left, wR.bottom - wR.top);
+  nativeResolution = QRect(cR.left, cR.top, cR.right - cR.left, cR.bottom - cR.top).size();
 #endif
 
   embedderOptions = NULL;
@@ -153,14 +159,6 @@ void Embedder::embed()
 		return;
 
 	embeddingWindow = true;
-	windowHandle = winId;
-	RECT wR, cR;
-	GetWindowRect(windowHandle, &wR);
-	GetClientRect(windowHandle, &cR);
-	ShowWindow(windowHandle, SW_HIDE);
-	qApp->processEvents();
-	originalRect = QRect(wR.left, wR.top, wR.right - wR.left, wR.bottom - wR.top);
-	nativeResolution = QRect(cR.left, cR.top, cR.right - cR.left, cR.bottom - cR.top).size();
 #endif
 
 	// serious hack to access the tab bar without sub-classing from QTabWidget ;)
