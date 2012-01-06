@@ -5394,8 +5394,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
     }
   }
 
-  qmc2CleaningUp = true;
   log(QMC2_LOG_FRONTEND, tr("cleaning up"));
+  qmc2CleaningUp = true;
   
   if ( runningDownloads > 0 )
     log(QMC2_LOG_FRONTEND, tr("aborting running downloads"));
@@ -5519,7 +5519,14 @@ void MainWindow::closeEvent(QCloseEvent *e)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitter", QSize(vSplitter->sizes().at(0), vSplitter->sizes().at(1)));
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterFlipped", vSplitter->orientation() != Qt::Vertical);
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/vSplitterSwapped", vSplitter->widget(0) != vSplitterWidget0);
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+    if ( tabWidgetGamelist->currentIndex() == QMC2_EMBED_INDEX )
+      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", qmc2LastListIndex);
+    else
+      qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", tabWidgetGamelist->currentIndex());
+#else
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", tabWidgetGamelist->currentIndex());
+#endif
 #if defined(QMC2_EMUTYPE_MAME)
     qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GameDetailTab", tabWidgetGameDetail->currentIndex());
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -5851,6 +5858,11 @@ void MainWindow::init()
     qmc2LastListIndex = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/GamelistTab", 0).toInt();
   else
     qmc2LastListIndex = 0;
+
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+  if ( qmc2LastListIndex == QMC2_EMBED_INDEX )
+    qmc2LastListIndex = 0;
+#endif
 
   tabWidgetGamelist->setCurrentIndex(qmc2LastListIndex);
   on_tabWidgetGamelist_currentChanged(qmc2LastListIndex);
@@ -9927,9 +9939,11 @@ int main(int argc, char *argv[])
 	qmc2SplashScreen->setMask(splashPixmap.mask());
 	qmc2SplashScreen->setWindowOpacity(0.8);
 #if defined(Q_WS_X11)
-	qmc2SplashScreen->show();
 	qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...") + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
+	qmc2SplashScreen->show();
+	qmc2SplashScreen->raise();
 	qApp->processEvents();
+	qApp->flush();
 #endif
   }
 
