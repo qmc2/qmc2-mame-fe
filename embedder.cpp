@@ -580,10 +580,10 @@ void Embedder::checkWindow()
 			}
 	}
 
-	RECT cR;
-	GetClientRect(windowHandle, &cR);
-	QRect clientRect(cR.left, cR.top, cR.right - cR.left, cR.bottom - cR.top);
-	if ( clientRect.size() != embedContainer->rect().size() )
+	RECT wR;
+	GetWindowRect(windowHandle, &wR);
+	QRect windowRect(wR.left, wR.top, wR.right - wR.left, wR.bottom - wR.top);
+	if ( windowRect.size() != embedContainer->rect().size() )
 		QTimer::singleShot(0, this, SLOT(updateWindow()));
 
 	checkingWindow = false;
