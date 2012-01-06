@@ -5761,7 +5761,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 
   log(QMC2_LOG_FRONTEND, tr("destroying process manager"));
   if ( qmc2ProcessManager->procMap.count() > 0 ) {
-#if defined(Q_WS_WIN)
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
     for (int j = 0; j < tabWidgetEmbeddedEmulators->count(); j++) {
       Embedder *embedder = (Embedder *)tabWidgetEmbeddedEmulators->widget(j);
       if ( embedder )
