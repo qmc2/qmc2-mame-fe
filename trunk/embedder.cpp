@@ -554,12 +554,14 @@ void Embedder::checkWindow()
 		fullScreen = false;
 	} else if ( currentStyle != QMC2_EMBEDDED_STYLE ) {
 		if ( currentStyle & WS_OVERLAPPEDWINDOW ) {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("embedded emulator #%1 is returning from full-screen").arg(gameID));
 			fullScreen = false;
 			QTimer::singleShot(0, this, SLOT(updateWindow()));
 			checkingWindow = false;
 			return;
 		} else {
 			if ( !fullScreen ) {
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("embedded emulator #%1 is switching to full-screen, using desktop-resolution %2x%3").arg(gameID).arg(qApp->desktop()->width()).arg(qApp->desktop()->height()));
 				ShowWindow(windowHandle, SW_HIDE);
 				SetParent(windowHandle, NULL);
 				SetWindowLong(windowHandle, GWL_STYLE, currentStyle | WS_POPUP);
