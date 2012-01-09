@@ -15,7 +15,7 @@ JoystickFunctionScanner::JoystickFunctionScanner(Joystick *joystick, QWidget *pa
   : QDialog(parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: JoystickFunctionScanner::JoystickFunctionScanner(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickFunctionScanner::JoystickFunctionScanner(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
   setupUi(this);
@@ -142,7 +142,7 @@ void JoystickFunctionScanner::on_joystickTrackballValueChanged(int trackball, in
 void JoystickFunctionScanner::closeEvent(QCloseEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: JoystickFunctionScanner::closeEvent(QCloseEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: JoystickFunctionScanner::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   e->accept();

@@ -37,7 +37,7 @@ Flyer::Flyer(QWidget *parent)
 #endif
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Flyer::Flyer(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Flyer::Flyer(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
   contextMenu = new QMenu(this);
@@ -92,7 +92,7 @@ Flyer::~Flyer()
 void Flyer::paintEvent(QPaintEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Flyer::paintEvent(QPaintEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Flyer::paintEvent(QPaintEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   QPainter p(this);
@@ -223,7 +223,7 @@ bool Flyer::loadFlyer(QString gameName, QString onBehalfOf, bool checkOnly, QStr
 void Flyer::drawCenteredImage(QPixmap *pm, QPainter *p)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Flyer::drawCenteredImage(QPixmap *pm = 0x" + QString::number((ulong)pm, 16) + ", QPainter *p = 0x" + QString::number((ulong)p, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Flyer::drawCenteredImage(QPixmap *pm = %1, QPainter *p = %2)").arg((qulonglong)pm).arg((qulonglong)p));
 #endif
 
   p->eraseRect(rect());
@@ -283,7 +283,7 @@ void Flyer::drawCenteredImage(QPixmap *pm, QPainter *p)
 void Flyer::drawScaledImage(QPixmap *pm, QPainter *p)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Flyer::drawScaledImage(QPixmap *pm = 0x" + QString::number((ulong)pm, 16) + ", QPainter *p = 0x" + QString::number((ulong)p, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Flyer::drawScaledImage(QPixmap *pm = %1, QPainter *p = %2)").arg((qulonglong)pm).arg((qulonglong)p));
 #endif
 
   if ( pm == NULL ) {

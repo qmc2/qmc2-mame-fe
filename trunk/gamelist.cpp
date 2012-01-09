@@ -973,7 +973,7 @@ QString Gamelist::value(QString element, QString attribute, bool translate)
 void Gamelist::insertAttributeItems(QTreeWidgetItem *parent, QString element, QStringList attributes, QStringList descriptions, bool translate)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::insertAttributeItems(QTreeWidgetItem *parent = 0x" + QString::number((ulong)parent, 16) + ", QString element = \"" + element + "\", QStringList attributes = ..., QStringList descriptions = ..., translate = " + QString(translate ? "true" : "false") + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::insertAttributeItems(QTreeWidgetItem *parent = %1, QString element = %2, QStringList attributes = ..., QStringList descriptions = ..., translate = %3)").arg((qulonglong)parent).arg(element).arg(translate));
 #endif
 
   int i;
@@ -990,7 +990,7 @@ void Gamelist::insertAttributeItems(QTreeWidgetItem *parent, QString element, QS
 void Gamelist::parseGameDetail(QTreeWidgetItem *item)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::parseGameDetail(QTreeWidgetItem *item = 0x" + QString::number((ulong)item, 16) + "): item->text(QMC2_GAMELIST_COLUMN_GAME) = \"" + item->text(QMC2_GAMELIST_COLUMN_GAME) + "\"");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::parseGameDetail(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
   QString gameName = item->child(0)->text(QMC2_GAMELIST_COLUMN_ICON);
@@ -2501,7 +2501,7 @@ void Gamelist::loadStarted()
 void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadFinished(int exitCode = " + QString::number(exitCode) + ", QProcess::ExitStatus exitStatus = " + QString::number(exitStatus) + "): proc = 0x" + QString::number((ulong)loadProc, 16));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2): proc = %3").arg(exitCode).arg(exitStatus).arg((qulonglong)loadProc));
 #endif
 
   if ( exitStatus != QProcess::NormalExit && !qmc2StopParser )
@@ -2564,7 +2564,7 @@ void Gamelist::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 void Gamelist::loadReadyReadStandardOutput()
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::loadReadyReadStandardOutput(): proc = 0x" + QString::number((ulong)loadProc, 16));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadReadyReadStandardOutput(): proc = %1)").arg((qulonglong)loadProc));
 #endif
 
   QString s = loadProc->readAllStandardOutput();
@@ -2671,7 +2671,7 @@ void Gamelist::verifyStarted()
 void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Gamelist::verifyFinished(int exitCode = " + QString::number(exitCode) + ", QProcess::ExitStatus exitStatus = " + QString::number(exitStatus) + "): proc = 0x" + QString::number((ulong)verifyProc, 16));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::verifyFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2): proc = %3").arg(exitCode).arg(exitStatus).arg((qulonglong)verifyProc));
 #endif
 
   if ( !verifyProc->atEnd() )

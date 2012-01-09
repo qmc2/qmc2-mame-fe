@@ -394,7 +394,7 @@ MainWindow::MainWindow(QWidget *parent)
   : QMainWindow(parent)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::MainWindow(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::MainWindow(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
   qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), true);
@@ -2942,7 +2942,7 @@ void MainWindow::on_listWidgetSearch_itemSelectionChanged()
 void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item = 0x"+ QString::number((ulong)item, 16) + ")");
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
   if ( item == NULL )
@@ -2993,7 +2993,7 @@ void MainWindow::on_listWidgetFavorites_itemSelectionChanged()
 void MainWindow::on_listWidgetFavorites_itemActivated(QListWidgetItem *item)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetFavorites_itemActivated(QListWidgetItem *item = 0x"+ QString::number((ulong)item, 16) + ")");
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_listWidgetFavorites_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
   on_listWidgetSearch_itemActivated(item);
@@ -3022,7 +3022,7 @@ void MainWindow::on_listWidgetPlayed_itemSelectionChanged()
 void MainWindow::on_listWidgetPlayed_itemActivated(QListWidgetItem *item)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_listWidgetPlayed_itemActivated(QListWidgetItem *item = 0x"+ QString::number((ulong)item, 16) + ")");
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_listWidgetPlayed_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
   on_listWidgetSearch_itemActivated(item);
@@ -4222,7 +4222,7 @@ void MainWindow::on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *item)
   }
 
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *item = 0x"+ QString::number((ulong)item, 16) + ")");
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
   if ( item->child(0) ) {
@@ -4234,7 +4234,7 @@ void MainWindow::on_treeWidgetGamelist_itemExpanded(QTreeWidgetItem *item)
 void MainWindow::on_treeWidgetGamelist_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetGamelist_currentItemChanged(QTreeWidgetItem *current = 0x" + QString::number((ulong)current, 16) + ", QTreeWidgetItem *previous = 0x" + QString::number((ulong)previous, 16) + ")");
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetGamelist_currentItemChanged(QTreeWidgetItem *current = %1, QTreeWidgetItem *previous = %2").arg((qulonglong)current).arg((qulonglong)previous));
 #endif
 
   // workaround for a Qt bug: when POS1/Home is pressed, QTreeWidget & QTreeView don't correctly select the first VISIBLE item,
@@ -4266,7 +4266,7 @@ void MainWindow::on_treeWidgetGamelist_currentItemChanged(QTreeWidgetItem *curre
 void MainWindow::on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *current = 0x" + QString::number((ulong)current, 16) + ", QTreeWidgetItem *previous = 0x" + QString::number((ulong)previous, 16) + ")");
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_treeWidgetHierarchy_currentItemChanged(QTreeWidgetItem *current = %1, QTreeWidgetItem *previous = %2").arg((qulonglong)current).arg((qulonglong)previous));
 #endif
 
   qmc2CheckItemVisibility = false;

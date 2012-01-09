@@ -10,7 +10,7 @@ KeySequenceScanner::KeySequenceScanner(QWidget *parent, bool special, bool onlyO
   : QDialog(parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: KeySequenceScanner::KeySequenceScanner(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: KeySequenceScanner::KeySequenceScanner(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
   setupUi(this);
