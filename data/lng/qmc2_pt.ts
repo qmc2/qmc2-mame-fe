@@ -2082,12 +2082,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="557"/>
         <source>embedded emulator #%1 is returning from full-screen</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador embutido #%1 está retornando do modo tela cheia</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="564"/>
         <source>embedded emulator #%1 is switching to full-screen, using desktop-resolution %2x%3</source>
-        <translation type="unfinished"></translation>
+        <translation>emulador embutido #%1 está mudando para o modo tela cheia, using resolução do desktop %2x%3</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="263"/>
@@ -6976,7 +6976,7 @@ Sair mesmo assim?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4496"/>
         <source>embedding emulator #%1, window ID = 0x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>embutindo emulador #%1, ID da janela = 0x%2</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5454"/>
@@ -12016,12 +12016,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="780"/>
         <source>Show splash screen when starting up?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar tela inicial (splash screen) quando iniciar?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="783"/>
         <source>Show splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar tela inicial (splash screen)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2167"/>
