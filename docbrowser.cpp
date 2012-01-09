@@ -16,7 +16,7 @@ DocBrowser::DocBrowser(QWidget *parent)
 #endif
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DocBrowser::DocBrowser(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DocBrowser::DocBrowser(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
   setupUi(this);
@@ -50,7 +50,7 @@ DocBrowser::~DocBrowser()
 void DocBrowser::showEvent(QShowEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DocBrowser::showEvent(QShowEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DocBrowser::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   e->accept();
@@ -59,7 +59,7 @@ void DocBrowser::showEvent(QShowEvent *e)
 void DocBrowser::resizeEvent(QResizeEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DocBrowser::resizeEvent(QResizeEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DocBrowser::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   e->accept();
@@ -68,7 +68,7 @@ void DocBrowser::resizeEvent(QResizeEvent *e)
 void DocBrowser::moveEvent(QMoveEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: DocBrowser::moveEvent(QMoveEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: DocBrowser::moveEvent(QMoveEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   e->accept();

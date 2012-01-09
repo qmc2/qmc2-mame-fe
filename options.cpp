@@ -155,7 +155,7 @@ Options::Options(QWidget *parent)
 #endif
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::Options(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::Options(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
   qmc2Filter.resize(QMC2_ROMSTATE_COUNT);
@@ -2865,7 +2865,7 @@ void Options::on_toolButtonBrowseLogFont_clicked()
 void Options::closeEvent(QCloseEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::closeEvent(QCloseEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::closeEvent(QCloseEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   e->accept();
@@ -2874,7 +2874,7 @@ void Options::closeEvent(QCloseEvent *e)
 void Options::showEvent(QShowEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::showEvent(QShowEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   if ( !qmc2CleaningUp && !qmc2EarlyStartup )
@@ -2887,7 +2887,7 @@ void Options::showEvent(QShowEvent *e)
 void Options::hideEvent(QHideEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::hideEvent(QHideEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::hideEvent(QHideEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   if ( !qmc2CleaningUp && !qmc2EarlyStartup )
@@ -2900,7 +2900,7 @@ void Options::hideEvent(QHideEvent *e)
 void Options::moveEvent(QMoveEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::moveEvent(QMoveEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::moveEvent(QMoveEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   if ( !qmc2CleaningUp && !qmc2EarlyStartup )
@@ -2913,7 +2913,7 @@ void Options::moveEvent(QMoveEvent *e)
 void Options::resizeEvent(QResizeEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::resizeEvent(QResizeEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   if ( !qmc2CleaningUp && !qmc2EarlyStartup )
@@ -3161,7 +3161,7 @@ void Options::on_toolButtonBrowseSoftwareNotesFolder_clicked()
 void Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item = 0x"+ QString::number((ulong)item, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_treeWidgetShortcuts_itemActivated(QTreeWidgetItem *item = %1)").arg((qulonglong)item));
 #endif
 
   if ( !item )

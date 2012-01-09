@@ -171,7 +171,7 @@ void SampleChecker::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus
 {
 #ifdef QMC2_DEBUG
   QProcess *proc = (QProcess *)sender();
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::verifyFinished(int exitCode = " + QString::number(exitCode) + ", QProcess::ExitStatus exitStatus = " + QString::number(exitStatus) + "): proc = 0x" + QString::number((ulong)proc, 16));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::verifyFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2): proc = %3").arg(exitCode).arg(exitStatus).arg((qulonglong)proc));
 #endif
 
   if ( exitStatus != QProcess::NormalExit && !qmc2StopParser )
@@ -238,7 +238,7 @@ void SampleChecker::verifyReadyReadStandardOutput()
   QProcess *proc = (QProcess *)sender();
 
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::verifyReadyReadStandardOutput(): proc = 0x" + QString::number((ulong)proc, 16));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::verifyReadyReadStandardOutput(): proc = %1").arg((qulonglong)proc));
 #endif
 
   // process sample verification output
@@ -289,7 +289,7 @@ void SampleChecker::verifyReadyReadStandardError()
   QProcess *proc = (QProcess *)sender();
 
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: SampleChecker::verifyReadyReadStandardError(): proc = 0x" + QString::number((ulong)proc, 16));
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SampleChecker::verifyReadyReadStandardError(): proc = %1").arg((qulonglong)proc));
 #endif
 
   // process sample verification output

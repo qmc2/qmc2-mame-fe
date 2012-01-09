@@ -37,7 +37,7 @@ Controller::Controller(QWidget *parent)
 #endif
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Controller::Controller(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Controller::Controller(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
   contextMenu = new QMenu(this);
@@ -92,7 +92,7 @@ Controller::~Controller()
 void Controller::paintEvent(QPaintEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Controller::paintEvent(QPaintEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Controller::paintEvent(QPaintEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   QPainter p(this);
@@ -223,7 +223,7 @@ bool Controller::loadController(QString gameName, QString onBehalfOf, bool check
 void Controller::drawCenteredImage(QPixmap *pm, QPainter *p)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Controller::drawCenteredImage(QPixmap *pm = 0x" + QString::number((ulong)pm, 16) + ", QPainter *p = 0x" + QString::number((ulong)p, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Controller::drawCenteredImage(QPixmap *pm = %1, QPainter *p = %2)").arg((qulonglong)pm).arg((qulonglong)p));
 #endif
 
   p->eraseRect(rect());
@@ -283,7 +283,7 @@ void Controller::drawCenteredImage(QPixmap *pm, QPainter *p)
 void Controller::drawScaledImage(QPixmap *pm, QPainter *p)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Controller::drawScaledImage(QPixmap *pm = 0x" + QString::number((ulong)pm, 16) + ", QPainter *p = 0x" + QString::number((ulong)p, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Controller::drawScaledImage(QPixmap *pm = %1, QPainter *p = %2)").arg((qulonglong)pm).arg((qulonglong)p));
 #endif
 
   if ( pm == NULL ) {

@@ -129,7 +129,7 @@ Embedder::Embedder(QString name, QString id, WId wid, bool currentlyPaused, QWid
   RECT wR, cR;
   GetWindowRect(windowHandle, &wR);
   GetClientRect(windowHandle, &cR);
-  ShowWindow(windowHandle, SW_HIDE);
+  SetWindowPos(windowHandle, HWND_BOTTOM, 0, 0, embedContainer->width(), embedContainer->height(), SWP_HIDEWINDOW);
   originalRect = QRect(wR.left, wR.top, wR.right - wR.left, wR.bottom - wR.top);
   nativeResolution = QRect(cR.left, cR.top, cR.right - cR.left, cR.bottom - cR.top).size();
 #endif
@@ -182,6 +182,7 @@ void Embedder::embed()
 	embedded = true;
 	embeddingWindow = false;
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 embedded, window ID = %2").arg(gameID).arg((qulonglong)windowHandle));
+	SetParent(windowHandle, embedContainer->winId());
 	QTimer::singleShot(0, this, SLOT(updateWindow()));
 	checkTimer.start(250);
 #endif
@@ -210,10 +211,10 @@ void Embedder::release()
 	}
 	SetParent(windowHandle, NULL);
 	SetWindowLong(windowHandle, GWL_STYLE, QMC2_RELEASED_STYLE);
-	qmc2MainWindow->raise();
-	qmc2MainWindow->activateWindow();
 	SetWindowPos(windowHandle, HWND_NOTOPMOST, originalRect.x(), originalRect.y(), originalRect.width(), originalRect.height(), SWP_SHOWWINDOW | SWP_NOACTIVATE | SWP_DRAWFRAME);
 	UpdateWindow(windowHandle);
+	qmc2MainWindow->raise();
+	qmc2MainWindow->activateWindow();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = %2").arg(gameID).arg((qulonglong)winId));
 	windowHandle = winId = 0;
 	releasingWindow = false;
@@ -308,6 +309,10 @@ void Embedder::showEvent(QShowEvent *e)
   if ( qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
     QTimer::singleShot(0, qmc2MainWindow->menuBar(), SLOT(hide()));
 
+#if defined(Q_WS_WIN)
+  QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, this, SLOT(forceFocus()));
+#endif
+
 #if defined(Q_WS_X11)
   if ( embedded )
     QTimer::singleShot(QMC2_EMBED_PAUSERESUME_DELAY, this, SLOT(showEventDelayed()));
@@ -346,10 +351,8 @@ void Embedder::resizeEvent(QResizeEvent *e)
 	if ( embedded ) {
 		embedContainer->resize(size());
 #if defined(Q_WS_WIN)
-		if ( windowHandle ) {
-			MoveWindow(windowHandle, 0, 0, embedContainer->width(), embedContainer->height(), true);
-			UpdateWindow(windowHandle);
-		}
+		if ( windowHandle && !updatingWindow )
+			SetWindowPos(windowHandle, HWND_TOPMOST, 0, 0, embedContainer->width(), embedContainer->height(), SWP_SHOWWINDOW);
 #endif
 	}
 }
@@ -433,8 +436,22 @@ void Embedder::adjustIconSizes()
 void Embedder::forceFocus()
 {
 	if ( embedded ) {
+#if defined(Q_WS_WIN)
+		if ( !updatingWindow ) {
+  			SetWindowPos(windowHandle, HWND_TOPMOST, 0, 0, embedContainer->width(), embedContainer->height(), SWP_HIDEWINDOW);
+			SetParent(windowHandle, embedContainer->winId());
+			MoveWindow(windowHandle, 0, 0, embedContainer->width(), embedContainer->height(), true);
+  			SetWindowPos(windowHandle, HWND_TOPMOST, 0, 0, embedContainer->width(), embedContainer->height(), SWP_SHOWWINDOW);
+			SetWindowLong(windowHandle, GWL_STYLE, QMC2_EMBEDDED_STYLE);
+			UpdateWindow(windowHandle);
+			EnableWindow(windowHandle, true);
+			SetFocus(windowHandle);
+			setUpdatesEnabled(true);
+		}
+#elif defined(Q_WS_X11)
 		embedContainer->activateWindow();
 		embedContainer->setFocus();
+#endif
 	} else {
 		activateWindow();
 		setFocus();
@@ -532,13 +549,13 @@ void Embedder::checkWindow()
 		if ( hwnd && hwnd != windowHandle ) {
 			HWND oldHandle = windowHandle;
 			windowHandle = winId = hwnd;
-			ShowWindow(windowHandle, SW_HIDE);
+  			SetWindowPos(windowHandle, HWND_BOTTOM, 0, 0, embedContainer->width(), embedContainer->height(), SWP_HIDEWINDOW);
 			SetParent(windowHandle, embedContainer->winId());
 			SetWindowLong(windowHandle, GWL_STYLE, QMC2_EMBEDDED_STYLE);
 			MoveWindow(windowHandle, 0, 0, embedContainer->width(), embedContainer->height(), true);
 			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("using replacement window ID %1 for emulator #%2").arg((qulonglong)windowHandle).arg(gameID));
 			UpdateWindow(windowHandle);
-			ShowWindow(windowHandle, SW_SHOW);
+  			SetWindowPos(windowHandle, HWND_TOPMOST, 0, 0, embedContainer->width(), embedContainer->height(), SWP_SHOWWINDOW);
 			EnableWindow(windowHandle, true);
 			SetFocus(windowHandle);
 			checkingWindow = false;
@@ -561,13 +578,14 @@ void Embedder::checkWindow()
 			return;
 		} else {
 			if ( !fullScreen ) {
-				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("embedded emulator #%1 is switching to full-screen, using desktop-resolution %2x%3").arg(gameID).arg(qApp->desktop()->width()).arg(qApp->desktop()->height()));
-				ShowWindow(windowHandle, SW_HIDE);
+				int desktopWidth, desktopHeight;
+				desktopWidth = qApp->desktop()->width();
+				desktopHeight = qApp->desktop()->height();
+				qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("embedded emulator #%1 is switching to full-screen, using desktop-resolution %2x%3").arg(gameID).arg(desktopWidth).arg(desktopHeight));
+  				SetWindowPos(windowHandle, HWND_BOTTOM, 0, 0, desktopWidth, desktopHeight, SWP_HIDEWINDOW);
 				SetParent(windowHandle, NULL);
 				SetWindowLong(windowHandle, GWL_STYLE, currentStyle | WS_POPUP);
-				MoveWindow(windowHandle, 0, 0, qApp->desktop()->width(), qApp->desktop()->height(), true);
-				UpdateWindow(windowHandle);
-				ShowWindow(windowHandle, SW_SHOW);
+  				SetWindowPos(windowHandle, HWND_TOPMOST, 0, 0, desktopWidth, desktopHeight, SWP_SHOWWINDOW);
 				EnableWindow(windowHandle, true);
 				SetFocus(windowHandle);
 			}
@@ -599,13 +617,10 @@ void Embedder::updateWindow()
 		return;
 
 	updatingWindow = true;
-	ShowWindow(windowHandle, SW_HIDE);
-	SetParent(windowHandle, embedContainer->winId());
-	SetWindowLong(windowHandle, GWL_STYLE, QMC2_EMBEDDED_STYLE);
+	if ( GetWindowLong(windowHandle, GWL_STYLE) != QMC2_EMBEDDED_STYLE )
+		SetWindowLong(windowHandle, GWL_STYLE, QMC2_EMBEDDED_STYLE);
 	MoveWindow(windowHandle, 0, 0, embedContainer->width(), embedContainer->height(), true);
-	EnableWindow(windowHandle, true);
-	SetFocus(windowHandle);
-	ShowWindow(windowHandle, SW_SHOW);
+	UpdateWindow(windowHandle);
 	updatingWindow = false;
 }
 

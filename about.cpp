@@ -39,7 +39,7 @@ About::About(QWidget *parent)
   : QDialog(parent)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: About::About(QWidget *parent = 0x" + QString::number((ulong)parent, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: About::About(QWidget *parent = %1)").arg((qulonglong)parent));
 #endif
 
   setupUi(this);
@@ -86,7 +86,7 @@ About::~About()
 void About::showEvent(QShowEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: About::showEvent(QShowEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: About::showEvent(QShowEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   ignoreResizeAndMove = true;
@@ -196,7 +196,7 @@ void About::showEvent(QShowEvent *e)
 void About::resizeEvent(QResizeEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: About::resizeEvent(QResizeEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: About::resizeEvent(QResizeEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   if ( !ignoreResizeAndMove )
@@ -208,7 +208,7 @@ void About::resizeEvent(QResizeEvent *e)
 void About::moveEvent(QMoveEvent *e)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: About::moveEvent(QMoveEvent *e = 0x" + QString::number((ulong)e, 16) + ")");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: About::moveEvent(QMoveEvent *e = %1)").arg((qulonglong)e));
 #endif
 
   if ( !ignoreResizeAndMove ) {
