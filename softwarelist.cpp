@@ -24,6 +24,7 @@ extern bool qmc2SmoothScaling;
 extern bool qmc2RetryLoadingImages;
 extern bool qmc2ShowGameName;
 extern int qmc2UpdateDelay;
+extern int qmc2DefaultLaunchMode;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QStringList> systemSoftwareFilterMap;
@@ -1716,7 +1717,17 @@ void SoftwareList::on_treeWidgetKnownSoftware_itemActivated(QTreeWidgetItem *ite
 
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
-		QTimer::singleShot(0, this, SLOT(playActivated()));
+		switch ( qmc2DefaultLaunchMode ) {
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+			case QMC2_LAUNCH_MODE_EMBEDDED:
+				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
+				break;
+#endif
+			case QMC2_LAUNCH_MODE_INDEPENDENT:
+			default:
+				QTimer::singleShot(0, this, SLOT(playActivated()));
+				break;
+		}
 	}
 	qmc2IgnoreItemActivation = false;
 }
@@ -1737,7 +1748,17 @@ void SoftwareList::on_treeWidgetFavoriteSoftware_itemActivated(QTreeWidgetItem *
 
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
-		QTimer::singleShot(0, this, SLOT(playActivated()));
+		switch ( qmc2DefaultLaunchMode ) {
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+			case QMC2_LAUNCH_MODE_EMBEDDED:
+				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
+				break;
+#endif
+			case QMC2_LAUNCH_MODE_INDEPENDENT:
+			default:
+				QTimer::singleShot(0, this, SLOT(playActivated()));
+				break;
+		}
 	}
 	qmc2IgnoreItemActivation = false;
 }
@@ -1758,7 +1779,17 @@ void SoftwareList::on_treeWidgetSearchResults_itemActivated(QTreeWidgetItem *ite
 
 	if ( !qmc2IgnoreItemActivation ) {
 		cancelSoftwareSnap();
-		QTimer::singleShot(0, this, SLOT(playActivated()));
+		switch ( qmc2DefaultLaunchMode ) {
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+			case QMC2_LAUNCH_MODE_EMBEDDED:
+				QTimer::singleShot(0, this, SLOT(playEmbeddedActivated()));
+				break;
+#endif
+			case QMC2_LAUNCH_MODE_INDEPENDENT:
+			default:
+				QTimer::singleShot(0, this, SLOT(playActivated()));
+				break;
+		}
 	}
 	qmc2IgnoreItemActivation = false;
 }

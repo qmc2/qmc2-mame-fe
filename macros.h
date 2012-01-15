@@ -569,6 +569,10 @@
 #define QMC2_SWLIST_LOAD_RESPONSE_LONG	1000
 #define QMC2_SWLIST_LOAD_ANIM_DELAY	5000
 
+// default launch-modes
+#define QMC2_LAUNCH_MODE_INDEPENDENT	0
+#define QMC2_LAUNCH_MODE_EMBEDDED	1
+
 // number of milliseconds the splash screen is shown after init
 #define QMC2_SPLASH_DURATION		2000
 

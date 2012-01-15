@@ -145,6 +145,7 @@ extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern QFont qmc2StartupDefaultFont;
 extern int qmc2SoftwareSnapPosition;
+extern int qmc2DefaultLaunchMode;
 extern HtmlEditor *qmc2SoftwareNotesEditor;
 
 Options::Options(QWidget *parent)
@@ -181,6 +182,11 @@ Options::Options(QWidget *parent)
 
 #if !defined(Q_WS_MAC)
   checkBoxUnifiedTitleAndToolBarOnMac->setVisible(false);
+#endif
+
+#if !defined(Q_WS_X11) && !defined(Q_WS_WIN)
+  labelDefaultLaunchMode->setVisible(false);
+  comboBoxDefaultLaunchMode->setVisible(false);
 #endif
 
 #if !defined(QMC2_SHOWMEMINFO)
@@ -1115,6 +1121,8 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation", checkBoxPlayOnSublistActivation->isChecked());
   qmc2CursorPositioningMode = (QAbstractItemView::ScrollHint)comboBoxCursorPosition->currentIndex();
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/CursorPosition", qmc2CursorPositioningMode);
+  qmc2DefaultLaunchMode = comboBoxDefaultLaunchMode->currentIndex();
+  config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/DefaultLaunchMode", qmc2DefaultLaunchMode);
   qmc2SoftwareSnapPosition = comboBoxSoftwareSnapPosition->currentIndex();
   config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapPosition", qmc2SoftwareSnapPosition);
   config->setValue(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapOnMouseHover", checkBoxSoftwareSnapOnMouseHover->isChecked());
@@ -2085,6 +2093,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxPlayOnSublistActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/PlayOnSublistActivation", false).toBool());
   qmc2CursorPositioningMode = (QAbstractItemView::ScrollHint)config->value(QMC2_FRONTEND_PREFIX + "Gamelist/CursorPosition", QMC2_CURSOR_POS_TOP).toInt();
   comboBoxCursorPosition->setCurrentIndex((int)qmc2CursorPositioningMode);
+  qmc2DefaultLaunchMode = config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DefaultLaunchMode", QMC2_LAUNCH_MODE_INDEPENDENT).toInt();
+  comboBoxDefaultLaunchMode->setCurrentIndex(qmc2DefaultLaunchMode);
   qmc2SoftwareSnapPosition = config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapPosition", QMC2_SWSNAP_POS_BELOW_LEFT).toInt();
   comboBoxSoftwareSnapPosition->setCurrentIndex(qmc2SoftwareSnapPosition);
   checkBoxSoftwareSnapOnMouseHover->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Layout/SoftwareList/SoftwareSnapOnMouseHover", false).toBool());
