@@ -262,6 +262,7 @@ QFont qmc2StartupDefaultFont;
 int qmc2SoftwareSnapPosition = 0;
 QWidgetList qmc2AutoMinimizedWidgets;
 QSplashScreen *qmc2SplashScreen = NULL;
+int qmc2DefaultLaunchMode = QMC2_LAUNCH_MODE_INDEPENDENT;
 
 // game status colors 
 QColor MainWindow::qmc2StatusColorGreen = QColor("#00cc00");
@@ -2959,7 +2960,17 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
       if ( qmc2DemoModeDialog )
 	      if ( qmc2DemoModeDialog->demoModeRunning )
 		      return;
-      QTimer::singleShot(0, this, SLOT(on_actionPlay_activated()));
+      		switch ( qmc2DefaultLaunchMode ) {
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+			case QMC2_LAUNCH_MODE_EMBEDDED:
+				QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_activated()));
+				break;
+#endif
+			case QMC2_LAUNCH_MODE_INDEPENDENT:
+			default:
+				QTimer::singleShot(0, this, SLOT(on_actionPlay_activated()));
+				break;
+		}
     } else {
       tabWidgetGamelist->setCurrentIndex(0);
       if ( !qmc2ReloadActive )
@@ -4170,8 +4181,19 @@ void MainWindow::on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *item, int 
 		  return;
 
   qmc2StartEmbedded = false;
-  if ( !qmc2IgnoreItemActivation )
-    on_actionPlay_activated();
+  if ( !qmc2IgnoreItemActivation ) {
+	  switch ( qmc2DefaultLaunchMode ) {
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+		  case QMC2_LAUNCH_MODE_EMBEDDED:
+			  on_actionPlayEmbedded_activated();
+			  break;
+#endif
+		  case QMC2_LAUNCH_MODE_INDEPENDENT:
+		  default:
+			  on_actionPlay_activated();
+			  break;
+	  }
+  }
   qmc2IgnoreItemActivation = false;
 }
 
@@ -4186,8 +4208,19 @@ void MainWindow::on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *item, int
 		  return;
 
   qmc2StartEmbedded = false;
-  if ( !qmc2IgnoreItemActivation )
-    on_actionPlay_activated();
+  if ( !qmc2IgnoreItemActivation ) {
+	  switch ( qmc2DefaultLaunchMode ) {
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+		  case QMC2_LAUNCH_MODE_EMBEDDED:
+			  on_actionPlayEmbedded_activated();
+			  break;
+#endif
+		  case QMC2_LAUNCH_MODE_INDEPENDENT:
+		  default:
+			  on_actionPlay_activated();
+			  break;
+	  }
+  }
   qmc2IgnoreItemActivation = false;
 }
 
@@ -7846,8 +7879,19 @@ void MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item, 
 	if ( item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
 		return;
 	qmc2StartEmbedded = false;
-	if ( !qmc2IgnoreItemActivation )
-		on_actionPlay_activated();
+	if ( !qmc2IgnoreItemActivation ) {
+		switch ( qmc2DefaultLaunchMode ) {
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+			case QMC2_LAUNCH_MODE_EMBEDDED:
+				on_actionPlayEmbedded_activated();
+				break;
+#endif
+			case QMC2_LAUNCH_MODE_INDEPENDENT:
+			default:
+				on_actionPlay_activated();
+				break;
+		}
+	}
 	qmc2IgnoreItemActivation = false;
 }
 
@@ -7943,8 +7987,19 @@ void MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item, i
 	if ( item->text(QMC2_GAMELIST_COLUMN_NAME).isEmpty() )
 		return;
 	qmc2StartEmbedded = false;
-	if ( !qmc2IgnoreItemActivation )
-		on_actionPlay_activated();
+	if ( !qmc2IgnoreItemActivation ) {
+		switch ( qmc2DefaultLaunchMode ) {
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+			case QMC2_LAUNCH_MODE_EMBEDDED:
+				on_actionPlayEmbedded_activated();
+				break;
+#endif
+			case QMC2_LAUNCH_MODE_INDEPENDENT:
+			default:
+				on_actionPlay_activated();
+				break;
+		}
+	}
 	qmc2IgnoreItemActivation = false;
 }
 

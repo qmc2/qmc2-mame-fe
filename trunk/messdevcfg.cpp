@@ -15,6 +15,7 @@ extern bool qmc2CleaningUp;
 extern bool qmc2EarlyStartup;
 extern QString qmc2FileEditStartPath;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
+extern int qmc2DefaultLaunchMode;
 
 QMap<QString, QString> messXmlDataCache;
 QList<FileEditWidget *> messFileEditWidgetList;
@@ -1033,7 +1034,17 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemActivated(QLi
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemActivated(QListWidgetItem *item = %1)").arg((qulonglong) item));
 #endif
 
-	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+	switch ( qmc2DefaultLaunchMode ) {
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+		case QMC2_LAUNCH_MODE_EMBEDDED:
+			QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
+			break;
+#endif
+		case QMC2_LAUNCH_MODE_INDEPENDENT:
+		default:
+			QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+			break;
+	}
 }
 
 void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString &text)
@@ -1571,7 +1582,17 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex 
 	if ( toolButtonChooserProcessZIPs->isChecked() && fileModel->isZip(index) ) {
 		fileModel->openZip(index);
 	} else {
-		QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+		switch ( qmc2DefaultLaunchMode ) {
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+			case QMC2_LAUNCH_MODE_EMBEDDED:
+				QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
+				break;
+#endif
+			case QMC2_LAUNCH_MODE_INDEPENDENT:
+			default:
+				QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+				break;
+		}
 	}
 }
 
