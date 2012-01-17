@@ -4540,6 +4540,8 @@ void MainWindow::action_embedEmulator_triggered()
       if ( tabBar ) {
         int index = tabWidgetEmbeddedEmulators->indexOf(embedder);
         tabBar->tabButton(index, QTabBar::RightSide)->setToolTip(tr("Release emulator"));
+	// replace the default 'X' icon with something more suitable (the only way I found to accomplish this is by setting a style-sheet)
+	tabBar->setStyleSheet("QTabBar::close-button { image: url(:/data/img/release.png); subcontrol-position: right; } QTabBar::close-button:hover { image: url(:/data/img/release_alternate.png); }");
 
         QToolButton *optionsButton = new QToolButton(tabBar);
         optionsButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);

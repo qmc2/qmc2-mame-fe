@@ -135,6 +135,8 @@
         <file>data/img/qmc2_mess_splash.png</file>
         <file>data/img/qt-logo.png</file>
         <file>data/img/redo.png</file>
+        <file>data/img/release.png</file>
+        <file>data/img/release_alternate.png</file>
         <file>data/img/reload.png</file>
         <file>data/img/reload_small.png</file>
         <file>data/img/remove.png</file>
