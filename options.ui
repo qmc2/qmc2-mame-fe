@@ -2227,7 +2227,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>569</width>
+                <width>575</width>
                 <height>349</height>
                </rect>
               </property>
@@ -2248,7 +2248,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="0" colspan="4">
+                 <item row="10" column="0" colspan="4">
                   <layout class="QHBoxLayout" name="layout8_2">
                    <item>
                     <widget class="QLabel" name="labelLegend5Pic">
@@ -2284,14 +2284,14 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="2" column="2">
+                 <item row="3" column="2">
                   <widget class="QLabel" name="labelUpdateDelay">
                    <property name="text">
                     <string>Update delay</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="0" colspan="2">
+                 <item row="6" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxAutoDisableSoftwareSnap">
                    <property name="toolTip">
                     <string>Automatically disable SW snaps when software-detail is visible (may be annoying)</string>
@@ -2301,7 +2301,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="1">
+                 <item row="2" column="1">
                   <widget class="QComboBox" name="comboBoxSortCriteria">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
@@ -2359,7 +2359,7 @@
                    </item>
                   </widget>
                  </item>
-                 <item row="4" column="2" colspan="2">
+                 <item row="5" column="2" colspan="2">
                   <widget class="QCheckBox" name="checkBoxSoftwareSnapOnMouseHover">
                    <property name="toolTip">
                     <string>Display software snap-shots when hovering the software list with the mouse cursor</string>
@@ -2369,14 +2369,27 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="2">
+                 <item row="9" column="0" colspan="4">
+                  <spacer name="verticalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="2" column="2">
                   <widget class="QLabel" name="labelSortOrder">
                    <property name="text">
                     <string>Sort order</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="3">
+                 <item row="2" column="3">
                   <widget class="QComboBox" name="comboBoxSortOrder">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
@@ -2407,7 +2420,7 @@
                    </item>
                   </widget>
                  </item>
-                 <item row="6" column="2" colspan="2">
+                 <item row="7" column="2" colspan="2">
                   <widget class="QCheckBox" name="checkBoxPlayOnSublistActivation">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -2443,14 +2456,14 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="0">
+                 <item row="4" column="0">
                   <widget class="QLabel" name="labelCursorPosition">
                    <property name="text">
                     <string>Cursor position</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="1">
+                 <item row="4" column="1">
                   <widget class="QComboBox" name="comboBoxCursorPosition">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
@@ -2486,27 +2499,14 @@
                    </item>
                   </widget>
                  </item>
-                 <item row="2" column="0">
+                 <item row="3" column="0">
                   <widget class="QLabel" name="labelResponsiveness">
                    <property name="text">
                     <string>Responsiveness</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="0" colspan="4">
-                  <spacer name="verticalSpacer">
-                   <property name="orientation">
-                    <enum>Qt::Vertical</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>40</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item row="2" column="1">
+                 <item row="3" column="1">
                   <widget class="QSpinBox" name="spinBoxResponsiveness">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -2650,14 +2650,14 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="1" column="0">
+                 <item row="2" column="0">
                   <widget class="QLabel" name="labelSortCriteria">
                    <property name="text">
                     <string>Sort criteria</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="3">
+                 <item row="4" column="3">
                   <widget class="QComboBox" name="comboBoxDefaultLaunchMode">
                    <property name="toolTip">
                     <string>Select the default launch-mode (independent or embedded window) used when emulation is started by activating an entry in any list</string>
@@ -2682,7 +2682,7 @@
                    </item>
                   </widget>
                  </item>
-                 <item row="4" column="1">
+                 <item row="5" column="1">
                   <widget class="QComboBox" name="comboBoxSoftwareSnapPosition">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
@@ -2730,7 +2730,7 @@
                    </item>
                   </widget>
                  </item>
-                 <item row="2" column="3">
+                 <item row="3" column="3">
                   <widget class="QSpinBox" name="spinBoxUpdateDelay">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
@@ -2758,7 +2758,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="0" colspan="2">
+                 <item row="7" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxDoubleClickActivation">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -2774,7 +2774,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="0" colspan="2">
+                 <item row="8" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxHideWhileLoading">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -2790,7 +2790,7 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="7" column="2" colspan="2">
+                 <item row="8" column="2" colspan="2">
                   <widget class="QCheckBox" name="checkBoxSortOnline">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -2806,21 +2806,21 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="4" column="0">
+                 <item row="5" column="0">
                   <widget class="QLabel" name="labelSoftwareSnapPosition">
                    <property name="text">
                     <string>SW snap position</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="2">
+                 <item row="4" column="2">
                   <widget class="QLabel" name="labelDefaultLaunchMode">
                    <property name="text">
                     <string>Default launch-mode</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="2" colspan="2">
+                 <item row="6" column="2" colspan="2">
                   <widget class="QCheckBox" name="checkBoxAutoTriggerROMCheck">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -2833,6 +2833,46 @@
                    </property>
                    <property name="text">
                     <string>Auto-trigger ROM check</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0" colspan="2">
+                  <widget class="QCheckBox" name="checkBoxShowDeviceSets">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Display (or hide) device sets in master lists?</string>
+                   </property>
+                   <property name="text">
+                    <string>Show device sets</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2" colspan="2">
+                  <widget class="QCheckBox" name="checkBoxShowBiosSets">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Display (or hide) BIOS sets in master lists?</string>
+                   </property>
+                   <property name="text">
+                    <string>Show BIOS sets</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/reload.png</normaloff>:/data/img/reload.png</iconset>
                    </property>
                   </widget>
                  </item>
@@ -4883,6 +4923,8 @@
   <tabstop>toolButtonShowN</tabstop>
   <tabstop>toolButtonShowU</tabstop>
   <tabstop>checkBoxShowROMStatusIcons</tabstop>
+  <tabstop>checkBoxShowDeviceSets</tabstop>
+  <tabstop>checkBoxShowBiosSets</tabstop>
   <tabstop>comboBoxSortCriteria</tabstop>
   <tabstop>comboBoxSortOrder</tabstop>
   <tabstop>spinBoxResponsiveness</tabstop>

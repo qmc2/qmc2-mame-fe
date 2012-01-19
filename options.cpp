@@ -501,8 +501,8 @@ void Options::apply()
   toolButtonBrowseGameInfoDB->setIconSize(iconSize);
   toolButtonBrowseEmuInfoDB->setIconSize(iconSize);
 #if defined(QMC2_EMUTYPE_MAME)
-  qmc2MainWindow->treeWidgetCategoryView->setIconSize(iconSize);
-  qmc2MainWindow->treeWidgetVersionView->setIconSize(iconSize);
+  qmc2MainWindow->treeWidgetCategoryView->setIconSize(iconSizeMiddle);
+  qmc2MainWindow->treeWidgetVersionView->setIconSize(iconSizeMiddle);
   toolButtonBrowseMAWSCacheDirectory->setIconSize(iconSize);
   checkBoxUseCatverIni->setIconSize(iconSize);
   toolButtonBrowseCatverIniFile->setIconSize(iconSize);
@@ -534,6 +534,8 @@ void Options::apply()
   checkBoxRomStateFilter->setIconSize(iconSize);
   comboBoxSortOrder->setIconSize(iconSize);
   checkBoxShowROMStatusIcons->setIconSize(iconSize);
+  checkBoxShowDeviceSets->setIconSize(iconSize);
+  checkBoxShowBiosSets->setIconSize(iconSize);
   toolButtonBrowseExecutableFile->setIconSize(iconSize);
 #if defined(QMC2_VARIANT_LAUNCHER) && defined(Q_WS_WIN)
   toolButtonBrowseMAMEVariantExe->setIconSize(iconSize);
@@ -1114,6 +1116,12 @@ void Options::on_pushButtonApply_clicked()
   bool showROMStatusIcons = checkBoxShowROMStatusIcons->isChecked();
   needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool() != showROMStatusIcons );
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", showROMStatusIcons);
+  bool showDeviceSets = checkBoxShowDeviceSets->isChecked();
+  needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool() != showDeviceSets );
+  config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", showDeviceSets);
+  bool showBiosSets = checkBoxShowBiosSets->isChecked();
+  needReload |= (config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool() != showBiosSets );
+  config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", showBiosSets);
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/SortOnline", checkBoxSortOnline->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck", checkBoxAutoTriggerROMCheck->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation", checkBoxDoubleClickActivation->isChecked());
@@ -2086,6 +2094,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 
   // Gamelist
   checkBoxShowROMStatusIcons->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowROMStatusIcons", true).toBool());
+  checkBoxShowDeviceSets->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowDeviceSets", true).toBool());
+  checkBoxShowBiosSets->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/ShowBiosSets", true).toBool());
   checkBoxSortOnline->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/SortOnline", false).toBool());
   checkBoxAutoTriggerROMCheck->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/AutoTriggerROMCheck", false).toBool());
   checkBoxDoubleClickActivation->setChecked(config->value(QMC2_FRONTEND_PREFIX + "Gamelist/DoubleClickActivation", true).toBool());
