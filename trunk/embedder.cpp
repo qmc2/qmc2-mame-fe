@@ -202,6 +202,7 @@ void Embedder::release()
 #if defined(Q_WS_X11)
 	embedContainer->discardClient();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("emulator #%1 released, window ID = 0x%2").arg(gameID).arg(QString::number(winId, 16)));
+	QTimer::singleShot(0, qmc2MainWindow, SLOT(raise()));
 #elif defined(Q_WS_WIN)
 	checkTimer.stop();
 	releasingWindow = true;
