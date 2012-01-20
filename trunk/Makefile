@@ -1105,7 +1105,7 @@ ifneq '$(ARCH)' 'Windows'
 	@$(MAKE) -f $(QMAKEFILE) distclean
 else
 	@$(MAKE) -f $(QMAKEFILE) distclean
-	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts\subwcrev.out qmc2-mame.rc qmc2-mess,rc
+	@$(RM) object_script.$(TARGET_NAME).Release object_script.$(TARGET_NAME).Debug $(TARGET_NAME).exe_resource.rc scripts\subwcrev.out qmc2-mame.rc qmc2-mess.rc
 	@$(RMDIR) /s /q release > NUL
 	@$(RMDIR) /s /q debug > NUL
 endif
