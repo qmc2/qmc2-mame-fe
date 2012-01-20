@@ -31,6 +31,19 @@ ifndef MINGW
 MINGW = 0
 endif
 
+# >>> MAKEJOBS <<<
+#
+# If set to something different than 1, (sub-)make will be launched in explicit
+# jobserver-mode, with the specified number of parallel build jobs.
+# 
+# Note: On Linux/UNIX you can still use 'make -j <jobs> ...', but somehow this
+# this doesn't work on Windows (MinGW), so this option has been added. On Mac
+# OS X, this option is completely ignored (xcodebuild finds out itself).
+#
+ifndef MAKEJOBS
+MAKEJOBS = 1
+endif
+
 # >>> AUDIOEFFECTDIALOGS <<<
 #
 # Enable (1) or disable (0) support for audio-effect dialogs
@@ -883,6 +896,14 @@ ifneq '$(LINKER)' ''
 QMAKE_LINKER += QMAKE_LINK=$(LINKER)
 endif
 
+# explicit jobserver-mode for sub-make
+ifdef QMC2_EXPLICIT_JOBSERVER_MODE
+undef QMC2_EXPLICIT_JOBSERVER_MODE
+endif
+ifneq '$(MAKEJOBS)' '1'
+QMC2_EXPLICIT_JOBSERVER_MODE += -j $(MAKEJOBS) 
+endif
+
 # targets/rules
 all: $(PROJECT)-bin 
 
@@ -921,12 +942,12 @@ else
 endif
 else
 ifeq '$(ARCH)' 'Windows'
-	+@$(MAKESILENT) -f $(QMAKEFILE) > NUL
+	+@$(MAKESILENT) $(QMC2_EXPLICIT_JOBSERVER_MODE)-f $(QMAKEFILE) > NUL
 else
 ifeq '$(CTIME)' '0'
-	+@$(MAKESILENT) -f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) runonce.pro > /dev/null && $(MAKESILENT) -f $(QMAKEFILE) > /dev/null
+	+@$(MAKESILENT) $(QMC2_EXPLICIT_JOBSERVER_MODE)-f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) runonce.pro > /dev/null && $(MAKESILENT) $(QMC2_EXPLICIT_JOBSERVER_MODE)-f $(QMAKEFILE) > /dev/null
 else
-	+@$(TIME) ($(MAKESILENT) -f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) runonce.pro > /dev/null && $(MAKESILENT) -f $(QMAKEFILE) > /dev/null)
+	+@$(TIME) ($(MAKESILENT) $(QMC2_EXPLICIT_JOBSERVER_MODE)-f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) runonce.pro > /dev/null && $(MAKESILENT) $(QMC2_EXPLICIT_JOBSERVER_MODE)-f $(QMAKEFILE) > /dev/null)
 endif
 endif
 endif
@@ -979,12 +1000,12 @@ else
 endif
 else
 ifeq '$(ARCH)' 'Windows'
-	+@$(MAKE) -f $(QMAKEFILE)
+	+@$(MAKE) $(QMC2_EXPLICIT_JOBSERVER_MODE)-f $(QMAKEFILE)
 else
 ifeq '$(CTIME)' '0'
-	+@$(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) runonce.pro && $(MAKE) -f $(QMAKEFILE)
+	+@$(MAKE) $(QMC2_EXPLICIT_JOBSERVER_MODE)-f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) runonce.pro && $(MAKE) $(QMC2_EXPLICIT_JOBSERVER_MODE)-f $(QMAKEFILE)
 else
-	+@$(TIME) ($(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) runonce.pro && $(MAKE) -f $(QMAKEFILE))
+	+@$(TIME) ($(MAKE) $(QMC2_EXPLICIT_JOBSERVER_MODE)-f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) runonce.pro && $(MAKE) $(QMC2_EXPLICIT_JOBSERVER_MODE)-f $(QMAKEFILE))
 endif
 endif
 endif
@@ -1293,6 +1314,9 @@ endif
 	@echo "MACHINE              Target system's machine type                 $(MACHINE)"
 	@echo "MAKE                 GNU make command                             $(MAKE)"
 	@echo "MAKESILENT           GNU make command (silent mode)               $(MAKESILENT)"
+ifneq '$(ARCH)' 'Darwin'
+	@echo "MAKEJOBS             Number of parallel build jobs                $(MAKEJOBS)"
+endif
 ifeq '$(ARCH)' 'Windows'
 	@echo "MINGW                Force use of MinGW on Windows (0, 1)         $(MINGW)"
 endif
