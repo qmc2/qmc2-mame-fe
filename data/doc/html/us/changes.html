@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.35, 19-JAN-2012</h3>
+<h3>CHANGES - v0.35, 20-JAN-2012</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.35, 19-JAN-2012:</b></p>
+<p><b>v0.35, 20-JAN-2012:</b></p>
 <ul>
   <li>fix: minor: hide the software-list favorites column 'device configuration' for MAME targets as it's a MESS-only feature</li>
   <li>fix: minor: corrected the main progress-bar's visual behavior when ROM status checking and software-list caching are running in parallel</li>
@@ -39,6 +39,7 @@ inf: informational only
   <li>imp: Mac OS X build: added a make target ('xcode-project' or 'xcp') to create the XCode project and stop (i.e. to open it in XCode and build from there)</li>
   <li>imp: MiniWebBrowser: browser-plugins are now enabled per default (see make option <i>BROWSER_PLUGINS</i>)</li>
   <li>imp: build: removed make option <i>PRETTY</i> as it's no longer usable in the supported Qt versions</li>
+  <li>imp: build: added make option <i>MAKEJOBS</i> to activate job-server mode for sub-make with the specified number of parallel build jobs -- actually only required on Windows (MinGW) to allow for parallel compiles, works on Linux/UNIX as well as an alternative to simply using 'make -j <jobs>', ignored on Mac OS X (xcodebuild finds out automatically)</li>
   <li>new: the ROM state filtering mechanism can now be enabled/disabled on-the-fly (the default is 'enabled', just as before)</li>
   <li>new: added support for multi-device software-list entries as well as automatic vs. manual mount-device selection (includes the ability to mix parts from different software-list entries)</li>
   <li>new: added an alternative game/machine search entry box to the tool-bar</li>
