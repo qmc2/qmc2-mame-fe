@@ -31,18 +31,6 @@ ifndef MINGW
 MINGW = 0
 endif
 
-# >>> MAKEJOBS <<<
-#
-# If set to something different than 1, (sub-)make will be launched in explicit
-# jobserver-mode, with the specified number of parallel build jobs.
-#
-# Note: This option is only supported on Windows when using MinGW (see MINGW=1),
-# and is ignored everywhere else!
-#
-ifndef MAKEJOBS
-MAKEJOBS = 1
-endif
-
 # >>> AUDIOEFFECTDIALOGS <<<
 #
 # Enable (1) or disable (0) support for audio-effect dialogs
@@ -933,9 +921,6 @@ else
 endif
 else
 ifeq '$(ARCH)' 'Windows'
-ifneq '$(MAKEJOBS)' '1'
-	+@set MAKEFLAGS=-j$(MAKEJOBS)
-endif
 	+@$(MAKESILENT) -f $(QMAKEFILE) > NUL
 else
 ifeq '$(CTIME)' '0'
@@ -994,9 +979,6 @@ else
 endif
 else
 ifeq '$(ARCH)' 'Windows'
-ifneq '$(MAKEJOBS)' '1'
-	+@set MAKEFLAGS=-j$(MAKEJOBS)
-endif
 	+@$(MAKE) -f $(QMAKEFILE)
 else
 ifeq '$(CTIME)' '0'
@@ -1241,7 +1223,9 @@ ifneq '$(ARCH)' 'Windows'
 	@echo "snap            Create source distribution archives with date and time stamp"
 endif
 ifeq '$(ARCH)' 'Darwin'
-	@echo "xcode-project   Create XCode project and stop, alias: xcp"
+	@echo "xcode-project   Create XCode project and stop, alias: xcp, configure, qmake"
+else
+	@echo "configure       Create qmake output and stop, alias: qmake"
 endif
 	@echo ""
 ifneq '$(ARCH)' 'Windows'
@@ -1312,9 +1296,6 @@ endif
 	@echo "MAKE                 GNU make command                             $(MAKE)"
 	@echo "MAKESILENT           GNU make command (silent mode)               $(MAKESILENT)"
 ifeq '$(ARCH)' 'Windows'
-	@echo "MAKEJOBS             Number of parallel build jobs                $(MAKEJOBS)"
-endif
-ifeq '$(ARCH)' 'Windows'
 	@echo "MINGW                Force use of MinGW on Windows (0, 1)         $(MINGW)"
 endif
 	@echo "MKDIR                UNIX command mkdir                           $(MKDIR)"
@@ -1360,6 +1341,11 @@ endif
 ifeq '$(ARCH)' 'Darwin'
 xcp: $(QMAKEFILE)
 xcode-project: $(QMAKEFILE)
+configure: $(QMAKEFILE)
+qmake: $(QMAKEFILE)
+else
+configure: $(QMAKEFILE)
+qmake: $(QMAKEFILE)
 endif
 
 # process translations
