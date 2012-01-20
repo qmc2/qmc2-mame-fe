@@ -1351,6 +1351,7 @@ else
 configure: $(QMAKEFILE)
 qmake: $(QMAKEFILE)
 endif
+endif
 
 # process translations
 QMC2_TRANSLATIONS = us de pl fr pt
