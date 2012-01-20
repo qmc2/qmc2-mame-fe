@@ -1344,6 +1344,10 @@ xcode-project: $(QMAKEFILE)
 configure: $(QMAKEFILE)
 qmake: $(QMAKEFILE)
 else
+ifeq '$(ARCH)' 'Windows'
+configure: $(QMAKEFILE) rcgen
+qmake: $(QMAKEFILE) rcgen
+else
 configure: $(QMAKEFILE)
 qmake: $(QMAKEFILE)
 endif
