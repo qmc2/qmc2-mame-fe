@@ -625,6 +625,16 @@ ifeq '$(QMC2_EMULATOR)' 'MAMEUIFX32'
 QMC2_EMULATOR = MAME
 endif
 
+# associate icon files
+ifeq '$(ARCH)' 'Darwin'
+ifeq '$(QMC2_EMULATOR)' 'MAME'
+MYAPPICON = mame.icns
+endif
+ifeq '$(QMC2_EMULATOR)' 'MESS'
+MYAPPICON = mess.icns
+endif
+endif
+
 # determine the SVN revision (if any)
 ifneq '$(ARCH)' 'Windows'
 SVN_REV=$(shell $(SVNVERSION) 2>&1 | $(SED) -e "s/[MS]//g" -e "s/^[[:digit:]]*://" | $(GREP) "^[0-9]*$$")
@@ -891,9 +901,9 @@ bin: $(PROJECT)-bin
 $(PROJECT): $(PROJECT)-bin
 
 ifeq '$(ARCH)' 'Darwin'
-# put the version and SCM revision in the Info.plist for OS X
+# put the version, SCM revision and icon resource in Info.plist on Mac OS X
 %.plist: %.plist.in
-	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' < $< > $@
+	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICONS@/$(subst /,\/,$(MYAPPICON))/g' < $< > $@
 
 $(QMAKEFILE): arch/Darwin/Info.plist
 endif
