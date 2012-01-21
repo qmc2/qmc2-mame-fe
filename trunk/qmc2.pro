@@ -165,6 +165,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			OBJECTIVE_SOURCES += SDLMain_tmpl.m
 			HEADERS += SDLMain_tmpl.h
 			LIBS += -framework SDL -framework Cocoa -lz
+			contains(TARGET, qmc2-sdlmame): ICON = data/img/mame.icns
+			contains(TARGET, qmc2-sdlmess): ICON = data/img/mess.icns
 			greaterThan(QMC2_MAC_UNIVERSAL, 0) {
 				CONFIG += x86 ppc
 			}
