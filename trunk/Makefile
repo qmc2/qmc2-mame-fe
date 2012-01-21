@@ -903,7 +903,7 @@ $(PROJECT): $(PROJECT)-bin
 ifeq '$(ARCH)' 'Darwin'
 # put the version, SCM revision and icon resource in Info.plist on Mac OS X
 %.plist: %.plist.in
-	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICONS@/$(subst /,\/,$(MYAPPICON))/g' < $< > $@
+	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICON@/$(subst /,\/,$(MYAPPICON))/g' < $< > $@
 
 $(QMAKEFILE): arch/Darwin/Info.plist
 endif
