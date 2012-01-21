@@ -627,10 +627,10 @@ endif
 
 # associate icon files
 ifeq '$(ARCH)' 'Darwin'
-ifeq '$(QMC2_EMULATOR)' 'MAME'
+ifeq '$(QMC2_EMULATOR)' 'SDLMAME'
 MYAPPICON = mame.icns
 endif
-ifeq '$(QMC2_EMULATOR)' 'MESS'
+ifeq '$(QMC2_EMULATOR)' 'SDLMESS'
 MYAPPICON = mess.icns
 endif
 endif
@@ -903,7 +903,7 @@ $(PROJECT): $(PROJECT)-bin
 ifeq '$(ARCH)' 'Darwin'
 # put the version, SCM revision and icon resource in Info.plist on Mac OS X
 %.plist: %.plist.in
-	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICON@/$(subst /,\/,$(MYAPPICON))/g' < $< > $@
+	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICON@/$(MYAPPICON)/g' < $< > $@
 
 $(QMAKEFILE): arch/Darwin/Info.plist
 endif
