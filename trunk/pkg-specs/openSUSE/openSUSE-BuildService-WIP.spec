@@ -2,7 +2,7 @@ Name:           qmc2
 Version:        0.35
 Release:        1
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II
-Group:          Applications/Emulators
+Group:          System/Emulators/Other
 License:        GPL-2
 URL:            http://qmc2.arcadehits.net/wordpress
 Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
