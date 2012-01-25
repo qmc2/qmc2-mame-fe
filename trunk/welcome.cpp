@@ -65,6 +65,7 @@ Welcome::~Welcome()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::~Welcome()");
 #endif
 
+    delete startupConfig;
 }
 
 void Welcome::on_pushButtonOkay_clicked()
@@ -92,15 +93,11 @@ void Welcome::on_pushButtonOkay_clicked()
         startupConfig->setValue("MESS/Configuration/Global/hashpath", lineEditHashPath->text());
 #endif
       startupConfig->sync();
-      delete startupConfig;
       emit accept();
-    } else {
+    } else
       QMessageBox::critical(this, tr("Error"), tr("The specified file isn't executable!"));
-    }
-  } else {
-    delete startupConfig;
+  } else
     emit accept();
-  }
 }
 
 void Welcome::on_toolButtonBrowseExecutableFile_clicked()
