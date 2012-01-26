@@ -807,6 +807,9 @@ bool MESSDeviceConfigurator::load()
 		connect(cb, SIGNAL(currentIndexChanged(int)), this, SLOT(slotOptionChanged(int)));
 	}
 
+	if ( treeWidgetSlotOptions->topLevelItemCount() == 0 )
+		treeWidgetSlotOptions->setEnabled(false);
+
 	configurationMap.clear();
 	slotMap.clear();
 
