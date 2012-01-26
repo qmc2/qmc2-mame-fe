@@ -12086,42 +12086,42 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2663"/>
         <source>Select the default launch-mode (independent or embedded window) used when emulation is started by activating an entry in any list</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o modo padrão de execução (janela independente ou embutida) usada quando o emulador é iniciado ativando uma entrada em qualquer lista</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2667"/>
         <source>independent</source>
-        <translation type="unfinished"></translation>
+        <translation>independente</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2676"/>
         <source>embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>embutido</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2819"/>
         <source>Default launch-mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo de execução padrão</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2848"/>
         <source>Display (or hide) device sets in master lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar (ou esconder) conjuntos de dispositivos nas listas principais?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2851"/>
         <source>Show device sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar conjuntos de dispositivos</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2868"/>
         <source>Display (or hide) BIOS sets in master lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar (ou esconder) conjuntos de BIOS nas listas principais?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2871"/>
         <source>Show BIOS sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar conjuntos de BIOS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2987"/>
