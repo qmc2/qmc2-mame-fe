@@ -813,13 +813,30 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>232</width>
-                <height>558</height>
+                <width>515</width>
+                <height>587</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_7">
+                 <item row="2" column="2">
+                  <widget class="QToolButton" name="toolButtonBrowseFavoritesFile">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse game favorites file</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="0" column="0">
                   <widget class="QLabel" name="labelTemporaryFile">
                    <property name="text">
@@ -911,23 +928,6 @@
                    </property>
                    <property name="toolTip">
                     <string>Game favorites file (write)</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="2">
-                  <widget class="QToolButton" name="toolButtonBrowseFavoritesFile">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="toolTip">
-                    <string>Browse game favorites file</string>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="qmc2.qrc">
-                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
                    </property>
                   </widget>
                  </item>
@@ -2020,7 +2020,7 @@
                    </widget>
                   </widget>
                  </item>
-                 <item row="18" column="0" colspan="3">
+                 <item row="19" column="0" colspan="3">
                   <spacer name="spacer5">
                    <property name="orientation">
                     <enum>Qt::Vertical</enum>
@@ -2033,7 +2033,7 @@
                    </property>
                   </spacer>
                  </item>
-                 <item row="19" column="0" colspan="3">
+                 <item row="20" column="0" colspan="3">
                   <layout class="QHBoxLayout" name="layout8">
                    <item>
                     <widget class="QLabel" name="labelLegend3Pic">
@@ -2198,6 +2198,46 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="18" column="0">
+                  <widget class="QCheckBox" name="checkBoxUseSoftwareNotesTemplate">
+                   <property name="toolTip">
+                    <string>Enable the use of a template for (empty) software notes</string>
+                   </property>
+                   <property name="text">
+                    <string>Software notes template</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="18" column="1">
+                  <widget class="QLineEdit" name="lineEditSoftwareNotesTemplate">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>HTML file used as a template for software-notes (read)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="18" column="2">
+                  <widget class="QToolButton" name="toolButtonBrowseSoftwareNotesTemplate">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="toolTip">
+                    <string>Browse software notes template</string>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="qmc2.qrc">
+                     <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -2228,7 +2268,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>575</width>
-                <height>349</height>
+                <height>276</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -4916,6 +4956,9 @@
   <tabstop>toolButtonBrowseSoftwareSnapFile</tabstop>
   <tabstop>lineEditSoftwareNotesFolder</tabstop>
   <tabstop>toolButtonBrowseSoftwareNotesFolder</tabstop>
+  <tabstop>checkBoxUseSoftwareNotesTemplate</tabstop>
+  <tabstop>lineEditSoftwareNotesTemplate</tabstop>
+  <tabstop>toolButtonBrowseSoftwareNotesTemplate</tabstop>
   <tabstop>checkBoxRomStateFilter</tabstop>
   <tabstop>toolButtonShowC</tabstop>
   <tabstop>toolButtonShowM</tabstop>
@@ -5032,8 +5075,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>508</x>
-     <y>618</y>
+     <x>607</x>
+     <y>819</y>
     </hint>
     <hint type="destinationlabel">
      <x>96</x>
@@ -5048,8 +5091,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>571</x>
-     <y>618</y>
+     <x>679</x>
+     <y>819</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -5068,8 +5111,8 @@
      <y>81</y>
     </hint>
     <hint type="destinationlabel">
-     <x>613</x>
-     <y>83</y>
+     <x>413</x>
+     <y>87</y>
     </hint>
    </hints>
   </connection>
@@ -5148,8 +5191,8 @@
      <y>544</y>
     </hint>
     <hint type="destinationlabel">
-     <x>538</x>
-     <y>546</y>
+     <x>525</x>
+     <y>555</y>
     </hint>
    </hints>
   </connection>
@@ -5164,8 +5207,8 @@
      <y>569</y>
     </hint>
     <hint type="destinationlabel">
-     <x>538</x>
-     <y>571</y>
+     <x>525</x>
+     <y>580</y>
     </hint>
    </hints>
   </connection>
@@ -5180,8 +5223,8 @@
      <y>419</y>
     </hint>
     <hint type="destinationlabel">
-     <x>538</x>
-     <y>419</y>
+     <x>525</x>
+     <y>428</y>
     </hint>
    </hints>
   </connection>
@@ -5192,8 +5235,8 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>538</x>
-     <y>419</y>
+     <x>525</x>
+     <y>428</y>
     </hint>
     <hint type="destinationlabel">
      <x>239</x>
