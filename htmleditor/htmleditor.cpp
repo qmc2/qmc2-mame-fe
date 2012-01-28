@@ -213,7 +213,7 @@ bool HtmlEditor::fileSave()
 	if ( success ) {
 		// FIXME: here we always use UTF-8 encoding
 		QString content = ui->webView->page()->mainFrame()->toHtml();
-		QByteArray data = content.toUtf8();
+		QByteArray data = content.toLatin1();
 		qint64 c = file.write(data);
 		success = (c >= data.length());
 		file.close();
@@ -685,7 +685,7 @@ bool HtmlEditor::save()
 	if ( !f.open(QIODevice::WriteOnly) )
 		return false;
 
-	QByteArray data = content.toUtf8();
+	QByteArray data = content.toLatin1();
 	qint64 c = f.write(data);
 	bool success = (c >= data.length());
 	f.close();
