@@ -176,7 +176,7 @@ Options::Options(QWidget *parent)
 #if !defined(QMC2_WIP_ENABLED)
   checkBoxAutoDisableSoftwareSnap->setVisible(false);
   labelSoftwareNotesFolder->setVisible(false);
-  labelSoftwareNotesTemplate->setVisible(false);
+  checkBoxUseSoftwareNotesTemplate->setVisible(false);
   lineEditSoftwareNotesFolder->setVisible(false);
   lineEditSoftwareNotesTemplate->setVisible(false);
   toolButtonBrowseSoftwareNotesFolder->setVisible(false);
