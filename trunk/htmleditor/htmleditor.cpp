@@ -155,9 +155,9 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 	ui->webView->pageAction(QWebPage::Reload)->setVisible(false);
 
 	ui->webView->setFocus();
-	fileNew();
+	ui->webView->page()->setContentEditable(true);
 
-	changeZoom(100);
+	changeZoom(qmc2Config->value(QMC2_FRONTEND_PREFIX + "HtmlEditor/Zoom", 100).toInt());
 
 	adjustIconSizes();
 	adjustActions();
@@ -170,22 +170,6 @@ HtmlEditor::~HtmlEditor()
 
 	delete ui;
 	delete ui_dialog;
-}
-
-bool HtmlEditor::maybeSave()
-{
-	if ( !isWindowModified() )
-		return true;
-
-	QMessageBox::StandardButton ret;
-	ret = QMessageBox::warning(this, tr("HTML Editor"), tr("The document has been modified.\nDo you want to save your changes?"), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-
-	if ( ret == QMessageBox::Save )
-		return fileSave();
-	else if ( ret == QMessageBox::Cancel )
-		return false;
-
-	return true;
 }
 
 void HtmlEditor::fileNew()
@@ -204,8 +188,9 @@ void HtmlEditor::fileNew()
 	QApplication::postEvent(ui->webView, e2);
 
 	ui->webView->setHtml("");
-	QTimer::singleShot(25, this, SLOT(styleParagraph()));
-	QTimer::singleShot(50, this, SLOT(adjustHTML()));
+	generateEmptyContent = true;
+	QTimer::singleShot(0, this, SLOT(styleParagraph()));
+	QTimer::singleShot(25, this, SLOT(adjustHTML()));
 }
 
 void HtmlEditor::fileOpen()
@@ -238,7 +223,7 @@ bool HtmlEditor::fileSave()
 
 bool HtmlEditor::fileSaveAs()
 {
-	QString fn = QFileDialog::getSaveFileName(this, tr("Save as..."), QString(), tr("HTML files (*.htm *.html);;All files (*)"));
+	QString fn = QFileDialog::getSaveFileName(this, tr("Save a copy..."), QString(), tr("HTML files (*.htm *.html);;All files (*)"));
 
 	if ( fn.isEmpty() )
 		return false;
@@ -246,7 +231,8 @@ bool HtmlEditor::fileSaveAs()
 	if ( !(fn.endsWith(".htm", Qt::CaseInsensitive) || fn.endsWith(".html", Qt::CaseInsensitive)) )
 		fn += ".html"; // default
 
-	setCurrentFileName(fn);
+	if ( fileName.isEmpty() )
+		setCurrentFileName(fn);
 
 	return fileSave();
 }
@@ -395,6 +381,7 @@ void HtmlEditor::zoomOut()
 		ui->actionZoomOut->setEnabled(percent > 25);
 		ui->actionZoomIn->setEnabled(true);
 		zoomSlider->setValue(percent);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "HtmlEditor/Zoom", percent);
 	}
 }
 
@@ -410,6 +397,7 @@ void HtmlEditor::zoomIn()
 		ui->actionZoomIn->setEnabled(percent < 400);
 		ui->actionZoomOut->setEnabled(true);
 		zoomSlider->setValue(percent);
+		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "HtmlEditor/Zoom", percent);
 	}
 }
 
@@ -443,6 +431,10 @@ bool HtmlEditor::queryCommandState(const QString &cmd)
 void HtmlEditor::styleParagraph()
 {
 	execCommand("formatBlock", "p");
+	if ( generateEmptyContent ) {
+		emptyContent = ui->webView->page()->mainFrame()->toHtml();
+		generateEmptyContent = false;
+	}
 }
 
 void HtmlEditor::styleHeading1()
@@ -634,31 +626,71 @@ void HtmlEditor::changeZoom(int percent)
 	ui->webView->setZoomFactor(factor);
 	zoomLabel->setText(tr("Zoom: %1%").arg(percent));
 	zoomSlider->setValue(percent);
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "HtmlEditor/Zoom", percent);
 }
 
 void HtmlEditor::closeEvent(QCloseEvent *e)
 {
-	if ( maybeSave() )
-		e->accept();
-	else
-		e->ignore();
+	e->accept();
+}
+
+bool HtmlEditor::loadCurrent()
+{
+	return load(fileName);
 }
 
 bool HtmlEditor::load(const QString &f)
 {
-	if ( !QFile::exists(f) )
+	emptyContent.clear();
+
+	if ( !QFile::exists(f) ) {
+		fileNew();
 		return false;
+	}
 
 	QFile file(f);
 	if ( !file.open(QFile::ReadOnly) )
 		return false;
 
 	QByteArray data = file.readAll();
+	file.close();
 	ui->webView->setContent(data, "text/html");
 	ui->webView->page()->setContentEditable(true);
-	setCurrentFileName(f);
+	if ( fileName.isEmpty() )
+		setCurrentFileName(f);
+	QTimer::singleShot(0, this, SLOT(adjustHTML()));
 
 	return true;
+}
+
+bool HtmlEditor::save()
+{
+	if ( fileName.isEmpty() )
+		return false;
+
+	QFileInfo fi(fileName);
+	QString targetPath = QDir::cleanPath(fi.absoluteDir().path());
+
+	if ( !QFile::exists(targetPath) ) {
+		QDir dummyDir;
+		if ( !dummyDir.mkpath(targetPath) )
+			return false;
+	}
+
+	QString content = ui->webView->page()->mainFrame()->toHtml();
+	if ( content == emptyContent )
+		return true;
+
+	QFile f(fileName);
+	if ( !f.open(QIODevice::WriteOnly) )
+		return false;
+
+	QByteArray data = content.toUtf8();
+	qint64 c = f.write(data);
+	bool success = (c >= data.length());
+	f.close();
+
+	return success;
 }
 
 void HtmlEditor::setCurrentFileName(const QString &fileName)

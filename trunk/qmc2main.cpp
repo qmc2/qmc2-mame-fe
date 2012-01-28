@@ -3293,11 +3293,20 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					qmc2SoftwareNotesEditor = new HtmlEditor(tabNotes);
 					layout->addWidget(qmc2SoftwareNotesEditor);
 					tabNotes->setLayout(layout);
-				}
-				QString entryName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
-				QString entryTitle = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);
-				QString listName = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
-
+				} else
+					qmc2SoftwareNotesEditor->save();
+#if defined(QMC2_EMUTYPE_MAME)
+				QString softwareNotesFolder = qmc2Config->value("MAME/FilesAndDirectories/SoftwareNotesFolder").toString();
+#elif defined(QMC2_EMUTYPE_MESS)
+				QString softwareNotesFolder = qmc2Config->value("MESS/FilesAndDirectories/SoftwareNotesFolder").toString();
+#endif
+				QString fileName = softwareNotesFolder + qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST) + "/" + qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME) + ".html";
+				if ( QFile::exists(fileName) ) {
+					qmc2SoftwareNotesEditor->setCurrentFileName(fileName);
+					QTimer::singleShot(25, qmc2SoftwareNotesEditor, SLOT(loadCurrent()));
+				} else
+					qmc2SoftwareNotesEditor->fileNew();
+				qmc2SoftwareNotesEditor->setCurrentFileName(fileName);
 				qmc2LastSoftwareNotesItem = qmc2SoftwareList->currentItem;
 			}
 			break;
@@ -5620,6 +5629,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #if defined(QMC2_EMUTYPE_MAME)
   if ( qmc2SoftwareList ) {
     if ( qmc2SoftwareNotesEditor ) {
+      qmc2SoftwareNotesEditor->save();
       qmc2SoftwareNotesEditor->close();
       delete qmc2SoftwareNotesEditor;
     }
@@ -5632,6 +5642,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #elif defined(QMC2_EMUTYPE_MESS)
   if ( qmc2SoftwareList ) {
     if ( qmc2SoftwareNotesEditor ) {
+      qmc2SoftwareNotesEditor->save();
       qmc2SoftwareNotesEditor->close();
       delete qmc2SoftwareNotesEditor;
     }
