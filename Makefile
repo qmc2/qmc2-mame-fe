@@ -386,7 +386,8 @@ endif
 
 # >>> BROWSER_PLUGINS <<<
 #
-# Enable (1) or disable (0) Netscape/Mozilla plugins in the 'MiniWebBrowser'?
+# Enable (1) or disable (0) Netscape/Mozilla plugins in the 'MiniWebBrowser'
+# and the 'HTML editor'?
 #
 # Caution: browser plugins may be buggy and can cause crashes! However, since
 # Qt 4.7, browser plugins work quite nicely so they're enabled now as per
