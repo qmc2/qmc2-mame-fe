@@ -668,7 +668,7 @@ bool HtmlEditor::load(const QString &f)
 
 bool HtmlEditor::save()
 {
-	if ( !ui->webView->page()->isModified() )
+	if ( !ui->webView->page()->isModified() && !ui->plainTextEdit->document()->isModified() )
 		return true;
 
 	if ( fileName.isEmpty() )
