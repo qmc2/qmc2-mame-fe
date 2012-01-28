@@ -57,9 +57,6 @@ private:
     void setupActions();
     void setupToolBar();
     void setupMenu();
-    bool load(const QString &f);
-    bool maybeSave();
-    void setCurrentFileName(const QString &fileName);
     void execCommand(const QString&);
     void execCommand(const QString &cmd, const QString &arg);
     bool queryCommandState(const QString&);
@@ -107,12 +104,18 @@ public slots:
     void changeZoom(int);
     void linkHovered(const QString &, const QString &, const QString &);
     void adjustIconSizes();
+    bool load(const QString &f);
+    bool loadCurrent();
+    bool save();
+    void setCurrentFileName(const QString &fileName);
 
 private:
     Ui_HTMLEditorMainWindow *ui;
     QString fileName;
     bool htmlDirty;
     bool wysiwigDirty;
+    bool generateEmptyContent;
+    QString emptyContent;
     QLabel *zoomLabel;
     QSlider *zoomSlider;
     Highlighter *highlighter;
