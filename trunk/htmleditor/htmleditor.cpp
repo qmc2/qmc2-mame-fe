@@ -76,6 +76,12 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 	connect(zoomSlider, SIGNAL(valueChanged(int)), SLOT(changeZoom(int)));
 	ui->standardToolBar->insertWidget(ui->actionZoomIn, zoomSlider);
 
+#if defined(QMC2_BROWSER_PLUGINS_ENABLED)
+	ui->webView->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, true);
+#else
+	ui->webView->page()->settings()->setAttribute(QWebSettings::PluginsEnabled, false);
+#endif
+
 	// popup the 'insert image' menu when the tool-bar button is pressed
 	QToolButton *tb = (QToolButton *)ui->formatToolBar->widgetForAction(ui->menuInsertImage->menuAction());
 	if ( tb )
