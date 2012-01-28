@@ -211,7 +211,10 @@ bool HtmlEditor::fileSave()
 	QFile file(fileName);
 	bool success = file.open(QIODevice::WriteOnly);
 	if ( success ) {
-		// FIXME: here we always use UTF-8 encoding
+		if ( ui->tabWidget->currentIndex() == 1 ) {
+			ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
+			wysiwigDirty = false;
+		}
 		QString content = ui->webView->page()->mainFrame()->toHtml();
 		QByteArray data = content.toLatin1();
 		qint64 c = file.write(data);
@@ -675,6 +678,11 @@ bool HtmlEditor::save()
 		QDir dummyDir;
 		if ( !dummyDir.mkpath(targetPath) )
 			return false;
+	}
+
+	if ( ui->tabWidget->currentIndex() == 1 ) {
+		ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
+		wysiwigDirty = false;
 	}
 
 	QString content = ui->webView->page()->mainFrame()->toHtml();
