@@ -985,6 +985,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MAME/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
   config->setValue("MAME/FilesAndDirectories/SoftwareSnapFile", lineEditSoftwareSnapFile->text());
   config->setValue("MAME/FilesAndDirectories/SoftwareNotesFolder", lineEditSoftwareNotesFolder->text());
+  config->setValue("MAME/FilesAndDirectories/UseSoftwareNotesTemplate", checkBoxUseSoftwareNotesTemplate->isChecked());
   config->setValue("MAME/FilesAndDirectories/SoftwareNotesTemplate", lineEditSoftwareNotesTemplate->text());
   s = lineEditGameInfoDB->text();
   needManualReload |= (config->value("MAME/FilesAndDirectories/GameInfoDB").toString() != s);
@@ -1107,6 +1108,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue("MESS/FilesAndDirectories/SoftwareSnapDirectory", lineEditSoftwareSnapDirectory->text());
   config->setValue("MESS/FilesAndDirectories/SoftwareSnapFile", lineEditSoftwareSnapFile->text());
   config->setValue("MESS/FilesAndDirectories/SoftwareNotesFolder", lineEditSoftwareNotesFolder->text());
+  config->setValue("MESS/FilesAndDirectories/UseSoftwareNotesTemplate", checkBoxUseSoftwareNotesTemplate->isChecked());
   config->setValue("MESS/FilesAndDirectories/SoftwareNotesTemplate", lineEditSoftwareNotesTemplate->text());
   s = lineEditGameInfoDB->text();
   needManualReload |= (config->value("MESS/FilesAndDirectories/GameInfoDB").toString() != s);
@@ -2037,6 +2039,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
   lineEditSoftwareNotesFolder->setText(config->value("MAME/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
   lineEditSoftwareNotesTemplate->setText(config->value("MAME/FilesAndDirectories/SoftwareNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/swn/template.html").toString());
+  checkBoxUseSoftwareNotesTemplate->setChecked(config->value("MAME/FilesAndDirectories/UseSoftwareNotesTemplate", false).toBool());
   lineEditGameInfoDB->setText(config->value("MAME/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/history.dat").toString());
   lineEditEmuInfoDB->setText(config->value("MAME/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/mameinfo.dat").toString());
   lineEditCatverIniFile->setText(config->value("MAME/FilesAndDirectories/CatverIni", userScopePath + "/catver.ini").toString());
@@ -2096,6 +2099,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   radioButtonSoftwareSnapSelect->setText(qmc2UseSoftwareSnapFile ? tr("SW snap file") : tr("SW snap folder"));
   lineEditSoftwareNotesFolder->setText(config->value("MESS/FilesAndDirectories/SoftwareNotesFolder", QMC2_DEFAULT_DATA_PATH + "/swn/").toString());
   lineEditSoftwareNotesTemplate->setText(config->value("MESS/FilesAndDirectories/SoftwareNotesTemplate", QMC2_DEFAULT_DATA_PATH + "/swn/template.html").toString());
+  checkBoxUseSoftwareNotesTemplate->setChecked(config->value("MESS/FilesAndDirectories/UseSoftwareNotesTemplate", false).toBool());
   lineEditGameInfoDB->setText(config->value("MESS/FilesAndDirectories/GameInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/sysinfo.dat").toString());
   lineEditEmuInfoDB->setText(config->value("MESS/FilesAndDirectories/EmuInfoDB", QMC2_DEFAULT_DATA_PATH + "/cat/messinfo.dat").toString());
 #endif
