@@ -445,7 +445,7 @@ void YouTubeVideoPlayer::copyYouTubeUrl()
 void YouTubeVideoPlayer::pasteYouTubeUrl()
 {
 	QString videoID = qApp->clipboard()->text();
-	videoID.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?v\\=(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
+	videoID.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
 
 #ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::pasteYouTubeUrl(): videoID = '%1'").arg(videoID));
@@ -1233,7 +1233,7 @@ void YouTubeVideoPlayer::on_listWidgetAttachedVideos_customContextMenuRequested(
 #endif
 
 	QString clipboardText = qApp->clipboard()->text();
-	if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?v\\=.*$")) == 0 )
+	if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=.*$")) == 0 )
 		avmActionPasteVideoUrl->setEnabled(true);
 	else
 		avmActionPasteVideoUrl->setEnabled(false);
