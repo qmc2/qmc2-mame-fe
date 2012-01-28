@@ -668,6 +668,9 @@ bool HtmlEditor::load(const QString &f)
 
 bool HtmlEditor::save()
 {
+	if ( !ui->webView->page()->isModified() )
+		return true;
+
 	if ( fileName.isEmpty() )
 		return false;
 
