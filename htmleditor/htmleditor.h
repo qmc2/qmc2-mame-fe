@@ -45,6 +45,8 @@ class HtmlEditor : public QMainWindow
     Q_OBJECT
 
 public:
+    QMap<QString, QString> templateMap;
+
     HtmlEditor(QWidget *parent = 0);
     ~HtmlEditor();
 
@@ -106,12 +108,16 @@ public slots:
     void adjustIconSizes();
     bool load(const QString &f);
     bool loadCurrent();
+    bool loadTemplate(const QString &f);
+    bool loadCurrentTemplate();
     bool save();
     void setCurrentFileName(const QString &fileName);
+    void setCurrentTemplateName(const QString &templateName);
 
 private:
     Ui_HTMLEditorMainWindow *ui;
     QString fileName;
+    QString templateName;
     bool htmlDirty;
     bool wysiwigDirty;
     bool generateEmptyContent;

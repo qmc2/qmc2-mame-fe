@@ -201,7 +201,7 @@ void HtmlEditor::fileNew()
 
 void HtmlEditor::fileOpen()
 {
-	QString fn = QFileDialog::getOpenFileName(this, tr("Open file..."), QString(), tr("HTML files (*.htm *.html);;All files (*)"));
+	QString fn = QFileDialog::getOpenFileName(this, tr("Open file..."), QString(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"));
 
 	if ( !fn.isEmpty() ) {
 		load(fn);
@@ -211,7 +211,7 @@ void HtmlEditor::fileOpen()
 
 bool HtmlEditor::fileSave()
 {
-	if (fileName.isEmpty() || fileName.startsWith(QLatin1String(":/")))
+	if ( fileName.isEmpty() || fileName.startsWith(QLatin1String(":/")) )
 		return fileSaveAs();
 
 	QFile file(fileName);
@@ -232,7 +232,7 @@ bool HtmlEditor::fileSave()
 
 bool HtmlEditor::fileSaveAs()
 {
-	QString fn = QFileDialog::getSaveFileName(this, tr("Save a copy..."), QString(), tr("HTML files (*.htm *.html);;All files (*)"));
+	QString fn = QFileDialog::getSaveFileName(this, tr("Save a copy"), QString(), tr("HTML files (*.html *.htm)") + ";;" + tr("All files (*)"));
 
 	if ( fn.isEmpty() )
 		return false;
@@ -243,7 +243,20 @@ bool HtmlEditor::fileSaveAs()
 	if ( fileName.isEmpty() )
 		setCurrentFileName(fn);
 
-	return fileSave();
+	QFile file(fn);
+	bool success = file.open(QIODevice::WriteOnly);
+	if ( success ) {
+		if ( ui->tabWidget->currentIndex() == 1 ) {
+			ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
+			wysiwigDirty = false;
+		}
+		QString content = ui->webView->page()->mainFrame()->toHtml();
+		QByteArray data = content.toLatin1();
+		qint64 c = file.write(data);
+		success = (c >= data.length());
+		file.close();
+	}
+	return success;
 }
 
 void HtmlEditor::insertImageFromFile()
@@ -672,6 +685,54 @@ bool HtmlEditor::load(const QString &f)
 	return true;
 }
 
+bool HtmlEditor::loadCurrentTemplate()
+{
+	return loadTemplate(templateName);
+}
+
+bool HtmlEditor::loadTemplate(const QString &f)
+{
+	emptyContent.clear();
+
+	if ( !QFile::exists(f) ) {
+		fileNew();
+		return false;
+	}
+
+	QFile file(f);
+	if ( !file.open(QFile::ReadOnly) )
+		return false;
+
+	QByteArray data = file.readAll().simplified();
+	file.close();
+
+	while ( data.contains("<!--") ) {
+		int startIndex = data.indexOf("<!--");
+		int endIndex = data.indexOf("-->", startIndex);
+		if ( endIndex > startIndex ) {
+			endIndex += 3;
+			data.remove(startIndex, endIndex - startIndex);
+		}
+	}
+
+	QMapIterator<QString, QString> it(templateMap);
+	while ( it.hasNext() ) {
+		it.next();
+		QString replacementString = it.value();
+		replacementString.replace("<", "&lt;").replace(">", "&gt;");
+		data.replace(it.key(), replacementString.toLatin1());
+	}
+
+	ui->webView->setContent(data, "text/html");
+	ui->webView->page()->setContentEditable(true);
+	emptyContent = ui->webView->page()->mainFrame()->toHtml();
+	if ( fileName.isEmpty() )
+		setCurrentFileName(f);
+	QTimer::singleShot(0, this, SLOT(adjustHTML()));
+
+	return true;
+}
+
 bool HtmlEditor::save()
 {
 	if ( !ui->webView->page()->isModified() && !ui->plainTextEdit->document()->isModified() )
@@ -679,15 +740,6 @@ bool HtmlEditor::save()
 
 	if ( fileName.isEmpty() )
 		return false;
-
-	QFileInfo fi(fileName);
-	QString targetPath = QDir::cleanPath(fi.absoluteDir().path());
-
-	if ( !QFile::exists(targetPath) ) {
-		QDir dummyDir;
-		if ( !dummyDir.mkpath(targetPath) )
-			return false;
-	}
 
 	if ( ui->tabWidget->currentIndex() == 1 ) {
 		ui->webView->page()->mainFrame()->setHtml(ui->plainTextEdit->toPlainText());
@@ -697,6 +749,15 @@ bool HtmlEditor::save()
 	QString content = ui->webView->page()->mainFrame()->toHtml();
 	if ( content == emptyContent )
 		return true;
+
+	QFileInfo fi(fileName);
+	QString targetPath = QDir::cleanPath(fi.absoluteDir().path());
+
+	if ( !QFile::exists(targetPath) ) {
+		QDir dummyDir;
+		if ( !dummyDir.mkpath(targetPath) )
+			return false;
+	}
 
 	QFile f(fileName);
 	if ( !f.open(QIODevice::WriteOnly) )
@@ -713,6 +774,11 @@ bool HtmlEditor::save()
 void HtmlEditor::setCurrentFileName(const QString &fileName)
 {
 	this->fileName = fileName;
+}
+
+void HtmlEditor::setCurrentTemplateName(const QString &templateName)
+{
+	this->templateName = templateName;
 }
 
 void HtmlEditor::linkHovered(const QString &link, const QString &title, const QString &textContent)

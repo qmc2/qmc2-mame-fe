@@ -173,16 +173,6 @@ Options::Options(QWidget *parent)
 
   setupUi(this);
 
-#if !defined(QMC2_WIP_ENABLED)
-  checkBoxAutoDisableSoftwareSnap->setVisible(false);
-  labelSoftwareNotesFolder->setVisible(false);
-  checkBoxUseSoftwareNotesTemplate->setVisible(false);
-  lineEditSoftwareNotesFolder->setVisible(false);
-  lineEditSoftwareNotesTemplate->setVisible(false);
-  toolButtonBrowseSoftwareNotesFolder->setVisible(false);
-  toolButtonBrowseSoftwareNotesTemplate->setVisible(false);
-#endif
-
 #if !defined(Q_WS_MAC)
   checkBoxUnifiedTitleAndToolBarOnMac->setVisible(false);
 #endif
