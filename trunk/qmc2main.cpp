@@ -623,18 +623,15 @@ MainWindow::MainWindow(QWidget *parent)
   qmc2Options->checkBoxGameStatusIndicator->setText(tr("Machine status indicator"));
   qmc2Options->checkBoxGameStatusIndicator->setToolTip(tr("Show vertical machine status indicator in machine details"));
   qmc2Options->checkBoxGameStatusIndicatorOnlyWhenRequired->setToolTip(tr("Show the machine status indicator only when the machine list is not visible due to the current layout"));
-#if !defined(QMC2_WIP_ENABLED)
   qmc2Options->checkBoxShowGameName->setText(tr("Show machine name"));
   qmc2Options->checkBoxShowGameName->setToolTip(tr("Show machine's description at the bottom of any images"));
   qmc2Options->checkBoxShowGameNameOnlyWhenRequired->setToolTip(tr("Show machine's description only when the machine list is not visible due to the current layout"));
-#endif
   labelLoadingGamelist->setText(tr("Loading machine list, please wait..."));
   labelLoadingHierarchy->setText(tr("Loading machine list, please wait..."));
   comboBoxSearch->setToolTip(tr("Search for machines (not case-sensitive)"));
   comboBoxSearch->setStatusTip(tr("Search for machines"));
 #endif
 
-#if defined(QMC2_WIP_ENABLED)
 #if defined(QMC2_EMUTYPE_MAME)
   qmc2Options->checkBoxShowGameName->setText(tr("Show game/software titles"));
   qmc2Options->checkBoxShowGameName->setToolTip(tr("Show game- or software-titles at the bottom of any images"));
@@ -643,7 +640,6 @@ MainWindow::MainWindow(QWidget *parent)
   qmc2Options->checkBoxShowGameName->setText(tr("Show machine/software titles"));
   qmc2Options->checkBoxShowGameName->setToolTip(tr("Show machine- or software-titles at the bottom of any images"));
   qmc2Options->checkBoxShowGameNameOnlyWhenRequired->setToolTip(tr("Show machine titles only when the machine list is not visible due to the current layout"));
-#endif
 #endif
 
   qmc2Gamelist = new Gamelist(this);
@@ -3297,15 +3293,31 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					qmc2SoftwareNotesEditor->save();
 #if defined(QMC2_EMUTYPE_MAME)
 				QString softwareNotesFolder = qmc2Config->value("MAME/FilesAndDirectories/SoftwareNotesFolder").toString();
+				QString softwareNotesTemplate = qmc2Config->value("MAME/FilesAndDirectories/SoftwareNotesTemplate").toString();
+				bool useSoftwareNotesTemplate = qmc2Config->value("MAME/FilesAndDirectories/UseSoftwareNotesTemplate").toBool();
 #elif defined(QMC2_EMUTYPE_MESS)
 				QString softwareNotesFolder = qmc2Config->value("MESS/FilesAndDirectories/SoftwareNotesFolder").toString();
+				QString softwareNotesTemplate = qmc2Config->value("MESS/FilesAndDirectories/SoftwareNotesTemplate").toString();
+				bool useSoftwareNotesTemplate = qmc2Config->value("MESS/FilesAndDirectories/UseSoftwareNotesTemplate").toBool();
 #endif
 				QString fileName = softwareNotesFolder + qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST) + "/" + qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME) + ".html";
+				qmc2SoftwareNotesEditor->setCurrentFileName(fileName);
 				if ( QFile::exists(fileName) ) {
-					qmc2SoftwareNotesEditor->setCurrentFileName(fileName);
 					QTimer::singleShot(25, qmc2SoftwareNotesEditor, SLOT(loadCurrent()));
-				} else
-					qmc2SoftwareNotesEditor->fileNew();
+				} else {
+					if ( useSoftwareNotesTemplate ) {
+						qmc2SoftwareNotesEditor->fileNew();
+						qmc2SoftwareNotesEditor->templateMap.clear();
+						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_TITLE$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);
+						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_NAME$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
+						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_LIST$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_LIST);
+						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_PUBLISHER$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_PUBLISHER);
+						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_YEAR$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_YEAR);
+						qmc2SoftwareNotesEditor->setCurrentTemplateName(softwareNotesTemplate);
+						QTimer::singleShot(25, qmc2SoftwareNotesEditor, SLOT(loadCurrentTemplate()));
+					} else
+						qmc2SoftwareNotesEditor->fileNew();
+				}
 				qmc2SoftwareNotesEditor->setCurrentFileName(fileName);
 				qmc2LastSoftwareNotesItem = qmc2SoftwareList->currentItem;
 			}
