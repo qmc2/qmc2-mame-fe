@@ -121,6 +121,7 @@ private:
     bool htmlDirty;
     bool wysiwigDirty;
     bool generateEmptyContent;
+    bool localModified;
     QString emptyContent;
     QLabel *zoomLabel;
     QSlider *zoomSlider;

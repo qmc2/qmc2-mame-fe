@@ -168,6 +168,8 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 	adjustIconSizes();
 	adjustActions();
 	adjustHTML();
+
+	localModified = false;
 }
 
 HtmlEditor::~HtmlEditor()
@@ -195,6 +197,8 @@ void HtmlEditor::fileNew()
 
 	ui->webView->setHtml("");
 	generateEmptyContent = true;
+	localModified = false;
+
 	QTimer::singleShot(0, this, SLOT(styleParagraph()));
 	QTimer::singleShot(25, this, SLOT(adjustHTML()));
 }
@@ -207,6 +211,7 @@ void HtmlEditor::fileOpen()
 		load(fn);
 		adjustHTML();
 	}
+	localModified = true;
 }
 
 bool HtmlEditor::fileSave()
@@ -227,6 +232,7 @@ bool HtmlEditor::fileSave()
 		success = (c >= data.length());
 		file.close();
 	}
+	localModified = !success;
 	return success;
 }
 
@@ -433,6 +439,7 @@ void HtmlEditor::execCommand(const QString &cmd)
 	QWebFrame *frame = ui->webView->page()->mainFrame();
 	QString js = QString("document.execCommand(\"%1\", false, null)").arg(cmd);
 	frame->evaluateJavaScript(js);
+	localModified = true;
 }
 
 void HtmlEditor::execCommand(const QString &cmd, const QString &arg)
@@ -440,6 +447,7 @@ void HtmlEditor::execCommand(const QString &cmd, const QString &arg)
 	QWebFrame *frame = ui->webView->page()->mainFrame();
 	QString js = QString("document.execCommand(\"%1\", false, \"%2\")").arg(cmd).arg(arg);
 	frame->evaluateJavaScript(js);
+	localModified = true;
 }
 
 bool HtmlEditor::queryCommandState(const QString &cmd)
@@ -735,7 +743,7 @@ bool HtmlEditor::loadTemplate(const QString &f)
 
 bool HtmlEditor::save()
 {
-	if ( !ui->webView->page()->isModified() && !ui->plainTextEdit->document()->isModified() )
+	if ( !ui->webView->page()->isModified() && !ui->plainTextEdit->document()->isModified() && !localModified )
 		return true;
 
 	if ( fileName.isEmpty() )
