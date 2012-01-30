@@ -711,7 +711,7 @@ bool HtmlEditor::loadTemplate(const QString &f)
 	if ( !file.open(QFile::ReadOnly) )
 		return false;
 
-	QByteArray data = file.readAll().simplified();
+	QString data(file.readAll().simplified());
 	file.close();
 
 	while ( data.contains("<!--") ) {
@@ -728,10 +728,10 @@ bool HtmlEditor::loadTemplate(const QString &f)
 		it.next();
 		QString replacementString = it.value();
 		replacementString.replace("<", "&lt;").replace(">", "&gt;");
-		data.replace(it.key(), replacementString.toLatin1());
+		data.replace(it.key(), replacementString);
 	}
 
-	ui->webView->setContent(data, "text/html");
+	ui->webView->setHtml(data);
 	ui->webView->page()->setContentEditable(true);
 	emptyContent = ui->webView->page()->mainFrame()->toHtml();
 	if ( fileName.isEmpty() )
