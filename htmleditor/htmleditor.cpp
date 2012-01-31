@@ -227,10 +227,11 @@ bool HtmlEditor::fileSave()
 			wysiwigDirty = false;
 		}
 		QString content = ui->webView->page()->mainFrame()->toHtml();
-		QByteArray data = content.toLatin1();
-		qint64 c = file.write(data);
-		success = (c >= data.length());
+		QTextStream ts(&file);
+		ts << content;
+		ts.flush();
 		file.close();
+		success = true;
 	}
 	localModified = !success;
 	return success;
@@ -257,10 +258,11 @@ bool HtmlEditor::fileSaveAs()
 			wysiwigDirty = false;
 		}
 		QString content = ui->webView->page()->mainFrame()->toHtml();
-		QByteArray data = content.toLatin1();
-		qint64 c = file.write(data);
-		success = (c >= data.length());
+		QTextStream ts(&file);
+		ts << content;
+		ts.flush();
 		file.close();
+		success = true;
 	}
 	return success;
 }
@@ -682,9 +684,9 @@ bool HtmlEditor::load(const QString &f)
 	if ( !file.open(QFile::ReadOnly) )
 		return false;
 
-	QByteArray data = file.readAll();
+	QString data = file.readAll();
 	file.close();
-	ui->webView->setContent(data, "text/html");
+	ui->webView->setHtml(data);
 	ui->webView->page()->setContentEditable(true);
 	if ( fileName.isEmpty() )
 		setCurrentFileName(f);
@@ -771,12 +773,12 @@ bool HtmlEditor::save()
 	if ( !f.open(QIODevice::WriteOnly) )
 		return false;
 
-	QByteArray data = content.toLatin1();
-	qint64 c = f.write(data);
-	bool success = (c >= data.length());
+	QTextStream ts(&f);
+	ts << content;
+	ts.flush();
 	f.close();
 
-	return success;
+	return true;
 }
 
 void HtmlEditor::setCurrentFileName(const QString &fileName)
