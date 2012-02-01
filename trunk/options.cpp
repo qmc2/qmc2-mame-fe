@@ -15,6 +15,7 @@
 #include <QNetworkProxy>
 #include <QScrollBar>
 #include <QInputDialog>
+#include <QSplashScreen>
 
 #include "options.h"
 #include "emuopt.h"
@@ -147,6 +148,7 @@ extern QFont qmc2StartupDefaultFont;
 extern int qmc2SoftwareSnapPosition;
 extern int qmc2DefaultLaunchMode;
 extern HtmlEditor *qmc2SoftwareNotesEditor;
+extern QSplashScreen *qmc2SplashScreen;
 
 Options::Options(QWidget *parent)
 #if defined(Q_WS_WIN)
@@ -464,6 +466,11 @@ void Options::apply()
   QFontMetrics fm(f);
   foreach (QWidget *widget, QApplication::allWidgets())
     widget->setFont(f);
+  if ( qmc2SplashScreen ) {
+    QFont splashFont = f;
+    splashFont.setBold(true);
+    qmc2SplashScreen->setFont(splashFont);
+  }
   QFont logFont = f;
   if ( !config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString().isEmpty() )
     logFont.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/LogFont").toString());

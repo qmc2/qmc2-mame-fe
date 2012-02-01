@@ -3306,7 +3306,6 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 					QTimer::singleShot(25, qmc2SoftwareNotesEditor, SLOT(loadCurrent()));
 				} else {
 					if ( useSoftwareNotesTemplate ) {
-						qmc2SoftwareNotesEditor->fileNew();
 						qmc2SoftwareNotesEditor->templateMap.clear();
 						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_TITLE$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);
 						qmc2SoftwareNotesEditor->templateMap["$SOFTWARE_NAME$"] = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_NAME);
@@ -5871,7 +5870,11 @@ void MainWindow::init()
 #endif
 
   if ( qmc2SplashScreen ) {
+#if defined(QMC2_EMUTYPE_MAME)
 	qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)) + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
+#elif defined(QMC2_EMUTYPE_MESS)
+	qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)) + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
+#endif
 	qmc2SplashScreen->show();
 	qmc2SplashScreen->raise();
 	qApp->processEvents();
@@ -10014,12 +10017,17 @@ int main(int argc, char *argv[])
   // setup splash screen
   if ( showSplashScreen ) {
 	qmc2SplashScreen = new QSplashScreen(splashPixmap);
+	splashFont.setBold(true);
 	qmc2SplashScreen->setFont(splashFont);
 	qmc2SplashScreen->setAttribute(Qt::WA_ShowWithoutActivating);
 	qmc2SplashScreen->setMask(splashPixmap.mask());
 	qmc2SplashScreen->setWindowOpacity(0.8);
 #if defined(Q_WS_X11)
+#if defined(QMC2_EMUTYPE_MAME)
 	qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...") + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::black);
+#elif defined(QMC2_EMUTYPE_MESS)
+	qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...") + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
+#endif
 	qmc2SplashScreen->show();
 	qmc2SplashScreen->raise();
 	qApp->processEvents();
