@@ -50,9 +50,6 @@ About::About(QWidget *parent)
 
 #if defined(QMC2_EMUTYPE_MESS)
   labelLogoPixmap->setPixmap(QString::fromUtf8(":/data/img/qmc2_mess_logo_big.png"));
-  labelGradient1->hide();
-  labelGradient2->hide();
-  labelLogoPixmap->setAutoFillBackground(false);
 #endif
 
   adjustSize();
