@@ -25,6 +25,7 @@ extern bool qmc2RetryLoadingImages;
 extern bool qmc2ShowGameName;
 extern int qmc2UpdateDelay;
 extern int qmc2DefaultLaunchMode;
+extern bool qmc2StopParser;
 
 QMap<QString, QStringList> systemSoftwareListMap;
 QMap<QString, QStringList> systemSoftwareFilterMap;
@@ -54,8 +55,8 @@ SoftwareList::SoftwareList(QString sysName, QWidget *parent)
 	loadProc = NULL;
 	exporter = NULL;
 	currentItem = NULL;
-	validData = snapForced = autoSelectSearchItem = interruptLoad = isLoading = fullyLoaded = false;
-	autoMounted = true;
+	snapForced = autoSelectSearchItem = interruptLoad = isLoading = fullyLoaded = false;
+	validData = autoMounted = true;
 	cachedDeviceLookupPosition = 0;
 
 #if defined(QMC2_EMUTYPE_MAME)
@@ -383,7 +384,8 @@ QString &SoftwareList::getXmlData()
 	static QString xmlBuffer;
 
 	QStringList softwareList = systemSoftwareListMap[systemName];
-	if ( softwareList.isEmpty() ) {
+	if ( softwareList.isEmpty() || softwareList.contains("NO_SOFTWARE_LIST") ) {
+		softwareList.clear();
 		int i = 0;
 		QString filter;
 #if defined(QMC2_EMUTYPE_MAME) 
@@ -426,17 +428,17 @@ QString &SoftwareList::getXmlData()
 		else
 			softwareList.sort();
 		systemSoftwareListMap[systemName] = softwareList;
-#ifdef QMC2_DEBUG
+//#ifdef QMC2_DEBUG
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: systemSoftwareListMap[%1] = %2").arg(systemName).arg(softwareList.join(", ")));
-#endif
+//#endif
 
 		if ( !filter.isEmpty() )
 			systemSoftwareFilterMap[systemName] = filter.split(",", QString::SkipEmptyParts);
 	}
-#ifdef QMC2_DEBUG
+//#ifdef QMC2_DEBUG
 	else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: systemSoftwareListMap[%1] = %2 (cached)").arg(systemName).arg(systemSoftwareListMap[systemName].join(", ")));
-#endif
+//#endif
 
 	xmlBuffer.clear();
 
@@ -512,7 +514,6 @@ bool SoftwareList::load()
 		qApp->processEvents();
 
 		swlLines.clear();
-		validData = false;
 		swlCacheOkay = false;
 		if ( !swlCachePath.isEmpty() ) {
 			fileSWLCache.setFileName(swlCachePath);
@@ -653,21 +654,29 @@ bool SoftwareList::load()
 			args << "-hashpath" << hashPath;
 #endif
 
-		loadProc->start(command, args);
-
-		if ( loadProc ) {
+		if ( !qmc2StopParser ) {
+			validData = true;
+			loadFinishedFlag = false;
+			loadProc->start(command, args);
 			// FIXME: this is blocking the GUI shortly
-			if ( loadProc->waitForStarted() ) {
-				while ( loadProc->state() == QProcess::Running ) {
+			if ( loadProc->waitForStarted() && !qmc2StopParser ) {
+				while ( !loadFinishedFlag && !qmc2StopParser ) {
+					qApp->processEvents();
 #if defined(Q_WS_MAC)
 					QTest::qWait(10);
 #else
 					loadProc->waitForFinished(10);
 #endif
-					qApp->processEvents();
 				}
 			} else
 				validData = false;
+		} 
+
+		if ( qmc2StopParser ) {
+			if ( loadProc->state() == QProcess::Running ) {
+				loadProc->kill();
+				validData = false;
+			}
 		}
 
 		if ( !validData ) {
@@ -683,12 +692,12 @@ bool SoftwareList::load()
 		}
 	}
 
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): validData = %1").arg(validData ? "true" : "false"));
-#endif
-
 	labelLoadingSoftwareLists->setVisible(false);
 	toolBoxSoftwareList->setVisible(true);
+
+//#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): validData = %1").arg(validData));
+//#endif
 
 	QString xmlData = getXmlData();
 
@@ -938,6 +947,7 @@ void SoftwareList::loadStarted()
 #endif
 
 	// we don't know how many items there are...
+	loadFinishedFlag = false;
 	qmc2MainWindow->progressBarGamelist->setRange(0, 0);
 	qmc2MainWindow->progressBarGamelist->reset();
 }
@@ -948,8 +958,6 @@ void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadFinished(int exitCode = %1, QProcess::ExitStatus exitStatus = %2)").arg(exitCode).arg(exitStatus));
 #endif
 
-	QTime elapsedTime;
-	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 	if ( exitStatus == QProcess::NormalExit && exitCode == 0 ) {
 		validData = true;
 	} else {
@@ -960,10 +968,14 @@ void SoftwareList::loadFinished(int exitCode, QProcess::ExitStatus exitStatus)
 #endif
 		validData = false;
 	}
+	QTime elapsedTime;
+	elapsedTime = elapsedTime.addMSecs(loadTimer.elapsed());
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (loading XML software list data and (re)creating cache, elapsed time = %1)").arg(elapsedTime.toString("mm:ss.zzz")));
 
 	if ( fileSWLCache.isOpen() )
 		fileSWLCache.close();
+
+	loadFinishedFlag = true;
 
 	qmc2MainWindow->progressBarGamelist->setRange(oldMin, oldMax);
 	qmc2MainWindow->progressBarGamelist->setFormat(oldFmt);
@@ -1038,6 +1050,7 @@ void SoftwareList::loadError(QProcess::ProcessError processError)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external process called to load the MESS software lists caused an error -- processError = %1").arg(processError));
 #endif
 	validData = false;
+	loadFinishedFlag = true;
 
 	if ( fileSWLCache.isOpen() )
 		fileSWLCache.close();

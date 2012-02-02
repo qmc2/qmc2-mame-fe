@@ -7062,7 +7062,7 @@ Should they be killed on exit?</translation>
         <location filename="../../qmc2main.ui" line="3476"/>
         <location filename="../../qmc2main.ui" line="3479"/>
         <source>Forcedly clear (remove) the ROM state cache</source>
-        <translation></translation>
+        <translation>Forcibly clear (remove) the ROM state cache</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3487"/>
@@ -7073,7 +7073,7 @@ Should they be killed on exit?</translation>
         <location filename="../../qmc2main.ui" line="3490"/>
         <location filename="../../qmc2main.ui" line="3493"/>
         <source>Forcedly clear (remove) the game list cache</source>
-        <translation></translation>
+        <translation>Forcibly clear (remove) the game list cache</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3501"/>
@@ -7084,7 +7084,7 @@ Should they be killed on exit?</translation>
         <location filename="../../qmc2main.ui" line="3504"/>
         <location filename="../../qmc2main.ui" line="3507"/>
         <source>Forcedly clear (remove) the XML cache</source>
-        <translation></translation>
+        <translation>Forcibly clear (remove) the XML cache</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3515"/>
@@ -7095,7 +7095,7 @@ Should they be killed on exit?</translation>
         <location filename="../../qmc2main.ui" line="3518"/>
         <location filename="../../qmc2main.ui" line="3521"/>
         <source>Forcedly clear (remove) the software list cache</source>
-        <translation></translation>
+        <translation>Forcibly clear (remove) the software list cache</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3529"/>
@@ -7106,7 +7106,7 @@ Should they be killed on exit?</translation>
         <location filename="../../qmc2main.ui" line="3532"/>
         <location filename="../../qmc2main.ui" line="3535"/>
         <source>Forcedly clear (remove) ALL emulator related caches</source>
-        <translation></translation>
+        <translation>Forcibly clear (remove) ALL emulator related caches</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="847"/>
@@ -8677,7 +8677,7 @@ Should they be killed on exit?</translation>
         <location filename="../../qmc2main.cpp" line="579"/>
         <location filename="../../qmc2main.cpp" line="580"/>
         <source>Forcedly clear (remove) the machine list cache</source>
-        <translation></translation>
+        <translation>Forcibly clear (remove) the machine list cache</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="581"/>
@@ -8783,7 +8783,7 @@ Should they be killed on exit?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2247"/>
         <source>ROM state cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation></translation>
+        <translation>ROM state cache file &apos;%1&apos; forcibly removed upon user request</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2249"/>
@@ -8798,7 +8798,7 @@ Should they be killed on exit?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2283"/>
         <source>game list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation></translation>
+        <translation>game list cache file &apos;%1&apos; forcibly removed upon user request</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2285"/>
@@ -8808,7 +8808,7 @@ Should they be killed on exit?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2288"/>
         <source>machine list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation></translation>
+        <translation>machine list cache file &apos;%1&apos; forcibly removed upon user request</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2290"/>
@@ -8818,7 +8818,7 @@ Should they be killed on exit?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2319"/>
         <source>XML cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation></translation>
+        <translation>XML cache file &apos;%1&apos; forcibly removed upon user request</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2321"/>
@@ -8828,7 +8828,7 @@ Should they be killed on exit?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2352"/>
         <source>software list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation></translation>
+        <translation>software list cache file &apos;%1&apos; forcibly removed upon user request</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2354"/>
