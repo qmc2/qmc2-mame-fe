@@ -30,7 +30,7 @@ Welcome::Welcome(QWidget *parent)
     setupUi(this);
 
 #if defined(QMC2_EMUTYPE_MESS)
-    labelLogoPixmap->setPixmap(QString::fromUtf8(":/data/img/qmc2_mess_logo_small.png"));
+    labelLogoPixmap->setPixmap(QString::fromUtf8(":/data/img/qmc2_mess_logo_big.png"));
 #endif
 
 #if defined(QMC2_SDLMAME)
