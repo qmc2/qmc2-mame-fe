@@ -8131,15 +8131,18 @@ void MainWindow::on_comboBoxViewSelect_currentIndexChanged(int index)
 		  break;
 	  case QMC2_VIEWHIERARCHY_INDEX:
 		  pushButtonSelectRomFilter->setVisible(false);
+		  menuRomStatusFilter->setVisible(false);
 		  viewParentClones();
 		  break;
 #if defined(QMC2_EMUTYPE_MAME)
 	  case QMC2_VIEWVERSION_INDEX:
 		  pushButtonSelectRomFilter->setVisible(false);
+		  menuRomStatusFilter->setVisible(false);
 		  viewByVersion();
 		  break;
 	  case QMC2_VIEWCATEGORY_INDEX:
 		  pushButtonSelectRomFilter->setVisible(false);
+		  menuRomStatusFilter->setVisible(false);
 		  viewByCategory();
 		  break;
 #endif
