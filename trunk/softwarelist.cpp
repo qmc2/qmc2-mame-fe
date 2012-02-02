@@ -428,17 +428,17 @@ QString &SoftwareList::getXmlData()
 		else
 			softwareList.sort();
 		systemSoftwareListMap[systemName] = softwareList;
-//#ifdef QMC2_DEBUG
+#ifdef QMC2_DEBUG
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: systemSoftwareListMap[%1] = %2").arg(systemName).arg(softwareList.join(", ")));
-//#endif
+#endif
 
 		if ( !filter.isEmpty() )
 			systemSoftwareFilterMap[systemName] = filter.split(",", QString::SkipEmptyParts);
 	}
-//#ifdef QMC2_DEBUG
+#ifdef QMC2_DEBUG
 	else
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: systemSoftwareListMap[%1] = %2 (cached)").arg(systemName).arg(systemSoftwareListMap[systemName].join(", ")));
-//#endif
+#endif
 
 	xmlBuffer.clear();
 
@@ -695,9 +695,9 @@ bool SoftwareList::load()
 	labelLoadingSoftwareLists->setVisible(false);
 	toolBoxSoftwareList->setVisible(true);
 
-//#ifdef QMC2_DEBUG
+#ifdef QMC2_DEBUG
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::load(): validData = %1").arg(validData));
-//#endif
+#endif
 
 	QString xmlData = getXmlData();
 
