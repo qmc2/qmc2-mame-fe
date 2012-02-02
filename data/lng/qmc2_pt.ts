@@ -4114,7 +4114,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="284"/>
         <source>Save &amp;copy...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar &amp;cópia...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="287"/>
@@ -4501,12 +4501,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../htmleditor/htmleditor.cpp" line="204"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="235"/>
         <source>HTML files (*.html *.htm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos HTML (*.html *.htm)</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="235"/>
         <source>Save a copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvar uma cópia</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="271"/>
@@ -10751,12 +10751,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="3189"/>
         <source>Choose software notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha o template de notas de software</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3189"/>
         <source>HTML files (*.html *.htm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivos HTML (*.html *.htm)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3371"/>
@@ -12077,22 +12077,22 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="2204"/>
         <source>Enable the use of a template for (empty) software notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar o uso de um template para notas de software (vazias)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2207"/>
         <source>Software notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Template de notas de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2220"/>
         <source>HTML file used as a template for software-notes (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo HTML usado como template para notas de software (leitura)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2233"/>
         <source>Browse software notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Procurar template de notas de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2337"/>
