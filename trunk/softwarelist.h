@@ -173,6 +173,7 @@ class SoftwareList : public QWidget, public Ui::SoftwareList
 		bool interruptLoad;
 		bool isLoading;
 		bool fullyLoaded;
+		bool loadFinishedFlag;
 		QStringList successfulLookups;
 		int cachedDeviceLookupPosition;
 		SoftwareListExporter *exporter;
