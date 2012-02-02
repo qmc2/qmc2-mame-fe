@@ -370,15 +370,6 @@ class FileSystemModel : public QAbstractItemModel
 				return createIndex(row, column, childItem);
 			else
 				return QModelIndex();
-
-			/*
-			FileSystemItem *fileItem = mRootItem->fileAt(row);
-
-			if ( fileItem )
-				return createIndex(row, column, fileItem);
-			else
-				return QModelIndex();
-			*/
 		}
 
 		virtual QModelIndex parent(const QModelIndex &index) const
@@ -414,15 +405,18 @@ class FileSystemModel : public QAbstractItemModel
 			if ( !item )
 				return QVariant();
 
-			if ( role == Qt::DecorationRole && index.column() == int(NAME) ) {
-				QIcon icon = mIconFactory->icon(item->fileInfo());
-				if ( icon.isNull() ) { // icon fall-back
-					if ( item->fileName().endsWith("/") )
-						icon = mIconFactory->icon(QFileIconProvider::Folder);
-					else
-						icon = mIconFactory->icon(QFileIconProvider::File);
-				}
-				return icon;
+			if ( role == Qt::DecorationRole ) {
+				if ( index.column() == int(NAME) ) {
+					QIcon icon = mIconFactory->icon(item->fileInfo());
+					if ( icon.isNull() ) { // icon fall-back
+						if ( item->fileName().endsWith("/") )
+							icon = mIconFactory->icon(QFileIconProvider::Folder);
+						else
+							icon = mIconFactory->icon(QFileIconProvider::File);
+					}
+					return icon;
+				} else
+					return QIcon();
 			}
 
 			QVariant data;
