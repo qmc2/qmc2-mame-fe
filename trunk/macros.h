@@ -7,6 +7,21 @@
 #define QMC2_SVN_REV			0
 #endif
 
+// standard sizes
+#define QMC2_ONE_KILOBYTE		1024
+#define QMC2_ONE_MEGABYTE		1048576
+#define QMC2_ONE_GIGABYTE		1073741824
+#define QMC2_ONE_TERABYTE		1099511627776
+#define QMC2_4K				4 * QMC2_ONE_KILOBYTE
+#define QMC2_8K				8 * QMC2_ONE_KILOBYTE
+#define QMC2_16K			16 * QMC2_ONE_KILOBYTE
+#define QMC2_32K			32 * QMC2_ONE_KILOBYTE
+#define QMC2_64K			64 * QMC2_ONE_KILOBYTE
+#define QMC2_128K			128 * QMC2_ONE_KILOBYTE
+#define QMC2_256K			256 * QMC2_ONE_KILOBYTE
+#define QMC2_512K			512 * QMC2_ONE_KILOBYTE
+#define QMC2_1M				QMC2_ONE_MEGABYTE
+
 // min/max of two constants
 #define MAX(a, b)			(((a) > (b)) ? (a) : (b))
 #define MIN(a, b)			(((a) < (b)) ? (a) : (b))
@@ -338,18 +353,6 @@
 
 // default decimals for float values of emulator options
 #define QMC2_EMUOPT_DFLT_DECIMALS	6
-
-// standard sizes
-#define QMC2_ONE_KILOBYTE		1024
-#define QMC2_ONE_MEGABYTE		1048576
-#define QMC2_ONE_GIGABYTE		1073741824
-#define QMC2_ONE_TERABYTE		1099511627776
-#define QMC2_16K			16*QMC2_ONE_KILOBYTE
-#define QMC2_32K			32*QMC2_ONE_KILOBYTE
-#define QMC2_64K			64*QMC2_ONE_KILOBYTE
-#define QMC2_128K			128*QMC2_ONE_KILOBYTE
-#define QMC2_256K			256*QMC2_ONE_KILOBYTE
-#define QMC2_512K			512*QMC2_ONE_KILOBYTE
 
 // MiniWebBrowser: hide status bar after how many milliseconds (if no longer required)
 #define QMC2_BROWSER_STATUS_TIMEOUT	250
