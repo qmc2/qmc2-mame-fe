@@ -5873,6 +5873,7 @@ void MainWindow::init()
 	qmc2SplashScreen->showMessage(tr("Welcome to QMC2 v%1!").arg(XSTR(QMC2_VERSION)) + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
 	qmc2SplashScreen->show();
 	qmc2SplashScreen->raise();
+	qmc2SplashScreen->repaint();
 	qApp->processEvents();
 	QTimer::singleShot(QMC2_SPLASH_DURATION, qmc2SplashScreen, SLOT(hide()));
   }
@@ -10025,8 +10026,8 @@ int main(int argc, char *argv[])
 	qmc2SplashScreen->showMessage(QObject::tr("Setting up the GUI, please wait...") + "\n", Qt::AlignHCenter | Qt::AlignBottom, Qt::white);
 	qmc2SplashScreen->show();
 	qmc2SplashScreen->raise();
+	qmc2SplashScreen->repaint();
 	qApp->processEvents();
-	qApp->flush();
 #endif
   }
 
