@@ -872,6 +872,7 @@
       <description lang="us" text="Enable menu bar if available by UI implementation"/>
       <description lang="de" text="Menü-Zeile aktivieren, sofern in UI Implementierung verfügbar"/>
       <description lang="pl" text="Włącz pasek menu jeżeli jest dostępny w implementacji UI"/>
+      <description lang="pt" text="Habilitar barra de menu se disponível pela implementação da interface"/>
     </option>
   </section>
   <section name="directdraw">
@@ -1234,10 +1235,12 @@
     <option name="hlsl_ini_read" type="bool" default="false">
       <description lang="us" text="Enable HLSL INI reading"/>
       <description lang="de" text="Einlesen von HLSL INI Dateien aktivieren"/>
+      <description lang="pt" text="Habilitar leitura do INI do HLSL"/>
     </option>
     <option name="hlsl_ini_write" type="bool" default="false">
       <description lang="us" text="Enable HLSL INI writing"/>
       <description lang="de" text="Schreiben von HLSL INI Dateien aktivieren"/>
+      <description lang="pt" text="Habilitar escrita do INI do HLSL"/>
     </option>
     <option name="hlslpath" type="directory" default="hlsl">
       <description lang="us" text="Path to hlsl files"/>
@@ -1247,14 +1250,17 @@
     <option name="hlslini" type="string" default="%g">
       <description lang="us" text="HLSL ini file path"/>
       <description lang="de" text="Pfad für HLSL ini Dateien"/>
+      <description lang="pt" text="Caminho para o arquivo INI do HLSL"/>
     </option>
     <option name="hlsl_prescale_x" type="int" default="0">
       <description lang="us" text="HLSL pre-scale override factor for X (0 for auto)"/>
       <description lang="de" text="HLSL Pre-Skalierungsfaktor für X (0 = automatisch)"/>
+      <description lang="pt" text="Fator de substituição da pré-escala do HLSL para X (0 para automático)"/>
     </option>
     <option name="hlsl_prescale_y" type="int" default="0">
       <description lang="us" text="HLSL pre-scale override factor for Y (0 for auto)"/>
       <description lang="de" text="HLSL Pre-Skalierungsfaktor für Y (0 = automatisch)"/>
+      <description lang="pt" text="Fator de substituição da pré-escala do HLSL para Y (0 para automático)"/>
     </option>
     <option name="hlsl_preset" type="int" default="-1">
       <description lang="us" text="HLSL preset to use (0-5)"/>
@@ -1349,6 +1355,7 @@
     <option name="defocus" type="float2" default="0.0,0.0">
       <description lang="us" text="Overall defocus scaling in screen-relative coordinates"/>
       <description lang="de" text="Allgemeiner Skalierungsfaktor der Defokussierung in Bildschirm-relativen Koordinaten"/>
+      <description lang="pt" text="Escala de desfocagem geral nas coordenadas relativas à tela"/>
     </option>
     <option name="converge_x" type="float3" default="0.0,0.0,0.0">
       <description lang="us" text="Convergence in screen-relative X direction"/>
@@ -1448,6 +1455,7 @@
     <option name="yiq_n" type="float" default="1">
       <description lang="us" text="Y filter notch width for NTSC signal processing"/>
       <description lang="de" text="Y Filter-Aussparung für NTSC Signalverarbeitung"/>
+      <description lang="pt" text="Tamanho do notch do filtro Y para o processamento de sinal NTSC"/>
     </option>
     <option name="yiq_y" type="float" default="6">
       <description lang="us" text="Y filter cutoff frequency for NTSC signal processing"/>
