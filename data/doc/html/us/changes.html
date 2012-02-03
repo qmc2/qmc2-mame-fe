@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.35, 02-FEB-2012</h3>
+<h3>CHANGES - v0.35, 03-FEB-2012</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.35, 02-FEB-2012:</b></p>
+<p><b>v0.35, 03-FEB-2012:</b></p>
 <ul>
   <li>fix: minor: hide the software-list favorites column 'device configuration' for MAME targets as it's a MESS-only feature</li>
   <li>fix: minor: corrected the main progress-bar's visual behavior when ROM status checking and software-list caching are running in parallel</li>
@@ -54,12 +54,12 @@ inf: informational only
   <li>new: integrated the HTML editor from <a href="http://qt.gitorious.org/qt-labs/graphics-dojo" target="_blank">Qt Labs / graphics-dojo</a> for all kinds of (upcoming) rich-text editing purposes</li>
   <li>new: added content-zoom to the MiniWebBrowser</li>
   <li>new: top-level windows can now optionally be minimized upon emulation launch and automatically restored when the (last) emulator instance has ended</li>
-  <li>new: YouTube video-player: added an overlay widget to display status information in the player</li>
+  <li>new: YouTube video-player: added a semi-transparent overlay widget to display status information at the bottom of the player's viewport</li>
   <li>new: software-lists: added software-compatibility filtering</li>
   <li>new: added a 'MESS wiki' detail to look up available driver information</li>
   <li>new: added an option to suppress all messages sent through QDebug and related convenience functions</li>
-  <li>new: show an optional startup splash-screen while initializing</li>
-  <li>new: added support for emulator-embedding on Windows -- note that embedding of emulators running in Direct 3D mode ('-video d3d') has some issues: full-screen switching an embedded emulator will lead to a crash (of the emulator), and screen-shots can't be taken from within the GUI (the emulator's key-sequence for taking screen-shots will still work, of course)</li>
+  <li>new: added an optional startup splash-screen utilizing the new logos</li>
+  <li>new: added support for emulator-embedding on Windows (!) -- note, however, that embedding of emulators running in <i>Direct 3D</i> mode ('-video d3d') has two known issues: full-screen switching will lead to a crash (of the emulator) and screen-shots aren't taken correctly from within the GUI (just a black image)</li>
   <li>new: X11 and Windows only: added an option to select the <i>default launch-mode</i> used when starting emulation by <i>activating</i> (i.e. double-clicking) an entry in any list</li>
   <li>new: X11 and Windows only: replaced the style-controlled embedder-release icons (usually a red 'X' which some users wrongly interpreted as 'exit emulator') with a more suitable / less irritating and style-independent icon by setting explicit style-sheets on the tab-bars of all embedders</li>
   <li>new: added two options to allow for hiding of BIOS and/or device sets in all master-lists (see <i>Front end</i> -&gt; <i>Game/Machine list</i> in the main setup dialog) -- both will trigger an automatic reload when changed</li>
