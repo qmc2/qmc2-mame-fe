@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.35, 01-FEB-2012</h3>
+<h3>README - v0.35, 03-FEB-2012</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -238,6 +238,7 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
   <li>Users of Windows XP should replace the Qt DLLs from the <a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon" target="_blank">QMC2 add-on package</a> with the <b>official</b> ones from Nokia -- install the <i>Qt libraries version 4.7.4</i> from <a href="http://qt.nokia.com/downloads" target="_blank">http://qt.nokia.com/downloads</a> and overwrite the DLLs from the QMC2 add-on package with the official ones!</li>
   <li>We meanwhile found out that this is also a good idea on Vista and Windows 7, since the audio-effect widgets only work correctly in this case (opening them just causes QMC2 to crash when the unofficial Qt DLLs are in use).</li>
   <li>Call 'make' as usual, that is like on UNIX or Mac OS X, but add <b>MINGW=1</b> to the make command (i. e. 'make MINGW=1 EMULATOR=MESS').</li>
+  <li>Note: If you want to run make in jobserver-mode (to utilize multipe CPUs during compilation), you have to run 'make configure MINGW=1' followed by 'make -j &lt;#CPUs + 1&gt; -f Makefile.qmake.Release'.</li>
 </ol>
 <p><b>Installation on Windows</b></p>
 <p>Provided that all necessary DLLs are included in paths pointed to by <i>%PATH%</i>, an installation isn't really required on Windows. As on UNIX and Mac OS X, you can simply start the executable
@@ -245,7 +246,7 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
 <p>If you would like to create binary packages, all you'd have to do is copy the relevant files (binaries/DLLs and data) into a directory which you package as an archive afterwards (using zip or rar, for example).
 The <i>installation</i> at a user's end would then just be to extract this archive. That's it! There's nothing like a script to support you in that, though.</p>
 <p>Besides the VC runtime DLLs (if built with MSVC), the required DLLs include: <i>phonon4.dll</i>, <i>phonon_backend\phonon_ds94.dll</i>, <i>imageformats\*.dll</i>, <i>QtCore4.dll</i>, <i>QtGui4.dll</i>, <i>QtOpenGL4.dll</i>, <i>QtTest4.dll</i>, <i>QtXml4.dll</i>, <i>QtXmlPatterns4.dll</i>, <i>QtNetwork4.dll</i>, <i>QtWebKit4.dll</i>, <i>SDL.dll</i> and <i>zlib1.dll</i>.</p>
-<p>Note that variant launching on Windows requires that both QMC2 variants (qmc2-mame.exe &amp; qmc2-mess.exe) can be found in the <b>same</b> directory (it will not search in any other paths than the one it was launched from initially)!</p>
+<p>Note that variant launching on Windows generally assumes that both QMC2 variants (qmc2-mame.exe &amp; qmc2-mess.exe) can be found in the <b>same</b> directory. It will usually not search in any other path than the one it was launched from initially! However, due to popular demand by our Windows users, we've added support to allow for customizing this as well. See <a href="faq.html#A2.11">Q2.11</a> in the FAQ for more information!</p>
 <p>The <a href="credits.html">QMC2-dev team</a> is releasing binary packages for Win32 in exactly this way since v0.2.b8 (only final versions, though). These official packages also include an installer for the VC runtime DLLs (<i>vcredist\vcredist_x86.exe</i>).</p>
 <h3><a name="3."></a>3. Command line arguments and configuration</h3>
 <p>Usage:</p>
