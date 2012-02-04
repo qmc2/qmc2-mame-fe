@@ -1475,7 +1475,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cabinet.cpp" line="54"/>
         <source>Refresh</source>
-        <translation type="unfinished">Odświeżanie</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <location filename="../../cabinet.cpp" line="61"/>
@@ -1511,7 +1511,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../controller.cpp" line="54"/>
         <source>Refresh</source>
-        <translation type="unfinished">Odświeżanie</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="61"/>
@@ -1964,12 +1964,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="113"/>
         <source>MESS &amp;Wiki</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Wiki MESS</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="114"/>
         <source>MESS wiki (web lookup)</source>
-        <translation type="unfinished"></translation>
+        <translation>wiki MESS (odwołanie do sieci)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="120"/>
@@ -2053,7 +2053,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="219"/>
         <source>emulator #%1 released, window ID = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>emulator nr %1 uwolniony, ID okna = %2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="234"/>
@@ -2068,27 +2068,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="532"/>
         <source>window ID for emulator #%1 lost, looking for replacement</source>
-        <translation type="unfinished"></translation>
+        <translation>zgubiono ID okna emulatora nr %1, poszukiwanie zastęczego</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="557"/>
         <source>using replacement window ID %1 for emulator #%2</source>
-        <translation type="unfinished"></translation>
+        <translation>używanie zastępczego ID okna %1 dla emulatora nr %2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="565"/>
         <source>no replacement window ID found for emulator #%1, closing embedder</source>
-        <translation type="unfinished"></translation>
+        <translation>nie znaleniono zastępczego ID okna dla emulatora nr %1, zamykanie osadzania</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="575"/>
         <source>embedded emulator #%1 is returning from full-screen</source>
-        <translation type="unfinished"></translation>
+        <translation>osadzony emulator nr %1 powraca z trybu pełnoekranowego</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="585"/>
         <source>embedded emulator #%1 is switching to full-screen, using desktop-resolution %2x%3</source>
-        <translation type="unfinished"></translation>
+        <translation>osadzony emulator %1 przechodzi w tryb pełnoekranowy używając rozdzielczości pulpitu %2x%3</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="265"/>
@@ -2098,7 +2098,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="184"/>
         <source>emulator #%1 embedded, window ID = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>emulator nr %1 osadzony, ID okna = %2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="260"/>
@@ -2567,7 +2567,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../flyer.cpp" line="54"/>
         <source>Refresh</source>
-        <translation type="unfinished">Odświeżanie</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <location filename="../../flyer.cpp" line="61"/>
@@ -3040,7 +3040,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1181"/>
         <source>BIOS set</source>
-        <translation>Zestaw BIOS</translation>
+        <translation>BIOS</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1186"/>
@@ -3144,9 +3144,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2192"/>
         <source>, %n BIOS set(s)</source>
         <translation>
-            <numerusform>, %n zestaw BIOS</numerusform>
-            <numerusform>, %n zestawy BIOS</numerusform>
-            <numerusform>, %n zestawów BIOS</numerusform>
+            <numerusform>, %n BIOS</numerusform>
+            <numerusform>, %n BIOS-y</numerusform>
+            <numerusform>, %n BIOS-ów</numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -4027,439 +4027,439 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="14"/>
         <source>HTML Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytor HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="37"/>
         <source>WYSIWIG</source>
-        <translation type="unfinished"></translation>
+        <translation>WYSIWIG</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="47"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation>about:blank</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="56"/>
         <source>HTML</source>
-        <translation type="unfinished">HTML</translation>
+        <translation>HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="86"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Plik</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="95"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Edycja</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="99"/>
         <source>Insert &amp;image</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw o&amp;braz</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="124"/>
         <source>F&amp;ormat</source>
-        <translation type="unfinished"></translation>
+        <translation>F&amp;ormat</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="128"/>
         <source>St&amp;yle</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Styl</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="142"/>
         <source>&amp;Align</source>
-        <translation type="unfinished"></translation>
+        <translation>W&amp;yrównanie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="175"/>
         <source>Standard tool-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardowy pasek narzędzi</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="199"/>
         <source>Formatting tool-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasek narzędzi formatowania</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="234"/>
         <source>&amp;New</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nowy</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="237"/>
         <location filename="../../htmleditor/htmleditor.ui" line="240"/>
         <location filename="../../htmleditor/htmleditor.ui" line="243"/>
         <source>New file</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowy plik</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="252"/>
         <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Otwórz...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="255"/>
         <location filename="../../htmleditor/htmleditor.ui" line="258"/>
         <location filename="../../htmleditor/htmleditor.ui" line="261"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz plik</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="270"/>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Zapisz</translation>
+        <translation>Zapi&amp;sz</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="273"/>
         <location filename="../../htmleditor/htmleditor.ui" line="276"/>
         <location filename="../../htmleditor/htmleditor.ui" line="279"/>
         <source>Save file</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz plik</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="284"/>
         <source>Save &amp;copy...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz &amp;kopię...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="287"/>
         <location filename="../../htmleditor/htmleditor.ui" line="290"/>
         <source>Save file under a different name</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz pod inną nazwą</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="299"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Co&amp;fnij</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="302"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Cofnij</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="311"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Po&amp;nów</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="314"/>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Ponów</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="323"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"></translation>
+        <translation>Wy&amp;tnij</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="326"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Wytnij</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="335"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kopiuj</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="338"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="347"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Wkle&amp;j</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="350"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Wklej</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="359"/>
         <source>Select a&amp;ll</source>
-        <translation type="unfinished"></translation>
+        <translation>Z&amp;aznacz wszystko</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="362"/>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz wszystko</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="374"/>
         <source>&amp;Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Pogru&amp;biony</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="377"/>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Pogrubiony</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="389"/>
         <source>&amp;Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kursywa</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="392"/>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>Kursywa</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="404"/>
         <source>&amp;Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Podkreślony</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="407"/>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Podkreślony</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="419"/>
         <source>&amp;Strikethrough</source>
-        <translation type="unfinished"></translation>
+        <translation>Pr&amp;zekreślony</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="422"/>
         <source>Strikethrough</source>
-        <translation type="unfinished"></translation>
+        <translation>Przekreślony</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="431"/>
         <source>Align &amp;left</source>
-        <translation type="unfinished"></translation>
+        <translation>Do &amp;lewej</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="434"/>
         <source>Align left</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyrównanie do lewej</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="443"/>
         <source>Align &amp;center</source>
-        <translation type="unfinished"></translation>
+        <translation>Do ś&amp;rodka</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="446"/>
         <source>Align center</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyrównanie do środka</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="455"/>
         <source>Align &amp;right</source>
-        <translation type="unfinished"></translation>
+        <translation>Do &amp;prawej</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="458"/>
         <source>Align right</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyrównanie do prawej</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="467"/>
         <source>Align &amp;justied</source>
-        <translation type="unfinished"></translation>
+        <translation>Do lewej &amp;i prawej</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="470"/>
         <source>Align justied</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyrównanie do lewej i prawej</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="479"/>
         <source>I&amp;ncrease indent</source>
-        <translation type="unfinished"></translation>
+        <translation>Z&amp;większ wcięcie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="482"/>
         <source>Increase indent</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwiększ wcięcie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="491"/>
         <source>&amp;Decrease indent</source>
-        <translation type="unfinished"></translation>
+        <translation>Z&amp;mniejsz wcięcie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="494"/>
         <source>Decrease indent</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmniejsz wcięcie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="506"/>
         <source>Bulle&amp;ted list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista wy&amp;punktowana</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="509"/>
         <source>Bulleted list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista wypunktowana</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="521"/>
         <source>&amp;Numbered list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista &amp;numerowana</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="524"/>
         <source>Numbered list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista numerowana</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="533"/>
         <source>From &amp;file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Z &amp;pliku...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="536"/>
         <source>Insert image from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw obraz z pliku</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="545"/>
         <source>From &amp;URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>Z adresu &amp;URL...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="548"/>
         <source>Insert image from URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw obraz z adresu URL</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="557"/>
         <source>Create &amp;link...</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz &amp;dowiązanie...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="560"/>
         <source>Create link</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz dowiązanie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="569"/>
         <location filename="../../htmleditor/htmleditor.ui" line="572"/>
         <source>Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomniejsz</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="581"/>
         <location filename="../../htmleditor/htmleditor.ui" line="584"/>
         <source>Zoom in</source>
-        <translation type="unfinished"></translation>
+        <translation>Powiększ</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="589"/>
         <source>&amp;Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Akapit</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="594"/>
         <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nagłówek &amp;1</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="599"/>
         <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nagłówek &amp;2</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="604"/>
         <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
+        <translation>Nagłówek &amp;3</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="609"/>
         <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
+        <translation>Nagłówek &amp;4</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="614"/>
         <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
+        <translation>Nagłówek &amp;5</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="619"/>
         <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
+        <translation>Nagłówek &amp;6</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="624"/>
         <source>Pre&amp;formatted</source>
-        <translation type="unfinished"></translation>
+        <translation>Uprzednio s&amp;formatowany</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="629"/>
         <source>&amp;Address</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;dres</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="634"/>
         <source>&amp;Font name...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa &amp;czcionki...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="637"/>
         <source>Font name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa czcionki</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="642"/>
         <source>Text &amp;color...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolor &amp;tekstu...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="645"/>
         <source>Text color</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolor tekstu</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="650"/>
         <source>Bac&amp;kground color...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ko&amp;lor tła...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="653"/>
         <source>Background color</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolor tła</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="658"/>
         <source>Font si&amp;ze...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rozmiar czcionki...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="661"/>
         <source>Font size</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar czcionki</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="670"/>
         <source>Insert &amp;HTML...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw &amp;HTML...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="673"/>
         <location filename="../../htmleditor/htmleditor.ui" line="676"/>
         <location filename="../../htmleditor/htmleditor.ui" line="679"/>
         <source>Insert HTML</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="688"/>
         <location filename="../../htmleditor/htmleditor.ui" line="696"/>
         <source>Insert &amp;table...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw &amp;tabelę...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="691"/>
         <source>Insert table</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw tabelę</translation>
     </message>
 </context>
 <context>
@@ -4467,142 +4467,142 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="56"/>
         <source>WYSIWIG</source>
-        <translation type="unfinished"></translation>
+        <translation>WYSIWIG</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="57"/>
         <source>HTML</source>
-        <translation type="unfinished">HTML</translation>
+        <translation>HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="208"/>
         <source>Open file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz plik...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="273"/>
         <source>Common graphics formats (*.png *.jpg *.jpeg *.gif);;</source>
-        <translation type="unfinished"></translation>
+        <translation>Popularne formaty plików graficznych (*.png *.jpg *.jpeg *.gif);;</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="274"/>
         <source>Portable Network Graphics (PNG) (*.png);;</source>
-        <translation type="unfinished"></translation>
+        <translation>Portable Network Graphics (PNG) (*.png);;</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="275"/>
         <source>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</source>
-        <translation type="unfinished"></translation>
+        <translation>Joint Photographic Experts Group (JPEG) (*.jpg *.jpeg);;</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="276"/>
         <source>Graphics Interchange Format (GIF) (*.gif);;</source>
-        <translation type="unfinished"></translation>
+        <translation>Graphics Interchange Format (GIF) (*.gif);;</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="208"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="242"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="277"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Wszystkie pliki (*)</translation>
+        <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="208"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="242"/>
         <source>HTML files (*.html *.htm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pliki HTML (*.html *.htm)</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="242"/>
         <source>Save a copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz kopię</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="279"/>
         <source>Open image...</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz obraz...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="293"/>
         <source>Insert image from URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw obraz z adresu URL</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="293"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="337"/>
         <source>Enter URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>Podaj URL:</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="337"/>
         <source>Create link</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz dowiązanie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="561"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="561"/>
         <source>Select font:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz czcionkę:</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="570"/>
         <source>XS</source>
-        <translation type="unfinished"></translation>
+        <translation>XS</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="570"/>
         <source>S</source>
-        <translation type="unfinished"></translation>
+        <translation>S</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="570"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="572"/>
         <source>M</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="570"/>
         <source>L</source>
-        <translation type="unfinished"></translation>
+        <translation>L</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="570"/>
         <source>XL</source>
-        <translation type="unfinished"></translation>
+        <translation>XL</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="570"/>
         <source>XXL</source>
-        <translation type="unfinished"></translation>
+        <translation>XXL</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="572"/>
         <source>Font size</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar czcionki</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="572"/>
         <source>Font size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar czcionki:</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="648"/>
         <source>Open &apos;%1&apos; in default browser?</source>
-        <translation type="unfinished"></translation>
+        <translation>Otworzyć &apos;%1&apos; w domyślnej przeglądarce?</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="649"/>
         <source>Open link</source>
-        <translation type="unfinished">Otwórz element docelowy</translation>
+        <translation>Otwórz odnośnik</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="659"/>
         <source>Zoom: %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Powiększenie: %1%</translation>
     </message>
 </context>
 <context>
@@ -4974,12 +4974,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/inserthtmldialog.ui" line="14"/>
         <source>Insert HTML</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/inserthtmldialog.ui" line="20"/>
         <source>HTML Code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kod HTML:</translation>
     </message>
 </context>
 <context>
@@ -5609,7 +5609,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="410"/>
         <location filename="../../messdevcfg.cpp" line="415"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: uzyskano nieprawidłowe dane XML dla &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="474"/>
@@ -5626,7 +5626,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="226"/>
         <location filename="../../messdevcfg.cpp" line="268"/>
         <source>Play selected machine (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom wybraną maszynę (osadzając)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="496"/>
@@ -5641,7 +5641,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="626"/>
         <source>FATAL: error while parsing XML data for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: błąd podczas parsowania danych XML dla &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="794"/>
@@ -6791,7 +6791,7 @@ Czy wybrać inną nazwę?</translation>
         <location filename="../../qmc2main.cpp" line="958"/>
         <location filename="../../qmc2main.cpp" line="1026"/>
         <source>&amp;Save</source>
-        <translation>&amp;Zapisz</translation>
+        <translation>Zapi&amp;sz</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1015"/>
@@ -6849,7 +6849,7 @@ Czy wybrać inną nazwę?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="548"/>
         <source>Dock / undock this widget</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełączanie pomiędzy oddzielnym oknem a osadzonym obiektem</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="582"/>
@@ -6857,37 +6857,37 @@ Czy wybrać inną nazwę?</translation>
         <location filename="../../qmc2main.cpp" line="584"/>
         <location filename="../../qmc2main.cpp" line="585"/>
         <source>Clear MESS wiki cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bufor wiki MESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="636"/>
         <source>Show game/software titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż tytuły gier/oprogramowania</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="637"/>
         <source>Show game- or software-titles at the bottom of any images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż tytuły gier lub programów na dole obrazków</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="638"/>
         <source>Show game titles only when the game list is not visible due to the current layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż tytuły gier tylko, gdy lista gier nie jest widoczna ze względu na obecny układ</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="640"/>
         <source>Show machine/software titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż nazwy maszyn/oprogramowania</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="641"/>
         <source>Show machine- or software-titles at the bottom of any images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż nazwy maszyn lub programów na dole obrazków</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="642"/>
         <source>Show machine titles only when the machine list is not visible due to the current layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż nazwy maszyn tylko, gdy lista maszyn nie jest widoczna ze względu na obecny układ</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1471"/>
@@ -6988,7 +6988,7 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2188"/>
         <source>MESS wiki in-memory cache cleared (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usunięto bufor wiki MESS z pamięci (%1)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2215"/>
@@ -7058,33 +7058,33 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="3262"/>
         <source>ProjectMESS page for &apos;%1&apos; / &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Strona ProjectMESS dla &apos;%1&apos; / &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3267"/>
         <source>Fetching ProjectMESS page for &apos;%1&apos; / &apos;%2&apos;, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieranie strony ProjectMESS dla &apos;%1&apos; / &apos;%2&apos;, proszę czekać...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3726"/>
         <source>MESS wiki page for all drivers</source>
-        <translation type="unfinished"></translation>
+        <translation>Strona wiki MESS dla wszystkich sterowników</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3743"/>
         <location filename="../../qmc2main.cpp" line="3753"/>
         <source>MESS wiki page for driver &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Strona wiki MESS dla sterownika &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3738"/>
         <source>Fetching MESS wiki page for all drivers, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieranie strony wiki MESS dla wszystkich sterowników, proszę czekać...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3747"/>
         <source>Fetching MESS wiki page for driver &apos;%1&apos;, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieranie strony wiki MESS dla sterownika &apos;%1&apos;, proszę czekać...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3878"/>
@@ -7122,7 +7122,7 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5747"/>
         <source>destroying MESS wiki lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>niszczenie odwołania do wiki MESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9182"/>
@@ -7165,7 +7165,7 @@ Czy naprawdę chcesz sprawdzić teraz stany wszystkich ROM-ów?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="9789"/>
         <source>Software detail</source>
-        <translation type="unfinished"></translation>
+        <translation>Szczegóły oprogramowania</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="789"/>
@@ -7713,17 +7713,17 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2249"/>
         <source>Snapsh&amp;ot</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zrzut ekranu</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2258"/>
         <source>Project&amp;MESS</source>
-        <translation type="unfinished"></translation>
+        <translation>Project&amp;MESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2267"/>
         <source>&amp;Notes</source>
-        <translation type="unfinished"></translation>
+        <translation>No&amp;tatki</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2363"/>
@@ -8549,7 +8549,7 @@ Czy mają być zabite przy wyjściu?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="1606"/>
         <source>&amp;Front end log</source>
-        <translation>Dziennik i&amp;nterfejsu</translation>
+        <translation>Dziennik inter&amp;fejsu</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="466"/>
@@ -8792,8 +8792,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -9015,7 +9013,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5873"/>
         <source>Welcome to QMC2 v%1!</source>
-        <translation type="unfinished"></translation>
+        <translation>Witamy w QMC2 w wersji %1!</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6177"/>
@@ -9196,7 +9194,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../marquee.cpp" line="54"/>
         <source>Refresh</source>
-        <translation type="unfinished">Odświeżanie</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <location filename="../../marquee.cpp" line="61"/>
@@ -9567,12 +9565,12 @@ Ponowić próbę osadzania?</translation>
         <location filename="../../miniwebbrowser.ui" line="244"/>
         <location filename="../../miniwebbrowser.ui" line="247"/>
         <source>Set zoom factor</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw współczynnik powiększenia</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="250"/>
         <source> %</source>
-        <translation type="unfinished"></translation>
+        <translation> %</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="125"/>
@@ -10509,47 +10507,47 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="750"/>
         <source>Minimize when launching emulators?</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimalizacja podczas uruchamiania emulatorów?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="753"/>
         <source>Minimize on emulator launch</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimalizuj uruchamiając emulator</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="770"/>
         <source>Suppress all messages sent through either the QDebug class or one of the qDebug() / qCritical() / qWarning() / qFatal() functions</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukrywanie wszystkich wiadomości przesyłanych za pomocą klasy QDebug bądź funkcji qDebug(), qCritical(), qWarning() czy też qFatal()</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="773"/>
         <source>Suppress Qt messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukrywanie wiadomości Qt</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="780"/>
         <source>Show splash screen when starting up?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokazywać ekran tytułowy podczas uruchamiania?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="783"/>
         <source>Show splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokazuj ekran tytułowy</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2167"/>
         <source>Software notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Folder notatek o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2180"/>
         <source>Folder used to store personal notes about any software titles (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Folder używany do zapisu osobistych notatek o oprogramowaniu (zapis)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2193"/>
         <source>Browse software notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż folder notatek o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2367"/>
@@ -10594,77 +10592,77 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="2280"/>
         <source>Enable ROM state filtering?</source>
-        <translation type="unfinished"></translation>
+        <translation>Włączyć filtrowanie stanu ROM-ów?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2204"/>
         <source>Enable the use of a template for (empty) software notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Korzystanie z szablonu do (pustych) notatek o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2207"/>
         <source>Software notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Szablon notatek o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2220"/>
         <source>HTML file used as a template for software-notes (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik HTML używany jako szablon notatek o oprogramowaniu (odczyt)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2233"/>
         <source>Browse software notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż szablon notatek o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2337"/>
         <source>Automatically disable SW snaps when software-detail is visible (may be annoying)</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczne wyłączanie zrzutów ekranu oprogramowania kiedy szczegóły są widoczne (może być irytujące)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2340"/>
         <source>No SW snaps for visible details</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak zrzutów ekranu oprogramowania przy widocznych szczegółach</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2703"/>
         <source>Select the default launch-mode (independent or embedded window) used when emulation is started by activating an entry in any list</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw domyślny tryb uruchamiania (oddzielne okno lub osadzanie) używane, gdy emulacja jest uruchamiana poprzez aktywację wpisu na dowolnej liście</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2707"/>
         <source>independent</source>
-        <translation type="unfinished"></translation>
+        <translation>oddzielne okno</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2716"/>
         <source>embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>osadzanie</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2859"/>
         <source>Default launch-mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Domyślny tryb uruchamiania</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2888"/>
         <source>Display (or hide) device sets in master lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokazywać (czy ukrywać) zestawy urządzeń na głównych listach?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2891"/>
         <source>Show device sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż zestawy urządzeń</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2908"/>
         <source>Display (or hide) BIOS sets in master lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokazywać (czy ukrywać) BIOS-y na głównych listach?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2911"/>
         <source>Show BIOS sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż BIOS-y</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3499"/>
@@ -10952,7 +10950,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="295"/>
         <source>Clear MESS wiki cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść bufor wiki MESS</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="297"/>
@@ -11493,17 +11491,17 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.cpp" line="3182"/>
         <source>Choose software notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz folder notatek o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3196"/>
         <source>Choose software notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz szablon notatek o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3196"/>
         <source>HTML files (*.html *.htm)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pliki HTML (*.html *.htm)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3378"/>
@@ -12225,7 +12223,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="197"/>
         <source>Minimize when launching (non-embedded) emulators?</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimalizować podczas uruchamiania (nieosadzonych) emulatorów?</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="213"/>
@@ -12745,7 +12743,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../pcb.cpp" line="54"/>
         <source>Refresh</source>
-        <translation type="unfinished">Odświeżanie</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <location filename="../../pcb.cpp" line="61"/>
@@ -12781,7 +12779,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../preview.cpp" line="56"/>
         <source>Refresh</source>
-        <translation type="unfinished">Odświeżanie</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <location filename="../../preview.cpp" line="63"/>
@@ -13019,7 +13017,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../qmc2main.cpp" line="10025"/>
         <source>Setting up the GUI, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawianie interfejsu, proszę czekać...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10072"/>
@@ -13245,7 +13243,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../softwarelist.cpp" line="2136"/>
         <location filename="../../softwarelist.cpp" line="2921"/>
         <source>Auto mount</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczne montowanie</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2108"/>
@@ -13255,78 +13253,78 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../softwarelist.cpp" line="2926"/>
         <location filename="../../softwarelist.cpp" line="2930"/>
         <source>Not mounted</source>
-        <translation type="unfinished"></translation>
+        <translation>Niezamontowane</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2110"/>
         <location filename="../../softwarelist.cpp" line="2143"/>
         <location filename="../../softwarelist.cpp" line="2932"/>
         <source>Mounted on:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamontowane pod:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2115"/>
         <location filename="../../softwarelist.cpp" line="2920"/>
         <source>Don&apos;t mount</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie montuj</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2316"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Oczekiwanie na dane...</translation>
+        <translation>Oczekiwanie na dane...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2885"/>
         <location filename="../../softwarelist.cpp" line="2887"/>
         <source>Searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Szukanie</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2899"/>
         <source>Updating</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizacja</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2911"/>
         <source>Part:</source>
-        <translation type="unfinished"></translation>
+        <translation>Element:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2937"/>
         <source>No mount device</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie montuj urządzenia</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2938"/>
         <source>Unmanaged</source>
-        <translation type="unfinished"></translation>
+        <translation>Niezarządzane</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2963"/>
         <source>Data area:</source>
-        <translation type="unfinished"></translation>
+        <translation>Obszar danych:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2966"/>
         <location filename="../../softwarelist.cpp" line="2978"/>
         <location filename="../../softwarelist.cpp" line="2992"/>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2975"/>
         <source>Disk area:</source>
-        <translation type="unfinished"></translation>
+        <translation>Obszar dysku:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2995"/>
         <source>CRC:</source>
-        <translation type="unfinished"></translation>
+        <translation>CRC:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3010"/>
         <source>SHA1:</source>
-        <translation type="unfinished">SHA1  {1:?}</translation>
+        <translation>SHA1:</translation>
     </message>
 </context>
 <context>
@@ -15142,7 +15140,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../romstatusexport.ui" line="23"/>
         <location filename="../../romstatusexport.ui" line="36"/>
         <source>Select output format</source>
-        <translation>Wybierz format wyjściowy</translation>
+        <translation>Wybór formatu wyjściowego</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="40"/>
@@ -15327,7 +15325,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romstatusexport.ui" line="308"/>
         <source>Overwrite existing files without asking what to do</source>
-        <translation>Nadpisz istniejące pliki bez pytania co robić</translation>
+        <translation>Nadpisywanie istniejących plików bez pytania co robić</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="311"/>
@@ -15357,7 +15355,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romstatusexport.ui" line="194"/>
         <source>Select sort criteria</source>
-        <translation>Wybierz kryterium sortowania</translation>
+        <translation>Wybór kryterium sortowania</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="198"/>
@@ -15400,7 +15398,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romstatusexport.ui" line="244"/>
         <source>Select sort order</source>
-        <translation>Wybierz porządek sortowania</translation>
+        <translation>Wybór porządku sortowania</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="248"/>
@@ -15485,7 +15483,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romstatusexport.cpp" line="43"/>
         <source>All formats</source>
-        <translation type="unfinished"></translation>
+        <translation>Wszystkie formaty</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="178"/>
@@ -16062,28 +16060,28 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../softwarelist.ui" line="55"/>
         <location filename="../../softwarelist.ui" line="58"/>
         <source>Toggle filtering of compatible software titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz filtrowanie tytułów kompatybilnego oprogramowania</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="78"/>
         <location filename="../../softwarelist.ui" line="81"/>
         <source>Toggle detailed software information</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz szczegółowe informacje o oprogramowaniu</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="135"/>
         <source>Export the current software-list to an ASCII or CSV formatted file (or the clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuj bieżącą listę oprogramowania do pliku ASCII bądź CVS (lub do schowka)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="138"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksport</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="158"/>
         <source>Open options menu for the favorites list</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz menu opcji dla listy ulubionych</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="178"/>
@@ -16139,7 +16137,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../softwarelist.cpp" line="195"/>
         <location filename="../../softwarelist.cpp" line="218"/>
         <source>Part</source>
-        <translation>Część</translation>
+        <translation>Element</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="332"/>
@@ -16254,12 +16252,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="135"/>
         <source>Load favorites from a file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytaj ulubione z pliku...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="140"/>
         <source>Save favorites to a file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz ulubione do pliku...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="271"/>
@@ -16347,7 +16345,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="713"/>
         <source>Loading software-list &apos;%1&apos;, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytywanie listy oprogramowania &apos;%1&apos;, proszę czekać...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="728"/>
@@ -16363,7 +16361,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../softwarelist.cpp" line="1849"/>
         <location filename="../../softwarelist.cpp" line="2192"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Oczekiwanie na dane...</translation>
+        <translation>Oczekiwanie na dane...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="965"/>
@@ -16417,87 +16415,87 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
         <location filename="../../softwarelist.cpp" line="1396"/>
         <location filename="../../softwarelist.cpp" line="1430"/>
         <source>Searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Szukanie</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1367"/>
         <location filename="../../softwarelist.cpp" line="1401"/>
         <location filename="../../softwarelist.cpp" line="1435"/>
         <source>FATAL: error while parsing XML data for software list entry &apos;%1:%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: błąd podczas parsowania danych XML rekordu listy oprogramowania &apos;%1:%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1370"/>
         <location filename="../../softwarelist.cpp" line="1404"/>
         <location filename="../../softwarelist.cpp" line="1438"/>
         <source>FATAL: couldn&apos;t find XML data for software list &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie znaleziono danych XML listy oprogramowania &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2162"/>
         <source>Choose file to merge favorites from</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik, z którego mają być dołączone ulubione</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2162"/>
         <location filename="../../softwarelist.cpp" line="2240"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Wszystkie pliki (*)</translation>
+        <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2174"/>
         <source>loading software-favorites for &apos;%1&apos; from &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>wczytywanie ulubionego oprogramowania na &apos;%1&apos; z &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2213"/>
         <source>entry &apos;%1:%2&apos; successfully imported</source>
-        <translation type="unfinished"></translation>
+        <translation>rekord &apos;%1:%2 zaimportowano pomyślnie</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2215"/>
         <source>WARNING: entry &apos;%1:%2&apos; cannot be associated with any known software for this system (line %3 ignored)</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie udało się powiązać rekordu &apos;%1:%2&apos; z żadnym znanym oprogramowaniem na ten system (linię %3 zignorowano)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2217"/>
         <source>WARNING: a favorite entry for &apos;%1:%2&apos; already exists (line %3 ignored)</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: wpis ulubionych dla &apos;%1:%2&apos; już istnieje (linię %3 zignorowano)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2219"/>
         <source>WARNING: syntax error on line %1 (ignored)</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: błąd składni w linii %1 (zignorowano)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2223"/>
         <source>done (loading software-favorites for &apos;%1&apos; from &apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (wczytywanie ulubionego oprogramowania na &apos;%1&apos; z &apos;%2&apos;)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2225"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for reading, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można otworzyć &apos;%1&apos; do odczytu, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2240"/>
         <source>Choose file to store favorites to</source>
-        <translation type="unfinished"></translation>
+        <translation>Proszę wybrać plik do zapisania ulubionych</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2251"/>
         <source>saving software-favorites for &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>zapisywanie ulubionego oprogramowania na &apos;%1&apos; do &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2273"/>
         <source>done (saving software-favorites for &apos;%1&apos; to &apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (zapisywanie ulubionego oprogramowania na &apos;%1&apos; do &apos;%2&apos;)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2275"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALNIE: nie można otworzyć &apos;%1&apos; do zapisu, proszę sprawdzić uprawnienia</translation>
     </message>
 </context>
 <context>
@@ -16505,329 +16503,329 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../swlistexport.ui" line="33"/>
         <source>Browse ASCII export file</source>
-        <translation type="unfinished">Wskaż plik ASCII eksportu</translation>
+        <translation>Wskaż plik ASCII eksportu</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="36"/>
         <source>ASCII file</source>
-        <translation type="unfinished">Plik ASCII</translation>
+        <translation>Plik ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="56"/>
         <source>ASCII export file -- use $ID$ as a placeholder for the current driver</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik ASCII eksportu -- użyj $ID$ jako symbolu zastępczego dla bieżącego sterownika</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="63"/>
         <source>Column width</source>
-        <translation type="unfinished">Szerokość kolumny</translation>
+        <translation>Szerokość kolumny</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="79"/>
         <source>Maximum column width for ASCII export (0 = unlimited)</source>
-        <translation type="unfinished">Maksymalna szerokość kolumny dla eksportu ASCII (0 = nieograniczona)</translation>
+        <translation>Maksymalna szerokość kolumny dla eksportu ASCII (0 = nieograniczona)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="82"/>
         <source>unlimited</source>
-        <translation type="unfinished"></translation>
+        <translation>nieograniczona</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="134"/>
         <source>Browse CSV export file</source>
-        <translation type="unfinished">Wskaż plik CSV eksportu</translation>
+        <translation>Wskaż plik CSV eksportu</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="137"/>
         <source>CSV file</source>
-        <translation type="unfinished">Plik CSV</translation>
+        <translation>Plik CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="157"/>
         <source>CSV export file -- use $ID$ as a placeholder for the current driver</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik CSV eksportu -- użyj $ID$ jako symbolu zastępczego dla bieżącego sterownika</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="164"/>
         <source>Separator</source>
-        <translation type="unfinished">Separator pola</translation>
+        <translation>Separator pola</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="192"/>
         <source>Field separator for CSV export</source>
-        <translation type="unfinished">Separator pola dla eksportu do CSV</translation>
+        <translation>Separator pola dla eksportu do CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="195"/>
         <source>;</source>
-        <translation type="unfinished">;</translation>
+        <translation>;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="221"/>
         <source>Delimiter</source>
-        <translation type="unfinished">Separator tekstu</translation>
+        <translation>Separator tekstu</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="249"/>
         <source>Text delimiter for CSV export</source>
-        <translation type="unfinished">Separator tekstu dla eksportu do CSV</translation>
+        <translation>Separator tekstu dla eksportu do CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="252"/>
         <source>&quot;</source>
-        <translation type="unfinished">&quot;</translation>
+        <translation>&quot;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="301"/>
         <source>Select the columns you want to export and the order in which they are to be listed (drag &amp; drop entries around)</source>
-        <translation type="unfinished"></translation>
+        <translation>Proszę wybrać kolumny do wyeksportowania i uporządkować je wedle uznania (wpisy można przeciągać i upuszczać)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="314"/>
         <location filename="../../swlistexport.ui" line="500"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Title</source>
-        <translation type="unfinished">Tytuł</translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="319"/>
         <location filename="../../swlistexport.ui" line="505"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Name</source>
-        <translation type="unfinished">Nazwa</translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="324"/>
         <location filename="../../swlistexport.ui" line="510"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Publisher</source>
-        <translation type="unfinished">Wydawca</translation>
+        <translation>Wydawca</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="329"/>
         <location filename="../../swlistexport.ui" line="515"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Year</source>
-        <translation type="unfinished">Rok</translation>
+        <translation>Rok</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="334"/>
         <location filename="../../swlistexport.ui" line="520"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Part</source>
-        <translation type="unfinished">Część</translation>
+        <translation>Element</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="339"/>
         <location filename="../../swlistexport.ui" line="525"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Interface</source>
-        <translation type="unfinished">Interfejs</translation>
+        <translation>Interfejs</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="344"/>
         <location filename="../../swlistexport.ui" line="530"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>List</source>
-        <translation type="unfinished">Lista</translation>
+        <translation>Lista</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="354"/>
         <source>Export now!</source>
-        <translation type="unfinished">Eksportuj teraz!</translation>
+        <translation>Eksportuj teraz!</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="357"/>
         <source>&amp;Export</source>
-        <translation type="unfinished">&amp;Eksportuj</translation>
+        <translation>&amp;Eksportuj</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="368"/>
         <source>Close software-list export</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij eksport listy oprogramowania</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="371"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Zamknij</translation>
+        <translation>&amp;Zamknij</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="382"/>
         <source>Export progress indicator</source>
-        <translation type="unfinished">Wskaźnik postępu eksportu</translation>
+        <translation>Wskaźnik postępu eksportu</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="388"/>
         <source>%p%</source>
-        <translation type="unfinished">%p%</translation>
+        <translation>%p%</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="403"/>
         <source>Sort criteria</source>
-        <translation type="unfinished">Kryterium sortowania</translation>
+        <translation>Kryterium sortowania</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="416"/>
         <source>Sort order</source>
-        <translation type="unfinished">Porządek sortowania</translation>
+        <translation>Porządek sortowania</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="429"/>
         <source>Output format</source>
-        <translation type="unfinished"></translation>
+        <translation>Format wyjściowy</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="442"/>
         <source>Select output format</source>
-        <translation type="unfinished">Wybierz format wyjściowy</translation>
+        <translation>Wybór formatu wyjściowego</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="446"/>
         <source>ASCII</source>
-        <translation type="unfinished">ASCII</translation>
+        <translation>ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="451"/>
         <source>CSV</source>
-        <translation type="unfinished">CSV</translation>
+        <translation>CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="465"/>
         <source>Select sort order</source>
-        <translation type="unfinished">Wybierz porządek sortowania</translation>
+        <translation>Wybór porządku sortowania</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="469"/>
         <source>Ascending</source>
-        <translation type="unfinished">Rosnący</translation>
+        <translation>Rosnący</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="478"/>
         <source>Descending</source>
-        <translation type="unfinished">Malejący</translation>
+        <translation>Malejący</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="496"/>
         <source>Select sort criteria</source>
-        <translation type="unfinished">Wybierz kryterium sortowania</translation>
+        <translation>Wybór kryterium sortowania</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="538"/>
         <source>Overwrite existing files without asking what to do</source>
-        <translation type="unfinished">Nadpisz istniejące pliki bez pytania co robić</translation>
+        <translation>Nadpisywanie istniejących plików bez pytania co robić</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="541"/>
         <source>Overwrite files blindly</source>
-        <translation type="unfinished"></translation>
+        <translation>Nadpisuj na ślepo</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="551"/>
         <source>Export to the system clipboard instead of a file</source>
-        <translation type="unfinished">Eksportuj do schowka systemowego zamiast do pliku</translation>
+        <translation>Eksportuj do schowka systemowego zamiast do pliku</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="554"/>
         <source>Export to clipboard</source>
-        <translation type="unfinished">Eksportuj do schowka</translation>
+        <translation>Eksportuj do schowka</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="564"/>
         <source>Include column header texts</source>
-        <translation type="unfinished"></translation>
+        <translation>Zawrzyj tekst nagłówków kolumn</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="567"/>
         <source>Include column headers</source>
-        <translation type="unfinished"></translation>
+        <translation>Zawrzyj nagłówki</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="31"/>
         <source>Both formats</source>
-        <translation type="unfinished"></translation>
+        <translation>Oba formaty</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="33"/>
         <source>Export software-list for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksport listy oprogramowania na &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="181"/>
         <location filename="../../swlistexport.cpp" line="313"/>
         <source>Confirm</source>
-        <translation type="unfinished">Potwierdź</translation>
+        <translation>Potwierdź</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="181"/>
         <location filename="../../swlistexport.cpp" line="313"/>
         <source>Overwrite existing file?</source>
-        <translation type="unfinished">Nadpisać istniejący plik?</translation>
+        <translation>Nadpisać istniejący plik?</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="192"/>
         <source>exporting current software-list in ASCII format to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>eksportowanie bieżącej listy oprogramowania w formacie ASCII do &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="194"/>
         <source>WARNING: can&apos;t open ASCII export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished">UWAGA: nie można otworzyć pliku ASCII eksportu &apos;%1&apos; do zapisu, proszę sprawdzić uprawnienia</translation>
+        <translation>UWAGA: nie można otworzyć pliku ASCII eksportu &apos;%1&apos; do zapisu, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="199"/>
         <source>exporting current software-list in ASCII format to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>eksportowanie bieżącej listy oprogramowania w formacie ASCII do schowka</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="275"/>
         <source>done (exporting current software-list in ASCII format to clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (eksportowanie bieżącej listy oprogramowania w formacie ASCII do schowka)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="278"/>
         <source>done (exporting current software-list in ASCII format to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (eksportowanie bieżącej listy oprogramowania w formacie ASCII do &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="324"/>
         <source>exporting current software-list in CSV format to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>eksportowanie bieżącej listy oprogramowania w formacie CSV do &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="326"/>
         <source>WARNING: can&apos;t open CSV export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished">UWAGA: nie można otworzyć pliku CSV eksportu &apos;%1&apos; do zapisu, proszę sprawdzić uprawnienia</translation>
+        <translation>UWAGA: nie można otworzyć pliku CSV eksportu &apos;%1&apos; do zapisu, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="331"/>
         <source>exporting current software-list in CSV format to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>eksportowanie bieżącej listy oprogramowania w formacie CSV do schowka</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="390"/>
         <source>done (exporting current software-list in CSV format to clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (eksportowanie bieżącej listy oprogramowania w formacie CSV do schowka)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="393"/>
         <source>done (exporting current software-list in CSV format to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (eksportowanie bieżącej listy oprogramowania w formacie CSV do &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="405"/>
         <source>Choose ASCII export file</source>
-        <translation type="unfinished">Wybierz plik ASCII eksportu</translation>
+        <translation>Wybierz plik ASCII eksportu</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="405"/>
         <location filename="../../swlistexport.cpp" line="419"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Wszystkie pliki (*)</translation>
+        <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="419"/>
         <source>Choose CSV export file</source>
-        <translation type="unfinished">Wybierz plik CSV eksportu</translation>
+        <translation>Wybierz plik CSV eksportu</translation>
     </message>
 </context>
 <context>
@@ -16840,13 +16838,13 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="2412"/>
         <source>Refresh</source>
-        <translation type="unfinished">Odświeżanie</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2620"/>
         <location filename="../../softwarelist.cpp" line="2624"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
-        <translation type="unfinished">FATALNIE: nie można otworzyć pliku zrzutu ekranu oprogramowania, proszę sprawdzić uprawnienia dostępu dla %1</translation>
+        <translation>FATALNIE: nie można otworzyć pliku zrzutu ekranu oprogramowania, proszę sprawdzić uprawnienia dostępu dla %1</translation>
     </message>
 </context>
 <context>
@@ -16854,18 +16852,18 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../softwarelist.cpp" line="3083"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Kopiuj do schowka</translation>
+        <translation>Kopiuj do schowka</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3088"/>
         <source>Refresh</source>
-        <translation type="unfinished">Odświeżanie</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3152"/>
         <location filename="../../softwarelist.cpp" line="3156"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
-        <translation type="unfinished">FATALNIE: nie można otworzyć pliku zrzutu ekranu oprogramowania, proszę sprawdzić uprawnienia dostępu dla %1</translation>
+        <translation>FATALNIE: nie można otworzyć pliku zrzutu ekranu oprogramowania, proszę sprawdzić uprawnienia dostępu dla %1</translation>
     </message>
 </context>
 <context>
@@ -16873,22 +16871,22 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../htmleditor/tablepropertydialog.ui" line="14"/>
         <source>Table properties</source>
-        <translation type="unfinished"></translation>
+        <translation>Właściwości tabeli</translation>
     </message>
     <message>
         <location filename="../../htmleditor/tablepropertydialog.ui" line="20"/>
         <source>Rows:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiersze:</translation>
     </message>
     <message>
         <location filename="../../htmleditor/tablepropertydialog.ui" line="46"/>
         <source>Columns:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumny:</translation>
     </message>
     <message>
         <location filename="../../htmleditor/tablepropertydialog.ui" line="72"/>
         <source>Properties:</source>
-        <translation type="unfinished"></translation>
+        <translation>Właściwości:</translation>
     </message>
 </context>
 <context>
@@ -16901,7 +16899,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../title.cpp" line="54"/>
         <source>Refresh</source>
-        <translation type="unfinished">Odświeżanie</translation>
+        <translation>Odśwież</translation>
     </message>
     <message>
         <location filename="../../title.cpp" line="61"/>
@@ -17479,12 +17477,12 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="579"/>
         <source>Full-screen mode -- press %1 to return to windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryb pełnoekranowy -- naciśnij %1 aby go opuścić</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="581"/>
         <source>Full-screen mode -- press toggle-key to return to windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryb pełnoekranowy -- naciśnij klawisz przełączający aby go opuścić</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="605"/>
@@ -17494,22 +17492,22 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="775"/>
         <source>Buffering: %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Buforowanie: %1%</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="796"/>
         <source>Loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Wczytywanie</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="813"/>
         <source>Playing</source>
-        <translation type="unfinished"></translation>
+        <translation>Odtwarzanie</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="824"/>
         <source>Paused</source>
-        <translation type="unfinished">Wstrzymano</translation>
+        <translation>Wstrzymano</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="827"/>
@@ -17519,12 +17517,12 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="828"/>
         <source>Video playback error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd odtwarzania filmu: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="908"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzyskiwanie informacji o filmie o ID &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="995"/>
@@ -17536,7 +17534,7 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
         <location filename="../../youtubevideoplayer.cpp" line="1103"/>
         <location filename="../../youtubevideoplayer.cpp" line="1468"/>
         <source>Video info error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd informacji o filmie: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1065"/>
@@ -17546,7 +17544,7 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1066"/>
         <source>Video info error: timeout occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd informacji o filmie: upłynął limit czasu</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1102"/>
