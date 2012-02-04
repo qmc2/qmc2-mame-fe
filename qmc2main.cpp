@@ -4606,6 +4606,9 @@ void MainWindow::action_embedEmulator_triggered()
       tabWidgetGamelist->setCurrentIndex(tabWidgetGamelist->indexOf(widgetEmbeddedEmus));
       tabWidgetEmbeddedEmulators->setCurrentIndex(tabWidgetEmbeddedEmulators->count() - 1);
       qApp->processEvents();
+#if defined(Q_WS_X11)
+      QTimer::singleShot(QMC2_EMBED_FOCUS_DELAY, embedder, SLOT(forceFocus()));
+#endif
     } else {
       success = false;
       log(QMC2_LOG_FRONTEND, tr("WARNING: no matching window for emulator #%1 found").arg(gameID));
