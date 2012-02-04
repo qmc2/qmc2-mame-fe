@@ -143,6 +143,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     QMenu *romSetContextMenu;
     QAction *actionRewriteSet;
     QString currentFilesSHA1Checksum;
+    QString currentFilesCrcChecksum;
     QStringList wizardSelectedSets;
     QMultiMap<QString, QStringList> setRewriterFileMap;
     QString setRewriterSetName;
@@ -190,6 +191,8 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
     void on_checkBoxCalculateCRC_toggled(bool);
     void on_checkBoxCalculateMD5_toggled(bool);
     void on_checkBoxCalculateSHA1_toggled(bool);
+    void on_comboBoxChecksumWizardHashType_currentIndexChanged(int);
+    void on_lineEditChecksumWizardHash_textEdited(const QString &);
     void on_pushButtonChecksumWizardSearch_clicked();
     void on_treeWidgetChecksums_customContextMenuRequested(const QPoint &);
     void on_treeWidgetChecksumWizardSearchResult_itemSelectionChanged();
