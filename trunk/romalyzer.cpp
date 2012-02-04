@@ -265,11 +265,11 @@ void ROMAlyzer::on_pushButtonSearchBackward_clicked()
 void ROMAlyzer::on_lineEditGames_textChanged(QString text)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_lineEditGames_textChanged(QString text = %1)").arg(text));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_lineEditGames_textChanged(QString text = %1)").arg(text));
 #endif
 
-  if ( !qmc2ROMAlyzerActive )
-    pushButtonAnalyze->setEnabled(!text.isEmpty());
+	if ( !qmc2ROMAlyzerActive )
+		pushButtonAnalyze->setEnabled(!text.isEmpty());
 }
 
 void ROMAlyzer::on_checkBoxCalculateCRC_toggled(bool enable)
@@ -1942,6 +1942,50 @@ void ROMAlyzer::chdManagerStateChanged(QProcess::ProcessState processState)
 
 }
 
+void ROMAlyzer::on_lineEditChecksumWizardHash_textEdited(const QString &text)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_lineEditChecksumWizardHash_textEdited(const QString &text = %1)").arg(text));
+#endif
+
+	switch ( comboBoxChecksumWizardHashType->currentIndex() ) {
+		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC:
+			currentFilesSHA1Checksum.clear();
+			currentFilesCrcChecksum = text;
+			break;
+
+		default:
+		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1:
+			currentFilesCrcChecksum.clear();
+			currentFilesSHA1Checksum = text;
+			break;
+	}
+}
+
+void ROMAlyzer::on_comboBoxChecksumWizardHashType_currentIndexChanged(int index)
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ROMAlyzer::on_comboBoxChecksumWizardHashType_currentIndexChanged(int index)").arg(index));
+#endif
+
+	switch ( index ) {
+		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC:
+			if ( !currentFilesCrcChecksum.isEmpty() && !lineEditChecksumWizardHash->text().isEmpty() )
+				lineEditChecksumWizardHash->setText(currentFilesCrcChecksum);
+			else
+				lineEditChecksumWizardHash->clear();
+			break;
+
+		default:
+		case QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1:
+			if ( !currentFilesSHA1Checksum.isEmpty() && !lineEditChecksumWizardHash->text().isEmpty() )
+				lineEditChecksumWizardHash->setText(currentFilesSHA1Checksum);
+			else
+				lineEditChecksumWizardHash->clear();
+			break;
+	}
+}
+
 void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 {
 #ifdef QMC2_DEBUG
@@ -2055,6 +2099,11 @@ void ROMAlyzer::runChecksumWizard()
 	if ( !currentFilesSHA1Checksum.isEmpty() ) {
 		comboBoxChecksumWizardHashType->setCurrentIndex(QMC2_ROMALYZER_CSWIZ_HASHTYPE_SHA1);
 		lineEditChecksumWizardHash->setText(currentFilesSHA1Checksum);
+		tabWidgetAnalysis->setCurrentWidget(tabChecksumWizard);
+		pushButtonChecksumWizardSearch->animateClick();
+	} else if ( !currentFilesCrcChecksum.isEmpty() ) {
+		comboBoxChecksumWizardHashType->setCurrentIndex(QMC2_ROMALYZER_CSWIZ_HASHTYPE_CRC);
+		lineEditChecksumWizardHash->setText(currentFilesCrcChecksum);
 		tabWidgetAnalysis->setCurrentWidget(tabChecksumWizard);
 		pushButtonChecksumWizardSearch->animateClick();
 	}
@@ -2702,7 +2751,8 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 	if ( item )
 		if ( item->parent() != NULL ) {
 			currentFilesSHA1Checksum = item->text(QMC2_ROMALYZER_COLUMN_SHA1);
-			if ( !currentFilesSHA1Checksum.isEmpty() ) {
+			currentFilesCrcChecksum = item->text(QMC2_ROMALYZER_COLUMN_CRC);
+			if ( !currentFilesSHA1Checksum.isEmpty() || !currentFilesCrcChecksum.isEmpty() ) {
 				treeWidgetChecksums->setItemSelected(item, true);
 				romFileContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetChecksums->viewport()->mapToGlobal(p), romFileContextMenu));
 				romFileContextMenu->show();
