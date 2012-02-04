@@ -3322,8 +3322,10 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
                     imageData += imageBuffer[i];
                 unzCloseCurrentFile(qmc2IconFile);
                 QPixmap iconPixmap;
-                if ( iconPixmap.loadFromData(imageData) )
-                  qmc2IconMap[gameFileName.toLower().remove(QRegExp("(\\.png|\\.ico)$"))] = QIcon(iconPixmap);
+                if ( iconPixmap.loadFromData(imageData) ) {
+                  QFileInfo fi(gameFileName.toLower());
+                  qmc2IconMap[fi.baseName()] = QIcon(iconPixmap);
+                }
               }
             }
             if ( iconCount % qmc2GamelistResponsiveness == 0 ) {
