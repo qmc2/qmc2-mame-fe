@@ -86,6 +86,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		QModelIndex modelIndexDirModel;
 		QString normalXmlBuffer;
 		QString slotXmlBuffer;
+		QMap<QComboBox *, int> slotPreselectionMap;
 
 		MESSDeviceConfigurator(QString, QWidget *);
 		~MESSDeviceConfigurator();
@@ -94,6 +95,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		QString &getXmlDataWithEnabledSlots(QString, QString);
 
 	public slots:
+		void preselectSlots();
 		bool readSystemSlots();
 		bool refreshDeviceMap();
 		bool load();

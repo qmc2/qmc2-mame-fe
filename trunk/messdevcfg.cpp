@@ -697,6 +697,18 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 	return true;
 }
 
+void MESSDeviceConfigurator::preselectSlots()
+{
+	QMapIterator<QComboBox *, int> it(slotPreselectionMap);
+	while ( it.hasNext() ) {
+		it.next();
+		QComboBox *cb = it.key();
+		int index = it.value();
+		cb->setCurrentIndex(index);
+		connect(cb, SIGNAL(currentIndexChanged(int)), this, SLOT(slotOptionChanged(int)));
+	}
+}
+
 bool MESSDeviceConfigurator::load()
 {
 #ifdef QMC2_DEBUG
@@ -778,6 +790,7 @@ bool MESSDeviceConfigurator::load()
 	}
 
 	QMapIterator<QString, QStringList> it(messSystemSlotMap[messMachineName]);
+	slotPreselectionMap.clear();
 	while ( it.hasNext() ) {
 		it.next();
 		QString slotName = it.key();
@@ -794,18 +807,20 @@ bool MESSDeviceConfigurator::load()
 			cb->insertItem(0, tr("not used"));
 			if ( slotOptions.count() > 0 )
 				cb->insertItems(1, slotOptions);
+			slotPreselectionMap[cb] = 0;
 		} else {
 			if ( slotOptions.count() > 0 ) {
+
 				cb->insertItems(0, slotOptions);
-				cb->setCurrentIndex(slotOptionsShort.indexOf(defaultSlotOption));
+				slotPreselectionMap[cb] = slotOptionsShort.indexOf(defaultSlotOption);
 			}
 		}
 		QTreeWidgetItem *slotItem = new QTreeWidgetItem(treeWidgetSlotOptions);
 		slotItem->setText(QMC2_SLOTCONFIG_COLUMN_SLOT, slotName);
 		slotItem->setIcon(QMC2_SLOTCONFIG_COLUMN_SLOT, QIcon(QString::fromUtf8(":/data/img/slot.png")));
 		treeWidgetSlotOptions->setItemWidget(slotItem, QMC2_SLOTCONFIG_COLUMN_OPTION, cb);
-		connect(cb, SIGNAL(currentIndexChanged(int)), this, SLOT(slotOptionChanged(int)));
 	}
+	QTimer::singleShot(0, this, SLOT(preselectSlots()));
 
 	if ( treeWidgetSlotOptions->topLevelItemCount() == 0 )
 		treeWidgetSlotOptions->setEnabled(false);
