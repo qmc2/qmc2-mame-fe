@@ -1121,7 +1121,7 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 					QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
 					if ( cb ) {
 						cb->blockSignals(true);
-						cb->setCurrentIndex(0);
+						cb->setCurrentIndex(slotPreselectionMap[cb]);
 						cb->blockSignals(false);
 					}
 				}
