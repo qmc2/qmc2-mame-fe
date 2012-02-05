@@ -9,7 +9,7 @@
   </style>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>FAQ - v0.35, 03-FEB-2012</h3>
+<h3>FAQ - v0.35, 05-FEB-2012</h3>
 <h3>Questions</h3>
 <p><b>Build, installation and development issues:</b></p>
 <p><div class="menuitem"><a href="#A1.1">Q1.1: QMC2 needs Qt 4.7+, but my (UNIX/Linux, Mac OS X) distribution comes with an older (or no) version of Qt. What should I do about that?</a></div></p>
@@ -335,19 +335,21 @@ greater if you set the responsiveness parameter a bit higher (250 - 500, for exa
 <p>Provided your Phonon back-end supports the video formats MP4 and FLV, QMC2 can also play YouTube videos (since v0.2.b20) which you can <i>attach</i> to each game/machine individually. Note that this may require additional codecs to be installed!</p>
 <hr>
 <p><a name="A2.5"></a><b>Q2.5: What do I have to do to make QMC2 access my image &amp; icon collections?</b></p>
-<p>QMC2 can handle images of in-game screenshots (previews), flyers, cabinets, control panels, marquees, title screens, PCBs and icons stored in directories or ZIP archives.</p>
+<p>QMC2 can handle images of in-game screenshots (previews), flyers, cabinets, control panels, marquees, title screens, PCBs, software snap-shots and icons stored in directories or ZIP archives.</p>
 <p>Every image file (or ZIP member) must be named exactly as the corresponding <b>lower-case</b> game's/machine's short name, followed by the <b>lower-case</b> file extension ".png" (for example <i>galaga.png</i> or <i>1945kiii.png</i>).</p>
 <p>The use of ZIP archives requires a <i>flat</i> directory structure (= no sub-directories!). This is true for image directories as well, with the exception of previews: to support the direct use of in-game screenshots created with MAME/MESS, QMC2 also tries to find preview images in sub-directories of the preview-directory which are named as <i>&lt;gamename&gt;/XXXX.png</i> / <i>&lt;machinename&gt;/XXXX.png</i> (XXXX = 0000 - 9999). The file with the highest number will be used, but only if <i>&lt;gamename&gt;.png</i> / <i>&lt;machinename&gt;.png</i> wasn't found in the base preview-directory before. Note that for this to work, it is also required to setup the <i>snapshot_directory</i> of MAME/MESS to the directory where your previews are stored! See <i>Emulator</i> -&gt; <i>Global configuration</i> in the setup dialog to synchronize that.</p>
 <p>Note also that you shouldn't overwrite the default snapshot naming scheme via the <i>snapname</i> option if you want QMC2 to find your previews on-the-fly. We currently only support the default naming of MAME/MESS (<i>&lt;gamename/machinename&gt;/XXXX.png</i>).</p>
 <p>Make sure the access permissions to all image files and directories are setup correctly!</p>
-<p>Since v0.2.b20, QMC2 also supports so called <i>software snap-shots</i>, that is run-time/in-game snaps from any known software contained in <i>software lists</i> (this is primarily useful for MESS, but MAME supports this as well,
-   though only for a few sets). Software snap-shots need to be placed in a separate directory or ZIP-archive, and its sub-directory structure has to reflect the software list names for which
-   the respective images are valid. For instance, software snap-shots for the <i>gamegear</i> software list have to be stored in a <i>gamegear</i> sub-directory, and image files in that sub-directory must be named
-   exactly as their entry names in the software list, followed by ".png" (again, all in lower-case letters -- i. e. <i>&lt;software-snap-folder&gt;/gamegear/aladdin.png</i>). This applies to both the directory- and the ZIP-based
-   storage of software snaps (in case of a ZIP archive <i>&lt;software-snap-folder&gt;</i> is omitted, of course).</p>
+<p>Software snap-shots need to be placed in a separate directory or ZIP-archive. Its sub-directory structure has to reflect the software list names for which the respective images are valid. For instance, software snap-shots for
+   the <i>gamegear</i> software list have to be stored in a <i>gamegear</i> sub-directory, and image files in that sub-directory must be named exactly as their entry names in the software list, followed by ".png" (again, all in
+   lower-case letters -- i. e. <i>&lt;software-snap-folder&gt;/gamegear/aladdin.png</i>). This applies to both the directory- and the ZIP-based storage of software snaps (in case of a ZIP archive <i>&lt;software-snap-folder&gt;</i>
+   is omitted, of course).</p>
 <p>See <i>Front end</i> -&gt; <i>Files / Directories</i> in the setup dialog to modify the image paths, apply your changes and the images should be available to QMC2 right away (you'll have to clear the icon cache and trigger a reload of the game/machine list to also load the icons, though).</p>
-<p>For best performance, we recommend to store icons in a ZIP-archive, and to store all other images directory based. Icons are usually small, so reading one big file at once is much faster than reading many little files in a row. And in contrast to previews, flyers etc. which are loaded on demand
-   (and stored in a <i>least recently used</i> pixmap-cache), icons are pre-loaded in one step, so it has major impact on the startup performance of QMC2 (when you're using icons).</p>
+<p><b>For best performance, we recommend to store icons in a ZIP-archive, and to store all other images directory based!</b></p>
+<p>Icons are usually small, so reading one big file at once is much faster than reading many little files in a row. And in contrast to previews, flyers etc. which are loaded on demand (and stored in a <i>least recently used</i>
+   pixmap-cache), icons are pre-loaded in one step, so it has major impact on the startup performance of QMC2 (when you're using icons). Also, when icons are read from a ZIP-file, QMC2 supports <b>any</b> image format that Qt
+   supports and for which an image-format plugin is available (the <i>magic</i> is done by Qt). The raw image data is then made an icon and associated with the actual game/machine ID through the 'basenames' of the filenames as
+   stored in the ZIP header. As a result, for instance <a href="http://icons.mameworld.info/" target="_blank">MAMU's icons</a> can be used out-of-the-box (ICO format)!</p>
 <hr>
 <p><a name="A2.6"></a><b>Q2.6: The menu fonts in MAME/MESS look ugly when started via QMC2. How do I fix that?</b></p>
 <p>The most probable reason is you didn't setup the MAME/MESS option <i>fontpath</i> correctly! Change it to the directory where MAME/MESS has been installed and / or built (see <i>Options</i> -&gt; <i>Emulator</i> -&gt; <i>Global configuration</i>). The font files in question are <i>ui.bdf</i> and <i>ui.bdc</i> (will be created if it doesn't exist) and the default value of <i>fontpath</i> is "." (the current working directory), which is most likely not the correct path when MAME/MESS is started via QMC2.</p>
