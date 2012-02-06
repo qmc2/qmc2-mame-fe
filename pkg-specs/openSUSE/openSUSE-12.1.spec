@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.35
+Version:        0.36
 Release:        1
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II
 Distribution:   openSUSE 12.1
@@ -89,5 +89,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/qmc2-sdlmess.desktop
 
 %changelog
-* Tue Nov 15 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.35
+* Mon Feb 06 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.36-1
+- updated spec to QMC2 0.36
+
+* Tue Nov 15 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.35-1
 - created spec file for openSUSE 12.1 (copy from the spec for 11.4)
