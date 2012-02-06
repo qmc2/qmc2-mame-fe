@@ -1468,10 +1468,8 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
     } else {
       if ( isCHD ) {
         log(tr("WARNING: CHD file '%1' not found").arg(filePath));
-        if ( mergeFile.isEmpty() && merge.isEmpty() ) {
-          effectiveFile = QMC2_ROMALYZER_FILE_NOT_FOUND;
+        if ( mergeFile.isEmpty() && merge.isEmpty() )
           if ( fallbackPath->isEmpty() ) *fallbackPath = filePath;
-	}
       }
     }
 
