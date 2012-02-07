@@ -16,6 +16,7 @@ ToolExecutor::ToolExecutor(QWidget *parent, QString &command, QStringList &args,
 #endif
 
   setupUi(this);
+  setAttribute(Qt::WA_ShowWithoutActivating);
 
   QFont f;
   f.fromString(qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
