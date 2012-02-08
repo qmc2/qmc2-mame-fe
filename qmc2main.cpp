@@ -1524,6 +1524,8 @@ void MainWindow::on_actionPlay_activated()
     }
   }
 
+  qmc2DriverName = gameName;
+
   if ( foreignEmulator )
     return;
 
@@ -1617,8 +1619,6 @@ void MainWindow::on_actionPlay_activated()
 #endif
 
   args << gameName;
-
-  qmc2DriverName = gameName;
 
   if ( qmc2SoftwareList && tabWidgetGameDetail->currentIndex() == qmc2DetailSetup->appliedDetailList.indexOf(QMC2_SOFTWARE_LIST_INDEX) )
     args << qmc2SoftwareList->arguments();
