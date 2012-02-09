@@ -1,19 +1,34 @@
 qmc2 (0.35) unstable; urgency=low
 
   * New upstream release (Closes: #598846)
-  * Major overhaul of the software-list support: multi-device software-list entries, automatic vs. manual mount-device selection, mixable parts from different software-list entries, a new dock-able/floating software-detail widget with a separate snapshot-browser, a ProjectMESS software-lookup feature and an HTML editor/viewer for personal rich-text software-notes, software-compatibility filtering, software-list loading can be interrupted now and is better indicated through the GUI, software-list export tool, …
-  * Emulator embedding now also works on Windows! Note, however, that there are known issues for emulators running in Direct 3D mode (‘-video d3d’) which we can’t probably solve front-end wise.
-  * Changed the MESS device configuration so it offers available device-instances based on the slot-options specified, thus allowing to mount them as well (through the legacy device-mapper and the file-chooser). Also, default slot-options are now correctly pre-selected.
-  * YouTube video-player: added a semi-transparent overlay widget to display status information at the bottom of the player’s viewport.
-  * Added a new MESS wiki detail to look up available driver information (MESS targets only).
+  * Major overhaul of the software-list support: multi-device software-list 
+    entries, automatic vs. manual mount-device selection, mixable parts from 
+    different software-list entries, a new dock-able/floating software-detail 
+    widget with a separate snapshot-browser, a ProjectMESS software-lookup 
+    feature and an HTML editor/viewer for personal rich-text software-notes, 
+    software-compatibility filtering, software-list loading can be interrupted 
+    now and is better indicated through the GUI, software-list export tool
+  * Changed the MESS device configuration so it offers available 
+    device-instances based on the slot-options specified, thus allowing to 
+    mount them as well (through the legacy device-mapper and the file-chooser).
+    Also, default slot-options are now correctly pre-selected.
+  * YouTube video-player: added a semi-transparent overlay widget to display 
+    status information at the bottom of the player’s viewport.
+  * Added a new MESS wiki detail to look up available driver information 
+    (MESS targets only).
   * Allow for hiding of pure BIOS and/or device sets in all master-lists.
-  * Selectable default launch-mode used when starting emulation by activating (i.e. double-clicking) an entry in any list.
-  * All image widgets got an additional context-menu item (‘refresh’) to clear and reload their cache slots individually.
-  * Game/machine icons are now also shown on the tab headers of embedded emulators.
+  * Selectable default launch-mode used when starting emulation by activating
+    (i.e. double-clicking) an entry in any list.
+  * All image widgets got an additional context-menu item (‘refresh’) to clear
+    and reload their cache slots individually.
+  * Game/machine icons are now also shown on the tab headers of embedded 
+    emulators.
   * ZIP support for software-snapshots has been added (as promised).
-  * ROM state filtering can now be enabled/disabled on-the-fly and is thus no longer a must.
-  * New logos for both variants, (optional) splash screens and new application icons for Mac OS X to be associated with the apps were added.
-  * Lots of important bug-fixes (we took great effort to find and fix all major bugs before doing this release, and hope that nothing important slipped through) and numerous improvements throughout the code.
+  * ROM state filtering can now be enabled/disabled on-the-fly and is thus 
+    no longer a must.
+  * Lots of important bug-fixes (we took great effort to find and fix all 
+    major bugs before doing this release, and hope that nothing important 
+    slipped through) and numerous improvements throughout the code.
 
 
  -- Marcelo Marzola Bossoni <mmbossoni@gmail.com>  Wed, 08 Feb 2012 19:22:00 -0200
