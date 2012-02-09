@@ -8,21 +8,26 @@ Homepage: http://qmc2.arcadehits.net
 
 Package: qmc2-sdlmame
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, qmc2-data, libqtgui4 (>= 4.7.0), libphonon4, libqtwebkit4, libqt4-test, sdlmame (>= 0.144) | mame (>= 0.144)
+Depends: ${shlibs:Depends}, ${misc:Depends}, qmc2-data, qmc2-runonce, libqtgui4 (>= 4.7.0), libphonon4, libqtwebkit4, libqt4-test, sdlmame (>= 0.144) | mame (>= 0.144)
 Replaces: qmc2 (<= 0.34)
 Description: M.A.M.E./M.E.S.S. Catalog / Launcher II
  QMC2 is a Qt 4 based multi-platform GUI front end for several MAME and MESS
- variants.
+ variants. This package provides the MAME variant of QMC2.
 
 Package: qmc2-sdlmess
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, qmc2-data, libqtgui4 (>= 4.7.0), libphonon4, libqtwebkit4, libqt4-test, sdlmess (>= 0.144) | mess (>= 0.144)
+Depends: ${shlibs:Depends}, ${misc:Depends}, qmc2-data, qmc2-runonce, libqtgui4 (>= 4.7.0), libphonon4, libqtwebkit4, libqt4-test, sdlmess (>= 0.144) | mess (>= 0.144)
 Description: M.A.M.E./M.E.S.S. Catalog / Launcher II
  QMC2 is a Qt 4 based multi-platform GUI front end for several MAME and MESS
- variants.
+ variants. This package provides the MESS variant of QMC2.
+
+Package: qmc2-runonce
+Architecture: any
+Description: QMC2 Variant Launcher Utility
+ Runonce is a small application used to switch
+ between QMC2 variants.
 
 Package: qmc2-data
 Architecture: all
-Description: M.A.M.E./M.E.S.S. Catalog / Launcher II
- QMC2 is a Qt 4 based multi-platform GUI front end for several MAME and MESS
- variants.
+Description: QMC2 common data files
+ Common data files used by QMC2

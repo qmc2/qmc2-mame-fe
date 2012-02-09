@@ -42,17 +42,25 @@ qmc2-sdlmess:
 	$(MAKE) DISTCFG=1 EMULATOR=SDLMESS PREFIX=/usr/
 	$(MAKE) DISTCFG=1 EMULATOR=SDLMESS PREFIX=/usr/ DESTDIR=$(CURDIR)/debian/qmc2-sdlmess install
 
+	# Remove QMC2 link
 	rm -rf $(CURDIR)/debian/qmc2-sdlmess/usr/bin/qmc2
+
+	# Move shared resouces and config file to qmc2-data package
 	mkdir -p $(CURDIR)/debian/qmc2-data/usr/share/
 	mkdir -p $(CURDIR)/debian/qmc2-data/etc
 	mv $(CURDIR)/debian/qmc2-sdlmess/usr/share/qmc2 $(CURDIR)/debian/qmc2-data/usr/share/
 	mv $(CURDIR)/debian/qmc2-sdlmess/etc/qmc2 $(CURDIR)/debian/qmc2-data/etc/
 	rm -rf $(CURDIR)/debian/qmc2-sdlmess/etc
 
+	# Move runonce application to qmc2-runonce package
+	mkdir -p $(CURDIR)/debian/qmc2-runonce/usr/bin
+	mv $(CURDIR)/debian/qmc2-sdlmess/usr/bin/runonce $(CURDIR)/debian/qmc2-runonce/usr/bin/
+
 	dh_testdir
 	dh_testroot
 	dh_installdirs -p$@
 	dh_installdocs -p$@
+	dh_installchangelogs -p$@
 	dh_installexamples -p$@
 	dh_installman -p$@
 	dh_link -p$@
@@ -68,14 +76,37 @@ qmc2-sdlmess:
 qmc2-sdlmame:
 	${MAKE} DISTCFG=1 EMULATOR=SDLMAME PREFIX=/usr/
 	${MAKE} DISTCFG=1 EMULATOR=SDLMAME PREFIX=/usr/ DESTDIR=${CURDIR}/debian/qmc2-sdlmame install
+	
+	# Remove shared resources and runonce application
 	rm -rf $(CURDIR)/debian/qmc2-sdlmame/usr/bin/qmc2
+	rm -rf $(CURDIR)/debian/qmc2-sdlmame/usr/bin/runonce
 	rm -rf $(CURDIR)/debian/qmc2-sdlmame/usr/share/qmc2
 	rm -rf $(CURDIR)/debian/qmc2-sdlmame/etc
+	rm -rf $(CURDIR)/debian/qmc2-sdlmess/usr/bin/runonce
 
 	dh_testdir
 	dh_testroot
 	dh_installdirs -p$@
 	dh_installdocs -p$@
+	dh_installchangelogs -p$@
+	dh_installexamples -p$@
+	dh_installman -p$@
+	dh_link -p$@
+	dh_strip -p$@
+	dh_compress -p$@
+	dh_fixperms -p$@
+	dh_installdeb -p$@
+	dh_shlibdeps -p$@
+	dh_gencontrol -p$@
+	dh_md5sums -p$@
+	dh_builddeb -p$@
+
+qmc2-runonce:
+	dh_testdir
+	dh_testroot
+	dh_installdirs -p$@
+	dh_installdocs -p$@
+	dh_installchangelogs -p$@
 	dh_installexamples -p$@
 	dh_installman -p$@
 	dh_link -p$@
@@ -93,6 +124,7 @@ qmc2-data:
 	dh_testroot
 	dh_installdirs -p$@
 	dh_installdocs -p$@
+	dh_installchangelogs -p$@
 	dh_installexamples -p$@
 	dh_installman -p$@
 	dh_link -p$@
@@ -109,5 +141,5 @@ binary-indep:
 
 binary-arch:
 
-binary: clean qmc2-sdlmame qmc2-sdlmess qmc2-data binary-indep binary-arch
+binary: clean qmc2-sdlmame qmc2-sdlmess qmc2-runonce qmc2-data binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install configure qmc2-sdlmess qmc2-sdlmame
