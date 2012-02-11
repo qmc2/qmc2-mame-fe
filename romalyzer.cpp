@@ -35,6 +35,8 @@ extern QMap<QString, QTreeWidgetItem *> qmc2VersionItemMap;
 #endif
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 
+QCache<QString, int> romalyzerXmlGamePositionCache;
+
 /*
   HOWTO: Calculate the 32-bit CRC of a QByteArray with zlib:
 
@@ -554,6 +556,8 @@ void ROMAlyzer::analyze()
   lineEditGames->setEnabled(false);
   if ( checkBoxCalculateSHA1->isChecked() ) tabChecksumWizard->setEnabled(false);
   QTime analysisTimer, elapsedTime;
+  romalyzerXmlGamePositionCache.clear();
+  romalyzerXmlGamePositionCache.setMaxCost(QMC2_ROMALYZER_XMLPOSCACHE_SIZE);
   analysisTimer.start();
   log(tr("analysis started"));
 #if defined(QMC2_EMUTYPE_MAME)
@@ -1069,21 +1073,33 @@ QString &ROMAlyzer::getXmlData(QString gameName)
 
   xmlBuffer.clear();
   int i = 0;
+  int *iCached = romalyzerXmlGamePositionCache[gameName];
+  if ( iCached ) i = *iCached;
+  int xmlLinesCount = qmc2Gamelist->xmlLines.count();
 #if defined(QMC2_EMUTYPE_MAME)
   QString s = "<game name=\"" + gameName + "\"";
-  while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-  xmlBuffer = "<?xml version=\"1.0\"?>\n";
-  while ( !qmc2Gamelist->xmlLines[i].contains("</game>") )
-    xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
-  xmlBuffer += "</game>\n";
 #elif defined(QMC2_EMUTYPE_MESS)
   QString s = "<machine name=\"" + gameName + "\"";
-  while ( !qmc2Gamelist->xmlLines[i].contains(s) ) i++;
-  xmlBuffer = "<?xml version=\"1.0\"?>\n";
-  while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
-    xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
-  xmlBuffer += "</machine>\n";
 #endif
+  while ( !qmc2Gamelist->xmlLines[i].contains(s) ) {
+    i++;
+    if ( i > xmlLinesCount ) break;
+  }
+  if ( i < xmlLinesCount && qmc2Gamelist->xmlLines[i].contains(s) ) {
+    romalyzerXmlGamePositionCache.insert(gameName, new int(i));
+    xmlBuffer = "<?xml version=\"1.0\"?>\n";
+#if defined(QMC2_EMUTYPE_MAME)
+    while ( !qmc2Gamelist->xmlLines[i].contains("</game>") )
+#elif defined(QMC2_EMUTYPE_MESS)
+    while ( !qmc2Gamelist->xmlLines[i].contains("</machine>") )
+#endif
+      xmlBuffer += qmc2Gamelist->xmlLines[i++].simplified() + "\n";
+#if defined(QMC2_EMUTYPE_MAME)
+    xmlBuffer += "</game>\n";
+#elif defined(QMC2_EMUTYPE_MESS)
+    xmlBuffer += "</machine>\n";
+#endif
+  }
 
   return xmlBuffer;
 }
