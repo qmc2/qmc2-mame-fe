@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.36, 06-FEB-2012</h3>
+<h3>README - v0.36, 11-FEB-2012</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -379,7 +379,7 @@ has been enabled) are also not filtered.</p>
   <li>The CHD manager will allow you to optionally <i>update</i> your CHDs on-the-fly if applicable -- <b>backup your CHDs before enabling automatic updates!</b> Also, make absolutely sure you're using the latest version of <i>chdman</i>, that is, the version that came with your current MAME/MESS release. QMC2 assumes that CHD version 4 is the latest and greatest format, and it will only try to update a CHD if its version is less than that.</li>
   <li>For best performance, choose a temporary working directory for the CHD manager which is on the same file system as the CHDs you're analysing (i.e. your ROM path). The reason for this is that in the final step we simply rename/move the updated chdman's output to replace the old CHD.</li>
   <li>If QMC2 is unable to replace an updated CHD (for instance due to missing write permission on the ROM path) it will keep the updated file in the CHD manager's temporary working directory and you'll need to copy/move it manually.</li>
-  <li>ROM and CHD files will never be fully loaded into memory, only small blocks (or hunks) of data are read for hash calculation and dropped directly afterwards.</li>
+  <li>ROM and CHD files will never be fully loaded into memory while analyzing, only small blocks (or hunks) of data are read for hash calculation and dropped directly afterwards. However, the 'set rewriter' (see below!) <b>will</b> load all (uncompressed) data of a set into memory -- so if you want to use that function, a system with at least 4 GB RAM is recommended (it actually only depends on the largest ROM set available in MAME/MESS, not counting any CHDs here). </li>
   <li>Long ROMAlyzer runs can be paused / resumed or interrupted at nearly any time. Interruptions take place immediatly, and any running external process (like <i>chdman</i> for example) will be terminated. Pausing the analysis is <i>nicer</i> and takes place asynchronously, waiting for the current set to finish its analysis.</li>
   <li>ROM sets that use <i>merged</i> files will also be checked for their <i>merge-states</i>. Possible states include:
     <ul>
