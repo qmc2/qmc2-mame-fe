@@ -132,7 +132,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QMenu *menuMAWSQuickLinks;
     QMap<QString, QAction *> mawsQDLActions;
 #endif
-#if defined(QMC2_SHOWMEMINFO)
+#if defined(QMC2_MEMORY_INFO_ENABLED)
     QTimer memoryUpdateTimer;
 #endif
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
@@ -343,8 +343,10 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void on_menuTabWidgetSoftwareDetail_West_activated();
     void on_menuTabWidgetSoftwareDetail_East_activated();
 
+#if defined(QMC2_MEMORY_INFO_ENABLED)
     // memory indicator
     void on_memoryUpdateTimer_timeout();
+#endif
 
     // other
     void on_tabWidgetGameDetail_currentChanged(int);

@@ -187,12 +187,15 @@ bool Welcome::checkConfig()
 
   bool configOkay = true;
 
+  QCoreApplication::setOrganizationName(QMC2_ORGANIZATION_NAME);
+  QCoreApplication::setOrganizationDomain(QMC2_ORGANIZATION_DOMAIN);
+  QCoreApplication::setApplicationName(QMC2_VARIANT_NAME);
+
 #if !defined(Q_WS_WIN)
   QSettings::setPath(QSettings::IniFormat, QSettings::SystemScope, QMC2_SYSCONF_PATH);
 #endif
   QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QMC2_DYNAMIC_DOT_PATH);
 
-  qApp->setOrganizationName("qmc2");
   startupConfig = new QSettings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
 
 #if defined(QMC2_SDLMAME)

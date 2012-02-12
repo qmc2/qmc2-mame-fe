@@ -162,6 +162,11 @@ Options::Options(QWidget *parent)
 #endif
 
   qmc2Filter.resize(QMC2_ROMSTATE_COUNT);
+
+  QCoreApplication::setOrganizationName(QMC2_ORGANIZATION_NAME);
+  QCoreApplication::setOrganizationDomain(QMC2_ORGANIZATION_DOMAIN);
+  QCoreApplication::setApplicationName(QMC2_VARIANT_NAME);
+
 #if !defined(Q_WS_WIN)
   QSettings::setPath(QSettings::IniFormat, QSettings::SystemScope, QMC2_SYSCONF_PATH);
 #endif
@@ -170,7 +175,7 @@ Options::Options(QWidget *parent)
   QDir userScopeDir(userScopePath);
   if ( !userScopeDir.exists() )
     userScopeDir.mkdir(userScopePath);
-  qApp->setOrganizationName("qmc2");
+
   config = new QSettings(QSettings::IniFormat, QSettings::UserScope, "qmc2");
 
   setupUi(this);
@@ -184,7 +189,7 @@ Options::Options(QWidget *parent)
   comboBoxDefaultLaunchMode->setVisible(false);
 #endif
 
-#if !defined(QMC2_SHOWMEMINFO)
+#if !defined(QMC2_MEMORY_INFO_ENABLED)
   checkBoxMemoryIndicator->setVisible(false);
 #endif
 
@@ -906,7 +911,7 @@ void Options::on_pushButtonApply_clicked()
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch", checkBoxMinimizeOnVariantLaunch->isChecked());
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/ExitOnVariantLaunch", checkBoxExitOnVariantLaunch->isChecked());
 #endif
-#if defined(QMC2_SHOWMEMINFO)
+#if defined(QMC2_MEMORY_INFO_ENABLED)
   config->setValue(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", checkBoxMemoryIndicator->isChecked());
   if ( checkBoxMemoryIndicator->isChecked() ) {
     qmc2MainWindow->progressBarMemory->setRange(0, 100);
@@ -1967,7 +1972,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   checkBoxMinimizeOnVariantLaunch->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnVariantLaunch", false).toBool());
   checkBoxExitOnVariantLaunch->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/ExitOnVariantLaunch", false).toBool());
 #endif
-#if defined(QMC2_SHOWMEMINFO)
+#if defined(QMC2_MEMORY_INFO_ENABLED)
   checkBoxMemoryIndicator->setChecked(config->value(QMC2_FRONTEND_PREFIX + "GUI/MemoryIndicator", false).toBool());
 #endif
   

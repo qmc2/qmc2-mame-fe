@@ -91,7 +91,7 @@ void About::showEvent(QShowEvent *e)
 
   ignoreResizeAndMove = true;
 
-#if defined(QMC2_SHOWMEMINFO)
+#if defined(QMC2_MEMORY_INFO_ENABLED)
   // get memory information
   quint64 numPages, pageSize, freePages, totalSize, totalUsed, totalFree;
   numPages = sysconf(_SC_PHYS_PAGES) / 1024;
@@ -168,7 +168,7 @@ void About::showEvent(QShowEvent *e)
             sysInfoString += "<br>" + mimeType;
 	  sysInfoString += QString("</p>") +
 #endif
-#if defined(QMC2_SHOWMEMINFO)
+#if defined(QMC2_MEMORY_INFO_ENABLED)
           "<p><b>" + tr("Physical memory:") + "</b><br>" + tr("Total: %1 MB").arg(totalSize) + "<br>" + tr("Free: %1 MB").arg(totalFree) + "<br>" + tr("Used: %1 MB").arg(totalUsed) + "</p>"
 #endif
           "<p><b>" + tr("Number of CPUs:") + "</b><br>" + (numLogicalCores != -1 ? QString("%1").arg(numLogicalCores) : tr("unknown")) + "</p>"
