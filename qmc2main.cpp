@@ -8758,9 +8758,9 @@ void MainWindow::on_pushButtonStopSelectedDownloads_clicked()
   }
 }
 
+#if defined(QMC2_MEMORY_INFO_ENABLED)
 void MainWindow::on_memoryUpdateTimer_timeout()
 {
-#if defined(QMC2_SHOWMEMINFO)
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_memoryUpdateTimer_timeout()");
 #endif
@@ -8775,8 +8775,8 @@ void MainWindow::on_memoryUpdateTimer_timeout()
   totalUsed = totalSize - totalFree;
   progressBarMemory->setValue(100 * ((double)totalUsed/(double)totalSize));
   progressBarMemory->setToolTip("<b>" + tr("Physical memory:") + "</b><br>" + tr("Total: %1 MB").arg(totalSize) + "<br>" + tr("Free: %1 MB").arg(totalFree) + "<br>" + tr("Used: %1 MB").arg(totalUsed));
-#endif
 }
+#endif
 
 void MainWindow::checkActivity()
 {

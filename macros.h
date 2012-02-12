@@ -461,21 +461,25 @@
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-sdlmame/")
 #define QMC2_FRONTEND_PREFIX_OTHER	QString("Frontend/qmc2-sdlmess/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-sdlmame/")
+#define QMC2_VARIANT_NAME		QString(QMC2_VARIANT_SDLMAME_NAME)
 #define QMC2_EMUTYPE_MAME
 #elif defined(QMC2_SDLMESS)
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-sdlmess/")
 #define QMC2_FRONTEND_PREFIX_OTHER	QString("Frontend/qmc2-sdlmame/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-sdlmess/")
+#define QMC2_VARIANT_NAME		QString(QMC2_VARIANT_SDLMESS_NAME)
 #define QMC2_EMUTYPE_MESS
 #elif defined(QMC2_MAME)
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-mame/")
 #define QMC2_FRONTEND_PREFIX_OTHER	QString("Frontend/qmc2-mess/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-mame/")
+#define QMC2_VARIANT_NAME		QString(QMC2_VARIANT_MAME_NAME)
 #define QMC2_EMUTYPE_MAME
 #elif defined(QMC2_MESS)
 #define QMC2_FRONTEND_PREFIX		QString("Frontend/qmc2-mess/")
 #define QMC2_FRONTEND_PREFIX_OTHER	QString("Frontend/qmc2-mame/")
 #define QMC2_ARCADE_PREFIX		QString("Arcade/qmc2-mess/")
+#define QMC2_VARIANT_NAME		QString(QMC2_VARIANT_MESS_NAME)
 #define QMC2_EMUTYPE_MESS
 #endif
 
@@ -494,11 +498,12 @@
 
 // determine if memory infomation can be made available at all
 #if defined(_SC_PHYS_PAGES) && defined(_SC_PAGESIZE) && defined(_SC_AVPHYS_PAGES)
-#define QMC2_SHOWMEMINFO
+#define QMC2_MEMORY_INFO_ENABLED
+#define QMC2_MEMORY_INFO_TYPE_POSIX
 #define QMC2_MEMORY_UPDATE_TIME		500
 #endif
 
-// X11 only: embedder specific delays (in ms)
+// X11 and Windows only: embedder specific delays (in ms)
 #define QMC2_EMBED_DELAY		250
 #define QMC2_EMBED_MAXIMIZE_DELAY	100
 #define QMC2_EMBED_FOCUS_DELAY		100
@@ -578,5 +583,9 @@
 
 // number of milliseconds the splash screen is shown after init
 #define QMC2_SPLASH_DURATION		2000
+
+// settings-related organization name/domain
+#define QMC2_ORGANIZATION_NAME		QString("qmc2")
+#define QMC2_ORGANIZATION_DOMAIN	QString("qmc2.arcadehits.net")
 
 #endif
