@@ -123,7 +123,7 @@
 #define QMC2_CHD_HEADER_V5_PARENTSHA1_LENGTH	20
 #define QMC2_CHD_HEADER_V5_LENGTH		124
 
-#define QMC2_CHD_CURRENT_VERSION		4	// FIXME: the current CHD version is actually 5, but we don't support it cleanly yet
+#define QMC2_CHD_CURRENT_VERSION		5
 
 class ROMAlyzerXmlHandler : public QXmlDefaultHandler
 {

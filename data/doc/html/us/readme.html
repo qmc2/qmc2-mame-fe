@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.36, 11-FEB-2012</h3>
+<h3>README - v0.36, 18-FEB-2012</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -151,7 +151,7 @@ use with the MAME variant).
       <td style="vertical-align: top;"><a href="http://www.zlib.net" target="_blank">http://www.zlib.net</a></td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">All: MAME/MESS 0.144u1+</td>
+      <td style="vertical-align: top;">All: MAME/MESS 0.145u1+</td>
       <td style="vertical-align: top;"><a href="http://mamedev.org/release.html" target="_blank">http://mamedev.org/release.html</a><br>
                                        <a href="http://www.mess.org/download.php" target="_blank">http://www.mess.org/download.php</a></td>
     </tr>
@@ -376,7 +376,7 @@ has been enabled) are also not filtered.</p>
   <li>ROMs which are stored in game/machine-directories (not ZIP-archived) will be loaded to calculate their hashes.</li>
   <li>All required hash algorithms are supported: CRC(-32), SHA1 and MD5.</li>
   <li>CHD verification is accomplished through the comparison of the header checksums with the expected hash values; you can optionally enable deeper file integrity verifications through the CHD manager (<i>chdman</i>) which is thus required to use this feature (slow).</li>
-  <li>The CHD manager will allow you to optionally <i>update</i> your CHDs on-the-fly if applicable -- <b>backup your CHDs before enabling automatic updates!</b> Also, make absolutely sure you're using the latest version of <i>chdman</i>, that is, the version that came with your current MAME/MESS release. QMC2 assumes that CHD version 4 is the latest and greatest format, and it will only try to update a CHD if its version is less than that.</li>
+  <li>The CHD manager will allow you to optionally <i>update</i> your CHDs on-the-fly if applicable -- <b>backup your CHDs before enabling automatic updates!</b> Also, make absolutely sure you're using the latest version of <i>chdman</i>, that is, the version that came with your current MAME/MESS release (the minimum required version is 0.145u1!). QMC2 assumes that CHD version 5 is the latest and greatest format, and it will only try to update a CHD if its version is less than that.</li>
   <li>For best performance, choose a temporary working directory for the CHD manager which is on the same file system as the CHDs you're analysing (i.e. your ROM path). The reason for this is that in the final step we simply rename/move the updated chdman's output to replace the old CHD.</li>
   <li>If QMC2 is unable to replace an updated CHD (for instance due to missing write permission on the ROM path) it will keep the updated file in the CHD manager's temporary working directory and you'll need to copy/move it manually.</li>
   <li>ROM and CHD files will never be fully loaded into memory while analyzing, only small blocks (or hunks) of data are read for hash calculation and dropped directly afterwards. However, the 'set rewriter' (see below!) <b>will</b> load all (uncompressed) data of a set into memory -- so if you want to use that function, a system with at least 4 GB RAM is recommended (it actually only depends on the largest ROM set available in MAME/MESS, not counting any CHDs here). </li>

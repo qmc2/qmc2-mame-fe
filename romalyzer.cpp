@@ -79,6 +79,8 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   
   setupUi(this);
 
+  checkBoxFixCHDs->setVisible(QMC2_CHD_CURRENT_VERSION < 5);
+
 #if defined(QMC2_SDLMESS)
   treeWidgetChecksums->headerItem()->setText(0, tr("Machine / File"));
   checkBoxSelectGame->setText(tr("Select machine"));
@@ -109,7 +111,12 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   chdCompressionTypesV5["avhu"] = tr("avhu (A/V Huffman)");
 
   chdManagerRunning = chdManagerMD5Success = chdManagerSHA1Success = false;
+#if QMC2_CHD_CURRENT_VERSION < 5
   chdManagerCurrentHunk = chdManagerTotalHunks = 0;
+#else
+  chdManagerCurrentHunk = 0;
+  chdManagerTotalHunks = 100;
+#endif
 
   adjustIconSizes();
   pushButtonPause->setVisible(false);
@@ -376,7 +383,9 @@ void ROMAlyzer::closeEvent(QCloseEvent *e)
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardHashType", comboBoxChecksumWizardHashType->currentIndex());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", comboBoxChecksumWizardAutomationLevel->currentIndex());
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", checkBoxVerifyCHDs->isChecked());
+#if QMC2_CHD_CURRENT_VERSION < 5
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", checkBoxFixCHDs->isChecked());
+#endif
   qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", checkBoxUpdateCHDs->isChecked());
 
 #if defined(QMC2_DATABASE_ENABLED)
@@ -453,7 +462,9 @@ void ROMAlyzer::showEvent(QShowEvent *e)
   comboBoxChecksumWizardAutomationLevel->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/ChecksumWizardAutomationLevel", QMC2_ROMALYZER_CSWIZ_AMLVL_NONE).toInt());
   radioButtonSetRewriterIndividualDirectories->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/SetRewriterIndividualDirectories", false).toBool());
   checkBoxVerifyCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/VerifyCHDs", true).toBool());
+#if QMC2_CHD_CURRENT_VERSION < 5
   checkBoxFixCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/FixCHDs", false).toBool());
+#endif
   checkBoxUpdateCHDs->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/UpdateCHDs", false).toBool());
   groupBoxCHDManager->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ROMAlyzer/EnableCHDManager", false).toBool());
 
@@ -1135,7 +1146,9 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
   bool isCHD = type.split(" ")[0] == tr("CHD");
   bool sizeLimited = spinBoxMaxFileSize->value() > 0;
   bool chdManagerVerifyCHDs = checkBoxVerifyCHDs->isChecked();
+#if QMC2_CHD_CURRENT_VERSION < 5
   bool chdManagerFixCHDs = checkBoxFixCHDs->isChecked();
+#endif
   bool chdManagerUpdateCHDs = checkBoxUpdateCHDs->isChecked();
   bool chdManagerEnabled = groupBoxCHDManager->isChecked() && (chdManagerVerifyCHDs || chdManagerUpdateCHDs);
   bool needProgressWidget;
@@ -1177,8 +1190,18 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
               needProgressWidget = true;
             if ( needProgressWidget ) {
               progressWidget = new QProgressBar(0);
+#if QMC2_CHD_CURRENT_VERSION >= 5
+              if ( isCHD ) {
+		      progressWidget->setRange(0, 100);
+		      progressWidget->setValue(0);
+              } else {
+		      progressWidget->setRange(0, totalSize);
+		      progressWidget->setValue(0);
+	      }
+#else
               progressWidget->setRange(0, totalSize);
               progressWidget->setValue(0);
+#endif
               treeWidgetChecksums->setItemWidget(myItem, QMC2_ROMALYZER_COLUMN_FILESTATUS, progressWidget);
             }
           } else
@@ -1287,6 +1310,9 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                 if ( chdManagerEnabled ) {
                   romFile.close();
                   chdManagerCurrentHunk = 0;
+#if QMC2_CHD_CURRENT_VERSION >= 5
+                  chdTotalHunks = 100;
+#endif
                   chdManagerTotalHunks = chdTotalHunks;
                   if ( progressWidget ) {
                     progressWidget->setRange(0, chdTotalHunks);
@@ -1303,13 +1329,18 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                       case 0:
                         if ( chdManagerVerifyCHDs ) {
                           if ( progressWidget ) progressWidget->setFormat(tr("Verify - %p%"));
-                          if ( chdManagerFixCHDs ) {
-                            log(tr("CHD manager: verifying and fixing CHD"));
-                            args << "-verifyfix" << chdFilePath;
-                          } else {
-                            log(tr("CHD manager: verifying CHD"));
-                            args << "-verify" << chdFilePath;
-                          }
+#if QMC2_CHD_CURRENT_VERSION >= 5
+			  log(tr("CHD manager: verifying CHD"));
+			  args << "verify" << "--input" << chdFilePath;
+#else
+			  if ( chdManagerFixCHDs ) {
+				  log(tr("CHD manager: verifying and fixing CHD"));
+				  args << "-verifyfix" << chdFilePath;
+			  } else {
+				  log(tr("CHD manager: verifying CHD"));
+				  args << "-verify" << chdFilePath;
+			  }
+#endif
                         } else
                           continue;
                         break;
@@ -1319,7 +1350,11 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                           if ( chdVersion < QMC2_CHD_CURRENT_VERSION ) {
                             if ( progressWidget ) progressWidget->setFormat(tr("Update - %p%"));
                             log(tr("CHD manager: updating CHD (v%1 -> v%2)").arg(chdVersion).arg(QMC2_CHD_CURRENT_VERSION));
+#if QMC2_CHD_CURRENT_VERSION >= 5
+                            args << "copy" << "--input" << chdFilePath << "--output" << chdTempFilePath;
+#else
                             args << "-update" << chdFilePath << chdTempFilePath;
+#endif
                           } else if ( !chdManagerVerifyCHDs ) {
                             switch ( chdVersion ) {
                               case 3:
@@ -1338,6 +1373,14 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                                 log(tr("CHD manager: using header checksums for CHD verification"));
                                 if ( calcSHA1 ) {
                                   QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
+                                  *sha1Str = QString(sha1Data.toHex());
+                                }
+                                break;
+
+                              case 5:
+                                log(tr("CHD manager: using header checksums for CHD verification"));
+                                if ( calcSHA1 ) {
+                                  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
                                   *sha1Str = QString(sha1Data.toHex());
                                 }
                                 break;
@@ -1372,8 +1415,10 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                       QTest::qWait(QMC2_ROMALYZER_PAUSE_TIMEOUT);
                       if ( qmc2StopParser ) {
                         log(tr("CHD manager: terminating external process"));
-                        chdManagerProc->terminate();
+                        chdManagerProc->kill();
                         chdManagerProc->waitForFinished();
+			disconnect(chdManagerProc);
+			chdManagerProc->deleteLater();
                       } else {
                         if ( progressWidget ) {
                           if ( chdManagerTotalHunks != (quint64)progressWidget->maximum() )
@@ -1956,6 +2001,20 @@ void ROMAlyzer::chdManagerReadyReadStandardError()
     s = s.trimmed();
     if ( !s.isEmpty() ) {
       log(tr("CHD manager: stderr: %1").arg(s));
+#if QMC2_CHD_CURRENT_VERSION >= 5
+      if ( s.contains(QRegExp(", \\d+\\.\\d+\\%\\ complete\\.\\.\\.")) ) {
+        QRegExp rx(", (\\d+)\\.(\\d+)\\%\\ complete\\.\\.\\.");
+        int pos = rx.indexIn(s);
+        if ( pos > -1 ) {
+          chdManagerCurrentHunk = rx.cap(1).toInt(); // 'current hunk' is misused as a percentage value, and 'total hunks' is thus set to 100 constantly
+          int decimal = rx.cap(2).toInt();
+	  if ( decimal >= 5 ) chdManagerCurrentHunk += 1;
+	}
+      } else {
+        if ( s.contains("Compression complete ... final ratio =") )
+          chdManagerSHA1Success = true;
+      }
+#else
       if ( s.contains(QRegExp("hunk \\d+/\\d+\\.\\.\\.")) ) {
         QRegExp rx("(\\d+)/(\\d+)");
         int pos = rx.indexIn(s);
@@ -1969,6 +2028,7 @@ void ROMAlyzer::chdManagerReadyReadStandardError()
         if ( s.contains("Input SHA1 verified") )
           chdManagerSHA1Success = true;
       }
+#endif
     }
   }
 }
