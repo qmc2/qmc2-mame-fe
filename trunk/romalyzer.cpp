@@ -116,6 +116,8 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
 #else
   chdManagerCurrentHunk = 0;
   chdManagerTotalHunks = 100;
+  checkBoxVerifyCHDs->setToolTip(tr("Verify CHDs through 'chdman verify'"));
+  checkBoxUpdateCHDs->setToolTip(tr("Try to update CHDs if their header indicates an older version ('chdman copy')"));
 #endif
 
   adjustIconSizes();
