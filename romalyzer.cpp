@@ -96,7 +96,18 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
     resize(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Size", QSize()).toSize());
   }
 
+  // compression types for CHD v3 and v4
   chdCompressionTypes << tr("none") << tr("zlib") << tr("zlib+") << tr("A/V codec");
+
+  // compression types for CHD v5
+  chdCompressionTypesV5["zlib"] = tr("zlib (Deflate)");
+  chdCompressionTypesV5["lzma"] = tr("lzma (LZMA)");
+  chdCompressionTypesV5["huff"] = tr("huff (Huffman)");
+  chdCompressionTypesV5["flcb"] = tr("flcb (FLAC, big-endian)");
+  chdCompressionTypesV5["flcl"] = tr("flcl (FLAC, little-endian)");
+  chdCompressionTypesV5["cdfl"] = tr("cdfl (CD FLAC)");
+  chdCompressionTypesV5["avhu"] = tr("avhu (A/V Huffman)");
+
   chdManagerRunning = chdManagerMD5Success = chdManagerSHA1Success = false;
   chdManagerCurrentHunk = chdManagerTotalHunks = 0;
 
@@ -1235,10 +1246,41 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                 }
                 break;
 
+              case 5: {
+		  QString chdCompressors;
+		  for (int i = 0; i < QMC2_CHD_HEADER_V5_COMPRESSORS_COUNT; i++) {
+			  QString compressor = QString::fromAscii(buffer + i * 4 + QMC2_CHD_HEADER_V5_COMPRESSORS_OFFSET, 4);
+			  if ( chdCompressionTypesV5.contains(compressor) ) {
+				  if ( i > 0 ) chdCompressors += ", ";
+				  chdCompressors += chdCompressionTypesV5[compressor];
+			  } else if ( i == 0 ) {
+				  chdCompressors = tr("none (uncompressed)");
+				  break;
+			  } else
+				  break;
+		  }
+		  log(tr("  compressors: %1").arg(chdCompressors));
+		  quint32 chdHunkBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V5_HUNKBYTES_OFFSET);
+		  log(tr("  number of bytes per hunk: %1").arg(locale.toString(chdHunkBytes)));
+		  quint32 chdUnitBytes = QMC2_TO_UINT32(buffer + QMC2_CHD_HEADER_V5_UNITBYTES_OFFSET);
+		  log(tr("  number of bytes per unit: %1").arg(locale.toString(chdUnitBytes)));
+		  quint64 chdLogicalBytes = QMC2_TO_UINT64(buffer + QMC2_CHD_HEADER_V5_LOGICALBYTES_OFFSET);
+		  log(tr("  logical size: %1 (%2 B)").arg(humanReadable(chdLogicalBytes)).arg(locale.toString(chdLogicalBytes)));
+		  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+		  log(tr("  SHA1 checksum: %1").arg(QString(sha1Data.toHex())));
+		  QByteArray parentSha1DataHex = QByteArray((const char *)(buffer + QMC2_CHD_HEADER_V5_PARENTSHA1_OFFSET), QMC2_CHD_HEADER_V5_PARENTSHA1_LENGTH).toHex();
+		  if ( parentSha1DataHex.toInt(0, 16) != 0 )
+			  log(tr("  parent CHD's SHA1 checksum: %1").arg(QString(parentSha1DataHex)));
+		  QByteArray rawsha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_RAWSHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+		  log(tr("  raw SHA1 checksum: %1").arg(QString(rawsha1Data.toHex())));
+		}
+		break;
+
                default:
-                 log(tr("only CHD v3 and v4 headers supported -- rest of header information skipped"));
+                 log(tr("CHD v%1 not supported -- rest of header information skipped").arg(chdVersion));
                  break;
               }
+
               if ( calcSHA1 || calcMD5 || chdManagerEnabled ) {
                 chdFilePath = fi.absoluteFilePath();
                 QString chdTempFilePath = lineEditTemporaryWorkingDirectory->text() + fi.baseName() + "-chdman-update.chd";
@@ -1377,8 +1419,16 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                           }
                           break;
 
+			case 5:
+			  log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+			  if ( chdManagerSHA1Success && calcSHA1 ) {
+				  QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+				  *sha1Str = QString(sha1Data.toHex());
+			  }
+			  break;
+
                         default:
-                          log(tr("CHD manager: WARNING: no header checksums available for CHD verification").arg(chdVersion));
+                          log(tr("CHD manager: WARNING: no header checksums available for CHD verification"));
                           effectiveFile = QMC2_ROMALYZER_FILE_NOT_SUPPORTED;
                           if ( fallbackPath->isEmpty() ) *fallbackPath = chdFilePath;
                           break;
@@ -1430,6 +1480,14 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                         *sha1Str = QString(sha1Data.toHex());
                       }
                       break;
+
+		    case 5:
+		      log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+		      if ( calcSHA1 ) {
+			      QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
+			      *sha1Str = QString(sha1Data.toHex());
+		      }
+		      break;
 
                     default:
                       log(tr("WARNING: no header checksums available for CHD verification"));
