@@ -5370,16 +5370,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="276"/>
-        <location filename="../../messdevcfg.cpp" line="1585"/>
+        <location filename="../../messdevcfg.cpp" line="1588"/>
         <source>&amp;Open archive</source>
         <translation>&amp;Abrir arquivo compactado</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="319"/>
-        <location filename="../../messdevcfg.cpp" line="671"/>
-        <location filename="../../messdevcfg.cpp" line="776"/>
-        <location filename="../../messdevcfg.cpp" line="1343"/>
-        <location filename="../../messdevcfg.cpp" line="1743"/>
+        <location filename="../../messdevcfg.cpp" line="674"/>
+        <location filename="../../messdevcfg.cpp" line="779"/>
+        <location filename="../../messdevcfg.cpp" line="1346"/>
+        <location filename="../../messdevcfg.cpp" line="1746"/>
         <source>No devices available</source>
         <translation>Nenhum dispositivo disponível</translation>
     </message>
@@ -5406,21 +5406,21 @@ p, li { white-space: pre-wrap; }
         <translation>Falha ao ler informações de slot</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="576"/>
+        <location filename="../../messdevcfg.cpp" line="579"/>
         <source>done (loading available system slots, elapsed time = %1)</source>
         <translation>feito (carregando slots de sistema disponíveis, tempo gasto = %1)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="807"/>
+        <location filename="../../messdevcfg.cpp" line="810"/>
         <source>not used</source>
         <translation>não usado</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="606"/>
-        <location filename="../../messdevcfg.cpp" line="857"/>
-        <location filename="../../messdevcfg.cpp" line="904"/>
-        <location filename="../../messdevcfg.cpp" line="1075"/>
-        <location filename="../../messdevcfg.cpp" line="1204"/>
+        <location filename="../../messdevcfg.cpp" line="609"/>
+        <location filename="../../messdevcfg.cpp" line="860"/>
+        <location filename="../../messdevcfg.cpp" line="907"/>
+        <location filename="../../messdevcfg.cpp" line="1078"/>
+        <location filename="../../messdevcfg.cpp" line="1207"/>
         <source>No devices</source>
         <translation>Nenhum dispositivo</translation>
     </message>
@@ -5431,49 +5431,54 @@ p, li { white-space: pre-wrap; }
         <translation>Jogar máquina selecionada (embutida)</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="626"/>
+        <location filename="../../messdevcfg.cpp" line="501"/>
+        <source>WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../messdevcfg.cpp" line="629"/>
         <source>FATAL: error while parsing XML data for &apos;%1&apos;</source>
         <translation>FATAL: erro durante a análise dos dados do XML para &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="939"/>
-        <location filename="../../messdevcfg.cpp" line="941"/>
+        <location filename="../../messdevcfg.cpp" line="942"/>
+        <location filename="../../messdevcfg.cpp" line="944"/>
         <source>%1. copy of </source>
         <translation>%1. cópia de</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1169"/>
-        <location filename="../../messdevcfg.cpp" line="1758"/>
+        <location filename="../../messdevcfg.cpp" line="1172"/>
+        <location filename="../../messdevcfg.cpp" line="1761"/>
         <source>%1. variant of </source>
         <translation>%1. variação de</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1274"/>
+        <location filename="../../messdevcfg.cpp" line="1277"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
         <translation>Escolha o diretório de dispositivo padrão para &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1585"/>
+        <location filename="../../messdevcfg.cpp" line="1588"/>
         <source>&amp;Close archive</source>
         <translation>&amp;Fechar arquivo compactado</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1760"/>
+        <location filename="../../messdevcfg.cpp" line="1763"/>
         <source>Choose a unique configuration name</source>
         <translation>Escolha um nome de configuração único</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1760"/>
+        <location filename="../../messdevcfg.cpp" line="1763"/>
         <source>Unique configuration name:</source>
         <translation>Nome de configuração único:</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1763"/>
+        <location filename="../../messdevcfg.cpp" line="1766"/>
         <source>Name conflict</source>
         <translation>Conflito de nome</translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="1763"/>
+        <location filename="../../messdevcfg.cpp" line="1766"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>
@@ -5488,8 +5493,8 @@ Você quer escolher um nome diferente?</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="37"/>
-        <location filename="../../messdevcfg.cpp" line="1331"/>
-        <location filename="../../messdevcfg.cpp" line="1336"/>
+        <location filename="../../messdevcfg.cpp" line="1334"/>
+        <location filename="../../messdevcfg.cpp" line="1339"/>
         <source>Active device configuration</source>
         <translation>Configuração de dispositivo ativa</translation>
     </message>

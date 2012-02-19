@@ -497,6 +497,9 @@ bool MESSDeviceConfigurator::readSystemSlots()
 		return false;
 	}
 
+	if ( commandProc.exitStatus() == QProcess::CrashExit )
+		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete"));
+
 #if defined(QMC2_SDLMESS)
 	QFile qmc2TempSlots(qmc2Config->value(QMC2_FRONTEND_PREFIX + "FilesAndDirectories/TemporaryFile", userScopePath + "/qmc2-sdlmess.tmp").toString());
 #elif defined(QMC2_MESS)
