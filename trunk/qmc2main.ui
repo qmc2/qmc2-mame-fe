@@ -3325,7 +3325,7 @@
     <string>Check template map against the configuration options of the currently selected emulator</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+C</string>
+    <string>Ctrl+Shift+C</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>

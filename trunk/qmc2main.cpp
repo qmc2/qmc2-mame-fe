@@ -9906,7 +9906,7 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+S"].second = qmc2MainWindow->actionCheckCurrentROM;
   qmc2ShortcutMap["Ctrl+Shift+S"].second = qmc2MainWindow->actionCheckROMStateTagged;
   qmc2ShortcutMap["Ctrl+T"].second = qmc2MainWindow->actionRecreateTemplateMap;
-  qmc2ShortcutMap["Ctrl+C"].second = qmc2MainWindow->actionCheckTemplateMap;
+  qmc2ShortcutMap["Ctrl+Shift+C"].second = qmc2MainWindow->actionCheckTemplateMap;
   qmc2ShortcutMap["Ctrl+X"].second = qmc2MainWindow->actionExitStop;
 #if defined(QMC2_YOUTUBE_ENABLED)
   qmc2ShortcutMap["Ctrl+Y"].second = qmc2MainWindow->actionClearYouTubeCache;

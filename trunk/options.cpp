@@ -310,7 +310,7 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+S"] = QPair<QString, QAction *>(tr("Check game's ROM state"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+S"] = QPair<QString, QAction *>(tr("Check states of tagged ROMs"), NULL);
   qmc2ShortcutMap["Ctrl+T"] = QPair<QString, QAction *>(tr("Recreate template map"), NULL);
-  qmc2ShortcutMap["Ctrl+C"] = QPair<QString, QAction *>(tr("Check template map"), NULL);
+  qmc2ShortcutMap["Ctrl+Shift+C"] = QPair<QString, QAction *>(tr("Check template map"), NULL);
   qmc2ShortcutMap["Ctrl+X"] = QPair<QString, QAction *>(tr("Stop processing / exit QMC2"), NULL);
 #if defined(QMC2_YOUTUBE_ENABLED)
   qmc2ShortcutMap["Ctrl+Y"] = QPair<QString, QAction *>(tr("Clear YouTube cache"), NULL);
