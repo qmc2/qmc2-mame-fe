@@ -265,6 +265,10 @@ bool Welcome::checkConfig()
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX_OTHER + "Layout/MainWidget/GamelistColumnWidths");
 		  startupConfig->remove(QMC2_FRONTEND_PREFIX_OTHER + "Layout/MainWidget/HierarchyColumnWidths");
 	  }
+	  if ( oldMinor < 36 || (oldSvnRevision < 3546 && oldSvnRevision > 0 ) ) {
+		  // remove no longer existing short-cut map for Ctrl+C
+		  startupConfig->remove(QMC2_FRONTEND_PREFIX + "Shortcuts/Ctrl+C");
+	  }
   }
 
 #if defined(QMC2_EMUTYPE_MAME)
