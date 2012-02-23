@@ -1689,6 +1689,8 @@ void Gamelist::parse()
       if ( !endParser ) {
         QString descriptionElement = xmlLines[lineCounter].simplified();
         QString gameElement = xmlLines[lineCounter - 1].simplified();
+	if ( !gameElement.contains(" name=\"") )
+		continue;
         bool isBIOS = ( value(gameElement, "isbios") == "yes" );
         bool isDevice = ( value(gameElement, "isdevice") == "yes" );
         QString gameName = value(gameElement, "name");
