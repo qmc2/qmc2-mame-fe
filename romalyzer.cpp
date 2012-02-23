@@ -2160,9 +2160,11 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 		qApp->processEvents();
 		QString xmlLine = qmc2Gamelist->xmlLines[i];
 #if defined(QMC2_EMUTYPE_MAME)
-		int gameNamePos = xmlLine.indexOf("game name=\"") + 11;
+		int gameNamePos = xmlLine.indexOf("<game name=\"")
+		if ( gameNamePos == 0 ) gameNamePos = 12;
 #elif defined(QMC2_EMUTYPE_MESS)
-		int gameNamePos = xmlLine.indexOf("machine name=\"") + 14;
+		int gameNamePos = xmlLine.indexOf("<machine name=\"");
+		if ( gameNamePos == 0 ) gameNamePos = 15;
 #else
 		int gameNamePos = -1;
 #endif
@@ -2218,9 +2220,8 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 	qApp->processEvents();
 
 	if ( wizardAutomationLevel >= QMC2_ROMALYZER_CSWIZ_AMLVL_ANALYZE && !qmc2StopParser ) {
-		if ( pushButtonChecksumWizardAnalyzeSelectedSets->isEnabled() ) {
+		if ( pushButtonChecksumWizardAnalyzeSelectedSets->isEnabled() )
 			on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked();
-		}
 	}
 }
 
