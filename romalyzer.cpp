@@ -2160,7 +2160,7 @@ void ROMAlyzer::on_pushButtonChecksumWizardSearch_clicked()
 		qApp->processEvents();
 		QString xmlLine = qmc2Gamelist->xmlLines[i];
 #if defined(QMC2_EMUTYPE_MAME)
-		int gameNamePos = xmlLine.indexOf("<game name=\"")
+		int gameNamePos = xmlLine.indexOf("<game name=\"");
 		if ( gameNamePos == 0 ) gameNamePos = 12;
 #elif defined(QMC2_EMUTYPE_MESS)
 		int gameNamePos = xmlLine.indexOf("<machine name=\"");
