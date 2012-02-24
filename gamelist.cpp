@@ -3023,7 +3023,7 @@ void Gamelist::verifyReadyReadStandardOutput()
 #endif
           if ( romItem && hierarchyItem ) {
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS) || defined(QMC2_MAME) || defined(QMC2_MESS)
-            if ( words.last() == "good" ) {
+            if ( words.last() == "good" || lines[i].endsWith("has no roms!") ) {
               romState = "C";
               romStateLong = QObject::tr("correct");
               numCorrectGames++;
