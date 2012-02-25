@@ -34,6 +34,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			embedderopt.ui \
 			demomode.ui \
 			audioeffects.ui \
+			customidsetup.ui \
 			arcade/arcadesetupdialog.ui \
 			htmleditor/htmleditor.ui \
 			htmleditor/inserthtmldialog.ui \
@@ -80,6 +81,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			demomode.cpp \
 			audioeffects.cpp \
 			romdbmgr.cpp \
+			customidsetup.cpp \
 			minizip/ioapi.c \
 			minizip/unzip.c \
 			minizip/zip.c \
@@ -136,6 +138,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			demomode.h \
 			audioeffects.h \
 			romdbmgr.h \
+			customidsetup.h \
 			macros.h \
 			minizip/ioapi.h \
 			minizip/unzip.h \
