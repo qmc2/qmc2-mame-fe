@@ -3023,6 +3023,9 @@ qmc2/.svn/text-base/comboeditwidget.h.svn-base
 qmc2/.svn/text-base/comboeditwidget.ui.svn-base
 qmc2/.svn/text-base/controller.cpp.svn-base
 qmc2/.svn/text-base/controller.h.svn-base
+qmc2/.svn/text-base/customidsetup.cpp.svn-base
+qmc2/.svn/text-base/customidsetup.h.svn-base
+qmc2/.svn/text-base/customidsetup.ui.svn-base
 qmc2/.svn/text-base/demomode.cpp.svn-base
 qmc2/.svn/text-base/demomode.h.svn-base
 qmc2/.svn/text-base/demomode.ui.svn-base
