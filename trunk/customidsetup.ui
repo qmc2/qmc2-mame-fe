@@ -39,13 +39,13 @@
       <enum>QAbstractItemView::SingleSelection</enum>
      </property>
      <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectItems</enum>
+      <enum>QAbstractItemView::SelectRows</enum>
      </property>
      <property name="textElideMode">
       <enum>Qt::ElideMiddle</enum>
      </property>
      <property name="showGrid">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="sortingEnabled">
       <bool>true</bool>
