@@ -2301,6 +2301,8 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
 
   // Additional emulators
   tableWidgetRegisteredEmulators->clearContents();
+  tableWidgetRegisteredEmulators->setRowCount(0);
+
 #if defined(QMC2_EMUTYPE_MAME)
   config->beginGroup("MAME/RegisteredEmulators");
 #elif defined(QMC2_EMUTYPE_MESS)
