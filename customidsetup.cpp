@@ -65,9 +65,12 @@ void CustomIDSetup::on_toolButtonAddID_clicked()
 #endif
 
 	int row = tableWidgetCustomIDs->rowCount();
+
+	tableWidgetCustomIDs->setSortingEnabled(false);
 	tableWidgetCustomIDs->insertRow(row);
 	tableWidgetCustomIDs->setItem(row, QMC2_CUSTOMIDS_COLUMN_ID, new QTableWidgetItem());
 	tableWidgetCustomIDs->setItem(row, QMC2_CUSTOMIDS_COLUMN_DESCRIPTION, new QTableWidgetItem());
+	tableWidgetCustomIDs->setSortingEnabled(true);
 }
 
 void CustomIDSetup::on_toolButtonRemoveID_clicked()
