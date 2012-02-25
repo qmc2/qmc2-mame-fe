@@ -2327,7 +2327,7 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
     pb->setToolTip(tr("Specify pre-defined foreign IDs for this emulator, launchable through the menu"));
     // FIXME:
     // pb->setIcon(QIcon(QString::fromUtf8(":/data/img/???.png")));
-    tableWidgetRegisteredEmulators->setIndexWidget(tableWidgetRegisteredEmulators->model()->index(row, QMC2_ADDTLEMUS_COLUMN_CUID), pb);
+    tableWidgetRegisteredEmulators->setCellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID, pb);
     connect(pb, SIGNAL(clicked()), this, SLOT(setupCustomIDsClicked()));
   }
   config->endGroup();
@@ -3474,7 +3474,7 @@ void Options::on_toolButtonAddEmulator_clicked()
   pb->setToolTip(tr("Specify pre-defined foreign IDs for this emulator, launchable through the menu"));
   // FIXME:
   // pb->setIcon(QIcon(QString::fromUtf8(":/data/img/???.png")));
-  tableWidgetRegisteredEmulators->setIndexWidget(tableWidgetRegisteredEmulators->model()->index(row, QMC2_ADDTLEMUS_COLUMN_CUID), pb);
+  tableWidgetRegisteredEmulators->setCellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID, pb);
   connect(pb, SIGNAL(clicked()), this, SLOT(setupCustomIDsClicked()));
 
   on_lineEditAdditionalEmulatorName_textChanged(lineEditAdditionalEmulatorName->text());
