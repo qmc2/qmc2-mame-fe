@@ -9,10 +9,13 @@ class CustomIDSetup : public QDialog, public Ui::CustomIDSetup
 	Q_OBJECT
 
        	public:
+		QString foreignEmulator;
+
 		CustomIDSetup(QString, QWidget *parent = 0);
 		~CustomIDSetup();
 
 	public slots:
+		void adjustFontAndIconSizes();
 };
 
 #endif

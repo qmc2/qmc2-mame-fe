@@ -1502,11 +1502,11 @@ void MainWindow::on_actionPlay_activated()
 #if defined(QMC2_EMUTYPE_MAME)
         QString emuCommand = qmc2Config->value(QString("MAME/RegisteredEmulators/%1/Executable").arg(selectedEmulator)).toString();
         QString emuWorkDir = qmc2Config->value(QString("MAME/RegisteredEmulators/%1/WorkingDirectory").arg(selectedEmulator)).toString();
-        QStringList emuArgs = qmc2Config->value(QString("MAME/RegisteredEmulators/%1/Arguments").arg(selectedEmulator)).toString().replace("$ID$", gameName).split(" ");
+        QStringList emuArgs = qmc2Config->value(QString("MAME/RegisteredEmulators/%1/Arguments").arg(selectedEmulator)).toString().replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2GamelistDescriptionMap[gameName]).split(" ");
 #elif defined(QMC2_EMUTYPE_MESS)
         QString emuCommand = qmc2Config->value(QString("MESS/RegisteredEmulators/%1/Executable").arg(selectedEmulator)).toString();
         QString emuWorkDir = qmc2Config->value(QString("MESS/RegisteredEmulators/%1/WorkingDirectory").arg(selectedEmulator)).toString();
-        QStringList emuArgs = qmc2Config->value(QString("MESS/RegisteredEmulators/%1/Arguments").arg(selectedEmulator)).toString().replace("$ID$", gameName).split(" ");
+        QStringList emuArgs = qmc2Config->value(QString("MESS/RegisteredEmulators/%1/Arguments").arg(selectedEmulator)).toString().replace("$ID$", gameName).replace("$DESCRIPTION$", qmc2GamelistDescriptionMap[gameName]).split(" ");
 #endif
         // start game/machine
         qmc2ProcessManager->process(qmc2ProcessManager->start(emuCommand, emuArgs, true, emuWorkDir));

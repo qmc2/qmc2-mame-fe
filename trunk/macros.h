@@ -196,12 +196,16 @@
 #define QMC2_DOWNLOAD_COLUMN_STATUS		0
 #define QMC2_DOWNLOAD_COLUMN_PROGRESS		1
 
-// logical column indizes in additional/registered emulator list
+// logical column indizes in the additional / registered / foreign emulator list
 #define QMC2_ADDTLEMUS_COLUMN_NAME		0
 #define QMC2_ADDTLEMUS_COLUMN_EXEC		1
 #define QMC2_ADDTLEMUS_COLUMN_WDIR		2
 #define QMC2_ADDTLEMUS_COLUMN_ARGS		3
 #define QMC2_ADDTLEMUS_COLUMN_CUID		4	// 'customize IDs' button
+
+// logical column indizes in the 'custom ID list' for additional / registered / foreign emulators
+#define QMC2_CUSTOMIDS_COLUMN_ID		0 
+#define QMC2_CUSTOMIDS_COLUMN_DESCRIPTION	1 
 
 // SDLMAME output notifier FIFO
 #define QMC2_SDLMAME_OUTPUT_FIFO		"/tmp/sdlmame_out"
