@@ -270,6 +270,10 @@ void Gamelist::enableWidgets(bool enable)
   qmc2Options->toolButtonBrowseRomToolWorkingDirectory->setEnabled(enable);
   qmc2Options->toolButtonBrowseAdditionalEmulatorExecutable->setEnabled(enable);
   qmc2Options->toolButtonBrowseAdditionalEmulatorWorkingDirectory->setEnabled(enable);
+  for (int row = 0; row < qmc2Options->tableWidgetRegisteredEmulators->rowCount(); row++) {
+	  QWidget *w = qmc2Options->tableWidgetRegisteredEmulators->cellWidget(row, QMC2_ADDTLEMUS_COLUMN_CUID);
+	  if ( w ) w->setEnabled(enable);
+  }
 #if QMC2_USE_PHONON_API
   qmc2MainWindow->toolButtonAudioAddTracks->setEnabled(enable);
   qmc2MainWindow->toolButtonAudioAddURL->setEnabled(enable);
