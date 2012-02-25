@@ -419,6 +419,12 @@ Options::Options(QWidget *parent)
   scrollArea->setWidgetResizable(true);
 #endif
 
+#if defined(QMC2_WIP_ENABLED)
+  tableWidgetRegisteredEmulators->setColumnHidden(QMC2_ADDTLEMUS_COLUMN_CUID, false);
+#else
+  tableWidgetRegisteredEmulators->setColumnHidden(QMC2_ADDTLEMUS_COLUMN_CUID, true);
+#endif
+
   restoreCurrentConfig();
 }
 
@@ -2311,6 +2317,13 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
     tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(emuCommand));
     tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(emuWorkDir));
     tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(emuArgs));
+    QPushButton *pb = new QPushButton(0);
+    pb->setAutoFillBackground(true);
+    pb->setText(tr("Custom IDs..."));
+    pb->setToolTip(tr("Specify pre-defined foreign IDs for this emulator, launchable through the menu"));
+    // FIXME:
+    // pb->setIcon(QIcon(QString::fromUtf8(":/data/img/???.png")));
+    tableWidgetRegisteredEmulators->setIndexWidget(tableWidgetRegisteredEmulators->model()->index(row, QMC2_ADDTLEMUS_COLUMN_CUID), pb);
   }
   config->endGroup();
   tableWidgetRegisteredEmulators->setSortingEnabled(true);
@@ -2364,6 +2377,11 @@ void Options::applyDelayed()
       treeWidgetJoystickMappings->header()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/JoyMapHeaderState").toByteArray());
 #endif
       tableWidgetRegisteredEmulators->horizontalHeader()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/RegisteredEmulatorsHeaderState").toByteArray());
+#if defined(QMC2_WIP_ENABLED)
+      tableWidgetRegisteredEmulators->setColumnHidden(QMC2_ADDTLEMUS_COLUMN_CUID, false);
+#else
+      tableWidgetRegisteredEmulators->setColumnHidden(QMC2_ADDTLEMUS_COLUMN_CUID, true);
+#endif
     }
     tableWidgetRegisteredEmulators->resizeRowsToContents();
     firstTime = false;
@@ -3444,6 +3462,14 @@ void Options::on_toolButtonAddEmulator_clicked()
   tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_EXEC, new QTableWidgetItem(lineEditAdditionalEmulatorExecutableFile->text()));
   tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(lineEditAdditionalEmulatorWorkingDirectory->text()));
   tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(lineEditAdditionalEmulatorArguments->text()));
+  QPushButton *pb = new QPushButton(0);
+  pb->setAutoFillBackground(true);
+  pb->setText(tr("Custom IDs..."));
+  pb->setToolTip(tr("Specify pre-defined foreign IDs for this emulator, launchable through the menu"));
+  // FIXME:
+  // pb->setIcon(QIcon(QString::fromUtf8(":/data/img/???.png")));
+  tableWidgetRegisteredEmulators->setIndexWidget(tableWidgetRegisteredEmulators->model()->index(row, QMC2_ADDTLEMUS_COLUMN_CUID), pb);
+
   on_lineEditAdditionalEmulatorName_textChanged(lineEditAdditionalEmulatorName->text());
   tableWidgetRegisteredEmulators->setSortingEnabled(true);
 }
