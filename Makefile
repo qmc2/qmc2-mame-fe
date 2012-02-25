@@ -1196,6 +1196,8 @@ endif
 
 ifneq '$(ARCH)' 'Windows'
 
+xl: exclude-list
+xlist: exclude-list
 svn-exclude-list: exclude-list
 exclude.list: exclude-list
 exclude-list:
@@ -1223,7 +1225,7 @@ help:
 	@echo "config          Show current build configurion"
 ifneq '$(ARCH)' 'Windows'
 	@echo "dist            Create source distribution archives (tar.gz and tar.bz2)"
-	@echo "exclude-list    Recreate SVN exclude-list (only needed by developers)"
+	@echo "exclude-list    Recreate SVN exclude-list (only used by developers)"
 endif
 	@echo "help | ?        Show make command line help and current build configuration"
 ifneq '$(ARCH)' 'Windows'
