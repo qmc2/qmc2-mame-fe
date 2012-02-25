@@ -313,6 +313,7 @@ qmc2/data/img/circles/.svn/prop-base/launch_multiple.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/launch.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/led_off.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/led_on.png.svn-base
+qmc2/data/img/circles/.svn/prop-base/lifebelt.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/locale.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/lock.png.svn-base
 qmc2/data/img/circles/.svn/prop-base/mame.icns.svn-base
@@ -519,6 +520,7 @@ qmc2/data/img/circles/.svn/text-base/launch_multiple.png.svn-base
 qmc2/data/img/circles/.svn/text-base/launch.png.svn-base
 qmc2/data/img/circles/.svn/text-base/led_off.png.svn-base
 qmc2/data/img/circles/.svn/text-base/led_on.png.svn-base
+qmc2/data/img/circles/.svn/text-base/lifebelt.png.svn-base
 qmc2/data/img/circles/.svn/text-base/locale.png.svn-base
 qmc2/data/img/circles/.svn/text-base/lock.png.svn-base
 qmc2/data/img/circles/.svn/text-base/mame.icns.svn-base
@@ -735,6 +737,7 @@ qmc2/data/img/classic/.svn/prop-base/launch_multiple.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/launch.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/led_off.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/led_on.png.svn-base
+qmc2/data/img/classic/.svn/prop-base/lifebelt.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/locale.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/lock.png.svn-base
 qmc2/data/img/classic/.svn/prop-base/mame.icns.svn-base
@@ -941,6 +944,7 @@ qmc2/data/img/classic/.svn/text-base/launch_multiple.png.svn-base
 qmc2/data/img/classic/.svn/text-base/launch.png.svn-base
 qmc2/data/img/classic/.svn/text-base/led_off.png.svn-base
 qmc2/data/img/classic/.svn/text-base/led_on.png.svn-base
+qmc2/data/img/classic/.svn/text-base/lifebelt.png.svn-base
 qmc2/data/img/classic/.svn/text-base/locale.png.svn-base
 qmc2/data/img/classic/.svn/text-base/lock.png.svn-base
 qmc2/data/img/classic/.svn/text-base/mame.icns.svn-base
@@ -1148,6 +1152,7 @@ qmc2/data/img/crazy-black/.svn/prop-base/launch_multiple.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/launch.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/led_off.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/led_on.png.svn-base
+qmc2/data/img/crazy-black/.svn/prop-base/lifebelt.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/locale.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/lock.png.svn-base
 qmc2/data/img/crazy-black/.svn/prop-base/mame.icns.svn-base
@@ -1354,6 +1359,7 @@ qmc2/data/img/crazy-black/.svn/text-base/launch_multiple.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/launch.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/led_off.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/led_on.png.svn-base
+qmc2/data/img/crazy-black/.svn/text-base/lifebelt.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/locale.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/lock.png.svn-base
 qmc2/data/img/crazy-black/.svn/text-base/mame.icns.svn-base
@@ -1565,6 +1571,7 @@ qmc2/data/img/crazy/.svn/prop-base/launch_multiple.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/launch.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/led_off.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/led_on.png.svn-base
+qmc2/data/img/crazy/.svn/prop-base/lifebelt.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/locale.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/lock.png.svn-base
 qmc2/data/img/crazy/.svn/prop-base/mame.icns.svn-base
@@ -1771,6 +1778,7 @@ qmc2/data/img/crazy/.svn/text-base/launch_multiple.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/launch.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/led_off.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/led_on.png.svn-base
+qmc2/data/img/crazy/.svn/text-base/lifebelt.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/locale.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/lock.png.svn-base
 qmc2/data/img/crazy/.svn/text-base/mame.icns.svn-base
@@ -1982,6 +1990,7 @@ qmc2/data/img/cubes/.svn/prop-base/launch_multiple.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/launch.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/led_off.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/led_on.png.svn-base
+qmc2/data/img/cubes/.svn/prop-base/lifebelt.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/locale.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/lock.png.svn-base
 qmc2/data/img/cubes/.svn/prop-base/mame.icns.svn-base
@@ -2188,6 +2197,7 @@ qmc2/data/img/cubes/.svn/text-base/launch_multiple.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/launch.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/led_off.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/led_on.png.svn-base
+qmc2/data/img/cubes/.svn/text-base/lifebelt.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/locale.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/lock.png.svn-base
 qmc2/data/img/cubes/.svn/text-base/mame.icns.svn-base
@@ -2404,6 +2414,7 @@ qmc2/data/img/.svn/prop-base/launch_multiple.png.svn-base
 qmc2/data/img/.svn/prop-base/launch.png.svn-base
 qmc2/data/img/.svn/prop-base/led_off.png.svn-base
 qmc2/data/img/.svn/prop-base/led_on.png.svn-base
+qmc2/data/img/.svn/prop-base/lifebelt.png.svn-base
 qmc2/data/img/.svn/prop-base/locale.png.svn-base
 qmc2/data/img/.svn/prop-base/lock.png.svn-base
 qmc2/data/img/.svn/prop-base/mame.icns.svn-base
@@ -2610,6 +2621,7 @@ qmc2/data/img/.svn/text-base/launch_multiple.png.svn-base
 qmc2/data/img/.svn/text-base/launch.png.svn-base
 qmc2/data/img/.svn/text-base/led_off.png.svn-base
 qmc2/data/img/.svn/text-base/led_on.png.svn-base
+qmc2/data/img/.svn/text-base/lifebelt.png.svn-base
 qmc2/data/img/.svn/text-base/locale.png.svn-base
 qmc2/data/img/.svn/text-base/lock.png.svn-base
 qmc2/data/img/.svn/text-base/mame.icns.svn-base
