@@ -814,7 +814,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>251</width>
-                <height>586</height>
+                <height>587</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
@@ -2268,7 +2268,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>575</width>
-                <height>275</height>
+                <height>276</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
@@ -3959,7 +3959,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>218</width>
-                <height>379</height>
+                <height>380</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
@@ -4691,7 +4691,7 @@
                <item row="5" column="4" colspan="2">
                 <widget class="QLineEdit" name="lineEditAdditionalEmulatorArguments">
                  <property name="toolTip">
-                  <string>Arguments passed to the emulator -- use $ID$ as a placeholder for the unique game/machine ID (its short name)</string>
+                  <string>Arguments passed to the emulator -- use $ID$ as placeholder for the unique set ID, $DESCRIPTION$ for its description</string>
                  </property>
                 </widget>
                </item>

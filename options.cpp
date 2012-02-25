@@ -56,6 +56,7 @@
 #endif
 #endif
 #include "htmleditor/htmleditor.h"
+#include "customidsetup.h"
 
 // external global variables
 extern MainWindow *qmc2MainWindow;
@@ -2318,12 +2319,14 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
     tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(emuWorkDir));
     tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(emuArgs));
     QPushButton *pb = new QPushButton(0);
+    pb->setObjectName(emuName);
     pb->setAutoFillBackground(true);
     pb->setText(tr("Custom IDs..."));
     pb->setToolTip(tr("Specify pre-defined foreign IDs for this emulator, launchable through the menu"));
     // FIXME:
     // pb->setIcon(QIcon(QString::fromUtf8(":/data/img/???.png")));
     tableWidgetRegisteredEmulators->setIndexWidget(tableWidgetRegisteredEmulators->model()->index(row, QMC2_ADDTLEMUS_COLUMN_CUID), pb);
+    connect(pb, SIGNAL(clicked()), this, SLOT(setupCustomIDsClicked()));
   }
   config->endGroup();
   tableWidgetRegisteredEmulators->setSortingEnabled(true);
@@ -3463,12 +3466,14 @@ void Options::on_toolButtonAddEmulator_clicked()
   tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_WDIR, new QTableWidgetItem(lineEditAdditionalEmulatorWorkingDirectory->text()));
   tableWidgetRegisteredEmulators->setItem(row, QMC2_ADDTLEMUS_COLUMN_ARGS, new QTableWidgetItem(lineEditAdditionalEmulatorArguments->text()));
   QPushButton *pb = new QPushButton(0);
+  pb->setObjectName(lineEditAdditionalEmulatorName->text());
   pb->setAutoFillBackground(true);
   pb->setText(tr("Custom IDs..."));
   pb->setToolTip(tr("Specify pre-defined foreign IDs for this emulator, launchable through the menu"));
   // FIXME:
   // pb->setIcon(QIcon(QString::fromUtf8(":/data/img/???.png")));
   tableWidgetRegisteredEmulators->setIndexWidget(tableWidgetRegisteredEmulators->model()->index(row, QMC2_ADDTLEMUS_COLUMN_CUID), pb);
+  connect(pb, SIGNAL(clicked()), this, SLOT(setupCustomIDsClicked()));
 
   on_lineEditAdditionalEmulatorName_textChanged(lineEditAdditionalEmulatorName->text());
   tableWidgetRegisteredEmulators->setSortingEnabled(true);
@@ -3931,6 +3936,22 @@ void Options::checkJoystickMappings()
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: joystick map contains duplicates"));
   }
   lastJoystickMappingsState = joystickMappingsState;
+}
+
+void Options::setupCustomIDsClicked()
+{
+	QPushButton *pb = (QPushButton *)sender();
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::setupCustomIDsClicked() : pb = %1)").arg((qulonglong)pb));
+#endif
+	if ( pb ) {
+		if ( !pb->objectName().isEmpty() ) {
+			CustomIDSetup cidSetup(pb->objectName(), this);
+			if ( cidSetup.exec() == QDialog::Accepted ) {
+				// FIXME
+			}
+		}
+	}
 }
 
 JoystickCalibrationWidget::JoystickCalibrationWidget(Joystick *joystick, QWidget *parent)

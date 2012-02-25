@@ -196,6 +196,7 @@ class Options : public QDialog, public Ui::Options
     void checkShortcuts();
     void setupShortcutActions();
     void applyDelayed();
+    void setupCustomIDsClicked();
 
   protected:
     void closeEvent(QCloseEvent *);
