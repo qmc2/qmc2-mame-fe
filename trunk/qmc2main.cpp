@@ -21,6 +21,7 @@
 #include <QtWebKit>
 #include <QNetworkAccessManager>
 #include <QSplashScreen>
+#include <QTest>
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS)
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -62,7 +63,6 @@
 #include "messdevcfg.h"
 #endif
 #if QMC2_USE_PHONON_API
-#include <QTest>
 #include "audioeffects.h"
 #endif
 #include "toolexec.h"
@@ -1309,7 +1309,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 #if !(QMC2_USE_PHONON_API)
   tabWidgetLogsAndEmulators->removeTab(tabWidgetLogsAndEmulators->indexOf(tabAudioPlayer));
-  menu_Tools->removeAction(menuAudio_player->menuAction());
+  menu_Tools->removeAction(menuAudioPlayer->menuAction());
 #else
   audioState = Phonon::StoppedState;
   phononAudioPlayer = new Phonon::MediaObject(this);
