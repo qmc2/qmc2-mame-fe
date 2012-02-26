@@ -975,10 +975,6 @@ void ROMAlyzer::analyze()
 	if ( !wizardSearch ) {
 		if ( gameOkay ) {
 		  if ( notFoundCounter == xmlHandler.fileCounter ) {
-#if defined(QMC2_EMUTYPE_MAME)
-		    xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
-		    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
-#elif defined(QMC2_EMUTYPE_MESS)
 		    if ( xmlHandler.fileCounter == 0 ) {
 			    xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good"));
 			    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greenBrush);
@@ -986,7 +982,6 @@ void ROMAlyzer::analyze()
 			    xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("not found"));
 			    xmlHandler.parentItem->setForeground(QMC2_ROMALYZER_COLUMN_FILESTATUS, xmlHandler.greyBrush);
 		    }
-#endif
 		  } else if ( notFoundCounter > 0 ) {
 		    if ( filesSkipped )
 		      xmlHandler.parentItem->setText(QMC2_ROMALYZER_COLUMN_FILESTATUS, tr("good / not found / skipped"));
@@ -3097,12 +3092,10 @@ bool ROMAlyzerXmlHandler::endElement(const QString &namespaceURI, const QString 
       emuStatusStr = QObject::tr("unknown");
       myBrush = blueBrush;
     }
-#if defined(QMC2_EMUTYPE_MESS)
     if ( fileCounter == 0 ) {
        emuStatusStr = QObject::tr("good");
       myBrush = greenBrush;
     }
-#endif
     parentItem->setText(QMC2_ROMALYZER_COLUMN_EMUSTATUS, emuStatusStr);
     parentItem->setForeground(QMC2_ROMALYZER_COLUMN_EMUSTATUS, myBrush);
     if ( autoExpand )
