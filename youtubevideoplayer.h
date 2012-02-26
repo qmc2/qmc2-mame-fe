@@ -138,7 +138,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		YouTubeVideoPlayer(QString, QString, QWidget *parent = 0);
 		~YouTubeVideoPlayer();
 
-		quint64 videoSeqNum;
+		qint64 videoSeqNum;
 		QString currentVideoID;
 		QString currentVideoAuthor;
 		QString currentVideoTitle;

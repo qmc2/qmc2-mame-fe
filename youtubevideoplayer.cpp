@@ -1437,7 +1437,7 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 #ifdef QMC2_DEBUG
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::updateAttachedVideoInfoImages(): downloading thumbnail for video ID '%1' from '%2'").arg(viw->videoID).arg(thumbnail_url));
 #endif
-					QNetworkReply *reply = imageDownloadManager->get(QNetworkRequest(QUrl(thumbnail_url)));
+					imageDownloadManager->get(QNetworkRequest(QUrl(thumbnail_url)));
 				} else {
 #ifdef QMC2_DEBUG
 					qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::updateAttachedVideoInfoImages(): thumbnail URL for video ID '%1' not found!").arg(viw->videoID));
