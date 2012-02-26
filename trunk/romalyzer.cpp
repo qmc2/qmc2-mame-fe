@@ -2508,7 +2508,7 @@ bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *data
 						progressBarFileIO->setValue(fileData.length());
 						progressBarFileIO->update();
 						progressBar->update();
-						if ( fileData.length() % QMC2_128K == 0 || fileData.length() == zipInfo.uncompressed_size ) qApp->processEvents();
+						if ( fileData.length() % QMC2_128K == 0 || (uLong)fileData.length() == zipInfo.uncompressed_size ) qApp->processEvents();
 					}
 					dataMap->insert(QString::number(zipInfo.crc), fileData);
 					unzCloseCurrentFile(zipFile);
@@ -2554,7 +2554,7 @@ bool ROMAlyzer::readZipFileData(QString fileName, QString crc, QByteArray *data)
 						progressBarFileIO->setValue(data->length());
 						progressBarFileIO->update();
 						progressBar->update();
-						if ( data->length() % QMC2_128K == 0 || data->length() == zipInfo.uncompressed_size ) qApp->processEvents();
+						if ( data->length() % QMC2_128K == 0 || (uLong)data->length() == zipInfo.uncompressed_size ) qApp->processEvents();
 					}
 					unzCloseCurrentFile(zipFile);
 				} else
@@ -2616,9 +2616,9 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 				progressBarFileIO->setRange(0, data.length());
 				progressBarFileIO->reset();
 				qApp->processEvents();
-				while ( bytesWritten < data.length() && success ) {
+				while ( bytesWritten < (quint64)data.length() && success ) {
 					quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
-					if ( bytesWritten + bufferLength > data.length() )
+					if ( bytesWritten + bufferLength > (quint64)data.length() )
 						bufferLength = data.length() - bytesWritten;
 					QByteArray writeBuffer = data.mid(bytesWritten, bufferLength);
 					success = (zipWriteInFileInZip(zip, (const void *)writeBuffer.data(), bufferLength) == ZIP_OK);
@@ -2627,7 +2627,7 @@ bool ROMAlyzer::writeAllZipData(QString fileName, QMap<QString, QByteArray> *fil
 						progressBarFileIO->setValue(bytesWritten);
 						progressBarFileIO->update();
 						progressBar->update();
-						if ( bytesWritten % QMC2_128K == 0 || bytesWritten == data.length() ) qApp->processEvents();
+						if ( bytesWritten % QMC2_128K == 0 || bytesWritten == (quint64)data.length() ) qApp->processEvents();
 					} else if ( writeLog )
 						log(tr("set rewriter: WARNING: failed to deflate '%1'").arg(file));
 				}
@@ -2809,9 +2809,9 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 									quint64 bytesWritten = 0;
 									progressBarFileIO->setRange(0, tData.length());
 									progressBarFileIO->reset();
-									while ( bytesWritten < tData.length() && saveOkay ) {
+									while ( bytesWritten < (quint64)tData.length() && saveOkay ) {
 										quint64 bufferLength = QMC2_ZIP_BUFFER_SIZE;
-										if ( bytesWritten + bufferLength > tData.length() )
+										if ( bytesWritten + bufferLength > (quint64)tData.length() )
 											bufferLength = tData.length() - bytesWritten;
 										QByteArray writeBuffer = tData.mid(bytesWritten, bufferLength);
 										saveOkay = (zipWriteInFileInZip(zip, (const void *)writeBuffer.data(), bufferLength) == ZIP_OK);
@@ -2883,7 +2883,7 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 		return;
 
 	QTreeWidgetItem *item = treeWidgetChecksums->itemAt(p);
-	if ( item )
+	if ( item ) {
 		if ( item->parent() != NULL ) {
 			currentFilesSHA1Checksum = item->text(QMC2_ROMALYZER_COLUMN_SHA1);
 			currentFilesCrcChecksum = item->text(QMC2_ROMALYZER_COLUMN_CRC);
@@ -2900,6 +2900,7 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 			romSetContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetChecksums->viewport()->mapToGlobal(p), romSetContextMenu));
 			romSetContextMenu->show();
 		}
+	}
 }
 
 #if defined(QMC2_DATABASE_ENABLED)

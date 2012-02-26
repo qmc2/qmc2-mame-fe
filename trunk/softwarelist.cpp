@@ -3227,7 +3227,6 @@ void SoftwareSnapshot::drawCenteredImage(QPixmap *pm, QPainter *p)
 
 	p->drawPixmap(posx, posy, *pm);
 
-	bool drawEntryName = false;
 	if ( qmc2ShowGameName ) {
 		// draw entry title
 		QString title = qmc2SoftwareList->currentItem->text(QMC2_SWLIST_COLUMN_TITLE);
