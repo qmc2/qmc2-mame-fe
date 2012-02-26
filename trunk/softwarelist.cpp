@@ -1040,7 +1040,6 @@ void SoftwareList::loadReadyReadStandardError()
 void SoftwareList::loadError(QProcess::ProcessError processError)
 {
 #ifdef QMC2_DEBUG
-	QProcess *proc = (QProcess *)sender();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadError(QProcess::ProcessError processError = %1)").arg(processError));
 #endif
 
@@ -1062,7 +1061,6 @@ void SoftwareList::loadError(QProcess::ProcessError processError)
 void SoftwareList::loadStateChanged(QProcess::ProcessState processState)
 {
 #ifdef QMC2_DEBUG
-	QProcess *proc = (QProcess *)sender();
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::loadStateChanged(QProcess::ProcessState processState = %1)").arg(processState));
 #endif
 

@@ -3561,10 +3561,10 @@ void Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()
   }
 }
 
-void Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &s)
+void Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &s = ...)");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &)");
 #endif
 
   QString text = lineEditAdditionalEmulatorName->text();
