@@ -3585,6 +3585,22 @@ void Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &s)
   }
 }
 
+void Options::setupCustomIDsClicked()
+{
+	QPushButton *pb = (QPushButton *)sender();
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::setupCustomIDsClicked() : pb = %1)").arg((qulonglong)pb));
+#endif
+	if ( pb ) {
+		if ( !pb->objectName().isEmpty() ) {
+			CustomIDSetup cidSetup(pb->objectName(), this);
+			if ( cidSetup.exec() == QDialog::Accepted ) {
+				// FIXME
+			}
+		}
+	}
+}
+
 #if QMC2_JOYSTICK == 1
 void Options::on_pushButtonRescanJoysticks_clicked()
 {
@@ -3938,22 +3954,6 @@ void Options::checkJoystickMappings()
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: joystick map contains duplicates"));
   }
   lastJoystickMappingsState = joystickMappingsState;
-}
-
-void Options::setupCustomIDsClicked()
-{
-	QPushButton *pb = (QPushButton *)sender();
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::setupCustomIDsClicked() : pb = %1)").arg((qulonglong)pb));
-#endif
-	if ( pb ) {
-		if ( !pb->objectName().isEmpty() ) {
-			CustomIDSetup cidSetup(pb->objectName(), this);
-			if ( cidSetup.exec() == QDialog::Accepted ) {
-				// FIXME
-			}
-		}
-	}
 }
 
 JoystickCalibrationWidget::JoystickCalibrationWidget(Joystick *joystick, QWidget *parent)
