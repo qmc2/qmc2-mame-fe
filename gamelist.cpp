@@ -2764,9 +2764,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
         }
       }
     } else {
-#if defined(QMC2_EMUTYPE_MESS)
-      QMap<QString, int> machinePosMap;
-#endif
+      QMap<QString, int> systemPosMap;
       for (i = 0; i < remainingGames.count(); i++) {
         qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + 1);
         QString gameName = remainingGames[i];
@@ -2778,15 +2776,15 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 	QTreeWidgetItem *categoryItem = qmc2CategoryItemMap[gameName];
 	QTreeWidgetItem *versionItem = qmc2VersionItemMap[gameName];
 #endif
-#if defined(QMC2_EMUTYPE_MESS)
-	// there are a number of machines in MESS that don't require any ROMs...
+	// there are a number of machines in MESS and some in MAME that don't require any ROMs...
 	bool romRequired = true;
 	int xmlCounter = 0;
 	bool xmlFound = false;
-	if ( machinePosMap.contains(gameName) ) {
-		xmlCounter = machinePosMap[gameName];
+	if ( systemPosMap.contains(gameName) ) {
+		xmlCounter = systemPosMap[gameName];
 		xmlFound = true;
 	} else {
+#if defined(QMC2_EMUTYPE_MESS)
 		while ( !xmlFound && xmlCounter < xmlLines.count() ) {
 			xmlFound = (xmlLines[xmlCounter].contains(QString("<machine name=\"%1\"").arg(gameName)));
 			if ( !xmlFound ) {
@@ -2794,32 +2792,48 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 					QString xmlLine = xmlLines[xmlCounter];
 					int gameNamePos = xmlLine.indexOf("machine name=\"") + 14;
 					QString currentGame = xmlLine.mid(gameNamePos, xmlLine.indexOf("\"", gameNamePos) - gameNamePos);
-					machinePosMap[currentGame] = xmlCounter + 1;
+					systemPosMap[currentGame] = xmlCounter + 1;
 				}
 			}
 			xmlCounter++;
 		}
+#elif defined(QMC2_EMUTYPE_MAME)
+		while ( !xmlFound && xmlCounter < xmlLines.count() ) {
+			xmlFound = (xmlLines[xmlCounter].contains(QString("<game name=\"%1\"").arg(gameName)));
+			if ( !xmlFound ) {
+				if ( xmlLines[xmlCounter].contains("<game name=\"") ) {
+					QString xmlLine = xmlLines[xmlCounter];
+					int gameNamePos = xmlLine.indexOf("game name=\"") + 11;
+					QString currentGame = xmlLine.mid(gameNamePos, xmlLine.indexOf("\"", gameNamePos) - gameNamePos);
+					systemPosMap[currentGame] = xmlCounter + 1;
+				}
+			}
+			xmlCounter++;
+		}
+#endif
 	}
 	if ( xmlFound ) {
 		int romCounter = 0;
 		bool endFound = false;
 		while ( !endFound && xmlCounter < xmlLines.count() ) {
+#if defined(QMC2_EMUTYPE_MESS)
 			if ( xmlLines[xmlCounter].contains("<rom name=\"") ) {
 				romCounter++;
 				endFound = true;
 			} else if ( xmlLines[xmlCounter].contains("</machine>") )
 				endFound = true;
+#elif defined(QMC2_EMUTYPE_MAME)
+			if ( xmlLines[xmlCounter].contains("<rom name=\"") ) {
+				romCounter++;
+				endFound = true;
+			} else if ( xmlLines[xmlCounter].contains("</game>") )
+				endFound = true;
+#endif
 			xmlCounter++;
 		}
 		romRequired = (romCounter > 0);
 	}
-#endif
         if ( romItem && hierarchyItem ) {
-#if defined(QMC2_EMUTYPE_MAME)
-          if ( romCache.isOpen() )
-            tsRomCache << gameName << " N\n";
-          numNotFoundGames++;
-#elif defined(QMC2_EMUTYPE_MESS)
 	  if ( romCache.isOpen() ) {
 		  if ( romRequired ) {
 			  tsRomCache << gameName << " N\n";
@@ -2829,61 +2843,59 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			  numCorrectGames++;
 		  }
 	  }
-#endif
           if ( isBIOS ) {
             if ( showROMStatusIcons ) {
-#if defined(QMC2_EMUTYPE_MAME)
-              romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-              hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-	      if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-	      if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
-#elif defined(QMC2_EMUTYPE_MESS)
               if ( romRequired ) {
                 romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
                 hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+#if defined(QMC2_EMUTYPE_MAME)
+	        if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+	        if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundBIOSImageIcon);
+#endif
               } else {
                 romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
                 hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
-              }
+#if defined(QMC2_EMUTYPE_MAME)
+	        if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
+	        if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectBIOSImageIcon);
 #endif
+              }
             }
           } else if ( isDevice ) {
-#if defined(QMC2_EMUTYPE_MAME)
-              romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
-              hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
-	      if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
-	      if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
-#elif defined(QMC2_EMUTYPE_MESS)
               if ( romRequired ) {
                 romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
                 hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
+#if defined(QMC2_EMUTYPE_MAME)
+	        if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
+	        if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundDeviceImageIcon);
+#endif
               } else {
                 romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
                 hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
-              }
+#if defined(QMC2_EMUTYPE_MAME)
+	        if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
+	        if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectDeviceImageIcon);
 #endif
+              }
           } else {
             if ( showROMStatusIcons ) {
-#if defined(QMC2_EMUTYPE_MAME)
-              romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-              hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-              if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-              if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
-#elif defined(QMC2_EMUTYPE_MESS)
               if ( romRequired ) {
                 romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
                 hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+#if defined(QMC2_EMUTYPE_MAME)
+                if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+                if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2NotFoundImageIcon);
+#endif
               } else {
                 romItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
                 hierarchyItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
-              }
+#if defined(QMC2_EMUTYPE_MAME)
+                if ( categoryItem ) categoryItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
+                if ( versionItem ) versionItem->setIcon(QMC2_GAMELIST_COLUMN_GAME, qmc2CorrectImageIcon);
 #endif
+              }
             }
           }
-#if defined(QMC2_EMUTYPE_MAME)
-          romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
-          hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
-#elif defined(QMC2_EMUTYPE_MESS)
 	  if ( romRequired ) {
 		  romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
 		  hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_N);
@@ -2891,7 +2903,6 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		  romItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
 		  hierarchyItem->setWhatsThis(QMC2_GAMELIST_COLUMN_GAME, QMC2_ROMSTATE_STRING_C);
 	  }
-#endif
         } else {
           qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't find item map entry for '%1' - ROM state cannot be determined").arg(gameName));
           if ( romCache.isOpen() )
