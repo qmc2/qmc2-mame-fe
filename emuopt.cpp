@@ -1010,7 +1010,7 @@ void EmulatorOptions::createTemplateMap()
             sectionTitle = readDescription(&xmlReader, lang, &readNext);
             templateMap[sectionTitle].clear();
 #ifdef QMC2_DEBUG
-            qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: elementType = [%1], name = [%2], description = [%3]").
+            qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::createTemplateMap(): elementType = [%1], name = [%2], description = [%3]").
                                 arg(elementType).arg(name).arg(sectionTitle));
 #endif
           } else if ( elementType == "option" ) {
@@ -1041,13 +1041,13 @@ void EmulatorOptions::createTemplateMap()
                 optionPart = attributes.value("part").toString();
               templateMap[sectionTitle].append(EmulatorOption(name, "", type, defaultValue, optionDescription, QString::null, optionPart, NULL, false, decimals, optionChoices, visible));
 #ifdef QMC2_DEBUG
-              qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: elementType = [%1], name = [%2], type = [%3], default = [%4], description = [%5]").
+              qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::createTemplateMap(): elementType = [%1], name = [%2], type = [%3], default = [%4], description = [%5]").
                                   arg(elementType).arg(name).arg(type).arg(defaultValue).arg(optionDescription));
 #endif
 	    }
 #ifdef QMC2_DEBUG
             else {
-              qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: ignored: elementType = [%1], name = [%2], description = [%3]").
+              qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: EmulatorOptions::createTemplateMap(): elementType = [%1], name = [%2], description = [%3] (ignored)").
                                   arg(elementType).arg(name).arg(optionDescription));
             }
 #endif

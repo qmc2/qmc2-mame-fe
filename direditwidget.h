@@ -5,18 +5,18 @@
 
 class DirectoryEditWidget : public QWidget, public Ui::DirectoryEditWidget
 {
-  Q_OBJECT
+	Q_OBJECT
 
-  public:
-    DirectoryEditWidget(QString, QWidget *parent = 0);
-    ~DirectoryEditWidget();
+	public:
+		DirectoryEditWidget(QString, QWidget *parent = 0);
+		~DirectoryEditWidget();
 
-  public slots:
-    void on_toolButtonBrowse_clicked();
-    void on_lineEditDirectory_textChanged(const QString &) { emit dataChanged(this); }
+	public slots:
+		void on_toolButtonBrowse_clicked();
+		void on_lineEditDirectory_textChanged(const QString &) { emit dataChanged(this); }
 
-  signals:
-    void dataChanged(QWidget *);
+	signals:
+		void dataChanged(QWidget *);
 };
 
 #endif

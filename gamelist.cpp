@@ -1471,7 +1471,7 @@ void Gamelist::parse()
             bool isDevice = (words[10] == "1");
 
 #ifdef QMC2_DEBUG
-            qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: gameName = %1, gameDescription = %2, gameManufacturer = %3, gameYear = %4, gameCloneOf = %5, isBIOS = %6, hasROMs = %7, hasCHDs = %8, gamePlayers = %9, gameStatus = %10, isDevice = %11").
+            qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::parse(): gameName = %1, gameDescription = %2, gameManufacturer = %3, gameYear = %4, gameCloneOf = %5, isBIOS = %6, hasROMs = %7, hasCHDs = %8, gamePlayers = %9, gameStatus = %10, isDevice = %11").
                             arg(gameName).arg(gameDescription).arg(gameManufacturer).arg(gameYear).arg(gameCloneOf).arg(isBIOS).arg(hasROMs).arg(hasCHDs).arg(gamePlayers).arg(gameStatus).arg(isDevice));
 #endif
 
@@ -3319,7 +3319,7 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
               QFileInfo fi(unzFileName);
               QString gameFileName = fi.fileName();
 #ifdef QMC2_DEBUG
-              qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: loading %1").arg(gameFileName));
+              qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadIcon(): loading %1").arg(gameFileName));
 #endif
               imageData.clear();
               if ( unzOpenCurrentFile(qmc2IconFile) == UNZ_OK ) {
@@ -3388,7 +3388,7 @@ bool Gamelist::loadIcon(QString gameName, QTreeWidgetItem *item, bool checkOnly,
         if ( iconCount % 25 == 0 )
           qApp->processEvents();
 #ifdef QMC2_DEBUG
-        qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: loading %1").arg(iconFiles[iconCount]));
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Gamelist::loadIcon(): loading %1").arg(iconFiles[iconCount]));
 #endif
         QPixmap iconPixmap;
         if ( iconPixmap.load(icoDir + iconFiles[iconCount]) )
