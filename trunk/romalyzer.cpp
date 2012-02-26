@@ -860,12 +860,22 @@ void ROMAlyzer::analyze()
 
 	    QString mergeName = childItem->text(QMC2_ROMALYZER_COLUMN_MERGE);
 	    if ( !mergeName.isEmpty() ) {
-	      if ( !merged ) {
-		log(tr("WARNING: %1 file '%2' loaded from '%3' may be obsolete, should be merged from parent set '%4'").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile).arg(parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE)));
-		childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
-		if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_WARN ) mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_WARN;
-	      } else 
-		childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
+              if ( !parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
+		      if ( !merged ) {
+			      log(tr("WARNING: %1 file '%2' loaded from '%3' may be obsolete, should be merged from parent set '%4'").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile).arg(parentItem->text(QMC2_ROMALYZER_COLUMN_MERGE)));
+			      childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge.png")));
+			      if ( mergeStatus < QMC2_ROMALYZER_MERGE_STATUS_WARN ) mergeStatus = QMC2_ROMALYZER_MERGE_STATUS_WARN;
+		      } else
+			      childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
+	      } else {
+		      // this is actually an XML bug in the driver, inform via log and ignore...
+#if defined(QMC2_EMUTYPE_MAME)
+		      log(tr("INFORMATION: %1 file '%2' loaded from '%3' has a merge name but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile));
+#elif defined(QMC2_EMUTYPE_MESS)
+		      log(tr("INFORMATION: %1 file '%2' loaded from '%3' has a merge name but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile));
+#endif
+		      childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
+	      }
 	    }
 
 	    // Size
