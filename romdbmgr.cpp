@@ -8,7 +8,9 @@
 extern MainWindow *qmc2MainWindow;
 extern QSettings *qmc2Config;
 
+#ifndef QMC2_DEBUG
 #define QMC2_DEBUG
+#endif
 
 ROMDatabaseManager::ROMDatabaseManager(QObject *parent)
 	: QObject(parent)

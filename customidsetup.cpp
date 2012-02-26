@@ -1,7 +1,9 @@
 #include "customidsetup.h"
 #include "macros.h"
 
+#ifndef QMC2_DEBUG
 #define QMC2_DEBUG
+#endif
 
 #if defined(QMC2_DEBUG)
 #include "qmc2main.h"
