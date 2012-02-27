@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>511</width>
-    <height>630</height>
+    <width>605</width>
+    <height>646</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   </property>
   <layout class="QGridLayout">
    <item row="0" column="0">
-    <layout class="QHBoxLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout1">
      <item>
       <widget class="QLineEdit" name="lineEditGames">
        <property name="sizePolicy">
@@ -45,6 +45,9 @@
         <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/find.png</normaloff>:/data/img/find.png</iconset>
        </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -58,6 +61,9 @@
        <property name="icon">
         <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/time.png</normaloff>:/data/img/time.png</iconset>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -141,19 +147,75 @@
        <string>Log</string>
       </attribute>
       <layout class="QGridLayout">
-       <item row="0" column="0" colspan="3">
-        <widget class="QPlainTextEdit" name="textBrowserLog">
-         <property name="toolTip">
-          <string>Analysis log</string>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="pushButtonSearchBackward">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <property name="undoRedoEnabled">
+         <property name="toolTip">
+          <string>Search string backward</string>
+         </property>
+         <property name="text">
+          <string>&amp;Backward</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/previous.png</normaloff>:/data/img/previous.png</iconset>
+         </property>
+         <property name="autoRepeat">
+          <bool>true</bool>
+         </property>
+         <property name="autoDefault">
           <bool>false</bool>
          </property>
-         <property name="lineWrapMode">
-          <enum>QPlainTextEdit::NoWrap</enum>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QToolButton" name="toolButtonSaveLog">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <property name="readOnly">
+         <property name="toolTip">
+          <string>Save the current log contents to a file</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pushButtonSearchForward">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Search string forward</string>
+         </property>
+         <property name="text">
+          <string>&amp;Forward</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/next.png</normaloff>:/data/img/next.png</iconset>
+         </property>
+         <property name="autoRepeat">
           <bool>true</bool>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -170,37 +232,29 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="pushButtonSearchForward">
+       <item row="0" column="0" colspan="5">
+        <widget class="QPlainTextEdit" name="textBrowserLog">
          <property name="toolTip">
-          <string>Search string forward</string>
+          <string>Analysis log</string>
          </property>
-         <property name="text">
-          <string>&amp;Forward</string>
+         <property name="undoRedoEnabled">
+          <bool>false</bool>
          </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/next.png</normaloff>:/data/img/next.png</iconset>
+         <property name="lineWrapMode">
+          <enum>QPlainTextEdit::NoWrap</enum>
          </property>
-         <property name="autoRepeat">
+         <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="pushButtonSearchBackward">
-         <property name="toolTip">
-          <string>Search string backward</string>
+       <item row="1" column="3">
+        <widget class="Line" name="lineSeparator">
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
          </property>
-         <property name="text">
-          <string>&amp;Backward</string>
-         </property>
-         <property name="icon">
-          <iconset resource="qmc2.qrc">
-           <normaloff>:/data/img/previous.png</normaloff>:/data/img/previous.png</iconset>
-         </property>
-         <property name="autoRepeat">
-          <bool>true</bool>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>
@@ -212,7 +266,7 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="5" column="0">
-        <spacer>
+        <spacer name="verticalSpacer1">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -742,6 +796,9 @@
             <property name="text">
              <string>Connection check</string>
             </property>
+            <property name="autoDefault">
+             <bool>false</bool>
+            </property>
            </widget>
           </item>
           <item row="0" column="6" colspan="4">
@@ -1197,6 +1254,9 @@
           <iconset resource="qmc2.qrc">
            <normaloff>:/data/img/filefind.png</normaloff>:/data/img/filefind.png</iconset>
          </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
         </widget>
        </item>
        <item row="1" column="0" colspan="2">
@@ -1214,6 +1274,9 @@
           <iconset resource="qmc2.qrc">
            <normaloff>:/data/img/search.png</normaloff>:/data/img/search.png</iconset>
          </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
         </widget>
        </item>
        <item row="1" column="2" colspan="2">
@@ -1230,6 +1293,9 @@
          <property name="icon">
           <iconset resource="qmc2.qrc">
            <normaloff>:/data/img/configure.png</normaloff>:/data/img/configure.png</iconset>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -1358,7 +1424,7 @@
     </widget>
    </item>
    <item row="2" column="0">
-    <layout class="QHBoxLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout2">
      <property name="spacing">
       <number>2</number>
      </property>
@@ -1373,6 +1439,9 @@
        <property name="icon">
         <iconset resource="qmc2.qrc">
          <normaloff>:/data/img/yes.png</normaloff>:/data/img/yes.png</iconset>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -1460,6 +1529,7 @@
   <tabstop>lineEditSearchString</tabstop>
   <tabstop>pushButtonSearchForward</tabstop>
   <tabstop>pushButtonSearchBackward</tabstop>
+  <tabstop>toolButtonSaveLog</tabstop>
   <tabstop>checkBoxAppendReport</tabstop>
   <tabstop>checkBoxAutoScroll</tabstop>
   <tabstop>checkBoxCalculateCRC</tabstop>
@@ -1525,7 +1595,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>86</x>
-     <y>581</y>
+     <y>640</y>
     </hint>
     <hint type="destinationlabel">
      <x>153</x>
@@ -1540,12 +1610,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>79</x>
-     <y>280</y>
+     <x>111</x>
+     <y>99</y>
     </hint>
     <hint type="destinationlabel">
-     <x>195</x>
-     <y>280</y>
+     <x>111</x>
+     <y>99</y>
     </hint>
    </hints>
   </connection>
@@ -1556,12 +1626,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>475</x>
-     <y>543</y>
+     <x>111</x>
+     <y>110</y>
     </hint>
     <hint type="destinationlabel">
-     <x>538</x>
-     <y>543</y>
+     <x>111</x>
+     <y>110</y>
     </hint>
    </hints>
   </connection>
@@ -1572,12 +1642,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>398</y>
+     <x>111</x>
+     <y>104</y>
     </hint>
     <hint type="destinationlabel">
-     <x>278</x>
-     <y>399</y>
+     <x>111</x>
+     <y>104</y>
     </hint>
    </hints>
   </connection>
@@ -1588,12 +1658,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>157</x>
-     <y>398</y>
+     <x>111</x>
+     <y>104</y>
     </hint>
     <hint type="destinationlabel">
-     <x>387</x>
-     <y>397</y>
+     <x>111</x>
+     <y>104</y>
     </hint>
    </hints>
   </connection>
@@ -1604,12 +1674,44 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>57</x>
-     <y>126</y>
+     <x>88</x>
+     <y>93</y>
     </hint>
     <hint type="destinationlabel">
-     <x>167</x>
-     <y>121</y>
+     <x>111</x>
+     <y>93</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEditSearchString</sender>
+   <signal>returnPressed()</signal>
+   <receiver>pushButtonSearchForward</receiver>
+   <slot>animateClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>46</x>
+     <y>601</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>418</x>
+     <y>601</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEditGames</sender>
+   <signal>returnPressed()</signal>
+   <receiver>pushButtonAnalyze</receiver>
+   <slot>animateClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>320</x>
+     <y>18</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>436</x>
+     <y>17</y>
     </hint>
    </hints>
   </connection>
