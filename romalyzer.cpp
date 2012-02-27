@@ -201,6 +201,7 @@ void ROMAlyzer::adjustIconSizes()
   pushButtonClose->setIconSize(iconSize);
   pushButtonSearchForward->setIconSize(iconSize);
   pushButtonSearchBackward->setIconSize(iconSize);
+  toolButtonSaveLog->setIconSize(iconSize);
   toolButtonBrowseCHDManagerExecutableFile->setIconSize(iconSize);
   toolButtonBrowseTemporaryWorkingDirectory->setIconSize(iconSize);
   toolButtonBrowseSetRewriterOutputPath->setIconSize(iconSize);
@@ -2904,6 +2905,30 @@ void ROMAlyzer::on_treeWidgetChecksums_customContextMenuRequested(const QPoint &
 			setRewriterItem = NULL;
 			romSetContextMenu->move(qmc2MainWindow->adjustedWidgetPosition(treeWidgetChecksums->viewport()->mapToGlobal(p), romSetContextMenu));
 			romSetContextMenu->show();
+		}
+	}
+}
+
+void ROMAlyzer::on_toolButtonSaveLog_clicked()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: ROMAlyzer::on_toolButtonSaveLog_clicked()");
+#endif
+
+	QString fileName = QFileDialog::getSaveFileName(this, tr("Choose file to store the ROMAlyzer log"), "qmc2-romalyzer.log", tr("All files (*)"));
+	if ( !fileName.isEmpty() ) {
+		QFile f(fileName);
+		if ( f.open(QIODevice::WriteOnly | QIODevice::Text) ) {
+			QTextStream ts(&f);
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("saving ROMAlyzer log to '%1'").arg(fileName));
+			log(tr("saving ROMAlyzer log to '%1'").arg(fileName));
+			ts << textBrowserLog->toPlainText();
+			f.close();
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (saving ROMAlyzer log to '%1')").arg(fileName));
+			log(tr("done (saving ROMAlyzer log to '%1')").arg(fileName));
+		} else {
+			qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("WARNING: can't open file '%1' for writing, please check permissions").arg(fileName));
+			log(tr("WARNING: can't open file '%1' for writing, please check permissions").arg(fileName));
 		}
 	}
 }
