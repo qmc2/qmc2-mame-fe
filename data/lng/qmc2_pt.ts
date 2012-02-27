@@ -14042,16 +14042,6 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>AVISO: arquivo %1 &apos;%2&apos; carregado de &apos;%3&apos; pode estar obsoleto, deveria ser misturado do conjunto pai &apos;%4&apos;</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="873"/>
-        <source>INFORMATION: %1 file &apos;%2&apos; loaded from &apos;%3&apos; has a merge name but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../romalyzer.cpp" line="875"/>
-        <source>INFORMATION: %1 file &apos;%2&apos; loaded from &apos;%3&apos; has a merge name but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../romalyzer.cpp" line="1003"/>
         <source>good / no dump / skipped</source>
         <translation>bom / sem dump / ignorado</translation>
@@ -14226,6 +14216,16 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="120"/>
         <source>Try to update CHDs if their header indicates an older version (&apos;chdman copy&apos;)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="873"/>
+        <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="875"/>
+        <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

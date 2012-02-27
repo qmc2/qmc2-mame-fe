@@ -870,9 +870,9 @@ void ROMAlyzer::analyze()
 	      } else {
 		      // this is actually an XML bug in the driver, inform via log and ignore...
 #if defined(QMC2_EMUTYPE_MAME)
-		      log(tr("INFORMATION: %1 file '%2' loaded from '%3' has a merge name but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile));
+		      log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
 #elif defined(QMC2_EMUTYPE_MESS)
-		      log(tr("INFORMATION: %1 file '%2' loaded from '%3' has a merge name but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(effectiveFile));
+		      log(tr("INFORMATION: %1 file '%2' has a named merge ('%3') but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver").arg(isCHD ? tr("CHD") : tr("ROM")).arg(childItem->text(QMC2_ROMALYZER_COLUMN_GAME)).arg(mergeName));
 #endif
 		      childItem->setIcon(QMC2_ROMALYZER_COLUMN_MERGE, QIcon(QString::fromUtf8(":/data/img/merge_ok.png")));
 	      }
