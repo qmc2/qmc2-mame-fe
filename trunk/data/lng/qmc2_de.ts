@@ -14380,14 +14380,12 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>kein Dump</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="873"/>
         <source>INFORMATION: %1 file &apos;%2&apos; loaded from &apos;%3&apos; has a merge name but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver</source>
-        <translation>INFORMATION: %1 Datei &apos;%2&apos; geladen von &apos;%3&apos; hat einen Merge-Namen aber kein Eltern-Set -- dies wird ignroiert, sollte aber an die MAME Entwickler gemeldet werden, da es sich um einen potenziellen XML Bug des betreffenden Treibers handelt</translation>
+        <translation type="obsolete">INFORMATION: %1 Datei &apos;%2&apos; geladen von &apos;%3&apos; hat einen Merge-Namen aber kein Eltern-Set -- dies wird ignroiert, sollte aber an die MAME Entwickler gemeldet werden, da es sich um einen potenziellen XML Bug des betreffenden Treibers handelt</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="875"/>
         <source>INFORMATION: %1 file &apos;%2&apos; loaded from &apos;%3&apos; has a merge name but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver</source>
-        <translation>INFORMATION: %1 Datei &apos;%2&apos; geladen von &apos;%3&apos; hat einen Merge-Namen aber kein Eltern-Set -- dies wird ignroiert, sollte aber an die MESS Entwickler gemeldet werden, da es sich um einen potenziellen XML Bug des betreffenden Treibers handelt</translation>
+        <translation type="obsolete">INFORMATION: %1 Datei &apos;%2&apos; geladen von &apos;%3&apos; hat einen Merge-Namen aber kein Eltern-Set -- dies wird ignroiert, sollte aber an die MESS Entwickler gemeldet werden, da es sich um einen potenziellen XML Bug des betreffenden Treibers handelt</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1003"/>
@@ -14883,6 +14881,16 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <location filename="../../romalyzer.cpp" line="808"/>
         <source>error</source>
         <translation>Fehler</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="873"/>
+        <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver</source>
+        <translation>INFORMATION: %1 Datei &apos;%2&apos; hat eine benannte Merge-Datei (&apos;%3&apos;) aber kein Eltern-Set -- dies wird ignoriert, sollte aber an die MAME Entwickler gemeldet werden, da es sich um einen potenziellen XML Bug des betreffenden Treibers handelt</translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="875"/>
+        <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver</source>
+        <translation>INFORMATION: %1 Datei &apos;%2&apos; hat eine benannte Merge-Datei (&apos;%3&apos;) aber kein Eltern-Set -- dies wird ignoriert, sollte aber an die MESS Entwickler gemeldet werden, da es sich um einen potenziellen XML Bug des betreffenden Treibers handelt</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="951"/>
