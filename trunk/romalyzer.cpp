@@ -1444,12 +1444,39 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                     }
                     chdManagerRunning = false;
                     if ( !qmc2StopParser ) {
-                      if ( chdManagerMD5Success && calcMD5 )
+                      if ( chdManagerMD5Success && calcMD5 ) {
                         log(tr("CHD manager: CHD file integrity is good"));
-		      else if ( chdManagerSHA1Success && calcSHA1 )
+		      } else if ( chdManagerSHA1Success && calcSHA1 ) {
                         log(tr("CHD manager: CHD file integrity is good"));
-                      else
+		      } else {
                         log(tr("CHD manager: WARNING: CHD file integrity is bad"));
+                      }
+
+                      if ( step == 1 && (chdManagerMD5Success || chdManagerSHA1Success) ) {
+                        log(tr("CHD manager: replacing CHD"));
+                        if ( progressWidget ) {
+                          progressWidget->setFormat(tr("Copy"));
+                          progressWidget->setRange(-1, -1);
+                          progressWidget->setValue(-1);
+                        }
+                        QFile::remove(chdFilePath);
+                        if ( QFile::rename(chdTempFilePath, chdFilePath) ) {
+                          log(tr("CHD manager: CHD replaced"));
+                          myItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, tr("CHD v%1").arg(QMC2_CHD_CURRENT_VERSION));
+			  QFile romFileTmp(chdFilePath);
+                          if ( romFileTmp.open(QIODevice::ReadOnly) ) {
+				  char bufferCopy[QMC2_ROMALYZER_FILE_BUFFER_SIZE];
+				  strncpy(bufferCopy, buffer, QMC2_ROMALYZER_FILE_BUFFER_SIZE);
+				  if ( romFileTmp.read(buffer, QMC2_CHD_HEADER_V3_LENGTH) <= 0 ) {
+					  log(tr("CHD manager: WARNING: failed updating CHD header information"));
+					  strncpy(buffer, bufferCopy, QMC2_ROMALYZER_FILE_BUFFER_SIZE);
+				  } else
+					  chdVersion = QMC2_CHD_CURRENT_VERSION;
+				  romFileTmp.close();
+                          }
+                        } else
+                          log(tr("CHD manager: FATAL: failed to replace CHD -- updated CHD preserved as '%1', please copy it to '%2' manually!").arg(chdTempFilePath).arg(chdFilePath));
+                      }
 
                       switch ( chdVersion ) {
                         case 3:
@@ -1486,21 +1513,6 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                           if ( fallbackPath->isEmpty() ) *fallbackPath = chdFilePath;
                           break;
                       }
-
-                      if ( step == 1 && (chdManagerMD5Success || chdManagerSHA1Success) ) {
-                        log(tr("CHD manager: replacing CHD"));
-                        if ( progressWidget ) {
-                          progressWidget->setFormat(tr("Copy"));
-                          progressWidget->setRange(-1, -1);
-                          progressWidget->setValue(-1);
-                        }
-                        QFile::remove(chdFilePath);
-                        if ( QFile::rename(chdTempFilePath, chdFilePath) ) {
-                          log(tr("CHD manager: CHD replaced"));
-                          myItem->setText(QMC2_ROMALYZER_COLUMN_TYPE, tr("CHD v%1").arg(QMC2_CHD_CURRENT_VERSION));
-                        } else
-                          log(tr("CHD manager: FATAL: failed to replace CHD -- updated CHD preserved as '%1', please copy it to '%2' manually!").arg(chdTempFilePath).arg(chdFilePath));
-                      }
                     }
                     if ( QFile::exists(chdTempFilePath) ) {
                       log(tr("CHD manager: cleaning up"));
@@ -1535,7 +1547,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                       break;
 
 		    case 5:
-		      log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
+		      log(tr("using CHD v%1 header checksums for CHD verification").arg(chdVersion));
 		      if ( calcSHA1 ) {
 			      QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
 			      *sha1Str = QString(sha1Data.toHex());
