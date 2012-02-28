@@ -1526,10 +1526,6 @@ p, li { white-space: pre-wrap; }
         <translation>Fremde IDs festlegen</translation>
     </message>
     <message>
-        <source>Edit custom IDs for this emulator (click an item to edit)</source>
-        <translation type="obsolete">Fremde IDs für diesen Emulator einrichten (zum Editieren Item anklicken)</translation>
-    </message>
-    <message>
         <location filename="../../customidsetup.ui" line="33"/>
         <source>Edit custom IDs for this emulator (double-click an item to edit)</source>
         <translation>Fremde IDs für diesen Emulator einrichten (zum Editieren doppelt klicken)</translation>
@@ -1583,10 +1579,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../customidsetup.ui" line="175"/>
         <source>Copy IDs</source>
         <translation>IDs kopieren</translation>
-    </message>
-    <message>
-        <source>Setup custom IDs for %1</source>
-        <translation type="obsolete">Fremde IDs für %1 festlegen</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="24"/>
@@ -10274,10 +10266,6 @@ Einbettung wiederholen?</translation>
         <translation>Kommando zum Ausführen des Emulatzors (Pfad der ausführbaren Datei)</translation>
     </message>
     <message>
-        <source>Arguments passed to the emulator -- use $ID$ as a placeholder for the unique game/machine ID (its short name)</source>
-        <translation type="obsolete">Argumente, die an den Emulator übergeben werden -- verwende $ID$ als Platzhalter für die eindeutige ID des Spiels / der Maschine (Kurzname)</translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="4704"/>
         <source>Replace emulator registration</source>
         <translation>Emulator Registrierung ersetzen</translation>
@@ -14237,13 +14225,6 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>CHD Manager: aktualisiere CHD (v%1 -&gt; v%2)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1369"/>
-        <location filename="../../romalyzer.cpp" line="1381"/>
-        <location filename="../../romalyzer.cpp" line="1389"/>
-        <source>CHD manager: using header checksums for CHD verification</source>
-        <translation>CHD Manager: verwende Header Prüfsummen zur CHD Verifikation</translation>
-    </message>
-    <message>
         <location filename="../../romalyzer.cpp" line="1397"/>
         <source>CHD manager: no header checksums available for CHD verification</source>
         <translation>CHD Manager: keine Header Prüfsummen für CHD Verifikation verfügbar</translation>
@@ -14265,6 +14246,9 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <translation>CHD Manager: CHD Datei-Integrität ist schlecht</translation>
     </message>
     <message>
+        <location filename="../../romalyzer.cpp" line="1369"/>
+        <location filename="../../romalyzer.cpp" line="1381"/>
+        <location filename="../../romalyzer.cpp" line="1389"/>
         <location filename="../../romalyzer.cpp" line="1483"/>
         <location filename="../../romalyzer.cpp" line="1495"/>
         <location filename="../../romalyzer.cpp" line="1503"/>
@@ -14379,14 +14363,6 @@ Lokale Maschinen-Einstellungen verwenden, mit globalen Einstellungen überschrei
         <location filename="../../romalyzer.cpp" line="958"/>
         <source>no dump</source>
         <translation>kein Dump</translation>
-    </message>
-    <message>
-        <source>INFORMATION: %1 file &apos;%2&apos; loaded from &apos;%3&apos; has a merge name but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver</source>
-        <translation type="obsolete">INFORMATION: %1 Datei &apos;%2&apos; geladen von &apos;%3&apos; hat einen Merge-Namen aber kein Eltern-Set -- dies wird ignroiert, sollte aber an die MAME Entwickler gemeldet werden, da es sich um einen potenziellen XML Bug des betreffenden Treibers handelt</translation>
-    </message>
-    <message>
-        <source>INFORMATION: %1 file &apos;%2&apos; loaded from &apos;%3&apos; has a merge name but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver</source>
-        <translation type="obsolete">INFORMATION: %1 Datei &apos;%2&apos; geladen von &apos;%3&apos; hat einen Merge-Namen aber kein Eltern-Set -- dies wird ignroiert, sollte aber an die MESS Entwickler gemeldet werden, da es sich um einen potenziellen XML Bug des betreffenden Treibers handelt</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1004"/>
