@@ -1366,7 +1366,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                           } else if ( !chdManagerVerifyCHDs ) {
                             switch ( chdVersion ) {
                               case 3:
-                                log(tr("CHD manager: using header checksums for CHD verification"));
+                                log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
                                 if ( calcSHA1 ) {
                                   QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V3_SHA1_OFFSET), QMC2_CHD_HEADER_V3_SHA1_LENGTH);
                                   *sha1Str = QString(sha1Data.toHex());
@@ -1378,7 +1378,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                                 break;
 
                               case 4:
-                                log(tr("CHD manager: using header checksums for CHD verification"));
+                                log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
                                 if ( calcSHA1 ) {
                                   QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V4_SHA1_OFFSET), QMC2_CHD_HEADER_V4_SHA1_LENGTH);
                                   *sha1Str = QString(sha1Data.toHex());
@@ -1386,7 +1386,7 @@ QString &ROMAlyzer::getEffectiveFile(QTreeWidgetItem *myItem, QString gameName, 
                                 break;
 
                               case 5:
-                                log(tr("CHD manager: using header checksums for CHD verification"));
+                                log(tr("CHD manager: using CHD v%1 header checksums for CHD verification").arg(chdVersion));
                                 if ( calcSHA1 ) {
                                   QByteArray sha1Data((const char *)(buffer + QMC2_CHD_HEADER_V5_SHA1_OFFSET), QMC2_CHD_HEADER_V5_SHA1_LENGTH);
                                   *sha1Str = QString(sha1Data.toHex());

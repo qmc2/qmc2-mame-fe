@@ -11682,10 +11682,6 @@ Re-essayer l&apos;embarquement?</translation>
         <translation>Commande pour exécuter l&apos;émulateur (chemin vers l&apos;exécutable)</translation>
     </message>
     <message>
-        <source>Arguments passed to the emulator -- use $ID$ as a placeholder for the unique game/machine ID (its short name)</source>
-        <translation type="obsolete">Arguments passés à l&apos;émulateur - - utiliser $ID$ comme remplacement pour l&apos;ID de jeu/machine (son nom court)</translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="4704"/>
         <source>Replace emulator registration</source>
         <translation>Retirer l&apos;enregistrement de l&apos;émulateur</translation>
@@ -15135,13 +15131,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation>manager CHD: mise à jour de CHD (v%1 -&gt; v%2)</translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1369"/>
-        <location filename="../../romalyzer.cpp" line="1381"/>
-        <location filename="../../romalyzer.cpp" line="1389"/>
-        <source>CHD manager: using header checksums for CHD verification</source>
-        <translation>manager CHD: utilise la somme de contrôle de l&apos;entête pour la vérification de CHD</translation>
-    </message>
-    <message>
         <location filename="../../romalyzer.cpp" line="1397"/>
         <source>CHD manager: no header checksums available for CHD verification</source>
         <translation>manager CHD: pas de somme de contrôle de l&apos;entête de CHD pour la vérification</translation>
@@ -15163,6 +15152,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../romalyzer.cpp" line="1369"/>
+        <location filename="../../romalyzer.cpp" line="1381"/>
+        <location filename="../../romalyzer.cpp" line="1389"/>
         <location filename="../../romalyzer.cpp" line="1483"/>
         <location filename="../../romalyzer.cpp" line="1495"/>
         <location filename="../../romalyzer.cpp" line="1503"/>

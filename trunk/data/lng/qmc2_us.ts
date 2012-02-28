@@ -14217,13 +14217,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="1369"/>
-        <location filename="../../romalyzer.cpp" line="1381"/>
-        <location filename="../../romalyzer.cpp" line="1389"/>
-        <source>CHD manager: using header checksums for CHD verification</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../../romalyzer.cpp" line="1397"/>
         <source>CHD manager: no header checksums available for CHD verification</source>
         <translation></translation>
@@ -14245,6 +14238,9 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
+        <location filename="../../romalyzer.cpp" line="1369"/>
+        <location filename="../../romalyzer.cpp" line="1381"/>
+        <location filename="../../romalyzer.cpp" line="1389"/>
         <location filename="../../romalyzer.cpp" line="1483"/>
         <location filename="../../romalyzer.cpp" line="1495"/>
         <location filename="../../romalyzer.cpp" line="1503"/>
