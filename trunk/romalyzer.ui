@@ -1421,6 +1421,11 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tabSetRenameTool">
+      <attribute name="title">
+       <string>Set rename tool</string>
+      </attribute>
+     </widget>
     </widget>
    </item>
    <item row="2" column="0">

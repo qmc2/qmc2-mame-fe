@@ -79,6 +79,10 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   
   setupUi(this);
 
+#if !defined(QMC2_WIP_ENABLED)
+  tabWidgetAnalysis->removeTab(QMC2_ROMALYZER_PAGE_RENAMETOOL);
+#endif
+
   checkBoxFixCHDs->setVisible(QMC2_CHD_CURRENT_VERSION < 5);
 
 #if defined(QMC2_SDLMESS)
