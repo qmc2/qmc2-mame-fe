@@ -16,6 +16,7 @@ class ProcessManager : public QObject
     ushort procCount;
     QString lastCommand;
     QString exitString;
+    bool launchForeignID;
 #if QMC2_USE_PHONON_API
     bool musicWasPlaying;
     bool sentPlaySignal;

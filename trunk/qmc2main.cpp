@@ -403,6 +403,7 @@ MainWindow::MainWindow(QWidget *parent)
   qmc2StartupDefaultFont = qApp->font();
   desktopGeometry = qApp->desktop()->geometry();
   isActiveState = false;
+  launchForeignID = false;
 
   // remember the default style
   qmc2DefaultStyle = QApplication::style()->objectName();
@@ -1439,13 +1440,24 @@ void MainWindow::action_foreignIDsMenuItem_triggered()
 	QStringList foreignInfo = action->data().toString().split("\t");
 	if ( foreignInfo.count() > 2 ) {
 		// 0:emuName -- 1:id -- 2:description 
-		QString emuName = foreignInfo[0];
-		QString id = foreignInfo[1];
-		QString description = foreignInfo[2];
+		foreignEmuName = foreignInfo[0];
+		foreignID = foreignInfo[1];
+		foreignDescription = foreignInfo[2];
 #ifdef QMC2_DEBUG
-		log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::action_foreignIDsMenuItem_triggered(): emuName = %1, id = %2, description = %3").arg(emuName).arg(id).arg(description));
+		log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::action_foreignIDsMenuItem_triggered(): foreignEmuName = %1, foreignID = %2, foreignDescription = %3").arg(foreignEmuName).arg(foreignID).arg(foreignDescription));
 #endif
-		// FIXME: launch foreign emulator
+		launchForeignID = true;
+      		switch ( qmc2DefaultLaunchMode ) {
+#if defined(Q_WS_X11) || defined(Q_WS_WIN)
+			case QMC2_LAUNCH_MODE_EMBEDDED:
+				QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_activated()));
+				break;
+#endif
+			case QMC2_LAUNCH_MODE_INDEPENDENT:
+			default:
+				QTimer::singleShot(0, this, SLOT(on_actionPlay_activated()));
+				break;
+		}
 	}
 }
 #undef QMC2_DEBUG
@@ -1517,7 +1529,20 @@ void MainWindow::on_actionPlay_activated()
 #else
   if ( registeredEmulators.count() > 0 ) {
 #endif
-    if ( qmc2Config->contains(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator") ) {
+    if ( launchForeignID ) {
+        foreignEmulator = true;
+#if defined(QMC2_EMUTYPE_MAME)
+        QString emuCommand = qmc2Config->value(QString("MAME/RegisteredEmulators/%1/Executable").arg(foreignEmuName)).toString();
+        QString emuWorkDir = qmc2Config->value(QString("MAME/RegisteredEmulators/%1/WorkingDirectory").arg(foreignEmuName)).toString();
+        QStringList emuArgs = qmc2Config->value(QString("MAME/RegisteredEmulators/%1/Arguments").arg(foreignEmuName)).toString().replace("$ID$", foreignID).replace("$DESCRIPTION$", foreignDescription).split(" ");
+#elif defined(QMC2_EMUTYPE_MESS)
+        QString emuCommand = qmc2Config->value(QString("MESS/RegisteredEmulators/%1/Executable").arg(foreignEmuName)).toString();
+        QString emuWorkDir = qmc2Config->value(QString("MESS/RegisteredEmulators/%1/WorkingDirectory").arg(foreignEmuName)).toString();
+        QStringList emuArgs = qmc2Config->value(QString("MESS/RegisteredEmulators/%1/Arguments").arg(foreignEmuName)).toString().replace("$ID$", foreignID).replace("$DESCRIPTION$", foreignDescription).split(" ");
+#endif
+        // start game/machine
+        qmc2ProcessManager->process(qmc2ProcessManager->start(emuCommand, emuArgs, true, emuWorkDir));
+    } else if ( qmc2Config->contains(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator") ) {
       QString selectedEmulator = qmc2Config->value(qmc2EmulatorOptions->settingsGroup + "/SelectedEmulator").toString();
       if ( !selectedEmulator.isEmpty() && registeredEmulators.contains(selectedEmulator) ) {
         foreignEmulator = true;
@@ -1532,25 +1557,27 @@ void MainWindow::on_actionPlay_activated()
 #endif
         // start game/machine
         qmc2ProcessManager->process(qmc2ProcessManager->start(emuCommand, emuArgs, true, emuWorkDir));
-
-        qmc2AutoMinimizedWidgets.clear();
-        if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool() && !qmc2StartEmbedded ) {
-          foreach (QWidget *w, qApp->topLevelWidgets()) {
-            if ( w->isVisible () ) {
-              qmc2AutoMinimizedWidgets << w;
-              w->showMinimized();
-            }
-          }
-        }
       }
     }
   }
 
   qmc2DriverName = gameName;
 
-  if ( foreignEmulator )
+  if ( foreignEmulator ) {
+    qmc2AutoMinimizedWidgets.clear();
+    if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/MinimizeOnEmuLaunch", false).toBool() && !qmc2StartEmbedded ) {
+	    foreach (QWidget *w, qApp->topLevelWidgets()) {
+		    if ( w->isVisible () ) {
+			    qmc2AutoMinimizedWidgets << w;
+			    w->showMinimized();
+		    }
+	    }
+    }
+    launchForeignID = false;
     return;
+  }
 
+  launchForeignID = false;
   QStringList args;
   QString sectionTitle;
   EmulatorOptions *emuOptions = qmc2EmulatorOptions;

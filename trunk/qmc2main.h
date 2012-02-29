@@ -153,6 +153,11 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     bool activityState;
     QString urlSectionRegExp;
 
+    QString foreignEmuName;
+    QString foreignID;
+    QString foreignDescription;
+    bool launchForeignID;
+
     QWidgetAction *widgetActionToolbarSearch;
     QComboBox *comboBoxToolbarSearch;
 
