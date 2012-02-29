@@ -1526,62 +1526,67 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../customidsetup.ui" line="33"/>
+        <location filename="../../customidsetup.ui" line="144"/>
         <source>Edit custom IDs for this emulator (double-click an item to edit)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../customidsetup.ui" line="67"/>
+        <location filename="../../customidsetup.ui" line="175"/>
         <source>ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../customidsetup.ui" line="72"/>
+        <location filename="../../customidsetup.ui" line="180"/>
         <source>Description</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../customidsetup.ui" line="86"/>
+        <location filename="../../customidsetup.ui" line="46"/>
         <source>Cancel ID customization and close dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../customidsetup.ui" line="89"/>
+        <location filename="../../customidsetup.ui" line="49"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancel</translation>
     </message>
     <message>
-        <location filename="../../customidsetup.ui" line="109"/>
+        <location filename="../../customidsetup.ui" line="130"/>
         <source>Remove the currently selected ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../customidsetup.ui" line="129"/>
+        <location filename="../../customidsetup.ui" line="26"/>
         <source>Add a new ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../customidsetup.ui" line="149"/>
+        <location filename="../../customidsetup.ui" line="79"/>
         <source>Accept customized IDs and close dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../customidsetup.ui" line="152"/>
+        <location filename="../../customidsetup.ui" line="82"/>
         <source>&amp;Ok</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="../../customidsetup.ui" line="172"/>
+        <location filename="../../customidsetup.ui" line="102"/>
         <source>Copy IDs from another foreign emulator (if any)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../customidsetup.ui" line="175"/>
+        <location filename="../../customidsetup.ui" line="105"/>
         <source>Copy IDs</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../customidsetup.cpp" line="24"/>
+        <location filename="../../customidsetup.ui" line="194"/>
+        <source>Enable / disable sorting</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../customidsetup.cpp" line="25"/>
         <source>Setup custom IDs for &apos;%1&apos;</source>
         <translation></translation>
     </message>
@@ -5160,42 +5165,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>JoystickCalibrationWidget</name>
     <message>
-        <location filename="../../options.cpp" line="3991"/>
+        <location filename="../../options.cpp" line="3990"/>
         <source>Axis %1:</source>
         <translation>Axis %1:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4000"/>
+        <location filename="../../options.cpp" line="3999"/>
         <source>Current value of axis %1</source>
         <translation>Current value of axis %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4004"/>
+        <location filename="../../options.cpp" line="4003"/>
         <source>DZ:</source>
         <translation>DZ:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4006"/>
+        <location filename="../../options.cpp" line="4005"/>
         <source>Deadzone of axis %1</source>
         <translation>Deadzone of axis %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4012"/>
+        <location filename="../../options.cpp" line="4011"/>
         <source>S:</source>
         <translation>S:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4014"/>
+        <location filename="../../options.cpp" line="4013"/>
         <source>Sensitivity of axis %1</source>
         <translation>Sensitivity of axis %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3992"/>
+        <location filename="../../options.cpp" line="3991"/>
         <source>Reset calibration of axis %1</source>
         <translation>Reset calibration of axis %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3987"/>
+        <location filename="../../options.cpp" line="3986"/>
         <source>Enable/disable axis %1</source>
         <translation>Enable/disable axis %1</translation>
     </message>
@@ -5239,67 +5244,67 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>JoystickTestWidget</name>
     <message>
-        <location filename="../../options.cpp" line="4235"/>
+        <location filename="../../options.cpp" line="4234"/>
         <source>A%1: %v</source>
         <translation>A%1: %v</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4236"/>
+        <location filename="../../options.cpp" line="4235"/>
         <source>Current value of axis %1</source>
         <translation>Current value of axis %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4246"/>
+        <location filename="../../options.cpp" line="4245"/>
         <source>B%1</source>
         <translation>B%1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4247"/>
+        <location filename="../../options.cpp" line="4246"/>
         <source>Current state of button %1</source>
         <translation>Current state of button %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4257"/>
+        <location filename="../../options.cpp" line="4256"/>
         <source>H%1: 0</source>
         <translation>H%1: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4258"/>
+        <location filename="../../options.cpp" line="4257"/>
         <source>Current value of hat %1</source>
         <translation>Current value of hat %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4268"/>
+        <location filename="../../options.cpp" line="4267"/>
         <source>T%1 DX: 0</source>
         <translation>T%1 DX: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4269"/>
+        <location filename="../../options.cpp" line="4268"/>
         <source>Current X-delta of trackball %1</source>
         <translation>Current X-delta of trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4279"/>
+        <location filename="../../options.cpp" line="4278"/>
         <source>T%1 DY: 0</source>
         <translation>T%1 DY: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4280"/>
+        <location filename="../../options.cpp" line="4279"/>
         <source>Current Y-delta of trackball %1</source>
         <translation>Current Y-delta of trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4368"/>
+        <location filename="../../options.cpp" line="4367"/>
         <source>H%1: %2</source>
         <translation>H%1: %2</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4402"/>
+        <location filename="../../options.cpp" line="4401"/>
         <source>T%1 DX: %2</source>
         <translation>T%1 DX: %2</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4403"/>
+        <location filename="../../options.cpp" line="4402"/>
         <source>T%1 DY: %2</source>
         <translation>T%1 DY: %2</translation>
     </message>
@@ -11761,10 +11766,10 @@ Retry embedding?</source>
     </message>
     <message>
         <location filename="../../options.ui" line="3127"/>
-        <location filename="../../options.cpp" line="3615"/>
-        <location filename="../../options.cpp" line="3638"/>
-        <location filename="../../options.cpp" line="3691"/>
-        <location filename="../../options.cpp" line="3778"/>
+        <location filename="../../options.cpp" line="3614"/>
+        <location filename="../../options.cpp" line="3637"/>
+        <location filename="../../options.cpp" line="3690"/>
+        <location filename="../../options.cpp" line="3777"/>
         <source>No joysticks found</source>
         <translation></translation>
     </message>
@@ -11924,12 +11929,12 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3952"/>
+        <location filename="../../options.cpp" line="3951"/>
         <source>joystick map is clean</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3954"/>
+        <location filename="../../options.cpp" line="3953"/>
         <source>WARNING: joystick map contains duplicates</source>
         <translation></translation>
     </message>

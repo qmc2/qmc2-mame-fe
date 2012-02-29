@@ -18,9 +18,13 @@ class CustomIDSetup : public QDialog, public Ui::CustomIDSetup
 		// auto-connected slots
 		void on_toolButtonAddID_clicked();
 		void on_toolButtonRemoveID_clicked();
+		void on_toolButtonSort_toggled(bool);
 		void on_tableWidgetCustomIDs_itemSelectionChanged();
+		void on_tableWidgetCustomIDs_currentItemChanged(QTableWidgetItem *, QTableWidgetItem *);
 
 		// other
+		void load();
+		void save();
 		void adjustFontAndIconSizes();
 };
 
