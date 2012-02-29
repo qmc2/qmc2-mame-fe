@@ -1380,11 +1380,7 @@ void Options::on_pushButtonApply_clicked()
 
   // Additional emulators
   tableWidgetRegisteredEmulators->setSortingEnabled(false);
-#if defined(QMC2_EMUTYPE_MAME)
-  config->remove("MAME/RegisteredEmulators");
-#elif defined(QMC2_EMUTYPE_MESS)
-  config->remove("MESS/RegisteredEmulators");
-#endif
+  config->remove(QMC2_EMULATOR_PREFIX + "RegisteredEmulators");
   for (i = 0; i < tableWidgetRegisteredEmulators->rowCount(); i++) {
     if ( tableWidgetRegisteredEmulators->item(i, QMC2_ADDTLEMUS_COLUMN_NAME) ) {
       QString emuName, emuCommand, emuWorkDir, emuArgs;
@@ -1407,6 +1403,11 @@ void Options::on_pushButtonApply_clicked()
     }
   }
   tableWidgetRegisteredEmulators->setSortingEnabled(true);
+
+  // remove custom ID lists, if applicable
+  foreach (QString emuName, registeredEmulatorsToBeRemoved)
+	  config->remove(QString(QMC2_EMULATOR_PREFIX + "CustomIDs/%1").arg(emuName));
+  registeredEmulatorsToBeRemoved.clear();
 
   // sync settings (write settings to disk) and apply
   config->sync();
@@ -2332,6 +2333,11 @@ void Options::restoreCurrentConfig(bool useDefaultSettings)
   }
   config->endGroup();
   tableWidgetRegisteredEmulators->setSortingEnabled(true);
+
+  // remove custom ID lists, if applicable
+  foreach (QString emuName, registeredEmulatorsToBeRemoved)
+	  config->remove(QString(QMC2_EMULATOR_PREFIX + "CustomIDs/%1").arg(emuName));
+  registeredEmulatorsToBeRemoved.clear();
 
   if ( useDefaultSettings ) {
     QString fn = config->fileName();
@@ -3520,7 +3526,9 @@ void Options::on_toolButtonRemoveEmulator_clicked()
 
   QList<QTableWidgetItem *> sl = tableWidgetRegisteredEmulators->selectedItems();
   if ( !sl.isEmpty() ) {
-    tableWidgetRegisteredEmulators->removeRow(sl[QMC2_ADDTLEMUS_COLUMN_NAME]->row());
+    int row = sl[QMC2_ADDTLEMUS_COLUMN_NAME]->row();
+    registeredEmulatorsToBeRemoved << tableWidgetRegisteredEmulators->item(row, QMC2_ADDTLEMUS_COLUMN_NAME)->text();
+    tableWidgetRegisteredEmulators->removeRow(row);
   }
 }
 
