@@ -413,6 +413,10 @@ MainWindow::MainWindow(QWidget *parent)
 
   setupUi(this);
 
+  // enable menu tear-off
+  foreach (QMenu *menu, menuBar()->findChildren<QMenu *>())
+	  menu->setTearOffEnabled(true);
+
   // toolbar's search combo-box
   comboBoxToolbarSearch = new QComboBox(this);
   comboBoxToolbarSearch->setEditable(true);
@@ -1427,6 +1431,24 @@ MainWindow::~MainWindow()
 #endif
 
 }
+
+#define QMC2_DEBUG
+void MainWindow::action_foreignIDsMenuItem_triggered()
+{
+	QAction *action = (QAction *)sender();
+	QStringList foreignInfo = action->data().toString().split("\t");
+	if ( foreignInfo.count() > 2 ) {
+		// 0:emuName -- 1:id -- 2:description 
+		QString emuName = foreignInfo[0];
+		QString id = foreignInfo[1];
+		QString description = foreignInfo[2];
+#ifdef QMC2_DEBUG
+		log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::action_foreignIDsMenuItem_triggered(): emuName = %1, id = %2, description = %3").arg(emuName).arg(id).arg(description));
+#endif
+		// FIXME: launch foreign emulator
+	}
+}
+#undef QMC2_DEBUG
 
 void MainWindow::on_actionPlayEmbedded_activated()
 {
@@ -3232,6 +3254,8 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 
 	switch ( currentIndex ) {
 		case QMC2_SWINFO_SNAPSHOT_PAGE:
+			if ( qmc2SoftwareNotesEditor )
+				qmc2SoftwareNotesEditor->hideTearOffMenus();
 			if ( !qmc2SoftwareSnapshot ) {
 				qmc2SoftwareSnapshot = new SoftwareSnapshot(tabSnapshot);
 				QHBoxLayout *layout = new QHBoxLayout;
@@ -3244,6 +3268,8 @@ void MainWindow::on_tabWidgetSoftwareDetail_currentChanged(int currentIndex)
 
 #if defined(QMC2_EMUTYPE_MESS)
 		case QMC2_SWINFO_PROJECTMESS_PAGE:
+			if ( qmc2SoftwareNotesEditor )
+				qmc2SoftwareNotesEditor->hideTearOffMenus();
 			if ( qmc2SoftwareList->currentItem != qmc2LastProjectMESSItem ) {
 				if ( !qmc2ProjectMESS ) {
 					QVBoxLayout *layout = new QVBoxLayout;
@@ -9811,6 +9837,8 @@ void MainWindow::stackedWidgetSpecial_setCurrentIndex(int index)
 			stackedWidgetSpecial->setCurrentIndex(QMC2_SPECIAL_DEFAULT_PAGE);
 			if ( tabWidgetSoftwareDetail->parent() == this )
 				tabWidgetSoftwareDetail->hide();
+			if ( qmc2SoftwareNotesEditor )
+				qmc2SoftwareNotesEditor->hideTearOffMenus();
 			break;
 
 		case QMC2_SPECIAL_SOFTWARE_PAGE:

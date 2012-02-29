@@ -113,6 +113,7 @@ public slots:
     bool save();
     void setCurrentFileName(const QString &fileName);
     void setCurrentTemplateName(const QString &templateName);
+    void hideTearOffMenus();
 
 private:
     Ui_HTMLEditorMainWindow *ui;
