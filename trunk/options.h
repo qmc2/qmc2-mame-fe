@@ -85,6 +85,7 @@ class Options : public QDialog, public Ui::Options
     JoystickTestWidget *joystickTestWidget;
     QScrollArea *scrollArea;
 #endif
+    QStringList registeredEmulatorsToBeRemoved;
 
     Options(QWidget *parent = 0);
     ~Options();
