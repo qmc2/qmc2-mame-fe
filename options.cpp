@@ -3594,9 +3594,8 @@ void Options::setupCustomIDsClicked()
 	if ( pb ) {
 		if ( !pb->objectName().isEmpty() ) {
 			CustomIDSetup cidSetup(pb->objectName(), this);
-			if ( cidSetup.exec() == QDialog::Accepted ) {
-				// FIXME
-			}
+			if ( cidSetup.exec() == QDialog::Accepted )
+				cidSetup.save();
 		}
 	}
 }
