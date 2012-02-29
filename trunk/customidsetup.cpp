@@ -130,6 +130,8 @@ void CustomIDSetup::on_toolButtonSort_toggled(bool enable)
 
 	tableWidgetCustomIDs->setSortingEnabled(enable);
 	tableWidgetCustomIDs->setDragDropMode(enable ? QAbstractItemView::NoDragDrop : QAbstractItemView::InternalMove);
+	if ( enable )
+		tableWidgetCustomIDs->sortByColumn(tableWidgetCustomIDs->horizontalHeader()->sortIndicatorSection(), tableWidgetCustomIDs->horizontalHeader()->sortIndicatorOrder());
 }
 
 void CustomIDSetup::load()
@@ -146,7 +148,6 @@ void CustomIDSetup::load()
 	qmc2Config->endGroup();
 
 	tableWidgetCustomIDs->clearContents();
-
 	bool oldSortingEnabled = tableWidgetCustomIDs->isSortingEnabled();
 	tableWidgetCustomIDs->setSortingEnabled(false);
 	int row = 0;
@@ -161,6 +162,8 @@ void CustomIDSetup::load()
 		}
 	}
 	tableWidgetCustomIDs->setSortingEnabled(oldSortingEnabled);
+	if ( oldSortingEnabled )
+		tableWidgetCustomIDs->sortByColumn(tableWidgetCustomIDs->horizontalHeader()->sortIndicatorSection(), tableWidgetCustomIDs->horizontalHeader()->sortIndicatorOrder());
 }
 
 void CustomIDSetup::save()
