@@ -1425,6 +1425,246 @@
       <attribute name="title">
        <string>Set rename tool</string>
       </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0" colspan="2">
+        <widget class="QLineEdit" name="lineEditSetRenamerPattern">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Specify sets to be included in the search (Qt regular expression syntax)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="pushButtonSetRenamerSearch">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Search for matches now!</string>
+         </property>
+         <property name="text">
+          <string>Search</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/filefind.png</normaloff>:/data/img/filefind.png</iconset>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="pushButtonSetRenamerRenameSets">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Rename selected sets</string>
+         </property>
+         <property name="text">
+          <string>Rename</string>
+         </property>
+         <property name="icon">
+          <iconset resource="qmc2.qrc">
+           <normaloff>:/data/img/rename.png</normaloff>:/data/img/rename.png</iconset>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="4">
+        <widget class="QTreeWidget" name="treeWidgetSetRenamerSearchResult">
+         <property name="toolTip">
+          <string>Search results (checksum matches)</string>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ExtendedSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
+         <property name="uniformRowHeights">
+          <bool>true</bool>
+         </property>
+         <property name="itemsExpandable">
+          <bool>false</bool>
+         </property>
+         <property name="sortingEnabled">
+          <bool>true</bool>
+         </property>
+         <property name="allColumnsShowFocus">
+          <bool>true</bool>
+         </property>
+         <column>
+          <property name="text">
+           <string>ID / Filename</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Old ID / FIlename</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Match probability</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="4">
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QLabel" name="labelSetRenamerAutomationLevel">
+           <property name="text">
+            <string>Level of automation</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBoxSetRenamerAutomationLevel">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Choose the level of automated set renamer operations</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Do nothing automatically</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Automatically select sure matches</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Automatically select sure matches and rename sets accordingly</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0" colspan="4">
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QLabel" name="labelSetRenamerOldXmlFile">
+           <property name="text">
+            <string>Old XML</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEditSetRenamerOldXmlFile">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Old XML data input file (produced with '-listxml')</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButtonBrowseSetRenamerOldXmlFile">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Browse old XML data input file (produced with '-listxml')</string>
+           </property>
+           <property name="icon">
+            <iconset resource="qmc2.qrc">
+             <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="3" column="0" colspan="4">
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <widget class="QPushButton" name="pushButtonSetRenamerExportResults">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Export selected results to a file</string>
+           </property>
+           <property name="text">
+            <string>Export results...</string>
+           </property>
+           <property name="icon">
+            <iconset resource="qmc2.qrc">
+             <normaloff>:/data/img/filesaveas.png</normaloff>:/data/img/filesaveas.png</iconset>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButtonSetRenamerImportResults">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Import results from a file</string>
+           </property>
+           <property name="text">
+            <string>Import results...</string>
+           </property>
+           <property name="icon">
+            <iconset resource="qmc2.qrc">
+             <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
@@ -1586,6 +1826,15 @@
   <tabstop>pushButtonChecksumWizardRepairBadSets</tabstop>
   <tabstop>treeWidgetChecksumWizardSearchResult</tabstop>
   <tabstop>comboBoxChecksumWizardAutomationLevel</tabstop>
+  <tabstop>lineEditSetRenamerPattern</tabstop>
+  <tabstop>pushButtonSetRenamerSearch</tabstop>
+  <tabstop>pushButtonSetRenamerRenameSets</tabstop>
+  <tabstop>lineEditSetRenamerOldXmlFile</tabstop>
+  <tabstop>toolButtonBrowseSetRenamerOldXmlFile</tabstop>
+  <tabstop>treeWidgetSetRenamerSearchResult</tabstop>
+  <tabstop>pushButtonSetRenamerExportResults</tabstop>
+  <tabstop>pushButtonSetRenamerImportResults</tabstop>
+  <tabstop>comboBoxSetRenamerAutomationLevel</tabstop>
   <tabstop>pushButtonClose</tabstop>
  </tabstops>
  <resources>
@@ -1695,12 +1944,12 @@
    <slot>animateClick()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>46</x>
-     <y>601</y>
+     <x>30</x>
+     <y>85</y>
     </hint>
     <hint type="destinationlabel">
-     <x>418</x>
-     <y>601</y>
+     <x>52</x>
+     <y>85</y>
     </hint>
    </hints>
   </connection>
@@ -1717,6 +1966,22 @@
     <hint type="destinationlabel">
      <x>436</x>
      <y>17</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEditSetRenamerPattern</sender>
+   <signal>returnPressed()</signal>
+   <receiver>pushButtonSetRenamerSearch</receiver>
+   <slot>animateClick()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>369</x>
+     <y>75</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>402</x>
+     <y>76</y>
     </hint>
    </hints>
   </connection>
