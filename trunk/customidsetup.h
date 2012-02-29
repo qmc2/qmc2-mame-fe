@@ -10,6 +10,7 @@ class CustomIDSetup : public QDialog, public Ui::CustomIDSetup
 
        	public:
 		QString foreignEmulator;
+		QMenu *copyIDsMenu;
 
 		CustomIDSetup(QString, QWidget *parent = 0);
 		~CustomIDSetup();
@@ -22,10 +23,14 @@ class CustomIDSetup : public QDialog, public Ui::CustomIDSetup
 		void on_tableWidgetCustomIDs_itemSelectionChanged();
 		void on_tableWidgetCustomIDs_currentItemChanged(QTableWidgetItem *, QTableWidgetItem *);
 
+		// menu actions
+		void action_copyIDsMenuItem_triggered();
+
 		// other
 		void load();
 		void save();
 		void adjustFontAndIconSizes();
+		void setupCopyIDsMenu();
 };
 
 #endif

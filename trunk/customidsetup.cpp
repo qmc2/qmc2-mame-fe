@@ -20,6 +20,7 @@ CustomIDSetup::CustomIDSetup(QString foreignEmulatorName, QWidget *parent)
 
 	setupUi(this);
 
+	copyIDsMenu = NULL;
 	adjustFontAndIconSizes();
 	foreignEmulator = foreignEmulatorName;
 	setWindowTitle(tr("Setup custom IDs for '%1'").arg(foreignEmulator));
@@ -36,6 +37,7 @@ CustomIDSetup::CustomIDSetup(QString foreignEmulatorName, QWidget *parent)
 	toolButtonSort->setChecked(enable);
 
 	QTimer::singleShot(0, this, SLOT(load()));
+	QTimer::singleShot(0, this, SLOT(setupCopyIDsMenu()));
 }
 
 CustomIDSetup::~CustomIDSetup()
@@ -66,6 +68,65 @@ void CustomIDSetup::adjustFontAndIconSizes()
 	toolButtonCopyIDs->setIconSize(iconSize);
 	pushButtonOk->setIconSize(iconSize);
 	pushButtonCancel->setIconSize(iconSize);
+}
+
+void CustomIDSetup::setupCopyIDsMenu()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: CustomIDSetup::setupCopyIDsMenu()");
+#endif
+
+	qmc2Config->beginGroup(QMC2_EMULATOR_PREFIX + "CustomIDs");
+	QStringList childGroups = qmc2Config->childGroups();
+
+	if ( !childGroups.isEmpty() ) {
+		copyIDsMenu = new QMenu(this);
+		int emuCount = 0;
+		foreach (QString emuName, childGroups) {
+			if ( emuName != this->foreignEmulator ) {
+				QAction *action = copyIDsMenu->addAction(emuName);
+				action->setIcon(QIcon(QString::fromUtf8(":/data/img/editcopy.png")));
+				connect(action, SIGNAL(triggered()), this, SLOT(action_copyIDsMenuItem_triggered()));
+				emuCount++;
+			}
+		}
+		toolButtonCopyIDs->setMenu(copyIDsMenu);
+		if ( emuCount > 0 )
+			toolButtonCopyIDs->setEnabled(true);
+	}
+
+	qmc2Config->endGroup();
+}
+
+void CustomIDSetup::action_copyIDsMenuItem_triggered()
+{
+	QAction *action = (QAction *)sender();
+	QString emuName = action->iconText();
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: CustomIDSetup::action_copyIDsMenuItem_triggered(): emuName = %1").arg(emuName));
+#endif
+
+	if ( !emuName.isEmpty() ) {
+		bool oldSortingEnabled = tableWidgetCustomIDs->isSortingEnabled();
+		tableWidgetCustomIDs->setSortingEnabled(false);
+		qmc2Config->beginGroup(QString(QMC2_EMULATOR_PREFIX + "CustomIDs/%1").arg(emuName));
+		QStringList idList = qmc2Config->value("IDs", QStringList()).toStringList();
+		QStringList descriptionList = qmc2Config->value("Descriptions", QStringList()).toStringList();
+		int i = 0;
+		int row = tableWidgetCustomIDs->rowCount();
+		while ( i < idList.count() ) {
+			QString id = idList[i];
+			if ( !id.isEmpty() ) {
+				tableWidgetCustomIDs->insertRow(row);
+				tableWidgetCustomIDs->setItem(row, QMC2_CUSTOMIDS_COLUMN_ID, new QTableWidgetItem(id));
+				tableWidgetCustomIDs->setItem(row, QMC2_CUSTOMIDS_COLUMN_DESCRIPTION, new QTableWidgetItem(descriptionList[i]));
+				row++;
+			}
+			i++;
+		}
+		qmc2Config->endGroup();
+		tableWidgetCustomIDs->setSortingEnabled(oldSortingEnabled);
+	}
 }
 
 void CustomIDSetup::on_toolButtonAddID_clicked()

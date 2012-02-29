@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>355</width>
+    <width>335</width>
     <height>229</height>
    </rect>
   </property>
@@ -109,9 +109,6 @@
      </property>
      <property name="toolButtonStyle">
       <enum>Qt::ToolButtonTextBesideIcon</enum>
-     </property>
-     <property name="arrowType">
-      <enum>Qt::DownArrow</enum>
      </property>
     </widget>
    </item>
