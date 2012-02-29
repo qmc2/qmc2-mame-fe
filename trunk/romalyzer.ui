@@ -1421,11 +1421,11 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tabSetRenameTool">
+     <widget class="QWidget" name="tabSetRenamer">
       <attribute name="title">
        <string>Set rename tool</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout">
+      <layout class="QGridLayout" name="gridLayout_0">
        <item row="0" column="0" colspan="2">
         <widget class="QLineEdit" name="lineEditSetRenamerPattern">
          <property name="sizePolicy">
@@ -1435,7 +1435,7 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Specify sets to be included in the search (Qt regular expression syntax)</string>
+          <string>Specify sets to be included in the search - wildcards allowed, use space as delimiter for multiple sets</string>
          </property>
         </widget>
        </item>
