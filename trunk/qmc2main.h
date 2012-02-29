@@ -469,6 +469,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void checkActivity();
     void enableContextMenuPlayActions(bool);
     void softwareLoadInterrupted();
+    void action_foreignIDsMenuItem_triggered();
 
     // float toggle button callbacks for 'special' widgets
     void floatToggleButtonSoftwareDetail_toggled(bool);

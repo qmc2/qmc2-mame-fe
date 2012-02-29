@@ -2283,7 +2283,7 @@
      <x>0</x>
      <y>0</y>
      <width>693</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Help">
@@ -2451,9 +2451,15 @@
     <addaction name="actionLaunchQMC2MAME"/>
     <addaction name="actionLaunchQMC2MESS"/>
    </widget>
+   <widget class="QMenu" name="menu_ForeignIDs">
+    <property name="title">
+     <string>&amp;Foreign IDs</string>
+    </property>
+   </widget>
    <addaction name="menu_Game"/>
    <addaction name="menu_Tools"/>
    <addaction name="menu_Display"/>
+   <addaction name="menu_ForeignIDs"/>
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

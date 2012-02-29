@@ -50,6 +50,10 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 	// this 'trick' allows a nested QMainWindow :)
 	setWindowFlags(Qt::SubWindow | Qt::CustomizeWindowHint);
 
+	// enable menu tear-off
+	foreach (QMenu *menu, ui->menubar->findChildren<QMenu *>())
+		menu->setTearOffEnabled(true);
+
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "HtmlEditor/WidgetState") )
 		restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "HtmlEditor/WidgetState", QByteArray()).toByteArray());
 
@@ -178,6 +182,13 @@ HtmlEditor::~HtmlEditor()
 
 	delete ui;
 	delete ui_dialog;
+}
+
+void HtmlEditor::hideTearOffMenus()
+{
+	foreach (QMenu *menu, ui->menubar->findChildren<QMenu *>())
+		if ( menu->isTearOffMenuVisible() )
+			menu->hideTearOffMenu();
 }
 
 void HtmlEditor::fileNew()

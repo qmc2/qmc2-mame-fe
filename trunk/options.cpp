@@ -2401,6 +2401,43 @@ void Options::applyDelayed()
   // redraw detail if setup changed
   qmc2MainWindow->on_tabWidgetGameDetail_currentChanged(qmc2MainWindow->tabWidgetGameDetail->currentIndex());
 
+  // (re)create foreign ID menu, if applicable
+  qmc2MainWindow->menu_ForeignIDs->clear();
+  config->beginGroup(QMC2_EMULATOR_PREFIX + "CustomIDs");
+  QStringList childGroups = config->childGroups();
+  if ( !childGroups.isEmpty() ) {
+	  bool showMenu = false;
+	  foreach (QString emuName, childGroups) {
+		  QMenu *menu = qmc2MainWindow->menu_ForeignIDs->addMenu(emuName);
+		  // FIXME: add support for individual icons for foreign emulators
+		  menu->setIcon(QIcon(QString::fromUtf8(":/data/img/arcademode.png")));
+		  menu->setTearOffEnabled(true);
+		  QStringList idList = config->value(QString("%1/IDs").arg(emuName), QStringList()).toStringList();
+		  if ( !idList.isEmpty() ) {
+			  QStringList descriptionList = config->value(QString("%1/Descriptions").arg(emuName), QStringList()).toStringList();
+			  for (int i = 0; i < idList.count(); i++) {
+				  QString id = idList[i];
+				  if ( !id.isEmpty() ) {
+					  QString description = descriptionList[i];
+					  QAction *action;
+					  if ( !description.isEmpty() )
+						  action = menu->addAction(id + " - " + description);
+					  else
+						  action = menu->addAction(id);
+					  // FIXME: add support for individual icons for foreign IDs
+					  action->setIcon(QIcon(QString::fromUtf8(":/data/img/pacman.png")));
+					  action->setData(emuName + "\t" + id + "\t" + description);
+					  connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(action_foreignIDsMenuItem_triggered()));
+					  showMenu = true;
+				  }
+			  }
+		  }
+	  }
+	  qmc2MainWindow->menu_ForeignIDs->menuAction()->setVisible(showMenu);
+  } else
+	  qmc2MainWindow->menu_ForeignIDs->menuAction()->setVisible(false);
+  qmc2Config->endGroup();
+  
   // hide / show the menu bar
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
   if ( qmc2MainWindow->tabWidgetGamelist->currentIndex() != QMC2_EMBED_INDEX || !qmc2MainWindow->toolButtonEmbedderMaximizeToggle->isChecked() )
