@@ -29,6 +29,7 @@ ProcessManager::ProcessManager(QWidget *parent)
   videoWasPlaying = true;
 #endif
 #endif
+  launchForeignID = false;
 }
 
 ProcessManager::~ProcessManager()
@@ -50,6 +51,7 @@ int ProcessManager::start(QString &command, QStringList &arguments, bool autoCon
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, logMsg);
 #endif
 
+  launchForeignID = qmc2MainWindow->launchForeignID;
   QProcess *proc = new QProcess(this);
   if ( !workDir.isEmpty() ) {
     QFileInfo fi(workDir);
@@ -264,7 +266,10 @@ void ProcessManager::started()
   procItem->setText(QMC2_EMUCONTROL_COLUMN_PID, QString::number((quint64)(proc->pid())));
   procItem->setIcon(QMC2_EMUCONTROL_COLUMN_LED0, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
   procItem->setIcon(QMC2_EMUCONTROL_COLUMN_LED1, QIcon(QString::fromUtf8(":/data/img/led_off.png")));
-  procItem->setText(QMC2_EMUCONTROL_COLUMN_GAME, qmc2DriverName);
+  if ( launchForeignID )
+    procItem->setText(QMC2_EMUCONTROL_COLUMN_GAME, qmc2MainWindow->foreignID);
+  else
+    procItem->setText(QMC2_EMUCONTROL_COLUMN_GAME, qmc2DriverName);
 #if defined(Q_WS_WIN)
   QString emuCommandLine = lastCommand;
   procItem->setText(QMC2_EMUCONTROL_COLUMN_COMMAND, emuCommandLine.replace('/', '\\'));
