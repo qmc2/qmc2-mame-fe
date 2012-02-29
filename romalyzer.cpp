@@ -595,6 +595,7 @@ void ROMAlyzer::analyze()
   pushButtonPause->setText(tr("&Pause"));
   lineEditGames->setEnabled(false);
   if ( checkBoxCalculateSHA1->isChecked() ) tabChecksumWizard->setEnabled(false);
+  tabSetRenamer->setEnabled(false);
   QTime analysisTimer, elapsedTime;
   romalyzerXmlGamePositionCache.clear();
   romalyzerXmlGamePositionCache.setMaxCost(QMC2_ROMALYZER_XMLPOSCACHE_SIZE);
@@ -1092,6 +1093,7 @@ void ROMAlyzer::analyze()
   pushButtonAnalyze->setIcon(QIcon(QString::fromUtf8(":/data/img/find.png")));
   lineEditGames->setEnabled(true);
   if ( checkBoxCalculateSHA1->isChecked() ) tabChecksumWizard->setEnabled(true);
+  tabSetRenamer->setEnabled(true);
 
   progressBar->reset();
   labelStatus->setText(tr("Idle"));
