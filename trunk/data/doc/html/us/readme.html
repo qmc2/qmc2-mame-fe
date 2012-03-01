@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.36, 18-FEB-2012</h3>
+<h3>README - v0.36, 01-MAR-2012</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -230,8 +230,14 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
 <p>The build steps on Windows using Visual C++ are completely different than the ones on UNIX and Mac OS X. However, since v0.2.b20 we also support MinGW builds on Windows which is more or less the same process as on UNIX and Mac OS X (see MinGW below).</p>
 <p>Using Visual C++ 2010:</p>
 <ol>
-  <li>The process is basically the same as with VC++ 2008, but make sure to uncomment the line containing <i>set QMAKESPEC=win32-msvc2010</i> when editing <i>scripts\generate-vcprojects.bat</i>.</li>
-  <li>As with VC++ 2008, the project file generator will produce two files, but this time they will be named a bit differently: <i>qmc2-mame.vcxproj</i> and <i>qmc2-mess.vcxproj</i> -- which is all you need to build each QMC2 variant through VC++ 2010.</li>
+  <li>Install all software requirements mentioned above.</li>
+  <li>Extract all contents from the QMC2 source distribution archive into a directory (or use the code from the SVN repo: <a href="http://tortoisesvn.tigris.org/" target="_blank">TortoiseSVN</a> is a nicely working SVN client for Windows which we use ourselves).</li>
+  <li>For correct embedding of <i>static</i> images that QMC2 uses (mostly icons) it's necessary to copy <b>all</b> image files from <i>data\img\classic\</i> to <i>data\img\</i>, overwriting the existing symbolic links (this is due to the fact that we are relinking the images on UNIX and Mac OS X, but on Windows this doesn't work). If you'd like to exchange some images with those in other image sets (see sub-directories below <i>data\img\</i>, i. e. <i>crazy\</i> or <i>crazy-black\</i>), copy these files over the ones that are in <i>data\img\</i> now.</li>
+  <li>Edit the batch script <i>scripts\generate-vcprojects.bat</i> and adjust the path variables at the beginning of the script. Note that the script requires <a href="http://gnuwin32.sourceforge.net/packages/sed.htm" target="_blank">sed for Windows</a> (and optionally <a href="http://tortoisesvn.tigris.org/" target="_blank">TortoiseSVN</a> when using code from the SVN repo).</li>
+  <li>Make sure the current working directory is the top-level path of where you extracted the QMC2 sources and run <i>scripts\generate-vcprojects.bat</i>. This will create two additional sub-directories (<i>debug\</i> and <i>release\</i>) and generate two VC++ project files: <i>qmc2-mame.vcxproj</i> and <i>qmc2-mess.vcxproj</i>.</li>
+  <li>Open one (or both) of the project files in Visual C++ 2010 (double-clicking the .vcxproj files should also work).</li>
+  <li>Select <i>Build</i> from the project's context menu to create the front-end executable, which you will find in the <i>release\</i> sub-directory after it has been successfully built.</li>
+  <li>If you're going to build both variants, don't forget to <i>clean up</i> the project before you start the second build process!</li>
 </ol>
 <p>Using the MinGW (GCC) compiler:</p>
 <ol>
