@@ -152,6 +152,11 @@
                    </item>
                    <item>
                     <property name="text">
+                     <string>RO (Romanian)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
                      <string>US (English)</string>
                     </property>
                    </item>
