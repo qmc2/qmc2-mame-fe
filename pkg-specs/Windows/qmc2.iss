@@ -26,6 +26,7 @@ InfoAfterFile=c:\projects\qmc2\package\doc\install-en.rtf
 Name: "English"; MessagesFile: "compiler:Default.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
 Name: "French"; MessagesFile: "compiler:Languages\French.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
 Name: "German"; MessagesFile: "compiler:Languages\German.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-de.rtf"
+Name: "Italian"; MessagesFile: "compiler:Languages\Italian.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-us.rtf"
 Name: "Polish"; MessagesFile: "compiler:Languages\Polish.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
 Name: "Portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
 
@@ -43,6 +44,7 @@ Name: "{group}\QMC2 (M.E.S.S.)"; Filename: "{app}\qmc2-mess.exe"; WorkingDir: "{
 English.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 French.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 German.InstallVCRuntimeEnv=VC++ 2010 Laufzeit-Umgebung installieren
+Italian.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 Polish.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 Portuguese.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 
