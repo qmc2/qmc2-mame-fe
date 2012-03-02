@@ -137,6 +137,11 @@
                    </item>
                    <item>
                     <property name="text">
+                     <string>IT (Italian)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
                      <string>PL (Polish)</string>
                     </property>
                    </item>

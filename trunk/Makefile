@@ -1368,7 +1368,7 @@ endif
 endif
 
 # process translations
-QMC2_TRANSLATIONS = us de pl fr pt
+QMC2_TRANSLATIONS = us de pl fr pt it
 QT_TRANSLATIONS = de pl fr pt
 ifneq '$(ARCH)' 'Windows'
 LBINARIES = $(addsuffix .qm, $(addprefix data/lng/qmc2_, $(QMC2_TRANSLATIONS))) $(addsuffix .qm, $(addprefix data/lng/qt_, $(QT_TRANSLATIONS)))
@@ -1398,6 +1398,9 @@ data/lng/qmc2_fr.qm: data/lng/qmc2_fr.ts
 data/lng/qmc2_pt.qm: data/lng/qmc2_pt.ts
 	$(LREL)
 
+data/lng/qmc2_it.qm: data/lng/qmc2_it.ts
+	$(LREL)
+
 # Qt translations
 
 #data/lng/qt_us.qm: data/lng/qt_us.ts
@@ -1414,6 +1417,9 @@ data/lng/qt_fr.qm: data/lng/qt_fr.ts
 
 data/lng/qt_pt.qm: data/lng/qt_pt.ts
 	$(LREL)
+
+#data/lng/qt_it.qm: data/lng/qt_it.ts
+#	$(LREL)
 
 else
 
@@ -1434,6 +1440,9 @@ data\lng\qmc2_fr.qm: data\lng\qmc2_fr.ts
 data\lng\qmc2_pt.qm: data\lng\qmc2_pt.ts
 	$(LREL)
 
+data\lng\qmc2_it.qm: data\lng\qmc2_it.ts
+	$(LREL)
+
 # Qt translations
 
 #data\lng\qt_us.qm: data\lng\qt_us.ts
@@ -1450,6 +1459,9 @@ data\lng\qt_fr.qm: data\lng\qt_fr.ts
 
 data\lng\qt_pt.qm: data\lng\qt_pt.ts
 	$(LREL)
+
+#data\lng\qt_pt.qm: data\lng\qt_it.ts
+#	$(LREL)
 
 endif
 
