@@ -10429,7 +10429,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Arquivo de snapshot de software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1123"/>
+        <location filename="../../options.ui" line="1128"/>
         <location filename="../../options.cpp" line="2009"/>
         <location filename="../../options.cpp" line="2069"/>
         <location filename="../../options.cpp" line="3034"/>
@@ -10444,7 +10444,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Arquivo de flyer</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1226"/>
+        <location filename="../../options.ui" line="1231"/>
         <location filename="../../options.cpp" line="2014"/>
         <location filename="../../options.cpp" line="2074"/>
         <location filename="../../options.cpp" line="3045"/>
@@ -10459,7 +10459,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Arquivo de ícone</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1329"/>
+        <location filename="../../options.ui" line="1334"/>
         <location filename="../../options.cpp" line="2019"/>
         <location filename="../../options.cpp" line="2079"/>
         <location filename="../../options.cpp" line="3056"/>
@@ -10474,7 +10474,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Arquivo de gabinete</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1432"/>
+        <location filename="../../options.ui" line="1437"/>
         <location filename="../../options.cpp" line="2024"/>
         <location filename="../../options.cpp" line="2084"/>
         <location filename="../../options.cpp" line="3067"/>
@@ -10489,7 +10489,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Arquivo de controle</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1535"/>
+        <location filename="../../options.ui" line="1540"/>
         <location filename="../../options.cpp" line="2029"/>
         <location filename="../../options.cpp" line="2089"/>
         <location filename="../../options.cpp" line="3078"/>
@@ -10504,7 +10504,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Arquivo de marquee</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1638"/>
+        <location filename="../../options.ui" line="1643"/>
         <location filename="../../options.cpp" line="2034"/>
         <location filename="../../options.cpp" line="2094"/>
         <location filename="../../options.cpp" line="3089"/>
@@ -10519,7 +10519,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Arquivo de título</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1741"/>
+        <location filename="../../options.ui" line="1746"/>
         <location filename="../../options.cpp" line="2039"/>
         <location filename="../../options.cpp" line="2099"/>
         <location filename="../../options.cpp" line="3100"/>
@@ -10534,7 +10534,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Arquivo de PCB</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1844"/>
+        <location filename="../../options.ui" line="1849"/>
         <location filename="../../options.cpp" line="2044"/>
         <location filename="../../options.cpp" line="2104"/>
         <location filename="../../options.cpp" line="3111"/>
@@ -10860,7 +10860,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>AVISO: mapa de atalhos contém itens duplicados</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3132"/>
+        <location filename="../../options.ui" line="3137"/>
         <location filename="../../options.cpp" line="3659"/>
         <location filename="../../options.cpp" line="3682"/>
         <location filename="../../options.cpp" line="3735"/>
@@ -10924,7 +10924,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>PT (Português)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="155"/>
+        <location filename="../../options.ui" line="160"/>
         <source>US (English)</source>
         <translation>US (Inglês)</translation>
     </message>
@@ -10939,33 +10939,33 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Salvar layout</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="166"/>
+        <location filename="../../options.ui" line="171"/>
         <source>Save game selection</source>
         <translation>Salvar seleção de jogo</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="193"/>
+        <location filename="../../options.ui" line="198"/>
         <source>Restore saved window layout at start</source>
         <translation>Restaurar layout da janela ao iniciar</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="196"/>
+        <location filename="../../options.ui" line="201"/>
         <source>Restore layout</source>
         <translation>Restaurar layout</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="186"/>
+        <location filename="../../options.ui" line="191"/>
         <source>Restore game selection</source>
         <translation>Restaurar seleção de jogo</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="100"/>
-        <location filename="../../options.ui" line="173"/>
-        <location filename="../../options.ui" line="203"/>
-        <location filename="../../options.ui" line="213"/>
-        <location filename="../../options.ui" line="351"/>
-        <location filename="../../options.ui" line="361"/>
-        <location filename="../../options.ui" line="417"/>
+        <location filename="../../options.ui" line="178"/>
+        <location filename="../../options.ui" line="208"/>
+        <location filename="../../options.ui" line="218"/>
+        <location filename="../../options.ui" line="356"/>
+        <location filename="../../options.ui" line="366"/>
+        <location filename="../../options.ui" line="422"/>
         <source>Scale image to fit frame size (otherwise use original size)</source>
         <translation>Esticar imagem para ocupar todo o espaço (do contrário, usar tamanho original)</translation>
     </message>
@@ -10975,695 +10975,695 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Esticar preview</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="176"/>
+        <location filename="../../options.ui" line="181"/>
         <source>Scaled cabinet</source>
         <translation>Esticar gabinete</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="206"/>
+        <location filename="../../options.ui" line="211"/>
         <source>Scaled controller</source>
         <translation>Esticar controle</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="216"/>
+        <location filename="../../options.ui" line="221"/>
         <source>Scaled marquee</source>
         <translation>Esticar marquee</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="223"/>
-        <location filename="../../options.ui" line="226"/>
+        <location filename="../../options.ui" line="228"/>
+        <location filename="../../options.ui" line="231"/>
         <source>Show status bar</source>
         <translation>Mostar barra de estado</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="714"/>
-        <location filename="../../options.ui" line="717"/>
+        <location filename="../../options.ui" line="719"/>
+        <location filename="../../options.ui" line="722"/>
         <source>Show tool bar</source>
         <translation>Mostrar barra de ferramentas</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="236"/>
+        <location filename="../../options.ui" line="241"/>
         <source>Show the menu bar</source>
         <translation>Mostrar a barra de menus</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="239"/>
+        <location filename="../../options.ui" line="244"/>
         <source>Show menu bar</source>
         <translation>Mostrar barra de menu</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="246"/>
+        <location filename="../../options.ui" line="251"/>
         <source>Show short description of current processing in progress bar</source>
         <translation>Mostrar descrição curta do processamento atual na barra de progresso</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="249"/>
+        <location filename="../../options.ui" line="254"/>
         <source>Show progress texts</source>
         <translation>Mostrar texto de progresso</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="745"/>
+        <location filename="../../options.ui" line="750"/>
         <source>Kill emulators on exit?</source>
         <translation>Matar emuladores na saída?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="748"/>
+        <location filename="../../options.ui" line="753"/>
         <source>Kill emulators</source>
         <translation>Matar emuladores</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="765"/>
+        <location filename="../../options.ui" line="770"/>
         <source>Check for other instances of this QMC2 variant on startup</source>
         <translation>Verificar por outras instâncias de variações do QMC2 ao iniciar</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="768"/>
+        <location filename="../../options.ui" line="773"/>
         <source>Check single instance</source>
         <translation>Verificar instância única</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="256"/>
+        <location filename="../../options.ui" line="261"/>
         <source>Show vertical game status indicator in game details</source>
         <translation>Mostar indicador vertical do estado do jogo nos detalhes do jogo</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="259"/>
+        <location filename="../../options.ui" line="264"/>
         <source>Game status indicator</source>
         <translation>Mostrar indicador de estado</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="269"/>
+        <location filename="../../options.ui" line="274"/>
         <source>Show the game status indicator only when the game list is not visible due to the current layout</source>
         <translation>Mostrar o indicador vertical de estado de jogo somente quando a lista de máquinas não é visível devido ao layout atual</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="272"/>
-        <location filename="../../options.ui" line="308"/>
+        <location filename="../../options.ui" line="277"/>
+        <location filename="../../options.ui" line="313"/>
         <source>Only when required</source>
         <translation>Somente quando requerido</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="289"/>
+        <location filename="../../options.ui" line="294"/>
         <source>Show game&apos;s description at the bottom of any images</source>
         <translation>Mostrar descrição do jogo abaixo de quaisquer imagens</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="292"/>
+        <location filename="../../options.ui" line="297"/>
         <source>Show game name</source>
         <translation>Mostrar nome do jogo</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="305"/>
+        <location filename="../../options.ui" line="310"/>
         <source>Show game&apos;s description only when the game list is not visible due to the current layout</source>
         <translation>Mostrar descrição de jogo somente quando a lista de máquinas não é visível devido ao layout atual</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2120"/>
+        <location filename="../../options.ui" line="2125"/>
         <source>Load emulator information database (mameinfo.dat)</source>
         <translation>Carregar base de dados de informações de emulador (mameinfo.dat)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2140"/>
+        <location filename="../../options.ui" line="2145"/>
         <source>Use in-memory compression for emulator info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
         <translation>Usar compressão em memória para o BD de informações de emulador ( um pouco mais lento, mas consome menos memória: taxa de compressão é geralmente na ordem de 1:16)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2082"/>
+        <location filename="../../options.ui" line="2087"/>
         <source>Load game information database (MAME history.dat)</source>
         <translation>Carregar base de dados de informações de jogos (history.dat do MAME)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2102"/>
+        <location filename="../../options.ui" line="2107"/>
         <source>Use in-memory compression for game info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
         <translation>Usar compressão em memória para o BD de informações de jogos ( um pouco mais lento, mas consome menos memória: taxa de compressão é geralmente na ordem de 1:16)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="323"/>
-        <location filename="../../options.ui" line="339"/>
+        <location filename="../../options.ui" line="328"/>
+        <location filename="../../options.ui" line="344"/>
         <source>Option requires a restart of QMC2 to take effect</source>
         <translation>Opção requer reinício do QMC2 para ter efeito</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="342"/>
+        <location filename="../../options.ui" line="347"/>
         <source>restart required</source>
         <translation>requer reinício</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2052"/>
-        <location filename="../../options.ui" line="2307"/>
-        <location filename="../../options.ui" line="4242"/>
+        <location filename="../../options.ui" line="2057"/>
+        <location filename="../../options.ui" line="2312"/>
+        <location filename="../../options.ui" line="4247"/>
         <source>Option requires a reload of the gamelist to take effect</source>
         <translation>Opção requer recarregamento da lista de jogos para ter efeito</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2068"/>
-        <location filename="../../options.ui" line="2323"/>
-        <location filename="../../options.ui" line="4258"/>
+        <location filename="../../options.ui" line="2073"/>
+        <location filename="../../options.ui" line="2328"/>
+        <location filename="../../options.ui" line="4263"/>
         <source>Option requires a reload of the entire game list to take effect</source>
         <translation>Opção requer recarregar a lista de jogos inteira para ter efeito</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2071"/>
-        <location filename="../../options.ui" line="2326"/>
-        <location filename="../../options.ui" line="4261"/>
+        <location filename="../../options.ui" line="2076"/>
+        <location filename="../../options.ui" line="2331"/>
+        <location filename="../../options.ui" line="4266"/>
         <source>reload required</source>
         <translation>requer recarregamento</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="354"/>
+        <location filename="../../options.ui" line="359"/>
         <source>Scaled title</source>
         <translation>Tílulo esticado</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="364"/>
+        <location filename="../../options.ui" line="369"/>
         <source>Scaled flyer</source>
         <translation>Flyer esticado</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="377"/>
+        <location filename="../../options.ui" line="382"/>
         <source>Application font (= system default if empty)</source>
         <translation>Fonte da aplicação ( = padrão do sistema se vazio)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="393"/>
+        <location filename="../../options.ui" line="398"/>
         <source>Browse application font</source>
         <translation>Procurar por fonte da aplicação</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="420"/>
+        <location filename="../../options.ui" line="425"/>
         <source>Scaled PCB</source>
         <translation>PCB esticado</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="427"/>
+        <location filename="../../options.ui" line="432"/>
         <source>Emulator log size</source>
         <translation>Tamanho do log do emulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="440"/>
+        <location filename="../../options.ui" line="445"/>
         <source>Maximum number of lines to keep in emulator log browser</source>
         <translation>Número máximo de linhas para manter no browser de log do emulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="443"/>
-        <location filename="../../options.ui" line="478"/>
+        <location filename="../../options.ui" line="448"/>
+        <location filename="../../options.ui" line="483"/>
         <source>unlimited</source>
         <translation>ilimitado</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="446"/>
-        <location filename="../../options.ui" line="481"/>
+        <location filename="../../options.ui" line="451"/>
+        <location filename="../../options.ui" line="486"/>
         <source> lines</source>
         <translation>linhas</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="462"/>
+        <location filename="../../options.ui" line="467"/>
         <source>Front end log size</source>
         <translation>Tamanho do log do frontend</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="475"/>
+        <location filename="../../options.ui" line="480"/>
         <source>Maximum number of lines to keep in front end log browser</source>
         <translation>Número máximo de linhas para manter no browser de log do frontend</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="497"/>
+        <location filename="../../options.ui" line="502"/>
         <source>Application font</source>
         <translation>Fonte da aplicação</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="504"/>
+        <location filename="../../options.ui" line="509"/>
         <source>Style sheet</source>
         <translation>Estilo</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="517"/>
+        <location filename="../../options.ui" line="522"/>
         <source>Qt style sheet file (*.qss, leave empty for no style sheet)</source>
         <translation>Arquivo de estilo do Qt (*.qss, deixe em branco para nenhum estilo)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="530"/>
+        <location filename="../../options.ui" line="535"/>
         <source>Browse Qt style sheet file</source>
         <translation>Procurar por arquivo de estilo do Qt</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="541"/>
+        <location filename="../../options.ui" line="546"/>
         <source>GUI style</source>
         <translation>Estilo da interface</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="554"/>
+        <location filename="../../options.ui" line="559"/>
         <source>Application style (Default = use system&apos;s default style)</source>
         <translation>Estilo da aplicação (Padrão = usar estilo padrão do sistema)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="561"/>
+        <location filename="../../options.ui" line="566"/>
         <source>Smooth image scaling (nicer, but slower)</source>
         <translation>Esticamento suave da imagem (melhor, mas mais lento)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="564"/>
+        <location filename="../../options.ui" line="569"/>
         <source>Smooth scaling</source>
         <translation>Esticar suavemente</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="279"/>
+        <location filename="../../options.ui" line="284"/>
         <source>Retry loading images which weren&apos;t found before?</source>
         <translation>Tentar carregar imagens que não foram encontradas antes?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="282"/>
+        <location filename="../../options.ui" line="287"/>
         <source>Retry loading images</source>
         <translation>Tentar carregar imagens não encontradas</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="571"/>
+        <location filename="../../options.ui" line="576"/>
         <source>Fall back to the parent&apos;s image if an indivual image is missing but there&apos;s one for the parent</source>
         <translation>Usar imagem do pai se uma imagem individual não foi encontrada mas existe uma para o pai</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="574"/>
+        <location filename="../../options.ui" line="579"/>
         <source>Parent image fallback</source>
         <translation>Usar imagem do pai</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="581"/>
+        <location filename="../../options.ui" line="586"/>
         <source>Minimize application windows when launching another variant</source>
         <translation>Minimizar janelas da aplicação quando iniciar outra variação</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="584"/>
+        <location filename="../../options.ui" line="589"/>
         <source>Minimize on variant launch</source>
         <translation>Minimizar ao iniciar variação</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="591"/>
+        <location filename="../../options.ui" line="596"/>
         <source>Image cache size</source>
         <translation>Tamanho do cache de imagens</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="604"/>
+        <location filename="../../options.ui" line="609"/>
         <source>Image cache size in MB</source>
         <translation>Tamanho do cache de imagens em MB</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="607"/>
+        <location filename="../../options.ui" line="612"/>
         <source> MB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="623"/>
+        <location filename="../../options.ui" line="628"/>
         <source>Open the detail setup dialog</source>
         <translation>Abrir a janela de configurações detalhadas</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="626"/>
+        <location filename="../../options.ui" line="631"/>
         <source>Detail setup...</source>
         <translation>Configuração detalhadas...</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="633"/>
+        <location filename="../../options.ui" line="638"/>
         <source>Show indicator for current memory usage</source>
         <translation>Mostar indicador do uso atual de memória</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="636"/>
+        <location filename="../../options.ui" line="641"/>
         <source>Show memory  usage</source>
         <translation>Mostrar uso de memória</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="643"/>
+        <location filename="../../options.ui" line="648"/>
         <source>Use standard or custom color palette?</source>
         <translation>Usar paleta de cores padrão ou customizada?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="646"/>
+        <location filename="../../options.ui" line="651"/>
         <source>Standard color palette</source>
         <translation>Paleta de cores padrão</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="653"/>
+        <location filename="../../options.ui" line="658"/>
         <source>Exit this QMC2 variant when launching another?</source>
         <translation>Sair desta variação do QMC2 quando iniciar outra?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="656"/>
+        <location filename="../../options.ui" line="661"/>
         <source>Exit on variant launch</source>
         <translation>Sair ao iniciar variação</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="663"/>
+        <location filename="../../options.ui" line="668"/>
         <source>Log font</source>
         <translation>Fonte do log</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="676"/>
+        <location filename="../../options.ui" line="681"/>
         <source>Font used in logs (= application font if empty)</source>
         <translation>Fonte usada nos logs (= fonte da aplicação se vazio)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="692"/>
+        <location filename="../../options.ui" line="697"/>
         <source>Browse font used in logs</source>
         <translation>Procurar fonte usada nos logs</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="802"/>
-        <location filename="../../options.ui" line="3947"/>
+        <location filename="../../options.ui" line="807"/>
+        <location filename="../../options.ui" line="3952"/>
         <source>F&amp;iles / Directories</source>
         <translation>&amp;Arquivos / Diretórios</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="848"/>
+        <location filename="../../options.ui" line="853"/>
         <source>Temporary file</source>
         <translation>Arquivo temporário</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="861"/>
+        <location filename="../../options.ui" line="866"/>
         <source>Temporary work file (write)</source>
         <translation>Arquivo de trabalho temporário</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="874"/>
+        <location filename="../../options.ui" line="879"/>
         <source>Browse temporary work file</source>
         <translation>Procurar por arquivo de trabalho temporário</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="885"/>
+        <location filename="../../options.ui" line="890"/>
         <source>Front end log file</source>
         <translation>Arquivo de log do frontend</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="898"/>
+        <location filename="../../options.ui" line="903"/>
         <source>Front end log file (write)</source>
         <translation>Arquivo de log do frontend (escrita)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="911"/>
+        <location filename="../../options.ui" line="916"/>
         <source>Browse front end log file</source>
         <translation>Procurar por arquivo de log do frontend</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="922"/>
+        <location filename="../../options.ui" line="927"/>
         <source>Favorites file</source>
         <translation>Arquivo de favoritos</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="935"/>
+        <location filename="../../options.ui" line="940"/>
         <source>Game favorites file (write)</source>
         <translation>Arquivo de jogos favoritos (escrita)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="837"/>
+        <location filename="../../options.ui" line="842"/>
         <source>Browse game favorites file</source>
         <translation>Procurar por arquivo de favoritos</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="942"/>
+        <location filename="../../options.ui" line="947"/>
         <source>Play history file</source>
         <translation>Arquivo de histórico de jogadas</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="955"/>
+        <location filename="../../options.ui" line="960"/>
         <source>Play history file (write)</source>
         <translation>Arquivo de histórico de jogadas (escrita)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="968"/>
+        <location filename="../../options.ui" line="973"/>
         <source>Browse play history file</source>
         <translation>Procurar por arquivo de histórico de jogadas</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="979"/>
+        <location filename="../../options.ui" line="984"/>
         <source>Data directory</source>
         <translation>Diretório de dados</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="992"/>
+        <location filename="../../options.ui" line="997"/>
         <source>Frontend data directory (read)</source>
         <translation>Diretório de dados do frontend (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1005"/>
+        <location filename="../../options.ui" line="1010"/>
         <source>Browse frontend data directory</source>
         <translation>Procurar por diretório de dados do frontend</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2085"/>
+        <location filename="../../options.ui" line="2090"/>
         <source>Game info DB</source>
         <translation>BD de informação de jogos</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1022"/>
+        <location filename="../../options.ui" line="1027"/>
         <source>Game information database - MAME history.dat (read)</source>
         <translation>Base de dados de informação de jogos - history.dat do MAME (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1035"/>
+        <location filename="../../options.ui" line="1040"/>
         <source>Browse game information database (MAME history.dat)</source>
         <translation>Procurar por base de dados de informação de jogos (history.dat do MAME)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2123"/>
+        <location filename="../../options.ui" line="2128"/>
         <source>Emu info DB</source>
         <translation>BD de informação de emulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1052"/>
+        <location filename="../../options.ui" line="1057"/>
         <source>Emulator information database - mameinfo.dat (read)</source>
         <translation>Banco de dados de informação de emulador - mameinfo.dat (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1065"/>
+        <location filename="../../options.ui" line="1070"/>
         <source>Browse emulator information database (mameinfo.dat)</source>
         <translation>Procurar por banco de dados de informação de emulador (mameinfo.dat)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1120"/>
+        <location filename="../../options.ui" line="1125"/>
         <source>Switch between specifying a preview directory or a ZIP-compressed preview file</source>
         <translation>Trocar entre especificar um diretório de preview ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1158"/>
+        <location filename="../../options.ui" line="1163"/>
         <source>Preview directory (read)</source>
         <translation>Diretório de preview (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1171"/>
+        <location filename="../../options.ui" line="1176"/>
         <source>Browse preview directory</source>
         <translation>Procurar diretório de preview</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1195"/>
+        <location filename="../../options.ui" line="1200"/>
         <source>ZIP-compressed preview file (read)</source>
         <translation>Arquivo de preview comprimido (ZIP) (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1208"/>
+        <location filename="../../options.ui" line="1213"/>
         <source>Browse ZIP-compressed preview file</source>
         <translation>Procurar por arquivo comprimido de preview (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1223"/>
+        <location filename="../../options.ui" line="1228"/>
         <source>Switch between specifying a flyer directory or a ZIP-compressed flyer file</source>
         <translation>Trocar entre especificar um diretório de flyer ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1261"/>
+        <location filename="../../options.ui" line="1266"/>
         <source>Flyer directory (read)</source>
         <translation>Diretório de flyer (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1274"/>
+        <location filename="../../options.ui" line="1279"/>
         <source>Browse flyer directory</source>
         <translation>Procurar diretório de flyers</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1298"/>
+        <location filename="../../options.ui" line="1303"/>
         <source>ZIP-compressed flyer file (read)</source>
         <translation>Arquivo de flyers comprimido (ZIP) (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1311"/>
+        <location filename="../../options.ui" line="1316"/>
         <source>Browse ZIP-compressed flyer file</source>
         <translation>Procurar por arquivo comprimido de flyers (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1326"/>
+        <location filename="../../options.ui" line="1331"/>
         <source>Switch between specifying an icon directory or a ZIP-compressed icon file</source>
         <translation>Trocar entre especificar um diretório de ícones ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1364"/>
+        <location filename="../../options.ui" line="1369"/>
         <source>Icon directory (read)</source>
         <translation>Diretório de ícones (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1377"/>
+        <location filename="../../options.ui" line="1382"/>
         <source>Browse icon directory</source>
         <translation>Procurar diretório de ícones</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1401"/>
+        <location filename="../../options.ui" line="1406"/>
         <source>ZIP-compressed icon file (read)</source>
         <translation>Arquivo de ícones comprimido (ZIP) (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1414"/>
+        <location filename="../../options.ui" line="1419"/>
         <source>Browse ZIP-compressed icon file</source>
         <translation>Procurar por arquivo comprimido de ícones (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1467"/>
+        <location filename="../../options.ui" line="1472"/>
         <source>Cabinet directory (read)</source>
         <translation>Diretório de gabinetes (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1480"/>
+        <location filename="../../options.ui" line="1485"/>
         <source>Browse cabinet directory</source>
         <translation>Procurar diretório de gabinetes</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1504"/>
+        <location filename="../../options.ui" line="1509"/>
         <source>ZIP-compressed cabinet file (read)</source>
         <translation>Arquivo de gabinetes comprimido (ZIP) (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1517"/>
+        <location filename="../../options.ui" line="1522"/>
         <source>Browse ZIP-compressed cabinet file</source>
         <translation>Procurar por arquivo comprimido de gabinetes (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1429"/>
+        <location filename="../../options.ui" line="1434"/>
         <source>Switch between specifying a cabinet directory or a ZIP-compressed cabinet file</source>
         <translation>Trocar entre especificar um diretório de gabinetes ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1570"/>
+        <location filename="../../options.ui" line="1575"/>
         <source>Controller directory (read)</source>
         <translation>Diretório de controle (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1583"/>
+        <location filename="../../options.ui" line="1588"/>
         <source>Browse controller directory</source>
         <translation>Procurar diretório de controles</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1607"/>
+        <location filename="../../options.ui" line="1612"/>
         <source>ZIP-compressed controller file (read)</source>
         <translation>Arquivo de controles comprimido (ZIP) (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1620"/>
+        <location filename="../../options.ui" line="1625"/>
         <source>Browse ZIP-compressed controller file</source>
         <translation>Procurar por arquivo comprimido de controles (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1532"/>
+        <location filename="../../options.ui" line="1537"/>
         <source>Switch between specifying a controller directory or a ZIP-compressed controller file</source>
         <translation>Trocar entre especificar um diretório de controles ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1673"/>
+        <location filename="../../options.ui" line="1678"/>
         <source>Marquee directory (read)</source>
         <translation>Diretório de marquee (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1686"/>
+        <location filename="../../options.ui" line="1691"/>
         <source>Browse marquee directory</source>
         <translation>Procurar diretório de marquee</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1710"/>
+        <location filename="../../options.ui" line="1715"/>
         <source>ZIP-compressed marquee file (read)</source>
         <translation>Arquivo de marquee comprimido (ZIP) (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1723"/>
+        <location filename="../../options.ui" line="1728"/>
         <source>Browse ZIP-compressed marquee file</source>
         <translation>Procurar por arquivo comprimido de marquee (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1635"/>
+        <location filename="../../options.ui" line="1640"/>
         <source>Switch between specifying a marquee directory or a ZIP-compressed marquee file</source>
         <translation>Trocar entre especificar um diretório de marquee ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1776"/>
+        <location filename="../../options.ui" line="1781"/>
         <source>Title directory (read)</source>
         <translation>Diretório de títulos (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1789"/>
+        <location filename="../../options.ui" line="1794"/>
         <source>Browse title directory</source>
         <translation>Procurar diretório de títulos</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1813"/>
+        <location filename="../../options.ui" line="1818"/>
         <source>ZIP-compressed title file (read)</source>
         <translation>Arquivo de títulos comprimido (ZIP) (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1826"/>
+        <location filename="../../options.ui" line="1831"/>
         <source>Browse ZIP-compressed title file</source>
         <translation>Procurar por arquivo comprimido de títulos (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1738"/>
+        <location filename="../../options.ui" line="1743"/>
         <source>Switch between specifying a title directory or a ZIP-compressed title file</source>
         <translation>Trocar entre especificar um diretório de títulos ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1841"/>
+        <location filename="../../options.ui" line="1846"/>
         <source>Switch between specifying a PCB directory or a ZIP-compressed PCB file</source>
         <translation>Trocar entre especificar um diretório de PCB ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1879"/>
+        <location filename="../../options.ui" line="1884"/>
         <source>PCB directory (read)</source>
         <translation>Diretório de PCB (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1892"/>
+        <location filename="../../options.ui" line="1897"/>
         <source>Browse PCB directory</source>
         <translation>Procurar diretório de PCB</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1916"/>
+        <location filename="../../options.ui" line="1921"/>
         <source>ZIP-compressed PCB file (read)</source>
         <translation>Arquivo de PCB comprimido (ZIP) (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1929"/>
+        <location filename="../../options.ui" line="1934"/>
         <source>Browse ZIP-compressed PCB file</source>
         <translation>Procurar por arquivo comprimido de PCB (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1076"/>
+        <location filename="../../options.ui" line="1081"/>
         <source>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</source>
         <translation>Habilitar o uso do arquivo catver.ini -- obtenha a versão mais nova de http://www.progettoemma.net/?catlist</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1079"/>
+        <location filename="../../options.ui" line="1084"/>
         <source>Use catver.ini</source>
         <translation>Usar catver.ini</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1096"/>
+        <location filename="../../options.ui" line="1101"/>
         <source>Path to catver.ini (read)</source>
         <translation>Caminho para catver.ini (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1109"/>
+        <location filename="../../options.ui" line="1114"/>
         <source>Browse path to catver.ini</source>
         <translation>Procurar caminha para catver.ini</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2156"/>
+        <location filename="../../options.ui" line="2161"/>
         <source>Switch between specifying a software snap directory or a ZIP-compressed software snap file</source>
         <translation>Trocar entre especificar um diretório de snapshots de software ou um arquivo comprimido (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2159"/>
+        <location filename="../../options.ui" line="2164"/>
         <location filename="../../options.cpp" line="2049"/>
         <location filename="../../options.cpp" line="2109"/>
         <location filename="../../options.cpp" line="3122"/>
@@ -11671,394 +11671,394 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Diretório de snapshot de software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1966"/>
+        <location filename="../../options.ui" line="1971"/>
         <source>Software snap-shot directory (read)</source>
         <translation>Diretório de snapshots de software (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="1979"/>
+        <location filename="../../options.ui" line="1984"/>
         <source>Browse software snap-shot directory</source>
         <translation>Procurar pelo diretório de snapshots de software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2003"/>
+        <location filename="../../options.ui" line="2008"/>
         <source>ZIP-compressed software snap-shot file (read)</source>
         <translation>Arquivo comprimido de snapshots de software (ZIP) (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2016"/>
+        <location filename="../../options.ui" line="2021"/>
         <source>Browse ZIP-compressed software snap-shot file</source>
         <translation>Procurar o arquivo comprimido ZIP de snapshots de software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2256"/>
+        <location filename="../../options.ui" line="2261"/>
         <source>Game &amp;list</source>
         <translation>&amp;Lista de jogos</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2288"/>
+        <location filename="../../options.ui" line="2293"/>
         <source>ROM state filter</source>
         <translation>Filtro de estado da ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2590"/>
+        <location filename="../../options.ui" line="2595"/>
         <source>Show ROM state C (correct)?</source>
         <translation>Mostrar ROM com estado C (correto)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2613"/>
+        <location filename="../../options.ui" line="2618"/>
         <source>Show ROM state M (mostly correct)?</source>
         <translation>Mostrar ROM com estado M (Maioria correto)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2636"/>
+        <location filename="../../options.ui" line="2641"/>
         <source>Show ROM state I (incorrect)?</source>
         <translation>Mostrar estado de ROM I (incorreto)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2659"/>
+        <location filename="../../options.ui" line="2664"/>
         <source>Show ROM state N (not found)?</source>
         <translation>Mostrar estado de ROM N (não encontrado)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2682"/>
+        <location filename="../../options.ui" line="2687"/>
         <source>Show ROM state U (unknown)?</source>
         <translation>Mostrar estado de ROM D (desconhecido)?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2701"/>
+        <location filename="../../options.ui" line="2706"/>
         <source>Sort criteria</source>
         <translation>Critério de ordenação</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2358"/>
+        <location filename="../../options.ui" line="2363"/>
         <source>Select sort criteria</source>
         <translation>Selecione um critério de ordenação</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2362"/>
+        <location filename="../../options.ui" line="2367"/>
         <source>Game description</source>
         <translation>Descrição do jogo</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2367"/>
+        <location filename="../../options.ui" line="2372"/>
         <source>ROM state</source>
         <translation>Estado da ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2377"/>
+        <location filename="../../options.ui" line="2382"/>
         <source>Year</source>
         <translation>Ano</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2382"/>
+        <location filename="../../options.ui" line="2387"/>
         <source>Manufacturer</source>
         <translation>Fabricante</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2387"/>
+        <location filename="../../options.ui" line="2392"/>
         <source>Game name</source>
         <translation>Nome do jogo</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2392"/>
+        <location filename="../../options.ui" line="2397"/>
         <source>ROM types</source>
         <translation>Tipos de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2397"/>
+        <location filename="../../options.ui" line="2402"/>
         <source>Players</source>
         <translation>Jogadores</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2433"/>
+        <location filename="../../options.ui" line="2438"/>
         <source>Sort order</source>
         <translation>Ordem</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2446"/>
+        <location filename="../../options.ui" line="2451"/>
         <source>Select sort order</source>
         <translation>Selecione a ordem</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2450"/>
+        <location filename="../../options.ui" line="2455"/>
         <source>Ascending</source>
         <translation>Ascendente</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2459"/>
+        <location filename="../../options.ui" line="2464"/>
         <source>Descending</source>
         <translation>Descendente</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2550"/>
+        <location filename="../../options.ui" line="2555"/>
         <source>Responsiveness</source>
         <translation>Disponibilidade</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2563"/>
+        <location filename="../../options.ui" line="2568"/>
         <source>Number of item insertions between game list updates during reload (higher means faster, but makes the GUI less responsive)</source>
         <translation>Número de itens inseridos entre as atualizações da lista de jogos durante o recarregamento (maior significa mais rápido, mas torna a interface menos disponível)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2566"/>
+        <location filename="../../options.ui" line="2571"/>
         <source>immediate</source>
         <translation>imediata</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2335"/>
+        <location filename="../../options.ui" line="2340"/>
         <source>Update delay</source>
         <translation>Atraso de atualização</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2787"/>
+        <location filename="../../options.ui" line="2792"/>
         <source>Delay update of any game details (preview, flyer, info, configuration, ...) by how many milliseconds?</source>
         <translation>Atrasar atualização dos qualquer detalhe do jogo (preview, flyer, informações, configurações, ....) por quantos milisegundos?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2790"/>
+        <location filename="../../options.ui" line="2795"/>
         <source>none</source>
         <translation>nenhum</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2793"/>
+        <location filename="../../options.ui" line="2798"/>
         <source> ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2847"/>
+        <location filename="../../options.ui" line="2852"/>
         <source>Sort game list while reloading (slower)</source>
         <translation>Ordenar lista de jogos enquanto recarregando (mais lento)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2850"/>
+        <location filename="../../options.ui" line="2855"/>
         <source>Sort while loading</source>
         <translation>Ordenar enquanto recarrega</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2877"/>
+        <location filename="../../options.ui" line="2882"/>
         <source>Automatically trigger a ROM check if necessary</source>
         <translation>Verificar ROM automaticamente se necessário</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2880"/>
+        <location filename="../../options.ui" line="2885"/>
         <source>Auto-trigger ROM check</source>
         <translation>Verificar ROM automaticamente</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2493"/>
+        <location filename="../../options.ui" line="2498"/>
         <source>Display ROM status icons in master lists?</source>
         <translation>Mostrar ícones de estado da ROM nas listas principais?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2496"/>
+        <location filename="../../options.ui" line="2501"/>
         <source>Show ROM status icons</source>
         <translation>Mostrar ícones de estado da ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4323"/>
+        <location filename="../../options.ui" line="4328"/>
         <source>Software list cache file (write)</source>
         <translation>Arquivo de cache de lista de jogos (escrita)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4336"/>
+        <location filename="../../options.ui" line="4341"/>
         <source>Browse software list cache file</source>
         <translation>Procurar arquivo de cache de lista de jogos</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4360"/>
+        <location filename="../../options.ui" line="4365"/>
         <source>Directory used as the default software folder for the MESS device configurator (if a sub-folder named as the current machine exists, that folder will be selected instead)</source>
         <translation>Diretório utilizado como diretório padrão de software para o configurador de dispositivos do MESS (se um subdiretório com o mesmo nome da máquina existir, essa pasta será selecionada no lugar)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2815"/>
+        <location filename="../../options.ui" line="2820"/>
         <source>Launch emulation on double-click events (may be annoying)</source>
         <translation>Iniciar emulador por clique duplo (pode ser estranho)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2818"/>
+        <location filename="../../options.ui" line="2823"/>
         <source>Double-click activation</source>
         <translation>Ativação por clique duplo</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2831"/>
+        <location filename="../../options.ui" line="2836"/>
         <source>Hide primary game list while loading (recommended, much faster)</source>
         <translation>Esconder a lista primária de jogos enquanto recarrega (recomendado, muito mais rápido)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2834"/>
+        <location filename="../../options.ui" line="2839"/>
         <source>Hide while loading</source>
         <translation>Esconder enquanto carrega</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2477"/>
+        <location filename="../../options.ui" line="2482"/>
         <source>Launch emulation directly when an item is activated in the search-, favorites- or played-lists (instead of jumping to the master list)</source>
         <translation>Iniciar emulação diretamente quando um item é ativado na lista de busca, favoritos ou jogados (ao invés de pular para a lista principal)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2480"/>
+        <location filename="../../options.ui" line="2485"/>
         <source>Play on sub-list activation</source>
         <translation>Jogar com ativação na sub-lista</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2520"/>
+        <location filename="../../options.ui" line="2525"/>
         <source>Select the cursor position QMC2 uses when auto-scrolling to the current item (this setting applies to all views and lists!)</source>
         <translation>Escolher posição do cursor a ser usado pelo QMC2 quando fizer rolagem automática para o ítem atual (essa configuração se aplica a todas as visões e listas!)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2527"/>
+        <location filename="../../options.ui" line="2532"/>
         <source>Visible</source>
         <translation>Visível</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2532"/>
+        <location filename="../../options.ui" line="2537"/>
         <source>Top</source>
         <translation>Em cima</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2537"/>
+        <location filename="../../options.ui" line="2542"/>
         <source>Bottom</source>
         <translation>Em baixo</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2542"/>
+        <location filename="../../options.ui" line="2547"/>
         <source>Center</source>
         <translation>Centro</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2507"/>
+        <location filename="../../options.ui" line="2512"/>
         <source>Cursor position</source>
         <translation>Posição do cursor</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2857"/>
+        <location filename="../../options.ui" line="2862"/>
         <source>SW snap position</source>
         <translation>Posição do snapshot de software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2743"/>
+        <location filename="../../options.ui" line="2748"/>
         <source>Above / Left</source>
         <translation>Acima / Esquerda</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2748"/>
+        <location filename="../../options.ui" line="2753"/>
         <source>Above / Center</source>
         <translation>Acima / Centro</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2753"/>
+        <location filename="../../options.ui" line="2758"/>
         <source>Above / Right</source>
         <translation>Acima / Direita</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2758"/>
+        <location filename="../../options.ui" line="2763"/>
         <source>Below / Left</source>
         <translation>Abaixo / Esquerda</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2763"/>
+        <location filename="../../options.ui" line="2768"/>
         <source>Below / Center</source>
         <translation>Abaixo / Centro</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2768"/>
+        <location filename="../../options.ui" line="2773"/>
         <source>Below / Right</source>
         <translation>Abaixo / Direita</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2934"/>
+        <location filename="../../options.ui" line="2939"/>
         <source>&amp;Shortcuts / Keys</source>
         <translation>Atalho&amp;s / Teclas</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2966"/>
-        <location filename="../../options.ui" line="2969"/>
+        <location filename="../../options.ui" line="2971"/>
+        <location filename="../../options.ui" line="2974"/>
         <source>Redefine key sequence</source>
         <translation>Redefinir sequência de teclas</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2983"/>
+        <location filename="../../options.ui" line="2988"/>
         <source>Reset key sequence to default</source>
         <translation>Redefinir sequência de teclas para o padrão</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2986"/>
+        <location filename="../../options.ui" line="2991"/>
         <source>Reset</source>
         <translation>Redefinir</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3003"/>
+        <location filename="../../options.ui" line="3008"/>
         <source>Active shortcut definitions; double-click to redefine key sequence</source>
         <translation>Definições ativas de atalhos: clique duplo para redefinir sequência de teclas</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3022"/>
-        <location filename="../../options.ui" line="3478"/>
+        <location filename="../../options.ui" line="3027"/>
+        <location filename="../../options.ui" line="3483"/>
         <source>Function / Key</source>
         <translation>Função / Tecla</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3504"/>
+        <location filename="../../options.ui" line="3509"/>
         <source>Proxy / &amp;Tools</source>
         <translation>Proxy / &amp;Ferramentas</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3678"/>
+        <location filename="../../options.ui" line="3683"/>
         <source>ROM tool</source>
         <translation>Ferramenta de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3697"/>
+        <location filename="../../options.ui" line="3702"/>
         <source>External ROM tool (it&apos;s completely up to you...)</source>
         <translation>Ferramenta de ROM externa (a decisão é toda sua...)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3710"/>
+        <location filename="../../options.ui" line="3715"/>
         <source>Browse ROM tool</source>
         <translation>Procurar ferramenta de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3734"/>
+        <location filename="../../options.ui" line="3739"/>
         <source>ROM tool argument list (i. e. &quot;$ID$ $DESCRIPTION$&quot;)</source>
         <translation>Lista de argumentos da ferramenta de ROM (p. e. &quot;$ID $DESCRIÇÃO$&quot;)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3754"/>
+        <location filename="../../options.ui" line="3759"/>
         <source>Working directory that&apos;s used when the ROM tool is executed (if empty, QMC2&apos;s current working directory is used)</source>
         <translation>Diretório de trabalho usado quando a ferramenta de ROM é executada (se vazio, o diretório de trabalho atual do QMC2 será usado)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3784"/>
+        <location filename="../../options.ui" line="3789"/>
         <source>Copy the tool&apos;s output to the front end log (keeping it for debugging)</source>
         <translation>Copiar a saída da ferramenta para o log do programa (mantenha para verificação)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3787"/>
+        <location filename="../../options.ui" line="3792"/>
         <source>Copy tool output to front end log</source>
         <translation>Copiar a saída da ferramenta para o log do frontend</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3794"/>
+        <location filename="../../options.ui" line="3799"/>
         <source>Automatically close the tool-executor dialog when the external process finished</source>
         <translation>Fechar automaticamente o diálog de execução da ferramenta quando o processo externo terminar</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3797"/>
+        <location filename="../../options.ui" line="3802"/>
         <source>Close dialog automatically</source>
         <translation>Fechar diálogo automaticamente</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4110"/>
+        <location filename="../../options.ui" line="4115"/>
         <source>XML game list cache</source>
         <translation>Cache da lista de jogos (XML)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4147"/>
+        <location filename="../../options.ui" line="4152"/>
         <source>Game list cache</source>
         <translation>Cache da lista de jogos</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3027"/>
+        <location filename="../../options.ui" line="3032"/>
         <location filename="../../options.cpp" line="407"/>
         <location filename="../../options.cpp" line="408"/>
         <location filename="../../options.cpp" line="3617"/>
@@ -12066,102 +12066,102 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Padrão</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="163"/>
+        <location filename="../../options.ui" line="168"/>
         <source>Save game selection on exit and before reloading the game list</source>
         <translation>Salvar seleção de jogos ao sair e antes de recarregar a lista de jogos</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="183"/>
+        <location filename="../../options.ui" line="188"/>
         <source>Restore saved game selection at start and after reloading the game list</source>
         <translation>Restaurar seleção de jogos ao iniciar e antes de recarregar a lista de jogos</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="733"/>
+        <location filename="../../options.ui" line="738"/>
         <source>Use a unifed tool- and title-bar on Mac OS X</source>
         <translation>Usar uma ferramenta unificada - e barra de títulos no Mac OS X</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="736"/>
+        <location filename="../../options.ui" line="741"/>
         <source>Unify with title</source>
         <translation>Unificar com título</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="755"/>
+        <location filename="../../options.ui" line="760"/>
         <source>Minimize when launching emulators?</source>
         <translation>Minimizar quando lançar emuladores?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="758"/>
+        <location filename="../../options.ui" line="763"/>
         <source>Minimize on emulator launch</source>
         <translation>Minimizar ao iniciar emulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="775"/>
+        <location filename="../../options.ui" line="780"/>
         <source>Suppress all messages sent through either the QDebug class or one of the qDebug() / qCritical() / qWarning() / qFatal() functions</source>
         <translation>Suprimir todas as mensagens enviadas pela classe QDebug ou pelas funções qDebug() / qCritical() / qWarning() / qFatal() </translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="778"/>
+        <location filename="../../options.ui" line="783"/>
         <source>Suppress Qt messages</source>
         <translation>Suprimir mensagens do Qt</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="785"/>
+        <location filename="../../options.ui" line="790"/>
         <source>Show splash screen when starting up?</source>
         <translation>Mostrar tela inicial (splash screen) quando iniciar?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="788"/>
+        <location filename="../../options.ui" line="793"/>
         <source>Show splash screen</source>
         <translation>Mostrar tela inicial (splash screen)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2172"/>
+        <location filename="../../options.ui" line="2177"/>
         <source>Software notes folder</source>
         <translation>Pasta das notas de software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2185"/>
+        <location filename="../../options.ui" line="2190"/>
         <source>Folder used to store personal notes about any software titles (write)</source>
         <translation>Pasta usada para guardar notas pessoais sobre quaisquer títulos de software (escrita)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2198"/>
+        <location filename="../../options.ui" line="2203"/>
         <source>Browse software notes folder</source>
         <translation>Procurar pasta das notas de software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2372"/>
+        <location filename="../../options.ui" line="2377"/>
         <source>Tag</source>
         <translation>Etiqueta</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2402"/>
+        <location filename="../../options.ui" line="2407"/>
         <source>Driver status</source>
         <translation>Estado do driver</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2739"/>
+        <location filename="../../options.ui" line="2744"/>
         <source>Select the position where sofware snap-shots are displayed within software lists</source>
         <translation>Selecione a posição onde os snapshots de software são mostrados dentro da lista de software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2773"/>
+        <location filename="../../options.ui" line="2778"/>
         <source>Disable snaps</source>
         <translation>Desabilitar snapshots</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2410"/>
+        <location filename="../../options.ui" line="2415"/>
         <source>Display software snap-shots when hovering the software list with the mouse cursor</source>
         <translation>Mostrar snapshots de software quando o mouse passar pela lista de software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2413"/>
+        <location filename="../../options.ui" line="2418"/>
         <source>SW snaps on mouse hover</source>
         <translation>Snapshots de software ao passar o mouse</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2285"/>
+        <location filename="../../options.ui" line="2290"/>
         <source>Enable ROM state filtering?</source>
         <translation>Habilitar filtro por estado da ROM?</translation>
     </message>
@@ -12171,650 +12171,655 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2209"/>
+        <location filename="../../options.ui" line="155"/>
+        <source>RO (Romanian)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="2214"/>
         <source>Enable the use of a template for (empty) software notes</source>
         <translation>Habilitar o uso de um template para notas de software (vazias)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2212"/>
+        <location filename="../../options.ui" line="2217"/>
         <source>Software notes template</source>
         <translation>Template de notas de software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2225"/>
+        <location filename="../../options.ui" line="2230"/>
         <source>HTML file used as a template for software-notes (read)</source>
         <translation>Arquivo HTML usado como template para notas de software (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2238"/>
+        <location filename="../../options.ui" line="2243"/>
         <source>Browse software notes template</source>
         <translation>Procurar template de notas de software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2342"/>
+        <location filename="../../options.ui" line="2347"/>
         <source>Automatically disable SW snaps when software-detail is visible (may be annoying)</source>
         <translation>Desabilitar automaticamente capturas de tela do software quando os detalhes do software estão visíveis (pode incomodar)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2345"/>
+        <location filename="../../options.ui" line="2350"/>
         <source>No SW snaps for visible details</source>
         <translation>Desabilitar capturas de software com detalhes visíveis</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2708"/>
+        <location filename="../../options.ui" line="2713"/>
         <source>Select the default launch-mode (independent or embedded window) used when emulation is started by activating an entry in any list</source>
         <translation>Selecione o modo padrão de execução (janela independente ou embutida) usada quando o emulador é iniciado ativando uma entrada em qualquer lista</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2712"/>
+        <location filename="../../options.ui" line="2717"/>
         <source>independent</source>
         <translation>independente</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2721"/>
+        <location filename="../../options.ui" line="2726"/>
         <source>embedded</source>
         <translation>embutido</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2864"/>
+        <location filename="../../options.ui" line="2869"/>
         <source>Default launch-mode</source>
         <translation>Modo de execução padrão</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2893"/>
+        <location filename="../../options.ui" line="2898"/>
         <source>Display (or hide) device sets in master lists?</source>
         <translation>Mostrar (ou esconder) conjuntos de dispositivos nas listas principais?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2896"/>
+        <location filename="../../options.ui" line="2901"/>
         <source>Show device sets</source>
         <translation>Mostrar conjuntos de dispositivos</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2913"/>
+        <location filename="../../options.ui" line="2918"/>
         <source>Display (or hide) BIOS sets in master lists?</source>
         <translation>Mostrar (ou esconder) conjuntos de BIOS nas listas principais?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="2916"/>
+        <location filename="../../options.ui" line="2921"/>
         <source>Show BIOS sets</source>
         <translation>Mostrar conjuntos de BIOS</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3032"/>
+        <location filename="../../options.ui" line="3037"/>
         <source>Custom</source>
         <translation>Personalizado</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3047"/>
+        <location filename="../../options.ui" line="3052"/>
         <source>&amp;Joystick</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3076"/>
+        <location filename="../../options.ui" line="3081"/>
         <source>Enable GUI control via joystick</source>
         <translation>Habilitar controle da interface via joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3079"/>
+        <location filename="../../options.ui" line="3084"/>
         <source>Enable joystick control</source>
         <translation>Habilitar controle via joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3095"/>
+        <location filename="../../options.ui" line="3100"/>
         <source>Rescan available joysticks</source>
         <translation>Re-escanear joysticks disponíveis</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3098"/>
+        <location filename="../../options.ui" line="3103"/>
         <source>Rescan joysticks</source>
         <translation>Re-escanear joysticks</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3118"/>
+        <location filename="../../options.ui" line="3123"/>
         <source>Select joystick</source>
         <translation>Selecionar Joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3128"/>
+        <location filename="../../options.ui" line="3133"/>
         <source>List of available joysticks - select the one you want to use for GUI control</source>
         <translation>Lista de joysticks disponíveis - selecione aquele que você quer usar para controle da interface</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3143"/>
+        <location filename="../../options.ui" line="3148"/>
         <source>Joystick information and settings</source>
         <translation>Informação e configuração do Joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3153"/>
+        <location filename="../../options.ui" line="3158"/>
         <source>Axes:</source>
         <translation>Eixos:</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3160"/>
+        <location filename="../../options.ui" line="3165"/>
         <source>Number of joystick axes</source>
         <translation>Número de eixos do joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3163"/>
-        <location filename="../../options.ui" line="3184"/>
-        <location filename="../../options.ui" line="3205"/>
-        <location filename="../../options.ui" line="3226"/>
+        <location filename="../../options.ui" line="3168"/>
+        <location filename="../../options.ui" line="3189"/>
+        <location filename="../../options.ui" line="3210"/>
+        <location filename="../../options.ui" line="3231"/>
         <source>0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3174"/>
+        <location filename="../../options.ui" line="3179"/>
         <source>Buttons:</source>
         <translation>Botões:</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3181"/>
+        <location filename="../../options.ui" line="3186"/>
         <source>Number of joystick buttons</source>
         <translation>Número de botões do joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3195"/>
+        <location filename="../../options.ui" line="3200"/>
         <source>Hats:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3202"/>
+        <location filename="../../options.ui" line="3207"/>
         <source>Number of coolie hats</source>
         <translation>Número de coolie hats</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3216"/>
+        <location filename="../../options.ui" line="3221"/>
         <source>Trackballs:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3223"/>
+        <location filename="../../options.ui" line="3228"/>
         <source>Number of trackballs</source>
         <translation>Número de trackballs</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3252"/>
+        <location filename="../../options.ui" line="3257"/>
         <source>Automatically repeat joystick functions after specified delay</source>
         <translation>Repetir automaticamente funções do joystick após um atraso especificado</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3255"/>
+        <location filename="../../options.ui" line="3260"/>
         <source>Auto repeat after</source>
         <translation>Repetir automaticamente após</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3271"/>
+        <location filename="../../options.ui" line="3276"/>
         <source>Repeat all joystick functions after how many milliseconds?</source>
         <translation>Repetir todas as funções do joystick após quantos milisegundos?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3274"/>
-        <location filename="../../options.ui" line="3319"/>
+        <location filename="../../options.ui" line="3279"/>
+        <location filename="../../options.ui" line="3324"/>
         <source>ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3300"/>
+        <location filename="../../options.ui" line="3305"/>
         <source>Event timeout</source>
         <translation>Tempo máximo do evento</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3316"/>
+        <location filename="../../options.ui" line="3321"/>
         <source>Process joystick events after how many milliseconds?</source>
         <translation>Processar eventos de joystick após quantos milisegundos?</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3342"/>
+        <location filename="../../options.ui" line="3347"/>
         <source>Calibrate joystick axes</source>
         <translation>Calibrar eixos do joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3345"/>
+        <location filename="../../options.ui" line="3350"/>
         <source>Calibrate</source>
         <translation>Calibrar</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3364"/>
+        <location filename="../../options.ui" line="3369"/>
         <source>Test all joystick functions</source>
         <translation>Testar todas as funções do joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3367"/>
+        <location filename="../../options.ui" line="3372"/>
         <source>Test</source>
         <translation>Testar</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3386"/>
+        <location filename="../../options.ui" line="3391"/>
         <source>Map joystick functions to GUI functions</source>
         <translation>Mapear funções do joystick para funções da interface</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3389"/>
+        <location filename="../../options.ui" line="3394"/>
         <source>Map</source>
         <translation>Mapear</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3422"/>
+        <location filename="../../options.ui" line="3427"/>
         <source>Remap a joystick function to the selected GUI function</source>
         <translation>Remapear uma função do joystick para uma função selecionada da interface</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3425"/>
+        <location filename="../../options.ui" line="3430"/>
         <source>Remap</source>
         <translation>Remapear</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3439"/>
+        <location filename="../../options.ui" line="3444"/>
         <source>Remove joystick mapping from selected GUI function</source>
         <translation>Remover mapeamento do joystick para a função da interface selecionada</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3442"/>
+        <location filename="../../options.ui" line="3447"/>
         <source>Remove</source>
         <translation>Remover</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3459"/>
+        <location filename="../../options.ui" line="3464"/>
         <source>Active joystick mappings; double-click to remap joystick function</source>
         <translation>Mapeamentos ativos do joystick: clique duplo para remapear as funções do joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3483"/>
+        <location filename="../../options.ui" line="3488"/>
         <source>Joystick function</source>
         <translation>Função do joystick</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3533"/>
+        <location filename="../../options.ui" line="3538"/>
         <source>Zip tool</source>
         <translation>Ferramenta zip</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3539"/>
-        <location filename="../../options.ui" line="3605"/>
-        <location filename="../../options.ui" line="3684"/>
+        <location filename="../../options.ui" line="3544"/>
+        <location filename="../../options.ui" line="3610"/>
+        <location filename="../../options.ui" line="3689"/>
         <source>Command</source>
         <translation>Comando</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3552"/>
+        <location filename="../../options.ui" line="3557"/>
         <source>External zip tool, i.e. &quot;zip&quot; (read and execute)</source>
         <translation>Ferramenta externa de zip, p.e. &quot;zip&quot; (ler e executar)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3565"/>
+        <location filename="../../options.ui" line="3570"/>
         <source>Browse for zip tool</source>
         <translation>Procurar pela ferramenta de zip</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3576"/>
-        <location filename="../../options.ui" line="3642"/>
-        <location filename="../../options.ui" line="3721"/>
-        <location filename="../../options.ui" line="4578"/>
-        <location filename="../../options.ui" line="4692"/>
+        <location filename="../../options.ui" line="3581"/>
+        <location filename="../../options.ui" line="3647"/>
+        <location filename="../../options.ui" line="3726"/>
+        <location filename="../../options.ui" line="4583"/>
+        <location filename="../../options.ui" line="4697"/>
         <source>Arguments</source>
         <translation>Argumentos</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3589"/>
+        <location filename="../../options.ui" line="3594"/>
         <source>Zip tool argument list to remove entries from the ZIP archive (i. e. &quot;$ARCHIVE$ -d $FILELIST$&quot;)</source>
         <translation>Lista de argumentos da ferramenta zip para remover entradas de um arquivo zip (p. e. &quot;$ARCHIVE$ -d $FILELIST$&quot;)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3599"/>
+        <location filename="../../options.ui" line="3604"/>
         <source>File removal tool</source>
         <translation>Ferramenta de remoção de arquivo</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3618"/>
+        <location filename="../../options.ui" line="3623"/>
         <source>External file removal tool, i.e. &quot;rm&quot; (read and execute)</source>
         <translation>Ferramenta externa de remoção de arquivo, p.e. &quot;rm&quot; (ler e executar)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3631"/>
+        <location filename="../../options.ui" line="3636"/>
         <source>Browse for file removal tool</source>
         <translation>Procurar pela ferramenta de remoção de arquivos</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3655"/>
+        <location filename="../../options.ui" line="3660"/>
         <source>File removal tool argument list (i. e. &quot;-f -v $FILELIST$&quot;)</source>
         <translation>Lista de argumentos da ferramenta de remoção de arquivo (p. e. &quot;-f -v $FILELIST$&quot;)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3767"/>
+        <location filename="../../options.ui" line="3772"/>
         <source>Browse working directory of the ROM tool</source>
         <translation>Procurar por diretório de trabalho da ferramenta de ROM</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3807"/>
+        <location filename="../../options.ui" line="3812"/>
         <source>Enable / disable the use of an HTTP proxy on any web lookups</source>
         <translation>Habilitar / desabilitar uso de proxy HTTP em qualquer acesso à web</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3810"/>
+        <location filename="../../options.ui" line="3815"/>
         <source>Use HTTP proxy</source>
         <translation>Usar proxy HTTP</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3822"/>
+        <location filename="../../options.ui" line="3827"/>
         <source>Host / IP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3835"/>
+        <location filename="../../options.ui" line="3840"/>
         <source>Hostname or IP address of the HTTP proxy server</source>
         <translation>Nome ou endereço IP do servidor de proxy HTTP</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3842"/>
+        <location filename="../../options.ui" line="3847"/>
         <source>Port</source>
         <translation>Porta</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3855"/>
+        <location filename="../../options.ui" line="3860"/>
         <source>Port to access the HTTP proxy service</source>
         <translation>Porta para acessar o serviço de proxy HTTP</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3868"/>
+        <location filename="../../options.ui" line="3873"/>
         <source>User ID</source>
         <translation>ID do usuário</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3881"/>
+        <location filename="../../options.ui" line="3886"/>
         <source>User ID to access the HTTP proxy service (empty = no authentication)</source>
         <translation>ID do usuário para acessar o serviço de proxy HTTP (vazio = sem autenticação)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3888"/>
+        <location filename="../../options.ui" line="3893"/>
         <source>Password</source>
         <translation>Senha</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3901"/>
+        <location filename="../../options.ui" line="3906"/>
         <source>Password to access the HTTP proxy service (empty = no authentication)</source>
         <translation>Senha para acessar o serviço de proxy HTTP (vazio = sem autenticação)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3911"/>
+        <location filename="../../options.ui" line="3916"/>
         <source>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</source>
         <translation>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;AVISO: senhas salvas são &lt;u&gt;fracamente&lt;/u&gt; encriptadas!&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3932"/>
+        <location filename="../../options.ui" line="3937"/>
         <source>E&amp;mulator</source>
         <translation>E&amp;mulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3942"/>
+        <location filename="../../options.ui" line="3947"/>
         <source>&amp;Global configuration</source>
         <translation>Configuração &amp;Global</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3997"/>
+        <location filename="../../options.ui" line="4002"/>
         <source>Executable file</source>
         <translation>Arquivo executável</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4012"/>
+        <location filename="../../options.ui" line="4017"/>
         <source>Emulator executable file (read and execute)</source>
         <translation>Arquivo executável do emulador (leitura e execução)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4025"/>
-        <location filename="../../options.ui" line="4678"/>
+        <location filename="../../options.ui" line="4030"/>
+        <location filename="../../options.ui" line="4683"/>
         <source>Browse emulator executable file</source>
         <translation>Procurar pelo executável do emulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4036"/>
+        <location filename="../../options.ui" line="4041"/>
         <source>Emulator log file</source>
         <translation>Arquivo de log do emulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4049"/>
+        <location filename="../../options.ui" line="4054"/>
         <source>Emulator log file (write)</source>
         <translation>Arquivo de log do emulador (escrita)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4062"/>
+        <location filename="../../options.ui" line="4067"/>
         <source>Browse emulator log file</source>
         <translation>Procurar pelo arquivo de log do emulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4073"/>
+        <location filename="../../options.ui" line="4078"/>
         <source>Options template file</source>
         <translation>Arquivo de template de opções</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4086"/>
+        <location filename="../../options.ui" line="4091"/>
         <source>Options template file (read)</source>
         <translation>Arquivo de template de opções (leitura)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4099"/>
+        <location filename="../../options.ui" line="4104"/>
         <source>Browse options template file</source>
         <translation>Procurar arquivo de template de opções</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4123"/>
+        <location filename="../../options.ui" line="4128"/>
         <source>Cache file for the output of mame -listxml / -lx (write)</source>
         <translation>Arquivo de cache para a saída de mame -listxml / -lx (escrita)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4136"/>
+        <location filename="../../options.ui" line="4141"/>
         <source>Browse XML gamelist cache file</source>
         <translation>Procurar arquivo de cache da lista de jogos (XML)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4160"/>
+        <location filename="../../options.ui" line="4165"/>
         <source>Gamelist cache file (write)</source>
         <translation>Cache da lista de jogos (escrita)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4173"/>
+        <location filename="../../options.ui" line="4178"/>
         <source>Browse gamelist cache file</source>
         <translation>Procurar pelo arquivo de cache da lista de jogos</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4184"/>
+        <location filename="../../options.ui" line="4189"/>
         <source>ROM state cache</source>
         <translation>Cache de estado das ROMs</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4197"/>
+        <location filename="../../options.ui" line="4202"/>
         <source>ROM state cache file (write)</source>
         <translation>Cache de estado das ROMs (escrita)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4210"/>
+        <location filename="../../options.ui" line="4215"/>
         <source>Browse ROM state cache file</source>
         <translation>Procurar arquivo de cache de estado das ROMs</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4270"/>
+        <location filename="../../options.ui" line="4275"/>
         <source>MAWS cache directory</source>
         <translation>Diretório do cache do MAWS</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4283"/>
+        <location filename="../../options.ui" line="4288"/>
         <source>MAWS cache directory (write)</source>
         <translation>Diretório do cache do MAWS (escrita)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4296"/>
+        <location filename="../../options.ui" line="4301"/>
         <source>Browse MAWS cache directory</source>
         <translation>Procurar pelo diretório de cache do MAWS</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4310"/>
+        <location filename="../../options.ui" line="4315"/>
         <source>Software list cache</source>
         <translation>Cache da lista de Software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4384"/>
+        <location filename="../../options.ui" line="4389"/>
         <source>MAME variant exe</source>
         <translation>Exe da variante do MAME</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4397"/>
+        <location filename="../../options.ui" line="4402"/>
         <source>Specify the exe file for the MAME variant (leave empty when all variants are installed in the same directory)</source>
         <translation>Especifique o arquivo exe para a variante do MAME (deixe em branco quando todas as variantes estão instaladas no mesmo diretório)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4410"/>
+        <location filename="../../options.ui" line="4415"/>
         <source>Browse MAME variant exe</source>
         <translation>Procurar exe do variante do MAME</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4421"/>
+        <location filename="../../options.ui" line="4426"/>
         <source>MESS variant exe</source>
         <translation>Exe da variante do MESS</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4434"/>
+        <location filename="../../options.ui" line="4439"/>
         <source>Specify the exe file for the MESS variant (leave empty when all variants are installed in the same directory)</source>
         <translation>Especifique o arquivo exe para a variante do MESS (deixe em branco quando todas as variantes estão instaladas no mesmo diretório)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4447"/>
+        <location filename="../../options.ui" line="4452"/>
         <source>Browse MESS variant exe</source>
         <translation>Procurar exe do variante do MESS</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4699"/>
+        <location filename="../../options.ui" line="4704"/>
         <source>Arguments passed to the emulator -- use $ID$ as placeholder for the unique set ID, $DESCRIPTION$ for its description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="3741"/>
-        <location filename="../../options.ui" line="4458"/>
-        <location filename="../../options.ui" line="4573"/>
-        <location filename="../../options.ui" line="4723"/>
+        <location filename="../../options.ui" line="3746"/>
+        <location filename="../../options.ui" line="4463"/>
+        <location filename="../../options.ui" line="4578"/>
+        <location filename="../../options.ui" line="4728"/>
         <source>Working directory</source>
         <translation>Diretório de trabalho</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4471"/>
-        <location filename="../../options.ui" line="4736"/>
+        <location filename="../../options.ui" line="4476"/>
+        <location filename="../../options.ui" line="4741"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
         <translation>Diretório de trabalho que é usado quando o emulador é executado (se vazio, o diretório de trabalho do QMC2 é usado)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4484"/>
-        <location filename="../../options.ui" line="4749"/>
+        <location filename="../../options.ui" line="4489"/>
+        <location filename="../../options.ui" line="4754"/>
         <source>Browse working directory</source>
         <translation>Procurar diretório de trabalho</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4347"/>
+        <location filename="../../options.ui" line="4352"/>
         <source>General software folder</source>
         <translation>Diretório geral de software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4373"/>
+        <location filename="../../options.ui" line="4378"/>
         <source>Browse general software folder</source>
         <translation>Procurar diretório geral de software</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4502"/>
+        <location filename="../../options.ui" line="4507"/>
         <source>Additional &amp;Emulators</source>
         <translation>&amp;Emuladores Adicionais</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4529"/>
+        <location filename="../../options.ui" line="4534"/>
         <source>Registered emulators -- you may select one of these in the game-specific emulator configuration</source>
         <translation>Emuladores registrados -- você pode selecionar um desses na configuração de emulador específica de jogo</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4563"/>
-        <location filename="../../options.ui" line="4638"/>
+        <location filename="../../options.ui" line="4568"/>
+        <location filename="../../options.ui" line="4643"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4568"/>
-        <location filename="../../options.ui" line="4652"/>
+        <location filename="../../options.ui" line="4573"/>
+        <location filename="../../options.ui" line="4657"/>
         <source>Executable</source>
         <translation>Executável</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4583"/>
+        <location filename="../../options.ui" line="4588"/>
         <source>Custom IDs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4594"/>
+        <location filename="../../options.ui" line="4599"/>
         <source>Register emulator</source>
         <translation>Registrar emulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4624"/>
+        <location filename="../../options.ui" line="4629"/>
         <source>Deregister emulator</source>
         <translation>Desregistrar emulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4645"/>
+        <location filename="../../options.ui" line="4650"/>
         <source>Registered emulator&apos;s name</source>
         <translation>Nome do emulador registrado</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4665"/>
+        <location filename="../../options.ui" line="4670"/>
         <source>Command to execute the emulator (path to the executable file)</source>
         <translation>Comando para executar o emulador (caminho para o arquivo executável)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4709"/>
+        <location filename="../../options.ui" line="4714"/>
         <source>Replace emulator registration</source>
         <translation>Substituir registro do emulador</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4777"/>
+        <location filename="../../options.ui" line="4782"/>
         <source>Apply settings</source>
         <translation>Aplicar configurações</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4780"/>
+        <location filename="../../options.ui" line="4785"/>
         <source>&amp;Apply</source>
         <translation>&amp;Aplicar</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4791"/>
+        <location filename="../../options.ui" line="4796"/>
         <source>Restore currently applied settings</source>
         <translation>Restaurar configurações atualmente aplicadas</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4794"/>
+        <location filename="../../options.ui" line="4799"/>
         <source>&amp;Restore</source>
         <translation>&amp;Restaurar</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4805"/>
+        <location filename="../../options.ui" line="4810"/>
         <source>Reset to default settings (click &lt;i&gt;Restore&lt;/i&gt; to restore currently applied settings!)</source>
         <translation>Redefinir para configurações padrão (clique &lt;i&gt;Restaurar&lt;/i&gt; para restaurar configurações aplicadas atualmente!)</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4808"/>
+        <location filename="../../options.ui" line="4813"/>
         <source>&amp;Default</source>
         <translation>&amp;Padrão</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4832"/>
+        <location filename="../../options.ui" line="4837"/>
         <source>Close and apply settings</source>
         <translation>Fechar e aplicar configurações</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4835"/>
+        <location filename="../../options.ui" line="4840"/>
         <source>&amp;Ok</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4842"/>
+        <location filename="../../options.ui" line="4847"/>
         <source>Close and discard changes</source>
         <translation>Fechar e discartar mudanças</translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4845"/>
+        <location filename="../../options.ui" line="4850"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancelar</translation>
     </message>
@@ -17383,12 +17388,12 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
         <translation>Escolha o caminho para os hashes</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="225"/>
+        <location filename="../../welcome.cpp" line="226"/>
         <source>Single-instance check</source>
         <translation>Verificação de Instância Única</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="226"/>
+        <location filename="../../welcome.cpp" line="227"/>
         <source>It appears that another instance of %1 is already running.
 However, this can also be the leftover of a previous crash.
 
@@ -17399,17 +17404,17 @@ No entanto, ela pode ter sido deixada por um crash anterior.
 Sair agora, aceitar uma vez ou ignorar completamente?</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="227"/>
+        <location filename="../../welcome.cpp" line="228"/>
         <source>&amp;Exit</source>
         <translation>&amp;Sair</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="227"/>
+        <location filename="../../welcome.cpp" line="228"/>
         <source>&amp;Once</source>
         <translation>&amp;Uma vez</translation>
     </message>
     <message>
-        <location filename="../../welcome.cpp" line="227"/>
+        <location filename="../../welcome.cpp" line="228"/>
         <source>&amp;Ignore</source>
         <translation>&amp;Ignorar</translation>
     </message>

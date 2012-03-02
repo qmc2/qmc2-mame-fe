@@ -156,7 +156,7 @@ void Welcome::setupLanguage()
   QString lang = startupConfig->value("GUI/Language").toString();
 
   QStringList availableLanguages;
-  availableLanguages << "us" << "de" << "pl" << "fr" << "pt" << "it";
+  availableLanguages << "us" << "de" << "pl" << "fr" << "pt" << "it" << "ro";
 
   if ( lang.isEmpty() || !availableLanguages.contains(lang) ) {
     // try to use default system locale - use "us" if a translation is not available for the system locale
@@ -166,6 +166,7 @@ void Welcome::setupLanguage()
       case QLocale::Polish: lang = "pl"; break;
       case QLocale::Portuguese: lang = "pt"; break;
       case QLocale::Italian: lang = "it"; break;
+      case QLocale::Romanian: lang = "ro"; break;
       default: lang = "us"; break;
     }
     startupConfig->setValue("GUI/Language", lang);
