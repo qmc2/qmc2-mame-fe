@@ -6,12 +6,12 @@
     <message>
         <location filename="../../about.ui" line="15"/>
         <source>About QMC2</source>
-        <translation type="unfinished"></translation>
+        <translation>Riguardo QMC2</translation>
     </message>
     <message>
         <location filename="../../about.ui" line="59"/>
         <source>Project details</source>
-        <translation type="unfinished"></translation>
+        <translation>Dettagli del progetto</translation>
     </message>
     <message utf8="true">
         <location filename="../../about.ui" line="71"/>
@@ -22,7 +22,14 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Qt 4 based UNIX multi-emulator frontend&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version X.Y[.bZ], built for SDLMAME&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2006 - 2008 R. Reucher, Germany&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Credo sia meglio lasciarlo in inglese</translatorcomment>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;QMC2 - M.A.M.E. Catalog / Launcher II&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Qt 4 based UNIX multi-emulator frontend&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version X.Y[.bZ], built for SDLMAME&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2006 - 2008 R. Reucher, Germany&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../about.ui" line="93"/>
@@ -40,241 +47,254 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;List subscription:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;https://lists.sourceforge.net/lists/listinfo/qmc2-devel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Homepage progetto:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;http://www.mameworld.net/mamecat&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Sito sviluppo:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;http://sourceforge.net/projects/qmc2&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Mailing list per lo sviluppo&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;qmc2-devel@lists.sourceforge.net (solo iscritti)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Iscrizione alla mail list:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;https://lists.sourceforge.net/lists/listinfo/qmc2-devel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../about.ui" line="123"/>
         <source>System information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informazioni di sistema</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="59"/>
         <source>Mac OS X 10.3</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="60"/>
         <source>Mac OS X 10.4</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="61"/>
         <source>Mac OS X 10.5</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="62"/>
         <source>Mac OS X 10.6</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="63"/>
         <source>Mac (unkown)</source>
-        <translation type="unfinished"></translation>
+        <translation>Mac (sconosciuto)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="67"/>
         <source>Windows NT (Windows 4.0)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="68"/>
         <source>Windows 2000 (Windows 5.0)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="69"/>
         <source>Windows XP (Windows 5.1)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="70"/>
         <source>Windows Server 2003, Windows Server 2003 R2, Windows Home Server or Windows XP Professional x64 Edition (Windows 5.2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Windows Server 2003, Windows Server 2003 R2, Windows Home Server o Windows XP Professional x64 Edition (Windows 5.2)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="71"/>
         <source>Windows Vista or Windows Server 2008 (Windows 6.0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Windows Vista o Windows Server 2008 (Windows 6.0)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="72"/>
         <source>Windows 7 or Windows Server 2008 R2 (Windows 6.1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Windows 7 o Windows Server 2008 R2 (Windows 6.1)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="73"/>
         <source>Windows (unknown)</source>
-        <translation type="unfinished"></translation>
+        <translation>Windows (sconosciuto)</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="119"/>
         <source>Qt 4 based multi-platform/multi-emulator front end</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfaccia multi-piattaforma/multi-emulatore basata su Qt4</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="120"/>
         <source>Version </source>
-        <translation type="unfinished"></translation>
+        <translation>Versione</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="122"/>
         <source>SVN r%1</source>
-        <translation type="unfinished"></translation>
+        <translation>SVN r%1</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="124"/>
         <source>built for</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="136"/>
         <source>Copyright</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="136"/>
         <source>Germany</source>
-        <translation type="unfinished"></translation>
+        <translation>Germania</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="140"/>
         <source>Project homepage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Homepage progetto:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="141"/>
         <source>Development site:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sito di sviluppo:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="142"/>
         <source>QMC2 development mailing list:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mailing list sviluppo QMC2:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="142"/>
         <source>subscription required</source>
-        <translation type="unfinished"></translation>
+        <translation>iscrizione necessaria</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="143"/>
         <source>List subscription:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista iscrizioni:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="144"/>
         <source>Bug tracking system:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema di bug tracking:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="149"/>
         <source>Build OS:</source>
-        <translation type="unfinished"></translation>
+        <translation>OS compilazione:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="152"/>
         <location filename="../../about.cpp" line="154"/>
         <source>Running OS:</source>
-        <translation type="unfinished"></translation>
+        <translation>OS corrente:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="156"/>
         <source>Emulator version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Versione emulatore:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="157"/>
         <source>Template information:</source>
-        <translation type="unfinished"></translation>
+        <translation>Informazioni template:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="157"/>
         <source>Emulator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulatore:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="157"/>
         <source>Version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Versione:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="157"/>
         <source>Format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="158"/>
         <source>Qt version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Versione Qt:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="158"/>
         <location filename="../../about.cpp" line="160"/>
         <source>Compile-time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo-compilazione:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="158"/>
         <location filename="../../about.cpp" line="160"/>
         <location filename="../../about.cpp" line="163"/>
         <source>Run-time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo-esecuzione:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="158"/>
         <source>Build key:</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiave compilazione:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="160"/>
         <source>SDL version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Versione SDL:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="163"/>
         <source>Phonon version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Versione Phonon:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="163"/>
         <source>Phonon backend / supported MIME types:</source>
-        <translation type="unfinished"></translation>
+        <translation>Phonon backend / tipi MIME supportati:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="172"/>
         <source>Physical memory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Memoria fisica:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="172"/>
         <source>Total: %1 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>Totale: %1 MB</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="172"/>
         <source>Free: %1 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>Liberi: %1 MB</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="172"/>
         <source>Used: %1 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>Usati: %1 MB</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="174"/>
         <source>Number of CPUs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numero di CPU:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="174"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>sconosciuto</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="175"/>
         <source>Environment variables:</source>
-        <translation type="unfinished"></translation>
+        <translation>Variabili d&apos;ambiente:</translation>
     </message>
 </context>
 <context>
@@ -282,19 +302,19 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadescene.cpp" line="36"/>
         <source>FPS: --</source>
-        <translation type="unfinished"></translation>
+        <translation>FPS:--</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescene.cpp" line="258"/>
         <location filename="../../arcade/arcadescene.cpp" line="260"/>
         <source>FPS: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FPS: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescene.cpp" line="303"/>
         <location filename="../../arcade/arcadescene.cpp" line="306"/>
         <source>Paused</source>
-        <translation type="unfinished"></translation>
+        <translation>In Pausa</translation>
     </message>
 </context>
 <context>
@@ -302,37 +322,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="48"/>
         <source>ArcadeScreenshotSaverThread: Started</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeScreenshotSaverThread: Avviato</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="66"/>
         <source>ArcadeScreenshotSaverThread: Saving screen shot</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeScreenshotSaverThread: Salvataggio screen shot</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="71"/>
         <source>ArcadeScreenshotSaverThread: Failed to create screen shot directory &apos;%1&apos; - aborting screen shot creation</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeScreenshotSaverThread: Errore nel creare directory screen shot &apos;%1&apos; - annullo creazione screen shot</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="80"/>
         <source>ArcadeScreenshotSaverThread: Screen shot successfully saved as &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeScreenshotSaverThread: Screen shot salvato con successo come &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="82"/>
         <source>ArcadeScreenshotSaverThread: Failed to save screen shot as &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeScreenshotSaverThread: Impossibile salvare screen shot come &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="83"/>
         <source>Saving screen shot</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvataggio screen shot</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="92"/>
         <source>ArcadeScreenshotSaverThread: Ended</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeScreenshotSaverThread: Terminato</translation>
     </message>
 </context>
 <context>
@@ -340,17 +360,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="15"/>
         <source>Arcade setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni arcade</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="25"/>
         <source>Graphics mode settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni modalità grafica</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="58"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Generali</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="72"/>
@@ -364,12 +384,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2112"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2333"/>
         <source>X:</source>
-        <translation type="unfinished"></translation>
+        <translation>X:</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="79"/>
         <source>X coordinate of scene window position</source>
-        <translation type="unfinished"></translation>
+        <translation>Coordinata X della posizione della finestra di scena</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="95"/>
@@ -383,12 +403,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2138"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2359"/>
         <source>Y:</source>
-        <translation type="unfinished"></translation>
+        <translation>Y:</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="102"/>
         <source>Y coordinate of scene window position</source>
-        <translation type="unfinished"></translation>
+        <translation>Coordinata Y della posizione della finestra di scena</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="118"/>
@@ -402,12 +422,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2164"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2385"/>
         <source>W:</source>
-        <translation type="unfinished"></translation>
+        <translation>W:</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="125"/>
         <source>Width of scene window</source>
-        <translation type="unfinished"></translation>
+        <translation>Ampiezza della finestra di scena</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="141"/>
@@ -421,199 +441,199 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2190"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2411"/>
         <source>H:</source>
-        <translation type="unfinished"></translation>
+        <translation>H:</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="148"/>
         <source>Height of scene window</source>
-        <translation type="unfinished"></translation>
+        <translation>Altezza della finestra di scena</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="158"/>
         <source>Aspect ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapporto d&apos;aspetto</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="178"/>
         <source>X portion of scene aspect ratio (should be equal to screen&apos;s aspect ratio)</source>
-        <translation type="unfinished"></translation>
+        <translation>Parte X del rapporto d&apos;aspetto della scena (dovrebbe essere uguale al rapporto d&apos;aspetto dello schermo)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="201"/>
         <source>Y portion of scene aspect ratio (should be equal to screen&apos;s aspect ratio)</source>
-        <translation type="unfinished"></translation>
+        <translation>Parte Y del rapporto d&apos;aspetto della scena (dovrebbe essere uguale al rapporto d&apos;aspetto dello schermo)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="216"/>
         <source>Display arcade scene in full screen mode or windowed</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra scena arcade a tutto schermo o in una finestra</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="219"/>
         <source>Full screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Schermo intero</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="229"/>
         <source>Use window resolution in full screen mode (for slow systems)</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilizza risoluzione della finestra in modalità schermo intero (per sistemi lenti)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="232"/>
         <source>Use window resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa risoluzione della finestra</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="239"/>
         <source>Show frames per second counter in the lower left corner</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra le immagini per secondo nell&apos;angolo in basso a sinistra</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="242"/>
         <source>Show FPS</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra FPS</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="253"/>
         <source>Enable anti aliasing on primitive drawing</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilità anti aliasing sulle primitive di disegno</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="256"/>
         <source>Primitive AA</source>
-        <translation type="unfinished"></translation>
+        <translation>Primitive AA</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="263"/>
         <source>Scale items smoothly</source>
-        <translation type="unfinished"></translation>
+        <translation>Scala gli oggetti dolcemente</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="266"/>
         <source>Smooth item scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Scalatura dolce</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="273"/>
         <source>Keep aspect ratio when resizing scene window</source>
-        <translation type="unfinished"></translation>
+        <translation>Mantieni il rapporto d&apos;aspetto quando modifichi la grandezza della finestra di scena</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="276"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="590"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="634"/>
         <source>Keep aspect ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>Mantieni rapporto d&apos;aspetto</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="285"/>
         <source>Center arcade window on screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Centra la finestra arcade sullo schermo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="288"/>
         <source>Center window</source>
-        <translation type="unfinished"></translation>
+        <translation>Centra finestra</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="295"/>
         <source>Snapshot directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Directory snapshot</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="304"/>
         <source>Directory to store snapshots (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Directory dove salvare le immagini catturate</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="311"/>
         <source>Browse snapshot directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Visualizza directory snapshot</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="329"/>
         <source>OpenGL</source>
-        <translation type="unfinished"></translation>
+        <translation>OpenGL</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="343"/>
         <source>Enable direct rendering</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilità direct rendering</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="346"/>
         <source>Direct rendering</source>
-        <translation type="unfinished"></translation>
+        <translation>Direct rendering</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="353"/>
         <source>Enable enhanced OpenGL anti aliasing</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilità anti aliasing OpenGL migliorato</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="356"/>
         <source>Anti aliasing</source>
-        <translation type="unfinished"></translation>
+        <translation>Anti aliasing</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="363"/>
         <source>Synchronize buffer swaps with screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Sincronizza i cambi di buffer con lo schermo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="366"/>
         <source>Sync to screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Syncronizza allo schermo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="373"/>
         <source>Enable double buffering (avoids flicker)</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilità doppio buffering (evita sfarfallamenti)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="376"/>
         <source>Double buffering</source>
-        <translation type="unfinished"></translation>
+        <translation>Doppio Buffering</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="383"/>
         <source>Enable depth buffering (Z-buffer)</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilità buffering di profondità (Z buffer)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="386"/>
         <source>Depth buffering</source>
-        <translation type="unfinished"></translation>
+        <translation>Buffering profondità</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="393"/>
         <source>Use RGBA color mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilizza modo colore RGBA</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="396"/>
         <source>RGBA</source>
-        <translation type="unfinished"></translation>
+        <translation>RGBA</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="403"/>
         <source>Use alpha channel information for transparency</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilizza le informazioni del canale alpha per la trasparenza</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="406"/>
         <source>Alpha channel</source>
-        <translation type="unfinished"></translation>
+        <translation>Canale alpha</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="413"/>
         <source>Enable multi sampling</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilità multi campionamento</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="416"/>
         <source>Multi sampling</source>
-        <translation type="unfinished"></translation>
+        <translation>Multi sampling</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="423"/>
@@ -628,148 +648,148 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="433"/>
         <source>Enable accumulator buffer</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilità buffer accumulatore</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="436"/>
         <source>Accumulator buffer</source>
-        <translation type="unfinished"></translation>
+        <translation>Buffer accumulatore</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="443"/>
         <source>Enable stencil buffer</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita buffer stencil</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="446"/>
         <source>Stencil buffer</source>
-        <translation type="unfinished"></translation>
+        <translation>Buffer stencil</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="453"/>
         <source>Enable stereo buffer</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilità buffer stereo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="456"/>
         <source>Stereo buffer</source>
-        <translation type="unfinished"></translation>
+        <translation>Buffer stereo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="486"/>
         <source>Scene layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Layout scena</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="492"/>
         <source>Layout name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome layout</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="505"/>
         <source>Select the layout you want to edit / use</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona il layout che vuoi usare / modificare</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="518"/>
         <source>Items, placements and parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Oggetti, posizioni e parametri</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="553"/>
         <source>Use a background image</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa un immagine di sfondo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="556"/>
         <source>Background image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine di sfondo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="563"/>
         <source>Background image file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>File dell&apos;immagine di sfondo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="576"/>
         <source>Browse background image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra file dell&apos;immagine di sfondo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="587"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="631"/>
         <source>Keep image&apos;s aspect ratio when scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Mantieni il rapporto d&apos;aspetto nello scalare</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="597"/>
         <source>Use a foreground image</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa un immagine di primo piano</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="600"/>
         <source>Foreground image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine di primo piano</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="607"/>
         <source>Foreground image file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>File dell&apos;immagine di primo piano</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="620"/>
         <source>Browse foreground image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra file dell&apos;immagine di primo piano</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="641"/>
         <source>Arcade font</source>
-        <translation type="unfinished"></translation>
+        <translation>Font arcade</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="648"/>
         <source>Arcade font (= system default if empty)</source>
-        <translation type="unfinished"></translation>
+        <translation>Font arcade (= predefinito di sistema se vuoto)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="658"/>
         <source>Browse arcade font</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra font arcade</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="669"/>
         <source>Select font color</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona colore font</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="672"/>
         <source>Font color</source>
-        <translation type="unfinished"></translation>
+        <translation>Colore font</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="683"/>
         <source>Virtual resolution</source>
-        <translation type="unfinished"></translation>
+        <translation>Risoluzione virtuale</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="711"/>
         <source>Virtual width of scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Larghezza virtuale della scena</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="744"/>
         <source>Virtual height of scene</source>
-        <translation type="unfinished"></translation>
+        <translation>Altezza virtuale della scena</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="756"/>
         <source>Control display of game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Controlla display della lista giochi</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="759"/>
         <source>Game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista giochi</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="771"/>
@@ -781,7 +801,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2097"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2318"/>
         <source>Geometry</source>
-        <translation type="unfinished"></translation>
+        <translation>Geometria</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="796"/>
@@ -793,7 +813,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2122"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2343"/>
         <source>X coordinate of item position</source>
-        <translation type="unfinished"></translation>
+        <translation>Coordinata X della posizione dell&apos;oggetto</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="822"/>
@@ -805,7 +825,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2148"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2369"/>
         <source>Y coordinate of item position</source>
-        <translation type="unfinished"></translation>
+        <translation>Coordinata Y della posizione dell&apos;oggetto</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="848"/>
@@ -817,7 +837,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2174"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2395"/>
         <source>Item width</source>
-        <translation type="unfinished"></translation>
+        <translation>Larghezza oggetto</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="874"/>
@@ -829,7 +849,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2200"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2421"/>
         <source>Item height</source>
-        <translation type="unfinished"></translation>
+        <translation>Altezza oggetto</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="886"/>
@@ -841,7 +861,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2212"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2433"/>
         <source>Use background for this item</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa sfondo per questo oggetto</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="889"/>
@@ -853,7 +873,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2215"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2436"/>
         <source>Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Sfondo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="904"/>
@@ -865,7 +885,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2230"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2451"/>
         <source>Select background color</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona colore di sfondo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="918"/>
@@ -877,7 +897,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2244"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2465"/>
         <source>T:</source>
-        <translation type="unfinished"></translation>
+        <translation>T:</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="925"/>
@@ -889,7 +909,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2251"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2472"/>
         <source>Select background transparency</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona trasparenza sfondo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="928"/>
@@ -901,7 +921,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2254"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2475"/>
         <source>%</source>
-        <translation type="unfinished"></translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="938"/>
@@ -913,7 +933,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2264"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2485"/>
         <source>Use texture bitmap for background</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa texture bitmap come sfondo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="941"/>
@@ -925,7 +945,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2267"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2488"/>
         <source>Texture</source>
-        <translation type="unfinished"></translation>
+        <translation>Texture</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="948"/>
@@ -937,7 +957,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2274"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2495"/>
         <source>Texture bitmap for background</source>
-        <translation type="unfinished"></translation>
+        <translation>Texture bitmap per lo sfondo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="961"/>
@@ -949,17 +969,17 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2287"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2508"/>
         <source>Browse texture bitmap for background</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra texture bitmap per lo sfondo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="977"/>
         <source>Control display of preview image</source>
-        <translation type="unfinished"></translation>
+        <translation>Controlla display di anteprima immagine</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="980"/>
         <source>Preview image</source>
-        <translation type="unfinished"></translation>
+        <translation>Anteprima immagine</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1198"/>
@@ -974,22 +994,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1419"/>
         <source>Control display of cabinet image</source>
-        <translation type="unfinished"></translation>
+        <translation>Controlla display dell&apos;immagine cabinet</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1422"/>
         <source>Cabinet image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine cabinet</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1640"/>
         <source>Control display of controller image</source>
-        <translation type="unfinished"></translation>
+        <translation>Controlla display dell&apos;immagine controller</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1643"/>
         <source>Controller image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine controller</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1861"/>
@@ -1004,97 +1024,97 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2082"/>
         <source>Control display of title image</source>
-        <translation type="unfinished"></translation>
+        <translation>Controlla display dell&apos;immagine titolo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2085"/>
         <source>Title image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine titolo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2303"/>
         <source>Control display of MAWS lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>Controlla display delle ricerche MAWS</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2306"/>
         <source>MAWS lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>Ricerce MAWS</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2530"/>
         <source>Scene rotation</source>
-        <translation type="unfinished"></translation>
+        <translation>Rotazione scena</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2537"/>
         <source>Scene rotation angle in degrees</source>
-        <translation type="unfinished"></translation>
+        <translation>Angolo di rotazione della scena in gradi</translation>
     </message>
     <message utf8="true">
         <location filename="../../arcade/arcadesetupdialog.ui" line="2540"/>
         <source>°</source>
-        <translation type="unfinished"></translation>
+        <translation>°</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2584"/>
         <source>Apply settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Applica impostazioni</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2587"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Applica</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2601"/>
         <source>Restore currently applied settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripristina impostazioni correnti</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2604"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ripristina</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2618"/>
         <source>Reset to default settings (click &lt;i&gt;Restore&lt;/i&gt; to restore currently applied settings!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripristina le impostazioni di default (clicca &lt;i&gt;Ripristina&lt;/i&gt; per ripristinare le impostazioni correnti!)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2621"/>
         <source>&amp;Default</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Default</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2645"/>
         <source>Close and apply settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiudi e applica le impostazioni</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2648"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2655"/>
         <source>Close and discard changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiudi e annulla modifiche</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2658"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cancella</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.cpp" line="25"/>
         <source>Machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista Macchine</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.cpp" line="26"/>
         <source>Control display of machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Controlla display della lista macchine</translation>
     </message>
 </context>
 <context>
@@ -1729,7 +1749,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../demomode.cpp" line="170"/>
         <source>demo mode started -- %n game(s) selected by filter</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -2426,7 +2445,6 @@ p, li { white-space: pre-wrap; }
         <source>check results: %n difference(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -2975,7 +2993,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="640"/>
         <source>%n supported set(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -3558,7 +3575,6 @@ p, li { white-space: pre-wrap; }
         <source>%n cached ROM state(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -3723,7 +3739,6 @@ p, li { white-space: pre-wrap; }
         <source>%n game(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -3732,7 +3747,6 @@ p, li { white-space: pre-wrap; }
         <source>, %n BIOS set(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -3740,7 +3754,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2198"/>
         <source> and %n device(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -3753,7 +3766,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2198"/>
         <source>%n machine(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -4017,7 +4029,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="3423"/>
         <source>%n icon(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -7456,7 +7467,6 @@ Do you want to choose a different name?</source>
         <source>last message repeated %n time(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -8179,14 +8189,12 @@ Do you really want to check all ROM states now?</source>
         <source>freed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="2215"/>
         <source>%n entry(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8201,7 +8209,6 @@ Do you really want to check all ROM states now?</source>
         <source>removed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -8209,7 +8216,6 @@ Do you really want to check all ROM states now?</source>
         <location filename="../../qmc2main.cpp" line="2263"/>
         <source>%n file(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8764,14 +8770,12 @@ Should they be killed on exit?</source>
         <source>killing %n running emulator(s) on exit</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="5888"/>
         <source>keeping %n running emulator(s) alive</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8824,7 +8828,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6281"/>
         <source>%n video info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8898,7 +8901,6 @@ Should they be killed on exit?</source>
         <source>%n game info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -8915,7 +8917,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6449"/>
         <source>%n machine info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8963,7 +8964,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6585"/>
         <source>%n emulator info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14384,7 +14384,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>%n game(s) to analyze</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14396,7 +14395,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="657"/>
         <source>%n machine(s) to analyze</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14419,7 +14417,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="687"/>
         <source>report limit reached, removing %n set(s) from the report</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14452,7 +14449,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="735"/>
         <source>checking %n file(s) for &apos;%1&apos;</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14574,7 +14570,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>interrupted (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14632,7 +14627,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>done (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14645,14 +14639,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>%n game(s) left</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1085"/>
         <source>%n machine(s) left</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -15199,7 +15191,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>checksum wizard: repairing %n bad set(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -15333,7 +15324,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2907"/>
         <source>checksum wizard: done (repairing %n bad set(s))</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
