@@ -151,6 +151,13 @@ extern int qmc2DefaultLaunchMode;
 extern HtmlEditor *qmc2SoftwareNotesEditor;
 extern QSplashScreen *qmc2SplashScreen;
 
+QBrush Options::greenBrush(QColor(0, 255, 0));
+QBrush Options::yellowBrush(QColor(255, 255, 0));
+QBrush Options::blueBrush(QColor(0, 0, 255));
+QBrush Options::redBrush(QColor(255, 0, 0));
+QBrush Options::greyBrush(QColor(128, 128, 128));
+QBrush Options::lightgreyBrush(QColor(200, 200, 200));
+
 Options::Options(QWidget *parent)
 #if defined(Q_WS_WIN)
   : QDialog(parent, Qt::Dialog)
@@ -425,6 +432,8 @@ Options::Options(QWidget *parent)
 #else
   tableWidgetRegisteredEmulators->setColumnHidden(QMC2_ADDTLEMUS_COLUMN_CUID, true);
 #endif
+
+  checkPlaceholderStatus();
 
   restoreCurrentConfig();
 }
@@ -2437,6 +2446,7 @@ void Options::applyDelayed()
   } else
 	  qmc2MainWindow->menu_ForeignIDs->menuAction()->setVisible(false);
   qmc2Config->endGroup();
+  checkPlaceholderStatus();
   
   // hide / show the menu bar
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
@@ -3406,9 +3416,6 @@ void Options::checkShortcuts()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::checkShortcuts()");
 #endif
 
-  static QBrush redBrush(QColor(255, 0, 0));
-  static QBrush greenBrush(QColor(0, 255, 0));
-  static QBrush greyBrush(QColor(128, 128, 128));
   static char lastShortcutsState = -1;
 
   char shortcutsState = 1;
@@ -3569,6 +3576,25 @@ void Options::on_toolButtonRemoveEmulator_clicked()
   }
 }
 
+void Options::checkPlaceholderStatus()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::checkPlaceholderStatus()");
+#endif
+
+	QPalette pal = labelIDStatus->palette();
+	QString text = lineEditAdditionalEmulatorArguments->text();
+	if ( lineEditAdditionalEmulatorName->text().isEmpty() )
+		pal.setBrush(QPalette::Window, Options::lightgreyBrush);
+	else if ( text.isEmpty() )
+		pal.setBrush(QPalette::Window, Options::yellowBrush);
+	else if ( text.contains("$ID$") )
+		pal.setBrush(QPalette::Window, Options::greenBrush);
+	else
+		pal.setBrush(QPalette::Window, Options::yellowBrush);
+	labelIDStatus->setPalette(pal);
+}
+
 void Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()
 {
 #ifdef QMC2_DEBUG
@@ -3604,15 +3630,15 @@ void Options::on_tableWidgetRegisteredEmulators_itemSelectionChanged()
     lineEditAdditionalEmulatorArguments->clear();
     toolButtonRemoveEmulator->setEnabled(false);
   }
+  checkPlaceholderStatus();
 }
 
-void Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &)
+void Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &text)
 {
 #ifdef QMC2_DEBUG
-  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &)");
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &text = %1)").arg(text));
 #endif
 
-  QString text = lineEditAdditionalEmulatorName->text();
   if ( !text.isEmpty() ) {
     if ( text == tr("Default") ) {
       // this name isn't allowed!
@@ -3628,6 +3654,16 @@ void Options::on_lineEditAdditionalEmulatorName_textChanged(const QString &)
     toolButtonAddEmulator->setEnabled(false);
     toolButtonSaveEmulator->setEnabled(false);
   }
+  checkPlaceholderStatus();
+}
+
+void Options::on_lineEditAdditionalEmulatorArguments_textChanged(const QString &)
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_lineEditAdditionalEmulatorArguments_textChanged(const QString &)");
+#endif
+
+  checkPlaceholderStatus();
 }
 
 void Options::setupCustomIDsClicked()
@@ -3964,9 +4000,6 @@ void Options::checkJoystickMappings()
   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::checkJoystickMappings()");
 #endif
 
-  static QBrush redBrush(QColor(255, 0, 0));
-  static QBrush greenBrush(QColor(0, 255, 0));
-  static QBrush greyBrush(QColor(128, 128, 128));
   static char lastJoystickMappingsState = -1;
 
   char joystickMappingsState = 1;
