@@ -86,6 +86,12 @@ class Options : public QDialog, public Ui::Options
     QScrollArea *scrollArea;
 #endif
     QStringList registeredEmulatorsToBeRemoved;
+    static QBrush redBrush;
+    static QBrush greenBrush;
+    static QBrush lightgreyBrush;
+    static QBrush greyBrush;
+    static QBrush yellowBrush;
+    static QBrush blueBrush;
 
     Options(QWidget *parent = 0);
     ~Options();
@@ -173,7 +179,9 @@ class Options : public QDialog, public Ui::Options
     void on_toolButtonSaveEmulator_clicked();
     void on_toolButtonRemoveEmulator_clicked();
     void on_tableWidgetRegisteredEmulators_itemSelectionChanged();
+    void on_tableWidgetRegisteredEmulators_itemClicked(QTableWidgetItem *) { on_tableWidgetRegisteredEmulators_itemSelectionChanged(); }
     void on_lineEditAdditionalEmulatorName_textChanged(const QString &);
+    void on_lineEditAdditionalEmulatorArguments_textChanged(const QString &);
 
     // joystick setup callbacks
 #if QMC2_JOYSTICK == 1
@@ -198,6 +206,7 @@ class Options : public QDialog, public Ui::Options
     void setupShortcutActions();
     void applyDelayed();
     void setupCustomIDsClicked();
+    void checkPlaceholderStatus();
 
   protected:
     void closeEvent(QCloseEvent *);
