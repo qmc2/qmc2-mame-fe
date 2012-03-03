@@ -1122,57 +1122,57 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="53"/>
         <source>QMC2 - ArcadeView</source>
-        <translation type="unfinished"></translation>
+        <translation>QMC2 - VistaArcade</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="88"/>
         <source>ArcadeView: Cleaning up</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Pulizia</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="120"/>
         <source>ArcadeView: Switching to windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Passaggio alla modalità finestra</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="127"/>
         <source>ArcadeView: Switching to full screen mode</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Passaggio alla modalità schermo intero</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="130"/>
         <source>ArcadeView: Resolution switching is not yet supported</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Il cambio di risoluzione non è ancora supportato</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="146"/>
         <source>ArcadeView: Setting window size to %1x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Ridimensionamento finestra a %1x%2</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="156"/>
         <source>ArcadeView: Setting window position to %1, %2</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Imposto posizione finestra a %1, %2</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="170"/>
         <source>ArcadeView: This system does not appear to support OpenGL -- reverting to non-OpenGL / software renderer</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Questo sistema non sembra supportare OpenGL -- torno al rendering non-OpenGL / software</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="175"/>
         <source>ArcadeView: Using OpenGL renderer</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Usando rendering OpenGL</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="179"/>
         <source>ArcadeView: This system does not appear to support vertical syncing -- disabling SyncToScreen</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Questo sistema non sembra supportare la sincronizzazione verticale -- disabilito SincronizzaAlloSchermo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="182"/>
         <source>ArcadeView: OpenGL: SyncToScreen: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: OpenGL: SyncToScreen: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="182"/>
@@ -1188,7 +1188,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadeview.cpp" line="210"/>
         <location filename="../../arcade/arcadeview.cpp" line="212"/>
         <source>on</source>
-        <translation type="unfinished"></translation>
+        <translation>acceso</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="182"/>
@@ -1204,32 +1204,32 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadeview.cpp" line="210"/>
         <location filename="../../arcade/arcadeview.cpp" line="212"/>
         <source>off</source>
-        <translation type="unfinished"></translation>
+        <translation>spento</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="184"/>
         <source>ArcadeView: OpenGL: DoubleBuffer: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: OpenGL: DoppioBuffer: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="186"/>
         <source>ArcadeView: OpenGL: DepthBuffer: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: OpenGL: Buffer profondità: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="188"/>
         <source>ArcadeView: OpenGL: RGBA: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: OpenGL: RGBA: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="190"/>
         <source>ArcadeView: OpenGL: AlphaChannel: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: OpenGL: CanaleAlpha: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="192"/>
         <source>ArcadeView: OpenGL: AccumulatorBuffer: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: OpenGL: BufferAccumulatore: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="194"/>
@@ -1244,7 +1244,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="198"/>
         <source>ArcadeView: OpenGL: DirectRendering: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ArcadeView: OpenGL: DirectRendering: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="201"/>
@@ -1259,139 +1259,139 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="207"/>
         <source>ArcadeView: This system does not appear to support OpenGL multi sampling -- disabling MultiSample</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Questo sistema non sembra supportare OpenGL multi sampling -- disabilito MultiCampionamento</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="210"/>
         <source>ArcadeView: OpenGL: MultiSample: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: OpenGL: MultiSample: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="212"/>
         <source>ArcadeView: OpenGL: AntiAliasing: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: OpenGL: AntiAliasing: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="222"/>
         <source>ArcadeView: Using software renderer</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Uso rendering software</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="227"/>
         <source>ArcadeView: X11: Screen number: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: X11: NUmero schermo: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="228"/>
         <source>ArcadeView: X11: Color depth: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: X11: Profondità colore: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="229"/>
         <source>ArcadeView: X11: DPI-X: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: X11: DPI-X: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="230"/>
         <source>ArcadeView: X11: DPI-Y: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: X11: DPI-Y: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="231"/>
         <source>ArcadeView: X11: Compositing manager: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: X11: Manager compositing: %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="231"/>
         <source>running</source>
-        <translation type="unfinished"></translation>
+        <translation>in esecuzione</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="231"/>
         <source>not running</source>
-        <translation type="unfinished"></translation>
+        <translation>fermato</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="235"/>
         <source>ArcadeView: Screen geometry: %1x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: geometria schermo: %1x%2</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="236"/>
         <source>ArcadeView: Virtual resolution: %1x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: risoluzione virtuale: %1x%2</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="237"/>
         <source>ArcadeView: Selected aspect ratio: %1:%2</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Rapporto d&apos;aspetto selezionato: %1:%2</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="238"/>
         <source>ArcadeView: Scene rotation angle: %1 degrees</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Angolo di rotazione della scena: %1 gradi</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="241"/>
         <source>ArcadeView: Virtual resolution doesn&apos;t fit aspect ratio -- scene coordinates may be stretched or compressed</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: La risoluzione virtuale non è compatibile col rapporto d&apos;aspetto -- le coordinate della scena potrebbero essere allungate o compresse</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="242"/>
         <source>ArcadeView: Aspect ratio will be maintained</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Il rapporto d&apos;aspetto verrà mantenuto</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="242"/>
         <source>ArcadeView: Aspect ratio will not be maintained</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Il rapporto d&apos;aspetto non verrà mantenuto</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="243"/>
         <source>ArcadeView: FPS counter display %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vista Arcade: Contatore FPS mostra %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="243"/>
         <location filename="../../arcade/arcadeview.cpp" line="246"/>
         <source>activated</source>
-        <translation type="unfinished"></translation>
+        <translation>attivato</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="243"/>
         <location filename="../../arcade/arcadeview.cpp" line="246"/>
         <source>deactivated</source>
-        <translation type="unfinished"></translation>
+        <translation>disattivato</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="246"/>
         <source>ArcadeView: Primitive antialiasing %1</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade:Primitive antialiasing %1</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="250"/>
         <source>ArcadeView: Centering window on screen</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Centro la finestra sullo schermo</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="254"/>
         <source>ArcadeView: Restoring saved window position</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Ripristinando la posione della finestra salvata</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="281"/>
         <source>ArcadeView: Rendering screen shot</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Rendering screen shot</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="290"/>
         <source>Saving screen shot</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvataggio screen shot</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="300"/>
         <source>ArcadeView: Adjusting window size to %1x%2 to maintain the aspect ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>VistaArcade: Modifico grandezza finestra a %1x%2 per mantenere il rapporto d&apos;aspetto</translation>
     </message>
 </context>
 <context>
@@ -1399,71 +1399,71 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../audioeffects.ui" line="14"/>
         <source>Audio effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Effetti audio</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="36"/>
         <source>Close audio effects dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiudi finestra effetti audio</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="39"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiudi</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="59"/>
         <location filename="../../audioeffects.ui" line="62"/>
         <source>List of available audio effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista degli effetti audio disponibili</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="81"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="86"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Descrizione</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="91"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="96"/>
         <source>Setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="35"/>
         <location filename="../../audioeffects.cpp" line="194"/>
         <location filename="../../audioeffects.cpp" line="199"/>
         <source>Enable effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita effetto &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="52"/>
         <source>Setup effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni effetto &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="186"/>
         <location filename="../../audioeffects.cpp" line="207"/>
         <source>Disable effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Disabilita effetto &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="195"/>
         <source>WARNING: audio player: can&apos;t insert effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENZIONE: player audio: impossibile inserire effetto &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="208"/>
         <source>WARNING: audio player: can&apos;t remove effect &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENZIONE: player audio: impossibile rimuovere effetto &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
@@ -1471,35 +1471,35 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cabinet.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia sugli appunti</translation>
     </message>
     <message>
         <location filename="../../cabinet.cpp" line="54"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento</translation>
     </message>
     <message>
         <location filename="../../cabinet.cpp" line="61"/>
         <location filename="../../cabinet.cpp" line="62"/>
         <source>Game cabinet image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine cabinet gioco</translation>
     </message>
     <message>
         <location filename="../../cabinet.cpp" line="64"/>
         <location filename="../../cabinet.cpp" line="65"/>
         <source>Machine cabinet image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine cabinet macchina</translation>
     </message>
     <message>
         <location filename="../../cabinet.cpp" line="73"/>
         <location filename="../../cabinet.cpp" line="77"/>
         <source>FATAL: can&apos;t open cabinet file, please check access permissions for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALE: impossibile aprire file cabinet, per favore controlla i permessi d&apos;accesso per %1</translation>
     </message>
     <message>
         <location filename="../../cabinet.cpp" line="105"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aspettando i dati...</translation>
     </message>
 </context>
 <context>
@@ -1507,35 +1507,35 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../controller.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia sugli appunti</translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="54"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiornamento</translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="61"/>
         <location filename="../../controller.cpp" line="62"/>
         <source>Game controller image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine controller gioco</translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="64"/>
         <location filename="../../controller.cpp" line="65"/>
         <source>Machine controller image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine controller macchina</translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="73"/>
         <location filename="../../controller.cpp" line="77"/>
         <source>FATAL: can&apos;t open controller file, please check access permissions for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALE: impossibile aprire file controller, per favore controlla i permessi d&apos;accesso per %1</translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="105"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished"></translation>
+        <translation>Aspettando i dati...</translation>
     </message>
 </context>
 <context>
@@ -1543,72 +1543,72 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../customidsetup.ui" line="14"/>
         <source>Setup custom IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Imposta ID personalizzati</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="26"/>
         <source>Add a new ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi un nuovo ID</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="46"/>
         <source>Cancel ID customization and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Annulla personalizzazione ID e chiudi</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="49"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cancella</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="79"/>
         <source>Accept customized IDs and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Accetta gli ID personalizzati e chiudi</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="82"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="102"/>
         <source>Copy IDs from another foreign emulator (if any)</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia gli ID da un altro emulatore (se presente)</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="105"/>
         <source>Copy IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia ID</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="127"/>
         <source>Remove the currently selected ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Elimina l&apos;ID selezionato</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="141"/>
         <source>Edit custom IDs for this emulator (double-click an item to edit)</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizza ID per questo emulatore (doppio click su un oggetto per modificarlo)</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="172"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="177"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Descrizione</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="191"/>
         <source>Enable / disable sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita / disailita ordinamento</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="26"/>
         <source>Setup custom IDs for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Imposta ID personalizzati per &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
@@ -1616,67 +1616,67 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="14"/>
         <source>Demo mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modalità demo</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="26"/>
         <source>ROM state filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtro stato ROM</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="44"/>
         <source>Select ROM state C (correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona ROM stato C (corrette)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="67"/>
         <source>Select ROM state M (mostly correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona ROM stato M (parzialmente corrette)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="90"/>
         <source>Select ROM state I (incorrect)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sleziona ROM stato I (Incorrette)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="110"/>
         <source>Select ROM state N (not found)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona ROM stato N (non trovate)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="130"/>
         <source>Select ROM state U (unknown)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona ROM stato U (sconosciuto)?</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="152"/>
         <source>Seconds to run</source>
-        <translation type="unfinished"></translation>
+        <translation>Secondi da eseguire</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="159"/>
         <source>Number of seconds to run an emulator in demo mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Numero di secondi di esecuzione di un emulatore un modalità demo</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="174"/>
         <source>Start emulators in full screen mode (otherwise use windowed mode)</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvia emulatore in modalità schermo intero (altrimenti usa la modalità finestra)</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="177"/>
         <source>Full screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Schermo intero</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="190"/>
         <source>Maximize emulators when in windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Massimizza emulatore quando in modalità finestra</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="193"/>
         <source>Maximized</source>
-        <translation type="unfinished"></translation>
+        <translation>Massimizza</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="203"/>
@@ -1686,91 +1686,92 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="206"/>
         <source>Embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>Integrato</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="213"/>
         <source>Use only tagged games</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa solo giochi taggati</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="216"/>
         <source>Tagged</source>
-        <translation type="unfinished"></translation>
+        <translation>Taggati</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="231"/>
         <source>Close this dialog (and stop running demo)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiudi questa finestra ( e arresta il demo)</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="234"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Chiudi</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="260"/>
         <location filename="../../demomode.cpp" line="108"/>
         <source>Run demo now</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvia demo ora</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="263"/>
         <location filename="../../demomode.cpp" line="107"/>
         <source>Run &amp;demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvia &amp;demo</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="289"/>
         <source>Pause (seconds)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pausa (secondi)</translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="296"/>
         <source>Number of seconds to pause between emulator runs</source>
-        <translation type="unfinished"></translation>
+        <translation>Numero di secondi di pausa fra le esecuzioni dell&apos;emulatore</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="105"/>
         <source>demo mode stopped</source>
-        <translation type="unfinished"></translation>
+        <translation>modalità demo arrestata</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="124"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>per favore aspetta la fine del caricamento e riprova</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="128"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>per favore aspetta la fine della validazione della ROM e riprova</translation>
     </message>
     <message numerus="yes">
         <location filename="../../demomode.cpp" line="170"/>
         <source>demo mode started -- %n game(s) selected by filter</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>modalità demo avviata -- %n giochi selezionati dal filtro</numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="172"/>
         <source>demo mode cannot start -- no games selected by filter</source>
-        <translation type="unfinished"></translation>
+        <translation>impossibile avviare modalità demo -- nessun gioco selezionato dal filtro</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="176"/>
         <source>Stop &amp;demo</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferma &amp;demo</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="177"/>
         <source>Stop demo now</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferma la demo ora</translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="240"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>avvio l&apos;emulazione in modalità demo per &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
