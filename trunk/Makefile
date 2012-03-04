@@ -1060,6 +1060,7 @@ endif
 	  $(LN) -s "$(QT_TRANSLATION)/qt_de.qm" "$(GLOBAL_DATADIR)/$(PROJECT)/lng/qt_de.qm" ; \
 	  $(LN) -s "$(QT_TRANSLATION)/qt_pl.qm" "$(GLOBAL_DATADIR)/$(PROJECT)/lng/qt_pl.qm" ; \
 	  $(LN) -s "$(QT_TRANSLATION)/qt_fr.qm" "$(GLOBAL_DATADIR)/$(PROJECT)/lng/qt_fr.qm" ; \
+	  $(LN) -s "$(QT_TRANSLATION)/qt_pt.qm" "$(GLOBAL_DATADIR)/$(PROJECT)/lng/qt_pt.qm" ; \
 	fi
 	@$(RSYNC) --exclude '*svn*' ./data/opt "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
