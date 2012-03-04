@@ -4671,22 +4671,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imgcheck.ui" line="15"/>
         <source>Check images</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificati imagini</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="36"/>
         <source>Close image check dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Inchideti dialog verificare imagine</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="39"/>
         <source>C&amp;lose</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Inchideti</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="56"/>
         <source>&amp;Previews</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Previzualizare</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="70"/>
@@ -4696,7 +4696,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="461"/>
         <location filename="../../imgcheck.cpp" line="787"/>
         <source>Found: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Gasit: 0</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="83"/>
@@ -4706,7 +4706,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="463"/>
         <location filename="../../imgcheck.cpp" line="789"/>
         <source>Missing: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Lipsesc: 0</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="96"/>
@@ -4716,12 +4716,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="465"/>
         <location filename="../../imgcheck.cpp" line="791"/>
         <source>Obsolete: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Invechite: 0</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="112"/>
         <source>Check preview images / stop check</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificati previzualizare imagini / opriti verificare</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="115"/>
@@ -4729,43 +4729,43 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="611"/>
         <location filename="../../imgcheck.cpp" line="938"/>
         <source>&amp;Check previews</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Verificati previzualizari</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="122"/>
         <location filename="../../imgcheck.ui" line="276"/>
         <location filename="../../imgcheck.ui" line="388"/>
         <source>Select game in game list if selected in check lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Selectati joc din lista de jocuri daca este in lista de verificare?</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="125"/>
         <location filename="../../imgcheck.ui" line="279"/>
         <location filename="../../imgcheck.ui" line="391"/>
         <source>Select &amp;game</source>
-        <translation type="unfinished"></translation>
+        <translation>Selectati &amp;joc</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="164"/>
         <source>Remove obsolete preview images</source>
-        <translation type="unfinished"></translation>
+        <translation>Stergeti previzualizari imagini invechite</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="167"/>
         <location filename="../../imgcheck.ui" line="266"/>
         <location filename="../../imgcheck.ui" line="381"/>
         <source>&amp;Remove obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Stergeti invechite</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="181"/>
         <source>&amp;Flyers</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Flyers</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="250"/>
         <source>Check flyer images / stop check</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificati imagini flyer / opriti verificare</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="253"/>
@@ -4773,22 +4773,22 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="612"/>
         <location filename="../../imgcheck.cpp" line="939"/>
         <source>&amp;Check flyers</source>
-        <translation type="unfinished"></translation>
+        <translation>Ve&amp;rificati flyers</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="263"/>
         <source>Remove obsolete flyer images</source>
-        <translation type="unfinished"></translation>
+        <translation>Stergeti imagini flyer invechite</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="309"/>
         <source>&amp;Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Iconite</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="365"/>
         <source>Check icon images / stop check</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificati imagini iconite / opriti verificare</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="368"/>
@@ -4796,63 +4796,63 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="613"/>
         <location filename="../../imgcheck.cpp" line="940"/>
         <source>&amp;Check icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Veri&amp;ficati Iconite</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="378"/>
         <source>Remove obsolete icon images</source>
-        <translation type="unfinished"></translation>
+        <translation>Stergeti imagini iconite invechite</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="401"/>
         <source>Clear cache before checking icons?</source>
-        <translation type="unfinished"></translation>
+        <translation>Stergeti cache inainte sa verificati iconite?</translation>
     </message>
     <message>
         <location filename="../../imgcheck.ui" line="404"/>
         <source>C&amp;lear cache</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;tergeti cache</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="70"/>
         <location filename="../../imgcheck.cpp" line="72"/>
         <source>Select machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Selectati masina</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="71"/>
         <location filename="../../imgcheck.cpp" line="73"/>
         <source>Select machine in machine list if selected in check lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Selectati masina din lista de masini daca este in listele de verificare?</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="104"/>
         <source>checking previews from ZIP archive</source>
-        <translation type="unfinished"></translation>
+        <translation>verific previzualizare din arhiva ZIP</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="106"/>
         <source>checking previews from directory</source>
-        <translation type="unfinished"></translation>
+        <translation>verific previzualizari din director</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="109"/>
         <source>Preview check - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificare previzualizare - %p%</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="117"/>
         <location filename="../../imgcheck.cpp" line="441"/>
         <location filename="../../imgcheck.cpp" line="767"/>
         <source>WARNING: game list not fully loaded, check results may be misleading</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: lista jocuri nu este incarcata complet, rezultatele verificate s-ar putea sa fie eronate</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="119"/>
         <location filename="../../imgcheck.cpp" line="443"/>
         <location filename="../../imgcheck.cpp" line="769"/>
         <source>WARNING: machine list not fully loaded, check results may be misleading</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: lista de masini nu s-a incarcat complet, rezultatele verificate s-ar putea sa fie eronate</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="123"/>
@@ -4865,12 +4865,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="774"/>
         <location filename="../../imgcheck.cpp" line="775"/>
         <source>&amp;Stop check</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Opreste verificare</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="146"/>
         <source>check pass 1: found and missing previews</source>
-        <translation type="unfinished"></translation>
+        <translation>verifica pass 1: previzualizari gasite si lipsa</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="154"/>
@@ -4880,7 +4880,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="804"/>
         <location filename="../../imgcheck.cpp" line="826"/>
         <source>Found: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Gasit: %1</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="156"/>
@@ -4890,14 +4890,14 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="806"/>
         <location filename="../../imgcheck.cpp" line="829"/>
         <source>Missing: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Lipsa: %1</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="187"/>
         <location filename="../../imgcheck.cpp" line="511"/>
         <location filename="../../imgcheck.cpp" line="837"/>
         <source>check pass 2: obsolete files: reading ZIP directory</source>
-        <translation type="unfinished"></translation>
+        <translation>verifica pass 2: fisiere invechite: citesc director ZIP</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="219"/>
@@ -4913,121 +4913,121 @@ p, li { white-space: pre-wrap; }
         <location filename="../../imgcheck.cpp" line="903"/>
         <location filename="../../imgcheck.cpp" line="912"/>
         <source>Obsolete: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Invechit: %1</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="236"/>
         <location filename="../../imgcheck.cpp" line="560"/>
         <location filename="../../imgcheck.cpp" line="887"/>
         <source>check pass 2: obsolete files: reading directory structure</source>
-        <translation type="unfinished"></translation>
+        <translation>verific pas 2: fisiere invechite: citesc structura director</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="278"/>
         <source>done (checking previews from ZIP archive, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (verific previzualizari din arhiva ZIP, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="280"/>
         <source>done (checking previews from directory, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (verific previzualizare din director, tip scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="281"/>
         <location filename="../../imgcheck.cpp" line="605"/>
         <location filename="../../imgcheck.cpp" line="932"/>
         <source>%1 found, %2 missing, %3 obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 gasit, %2 lipsa, %3 invechit</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="428"/>
         <source>checking flyers from ZIP archive</source>
-        <translation type="unfinished"></translation>
+        <translation>verific flyers din arhiva ZIP</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="430"/>
         <source>checking flyers from directory</source>
-        <translation type="unfinished"></translation>
+        <translation>verific flyers din director</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="433"/>
         <source>Flyer check - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificare flyer - %p%</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="470"/>
         <source>check pass 1: found and missing flyers</source>
-        <translation type="unfinished"></translation>
+        <translation>verific pass 1: flyers gasite si lipsa</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="602"/>
         <source>done (checking flyers from ZIP archive, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (verific flyers din arhiva ZIP, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="604"/>
         <source>done (checking flyers from directory, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (verific flyers din director, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="754"/>
         <source>checking icons from ZIP archive</source>
-        <translation type="unfinished"></translation>
+        <translation>verific iconite din arhiva ZIP</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="756"/>
         <source>checking icons from directory</source>
-        <translation type="unfinished"></translation>
+        <translation>verific iconite din director</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="759"/>
         <source>Icon check - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificare icnotie - %p%</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="796"/>
         <source>check pass 1: found and missing icons</source>
-        <translation type="unfinished"></translation>
+        <translation>verificare pass 1: iconite gasite si lipsa</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="929"/>
         <source>done (checking icons from ZIP archive, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (verificare iconite din arhiva ZIP, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="931"/>
         <source>done (checking icons from directory, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (verificare iconite din director, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1072"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>va rog asteptati ca reincarcarea sa se termine si incercati din nou</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1077"/>
         <source>please wait for ROMAlyzer to finish the current analysis and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>va rog asteptati sa se termine analiza ROMAlyzer si inercati din nou</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1082"/>
         <source>please wait for ROM state filter to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>va rog asteptati ca filtrarea ROM sa se termine si incercati din nou</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1087"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>va rog asteptati verificarea ROM sa se termine si incercati din nou</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1092"/>
         <source>please wait for sample check to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>va rog asteptati verificarea de mostre sa se termine si incercati din nou</translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1097"/>
         <source>stopping image check upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>opresc verificare imagine la cererea user-ului</translation>
     </message>
 </context>
 <context>
@@ -9265,22 +9265,22 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="14"/>
         <source>MAWS quick download setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurare rapida descarcare MAWS</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="20"/>
         <source>Icons and cabinet art</source>
-        <translation type="unfinished"></translation>
+        <translation>Arta iconite si cabinet</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="32"/>
         <source>Flyers</source>
-        <translation type="unfinished"></translation>
+        <translation>Flyers</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="45"/>
         <source>Automatically download flyer images</source>
-        <translation type="unfinished"></translation>
+        <translation>Descarcati automat imagini flyer</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="48"/>
@@ -9292,153 +9292,153 @@ Should they be killed on exit?</source>
         <location filename="../../mawsqdlsetup.ui" line="411"/>
         <location filename="../../mawsqdlsetup.ui" line="514"/>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="61"/>
         <source>Path to store flyer images</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale unde sa salvati imagini flyer</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="74"/>
         <source>Browse path to store flyer images</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti cale ca sa salvati imgini flyer</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="91"/>
         <source>Cabinets</source>
-        <translation type="unfinished"></translation>
+        <translation>Cabinets</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="104"/>
         <source>Automatically download cabinet images</source>
-        <translation type="unfinished"></translation>
+        <translation>Descarcati automat imagini cabinet</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="120"/>
         <source>Path to store cabinet images</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale unde sa salvati imagini cabinet</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="133"/>
         <source>Browse path to store cabinet images</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti cale ca sa salvati imagini cabinet</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="150"/>
         <source>Controllers</source>
-        <translation type="unfinished"></translation>
+        <translation>Controlere</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="163"/>
         <source>Automatically download controller images</source>
-        <translation type="unfinished"></translation>
+        <translation>Descarcati automat imagini controlere</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="179"/>
         <source>Path to store controller images</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale unde sa salvati imagini controlere</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="192"/>
         <source>Browse path to store controller images</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoti cale ca sa salvati imagini controrele</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="209"/>
         <source>Marquees</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquees</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="222"/>
         <source>Automatically download marquee images</source>
-        <translation type="unfinished"></translation>
+        <translation>Descarcati automat imagini marquee</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="238"/>
         <source>Path to store marquee images</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale unde sa salvati imagini marquee</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="251"/>
         <source>Browse path to store marquee images</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti cale ca sa salvati imagini marquee</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="268"/>
         <source>PCBs</source>
-        <translation type="unfinished"></translation>
+        <translation>PCBs</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="281"/>
         <source>Automatically download PCB images</source>
-        <translation type="unfinished"></translation>
+        <translation>Descarcati automat imagini PCB</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="297"/>
         <source>Path to store PCB images</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale unde sa salvati imagini PCB</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="310"/>
         <source>Browse path to store PCB images</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti cale ca sa salvati imagini PCB</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="327"/>
         <source>Automatically download icon images</source>
-        <translation type="unfinished"></translation>
+        <translation>Descarcati automat imagini iconite</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="343"/>
         <source>Path to store icon images</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale unde sa salvati iamgini iconite</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="356"/>
         <source>Browse path to store icon images</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti cale unde sa salvati imagini iconite</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="373"/>
         <source>Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Iconite</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="383"/>
         <source>Previews and titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Previzualizari si titluri</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="395"/>
         <source>Previews</source>
-        <translation type="unfinished"></translation>
+        <translation>Previzualizari</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="408"/>
         <source>Automatically download preview images</source>
-        <translation type="unfinished"></translation>
+        <translation>Descarcati automat imagini previzualizari</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="424"/>
         <source>Path to store preview images</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale unde sa salvati imagini previzualizari</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="437"/>
         <source>Browse path to store preview images</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti cale ca sa salvati imagini previazualizari</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="450"/>
         <location filename="../../mawsqdlsetup.ui" line="553"/>
         <source>Preferred collection</source>
-        <translation type="unfinished"></translation>
+        <translation>Colectie preferata</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="463"/>
         <source>Select the preferred image collection for in-game previews (auto-download)</source>
-        <translation type="unfinished"></translation>
+        <translation>Selectati imaginea colectiei preferata pentru previzualizari in joc (auto-descarcare)</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="467"/>
@@ -9446,108 +9446,108 @@ Should they be killed on exit?</source>
         <location filename="../../mawsqdlsetup.cpp" line="97"/>
         <location filename="../../mawsqdlsetup.cpp" line="102"/>
         <source>AntoPISA progettoSNAPS</source>
-        <translation type="unfinished"></translation>
+        <translation>AntoPISA progettoSNAPS</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="472"/>
         <source>MAME World Snap Collection</source>
-        <translation type="unfinished"></translation>
+        <translation>MAME Colectie World Snap</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="477"/>
         <location filename="../../mawsqdlsetup.ui" line="575"/>
         <source>CrashTest Snap Collection</source>
-        <translation type="unfinished"></translation>
+        <translation>Colectie CrashTest Snap</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="482"/>
         <source>Enaitz Jar Snaps</source>
-        <translation type="unfinished"></translation>
+        <translation>Enaitz Jar Snaps</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="498"/>
         <source>Titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Titluri</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="511"/>
         <source>Automatically download title images</source>
-        <translation type="unfinished"></translation>
+        <translation>Descarcati automat imagini titlu</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="527"/>
         <source>Path to store title images</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale unde sa salvez imagini titlu</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="540"/>
         <source>Browse path to store title images</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti cale ca sa salvez imagini titlu</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="566"/>
         <source>Select the preferred image collection for titles (auto-download)</source>
-        <translation type="unfinished"></translation>
+        <translation>Selectati imaginea colectiei preferata pentru titluri (auto-descarcare)</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="612"/>
         <source>Apply MAWS quick download setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicati configurare descarcare rapida MAWS si inchideti dialog</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="615"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="626"/>
         <source>Cancel MAWS quick download setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Renuntati la configurare descarcare rapida MAWS si inchideti dialog</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="629"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Renuntati</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="113"/>
         <source>Choose icon directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti director iconita</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="126"/>
         <source>Choose flyer directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti director flyer</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="139"/>
         <source>Choose cabinet directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti director cabinet</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="152"/>
         <source>Choose controller directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti director controler</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="165"/>
         <source>Choose marquee directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti director marquee</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="178"/>
         <source>Choose PCB directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti director PCB</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="191"/>
         <source>Choose preview directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti director previzualizare</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="204"/>
         <source>Choose title directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti director titlu</translation>
     </message>
 </context>
 <context>
@@ -12872,158 +12872,158 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../procmgr.cpp" line="62"/>
         <source>WARNING: ProcessManager::start(): the specified working directory &apos;%1&apos; is not a directory -- ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: ProcessManager::start(): directorul functional specificat &apos;%1&apos; nu este un director - ignorat</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="65"/>
         <source>WARNING: ProcessManager::start(): the specified working directory &apos;%1&apos; does not exist -- ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: ProcessManager::start(): directorul functional specificat &apos;%1&apos; nu exista - ignorat</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="90"/>
         <location filename="../../procmgr.cpp" line="92"/>
         <source>starting emulator #%1, command = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>pornesc emulator #%1, comanda = %2</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="122"/>
         <source>terminating emulator #%1, PID = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>opresc emulator #%1, PID = %2</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="146"/>
         <source>WARNING: ProcessManager::terminate(ushort index = %1): trying to terminate a null process</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: ProcessManager::terminate(ushort index = %1): incerc sa termin un proces nul</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="155"/>
         <source>killing emulator #%1, PID = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>opresc emulator #%1, PID = %2</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="169"/>
         <source>WARNING: ProcessManager::kill(ushort index = %1): trying to kill a null process</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: ProcessManager::kill(ushort index = %1): incerc sa opresc un proces nul</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="186"/>
         <source>stdout[#%1]:</source>
-        <translation type="unfinished"></translation>
+        <translation>stdout[#%1]:</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="204"/>
         <source>stderr[#%1]:</source>
-        <translation type="unfinished"></translation>
+        <translation>stderr[#%1]:</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="234"/>
         <source>WARNING: ProcessManager::finished(...): trying to remove a null item</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: ProcessManager::finished(...): incerc sa elimin un obiect nul</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="237"/>
         <source>emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4</source>
-        <translation type="unfinished"></translation>
+        <translation>emulator #%1 terminat, cod de iesire = %2, statut iesire = %3, emulatoare ramase = %4</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="237"/>
         <source>normal</source>
-        <translation type="unfinished"></translation>
+        <translation>normal</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="237"/>
         <source>crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>picat</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="283"/>
         <source>emulator #%1 started, PID = %2, running emulators = %3</source>
-        <translation type="unfinished"></translation>
+        <translation>emulator #%1 pornit, PID = %2, emulatoare care ruleaza = %3</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="322"/>
         <source>FATAL: failed to start emulator #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: pornire emulator esuata #%1</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="327"/>
         <source>WARNING: emulator #%1 crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: emulator #%1 picat</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="331"/>
         <source>WARNING: failed to write to emulator #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: scriere emulator esuata #%1</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="335"/>
         <source>WARNING: failed to read from emulator #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: citire din emulator esuata #%1</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="339"/>
         <source>WARNING: unhandled error for emulator #%1, error code = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: eroare netratata pentru emulatorul %1, cod eroare = %2</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="357"/>
         <source>no error</source>
-        <translation type="unfinished"></translation>
+        <translation>nicio eroare</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="358"/>
         <source>failed validity checks</source>
-        <translation type="unfinished"></translation>
+        <translation>verificare de valabilitate esuata</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="359"/>
         <source>missing files</source>
-        <translation type="unfinished"></translation>
+        <translation>fisiere lipsa</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="360"/>
         <source>fatal error</source>
-        <translation type="unfinished"></translation>
+        <translation>eroare fatala</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="361"/>
         <source>device initialization error</source>
-        <translation type="unfinished"></translation>
+        <translation>eroare de initializare dispozitiv</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="363"/>
         <source>game doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>jocul nu exista</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="365"/>
         <source>machine doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>masina nu exista</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="367"/>
         <source>invalid configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>configuratie invalida</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="368"/>
         <source>identified all non-ROM files</source>
-        <translation type="unfinished"></translation>
+        <translation>toate fisierele non-ROM indentificate</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="369"/>
         <source>identified some files but not all</source>
-        <translation type="unfinished"></translation>
+        <translation>identificat cateva fisiere dar nu toate</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="370"/>
         <source>identified no files</source>
-        <translation type="unfinished"></translation>
+        <translation>identificat niciun fisier</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="371"/>
         <source>unknown error</source>
-        <translation type="unfinished"></translation>
+        <translation>eroare necunoscuta</translation>
     </message>
 </context>
 <context>
@@ -17286,7 +17286,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../welcome.ui" line="15"/>
         <source>Welcome to QMC2</source>
-        <translation type="unfinished"></translation>
+        <translation>Bun venit la QMC2</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="72"/>
@@ -17298,147 +17298,154 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator&apos;s executable file below.&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator&apos;s global configuration at any time later).&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;It&apos;s strongly recommended that you specify the ROM path you are going to use at least!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;Bun venit la QMC2!&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aceasta pare sa fie prima data cand porniti QMC2 deoarece nu exista nicio configurare. Ca sa folositi QMC2 ca un front-end pentru un emulator , trebuie sa specificati calea catre executabilul emulatorului mai jos.&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Caile de mai jos catre fisierul executabil sunt optionale, dar ar trebui sa specificati cat mai multe puteti acum pentru a evita probleme sau confuzii mai tarziu (desigur puteti schimba caile in configurarea globala a emulatorului in orice moment).&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Este recomanat sa specificati macar calea catre ROM-ul pe care il veti folositi!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="95"/>
         <source>Emulator executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier executabil al emulatorului</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="102"/>
         <source>Browse emulator executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti fisierul executabil al emulatorului</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="119"/>
         <source>Path to ROM images</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale catre imagini ROM</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="126"/>
         <source>Browse ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti cale ROM</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="143"/>
         <source>Path to samples</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale catre mostre</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="150"/>
         <source>Browse sample path</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti cale mostre</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="174"/>
         <source>Emulator executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Executabil emulator</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="181"/>
         <source>ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale ROM</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="188"/>
         <source>Sample path</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale mostre</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="195"/>
         <source>Hash path</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale hash</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="208"/>
         <source>Path to hash files</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale catre fisiere hash</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="215"/>
         <source>Browse hash path</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti cale hash</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="253"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="260"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Renunta</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="37"/>
         <source>SDLMAME</source>
-        <translation type="unfinished"></translation>
+        <translation>SLMANE</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="39"/>
         <source>SDLMESS</source>
-        <translation type="unfinished"></translation>
+        <translation>SDLMESS</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="44"/>
         <source>MAME</source>
-        <translation type="unfinished"></translation>
+        <translation>MAME</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="46"/>
         <source>MESS</source>
-        <translation type="unfinished"></translation>
+        <translation>MESS</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="51"/>
         <source>Unsupported emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulator nesuportat</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="53"/>
         <source>%1 executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>fisier executabil %1</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="98"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Eroare</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="98"/>
         <source>The specified file isn&apos;t executable!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisierul specificat nu este un executabil!</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="110"/>
         <source>Choose emulator executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti fisierul executabil al emulatorului</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="110"/>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Toate fisierele (*)</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="122"/>
         <source>Choose ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti cale pentru ROM</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="135"/>
         <source>Choose sample path</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti cale pentru mostre</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="148"/>
         <source>Choose hash path</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti cale pentru hash</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="226"/>
         <source>Single-instance check</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificare single-instance</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="227"/>
@@ -17446,22 +17453,25 @@ p, li { white-space: pre-wrap; }
 However, this can also be the leftover of a previous crash.
 
 Exit now, accept once or ignore completely?</source>
-        <translation type="unfinished"></translation>
+        <translation>Se pare ca o alta instanta %1 ruleaza deja.
+Totusi,aceasta poate fi o ramasita a unei versiuni picate anterior.
+
+Iesit acum, aceptati o singura data sau ignorati complet?</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="228"/>
         <source>&amp;Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>I&amp;esiti</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="228"/>
         <source>&amp;Once</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;O data</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="228"/>
         <source>&amp;Ignore</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ignorati</translation>
     </message>
 </context>
 <context>
