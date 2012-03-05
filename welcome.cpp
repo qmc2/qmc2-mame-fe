@@ -79,6 +79,8 @@ void Welcome::on_pushButtonOkay_clicked()
     if ( fileInfo.isExecutable() && fileInfo.isReadable() && fileInfo.isFile() ) {
 #if defined(QMC2_EMUTYPE_MAME)
       startupConfig->setValue("MAME/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
+      if ( !lineEditWorkingDirectory->text().isEmpty() )
+        startupConfig->setValue("MAME/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
       if ( !lineEditROMPath->text().isEmpty() )
         startupConfig->setValue("MAME/Configuration/Global/rompath", lineEditROMPath->text());
       if ( !lineEditSamplePath->text().isEmpty() )
@@ -87,6 +89,8 @@ void Welcome::on_pushButtonOkay_clicked()
         startupConfig->setValue("MAME/Configuration/Global/hashpath", lineEditHashPath->text());
 #elif defined(QMC2_EMUTYPE_MESS)
       startupConfig->setValue("MESS/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
+      if ( !lineEditWorkingDirectory->text().isEmpty() )
+        startupConfig->setValue("MAME/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
       if ( !lineEditROMPath->text().isEmpty() )
         startupConfig->setValue("MESS/Configuration/Global/rompath", lineEditROMPath->text());
       if ( !lineEditHashPath->text().isEmpty() )
@@ -110,6 +114,25 @@ void Welcome::on_toolButtonBrowseExecutableFile_clicked()
   QString s = QFileDialog::getOpenFileName(this, tr("Choose emulator executable file"), fileInfo.absolutePath(), tr("All files (*)"));
   if ( !s.isNull() )
     lineEditExecutableFile->setText(s);
+  raise();
+}
+
+void Welcome::on_toolButtonBrowseWorkingDirectory_clicked()
+{
+#ifdef QMC2_DEBUG
+  qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Welcome::on_toolButtonBrowseWorkingDirectory_clicked()");
+#endif
+
+  QString workingDirectory = lineEditWorkingDirectory->text();
+  QString executableFile = lineEditExecutableFile->text();
+  QString suggestion = workingDirectory;
+  if ( workingDirectory.isEmpty() && !executableFile.isEmpty() ) {
+    QFileInfo fi(executableFile);
+    suggestion = fi.dir().absolutePath();
+  }
+  QString s = QFileDialog::getExistingDirectory(this, tr("Choose working directory"), suggestion, QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+  if ( !s.isNull() )
+    lineEditWorkingDirectory->setText(s);
   raise();
 }
 
