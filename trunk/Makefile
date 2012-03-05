@@ -684,6 +684,10 @@ space = $(blank) $(blank)
 # pre-compiler definitions (passed to qmake)
 DEFINES = DEFINES+=QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_ARCADE_OPENGL=$(ARCADE_OPENGL) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED) QMC2_XWININFO=$(XWININFO)
 
+# available translations
+QMC2_TRANSLATIONS = us de pl fr pt it ro
+QT_TRANSLATIONS = de pl fr pt
+
 # process make options
 ifeq '$(DEBUG)' '2'
 DEFINES += QMC2_DEBUG
@@ -1057,10 +1061,9 @@ endif
 	else \
 	  echo "Using Qt translation files from $(QT_TRANSLATION)" ; \
 	  $(RM) -f "$(GLOBAL_DATADIR)/$(PROJECT)/lng/"qt_*.qm ; \
-	  $(LN) -s "$(QT_TRANSLATION)/qt_de.qm" "$(GLOBAL_DATADIR)/$(PROJECT)/lng/qt_de.qm" ; \
-	  $(LN) -s "$(QT_TRANSLATION)/qt_pl.qm" "$(GLOBAL_DATADIR)/$(PROJECT)/lng/qt_pl.qm" ; \
-	  $(LN) -s "$(QT_TRANSLATION)/qt_fr.qm" "$(GLOBAL_DATADIR)/$(PROJECT)/lng/qt_fr.qm" ; \
-	  $(LN) -s "$(QT_TRANSLATION)/qt_pt.qm" "$(GLOBAL_DATADIR)/$(PROJECT)/lng/qt_pt.qm" ; \
+	  for i in $(QT_TRANSLATIONS) ; do \
+	    $(LN) -s "$(QT_TRANSLATION)/qt_$$i.qm" "$(GLOBAL_DATADIR)/$(PROJECT)/lng/qt_$$i.qm" ; \
+	  done \
 	fi
 	@$(RSYNC) --exclude '*svn*' ./data/opt "$(GLOBAL_DATADIR)/$(PROJECT)/"
 	@$(RSYNC) --exclude '*svn*' ./data/img "$(GLOBAL_DATADIR)/$(PROJECT)/"
@@ -1369,8 +1372,6 @@ endif
 endif
 
 # process translations
-QMC2_TRANSLATIONS = us de pl fr pt it ro
-QT_TRANSLATIONS = de pl fr pt
 ifneq '$(ARCH)' 'Windows'
 LBINARIES = $(addsuffix .qm, $(addprefix data/lng/qmc2_, $(QMC2_TRANSLATIONS))) $(addsuffix .qm, $(addprefix data/lng/qt_, $(QT_TRANSLATIONS)))
 else
