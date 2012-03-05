@@ -79,8 +79,11 @@ void Welcome::on_pushButtonOkay_clicked()
     if ( fileInfo.isExecutable() && fileInfo.isReadable() && fileInfo.isFile() ) {
 #if defined(QMC2_EMUTYPE_MAME)
       startupConfig->setValue("MAME/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
-      if ( !lineEditWorkingDirectory->text().isEmpty() )
-        startupConfig->setValue("MAME/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
+      if ( !lineEditWorkingDirectory->text().isEmpty() ) {
+        QString s = lineEditWorkingDirectory->text();
+	if ( !s.endsWith("/") ) s += "/";
+        startupConfig->setValue("MAME/FilesAndDirectories/WorkingDirectory", s);
+      }
       if ( !lineEditROMPath->text().isEmpty() )
         startupConfig->setValue("MAME/Configuration/Global/rompath", lineEditROMPath->text());
       if ( !lineEditSamplePath->text().isEmpty() )
@@ -89,8 +92,11 @@ void Welcome::on_pushButtonOkay_clicked()
         startupConfig->setValue("MAME/Configuration/Global/hashpath", lineEditHashPath->text());
 #elif defined(QMC2_EMUTYPE_MESS)
       startupConfig->setValue("MESS/FilesAndDirectories/ExecutableFile", lineEditExecutableFile->text());
-      if ( !lineEditWorkingDirectory->text().isEmpty() )
-        startupConfig->setValue("MAME/FilesAndDirectories/WorkingDirectory", lineEditWorkingDirectory->text());
+      if ( !lineEditWorkingDirectory->text().isEmpty() ) {
+        QString s = lineEditWorkingDirectory->text();
+	if ( !s.endsWith("/") ) s += "/";
+        startupConfig->setValue("MESS/FilesAndDirectories/WorkingDirectory", s);
+      }
       if ( !lineEditROMPath->text().isEmpty() )
         startupConfig->setValue("MESS/Configuration/Global/rompath", lineEditROMPath->text());
       if ( !lineEditHashPath->text().isEmpty() )
