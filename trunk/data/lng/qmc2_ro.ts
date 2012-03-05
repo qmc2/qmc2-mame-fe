@@ -5384,275 +5384,275 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.ui" line="15"/>
         <source>MESS device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurare dispozitiv MESS</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="37"/>
         <location filename="../../messdevcfg.cpp" line="1334"/>
         <location filename="../../messdevcfg.cpp" line="1339"/>
         <source>Active device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuratie dispozitive active</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="73"/>
         <location filename="../../messdevcfg.ui" line="76"/>
         <source>Device configuration menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Meniu configurare dispozitiv</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="99"/>
         <location filename="../../messdevcfg.ui" line="102"/>
         <source>Name of device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Nume configuratie dispozitiv</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="115"/>
         <location filename="../../messdevcfg.ui" line="118"/>
         <source>Create a new device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Creati o noua configuratie pentru dispozitiv</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="138"/>
         <location filename="../../messdevcfg.ui" line="141"/>
         <source>Clone current device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Clonati configurarea curenta dispozitivului</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="161"/>
         <location filename="../../messdevcfg.ui" line="164"/>
         <source>Remove current device configuration from list of available configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Stergeti informatii configurare curenta din lista de configuratii disponibile</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="184"/>
         <location filename="../../messdevcfg.ui" line="187"/>
         <source>Save current device configuration to list of available configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvati configurare dispozitiv la lista de configuratii disponibile</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="208"/>
         <source>Device mappings</source>
-        <translation type="unfinished"></translation>
+        <translation>Dispozitiv mapari</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="229"/>
         <location filename="../../messdevcfg.ui" line="232"/>
         <source>Device setup of current configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Instalare dispozitiv pentru configuratie actuala</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="245"/>
         <source>Device instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Instanta dispozitiv</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="250"/>
         <source>Brief name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nume scurt</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="255"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tip</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="260"/>
         <source>Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Tag</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="265"/>
         <source>Extensions</source>
-        <translation type="unfinished"></translation>
+        <translation>Extensii</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="270"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="279"/>
         <source>Slot options</source>
-        <translation type="unfinished"></translation>
+        <translation>Optiuni slot</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="297"/>
         <location filename="../../messdevcfg.ui" line="300"/>
         <source>Available slot options</source>
-        <translation type="unfinished"></translation>
+        <translation>Optiuni slot disponibile</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="313"/>
         <source>Slot</source>
-        <translation type="unfinished"></translation>
+        <translation>Slot</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="318"/>
         <source>Option</source>
-        <translation type="unfinished"></translation>
+        <translation>Optiune</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="327"/>
         <source>File chooser</source>
-        <translation type="unfinished"></translation>
+        <translation>Selector fisier</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="366"/>
         <location filename="../../messdevcfg.ui" line="369"/>
         <source>Save selected instance / file as a new device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvati instanta selectata / fisier ca o noua configuratie</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="389"/>
         <location filename="../../messdevcfg.ui" line="392"/>
         <source>Select the device instance the file is mapped to</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti instanta dispozitiv la care fisierul este mapat</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="408"/>
         <location filename="../../messdevcfg.ui" line="411"/>
         <source>Automatically select the first matching device instance when selecting a file with a valid extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti automat primul dispozitiv cand alegeti un fisier cu extensia valida</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="431"/>
         <location filename="../../messdevcfg.ui" line="434"/>
         <source>Filter files by allowed extensions for the current device instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrati fisiere dupa extensiile permise pentru instanta dispozitivului curent</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="454"/>
         <location filename="../../messdevcfg.ui" line="457"/>
         <source>Process ZIP contents on item activation</source>
-        <translation type="unfinished"></translation>
+        <translation>Procesati obiecte ZIP la activare obiect</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="477"/>
         <location filename="../../messdevcfg.ui" line="480"/>
         <source>Enter search string (case-insensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Introduceti sir de cautare (nu tine cont de majuscule)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="496"/>
         <location filename="../../messdevcfg.ui" line="499"/>
         <source>Clear search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Stergeti sirul de cautare</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="516"/>
         <location filename="../../messdevcfg.ui" line="519"/>
         <source>Number of files scanned</source>
-        <translation type="unfinished"></translation>
+        <translation>Numar de fisiere scanate</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="541"/>
         <location filename="../../messdevcfg.ui" line="544"/>
         <source>Reload directory contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Reincarc continut director</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="561"/>
         <location filename="../../messdevcfg.ui" line="564"/>
         <source>Play the selected configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Jucati cu configuratia selectata</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="581"/>
         <location filename="../../messdevcfg.ui" line="584"/>
         <source>Play the selected configuration (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jucati cu configuratia selectata (incorporat)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="650"/>
         <source>Available device configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurari dispozitive disponibile</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="662"/>
         <location filename="../../messdevcfg.ui" line="665"/>
         <source>List of available device configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de configuratii dispozitiv disponibile</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="136"/>
         <location filename="../../messdevcfg.cpp" line="472"/>
         <source>Reading slot info, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>CItesc informatii slot, va rog asteptati...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="137"/>
         <source>Enter configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation>Introduceti nume configuratie</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="152"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Introduceti nume sir de cautare</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="211"/>
         <source>Select default device directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti directorul implicit pentru dispozitiv</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="212"/>
         <source>&amp;Default device directory for &apos;%1&apos;...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Director dispozitiv implicit pentr &apos;%1&apos;...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="220"/>
         <location filename="../../messdevcfg.cpp" line="262"/>
         <source>Play selected game</source>
-        <translation type="unfinished"></translation>
+        <translation>Jucati jocul selectat</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="221"/>
         <location filename="../../messdevcfg.cpp" line="263"/>
         <source>&amp;Play</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Jucati</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="226"/>
         <location filename="../../messdevcfg.cpp" line="268"/>
         <source>Play selected machine (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jucati pe masina selectata (incorporat)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="227"/>
         <location filename="../../messdevcfg.cpp" line="269"/>
         <source>Play &amp;embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>Jucati &amp;incorporat</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="233"/>
         <source>Remove configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Sterg configuratie</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="234"/>
         <source>&amp;Remove configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sterge configuratie</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="242"/>
         <source>Select a file to be mapped to this device instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti un fisier sa fie mapat la aceasta instanta de dispozitiv</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="243"/>
         <source>Select file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti fisier...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="254"/>
         <source>Use as default directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Folositi ca director implicit</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="276"/>
         <location filename="../../messdevcfg.cpp" line="1588"/>
         <source>&amp;Open archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Deschide arhiva</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="319"/>
@@ -5661,39 +5661,39 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="1346"/>
         <location filename="../../messdevcfg.cpp" line="1746"/>
         <source>No devices available</source>
-        <translation type="unfinished"></translation>
+        <translation>Niciun dispozitiv disponibil</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="375"/>
         <location filename="../../messdevcfg.cpp" line="495"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: nu pot pornit executabilul MESS intr-un cadru de timp rezonabil, renunt</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="410"/>
         <location filename="../../messdevcfg.cpp" line="415"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: date XML returnate invalide pentru &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="474"/>
         <source>loading available system slots</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc sloturi sistem disponibile</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="496"/>
         <source>Failed to read slot info</source>
-        <translation type="unfinished"></translation>
+        <translation>Citire informatii slot esuata</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="501"/>
         <source>WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: comanda externa folosita pentru citirea sloutirlor de sistem disponibile a picat, optiunile slot ar putea si incomplete</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="579"/>
         <source>done (loading available system slots, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarcsloturi de sistem disponibile, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="609"/>
@@ -5702,61 +5702,63 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="1078"/>
         <location filename="../../messdevcfg.cpp" line="1207"/>
         <source>No devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Niciun dispozitiv</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="629"/>
         <source>FATAL: error while parsing XML data for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: eroare analiza date XML pentru &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="810"/>
         <source>not used</source>
-        <translation type="unfinished"></translation>
+        <translation>nefolosit</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="942"/>
         <location filename="../../messdevcfg.cpp" line="944"/>
         <source>%1. copy of </source>
-        <translation type="unfinished"></translation>
+        <translation>%1 copie a </translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1172"/>
         <location filename="../../messdevcfg.cpp" line="1761"/>
         <source>%1. variant of </source>
-        <translation type="unfinished"></translation>
+        <translation>%1 varianta a </translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1277"/>
         <source>Choose default device directory for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti directorul implicit pentru dispozitivul &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1588"/>
         <source>&amp;Close archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Clonati arhiva</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1763"/>
         <source>Choose a unique configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti un nume unic pentru configuratie</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1763"/>
         <source>Unique configuration name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nume configurare unic:</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1766"/>
         <source>Name conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Conflict nume</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="1766"/>
         <source>A configuration named &apos;%1&apos; already exists.
 
 Do you want to choose a different name?</source>
-        <translation type="unfinished"></translation>
+        <translation>O configuratie numita &apos;%1&apos; exista deja.
+
+Doriti sa alegeti un nume diferit?</translation>
     </message>
 </context>
 <context>
@@ -16767,329 +16769,329 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="33"/>
         <source>Browse ASCII export file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti fisier export ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="36"/>
         <source>ASCII file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="56"/>
         <source>ASCII export file -- use $ID$ as a placeholder for the current driver</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier export ASCII - folositi $ID$ pe post de substituent pentru driveru-ul curent</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="63"/>
         <source>Column width</source>
-        <translation type="unfinished"></translation>
+        <translation>Latime coloana</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="79"/>
         <source>Maximum column width for ASCII export (0 = unlimited)</source>
-        <translation type="unfinished"></translation>
+        <translation>Marime maxima pentru latime export ASCII (0 = nelimitat)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="82"/>
         <source>unlimited</source>
-        <translation type="unfinished"></translation>
+        <translation>nelimitat</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="134"/>
         <source>Browse CSV export file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti fisier export CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="137"/>
         <source>CSV file</source>
-        <translation type="unfinished"></translation>
+        <translation>FIsier CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="157"/>
         <source>CSV export file -- use $ID$ as a placeholder for the current driver</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier export CSV - foloseste $ID$ pe post de substituient pentru driver-ul curent</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="164"/>
         <source>Separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Separator</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="192"/>
         <source>Field separator for CSV export</source>
-        <translation type="unfinished"></translation>
+        <translation>Camp separator pentru export CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="195"/>
         <source>;</source>
-        <translation type="unfinished"></translation>
+        <translation>;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="221"/>
         <source>Delimiter</source>
-        <translation type="unfinished"></translation>
+        <translation>Delimitator</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="249"/>
         <source>Text delimiter for CSV export</source>
-        <translation type="unfinished"></translation>
+        <translation>Text separator pentru export CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="252"/>
         <source>&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="301"/>
         <source>Select the columns you want to export and the order in which they are to be listed (drag &amp; drop entries around)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti coloanele pe care doriti sa le exportati si ordinea in care doriti sa fie listate (alegeti prin drag &amp; drop)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="314"/>
         <location filename="../../swlistexport.ui" line="500"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titlu</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="319"/>
         <location filename="../../swlistexport.ui" line="505"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nume</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="324"/>
         <location filename="../../swlistexport.ui" line="510"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Editor</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="329"/>
         <location filename="../../swlistexport.ui" line="515"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Year</source>
-        <translation type="unfinished"></translation>
+        <translation>An</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="334"/>
         <location filename="../../swlistexport.ui" line="520"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Part</source>
-        <translation type="unfinished"></translation>
+        <translation>Parte</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="339"/>
         <location filename="../../swlistexport.ui" line="525"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfata</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="344"/>
         <location filename="../../swlistexport.ui" line="530"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>List</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="354"/>
         <source>Export now!</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta acum!</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="357"/>
         <source>&amp;Export</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Exporta</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="368"/>
         <source>Close software-list export</source>
-        <translation type="unfinished"></translation>
+        <translation>Inchide lista export de software</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="371"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Inchideti</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="382"/>
         <source>Export progress indicator</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta indicator progres</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="388"/>
         <source>%p%</source>
-        <translation type="unfinished"></translation>
+        <translation>%p%</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="403"/>
         <source>Sort criteria</source>
-        <translation type="unfinished"></translation>
+        <translation>Criteriu de sortare</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="416"/>
         <source>Sort order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordine de sortare</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="429"/>
         <source>Output format</source>
-        <translation type="unfinished"></translation>
+        <translation>Format iesire</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="442"/>
         <source>Select output format</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti formatul de iesire</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="446"/>
         <source>ASCII</source>
-        <translation type="unfinished"></translation>
+        <translation>ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="451"/>
         <source>CSV</source>
-        <translation type="unfinished"></translation>
+        <translation>CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="465"/>
         <source>Select sort order</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti ordinea de sortare</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="469"/>
         <source>Ascending</source>
-        <translation type="unfinished"></translation>
+        <translation>Crescator</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="478"/>
         <source>Descending</source>
-        <translation type="unfinished"></translation>
+        <translation>Descrescator</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="496"/>
         <source>Select sort criteria</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti criteriul de selectie</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="538"/>
         <source>Overwrite existing files without asking what to do</source>
-        <translation type="unfinished"></translation>
+        <translation>Suprascriu fisier existent fara sa intreb ce sa fac</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="541"/>
         <source>Overwrite files blindly</source>
-        <translation type="unfinished"></translation>
+        <translation>Suprascriu fisiere orbeste</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="551"/>
         <source>Export to the system clipboard instead of a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta in clipboardul sistemului in loc de fisier</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="554"/>
         <source>Export to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta in clipboard</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="564"/>
         <source>Include column header texts</source>
-        <translation type="unfinished"></translation>
+        <translation>Include text antent coloane</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="567"/>
         <source>Include column headers</source>
-        <translation type="unfinished"></translation>
+        <translation>Include antent coloane</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="31"/>
         <source>Both formats</source>
-        <translation type="unfinished"></translation>
+        <translation>Ambele formate</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="33"/>
         <source>Export software-list for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta lista software pentru &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="181"/>
         <location filename="../../swlistexport.cpp" line="313"/>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation>Confirma</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="181"/>
         <location filename="../../swlistexport.cpp" line="313"/>
         <source>Overwrite existing file?</source>
-        <translation type="unfinished"></translation>
+        <translation>Suprascriu fisier existent?</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="192"/>
         <source>exporting current software-list in ASCII format to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>export lista software curenta in format ASCII catre &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="194"/>
         <source>WARNING: can&apos;t open ASCII export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: nu pot deschide fisier export ASCII &apos;%1&apos; pentru scriere, va rog verificati permisiunile</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="199"/>
         <source>exporting current software-list in ASCII format to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>export lista software curenta in format ASCII in clipboard</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="275"/>
         <source>done (exporting current software-list in ASCII format to clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (export lista software curenta in format ASCII in clipboard)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="278"/>
         <source>done (exporting current software-list in ASCII format to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (eexport lista software curenta in format ASCII catre &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="324"/>
         <source>exporting current software-list in CSV format to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>export lista software curenta in format CSV catre &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="326"/>
         <source>WARNING: can&apos;t open CSV export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: nu pot deschide fisier export CSV &apos;%1&apos; pentru scriere, va rog verificati permisiunile</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="331"/>
         <source>exporting current software-list in CSV format to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>export lista software curenta in format CSV in clipboard</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="390"/>
         <source>done (exporting current software-list in CSV format to clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (export lista software curenta in format CSV in clipboard)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="393"/>
         <source>done (exporting current software-list in CSV format to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (export lista software curenta in format CSV catre &apos;%1&quot;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="405"/>
         <source>Choose ASCII export file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti fisier export ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="405"/>
         <location filename="../../swlistexport.cpp" line="419"/>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Toate fisierele (*)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="419"/>
         <source>Choose CSV export file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti fisier export CSV</translation>
     </message>
 </context>
 <context>
