@@ -2727,12 +2727,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>baddump</source>
-        <translation>gunoi rau</translation>
+        <translation>vid rau</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>nodump</source>
-        <translation>niciun gunoi</translation>
+        <translation>niciun vid</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="153"/>
@@ -3004,208 +3004,208 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="642"/>
         <source>FATAL: couldn&apos;t determine the number of supported sets</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL:nu pot determina numarul de seturi suportate</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="682"/>
         <source>loading XML game list data from cache</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc lista XML cu jocuri din cache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="684"/>
         <source>loading XML machine list data from cache</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc lista XML cu masini din cache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="687"/>
         <source>XML cache - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>cache XML - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="725"/>
         <source>done (loading XML game list data from cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarc list XML cu jocuri din cache, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="727"/>
         <source>WARNING: XML game list cache is incomplete, invalidating XML game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: lista XML cu jocuri din cache este incompleta,invalidez lista XML din cache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="729"/>
         <source>done (loading XML machine list data from cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarc lista XML cu masini din cache, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="731"/>
         <source>WARNING: XML machine list cache is incomplete, invalidating XML machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: lista XML cu masini din cache este incompleta, invalidez lista XML cu masini din cache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="795"/>
         <source>loading XML game list data and (re)creating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc lista XML cu jocuri si (re)creez cache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="797"/>
         <source>loading XML machine list data and (re)creating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc lista XML cu masini din cache si (re)creez cache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="800"/>
         <source>XML data - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Date XML - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="817"/>
         <source>WARNING: can&apos;t open XML game list cache for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: nu pot deschide lista XML cu jocuri din cache pentru scriere, va rog verificati permisiunile</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="819"/>
         <source>WARNING: can&apos;t open XML machine list cache for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: nu pot deschide lista XML cu masini din cache pentru scriere, va rog verificati permisiunile</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="864"/>
         <source>verifying ROM status for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>verific status ROM pentru &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="898"/>
         <location filename="../../gamelist.cpp" line="920"/>
         <source>ERROR: can&apos;t open ROM state cache for writing, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>EROARE: nu pot status ROM din cache pentru scriere, cale = %1</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="906"/>
         <source>verifying ROM status for all games</source>
-        <translation type="unfinished"></translation>
+        <translation>verific status ROM pentru toate jocurile</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="908"/>
         <source>verifying ROM status for all machines</source>
-        <translation type="unfinished"></translation>
+        <translation>verific status ROM pentru toate masinile</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="927"/>
         <source>ROM check - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>verificare ROM - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1008"/>
         <source>retrieving game information for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>returnez informatii joc pentru &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1010"/>
         <source>retrieving machine information for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>returnez informatii masina pentru &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1025"/>
         <source>WARNING: couldn&apos;t find game information for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: nu pot gasi informatii pentru jocul &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1027"/>
         <source>WARNING: couldn&apos;t find machine information for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: nu pot gasi informatii pentru masina &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1042"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nume</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1042"/>
         <source>Source file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier sursa</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1042"/>
         <source>Is BIOS?</source>
-        <translation type="unfinished"></translation>
+        <translation>Este BIOS?</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1042"/>
         <source>Is device?</source>
-        <translation type="unfinished"></translation>
+        <translation>Este dispozitiv?</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1042"/>
         <source>Runnable</source>
-        <translation type="unfinished"></translation>
+        <translation>Executabil</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1042"/>
         <source>Clone of</source>
-        <translation type="unfinished"></translation>
+        <translation>Clona a</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1042"/>
         <source>ROM of</source>
-        <translation type="unfinished"></translation>
+        <translation>ROM al</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1042"/>
         <source>Sample of</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra a</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1055"/>
         <source>Year</source>
-        <translation type="unfinished"></translation>
+        <translation>An</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1062"/>
         <source>Manufacturer</source>
-        <translation type="unfinished"></translation>
+        <translation>Producator</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1067"/>
         <location filename="../../gamelist.cpp" line="1495"/>
         <location filename="../../gamelist.cpp" line="1762"/>
         <source>ROM</source>
-        <translation type="unfinished"></translation>
+        <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1072"/>
         <source>BIOS</source>
-        <translation type="unfinished"></translation>
+        <translation>BIOS</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1072"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Marime</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1072"/>
         <source>CRC</source>
-        <translation type="unfinished"></translation>
+        <translation>CRC</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1072"/>
         <location filename="../../gamelist.cpp" line="1205"/>
         <source>SHA1</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA1</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1072"/>
         <location filename="../../gamelist.cpp" line="1205"/>
         <source>Merge</source>
-        <translation type="unfinished"></translation>
+        <translation>Imbina</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1072"/>
         <location filename="../../gamelist.cpp" line="1205"/>
         <source>Region</source>
-        <translation type="unfinished"></translation>
+        <translation>Regiune</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1072"/>
         <source>Offset</source>
-        <translation type="unfinished"></translation>
+        <translation>Ofset</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1072"/>
@@ -3213,187 +3213,187 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1205"/>
         <location filename="../../gamelist.cpp" line="1225"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1072"/>
         <location filename="../../gamelist.cpp" line="1205"/>
         <source>Optional</source>
-        <translation type="unfinished"></translation>
+        <translation>Optional</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1077"/>
         <source>Device reference</source>
-        <translation type="unfinished"></translation>
+        <translation>Referinta dispozitiv</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1082"/>
         <source>Chip</source>
-        <translation type="unfinished"></translation>
+        <translation>Cip</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1087"/>
         <location filename="../../gamelist.cpp" line="1157"/>
         <location filename="../../gamelist.cpp" line="1254"/>
         <source>Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Tag</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1087"/>
         <location filename="../../gamelist.cpp" line="1096"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tip</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1087"/>
         <source>Clock</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceas</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1092"/>
         <source>Display</source>
-        <translation type="unfinished"></translation>
+        <translation>Afisaj</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1096"/>
         <source>Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Roteste</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1096"/>
         <source>Flip-X</source>
-        <translation type="unfinished"></translation>
+        <translation>Invarte X</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1096"/>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Latime</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1096"/>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>Inaltime</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1096"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Reimprospateaza</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1096"/>
         <source>Pixel clock</source>
-        <translation type="unfinished"></translation>
+        <translation>Ceas pixel</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1096"/>
         <source>H-Total</source>
-        <translation type="unfinished"></translation>
+        <translation>H-Total</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1096"/>
         <source>H-Bend</source>
-        <translation type="unfinished"></translation>
+        <translation>H-Indoaie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1096"/>
         <source>HB-Start</source>
-        <translation type="unfinished"></translation>
+        <translation>HD-Start</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1096"/>
         <source>V-Total</source>
-        <translation type="unfinished"></translation>
+        <translation>V-Total</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1096"/>
         <source>V-Bend</source>
-        <translation type="unfinished"></translation>
+        <translation>V-Indoaie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1096"/>
         <source>VB-Start</source>
-        <translation type="unfinished"></translation>
+        <translation>VB-Start</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1101"/>
         <location filename="../../gamelist.cpp" line="1180"/>
         <source>Sound</source>
-        <translation type="unfinished"></translation>
+        <translation>Sunet</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1105"/>
         <source>Channels</source>
-        <translation type="unfinished"></translation>
+        <translation>Chanale</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1110"/>
         <source>Input</source>
-        <translation type="unfinished"></translation>
+        <translation>Introducere</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1114"/>
         <source>Service</source>
-        <translation type="unfinished"></translation>
+        <translation>Serviciu</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1114"/>
         <source>Tilt</source>
-        <translation type="unfinished"></translation>
+        <translation>Inclinat</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1114"/>
         <source>Players</source>
-        <translation type="unfinished"></translation>
+        <translation>Jucatori</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1114"/>
         <source>Buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Butoane</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1114"/>
         <source>Coins</source>
-        <translation type="unfinished"></translation>
+        <translation>Monede</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1121"/>
         <source>Control</source>
-        <translation type="unfinished"></translation>
+        <translation>Control</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Minimum</source>
-        <translation type="unfinished"></translation>
+        <translation>Minim</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Maximum</source>
-        <translation type="unfinished"></translation>
+        <translation>Maxim</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Sensitivity</source>
-        <translation type="unfinished"></translation>
+        <translation>Sensitivitate</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Key Delta</source>
-        <translation type="unfinished"></translation>
+        <translation>Cheie Delta</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Reverse</source>
-        <translation type="unfinished"></translation>
+        <translation>Invers</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1133"/>
         <source>DIP switch</source>
-        <translation type="unfinished"></translation>
+        <translation>Comutare DIP</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1140"/>
         <source>DIP value</source>
-        <translation type="unfinished"></translation>
+        <translation>Valoare DIP</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1145"/>
@@ -3403,250 +3403,252 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1242"/>
         <location filename="../../gamelist.cpp" line="1292"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Initial</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1152"/>
         <source>Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurare</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1157"/>
         <source>Mask</source>
-        <translation type="unfinished"></translation>
+        <translation>Masca</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1164"/>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>Setari</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1169"/>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Valoare</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1176"/>
         <source>Driver</source>
-        <translation type="unfinished"></translation>
+        <translation>Driver</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1180"/>
         <source>Emulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Emulatie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1180"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Culoare</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1180"/>
         <source>Graphic</source>
-        <translation type="unfinished"></translation>
+        <translation>Grafic</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1180"/>
         <source>Cocktail</source>
-        <translation type="unfinished"></translation>
+        <translation>Cocktail</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1180"/>
         <source>Protection</source>
-        <translation type="unfinished"></translation>
+        <translation>Protectie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1180"/>
         <source>Save state</source>
-        <translation type="unfinished"></translation>
+        <translation>Salveaza stare</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1180"/>
         <source>Palette size</source>
-        <translation type="unfinished"></translation>
+        <translation>Marime paleta</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1185"/>
         <source>BIOS set</source>
-        <translation type="unfinished"></translation>
+        <translation>Setare BIOS</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1190"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Descriere</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1195"/>
         <source>Sample</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1200"/>
         <source>Disk</source>
-        <translation type="unfinished"></translation>
+        <translation>Disk</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1205"/>
         <source>MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1205"/>
         <source>Index</source>
-        <translation type="unfinished"></translation>
+        <translation>Index</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1210"/>
         <source>Adjuster</source>
-        <translation type="unfinished"></translation>
+        <translation>Reglare</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1220"/>
         <source>Software list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista software</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1230"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Categorie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1237"/>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Obiecte</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1249"/>
         <source>Device</source>
-        <translation type="unfinished"></translation>
+        <translation>Dispozitiv</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1254"/>
         <source>Mandatory</source>
-        <translation type="unfinished"></translation>
+        <translation>Obligatoriu</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1254"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfata</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1261"/>
         <source>Instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Instanta</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1266"/>
         <source>Brief name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nume scurt</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1273"/>
         <source>Extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Extensie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1280"/>
         <source>RAM options</source>
-        <translation type="unfinished"></translation>
+        <translation>Optiuni RAM</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1284"/>
         <source>Option</source>
-        <translation type="unfinished"></translation>
+        <translation>Optiuni</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1329"/>
         <source>WARNING: can&apos;t open ROM state cache, please check ROMs</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: nu pot deschide stare ROM din cache, va rog verificati ROM-uri</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1332"/>
         <source>loading ROM state from cache</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc stare ROM din cache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1334"/>
         <source>ROM states - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Stari ROM - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1356"/>
         <source>done (loading ROM state from cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarcarc stare ROM din cache, timp scurs = %1)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="1357"/>
         <source>%n cached ROM state(s) loaded</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>%n stari ROM incarcate din cache</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1366"/>
         <source>processing game list</source>
-        <translation type="unfinished"></translation>
+        <translation>procesez lista de jocuri</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1368"/>
         <source>processing machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>procesez lista de masini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1403"/>
         <source>WARNING: couldn&apos;t determine emulator version of game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: nu pot determina versiunea emulatorului din lista cache de jocuri</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1405"/>
         <source>WARNING: couldn&apos;t determine emulator version of machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: nu pot determina versiunea emulatorului din lista cache de masini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1410"/>
         <location filename="../../gamelist.cpp" line="1419"/>
         <source>INFORMATION: the game list cache will now be updated due to a new format</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMATIE: lista de jocuri din cache va fi actualizata datorita noului format</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1412"/>
         <location filename="../../gamelist.cpp" line="1421"/>
         <source>INFORMATION: the machine list cache will now be updated due to a new format</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMATIE: lista de masini din cache va fi actualizata datorita noului format</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1434"/>
         <source>loading game data from game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc date joc din lista de jocuri din cache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1436"/>
         <location filename="../../gamelist.cpp" line="1652"/>
         <source>Game data - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Date Joc - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1438"/>
         <source>loading machine data from machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc date masina din lista de masini din cache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1440"/>
         <location filename="../../gamelist.cpp" line="1656"/>
         <source>Machine data - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Date Masina - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1493"/>
         <location filename="../../gamelist.cpp" line="1760"/>
         <source>ROM, CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>ROM, CHD</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1497"/>
         <location filename="../../gamelist.cpp" line="1764"/>
         <source>CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1501"/>
@@ -3654,7 +3656,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1768"/>
         <location filename="../../gamelist.cpp" line="1769"/>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>N/A</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1513"/>
@@ -3662,43 +3664,43 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="3557"/>
         <location filename="../../gamelist.cpp" line="3690"/>
         <source>?</source>
-        <translation type="unfinished"></translation>
+        <translation>?</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1629"/>
         <source>done (loading game data from game list cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarc date joc din lista cache cu jocuri, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1631"/>
         <source>done (loading machine data from machine list cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarc date masina din lista cache de masini, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1650"/>
         <source>parsing game data and (re)creating game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>analizez date joc si (re)creez lista cache cu jocuri</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1654"/>
         <source>parsing machine data and (re)creating machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>analizez date despre masina si (re)creez lista cache cu masini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1663"/>
         <source>ERROR: can&apos;t open game list cache for writing, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>EROARE: nu pot deschide lista cache cu jocuri pentru scriere, cale = %1</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1665"/>
         <source>ERROR: can&apos;t open machine list cache for writing, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>EROARE: nu pot deschide list cache cu masini pentru scriere, cale = %1</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2130"/>
         <location filename="../../gamelist.cpp" line="2970"/>
         <source>sorting game list by %1 in %2 order</source>
-        <translation type="unfinished"></translation>
+        <translation>sortez lista jocuri dupa %1 in ordinea %2</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2130"/>
@@ -3706,7 +3708,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2970"/>
         <location filename="../../gamelist.cpp" line="2972"/>
         <source>ascending</source>
-        <translation type="unfinished"></translation>
+        <translation>ascendent</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2130"/>
@@ -3714,35 +3716,37 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2970"/>
         <location filename="../../gamelist.cpp" line="2972"/>
         <source>descending</source>
-        <translation type="unfinished"></translation>
+        <translation>descendent</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2132"/>
         <location filename="../../gamelist.cpp" line="2972"/>
         <source>sorting machine list by %1 in %2 order</source>
-        <translation type="unfinished"></translation>
+        <translation>sortez lista masini dupa %1 in ordinea %2</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2164"/>
         <location filename="../../gamelist.cpp" line="2180"/>
         <source>restoring game selection</source>
-        <translation type="unfinished"></translation>
+        <translation>restaurez selectie jocuri</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2166"/>
         <location filename="../../gamelist.cpp" line="2182"/>
         <source>restoring machine selection</source>
-        <translation type="unfinished"></translation>
+        <translation>restaurez selectie masini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2194"/>
         <source>done (processing game list, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (procesez lista de jocuri, timp scurs = %1)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2195"/>
         <source>%n game(s)</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>%n jocuri</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -3750,7 +3754,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2195"/>
         <location filename="../../gamelist.cpp" line="2198"/>
         <source>, %n BIOS set(s)</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>, %n BIOS set(uri)</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -3758,329 +3764,335 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2195"/>
         <location filename="../../gamelist.cpp" line="2198"/>
         <source> and %n device(s) loaded</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>si % dispozitive incarcate</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2197"/>
         <source>done (processing machine list, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (procesez lista de masini, timp scurs = %1)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2198"/>
         <source>%n machine(s)</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>%n masini</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2204"/>
         <source>WARNING: game list not fully parsed, invalidating game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: lista cu jocuri nu este analizata complet, invalidez lista cache de jocuri</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2207"/>
         <source>WARNING: machine list not fully parsed, invalidating machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: lista masini nu este analizata complet, invalidez lista cache de masini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2213"/>
         <source>WARNING: game list cache is out of date, invalidating game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: lista cache cu jocuri este invechita, invalidez lista cache de jocuri</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2216"/>
         <source>WARNING: machine list cache is out of date, invalidating machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: lista cache cu masini este invechita, invalidez lista cache cu masini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2222"/>
         <location filename="../../gamelist.cpp" line="2956"/>
         <source>ROM state info: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</source>
-        <translation type="unfinished"></translation>
+        <translation>Informatii stare ROM: L:%1 C:%2 M:%3 I:%4 N:%5 U:%6</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2234"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, triggering an automatic ROM check</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: verificare stare cache ROM incompleta sau invechita, declansez o verificare ROM automata</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2237"/>
         <source>WARNING: ROM state cache is incomplete or not up to date, please re-check ROMs</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: verificare stare cache ROM incompleta sau invechita, va rog reverificati ROM-urile</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2257"/>
         <source>ROM state filter already active</source>
-        <translation type="unfinished"></translation>
+        <translation>filtru de stare ROM deja activ</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2262"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>va rog asteptati finalizarea verificarii ROM si incercati din nou</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2267"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>va rog asteptati ca reincarcarea sa se termine si incercati din nou</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2276"/>
         <source>applying ROM state filter</source>
-        <translation type="unfinished"></translation>
+        <translation>aplic filtru de stare ROM</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2279"/>
         <source>State filter - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Stare filtru - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2336"/>
         <source>done (applying ROM state filter, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (aplic filtru de stare ROM, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2349"/>
         <source>saving game list</source>
-        <translation type="unfinished"></translation>
+        <translation>salvez lista de jocuri</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2350"/>
         <source>done (saving game list)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (salvez lista de jocuri)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2352"/>
         <source>saving machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>salvez lista de masini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2353"/>
         <source>done (saving machine list)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (salvez lista de masini)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2363"/>
         <source>loading favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc favorite</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2387"/>
         <source>done (loading favorites)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarc favorite)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2400"/>
         <source>saving favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>salvez favorite</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2416"/>
         <location filename="../../gamelist.cpp" line="2418"/>
         <source>FATAL: can&apos;t open favorites file for writing, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: nu pot deschide fisier favorite pentru scriere, cale = %1</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2422"/>
         <source>done (saving favorites)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (salvez favorite)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2431"/>
         <source>loading play history</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc istoric jocuri</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2454"/>
         <source>done (loading play history)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarc istoric jocuri)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2467"/>
         <source>saving play history</source>
-        <translation type="unfinished"></translation>
+        <translation>salvez istoric jocuri</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2483"/>
         <location filename="../../gamelist.cpp" line="2485"/>
         <source>FATAL: can&apos;t open play history file for writing, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: nu pot deschide fisier istoric jocuri pentru scriere, cale = %1</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2489"/>
         <source>done (saving play history)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (salvez istoric jocuri)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2500"/>
         <source>L:</source>
-        <translation type="unfinished"></translation>
+        <translation>L:</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2501"/>
         <source>C:</source>
-        <translation type="unfinished"></translation>
+        <translation>C:</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2502"/>
         <source>M:</source>
-        <translation type="unfinished"></translation>
+        <translation>M:</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2503"/>
         <source>I:</source>
-        <translation type="unfinished"></translation>
+        <translation>I:</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2504"/>
         <source>N:</source>
-        <translation type="unfinished"></translation>
+        <translation>N:</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2505"/>
         <source>U:</source>
-        <translation type="unfinished"></translation>
+        <translation>U:</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2506"/>
         <source>S:</source>
-        <translation type="unfinished"></translation>
+        <translation>S:</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2507"/>
         <source>T:</source>
-        <translation type="unfinished"></translation>
+        <translation>T:</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2530"/>
         <location filename="../../gamelist.cpp" line="2704"/>
         <source>WARNING: emulator audit call didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: apel audit emulator nu s-a terminat curat - codExit = %1, Stareexit = %2</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2530"/>
         <location filename="../../gamelist.cpp" line="2704"/>
         <source>normal</source>
-        <translation type="unfinished"></translation>
+        <translation>normal</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2530"/>
         <location filename="../../gamelist.cpp" line="2704"/>
         <source>crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>picat</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2535"/>
         <source>done (loading XML game list data and (re)creating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarc date lista XML cu jocuri si (re)creez cache, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2537"/>
         <source>done (loading XML machine list data and (re)creating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarc lista XML cu masini si (re)creez cache, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2760"/>
         <location filename="../../gamelist.cpp" line="2907"/>
         <location filename="../../gamelist.cpp" line="3219"/>
         <source>WARNING: can&apos;t find item map entry for &apos;%1&apos; - ROM state cannot be determined</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: nu pot gasi harta de intrare iteme pentru &apos;%1&apos; - stare ROM nu poate fi determinata</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2948"/>
         <source>done (verifying ROM status for &apos;%1&apos;, elapsed time = %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (verific stare ROM pentru &apos;%1&apos;, timp scurs = %2)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2951"/>
         <source>done (verifying ROM status for all games, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (verific stare ROM pentru toate jocurile, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2953"/>
         <source>done (verifying ROM status for all machines, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (verific stare ROM pentru toate masinile, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2970"/>
         <location filename="../../gamelist.cpp" line="2972"/>
         <source>ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>stare ROM</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3234"/>
         <source>ROM status for &apos;%1&apos; is &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Stare ROM pentru &apos;%1&apos; este &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3309"/>
         <source>pre-caching icons from ZIP archive</source>
-        <translation type="unfinished"></translation>
+        <translation>pre-caching iconite din arhiva ZIP</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3315"/>
         <location filename="../../gamelist.cpp" line="3391"/>
         <source>Icon cache - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache iconite - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3362"/>
         <source>done (pre-caching icons from ZIP archive, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (salvez iconite din fisier ZIP in cache, timp scurs = %1)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="3363"/>
         <location filename="../../gamelist.cpp" line="3423"/>
         <source>%n icon(s) loaded</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>%n iconite incarcate</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3376"/>
         <source>pre-caching icons from directory</source>
-        <translation type="unfinished"></translation>
+        <translation>pre-caching iconite din director</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3422"/>
         <source>done (pre-caching icons from directory, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (salvez inconite dn director in cache, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3451"/>
         <source>loading catver.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc catver.ini</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3457"/>
         <source>Catver.ini - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Catver.ini - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3495"/>
         <source>ERROR: can&apos;t open &apos;%1&apos; for reading -- no catver.ini data available</source>
-        <translation type="unfinished"></translation>
+        <translation>EROAREL nu po deschide &apos;%1&apos; pentru citire - niciun catver.ini valabil</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3504"/>
         <source>done (loading catver.ini, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarc catver.ini, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3505"/>
         <source>%1 category / %2 version records loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 categorie / %2 inregistrari versiune incarcate</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3538"/>
         <source>Category view - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Vedere pe categorii - %p%</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3671"/>
         <source>Version view - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Vedere versiune - %p%</translation>
     </message>
 </context>
 <context>
@@ -6222,7 +6234,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="1737"/>
         <location filename="../../qmc2main.ui" line="2143"/>
         <source>Status</source>
-        <translation>Statut</translation>
+        <translation>Stare</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1742"/>
@@ -11097,7 +11109,7 @@ Should they be killed on exit?</source>
         <location filename="../../options.ui" line="3210"/>
         <location filename="../../options.ui" line="3231"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3179"/>
@@ -12923,7 +12935,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../procmgr.cpp" line="237"/>
         <source>emulator #%1 finished, exit code = %2, exit status = %3, remaining emulators = %4</source>
-        <translation>emulator #%1 terminat, cod de iesire = %2, statut iesire = %3, emulatoare ramase = %4</translation>
+        <translation>emulator #%1 terminat, cod de iesire = %2, stare iesire = %3, emulatoare ramase = %4</translation>
     </message>
     <message>
         <location filename="../../procmgr.cpp" line="237"/>
@@ -13032,99 +13044,99 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../gamelist.cpp" line="2088"/>
         <location filename="../../options.cpp" line="1486"/>
         <source>game description</source>
-        <translation type="unfinished"></translation>
+        <translation>descriere joc</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2090"/>
         <location filename="../../options.cpp" line="1488"/>
         <source>machine description</source>
-        <translation type="unfinished"></translation>
+        <translation>descriere masina</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2094"/>
         <location filename="../../options.cpp" line="1492"/>
         <source>ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Status ROM</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2097"/>
         <location filename="../../options.cpp" line="1495"/>
         <source>tag</source>
-        <translation type="unfinished"></translation>
+        <translation>tag</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2100"/>
         <location filename="../../options.cpp" line="1498"/>
         <source>year</source>
-        <translation type="unfinished"></translation>
+        <translation>an</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2103"/>
         <location filename="../../options.cpp" line="1501"/>
         <source>manufacturer</source>
-        <translation type="unfinished"></translation>
+        <translation>producator</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2107"/>
         <location filename="../../options.cpp" line="1505"/>
         <source>game name</source>
-        <translation type="unfinished"></translation>
+        <translation>nume joc</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2109"/>
         <location filename="../../options.cpp" line="1507"/>
         <source>machine name</source>
-        <translation type="unfinished"></translation>
+        <translation>nume masina</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2112"/>
         <location filename="../../options.cpp" line="1511"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipuri de ROM</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2115"/>
         <location filename="../../options.cpp" line="1514"/>
         <source>players</source>
-        <translation type="unfinished"></translation>
+        <translation>jucatori</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2118"/>
         <location filename="../../options.cpp" line="1517"/>
         <source>driver status</source>
-        <translation type="unfinished"></translation>
+        <translation>status driver</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2122"/>
         <location filename="../../options.cpp" line="1521"/>
         <source>category</source>
-        <translation type="unfinished"></translation>
+        <translation>categorie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2125"/>
         <location filename="../../options.cpp" line="1524"/>
         <source>version</source>
-        <translation type="unfinished"></translation>
+        <translation>versiune</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3043"/>
         <source>correct</source>
-        <translation type="unfinished"></translation>
+        <translation>corect</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3078"/>
         <source>incorrect</source>
-        <translation type="unfinished"></translation>
+        <translation>incorect</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3113"/>
         <source>mostly correct</source>
-        <translation type="unfinished"></translation>
+        <translation>majoritatea corecte</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3148"/>
         <source>not found</source>
-        <translation type="unfinished"></translation>
+        <translation>negasit</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="3183"/>
@@ -13133,174 +13145,174 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="3144"/>
         <location filename="../../romalyzer.cpp" line="3156"/>
         <source>unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>necunoscut</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="860"/>
         <location filename="../../options.cpp" line="1950"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Initial</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3976"/>
         <location filename="../../qmc2main.cpp" line="3977"/>
         <source>Export game-specific MAME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta configurare MAME specifica jocului</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3979"/>
         <location filename="../../qmc2main.cpp" line="3980"/>
         <source>Export machine-specific MESS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta configurare MESS specifica masinii</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3982"/>
         <location filename="../../qmc2main.cpp" line="10190"/>
         <source>Import from...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importa din...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3984"/>
         <location filename="../../qmc2main.cpp" line="3985"/>
         <source>Import game-specific MAME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Inporta configurare MAME specifica jocului</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3987"/>
         <location filename="../../qmc2main.cpp" line="3988"/>
         <source>Import machine-specific MESS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Importa configurareMESS specifica masinii</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10084"/>
         <source>Setting up the GUI, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Setez Interfata Grafica, va rog asteptati...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10129"/>
         <source>M.E.S.S. Catalog / Launcher II v</source>
-        <translation type="unfinished"></translation>
+        <translation>M.E.S.S. Catalog / Launcher II v</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10131"/>
         <location filename="../../qmc2main.cpp" line="10133"/>
         <source>M.A.M.E. Catalog / Launcher II v</source>
-        <translation type="unfinished"></translation>
+        <translation>M.A.M.E. Catalog / Launcher II v</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10137"/>
         <source>SVN r%1</source>
-        <translation type="unfinished"></translation>
+        <translation>SVN r%1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10155"/>
         <source>OpenGL features enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Caracteristici OpenGL activate</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10159"/>
         <source>Phonon features enabled - using Phonon v%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Caracteristi Phonon activate - folosesc Phonon v%1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10164"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
-        <translation type="unfinished"></translation>
+        <translation>Suport joystick SDL activat - folosesc SDL v%1.%2.%3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10168"/>
         <source>processing global emulator configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>precosez configuratie globala emulator</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10182"/>
         <source>Export to...</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta catre...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10184"/>
         <location filename="../../qmc2main.cpp" line="10185"/>
         <source>Export global MAME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta configuratie MAME globala</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10187"/>
         <location filename="../../qmc2main.cpp" line="10188"/>
         <source>Export global MESS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta configuratie MESS globala</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10192"/>
         <location filename="../../qmc2main.cpp" line="10193"/>
         <source>Import global MAME configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Importa configuratie MAME globala</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10195"/>
         <location filename="../../qmc2main.cpp" line="10196"/>
         <source>Import global MESS configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Importa configuratie MESS globala</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10208"/>
         <location filename="../../qmc2main.cpp" line="10216"/>
         <source>&lt;inipath&gt;/mame.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;inipath&gt;/mame.ini</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10210"/>
         <location filename="../../qmc2main.cpp" line="10218"/>
         <source>&lt;inipath&gt;/mess.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;inipath&gt;/mess.ini</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10212"/>
         <location filename="../../qmc2main.cpp" line="10220"/>
         <source>Select file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti fisier...</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="804"/>
         <location filename="../../romalyzer.cpp" line="3095"/>
         <source>CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="805"/>
         <location filename="../../romalyzer.cpp" line="3103"/>
         <location filename="../../romalyzer.cpp" line="3150"/>
         <source>no dump</source>
-        <translation type="unfinished"></translation>
+        <translation>niciun vid</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3095"/>
         <source>ROM</source>
-        <translation type="unfinished"></translation>
+        <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3099"/>
         <location filename="../../romalyzer.cpp" line="3141"/>
         <location filename="../../romalyzer.cpp" line="3160"/>
         <source>good</source>
-        <translation type="unfinished"></translation>
+        <translation>bun</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3107"/>
         <location filename="../../romalyzer.cpp" line="3153"/>
         <source>bad dump</source>
-        <translation type="unfinished"></translation>
+        <translation>vid rau</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3147"/>
         <source>no / bad dump</source>
-        <translation type="unfinished"></translation>
+        <translation>niciun vid/ vid rau</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2096"/>
         <location filename="../../softwarelist.cpp" line="2134"/>
         <location filename="../../softwarelist.cpp" line="2919"/>
         <source>Auto mount</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto montare</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2106"/>
@@ -13310,83 +13322,83 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="2924"/>
         <location filename="../../softwarelist.cpp" line="2928"/>
         <source>Not mounted</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemontat</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2108"/>
         <location filename="../../softwarelist.cpp" line="2141"/>
         <location filename="../../softwarelist.cpp" line="2930"/>
         <source>Mounted on:</source>
-        <translation type="unfinished"></translation>
+        <translation>Montat pe:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2113"/>
         <location filename="../../softwarelist.cpp" line="2918"/>
         <source>Don&apos;t mount</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu monta</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2314"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished"></translation>
+        <translation>Astept date...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2883"/>
         <location filename="../../softwarelist.cpp" line="2885"/>
         <source>Searching</source>
-        <translation type="unfinished"></translation>
+        <translation>Caut</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2897"/>
         <source>Updating</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizez</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2909"/>
         <source>Part:</source>
-        <translation type="unfinished"></translation>
+        <translation>Parte:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2935"/>
         <source>No mount device</source>
-        <translation type="unfinished"></translation>
+        <translation>Niciun dispozitiv montabil</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2936"/>
         <source>Unmanaged</source>
-        <translation type="unfinished"></translation>
+        <translation>Neadministrat</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2961"/>
         <source>Data area:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spatiu date:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2964"/>
         <location filename="../../softwarelist.cpp" line="2976"/>
         <location filename="../../softwarelist.cpp" line="2990"/>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Marime:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2973"/>
         <source>Disk area:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spatiu disk:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2993"/>
         <source>CRC:</source>
-        <translation type="unfinished"></translation>
+        <translation>CRC:</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3008"/>
         <source>SHA1:</source>
-        <translation type="unfinished"></translation>
+        <translation>SHA1:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1663"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>video player: eroare XML: eroare fatala la linia %1, coloana %2: %3</translation>
     </message>
 </context>
 <context>
@@ -16172,7 +16184,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../sampcheck.cpp" line="366"/>
         <source>please wait for ROM state filter to finish and try again</source>
-        <translation>va rog asteptati filtrarea statutului ROM sa se termine si incercati din nou</translation>
+        <translation>va rog asteptati filtrarea starii ROM sa se termine si incercati din nou</translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="371"/>
