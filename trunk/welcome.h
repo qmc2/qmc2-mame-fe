@@ -22,6 +22,7 @@ class Welcome : public QDialog, public Ui::Welcome
   public slots:
     void on_pushButtonOkay_clicked();
     void on_toolButtonBrowseExecutableFile_clicked();
+    void on_toolButtonBrowseWorkingDirectory_clicked();
     void on_toolButtonBrowseROMPath_clicked();
     void on_toolButtonBrowseSamplePath_clicked();
     void on_toolButtonBrowseHashPath_clicked();

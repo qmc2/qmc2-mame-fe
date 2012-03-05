@@ -33,7 +33,7 @@ endif
 
 # >>> AUDIOEFFECTDIALOGS <<<
 #
-# Enable (1) or disable (0) support for audio-effect dialogs
+# Enable (1) or disable (0) support for audio-effect dialogs.
 #
 ifndef AUDIOEFFECTDIALOGS
 AUDIOEFFECTDIALOGS = 1
@@ -41,8 +41,10 @@ endif
 
 # >>> EMULATOR / EMU <<<
 #
-# Specifies the target emulator to be used (important: you need to build QMC2
-# for each target emulator separately; do a "make clean" between the builds!)
+# Specifies the target emulator to be used.
+#
+# IMPORTANT: you need to build QMC2 for each target emulator separately; do a
+# 'make clean' between the builds!
 #
 # Supported emulators:
 #
@@ -1289,9 +1291,9 @@ config:
 	@echo "DISTCC_CXX           Command used for distributed c++             $(DISTCC_CXX)"
 	@echo "DISTCFG              Use distribution-specific config (0, 1)      $(DISTCFG)"
 ifeq '$(ARCH)' 'Windows'
-	@echo "EMULATOR             Target emulator (MAME, MESS)                 $(QMC2_EMULATOR)"
+	@echo "EMULATOR, EMU        Target emulator (MAME, MESS)                 $(QMC2_EMULATOR)"
 else
-	@echo "EMULATOR             Target emulator (SDLMAME, SDLMESS)           $(QMC2_EMULATOR)"
+	@echo "EMULATOR, EMU        Target emulator (SDLMAME, SDLMESS)           $(QMC2_EMULATOR)"
 endif
 	@echo "EMULATOR             Target emulator (SDLMAME, SDLMESS)           $(QMC2_EMULATOR)"
 	@echo "FADER_SPEED          Audio fading speed (0: fastest, >0: slower)  $(FADER_SPEED)"
