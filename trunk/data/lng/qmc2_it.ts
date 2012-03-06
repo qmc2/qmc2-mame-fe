@@ -1779,321 +1779,321 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.ui" line="15"/>
         <source>Detail setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni dettagli</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="30"/>
         <source>Available details</source>
-        <translation type="unfinished"></translation>
+        <translation>Dettaggli disponibili</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="36"/>
         <source>List of available details</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista dei dettagli disponibili</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="51"/>
         <source>Configure current detail</source>
-        <translation type="unfinished"></translation>
+        <translation>Configura dettaglio corrente</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="54"/>
         <source>Configure...</source>
-        <translation type="unfinished"></translation>
+        <translation>Configura...</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="68"/>
         <source>Activate selected details</source>
-        <translation type="unfinished"></translation>
+        <translation>Attiva dettagli selezionati</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="85"/>
         <source>Active details</source>
-        <translation type="unfinished"></translation>
+        <translation>Dettagli attivi</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="91"/>
         <source>List of active details and their order</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista dei dettagli attivi e loro ordine</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="106"/>
         <source>Deactivate selected details</source>
-        <translation type="unfinished"></translation>
+        <translation>Disattiva dettagli selezionati</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="120"/>
         <source>Move selected detail up</source>
-        <translation type="unfinished"></translation>
+        <translation>Muovi il dettaglio selezionato su</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="137"/>
         <source>Move selected detail down</source>
-        <translation type="unfinished"></translation>
+        <translation>Muovi il dettaglio selezionato giù</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="170"/>
         <source>Apply detail setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Applica impostazioni dettagli ed esci</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="173"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="184"/>
         <source>Apply detail setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Applica impostazioni dettagli</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="187"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished">&amp;Applica</translation>
+        <translation>&amp;Applica</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="198"/>
         <source>Cancel detail setup and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Annulla impostazioni dettagli e chiudi la finestra</translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="201"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancella</translation>
+        <translation>&amp;Cancella</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="18"/>
         <location filename="../../detailsetup.cpp" line="95"/>
         <source>Pre&amp;view</source>
-        <translation type="unfinished"></translation>
+        <translation>Ante&amp;prima</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="19"/>
         <source>Game preview image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine anteprima gioco</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="21"/>
         <location filename="../../detailsetup.cpp" line="98"/>
         <source>Fl&amp;yer</source>
-        <translation type="unfinished"></translation>
+        <translation>Fl&amp;yer</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="22"/>
         <source>Game flyer image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine flyer gioco</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="24"/>
         <source>Game &amp;info</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Informazioni gioco</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="25"/>
         <source>Game information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informazioni gioco</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="27"/>
         <location filename="../../detailsetup.cpp" line="104"/>
         <source>Em&amp;ulator info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informazioni em&amp;ulatore</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="28"/>
         <location filename="../../detailsetup.cpp" line="105"/>
         <source>Emulator information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informazioni emulatore</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="30"/>
         <location filename="../../detailsetup.cpp" line="107"/>
         <source>&amp;Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Configurazione</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="31"/>
         <location filename="../../detailsetup.cpp" line="108"/>
         <source>Emulator configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurazione emulatore</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="33"/>
         <location filename="../../detailsetup.cpp" line="119"/>
         <source>Ca&amp;binet</source>
-        <translation type="unfinished"></translation>
+        <translation>Ca&amp;binet</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="34"/>
         <source>Arcade cabinet image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine cabinet arcade</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="36"/>
         <source>C&amp;ontroller</source>
-        <translation type="unfinished"></translation>
+        <translation>C&amp;ontroller</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="37"/>
         <source>Control panel image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine pannello controllo</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="39"/>
         <source>Mar&amp;quee</source>
-        <translation type="unfinished"></translation>
+        <translation>Mar&amp;chio</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="40"/>
         <source>Marquee image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine marchio</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="42"/>
         <source>Titl&amp;e</source>
-        <translation type="unfinished"></translation>
+        <translation>Titol&amp;o</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="43"/>
         <source>Title screen image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine schermo titolo</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="45"/>
         <source>MA&amp;WS</source>
-        <translation type="unfinished"></translation>
+        <translation>MA&amp;WS</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="46"/>
         <source>MAWS page (web lookup)</source>
-        <translation type="unfinished"></translation>
+        <translation>pagina MAWS (ricerca web)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="48"/>
         <location filename="../../detailsetup.cpp" line="116"/>
         <source>&amp;PCB</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;PCB</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="49"/>
         <location filename="../../detailsetup.cpp" line="117"/>
         <source>PCB image</source>
-        <translation type="unfinished"></translation>
+        <translation>immagine PCB</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="51"/>
         <location filename="../../detailsetup.cpp" line="122"/>
         <source>Softwar&amp;e list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista softwar&amp;e</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="52"/>
         <location filename="../../detailsetup.cpp" line="123"/>
         <source>Software list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista software</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="55"/>
         <location filename="../../detailsetup.cpp" line="126"/>
         <source>&amp;YouTube</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;YouTube</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="56"/>
         <location filename="../../detailsetup.cpp" line="127"/>
         <source>YouTube videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Video YouTube</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="96"/>
         <source>Machine preview image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine anteprima macchina</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="99"/>
         <source>Machine flyer image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine flyer macchina</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="101"/>
         <source>Machine &amp;info</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Info macchina</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="102"/>
         <source>Machine information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informazioni macchina</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="110"/>
         <source>De&amp;vices</source>
-        <translation type="unfinished"></translation>
+        <translation>Pe&amp;riferiche</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="111"/>
         <source>Device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configura periferiche</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="113"/>
         <source>MESS &amp;Wiki</source>
-        <translation type="unfinished"></translation>
+        <translation>MESS &amp;Wiki</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="114"/>
         <source>MESS wiki (web lookup)</source>
-        <translation type="unfinished"></translation>
+        <translation>MESS wiki (ricerca web)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="120"/>
         <source>Machine cabinet image</source>
-        <translation type="unfinished">Immagine cabinet macchina</translation>
+        <translation>Immagine cabinet macchina</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="365"/>
         <source>MAWS configuration (1/2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurazione MAWS (1/2)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="366"/>
         <source>MAWS URL pattern (use %1 as placeholder for game ID):</source>
-        <translation type="unfinished"></translation>
+        <translation>URL pattern MAWS (usa %1 come segnaposto per gli ID giochi):</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="375"/>
         <location filename="../../detailsetup.cpp" line="379"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Si</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="375"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>No</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="377"/>
         <source>MAWS configuration (2/2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurazione MAWS (2/2)</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="377"/>
         <source>Enable MAWS quick download?</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilità download veloce MAWS?</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="398"/>
         <source>Choose the YouTube cache directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli directory cache di YouTube</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="408"/>
         <source>FATAL: can&apos;t create new YouTube cache directory, path = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALE: impossibile creare una nuova directory cache di YouTube, percorso = %1</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="438"/>
         <source>INFO: the configuration tab can&apos;t be removed</source>
-        <translation type="unfinished"></translation>
+        <translation>INFO: il tab configurazione non può essere rimosso</translation>
     </message>
 </context>
 <context>
@@ -2101,7 +2101,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../direditwidget.cpp" line="44"/>
         <source>Choose directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli directory</translation>
     </message>
 </context>
 <context>
@@ -2113,7 +2113,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../docbrowser.cpp" line="93"/>
         <location filename="../../docbrowser.cpp" line="96"/>
         <source>MiniWebBrowser</source>
-        <translation type="unfinished"></translation>
+        <translation>MiniWebBrowser</translation>
     </message>
 </context>
 <context>
@@ -2151,17 +2151,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="281"/>
         <source>emulator #%1 closed, window ID = 0x%2</source>
-        <translation type="unfinished"></translation>
+        <translation>emulatore #%1 chiuso, ID finestra = 0x%2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="532"/>
         <source>window ID for emulator #%1 lost, looking for replacement</source>
-        <translation type="unfinished"></translation>
+        <translation>ID finestra per emulatore #%1 perso, cerco un rimpiazzo</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="557"/>
         <source>using replacement window ID %1 for emulator #%2</source>
-        <translation type="unfinished"></translation>
+        <translation>uso ID finestra di rimpiazzo %1 per l&apos;emulatore #%2</translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="565"/>
@@ -2232,13 +2232,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="160"/>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutti i file (*)</translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="165"/>
         <location filename="../../emuopt.cpp" line="177"/>
         <source>Browse: </source>
-        <translation type="unfinished"></translation>
+        <translation>Sfoglia:</translation>
     </message>
 </context>
 <context>
@@ -2446,7 +2446,6 @@ p, li { white-space: pre-wrap; }
         <source>check results: %n difference(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -2585,7 +2584,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../fileeditwidget.cpp" line="50"/>
         <source>Choose file</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli file</translation>
     </message>
 </context>
 <context>
@@ -2593,40 +2592,40 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../filesystemmodel.h" line="274"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="274"/>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Dimensione</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="274"/>
         <source>Date modified</source>
-        <translation type="unfinished"></translation>
+        <translation>Data modifica</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="464"/>
         <location filename="../../filesystemmodel.h" line="478"/>
         <source> KB</source>
-        <translation type="unfinished"></translation>
+        <translation> KB</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="467"/>
         <location filename="../../filesystemmodel.h" line="481"/>
         <source> MB</source>
-        <translation type="unfinished"></translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="470"/>
         <location filename="../../filesystemmodel.h" line="484"/>
         <source> GB</source>
-        <translation type="unfinished"></translation>
+        <translation> GB</translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="473"/>
         <source> TB</source>
-        <translation type="unfinished"></translation>
+        <translation> TB</translation>
     </message>
 </context>
 <context>
@@ -2634,35 +2633,35 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../flyer.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copia sugli appunti</translation>
+        <translation>Copia sugli appunti</translation>
     </message>
     <message>
         <location filename="../../flyer.cpp" line="54"/>
         <source>Refresh</source>
-        <translation type="unfinished">Aggiornamento</translation>
+        <translation>Aggiornamento</translation>
     </message>
     <message>
         <location filename="../../flyer.cpp" line="61"/>
         <location filename="../../flyer.cpp" line="62"/>
         <source>Game flyer image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine flyer gioco</translation>
     </message>
     <message>
         <location filename="../../flyer.cpp" line="64"/>
         <location filename="../../flyer.cpp" line="65"/>
         <source>Machine flyer image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine flyer macchina</translation>
     </message>
     <message>
         <location filename="../../flyer.cpp" line="73"/>
         <location filename="../../flyer.cpp" line="77"/>
         <source>FATAL: can&apos;t open flyer file, please check access permissions for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALE: impossibile aprire immagine flyer, per favore controlla i permessi d&apos;accesso per %1</translation>
     </message>
     <message>
         <location filename="../../flyer.cpp" line="105"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Aspettando i dati...</translation>
+        <translation>Aspettando i dati...</translation>
     </message>
 </context>
 <context>
@@ -2681,245 +2680,245 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="621"/>
         <location filename="../../gamelist.cpp" line="624"/>
         <source>unknown</source>
-        <translation type="unfinished">sconosciuto</translation>
+        <translation>sconosciuto</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>good</source>
-        <translation type="unfinished"></translation>
+        <translation>buono</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>bad</source>
-        <translation type="unfinished"></translation>
+        <translation>cattivo</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>preliminary</source>
-        <translation type="unfinished"></translation>
+        <translation>preliminare</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>supported</source>
-        <translation type="unfinished"></translation>
+        <translation>supportato</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>unsupported</source>
-        <translation type="unfinished"></translation>
+        <translation>non supportato</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>imperfect</source>
-        <translation type="unfinished"></translation>
+        <translation>imperfetto</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>yes</source>
-        <translation type="unfinished"></translation>
+        <translation>si</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>no</source>
-        <translation type="unfinished"></translation>
+        <translation>no</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>baddump</source>
-        <translation type="unfinished"></translation>
+        <translation>dump cattivo</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>nodump</source>
-        <translation type="unfinished"></translation>
+        <translation>no dump</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="153"/>
         <source>vertical</source>
-        <translation type="unfinished"></translation>
+        <translation>verticale</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="153"/>
         <source>horizontal</source>
-        <translation type="unfinished"></translation>
+        <translation>orizzontale</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="153"/>
         <source>raster</source>
-        <translation type="unfinished"></translation>
+        <translation>raster</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="153"/>
         <location filename="../../gamelist.cpp" line="1512"/>
         <location filename="../../gamelist.cpp" line="1778"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Sconosciuto</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>On</source>
-        <translation type="unfinished"></translation>
+        <translation>Acceso</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Spento</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>audio</source>
-        <translation type="unfinished"></translation>
+        <translation>audio</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>unused</source>
-        <translation type="unfinished"></translation>
+        <translation>non utilizzato</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>Unused</source>
-        <translation type="unfinished"></translation>
+        <translation>Non utilizzato</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>cpu</source>
-        <translation type="unfinished"></translation>
+        <translation>cpu</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="155"/>
         <source>vector</source>
-        <translation type="unfinished"></translation>
+        <translation>vettore</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="155"/>
         <source>lcd</source>
-        <translation type="unfinished"></translation>
+        <translation>lcd</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="155"/>
         <source>joy4way</source>
-        <translation type="unfinished"></translation>
+        <translation>joy4vie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="155"/>
         <source>joy8way</source>
-        <translation type="unfinished"></translation>
+        <translation>joy8vie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="155"/>
         <source>trackball</source>
-        <translation type="unfinished"></translation>
+        <translation>trackball</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="156"/>
         <source>joy2way</source>
-        <translation type="unfinished"></translation>
+        <translation>joy2vie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="156"/>
         <source>doublejoy8way</source>
-        <translation type="unfinished"></translation>
+        <translation>doppiojoy8vie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="156"/>
         <source>dial</source>
-        <translation type="unfinished"></translation>
+        <translation>chiama</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="156"/>
         <source>paddle</source>
-        <translation type="unfinished"></translation>
+        <translation>paddle</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="156"/>
         <source>pedal</source>
-        <translation type="unfinished"></translation>
+        <translation>pedale</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="157"/>
         <source>stick</source>
-        <translation type="unfinished"></translation>
+        <translation>stick</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="157"/>
         <source>vjoy2way</source>
-        <translation type="unfinished"></translation>
+        <translation>vjoy2vie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="157"/>
         <source>lightgun</source>
-        <translation type="unfinished"></translation>
+        <translation>pistolaottica</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="157"/>
         <source>doublejoy4way</source>
-        <translation type="unfinished"></translation>
+        <translation>doppiojoy4vie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="157"/>
         <source>vdoublejoy2way</source>
-        <translation type="unfinished"></translation>
+        <translation>vdoppiojoy2vie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>doublejoy2way</source>
-        <translation type="unfinished"></translation>
+        <translation>doppiojoy2vie</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>printer</source>
-        <translation type="unfinished"></translation>
+        <translation>stampante</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>cdrom</source>
-        <translation type="unfinished"></translation>
+        <translation>cdrom</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>cartridge</source>
-        <translation type="unfinished"></translation>
+        <translation>cartuccia</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>cassette</source>
-        <translation type="unfinished"></translation>
+        <translation>cassetta</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="159"/>
         <source>quickload</source>
-        <translation type="unfinished"></translation>
+        <translation>caricamento veloce</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="159"/>
         <source>floppydisk</source>
-        <translation type="unfinished"></translation>
+        <translation>floppydisk</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="159"/>
         <source>serial</source>
-        <translation type="unfinished"></translation>
+        <translation>seriale</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="159"/>
         <source>snapshot</source>
-        <translation type="unfinished"></translation>
+        <translation>snapshot</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="159"/>
         <source>original</source>
-        <translation type="unfinished"></translation>
+        <translation>originale</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="160"/>
         <source>compatible</source>
-        <translation type="unfinished"></translation>
+        <translation>compatibile</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="166"/>
         <location filename="../../gamelist.cpp" line="170"/>
         <source>FATAL: can&apos;t open icon file, please check access permissions for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALE: impossibile aprire file icona, per favore controlla permessi d&apos;accesso per %1</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="406"/>
@@ -2931,45 +2930,45 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2144"/>
         <location filename="../../gamelist.cpp" line="2984"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Aspettando i dati...</translation>
+        <translation>Aspettando i dati...</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="440"/>
         <source>determining emulator version and supported sets</source>
-        <translation type="unfinished"></translation>
+        <translation>determinando versione emulatore e set supportati</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="490"/>
         <location filename="../../gamelist.cpp" line="586"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALE: impossibile avviare eseguibile MAME in un tempo ragionevole, mi arrendo</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="492"/>
         <location filename="../../gamelist.cpp" line="588"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALE: impossibile avviare eseguibile MESS in un tempo ragionevole, mi arrendo</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="528"/>
         <source>FATAL: selected executable file is not MAME</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALE: il file eseguibile selezionato non è MAME</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="543"/>
         <source>FATAL: selected executable file is not MESS</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALE: il file eseguibile selezionato non è MESS</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="553"/>
         <location filename="../../gamelist.cpp" line="617"/>
         <source>FATAL: can&apos;t create temporary file, please check emulator executable and permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>FATALE: impossibile creare file temporaneo, controlla eseguibile emulatore e permessi</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="615"/>
         <source>done (determining emulator version and supported sets, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminato (determinazione versione emulatore e set supportati, tempo impiegato = %1)</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="622"/>
@@ -2995,7 +2994,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="640"/>
         <source>%n supported set(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -3578,7 +3576,6 @@ p, li { white-space: pre-wrap; }
         <source>%n cached ROM state(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -3743,7 +3740,6 @@ p, li { white-space: pre-wrap; }
         <source>%n game(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -3752,7 +3748,6 @@ p, li { white-space: pre-wrap; }
         <source>, %n BIOS set(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -3760,7 +3755,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2198"/>
         <source> and %n device(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -3773,7 +3767,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2198"/>
         <source>%n machine(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -4037,7 +4030,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="3423"/>
         <source>%n icon(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -7476,7 +7468,6 @@ Do you want to choose a different name?</source>
         <source>last message repeated %n time(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -8199,14 +8190,12 @@ Do you really want to check all ROM states now?</source>
         <source>freed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="2215"/>
         <source>%n entry(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8221,7 +8210,6 @@ Do you really want to check all ROM states now?</source>
         <source>removed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -8229,7 +8217,6 @@ Do you really want to check all ROM states now?</source>
         <location filename="../../qmc2main.cpp" line="2263"/>
         <source>%n file(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8784,14 +8771,12 @@ Should they be killed on exit?</source>
         <source>killing %n running emulator(s) on exit</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="5888"/>
         <source>keeping %n running emulator(s) alive</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8844,7 +8829,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6281"/>
         <source>%n video info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8918,7 +8902,6 @@ Should they be killed on exit?</source>
         <source>%n game info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -8935,7 +8918,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6449"/>
         <source>%n machine info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8983,7 +8965,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6585"/>
         <source>%n emulator info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14428,7 +14409,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>%n game(s) to analyze</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14440,7 +14420,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="657"/>
         <source>%n machine(s) to analyze</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14463,7 +14442,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="687"/>
         <source>report limit reached, removing %n set(s) from the report</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14496,7 +14474,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="735"/>
         <source>checking %n file(s) for &apos;%1&apos;</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14618,7 +14595,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>interrupted (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14676,7 +14652,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>done (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14689,14 +14664,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>%n game(s) left</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1085"/>
         <source>%n machine(s) left</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -15243,7 +15216,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>checksum wizard: repairing %n bad set(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -15377,7 +15349,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2907"/>
         <source>checksum wizard: done (repairing %n bad set(s))</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
