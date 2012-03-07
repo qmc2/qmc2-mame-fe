@@ -1,10 +1,6 @@
 #include "customidsetup.h"
 #include "macros.h"
 
-#ifndef QMC2_DEBUG
-#define QMC2_DEBUG
-#endif
-
 #if defined(QMC2_DEBUG)
 #include "qmc2main.h"
 extern MainWindow *qmc2MainWindow;
@@ -35,6 +31,16 @@ CustomIDSetup::CustomIDSetup(QString foreignEmulatorName, QWidget *parent)
 	tableWidgetCustomIDs->setSortingEnabled(enable);
 	tableWidgetCustomIDs->setDragDropMode(enable ? QAbstractItemView::NoDragDrop : QAbstractItemView::InternalMove);
 	toolButtonSort->setChecked(enable);
+	QString displayFormat = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/DisplayFormat", "$ID$ - $DESCRIPTION$").toString();
+	if ( !displayFormat.isEmpty() ) {
+		int index = comboBoxDisplayFormat->findText(displayFormat);
+		if ( index >= 0 ) {
+			comboBoxDisplayFormat->setCurrentIndex(index);
+		} else {
+			comboBoxDisplayFormat->addItem(displayFormat);
+			comboBoxDisplayFormat->setCurrentIndex(comboBoxDisplayFormat->count() - 1);
+		}
+	}
 
 	QTimer::singleShot(0, this, SLOT(load()));
 	QTimer::singleShot(0, this, SLOT(setupCopyIDsMenu()));
@@ -49,6 +55,7 @@ CustomIDSetup::~CustomIDSetup()
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/Size", size());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/IDListHeaderState", tableWidgetCustomIDs->horizontalHeader()->saveState());
 	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/SortingEnabled", toolButtonSort->isChecked());
+	qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/DisplayFormat", comboBoxDisplayFormat->currentText());
 }
 
 void CustomIDSetup::adjustFontAndIconSizes()
