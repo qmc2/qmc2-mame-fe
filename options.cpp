@@ -427,12 +427,6 @@ Options::Options(QWidget *parent)
   scrollArea->setWidgetResizable(true);
 #endif
 
-#if defined(QMC2_WIP_ENABLED)
-  tableWidgetRegisteredEmulators->setColumnHidden(QMC2_ADDTLEMUS_COLUMN_CUID, false);
-#else
-  tableWidgetRegisteredEmulators->setColumnHidden(QMC2_ADDTLEMUS_COLUMN_CUID, true);
-#endif
-
   checkPlaceholderStatus();
 
   restoreCurrentConfig();
@@ -2397,11 +2391,6 @@ void Options::applyDelayed()
       treeWidgetJoystickMappings->header()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/JoyMapHeaderState").toByteArray());
 #endif
       tableWidgetRegisteredEmulators->horizontalHeader()->restoreState(config->value(QMC2_FRONTEND_PREFIX + "Layout/OptionsWidget/RegisteredEmulatorsHeaderState").toByteArray());
-#if defined(QMC2_WIP_ENABLED)
-      tableWidgetRegisteredEmulators->setColumnHidden(QMC2_ADDTLEMUS_COLUMN_CUID, false);
-#else
-      tableWidgetRegisteredEmulators->setColumnHidden(QMC2_ADDTLEMUS_COLUMN_CUID, true);
-#endif
     }
     tableWidgetRegisteredEmulators->resizeRowsToContents();
     firstTime = false;
@@ -2412,6 +2401,7 @@ void Options::applyDelayed()
 
   // (re)create foreign ID menu, if applicable
   qmc2MainWindow->menu_ForeignIDs->clear();
+  QString displayFormat = qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/CustomIDSetup/DisplayFormat", "$ID$ - $DESCRIPTION$").toString();
   config->beginGroup(QMC2_EMULATOR_PREFIX + "CustomIDs");
   QStringList childGroups = config->childGroups();
   if ( !childGroups.isEmpty() ) {
@@ -2428,11 +2418,9 @@ void Options::applyDelayed()
 				  QString id = idList[i];
 				  if ( !id.isEmpty() ) {
 					  QString description = descriptionList[i];
-					  QAction *action;
-					  if ( !description.isEmpty() )
-						  action = menu->addAction(id + " - " + description);
-					  else
-						  action = menu->addAction(id);
+					  QString itemText = displayFormat;
+					  itemText.replace("$ID$", id).replace("$DESCRIPTION$", description);
+					  QAction *action = menu->addAction(itemText);
 					  // FIXME: add support for individual icons for foreign IDs
 					  action->setIcon(QIcon(QString::fromUtf8(":/data/img/pacman.png")));
 					  action->setData(emuName + "\t" + id + "\t" + description);
