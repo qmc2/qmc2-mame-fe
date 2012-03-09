@@ -4110,439 +4110,439 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="14"/>
         <source>HTML Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Editor HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="37"/>
         <source>WYSIWIG</source>
-        <translation type="unfinished">WYSIWIG</translation>
+        <translation>WYSIWIG</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="47"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation>despre:gol</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="56"/>
         <source>HTML</source>
-        <translation type="unfinished">HTML</translation>
+        <translation>HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="86"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fisier</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="95"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Edit</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="99"/>
         <source>Insert &amp;image</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserati &amp;imagine</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="124"/>
         <source>F&amp;ormat</source>
-        <translation type="unfinished"></translation>
+        <translation>F&amp;ormat</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="128"/>
         <source>St&amp;yle</source>
-        <translation type="unfinished"></translation>
+        <translation>St&amp;il</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="142"/>
         <source>&amp;Align</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aliniere</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="175"/>
         <source>Standard tool-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Bara de instrumente standard</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="199"/>
         <source>Formatting tool-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Bara de instrumente de formatare</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="234"/>
         <source>&amp;New</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nou</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="237"/>
         <location filename="../../htmleditor/htmleditor.ui" line="240"/>
         <location filename="../../htmleditor/htmleditor.ui" line="243"/>
         <source>New file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier nou</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="252"/>
         <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Deschide...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="255"/>
         <location filename="../../htmleditor/htmleditor.ui" line="258"/>
         <location filename="../../htmleditor/htmleditor.ui" line="261"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Deschide fisier</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="270"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Salveaza</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="273"/>
         <location filename="../../htmleditor/htmleditor.ui" line="276"/>
         <location filename="../../htmleditor/htmleditor.ui" line="279"/>
         <source>Save file</source>
-        <translation type="unfinished"></translation>
+        <translation>Salveaza fisier</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="284"/>
         <source>Save &amp;copy...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salveaza &amp;copie...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="287"/>
         <location filename="../../htmleditor/htmleditor.ui" line="290"/>
         <source>Save file under a different name</source>
-        <translation type="unfinished"></translation>
+        <translation>Salveaza fisierul cu un alt nume</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="299"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Anuleaza</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="302"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuleaza</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="311"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Refa</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="314"/>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Refa</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="323"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Taie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="326"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Taie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="335"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Copiaza</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="338"/>
         <source>Copy</source>
-        <translation type="unfinished">Copiaza</translation>
+        <translation>Copiaza</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="347"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lipeste</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="350"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Lipeste</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="359"/>
         <source>Select a&amp;ll</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecte&amp;aza pe toate</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="362"/>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecteaza pe toate</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="374"/>
         <source>&amp;Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bold</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="377"/>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Bold</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="389"/>
         <source>&amp;Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Italic</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="392"/>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>Italic</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="404"/>
         <source>&amp;Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;ubliniat</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="407"/>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Subliniat</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="419"/>
         <source>&amp;Strikethrough</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Taiat</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="422"/>
         <source>Strikethrough</source>
-        <translation type="unfinished"></translation>
+        <translation>Taiat</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="431"/>
         <source>Align &amp;left</source>
-        <translation type="unfinished"></translation>
+        <translation>Aliniaza &amp;la stanga</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="434"/>
         <source>Align left</source>
-        <translation type="unfinished"></translation>
+        <translation>Aliniaza la stanga</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="443"/>
         <source>Align &amp;center</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Centreaza</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="446"/>
         <source>Align center</source>
-        <translation type="unfinished"></translation>
+        <translation>Centreaza</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="455"/>
         <source>Align &amp;right</source>
-        <translation type="unfinished"></translation>
+        <translation>Aliniaza la &amp;dreapta</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="458"/>
         <source>Align right</source>
-        <translation type="unfinished"></translation>
+        <translation>Aliniaza la dreapta</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="467"/>
         <source>Align &amp;justied</source>
-        <translation type="unfinished"></translation>
+        <translation>Aliniaza &amp;justificat</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="470"/>
         <source>Align justied</source>
-        <translation type="unfinished"></translation>
+        <translation>Aliniaza justificat</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="479"/>
         <source>I&amp;ncrease indent</source>
-        <translation type="unfinished"></translation>
+        <translation>Creste i&amp;ndentatie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="482"/>
         <source>Increase indent</source>
-        <translation type="unfinished"></translation>
+        <translation>Creste indentatie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="491"/>
         <source>&amp;Decrease indent</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Descreste indentatie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="494"/>
         <source>Decrease indent</source>
-        <translation type="unfinished"></translation>
+        <translation>Descreste indentatie</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="506"/>
         <source>Bulle&amp;ted list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lis&amp;ta aranjata bullet</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="509"/>
         <source>Bulleted list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista aranjata bullet</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="521"/>
         <source>&amp;Numbered list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista &amp;numerotata</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="524"/>
         <source>Numbered list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista numerotata</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="533"/>
         <source>From &amp;file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Din &amp;fisier...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="536"/>
         <source>Insert image from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserati imagine din fisier</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="545"/>
         <source>From &amp;URL...</source>
-        <translation type="unfinished"></translation>
+        <translation>De la &amp;URL...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="548"/>
         <source>Insert image from URL</source>
-        <translation type="unfinished">Introduceti imagine de la URL</translation>
+        <translation>Inserari imagine de la URL</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="557"/>
         <source>Create &amp;link...</source>
-        <translation type="unfinished"></translation>
+        <translation>Creati &amp;link...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="560"/>
         <source>Create link</source>
-        <translation type="unfinished">Creiaza legatura</translation>
+        <translation>Creiaza legatura</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="569"/>
         <location filename="../../htmleditor/htmleditor.ui" line="572"/>
         <source>Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation>Micsorare</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="581"/>
         <location filename="../../htmleditor/htmleditor.ui" line="584"/>
         <source>Zoom in</source>
-        <translation type="unfinished"></translation>
+        <translation>Marire</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="589"/>
         <source>&amp;Paragraph</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Paragraf</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="594"/>
         <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
+        <translation>Titlu &amp;1</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="599"/>
         <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
+        <translation>Titlu &amp;2</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="604"/>
         <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
+        <translation>Titlu &amp;3</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="609"/>
         <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
+        <translation>Titlu &amp;4</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="614"/>
         <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
+        <translation>Titlu &amp;5</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="619"/>
         <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
+        <translation>Titlu &amp;6</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="624"/>
         <source>Pre&amp;formatted</source>
-        <translation type="unfinished"></translation>
+        <translation>Pre&amp;formatat</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="629"/>
         <source>&amp;Address</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Adresa</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="634"/>
         <source>&amp;Font name...</source>
-        <translation type="unfinished"></translation>
+        <translation>Nume &amp;font...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="637"/>
         <source>Font name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nume font</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="642"/>
         <source>Text &amp;color...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Culoare text...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="645"/>
         <source>Text color</source>
-        <translation type="unfinished"></translation>
+        <translation>Culoare text</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="650"/>
         <source>Bac&amp;kground color...</source>
-        <translation type="unfinished"></translation>
+        <translation>Culoare &amp;fundal...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="653"/>
         <source>Background color</source>
-        <translation type="unfinished"></translation>
+        <translation>Culoare fundal</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="658"/>
         <source>Font si&amp;ze...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Marime font...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="661"/>
         <source>Font size</source>
-        <translation type="unfinished">Marime font</translation>
+        <translation>Marime font</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="670"/>
         <source>Insert &amp;HTML...</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserati &amp;HTML...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="673"/>
         <location filename="../../htmleditor/htmleditor.ui" line="676"/>
         <location filename="../../htmleditor/htmleditor.ui" line="679"/>
         <source>Insert HTML</source>
-        <translation type="unfinished">Inserati HTML</translation>
+        <translation>Inserati HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="688"/>
         <location filename="../../htmleditor/htmleditor.ui" line="696"/>
         <source>Insert &amp;table...</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserati &amp;tabel</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="691"/>
         <source>Insert table</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserati tabel</translation>
     </message>
 </context>
 <context>
@@ -6564,7 +6564,7 @@ Doriti sa alegeti un nume diferit?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2550"/>
         <source>Ctrl+3</source>
-        <translation type="unfinished">Ctrl+3</translation>
+        <translation>Ctrl+3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2562"/>
@@ -6573,7 +6573,7 @@ Doriti sa alegeti un nume diferit?</translation>
         <location filename="../../qmc2main.cpp" line="915"/>
         <location filename="../../qmc2main.cpp" line="974"/>
         <source>&amp;Play</source>
-        <translation type="unfinished">&amp;Jucati</translation>
+        <translation>&amp;Jucati</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2565"/>
@@ -6648,7 +6648,7 @@ Doriti sa alegeti un nume diferit?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2652"/>
         <source>Ctrl+1</source>
-        <translation type="unfinished">Ctrl+1</translation>
+        <translation>Ctrl+1</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2664"/>
@@ -6784,7 +6784,7 @@ Doriti sa alegeti un nume diferit?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2815"/>
         <source>Ctrl+4</source>
-        <translation type="unfinished">Ctrl+4</translation>
+        <translation>Ctrl+4</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2823"/>
@@ -6811,7 +6811,7 @@ Doriti sa alegeti un nume diferit?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2850"/>
         <source>Ctrl+5</source>
-        <translation type="unfinished">Ctrl+5</translation>
+        <translation>Ctrl+5</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2862"/>
@@ -7096,7 +7096,7 @@ Doriti sa alegeti un nume diferit?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3273"/>
         <source>Show FPS</source>
-        <translation type="unfinished">Afiseaza FPS</translation>
+        <translation>Afiseaza FPS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3276"/>
@@ -7163,7 +7163,7 @@ Doriti sa alegeti un nume diferit?</translation>
         <location filename="../../qmc2main.cpp" line="926"/>
         <location filename="../../qmc2main.cpp" line="985"/>
         <source>Play &amp;embedded</source>
-        <translation type="unfinished">Jucati &amp;incorporat</translation>
+        <translation>Jucati &amp;incorporat</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3349"/>
@@ -7508,13 +7508,13 @@ Doriti sa alegeti un nume diferit?</translation>
         <location filename="../../qmc2main.cpp" line="5957"/>
         <location filename="../../qmc2main.cpp" line="6004"/>
         <source>Default</source>
-        <translation type="unfinished">Initial</translation>
+        <translation>Initial</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="424"/>
         <location filename="../../qmc2main.cpp" line="1303"/>
         <source>Enter search string</source>
-        <translation type="unfinished">Introduceti nume sir de cautare</translation>
+        <translation>Introduceti nume sir de cautare</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="429"/>
@@ -7600,7 +7600,7 @@ Doriti sa alegeti un nume diferit?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="571"/>
         <source>Machine &amp;info</source>
-        <translation type="unfinished">&amp;Informatii masina</translation>
+        <translation>&amp;Informatii masina</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="572"/>
@@ -7865,7 +7865,7 @@ Doriti sa alegeti un nume diferit?</translation>
         <location filename="../../qmc2main.cpp" line="911"/>
         <location filename="../../qmc2main.cpp" line="970"/>
         <source>Play selected game</source>
-        <translation type="unfinished">Jucati jocul selectat</translation>
+        <translation>Jucati jocul selectat</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="809"/>
@@ -8038,7 +8038,7 @@ Doriti sa alegeti un nume diferit?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1081"/>
         <source>Detail setup</source>
-        <translation type="unfinished">Configurare detaliata</translation>
+        <translation>Configurare detaliata</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1133"/>
@@ -8105,12 +8105,12 @@ Doriti sa alegeti un nume diferit?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="1683"/>
         <source>No devices available</source>
-        <translation type="unfinished">Niciun dispozitiv disponibil</translation>
+        <translation>Niciun dispozitiv disponibil</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1711"/>
         <source>No devices</source>
-        <translation type="unfinished">Niciun dispozitiv</translation>
+        <translation>Niciun dispozitiv</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1863"/>
@@ -8130,14 +8130,14 @@ Doriti sa alegeti un nume diferit?</translation>
         <location filename="../../qmc2main.cpp" line="1951"/>
         <location filename="../../qmc2main.cpp" line="1973"/>
         <source>please wait for image check to finish and try again</source>
-        <translation type="unfinished">va rog asteptati verificarea imaginii sa se termine si incercati din nou</translation>
+        <translation>va rog asteptati verificarea imaginii sa se termine si incercati din nou</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1878"/>
         <location filename="../../qmc2main.cpp" line="1953"/>
         <location filename="../../qmc2main.cpp" line="1975"/>
         <source>please wait for sample check to finish and try again</source>
-        <translation type="unfinished">va rog asteptati verificarea de mostre sa se termine si incercati din nou</translation>
+        <translation>va rog asteptati verificarea de mostre sa se termine si incercati din nou</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1883"/>
@@ -8145,7 +8145,7 @@ Doriti sa alegeti un nume diferit?</translation>
         <location filename="../../qmc2main.cpp" line="1977"/>
         <location filename="../../qmc2main.cpp" line="2167"/>
         <source>please wait for ROMAlyzer to finish the current analysis and try again</source>
-        <translation type="unfinished">va rog asteptati sa se termine analiza ROMAlyzer si inercati din nou</translation>
+        <translation>va rog asteptati sa se termine analiza ROMAlyzer si inercati din nou</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1889"/>
@@ -8188,7 +8188,7 @@ Doriti sa alegeti un nume diferit?</translation>
         <location filename="../../qmc2main.cpp" line="5461"/>
         <location filename="../../qmc2main.cpp" line="5492"/>
         <source>Confirm</source>
-        <translation type="unfinished">Confirma</translation>
+        <translation>Confirma</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1982"/>
@@ -8399,7 +8399,7 @@ Do you really want to check all ROM states now?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="3974"/>
         <source>Export to...</source>
-        <translation type="unfinished">Exporta catre...</translation>
+        <translation>Exporta catre...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3996"/>
@@ -8411,7 +8411,7 @@ Do you really want to check all ROM states now?</source>
         <location filename="../../qmc2main.cpp" line="3997"/>
         <location filename="../../qmc2main.cpp" line="4001"/>
         <source>Select file...</source>
-        <translation type="unfinished">Alegeti fisier...</translation>
+        <translation>Alegeti fisier...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4080"/>
@@ -8551,7 +8551,7 @@ Retry embedding?</source>
         <location filename="../../qmc2main.cpp" line="8667"/>
         <location filename="../../qmc2main.cpp" line="8735"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Toate fisierele (*)</translation>
+        <translation>Toate fisierele (*)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5236"/>
@@ -9063,7 +9063,7 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="7402"/>
         <location filename="../../qmc2main.cpp" line="7412"/>
         <source>running</source>
-        <translation type="unfinished">ruleaza</translation>
+        <translation>ruleaza</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7351"/>
@@ -9105,7 +9105,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="8412"/>
         <source>Previews</source>
-        <translation type="unfinished">Previzualizari</translation>
+        <translation>Previzualizari</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8443"/>
@@ -9121,7 +9121,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="8465"/>
         <source>Titles</source>
-        <translation type="unfinished">Titluri</translation>
+        <translation>Titluri</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8483"/>
@@ -9187,22 +9187,22 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="8830"/>
         <source>Physical memory:</source>
-        <translation type="unfinished">Memorie fizica:</translation>
+        <translation>Memorie fizica:</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8830"/>
         <source>Total: %1 MB</source>
-        <translation type="unfinished">Total: %1 MB</translation>
+        <translation>Total: %1 MB</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8830"/>
         <source>Free: %1 MB</source>
-        <translation type="unfinished">Liber: %1 MB</translation>
+        <translation>Liber: %1 MB</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8830"/>
         <source>Used: %1 MB</source>
-        <translation type="unfinished">Folosita: %1 MB</translation>
+        <translation>Folosita: %1 MB</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9239"/>
@@ -9860,7 +9860,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="264"/>
         <source>Game status indicator</source>
-        <translation type="unfinished">Indicator de status joc</translation>
+        <translation>Indicator de status joc</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="274"/>
@@ -9948,7 +9948,7 @@ Should they be killed on exit?</source>
         <location filename="../../options.ui" line="448"/>
         <location filename="../../options.ui" line="483"/>
         <source>unlimited</source>
-        <translation type="unfinished">nelimitat</translation>
+        <translation>nelimitat</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="451"/>
@@ -10039,7 +10039,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="612"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="628"/>
@@ -10679,7 +10679,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2293"/>
         <source>ROM state filter</source>
-        <translation type="unfinished">Filtru de stare ROM</translation>
+        <translation>Filtru de stare ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2340"/>
@@ -10699,7 +10699,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2363"/>
         <source>Select sort criteria</source>
-        <translation type="unfinished">Alegeti criteriul de selectie</translation>
+        <translation>Alegeti criteriul de selectie</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2367"/>
@@ -10714,17 +10714,17 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2377"/>
         <source>Tag</source>
-        <translation type="unfinished">Tag</translation>
+        <translation>Tag</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2382"/>
         <source>Year</source>
-        <translation type="unfinished">An</translation>
+        <translation>An</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2387"/>
         <source>Manufacturer</source>
-        <translation type="unfinished">Producator</translation>
+        <translation>Producator</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2392"/>
@@ -10739,12 +10739,12 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2402"/>
         <source>Players</source>
-        <translation type="unfinished">Jucatori</translation>
+        <translation>Jucatori</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2407"/>
         <source>Driver status</source>
-        <translation type="unfinished">Status driver</translation>
+        <translation>Status driver</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2415"/>
@@ -10759,22 +10759,22 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2438"/>
         <source>Sort order</source>
-        <translation type="unfinished">Ordine de sortare</translation>
+        <translation>Ordine de sortare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2451"/>
         <source>Select sort order</source>
-        <translation type="unfinished">Alegeti ordinea de sortare</translation>
+        <translation>Alegeti ordinea de sortare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2455"/>
         <source>Ascending</source>
-        <translation type="unfinished">Crescator</translation>
+        <translation>Crescator</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2464"/>
         <source>Descending</source>
-        <translation type="unfinished">Descrescator</translation>
+        <translation>Descrescator</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2482"/>
@@ -10869,7 +10869,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2706"/>
         <source>Sort criteria</source>
-        <translation type="unfinished">Criteriu de sortare</translation>
+        <translation>Criteriu de sortare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2713"/>
@@ -11049,7 +11049,7 @@ Should they be killed on exit?</source>
         <location filename="../../options.cpp" line="415"/>
         <location filename="../../options.cpp" line="3631"/>
         <source>Default</source>
-        <translation type="unfinished">Initial</translation>
+        <translation>Initial</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3037"/>
@@ -11259,7 +11259,7 @@ Should they be killed on exit?</source>
         <location filename="../../options.ui" line="3610"/>
         <location filename="../../options.ui" line="3689"/>
         <source>Command</source>
-        <translation type="unfinished">Comanda</translation>
+        <translation>Comanda</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3557"/>
@@ -11443,7 +11443,7 @@ Should they be killed on exit?</source>
         <location filename="../../options.ui" line="4030"/>
         <location filename="../../options.ui" line="4739"/>
         <source>Browse emulator executable file</source>
-        <translation type="unfinished">Rasfoiti fisierul executabil al emulatorului</translation>
+        <translation>Rasfoiti fisierul executabil al emulatorului</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4041"/>
@@ -11630,7 +11630,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="4652"/>
         <source>Name</source>
-        <translation type="unfinished">Nume</translation>
+        <translation>Nume</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4657"/>
@@ -11690,47 +11690,47 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="4820"/>
         <source>Apply settings</source>
-        <translation type="unfinished">Aplicati setarile</translation>
+        <translation>Aplicati setarile</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4823"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished">&amp;Aplicati</translation>
+        <translation>&amp;Aplicati</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4834"/>
         <source>Restore currently applied settings</source>
-        <translation type="unfinished">Restaurati setarile anterioare</translation>
+        <translation>Restaurati setarile anterioare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4837"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished">&amp;Restaurati</translation>
+        <translation>&amp;Restaurati</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4848"/>
         <source>Reset to default settings (click &lt;i&gt;Restore&lt;/i&gt; to restore currently applied settings!)</source>
-        <translation type="unfinished">Resetati la setarile implicite (click &lt;i&gt; Restaurati&lt;/i&gt; ca sa restaurati setarile implicite!)</translation>
+        <translation>Resetati la setarile implicite (click &lt;i&gt; Restaurati&lt;/i&gt; ca sa restaurati setarile implicite!)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4851"/>
         <source>&amp;Default</source>
-        <translation type="unfinished">&amp;Initial</translation>
+        <translation>&amp;Initial</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4875"/>
         <source>Close and apply settings</source>
-        <translation type="unfinished">Inchideti si aplicati setarile</translation>
+        <translation>Inchideti si aplicati setarile</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4878"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4885"/>
         <source>Close and discard changes</source>
-        <translation type="unfinished">Inchideti si renuntati la modificari</translation>
+        <translation>Inchideti si renuntati la modificari</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4888"/>
@@ -11864,13 +11864,13 @@ Should they be killed on exit?</source>
         <location filename="../../options.cpp" line="283"/>
         <location filename="../../options.cpp" line="1032"/>
         <source>Category</source>
-        <translation type="unfinished">Categorie</translation>
+        <translation>Categorie</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="284"/>
         <location filename="../../options.cpp" line="1033"/>
         <source>Version</source>
-        <translation type="unfinished">Versiune</translation>
+        <translation>Versiune</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="291"/>
@@ -11900,7 +11900,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.cpp" line="296"/>
         <source>About QMC2</source>
-        <translation type="unfinished">Despre QMC2</translation>
+        <translation>Despre QMC2</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="297"/>
@@ -12100,7 +12100,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.cpp" line="348"/>
         <source>Parent / clone hierarchy</source>
-        <translation type="unfinished">Parinte / ierarhie clona</translation>
+        <translation>Parinte / ierarhie clona</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="350"/>
@@ -12298,7 +12298,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.cpp" line="1313"/>
         <source>Confirm</source>
-        <translation type="unfinished">Confirma</translation>
+        <translation>Confirma</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1315"/>
@@ -12370,83 +12370,83 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="1532"/>
         <source>sorting game list by %1 in %2 order</source>
-        <translation type="unfinished">sortez lista jocuri dupa %1 in ordinea %2</translation>
+        <translation>sortez lista jocuri dupa %1 in ordinea %2</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1532"/>
         <location filename="../../options.cpp" line="1534"/>
         <source>ascending</source>
-        <translation type="unfinished">ascendent</translation>
+        <translation>ascendent</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1532"/>
         <location filename="../../options.cpp" line="1534"/>
         <source>descending</source>
-        <translation type="unfinished">descendent</translation>
+        <translation>descendent</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1534"/>
         <source>sorting machine list by %1 in %2 order</source>
-        <translation type="unfinished">sortez lista masini dupa %1 in ordinea %2</translation>
+        <translation>sortez lista masini dupa %1 in ordinea %2</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1546"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Astept date...</translation>
+        <translation>Astept date...</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1717"/>
         <location filename="../../options.cpp" line="1721"/>
         <source>FATAL: can&apos;t open preview file, please check access permissions for %1</source>
-        <translation type="unfinished">FATAL: nu pot deschide imagine de previzualizare, verificati permisiunile de acces pentru %1</translation>
+        <translation>FATAL: nu pot deschide imagine de previzualizare, verificati permisiunile de acces pentru %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1735"/>
         <location filename="../../options.cpp" line="1739"/>
         <source>FATAL: can&apos;t open flyer file, please check access permissions for %1</source>
-        <translation type="unfinished">FATAL: nu pot deschide fisier flyer, va rog verificati permisiunile de acces pentru %1</translation>
+        <translation>FATAL: nu pot deschide fisier flyer, va rog verificati permisiunile de acces pentru %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1753"/>
         <location filename="../../options.cpp" line="1757"/>
         <source>FATAL: can&apos;t open cabinet file, please check access permissions for %1</source>
-        <translation type="unfinished">FATAL: nu pot deschide fisier cabinet, verifica permisiunea de acces pentru %1</translation>
+        <translation>FATAL: nu pot deschide fisier cabinet, verifica permisiunea de acces pentru %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1771"/>
         <location filename="../../options.cpp" line="1775"/>
         <source>FATAL: can&apos;t open controller file, please check access permissions for %1</source>
-        <translation type="unfinished">FATAL: nu pot deschide fisierul controller, verificati permisiunea de acces pentru %1</translation>
+        <translation>FATAL: nu pot deschide fisierul controller, verificati permisiunea de acces pentru %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1789"/>
         <location filename="../../options.cpp" line="1793"/>
         <source>FATAL: can&apos;t open marquee file, please check access permissions for %1</source>
-        <translation type="unfinished">FATAL: nu pot deschide fisierul marquee, verifica permisiunile de acces pentru %1</translation>
+        <translation>FATAL: nu pot deschide fisierul marquee, verifica permisiunile de acces pentru %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1807"/>
         <location filename="../../options.cpp" line="1811"/>
         <source>FATAL: can&apos;t open title file, please check access permissions for %1</source>
-        <translation type="unfinished">FATAL: nu pot deschide fisier titlu, verificati permisiunile de acces pentru %1</translation>
+        <translation>FATAL: nu pot deschide fisier titlu, verificati permisiunile de acces pentru %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1825"/>
         <location filename="../../options.cpp" line="1829"/>
         <source>FATAL: can&apos;t open PCB file, please check access permissions for %1</source>
-        <translation type="unfinished">FATAL: nu pot deschide fisier PCB, verificati permisiunile de acces pentru %1</translation>
+        <translation>FATAL: nu pot deschide fisier PCB, verificati permisiunile de acces pentru %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1843"/>
         <location filename="../../options.cpp" line="1847"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
-        <translation type="unfinished">FATAL: nu pot deschide fisier snap-shot, verificati permisiunile de acces pentru %1</translation>
+        <translation>FATAL: nu pot deschide fisier snap-shot, verificati permisiunile de acces pentru %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1860"/>
         <location filename="../../options.cpp" line="1864"/>
         <source>FATAL: can&apos;t open icon file, please check access permissions for %1</source>
-        <translation type="unfinished">FATAL: nu pot deschide fisier iconita, va rog verificati permisiunile de acces pentru %1</translation>
+        <translation>FATAL: nu pot deschide fisier iconita, va rog verificati permisiunile de acces pentru %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1872"/>
@@ -12580,47 +12580,47 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="3265"/>
         <location filename="../../options.cpp" line="3474"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Toate fisierele (*)</translation>
+        <translation>Toate fisierele (*)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2480"/>
         <source>Choose preview directory</source>
-        <translation type="unfinished">Alegeti director previzualizare</translation>
+        <translation>Alegeti director previzualizare</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2494"/>
         <source>Choose flyer directory</source>
-        <translation type="unfinished">Alegeti director flyer</translation>
+        <translation>Alegeti director flyer</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2508"/>
         <source>Choose icon directory</source>
-        <translation type="unfinished">Alegeti director iconita</translation>
+        <translation>Alegeti director iconita</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2522"/>
         <source>Choose cabinet directory</source>
-        <translation type="unfinished">Alegeti director cabinet</translation>
+        <translation>Alegeti director cabinet</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2536"/>
         <source>Choose controller directory</source>
-        <translation type="unfinished">Alegeti director controler</translation>
+        <translation>Alegeti director controler</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2550"/>
         <source>Choose marquee directory</source>
-        <translation type="unfinished">Alegeti director marquee</translation>
+        <translation>Alegeti director marquee</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2564"/>
         <source>Choose title directory</source>
-        <translation type="unfinished">Alegeti director titlu</translation>
+        <translation>Alegeti director titlu</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2578"/>
         <source>Choose PCB directory</source>
-        <translation type="unfinished">Alegeti director PCB</translation>
+        <translation>Alegeti director PCB</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2592"/>
@@ -12631,7 +12631,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="2604"/>
         <location filename="../../options.cpp" line="3474"/>
         <source>Choose emulator executable file</source>
-        <translation type="unfinished">Alegeti fisierul executabil al emulatorului</translation>
+        <translation>Alegeti fisierul executabil al emulatorului</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2617"/>
@@ -12820,7 +12820,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="3265"/>
         <source>HTML files (*.html *.htm)</source>
-        <translation type="unfinished">Fisiere HTML (*.html *.htm)</translation>
+        <translation>Fisiere HTML (*.html *.htm)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3444"/>
@@ -13490,13 +13490,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="103"/>
         <source>Merge</source>
-        <translation type="unfinished">Imbina</translation>
+        <translation>Imbina</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="108"/>
         <location filename="../../romalyzer.ui" line="1345"/>
         <source>Type</source>
-        <translation type="unfinished">Tip</translation>
+        <translation>Tip</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="113"/>
@@ -13517,18 +13517,18 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.ui" line="128"/>
         <location filename="../../romalyzer.ui" line="1417"/>
         <source>CRC</source>
-        <translation type="unfinished">CRC</translation>
+        <translation>CRC</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="133"/>
         <location filename="../../romalyzer.ui" line="1412"/>
         <source>SHA1</source>
-        <translation type="unfinished">SHA1</translation>
+        <translation>SHA1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="138"/>
         <source>MD5</source>
-        <translation type="unfinished">MD5</translation>
+        <translation>MD5</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="147"/>
@@ -13745,14 +13745,14 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.ui" line="584"/>
         <location filename="../../romalyzer.ui" line="619"/>
         <source>unlimited</source>
-        <translation type="unfinished">nelimitat</translation>
+        <translation>nelimitat</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="552"/>
         <location filename="../../romalyzer.cpp" line="1888"/>
         <location filename="../../romalyzer.cpp" line="1902"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="568"/>
@@ -13787,7 +13787,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="668"/>
         <source>Driver</source>
-        <translation type="unfinished">Driver</translation>
+        <translation>Driver</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="681"/>
@@ -14084,7 +14084,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1330"/>
         <source>ID</source>
-        <translation type="unfinished">ID</translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1335"/>
@@ -14275,7 +14275,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="90"/>
         <source>Select machine</source>
-        <translation type="unfinished">Selectati masina</translation>
+        <translation>Selectati masina</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="91"/>
@@ -14464,7 +14464,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="670"/>
         <source>Paused</source>
-        <translation type="unfinished">Pauza</translation>
+        <translation>Pauza</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="687"/>
@@ -14523,7 +14523,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2717"/>
         <location filename="../../romalyzer.cpp" line="2780"/>
         <source>ROM</source>
-        <translation type="unfinished">ROM</translation>
+        <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="796"/>
@@ -14531,7 +14531,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="972"/>
         <location filename="../../romalyzer.cpp" line="1009"/>
         <source>not found</source>
-        <translation type="unfinished">negasit</translation>
+        <translation>negasit</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="825"/>
@@ -14546,13 +14546,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2503"/>
         <location filename="../../romalyzer.cpp" line="2692"/>
         <source>bad</source>
-        <translation type="unfinished">rau</translation>
+        <translation>rau</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="869"/>
         <location filename="../../romalyzer.cpp" line="974"/>
         <source>no dump</source>
-        <translation type="unfinished">niciun vid</translation>
+        <translation>niciun vid</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="875"/>
@@ -14572,7 +14572,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1171"/>
         <location filename="../../romalyzer.cpp" line="2232"/>
         <source>CHD</source>
-        <translation type="unfinished">CHD</translation>
+        <translation>CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="890"/>
@@ -14597,7 +14597,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="929"/>
         <source>SHA1 </source>
-        <translation type="unfinished">SHA1: {1 ?}</translation>
+        <translation>SHA1: {1 ?}</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="940"/>
@@ -14606,12 +14606,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2502"/>
         <location filename="../../romalyzer.cpp" line="2694"/>
         <source>good</source>
-        <translation type="unfinished">bun</translation>
+        <translation>bun</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="954"/>
         <source>MD5 </source>
-        <translation type="unfinished">MD5 </translation>
+        <translation>MD5 </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="968"/>
@@ -14919,7 +14919,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1475"/>
         <source>Copy</source>
-        <translation type="unfinished">Copiaza</translation>
+        <translation>Copiaza</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1481"/>
@@ -15023,18 +15023,18 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1885"/>
         <location filename="../../romalyzer.cpp" line="1899"/>
         <source> KB</source>
-        <translation type="unfinished"> KB</translation>
+        <translation> KB</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1891"/>
         <location filename="../../romalyzer.cpp" line="1905"/>
         <source> GB</source>
-        <translation type="unfinished"> GB</translation>
+        <translation> GB</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1894"/>
         <source> TB</source>
-        <translation type="unfinished"> TB</translation>
+        <translation> TB</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1931"/>
@@ -15045,7 +15045,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1931"/>
         <location filename="../../romalyzer.cpp" line="2947"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Toate fisierele (*)</translation>
+        <translation>Toate fisierele (*)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1943"/>
@@ -15071,17 +15071,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1997"/>
         <location filename="../../romalyzer.cpp" line="2243"/>
         <source>unknown</source>
-        <translation type="unfinished">necunoscut</translation>
+        <translation>necunoscut</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1999"/>
         <source>normal</source>
-        <translation type="unfinished">normal</translation>
+        <translation>normal</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2000"/>
         <source>crashed</source>
-        <translation type="unfinished">picat</translation>
+        <translation>picat</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2002"/>
@@ -15440,22 +15440,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.ui" line="23"/>
         <location filename="../../romstatusexport.ui" line="36"/>
         <source>Select output format</source>
-        <translation type="unfinished">Alegeti formatul de iesire</translation>
+        <translation>Alegeti formatul de iesire</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="40"/>
         <source>ASCII</source>
-        <translation type="unfinished">ASCII</translation>
+        <translation>ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="45"/>
         <source>CSV</source>
-        <translation type="unfinished">CSV</translation>
+        <translation>CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="50"/>
         <source>HTML</source>
-        <translation type="unfinished">HTML</translation>
+        <translation>HTML</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="72"/>
@@ -15490,12 +15490,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="181"/>
         <source>Sort criteria</source>
-        <translation type="unfinished">Criteriu de sortare</translation>
+        <translation>Criteriu de sortare</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="194"/>
         <source>Select sort criteria</source>
-        <translation type="unfinished">Alegeti criteriul de selectie</translation>
+        <translation>Alegeti criteriul de selectie</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="198"/>
@@ -15514,7 +15514,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="563"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Year</source>
-        <translation type="unfinished">An</translation>
+        <translation>An</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="213"/>
@@ -15523,7 +15523,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="564"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Manufacturer</source>
-        <translation type="unfinished">Producator</translation>
+        <translation>Producator</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="218"/>
@@ -15542,22 +15542,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="231"/>
         <source>Sort order</source>
-        <translation type="unfinished">Ordine de sortare</translation>
+        <translation>Ordine de sortare</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="244"/>
         <source>Select sort order</source>
-        <translation type="unfinished">Alegeti ordinea de sortare</translation>
+        <translation>Alegeti ordinea de sortare</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="248"/>
         <source>Ascending</source>
-        <translation type="unfinished">Crescator</translation>
+        <translation>Crescator</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="257"/>
         <source>Descending</source>
-        <translation type="unfinished">Descrescator</translation>
+        <translation>Descrescator</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="269"/>
@@ -15582,17 +15582,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="295"/>
         <source>Export to the system clipboard instead of a file</source>
-        <translation type="unfinished">Exporta in clipboardul sistemului in loc de fisier</translation>
+        <translation>Exporta in clipboardul sistemului in loc de fisier</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="298"/>
         <source>Export to clipboard</source>
-        <translation type="unfinished">Exporta in clipboard</translation>
+        <translation>Exporta in clipboard</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="308"/>
         <source>Overwrite existing files without asking what to do</source>
-        <translation type="unfinished">Suprascriu fisier existent fara sa intreb ce sa fac</translation>
+        <translation>Suprascriu fisier existent fara sa intreb ce sa fac</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="311"/>
@@ -15602,12 +15602,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="339"/>
         <source>Browse ASCII export file</source>
-        <translation type="unfinished">Rasfoiti fisier export ASCII</translation>
+        <translation>Rasfoiti fisier export ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="342"/>
         <source>ASCII file</source>
-        <translation type="unfinished">Fisier ASCII</translation>
+        <translation>Fisier ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="362"/>
@@ -15617,27 +15617,27 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="369"/>
         <source>Column width</source>
-        <translation type="unfinished">Latime coloana</translation>
+        <translation>Latime coloana</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="385"/>
         <source>Maximum column width for ASCII export (0 = unlimited)</source>
-        <translation type="unfinished">Marime maxima pentru latime export ASCII (0 = nelimitat)</translation>
+        <translation>Marime maxima pentru latime export ASCII (0 = nelimitat)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="388"/>
         <source>unlimited</source>
-        <translation type="unfinished">nelimitat</translation>
+        <translation>nelimitat</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="444"/>
         <source>Browse CSV export file</source>
-        <translation type="unfinished">Rasfoiti fisier export CSV</translation>
+        <translation>Rasfoiti fisier export CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="447"/>
         <source>CSV file</source>
-        <translation type="unfinished">FIsier CSV</translation>
+        <translation>FIsier CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="467"/>
@@ -15647,32 +15647,32 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="474"/>
         <source>Separator</source>
-        <translation type="unfinished">Separator</translation>
+        <translation>Separator</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="515"/>
         <source>Field separator for CSV export</source>
-        <translation type="unfinished">Camp separator pentru export CSV</translation>
+        <translation>Camp separator pentru export CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="518"/>
         <source>;</source>
-        <translation type="unfinished">;</translation>
+        <translation>;</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="531"/>
         <source>Delimiter</source>
-        <translation type="unfinished">Delimitator</translation>
+        <translation>Delimitator</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="559"/>
         <source>Text delimiter for CSV export</source>
-        <translation type="unfinished">Text separator pentru export CSV</translation>
+        <translation>Text separator pentru export CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="562"/>
         <source>&quot;</source>
-        <translation type="unfinished">&quot;</translation>
+        <translation>&quot;</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="618"/>
@@ -15702,12 +15702,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="714"/>
         <source>Export now!</source>
-        <translation type="unfinished">Exporta acum!</translation>
+        <translation>Exporta acum!</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="717"/>
         <source>&amp;Export</source>
-        <translation type="unfinished">&amp;Exporta</translation>
+        <translation>&amp;Exporta</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="728"/>
@@ -15722,12 +15722,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="742"/>
         <source>Export progress indicator</source>
-        <translation type="unfinished">Exporta indicator progres</translation>
+        <translation>Exporta indicator progres</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="748"/>
         <source>%p%</source>
-        <translation type="unfinished">%p%</translation>
+        <translation>%p%</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="36"/>
@@ -15749,14 +15749,14 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="448"/>
         <location filename="../../romstatusexport.cpp" line="666"/>
         <source>Confirm</source>
-        <translation type="unfinished">Confirma</translation>
+        <translation>Confirma</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="143"/>
         <location filename="../../romstatusexport.cpp" line="449"/>
         <location filename="../../romstatusexport.cpp" line="667"/>
         <source>Overwrite existing file?</source>
-        <translation type="unfinished">Suprascriu fisier existent?</translation>
+        <translation>Suprascriu fisier existent?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="158"/>
@@ -15766,7 +15766,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.cpp" line="160"/>
         <source>WARNING: can&apos;t open ASCII export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished">AVERTIZARE: nu pot deschide fisier export ASCII &apos;%1&apos; pentru scriere, va rog verificati permisiunile</translation>
+        <translation>AVERTIZARE: nu pot deschide fisier export ASCII &apos;%1&apos; pentru scriere, va rog verificati permisiunile</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="166"/>
@@ -15779,7 +15779,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="498"/>
         <location filename="../../romstatusexport.cpp" line="725"/>
         <source>Emulator</source>
-        <translation type="unfinished">Emulator</translation>
+        <translation>Emulator</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="178"/>
@@ -15843,7 +15843,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="511"/>
         <location filename="../../romstatusexport.cpp" line="751"/>
         <source>Unknown</source>
-        <translation type="unfinished">Necunoscut</translation>
+        <translation>Necunoscut</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="193"/>
@@ -15859,28 +15859,28 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="488"/>
         <location filename="../../romstatusexport.cpp" line="711"/>
         <source>SDLMAME</source>
-        <translation type="unfinished">SLMANE</translation>
+        <translation>SLMANE</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="198"/>
         <location filename="../../romstatusexport.cpp" line="490"/>
         <location filename="../../romstatusexport.cpp" line="713"/>
         <source>SDLMESS</source>
-        <translation type="unfinished">SDLMESS</translation>
+        <translation>SDLMESS</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="200"/>
         <location filename="../../romstatusexport.cpp" line="492"/>
         <location filename="../../romstatusexport.cpp" line="715"/>
         <source>MAME</source>
-        <translation type="unfinished">MAME</translation>
+        <translation>MAME</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="202"/>
         <location filename="../../romstatusexport.cpp" line="494"/>
         <location filename="../../romstatusexport.cpp" line="717"/>
         <source>MESS</source>
-        <translation type="unfinished">MESS</translation>
+        <translation>MESS</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="204"/>
@@ -15891,7 +15891,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="719"/>
         <location filename="../../romstatusexport.cpp" line="881"/>
         <source>unknown</source>
-        <translation type="unfinished">necunoscut</translation>
+        <translation>necunoscut</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="213"/>
@@ -15920,7 +15920,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="562"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Description</source>
-        <translation type="unfinished">Descriere</translation>
+        <translation>Descriere</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="230"/>
@@ -15928,7 +15928,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="560"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Name</source>
-        <translation type="unfinished">Nume</translation>
+        <translation>Nume</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="231"/>
@@ -15944,7 +15944,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="585"/>
         <location filename="../../romstatusexport.cpp" line="828"/>
         <source>correct</source>
-        <translation type="unfinished">corect</translation>
+        <translation>corect</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="257"/>
@@ -15952,7 +15952,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="596"/>
         <location filename="../../romstatusexport.cpp" line="841"/>
         <source>mostly correct</source>
-        <translation type="unfinished">majoritatea corecte</translation>
+        <translation>majoritatea corecte</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="264"/>
@@ -15960,7 +15960,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="607"/>
         <location filename="../../romstatusexport.cpp" line="854"/>
         <source>incorrect</source>
-        <translation type="unfinished">incorect</translation>
+        <translation>incorect</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="271"/>
@@ -15968,7 +15968,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="618"/>
         <location filename="../../romstatusexport.cpp" line="867"/>
         <source>not found</source>
-        <translation type="unfinished">negasit</translation>
+        <translation>negasit</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="336"/>
@@ -16007,7 +16007,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.cpp" line="466"/>
         <source>WARNING: can&apos;t open CSV export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished">AVERTIZARE: nu pot deschide fisier export CSV &apos;%1&apos; pentru scriere, va rog verificati permisiunile</translation>
+        <translation>AVERTIZARE: nu pot deschide fisier export CSV &apos;%1&apos; pentru scriere, va rog verificati permisiunile</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="472"/>
@@ -16064,19 +16064,19 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.cpp" line="915"/>
         <source>Choose ASCII export file</source>
-        <translation type="unfinished">Alegeti fisier export ASCII</translation>
+        <translation>Alegeti fisier export ASCII</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="915"/>
         <location filename="../../romstatusexport.cpp" line="927"/>
         <location filename="../../romstatusexport.cpp" line="939"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Toate fisierele (*)</translation>
+        <translation>Toate fisierele (*)</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="927"/>
         <source>Choose CSV export file</source>
-        <translation type="unfinished">Alegeti fisier export CSV</translation>
+        <translation>Alegeti fisier export CSV</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="939"/>
@@ -16291,93 +16291,93 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.ui" line="18"/>
         <source>Software list</source>
-        <translation type="unfinished">Lista software</translation>
+        <translation>Lista software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="35"/>
         <location filename="../../softwarelist.ui" line="38"/>
         <source>Reload all information</source>
-        <translation type="unfinished"></translation>
+        <translation>Reincarcati toata informatia</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="55"/>
         <location filename="../../softwarelist.ui" line="58"/>
         <source>Toggle filtering of compatible software titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Comuta filtrarea de titluri de software compatibile</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="78"/>
         <location filename="../../softwarelist.ui" line="81"/>
         <source>Toggle detailed software information</source>
-        <translation type="unfinished"></translation>
+        <translation>Comuta informatii detaliate de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="101"/>
         <location filename="../../softwarelist.ui" line="104"/>
         <source>Select a pre-defined device configuration to be added to the software setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti o configuratie de dispozitiv predefinita sa fie adaugata la instalare software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="108"/>
         <location filename="../../softwarelist.cpp" line="1180"/>
         <location filename="../../softwarelist.cpp" line="1950"/>
         <source>No additional devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Niciun dispozitiv aditional</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="135"/>
         <source>Export the current software-list to an ASCII or CSV formatted file (or the clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta lista de software curenta catre un fisier formatat ASCII sau CSV (sau pe clipboard)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="138"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="158"/>
         <source>Open options menu for the favorites list</source>
-        <translation type="unfinished"></translation>
+        <translation>Deschideti meniul de optiuni pentru lista de favorite</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="178"/>
         <location filename="../../softwarelist.ui" line="181"/>
         <source>Add the currently selected software and device setup to the favorites list (or overwrite existing favorite)</source>
-        <translation type="unfinished"></translation>
+        <translation>Adaugati list de software si instalare dispozitiv selectate la lista de favorite (sau rescrieti favorite existente)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="198"/>
         <location filename="../../softwarelist.ui" line="201"/>
         <source>Remove the currently selected favorite software configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Stergeti lista de configurare software favorita selectata</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="218"/>
         <location filename="../../softwarelist.ui" line="221"/>
         <source>Play the selected software configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Redati configurarea software selectata</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="238"/>
         <location filename="../../softwarelist.ui" line="241"/>
         <source>Play the selected software configuration (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Redati configurarea software selectata (incorporat)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="273"/>
         <source>Known software</source>
-        <translation type="unfinished"></translation>
+        <translation>Software cunoscut</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="276"/>
         <source>Complete list of known software for the current system</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista completa de software cunoscuta de catre sistem</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="291"/>
         <location filename="../../softwarelist.ui" line="294"/>
         <source>List of known software</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de software cunoscut</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="307"/>
@@ -16387,7 +16387,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="187"/>
         <location filename="../../softwarelist.cpp" line="210"/>
         <source>Title</source>
-        <translation type="unfinished">Titlu</translation>
+        <translation>Titlu</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="312"/>
@@ -16397,7 +16397,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="189"/>
         <location filename="../../softwarelist.cpp" line="212"/>
         <source>Name</source>
-        <translation type="unfinished">Nume</translation>
+        <translation>Nume</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="317"/>
@@ -16407,7 +16407,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="191"/>
         <location filename="../../softwarelist.cpp" line="214"/>
         <source>Publisher</source>
-        <translation type="unfinished">Editor</translation>
+        <translation>Editor</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="322"/>
@@ -16417,7 +16417,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="193"/>
         <location filename="../../softwarelist.cpp" line="216"/>
         <source>Year</source>
-        <translation type="unfinished">An</translation>
+        <translation>An</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="327"/>
@@ -16427,7 +16427,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="195"/>
         <location filename="../../softwarelist.cpp" line="218"/>
         <source>Part</source>
-        <translation type="unfinished">Parte</translation>
+        <translation>Parte</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="332"/>
@@ -16437,7 +16437,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="197"/>
         <location filename="../../softwarelist.cpp" line="220"/>
         <source>Interface</source>
-        <translation type="unfinished">Interfata</translation>
+        <translation>Interfata</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="337"/>
@@ -16447,210 +16447,210 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="199"/>
         <location filename="../../softwarelist.cpp" line="222"/>
         <source>List</source>
-        <translation type="unfinished">Lista</translation>
+        <translation>Lista</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="358"/>
         <source>Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Favorite</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="361"/>
         <source>View / manage your favorite software list for the current system</source>
-        <translation type="unfinished"></translation>
+        <translation>Vizualizati / administrati lista de software favorite pentru sistemul curent</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="376"/>
         <location filename="../../softwarelist.ui" line="379"/>
         <source>Favorite software configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuratii software favorite</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="427"/>
         <location filename="../../softwarelist.cpp" line="202"/>
         <source>Device configuration</source>
-        <translation type="unfinished">Configurare dispozitive</translation>
+        <translation>Configurare dispozitive</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="448"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Cautati</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="451"/>
         <source>Search within the list of known software for the current system</source>
-        <translation type="unfinished"></translation>
+        <translation>Cautati in lista de software cunoscut in sistemul curent</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="466"/>
         <location filename="../../softwarelist.ui" line="469"/>
         <source>Search for known software (not case-sensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cautati pentru software cunoscut (nu depinde de diacritice)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="485"/>
         <location filename="../../softwarelist.ui" line="488"/>
         <source>Search results</source>
-        <translation type="unfinished"></translation>
+        <translation>Rezultate cautare</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="555"/>
         <location filename="../../softwarelist.cpp" line="510"/>
         <source>Loading software-lists, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Incarc lista de software, va rog asteptati...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="64"/>
         <source>Add the currently selected software to the favorites list</source>
-        <translation type="unfinished"></translation>
+        <translation>Adaugati software-ul selectat curent la lista de favorite</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="75"/>
         <source>Enter search string</source>
-        <translation type="unfinished">Introduceti nume sir de cautare</translation>
+        <translation>Introduceti nume sir de cautare</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="109"/>
         <source>Play selected software</source>
-        <translation type="unfinished"></translation>
+        <translation>Redati software selectat</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="110"/>
         <source>&amp;Play</source>
-        <translation type="unfinished">&amp;Jucati</translation>
+        <translation>&amp;Jucati</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="115"/>
         <source>Play selected software (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Redati cu spftware selectat (incorporat)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="116"/>
         <source>Play &amp;embedded</source>
-        <translation type="unfinished">Jucati &amp;incorporat</translation>
+        <translation>Redati &amp;incorporat</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="122"/>
         <source>Add to favorite software list</source>
-        <translation type="unfinished"></translation>
+        <translation>Adaugati la lista de software favorite</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="123"/>
         <source>&amp;Add to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Adaugati la favorite</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="127"/>
         <source>Remove from favorite software list</source>
-        <translation type="unfinished"></translation>
+        <translation>Stergeti din lista de software favorite</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="128"/>
         <source>&amp;Remove from favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste&amp;rgeti din favorite</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="135"/>
         <source>Load favorites from a file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Incarcati favorite dintr-un fisier...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="140"/>
         <source>Save favorites to a file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvati favorite intr-un fisier...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="271"/>
         <source>WARNING: software list &apos;%1&apos; not found</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: lista software &apos;%1&apos; nu a fost gasita</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="447"/>
         <source>Known software (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Software cunoscut (%1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="448"/>
         <source>Favorites (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Favorite (%1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="449"/>
         <source>Search (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cautare (%1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="463"/>
         <location filename="../../softwarelist.cpp" line="683"/>
         <source>Known software (no data available)</source>
-        <translation type="unfinished"></translation>
+        <translation>Software cunoscut (nu sunt date dsiponibile)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="464"/>
         <location filename="../../softwarelist.cpp" line="684"/>
         <source>Favorites (no data available)</source>
-        <translation type="unfinished"></translation>
+        <translation>Favorite (nu sunt date disponibile)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="465"/>
         <location filename="../../softwarelist.cpp" line="685"/>
         <source>Search (no data available)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cautare (nu sunt date disponibile)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="542"/>
         <source>loading XML software list data from cache</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc lista XML cu software din cache</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="547"/>
         <source>SWL cache - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>cache SWL - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="576"/>
         <source>done (loading XML software list data from cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarc lista XML cu software din cache, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="584"/>
         <source>ERROR: the file name for the MAME software list cache is empty -- please correct this and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>EROARE: numele fisierului pentru lista de software MAME din cache este goala - va rog corectati problema si reincarcati lista de jocuri dupa</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="586"/>
         <source>ERROR: the file name for the MESS software list cache is empty -- please correct this and reload the machine list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>EROARE: numele fisierului din lista de software MESS din cache este gol - va rog corectati problema si reincarcati lista de masini dupa</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="603"/>
         <source>loading XML software list data and (re)creating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc lista XML de software si (re)creez cache</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="606"/>
         <source>SWL data - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>date SWL - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="612"/>
         <source>ERROR: can&apos;t open the MAME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>EROARE: nu post deschide lista de software MAME din cache pentru scriere, cale = %1 - va rog verificati/corectati permisiunile de acces si reincarcati lista de jocuri dupa</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="614"/>
         <source>ERROR: can&apos;t open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>EROARE: nu pot deschide lista de software MESS din cache pentru scriere, cale = %1 - va rog verififcati/corectati permisiunile de acces si reincarcati lista de masini dupa</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="713"/>
         <source>Loading software-list &apos;%1&apos;, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Incarc lista de softeware &apos;%1&apos;, va rog asteptati...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="728"/>
         <source>FATAL: error while parsing XML data for software list &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: eroare in timpul procesarii datelor XML din lista de software &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="773"/>
@@ -16661,141 +16661,141 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="1847"/>
         <location filename="../../softwarelist.cpp" line="2190"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Astept date...</translation>
+        <translation>Astept date...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="965"/>
         <source>WARNING: the external process called to load the MAME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: procesul extern chemat sa incarce lista de software MAME nu a fost oprit cum trebuie - exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="965"/>
         <location filename="../../softwarelist.cpp" line="967"/>
         <source>normal</source>
-        <translation type="unfinished">normal</translation>
+        <translation>normal</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="965"/>
         <location filename="../../softwarelist.cpp" line="967"/>
         <source>crashed</source>
-        <translation type="unfinished">picat</translation>
+        <translation>picat</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="967"/>
         <source>WARNING: the external process called to load the MESS software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: procesul extern chemat sa incarce lista de software MESS nu a oprit cum trebuie - exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="973"/>
         <source>done (loading XML software list data and (re)creating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarc lista de software XML si (re)creez cache, timp scurs = %1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1029"/>
         <source>WARNING: the currently selected MAME emulator doesn&apos;t support software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: emulatorul MAME selectat nu suporta liste de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1031"/>
         <source>WARNING: the currently selected MESS emulator doesn&apos;t support software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: emulatorul MESS selectat nu suporta liste de software</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1047"/>
         <source>WARNING: the external process called to load the MAME software lists caused an error -- processError = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: procesul extern chemat sa incarce listele de software MAME a cauzat o eroare - processError = %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1049"/>
         <source>WARNING: the external process called to load the MESS software lists caused an error -- processError = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: procesul extern chemat sa incarce listele de software MESS a cauzat o eroare - processError = %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1360"/>
         <location filename="../../softwarelist.cpp" line="1394"/>
         <location filename="../../softwarelist.cpp" line="1428"/>
         <source>Searching</source>
-        <translation type="unfinished">Caut</translation>
+        <translation>Caut</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1365"/>
         <location filename="../../softwarelist.cpp" line="1399"/>
         <location filename="../../softwarelist.cpp" line="1433"/>
         <source>FATAL: error while parsing XML data for software list entry &apos;%1:%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: eroare in timpul analizei de date XML pentru intrarea din lista de software &apos;%1:%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1368"/>
         <location filename="../../softwarelist.cpp" line="1402"/>
         <location filename="../../softwarelist.cpp" line="1436"/>
         <source>FATAL: couldn&apos;t find XML data for software list &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: nu am putut gasi date XML pentru lista de software &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2160"/>
         <source>Choose file to merge favorites from</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti fisiere sa fuzioneze cu favoritele</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2160"/>
         <location filename="../../softwarelist.cpp" line="2238"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Toate fisierele (*)</translation>
+        <translation>Toate fisierele (*)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2172"/>
         <source>loading software-favorites for &apos;%1&apos; from &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc softeware favorite pentru &apos;%1&apos; de la &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2211"/>
         <source>entry &apos;%1:%2&apos; successfully imported</source>
-        <translation type="unfinished"></translation>
+        <translation>intrarea &apos;%1:%2&apos; a fost importata cu succes</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2213"/>
         <source>WARNING: entry &apos;%1:%2&apos; cannot be associated with any known software for this system (line %3 ignored)</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: intrarea &apos;%1:%2&apos; nu poate fi asociata cu niciun software cunoscut pentru acest sistem (linia %3 ignorata)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2215"/>
         <source>WARNING: a favorite entry for &apos;%1:%2&apos; already exists (line %3 ignored)</source>
-        <translation type="unfinished"></translation>
+        <translation>AVERTIZARE: o intrare favorita pentr &apos;%1:%2&apos; deja exista (linia %3 ignorata)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2217"/>
         <source>WARNING: syntax error on line %1 (ignored)</source>
-        <translation type="unfinished"></translation>
+        <translation>Avertizare: eroare de sintaxa la linia %1 (ignorata)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2221"/>
         <source>done (loading software-favorites for &apos;%1&apos; from &apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (incarc software favorite pentr &apos;%1&apos; e la &apos;%2&apos;)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2223"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for reading, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: nu pot deschide &apos;%1&apos; pentru citire, va rog verificati permisiunile</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2238"/>
         <source>Choose file to store favorites to</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti fisierul in care sa stocati favoritele</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2249"/>
         <source>saving software-favorites for &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>salvez fostware favorite pentru &apos;%1&apos; in &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2271"/>
         <source>done (saving software-favorites for &apos;%1&apos; to &apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (salvez software favorite pentru &apos;%1&apos; in &apos;%2&apos;)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2273"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: nu pot deschide &apos;%1&apos; pentru scriere, va rog verificati permisiunile</translation>
     </message>
 </context>
 <context>
