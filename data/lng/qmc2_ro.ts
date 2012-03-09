@@ -1547,12 +1547,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../customidsetup.ui" line="28"/>
         <source>Display format</source>
-        <translation type="unfinished"></translation>
+        <translation>Format de afisare</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="35"/>
         <source>Choose / edit the format used to display the IDs in menu items -- valid placeholder macros are $ID$ and $DESCRIPTION$</source>
-        <translation type="unfinished"></translation>
+        <translation>Alege / editeaza formatul folosit de afisare a ID-urilor in obiectele din meniu - macrocomenzile sunstituente valabile sunt $ID$ si $DESCRIPTION$</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="154"/>
@@ -7496,8 +7496,6 @@ Doriti sa alegeti un nume diferit?</translation>
         <source>last message repeated %n time(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -8220,16 +8218,12 @@ Do you really want to check all ROM states now?</source>
         <source>freed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="2215"/>
         <source>%n entry(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8244,8 +8238,6 @@ Do you really want to check all ROM states now?</source>
         <source>removed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -8253,8 +8245,6 @@ Do you really want to check all ROM states now?</source>
         <location filename="../../qmc2main.cpp" line="2263"/>
         <source>%n file(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8809,16 +8799,12 @@ Should they be killed on exit?</source>
         <source>killing %n running emulator(s) on exit</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="5888"/>
         <source>keeping %n running emulator(s) alive</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8871,8 +8857,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6281"/>
         <source>%n video info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8946,8 +8930,6 @@ Should they be killed on exit?</source>
         <source>%n game info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -8964,8 +8946,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6449"/>
         <source>%n machine info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -9013,8 +8993,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6585"/>
         <source>%n emulator info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14459,8 +14437,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>%n game(s) to analyze</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14472,8 +14448,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="657"/>
         <source>%n machine(s) to analyze</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14496,8 +14470,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="687"/>
         <source>report limit reached, removing %n set(s) from the report</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14530,8 +14502,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="735"/>
         <source>checking %n file(s) for &apos;%1&apos;</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14653,8 +14623,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>interrupted (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14712,8 +14680,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>done (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14726,16 +14692,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>%n game(s) left</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1085"/>
         <source>%n machine(s) left</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -15282,8 +15244,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>checksum wizard: repairing %n bad set(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -15417,8 +15377,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2907"/>
         <source>checksum wizard: done (repairing %n bad set(s))</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -17410,17 +17368,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../welcome.ui" line="75"/>
         <source>Browse working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti directorul de lucru</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="174"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
-        <translation type="unfinished"></translation>
+        <translation>Directorul de lucru folosit cand emulatorul este executat ( daca este gol, este folosit directorul curent de lucru pentru QMC2)</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="181"/>
         <source>Working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>DIrectorul de lucru</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="205"/>
@@ -17535,7 +17493,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../welcome.cpp" line="139"/>
         <source>Choose working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti directorul de lucru</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="151"/>
@@ -17589,165 +17547,165 @@ Iesit acum, aceptati o singura data sau ignorati complet?</translation>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="40"/>
         <source>Attached videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Videoclipuri atasate</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="74"/>
         <source>Start playing / select next video automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Porniti redarea / alegeti vieoclipul urmator automat</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="77"/>
         <source>Play-O-Matic</source>
-        <translation type="unfinished"></translation>
+        <translation>Play-O-Matic</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="93"/>
         <source>Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mod:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="112"/>
         <source>Choose the video selection mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti modul de selectie video</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="116"/>
         <source>sequential</source>
-        <translation type="unfinished"></translation>
+        <translation>secvential</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="121"/>
         <source>random</source>
-        <translation type="unfinished"></translation>
+        <translation>aleatoriu</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="138"/>
         <source>Allow videos to be repeated (otherwise stop after last video)</source>
-        <translation type="unfinished"></translation>
+        <translation>Toate video clipurile care sa fie repetate (in caz contrar opriti dupa ultimul video)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="141"/>
         <source>Allow repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Permiteti repetare</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="174"/>
         <source>Video player</source>
-        <translation type="unfinished"></translation>
+        <translation>Video Player</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="196"/>
         <source>Select the preferred video format (automatically falls back to the next available format)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti formatul video preferat (revine automat la urmatorul format valabil)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="203"/>
         <location filename="../../youtubevideoplayer.cpp" line="83"/>
         <source>FLV 240P</source>
-        <translation type="unfinished"></translation>
+        <translation>FLV 240P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="212"/>
         <location filename="../../youtubevideoplayer.cpp" line="84"/>
         <source>FLV 360P</source>
-        <translation type="unfinished"></translation>
+        <translation>FLV 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="221"/>
         <location filename="../../youtubevideoplayer.cpp" line="85"/>
         <source>MP4 360P</source>
-        <translation type="unfinished"></translation>
+        <translation>MP4 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="230"/>
         <location filename="../../youtubevideoplayer.cpp" line="86"/>
         <source>FLV 480P</source>
-        <translation type="unfinished"></translation>
+        <translation>FLV 480P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="239"/>
         <location filename="../../youtubevideoplayer.cpp" line="87"/>
         <source>MP4 720P</source>
-        <translation type="unfinished"></translation>
+        <translation>MP4 720P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="248"/>
         <location filename="../../youtubevideoplayer.cpp" line="88"/>
         <source>MP4 1080P</source>
-        <translation type="unfinished"></translation>
+        <translation>MP4 1080P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="257"/>
         <location filename="../../youtubevideoplayer.cpp" line="89"/>
         <source>MP4 3072P</source>
-        <translation type="unfinished"></translation>
+        <translation>MP4 3072P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="275"/>
         <location filename="../../youtubevideoplayer.cpp" line="148"/>
         <source>Start / pause / resume video playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Redati / pauzati / continuati redarea video</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="315"/>
         <source>Remaining playing time</source>
-        <translation type="unfinished"></translation>
+        <translation>Timp ramas de redare</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="334"/>
         <source>Current buffer fill level</source>
-        <translation type="unfinished"></translation>
+        <translation>Nivel curent de umplere buffer</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="363"/>
         <source>Search videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Cautati videoclipuri</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="378"/>
         <source>Search pattern -- use the &apos;hint&apos; button to get a suggestion</source>
-        <translation type="unfinished"></translation>
+        <translation>Model de cautare - folositi butonul &apos;pont&apos; ca sa primiti o sugestie</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="391"/>
         <source>Search YouTube videos using the specified search pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Cautati videoclipuri pe Youtube folosind modelul de cautare specificat</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="418"/>
         <source>Suggest a search pattern (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sugerati un model de cautare (tineti apasat pentru meniu)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="435"/>
         <source>Maximum number of results per search request</source>
-        <translation type="unfinished"></translation>
+        <translation>Numar maxim de rezultate pe cautare</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="466"/>
         <source>Start index for the search request</source>
-        <translation type="unfinished"></translation>
+        <translation>Index de start pentru cerere de cautare</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="491"/>
         <source>SI:</source>
-        <translation type="unfinished"></translation>
+        <translation>SI:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="498"/>
         <source>R:</source>
-        <translation type="unfinished"></translation>
+        <translation>R:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="65"/>
         <source>Mute / unmute audio output</source>
-        <translation type="unfinished"></translation>
+        <translation>Mut / sunet audio</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="100"/>
         <source>Video progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progres video</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="107"/>
@@ -17757,211 +17715,211 @@ Iesit acum, aceptati o singura data sau ignorati complet?</translation>
         <location filename="../../youtubevideoplayer.cpp" line="843"/>
         <location filename="../../youtubevideoplayer.cpp" line="861"/>
         <source>Current buffer fill level: %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Nivel curent de umplere buffer: %1%</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="114"/>
         <location filename="../../youtubevideoplayer.cpp" line="181"/>
         <source>Play this video</source>
-        <translation type="unfinished"></translation>
+        <translation>Redati acest video</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="121"/>
         <location filename="../../youtubevideoplayer.cpp" line="163"/>
         <location filename="../../youtubevideoplayer.cpp" line="192"/>
         <source>Copy video URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiati URL video</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="127"/>
         <location filename="../../youtubevideoplayer.cpp" line="168"/>
         <location filename="../../youtubevideoplayer.cpp" line="197"/>
         <source>Copy author URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiati URL autor</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="133"/>
         <source>Paste video URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Lipiti URL video</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="140"/>
         <source>Remove selected videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Stergeti videoclipurile selectate</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="156"/>
         <location filename="../../youtubevideoplayer.cpp" line="1298"/>
         <source>Full screen (return with toggle-key)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ecran complet (reveniti cu cheie de comutare)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="174"/>
         <location filename="../../youtubevideoplayer.cpp" line="186"/>
         <source>Attach this video</source>
-        <translation type="unfinished"></translation>
+        <translation>Atasati acest video</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="204"/>
         <source>Auto-suggest a search pattern?</source>
-        <translation type="unfinished"></translation>
+        <translation>Autosugerati un model de cautare?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="205"/>
         <source>Auto-suggest</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto sugerati</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="210"/>
         <source>Enter string to be appended</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserati sir sa fie anexat</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="211"/>
         <source>Append...</source>
-        <translation type="unfinished"></translation>
+        <translation>Anexat...</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="221"/>
         <source>Enter search string</source>
-        <translation type="unfinished">Introduceti nume sir de cautare</translation>
+        <translation>Introduceti nume sir de cautare</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="331"/>
         <source>Appended string</source>
-        <translation type="unfinished"></translation>
+        <translation>Anexati sir</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="332"/>
         <source>Enter the string to be appended when suggesting a pattern:</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserati sir pentru anexare cand sugerez un model:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="579"/>
         <source>Full-screen mode -- press %1 to return to windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mod ecran complet - apasati %1 ca sa reveniti la modul fereastra</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="581"/>
         <source>Full-screen mode -- press toggle-key to return to windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mod ecran complet - apasati butonul de comutare pentru a revenit la modul fereastra</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="605"/>
         <source>video player: a video with the ID &apos;%1&apos; is already attached, ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>player video: un videoclip cu ID-ul &apos;%1&apos; este eja atasat, ignorat</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="775"/>
         <source>Buffering: %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamponare: %1%</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="796"/>
         <source>Loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Incarcare</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="813"/>
         <source>Playing</source>
-        <translation type="unfinished"></translation>
+        <translation>Redare</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="824"/>
         <source>Paused</source>
-        <translation type="unfinished">Pauza</translation>
+        <translation>Pauza</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="827"/>
         <source>video player: playback error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>player video: eroare de redare: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="828"/>
         <source>Video playback error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Eroare redare video: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="908"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Preluez informatii pentru video cu ID &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="995"/>
         <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>player video: informatii eroare vieo: ID &apos;%1&apos;, stare = &apos;%2&apos; errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="996"/>
         <location filename="../../youtubevideoplayer.cpp" line="1103"/>
         <location filename="../../youtubevideoplayer.cpp" line="1468"/>
         <source>Video info error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Eroare informati video: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1065"/>
         <source>video player: video info error: timeout occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>player vieo: eroare informatii video: expirare a avut loc</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1066"/>
         <source>Video info error: timeout occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Eroare informatii video: expirare</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1102"/>
         <source>video player: video info error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>player video: eroare informatii vieeo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1296"/>
         <source>Full screen (press %1 to return)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ecran complet (apasati %1 ca sa reveniti)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1467"/>
         <source>video player: video image info error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>player video: eroare informatii imagine vieo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1499"/>
         <source>video player: search request error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>player video: eroare cerere de cautare: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1527"/>
         <source>video player: search error: can&apos;t parse XML data</source>
-        <translation type="unfinished"></translation>
+        <translation>player video: eroare cautare: nu pot analiza date XML</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1560"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
-        <translation type="unfinished"></translation>
+        <translation>player video: nu pot determina ID-ul videoclipului de la URL-ul raspuns &apos;%1&apos; - va rog informati dezvoltatorii</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1566"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
-        <translation type="unfinished"></translation>
+        <translation>player video: nu pot asocia imaginea returnata de la video cu ID &apos;%1&apos; - va rog informati dezvoltatorii</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1583"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>player video: nu pot salva imaginea de la video cu ID &apos;%1&apos; la directorul cache Youtube &apos;%2&apos; - va rog verificati permisiunile</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1585"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
-        <translation type="unfinished"></translation>
+        <translation>player video: nu pot salva imaginea pentru videoclipul cu ID-ul &apos;%1&apos;, directorul cache Youtube &apos;%2&apos; nu exista, va rog corectati</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1587"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
-        <translation type="unfinished"></translation>
+        <translation>player video: descarcare esuata pentru imagine videoclip cu ID &apos;%1&apos;, imaginea recuperata nu este valida</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1589"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>player video: descarcare esuata pentru imagine videoclip cu ID-ul &apos;%1&apos;, errorText = &apos;%2&apos;</translation>
     </message>
 </context>
 </TS>
