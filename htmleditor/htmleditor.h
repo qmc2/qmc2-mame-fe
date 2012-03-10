@@ -99,7 +99,7 @@ public slots:
     void zoomOut();
     void zoomIn();
     void adjustActions();
-    void adjustWYSIWIG();
+    void adjustWYSIWYG();
     void adjustHTML();
     void changeTab(int);
     void openLink(const QUrl&);
