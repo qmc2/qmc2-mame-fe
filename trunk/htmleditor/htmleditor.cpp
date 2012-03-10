@@ -57,7 +57,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 	if ( qmc2Config->contains(QMC2_FRONTEND_PREFIX + "HtmlEditor/WidgetState") )
 		restoreState(qmc2Config->value(QMC2_FRONTEND_PREFIX + "HtmlEditor/WidgetState", QByteArray()).toByteArray());
 
-	ui->tabWidget->setTabText(0, tr("WYSIWIG"));
+	ui->tabWidget->setTabText(0, tr("WYSIWYG"));
 	ui->tabWidget->setTabText(1, tr("HTML"));
 
 	connect(ui->tabWidget, SIGNAL(currentChanged(int)), SLOT(changeTab(int)));
@@ -146,7 +146,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 	// it's necessary to sync our actions
 	connect(ui->webView->page(), SIGNAL(selectionChanged()), SLOT(adjustActions()));
 	connect(ui->webView->page(), SIGNAL(contentsChanged()), SLOT(adjustHTML()));
-	connect(ui->plainTextEdit, SIGNAL(textChanged()), SLOT(adjustWYSIWIG()));
+	connect(ui->plainTextEdit, SIGNAL(textChanged()), SLOT(adjustWYSIWYG()));
 
 	// web-page connections
 	connect(ui->webView->page(), SIGNAL(linkHovered(const QString &, const QString &, const QString &)), SLOT(linkHovered(const QString &, const QString &, const QString &)));
@@ -616,7 +616,7 @@ void HtmlEditor::adjustActions()
 	ui->actionFormatBulletedList->setChecked(queryCommandState("insertUnorderedList"));
 }
 
-void HtmlEditor::adjustWYSIWIG()
+void HtmlEditor::adjustWYSIWYG()
 {
 	wysiwigDirty = true;
 

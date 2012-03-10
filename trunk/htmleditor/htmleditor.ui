@@ -32,9 +32,9 @@
       <property name="documentMode">
        <bool>true</bool>
       </property>
-      <widget class="QWidget" name="tabWYSIWIG">
+      <widget class="QWidget" name="tabWYSIWYG">
        <attribute name="title">
-        <string>WYSIWIG</string>
+        <string>WYSIWYG</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="margin">
