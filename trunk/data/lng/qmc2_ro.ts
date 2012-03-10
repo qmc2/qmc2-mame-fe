@@ -15434,7 +15434,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="15"/>
         <source>ROM status export</source>
-        <translation type="unfinished"></translation>
+        <translation>Stare export ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="23"/>
@@ -15460,32 +15460,32 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="72"/>
         <source>Exported ROM states</source>
-        <translation type="unfinished"></translation>
+        <translation>Stare ROM exportate</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="81"/>
         <source>Export ROM state C (correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Stare export ROM C (corect)?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="98"/>
         <source>Export ROM state M (mostly correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Stare export ROM M (majoritatea corecte)?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="115"/>
         <source>Export ROM state I (incorrect)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Stare export ROM I (incorecta)?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="132"/>
         <source>Export ROM state N (not found)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Stare export ROM N (negasit)?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="149"/>
         <source>Export ROM state U (unknown)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Stare export ROM U (necunoscut)?</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="181"/>
@@ -15500,12 +15500,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="198"/>
         <source>Game description</source>
-        <translation type="unfinished"></translation>
+        <translation>Descriere joc</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="203"/>
         <source>ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Stare ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="208"/>
@@ -15528,7 +15528,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="218"/>
         <source>Game name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nume joc</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="223"/>
@@ -15537,7 +15537,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="565"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipuri ROM</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="231"/>
@@ -15562,7 +15562,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="269"/>
         <source>Include some header information in export</source>
-        <translation type="unfinished"></translation>
+        <translation>Includeti niste informatii de titlu in export</translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="272"/>
