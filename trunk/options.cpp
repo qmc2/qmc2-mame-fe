@@ -279,6 +279,7 @@ Options::Options(QWidget *parent)
   checkBoxSaveGameSelection->setToolTip(tr("Save machine selection on exit and before reloading the machine list"));
   checkBoxRestoreGameSelection->setText(tr("Restore machine selection"));
   checkBoxRestoreGameSelection->setToolTip(tr("Restore saved machine selection at start and after reloading the machine list"));
+  labelGamelistCacheFile->setText(tr("Machine list cache"));
 #elif defined(QMC2_EMUTYPE_MAME)
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_CATEGORY, tr("Category"));
   comboBoxSortCriteria->insertItem(QMC2_SORTCRITERIA_VERSION, tr("Version"));
