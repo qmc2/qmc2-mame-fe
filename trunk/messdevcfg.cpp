@@ -1601,7 +1601,12 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex 
 #endif
 
 	if ( toolButtonChooserProcessZIPs->isChecked() && fileModel->isZip(index) ) {
-		fileModel->openZip(index);
+		if ( treeViewFileChooser->isExpanded(index) ) {
+			treeViewFileChooser->setExpanded(index, false);
+		} else {
+			treeViewFileChooser->setExpanded(index, true);
+			fileModel->openZip(index);
+		}
 	} else {
 		switch ( qmc2DefaultLaunchMode ) {
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
@@ -1629,8 +1634,8 @@ void MESSDeviceConfigurator::treeViewFileChooser_toggleArchive()
 		if ( treeViewFileChooser->isExpanded(selected[0]) ) {
 			treeViewFileChooser->setExpanded(selected[0], false);
 		} else {
-			fileModel->openZip(selected[0]);
 			treeViewFileChooser->setExpanded(selected[0], true);
+			fileModel->openZip(selected[0]);
 		}
 	}
 }
