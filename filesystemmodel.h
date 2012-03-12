@@ -537,7 +537,8 @@ class FileSystemModel : public QAbstractItemModel
 			mNameFilters = filters;
 		}
 
-		virtual bool insertRows(int row, int /*count*/, const QModelIndex &parent = QModelIndex()) {
+		virtual bool insertRows(int row, int /*count*/, const QModelIndex &parent = QModelIndex())
+		{
 			FileSystemItem *parentItem = getItem(parent);
 			if ( parentItem->itemParent() == mRootItem && parent.column() == int(NAME) ) {
 				if ( mZipEntryList.count() > 0 ) {
@@ -601,7 +602,8 @@ class FileSystemModel : public QAbstractItemModel
 			}
 		}
 
-		bool isZip(const QModelIndex &index) {
+		bool isZip(const QModelIndex &index)
+		{
 			FileSystemItem *item = getItem(index);
 			if ( item ) {
 				if ( item->itemParent() != mRootItem )
