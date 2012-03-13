@@ -3739,6 +3739,7 @@ void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
           qmc2MESSDeviceConfigurator->save();
           QLayout *vbl = tabDevices->layout();
           if ( vbl ) delete vbl;
+          qApp->processEvents();
           delete qmc2MESSDeviceConfigurator;
           qmc2MESSDeviceConfigurator = NULL;
         }
