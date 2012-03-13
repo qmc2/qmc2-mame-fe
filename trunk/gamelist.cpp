@@ -493,6 +493,7 @@ void Gamelist::load()
 #endif
     qmc2ReloadActive = qmc2EarlyReloadActive = false;
     qmc2StopParser = true;
+    enableWidgets(true);
     return;
   }
 
