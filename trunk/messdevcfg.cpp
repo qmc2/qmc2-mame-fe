@@ -296,6 +296,12 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 		messDevIconMap["serial"] = QIcon(QString::fromUtf8(":/data/img/dev_serial.png"));
 		messDevIconMap["snapshot"] = QIcon(QString::fromUtf8(":/data/img/dev_snapshot.png"));
 	}
+
+#if defined(QMC2_ALTERNATE_FSM)
+	FileChooserKeyEventFilter *eventFilter = new FileChooserKeyEventFilter(this);
+	treeViewFileChooser->installEventFilter(eventFilter);
+	connect(eventFilter, SIGNAL(expandRequested()), this, SLOT(treeViewFileChooser_expandRequested()));
+#endif
 }
 
 MESSDeviceConfigurator::~MESSDeviceConfigurator()
@@ -1631,11 +1637,31 @@ void MESSDeviceConfigurator::treeViewFileChooser_toggleArchive()
 	QModelIndexList selected = treeViewFileChooser->selectionModel()->selectedIndexes();
 
 	if ( selected.count() > 0 ) {
-		if ( treeViewFileChooser->isExpanded(selected[0]) ) {
-			treeViewFileChooser->setExpanded(selected[0], false);
+		QModelIndex index = selected[0];
+		if ( treeViewFileChooser->isExpanded(index) ) {
+			treeViewFileChooser->setExpanded(index, false);
 		} else {
-			treeViewFileChooser->setExpanded(selected[0], true);
-			fileModel->openZip(selected[0]);
+			treeViewFileChooser->setExpanded(index, true);
+			fileModel->openZip(index);
+		}
+	}
+}
+
+void MESSDeviceConfigurator::treeViewFileChooser_expandRequested()
+{
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::treeViewFileChooser_expandRequested()");
+#endif
+
+	QModelIndexList selected = treeViewFileChooser->selectionModel()->selectedIndexes();
+
+	if ( selected.count() > 0 ) {
+		QModelIndex index = selected[0];
+		if ( !treeViewFileChooser->isExpanded(index) ) {
+			if ( toolButtonChooserProcessZIPs->isChecked() && fileModel->isZip(index) ) {
+				treeViewFileChooser->setExpanded(index, true);
+				fileModel->openZip(index);
+			}
 		}
 	}
 }
@@ -1880,4 +1906,20 @@ bool MESSDeviceConfiguratorXmlHandler::characters(const QString &str)
 #endif
 
 	return true;
+}
+
+bool FileChooserKeyEventFilter::eventFilter(QObject *obj, QEvent *event)
+{
+	if ( event->type() == QEvent::KeyPress ) {
+		QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+		switch ( keyEvent->key() ) {
+			case Qt::Key_Right:
+			case Qt::Key_Plus:
+				emit expandRequested();
+				break;
+			default:
+				break;
+		}
+	}
+	return QObject::eventFilter(obj, event);
 }
