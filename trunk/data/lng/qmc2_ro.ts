@@ -9698,7 +9698,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="15"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Optiuni</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="25"/>
@@ -13658,67 +13658,67 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="429"/>
         <source>Append to report</source>
-        <translation type="unfinished"></translation>
+        <translation>Ataseaza la raport</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="436"/>
         <source>Automatically scroll to the currently analyzed game</source>
-        <translation type="unfinished"></translation>
+        <translation>Derulati automat la jocul analizat curent</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="439"/>
         <source>Auto scroll</source>
-        <translation type="unfinished"></translation>
+        <translation>Derulare automata</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="449"/>
         <source>Calculate CRC-32 checksum</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculeaza CRC 32 de control</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="452"/>
         <source>Calculate CRC</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculeaza CRC</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="462"/>
         <source>Calculate MD5 hash</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculeaza hash MD5</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="465"/>
         <source>Calculate MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculeaza MD5</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="475"/>
         <source>Automatically expand file info</source>
-        <translation type="unfinished"></translation>
+        <translation>Expandati informatii fisier automat</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="478"/>
         <source>Expand file info</source>
-        <translation type="unfinished"></translation>
+        <translation>Expandati informatii fisier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="488"/>
         <source>Automatically expand checksums</source>
-        <translation type="unfinished"></translation>
+        <translation>Expandati automat sumele de control</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="491"/>
         <source>Expand checksums</source>
-        <translation type="unfinished"></translation>
+        <translation>Expandati sume de control</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="498"/>
         <source>Calculate SHA1 hash</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculeaza hash SHA1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="501"/>
         <source>Calculate SHA1</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculeaza SHA1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="511"/>
@@ -13733,17 +13733,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="526"/>
         <source>&lt;b&gt;Limits:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Limite:&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="533"/>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>Marime fisier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="546"/>
         <source>Maximum size (in MB) of files to be loaded, files are skipped when they are bigger than that (0 = no limit)</source>
-        <translation type="unfinished"></translation>
+        <translation>Marime maxima (in MB) a fisierelor de incarcare, fisierele sunt sarite cand sunt mai mari decat atat (0 = fara limita)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="549"/>
@@ -13762,17 +13762,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="568"/>
         <source>Log size</source>
-        <translation type="unfinished"></translation>
+        <translation>Marime jurnal</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="581"/>
         <source>Maximum number of lines in log (0 = no limit)</source>
-        <translation type="unfinished"></translation>
+        <translation>Numar maxim de linii in jurnal (0 = fara limita)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="587"/>
         <source> lines</source>
-        <translation type="unfinished"></translation>
+        <translation> linii</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="603"/>
@@ -13782,12 +13782,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="616"/>
         <source>Maximum number of reported sets held in memory (0 = no limit)</source>
-        <translation type="unfinished"></translation>
+        <translation>Numar maxim de seturi raportate care au loc in memorie (0 = fara limita)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="653"/>
         <source>Enable ROM database support (repository access may be slow)</source>
-        <translation type="unfinished"></translation>
+        <translation>Activati suport pentru baza de date ROM (accesul la depozit ar putea fi incet)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="668"/>
@@ -13802,12 +13802,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="694"/>
         <source>Database server port (0 = default)</source>
-        <translation type="unfinished"></translation>
+        <translation>Port server baza de date (0 = implicit)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="697"/>
         <source>default</source>
-        <translation type="unfinished"></translation>
+        <translation>implicit</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="716"/>
@@ -13817,7 +13817,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="720"/>
         <source>MySQL</source>
-        <translation type="unfinished"></translation>
+        <translation>MySQL</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="725"/>
@@ -13827,7 +13827,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="739"/>
         <source>Name or IP address of the database server</source>
-        <translation type="unfinished"></translation>
+        <translation>Nume sau adresa IP al serverului bazei de date</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="752"/>
@@ -13847,13 +13847,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="791"/>
         <source>Check the connection to the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificati conexiunea la baza de date</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="797"/>
         <location filename="../../romalyzer.cpp" line="3023"/>
         <source>Connection check</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificare conexiune</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="813"/>
@@ -13863,12 +13863,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="829"/>
         <source>Name of the database on the server</source>
-        <translation type="unfinished"></translation>
+        <translation>Nume al bazei de date pe server</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="842"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza de date</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="855"/>
@@ -13878,22 +13878,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="868"/>
         <source>Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mod</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="881"/>
         <source>Automatically download missing / bad files from the database (if they are available in the repository)</source>
-        <translation type="unfinished"></translation>
+        <translation>Descarcati automat fisiere lipsa / invalide din baza de date (daca sunt valabile in depozit)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="884"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Descarca</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="897"/>
         <source>Automatically upload good files to the database (if they are missing in the repository)</source>
-        <translation type="unfinished"></translation>
+        <translation>Incarcati automat fisiere valide in baza de date (daca lipsesc in depozit)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="900"/>
@@ -13913,37 +13913,37 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="932"/>
         <source>Output path</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale de iesire</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="945"/>
         <source>Local output directory where downloaded ROMs &amp; CHDs will be created (WARNING: existing files will be overwritten!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Director local de iesire unde ROM-urile si CHD-urile descarcate vor fi create (AVERTIZARE: fisierele existente vor fi rescrise!)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="958"/>
         <source>Browse local output directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti fisierul local de iesire</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="972"/>
         <source>Enable set rewriter</source>
-        <translation type="unfinished"></translation>
+        <translation>Activati rescriitorul de seturi</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="990"/>
         <source>Output directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Director de iesire</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1003"/>
         <source>Output path for the set rewriter (WARNING: existing files will be overwritten!) -- you should NEVER use one of your primary ROM paths here!!!</source>
-        <translation type="unfinished"></translation>
+        <translation>Calea de iesire pentru rescriitorul de seturi (AVERTIZARE: fisierele existente vor fi rescrise!) - NU ar trebuie sa folositi vreodata calea catre un ROM de baza aici!!!</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1016"/>
         <source>General settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Setari generale</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1029"/>
@@ -13958,7 +13958,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1045"/>
         <source>Create sets that do not need parent sets (otherwise create merged sets, which is recommended)</source>
-        <translation type="unfinished"></translation>
+        <translation>Creaza seturi care nu au nevoie de seturi parinte (in caz contrar creaza seturi imbinate, ceea ce este recomandat)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1048"/>
@@ -13973,7 +13973,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1058"/>
         <source>Good sets only</source>
-        <translation type="unfinished"></translation>
+        <translation>Numai seturi valide</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1071"/>
@@ -13998,7 +13998,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1102"/>
         <source>Level </source>
-        <translation type="unfinished"></translation>
+        <translation>Nivel</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1123"/>
@@ -14018,17 +14018,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1139"/>
         <source>Directories</source>
-        <translation type="unfinished"></translation>
+        <translation>DIrectoare</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1165"/>
         <source>Browse output path for the set rewriter</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti calea de iesire pentru rescriitorul de seturi</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1182"/>
         <source>Additional ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale ROM aditionala</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1195"/>
@@ -14038,17 +14038,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1208"/>
         <source>Browse additional ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoti cale ROM aditionala</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1223"/>
         <source>Checksum wizard</source>
-        <translation type="unfinished"></translation>
+        <translation>Vrajitor de control</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1235"/>
         <source>Checksum to be searched</source>
-        <translation type="unfinished"></translation>
+        <translation>Suma de control de cautat</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1248"/>
@@ -14064,12 +14064,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1268"/>
         <source>Analyze all selected sets in order to qualify them</source>
-        <translation type="unfinished"></translation>
+        <translation>Analizati toate seturile selectate pentru a le putea califica</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1271"/>
         <source>Analyze selected sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Analizeaza seturile selectate</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1288"/>
@@ -14094,7 +14094,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1335"/>
         <source>Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Nume fisier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1340"/>
@@ -14110,33 +14110,33 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.ui" line="1360"/>
         <location filename="../../romalyzer.ui" line="1539"/>
         <source>Level of automation</source>
-        <translation type="unfinished"></translation>
+        <translation>Nivel de automatizare</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1373"/>
         <source>Choose the level of automated wizard operations</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti nivelul de operatii automate cu vrajitorul</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1377"/>
         <location filename="../../romalyzer.ui" line="1556"/>
         <source>Do nothing automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Nu faceti nimic automat</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1382"/>
         <source>Automatically select matches</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti in mod automat potrivirile</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1387"/>
         <source>Automatically select matches and analyze sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti in mod automat potrivirile si analizati seturile</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1392"/>
         <source>Automatically select matches, analyze sets and repair bad ones</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti automat potrivirile, analizeaza seturile si repara pe cele invalide</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1408"/>
@@ -14176,82 +14176,82 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1519"/>
         <source>ID / Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>ID / Nume fisier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1524"/>
         <source>Old ID / FIlename</source>
-        <translation type="unfinished"></translation>
+        <translation>ID vechi / Nume fisier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1529"/>
         <source>Match probability</source>
-        <translation type="unfinished"></translation>
+        <translation>Probabilitate de potrivire</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1552"/>
         <source>Choose the level of automated set renamer operations</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti nivelul de operatiuni de redenumire automate  de seturi</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1561"/>
         <source>Automatically select sure matches</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti in mod automat potrivirile sigure</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1566"/>
         <source>Automatically select sure matches and rename sets accordingly</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti automat potrivirile sigure si redenumiti seturile in mod corespunzator</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1578"/>
         <source>Old XML</source>
-        <translation type="unfinished"></translation>
+        <translation>XML vechi</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1591"/>
         <source>Old XML data input file (produced with &apos;-listxml&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier de intrare XML vechi (produs cu &apos;-listxml&apos;)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1604"/>
         <source>Browse old XML data input file (produced with &apos;-listxml&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasofiti fisier de intrare XML vechi (perodus cu &apos;-listxml&apos;)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1628"/>
         <source>Export selected results to a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta rezultatele selectate intr-un fisier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1631"/>
         <source>Export results...</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta rezultate...</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1651"/>
         <source>Import results from a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Importa rezultate dintr-un fisier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1654"/>
         <source>Import results...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importa rezultate...</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1679"/>
         <source>Close ROMAlyzer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1682"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>In&amp;chide</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1702"/>
         <source>Current ROMAlyzer status</source>
-        <translation type="unfinished"></translation>
+        <translation>Stare curenta ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1705"/>
@@ -14260,22 +14260,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2252"/>
         <location filename="../../romalyzer.cpp" line="2901"/>
         <source>Idle</source>
-        <translation type="unfinished"></translation>
+        <translation>Inactiv</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1721"/>
         <source>Analysis progress indicator</source>
-        <translation type="unfinished"></translation>
+        <translation>Indicator de progres analiza</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1740"/>
         <source>File I/O progress indicator</source>
-        <translation type="unfinished"></translation>
+        <translation>Indicator de progres I/O in fisier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="89"/>
         <source>Machine / File</source>
-        <translation type="unfinished"></translation>
+        <translation>Masina / Fisier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="90"/>
@@ -14290,7 +14290,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="92"/>
         <source>Automatically scroll to the currently analyzed machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Derulati automat la masina analizata curent</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="93"/>
@@ -14300,7 +14300,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="107"/>
         <source>none</source>
-        <translation type="unfinished"></translation>
+        <translation>nimic</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="107"/>
@@ -14315,7 +14315,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="107"/>
         <source>A/V codec</source>
-        <translation type="unfinished"></translation>
+        <translation>Codec A/V</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="110"/>
@@ -14325,32 +14325,32 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="111"/>
         <source>lzma (LZMA)</source>
-        <translation type="unfinished"></translation>
+        <translation>lzma (LZMA)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="112"/>
         <source>huff (Huffman)</source>
-        <translation type="unfinished"></translation>
+        <translation>huff (Huffman)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="113"/>
         <source>flcb (FLAC, big-endian)</source>
-        <translation type="unfinished"></translation>
+        <translation>flcb (FLAC, big-endian)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="114"/>
         <source>flcl (FLAC, little-endian)</source>
-        <translation type="unfinished"></translation>
+        <translation>flcl (FLAC, little-endian)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="115"/>
         <source>cdfl (CD FLAC)</source>
-        <translation type="unfinished"></translation>
+        <translation>cdfl (CD FLAC)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="116"/>
         <source>avhu (A/V Huffman)</source>
-        <translation type="unfinished"></translation>
+        <translation>avhu (A/V Huffman)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="124"/>
@@ -14375,7 +14375,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="169"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiati in clipboard</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="245"/>
@@ -14410,17 +14410,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="603"/>
         <source>analysis started</source>
-        <translation type="unfinished"></translation>
+        <translation>analiza pornita</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="605"/>
         <source>determining list of games to analyze</source>
-        <translation type="unfinished"></translation>
+        <translation>determin lista de jocuri de analizat</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="607"/>
         <source>determining list of machines to analyze</source>
-        <translation type="unfinished"></translation>
+        <translation>determin lista de masini de analizat</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="625"/>
@@ -14435,31 +14435,35 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="653"/>
         <source>done (determining list of games to analyze)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (determin lista de jocuri de analizat)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="654"/>
         <source>%n game(s) to analyze</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>%n joc(uri) de analizat</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="656"/>
         <source>done (determining list of machines to analyze)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (determin lista de masini de analizat)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="657"/>
         <source>%n machine(s) to analyze</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>%n masini de analizat</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="666"/>
         <source>analysis paused</source>
-        <translation type="unfinished"></translation>
+        <translation>analiza pauzata</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="667"/>
@@ -14483,12 +14487,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="704"/>
         <source>analyzing &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>analizez &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="706"/>
         <source>Analyzing &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Analizez &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="717"/>
@@ -14498,17 +14502,19 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="724"/>
         <source>done (parsing XML data for &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (analizez date XML pentru &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="726"/>
         <source>error (parsing XML data for &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>eroare (analizez date XML pentru &apos;%1&apos;)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="735"/>
         <source>checking %n file(s) for &apos;%1&apos;</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>verific %n fisiere pentru &apos;%1&apos;</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14543,7 +14549,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="825"/>
         <source>error</source>
-        <translation type="unfinished"></translation>
+        <translation>eroare</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="840"/>
@@ -14564,7 +14570,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="875"/>
         <source>Checksums</source>
-        <translation type="unfinished"></translation>
+        <translation>Sume de control</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="882"/>
@@ -14584,12 +14590,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="890"/>
         <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMATIE: %1 fisier &apos;%2&apos; are un nume imbinat (&apos;%3&apos;) dar nu are set parinte - ignorat, dar ar trebui raportat catre developerii MAME ca un posibil bug XML al driver-ului respectiv</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="892"/>
         <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMATIE: %1 fisier &apos;%2&apos; are un nume imbinat (&apos;%3&apos;) dar nu are set parinte - ignorat, dar ar trebui raportat catre developerii MESS ca un posibil bug XML ar driver-ului respectiv</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="902"/>
@@ -14599,7 +14605,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="917"/>
         <source>CRC </source>
-        <translation type="unfinished"></translation>
+        <translation>CRC</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="929"/>
@@ -14628,95 +14634,103 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="998"/>
         <source>interrupted (checking %n file(s) for &apos;%1&apos;)</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>intrerupt (verific %n fisiere pentru &apos;%1&apos;)</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1014"/>
         <source>good / not found / skipped</source>
-        <translation type="unfinished"></translation>
+        <translation>valid / invalid / sarit</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1016"/>
         <source>good / not found</source>
-        <translation type="unfinished"></translation>
+        <translation>valid / negasit</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1020"/>
         <source>good / no dump / skipped</source>
-        <translation type="unfinished"></translation>
+        <translation>valid / nevid / sarit</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1022"/>
         <source>good / no dump</source>
-        <translation type="unfinished"></translation>
+        <translation>valid / nevid</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1026"/>
         <source>good / skipped</source>
-        <translation type="unfinished"></translation>
+        <translation>valid / sarit</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1034"/>
         <source>bad / not found / skipped</source>
-        <translation type="unfinished"></translation>
+        <translation>invalid / negasit / sarit</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1036"/>
         <source>bad / not found</source>
-        <translation type="unfinished"></translation>
+        <translation>invalid / negasit</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1040"/>
         <source>bad / no dump / skipped</source>
-        <translation type="unfinished"></translation>
+        <translation>invalid / nevid / sarit</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1042"/>
         <source>bad / no dump</source>
-        <translation type="unfinished"></translation>
+        <translation>invalid / nevid</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1046"/>
         <source>bad / skipped</source>
-        <translation type="unfinished"></translation>
+        <translation>invalid / sarit</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1068"/>
         <source>done (checking %n file(s) for &apos;%1&apos;)</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>terminat (verific %n fisiere pentru &apos;%1&apos;)</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1081"/>
         <source>done (analyzing &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (analizez &apos;%1&apos;)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1083"/>
         <source>%n game(s) left</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>%n jocuri ramase</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1085"/>
         <source>%n machine(s) left</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>%n masini ramase</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1102"/>
         <source>analysis ended</source>
-        <translation type="unfinished"></translation>
+        <translation>analiza terminata</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1102"/>
         <source>elapsed time = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>timp scurs = %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1199"/>
@@ -14726,18 +14740,18 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1208"/>
         <source>loading &apos;%1&apos;%2</source>
-        <translation type="unfinished"></translation>
+        <translation>incarca &apos;%1&apos;%2</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1208"/>
         <location filename="../../romalyzer.cpp" line="1679"/>
         <source> (merged)</source>
-        <translation type="unfinished"></translation>
+        <translation> (fuzionat)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1243"/>
         <source>CHD header information:</source>
-        <translation type="unfinished"></translation>
+        <translation>Informatii CHD de antet:</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1245"/>
@@ -14753,37 +14767,37 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1248"/>
         <location filename="../../romalyzer.cpp" line="1482"/>
         <source>CHD v%1</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD v%1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1253"/>
         <location filename="../../romalyzer.cpp" line="1277"/>
         <source>  compression: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>  compresie: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1255"/>
         <location filename="../../romalyzer.cpp" line="1279"/>
         <source>  flags: %1, %2</source>
-        <translation type="unfinished"></translation>
+        <translation>  steaguri: %1, %2</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1255"/>
         <location filename="../../romalyzer.cpp" line="1279"/>
         <source>has parent</source>
-        <translation type="unfinished"></translation>
+        <translation>are parinte</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1255"/>
         <location filename="../../romalyzer.cpp" line="1279"/>
         <source>no parent</source>
-        <translation type="unfinished"></translation>
+        <translation>fara parinte</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1255"/>
         <location filename="../../romalyzer.cpp" line="1279"/>
         <source>allows writes</source>
-        <translation type="unfinished"></translation>
+        <translation>permite scrieri</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1255"/>
@@ -14795,26 +14809,26 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1257"/>
         <location filename="../../romalyzer.cpp" line="1281"/>
         <source>  number of total hunks: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>  numar de bucati: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1259"/>
         <location filename="../../romalyzer.cpp" line="1283"/>
         <location filename="../../romalyzer.cpp" line="1312"/>
         <source>  number of bytes per hunk: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>  numar de bytes per bucata: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1261"/>
         <location filename="../../romalyzer.cpp" line="1285"/>
         <location filename="../../romalyzer.cpp" line="1316"/>
         <source>  logical size: %1 (%2 B)</source>
-        <translation type="unfinished"></translation>
+        <translation>  marime logica:%1 (%2 B)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1263"/>
         <source>  MD5 checksum: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>  Suma de control MD5: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1265"/>
@@ -14844,22 +14858,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1305"/>
         <source>none (uncompressed)</source>
-        <translation type="unfinished"></translation>
+        <translation>nimic (necompresat)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1310"/>
         <source>  compressors: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>  compresori: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1314"/>
         <source>  number of bytes per unit: %1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1328"/>
         <source>CHD v%1 not supported -- rest of header information skipped</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD v%1 nesuportat - restul informatiilor din antet sarite</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1356"/>
@@ -14870,12 +14884,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1358"/>
         <location filename="../../romalyzer.cpp" line="1365"/>
         <source>CHD manager: verifying CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: verific CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1362"/>
         <source>CHD manager: verifying and fixing CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: verific si repar CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1376"/>
@@ -14885,7 +14899,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1377"/>
         <source>CHD manager: updating CHD (v%1 -&gt; v%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: actualizez CHD (v%1 -&gt; v%2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1386"/>
@@ -14895,33 +14909,33 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1512"/>
         <location filename="../../romalyzer.cpp" line="1520"/>
         <source>CHD manager: using CHD v%1 header checksums for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: folosesc sume de control de antet al CHD v%1 pentru verificare CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1414"/>
         <source>CHD manager: no header checksums available for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: nicio suma de control de antet pentru verificare CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1442"/>
         <source>CHD manager: terminating external process</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: opresc proces extern</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1465"/>
         <location filename="../../romalyzer.cpp" line="1467"/>
         <source>CHD manager: CHD file integrity is good</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: integritate fisier CHD e buna</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1469"/>
         <source>CHD manager: WARNING: CHD file integrity is bad</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: AVERTIZARE: integritate fisier CHD este invalida</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1473"/>
         <source>CHD manager: replacing CHD</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: inlocuiesc CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1475"/>
@@ -14931,27 +14945,27 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1481"/>
         <source>CHD manager: CHD replaced</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: CHD inlocuit</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1488"/>
         <source>CHD manager: WARNING: failed updating CHD header information</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: AVETRIZARE: actualizare informatii de antet CHD esuata</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1495"/>
         <source>CHD manager: FATAL: failed to replace CHD -- updated CHD preserved as &apos;%1&apos;, please copy it to &apos;%2&apos; manually!</source>
-        <translation type="unfinished"></translation>
+        <translation>manager CHD: FATAL: inlocuire CHD esuata - CHD actualizat conservat ca &apos;%1&apos;, va rog copiati-l in &apos;%2&apos; manual!</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1528"/>
         <source>CHD manager: WARNING: no header checksums available for CHD verification</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: AVERTIZARE: nicio informatie de control de antet pentru verificare CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1535"/>
         <source>CHD manager: cleaning up</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: fac curatenie</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1547"/>
@@ -15004,7 +15018,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1679"/>
         <source>loading &apos;%1&apos; with CRC &apos;%2&apos; from &apos;%3&apos; as &apos;%4&apos;%5</source>
-        <translation type="unfinished"></translation>
+        <translation>incarc &apos;%1&apos; cu CRC &apos;%2&apos; de la &apos;%3&apos; ca &apos;%4&apos;%5</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1730"/>
@@ -15046,7 +15060,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1931"/>
         <source>Choose CHD manager executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti fisier executabil cu manager CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1931"/>
@@ -15057,22 +15071,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1943"/>
         <source>Choose temporary working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti director temporar de lucru</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1957"/>
         <source>Choose output directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti director de iesire</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1971"/>
         <source>Choose additional ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti cale ROM aditionala</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1986"/>
         <source>CHD manager: external process started</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: proces extern pornit</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1997"/>
@@ -15093,47 +15107,47 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2002"/>
         <source>CHD manager: external process finished (exit code = %1, exit status = %2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: proces extern terminat (cod de iesire = %1, stare de iesire = %2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2018"/>
         <source>CHD manager: stdout: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: stdout: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2040"/>
         <source>CHD manager: stderr: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: stder: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2082"/>
         <source>CHD manager: failed to start</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: pornire esuata</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2086"/>
         <source>CHD manager: crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: cazut</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2090"/>
         <source>CHD manager: write error</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: eroare de scriere</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2094"/>
         <source>CHD manager: read error</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: eroare de citire</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2098"/>
         <source>CHD manager: unknown error %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Manager CHD: eroare necunoscuta %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2176"/>
         <source>Checksum search</source>
-        <translation type="unfinished"></translation>
+        <translation>Cautare suma de control</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2321"/>
@@ -15244,51 +15258,53 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2673"/>
         <location filename="../../romalyzer.cpp" line="2870"/>
         <source>Created by QMC2 v%1 (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Creat de QMC2 v%1 (%2)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="2706"/>
         <source>checksum wizard: repairing %n bad set(s)</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>vrajitor suma de control: repar %n seturi invalide</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2712"/>
         <source>checksum wizard: using %1 file &apos;%2&apos; from &apos;%3&apos; as repro template</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor sume de control: folosesc %1 fisierul &apos;%2&apos; de la &apos;%3&apos; ca reporducere sablon</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2735"/>
         <source>checksum wizard: successfully identified &apos;%1&apos; from &apos;%2&apos; by CRC, filename in ZIP archive is &apos;%3&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor sume de control: identificat cu succes &apos;%1&apos; de la &apos;%2&apos; dupa CRC, nume fisier in arhiva ZIP este &apos;%3&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2744"/>
         <source>checksum wizard: template data loaded, uncompressed size = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: date de sablon incarcate, marime necompresata = %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2748"/>
         <source>checksum wizard: FATAL: unable to identify &apos;%1&apos; from &apos;%2&apos; by CRC</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: nu pot identifica &apos;%1&apos; de la &apos;%2&apos; dupa CRC</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2753"/>
         <source>checksum wizard: FATAL: can&apos;t open ZIP archive &apos;%1&apos; for reading</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: FATAL: nu pot deschide arhiva ZIP &apos;%1&apos; pentru citire</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2758"/>
         <location filename="../../romalyzer.cpp" line="2879"/>
         <source>checksum wizard: sorry, no support for regular files yet</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: scuze, nu exista suport pentru fisiere normale inca</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2763"/>
         <location filename="../../romalyzer.cpp" line="2884"/>
         <source>checksum wizard: sorry, no support for CHD files yet</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: scuze, nu exista suport pentru fisiere CHD inca</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2776"/>
@@ -15298,62 +15314,62 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2777"/>
         <source>checksum wizard: repairing %1 file &apos;%2&apos; in &apos;%3&apos; from repro template</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: repar %1 fisierul &apos;%2&apos; in &apos;%3&apos; de la reporducere sablon</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2789"/>
         <source>checksum wizard: target ZIP exists, loading complete data and structure</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: ZIP vizat exista, incarc date complete si structura</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2791"/>
         <source>checksum wizard: target ZIP successfully loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: ZIP vizat incarcat cu succes</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2793"/>
         <source>checksum wizard: an entry with the CRC &apos;%1&apos; already exists, recreating the ZIP from scratch to replace the bad file</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: o intrare cu CRC &apos;%1&apos; exista deja, recreez ZIP de la inceput ca sa inlocuiesc fisier invalid</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2796"/>
         <source>checksum wizard: backup file &apos;%1&apos; successfully created</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: fisier de rezerva &apos;%1&apos; creat cu succes</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2800"/>
         <source>checksum wizard: FATAL: failed to create backup file &apos;%1&apos;, aborting</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: FATAL: creare fisier de rezerva &apos;%1&apos; esuat, abandonez</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2804"/>
         <source>checksum wizard: no entry with the CRC &apos;%1&apos; was found, adding the missing file to the existing ZIP</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: nicio intrare cu CRC &apos;%1&apos; nu a fost gasita, adaug fisierul lipsa la ZIP existent</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2807"/>
         <source>checksum wizard: FATAL: failed to load target ZIP, aborting</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: FATAL: incarcare ZIP vizat esuata, abandonez</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2812"/>
         <source>checksum wizard: the target ZIP does not exist, creating a new ZIP with just the missing file</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: ZIP vizat nu exista, creez un ZIP nou cu fisierul lipsa</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2862"/>
         <source>checksum wizard: FATAL: can&apos;t open file &apos;%1&apos; in ZIP archive &apos;%2&apos; for writing</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: FATAL: nu pot deschide fisierul &apos;%1&apos; in arhiva ZIP &apos;%2&apos; pentru scriere</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2868"/>
         <source>Fixed by QMC2 v%1 (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>STabilit de catre QMC2 v%1 (%2)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2874"/>
         <source>checksum wizard: FATAL: can&apos;t open ZIP archive &apos;%1&apos; for writing</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: FATAL: nu pot deschide arhiva ZIP &apos;%1&apos; pentru scriere</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2889"/>
@@ -15363,7 +15379,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2891"/>
         <source>checksum wizard: successfully repaired %1 file &apos;%2&apos; in &apos;%3&apos; from repro template</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: reparare cu succes %1 isier &apos;%2&apos; in &apos;%3&apos; din reproducere sablon</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2893"/>
@@ -15373,24 +15389,26 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2895"/>
         <source>checksum wizard: FATAL: failed to repair %1 file &apos;%2&apos; in &apos;%3&apos; from repro template</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: FATAL: esuat reparare %1 fisier &apos;%2&apos; in &apos;%3&apos; din reproducere sablon</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2905"/>
         <source>checksum wizard: FATAL: can&apos;t find any good set</source>
-        <translation type="unfinished"></translation>
+        <translation>vrajitor suma de control: FATAL: nu pot gasi un set valid</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="2907"/>
         <source>checksum wizard: done (repairing %n bad set(s))</source>
-        <translation type="unfinished">
+        <translation>
+            <numerusform>vrajitor suma de control: terminat (repar %n seturi invalide)</numerusform>
+            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2947"/>
         <source>Choose file to store the ROMAlyzer log</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti fisier in care sa stocati jurnalul ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2952"/>
@@ -15402,7 +15420,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2956"/>
         <location filename="../../romalyzer.cpp" line="2957"/>
         <source>done (saving ROMAlyzer log to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>terminat (salvez jurnal ROMAlyzer in &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2959"/>
@@ -15413,27 +15431,27 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2996"/>
         <source>Connection check -- succeeded!</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificare conexiune - succes!</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2997"/>
         <source>database connection check successful</source>
-        <translation type="unfinished"></translation>
+        <translation>verificare conexiune cu baza de date de succes</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3006"/>
         <source>Connection check -- failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificare conexiune - esuat!</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3007"/>
         <source>database connection check failed -- errorNumber = %1, errorText = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>verificare conexiune cu baza de date esuata - numeEroare = %1, numeEroare = &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3034"/>
         <source>Choose local DB output path</source>
-        <translation type="unfinished"></translation>
+        <translation>Alegeti calea locala de iesire pentru baza de date</translation>
     </message>
 </context>
 <context>
