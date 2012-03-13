@@ -93,7 +93,7 @@ void MESSDeviceFileDelegate::setModelData(QWidget *editor, QAbstractItemModel *m
 
 	FileEditWidget *fileEditWidget = static_cast<FileEditWidget*>(editor);
 	QString v = fileEditWidget->lineEditFile->text();
-	model->setData(index, v);
+	model->setData(index, v, Qt::EditRole);
 }
 
 void MESSDeviceFileDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const
@@ -1109,6 +1109,8 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 		QList<QTreeWidgetItem *> setupItemList = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
 		foreach (QTreeWidgetItem *setupItem, setupItemList)
 			setupItem->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, QString());
+
+		qApp->processEvents();
 
 		QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(text, Qt::MatchExactly);
 		if ( matchedItemList.count() > 0 ) {
