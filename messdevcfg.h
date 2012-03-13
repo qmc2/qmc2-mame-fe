@@ -142,6 +142,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 #if defined(QMC2_ALTERNATE_FSM)
 		void comboBoxChooserFilterPattern_editTextChanged_delayed();
 		void treeViewFileChooser_toggleArchive();
+		void treeViewFileChooser_expandRequested();
 #endif
 		void slotOptionChanged(int);
 
@@ -153,6 +154,20 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		void closeEvent(QCloseEvent *);
 		void showEvent(QShowEvent *);
 		void hideEvent(QHideEvent *);
+};
+
+class FileChooserKeyEventFilter : public QObject
+{
+	Q_OBJECT
+
+	public:
+		FileChooserKeyEventFilter(QObject *parent = 0) : QObject(parent) { ; }
+
+	protected:
+		bool eventFilter(QObject *obj, QEvent *event);
+
+	signals:
+		void expandRequested();
 };
 
 #endif
