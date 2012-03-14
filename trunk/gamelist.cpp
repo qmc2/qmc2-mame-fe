@@ -862,6 +862,22 @@ void Gamelist::verify(bool currentOnly)
   numVerifyRoms = 0;
   if ( verifyCurrentOnly ) {
     checkedItem = qmc2CurrentItem;
+#if defined(QMC2_EMUTYPE_MAME)
+    romCache.setFileName(qmc2Config->value("MAME/FilesAndDirectories/ROMStateCacheFile").toString());
+#elif defined(QMC2_EMUTYPE_MESS)
+    romCache.setFileName(qmc2Config->value("MESS/FilesAndDirectories/ROMStateCacheFile").toString());
+#endif
+    romCache.open(QIODevice::WriteOnly | QIODevice::Text);
+    if ( !romCache.isOpen() ) {
+      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open ROM state cache for writing, path = %1").arg(romCache.fileName()));
+      qmc2VerifyActive = false;
+      enableWidgets(true);
+      return;
+    } else {
+      tsRomCache.setDevice(&romCache);
+      tsRomCache.reset();
+      tsRomCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
+    }
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying ROM status for '%1'").arg(checkedItem->text(QMC2_GAMELIST_COLUMN_GAME)));
     // decrease counter for current game's/machine's state
     switch ( checkedItem->whatsThis(QMC2_GAMELIST_COLUMN_GAME).at(0).toAscii() ) {
@@ -889,30 +905,7 @@ void Gamelist::verify(bool currentOnly)
       default:
         break;
     }
-#if defined(QMC2_EMUTYPE_MAME)
-    romCache.setFileName(qmc2Config->value("MAME/FilesAndDirectories/ROMStateCacheFile").toString());
-#elif defined(QMC2_EMUTYPE_MESS)
-    romCache.setFileName(qmc2Config->value("MESS/FilesAndDirectories/ROMStateCacheFile").toString());
-#endif
-    romCache.open(QIODevice::WriteOnly | QIODevice::Text);
-    if ( !romCache.isOpen() ) {
-      qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open ROM state cache for writing, path = %1").arg(romCache.fileName()));
-      qmc2VerifyActive = false;
-      enableWidgets(true);
-    } else {
-      tsRomCache.setDevice(&romCache);
-      tsRomCache.reset();
-      tsRomCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
-    }
   } else {
-#if defined(QMC2_EMUTYPE_MAME)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying ROM status for all games"));
-#elif defined(QMC2_EMUTYPE_MESS)
-    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying ROM status for all machines"));
-#endif
-
-    numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numNotFoundGames = numUnknownGames = 0;
-    qmc2MainWindow->labelGamelistStatus->setText(status());
 #if defined(QMC2_EMUTYPE_MAME)
     romCache.setFileName(qmc2Config->value("MAME/FilesAndDirectories/ROMStateCacheFile").toString());
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -929,6 +922,13 @@ void Gamelist::verify(bool currentOnly)
       tsRomCache.reset();
       tsRomCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
     }
+#if defined(QMC2_EMUTYPE_MAME)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying ROM status for all games"));
+#elif defined(QMC2_EMUTYPE_MESS)
+    qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("verifying ROM status for all machines"));
+#endif
+    numCorrectGames = numMostlyCorrectGames = numIncorrectGames = numNotFoundGames = numUnknownGames = 0;
+    qmc2MainWindow->labelGamelistStatus->setText(status());
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "GUI/ProgressTexts").toBool() )
       qmc2MainWindow->progressBarGamelist->setFormat(tr("ROM check - %p%"));
     else
