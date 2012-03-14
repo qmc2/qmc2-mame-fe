@@ -895,9 +895,11 @@ void Gamelist::verify(bool currentOnly)
     romCache.setFileName(qmc2Config->value("MESS/FilesAndDirectories/ROMStateCacheFile").toString());
 #endif
     romCache.open(QIODevice::WriteOnly | QIODevice::Text);
-    if ( !romCache.isOpen() )
+    if ( !romCache.isOpen() ) {
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open ROM state cache for writing, path = %1").arg(romCache.fileName()));
-    else {
+      qmc2VerifyActive = false;
+      enableWidgets(true);
+    } else {
       tsRomCache.setDevice(&romCache);
       tsRomCache.reset();
       tsRomCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
@@ -917,9 +919,12 @@ void Gamelist::verify(bool currentOnly)
     romCache.setFileName(qmc2Config->value("MESS/FilesAndDirectories/ROMStateCacheFile").toString());
 #endif
     romCache.open(QIODevice::WriteOnly | QIODevice::Text);
-    if ( !romCache.isOpen() )
+    if ( !romCache.isOpen() ) {
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("ERROR: can't open ROM state cache for writing, path = %1").arg(romCache.fileName()));
-    else {
+      qmc2VerifyActive = false;
+      enableWidgets(true);
+      return;
+    } else {
       tsRomCache.setDevice(&romCache);
       tsRomCache.reset();
       tsRomCache << "# THIS FILE IS AUTO-GENERATED - PLEASE DO NOT EDIT!\n";
