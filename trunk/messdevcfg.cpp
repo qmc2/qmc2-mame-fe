@@ -837,23 +837,23 @@ bool MESSDeviceConfigurator::load()
 	configurationMap.clear();
 	slotMap.clear();
 
-	qmc2Config->beginGroup(QString("MESS/Configuration/Devices/%1").arg(messMachineName));
-	QString selectedConfiguration = qmc2Config->value("SelectedConfiguration").toString();
+	QString group = QString("MESS/Configuration/Devices/%1").arg(messMachineName);
+	QString selectedConfiguration = qmc2Config->value(group + "/SelectedConfiguration").toString();
+	qmc2Config->beginGroup(group);
 	QStringList configurationList = qmc2Config->childGroups();
+	qmc2Config->endGroup();
 
 	foreach (QString configName, configurationList) {
-		configurationMap[configName].first = qmc2Config->value(QString("%1/Instances").arg(configName)).toStringList();
-		configurationMap[configName].second = qmc2Config->value(QString("%1/Files").arg(configName)).toStringList();
-		slotMap[configName].first = qmc2Config->value(QString("%1/Slots").arg(configName), QStringList()).toStringList();
-		slotMap[configName].second = qmc2Config->value(QString("%1/SlotOptions").arg(configName), QStringList()).toStringList();
+		configurationMap[configName].first = qmc2Config->value(group + QString("/%1/Instances").arg(configName)).toStringList();
+		configurationMap[configName].second = qmc2Config->value(group + QString("/%1/Files").arg(configName)).toStringList();
+		slotMap[configName].first = qmc2Config->value(group + QString("/%1/Slots").arg(configName), QStringList()).toStringList();
+		slotMap[configName].second = qmc2Config->value(group + QString("/%1/SlotOptions").arg(configName), QStringList()).toStringList();
 		QListWidgetItem *item = new QListWidgetItem(configName, listWidgetDeviceConfigurations);
 		if ( selectedConfiguration == configName )
 			listWidgetDeviceConfigurations->setCurrentItem(item);
 	}
 
-	qmc2FileEditStartPath = qmc2Config->value("DefaultDeviceDirectory").toString();
-
-	qmc2Config->endGroup();
+	qmc2FileEditStartPath = qmc2Config->value(group + "/DefaultDeviceDirectory").toString();
 
 	// use the 'general software folder' as fall-back, if applicable
 	if ( qmc2FileEditStartPath.isEmpty() ) {
@@ -887,36 +887,33 @@ bool MESSDeviceConfigurator::save()
 	QString devDir = qmc2Config->value(QString("%1/DefaultDeviceDirectory").arg(group), "").toString();
 
 	qmc2Config->remove(group);
-	qmc2Config->beginGroup(group);
 
 	if ( configurationMap.count() > 0 ) {
 		foreach (QString configName, configurationMap.keys()) {
 			QPair<QStringList, QStringList> config = configurationMap[configName];
-			qmc2Config->setValue(QString("%1/Instances").arg(configName), config.first);
-			qmc2Config->setValue(QString("%1/Files").arg(configName), config.second);
+			qmc2Config->setValue(group + QString("/%1/Instances").arg(configName), config.first);
+			qmc2Config->setValue(group + QString("/%1/Files").arg(configName), config.second);
 			QPair<QStringList, QStringList> slotConfig = slotMap[configName];
 			if ( slotConfig.first.isEmpty() ) {
-				qmc2Config->remove(QString("%1/Slots").arg(configName));
-				qmc2Config->remove(QString("%1/SlotOptions").arg(configName));
+				qmc2Config->remove(group + QString("/%1/Slots").arg(configName));
+				qmc2Config->remove(group + QString("/%1/SlotOptions").arg(configName));
 			} else {
-				qmc2Config->setValue(QString("%1/Slots").arg(configName), slotConfig.first);
-				qmc2Config->setValue(QString("%1/SlotOptions").arg(configName), slotConfig.second);
+				qmc2Config->setValue(group + QString("/%1/Slots").arg(configName), slotConfig.first);
+				qmc2Config->setValue(group + QString("/%1/SlotOptions").arg(configName), slotConfig.second);
 			}
 		}
 	}
 
 	if ( !devDir.isEmpty() )
-		qmc2Config->setValue("DefaultDeviceDirectory", devDir);
+		qmc2Config->setValue(group + "/DefaultDeviceDirectory", devDir);
 
 	QListWidgetItem *curItem = listWidgetDeviceConfigurations->currentItem();
 	if ( curItem != NULL ) {
 		if ( curItem->text() == tr("No devices") )
-			qmc2Config->remove("SelectedConfiguration");
+			qmc2Config->remove(group + "/SelectedConfiguration");
 		else
-			qmc2Config->setValue("SelectedConfiguration", curItem->text());
+			qmc2Config->setValue(group + "/SelectedConfiguration", curItem->text());
 	}
-
-	qmc2Config->endGroup();
 
 	return true;
 }
