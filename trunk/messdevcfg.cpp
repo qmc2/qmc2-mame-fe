@@ -133,8 +133,6 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 
 	tabWidgetDeviceSetup->setCornerWidget(toolButtonConfiguration, Qt::TopRightCorner);
 	setEnabled(false);
-	lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
-	lineEditConfigurationName->setPlaceholderText(tr("Enter configuration name"));
 
 #if !defined(Q_WS_X11) && !defined(Q_WS_WIN)
 	toolButtonChooserPlayEmbedded->setVisible(false);
@@ -156,6 +154,11 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	fileModel = NULL;
 	fileChooserSetup = refreshRunning = dontIgnoreNameChange = false;
 	updateSlots = true;
+
+	lineEditConfigurationName->blockSignals(true);
+	lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
+	lineEditConfigurationName->setPlaceholderText(tr("Enter configuration name"));
+	lineEditConfigurationName->blockSignals(false);
 
 	messMachineName = machineName;
 	treeWidgetDeviceSetup->setItemDelegateForColumn(QMC2_DEVCONFIG_COLUMN_FILE, &fileEditDelegate);
@@ -370,6 +373,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName,
 		started = commandProc.waitForStarted(QMC2_PROCESS_POLL_TIME_LONG);
 		qApp->processEvents();
 	}
+
 	if ( started ) {
 		commandProcStarted = true;
 		bool commandProcRunning = (commandProc.state() == QProcess::Running);
@@ -475,7 +479,9 @@ bool MESSDeviceConfigurator::readSystemSlots()
 	args << "-listslots";
 	
 	setEnabled(false);
+	lineEditConfigurationName->blockSignals(true);
 	lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
+	lineEditConfigurationName->blockSignals(false);
 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("loading available system slots"));
 	loadTimer.start();
@@ -616,6 +622,11 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 			configName = itemList[0]->text();
 	}
 
+	if ( configName.isEmpty() ) {
+		refreshRunning = false;
+		return false;
+	}
+
 	QString xmlBuffer = getXmlDataWithEnabledSlots(messMachineName, configName);
 
 	if ( xmlBuffer.isEmpty() ) {
@@ -693,13 +704,11 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 		treeWidgetDeviceSetup->setUpdatesEnabled(true);
 	}
 
-	if ( !configName.isEmpty() ) {
-		dontIgnoreNameChange = true;
-		updateSlots = false;
-		on_lineEditConfigurationName_textChanged(configName);
-		updateSlots = true;
-		dontIgnoreNameChange = false;
-	}
+	dontIgnoreNameChange = true;
+	updateSlots = false;
+	on_lineEditConfigurationName_textChanged(configName);
+	updateSlots = true;
+	dontIgnoreNameChange = false;
 
 	refreshRunning = false;
 
@@ -1077,6 +1086,16 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString &text = %1)").arg(text));
 #endif
 
+	// this avoids a rare crash when the user hovers systems very quickly
+	static QString myLastMessMachineName;
+	if ( myLastMessMachineName.isEmpty() )
+		myLastMessMachineName = messMachineName;
+	else if ( myLastMessMachineName != messMachineName ) {
+		myLastMessMachineName = messMachineName;
+		return;
+	}
+	myLastMessMachineName = messMachineName;
+
 	toolButtonSaveConfiguration->setEnabled(false);
 	if ( text == tr("No devices") ) {
 		toolButtonCloneConfiguration->setEnabled(false);
@@ -1106,9 +1125,7 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 		QList<QTreeWidgetItem *> setupItemList = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
 		foreach (QTreeWidgetItem *setupItem, setupItemList)
 			setupItem->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, QString());
-
 		qApp->processEvents();
-
 		QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(text, Qt::MatchExactly);
 		if ( matchedItemList.count() > 0 ) {
 			matchedItemList[0]->setSelected(true);

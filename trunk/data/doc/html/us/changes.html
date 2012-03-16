@@ -28,6 +28,7 @@ inf: informational only
   <li>fix: MESS device mapper: corrected display of file-editor's data when there's only one available device instance (by synchronizing delegate/model updates)</li>
   <li>fix: don't start a verification process when the ROM state cache can't be opened for writing</li>
   <li>fix: file-chooser: the machine-dependent software-folder was not correctly pre-selected when existing device configurations were loaded in parallel</li>
+  <li>fix: MESS device configurator: avoid a rare crash when systems are hovered very quickly (asynchronous updates may otherwise work on meanwhile invalid data)</li>
   <li>imp: ROMAlyzer: LRU-caching XML data positions in order to speed up merge-processing</li>
   <li>imp: updated the MAME variant's logo with an improved version from JacKc</li>
   <li>imp: MESS device configurator: log a warning when '-listslots' crashes</li>
