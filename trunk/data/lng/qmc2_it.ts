@@ -2456,7 +2456,6 @@ p, li { white-space: pre-wrap; }
         <source>check results: %n difference(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -3784,7 +3783,6 @@ p, li { white-space: pre-wrap; }
         <source>%n machine(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -4048,7 +4046,6 @@ p, li { white-space: pre-wrap; }
         <source>%n icon(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -4102,57 +4099,57 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="14"/>
         <source>HTML Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Editor HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="37"/>
         <source>WYSIWYG</source>
-        <translation type="unfinished"></translation>
+        <translation>WYSIWYG</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="47"/>
         <source>about:blank</source>
-        <translation type="unfinished"></translation>
+        <translation>about:blank</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="56"/>
         <source>HTML</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="86"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;File</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="95"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Edita</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="99"/>
         <source>Insert &amp;image</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserisci &amp;immagine</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="124"/>
         <source>F&amp;ormat</source>
-        <translation type="unfinished"></translation>
+        <translation>F&amp;ormato</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="128"/>
         <source>St&amp;yle</source>
-        <translation type="unfinished"></translation>
+        <translation>Stile (&amp;y)</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="142"/>
         <source>&amp;Align</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Allinea</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="175"/>
         <source>Standard tool-bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Barra degli strumenti standard</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="199"/>
@@ -4162,139 +4159,139 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="234"/>
         <source>&amp;New</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nuovo</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="237"/>
         <location filename="../../htmleditor/htmleditor.ui" line="240"/>
         <location filename="../../htmleditor/htmleditor.ui" line="243"/>
         <source>New file</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo file</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="252"/>
         <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Apri...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="255"/>
         <location filename="../../htmleditor/htmleditor.ui" line="258"/>
         <location filename="../../htmleditor/htmleditor.ui" line="261"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri file</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="270"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Salva</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="273"/>
         <location filename="../../htmleditor/htmleditor.ui" line="276"/>
         <location filename="../../htmleditor/htmleditor.ui" line="279"/>
         <source>Save file</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva file</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="284"/>
         <source>Save &amp;copy...</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva &amp;con nome...</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="287"/>
         <location filename="../../htmleditor/htmleditor.ui" line="290"/>
         <source>Save file under a different name</source>
-        <translation type="unfinished"></translation>
+        <translation>Salva il file con un altro nome</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="299"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Annulla</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="302"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="311"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ripeti</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="314"/>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripeti</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="323"/>
         <source>Cu&amp;t</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Taglia</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="326"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Taglia</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="335"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Copia</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="338"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Copia</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="347"/>
         <source>&amp;Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Incolla</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="350"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Incolla</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="359"/>
         <source>Select a&amp;ll</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona &amp;tutto</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="362"/>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona tutto</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="374"/>
         <source>&amp;Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Grassetto</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="377"/>
         <source>Bold</source>
-        <translation type="unfinished"></translation>
+        <translation>Grassetto</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="389"/>
         <source>&amp;Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Italico</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="392"/>
         <source>Italic</source>
-        <translation type="unfinished"></translation>
+        <translation>Italico</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="404"/>
         <source>&amp;Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sottolinea</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="407"/>
         <source>Underline</source>
-        <translation type="unfinished"></translation>
+        <translation>Sottolinea</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="419"/>
@@ -4309,42 +4306,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="431"/>
         <source>Align &amp;left</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;llinea a sinistra</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="434"/>
         <source>Align left</source>
-        <translation type="unfinished"></translation>
+        <translation>Allinea a sinistra</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="443"/>
         <source>Align &amp;center</source>
-        <translation type="unfinished"></translation>
+        <translation>Allinea al &amp;centro</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="446"/>
         <source>Align center</source>
-        <translation type="unfinished"></translation>
+        <translation>Allinea al centro</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="455"/>
         <source>Align &amp;right</source>
-        <translation type="unfinished"></translation>
+        <translation>Allinea a dest&amp;ra</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="458"/>
         <source>Align right</source>
-        <translation type="unfinished"></translation>
+        <translation>Allinea a destra</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="467"/>
         <source>Align &amp;justied</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Giustifica</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="470"/>
         <source>Align justied</source>
-        <translation type="unfinished"></translation>
+        <translation>Allineamento giustificato</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="479"/>
@@ -7486,7 +7483,6 @@ Do you want to choose a different name?</source>
         <source>last message repeated %n time(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -8209,14 +8205,12 @@ Do you really want to check all ROM states now?</source>
         <source>freed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="2215"/>
         <source>%n entry(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8231,7 +8225,6 @@ Do you really want to check all ROM states now?</source>
         <source>removed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -8239,7 +8232,6 @@ Do you really want to check all ROM states now?</source>
         <location filename="../../qmc2main.cpp" line="2263"/>
         <source>%n file(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8794,14 +8786,12 @@ Should they be killed on exit?</source>
         <source>killing %n running emulator(s) on exit</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="5888"/>
         <source>keeping %n running emulator(s) alive</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8854,7 +8844,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6281"/>
         <source>%n video info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8928,7 +8917,6 @@ Should they be killed on exit?</source>
         <source>%n game info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -8945,7 +8933,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6449"/>
         <source>%n machine info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8993,7 +8980,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6585"/>
         <source>%n emulator info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14443,7 +14429,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>%n game(s) to analyze</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14455,7 +14440,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="657"/>
         <source>%n machine(s) to analyze</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14478,7 +14462,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="687"/>
         <source>report limit reached, removing %n set(s) from the report</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14511,7 +14494,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="735"/>
         <source>checking %n file(s) for &apos;%1&apos;</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14633,7 +14615,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>interrupted (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14691,7 +14672,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>done (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14704,14 +14684,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>%n game(s) left</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1085"/>
         <source>%n machine(s) left</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -15258,7 +15236,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>checksum wizard: repairing %n bad set(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -15392,7 +15369,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2907"/>
         <source>checksum wizard: done (repairing %n bad set(s))</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
