@@ -9733,17 +9733,17 @@ Ar trebui sa le termin pe toate la iesire?</translation>
     <message>
         <location filename="../../options.ui" line="25"/>
         <source>&amp;Front end</source>
-        <translation type="unfinished"></translation>
+        <translation>Inter&amp;fata</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="41"/>
         <source>&amp;GUI</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;GUI</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="91"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Limba</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="100"/>
@@ -9754,138 +9754,138 @@ Ar trebui sa le termin pe toate la iesire?</translation>
         <location filename="../../options.ui" line="366"/>
         <location filename="../../options.ui" line="422"/>
         <source>Scale image to fit frame size (otherwise use original size)</source>
-        <translation type="unfinished"></translation>
+        <translation>Redimensionati imaginea ca sa incapa in cadru (in mod contrar folositi dimensiunea originala)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="103"/>
         <source>Scaled preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Previzualizare redimensionare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="110"/>
         <source>Save window layout at exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvati aspectul ferestrei la iesire</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="113"/>
         <source>Save layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvati aspectul</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="126"/>
         <source>Application language</source>
-        <translation type="unfinished"></translation>
+        <translation>Limba aplicatiei</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="130"/>
         <source>DE (German)</source>
-        <translation type="unfinished"></translation>
+        <translation>DE (Germana)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="135"/>
         <source>FR (French)</source>
-        <translation type="unfinished"></translation>
+        <translation>FR (Franceza)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="140"/>
         <source>IT (Italian)</source>
-        <translation type="unfinished"></translation>
+        <translation>IT (Italiana)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="145"/>
         <source>PL (Polish)</source>
-        <translation type="unfinished"></translation>
+        <translation>PL (Poloneza)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="150"/>
         <source>PT (Portuguese)</source>
-        <translation type="unfinished"></translation>
+        <translation>PT (Portugheza)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="155"/>
         <source>RO (Romanian)</source>
-        <translation type="unfinished"></translation>
+        <translation>RO (Romana)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="160"/>
         <source>US (English)</source>
-        <translation type="unfinished"></translation>
+        <translation>US (Engleza)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="168"/>
         <source>Save game selection on exit and before reloading the game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvati selectie joc la iesire si inainte sa reincarcati lista de jocuri</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="171"/>
         <source>Save game selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Salvati selectia de joc</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="181"/>
         <source>Scaled cabinet</source>
-        <translation type="unfinished"></translation>
+        <translation>Cabinet scalat</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="188"/>
         <source>Restore saved game selection at start and after reloading the game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaureaza selectia de joc salvata la pornire si dupa ce reincarci lista de jocuri</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="191"/>
         <source>Restore game selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurati selectia de jocuri</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="198"/>
         <source>Restore saved window layout at start</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurati aspectul ferestrei salvat la pornire</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="201"/>
         <source>Restore layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurati aspectul</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="211"/>
         <source>Scaled controller</source>
-        <translation type="unfinished"></translation>
+        <translation>Controller scalat</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="221"/>
         <source>Scaled marquee</source>
-        <translation type="unfinished"></translation>
+        <translation>Marquee scalat</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="228"/>
         <location filename="../../options.ui" line="231"/>
         <source>Show status bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Afisati bara de stare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="241"/>
         <source>Show the menu bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Afisati bara de meniu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="244"/>
         <source>Show menu bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Afisati bara de meniu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="251"/>
         <source>Show short description of current processing in progress bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Afisati descriere scurta al preocesarii curente in bara de progres</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="254"/>
         <source>Show progress texts</source>
-        <translation type="unfinished"></translation>
+        <translation>Afisati texte de progres</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="261"/>
         <source>Show vertical game status indicator in game details</source>
-        <translation type="unfinished"></translation>
+        <translation>Afisati indicator vertical de stare joc in detalii de joc</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="264"/>
@@ -9895,84 +9895,84 @@ Ar trebui sa le termin pe toate la iesire?</translation>
     <message>
         <location filename="../../options.ui" line="274"/>
         <source>Show the game status indicator only when the game list is not visible due to the current layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Afisati indicatorul de stare joc numai cand lista de jocuri nu este vizibila din cauza aspectului curent</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="277"/>
         <location filename="../../options.ui" line="313"/>
         <source>Only when required</source>
-        <translation type="unfinished"></translation>
+        <translation>Numai cand e necesar</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="284"/>
         <source>Retry loading images which weren&apos;t found before?</source>
-        <translation type="unfinished"></translation>
+        <translation>Reincerc incarcarea imaginilor care nu au fost gasite anterior?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="287"/>
         <source>Retry loading images</source>
-        <translation type="unfinished"></translation>
+        <translation>Reincerc incarcarea imaginilor</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="294"/>
         <source>Show game&apos;s description at the bottom of any images</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza descrierea jocului la subsolul oricarei imagini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="297"/>
         <source>Show game name</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza numele jocului</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="310"/>
         <source>Show game&apos;s description only when the game list is not visible due to the current layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza descrierea jocului numai cand lista de jocuri nu este vizibila din cauza aspectului curent</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="328"/>
         <location filename="../../options.ui" line="344"/>
         <source>Option requires a restart of QMC2 to take effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Optiunea necesita o repornire a QMC2 ca sa aiba efect</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="347"/>
         <source>restart required</source>
-        <translation type="unfinished"></translation>
+        <translation>repornire necesara</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="359"/>
         <source>Scaled title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titlu scalat</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="369"/>
         <source>Scaled flyer</source>
-        <translation type="unfinished"></translation>
+        <translation>Flyer scalat</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="382"/>
         <source>Application font (= system default if empty)</source>
-        <translation type="unfinished"></translation>
+        <translation>Font aplicatie (= valoarea implicita sistemului este goala)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="398"/>
         <source>Browse application font</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti fontul aplicatiei</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="425"/>
         <source>Scaled PCB</source>
-        <translation type="unfinished"></translation>
+        <translation>PCB scalat</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="432"/>
         <source>Emulator log size</source>
-        <translation type="unfinished"></translation>
+        <translation>Marime jurnal emulator</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="445"/>
         <source>Maximum number of lines to keep in emulator log browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Numar maxim de linii mentiunute in browser-ul jurnalului din emulator</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="448"/>
@@ -9984,87 +9984,87 @@ Ar trebui sa le termin pe toate la iesire?</translation>
         <location filename="../../options.ui" line="451"/>
         <location filename="../../options.ui" line="486"/>
         <source> lines</source>
-        <translation type="unfinished"></translation>
+        <translation> linii</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="467"/>
         <source>Front end log size</source>
-        <translation type="unfinished"></translation>
+        <translation>Marime jurnal de Front end</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="480"/>
         <source>Maximum number of lines to keep in front end log browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Numar maxim de linii mentinute in browser-ul jurnalului de front end</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="502"/>
         <source>Application font</source>
-        <translation type="unfinished"></translation>
+        <translation>Font aplicatie</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="509"/>
         <source>Style sheet</source>
-        <translation type="unfinished"></translation>
+        <translation>Foaie de stil</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="522"/>
         <source>Qt style sheet file (*.qss, leave empty for no style sheet)</source>
-        <translation type="unfinished"></translation>
+        <translation>Foaie de stil Qt (*.qaa, lasati goala in caz de lipsa foaie de stil)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="535"/>
         <source>Browse Qt style sheet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti foaie de still Qt</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="546"/>
         <source>GUI style</source>
-        <translation type="unfinished"></translation>
+        <translation>Stil GUI</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="559"/>
         <source>Application style (Default = use system&apos;s default style)</source>
-        <translation type="unfinished"></translation>
+        <translation>Stil aplicatie (Implicit = folositi stilul sistemului)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="566"/>
         <source>Smooth image scaling (nicer, but slower)</source>
-        <translation type="unfinished"></translation>
+        <translation>Netezeste scalarea imaginii (calitate mai buna, dar mai incet)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="569"/>
         <source>Smooth scaling</source>
-        <translation type="unfinished"></translation>
+        <translation>Netezire scalare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="576"/>
         <source>Fall back to the parent&apos;s image if an indivual image is missing but there&apos;s one for the parent</source>
-        <translation type="unfinished"></translation>
+        <translation>Reintoarcete la imaginea parinte daca vreo imagine lipseste dareste una pentru parinte</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="579"/>
         <source>Parent image fallback</source>
-        <translation type="unfinished"></translation>
+        <translation>Imagine parinte de rezerva</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="586"/>
         <source>Minimize application windows when launching another variant</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimizeaza fereastra aplicatiei cand este pornita o alta varianta</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="589"/>
         <source>Minimize on variant launch</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimizeaza la lansarea unei variante</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="596"/>
         <source>Image cache size</source>
-        <translation type="unfinished"></translation>
+        <translation>Marima cache imagine</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="609"/>
         <source>Image cache size in MB</source>
-        <translation type="unfinished"></translation>
+        <translation>Marime cache imagine in MB</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="612"/>
@@ -10074,249 +10074,249 @@ Ar trebui sa le termin pe toate la iesire?</translation>
     <message>
         <location filename="../../options.ui" line="628"/>
         <source>Open the detail setup dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Deschide dialogul de instalare detaliata</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="631"/>
         <source>Detail setup...</source>
-        <translation type="unfinished"></translation>
+        <translation>Instalare detaliata...</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="638"/>
         <source>Show indicator for current memory usage</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza indicator pentru consumul de memorie curent</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="641"/>
         <source>Show memory  usage</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza consumul de memorie</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="648"/>
         <source>Use standard or custom color palette?</source>
-        <translation type="unfinished"></translation>
+        <translation>Foloseste paleta de culori standard sau personalizata?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="651"/>
         <source>Standard color palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Paleta de culori standard</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="658"/>
         <source>Exit this QMC2 variant when launching another?</source>
-        <translation type="unfinished"></translation>
+        <translation>Inchid aceasta varianta de QMC2 cand este lansata alta?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="661"/>
         <source>Exit on variant launch</source>
-        <translation type="unfinished"></translation>
+        <translation>Iesire la lansarea unei variante</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="668"/>
         <source>Log font</source>
-        <translation type="unfinished"></translation>
+        <translation>Font jurnal</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="681"/>
         <source>Font used in logs (= application font if empty)</source>
-        <translation type="unfinished"></translation>
+        <translation>Font folosit in jurnale (= fontul aplicatiei daca este gol)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="697"/>
         <source>Browse font used in logs</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoiti fonturi folosite in jurnale</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="719"/>
         <location filename="../../options.ui" line="722"/>
         <source>Show tool bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza bara de instrumente</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="738"/>
         <source>Use a unifed tool- and title-bar on Mac OS X</source>
-        <translation type="unfinished"></translation>
+        <translation>Foloseste o unealta unifed si bara de titlu in Mac OS X</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="741"/>
         <source>Unify with title</source>
-        <translation type="unfinished"></translation>
+        <translation>Unity cu titlu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="750"/>
         <source>Kill emulators on exit?</source>
-        <translation type="unfinished"></translation>
+        <translation>Termina emulatoare la iesire?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="753"/>
         <source>Kill emulators</source>
-        <translation type="unfinished"></translation>
+        <translation>Termina emulatoare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="760"/>
         <source>Minimize when launching emulators?</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimizez cand lansez emulatoare?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="763"/>
         <source>Minimize on emulator launch</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimizeaza la lansare de emulator</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="770"/>
         <source>Check for other instances of this QMC2 variant on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifica pentru alte variante de QMC2 la pornire</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="773"/>
         <source>Check single instance</source>
-        <translation type="unfinished"></translation>
+        <translation>verifica instante singure</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="780"/>
         <source>Suppress all messages sent through either the QDebug class or one of the qDebug() / qCritical() / qWarning() / qFatal() functions</source>
-        <translation type="unfinished"></translation>
+        <translation>Suprima toate mesajele trimise prin clasa QDebug sau una din functiile qDebug() / qCritical() / qWarning() / qFatal()</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="783"/>
         <source>Suppress Qt messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Suprima mesajele Qt</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="790"/>
         <source>Show splash screen when starting up?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza ecranul pata la pornire?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="793"/>
         <source>Show splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza ecranul pata</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="807"/>
         <location filename="../../options.ui" line="3952"/>
         <source>F&amp;iles / Directories</source>
-        <translation type="unfinished"></translation>
+        <translation>F&amp;isiere / DIrectoare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="842"/>
         <source>Browse game favorites file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste fisiere cu jocuri favorite</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="853"/>
         <source>Temporary file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier temporar</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="866"/>
         <source>Temporary work file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier de lucru temporar (scriere)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="879"/>
         <source>Browse temporary work file</source>
-        <translation type="unfinished"></translation>
+        <translation>rasfoieste fisiere de lucru temporare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="890"/>
         <source>Front end log file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier cu jurnal de front end</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="903"/>
         <source>Front end log file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier cu jurnal de front end (scriere)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="916"/>
         <source>Browse front end log file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste fisier cu jurnal de front end</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="927"/>
         <source>Favorites file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier cu favorite</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="940"/>
         <source>Game favorites file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier cu jocuri favorite (scriere)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="947"/>
         <source>Play history file</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier cu istoric de joc</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="960"/>
         <source>Play history file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier cu istoric de joc (scriere)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="973"/>
         <source>Browse play history file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste fisier cu istoric de joc</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="984"/>
         <source>Data directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Director cu date</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="997"/>
         <source>Frontend data directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Director cu date front end (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1010"/>
         <source>Browse frontend data directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste director cu date de front end</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1027"/>
         <source>Game information database - MAME history.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza de date cu informatii de joc - istoric MAME.dat (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1040"/>
         <source>Browse game information database (MAME history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rafoieste baza de date cu informatii de joc (istoric MAME.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1057"/>
         <source>Emulator information database - mameinfo.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza de date cu informatii despre emulator - mameinfo.dat (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1070"/>
         <source>Browse emulator information database (mameinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste baza de date cu informatii despre emulator (mameinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1081"/>
         <source>Enable the use of catver.ini -- get the newest version from http://www.progettoemma.net/?catlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Activeaza folosirea catver.ini - descarcati cea mai noua versiune de pe http://www.progettoemma.net/?catlist</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1084"/>
         <source>Use catver.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Foloseste catver.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1101"/>
         <source>Path to catver.ini (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cale catre catver.ini (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1114"/>
         <source>Browse path to catver.ini</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste cale catre catver.ini</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1125"/>
         <source>Switch between specifying a preview directory or a ZIP-compressed preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Comuta intre specificarea directorului de previzualizare sau un fisier compresat ZIP de previzualizare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1128"/>
@@ -10324,32 +10324,32 @@ Ar trebui sa le termin pe toate la iesire?</translation>
         <location filename="../../options.cpp" line="2073"/>
         <location filename="../../options.cpp" line="3033"/>
         <source>Preview directory</source>
-        <translation type="unfinished"></translation>
+        <translation>DIrector de previzualizare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1163"/>
         <source>Preview directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Director de previzualizare (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1176"/>
         <source>Browse preview directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste director de previzualizare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1200"/>
         <source>ZIP-compressed preview file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier compresat ZIP de previzualizare (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1213"/>
         <source>Browse ZIP-compressed preview file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste fisier compresat ZIP de previzualizare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1228"/>
         <source>Switch between specifying a flyer directory or a ZIP-compressed flyer file</source>
-        <translation type="unfinished"></translation>
+        <translation>Comuta intre specificarea unui director flyer sau un fisier flyer compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1231"/>
@@ -10357,32 +10357,32 @@ Ar trebui sa le termin pe toate la iesire?</translation>
         <location filename="../../options.cpp" line="2078"/>
         <location filename="../../options.cpp" line="3044"/>
         <source>Flyer directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Director flyer</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1266"/>
         <source>Flyer directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>DIrector flyer (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1279"/>
         <source>Browse flyer directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste director flyer</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1303"/>
         <source>ZIP-compressed flyer file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier flyer compresat ZIP (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1316"/>
         <source>Browse ZIP-compressed flyer file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste fisier flyer compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1331"/>
         <source>Switch between specifying an icon directory or a ZIP-compressed icon file</source>
-        <translation type="unfinished"></translation>
+        <translation>Comuta intre specificarea unui director cu icnotie sau un fisier cu cinotie compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1334"/>
@@ -10390,32 +10390,32 @@ Ar trebui sa le termin pe toate la iesire?</translation>
         <location filename="../../options.cpp" line="2083"/>
         <location filename="../../options.cpp" line="3055"/>
         <source>Icon directory</source>
-        <translation type="unfinished"></translation>
+        <translation>DIrector iconite</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1369"/>
         <source>Icon directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>DIrector iconite (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1382"/>
         <source>Browse icon directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste director cu iconite</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1406"/>
         <source>ZIP-compressed icon file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier cu iconite compresat ZIP (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1419"/>
         <source>Browse ZIP-compressed icon file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste fisier cu iconite compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1434"/>
         <source>Switch between specifying a cabinet directory or a ZIP-compressed cabinet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Comuta intre specificarea unui director cabinet sau un fisier cabinet compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1437"/>
@@ -10423,32 +10423,32 @@ Ar trebui sa le termin pe toate la iesire?</translation>
         <location filename="../../options.cpp" line="2088"/>
         <location filename="../../options.cpp" line="3066"/>
         <source>Cabinet directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Director cabinet</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1472"/>
         <source>Cabinet directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Director cabinet (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1485"/>
         <source>Browse cabinet directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste director cabinet</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1509"/>
         <source>ZIP-compressed cabinet file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier cabinet compresat ZIP (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1522"/>
         <source>Browse ZIP-compressed cabinet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste fisier cabinet compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1537"/>
         <source>Switch between specifying a controller directory or a ZIP-compressed controller file</source>
-        <translation type="unfinished"></translation>
+        <translation>Comuta intre specificarea unui director controller sau un fisier controller compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1540"/>
@@ -10456,32 +10456,32 @@ Ar trebui sa le termin pe toate la iesire?</translation>
         <location filename="../../options.cpp" line="2093"/>
         <location filename="../../options.cpp" line="3077"/>
         <source>Controller directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Director controller</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1575"/>
         <source>Controller directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>DIrector controller (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1588"/>
         <source>Browse controller directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste director controller</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1612"/>
         <source>ZIP-compressed controller file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier controller compresat ZIP (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1625"/>
         <source>Browse ZIP-compressed controller file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste fisier controller compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1640"/>
         <source>Switch between specifying a marquee directory or a ZIP-compressed marquee file</source>
-        <translation type="unfinished"></translation>
+        <translation>Comuta intre specificarea unui director marquee sau un fisier marquee compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1643"/>
@@ -10489,32 +10489,32 @@ Ar trebui sa le termin pe toate la iesire?</translation>
         <location filename="../../options.cpp" line="2098"/>
         <location filename="../../options.cpp" line="3088"/>
         <source>Marquee directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Director marquee</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1678"/>
         <source>Marquee directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>DIrector marquee (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1691"/>
         <source>Browse marquee directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste director marquee</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1715"/>
         <source>ZIP-compressed marquee file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier marquee compresat ZIP (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1728"/>
         <source>Browse ZIP-compressed marquee file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste fisier marquee compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1743"/>
         <source>Switch between specifying a title directory or a ZIP-compressed title file</source>
-        <translation type="unfinished"></translation>
+        <translation>Comuta intre specificarea unui director de titlu sau un fisier de titlu compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1746"/>
@@ -10522,32 +10522,32 @@ Ar trebui sa le termin pe toate la iesire?</translation>
         <location filename="../../options.cpp" line="2103"/>
         <location filename="../../options.cpp" line="3099"/>
         <source>Title directory</source>
-        <translation type="unfinished"></translation>
+        <translation>DIrector de titlu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1781"/>
         <source>Title directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Director de titlu (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1794"/>
         <source>Browse title directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste director de titlu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1818"/>
         <source>ZIP-compressed title file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier de titlu compresat ZIP (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1831"/>
         <source>Browse ZIP-compressed title file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste fisier de titlu compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1846"/>
         <source>Switch between specifying a PCB directory or a ZIP-compressed PCB file</source>
-        <translation type="unfinished"></translation>
+        <translation>Comuta intre specificarea unui director PCB sau un fisier PCB compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1849"/>
@@ -10555,103 +10555,103 @@ Ar trebui sa le termin pe toate la iesire?</translation>
         <location filename="../../options.cpp" line="2108"/>
         <location filename="../../options.cpp" line="3110"/>
         <source>PCB directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Director PCB</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1884"/>
         <source>PCB directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>DIrector PCB (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1897"/>
         <source>Browse PCB directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste director PCB</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1921"/>
         <source>ZIP-compressed PCB file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier PCB compresat ZIP (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1934"/>
         <source>Browse ZIP-compressed PCB file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste fisier PCB compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1971"/>
         <source>Software snap-shot directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Director de snap-shot-uri software (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1984"/>
         <source>Browse software snap-shot directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste director cu snap-shot-uri software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2008"/>
         <source>ZIP-compressed software snap-shot file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier cu software snap-shot compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2021"/>
         <source>Browse ZIP-compressed software snap-shot file</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste fisier cu software snap-shot compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2057"/>
         <location filename="../../options.ui" line="2312"/>
         <location filename="../../options.ui" line="4247"/>
         <source>Option requires a reload of the gamelist to take effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Optiunea necesita o reincarcare a listei de jocuri ca sa aiba efect</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2073"/>
         <location filename="../../options.ui" line="2328"/>
         <location filename="../../options.ui" line="4263"/>
         <source>Option requires a reload of the entire game list to take effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Optiunea necesita o reincarcare a intregii liste de jocuri ca sa aiba efect</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2076"/>
         <location filename="../../options.ui" line="2331"/>
         <location filename="../../options.ui" line="4266"/>
         <source>reload required</source>
-        <translation type="unfinished"></translation>
+        <translation>reincarcare necesara</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2087"/>
         <source>Load game information database (MAME history.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Incarca baza de date cu informatii despre joc (MAME history.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2090"/>
         <source>Game info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Bada de date cu informatii despre joc</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2107"/>
         <source>Use in-memory compression for game info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Foloseste compresie in memorie pentru baza de date cu informatii despre joc (un pic mai incet, dat consuma mult mai putina memorie; rata de compresare este de obicei 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2125"/>
         <source>Load emulator information database (mameinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Incarca baza de date cu informatii despre emulator (mameinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2128"/>
         <source>Emu info DB</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza de date cu informatii despre emulator</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2145"/>
         <source>Use in-memory compression for emulator info DB (a bit slower, but consumes distinctly less memory; compression rate is usually about 1:16)</source>
-        <translation type="unfinished"></translation>
+        <translation>Foloseste compresie in memorie pentru baza de date cu informatii despre emulator (un pic mai incet, dar consuma mult mai putina memorie; rata de compresie este de obicei 1:16)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2161"/>
         <source>Switch between specifying a software snap directory or a ZIP-compressed software snap file</source>
-        <translation type="unfinished"></translation>
+        <translation>Comutati intre specificarea unui director cu software snap sau un fisier software snap compresat ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2164"/>
@@ -10659,52 +10659,52 @@ Ar trebui sa le termin pe toate la iesire?</translation>
         <location filename="../../options.cpp" line="2113"/>
         <location filename="../../options.cpp" line="3121"/>
         <source>SW snap folder</source>
-        <translation type="unfinished"></translation>
+        <translation>SW folder snap</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2177"/>
         <source>Software notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Director cu note de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2190"/>
         <source>Folder used to store personal notes about any software titles (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Director folodit pentru a stoca note personale despre orice titlu de software (scriere)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2203"/>
         <source>Browse software notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste director cu note de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2214"/>
         <source>Enable the use of a template for (empty) software notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Activati folosirea unui sablon pentru note de software (goale)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2217"/>
         <source>Software notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Sablon de note de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2230"/>
         <source>HTML file used as a template for software-notes (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fisier HTML folosit ca sablon pentru note de software (citire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2243"/>
         <source>Browse software notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste sablonul cu note de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2261"/>
         <source>Game &amp;list</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lista de jocuri</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2290"/>
         <source>Enable ROM state filtering?</source>
-        <translation type="unfinished"></translation>
+        <translation>Activez filtrarea de stare ROM?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2293"/>
@@ -10714,17 +10714,17 @@ Ar trebui sa le termin pe toate la iesire?</translation>
     <message>
         <location filename="../../options.ui" line="2340"/>
         <source>Update delay</source>
-        <translation type="unfinished"></translation>
+        <translation>Actualizeaza intarzierea</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2347"/>
         <source>Automatically disable SW snaps when software-detail is visible (may be annoying)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dezactiveaza in mod automat SW snaps cand detaliile de software sunt vizibile (ar putea fi enervante)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2350"/>
         <source>No SW snaps for visible details</source>
-        <translation type="unfinished"></translation>
+        <translation>Niciun SW snap pentru detalii vizibile</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2363"/>
@@ -10739,7 +10739,7 @@ Ar trebui sa le termin pe toate la iesire?</translation>
     <message>
         <location filename="../../options.ui" line="2372"/>
         <source>ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Stare ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2377"/>
@@ -10764,7 +10764,7 @@ Ar trebui sa le termin pe toate la iesire?</translation>
     <message>
         <location filename="../../options.ui" line="2397"/>
         <source>ROM types</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipuri ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2402"/>
@@ -10779,12 +10779,12 @@ Ar trebui sa le termin pe toate la iesire?</translation>
     <message>
         <location filename="../../options.ui" line="2415"/>
         <source>Display software snap-shots when hovering the software list with the mouse cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza snap-shots software cand plutesc peste lista de software folosind cursorul de la mouse</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2418"/>
         <source>SW snaps on mouse hover</source>
-        <translation type="unfinished"></translation>
+        <translation>SW snaps la plutire cu mouse-ul</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2438"/>
@@ -10809,92 +10809,92 @@ Ar trebui sa le termin pe toate la iesire?</translation>
     <message>
         <location filename="../../options.ui" line="2482"/>
         <source>Launch emulation directly when an item is activated in the search-, favorites- or played-lists (instead of jumping to the master list)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lanseaza emulatie in mod direct cand un item este activat in cautare-, favorite- sau liste jucate (in loc sa sari direct la lista principala)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2485"/>
         <source>Play on sub-list activation</source>
-        <translation type="unfinished"></translation>
+        <translation>Joaca la activarea de sublista</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2498"/>
         <source>Display ROM status icons in master lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza iconite cu stare ROM in listele principala?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2501"/>
         <source>Show ROM status icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza iconite cu stare ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2512"/>
         <source>Cursor position</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozitie cursor</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2525"/>
         <source>Select the cursor position QMC2 uses when auto-scrolling to the current item (this setting applies to all views and lists!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alege pozitia cursorului pe care QMC2 il foloseste cand auto defilez la obiectul curent (aceasta setare se aplica la toate vederile si listele!)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2532"/>
         <source>Visible</source>
-        <translation type="unfinished"></translation>
+        <translation>Vizibil</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2537"/>
         <source>Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Varf</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2542"/>
         <source>Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2547"/>
         <source>Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Centru</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2555"/>
         <source>Responsiveness</source>
-        <translation type="unfinished"></translation>
+        <translation>Sensibilitate</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2568"/>
         <source>Number of item insertions between game list updates during reload (higher means faster, but makes the GUI less responsive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Numar de insertii de obiecte intre actualizarea listei de jocuri in timpul reincarcarii (mai mare inseamna mai rapid, dar face GUI sa raspunda mai greu)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2571"/>
         <source>immediate</source>
-        <translation type="unfinished"></translation>
+        <translation>imediat</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2595"/>
         <source>Show ROM state C (correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza stare ROM C (corect)?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2618"/>
         <source>Show ROM state M (mostly correct)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza stare ROM M (majoritatea corecte)?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2641"/>
         <source>Show ROM state I (incorrect)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza stare ROM I (incorect)?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2664"/>
         <source>Show ROM state N (not found)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza stare ROM N (negasit)?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2687"/>
         <source>Show ROM state U (unknown)?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza stare ROM U (necunoscut)?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2706"/>
@@ -10904,174 +10904,174 @@ Ar trebui sa le termin pe toate la iesire?</translation>
     <message>
         <location filename="../../options.ui" line="2713"/>
         <source>Select the default launch-mode (independent or embedded window) used when emulation is started by activating an entry in any list</source>
-        <translation type="unfinished"></translation>
+        <translation>Alege modul de lansare implicit (iindependent sau in fereastra incorporata) folosit cand emularea a inceput activand o intrare din oricare lista</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2717"/>
         <source>independent</source>
-        <translation type="unfinished"></translation>
+        <translation>independet</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2726"/>
         <source>embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>incorporat</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2744"/>
         <source>Select the position where sofware snap-shots are displayed within software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>Alege pozitia unde snap-shots software sa fie afisate in listele de software</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2748"/>
         <source>Above / Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Deasupra / Stanga</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2753"/>
         <source>Above / Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Deasupra / Centru</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2758"/>
         <source>Above / Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Deasupra / Dreapta</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2763"/>
         <source>Below / Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Dedesubt / Stanga</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2768"/>
         <source>Below / Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Dedesubt / Centru</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2773"/>
         <source>Below / Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Dedesubt / Dreapta</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2778"/>
         <source>Disable snaps</source>
-        <translation type="unfinished"></translation>
+        <translation>Dezactiveaza snaps</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2792"/>
         <source>Delay update of any game details (preview, flyer, info, configuration, ...) by how many milliseconds?</source>
-        <translation type="unfinished"></translation>
+        <translation>Intarzie actualizarea oricarui detaliu de joc (previzualizare, flyer, info, configurare, ...) cu cate milisecunde?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2795"/>
         <source>none</source>
-        <translation type="unfinished"></translation>
+        <translation>nimic</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2798"/>
         <source> ms</source>
-        <translation type="unfinished"></translation>
+        <translation> ms</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2820"/>
         <source>Launch emulation on double-click events (may be annoying)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lanseaza emularea la evenimente dublu click (ar putea fi enervante)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2823"/>
         <source>Double-click activation</source>
-        <translation type="unfinished"></translation>
+        <translation>Activare la dublu click</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2836"/>
         <source>Hide primary game list while loading (recommended, much faster)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ascunde lista primara de jocuri in timpul incarcarii (recomandat, mult mai rapid)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2839"/>
         <source>Hide while loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Ascunde cand incarc</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2852"/>
         <source>Sort game list while reloading (slower)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sorteaza lista de jocuri in timpul reincarcarii (mai incet)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2855"/>
         <source>Sort while loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Sorteaza in timpul incarcarii</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2862"/>
         <source>SW snap position</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozitie SW snap</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2869"/>
         <source>Default launch-mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mod implicit de lansare</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2882"/>
         <source>Automatically trigger a ROM check if necessary</source>
-        <translation type="unfinished"></translation>
+        <translation>Declanseaza automat o verificare ROM daca este necesara</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2885"/>
         <source>Auto-trigger ROM check</source>
-        <translation type="unfinished"></translation>
+        <translation>Declanseaza automat o verificare ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2898"/>
         <source>Display (or hide) device sets in master lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza (sau ascunde) seturi de dispozitive in listele principale?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2901"/>
         <source>Show device sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza seturile de dispozitive</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2918"/>
         <source>Display (or hide) BIOS sets in master lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza (sau ascunde) seturi BIOS in listele principale?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2921"/>
         <source>Show BIOS sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Afiseaza seturile BIOS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2939"/>
         <source>&amp;Shortcuts / Keys</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Scurtaturi / Chei</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2971"/>
         <location filename="../../options.ui" line="2974"/>
         <source>Redefine key sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Redefineste secventa de chei</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2988"/>
         <source>Reset key sequence to default</source>
-        <translation type="unfinished"></translation>
+        <translation>Redefineste secventa de chei la implicit</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2991"/>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Reseteaza</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3008"/>
         <source>Active shortcut definitions; double-click to redefine key sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Scurtaturi la definitii active; dublu click ca sa redefiniti secventa de chei</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3027"/>
         <location filename="../../options.ui" line="3483"/>
         <source>Function / Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Functie / Cheie</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3032"/>
@@ -11084,42 +11084,42 @@ Ar trebui sa le termin pe toate la iesire?</translation>
     <message>
         <location filename="../../options.ui" line="3037"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizat</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3052"/>
         <source>&amp;Joystick</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3081"/>
         <source>Enable GUI control via joystick</source>
-        <translation type="unfinished"></translation>
+        <translation>Activeaza control GUI cu joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3084"/>
         <source>Enable joystick control</source>
-        <translation type="unfinished"></translation>
+        <translation>Activeaza control cu joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3100"/>
         <source>Rescan available joysticks</source>
-        <translation type="unfinished"></translation>
+        <translation>Rescaneaza joystick-uri valabile</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3103"/>
         <source>Rescan joysticks</source>
-        <translation type="unfinished"></translation>
+        <translation>Rescaneaza joystick-uri</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3123"/>
         <source>Select joystick</source>
-        <translation type="unfinished"></translation>
+        <translation>Alege joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3133"/>
         <source>List of available joysticks - select the one you want to use for GUI control</source>
-        <translation type="unfinished"></translation>
+        <translation>lista de joystick-uri valabile - alegeti pe care doriti sa-l folositi pentru control GUI</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3137"/>
@@ -11128,22 +11128,22 @@ Ar trebui sa le termin pe toate la iesire?</translation>
         <location filename="../../options.cpp" line="3760"/>
         <location filename="../../options.cpp" line="3847"/>
         <source>No joysticks found</source>
-        <translation type="unfinished"></translation>
+        <translation>Niciun joystick gasit</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3148"/>
         <source>Joystick information and settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Informatii joystick si setari</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3158"/>
         <source>Axes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Axe:</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3165"/>
         <source>Number of joystick axes</source>
-        <translation type="unfinished"></translation>
+        <translation>Numar de axe de joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3168"/>
@@ -11156,133 +11156,133 @@ Ar trebui sa le termin pe toate la iesire?</translation>
     <message>
         <location filename="../../options.ui" line="3179"/>
         <source>Buttons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Butoane:</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3186"/>
         <source>Number of joystick buttons</source>
-        <translation type="unfinished"></translation>
+        <translation>Numar de butoane pe joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3200"/>
         <source>Hats:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hats:</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3207"/>
         <source>Number of coolie hats</source>
-        <translation type="unfinished"></translation>
+        <translation>Numer de coolie hats</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3221"/>
         <source>Trackballs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Trackballs:</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3228"/>
         <source>Number of trackballs</source>
-        <translation type="unfinished"></translation>
+        <translation>Numar de trackballs</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3257"/>
         <source>Automatically repeat joystick functions after specified delay</source>
-        <translation type="unfinished"></translation>
+        <translation>Repeta in mod automat functiile joystick-ului dupa intarzierea specificata</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3260"/>
         <source>Auto repeat after</source>
-        <translation type="unfinished"></translation>
+        <translation>Atuo repete dupa</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3276"/>
         <source>Repeat all joystick functions after how many milliseconds?</source>
-        <translation type="unfinished"></translation>
+        <translation>Repeta toate functiile joystick-ului dupa cate milisecunde?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3279"/>
         <location filename="../../options.ui" line="3324"/>
         <source>ms</source>
-        <translation type="unfinished"></translation>
+        <translation>ms</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3305"/>
         <source>Event timeout</source>
-        <translation type="unfinished"></translation>
+        <translation>Eveniment expirat</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3321"/>
         <source>Process joystick events after how many milliseconds?</source>
-        <translation type="unfinished"></translation>
+        <translation>Proceseaza evenimente joystick dupa cate milisecunde?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3347"/>
         <source>Calibrate joystick axes</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibreaza axe joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3350"/>
         <source>Calibrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Calibreaza</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3369"/>
         <source>Test all joystick functions</source>
-        <translation type="unfinished"></translation>
+        <translation>Testeaza toate functiile joystick-ului</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3372"/>
         <source>Test</source>
-        <translation type="unfinished"></translation>
+        <translation>Test</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3391"/>
         <source>Map joystick functions to GUI functions</source>
-        <translation type="unfinished"></translation>
+        <translation>Mapa cu functii joystick catre functii GUI</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3394"/>
         <source>Map</source>
-        <translation type="unfinished"></translation>
+        <translation>Mapa</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3427"/>
         <source>Remap a joystick function to the selected GUI function</source>
-        <translation type="unfinished"></translation>
+        <translation>Remapeaza o functie joystick catre functia GUI selectata</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3430"/>
         <source>Remap</source>
-        <translation type="unfinished"></translation>
+        <translation>Remapeaza</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3444"/>
         <source>Remove joystick mapping from selected GUI function</source>
-        <translation type="unfinished"></translation>
+        <translation>Sterge mapare joystick din functia GUI selectata</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3447"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Sterge</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3464"/>
         <source>Active joystick mappings; double-click to remap joystick function</source>
-        <translation type="unfinished"></translation>
+        <translation>Mapari joystick active; dublu click pentru remapare functie joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3488"/>
         <source>Joystick function</source>
-        <translation type="unfinished"></translation>
+        <translation>Functie joystick</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3509"/>
         <source>Proxy / &amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy / Unel&amp;te</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3538"/>
         <source>Zip tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Unealta ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3544"/>
@@ -11294,12 +11294,12 @@ Ar trebui sa le termin pe toate la iesire?</translation>
     <message>
         <location filename="../../options.ui" line="3557"/>
         <source>External zip tool, i.e. &quot;zip&quot; (read and execute)</source>
-        <translation type="unfinished"></translation>
+        <translation>Unealta ZIP externa, i.e. &quot;zip&quot; (citeste si executa)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3570"/>
         <source>Browse for zip tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste pentru unealta ZIP</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3581"/>
@@ -11308,52 +11308,52 @@ Ar trebui sa le termin pe toate la iesire?</translation>
         <location filename="../../options.ui" line="4536"/>
         <location filename="../../options.ui" line="4667"/>
         <source>Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Argumente</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3594"/>
         <source>Zip tool argument list to remove entries from the ZIP archive (i. e. &quot;$ARCHIVE$ -d $FILELIST$&quot;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de argumente unealta ZIP pentru inlaturarea intrarilor din arhiva ZIP (i.e. &quot;$ARCHIVE$ -d $FILELIST$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3604"/>
         <source>File removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Unealta de inlaturare fisiere</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3623"/>
         <source>External file removal tool, i.e. &quot;rm&quot; (read and execute)</source>
-        <translation type="unfinished"></translation>
+        <translation>Unealta de inlaturare fisiere externa, i.e. &quot;rm&quot; (citeste si executa)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3636"/>
         <source>Browse for file removal tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste unealta de inlaturare de fisiere</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3660"/>
         <source>File removal tool argument list (i. e. &quot;-f -v $FILELIST$&quot;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de argumente pentru unealta de inlaturare fisiere (i.e. &quot;f -v $FILELIST$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3683"/>
         <source>ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Unealta ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3702"/>
         <source>External ROM tool (it&apos;s completely up to you...)</source>
-        <translation type="unfinished"></translation>
+        <translation>Unealta ROM externa (depinde totalmente de tine...)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3715"/>
         <source>Browse ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste unealta ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3739"/>
         <source>ROM tool argument list (i. e. &quot;$ID$ $DESCRIPTION$&quot;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de argumente pentru unealta ROM (i.e. &quot;$ID$ $DESCRIPTION$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3746"/>
@@ -11366,12 +11366,12 @@ Ar trebui sa le termin pe toate la iesire?</translation>
     <message>
         <location filename="../../options.ui" line="3759"/>
         <source>Working directory that&apos;s used when the ROM tool is executed (if empty, QMC2&apos;s current working directory is used)</source>
-        <translation type="unfinished"></translation>
+        <translation>Directorul de lucru folosit cand unealta ROM este executata (daca e gol, directorul de lucru al QMC2 este folosit)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3772"/>
         <source>Browse working directory of the ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Rasfoieste directorul de lucru pentru unealta ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3789"/>
