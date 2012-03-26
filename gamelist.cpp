@@ -2806,6 +2806,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				}
 			}
 			xmlCounter++;
+			if ( xmlCounter % QMC2_AUDIT_NMS_RESPONSE == 0 ) qApp->processEvents();
 		}
 #elif defined(QMC2_EMUTYPE_MAME)
 		while ( !xmlFound && xmlCounter < xmlLines.count() && !qmc2StopParser ) {
@@ -2819,6 +2820,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 				}
 			}
 			xmlCounter++;
+			if ( xmlCounter % QMC2_AUDIT_NMS_RESPONSE == 0 ) qApp->processEvents();
 		}
 #endif
 	}
