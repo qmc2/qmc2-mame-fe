@@ -2773,6 +2773,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
       QMap<QString, int> systemPosMap;
       for (i = 0; i < remainingGames.count(); i++) {
         qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + 1);
+        qApp->processEvents();
         QString gameName = remainingGames[i];
         bool isBIOS = qmc2BiosROMs.contains(gameName);
         bool isDevice = qmc2DeviceROMs.contains(gameName);
