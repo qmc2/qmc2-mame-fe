@@ -2771,8 +2771,11 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
       }
     } else {
       QMap<QString, int> systemPosMap;
-      for (i = 0; i < remainingGames.count(); i++) {
+      if ( !remainingGames.isEmpty() && !qmc2StopParser )
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("checking real status of %n set(s) not mentioned during full audit", "", remainingGames.count()));
+      for (i = 0; i < remainingGames.count() && !qmc2StopParser; i++) {
         qmc2MainWindow->progressBarGamelist->setValue(qmc2MainWindow->progressBarGamelist->value() + 1);
+        qmc2MainWindow->labelGamelistStatus->setText(status());
         qApp->processEvents();
         QString gameName = remainingGames[i];
         bool isBIOS = qmc2BiosROMs.contains(gameName);
@@ -2792,7 +2795,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 		xmlFound = true;
 	} else {
 #if defined(QMC2_EMUTYPE_MESS)
-		while ( !xmlFound && xmlCounter < xmlLines.count() ) {
+		while ( !xmlFound && xmlCounter < xmlLines.count() && !qmc2StopParser ) {
 			xmlFound = (xmlLines[xmlCounter].contains(QString("<machine name=\"%1\"").arg(gameName)));
 			if ( !xmlFound ) {
 				if ( xmlLines[xmlCounter].contains("<machine name=\"") ) {
@@ -2805,7 +2808,7 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
 			xmlCounter++;
 		}
 #elif defined(QMC2_EMUTYPE_MAME)
-		while ( !xmlFound && xmlCounter < xmlLines.count() ) {
+		while ( !xmlFound && xmlCounter < xmlLines.count() && !qmc2StopParser ) {
 			xmlFound = (xmlLines[xmlCounter].contains(QString("<game name=\"%1\"").arg(gameName)));
 			if ( !xmlFound ) {
 				if ( xmlLines[xmlCounter].contains("<game name=\"") ) {
@@ -2917,6 +2920,8 @@ void Gamelist::verifyFinished(int exitCode, QProcess::ExitStatus exitStatus)
           numUnknownGames++;
         }
       }
+      if ( !remainingGames.isEmpty() && !qmc2StopParser )
+        qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("done (checking real status of %n set(s) not mentioned during full audit)", "", remainingGames.count()));
     }
     qmc2MainWindow->labelGamelistStatus->setText(status());
   }
