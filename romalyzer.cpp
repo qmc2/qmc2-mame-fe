@@ -2386,6 +2386,7 @@ void ROMAlyzer::runSetRewriter()
 	if ( loadOkay ) {
 		if ( !checkBoxSetRewriterSelfContainedSets->isChecked() ) {
 			// remove redundant files (if applicable)
+			bool hasValidParent = !setRewriterItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty();
 			for (int i = 0; i < setRewriterItem->childCount(); i++) {
 				QTreeWidgetItem *childItem = setRewriterItem->child(i);
 				if ( !childItem->text(QMC2_ROMALYZER_COLUMN_MERGE).isEmpty() ) {
@@ -2394,7 +2395,7 @@ void ROMAlyzer::runSetRewriter()
 						foreach (QStringList fileEntry, fileEntries) {
 							if ( fileEntry.count() == 3 ) { // valid entry?
 								QString localName = fileEntry[2];
-								if ( outputDataMap.contains(localName) ) {
+								if ( outputDataMap.contains(localName) && hasValidParent ) {
 									log(tr("set rewriter: removing redundant file '%1' with CRC '%2' from output data").arg(localName).arg(childItem->text(QMC2_ROMALYZER_COLUMN_CRC)));
 									outputDataMap.remove(localName);
 								}
