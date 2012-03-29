@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.36, 28-MAR-2012</h3>
+<h3>CHANGES - v0.36, 29-MAR-2012</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.36, 28-MAR-2012:</b></p>
+<p><b>v0.36, 29-MAR-2012:</b></p>
 <ul>
   <li>fix: ROMAlyzer: don't stop searching for CHDs at the first ROM path (when there are multiple ROM paths)</li>
   <li>fix: allow embedding of (MAME/MESS-like) foreign emulators again -- changes made in 0.35 prevented this completely</li>
@@ -40,6 +40,7 @@ inf: informational only
   <li>imp: ROMAlyzer: log possible driver XML bugs where a merge-name is given without a parent set to take it from (other than this, these cases are ignored and treated as 'good' merge-states)</li>
   <li>imp: when registering foreign emulators, the existance of the <i>$ID$</i> placeholder on the supplied command line is now indicated through a green/yellow colored label (when $ID$ is missing, the configuration will most likely not work)</li>
   <li>imp: allow the specification of the emulator's working directory already in the welcome dialog</li>
+  <li>imp: updated redistributed Qt translations from Qt 4.8.1</li>
   <li>new: ROMAlyzer: added support for CHD v5 (new since MAME/MESS 0.145u1) -- built-in analysis will work for CHD v3, v4 and v5; however, note that all 'CHD manager' functionality <b>requires chdman from MAME/MESS 0.145u1+ now</b></li>
   <li>new: ROMAlyzer: added a function to store the current log contents to a file</li>
   <li>new: added tear-off capability to all menus within menu-bars</li>
