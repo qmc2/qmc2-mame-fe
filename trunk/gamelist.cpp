@@ -1504,10 +1504,12 @@ void Gamelist::parse()
             else
               gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, "--");
             if ( isDevice ) {
-	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, tr("N/A"));
+              if ( gamePlayers != "?" )
+	        gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
+              else
+	        gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, tr("N/A"));
 	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr("N/A"));
-            }
-	    else {
+            } else {
 	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
 	      gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr(gameStatus.toAscii()));
             }
@@ -1771,7 +1773,10 @@ void Gamelist::parse()
         else
           gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_RTYPES, "--");
         if ( isDevice ) {
-	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, tr("N/A"));
+          if ( gamePlayers != "?" )
+	    gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
+          else
+	    gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, tr("N/A"));
 	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_DRVSTAT, tr("N/A"));
 	} else {
 	  gameDescriptionItem->setText(QMC2_GAMELIST_COLUMN_PLAYERS, gamePlayers);
