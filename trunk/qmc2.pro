@@ -164,6 +164,11 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		RESOURCES += qmc2.qrc
 		QMAKE_MAKEFILE = Makefile.qmake
 
+		# QtWidgets is a separate module in Qt 5
+		greaterThan(QT_MAJOR_VERSION, 4) {
+			QT += widgets
+		}
+
 		# platform specific stuff
 		macx {
 			QMAKESPEC = macx-xcode
