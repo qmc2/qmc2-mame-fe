@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - CHANGES</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>CHANGES - v0.36, 06-APR-2012</h3>
+<h3>CHANGES - v0.36, 07-APR-2012</h3>
 <p>
 fix: general bug fixes<br>
 imp: improved functionality<br>
@@ -14,7 +14,7 @@ wip: (incomplete) work in progress<br>
 doc: documentation changes<br>
 inf: informational only
 </p>
-<p><b>v0.36, 06-APR-2012:</b></p>
+<p><b>v0.36, 07-APR-2012:</b></p>
 <ul>
   <li>fix: ROMAlyzer: don't stop searching for CHDs at the first ROM path (when there are multiple ROM paths)</li>
   <li>fix: allow embedding of (MAME/MESS-like) foreign emulators again -- changes made in 0.35 prevented this completely</li>
@@ -29,6 +29,7 @@ inf: informational only
   <li>fix: don't start a verification process when the ROM state cache can't be opened for writing</li>
   <li>fix: file-chooser: the machine-dependent software-folder was not correctly pre-selected when existing device configurations were loaded in parallel</li>
   <li>fix: MESS device configurator: avoid a rare crash when systems are hovered very quickly (asynchronous updates may otherwise work on meanwhile invalid data)</li>
+  <li>fix: clear favorites and play-history upon reload and make sure the last selected game/machine is correctly re-selected (if applicable)</li>
   <li>imp: ROMAlyzer: LRU-caching XML data positions in order to speed up merge-processing</li>
   <li>imp: updated the MAME variant's logo with an improved version from JacKc</li>
   <li>imp: MESS device configurator: log a warning when '-listslots' crashes</li>
