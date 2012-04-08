@@ -93,7 +93,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		~MESSDeviceConfigurator();
 
 		QString &getXmlData(QString);
-		QString &getXmlDataWithEnabledSlots(QString, QString);
+		QString &getXmlDataWithEnabledSlots(QString);
 
 	public slots:
 		void preselectSlots();
