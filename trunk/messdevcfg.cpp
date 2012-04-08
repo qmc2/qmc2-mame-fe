@@ -329,10 +329,10 @@ MESSDeviceConfigurator::~MESSDeviceConfigurator()
 		qmc2Config->setValue(QMC2_FRONTEND_PREFIX + "Layout/MESSDeviceConfigurator/FileChooserDeviceInstance", comboBoxDeviceInstanceChooser->currentText());
 }
 
-QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName, QString configName)
+QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName = %1, QString configName = %2)").arg(machineName).arg(configName));
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName = %1)").arg(machineName));
 #endif
 
 	slotXmlBuffer.clear();
@@ -622,7 +622,7 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 			configName = itemList[0]->text();
 	}
 
-	QString xmlBuffer = getXmlDataWithEnabledSlots(messMachineName, configName);
+	QString xmlBuffer = getXmlDataWithEnabledSlots(messMachineName);
 
 	if ( xmlBuffer.isEmpty() ) {
 		refreshRunning = false;
@@ -697,6 +697,7 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 		treeWidgetDeviceSetup->openPersistentEditor(dummyItem, QMC2_DEVCONFIG_COLUMN_FILE);
 		delete treeWidgetDeviceSetup->takeTopLevelItem(1);
 		treeWidgetDeviceSetup->setUpdatesEnabled(true);
+		qApp->processEvents();
 	}
 
 	dontIgnoreNameChange = true;
@@ -801,6 +802,7 @@ bool MESSDeviceConfigurator::load()
 		treeWidgetDeviceSetup->openPersistentEditor(dummyItem, QMC2_DEVCONFIG_COLUMN_FILE);
 		delete treeWidgetDeviceSetup->takeTopLevelItem(1);
 		treeWidgetDeviceSetup->setUpdatesEnabled(true);
+		qApp->processEvents();
 	}
 
 	QMapIterator<QString, QStringList> it(messSystemSlotMap[messMachineName]);
