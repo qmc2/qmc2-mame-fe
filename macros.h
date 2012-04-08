@@ -608,4 +608,7 @@
 #define QMC2_ORGANIZATION_NAME			QString("qmc2")
 #define QMC2_ORGANIZATION_DOMAIN		QString("qmc2.arcadehits.net")
 
+// time to wait before retrying operations when 'critical sections' are active
+#define QMC2_CRITSECT_POLLING_TIME		10
+
 #endif

@@ -170,6 +170,7 @@ bool qmc2IgnoreItemActivation = false;
 bool qmc2StartEmbedded = false;
 bool qmc2FifoIsOpen = false;
 bool qmc2SuppressQtMessages = false;
+bool qmc2CriticalSection = false;
 int qmc2GamelistResponsiveness = 100;
 int qmc2UpdateDelay = 10;
 QFile *qmc2FrontendLogFile = NULL;
@@ -3525,6 +3526,13 @@ void MainWindow::softwareLoadInterrupted()
 
 void MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex)
 {
+  // avoids crashes on critical sections
+  if ( qmc2CriticalSection ) {
+     retry_tabWidgetGameDetail_currentIndex = currentIndex;
+     QTimer::singleShot(QMC2_CRITSECT_POLLING_TIME, this, SLOT(retry_tabWidgetGameDetail_currentChanged()));
+     return;
+  }
+
 #ifdef QMC2_DEBUG
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_tabWidgetGameDetail_currentChanged(int currentIndex = " + QString::number(currentIndex) + ")");
 #endif
