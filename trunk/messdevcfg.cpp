@@ -16,6 +16,7 @@ extern bool qmc2EarlyStartup;
 extern QString qmc2FileEditStartPath;
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
 extern int qmc2DefaultLaunchMode;
+extern bool qmc2CriticalSection;
 
 QMap<QString, QString> messXmlDataCache;
 QList<FileEditWidget *> messFileEditWidgetList;
@@ -335,6 +336,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName = %1)").arg(machineName));
 #endif
 
+	qmc2CriticalSection = true;
 	slotXmlBuffer.clear();
 
 	QString userScopePath = QMC2_DYNAMIC_DOT_PATH;
@@ -383,6 +385,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 		}
 	} else {
 		qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("FATAL: can't start MESS executable within a reasonable time frame, giving up"));
+		qmc2CriticalSection = false;
 		return slotXmlBuffer;
 	}
 
@@ -429,6 +432,7 @@ QString &MESSDeviceConfigurator::getXmlDataWithEnabledSlots(QString machineName)
 		}
 	}
 
+	qmc2CriticalSection = false;
 	return slotXmlBuffer;
 }
 
@@ -615,19 +619,18 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 
 	refreshRunning = true;
 
-	QList<QListWidgetItem *> itemList = listWidgetDeviceConfigurations->selectedItems();
-	QString configName;
-	if ( !itemList.isEmpty() ) {
-		if ( itemList[0]->text() != tr("No devices") )
-			configName = itemList[0]->text();
-	}
-
 	QString xmlBuffer = getXmlDataWithEnabledSlots(messMachineName);
 
 	if ( xmlBuffer.isEmpty() ) {
 		refreshRunning = false;
 		return false;
 	}
+
+	QList<QListWidgetItem *> itemList = listWidgetDeviceConfigurations->selectedItems();
+	QString configName;
+	if ( !itemList.isEmpty() )
+		if ( itemList[0]->text() != tr("No devices") )
+			configName = itemList[0]->text();
 
 	treeWidgetDeviceSetup->clear();
 

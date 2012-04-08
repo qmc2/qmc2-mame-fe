@@ -152,6 +152,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     QTimer activityCheckTimer;
     bool activityState;
     QString urlSectionRegExp;
+    int retry_tabWidgetGameDetail_currentIndex;
 
     QString foreignEmuName;
     QString foreignID;
@@ -355,6 +356,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
     // other
     void on_tabWidgetGameDetail_currentChanged(int);
+    void retry_tabWidgetGameDetail_currentChanged() { on_tabWidgetGameDetail_currentChanged(retry_tabWidgetGameDetail_currentIndex); };
     void on_tabWidgetGamelist_currentChanged(int);
     void on_tabWidgetLogsAndEmulators_currentChanged(int);
     void on_tabWidgetLogsAndEmulators_updateCurrent() { on_tabWidgetLogsAndEmulators_currentChanged(tabWidgetLogsAndEmulators->currentIndex()); };
