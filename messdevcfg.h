@@ -58,6 +58,7 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 		bool dontIgnoreNameChange;
 		bool refreshRunning;
 		bool updateSlots;
+		bool isLoading;
 		bool fileChooserSetup;
 		MESSDeviceFileDelegate fileEditDelegate;
 		QString messMachineName;
@@ -103,7 +104,6 @@ class MESSDeviceConfigurator : public QWidget, public Ui::MESSDeviceConfigurator
 
 		// auto-connected callback functions
 		void on_lineEditConfigurationName_textChanged(const QString &);
-		void on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *);
 		void on_toolButtonNewConfiguration_clicked();
 		void on_toolButtonCloneConfiguration_clicked();
 		void on_toolButtonSaveConfiguration_clicked();

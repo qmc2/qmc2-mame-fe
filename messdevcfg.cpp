@@ -152,7 +152,7 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 #endif
 	dirModel = NULL;
 	fileModel = NULL;
-	fileChooserSetup = refreshRunning = dontIgnoreNameChange = false;
+	fileChooserSetup = refreshRunning = dontIgnoreNameChange = isLoading = false;
 	updateSlots = true;
 
 	lineEditConfigurationName->blockSignals(true);
@@ -607,7 +607,7 @@ void MESSDeviceConfigurator::slotOptionChanged(int index)
 bool MESSDeviceConfigurator::refreshDeviceMap()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfigurator::refreshDeviceMap()");
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::refreshDeviceMap(): refreshRunning = %1").arg(refreshRunning ? "true" : "false"));
 #endif
 
 	if ( refreshRunning )
@@ -620,11 +620,6 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 	if ( !itemList.isEmpty() ) {
 		if ( itemList[0]->text() != tr("No devices") )
 			configName = itemList[0]->text();
-	}
-
-	if ( configName.isEmpty() ) {
-		refreshRunning = false;
-		return false;
 	}
 
 	QString xmlBuffer = getXmlDataWithEnabledSlots(messMachineName, configName);
@@ -705,10 +700,9 @@ bool MESSDeviceConfigurator::refreshDeviceMap()
 	}
 
 	dontIgnoreNameChange = true;
-	updateSlots = false;
+	updateSlots = isLoading;
 	on_lineEditConfigurationName_textChanged(configName);
-	updateSlots = true;
-	dontIgnoreNameChange = false;
+	dontIgnoreNameChange = updateSlots = false;
 
 	refreshRunning = false;
 
@@ -741,6 +735,8 @@ bool MESSDeviceConfigurator::load()
 			refreshRunning = false;
 			return false;
 		}
+
+	isLoading = true;
 
 	setEnabled(true);
 
@@ -852,14 +848,14 @@ bool MESSDeviceConfigurator::load()
 	QStringList configurationList = qmc2Config->childGroups();
 	qmc2Config->endGroup();
 
+	QListWidgetItem *selectedItem = NULL;
 	foreach (QString configName, configurationList) {
 		configurationMap[configName].first = qmc2Config->value(group + QString("/%1/Instances").arg(configName)).toStringList();
 		configurationMap[configName].second = qmc2Config->value(group + QString("/%1/Files").arg(configName)).toStringList();
 		slotMap[configName].first = qmc2Config->value(group + QString("/%1/Slots").arg(configName), QStringList()).toStringList();
 		slotMap[configName].second = qmc2Config->value(group + QString("/%1/SlotOptions").arg(configName), QStringList()).toStringList();
 		QListWidgetItem *item = new QListWidgetItem(configName, listWidgetDeviceConfigurations);
-		if ( selectedConfiguration == configName )
-			listWidgetDeviceConfigurations->setCurrentItem(item);
+		if ( selectedConfiguration == configName ) selectedItem = item;
 	}
 
 	qmc2FileEditStartPath = qmc2Config->value(group + "/DefaultDeviceDirectory").toString();
@@ -873,16 +869,19 @@ bool MESSDeviceConfigurator::load()
 	}
 
 	QListWidgetItem *noDeviceItem = new QListWidgetItem(tr("No devices"), listWidgetDeviceConfigurations);
-	if ( listWidgetDeviceConfigurations->currentItem() == NULL ) {
+	if ( selectedItem == NULL ) {
 		dontIgnoreNameChange = true;
 		listWidgetDeviceConfigurations->setCurrentItem(noDeviceItem);
 		dontIgnoreNameChange = false;
 	} else {
 		refreshRunning = false;
+		updateSlots = dontIgnoreNameChange = true;
+		listWidgetDeviceConfigurations->setCurrentItem(selectedItem);
 		QTimer::singleShot(0, this, SLOT(refreshDeviceMap()));
+		updateSlots = dontIgnoreNameChange = false;
 	}
 
-	refreshRunning = false;
+	refreshRunning = isLoading = false;
 	return true;
 }
 
@@ -1086,16 +1085,6 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QString &text = %1)").arg(text));
 #endif
 
-	// this avoids a rare crash when the user hovers systems very quickly
-	static QString myLastMessMachineName;
-	if ( myLastMessMachineName.isEmpty() )
-		myLastMessMachineName = messMachineName;
-	else if ( myLastMessMachineName != messMachineName ) {
-		myLastMessMachineName = messMachineName;
-		return;
-	}
-	myLastMessMachineName = messMachineName;
-
 	toolButtonSaveConfiguration->setEnabled(false);
 	if ( text == tr("No devices") ) {
 		toolButtonCloneConfiguration->setEnabled(false);
@@ -1118,28 +1107,22 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 		toolButtonCloneConfiguration->setEnabled(false);
 		toolButtonSaveConfiguration->setEnabled(false);
 		toolButtonRemoveConfiguration->setEnabled(false);
-		treeWidgetDeviceSetup->setEnabled(true);
+		treeWidgetDeviceSetup->setEnabled(false);
 	}
 
 	if ( dontIgnoreNameChange ) {
+		/*
 		QList<QTreeWidgetItem *> setupItemList = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
 		foreach (QTreeWidgetItem *setupItem, setupItemList)
 			setupItem->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, QString());
 		qApp->processEvents();
+		*/
 		QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(text, Qt::MatchExactly);
-		if ( matchedItemList.count() > 0 ) {
+		if ( !matchedItemList.isEmpty() ) {
 			matchedItemList[0]->setSelected(true);
 			listWidgetDeviceConfigurations->setCurrentItem(matchedItemList[0]);
 			listWidgetDeviceConfigurations->scrollToItem(matchedItemList[0]);
 			QString configName = matchedItemList[0]->text();
-			if ( configurationMap.contains(configName) ) {
-				QPair<QStringList, QStringList> valuePair = configurationMap[configName];
-				for (int i = 0; i < valuePair.first.count(); i++) {
-					QList<QTreeWidgetItem *> itemList = treeWidgetDeviceSetup->findItems(valuePair.first[i], Qt::MatchExactly);
-					if ( itemList.count() > 0 )
-						itemList[0]->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, valuePair.second[i]);
-				}
-			}
 			if ( updateSlots ) {
 				QList<QTreeWidgetItem *> itemList = treeWidgetSlotOptions->findItems("*", Qt::MatchWildcard);
 				foreach (QTreeWidgetItem *item, itemList) {
@@ -1168,6 +1151,14 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 					}
 				}
 				refreshDeviceMap();
+			}
+			if ( configurationMap.contains(configName) ) {
+				QPair<QStringList, QStringList> valuePair = configurationMap[configName];
+				for (int i = 0; i < valuePair.first.count(); i++) {
+					QList<QTreeWidgetItem *> itemList = treeWidgetDeviceSetup->findItems(valuePair.first[i], Qt::MatchExactly);
+					if ( itemList.count() > 0 )
+						itemList[0]->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, valuePair.second[i]);
+				}
 			}
 		} else {
 			listWidgetDeviceConfigurations->clearSelection();
@@ -1202,20 +1193,9 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_currentTextChange
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_currentTextChanged(const QString &text = %1)").arg(text));
 #endif
 
-	dontIgnoreNameChange = true;
+	dontIgnoreNameChange = updateSlots = true;
 	lineEditConfigurationName->setText(text);
-	dontIgnoreNameChange = false;
-}
-
-void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem *item)
-{
-#ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemClicked(QListWidgetItem * = %1)").arg((qulonglong)item));
-#endif
-
-	dontIgnoreNameChange = true;
-	lineEditConfigurationName->setText(item->text());
-	dontIgnoreNameChange = false;
+	dontIgnoreNameChange = updateSlots = false;
 }
 
 void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_customContextMenuRequested(const QPoint &point)
@@ -1848,7 +1828,7 @@ void MESSDeviceConfigurator::on_splitterFileChooser_splitterMoved(int, int)
 MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent = %1)").arg((qulonglong) parent));
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *parent = %1)").arg((qulonglong) parent));
 #endif
 
 	parentTreeWidget = parent;
@@ -1857,7 +1837,7 @@ MESSDeviceConfiguratorXmlHandler::MESSDeviceConfiguratorXmlHandler(QTreeWidget *
 MESSDeviceConfiguratorXmlHandler::~MESSDeviceConfiguratorXmlHandler()
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::~MESSDeviceConfiguratorXmlHandler()");
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::~MESSDeviceConfiguratorXmlHandler()");
 #endif
 
 }
@@ -1865,7 +1845,7 @@ MESSDeviceConfiguratorXmlHandler::~MESSDeviceConfiguratorXmlHandler()
 bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &attributes)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::startElement(...)");
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::startElement(...)");
 #endif
 
 	if ( qName == "device" ) {
@@ -1892,7 +1872,7 @@ bool MESSDeviceConfiguratorXmlHandler::startElement(const QString &namespaceURI,
 bool MESSDeviceConfiguratorXmlHandler::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::endElement(...)");
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: MESSDeviceConfiguratorXmlHandler::endElement(...)");
 #endif
 
 	if ( qName == "device" ) {
@@ -1918,7 +1898,7 @@ bool MESSDeviceConfiguratorXmlHandler::endElement(const QString &namespaceURI, c
 bool MESSDeviceConfiguratorXmlHandler::characters(const QString &str)
 {
 #ifdef QMC2_DEBUG
-	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfiguratorXmlHandler::characters(const QString &str = %1)").arg(str));
+//	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: MESSDeviceConfiguratorXmlHandler::characters(const QString &str = %1)").arg(str));
 #endif
 
 	return true;
