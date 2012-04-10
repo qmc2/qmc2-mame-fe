@@ -2778,7 +2778,8 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 				QString targetType = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_TYPE);
 				QString targetFile = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_FILENAME);
 				QString targetPath = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_PATH);
-				labelStatus->setText(tr("Repairing set '%1' - %2").arg(badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_ID)).arg(badList.count() - counter));
+				QString badSetName = badItem->text(QMC2_ROMALYZER_CSWIZ_COLUMN_ID);
+				labelStatus->setText(tr("Repairing set '%1' - %2").arg(badSetName).arg(badList.count() - counter));
 				log(tr("checksum wizard: repairing %1 file '%2' in '%3' from repro template").arg(targetType).arg(targetFile).arg(targetPath));
 				qApp->processEvents();
 
@@ -2807,6 +2808,26 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 										log(tr("checksum wizard: an entry with the name '%1' already exists, recreating the ZIP from scratch to replace the bad file").arg(targetFile));
 										targetDataMap.remove(targetDataMap.key(targetFile.toAscii()));
 										targetFileMap.remove(targetFileMap.key(targetFile.toAscii()));
+									}
+									// we need to make sure that only 'valid' (aka 'accepted') CRCs are reproduced
+									QStringList acceptedCRCs;
+									QList<QTreeWidgetItem *> itemList = treeWidgetChecksums->findItems(badSetName + " ", Qt::MatchStartsWith, QMC2_ROMALYZER_COLUMN_GAME);
+									if ( !itemList.isEmpty() ) {
+										QTreeWidgetItem *item = itemList[0];
+										for (int i = 0; i < item->childCount(); i++) {
+											QString crc = item->child(i)->text(QMC2_ROMALYZER_COLUMN_CRC);
+											if ( !crc.isEmpty() )
+												acceptedCRCs << QString::number(crc.toULong(0, 16));
+										}
+									}
+									QMapIterator<QString, QByteArray> it(targetDataMap);
+									while ( it.hasNext() ) {
+										it.next();
+										QString crc = it.key();
+										if ( !acceptedCRCs.contains(crc) ) {
+											targetDataMap.remove(crc);
+											targetFileMap.remove(crc);
+										}
 									}
 									QString newName = targetPath + QString(".qmc2-backup.%1").arg(QDateTime::currentDateTime().toString("yyyyMMddhhmmsszzz"));
 									if ( f.rename(newName) ) {
