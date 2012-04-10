@@ -2521,8 +2521,9 @@ void ROMAlyzer::on_pushButtonChecksumWizardAnalyzeSelectedSets_clicked()
 // reads all files in the ZIP 'fileName' and maps the data:
 // - CRC codes are mapped to their data in 'dataMap'
 // - CRC codes are mapped to their file names in 'fileMap'
+// - existing filenames will be appended to fileList (if != NULL)
 // - will also read files with incorrect CRCs (compared to their header CRCs)
-bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *dataMap, QMap<QString, QString> *fileMap)
+bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *dataMap, QMap<QString, QString> *fileMap, QStringList *fileList)
 {
 	bool success = true;
 	unzFile zipFile = unzOpen((const char *)fileName.toAscii());
@@ -2532,7 +2533,10 @@ bool ROMAlyzer::readAllZipData(QString fileName, QMap<QString, QByteArray> *data
 		unz_file_info zipInfo;
 		do {
 			if ( unzGetCurrentFileInfo(zipFile, &zipInfo, ioBuffer, QMC2_ROMALYZER_ZIP_BUFFER_SIZE, 0, 0, 0, 0) == UNZ_OK ) {
-				fileMap->insert(QString::number(zipInfo.crc), QString((const char *)ioBuffer));
+				QString fn = QString((const char *)ioBuffer);
+				fileMap->insert(QString::number(zipInfo.crc), fn);
+				if ( fileList )
+					fileList->append(fn);
 				if ( unzOpenCurrentFile(zipFile) == UNZ_OK ) {
 					qint64 len;
 					QByteArray fileData;
@@ -2788,10 +2792,22 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 						int appendType = APPEND_STATUS_ADDINZIP;
 						if ( f.exists() ) {
 							log(tr("checksum wizard: target ZIP exists, loading complete data and structure"));
-							if ( readAllZipData(targetPath, &targetDataMap, &targetFileMap) ) {
+							QStringList fileNameList;
+							if ( readAllZipData(targetPath, &targetDataMap, &targetFileMap, &fileNameList) ) {
 								log(tr("checksum wizard: target ZIP successfully loaded"));
-								if ( targetDataMap.contains(sourceCRC) ) {
-									log(tr("checksum wizard: an entry with the CRC '%1' already exists, recreating the ZIP from scratch to replace the bad file").arg(sourceCRC));
+								bool crcExists = targetDataMap.contains(sourceCRC);
+								bool fileExists = fileNameList.contains(targetFile);
+								if ( crcExists || fileExists ) {
+									if ( crcExists ) {
+										log(tr("checksum wizard: an entry with the CRC '%1' already exists, recreating the ZIP from scratch to replace the bad file").arg(sourceCRC));
+										targetDataMap.remove(sourceCRC);
+										targetFileMap.remove(sourceCRC);
+									}
+									if ( fileExists ) {
+										log(tr("checksum wizard: an entry with the name '%1' already exists, recreating the ZIP from scratch to replace the bad file").arg(targetFile));
+										targetDataMap.remove(targetDataMap.key(targetFile.toAscii()));
+										targetFileMap.remove(targetFileMap.key(targetFile.toAscii()));
+									}
 									QString newName = targetPath + QString(".qmc2-backup.%1").arg(QDateTime::currentDateTime().toString("yyyyMMddhhmmsszzz"));
 									if ( f.rename(newName) ) {
 										log(tr("checksum wizard: backup file '%1' successfully created").arg(newName));
@@ -2801,9 +2817,8 @@ void ROMAlyzer::on_pushButtonChecksumWizardRepairBadSets_clicked()
 										log(tr("checksum wizard: FATAL: failed to create backup file '%1', aborting"));
 										saveOkay = false;
 									}
-								} else {
-									log(tr("checksum wizard: no entry with the CRC '%1' was found, adding the missing file to the existing ZIP").arg(sourceCRC));
-								}
+								} else
+									log(tr("checksum wizard: no entry with the CRC '%1' or name '%2' was found, adding the missing file to the existing ZIP").arg(sourceCRC).arg(targetFile));
 							} else {
 								log(tr("checksum wizard: FATAL: failed to load target ZIP, aborting"));
 								saveOkay = false;
