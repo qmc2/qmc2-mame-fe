@@ -1069,7 +1069,7 @@ void ROMAlyzer::analyze()
 
 	if ( gameOkay || !checkBoxSetRewriterGoodSetsOnly->isChecked() )
 		if ( groupBoxSetRewriter->isChecked() )
-			if ( checkBoxSetRewriterWhileAnalyzing->isChecked() && !qmc2StopParser )
+			if ( checkBoxSetRewriterWhileAnalyzing->isChecked() && !qmc2StopParser && !wizardSearch )
 				runSetRewriter();
       }
       if ( qmc2StopParser )
