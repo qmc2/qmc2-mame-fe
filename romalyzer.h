@@ -203,7 +203,7 @@ class ROMAlyzer : public QDialog, public Ui::ROMAlyzer
 
     void saveState() { closeEvent(NULL); }
     void log(QString);
-    bool readAllZipData(QString, QMap<QString, QByteArray> *, QMap<QString, QString> *);
+    bool readAllZipData(QString, QMap<QString, QByteArray> *, QMap<QString, QString> *, QStringList *fileList = NULL);
     bool readZipFileData(QString, QString, QByteArray *);
     bool writeAllZipData(QString, QMap<QString, QByteArray> *, bool writeLog = false, QProgressBar *pBar = NULL);
     QString humanReadable(quint64);
