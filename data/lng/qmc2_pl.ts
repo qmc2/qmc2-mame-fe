@@ -1542,82 +1542,82 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../customidsetup.ui" line="14"/>
         <source>Setup custom IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw niestandardowe ID</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="28"/>
         <source>Display format</source>
-        <translation type="unfinished"></translation>
+        <translation>Format wyświetlania</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="35"/>
         <source>Choose / edit the format used to display the IDs in menu items -- valid placeholder macros are $ID$ and $DESCRIPTION$</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz / edytuj format używany do wyświetlania ID w elementach menu -- ważnymi makrami są $ID$ oraz $DESCRIPTION$</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="168"/>
         <source>Edit custom IDs for this emulator (double-click an item to edit)</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj niestandardowe ID tego emulatora (kliknięcie elementu dwa razy rozpoczyna edycję)</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="199"/>
         <source>ID</source>
-        <translation type="unfinished">ID</translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="204"/>
         <source>Description</source>
-        <translation type="unfinished">Opis</translation>
+        <translation>Opis</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="231"/>
         <source>Cancel ID customization and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuluj dostosowywanie ID i zamknij okno dialogowe</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="234"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Anuluj</translation>
+        <translation>&amp;Anuluj</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="134"/>
         <source>Remove the currently selected ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń obecnie wybrane ID</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="154"/>
         <source>Add a new ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj nowe ID</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="251"/>
         <source>Accept customized IDs and close dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaakceptuj dostosowane ID i zamknij okno dialogowe</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="254"/>
         <source>&amp;Ok</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="86"/>
         <source>Copy IDs from another foreign emulator (if any)</source>
-        <translation type="unfinished"></translation>
+        <translation>Skopiuj ID z innego zewnętrznego emulatora (jeśli istnieje)</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="89"/>
         <source>Copy IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Skopiuj ID</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="108"/>
         <source>Enable / disable sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącz / wyłącz sortowanie</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="22"/>
         <source>Setup custom IDs for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustawianie niestandardowego ID dla &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
@@ -4051,19 +4051,19 @@ p, li { white-space: pre-wrap; }
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2782"/>
         <source>checking real status of %n set(s) not mentioned during full audit</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>sprawdzanie rzeczywistego statusu %n zestawu nie wspomnianego podczas analizy</numerusform>
+            <numerusform>sprawdzanie rzeczywistego statusu %n zestawów nie wspomnianych podczas analizy</numerusform>
+            <numerusform>sprawdzanie rzeczywistego statusu %n zestawów nie wspomnianych podczas analizy</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2933"/>
         <source>done (checking real status of %n set(s) not mentioned during full audit)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>ukończono (sprawdzanie rzeczywistego statusu %n zestawu nie wspomnianego podczas analizy)</numerusform>
+            <numerusform>ukończono (sprawdzanie rzeczywistego statusu %n zestawów nie wspomnianych podczas analizy)</numerusform>
+            <numerusform>ukończono (sprawdzanie rzeczywistego statusu %n zestawów nie wspomnianych podczas analizy)</numerusform>
         </translation>
     </message>
     <message>
@@ -4133,7 +4133,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="37"/>
         <source>WYSIWYG</source>
-        <translation type="unfinished"></translation>
+        <translation>WYSIWYG</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="47"/>
@@ -4605,7 +4605,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="60"/>
         <source>WYSIWYG</source>
-        <translation type="unfinished"></translation>
+        <translation>WYSIWYG</translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="219"/>
@@ -5737,7 +5737,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="517"/>
         <source>WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: zewnętrzne polecenie używane do odczytu dostępnych slotów systemu przestało działać, opcje slotów mogą nie być dostępne</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="595"/>
@@ -6102,7 +6102,7 @@ Czy wybrać inną nazwę?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="2456"/>
         <source>&amp;Foreign IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zewnętrzne ID</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2471"/>
@@ -6294,7 +6294,7 @@ Czy wybrać inną nazwę?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3334"/>
         <source>Ctrl+Shift+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+C</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3385"/>
@@ -8903,8 +8903,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
             <numerusform></numerusform>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -10711,12 +10709,12 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="140"/>
         <source>IT (Italian)</source>
-        <translation type="unfinished"></translation>
+        <translation>IT (włoski)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="155"/>
         <source>RO (Romanian)</source>
-        <translation type="unfinished"></translation>
+        <translation>RO (rumuński)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2214"/>
@@ -10892,17 +10890,17 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="4549"/>
         <source>Indicates if the $ID$ placeholder is missing on the supplied command line (yellow) or not (green)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskazuje, czy $ID$ brakuje w podanym wierszu polecenia (żółty) czy nie (zielony)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4590"/>
         <source>Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastąp</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4604"/>
         <source>Arguments passed to the emulator -- use $ID$ as placeholder for the unique set ID, $DESCRIPTION$ for its description</source>
-        <translation type="unfinished"></translation>
+        <translation>Parametry przekazywane do emulatora -- użyj $ID$ jako nazwy zestawu, $DESCRIPTION$ dla jego opisu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3746"/>
@@ -10962,7 +10960,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="4672"/>
         <source>Custom IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>Niestandardowe ID</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4683"/>
@@ -10992,17 +10990,17 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="4686"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowy</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4753"/>
         <source>Emulator name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa emulatora</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4766"/>
         <source> Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4820"/>
@@ -11589,13 +11587,13 @@ Ponowić próbę osadzania?</translation>
         <location filename="../../options.cpp" line="2331"/>
         <location filename="../../options.cpp" line="3512"/>
         <source>Custom IDs...</source>
-        <translation type="unfinished"></translation>
+        <translation>Niestandardowe ID...</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2332"/>
         <location filename="../../options.cpp" line="3513"/>
         <source>Specify pre-defined foreign IDs for this emulator, launchable through the menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw predefiniowane zewnętrzne,uruchamialne z menu, ID dla tego emulatora</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2832"/>
@@ -12465,7 +12463,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="282"/>
         <source>Machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Bufor listy maszyn</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="284"/>
@@ -13998,87 +13996,87 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.ui" line="1426"/>
         <source>Set rename tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Narzędzie zmiany nazwy zestawów</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1451"/>
         <source>Search for matches now!</source>
-        <translation type="unfinished"></translation>
+        <translation>Szukaj pasujących teraz!</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1477"/>
         <source>Rename selected sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień nazwy wybranych zestawów</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1480"/>
         <source>Rename</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień nazwę</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1494"/>
         <source>Search results (checksum matches)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyniki wyszukiwania (dopasowania sum kontrolnych)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1519"/>
         <source>ID / Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>ID / Nazwa pliku</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1524"/>
         <source>Old ID / FIlename</source>
-        <translation type="unfinished"></translation>
+        <translation>Stare ID / Nazwa pliku</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1552"/>
         <source>Choose the level of automated set renamer operations</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz poziom automatyzacji narzędzia zmieniającego nazwy</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1561"/>
         <source>Automatically select sure matches</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczny wybór pewnych dopasowań</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1566"/>
         <source>Automatically select sure matches and rename sets accordingly</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczny wybór pewnych dopasowań i odpowiednia zmiana nazw</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1578"/>
         <source>Old XML</source>
-        <translation type="unfinished"></translation>
+        <translation>Stary XML</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1591"/>
         <source>Old XML data input file (produced with &apos;-listxml&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Stary plik wejściowy danych XML (utworzony za pomocą (&apos;-listxml&apos;)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1604"/>
         <source>Browse old XML data input file (produced with &apos;-listxml&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wskaż stary plik wejściowy danych XML (utworzony za pomocą (&apos;-listxml&apos;)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1628"/>
         <source>Export selected results to a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksport wybranych wyników do pliku</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1631"/>
         <source>Export results...</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksport wyników...</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1651"/>
         <source>Import results from a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Import wyników z pliku</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1654"/>
         <source>Import results...</source>
-        <translation type="unfinished"></translation>
+        <translation>Import wyników...</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1679"/>
@@ -14119,12 +14117,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.ui" line="1438"/>
         <source>Specify sets to be included in the search - wildcards allowed, use space as delimiter for multiple sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwy zestawów do przeszukania - dzikie karty są dozwolone, spacja rozdziela kolejne zestawy</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1529"/>
         <source>Match probability</source>
-        <translation type="unfinished"></translation>
+        <translation>Prawdopodobieństwo dopasowania</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1702"/>
@@ -14536,42 +14534,42 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="110"/>
         <source>zlib (Deflate)</source>
-        <translation type="unfinished"></translation>
+        <translation>zlib (Deflate)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="111"/>
         <source>lzma (LZMA)</source>
-        <translation type="unfinished"></translation>
+        <translation>lzma (LZMA)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="112"/>
         <source>huff (Huffman)</source>
-        <translation type="unfinished"></translation>
+        <translation>huff (Huffman)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="113"/>
         <source>flcb (FLAC, big-endian)</source>
-        <translation type="unfinished"></translation>
+        <translation>flcb (FLAC, big-endian)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="114"/>
         <source>flcl (FLAC, little-endian)</source>
-        <translation type="unfinished"></translation>
+        <translation>flcl (FLAC, little-endian)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="115"/>
         <source>cdfl (CD FLAC)</source>
-        <translation type="unfinished"></translation>
+        <translation>cdfl (CD FLAC)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="116"/>
         <source>avhu (A/V Huffman)</source>
-        <translation type="unfinished"></translation>
+        <translation>avhu (A/V Huffman)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="124"/>
         <source>Verify CHDs through &apos;chdman verify&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Weryfikuj CHD za pomocą &apos;chdman verify&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="169"/>
@@ -14607,27 +14605,27 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="1305"/>
         <source>none (uncompressed)</source>
-        <translation type="unfinished"></translation>
+        <translation>brak (nieskompresowany)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1310"/>
         <source>  compressors: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>  kompresory: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1314"/>
         <source>  number of bytes per unit: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>  liczba bajtów na element: %1</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1328"/>
         <source>CHD v%1 not supported -- rest of header information skipped</source>
-        <translation type="unfinished"></translation>
+        <translation>CHD v%1 nie jest obsługiwany -- pominięto resztę informacji nagłówka</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1488"/>
         <source>CHD manager: WARNING: failed updating CHD header information</source>
-        <translation type="unfinished"></translation>
+        <translation>Menedżer CHD: UWAGA: nie udała się aktualizacja informacji nagłówka CHD</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1679"/>
@@ -14793,7 +14791,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="2806"/>
         <source>checksum wizard: an entry with the name &apos;%1&apos; already exists, recreating the ZIP from scratch to replace the bad file</source>
-        <translation type="unfinished"></translation>
+        <translation>asystent sum kontrolnych: wpis o nazwie &apos;%1&apos; już istnieje, odtwarzanie ZIP-a na nowo w celu zastąpienia błędnego pliku</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2812"/>
@@ -14854,7 +14852,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="2820"/>
         <source>checksum wizard: no entry with the CRC &apos;%1&apos; or name &apos;%2&apos; was found, adding the missing file to the existing ZIP</source>
-        <translation type="unfinished"></translation>
+        <translation>asystent sum kontrolnych: nie znaleziono wpisu o CRC &apos;%1&apos; lub nazwie &apos;%2&apos;, dodawanie brakującego pliku do istniejącego ZIP-a</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2908"/>
@@ -14883,25 +14881,25 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="2962"/>
         <source>Choose file to store the ROMAlyzer log</source>
-        <translation type="unfinished"></translation>
+        <translation>Proszę wybrać plik do zapisania dziennika ROMAlyzera</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2967"/>
         <location filename="../../romalyzer.cpp" line="2968"/>
         <source>saving ROMAlyzer log to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>zapisywanie dziennika ROMAlyzera do &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2971"/>
         <location filename="../../romalyzer.cpp" line="2972"/>
         <source>done (saving ROMAlyzer log to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>ukończono (zapisywanie dziennika ROMAlyzera do &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2974"/>
         <location filename="../../romalyzer.cpp" line="2975"/>
         <source>WARNING: can&apos;t open file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>UWAGA: nie można otworzyć pliku &apos;%1&apos; do zapisu, proszę sprawdzić uprawnienia</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3022"/>
@@ -15099,7 +15097,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="125"/>
         <source>Try to update CHDs if their header indicates an older version (&apos;chdman copy&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>Proszę spróbować zaktualizować CHD jeśli ich nagłówek wskazuje na starszą wersję (&apos;chdman copy&apos;)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="687"/>
@@ -15118,12 +15116,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="890"/>
         <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the MAME developers as a possible XML bug of the respective driver</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMACJA: %1 plik &apos;%2&apos; ma nazwany zestaw scalony (&apos;%3&apos;) ale żadnego zestawu macierzystego -- zignorowano, ale powinno to zostać zgłoszone deweloperom MAME jako możliwy błąd XML odpowiedniego sterownika</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="892"/>
         <source>INFORMATION: %1 file &apos;%2&apos; has a named merge (&apos;%3&apos;) but no parent set -- ignored, but should be reported to the MESS developers as a possible XML bug of the respective driver</source>
-        <translation type="unfinished"></translation>
+        <translation>INFORMACJA: %1 plik &apos;%2&apos; ma nazwany zestaw scalony (&apos;%3&apos;) ale żadnego zestawu macierzystego -- zignorowano, ale powinno to zostać zgłoszone deweloperom MESS jako możliwy błąd XML odpowiedniego sterownika</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="968"/>
@@ -15242,7 +15240,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.ui" line="185"/>
         <source>Save the current log contents to a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz bieżącą zawartość dziennika do pliku</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="284"/>
@@ -17443,7 +17441,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../welcome.ui" line="75"/>
         <source>Browse working directory</source>
-        <translation type="unfinished">Wskaż katalog roboczy</translation>
+        <translation>Wskaż katalog roboczy</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="161"/>
@@ -17453,12 +17451,12 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../welcome.ui" line="174"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
-        <translation type="unfinished">Katalog roboczy używany podczas pracy emulatora (jeśli pusty, będzie używany bieżący katalog roboczy QMC2)</translation>
+        <translation>Katalog roboczy używany podczas pracy emulatora (jeśli pusty, będzie używany bieżący katalog roboczy QMC2)</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="181"/>
         <source>Working directory</source>
-        <translation type="unfinished">Katalog roboczy</translation>
+        <translation>Katalog roboczy</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="235"/>
@@ -17598,7 +17596,7 @@ Wyjść teraz, zaakceptować raz czy zupełnie zignorować?</translation>
     <message>
         <location filename="../../welcome.cpp" line="139"/>
         <source>Choose working directory</source>
-        <translation type="unfinished">Wybierz katalog roboczy</translation>
+        <translation>Wybierz katalog roboczy</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="177"/>
