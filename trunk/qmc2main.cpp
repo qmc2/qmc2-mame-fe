@@ -1439,7 +1439,6 @@ MainWindow::~MainWindow()
 
 }
 
-#define QMC2_DEBUG
 void MainWindow::action_foreignIDsMenuItem_triggered()
 {
 	QAction *action = (QAction *)sender();
@@ -1466,7 +1465,6 @@ void MainWindow::action_foreignIDsMenuItem_triggered()
 		}
 	}
 }
-#undef QMC2_DEBUG
 
 void MainWindow::on_actionPlayEmbedded_activated()
 {
