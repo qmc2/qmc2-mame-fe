@@ -1,4 +1,9 @@
 #include <QtGui>
+#if QT_VERSION >= 0x050000
+#include <QMessageBox>
+#include <QFileDialog>
+#include <QInputDialog>
+#endif
 
 #include "messdevcfg.h"
 #include "gamelist.h"

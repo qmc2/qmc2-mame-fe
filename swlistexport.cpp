@@ -1,4 +1,8 @@
 #include <QtGui>
+#if QT_VERSION >= 0x050000
+#include <QMessageBox>
+#include <QFileDialog>
+#endif
 
 #include "swlistexport.h"
 #include "macros.h"

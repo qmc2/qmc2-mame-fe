@@ -2,6 +2,12 @@
 #define _ARCADESCENE_H
 
 #include <QtGui>
+#if QT_VERSION >= 0x050000
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsItem>
+#include <QProgressBar>
+#endif
 
 #define QMC2_SCENE_FRAMECOUNTER_TIMEOUT		2000
 #define QMC2_SCENE_BOTTOM_Z			1

@@ -2,6 +2,10 @@
 #include "arcade/arcadescene.h"
 #include "qmc2main.h"
 #include "options.h"
+#if QT_VERSION >= 0x050000
+#include <QDesktopWidget>
+#include <QGraphicsProxyWidget>
+#endif
 
 extern ArcadeSettings *arcadeSettings;
 extern MainWindow *qmc2MainWindow;

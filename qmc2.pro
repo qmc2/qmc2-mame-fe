@@ -1,5 +1,5 @@
 greaterThan(QT_MAJOR_VERSION, 3) {
-	greaterThan(QT_MINOR_VERSION, 6) {
+	greaterThan(QT_MINOR_VERSION, 6)|greaterThan(QT_MAJOR_VERSION, 4) {
 		# general project settings
 		isEmpty(TARGET):TARGET = qmc2
 		CONFIG += qtestlib

@@ -23,6 +23,14 @@
 
 #include <QtGui>
 #include <QtWebKit>
+#if QT_VERSION >= 0x050000
+#include <QToolButton>
+#include <QFileDialog>
+#include <QInputDialog>
+#include <QMessageBox>
+#include <QColorDialog>
+#include <QToolTip>
+#endif
 
 #include "macros.h"
 #include "htmleditor.h"

@@ -1,4 +1,8 @@
 #include <QtGui>
+#if QT_VERSION >= 0x050000
+#include <QFileDialog>
+#include <QInputDialog>
+#endif
 
 #include "detailsetup.h"
 #include "qmc2main.h"
