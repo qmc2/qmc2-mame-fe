@@ -264,7 +264,7 @@ QNetworkAccessManager *qmc2NetworkAccessManager = NULL;
 int qmc2LastListIndex = 0;
 QAbstractItemView::ScrollHint qmc2CursorPositioningMode = QAbstractItemView::PositionAtTop;
 QMap<QString, int> qmc2XmlGamePositionMap;
-QFont qmc2StartupDefaultFont;
+QFont *qmc2StartupDefaultFont = NULL;
 int qmc2SoftwareSnapPosition = 0;
 QWidgetList qmc2AutoMinimizedWidgets;
 QSplashScreen *qmc2SplashScreen = NULL;
@@ -406,7 +406,7 @@ MainWindow::MainWindow(QWidget *parent)
 
   qmc2Config->setValue(QString(QMC2_FRONTEND_PREFIX + "InstanceRunning"), true);
  
-  qmc2StartupDefaultFont = qApp->font();
+  qmc2StartupDefaultFont = new QFont(qApp->font());
   desktopGeometry = qApp->desktop()->geometry();
   isActiveState = false;
   launchForeignID = false;
