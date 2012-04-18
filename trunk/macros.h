@@ -3,6 +3,18 @@
 
 #include <Qt>
 
+#if QT_VERSION >= 0x050000
+#if defined(Q_OS_X11)
+#define Q_WS_X11
+#endif
+#if defined(Q_OS_MAC)
+#define Q_WS_MAC
+#endif
+#if defined(Q_OS_WIN32)
+#define Q_WS_WIN
+#endif
+#endif
+
 // don't use SVN revision in version strings when QMC2_SVN_REV is undefined
 #if !defined(QMC2_SVN_REV)
 #define QMC2_SVN_REV				0
