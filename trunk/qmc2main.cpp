@@ -393,8 +393,10 @@ void MainWindow::log(char logOrigin, QString message)
       break;
   }
 
-  qmc2LogFrontendMutex.unlock();
-  qmc2LogEmulatorMutex.unlock();
+  if ( logOrigin == QMC2_LOG_FRONTEND )
+    qmc2LogFrontendMutex.unlock();
+  else
+    qmc2LogEmulatorMutex.unlock();
 }
 
 MainWindow::MainWindow(QWidget *parent)
