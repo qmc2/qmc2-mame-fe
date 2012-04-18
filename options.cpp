@@ -145,7 +145,7 @@ extern YouTubeVideoPlayer *qmc2YouTubeWidget;
 #endif
 #endif
 extern QAbstractItemView::ScrollHint qmc2CursorPositioningMode;
-extern QFont qmc2StartupDefaultFont;
+extern QFont *qmc2StartupDefaultFont;
 extern int qmc2SoftwareSnapPosition;
 extern int qmc2DefaultLaunchMode;
 extern HtmlEditor *qmc2SoftwareNotesEditor;
@@ -475,7 +475,9 @@ void Options::apply()
   qmc2MainWindow->toolbar->setVisible(config->value(QMC2_FRONTEND_PREFIX + "GUI/Toolbar", true).toBool());
 #endif
 
-  QFont f = qmc2StartupDefaultFont;
+  QFont f;
+  if ( qmc2StartupDefaultFont )
+    f = *qmc2StartupDefaultFont;
   if ( !config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString().isEmpty() )
     f.fromString(config->value(QMC2_FRONTEND_PREFIX + "GUI/Font").toString());
   qApp->setFont(f);
