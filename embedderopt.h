@@ -2,6 +2,9 @@
 #define _EMBEDDEROPT_H_
 
 #include <QtGui>
+#if QT_VERSION >= 0x050000
+#include "macros.h"
+#endif
 #include "ui_embedderopt.h"
 
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)

@@ -2,6 +2,9 @@
 #define _EMBEDDER_H_
 
 #include <Qt>
+#if QT_VERSION >= 0x050000
+#include "macros.h"
+#endif
 
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 
