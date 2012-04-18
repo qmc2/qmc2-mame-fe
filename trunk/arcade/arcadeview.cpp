@@ -16,6 +16,9 @@
 #if QMC2_ARCADE_OPENGL == 1
 #include <QGLWidget>
 #endif
+#if QT_VERSION >= 0x050000
+#include <QDesktopWidget>
+#endif
 #include "arcade/arcadeview.h"
 #include "arcade/arcadescene.h"
 #include "arcade/arcadesettings.h"

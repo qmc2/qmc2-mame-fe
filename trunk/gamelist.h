@@ -2,6 +2,10 @@
 #define _GAMELIST_H_
 
 #include <QtGui>
+#if QT_VERSION >= 0x050000
+#include <QIcon>
+#include <QTreeWidgetItem>
+#endif
 #include "macros.h"
 
 class Gamelist : public QObject

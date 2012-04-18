@@ -2,6 +2,9 @@
 #if defined(Q_WS_MAC)
 #include <QTest>
 #endif
+#if QT_VERSION >= 0x050000
+#include <QFileDialog>
+#endif
 
 #include "softwarelist.h"
 #include "gamelist.h"

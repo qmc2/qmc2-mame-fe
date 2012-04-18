@@ -6,6 +6,9 @@
 #include <QtGui>
 #include <QtXml>
 #include <QtNetwork>
+#if QT_VERSION >= 0x050000
+#include <QDesktopWidget>
+#endif
 
 #include "ui_youtubevideoplayer.h"
 #include "videoitemwidget.h"

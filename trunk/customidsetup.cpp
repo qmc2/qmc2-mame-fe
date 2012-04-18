@@ -1,5 +1,8 @@
 #include "customidsetup.h"
 #include "macros.h"
+#if QT_VERSION >= 0x050000
+#include <QMenu>
+#endif
 
 #if defined(QMC2_DEBUG)
 #include "qmc2main.h"

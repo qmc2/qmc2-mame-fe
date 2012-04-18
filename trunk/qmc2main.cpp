@@ -22,6 +22,11 @@
 #include <QNetworkAccessManager>
 #include <QSplashScreen>
 #include <QTest>
+#if QT_VERSION >= 0x050000
+#include <QInputDialog>
+#include <QDesktopWidget>
+#endif
+
 #if defined(QMC2_SDLMAME) || defined(QMC2_SDLMESS)
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -6406,10 +6411,17 @@ void MainWindow::loadGameInfoDB()
             if ( gameInfoString.endsWith("<p>") )
               gameInfoString.remove(gameInfoString.length() - 3, gameInfoString.length() - 1);
             QByteArray *gameInfo;
+#if QT_VERSION >= 0x050000
+            if ( compressData )
+              gameInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForLocale()->fromUnicode(gameInfoString))); 
+            else
+              gameInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(gameInfoString));
+#else
             if ( compressData )
               gameInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString))); 
             else
               gameInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(gameInfoString));
+#endif
             int i;
             for (i = 0; i < gameWords.count(); i++) {
               if ( !gameWords[i].isEmpty() )
@@ -6565,10 +6577,17 @@ void MainWindow::loadEmuInfoDB()
             if ( emuInfoString.endsWith("<p>") )
               emuInfoString.remove(emuInfoString.length() - 3, emuInfoString.length() - 1);
             QByteArray *emuInfo;
+#if QT_VERSION >= 0x050000
+            if ( compressData )
+              emuInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForLocale()->fromUnicode(emuInfoString))); 
+            else
+              emuInfo = new QByteArray(QTextCodec::codecForLocale()->fromUnicode(emuInfoString));
+#else
             if ( compressData )
               emuInfo = new QByteArray(QMC2_COMPRESS(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString))); 
             else
               emuInfo = new QByteArray(QTextCodec::codecForCStrings()->fromUnicode(emuInfoString));
+#endif
             int i;
             for (i = 0; i < gameWords.count(); i++) {
               if ( !gameWords[i].isEmpty() )
@@ -10133,8 +10152,10 @@ int main(int argc, char *argv[])
   QTimer::singleShot(0, qmc2Options, SLOT(checkJoystickMappings()));
 #endif
 
+#if QT_VERSION < 0x050000
   // this effectively enables support for unicode characters in C strings
   QTextCodec::setCodecForCStrings(QTextCodec::codecForLocale());
+#endif
 
   // create & show greeting string
   QString greeting;
