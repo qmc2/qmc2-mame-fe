@@ -1088,17 +1088,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1640"/>
         <source>Control display of controller image</source>
-        <translation>Contrôle de l&apos;affichage des controlleurs (commandes)</translation>
+        <translation>Contrôle de l&apos;affichage des contrôleurs (commandes)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1643"/>
         <source>Controller image</source>
-        <translation>Image du controlleur</translation>
+        <translation>Image du contrôleur</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1861"/>
         <source>Control display of marquee image</source>
-        <translation>Contrôle de l&apos;affichage des controlleurs (commandes)</translation>
+        <translation>Contrôle de l&apos;affichage des contrôleurs (commandes)</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1864"/>
@@ -1517,19 +1517,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../../controller.cpp" line="61"/>
         <location filename="../../controller.cpp" line="62"/>
         <source>Game controller image</source>
-        <translation>Image du controlleur du jeu</translation>
+        <translation>Image du contrôleur du jeu</translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="64"/>
         <location filename="../../controller.cpp" line="65"/>
         <source>Machine controller image</source>
-        <translation>Image du controlleur de la machine</translation>
+        <translation>Image du contrôleur de la machine</translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="73"/>
         <location filename="../../controller.cpp" line="77"/>
         <source>FATAL: can&apos;t open controller file, please check access permissions for %1</source>
-        <translation>FATAL: impossible d&apos;ouvrir le fichier Controlleur, vérifiez les permissions de %1</translation>
+        <translation>FATAL: impossible d&apos;ouvrir le fichier Contrôleur, vérifiez les permissions de %1</translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="105"/>
@@ -1890,12 +1890,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.cpp" line="36"/>
         <source>C&amp;ontroller</source>
-        <translation>&amp;Controlleur</translation>
+        <translation>&amp;Contrôleur</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="37"/>
         <source>Control panel image</source>
-        <translation>Image du controlleur de jeu</translation>
+        <translation>Image du contrôleur de jeu</translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="39"/>
@@ -5516,7 +5516,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.ui" line="516"/>
         <location filename="../../messdevcfg.ui" line="519"/>
         <source>Number of files scanned</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre de fichiers scannés</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="541"/>
@@ -6383,12 +6383,12 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5569"/>
         <source>disconnecting audio source from audio sink</source>
-        <translation type="unfinished"></translation>
+        <translation>déconnecte l&apos;audio du mixer audio</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5578"/>
         <source>destroying YouTube video widget</source>
-        <translation type="unfinished"></translation>
+        <translation>destruction du widget de vidéo YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5888"/>
@@ -6620,7 +6620,7 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="1651"/>
         <source>Emulator &amp;log</source>
-        <translation>&amp;log de l&apos;émulateur</translation>
+        <translation>&amp;Log de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1666"/>
@@ -6631,25 +6631,25 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="1770"/>
         <source>MP&amp;3 player</source>
-        <translation>lecteur MP&amp;3</translation>
+        <translation>Lecteur MP&amp;3</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1791"/>
         <location filename="../../qmc2main.ui" line="1794"/>
         <source>Playlist (move items by dragging &amp; dropping them)</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste de lecture (déplacer les objets par glisser &amp; déposer)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1990"/>
         <location filename="../../qmc2main.ui" line="1993"/>
         <source>Enter URL to add to playlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrer une URL à ajouter à la liste de lecture</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2021"/>
         <location filename="../../qmc2main.ui" line="2024"/>
         <source>Setup available audio effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurer les effets audio disponibles</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2100"/>
@@ -6769,7 +6769,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.ui" line="3451"/>
         <location filename="../../qmc2main.ui" line="3454"/>
         <source>Run tool to process ROM data externally for all tagged sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancer l&apos;outil pour analyser les données de roms en externe pour tous les sets taggés</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3457"/>
@@ -6881,13 +6881,13 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3694"/>
         <source>Toggle tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Bascule le Tag</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3697"/>
         <location filename="../../qmc2main.ui" line="3700"/>
         <source>Toggle tag mark</source>
-        <translation type="unfinished"></translation>
+        <translation>Bascule la marque de tag</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3703"/>
@@ -6903,7 +6903,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.ui" line="3718"/>
         <location filename="../../qmc2main.ui" line="3721"/>
         <source>Set tag mark for all sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Placer la marque de tag pour tous les sets</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3724"/>
@@ -7217,7 +7217,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.ui" line="3430"/>
         <location filename="../../qmc2main.ui" line="3433"/>
         <source>Run tool to process ROM data externally</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancer l&apos;outil pour analyser les données de roms en externe</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3436"/>
@@ -7244,51 +7244,51 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.ui" line="3482"/>
         <location filename="../../qmc2main.ui" line="3485"/>
         <source>Forcedly clear (remove) the ROM state cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyage forcé (suppression) du cache de statut de ROM</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3493"/>
         <source>Clear game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyer le cache de la liste de jeux</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3496"/>
         <location filename="../../qmc2main.ui" line="3499"/>
         <source>Forcedly clear (remove) the game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyage forcé (suppression) du cache de la liste de jeux</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3507"/>
         <source>Clear XML cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyer le cache XML</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3510"/>
         <location filename="../../qmc2main.ui" line="3513"/>
         <source>Forcedly clear (remove) the XML cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyage forcé (suppression) du cache XML</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3521"/>
         <source>Clear software list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyer le cache de la liste de logiciels</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3524"/>
         <location filename="../../qmc2main.ui" line="3527"/>
         <source>Forcedly clear (remove) the software list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyage forcé (suppression) du cache de la liste de logiciels</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3535"/>
         <source>Clear ALL emulator caches</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyer TOUS les caches des émulateurs</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3538"/>
         <location filename="../../qmc2main.ui" line="3541"/>
         <source>Forcedly clear (remove) ALL emulator related caches</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyage forcé (suppression) de TOUS les caches des émulateurs</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="179"/>
@@ -7372,7 +7372,7 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="4563"/>
         <source>FATAL: can&apos;t start XWININFO within a reasonable time frame, giving up</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossible de démarrer XWININFO en un temps raisonnable, abandon</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5873"/>
@@ -7840,12 +7840,12 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="526"/>
         <source>Creating category view, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Création de la vue en catégories, patienter svp...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="661"/>
         <source>Creating version view, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Création de la vue en versions, patienter svp...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2788"/>
@@ -8581,7 +8581,7 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5781"/>
         <source>destroying controller</source>
-        <translation>destruction du controlleur</translation>
+        <translation>destruction du contrôleur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1453"/>
@@ -8596,7 +8596,7 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="1516"/>
         <source>C&amp;ontroller</source>
-        <translation>&amp;Controlleur</translation>
+        <translation>&amp;Contrôleur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1534"/>
@@ -8766,24 +8766,25 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="302"/>
         <location filename="../../qmc2main.cpp" line="316"/>
         <source>last message repeated %n time(s)</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>dernier message répété %n fois</numerusform>
+            <numerusform>dernier message répété %n fois</numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="497"/>
         <source>Toggle automatic pausing of embedded emulators (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bascule la pause automatique des émulateurs embarqués (maintenir pour menu)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="506"/>
         <source>Scan the pause key used by the emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>En attente de la touche Pause utilisée par l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="507"/>
         <source>Scan pause key...</source>
-        <translation type="unfinished"></translation>
+        <translation>En attente de la touche Pause...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="562"/>
@@ -9123,7 +9124,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="8636"/>
         <source>Controller</source>
-        <translation>Controlleur</translation>
+        <translation>Contrôleur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8642"/>
@@ -9369,17 +9370,17 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="150"/>
         <source>Controllers</source>
-        <translation>Controlleurs</translation>
+        <translation>Contrôleurs</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="179"/>
         <source>Path to store controller images</source>
-        <translation>Chemin du répertoire de stockage des controlleurs</translation>
+        <translation>Chemin du répertoire de stockage des contrôleurs</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="192"/>
         <source>Browse path to store controller images</source>
-        <translation>Parcourir pour le répertoire de stockage des controlleurs</translation>
+        <translation>Parcourir pour le répertoire de stockage des contrôleurs</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="209"/>
@@ -9481,7 +9482,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="163"/>
         <source>Automatically download controller images</source>
-        <translation>Télécharge automatiquement les controlleurs</translation>
+        <translation>Télécharge automatiquement les contrôleurs</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="222"/>
@@ -9576,7 +9577,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="152"/>
         <source>Choose controller directory</source>
-        <translation>Choisir le répertoire des controlleurs</translation>
+        <translation>Choisir le répertoire des contrôleurs</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="165"/>
@@ -10229,12 +10230,12 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.cpp" line="299"/>
         <source>Analyze tagged sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyse des sets taggés</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="302"/>
         <source>Copy tagged sets to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter les jeux taggés aux favoris</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="313"/>
@@ -10250,17 +10251,17 @@ Ajouter une URL</translation>
         <location filename="../../options.cpp" line="408"/>
         <location filename="../../options.cpp" line="414"/>
         <source>No style sheet</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de feuille de style</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1037"/>
         <source>View games by category (not filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Voir les jeux par catégorie (non filtré)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1039"/>
         <source>View games by emulator version (not filtered)</source>
-        <translation type="unfinished"></translation>
+        <translation>Voir les jeux par version d&apos;émulateur (non filtré)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1476"/>
@@ -10503,7 +10504,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.cpp" line="3266"/>
         <source>HTML files (*.html *.htm)</source>
-        <translation type="unfinished"></translation>
+        <translation>fichiers HTML (*.html *.htm)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3445"/>
@@ -11035,7 +11036,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="3916"/>
         <source>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;WARNING: stored passwords are &lt;u&gt;weakly&lt;/u&gt; encrypted!&lt;/b&gt;&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;font size=&quot;-1&quot;&gt;&lt;b&gt;ATTENTION: les mots de passe enregistrés sont &lt;u&gt;faiblement&lt;/u&gt; encryptés!&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3937"/>
@@ -11237,32 +11238,32 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="2748"/>
         <source>Above / Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Dessus / Gauche</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2753"/>
         <source>Above / Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Dessus / Centre</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2758"/>
         <source>Above / Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Dessus / Droite</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2763"/>
         <source>Below / Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Dessous / Gauche</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2768"/>
         <source>Below / Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Dessous / Centre</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2773"/>
         <source>Below / Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Dessous / Droite</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4328"/>
@@ -11320,7 +11321,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="2402"/>
         <source>Players</source>
-        <translation type="unfinished">Joueurs</translation>
+        <translation>Joueurs</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2485"/>
@@ -11335,27 +11336,27 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="2532"/>
         <source>Visible</source>
-        <translation type="unfinished"></translation>
+        <translation>Visible</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2537"/>
         <source>Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Haut</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2542"/>
         <source>Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>Bas</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2547"/>
         <source>Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Centre</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2512"/>
         <source>Cursor position</source>
-        <translation type="unfinished"></translation>
+        <translation>Position du curseur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="168"/>
@@ -11425,12 +11426,12 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="2377"/>
         <source>Tag</source>
-        <translation type="unfinished">Tag</translation>
+        <translation>Tag</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2407"/>
         <source>Driver status</source>
-        <translation type="unfinished"></translation>
+        <translation>Statut du driver</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2498"/>
@@ -11470,12 +11471,12 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="140"/>
         <source>IT (Italian)</source>
-        <translation type="unfinished"></translation>
+        <translation>IT (Italien)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="155"/>
         <source>RO (Romanian)</source>
-        <translation type="unfinished"></translation>
+        <translation>RO (Roumain)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2214"/>
@@ -11520,7 +11521,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="2726"/>
         <source>embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>embarqué</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2869"/>
@@ -11555,17 +11556,17 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="3683"/>
         <source>ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>outil de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3702"/>
         <source>External ROM tool (it&apos;s completely up to you...)</source>
-        <translation type="unfinished"></translation>
+        <translation>outil de ROM externe (c&apos;est totalement sous votre contrôle...)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3715"/>
         <source>Browse ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir pour l&apos;outil de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3739"/>
@@ -11610,7 +11611,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="4152"/>
         <source>Game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache de la liste de jeux</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4315"/>
@@ -11655,7 +11656,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="4590"/>
         <source>Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>Remplacer</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4604"/>
@@ -11668,7 +11669,7 @@ Ajouter une URL</translation>
         <location filename="../../options.ui" line="4611"/>
         <location filename="../../options.ui" line="4662"/>
         <source>Working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire de travail</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4476"/>
@@ -11680,7 +11681,7 @@ Ajouter une URL</translation>
         <location filename="../../options.ui" line="4489"/>
         <location filename="../../options.ui" line="4706"/>
         <source>Browse working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir pour le répertoire de travail</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4352"/>
@@ -11720,7 +11721,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="4672"/>
         <source>Custom IDs</source>
-        <translation type="unfinished"></translation>
+        <translation>IDs personnalisés</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4683"/>
@@ -11750,17 +11751,17 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="4686"/>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>Nouveau</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4753"/>
         <source>Emulator name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4766"/>
         <source> Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Enlever</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4820"/>
@@ -12156,7 +12157,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="432"/>
         <source>Emulator log size</source>
-        <translation>Taille du fichier log de l&apos;émulateur</translation>
+        <translation>Taille du log de l&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="445"/>
@@ -12512,7 +12513,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="1772"/>
         <location filename="../../options.cpp" line="1776"/>
         <source>FATAL: can&apos;t open controller file, please check access permissions for %1</source>
-        <translation>FATAL: impossible d&apos;ouvrir le controlleur, vérifiez les permissions de %1</translation>
+        <translation>FATAL: impossible d&apos;ouvrir le contrôleur, vérifiez les permissions de %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2028"/>
@@ -12534,7 +12535,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="2093"/>
         <location filename="../../options.cpp" line="3077"/>
         <source>Controller file</source>
-        <translation>Fichier Controlleur</translation>
+        <translation>Fichier Contrôleur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1540"/>
@@ -12542,7 +12543,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="2093"/>
         <location filename="../../options.cpp" line="3077"/>
         <source>Controller directory</source>
-        <translation>Répertoire des controlleurs</translation>
+        <translation>Répertoire des contrôleurs</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2523"/>
@@ -12552,7 +12553,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="2537"/>
         <source>Choose controller directory</source>
-        <translation>Choisir le répertoire des controlleurs</translation>
+        <translation>Choisir le répertoire des contrôleurs</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3166"/>
@@ -12562,7 +12563,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="3178"/>
         <source>Choose ZIP-compressed controller file</source>
-        <translation>Choisir le fichier ZIP contenant les controlleurs</translation>
+        <translation>Choisir le fichier ZIP contenant les contrôleurs</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="294"/>
@@ -12584,7 +12585,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.ui" line="211"/>
         <source>Scaled controller</source>
-        <translation>Controlleurs redimensionnés</translation>
+        <translation>Contrôleurs redimensionnés</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="638"/>
@@ -12619,27 +12620,27 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.ui" line="1575"/>
         <source>Controller directory (read)</source>
-        <translation>Répertoire de controlleurs (lecture)</translation>
+        <translation>Répertoire de contrôleurs (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1588"/>
         <source>Browse controller directory</source>
-        <translation>Parcourir pour le répertoire de controlleurs</translation>
+        <translation>Parcourir pour le répertoire de contrôleurs</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1612"/>
         <source>ZIP-compressed controller file (read)</source>
-        <translation>archive ZIP de controlleurs (lecture)</translation>
+        <translation>archive ZIP de contrôleurs (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1625"/>
         <source>Browse ZIP-compressed controller file</source>
-        <translation>Parcourir pour l&apos;archive ZIP de controlleurs</translation>
+        <translation>Parcourir pour l&apos;archive ZIP de contrôleurs</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1537"/>
         <source>Switch between specifying a controller directory or a ZIP-compressed controller file</source>
-        <translation>Bascule entre le choix du répertoire de controlleurs et l&apos;archive ZIP de controlleurs</translation>
+        <translation>Bascule entre le choix du répertoire de contrôleurs et l&apos;archive ZIP de contrôleurs</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1790"/>
@@ -12771,7 +12772,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.ui" line="467"/>
         <source>Front end log size</source>
-        <translation>Taille de fichier log du Frontend</translation>
+        <translation>Taille du log du Frontend</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="480"/>
@@ -13823,7 +13824,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2722"/>
         <location filename="../../romalyzer.cpp" line="2785"/>
         <source>ROM</source>
-        <translation type="unfinished">ROM</translation>
+        <translation>ROM</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="796"/>
@@ -14057,7 +14058,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="169"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copier dans le presse-papier</translation>
+        <translation>Copier dans le presse-papier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1748"/>
@@ -14096,17 +14097,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1957"/>
         <source>Choose output directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le répertoire de sortie</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1971"/>
         <source>Choose additional ROM path</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le répertoire de ROMS additionnel</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2176"/>
         <source>Checksum search</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche de la somme de contrôle</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2321"/>
@@ -14166,7 +14167,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2410"/>
         <source>Writing &apos;%1&apos; - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ecrit &apos;%1&apos; - &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2412"/>
@@ -14271,7 +14272,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2344"/>
         <source>Reading &apos;%1&apos; - %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Lit &apos;%1&apos; - &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2371"/>
@@ -14306,7 +14307,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2908"/>
         <source>repair failed</source>
-        <translation type="unfinished"></translation>
+        <translation>réparation échouée</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2910"/>
@@ -14464,7 +14465,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="185"/>
         <source>Save the current log contents to a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvergarder le contenu de log dans un fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="265"/>
@@ -14725,32 +14726,32 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="668"/>
         <source>Driver</source>
-        <translation type="unfinished">Pilote</translation>
+        <translation>Pilote</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="681"/>
         <source>Port</source>
-        <translation type="unfinished">Port</translation>
+        <translation>Port</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="697"/>
         <source>default</source>
-        <translation type="unfinished"></translation>
+        <translation>défaut</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="765"/>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom d&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="778"/>
         <source>Username used to access the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom d&apos;utilisateur pour accéder à la base de données</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="855"/>
         <source>Password</source>
-        <translation type="unfinished">Mot de passe</translation>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="881"/>
@@ -14760,7 +14761,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="884"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Téléchargement</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="897"/>
@@ -14795,7 +14796,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="533"/>
         <source>File size</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille du fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="546"/>
@@ -14805,12 +14806,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="568"/>
         <source>Log size</source>
-        <translation type="unfinished"></translation>
+        <translation>Taille du log</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="603"/>
         <source>Reports</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapports</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="616"/>
@@ -14820,12 +14821,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="720"/>
         <source>MySQL</source>
-        <translation type="unfinished"></translation>
+        <translation>MySQL</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="725"/>
         <source>SQLite</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLite</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="791"/>
@@ -14845,7 +14846,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="932"/>
         <source>Output path</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin de sortie</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="945"/>
@@ -14865,7 +14866,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="990"/>
         <source>Output directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire de sortie</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1003"/>
@@ -14936,27 +14937,27 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1330"/>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1335"/>
         <source>Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom de fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1340"/>
         <source>Status</source>
-        <translation type="unfinished">Statut</translation>
+        <translation>Statut</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1350"/>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Chemin</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1291"/>
         <source>Repair bad sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Réparer les mauvais sets</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1195"/>
@@ -15043,12 +15044,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1519"/>
         <source>ID / Filename</source>
-        <translation type="unfinished"></translation>
+        <translation>ID / Nom de fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1524"/>
         <source>Old ID / FIlename</source>
-        <translation type="unfinished"></translation>
+        <translation>ancien ID / Nom de fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1552"/>
@@ -15068,7 +15069,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1578"/>
         <source>Old XML</source>
-        <translation type="unfinished"></translation>
+        <translation>ancien XML</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1591"/>
@@ -15088,17 +15089,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1631"/>
         <source>Export results...</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter les résultats...</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1651"/>
         <source>Import results from a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Importer les résultats depuis un fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1654"/>
         <source>Import results...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importer les résultats...</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1679"/>
@@ -15168,37 +15169,37 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="110"/>
         <source>zlib (Deflate)</source>
-        <translation type="unfinished"></translation>
+        <translation>zlib (Deflate)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="111"/>
         <source>lzma (LZMA)</source>
-        <translation type="unfinished"></translation>
+        <translation>lzma (LZMA)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="112"/>
         <source>huff (Huffman)</source>
-        <translation type="unfinished"></translation>
+        <translation>huff (Huffman)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="113"/>
         <source>flcb (FLAC, big-endian)</source>
-        <translation type="unfinished"></translation>
+        <translation>flcb (FLAC, big-endian)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="114"/>
         <source>flcl (FLAC, little-endian)</source>
-        <translation type="unfinished"></translation>
+        <translation>flcl (FLAC, little-endian)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="115"/>
         <source>cdfl (CD FLAC)</source>
-        <translation type="unfinished"></translation>
+        <translation>cdfl (CD FLAC)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="116"/>
         <source>avhu (A/V Huffman)</source>
-        <translation type="unfinished"></translation>
+        <translation>avhu (A/V Huffman)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="124"/>
@@ -15209,7 +15210,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="869"/>
         <location filename="../../romalyzer.cpp" line="974"/>
         <source>no dump</source>
-        <translation type="unfinished">pas de dump</translation>
+        <translation>pas de dump</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="968"/>
@@ -16335,13 +16336,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.ui" line="18"/>
         <source>Software list</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="35"/>
         <location filename="../../softwarelist.ui" line="38"/>
         <source>Reload all information</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger toutes les informations</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="101"/>
@@ -16441,7 +16442,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="187"/>
         <location filename="../../softwarelist.cpp" line="210"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="312"/>
@@ -16451,7 +16452,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="189"/>
         <location filename="../../softwarelist.cpp" line="212"/>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="317"/>
@@ -16461,7 +16462,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="191"/>
         <location filename="../../softwarelist.cpp" line="214"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Publieur</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="322"/>
@@ -16471,7 +16472,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="193"/>
         <location filename="../../softwarelist.cpp" line="216"/>
         <source>Year</source>
-        <translation type="unfinished">Année</translation>
+        <translation>Année</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="327"/>
@@ -16481,7 +16482,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="195"/>
         <location filename="../../softwarelist.cpp" line="218"/>
         <source>Part</source>
-        <translation type="unfinished"></translation>
+        <translation>Partie</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="332"/>
@@ -16491,7 +16492,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="197"/>
         <location filename="../../softwarelist.cpp" line="220"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Interface</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="337"/>
@@ -16501,12 +16502,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="199"/>
         <location filename="../../softwarelist.cpp" line="222"/>
         <source>List</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="358"/>
         <source>Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="376"/>
@@ -16518,12 +16519,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="427"/>
         <location filename="../../softwarelist.cpp" line="202"/>
         <source>Device configuration</source>
-        <translation type="unfinished">Configuration de périphérique</translation>
+        <translation>Configuration de périphérique</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="448"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="466"/>
@@ -16561,7 +16562,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="110"/>
         <source>&amp;Play</source>
-        <translation type="unfinished">&amp;Jouer</translation>
+        <translation>&amp;Jouer</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="115"/>
@@ -16571,7 +16572,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="116"/>
         <source>Play &amp;embedded</source>
-        <translation type="unfinished">Jouer &amp;embarqué</translation>
+        <translation>Jouer &amp;embarqué</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="122"/>
@@ -16705,7 +16706,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="1847"/>
         <location filename="../../softwarelist.cpp" line="2190"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">En attente de données...</translation>
+        <translation>En attente de données...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="965"/>
@@ -16716,13 +16717,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="965"/>
         <location filename="../../softwarelist.cpp" line="967"/>
         <source>normal</source>
-        <translation type="unfinished">normal</translation>
+        <translation>normal</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="965"/>
         <location filename="../../softwarelist.cpp" line="967"/>
         <source>crashed</source>
-        <translation type="unfinished">crashé</translation>
+        <translation>crashé</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="967"/>
@@ -16784,7 +16785,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="2160"/>
         <location filename="../../softwarelist.cpp" line="2238"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tous les fichiers (*)</translation>
+        <translation>Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2172"/>
@@ -16847,12 +16848,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="33"/>
         <source>Browse ASCII export file</source>
-        <translation type="unfinished">Parcourir pour le fichier d&apos;export ASCII</translation>
+        <translation>Parcourir pour le fichier d&apos;export ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="36"/>
         <source>ASCII file</source>
-        <translation type="unfinished">fichier ASCII</translation>
+        <translation>fichier ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="56"/>
@@ -16862,27 +16863,27 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="63"/>
         <source>Column width</source>
-        <translation type="unfinished">Largeur de colonne</translation>
+        <translation>Largeur de colonne</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="79"/>
         <source>Maximum column width for ASCII export (0 = unlimited)</source>
-        <translation type="unfinished">Largeur max de colonne pour l&apos;export ASCII (0 = illimité)</translation>
+        <translation>Largeur max de colonne pour l&apos;export ASCII (0 = illimité)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="82"/>
         <source>unlimited</source>
-        <translation type="unfinished">illimité</translation>
+        <translation>illimité</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="134"/>
         <source>Browse CSV export file</source>
-        <translation type="unfinished">Parcourir pour le fichier d&apos;export CSV</translation>
+        <translation>Parcourir pour le fichier d&apos;export CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="137"/>
         <source>CSV file</source>
-        <translation type="unfinished">fichier CSV</translation>
+        <translation>fichier CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="157"/>
@@ -16892,32 +16893,32 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="164"/>
         <source>Separator</source>
-        <translation type="unfinished">Séparateur</translation>
+        <translation>Séparateur</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="192"/>
         <source>Field separator for CSV export</source>
-        <translation type="unfinished">Champ séparateur pour l&apos;export CSV</translation>
+        <translation>Champ séparateur pour l&apos;export CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="195"/>
         <source>;</source>
-        <translation type="unfinished">;</translation>
+        <translation>;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="221"/>
         <source>Delimiter</source>
-        <translation type="unfinished">Délimiteur</translation>
+        <translation>Délimiteur</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="249"/>
         <source>Text delimiter for CSV export</source>
-        <translation type="unfinished">Délimiteur texte pour l&apos;export CSV</translation>
+        <translation>Délimiteur texte pour l&apos;export CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="252"/>
         <source>&quot;</source>
-        <translation type="unfinished">&quot;</translation>
+        <translation>&quot;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="301"/>
@@ -16929,59 +16930,59 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../swlistexport.ui" line="500"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titre</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="319"/>
         <location filename="../../swlistexport.ui" line="505"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="324"/>
         <location filename="../../swlistexport.ui" line="510"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Publisher</source>
-        <translation type="unfinished"></translation>
+        <translation>Publieur</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="329"/>
         <location filename="../../swlistexport.ui" line="515"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Year</source>
-        <translation type="unfinished">Année</translation>
+        <translation>Année</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="334"/>
         <location filename="../../swlistexport.ui" line="520"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Part</source>
-        <translation type="unfinished"></translation>
+        <translation>Partie</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="339"/>
         <location filename="../../swlistexport.ui" line="525"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Interface</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="344"/>
         <location filename="../../swlistexport.ui" line="530"/>
         <location filename="../../swlistexport.cpp" line="26"/>
         <source>List</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="354"/>
         <source>Export now!</source>
-        <translation type="unfinished">Exporter maintenant !</translation>
+        <translation>Exporter maintenant !</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="357"/>
         <source>&amp;Export</source>
-        <translation type="unfinished">&amp;Exporter</translation>
+        <translation>&amp;Exporter</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="368"/>
@@ -16991,87 +16992,87 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="371"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Fermer</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="382"/>
         <source>Export progress indicator</source>
-        <translation type="unfinished">Indicateur de progession de l&apos;export</translation>
+        <translation>Indicateur de progession de l&apos;export</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="388"/>
         <source>%p%</source>
-        <translation type="unfinished">%p%</translation>
+        <translation>%p%</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="403"/>
         <source>Sort criteria</source>
-        <translation type="unfinished">Critère de tri</translation>
+        <translation>Critère de tri</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="416"/>
         <source>Sort order</source>
-        <translation type="unfinished">Ordre de tri</translation>
+        <translation>Ordre de tri</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="429"/>
         <source>Output format</source>
-        <translation type="unfinished"></translation>
+        <translation>Format de sortie</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="442"/>
         <source>Select output format</source>
-        <translation type="unfinished">Choisir le format de sortie</translation>
+        <translation>Choisir le format de sortie</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="446"/>
         <source>ASCII</source>
-        <translation type="unfinished">ASCII</translation>
+        <translation>ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="451"/>
         <source>CSV</source>
-        <translation type="unfinished">CSV</translation>
+        <translation>CSV</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="465"/>
         <source>Select sort order</source>
-        <translation type="unfinished">Sélectionner l&apos;ordre de tri</translation>
+        <translation>Sélectionner l&apos;ordre de tri</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="469"/>
         <source>Ascending</source>
-        <translation type="unfinished">Ascendant</translation>
+        <translation>Ascendant</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="478"/>
         <source>Descending</source>
-        <translation type="unfinished">Descendant</translation>
+        <translation>Descendant</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="496"/>
         <source>Select sort criteria</source>
-        <translation type="unfinished">Sélectionner le critère de tri</translation>
+        <translation>Sélectionner le critère de tri</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="538"/>
         <source>Overwrite existing files without asking what to do</source>
-        <translation type="unfinished">Ecraser les fichiers existants sans rien demander</translation>
+        <translation>Ecraser les fichiers existants sans rien demander</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="541"/>
         <source>Overwrite files blindly</source>
-        <translation type="unfinished"></translation>
+        <translation>Ecraser les fichiers à l&apos;aveugle</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="551"/>
         <source>Export to the system clipboard instead of a file</source>
-        <translation type="unfinished">Exporter vers le presse-papier plutôt que vers un fichier</translation>
+        <translation>Exporter vers le presse-papier plutôt que vers un fichier</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="554"/>
         <source>Export to clipboard</source>
-        <translation type="unfinished">Exporter vers le presse-papier</translation>
+        <translation>Exporter vers le presse-papier</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="564"/>
@@ -17097,13 +17098,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../swlistexport.cpp" line="181"/>
         <location filename="../../swlistexport.cpp" line="313"/>
         <source>Confirm</source>
-        <translation type="unfinished">Confirmer</translation>
+        <translation>Confirmer</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="181"/>
         <location filename="../../swlistexport.cpp" line="313"/>
         <source>Overwrite existing file?</source>
-        <translation type="unfinished">Ecraser le fichier existant ?</translation>
+        <translation>Ecraser le fichier existant ?</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="192"/>
@@ -17113,7 +17114,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.cpp" line="194"/>
         <source>WARNING: can&apos;t open ASCII export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished">ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  ASCII &apos;%1&apos; en écriture, vérifiez les permissions</translation>
+        <translation>ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  ASCII &apos;%1&apos; en écriture, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="199"/>
@@ -17138,7 +17139,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.cpp" line="326"/>
         <source>WARNING: can&apos;t open CSV export file &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished">ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  CSV &apos;%1&apos; en écriture, vérifiez les permissions</translation>
+        <translation>ATTENTION: n&apos;a pu ouvrir le fichier d&apos;export  CSV &apos;%1&apos; en écriture, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="331"/>
@@ -17158,18 +17159,18 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.cpp" line="405"/>
         <source>Choose ASCII export file</source>
-        <translation type="unfinished">Choisir le fichier d&apos;export ASCII</translation>
+        <translation>Choisir le fichier d&apos;export ASCII</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="405"/>
         <location filename="../../swlistexport.cpp" line="419"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tous les fichiers (*)</translation>
+        <translation>Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="419"/>
         <source>Choose CSV export file</source>
-        <translation type="unfinished">Choisir le fichier d&apos;export CSV</translation>
+        <translation>Choisir le fichier d&apos;export CSV</translation>
     </message>
 </context>
 <context>
