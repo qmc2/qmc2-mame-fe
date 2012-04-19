@@ -301,12 +301,14 @@
       <description lang="us" text="Enable profiling, specifying the stack depth to track"/>
       <description lang="de" text="Profiling unter Angabe der zu verfolgenden Stack-Tiefe aktivieren"/>
       <description lang="pl" text="Włącz profilowanie podając głębokość stosu"/>
+      <description lang="fr" text="Activer le profilage, spécifiant la profondeur de pile à tracer"/>
       <description lang="pt" text="Habilitar geração de perfil (profiling), especificando a profundidade da pilha para a trilha"/>
     </option>
     <option name="bench" type="int" default="0">
       <description lang="us" text="Benchmark for the given number of emulated seconds; implies '-video none -nosound -nothrottle'"/>
       <description lang="de" text="Benchmark für die angegebene Anzahl emulierter Sekunden durchführen; impliziert '-video none -nosound -nothrottle'"/>
       <description lang="pl" text="Sprawdzanie wydajności (benchmark) przez podaną liczbę sekund; wymusza '-video none -nosound -nothrottle'"/>
+      <description lang="fr" text="Benchmark pour le nombre de secondes choisi; implique '-video none -nosound -nothrottle'"/>
       <description lang="pt" text="Medir desempenho para o número de segundos emulados dado; implica '-video none -nosound -nothrottle'"/>
     </option>
   </section>
@@ -341,14 +343,14 @@
       <description lang="us" text="Automatically rotate screen clockwise 90 degrees if vertical"/>
       <description lang="de" text="Bildschirm automatisch im Uhrzeigersinn um 90 Grad drehen falls vertikal"/>
       <description lang="pl" text="Automatycznie obróć ekran zgodnie z ruchem wskazówek zegara jeśli pionowy"/>
-      <description lang="fr" text="# Rotation automatique de l'écran dans le sens des aiguilles d'une montre"/>
+      <description lang="fr" text="Rotation automatique de l'écran dans le sens des aiguilles d'une montre"/>
       <description lang="pt" text="Roda a tela automaticamente em sentido horário em 90 graus se vertical"/>
     </option>
     <option name="autorol" type="bool" default="false">
       <description lang="us" text="Automatically rotate screen counterclockwise 90 degrees if vertical"/>
       <description lang="de" text="Bildschirm automatisch gegen den Uhrzeigersinn um 90 Grad drehen falls vertikal"/>
       <description lang="pl" text="Automatycznie obróć ekran przeciwnie do ruchu wskazówek zegara jeśli pionowy"/>
-      <description lang="fr" text="# Rotation automatique de l'écran dans le sens contraire des aiguilles d'une montre"/>
+      <description lang="fr" text="Rotation automatique de l'écran dans le sens contraire des aiguilles d'une montre"/>
       <description lang="pt" text="Roda a tela automaticamente em sentido anti-horário em 90 graus se vertical"/>
     </option>
     <option name="flipx" type="bool" default="false">
@@ -516,7 +518,7 @@
       <description lang="us" text="Set audio latency (increase to reduce glitches, decrease for responsiveness)"/>
       <description lang="de" text="Audio-Latenz einstellen (erhöhen zur Reduktion von Störungen, verringern zur Verbesserung des Antwortverhaltens)"/>
       <description lang="pl" text="Ustaw zwłokę dźwięku (zwiększ aby zmniejszyć trzaski, zmniejsz dla szybszej odpowiedzi)"/>
-      <description lang="fr" text="# Latence Audio (augmenter la valeur pour réduire les problèmes de son)"/>
+      <description lang="fr" text="Latence Audio (augmenter la valeur pour réduire les problèmes de son)"/>
       <description lang="pt" text="Definir latência do áudio (aumente para reduzir defeitos, diminua para aumentar o desempenho)"/>
     </option>
   </section>
@@ -565,12 +567,14 @@
       <description lang="us" text="Enable dual lightgun input"/>
       <description lang="de" text="Duale Lightgun-Eingabe aktivieren"/>
       <description lang="pl" text="Włącz wejście podwójnego pistoletu świetlnego"/>
+      <description lang="fr" text="Autorise l'utilisation du Double pistolet a visée infra-rouge"/>
       <description lang="pt" text="Habilitar pistola laser dupla"/>
     </option>
     <option name="hide_cursor" type="bool" default="true">
       <description lang="us" text="Hide cursor in full screen or if mouse is enabled"/>
       <description lang="de" text="Zeiger verstecken, wenn im Vollbild-Modus oder Maus-Eingabe aktiviert ist"/>
       <description lang="pl" text="Ukrywanie kursora w trybie pełnoekranowym oraz gdy mysz jest włączona"/>
+      <description lang="fr" text="Autorise des entrées séparées pour chaque clavier (si présents)"/>
       <description lang="pt" text="Esconder cursor em tela cheia ou se o mouse estiver habilitado"/>
     </option>
     <option name="multikeyboard" type="bool" default="false">
@@ -633,12 +637,14 @@
       <description lang="us" text="Enable contradictory direction digital joystick input at the same time"/>
       <description lang="de" text="Joystick Eingabe gleichzeitig in entgegengesetzten Richtungen aktivieren"/>
       <description lang="pl" text="Włącz jednoczesne wejście cyfrowego dżojstika w przeciwnych kierunkach"/>
+      <description lang="fr" text="Active la direction contradictoire du joystick en même temps"/>
       <description lang="pt" text="Habilitar entrada de joystick digital com direção contraditória simultaneamente"/>
     </option>
     <option name="coin_impulse" type="int" default="0">
       <description lang="us" text="Set coin impulse time (n &lt; 0: disable impulse; n == 0: obey driver; n &gt; 0: set time)"/>
       <description lang="de" text="Münz-Impuls Zeit setzen (n &lt; 0: Impuls deaktivieren; n == 0: Treiber gehorchen; n &gt; 0: Zeit setzen)"/>
       <description lang="pl" text="Ustaw czas inpulsu monety (n &lt; 0: wyłącz impuls; n == 0: według sterownika; n &gt; 0: ustawienie czasu)"/>
+      <description lang="fr" text="Choisir le temps d'impulsion de la pièce (n &lt; 0: inactif; n == 0: selon pilote; n &gt; 0: choix du temps)"/>
       <description lang="pt" text="Definir tempo de impulso da moeda (n &lt; 0: desabilitar; n == 0: obedecer driver; n &gt; 0: definir tempo)"/>
     </option>
   </section>
@@ -687,6 +693,7 @@
       <description lang="us" text="Specify a font to use"/>
       <description lang="de" text="Zu verwendende Schriftart angeben"/>
       <description lang="pl" text="Wskaż używaną czcionkę"/>
+      <description lang="fr" text="Spécifier une police à utiliser"/>
       <description lang="pt" text="Especificar a fonte a ser usada"/>
     </option>
     <option name="confirm_quit" type="bool" default="false">
@@ -872,6 +879,7 @@
       <description lang="us" text="Enable menu bar if available by UI implementation"/>
       <description lang="de" text="Menü-Zeile aktivieren, sofern in UI Implementierung verfügbar"/>
       <description lang="pl" text="Włącz pasek menu jeżeli jest dostępny w implementacji UI"/>
+      <description lang="fr" text="Activer la barre de menus si disponible dans l'interface"/>
       <description lang="pt" text="Habilitar barra de menu se disponível pela implementação da interface"/>
     </option>
   </section>
@@ -885,6 +893,7 @@
       <description lang="us" text="Enable hardware stretching"/>
       <description lang="de" text="Hardware-beschleunigte Streckung"/>
       <description lang="pl" text="Włącz rozciąganie sprzętowe"/>
+      <description lang="fr" text="Active le redimensionnement matériel"/>
       <description lang="pt" text="Habilitar esticamento por hardware"/>
     </option>
   </section>
@@ -1230,256 +1239,307 @@
     <option name="hlsl_enable" type="bool" default="false">
       <description lang="us" text="Enable HLSL post-processing (Pixel Shader 3.0 required)"/>
       <description lang="de" text="HLSL Post-Processing aktivieren (benötigt Pixel Shader 3.0)"/>
+      <description lang="fr" text="Active HLSL post-processing (Pixel Shader 3.0 requis)"/>
       <description lang="pt" text="Habilitar pós processamento HLSL (requer Pixel Shader 3.0)"/>
     </option>
     <option name="hlsl_ini_read" type="bool" default="false">
       <description lang="us" text="Enable HLSL INI reading"/>
       <description lang="de" text="Einlesen von HLSL INI Dateien aktivieren"/>
+      <description lang="fr" text="Active la lecture du INI de HLSL"/>
       <description lang="pt" text="Habilitar leitura do INI do HLSL"/>
     </option>
     <option name="hlsl_ini_write" type="bool" default="false">
       <description lang="us" text="Enable HLSL INI writing"/>
       <description lang="de" text="Schreiben von HLSL INI Dateien aktivieren"/>
+      <description lang="fr" text="Active l'écriture du INI de HLSL"/>
       <description lang="pt" text="Habilitar escrita do INI do HLSL"/>
     </option>
     <option name="hlslpath" type="directory" default="hlsl">
       <description lang="us" text="Path to hlsl files"/>
       <description lang="de" text="Suchpfad für hlsl-Dateien"/>
+      <description lang="fr" text="Répertoire des fichiers HLSL"/>
       <description lang="pt" text="Caminho para os arquivos hlsl"/>
     </option>
     <option name="hlslini" type="string" default="%g">
       <description lang="us" text="HLSL ini file path"/>
       <description lang="de" text="Pfad für HLSL ini Dateien"/>
+      <description lang="fr" text="Répertoire des fichiers INI de HLSL"/>
       <description lang="pt" text="Caminho para o arquivo INI do HLSL"/>
     </option>
     <option name="hlsl_prescale_x" type="int" default="0">
       <description lang="us" text="HLSL pre-scale override factor for X (0 for auto)"/>
       <description lang="de" text="HLSL Pre-Skalierungsfaktor für X (0 = automatisch)"/>
+      <description lang="fr" text="Facteur de substition pour la mise à l'échelle en X (0 pour automatique)"/>
       <description lang="pt" text="Fator de substituição da pré-escala do HLSL para X (0 para automático)"/>
     </option>
     <option name="hlsl_prescale_y" type="int" default="0">
       <description lang="us" text="HLSL pre-scale override factor for Y (0 for auto)"/>
       <description lang="de" text="HLSL Pre-Skalierungsfaktor für Y (0 = automatisch)"/>
+      <description lang="fr" text="Facteur de substition pour la mise à l'échelle en Y (0 pour automatique)"/>
       <description lang="pt" text="Fator de substituição da pré-escala do HLSL para Y (0 para automático)"/>
     </option>
     <option name="hlsl_preset" type="int" default="-1">
       <description lang="us" text="HLSL preset to use (0-5)"/>
       <description lang="de" text="HLSL Voreinstellung (0-5)"/>
+      <description lang="fr" text="Paramètres HLSL à utiliser (0-5)"/>
       <description lang="pt" text="Preset HLSL a ser utilizado (0-5)"/>
     </option>
     <option name="hlsl_write" type="file" default="">
       <description lang="us" text="Enable HLSL AVI writing by specifying an output file (huge disk bandwidth suggested)"/>
       <description lang="de" text="HLSL AVI-Schreiben durch Angabe einer Ausgabe-Datei aktivieren (große Disk I/O Bandbreite empfohlen)"/>
+      <description lang="fr" text="Active l'écriture AVI HLSL en choisissant le fichier de destination (disque de hautes performances recommandé)"/>
       <description lang="pt" text="Habilitar escrita AVI do HLSL especificando um arquivo de saída (disco de alto desempenho recomendado)"/>
     </option>
     <option name="hlsl_snap_width" type="int" default="2048">
       <description lang="us" text="HLSL upscaled-snapshot width"/>
       <description lang="de" text="HLSL Snapshot-Breite (hochskaliert)"/>
+      <description lang="fr" text="Largeur du snapshot HLSL (upscale)"/>
       <description lang="pt" text="Largura do snapshot HLSL (upscale)"/>
     </option>
     <option name="hlsl_snap_height" type="int" default="1536">
       <description lang="us" text="HLSL upscaled-snapshot height"/>
       <description lang="de" text="HLSL Snapshot-Höhe (hochskaliert)"/>
+      <description lang="fr" text="Hauteur du snapshot HLSL (upscale)"/>
       <description lang="pt" text="Altura do snapshot HLSL (upscale)"/>
     </option>
     <option name="shadow_mask_alpha" type="float" default="0">
       <description lang="us" text="Shadow mask alpha-blend value (1.0 is fully blended, 0.0 is no mask)"/>
       <description lang="de" text="Wert für 'Shadow Mask Alpha Blending' (1.0 = volle Überlagerung, 0.0 = keine Maske)"/>
+      <description lang="fr" text="Valeur du masque Alpha d'ombrage (1.0 pour mix total, 0.0 sans masque)"/>
       <description lang="pt" text="Valor da máscara de sombras de mistura alpha (1.0 mistura total, 0.0 sem máscara)"/>
     </option>
     <option name="shadow_mask_texture" type="string" default="aperture.png">
       <description lang="us" text="Shadow mask texture name"/>
       <description lang="de" text="Name der Shadow Mask Textur"/>
+      <description lang="fr" text="Nom de la texture du masque d'ombrage"/>
       <description lang="pt" text="Nome da textura da máscara de sombras"/>
     </option>
     <option name="shadow_mask_x_count" type="int" default="320">
       <description lang="us" text="Shadow mask width, in phosphor dots"/>
       <description lang="de" text="Breite der Shadow Mask, in 'Phosphor-Dots'"/>
+      <description lang="fr" text="Largeur du masque d'ombrage, en 'phosphor dots'"/>
       <description lang="pt" text="Comprimento da máscara de sombras, em pontos de fósforo"/>
     </option>
     <option name="shadow_mask_y_count" type="int" default="240">
       <description lang="us" text="Shadow mask height, in phosphor dots"/>
       <description lang="de" text="Höhe der Shadow Mask, in 'Phosphor-Dots'"/>
+      <description lang="fr" text="Hauteur du masque d'ombrage, en 'phosphor dots'"/>
       <description lang="pt" text="Altura da máscara de sombras, em pontos de fósforo"/>
     </option>
     <option name="shadow_mask_usize" type="float" default="0.09375">
       <description lang="us" text="Shadow mask texture size in U direction"/>
       <description lang="de" text="Größe der Shadow Mask Textur in U-Richtung"/>
+      <description lang="fr" text="Taille de la texture du masque d'ombrage en direction U"/>
       <description lang="pt" text="Tamanho da textura da máscara de sombras na direção U"/>
     </option>
     <option name="shadow_mask_vsize" type="float" default="0.109375">
       <description lang="us" text="Shadow mask texture size in V direction"/>
       <description lang="de" text="Größe der Shadow Mask Textur in V-Richtung"/>
+      <description lang="fr" text="Taille de la texture du masque d'ombrage en direction V"/>
       <description lang="pt" text="Tamanho da textura da máscara de sombras na direção V"/>
     </option>
     <option name="curvature" type="float" default="0">
       <description lang="us" text="Screen curvature amount"/>
       <description lang="de" text="Betrag der Bildschirmkrümmung"/>
+      <description lang="fr" text="Taux de courbure de l'écran"/>
       <description lang="pt" text="Quantidade de curvatura da tela"/>
     </option>
     <option name="pincushion" type="float" default="0">
       <description lang="us" text="Pincushion amount"/>
       <description lang="de" text="Betrag der Kissenverzerrung"/>
+      <description lang="fr" text="Quantité de Pincushion"/>
       <description lang="pt" text="Quantidade de pincushion"/>
     </option>
     <option name="scanline_alpha" type="float" default="0">
       <description lang="us" text="Overall alpha scaling value for scanlines"/>
       <description lang="de" text="Allgemeiner Alpha-Skalierungs-Wert für Abtastzeilen"/>
+      <description lang="fr" text="Valeur globale d'étirement alpha pour les scanlines"/>
       <description lang="pt" text="Valor da escala de alpha geral para scanlines"/>
     </option>
     <option name="scanline_size" type="float" default="1">
       <description lang="us" text="Overall height scaling value for scanlines"/>
       <description lang="de" text="Allgemeiner Höhen-Skalierungs-Wert für Abtastzeilen"/>
+      <description lang="fr" text="Valeur globale d'étirement vertical alpha pour les scanlines"/>
       <description lang="pt" text="Valor da escala de altura geral para scanlines"/>
     </option>
     <option name="scanline_height" type="float" default="0.7">
       <description lang="us" text="Individual height scaling value for scanlines"/>
       <description lang="de" text="Individueller Höhen-Skalierungs-Wert für Abtastzeilen"/>
+      <description lang="fr" text="Valeur individuelle d'étirement alpha pour les scanlines"/>
       <description lang="pt" text="Valor da escala de altura individual para scanlines"/>
     </option>
     <option name="scanline_bright_scale" type="float" default="1">
       <description lang="us" text="Brightness scaling value for scanlines (multiplicative)"/>
       <description lang="de" text="Wert der Helligkeits-Skalierung für Abtastzeilen (multiplikativ)"/>
+      <description lang="fr" text="Valeur d'étirement de luminosité pour les scanlines (multiplicatif)"/>
       <description lang="pt" text="Valor da escala de brilho para scanlines (multiplicativo)"/>
     </option>
     <option name="scanline_bright_offset" type="float" default="0">
       <description lang="us" text="Brightness offset value for scanlines (additive)"/>
       <description lang="de" text="Wert des Helligkeits-Offsets für Abtastzeilen (additiv)"/>
+      <description lang="fr" text="Décalage de luminosité pour les scanlines (cumulatif)"/>
       <description lang="pt" text="Valor do deslocamento de brilho para scanlines (aditivo)"/>
     </option>
     <option name="scanline_jitter" type="float" default="0">
       <description lang="us" text="Overall interlace jitter scaling value for scanlines"/>
       <description lang="de" text="Allgemeiner Wert der Bildinstabilität beim Zeilensprung"/>
+      <description lang="fr" text="Valeur globale d'étirement 'jitter' pour les scanlines"/>
       <description lang="pt" text="Valor da escala de variação de interlace geral para scanlines"/>
     </option>
     <option name="defocus" type="float2" default="0.0,0.0">
       <description lang="us" text="Overall defocus scaling in screen-relative coordinates"/>
       <description lang="de" text="Allgemeiner Skalierungsfaktor der Defokussierung in Bildschirm-relativen Koordinaten"/>
+      <description lang="fr" text="Echelle globale d'étirement 'defocus' pour les coordonnées relatives à l'écran"/>
       <description lang="pt" text="Escala de desfocagem geral nas coordenadas relativas à tela"/>
     </option>
     <option name="converge_x" type="float3" default="0.0,0.0,0.0">
       <description lang="us" text="Convergence in screen-relative X direction"/>
       <description lang="de" text="Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="fr" text="Convergence en direction X relative à l'écran"/>
       <description lang="pt" text="Convergência do vermelho na direção X relativa"/>
     </option>
     <option name="converge_y" type="float3" default="0.0,0.0,0.0">
       <description lang="us" text="Convergence in screen-relative Y direction"/>
       <description lang="de" text="Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="fr" text="Convergence en direction Y relative à l'écran"/>
       <description lang="pt" text="Convergência do vermelho na direção Y relativa"/>
     </option>
     <option name="radial_converge_x" type="float3" default="0.0,0.0,0.0">
       <description lang="us" text="Radial convergence in screen-relative X direction"/>
       <description lang="de" text="Radiale Konvergenz in X-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="fr" text="Convergence radiale en direction X relative à l'écran"/>
       <description lang="pt" text="Convergência radial do vermelho na direção X relativa"/>
     </option>
     <option name="radial_converge_y" type="float3" default="0.0,0.0,0.0">
       <description lang="us" text="Radial convergence in screen-relative Y direction"/>
       <description lang="de" text="Radiale Konvergenz in Y-Richtung (relativ zur Bildschirmanzeige)"/>
+      <description lang="fr" text="Convergence radiale en direction Y relative à l'écran"/>
       <description lang="pt" text="Convergência radial do vermelho na direção Y relativa"/>
     </option>
     <option name="red_ratio" type="float3" default="1.0,0.0,0.0">
       <description lang="us" text="Red output signal generated by input signal"/>
       <description lang="de" text="Rotes Ausgabesignal generiert durch Eingabesignal"/>
+      <description lang="fr" text="Signal de sortie Rouge généré par le signal d'entrée"/>
       <description lang="pt" text="Sinal de saída do vermelho gerado pelo sinal de entrada"/>
     </option>
     <option name="grn_ratio" type="float3" default="0.0,1.0,0.0">
       <description lang="us" text="Green output signal generated by input signal"/>
       <description lang="de" text="Grünes Ausgabesignal generiert durch Eingabesignal"/>
+      <description lang="fr" text="Signal de sortie Vert généré par le signal d'entrée"/>
       <description lang="pt" text="Sinal de saída do verde gerado pelo sinal de entrada"/>
     </option>
     <option name="blu_ratio" type="float3" default="0.0,0.0,1.0">
       <description lang="us" text="Blue output signal generated by input signal"/>
       <description lang="de" text="Blaues Ausgabesignal generiert durch Eingabesignal"/>
+      <description lang="fr" text="Signal de sortie Bleu généré par le signal d'entrée"/>
       <description lang="pt" text="Sinal de saída do azul gerado pelo sinal de entrada"/>
     </option>
     <option name="saturation" type="float" default="1">
       <description lang="us" text="Saturation scaling value"/>
       <description lang="de" text="Wert der Sättigungs-Skalierung"/>
+      <description lang="fr" text="Valeur d'étirement de saturation"/>
       <description lang="pt" text="Valor de escala de saturação"/>
     </option>
     <option name="offset" type="float3" default="0.0,0.0,0.0">
       <description lang="us" text="Signal offset value (additive)"/>
       <description lang="de" text="Wert des Signal-Offsets (additiv)"/>
+      <description lang="fr" text="Valeur de signal offset (cumulatif)"/>
       <description lang="pt" text="Valor de deslocamento do sinal (aditivo)"/>
     </option>
     <option name="scale" type="float3" default="1.0,1.0,1.0">
       <description lang="us" text="Signal scaling value (multiplicative)"/>
       <description lang="de" text="Wert des Signal-Offsets (multiplikativ)"/>
+      <description lang="fr" text="Valeur d'étirement du signal (multiplicatif)"/>
       <description lang="pt" text="Valor de escala do sinal (multiplicativo)"/>
     </option>
     <option name="power" type="float3" default="1.0,1.0,1.0">
       <description lang="us" text="Signal power value (exponential)"/>
       <description lang="de" text="Wert der Signalstärke (exponentiell)"/>
+      <description lang="fr" text="Valeur de puissance du signal (exponentiel)"/>
       <description lang="pt" text="Valor da potência do sinal (exponencial)"/>
     </option>
     <option name="floor" type="float3" default="0.0,0.0,0.0">
       <description lang="us" text="Signal floor level"/>
       <description lang="de" text="Niedrigster Wert der Signalstärke"/>
+      <description lang="fr" text="Niveau plancher du signal"/>
       <description lang="pt" text="Nível base de sinal"/>
     </option>
     <option name="phosphor_life" type="float3" default="0.0,0.0,0.0">
       <description lang="us" text="Phosphorescence decay rate (0.0 is instant, 1.0 is forever)"/>
       <description lang="de" text="Rate der Nachleuchtdämpfung (0.0 = sofort, 1.0 = ewig)"/>
+      <description lang="fr" text="Taux de décroissance de la phosphorescence (0.0 instantané, 1.0 sans fin)"/>
       <description lang="pt" text="Razão de decaimento da fosforescência (0.0 é instantâneo, 1.0 é para sempre)"/>
     </option>
     <option name="yiq_enable" type="bool" default="false">
       <description lang="us" text="Enable YIQ-space HLSL post-processing"/>
       <description lang="de" text="YIQ-Raum HLSL Post-Processing aktivieren"/>
+      <description lang="fr" text="Active le post-proccessing YIQ-space HLSL"/>
       <description lang="pt" text="Habilitar pós processamento HLSL do espaço YIQ"/>
     </option>
     <option name="yiq_cc" type="float" decimals="8" default="3.59754545">
       <description lang="us" text="Color carrier frequency for NTSC signal processing"/>
       <description lang="de" text="Farbträger-Frequenz für NTSC Signalverarbeitung"/>
+      <description lang="fr" text="Fréquence de couleurs pour le traitement du signal NTSC"/>
       <description lang="pt" text="Frequência da portadora de cor para o processamento de sinal NTSC"/>
     </option>
     <option name="yiq_a" type="float" default="0.5">
       <description lang="us" text="A value for NTSC signal processing"/>
       <description lang="de" text="A-Wert für NTSC Signalbearbeitung"/>
+      <description lang="fr" text="Valeur A pour le traitement du signal NTSC"/>
       <description lang="pt" text="Valor A para o processamento de sinal NTSC"/>
     </option>
     <option name="yiq_b" type="float" default="0.5">
       <description lang="us" text="B value for NTSC signal processing"/>
       <description lang="de" text="B-Wert für NTSC Signalbearbeitung"/>
+      <description lang="fr" text="Valeur B pour le traitement du signal NTSC"/>
       <description lang="pt" text="Valor B para o processamento de sinal NTSC"/>
     </option>
     <option name="yiq_o" type="float" default="0">
       <description lang="us" text="Outgoing color carrier phase offset for NTSC signal processing"/>
       <description lang="de" text="Ausgehende Farbträger-Phasenverschiebung für NTSC Signalverarbeitung"/>
+      <description lang="fr" text="Phase offset de sortie pour la fréquence de couleurs pour le traitement du signal NTSC"/>
       <description lang="pt" text="Deslocamento de saída de fase da portadora de cor para o processamento de sinal NTSC"/>
     </option>
     <option name="yiq_p" type="float" default="1">
       <description lang="us" text="Incoming pixel clock scaling value for NTSC signal processing"/>
       <description lang="de" text="Eingehender Pixel-Clock Skalierungswert für NTSC Signalverarbeitung"/>
+      <description lang="fr" text="Valeur d'étirement de pixels entrants pour le traitement du signal NTSC"/>
       <description lang="pt" text="Valor de escala do clock do pixel de entrada para o processamento de sinal NTSC"/>
     </option>
     <option name="yiq_n" type="float" default="1">
       <description lang="us" text="Y filter notch width for NTSC signal processing"/>
       <description lang="de" text="Y Filter-Aussparung für NTSC Signalverarbeitung"/>
+      <description lang="fr" text="Largeur de filtre Y pour le traitement du signal NTSC"/>
       <description lang="pt" text="Tamanho do notch do filtro Y para o processamento de sinal NTSC"/>
     </option>
     <option name="yiq_y" type="float" default="6">
       <description lang="us" text="Y filter cutoff frequency for NTSC signal processing"/>
       <description lang="de" text="Y-Filter Grenzfrequenz für NTSC Signalverarbeitung"/>
+      <description lang="fr" text="Fréquence de coupure du filtre Y pour le traitement du signal NTSC"/>
       <description lang="pt" text="Frequência de corte do filtro Y para o processamento de sinal NTSC"/>
     </option>
     <option name="yiq_i" type="float" default="1.2">
       <description lang="us" text="I filter cutoff frequency for NTSC signal processing"/>
       <description lang="de" text="I-Filter Grenzfrequenz für NTSC Signalverarbeitung"/>
+      <description lang="fr" text="Fréquence de coupure du filtre I pour le traitement du signal NTSC"/>
       <description lang="pt" text="Frequência de corte do filtro I para o processamento de sinal NTSC"/>
     </option>
     <option name="yiq_q" type="float" default="0.6">
       <description lang="us" text="Q filter cutoff frequency for NTSC signal processing"/>
       <description lang="de" text="Q-Filter Grenzfrequenz für NTSC Signalverarbeitung"/>
+      <description lang="fr" text="Fréquence de coupure du filtre Q pour le traitement du signal NTSC"/>
       <description lang="pt" text="Frequência de corte do filtro Q para o processamento de sinal NTSC"/>
     </option>
     <option name="yiq_scan_time" type="float" default="52.6">
       <description lang="us" text="Horizontal scanline duration for NTSC signal processing (in usec)"/>
       <description lang="de" text="Horizontale Verweildauer pro Abtastzeile (in Mikrosekunden) für NTSC Signalverarbeitung"/>
+      <description lang="fr" text="Durée des scanlines horizontales pour le traitement du signal NTSC (en msec)"/>
       <description lang="pt" text="Duração das scanlines horizontais para o processamento de sinal NTSC (em micro-segundos)"/>
     </option>
     <option name="yiq_phase_count" type="int" default="2">
       <description lang="us" text="Phase count value for NTSC signal processing"/>
       <description lang="de" text="Anzahl der Phasen für NTSC Signalverarbeitung"/>
+      <description lang="fr" text="Valeur de la phase pour le traitement du signal NTSC"/>
       <description lang="pt" text="Valor de contagem de fase para o processamento de sinal NTSC"/>
     </option>
   </section>
