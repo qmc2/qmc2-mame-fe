@@ -304,10 +304,18 @@
       <description lang="pt" text="Número de processadores (ou 'auto'); sobrescreve o número reportado pelo sistema"/>
       <choice name="auto"/>
     </option>
+    <option name="profile" type="int" default="0">
+      <description lang="us" text="Enable profiling, specifying the stack depth to track"/>
+      <description lang="de" text="Profiling unter Angabe der zu verfolgenden Stack-Tiefe aktivieren"/>
+      <description lang="pl" text="Włącz profilowanie podając głębokość stosu"/>
+      <description lang="fr" text="Activer le profilage, spécifiant la profondeur de pile à tracer"/>
+      <description lang="pt" text="Habilitar geração de perfil (profiling), especificando a profundidade da pilha para a trilha"/>
+    </option>
     <option name="bench" type="int" default="0">
       <description lang="us" text="Benchmark for the given number of emulated seconds; implies '-video none -nosound -nothrottle'"/>
       <description lang="de" text="Benchmark für die angegebene Anzahl emulierter Sekunden durchführen; impliziert '-video none -nosound -nothrottle'"/>
       <description lang="pl" text="Sprawdzanie wydajności (benchmark) przez podaną liczbę sekund; wymusza '-video none -nosound -nothrottle'"/>
+      <description lang="fr" text="Benchmark pour le nombre de secondes choisi; implique '-video none -nosound -nothrottle'"/>
       <description lang="pt" text="Medir desempenho para o número de segundos emulados dado; implica '-video none -nosound -nothrottle'"/>
     </option>
   </section>
@@ -342,14 +350,14 @@
       <description lang="us" text="Automatically rotate screen clockwise 90 degrees if vertical"/>
       <description lang="de" text="Bildschirm automatisch im Uhrzeigersinn um 90 Grad drehen falls vertikal"/>
       <description lang="pl" text="Automatycznie obróć ekran zgodnie z ruchem wskazówek zegara jeśli pionowy"/>
-      <description lang="fr" text="# Rotation automatique de l'écran dans le sens des aiguilles d'une montre"/>
+      <description lang="fr" text="Rotation automatique de l'écran dans le sens des aiguilles d'une montre"/>
       <description lang="pt" text="Roda a tela automaticamente em sentido horário em 90 graus se vertical"/>
     </option>
     <option name="autorol" type="bool" default="false">
       <description lang="us" text="Automatically rotate screen counterclockwise 90 degrees if vertical"/>
       <description lang="de" text="Bildschirm automatisch gegen den Uhrzeigersinn um 90 Grad drehen falls vertikal"/>
       <description lang="pl" text="Automatycznie obróć ekran przeciwnie do ruchu wskazówek zegara jeśli pionowy"/>
-      <description lang="fr" text="# Rotation automatique de l'écran dans le sens contraire des aiguilles d'une montre"/>
+      <description lang="fr" text="Rotation automatique de l'écran dans le sens contraire des aiguilles d'une montre"/>
       <description lang="pt" text="Roda a tela automaticamente em sentido anti-horário em 90 graus se vertical"/>
     </option>
     <option name="flipx" type="bool" default="false">
@@ -517,7 +525,7 @@
       <description lang="us" text="Set audio latency (increase to reduce glitches, decrease for responsiveness)"/>
       <description lang="de" text="Audio-Latenz einstellen (erhöhen zur Reduktion von Störungen, verringern zur Verbesserung des Antwortverhaltens)"/>
       <description lang="pl" text="Ustaw zwłokę dźwięku (zwiększ aby zmniejszyć trzaski, zmniejsz dla szybszej odpowiedzi)"/>
-      <description lang="fr" text="# Latence Audio (augmenter la valeur pour réduire les problèmes de son)"/>
+      <description lang="fr" text="Latence Audio (augmenter la valeur pour réduire les problèmes de son)"/>
       <description lang="pt" text="Definir latência do áudio (aumente para reduzir defeitos, diminua para aumentar o desempenho)"/>
     </option>
     <option name="sound_resync" type="bool" default="false">
@@ -575,6 +583,13 @@
       <description lang="pl" text="Włącz wejście podwójnego pistoletu świetlnego"/>
       <description lang="fr" text="Autorise l'utilisation du Double pistolet a visée infra-rouge"/>
       <description lang="pt" text="Habilitar pistola laser dupla"/>
+    </option>
+    <option name="hide_cursor" type="bool" default="true">
+      <description lang="us" text="Hide cursor in full screen or if mouse is enabled"/>
+      <description lang="de" text="Zeiger verstecken, wenn im Vollbild-Modus oder Maus-Eingabe aktiviert ist"/>
+      <description lang="pl" text="Ukrywanie kursora w trybie pełnoekranowym oraz gdy mysz jest włączona"/>
+      <description lang="fr" text="Autorise des entrées séparées pour chaque clavier (si présents)"/>
+      <description lang="pt" text="Esconder cursor em tela cheia ou se o mouse estiver habilitado"/>
     </option>
     <option name="multikeyboard" type="bool" default="false">
       <description lang="us" text="Enable separate input from each keyboard device (if present)"/>
@@ -739,6 +754,7 @@
       <description lang="us" text="Specify a font to use"/>
       <description lang="de" text="Zu verwendende Schriftart angeben"/>
       <description lang="pl" text="Wskaż używaną czcionkę"/>
+      <description lang="fr" text="Spécifier une police à utiliser"/>
       <description lang="pt" text="Especificar a fonte a ser usada"/>
       <choice name="default"/>
     </option>

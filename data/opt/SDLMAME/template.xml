@@ -335,14 +335,14 @@
       <description lang="us" text="Automatically rotate screen clockwise 90 degrees if vertical"/>
       <description lang="de" text="Bildschirm automatisch im Uhrzeigersinn um 90 Grad drehen falls vertikal"/>
       <description lang="pl" text="Automatycznie obróć ekran zgodnie z ruchem wskazówek zegara jeśli pionowy"/>
-      <description lang="fr" text="# Rotation automatique de l'écran dans le sens des aiguilles d'une montre"/>
+      <description lang="fr" text="Rotation automatique de l'écran dans le sens des aiguilles d'une montre"/>
       <description lang="pt" text="Roda a tela automaticamente em sentido horário em 90 graus se vertical"/>
     </option>
     <option name="autorol" type="bool" default="false">
       <description lang="us" text="Automatically rotate screen counterclockwise 90 degrees if vertical"/>
       <description lang="de" text="Bildschirm automatisch gegen den Uhrzeigersinn um 90 Grad drehen falls vertikal"/>
       <description lang="pl" text="Automatycznie obróć ekran przeciwnie do ruchu wskazówek zegara jeśli pionowy"/>
-      <description lang="fr" text="# Rotation automatique de l'écran dans le sens contraire des aiguilles d'une montre"/>
+      <description lang="fr" text="Rotation automatique de l'écran dans le sens contraire des aiguilles d'une montre"/>
       <description lang="pt" text="Roda a tela automaticamente em sentido anti-horário em 90 graus se vertical"/>
     </option>
     <option name="flipx" type="bool" default="false">
@@ -510,7 +510,7 @@
       <description lang="us" text="Set audio latency (increase to reduce glitches, decrease for responsiveness)"/>
       <description lang="de" text="Audio-Latenz einstellen (erhöhen zur Reduktion von Störungen, verringern zur Verbesserung des Antwortverhaltens)"/>
       <description lang="pl" text="Ustaw zwłokę dźwięku (zwiększ aby zmniejszyć trzaski, zmniejsz dla szybszej odpowiedzi)"/>
-      <description lang="fr" text="# Latence Audio (augmenter la valeur pour réduire les problèmes de son)"/>
+      <description lang="fr" text="Latence Audio (augmenter la valeur pour réduire les problèmes de son)"/>
       <description lang="pt" text="Definir latência do áudio (aumente para reduzir defeitos, diminua para aumentar o desempenho)"/>
     </option>
   </section>
@@ -655,6 +655,7 @@
       <description lang="us" text="Specify a font to use"/>
       <description lang="de" text="Zu verwendende Schriftart angeben"/>
       <description lang="pl" text="Wskaż używaną czcionkę"/>
+      <description lang="fr" text="Spécifier une police à utiliser"/>
       <description lang="pt" text="Especificar a fonte a ser usada"/>
       <choice name="default"/>
     </option>
