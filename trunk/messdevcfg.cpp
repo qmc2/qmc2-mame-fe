@@ -564,9 +564,8 @@ bool MESSDeviceConfigurator::readSystemSlots()
 							slotDeviceName.remove(QRegExp("^\\S+\\s+\\S+\\s+\\S+\\s+"));
 							messSlotNameMap[slotOption] = slotDeviceName;
 							messSystemSlotMap[systemName][slotName] << slotOption;
-						} else {
+						} else
 							messSystemSlotMap[systemName][slotName].clear();
-						}
 					} else {
 						systemName = slotWords[0];
 						messSystemSlotMap[systemName].clear();
@@ -587,9 +586,8 @@ bool MESSDeviceConfigurator::readSystemSlots()
 							slotDeviceName.remove(QRegExp("^\\S+\\s+\\S+\\s+"));
 							messSystemSlotMap[systemName][slotName] << slotOption;
 							messSlotNameMap[slotOption] = slotDeviceName;
-						} else {
+						} else
 							messSystemSlotMap[systemName][slotName].clear();
-						}
 					}
 				}
 			}
@@ -824,17 +822,20 @@ bool MESSDeviceConfigurator::load()
 			slotOptions << QString("%1 (%2)").arg(s).arg(messSlotNameMap[s]);
 			slotOptionsShort << s;
 		}
+		slotOptions.sort();
+		slotOptionsShort.sort();
 		QComboBox *cb = new QComboBox(0);
 		cb->setAutoFillBackground(true);
 		QString defaultSlotOption = xmlHandler.defaultSlotOptions[slotName];
 		if ( defaultSlotOption.isEmpty() ) {
 			cb->insertItem(0, tr("not used"));
-			if ( slotOptions.count() > 0 )
-				cb->insertItems(1, slotOptions);
+			if ( slotOptions.count() > 0 ) {
+				cb->insertSeparator(1);
+				cb->insertItems(2, slotOptions);
+			}
 			slotPreselectionMap[cb] = 0;
 		} else {
 			if ( slotOptions.count() > 0 ) {
-
 				cb->insertItems(0, slotOptions);
 				slotPreselectionMap[cb] = slotOptionsShort.indexOf(defaultSlotOption);
 			}
