@@ -1703,9 +1703,15 @@ void MainWindow::on_actionPlay_activated()
 						QString slotName = item->data(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::EditRole).toString();
 						if ( !slotName.isEmpty() ) {
 							QComboBox *cb = (QComboBox *)qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
-							if ( cb )
-								if ( cb->currentIndex() > 0 )
+							if ( cb ) {
+								int defaultIndex = qmc2MESSDeviceConfigurator->slotPreselectionMap[cb];
+								if ( cb->currentIndex() > 0 && defaultIndex == 0 )
 									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+								else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
+									args << QString("-%1").arg(slotName) << "\"\"";
+								else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex )
+									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+							}
 						}
 					}
 				}
@@ -1736,9 +1742,15 @@ void MainWindow::on_actionPlay_activated()
 						QString slotName = item->data(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::EditRole).toString();
 						if ( !slotName.isEmpty() ) {
 							QComboBox *cb = (QComboBox *)qmc2MESSDeviceConfigurator->treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
-							if ( cb )
-								if ( cb->currentIndex() > 0 )
+							if ( cb ) {
+								int defaultIndex = qmc2MESSDeviceConfigurator->slotPreselectionMap[cb];
+								if ( cb->currentIndex() > 0 && defaultIndex == 0 )
 									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+								else if ( cb->currentIndex() == 0 && defaultIndex > 0 )
+									args << QString("-%1").arg(slotName) << "\"\"";
+								else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex )
+									args << QString("-%1").arg(slotName) << cb->currentText().split(" ")[0];
+							}
 						}
 					}
 				}

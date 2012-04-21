@@ -835,10 +835,13 @@ bool MESSDeviceConfigurator::load()
 			}
 			slotPreselectionMap[cb] = 0;
 		} else {
+			cb->insertItem(0, tr("not used"));
 			if ( slotOptions.count() > 0 ) {
-				cb->insertItems(0, slotOptions);
-				slotPreselectionMap[cb] = slotOptionsShort.indexOf(defaultSlotOption);
-			}
+				cb->insertSeparator(1);
+				cb->insertItems(2, slotOptions);
+				slotPreselectionMap[cb] = slotOptionsShort.indexOf(defaultSlotOption) + 2;
+			} else
+				slotPreselectionMap[cb] = 0;
 		}
 		QTreeWidgetItem *slotItem = new QTreeWidgetItem(treeWidgetSlotOptions);
 		slotItem->setText(QMC2_SLOTCONFIG_COLUMN_SLOT, slotName);
@@ -1006,11 +1009,19 @@ void MESSDeviceConfigurator::on_toolButtonSaveConfiguration_clicked()
 			QString slotName = item->data(QMC2_SLOTCONFIG_COLUMN_SLOT, Qt::EditRole).toString();
 			if ( !slotName.isEmpty() ) {
 				QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(item, QMC2_SLOTCONFIG_COLUMN_OPTION);
-				if ( cb )
-					if ( cb->currentIndex() > 0 ) {
+				if ( cb ) {
+					int defaultIndex = slotPreselectionMap[cb];
+					if ( cb->currentIndex() > 0 && defaultIndex == 0 ) {
+						slotNames << slotName;
+						slotOptions << cb->currentText().split(" ")[0];
+					} else if (cb->currentIndex() == 0 && defaultIndex > 0 ) {
+						slotNames << slotName;
+						slotOptions << "\"\"";
+					} else if ( cb->currentIndex() > 0 && defaultIndex > 0 && cb->currentIndex() != defaultIndex ) {
 						slotNames << slotName;
 						slotOptions << cb->currentText().split(" ")[0];
 					}
+				}
 			}
 		}
 		slotMap[cfgName].first = slotNames;
@@ -1122,12 +1133,6 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 	}
 
 	if ( dontIgnoreNameChange ) {
-		/*
-		QList<QTreeWidgetItem *> setupItemList = treeWidgetDeviceSetup->findItems("*", Qt::MatchWildcard);
-		foreach (QTreeWidgetItem *setupItem, setupItemList)
-			setupItem->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, QString());
-		qApp->processEvents();
-		*/
 		QList<QListWidgetItem *> matchedItemList = listWidgetDeviceConfigurations->findItems(text, Qt::MatchExactly);
 		if ( !matchedItemList.isEmpty() ) {
 			matchedItemList[0]->setSelected(true);
@@ -1151,7 +1156,9 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 						if ( itemList.count() > 0 ) {
 							QComboBox *cb = (QComboBox *)treeWidgetSlotOptions->itemWidget(itemList[0], QMC2_SLOTCONFIG_COLUMN_OPTION);
 							if ( cb ) {
-								int index = cb->findText(QString("%1 (%2)").arg(valuePair.second[i]).arg(messSlotNameMap[valuePair.second[i]]));
+								int index = 0;
+								if ( valuePair.second[i] != "\"\"" )
+									index = cb->findText(QString("%1 (%2)").arg(valuePair.second[i]).arg(messSlotNameMap[valuePair.second[i]]));
 								if ( index >= 0 ) {
 									cb->blockSignals(true);
 									cb->setCurrentIndex(index);
