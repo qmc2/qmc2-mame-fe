@@ -164,17 +164,26 @@ YouTubeVideoPlayer::YouTubeVideoPlayer(QString sID, QString sName, QWidget *pare
 	action = menuVideoPlayer->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	videoMenuCopyVideoUrlAction = action;
 	connect(action, SIGNAL(triggered()), this, SLOT(copyCurrentYouTubeUrl()));
 	s = tr("Copy author URL");
 	action = menuVideoPlayer->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	videoMenuCopyAuthorUrlAction = action;
 	connect(action, SIGNAL(triggered()), this, SLOT(copyCurrentAuthorUrl()));
+	s = tr("Paste video URL");
+	action = menuVideoPlayer->addAction(s);
+	action->setToolTip(s); action->setStatusTip(s);
+	action->setIcon(QIcon(QString::fromUtf8(":/data/img/youtube.png")));
+	connect(action, SIGNAL(triggered()), this, SLOT(playerPasteYouTubeUrl()));
+	videoMenuPasteVideoUrlAction = action;
 	menuVideoPlayer->addSeparator();
 	s = tr("Attach this video");
 	action = menuVideoPlayer->addAction(s);
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/movie.png")));
+	videoMenuAttachVideoAction = action;
 	connect(action, SIGNAL(triggered()), this, SLOT(attachCurrentVideo()));
 
 	menuSearchResults = new QMenu(0);
@@ -460,6 +469,21 @@ void YouTubeVideoPlayer::pasteYouTubeUrl()
 		attachVideo(videoID, videoInfoList[0], videoInfoList[1]);
 		QTimer::singleShot(10, this, SLOT(updateAttachedVideoInfoImages()));
 	}
+}
+
+void YouTubeVideoPlayer::playerPasteYouTubeUrl()
+{
+	QString videoID = qApp->clipboard()->text();
+	videoID.replace(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=(.*)$"), "\\1").replace(QRegExp("\\&.*$"), "");
+
+#ifdef QMC2_DEBUG
+	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::playerPasteYouTubeUrl(): videoID = '%1'").arg(videoID));
+#endif
+
+	if ( videoID.isEmpty() )
+		return;
+
+	playVideo(videoID);
 }
 
 void YouTubeVideoPlayer::copyAuthorUrl()
@@ -1287,15 +1311,31 @@ void YouTubeVideoPlayer::on_videoPlayer_customContextMenuRequested(const QPoint 
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: YouTubeVideoPlayer::on_videoPlayer_customContextMenuRequested(const QPoint &p = [%1, %2])").arg(p.x()).arg(p.y()));
 #endif
 
-	if ( currentVideoID.isEmpty() )
-		return;
-
 	if ( menuVideoPlayer ) {
+		QString clipboardText = qApp->clipboard()->text();
+		if ( clipboardText.indexOf(QRegExp("^http\\:\\/\\/.*youtube\\.com\\/watch\\?.*v\\=.*$")) == 0 )
+			videoMenuPasteVideoUrlAction->setEnabled(true);
+		else
+			videoMenuPasteVideoUrlAction->setEnabled(false);
+
+		if ( currentVideoID.isEmpty() ) {
+			videoMenuPlayPauseAction->setEnabled(false);
+			videoMenuCopyVideoUrlAction->setEnabled(false);
+			videoMenuCopyAuthorUrlAction->setEnabled(false);
+			videoMenuAttachVideoAction->setEnabled(false);
+		} else {
+			videoMenuPlayPauseAction->setEnabled(true);
+			videoMenuCopyVideoUrlAction->setEnabled(true);
+			videoMenuCopyAuthorUrlAction->setEnabled(true);
+			videoMenuAttachVideoAction->setEnabled(true);
+		}
+
 		QString keySeq = qmc2CustomShortcutMap["F11"];
 		if ( !keySeq.isEmpty() )
 			videoMenuFullscreenAction->setText(tr("Full screen (press %1 to return)").arg(keySeq));
 		else
 			videoMenuFullscreenAction->setText(tr("Full screen (return with toggle-key)"));
+
 		menuVideoPlayer->move(qmc2MainWindow->adjustedWidgetPosition(videoPlayer->mapToGlobal(p), menuVideoPlayer));
 		menuVideoPlayer->show();
 	}

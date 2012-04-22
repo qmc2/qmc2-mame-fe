@@ -157,6 +157,10 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		QString videoInfoBuffer, videoImageBuffer, searchRequestBuffer;
 		QAction *videoMenuPlayPauseAction;
 		QAction *videoMenuFullscreenAction;
+		QAction *videoMenuCopyVideoUrlAction;
+		QAction *videoMenuCopyAuthorUrlAction;
+		QAction *videoMenuPasteVideoUrlAction;
+		QAction *videoMenuAttachVideoAction;
 		QAction *autoSuggestAction;
 		QAction *avmActionPlayVideo;
 		QAction *avmActionCopyVideoUrl;
@@ -228,6 +232,7 @@ class YouTubeVideoPlayer : public QWidget, public Ui::YouTubeVideoPlayer
 		void attachCurrentVideo();
 		void copyYouTubeUrl();
 		void pasteYouTubeUrl();
+		void playerPasteYouTubeUrl();
 		void copySearchYouTubeUrl();
 		void copyAuthorUrl();
 		void copySearchAuthorUrl();
