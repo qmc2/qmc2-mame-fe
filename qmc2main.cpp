@@ -757,13 +757,13 @@ MainWindow::MainWindow(QWidget *parent)
     treeWidgetEmulators->hideColumn(QMC2_EMUCONTROL_COLUMN_LED1);
 #endif
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ImageChecker/Visible").toBool() ) {
-      on_actionCheckPreviews_activated();
+      on_actionCheckPreviews_triggered();
       qmc2ImageChecker->tabWidgetImageChecker->setCurrentIndex(qmc2Config->value(QMC2_FRONTEND_PREFIX + "ImageChecker/CurrentTab", 0).toInt());
     }
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/SampleChecker/Visible").toBool() )
-      on_actionCheckSamples_activated();
+      on_actionCheckSamples_triggered();
     if ( qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/ROMAlyzer/Visible").toBool() )
-      on_actionROMAlyzer_activated();
+      on_actionROMAlyzer_triggered();
     actionFullscreenToggle->setChecked(qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/MainWidget/Fullscreen", false).toBool());
     tabWidgetGamelist->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/Gamelist/TabPosition", QTabWidget::North).toInt());
     tabWidgetGameDetail->setTabPosition((QTabWidget::TabPosition)qmc2Config->value(QMC2_FRONTEND_PREFIX + "Layout/GameDetail/TabPosition", QTabWidget::North).toInt());
@@ -778,7 +778,7 @@ MainWindow::MainWindow(QWidget *parent)
     floatToggleButtonSoftwareDetail->setChecked(true);
   }
 
-  on_actionFullscreenToggle_activated();
+  on_actionFullscreenToggle_triggered();
 
   // context menus
   QAction *action;
@@ -820,7 +820,7 @@ MainWindow::MainWindow(QWidget *parent)
   contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Play selected game (embedded)");
@@ -831,7 +831,7 @@ MainWindow::MainWindow(QWidget *parent)
   contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_triggered()));
 #endif
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Add current game to favorites");
@@ -841,7 +841,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2GameMenu->addAction(tr("To &favorites"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/favorites.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionToFavorites_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionToFavorites_triggered()));
   qmc2GameMenu->addSeparator();
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Check current game's ROM state");
@@ -851,7 +851,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2GameMenu->addAction(tr("Check &ROM state"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/rom.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionCheckCurrentROM_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionCheckCurrentROM_triggered()));
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Analyse current game's ROM set with ROMAlyzer");
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -860,7 +860,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2GameMenu->addAction(tr("&Analyse ROM..."));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
 
   qmc2SearchMenu = new QMenu(0);
 #if defined(QMC2_EMUTYPE_MAME)
@@ -872,7 +872,7 @@ MainWindow::MainWindow(QWidget *parent)
   contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Play selected game (embedded)");
@@ -883,7 +883,7 @@ MainWindow::MainWindow(QWidget *parent)
   contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_triggered()));
 #endif
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Add current game to favorites");
@@ -893,7 +893,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2SearchMenu->addAction(tr("To &favorites"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/favorites.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionToFavorites_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionToFavorites_triggered()));
   qmc2SearchMenu->addSeparator();
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Check current game's ROM state");
@@ -903,7 +903,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2SearchMenu->addAction(tr("Check &ROM state"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/rom.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionCheckCurrentROM_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionCheckCurrentROM_triggered()));
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Analyse current game's ROM set with ROMAlyzer");
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -912,7 +912,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2SearchMenu->addAction(tr("&Analyse ROM..."));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
 
   qmc2FavoritesMenu = new QMenu(0);
 #if defined(QMC2_EMUTYPE_MAME)
@@ -924,7 +924,7 @@ MainWindow::MainWindow(QWidget *parent)
   contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Play selected game (embedded)");
@@ -935,7 +935,7 @@ MainWindow::MainWindow(QWidget *parent)
   contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_triggered()));
 #endif
   qmc2FavoritesMenu->addSeparator();
 #if defined(QMC2_EMUTYPE_MAME)
@@ -946,7 +946,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2FavoritesMenu->addAction(tr("Check &ROM state"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/rom.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionCheckCurrentROM_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionCheckCurrentROM_triggered()));
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Analyse current game's ROM set with ROMAlyzer");
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -955,7 +955,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2FavoritesMenu->addAction(tr("&Analyse ROM..."));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
   qmc2FavoritesMenu->addSeparator();
   s = tr("Remove from favorites");
   action = qmc2FavoritesMenu->addAction(tr("&Remove"));
@@ -983,7 +983,7 @@ MainWindow::MainWindow(QWidget *parent)
   contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlay_triggered()));
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Play selected game (embedded)");
@@ -994,7 +994,7 @@ MainWindow::MainWindow(QWidget *parent)
   contextMenuPlayActions.append(action);
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionPlayEmbedded_triggered()));
 #endif
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Add current game to favorites");
@@ -1004,7 +1004,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2PlayedMenu->addAction(tr("To &favorites"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/favorites.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionToFavorites_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionToFavorites_triggered()));
   qmc2PlayedMenu->addSeparator();
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Check current game's ROM state");
@@ -1014,7 +1014,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2PlayedMenu->addAction(tr("Check &ROM state"));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/rom.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionCheckCurrentROM_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionCheckCurrentROM_triggered()));
 #if defined(QMC2_EMUTYPE_MAME)
   s = tr("Analyse current game's ROM set with ROMAlyzer");
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -1023,7 +1023,7 @@ MainWindow::MainWindow(QWidget *parent)
   action = qmc2PlayedMenu->addAction(tr("&Analyse ROM..."));
   action->setToolTip(s); action->setStatusTip(s);
   action->setIcon(QIcon(QString::fromUtf8(":/data/img/search.png")));
-  connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_activated()));
+  connect(action, SIGNAL(triggered()), this, SLOT(on_actionAnalyseCurrentROM_triggered()));
   qmc2PlayedMenu->addSeparator();
   s = tr("Remove from played");
   action = qmc2PlayedMenu->addAction(tr("&Remove"));
@@ -1457,31 +1457,31 @@ void MainWindow::action_foreignIDsMenuItem_triggered()
       		switch ( qmc2DefaultLaunchMode ) {
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
-				QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_activated()));
+				QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_triggered()));
 				break;
 #endif
 			case QMC2_LAUNCH_MODE_INDEPENDENT:
 			default:
-				QTimer::singleShot(0, this, SLOT(on_actionPlay_activated()));
+				QTimer::singleShot(0, this, SLOT(on_actionPlay_triggered()));
 				break;
 		}
 	}
 }
 
-void MainWindow::on_actionPlayEmbedded_activated()
+void MainWindow::on_actionPlayEmbedded_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlayEmbedded_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlayEmbedded_triggered(bool)");
 #endif
 
   qmc2StartEmbedded = true;
-  on_actionPlay_activated();
+  on_actionPlay_triggered();
 }
 
-void MainWindow::on_actionPlay_activated()
+void MainWindow::on_actionPlay_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlay_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlay_triggered(bool)");
 #endif
 
   if ( qmc2EarlyReloadActive )
@@ -1849,10 +1849,10 @@ void MainWindow::on_hSplitter_splitterMoved(int pos, int index)
       labelGameStatus->setVisible(false);
 }
 
-void MainWindow::on_actionToFavorites_activated()
+void MainWindow::on_actionToFavorites_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToFavorites_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToFavorites_triggered(bool)");
 #endif
 
   if ( !qmc2CurrentItem )
@@ -1871,10 +1871,10 @@ void MainWindow::on_actionToFavorites_activated()
   }
 }
 
-void MainWindow::on_actionReload_activated()
+void MainWindow::on_actionReload_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionReload_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionReload_triggered(bool)");
 #endif
 
   if ( qmc2FilterActive ) {
@@ -1944,19 +1944,19 @@ void MainWindow::on_actionReload_activated()
   }
 }
 
-void MainWindow::on_actionExitStop_activated()
+void MainWindow::on_actionExitStop_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionExitStop_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionExitStop_triggered(bool)");
 #endif
 
   close();
 }
 
-void MainWindow::on_actionCheckCurrentROM_activated()
+void MainWindow::on_actionCheckCurrentROM_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckCurrentROM_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckCurrentROM_triggered(bool)");
 #endif
 
   if ( qmc2FilterActive ) {
@@ -1975,10 +1975,10 @@ void MainWindow::on_actionCheckCurrentROM_activated()
     qmc2Gamelist->verify(true);
 }
 
-void MainWindow::on_actionCheckROMs_activated()
+void MainWindow::on_actionCheckROMs_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckROMs_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckROMs_triggered(bool)");
 #endif
 
   if ( qmc2FilterActive ) {
@@ -2016,10 +2016,10 @@ void MainWindow::on_actionCheckROMs_activated()
   qmc2AutomaticReload = false;
 }
 
-void MainWindow::on_actionExportROMStatus_activated()
+void MainWindow::on_actionExportROMStatus_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionExportROMStatus_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionExportROMStatus_triggered(bool)");
 #endif
 
   if ( !qmc2ROMStatusExporter )
@@ -2035,10 +2035,10 @@ void MainWindow::on_actionExportROMStatus_activated()
   QTimer::singleShot(0, qmc2ROMStatusExporter, SLOT(raise()));
 }
 
-void MainWindow::on_actionDemoMode_activated()
+void MainWindow::on_actionDemoMode_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionDemoMode_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionDemoMode_triggered(bool)");
 #endif
 
   if ( !qmc2DemoModeDialog )
@@ -2054,10 +2054,10 @@ void MainWindow::on_actionDemoMode_activated()
   QTimer::singleShot(0, qmc2DemoModeDialog, SLOT(raise()));
 }
 
-void MainWindow::on_actionCheckSamples_activated()
+void MainWindow::on_actionCheckSamples_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckSamples_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckSamples_triggered(bool)");
 #endif
 
   if ( !qmc2SampleChecker )
@@ -2071,10 +2071,10 @@ void MainWindow::on_actionCheckSamples_activated()
   QTimer::singleShot(0, qmc2SampleChecker, SLOT(raise()));
 }
 
-void MainWindow::on_actionCheckPreviews_activated()
+void MainWindow::on_actionCheckPreviews_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckPreviews_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckPreviews_triggered(bool)");
 #endif
 
   if ( !qmc2ImageChecker )
@@ -2089,10 +2089,10 @@ void MainWindow::on_actionCheckPreviews_activated()
   QTimer::singleShot(0, qmc2ImageChecker, SLOT(raise()));
 }
 
-void MainWindow::on_actionCheckFlyers_activated()
+void MainWindow::on_actionCheckFlyers_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckFlyers_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckFlyers_triggered(bool)");
 #endif
 
   if ( !qmc2ImageChecker )
@@ -2107,10 +2107,10 @@ void MainWindow::on_actionCheckFlyers_activated()
   QTimer::singleShot(0, qmc2ImageChecker, SLOT(raise()));
 }
 
-void MainWindow::on_actionCheckIcons_activated()
+void MainWindow::on_actionCheckIcons_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckIcons_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckIcons_triggered(bool)");
 #endif
 
   if ( !qmc2ImageChecker )
@@ -2125,10 +2125,10 @@ void MainWindow::on_actionCheckIcons_activated()
   QTimer::singleShot(0, qmc2ImageChecker, SLOT(raise()));
 }
 
-void MainWindow::on_actionROMAlyzer_activated()
+void MainWindow::on_actionROMAlyzer_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionROMAlyzer_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionROMAlyzer_triggered(bool)");
 #endif
 
   if ( !qmc2ROMAlyzer )
@@ -2145,10 +2145,10 @@ void MainWindow::on_actionROMAlyzer_activated()
   QTimer::singleShot(0, qmc2ROMAlyzer, SLOT(raise()));
 }
 
-void MainWindow::on_actionRunRomTool_activated()
+void MainWindow::on_actionRunRomTool_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionRunRomTool_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionRunRomTool_triggered(bool)");
 #endif
 
   if ( !qmc2CurrentItem )
@@ -2169,10 +2169,10 @@ void MainWindow::on_actionRunRomTool_activated()
   romTool.exec();
 }
 
-void MainWindow::on_actionAnalyseCurrentROM_activated()
+void MainWindow::on_actionAnalyseCurrentROM_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAnalyseCurrentROM_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAnalyseCurrentROM_triggered(bool)");
 #endif
 
   if ( !qmc2CurrentItem )
@@ -2203,20 +2203,20 @@ void MainWindow::on_actionAnalyseCurrentROM_activated()
   QTimer::singleShot(0, qmc2ROMAlyzer->pushButtonAnalyze, SLOT(click()));
 }
 
-void MainWindow::on_actionClearImageCache_activated()
+void MainWindow::on_actionClearImageCache_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearImageCache_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearImageCache_triggered(bool)");
 #endif
 
   QPixmapCache::clear();
   log(QMC2_LOG_FRONTEND, tr("image cache cleared"));
 }
 
-void MainWindow::on_actionClearIconCache_activated()
+void MainWindow::on_actionClearIconCache_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearIconCache_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearIconCache_triggered(bool)");
 #endif
 
   qmc2IconMap.clear();
@@ -2224,10 +2224,10 @@ void MainWindow::on_actionClearIconCache_activated()
   log(QMC2_LOG_FRONTEND, tr("icon cache cleared"));
 }
 
-void MainWindow::on_actionClearMAWSCache_activated()
+void MainWindow::on_actionClearMAWSCache_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearMAWSCache_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearMAWSCache_triggered(bool)");
 #endif
 
   QString cacheStatus = tr("freed %n byte(s) in %1", "", qmc2MAWSCache.totalCost()).arg(tr("%n entry(s)", "", qmc2MAWSCache.count()));
@@ -2257,10 +2257,10 @@ void MainWindow::on_actionClearMAWSCache_activated()
 }
 
 #if defined(QMC2_YOUTUBE_ENABLED)
-void MainWindow::on_actionClearYouTubeCache_activated()
+void MainWindow::on_actionClearYouTubeCache_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearYouTubeCache_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearYouTubeCache_triggered(bool)");
 #endif
 
 	QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
@@ -2283,10 +2283,10 @@ void MainWindow::on_actionClearYouTubeCache_activated()
 }
 #endif
 
-void MainWindow::on_actionClearROMStateCache_activated()
+void MainWindow::on_actionClearROMStateCache_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearROMStateCache_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearROMStateCache_triggered(bool)");
 #endif
 
 	if ( qmc2ReloadActive ) {
@@ -2322,10 +2322,10 @@ void MainWindow::on_actionClearROMStateCache_activated()
 	}
 }
 
-void MainWindow::on_actionClearGamelistCache_activated()
+void MainWindow::on_actionClearGamelistCache_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearGamelistCache_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearGamelistCache_triggered(bool)");
 #endif
 
 	if ( qmc2ReloadActive ) {
@@ -2359,10 +2359,10 @@ void MainWindow::on_actionClearGamelistCache_activated()
 	}
 }
 
-void MainWindow::on_actionClearXMLCache_activated()
+void MainWindow::on_actionClearXMLCache_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearXMLCache_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearXMLCache_triggered(bool)");
 #endif
 
 	if ( qmc2ReloadActive ) {
@@ -2392,10 +2392,10 @@ void MainWindow::on_actionClearXMLCache_activated()
 	systemSoftwareFilterMap.clear();
 }
 
-void MainWindow::on_actionClearSoftwareListCache_activated()
+void MainWindow::on_actionClearSoftwareListCache_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearSoftwareListCache_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearSoftwareListCache_triggered(bool)");
 #endif
 
 	if ( qmc2ReloadActive ) {
@@ -2422,10 +2422,10 @@ void MainWindow::on_actionClearSoftwareListCache_activated()
 	}
 }
 
-void MainWindow::on_actionClearAllEmulatorCaches_activated()
+void MainWindow::on_actionClearAllEmulatorCaches_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearAllEmulatorCaches_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionClearAllEmulatorCaches_triggered(bool)");
 #endif
 
 	actionClearROMStateCache->trigger();
@@ -2434,30 +2434,30 @@ void MainWindow::on_actionClearAllEmulatorCaches_activated()
 	actionClearSoftwareListCache->trigger();
 }
 
-void MainWindow::on_actionRecreateTemplateMap_activated()
+void MainWindow::on_actionRecreateTemplateMap_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionRecreateTemplateMap_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionRecreateTemplateMap_triggered(bool)");
 #endif
 
   if ( qmc2GlobalEmulatorOptions != NULL )
     qmc2GlobalEmulatorOptions->createTemplateMap();
 }
 
-void MainWindow::on_actionCheckTemplateMap_activated()
+void MainWindow::on_actionCheckTemplateMap_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckTemplateMap_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckTemplateMap_triggered(bool)");
 #endif
 
   if ( qmc2GlobalEmulatorOptions != NULL )
     qmc2GlobalEmulatorOptions->checkTemplateMap();
 }
 
-void MainWindow::on_actionOptions_activated()
+void MainWindow::on_actionOptions_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionOptions_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionOptions_triggered(bool)");
 #endif
 
   if ( qmc2Options->isHidden() )
@@ -2468,10 +2468,10 @@ void MainWindow::on_actionOptions_activated()
   QTimer::singleShot(0, qmc2Options, SLOT(raise()));
 }
 
-void MainWindow::on_actionFullscreenToggle_activated()
+void MainWindow::on_actionFullscreenToggle_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionFullscreenToggle_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionFullscreenToggle_triggered(bool)");
 #endif
 
 #if defined(QMC2_YOUTUBE_ENABLED)
@@ -2582,10 +2582,10 @@ void MainWindow::on_actionFullscreenToggle_activated()
     textBrowserEmulatorLog->verticalScrollBar()->setValue(textBrowserEmulatorLog->verticalScrollBar()->maximum());
 }
 
-void MainWindow::on_actionLaunchQMC2MAME_activated()
+void MainWindow::on_actionLaunchQMC2MAME_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: on_actionLaunchQMC2MAME_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: on_actionLaunchQMC2MAME_triggered(bool)");
 #endif
 
   if ( !qmc2VariantSwitchReady )
@@ -2683,10 +2683,10 @@ void MainWindow::on_actionLaunchQMC2MAME_activated()
   }
 }
 
-void MainWindow::on_actionLaunchQMC2MESS_activated()
+void MainWindow::on_actionLaunchQMC2MESS_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: on_actionLaunchQMC2MESS_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: on_actionLaunchQMC2MESS_triggered(bool)");
 #endif
 
   if ( !qmc2VariantSwitchReady )
@@ -2784,10 +2784,10 @@ void MainWindow::on_actionLaunchQMC2MESS_activated()
   }
 }
 
-void MainWindow::on_actionDocumentation_activated()
+void MainWindow::on_actionDocumentation_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionDocumentation_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionDocumentation_triggered(bool)");
 #endif
 
   if ( !qmc2DocBrowser ) {
@@ -2812,10 +2812,10 @@ void MainWindow::on_actionDocumentation_activated()
   qmc2DocBrowser->raise();
 }
 
-void MainWindow::on_actionAbout_activated()
+void MainWindow::on_actionAbout_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAbout_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAbout_triggered(bool)");
 #endif
 
   if ( !qmc2About )
@@ -2825,19 +2825,19 @@ void MainWindow::on_actionAbout_activated()
   qmc2About->raise();
 }
 
-void MainWindow::on_actionAboutQt_activated()
+void MainWindow::on_actionAboutQt_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAboutQt_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAboutQt_triggered(bool)");
 #endif
 
   QMessageBox::aboutQt(this, tr("About Qt"));
 }
 
-void MainWindow::on_actionArcadeSetup_activated()
+void MainWindow::on_actionArcadeSetup_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionArcadeSetup_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionArcadeSetup_triggered(bool)");
 #endif
 
   log(QMC2_LOG_FRONTEND, tr("WARNING: this feature is not yet working!"));
@@ -2849,10 +2849,10 @@ void MainWindow::on_actionArcadeSetup_activated()
   qmc2ArcadeSetupDialog->raise();
 }
 
-void MainWindow::on_actionArcadeToggle_activated()
+void MainWindow::on_actionArcadeToggle_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionArcadeToggle_activated()");
+  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionArcadeToggle_triggered(bool)");
 #endif
 
   if ( qmc2DestroyingArcadeView )
@@ -3026,12 +3026,12 @@ void MainWindow::on_listWidgetSearch_itemActivated(QListWidgetItem *item)
       		switch ( qmc2DefaultLaunchMode ) {
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
-				QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_activated()));
+				QTimer::singleShot(0, this, SLOT(on_actionPlayEmbedded_triggered()));
 				break;
 #endif
 			case QMC2_LAUNCH_MODE_INDEPENDENT:
 			default:
-				QTimer::singleShot(0, this, SLOT(on_actionPlay_activated()));
+				QTimer::singleShot(0, this, SLOT(on_actionPlay_triggered()));
 				break;
 		}
     } else {
@@ -4288,12 +4288,12 @@ void MainWindow::on_treeWidgetGamelist_itemActivated(QTreeWidgetItem *item, int 
 	  switch ( qmc2DefaultLaunchMode ) {
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 		  case QMC2_LAUNCH_MODE_EMBEDDED:
-			  on_actionPlayEmbedded_activated();
+			  on_actionPlayEmbedded_triggered();
 			  break;
 #endif
 		  case QMC2_LAUNCH_MODE_INDEPENDENT:
 		  default:
-			  on_actionPlay_activated();
+			  on_actionPlay_triggered();
 			  break;
 	  }
   }
@@ -4315,12 +4315,12 @@ void MainWindow::on_treeWidgetHierarchy_itemActivated(QTreeWidgetItem *item, int
 	  switch ( qmc2DefaultLaunchMode ) {
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 		  case QMC2_LAUNCH_MODE_EMBEDDED:
-			  on_actionPlayEmbedded_activated();
+			  on_actionPlayEmbedded_triggered();
 			  break;
 #endif
 		  case QMC2_LAUNCH_MODE_INDEPENDENT:
 		  default:
-			  on_actionPlay_activated();
+			  on_actionPlay_triggered();
 			  break;
 	  }
   }
@@ -6013,7 +6013,7 @@ void MainWindow::init()
 
   qmc2EarlyStartup = false;
 
-  QTimer::singleShot(0, this, SLOT(on_actionReload_activated()));
+  QTimer::singleShot(0, this, SLOT(on_actionReload_triggered()));
   activityCheckTimer.start(QMC2_ACTIVITY_CHECK_INTERVAL);
 
   // make sure the current detail's tab header is shown
@@ -8008,12 +8008,12 @@ void MainWindow::on_treeWidgetCategoryView_itemActivated(QTreeWidgetItem *item, 
 		switch ( qmc2DefaultLaunchMode ) {
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
-				on_actionPlayEmbedded_activated();
+				on_actionPlayEmbedded_triggered();
 				break;
 #endif
 			case QMC2_LAUNCH_MODE_INDEPENDENT:
 			default:
-				on_actionPlay_activated();
+				on_actionPlay_triggered();
 				break;
 		}
 	}
@@ -8116,12 +8116,12 @@ void MainWindow::on_treeWidgetVersionView_itemActivated(QTreeWidgetItem *item, i
 		switch ( qmc2DefaultLaunchMode ) {
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
-				on_actionPlayEmbedded_activated();
+				on_actionPlayEmbedded_triggered();
 				break;
 #endif
 			case QMC2_LAUNCH_MODE_INDEPENDENT:
 			default:
-				on_actionPlay_activated();
+				on_actionPlay_triggered();
 				break;
 		}
 	}
@@ -9272,10 +9272,10 @@ void MainWindow::actionVersionHeader_triggered()
 }
 #endif
 
-void MainWindow::on_actionPlayTagged_activated()
+void MainWindow::on_actionPlayTagged_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlayTagged_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlayTagged_triggered(bool)");
 #endif
 
 	progressBarGamelist->reset();
@@ -9298,7 +9298,7 @@ void MainWindow::on_actionPlayTagged_activated()
 			if ( item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
 				qmc2CurrentItem = item;
-				on_actionPlay_activated();
+				on_actionPlay_triggered();
 			}
 		}
 	}
@@ -9306,10 +9306,10 @@ void MainWindow::on_actionPlayTagged_activated()
 	progressBarGamelist->reset();
 }
 
-void MainWindow::on_actionPlayEmbeddedTagged_activated()
+void MainWindow::on_actionPlayEmbeddedTagged_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlayEmbeddedTagged_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionPlayEmbeddedTagged_triggered(bool)");
 #endif
 
 	progressBarGamelist->reset();
@@ -9333,7 +9333,7 @@ void MainWindow::on_actionPlayEmbeddedTagged_activated()
 				qApp->processEvents();
 				qmc2CurrentItem = item;
 				qmc2StartEmbedded = true;
-				on_actionPlay_activated();
+				on_actionPlay_triggered();
 				QTest::qWait(2*QMC2_EMBED_DELAY);
 			}
 		}
@@ -9342,10 +9342,10 @@ void MainWindow::on_actionPlayEmbeddedTagged_activated()
 	progressBarGamelist->reset();
 }
 
-void MainWindow::on_actionToFavoritesTagged_activated()
+void MainWindow::on_actionToFavoritesTagged_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToFavoritesTagged_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToFavoritesTagged_triggered(bool)");
 #endif
 
 	progressBarGamelist->reset();
@@ -9368,7 +9368,7 @@ void MainWindow::on_actionToFavoritesTagged_activated()
 			if ( item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
 				qmc2CurrentItem = item;
-				on_actionToFavorites_activated();
+				on_actionToFavorites_triggered();
 			}
 		}
 	}
@@ -9376,10 +9376,10 @@ void MainWindow::on_actionToFavoritesTagged_activated()
 	progressBarGamelist->reset();
 }
 
-void MainWindow::on_actionCheckROMStateTagged_activated()
+void MainWindow::on_actionCheckROMStateTagged_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckROMStateTagged_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionCheckROMStateTagged_triggered(bool)");
 #endif
 
 	if ( isActiveState ) {
@@ -9396,7 +9396,7 @@ void MainWindow::on_actionCheckROMStateTagged_activated()
 			if ( item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
 				qmc2CurrentItem = item;
-				on_actionCheckCurrentROM_activated();
+				on_actionCheckCurrentROM_triggered();
 				while ( qmc2VerifyActive && !qmc2StopParser )
 					QTest::qWait(QMC2_TAGGEDROMCHECK_DELAY);
 			}
@@ -9404,10 +9404,10 @@ void MainWindow::on_actionCheckROMStateTagged_activated()
 	}
 }
 
-void MainWindow::on_actionAnalyseROMTagged_activated()
+void MainWindow::on_actionAnalyseROMTagged_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAnalyseROMTagged_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionAnalyseROMTagged_triggered(bool)");
 #endif
 
 	if ( isActiveState ) {
@@ -9444,10 +9444,10 @@ void MainWindow::on_actionAnalyseROMTagged_activated()
 	QTimer::singleShot(0, qmc2ROMAlyzer->pushButtonAnalyze, SLOT(click()));
 }
 
-void MainWindow::on_actionRunRomToolTagged_activated()
+void MainWindow::on_actionRunRomToolTagged_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionRunRomToolTagged_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionRunRomToolTagged_triggered(bool)");
 #endif
 
 	if ( isActiveState ) {
@@ -9475,7 +9475,7 @@ void MainWindow::on_actionRunRomToolTagged_activated()
 			if ( item->checkState(QMC2_GAMELIST_COLUMN_TAG) == Qt::Checked ) {
 				qApp->processEvents();
 				qmc2CurrentItem = item;
-				on_actionRunRomTool_activated();
+				on_actionRunRomTool_triggered();
 			}
 		}
 	}
@@ -9483,10 +9483,10 @@ void MainWindow::on_actionRunRomToolTagged_activated()
 	progressBarGamelist->reset();
 }
 
-void MainWindow::on_actionSetTag_activated()
+void MainWindow::on_actionSetTag_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSetTag_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionSetTag_triggered(bool)");
 #endif
 
 	if ( !qmc2CurrentItem )
@@ -9516,10 +9516,10 @@ void MainWindow::on_actionSetTag_activated()
 	}
 }
 
-void MainWindow::on_actionUnsetTag_activated()
+void MainWindow::on_actionUnsetTag_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionUnsetTag_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionUnsetTag_triggered(bool)");
 #endif
 
 	if ( !qmc2CurrentItem )
@@ -9549,10 +9549,10 @@ void MainWindow::on_actionUnsetTag_activated()
 	}
 }
 
-void MainWindow::on_actionToggleTag_activated()
+void MainWindow::on_actionToggleTag_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToggleTag_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionToggleTag_triggered(bool)");
 #endif
 
 	if ( !qmc2CurrentItem )
@@ -9583,10 +9583,10 @@ void MainWindow::on_actionToggleTag_activated()
 	}
 }
 
-void MainWindow::on_actionTagAll_activated()
+void MainWindow::on_actionTagAll_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionTagAll_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionTagAll_triggered(bool)");
 #endif
 
 	progressBarGamelist->reset();
@@ -9625,10 +9625,10 @@ void MainWindow::on_actionTagAll_activated()
 	labelGamelistStatus->setText(qmc2Gamelist->status());
 }
 
-void MainWindow::on_actionUntagAll_activated()
+void MainWindow::on_actionUntagAll_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionUntagAll_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionUntagAll_triggered(bool)");
 #endif
 
 	progressBarGamelist->reset();
@@ -9667,10 +9667,10 @@ void MainWindow::on_actionUntagAll_activated()
 	labelGamelistStatus->setText(qmc2Gamelist->status());
 }
 
-void MainWindow::on_actionInvertTags_activated()
+void MainWindow::on_actionInvertTags_triggered(bool)
 {
 #ifdef QMC2_DEBUG
-	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionInvertTags_activated()");
+	log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_actionInvertTags_triggered(bool)");
 #endif
 
 	progressBarGamelist->reset();

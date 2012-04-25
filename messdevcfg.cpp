@@ -230,13 +230,13 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	action = deviceConfigurationListMenu->addAction(tr("&Play"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
-	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_activated()));
+	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_triggered()));
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 	s = tr("Play selected machine (embedded)");
 	action = deviceConfigurationListMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
-	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
+	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 #endif
 	deviceConfigurationListMenu->addSeparator();
 	s = tr("Remove configuration");
@@ -272,13 +272,13 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	action = fileChooserContextMenu->addAction(tr("&Play"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/launch.png")));
-	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_activated()));
+	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlay_triggered()));
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 	s = tr("Play selected machine (embedded)");
 	action = fileChooserContextMenu->addAction(tr("Play &embedded"));
 	action->setToolTip(s); action->setStatusTip(s);
 	action->setIcon(QIcon(QString::fromUtf8(":/data/img/embed.png")));
-	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
+	connect(action, SIGNAL(triggered()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 #endif
 #if defined(QMC2_ALTERNATE_FSM)
 	fileChooserContextMenu->addSeparator();
@@ -1091,12 +1091,12 @@ void MESSDeviceConfigurator::on_listWidgetDeviceConfigurations_itemActivated(QLi
 	switch ( qmc2DefaultLaunchMode ) {
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 		case QMC2_LAUNCH_MODE_EMBEDDED:
-			QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
+			QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 			break;
 #endif
 		case QMC2_LAUNCH_MODE_INDEPENDENT:
 		default:
-			QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+			QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_triggered()));
 			break;
 	}
 }
@@ -1442,8 +1442,8 @@ void MESSDeviceConfigurator::setupFileChooser()
 	connect(treeViewDirChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(treeViewDirChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
 	connect(treeViewFileChooser->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)), this, SLOT(treeViewFileChooser_selectionChanged(const QItemSelection &, const QItemSelection &)));
 
-	connect(toolButtonChooserPlay, SIGNAL(clicked()), qmc2MainWindow, SLOT(on_actionPlay_activated()));
-	connect(toolButtonChooserPlayEmbedded, SIGNAL(clicked()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
+	connect(toolButtonChooserPlay, SIGNAL(clicked()), qmc2MainWindow, SLOT(on_actionPlay_triggered()));
+	connect(toolButtonChooserPlayEmbedded, SIGNAL(clicked()), qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 
 	QTimer::singleShot(QMC2_DIRCHOOSER_INIT_WAIT, this, SLOT(dirChooserDelayedInit()));
 
@@ -1631,12 +1631,12 @@ void MESSDeviceConfigurator::on_treeViewFileChooser_activated(const QModelIndex 
 		switch ( qmc2DefaultLaunchMode ) {
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
 			case QMC2_LAUNCH_MODE_EMBEDDED:
-				QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
+				QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 				break;
 #endif
 			case QMC2_LAUNCH_MODE_INDEPENDENT:
 			default:
-				QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+				QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_triggered()));
 				break;
 		}
 	}
