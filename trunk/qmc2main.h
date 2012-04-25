@@ -179,124 +179,64 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
   public slots:
     // game menu
-    void on_actionPlay_activated();
-    void on_actionPlayEmbedded_activated();
-    void on_actionPlayTagged_activated();
-    void on_actionPlayEmbeddedTagged_activated();
-    void on_actionToFavorites_activated();
-    void on_actionToFavoritesTagged_activated();
-    void on_actionReload_activated();
-    void on_actionExitStop_activated();
-    void on_actionCheckCurrentROM_activated();
-    void on_actionCheckROMStateTagged_activated();
-    void on_actionAnalyseCurrentROM_activated();
-    void on_actionAnalyseROMTagged_activated();
-    void on_actionRunRomTool_activated();
-    void on_actionRunRomToolTagged_activated();
-    void on_actionSetTag_activated();
-    void on_actionUnsetTag_activated();
-    void on_actionToggleTag_activated();
-    void on_actionTagAll_activated();
-    void on_actionUntagAll_activated();
-    void on_actionInvertTags_activated();
-#if QT_VERSION >= 0x050000
-    void on_actionPlay_triggered(bool) { on_actionPlay_activated(); }
-    void on_actionPlayEmbedded_triggered(bool) { on_actionPlayEmbedded_activated(); }
-    void on_actionPlayTagged_triggered(bool) { on_actionPlayTagged_activated(); }
-    void on_actionPlayEmbeddedTagged_triggered(bool) {on_actionPlayEmbeddedTagged_activated(); }
-    void on_actionToFavorites_triggered(bool) { on_actionToFavorites_activated(); }
-    void on_actionToFavoritesTagged_triggered(bool) { on_actionToFavoritesTagged_activated(); }
-    void on_actionReload_triggered(bool) { on_actionReload_activated(); }
-    void on_actionExitStop_triggered(bool) { on_actionExitStop_activated(); }
-    void on_actionCheckCurrentROM_triggered(bool) { on_actionCheckCurrentROM_activated(); }
-    void on_actionCheckROMStateTagged_triggered(bool) { on_actionCheckROMStateTagged_activated(); }
-    void on_actionAnalyseCurrentROM_triggered(bool) { on_actionAnalyseCurrentROM_activated(); }
-    void on_actionAnalyseROMTagged_triggered(bool) { on_actionAnalyseROMTagged_activated(); }
-    void on_actionRunRomTool_triggered(bool) { on_actionRunRomTool_activated(); }
-    void on_actionRunRomToolTagged_triggered(bool) { on_actionRunRomToolTagged_activated(); }
-    void on_actionSetTag_triggered(bool) { on_actionSetTag_activated(); }
-    void on_actionUnsetTag_triggered(bool) { on_actionUnsetTag_activated(); }
-    void on_actionToggleTag_triggered(bool) { on_actionToggleTag_activated(); }
-    void on_actionTagAll_triggered(bool) { on_actionTagAll_activated(); }
-    void on_actionUntagAll_triggered(bool) { on_actionUntagAll_activated(); }
-    void on_actionInvertTags_triggered(bool) { on_actionInvertTags_activated(); }
-#endif
+    void on_actionPlay_triggered(bool checked = false);
+    void on_actionPlayEmbedded_triggered(bool checked = false);
+    void on_actionPlayTagged_triggered(bool checked = false);
+    void on_actionPlayEmbeddedTagged_triggered(bool checked = false);
+    void on_actionToFavorites_triggered(bool checked = false);
+    void on_actionToFavoritesTagged_triggered(bool checked = false);
+    void on_actionReload_triggered(bool checked = false);
+    void on_actionExitStop_triggered(bool checked = false);
+    void on_actionCheckCurrentROM_triggered(bool checked = false);
+    void on_actionCheckROMStateTagged_triggered(bool checked = false);
+    void on_actionAnalyseCurrentROM_triggered(bool checked = false);
+    void on_actionAnalyseROMTagged_triggered(bool checked = false);
+    void on_actionRunRomTool_triggered(bool checked = false);
+    void on_actionRunRomToolTagged_triggered(bool checked = false);
+    void on_actionSetTag_triggered(bool checked = false);
+    void on_actionUnsetTag_triggered(bool checked = false);
+    void on_actionToggleTag_triggered(bool checked = false);
+    void on_actionTagAll_triggered(bool checked = false);
+    void on_actionUntagAll_triggered(bool checked = false);
+    void on_actionInvertTags_triggered(bool checked = false);
 
     // arcade menu
-    void on_actionArcadeToggle_activated();
-    void on_actionArcadeSetup_activated();
-#if QT_VERSION >= 0x050000
-    void on_actionArcadeToggle_triggered(bool) { on_actionArcadeToggle_activated(); }
-    void on_actionArcadeSetup_triggered(bool) { on_actionArcadeSetup_activated(); }
-#endif
+    void on_actionArcadeToggle_triggered(bool checked = false);
+    void on_actionArcadeSetup_triggered(bool checked = false);
 
     // tools menu
-    void on_actionCheckROMs_activated();
-    void on_actionCheckSamples_activated();
-    void on_actionCheckPreviews_activated();
-    void on_actionCheckFlyers_activated();
-    void on_actionCheckIcons_activated();
-    void on_actionROMAlyzer_activated();
-    void on_actionExportROMStatus_activated();
-    void on_actionDemoMode_activated();
-    void on_actionClearImageCache_activated();
-    void on_actionClearIconCache_activated();
-    void on_actionClearMAWSCache_activated();
+    void on_actionCheckROMs_triggered(bool checked = false);
+    void on_actionCheckSamples_triggered(bool checked = false);
+    void on_actionCheckPreviews_triggered(bool checked = false);
+    void on_actionCheckFlyers_triggered(bool checked = false);
+    void on_actionCheckIcons_triggered(bool checked = false);
+    void on_actionROMAlyzer_triggered(bool checked = false);
+    void on_actionExportROMStatus_triggered(bool checked = false);
+    void on_actionDemoMode_triggered(bool checked = false);
+    void on_actionClearImageCache_triggered(bool checked = false);
+    void on_actionClearIconCache_triggered(bool checked = false);
+    void on_actionClearMAWSCache_triggered(bool checked = false);
 #if defined(QMC2_YOUTUBE_ENABLED)
-    void on_actionClearYouTubeCache_activated();
+    void on_actionClearYouTubeCache_triggered(bool checked = false);
 #endif
-    void on_actionRecreateTemplateMap_activated();
-    void on_actionCheckTemplateMap_activated();
-    void on_actionClearROMStateCache_activated();
-    void on_actionClearGamelistCache_activated();
-    void on_actionClearXMLCache_activated();
-    void on_actionClearSoftwareListCache_activated();
-    void on_actionClearAllEmulatorCaches_activated();
-    void on_actionOptions_activated();
-#if QT_VERSION >= 0x050000
-    void on_actionCheckROMs_triggered(bool) { on_actionCheckROMs_activated(); }
-    void on_actionCheckSamples_triggered(bool) { on_actionCheckSamples_activated(); }
-    void on_actionCheckPreviews_triggered(bool) { on_actionCheckPreviews_activated(); }
-    void on_actionCheckFlyers_triggered(bool) { on_actionCheckFlyers_activated(); }
-    void on_actionCheckIcons_triggered(bool) { on_actionCheckIcons_activated(); }
-    void on_actionROMAlyzer_triggered(bool) { on_actionROMAlyzer_activated(); }
-    void on_actionExportROMStatus_triggered(bool) { on_actionExportROMStatus_activated(); }
-    void on_actionDemoMode_triggered(bool) { on_actionDemoMode_activated(); }
-    void on_actionClearImageCache_triggered(bool) { on_actionClearImageCache_activated(); }
-    void on_actionClearIconCache_triggered(bool) { on_actionClearIconCache_activated(); }
-    void on_actionClearMAWSCache_triggered(bool) { on_actionClearMAWSCache_activated(); }
-#if defined(QMC2_YOUTUBE_ENABLED)
-    void on_actionClearYouTubeCache_triggered(bool) { on_actionClearYouTubeCache_activated(); }
-#endif
-    void on_actionRecreateTemplateMap_triggered(bool) { on_actionRecreateTemplateMap_activated(); }
-    void on_actionCheckTemplateMap_triggered(bool) { on_actionCheckTemplateMap_activated(); }
-    void on_actionClearROMStateCache_triggered(bool) { on_actionClearROMStateCache_activated(); }
-    void on_actionClearGamelistCache_triggered(bool) { on_actionClearGamelistCache_activated(); }
-    void on_actionClearXMLCache_triggered(bool) { on_actionClearXMLCache_activated(); }
-    void on_actionClearSoftwareListCache_triggered(bool) { on_actionClearSoftwareListCache_activated(); }
-    void on_actionClearAllEmulatorCaches_triggered(bool) { on_actionClearAllEmulatorCaches_activated(); }
-    void on_actionOptions_triggered(bool) { on_actionOptions_activated(); }
-#endif
+    void on_actionRecreateTemplateMap_triggered(bool checked = false);
+    void on_actionCheckTemplateMap_triggered(bool checked = false);
+    void on_actionClearROMStateCache_triggered(bool checked = false);
+    void on_actionClearGamelistCache_triggered(bool checked = false);
+    void on_actionClearXMLCache_triggered(bool checked = false);
+    void on_actionClearSoftwareListCache_triggered(bool checked = false);
+    void on_actionClearAllEmulatorCaches_triggered(bool checked = false);
+    void on_actionOptions_triggered(bool checked = false);
 
     // display menu
-    void on_actionFullscreenToggle_activated();
-    void on_actionLaunchQMC2MAME_activated();
-    void on_actionLaunchQMC2MESS_activated();
-#if QT_VERSION >= 0x050000
-    void on_actionFullscreenToggle_triggered(bool) { on_actionFullscreenToggle_activated(); }
-    void on_actionLaunchQMC2MAME_triggered(bool) { on_actionLaunchQMC2MAME_activated(); }
-    void on_actionLaunchQMC2MESS_triggered(bool) { on_actionLaunchQMC2MESS_activated(); }
-#endif
+    void on_actionFullscreenToggle_triggered(bool checked = false);
+    void on_actionLaunchQMC2MAME_triggered(bool checked = false);
+    void on_actionLaunchQMC2MESS_triggered(bool checked = false);
 
     // help menu
-    void on_actionDocumentation_activated();
-    void on_actionAbout_activated();
-    void on_actionAboutQt_activated();
-#if QT_VERSION >= 0x050000
-    void on_actionDocumentation_triggered(bool) { on_actionDocumentation_activated(); }
-    void on_actionAbout_triggered(bool) { on_actionAbout_activated(); }
-    void on_actionAboutQt_triggered(bool) { on_actionAboutQt_activated(); }
-#endif
+    void on_actionDocumentation_triggered(bool checked = false);
+    void on_actionAbout_triggered(bool checked = false);
+    void on_actionAboutQt_triggered(bool checked = false);
 
     // search widget
     void on_comboBoxSearch_editTextChanged(const QString &);

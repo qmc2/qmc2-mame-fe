@@ -1468,7 +1468,7 @@ void Options::on_pushButtonApply_clicked()
     qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("please restart QMC2 for some changes to take effect"));
 
   if ( needRecreateTemplateMap )
-    qmc2MainWindow->on_actionRecreateTemplateMap_activated();
+    qmc2MainWindow->on_actionRecreateTemplateMap_triggered();
 
   if ( needResort && !needReload ) {
     bool doResort = true;

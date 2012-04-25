@@ -1294,7 +1294,7 @@ void SoftwareList::on_toolButtonPlay_clicked(bool checked)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonPlay_clicked(bool checked = %1)").arg(checked));
 #endif
 
-	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_triggered()));
 }
 
 void SoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked)
@@ -1303,7 +1303,7 @@ void SoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked)
 	qmc2MainWindow->log(QMC2_LOG_FRONTEND, QString("DEBUG: SoftwareList::on_toolButtonPlayEmbedded_clicked(bool checked = %1)").arg(checked));
 #endif
 
-	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
+	QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered()));
 }
 
 void SoftwareList::treeWidgetKnownSoftware_headerSectionClicked(int index)

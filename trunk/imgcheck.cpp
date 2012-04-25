@@ -749,7 +749,7 @@ void ImageChecker::on_pushButtonIconsCheck_clicked()
     pushButtonIconsRemoveObsolete->setEnabled(false);
     checkTimer.start();
     if ( checkBoxIconsClearCache->isChecked() )
-      qmc2MainWindow->on_actionClearIconCache_activated();
+      qmc2MainWindow->on_actionClearIconCache_triggered();
     if ( qmc2UseIconFile )
       qmc2MainWindow->log(QMC2_LOG_FRONTEND, tr("checking icons from ZIP archive"));
     else

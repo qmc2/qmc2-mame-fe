@@ -241,11 +241,11 @@ void DemoModeDialog::startNextEmu()
   setStatus(gameDescription);
 #if defined(Q_WS_X11) || defined(Q_WS_WIN)
   if ( checkBoxEmbedded->isChecked() && !checkBoxFullScreen->isChecked() )
-    QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_activated()));
+    QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlayEmbedded_triggered(bool)));
   else
-    QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+    QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_triggered(bool)));
 #else
-  QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_activated()));
+  QTimer::singleShot(0, qmc2MainWindow, SLOT(on_actionPlay_triggered(bool)));
 #endif
 }
 
