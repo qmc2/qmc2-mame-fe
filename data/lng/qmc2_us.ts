@@ -4,95 +4,100 @@
 <context>
     <name>About</name>
     <message>
-        <location filename="../../about.cpp" line="121"/>
+        <location filename="../../about.cpp" line="120"/>
         <source>Version </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="123"/>
+        <location filename="../../about.cpp" line="122"/>
         <source>SVN r%1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="125"/>
+        <location filename="../../about.cpp" line="124"/>
         <source>built for</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="137"/>
+        <location filename="../../about.cpp" line="136"/>
         <source>Copyright</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="137"/>
+        <location filename="../../about.cpp" line="136"/>
         <source>Germany</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="141"/>
+        <location filename="../../about.cpp" line="140"/>
         <source>Project homepage:</source>
         <translation>Project homepage:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="142"/>
+        <location filename="../../about.cpp" line="141"/>
         <source>Development site:</source>
         <translation>Development site:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="143"/>
+        <location filename="../../about.cpp" line="142"/>
         <source>QMC2 development mailing list:</source>
         <translation>QMC2 development mailing list:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="144"/>
+        <location filename="../../about.cpp" line="143"/>
         <source>List subscription:</source>
         <translation>List subscription:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="145"/>
+        <location filename="../../about.cpp" line="144"/>
         <source>Bug tracking system:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="150"/>
+        <location filename="../../about.cpp" line="153"/>
         <source>Build OS:</source>
         <translation>Build OS:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="157"/>
+        <location filename="../../about.cpp" line="160"/>
         <source>Emulator version:</source>
         <translation>Emulator version:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="159"/>
+        <location filename="../../about.cpp" line="162"/>
         <source>Qt version:</source>
         <translation>Qt version:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="159"/>
-        <location filename="../../about.cpp" line="166"/>
+        <location filename="../../about.cpp" line="162"/>
+        <location filename="../../about.cpp" line="170"/>
         <source>Compile-time:</source>
         <translation>Compile-time:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="159"/>
-        <location filename="../../about.cpp" line="166"/>
-        <location filename="../../about.cpp" line="169"/>
+        <location filename="../../about.cpp" line="162"/>
+        <location filename="../../about.cpp" line="170"/>
+        <location filename="../../about.cpp" line="173"/>
         <source>Run-time:</source>
         <translation>Run-time:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="163"/>
+        <location filename="../../about.cpp" line="166"/>
         <source>Build key:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="169"/>
+        <location filename="../../about.cpp" line="168"/>
+        <source>Qt library paths:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../about.cpp" line="173"/>
         <source>Phonon backend / supported MIME types:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="181"/>
+        <location filename="../../about.cpp" line="185"/>
         <source>Environment variables:</source>
         <translation>Environment variables:</translation>
     </message>
@@ -141,138 +146,138 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="178"/>
+        <location filename="../../about.cpp" line="182"/>
         <source>Total: %1 MB</source>
         <translation>Total: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="178"/>
+        <location filename="../../about.cpp" line="182"/>
         <source>Free: %1 MB</source>
         <translation>Free: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="178"/>
+        <location filename="../../about.cpp" line="182"/>
         <source>Used: %1 MB</source>
         <translation>Used: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="178"/>
+        <location filename="../../about.cpp" line="182"/>
         <source>Physical memory:</source>
         <translation>Physical memory:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="180"/>
+        <location filename="../../about.cpp" line="184"/>
         <source>Number of CPUs:</source>
         <translation>Number of CPUs:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="180"/>
+        <location filename="../../about.cpp" line="184"/>
         <source>unknown</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="158"/>
+        <location filename="../../about.cpp" line="161"/>
         <source>Template information:</source>
         <translation>Template information:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="73"/>
+        <location filename="../../about.cpp" line="72"/>
         <source>Windows 7 or Windows Server 2008 R2 (Windows 6.1)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="158"/>
+        <location filename="../../about.cpp" line="161"/>
         <source>Emulator:</source>
         <translation>Emulator:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="158"/>
+        <location filename="../../about.cpp" line="161"/>
         <source>Version:</source>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="158"/>
+        <location filename="../../about.cpp" line="161"/>
         <source>Format:</source>
         <translation>Format:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="166"/>
+        <location filename="../../about.cpp" line="170"/>
         <source>SDL version:</source>
         <translation>SDL version:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="60"/>
+        <location filename="../../about.cpp" line="59"/>
         <source>Mac OS X 10.3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="61"/>
+        <location filename="../../about.cpp" line="60"/>
         <source>Mac OS X 10.4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="62"/>
+        <location filename="../../about.cpp" line="61"/>
         <source>Mac OS X 10.5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="63"/>
+        <location filename="../../about.cpp" line="62"/>
         <source>Mac OS X 10.6</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="64"/>
+        <location filename="../../about.cpp" line="63"/>
         <source>Mac (unkown)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="68"/>
+        <location filename="../../about.cpp" line="67"/>
         <source>Windows NT (Windows 4.0)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="69"/>
+        <location filename="../../about.cpp" line="68"/>
         <source>Windows 2000 (Windows 5.0)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="70"/>
+        <location filename="../../about.cpp" line="69"/>
         <source>Windows XP (Windows 5.1)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="71"/>
+        <location filename="../../about.cpp" line="70"/>
         <source>Windows Server 2003, Windows Server 2003 R2, Windows Home Server or Windows XP Professional x64 Edition (Windows 5.2)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="72"/>
+        <location filename="../../about.cpp" line="71"/>
         <source>Windows Vista or Windows Server 2008 (Windows 6.0)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="74"/>
+        <location filename="../../about.cpp" line="73"/>
         <source>Windows (unknown)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="143"/>
+        <location filename="../../about.cpp" line="142"/>
         <source>subscription required</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="153"/>
-        <location filename="../../about.cpp" line="155"/>
+        <location filename="../../about.cpp" line="156"/>
+        <location filename="../../about.cpp" line="158"/>
         <source>Running OS:</source>
         <translation>Running OS:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="120"/>
+        <location filename="../../about.cpp" line="119"/>
         <source>Qt 4 based multi-platform/multi-emulator front end</source>
         <translation>Qt 4 based multi-platform/multi-emulator front end</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="169"/>
+        <location filename="../../about.cpp" line="173"/>
         <source>Phonon version:</source>
         <translation>Phonon version:</translation>
     </message>

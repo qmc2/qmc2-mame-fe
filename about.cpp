@@ -144,6 +144,10 @@ void About::showEvent(QShowEvent *e)
           "<p><b>" + tr("Bug tracking system:") + "</b><br><a href=\"http://sourceforge.net/apps/mantisbt/qmc2/my_view_page.php\">http://sourceforge.net/apps/mantisbt/qmc2</a></p>";
   labelProjectInfo->setText(projectInfoString);
 
+  QString libPaths;
+  foreach (QString path, QCoreApplication::libraryPaths())
+	  libPaths += "<br>" + path;
+
   QString sysInfoString = QString("<html><body>") +
 #if !defined(Q_WS_WIN)
           "<p><b>" + tr("Build OS:") + "</b><br>" + XSTR(BUILD_OS_NAME) + " " + XSTR(BUILD_OS_RELEASE) + " " + XSTR(BUILD_MACHINE) + "</p>" +
@@ -161,6 +165,7 @@ void About::showEvent(QShowEvent *e)
 #else
           + "<br>" + tr("Build key:") + " " + QLibraryInfo::buildKey() + "</p>" +
 #endif
+	  "<p><b>" + tr("Qt library paths:") + "</b>" + libPaths + "</p>" +
 #if QMC2_JOYSTICK == 1
           "<p><b>" + tr("SDL version:") + "</b><br>" + tr("Compile-time:") + " " + QString("%1.%2.%3").arg(sdlVersionCompile.major).arg(sdlVersionCompile.minor).arg(sdlVersionCompile.patch) + "<br>" + tr("Run-time:") + " " + QString("%1.%2.%3").arg(sdlVersionLinked->major).arg(sdlVersionLinked->minor).arg(sdlVersionLinked->patch) + "</p>" +
 #endif
