@@ -6,8 +6,6 @@ REM #############################################################
 
 set QT_PATH=c:\Qt
 set QT_PATH_ESCAPED=c:\\Qt
-set ZLIB_INC_PATH=c:\zlib
-set ZLIB_LIB_PATH=c:\zlib\zlib.lib
 set SDL_INC_PATH=c:\sdl\include
 set SDL_LIB_PATH=c:\sdl\lib\sdl.lib
 set SDLMAIN_LIB_PATH=c:\sdl\lib\sdlmain.lib
@@ -73,7 +71,7 @@ set QMC2_MAME_DEFINES="DEFINES+=QMC2_VERSION=%VERSION% QMC2_SVN_REV=%SVN_REV% BU
 
 echo IDI_ICON1 ICON DISCARDABLE "data\img\mame.ico" > qmc2-mame.rc
 
-%QT_PATH%\bin\qmake.exe -tp vc QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%ZLIB_INC_PATH% LIBS+=%ZLIB_LIB_PATH% INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH% LIBS+=%SDLMAIN_LIB_PATH% TARGET=qmc2-mame %QMC2_MAME_DEFINES% -o qmc2-mame.%VCPROJ_EXTENSION% qmc2.pro > NUL 2> NUL
+%QT_PATH%\bin\qmake.exe -tp vc QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH% LIBS+=%SDLMAIN_LIB_PATH% TARGET=qmc2-mame %QMC2_MAME_DEFINES% -o qmc2-mame.%VCPROJ_EXTENSION% qmc2.pro > NUL 2> NUL
 
 echo done
 
@@ -87,7 +85,7 @@ set QMC2_MESS_DEFINES="DEFINES+=QMC2_VERSION=%VERSION% QMC2_SVN_REV=%SVN_REV% BU
 
 echo IDI_ICON1 ICON DISCARDABLE "data\img\mess.ico" > qmc2-mess.rc
 
-%QT_PATH%\bin\qmake.exe -tp vc QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%ZLIB_INC_PATH% LIBS+=%ZLIB_LIB_PATH% INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH% LIBS+=%SDLMAIN_LIB_PATH% TARGET=qmc2-mess %QMC2_MESS_DEFINES% -o qmc2-mess.%VCPROJ_EXTENSION% qmc2.pro > NUL 2> NUL
+%QT_PATH%\bin\qmake.exe -tp vc QT+=phonon CONFIG+=warn_off CONFIG+=release INCLUDEPATH+=%SDL_INC_PATH% LIBS+=%SDL_LIB_PATH% LIBS+=%SDLMAIN_LIB_PATH% TARGET=qmc2-mess %QMC2_MESS_DEFINES% -o qmc2-mess.%VCPROJ_EXTENSION% qmc2.pro > NUL 2> NUL
 
 echo done
 
