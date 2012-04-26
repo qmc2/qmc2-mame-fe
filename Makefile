@@ -1299,7 +1299,6 @@ ifeq '$(ARCH)' 'Windows'
 else
 	@echo "EMULATOR, EMU        Target emulator (SDLMAME, SDLMESS)           $(QMC2_EMULATOR)"
 endif
-	@echo "EMULATOR             Target emulator (SDLMAME, SDLMESS)           $(QMC2_EMULATOR)"
 	@echo "FADER_SPEED          Audio fading speed (0: fastest, >0: slower)  $(FADER_SPEED)"
 	@echo "FIND                 UNIX command find                            $(FIND)"
 	@echo "GREP                 UNIX command grep                            $(GREP)"
