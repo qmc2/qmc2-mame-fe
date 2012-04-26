@@ -162,10 +162,6 @@ void About::showEvent(QShowEvent *e)
 #else
           + "<br>" + tr("Build key:") + " " + QLibraryInfo::buildKey() + "</p>" +
 #endif
-	  "<p><b>" + tr("Qt paths:") + "</b><br>" +
-	  tr("Libraries:") + " " + QLibraryInfo::location(QLibraryInfo::LibrariesPath) + "<br>" +
-	  tr("Plugins:") + " " + QLibraryInfo::location(QLibraryInfo::PluginsPath) + "<br>" +
-	  tr("Imports:") + " " + QLibraryInfo::location(QLibraryInfo::ImportsPath) + "</p>" +
 #if QMC2_JOYSTICK == 1
           "<p><b>" + tr("SDL version:") + "</b><br>" + tr("Compile-time:") + " " + QString("%1.%2.%3").arg(sdlVersionCompile.major).arg(sdlVersionCompile.minor).arg(sdlVersionCompile.patch) + "<br>" + tr("Run-time:") + " " + QString("%1.%2.%3").arg(sdlVersionLinked->major).arg(sdlVersionLinked->minor).arg(sdlVersionLinked->patch) + "</p>" +
 #endif

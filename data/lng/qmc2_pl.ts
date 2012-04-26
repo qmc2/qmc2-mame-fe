@@ -133,14 +133,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../about.cpp" line="159"/>
-        <location filename="../../about.cpp" line="170"/>
+        <location filename="../../about.cpp" line="166"/>
         <source>Compile-time:</source>
         <translation>Podczas kompilacji:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="159"/>
-        <location filename="../../about.cpp" line="170"/>
-        <location filename="../../about.cpp" line="173"/>
+        <location filename="../../about.cpp" line="166"/>
+        <location filename="../../about.cpp" line="169"/>
         <source>Run-time:</source>
         <translation>Podczas uruchomienia:</translation>
     </message>
@@ -150,37 +150,17 @@ p, li { white-space: pre-wrap; }
         <translation>Klucz builda:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="165"/>
-        <source>Qt paths:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../about.cpp" line="166"/>
-        <source>Libraries:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../about.cpp" line="167"/>
-        <source>Plugins:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../about.cpp" line="168"/>
-        <source>Imports:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../about.cpp" line="173"/>
+        <location filename="../../about.cpp" line="169"/>
         <source>Phonon backend / supported MIME types:</source>
         <translation>Backend phonona / obsługiwane typy MIME:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="185"/>
+        <location filename="../../about.cpp" line="181"/>
         <source>Environment variables:</source>
         <translation>Zmienne środowiskowe:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="182"/>
+        <location filename="../../about.cpp" line="178"/>
         <source>Total: %1 MB</source>
         <translation>Całkowita: %1 MB</translation>
     </message>
@@ -190,27 +170,27 @@ p, li { white-space: pre-wrap; }
         <translation>Windows 7 albo Windows Server 2008 R2 (Windows 6.1)</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="182"/>
+        <location filename="../../about.cpp" line="178"/>
         <source>Free: %1 MB</source>
         <translation>Wolna: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="182"/>
+        <location filename="../../about.cpp" line="178"/>
         <source>Used: %1 MB</source>
         <translation>W użyciu: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="182"/>
+        <location filename="../../about.cpp" line="178"/>
         <source>Physical memory:</source>
         <translation>Pamięć fizyczna:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="184"/>
+        <location filename="../../about.cpp" line="180"/>
         <source>Number of CPUs:</source>
         <translation>Liczba procesorów:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="184"/>
+        <location filename="../../about.cpp" line="180"/>
         <source>unknown</source>
         <translation>nieznany</translation>
     </message>
@@ -235,7 +215,7 @@ p, li { white-space: pre-wrap; }
         <translation>Format:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="170"/>
+        <location filename="../../about.cpp" line="166"/>
         <source>SDL version:</source>
         <translation>Wersja SDL:</translation>
     </message>
@@ -311,7 +291,7 @@ p, li { white-space: pre-wrap; }
         <translation>Oparty na Qt 4 wieloplatfowy interfejs graficzny dla wielu emulatorów</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="173"/>
+        <location filename="../../about.cpp" line="169"/>
         <source>Phonon version:</source>
         <translation>Wersja Phonona:</translation>
     </message>

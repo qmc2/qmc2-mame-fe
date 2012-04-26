@@ -70,14 +70,14 @@
     </message>
     <message>
         <location filename="../../about.cpp" line="159"/>
-        <location filename="../../about.cpp" line="170"/>
+        <location filename="../../about.cpp" line="166"/>
         <source>Compile-time:</source>
         <translation>Compilation:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="159"/>
-        <location filename="../../about.cpp" line="170"/>
-        <location filename="../../about.cpp" line="173"/>
+        <location filename="../../about.cpp" line="166"/>
+        <location filename="../../about.cpp" line="169"/>
         <source>Run-time:</source>
         <translation>Exécution:</translation>
     </message>
@@ -87,32 +87,12 @@
         <translation>Clef de compilation:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="165"/>
-        <source>Qt paths:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../about.cpp" line="166"/>
-        <source>Libraries:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../about.cpp" line="167"/>
-        <source>Plugins:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../about.cpp" line="168"/>
-        <source>Imports:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../about.cpp" line="173"/>
+        <location filename="../../about.cpp" line="169"/>
         <source>Phonon backend / supported MIME types:</source>
         <translation>Phonon backend / Types MIME supportés:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="185"/>
+        <location filename="../../about.cpp" line="181"/>
         <source>Environment variables:</source>
         <translation>Variables d&apos;environnement:</translation>
     </message>
@@ -180,32 +160,32 @@ p, li { white-space: pre-wrap; }
         <translation>Informations système</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="182"/>
+        <location filename="../../about.cpp" line="178"/>
         <source>Total: %1 MB</source>
         <translation>Total: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="182"/>
+        <location filename="../../about.cpp" line="178"/>
         <source>Free: %1 MB</source>
         <translation>Libre: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="182"/>
+        <location filename="../../about.cpp" line="178"/>
         <source>Used: %1 MB</source>
         <translation>Utilisé: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="182"/>
+        <location filename="../../about.cpp" line="178"/>
         <source>Physical memory:</source>
         <translation>Mémoire physique:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="184"/>
+        <location filename="../../about.cpp" line="180"/>
         <source>Number of CPUs:</source>
         <translation>Nombre de CPUs:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="184"/>
+        <location filename="../../about.cpp" line="180"/>
         <source>unknown</source>
         <translation>inconnu</translation>
     </message>
@@ -235,7 +215,7 @@ p, li { white-space: pre-wrap; }
         <translation>Format:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="170"/>
+        <location filename="../../about.cpp" line="166"/>
         <source>SDL version:</source>
         <translation>Version SDL:</translation>
     </message>
@@ -311,7 +291,7 @@ p, li { white-space: pre-wrap; }
         <translation>Front-end multi-plateformes/multi-émulateurs en QT4</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="173"/>
+        <location filename="../../about.cpp" line="169"/>
         <source>Phonon version:</source>
         <translation>version de Phonon: </translation>
     </message>

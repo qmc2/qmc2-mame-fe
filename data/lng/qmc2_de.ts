@@ -29,12 +29,12 @@
         <translation>Systemumgebung bei Erzeugung:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="173"/>
+        <location filename="../../about.cpp" line="169"/>
         <source>Phonon backend / supported MIME types:</source>
         <translation>Phonon Backend / unterstützte MIME Typen:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="185"/>
+        <location filename="../../about.cpp" line="181"/>
         <source>Environment variables:</source>
         <translation>Umgebungsvariablen:</translation>
     </message>
@@ -83,14 +83,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../about.cpp" line="159"/>
-        <location filename="../../about.cpp" line="170"/>
+        <location filename="../../about.cpp" line="166"/>
         <source>Compile-time:</source>
         <translation>Zur Kompilationszeit:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="159"/>
-        <location filename="../../about.cpp" line="170"/>
-        <location filename="../../about.cpp" line="173"/>
+        <location filename="../../about.cpp" line="166"/>
+        <location filename="../../about.cpp" line="169"/>
         <source>Run-time:</source>
         <translation>Zur Laufzeit:</translation>
     </message>
@@ -126,32 +126,32 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="182"/>
+        <location filename="../../about.cpp" line="178"/>
         <source>Total: %1 MB</source>
         <translation>Gesamt: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="182"/>
+        <location filename="../../about.cpp" line="178"/>
         <source>Free: %1 MB</source>
         <translation>Frei: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="182"/>
+        <location filename="../../about.cpp" line="178"/>
         <source>Used: %1 MB</source>
         <translation>Benutzt: %1 MB</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="182"/>
+        <location filename="../../about.cpp" line="178"/>
         <source>Physical memory:</source>
         <translation>Physischer Speicher:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="184"/>
+        <location filename="../../about.cpp" line="180"/>
         <source>Number of CPUs:</source>
         <translation>Anzahl CPUs:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="184"/>
+        <location filename="../../about.cpp" line="180"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
@@ -186,27 +186,7 @@ p, li { white-space: pre-wrap; }
         <translation>Build Schlüssel:</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="165"/>
-        <source>Qt paths:</source>
-        <translation>Qt Pfade:</translation>
-    </message>
-    <message>
         <location filename="../../about.cpp" line="166"/>
-        <source>Libraries:</source>
-        <translation>Bibliotheken:</translation>
-    </message>
-    <message>
-        <location filename="../../about.cpp" line="167"/>
-        <source>Plugins:</source>
-        <translation>Plugins:</translation>
-    </message>
-    <message>
-        <location filename="../../about.cpp" line="168"/>
-        <source>Imports:</source>
-        <translation>Imports:</translation>
-    </message>
-    <message>
-        <location filename="../../about.cpp" line="170"/>
         <source>SDL version:</source>
         <translation>SDL Version:</translation>
     </message>
@@ -292,7 +272,7 @@ p, li { white-space: pre-wrap; }
         <translation>Qt 4 basiertes Multi-Plattform/Multi-Emulator Frontend</translation>
     </message>
     <message>
-        <location filename="../../about.cpp" line="173"/>
+        <location filename="../../about.cpp" line="169"/>
         <source>Phonon version:</source>
         <translation>Phonon Version:</translation>
     </message>
