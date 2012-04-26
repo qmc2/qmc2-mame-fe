@@ -94,6 +94,7 @@ qmc2/arch/.svn/text-base/Windows.cfg.svn-base
 qmc2/arch/Windows/.svn
 qmc2/arch/Windows/.svn/prop-base/which.bat.svn-base
 qmc2/arch/Windows/.svn/text-base/dirname.bat.svn-base
+qmc2/arch/Windows/.svn/text-base/osrel.bat.svn-base
 qmc2/arch/Windows/.svn/text-base/rcgen.bat.svn-base
 qmc2/arch/Windows/.svn/text-base/svnversion.bat.svn-base
 qmc2/arch/Windows/.svn/text-base/which.bat.svn-base
