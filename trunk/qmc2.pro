@@ -210,7 +210,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 				DEFINES += QMC2_MINGW
 				QMAKE_LIBS_QT_ENTRY =
 				QMAKE_LFLAGS_CONSOLE =
-				LIBS += -lSDL -lSDLmain -lSDL.dll -lpsapi $$quote($$QMC2_LIBS)
+				LIBS += -lSDLmain -lSDL.dll -lSDL -lpsapi $$quote($$QMC2_LIBS)
 				INCLUDEPATH += $$quote($$QMC2_INCLUDEPATH)
 				contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
 				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc
