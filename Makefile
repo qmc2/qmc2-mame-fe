@@ -36,7 +36,11 @@ endif
 # Enable (1) or disable (0) support for audio-effect dialogs.
 #
 ifndef AUDIOEFFECTDIALOGS
+ifeq '$(MINGW)' '1'
+AUDIOEFFECTDIALOGS = 0
+else
 AUDIOEFFECTDIALOGS = 1
+endif
 endif
 
 # >>> EMULATOR / EMU <<<
