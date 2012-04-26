@@ -5,7 +5,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 		CONFIG += qtestlib
 		QT += xml webkit network
 		TEMPLATE = app
-		INCLUDEPATH += minizip/
+		INCLUDEPATH += minizip/ zlib/
 		FORMS += qmc2main.ui \
 			options.ui \
 			docbrowser.ui \
@@ -94,7 +94,22 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			arcade/arcadescreenshotsaverthread.cpp \
 			arcade/arcadesetupdialog.cpp \
 			htmleditor/htmleditor.cpp \
-			htmleditor/highlighter.cpp
+			htmleditor/highlighter.cpp \
+			zlib/adler32.c \
+			zlib/compress.c \
+			zlib/crc32.c \
+			zlib/deflate.c \
+			zlib/gzwrite.c \
+			zlib/gzclose.c \
+			zlib/gzread.c \
+			zlib/gzlib.c \
+			zlib/infback.c \
+			zlib/inflate.c \
+			zlib/inffast.c \
+			zlib/inftrees.c \
+			zlib/trees.c \
+			zlib/uncompr.c \
+			zlib/zutil.c
 		HEADERS += qmc2main.h \
 			options.h \
 			docbrowser.h \
@@ -174,7 +189,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			QMAKESPEC = macx-xcode
 			OBJECTIVE_SOURCES += SDLMain_tmpl.m
 			HEADERS += SDLMain_tmpl.h
-			LIBS += -framework SDL -framework Cocoa -lz
+			LIBS += -framework SDL -framework Cocoa
 			contains(TARGET, qmc2-sdlmame): ICON = data/img/classic/mame.icns
 			contains(TARGET, qmc2-sdlmess): ICON = data/img/classic/mess.icns
 			greaterThan(QMC2_MAC_UNIVERSAL, 0) {
@@ -183,7 +198,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			QMAKE_INFO_PLIST = arch/Darwin/Info.plist
 		} else {
 			!win32 {
-				LIBS += -lSDL -lz -lX11
+				LIBS += -lSDL -lX11
 			}
 		}
 		win32 {
@@ -195,7 +210,7 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 				DEFINES += QMC2_MINGW
 				QMAKE_LIBS_QT_ENTRY =
 				QMAKE_LFLAGS_CONSOLE =
-				LIBS += -lSDL -lSDLmain -lSDL.dll -lz -lpsapi $$quote($$QMC2_LIBS)
+				LIBS += -lSDL -lSDLmain -lSDL.dll -lpsapi $$quote($$QMC2_LIBS)
 				INCLUDEPATH += $$quote($$QMC2_INCLUDEPATH)
 				contains(TARGET, qmc2-mame):RC_FILE = qmc2-mame.rc
 				contains(TARGET, qmc2-mess):RC_FILE = qmc2-mess.rc

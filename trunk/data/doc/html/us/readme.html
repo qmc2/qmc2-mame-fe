@@ -5,7 +5,7 @@
   <title>M.A.M.E./M.E.S.S. Catalog / Launcher II Documentation - README</title>
 </head>
 <body style="color: black; background-image:url(img/doc-bg.jpg);" dir="ltr" alink="#111111" link="#111111" vlink="#999999">
-<h3>README - v0.36, 13-APR-2012</h3>
+<h3>README - v0.36, 26-APR-2012</h3>
 <h3><a name="Contents"></a>Contents</h3>
 <ol>
   <li>
@@ -147,10 +147,6 @@ use with the MAME variant).
       <td style="vertical-align: top;"><br><a href="http://mamedev.org/tools" target="_blank">http://mamedev.org/tools</a><br><a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon" target="_blank">http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon</a></td>
     </tr>
     <tr>
-      <td style="vertical-align: top;">All: zlib 1.2.3+</td>
-      <td style="vertical-align: top;"><a href="http://www.zlib.net" target="_blank">http://www.zlib.net</a></td>
-    </tr>
-    <tr>
       <td style="vertical-align: top;">All: MAME/MESS 0.145u1+</td>
       <td style="vertical-align: top;"><a href="http://mamedev.org/release.html" target="_blank">http://mamedev.org/release.html</a><br>
                                        <a href="http://www.mess.org/download.php" target="_blank">http://www.mess.org/download.php</a></td>
@@ -241,7 +237,7 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
 </ol>
 <p>Using the MinGW (GCC) compiler:</p>
 <ol>
-  <li>Get and install both the <a href="http://mamedev.org/tools" target="_blank">MAME dev-tools</a> and the <a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon" target="_blank">QMC2 add-on</a> package for your platform (the QMC2 add-on extends the MAME dev-tools with Qt 4.7.4+ and zlib 1.2.5+, see <b>README.add-on</b> for installation instructions!).</li>
+  <li>Get and install both the <a href="http://mamedev.org/tools" target="_blank">MAME dev-tools</a> and the <a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon" target="_blank">QMC2 add-on</a> package for your platform (the QMC2 add-on extends the MAME dev-tools with Qt 4.7.4+, see <b>README.add-on</b> for installation instructions!).</li>
   <li>Users of Windows XP should replace the Qt DLLs from the <a href="http://qmc2.arcadehits.net/wordpress/download/#contribs_qmc2_mame_dev_addon" target="_blank">QMC2 add-on package</a> with the <b>official</b> ones from Nokia -- install the <i>Qt libraries version 4.7.4+</i> from <a href="http://qt.nokia.com/downloads" target="_blank">http://qt.nokia.com/downloads</a> and overwrite the DLLs from the QMC2 add-on package with the official ones!</li>
   <li>We meanwhile found out that this is also a good idea on Vista and Windows 7, since the audio-effect widgets only work correctly in this case (opening them just causes QMC2 to crash when the unofficial Qt DLLs are in use).</li>
   <li>Call 'make' as usual, that is like on UNIX or Mac OS X, but add <b>MINGW=1</b> to the make command (i. e. 'make MINGW=1 EMULATOR=MESS').</li>
@@ -252,7 +248,7 @@ In case of an update, <b>you should check /etc/qmc2/qmc2.ini.new for any new set
 (<i>release\qmc2-&lt;emulator&gt;.exe</i>), just make sure the current working directory is the top-level QMC2 source path to make it find its data files automatically (most -- if not all -- default paths are relative to the build directory).</p>
 <p>If you would like to create binary packages, all you'd have to do is copy the relevant files (binaries/DLLs and data) into a directory which you package as an archive afterwards (using zip or rar, for example).
 The <i>installation</i> at a user's end would then just be to extract this archive. That's it! There's nothing like a script to support you in that, though.</p>
-<p>Besides the VC runtime DLLs (if built with MSVC), the required DLLs include: <i>phonon4.dll</i>, <i>phonon_backend\phonon_ds94.dll</i>, <i>imageformats\*.dll</i>, <i>QtCore4.dll</i>, <i>QtGui4.dll</i>, <i>QtOpenGL4.dll</i>, <i>QtTest4.dll</i>, <i>QtXml4.dll</i>, <i>QtXmlPatterns4.dll</i>, <i>QtNetwork4.dll</i>, <i>QtWebKit4.dll</i>, <i>SDL.dll</i> and <i>zlib1.dll</i>.</p>
+<p>Besides the VC runtime DLLs (if built with MSVC), the required DLLs include: <i>phonon4.dll</i>, <i>phonon_backend\phonon_ds94.dll</i>, <i>imageformats\*.dll</i>, <i>QtCore4.dll</i>, <i>QtGui4.dll</i>, <i>QtOpenGL4.dll</i>, <i>QtTest4.dll</i>, <i>QtXml4.dll</i>, <i>QtXmlPatterns4.dll</i>, <i>QtNetwork4.dll</i>, <i>QtWebKit4.dll</i> and <i>SDL.dll</i>.</p>
 <p>Note that variant launching on Windows generally assumes that both QMC2 variants (qmc2-mame.exe &amp; qmc2-mess.exe) can be found in the <b>same</b> directory. It will usually not search in any other path than the one it was launched from initially! However, due to popular demand by our Windows users, we've added support to allow for customizing this as well. See <a href="faq.html#A2.11">Q2.11</a> in the FAQ for more information!</p>
 <p>The <a href="credits.html">QMC2-dev team</a> is releasing binary packages for Win32 in exactly this way since v0.2.b8 (only final versions, though). These official packages also include an installer for the VC runtime DLLs (<i>vcredist\vcredist_x86.exe</i>).</p>
 <h3><a name="3."></a>3. Command line arguments and configuration</h3>
@@ -853,6 +849,9 @@ along with this program; if not, write to the Free Software Foundation,
 Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.</p>
 <p>See <a href="copying.html">copying.html</a> for the GNU General Public License.</p>
 <p>Third party software used in this project:</p>
+<p><i>zlib 1.2.6</i><br>
+Copyright &copy; 1995 - 2012 Jean-loup Gailly and Mark Adler. All rights reserved.<br>
+<a href="http://www.zlib.net/" target="_blank">http://www.zlib.net/</a>
 <p><i>Minizip 1.01h</i><br>
 Copyright &copy; 1998 - 2009 Gilles Vollant. All rights reserved.<br>
 <a href="http://www.winimage.com/zLibDll/minizip.html" target="_blank">http://www.winimage.com/zLibDll/minizip.html</a><br>
