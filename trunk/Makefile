@@ -136,7 +136,7 @@ endif
 #
 ifndef OSREL
 ifeq '$(MINGW)' '1'
-OSREL = unknown
+OSREL = $(shell arch\Windows\osrel.bat)
 else
 OSREL = $(shell uname -r)
 endif
