@@ -632,9 +632,8 @@ void YouTubeVideoPlayer::attachVideo(QString id, QString title, QString author)
 
 	QSize size(VIDEOITEM_IMAGE_WIDTH, VIDEOITEM_IMAGE_HEIGHT + 4);
 
-	bool pixmapFound = false;
 	QPixmap imagePixmap;
-	pixmapFound = QPixmapCache::find("yt_" + id, &imagePixmap);
+	bool pixmapFound = QPixmapCache::find("yt_" + id, &imagePixmap);
 	if ( !pixmapFound ) {
 		QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 		if ( youTubeCacheDir.exists() ) {
@@ -1413,9 +1412,8 @@ void YouTubeVideoPlayer::updateAttachedVideoInfoImages()
 		if ( viw->videoImageValid )
 			continue;
 
-		bool pixmapFound = false;
 		QPixmap imagePixmap;
-		pixmapFound = QPixmapCache::find("yt_" + viw->videoID, &imagePixmap);
+		bool pixmapFound = QPixmapCache::find("yt_" + viw->videoID, &imagePixmap);
 		if ( !pixmapFound ) {
 			QDir youTubeCacheDir(qmc2Config->value(QMC2_FRONTEND_PREFIX + "YouTubeWidget/CacheDirectory").toString());
 			if ( youTubeCacheDir.exists() ) {
