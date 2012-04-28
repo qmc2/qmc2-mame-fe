@@ -719,8 +719,10 @@ void Gamelist::load()
         else
           readBuffer = lines.last();
 
-        if ( i++ % QMC2_XMLCACHE_RESPONSIVENESS == 0 )
+        if ( i++ % QMC2_XMLCACHE_RESPONSIVENESS == 0 ) {
           qmc2MainWindow->progressBarGamelist->setValue(gameCount);
+	  qApp->processEvents();
+	}
       }
       gamelistBuffer += "\n";
       xmlElapsedTime = xmlElapsedTime.addMSecs(parseTimer.elapsed());
