@@ -132,6 +132,11 @@
                    </item>
                    <item>
                     <property name="text">
+                     <string>ES (Spanish)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
                      <string>FR (French)</string>
                     </property>
                    </item>
