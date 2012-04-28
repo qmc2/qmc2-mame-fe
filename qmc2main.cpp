@@ -9980,7 +9980,9 @@ void prepareShortcuts()
 {
   // shortcuts
   qmc2ShortcutMap["Ctrl+1"].second = qmc2MainWindow->actionCheckROMs;
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2ShortcutMap["Ctrl+2"].second = qmc2MainWindow->actionCheckSamples;
+#endif
   qmc2ShortcutMap["Ctrl+3"].second = qmc2MainWindow->actionCheckPreviews;
   qmc2ShortcutMap["Ctrl+4"].second = qmc2MainWindow->actionCheckFlyers;
   qmc2ShortcutMap["Ctrl+5"].second = qmc2MainWindow->actionCheckIcons;
@@ -9992,7 +9994,9 @@ void prepareShortcuts()
   qmc2ShortcutMap["Ctrl+Shift+F"].second = qmc2MainWindow->actionToFavoritesTagged;
   qmc2ShortcutMap["Ctrl+H"].second = qmc2MainWindow->actionDocumentation;
   qmc2ShortcutMap["Ctrl+I"].second = qmc2MainWindow->actionClearImageCache;
+#if defined(QMC2_WIP_ENABLED)
   qmc2ShortcutMap["Ctrl+Shift+A"].second = qmc2MainWindow->actionArcadeSetup;
+#endif
   qmc2ShortcutMap["Ctrl+M"].second = qmc2MainWindow->actionClearMAWSCache;
   qmc2ShortcutMap["Ctrl+N"].second = qmc2MainWindow->actionClearIconCache;
   qmc2ShortcutMap["Ctrl+O"].second = qmc2MainWindow->actionOptions;
@@ -10035,9 +10039,11 @@ void prepareShortcuts()
   qmc2ShortcutMap["F9"].second = qmc2MainWindow->actionRunRomTool;
   qmc2ShortcutMap["Ctrl+Shift+F9"].second = qmc2MainWindow->actionRunRomToolTagged;
   qmc2ShortcutMap["F11"].second = qmc2MainWindow->actionFullscreenToggle;
+#if defined(QMC2_WIP_ENABLED)
   qmc2ShortcutMap["F12"].second = qmc2MainWindow->actionArcadeToggle;
   qmc2ShortcutMap["Meta+F"].second = qmc2MainWindow->actionArcadeShowFPS;
   qmc2ShortcutMap["Meta+F12"].second = qmc2MainWindow->actionArcadeTakeScreenshot;
+#endif
 #if QMC2_USE_PHONON_API
   qmc2ShortcutMap["Ctrl+Alt+Left"].second = qmc2MainWindow->actionAudioPreviousTrack;
   qmc2ShortcutMap["Ctrl+Alt+Right"].second = qmc2MainWindow->actionAudioNextTrack;

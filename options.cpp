@@ -290,19 +290,31 @@ Options::Options(QWidget *parent)
 
   // shortcuts
   qmc2ShortcutMap["Ctrl+1"] = QPair<QString, QAction *>(tr("Check all ROM states"), NULL);
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2ShortcutMap["Ctrl+2"] = QPair<QString, QAction *>(tr("Check all sample sets"), NULL);
+#endif
   qmc2ShortcutMap["Ctrl+3"] = QPair<QString, QAction *>(tr("Check preview images"), NULL);
   qmc2ShortcutMap["Ctrl+4"] = QPair<QString, QAction *>(tr("Check flyer images"), NULL);
   qmc2ShortcutMap["Ctrl+5"] = QPair<QString, QAction *>(tr("Check icon images"), NULL);
   qmc2ShortcutMap["Ctrl+A"] = QPair<QString, QAction *>(tr("About QMC2"), NULL);
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2ShortcutMap["Ctrl+D"] = QPair<QString, QAction *>(tr("Analyze current game"), NULL);
+#elif defined(QMC2_EMUTYPE_MESS)
+  qmc2ShortcutMap["Ctrl+D"] = QPair<QString, QAction *>(tr("Analyze current machine"), NULL);
+#endif
   qmc2ShortcutMap["Ctrl+Shift+D"] = QPair<QString, QAction *>(tr("Analyze tagged sets"), NULL);
   qmc2ShortcutMap["Ctrl+E"] = QPair<QString, QAction *>(tr("Export ROM Status"), NULL);
+#if defined(QMC2_EMUTYPE_MAME)
   qmc2ShortcutMap["Ctrl+F"] = QPair<QString, QAction *>(tr("Copy game to favorites"), NULL);
+#elif defined(QMC2_EMUTYPE_MESS)
+  qmc2ShortcutMap["Ctrl+F"] = QPair<QString, QAction *>(tr("Copy machine to favorites"), NULL);
+#endif
   qmc2ShortcutMap["Ctrl+Shift+F"] = QPair<QString, QAction *>(tr("Copy tagged sets to favorites"), NULL);
   qmc2ShortcutMap["Ctrl+H"] = QPair<QString, QAction *>(tr("Online documentation"), NULL);
   qmc2ShortcutMap["Ctrl+I"] = QPair<QString, QAction *>(tr("Clear image cache"), NULL);
+#if defined(QMC2_WIP_ENABLED)
   qmc2ShortcutMap["Ctrl+Shift+A"] = QPair<QString, QAction *>(tr("Setup arcade mode"), NULL);
+#endif
 #if defined(QMC2_EMUTYPE_MAME)
   qmc2ShortcutMap["Ctrl+M"] = QPair<QString, QAction *>(tr("Clear MAWS cache"), NULL);
 #elif defined(QMC2_EMUTYPE_MESS)
@@ -315,8 +327,13 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Shift+P"] = QPair<QString, QAction *>(tr("Play (embedded)"), NULL);
 #endif
   qmc2ShortcutMap["Ctrl+Q"] = QPair<QString, QAction *>(tr("About Qt"), NULL);
-  qmc2ShortcutMap["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload gamelist"), NULL);
+#if defined(QMC2_EMUTYPE_MAME)
+  qmc2ShortcutMap["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload game list"), NULL);
   qmc2ShortcutMap["Ctrl+S"] = QPair<QString, QAction *>(tr("Check game's ROM state"), NULL);
+#elif defined(QMC2_EMUTYPE_MESS)
+  qmc2ShortcutMap["Ctrl+R"] = QPair<QString, QAction *>(tr("Reload machine list"), NULL);
+  qmc2ShortcutMap["Ctrl+S"] = QPair<QString, QAction *>(tr("Check machine's ROM state"), NULL);
+#endif
   qmc2ShortcutMap["Ctrl+Shift+S"] = QPair<QString, QAction *>(tr("Check states of tagged ROMs"), NULL);
   qmc2ShortcutMap["Ctrl+T"] = QPair<QString, QAction *>(tr("Recreate template map"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+C"] = QPair<QString, QAction *>(tr("Check template map"), NULL);
@@ -345,7 +362,11 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["Ctrl+Shift+L"] = QPair<QString, QAction *>(tr("Tag all sets"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+N"] = QPair<QString, QAction *>(tr("Untag all sets"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+I"] = QPair<QString, QAction *>(tr("Invert all tags"), NULL);
-  qmc2ShortcutMap["F5"] = QPair<QString, QAction *>(tr("Gamelist with full detail"), NULL);
+#if defined(QMC2_EMUTYPE_MAME)
+  qmc2ShortcutMap["F5"] = QPair<QString, QAction *>(tr("Game list with full detail"), NULL);
+#elif defined(QMC2_EMUTYPE_MESS)
+  qmc2ShortcutMap["F5"] = QPair<QString, QAction *>(tr("Machine list with full detail"), NULL);
+#endif
   qmc2ShortcutMap["F6"] = QPair<QString, QAction *>(tr("Parent / clone hierarchy"), NULL);
 #if defined(QMC2_EMUTYPE_MAME)
   qmc2ShortcutMap["F7"] = QPair<QString, QAction *>(tr("View games by category"), NULL);
@@ -354,9 +375,11 @@ Options::Options(QWidget *parent)
   qmc2ShortcutMap["F9"] = QPair<QString, QAction *>(tr("Run external ROM tool"), NULL);
   qmc2ShortcutMap["Ctrl+Shift+F9"] = QPair<QString, QAction *>(tr("Run ROM tool for tagged sets"), NULL);
   qmc2ShortcutMap["F11"] = QPair<QString, QAction *>(tr("Toggle full screen"), NULL);
+#if defined(QMC2_WIP_ENABLED)
   qmc2ShortcutMap["F12"] = QPair<QString, QAction *>(tr("Toggle arcade mode"), NULL);
   qmc2ShortcutMap["Meta+F"] = QPair<QString, QAction *>(tr("Show FPS (arcade mode)"), NULL);
   qmc2ShortcutMap["Meta+F12"] = QPair<QString, QAction *>(tr("Take snapshot (arcade mode)"), NULL);
+#endif
 #if QMC2_USE_PHONON_API
   qmc2ShortcutMap["Ctrl+Alt+Left"] = QPair<QString, QAction *>(tr("Previous track (audio player)"), NULL);
   qmc2ShortcutMap["Ctrl+Alt+Right"] = QPair<QString, QAction *>(tr("Next track (audio player)"), NULL);
