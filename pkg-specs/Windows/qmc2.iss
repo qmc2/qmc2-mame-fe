@@ -30,7 +30,7 @@ Name: "Italian"; MessagesFile: "compiler:Languages\Italian.isl"; InfoAfterFile: 
 Name: "Polish"; MessagesFile: "compiler:Languages\Polish.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
 Name: "Portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
 Name: "Romanian"; MessagesFile: "compiler:Languages\Romanian.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
-Name: "Spanish"; MessagesFile: "compiler:Languages\Spanish.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
+Name: "Spanish"; MessagesFile: "compiler:Languages\Spanish.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-es.rtf"
 
 [Files]
 Source: "c:\projects\qmc2\package\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -50,7 +50,7 @@ Italian.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 Polish.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 Portuguese.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 Romanian.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
-Spanish.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
+Spanish.InstallVCRuntimeEnv=Instalar entorno de ejecución VC++ 2010
 
 [Run]
 Filename: "{app}\vcredist\vcredist_x86.exe"; Description: "{cm:InstallVCRuntimeEnv}"; Flags: postinstall runascurrentuser nowait unchecked skipifdoesntexist
