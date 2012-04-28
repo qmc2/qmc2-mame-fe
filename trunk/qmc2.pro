@@ -175,7 +175,8 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			data/lng/qmc2_fr.ts \
 			data/lng/qmc2_pt.ts \
 			data/lng/qmc2_it.ts \
-			data/lng/qmc2_ro.ts
+			data/lng/qmc2_ro.ts \
+			data/lng/qmc2_es.ts
 		RESOURCES += qmc2.qrc
 		QMAKE_MAKEFILE = Makefile.qmake
 

@@ -2568,8 +2568,11 @@ void MainWindow::on_actionFullscreenToggle_triggered(bool)
       showNormal();
     }
 #if defined(QMC2_YOUTUBE_ENABLED)
-    if ( qmc2YouTubeWidget && youTubeWasPlaying )
-      qmc2YouTubeWidget->videoPlayer->play();
+    if ( qmc2YouTubeWidget && youTubeWasPlaying ) {
+	    qApp->processEvents();
+	    if ( !qmc2YouTubeWidget->videoPlayer->isPlaying() )
+		    QTimer::singleShot(0, qmc2YouTubeWidget->videoPlayer, SLOT(play()));
+    }
 #endif
   }
 
