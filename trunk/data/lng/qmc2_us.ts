@@ -5196,42 +5196,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>JoystickCalibrationWidget</name>
     <message>
-        <location filename="../../options.cpp" line="4059"/>
+        <location filename="../../options.cpp" line="4082"/>
         <source>Axis %1:</source>
         <translation>Axis %1:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4068"/>
+        <location filename="../../options.cpp" line="4091"/>
         <source>Current value of axis %1</source>
         <translation>Current value of axis %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4072"/>
+        <location filename="../../options.cpp" line="4095"/>
         <source>DZ:</source>
         <translation>DZ:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4074"/>
+        <location filename="../../options.cpp" line="4097"/>
         <source>Deadzone of axis %1</source>
         <translation>Deadzone of axis %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4080"/>
+        <location filename="../../options.cpp" line="4103"/>
         <source>S:</source>
         <translation>S:</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4082"/>
+        <location filename="../../options.cpp" line="4105"/>
         <source>Sensitivity of axis %1</source>
         <translation>Sensitivity of axis %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4060"/>
+        <location filename="../../options.cpp" line="4083"/>
         <source>Reset calibration of axis %1</source>
         <translation>Reset calibration of axis %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4055"/>
+        <location filename="../../options.cpp" line="4078"/>
         <source>Enable/disable axis %1</source>
         <translation>Enable/disable axis %1</translation>
     </message>
@@ -5275,67 +5275,67 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>JoystickTestWidget</name>
     <message>
-        <location filename="../../options.cpp" line="4303"/>
+        <location filename="../../options.cpp" line="4326"/>
         <source>A%1: %v</source>
         <translation>A%1: %v</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4304"/>
+        <location filename="../../options.cpp" line="4327"/>
         <source>Current value of axis %1</source>
         <translation>Current value of axis %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4314"/>
+        <location filename="../../options.cpp" line="4337"/>
         <source>B%1</source>
         <translation>B%1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4315"/>
+        <location filename="../../options.cpp" line="4338"/>
         <source>Current state of button %1</source>
         <translation>Current state of button %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4325"/>
+        <location filename="../../options.cpp" line="4348"/>
         <source>H%1: 0</source>
         <translation>H%1: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4326"/>
+        <location filename="../../options.cpp" line="4349"/>
         <source>Current value of hat %1</source>
         <translation>Current value of hat %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4336"/>
+        <location filename="../../options.cpp" line="4359"/>
         <source>T%1 DX: 0</source>
         <translation>T%1 DX: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4337"/>
+        <location filename="../../options.cpp" line="4360"/>
         <source>Current X-delta of trackball %1</source>
         <translation>Current X-delta of trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4347"/>
+        <location filename="../../options.cpp" line="4370"/>
         <source>T%1 DY: 0</source>
         <translation>T%1 DY: 0</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4348"/>
+        <location filename="../../options.cpp" line="4371"/>
         <source>Current Y-delta of trackball %1</source>
         <translation>Current Y-delta of trackball %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4436"/>
+        <location filename="../../options.cpp" line="4459"/>
         <source>H%1: %2</source>
         <translation>H%1: %2</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4470"/>
+        <location filename="../../options.cpp" line="4493"/>
         <source>T%1 DX: %2</source>
         <translation>T%1 DX: %2</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4471"/>
+        <location filename="../../options.cpp" line="4494"/>
         <source>T%1 DY: %2</source>
         <translation>T%1 DY: %2</translation>
     </message>
@@ -9709,419 +9709,409 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="293"/>
+        <location filename="../../options.cpp" line="294"/>
         <source>Check all sample sets</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="294"/>
+        <location filename="../../options.cpp" line="296"/>
         <source>Check preview images</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="295"/>
+        <location filename="../../options.cpp" line="297"/>
         <source>Check flyer images</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="296"/>
+        <location filename="../../options.cpp" line="298"/>
         <source>Check icon images</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="297"/>
+        <location filename="../../options.cpp" line="299"/>
         <source>About QMC2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="301"/>
+        <location filename="../../options.cpp" line="308"/>
         <source>Copy game to favorites</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="303"/>
+        <location filename="../../options.cpp" line="313"/>
         <source>Online documentation</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="304"/>
+        <location filename="../../options.cpp" line="314"/>
         <source>Clear image cache</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="309"/>
+        <location filename="../../options.cpp" line="321"/>
         <source>Clear MESS wiki cache</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="311"/>
+        <location filename="../../options.cpp" line="323"/>
         <source>Clear icon cache</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="312"/>
+        <location filename="../../options.cpp" line="324"/>
         <source>Open options dialog</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="317"/>
+        <location filename="../../options.cpp" line="329"/>
         <source>About Qt</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="318"/>
-        <source>Reload gamelist</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../options.cpp" line="319"/>
+        <location filename="../../options.cpp" line="332"/>
         <source>Check game&apos;s ROM state</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="320"/>
+        <location filename="../../options.cpp" line="337"/>
         <source>Check states of tagged ROMs</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="321"/>
+        <location filename="../../options.cpp" line="338"/>
         <source>Recreate template map</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="322"/>
+        <location filename="../../options.cpp" line="339"/>
         <source>Check template map</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="323"/>
+        <location filename="../../options.cpp" line="340"/>
         <source>Stop processing / exit QMC2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="325"/>
+        <location filename="../../options.cpp" line="342"/>
         <source>Clear YouTube cache</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="342"/>
+        <location filename="../../options.cpp" line="359"/>
         <source>Tag current set</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="343"/>
+        <location filename="../../options.cpp" line="360"/>
         <source>Untag current set</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="344"/>
+        <location filename="../../options.cpp" line="361"/>
         <source>Toggle tag mark</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="345"/>
+        <location filename="../../options.cpp" line="362"/>
         <source>Tag all sets</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="346"/>
+        <location filename="../../options.cpp" line="363"/>
         <source>Untag all sets</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="347"/>
+        <location filename="../../options.cpp" line="364"/>
         <source>Invert all tags</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="348"/>
-        <source>Gamelist with full detail</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../options.cpp" line="351"/>
+        <location filename="../../options.cpp" line="372"/>
         <source>View games by category</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="352"/>
+        <location filename="../../options.cpp" line="373"/>
         <source>View games by version</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="354"/>
+        <location filename="../../options.cpp" line="375"/>
         <source>Run external ROM tool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="355"/>
+        <location filename="../../options.cpp" line="376"/>
         <source>Run ROM tool for tagged sets</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="373"/>
+        <location filename="../../options.cpp" line="396"/>
         <source>Plus (+)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="374"/>
+        <location filename="../../options.cpp" line="397"/>
         <source>Minus (-)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="375"/>
+        <location filename="../../options.cpp" line="398"/>
         <source>Cursor down</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="376"/>
+        <location filename="../../options.cpp" line="399"/>
         <source>End</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="377"/>
+        <location filename="../../options.cpp" line="400"/>
         <source>Escape</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="378"/>
+        <location filename="../../options.cpp" line="401"/>
         <source>Cursor left</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="379"/>
+        <location filename="../../options.cpp" line="402"/>
         <source>Home</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="380"/>
+        <location filename="../../options.cpp" line="403"/>
         <source>Page down</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="381"/>
+        <location filename="../../options.cpp" line="404"/>
         <source>Page up</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="382"/>
+        <location filename="../../options.cpp" line="405"/>
         <source>Enter key</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="383"/>
+        <location filename="../../options.cpp" line="406"/>
         <source>Cursor right</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="384"/>
+        <location filename="../../options.cpp" line="407"/>
         <source>Tabulator</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="385"/>
+        <location filename="../../options.cpp" line="408"/>
         <source>Cursor up</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="388"/>
+        <location filename="../../options.cpp" line="411"/>
         <source>WARNING: configuration is not writeable, please check access permissions for </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="393"/>
-        <location filename="../../options.cpp" line="400"/>
+        <location filename="../../options.cpp" line="416"/>
+        <location filename="../../options.cpp" line="423"/>
         <source>Reset to default font</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="417"/>
-        <location filename="../../options.cpp" line="418"/>
+        <location filename="../../options.cpp" line="440"/>
+        <location filename="../../options.cpp" line="441"/>
         <source>Search in the folder we were called from</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="889"/>
+        <location filename="../../options.cpp" line="912"/>
         <source>image cache size set to %1 MB</source>
         <translation>image cache size set to %1 MB</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1316"/>
+        <location filename="../../options.cpp" line="1339"/>
         <source>Confirm</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1322"/>
+        <location filename="../../options.cpp" line="1345"/>
         <source>&amp;Local</source>
         <translation>&amp;Local</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1322"/>
+        <location filename="../../options.cpp" line="1345"/>
         <source>&amp;Overwrite</source>
         <translation>&amp;Overwrite</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1322"/>
+        <location filename="../../options.cpp" line="1345"/>
         <source>Do&amp;n&apos;t apply</source>
         <translation>Do&amp;n&apos;t apply</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1428"/>
+        <location filename="../../options.cpp" line="1451"/>
         <source>invalidating machine info DB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1462"/>
+        <location filename="../../options.cpp" line="1485"/>
         <source>please reload game list for some changes to take effect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1464"/>
+        <location filename="../../options.cpp" line="1487"/>
         <source>please reload machine list for some changes to take effect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1480"/>
+        <location filename="../../options.cpp" line="1503"/>
         <source>re-sort of machine list impossible at this time, please wait for ROM verification to finish and try again</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1535"/>
-        <location filename="../../options.cpp" line="1537"/>
+        <location filename="../../options.cpp" line="1558"/>
+        <location filename="../../options.cpp" line="1560"/>
         <source>ascending</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1535"/>
-        <location filename="../../options.cpp" line="1537"/>
+        <location filename="../../options.cpp" line="1558"/>
+        <location filename="../../options.cpp" line="1560"/>
         <source>descending</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1549"/>
+        <location filename="../../options.cpp" line="1572"/>
         <source>Waiting for data...</source>
         <translation>Waiting for data...</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1720"/>
-        <location filename="../../options.cpp" line="1724"/>
+        <location filename="../../options.cpp" line="1743"/>
+        <location filename="../../options.cpp" line="1747"/>
         <source>FATAL: can&apos;t open preview file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open preview file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1738"/>
-        <location filename="../../options.cpp" line="1742"/>
+        <location filename="../../options.cpp" line="1761"/>
+        <location filename="../../options.cpp" line="1765"/>
         <source>FATAL: can&apos;t open flyer file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open flyer file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1828"/>
-        <location filename="../../options.cpp" line="1832"/>
+        <location filename="../../options.cpp" line="1851"/>
+        <location filename="../../options.cpp" line="1855"/>
         <source>FATAL: can&apos;t open PCB file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open PCB file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1846"/>
-        <location filename="../../options.cpp" line="1850"/>
+        <location filename="../../options.cpp" line="1869"/>
+        <location filename="../../options.cpp" line="1873"/>
         <source>FATAL: can&apos;t open software snap-shot file, please check access permissions for %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1863"/>
-        <location filename="../../options.cpp" line="1867"/>
+        <location filename="../../options.cpp" line="1886"/>
+        <location filename="../../options.cpp" line="1890"/>
         <source>FATAL: can&apos;t open icon file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open icon file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2055"/>
-        <location filename="../../options.cpp" line="2115"/>
-        <location filename="../../options.cpp" line="3123"/>
+        <location filename="../../options.cpp" line="2078"/>
+        <location filename="../../options.cpp" line="2138"/>
+        <location filename="../../options.cpp" line="3146"/>
         <source>SW snap file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2333"/>
-        <location filename="../../options.cpp" line="3514"/>
+        <location filename="../../options.cpp" line="2356"/>
+        <location filename="../../options.cpp" line="3537"/>
         <source>Custom IDs...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2334"/>
-        <location filename="../../options.cpp" line="3515"/>
+        <location filename="../../options.cpp" line="2357"/>
+        <location filename="../../options.cpp" line="3538"/>
         <source>Specify pre-defined foreign IDs for this emulator, launchable through the menu</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2620"/>
+        <location filename="../../options.cpp" line="2643"/>
         <source>Choose MAME variant&apos;s exe file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2632"/>
+        <location filename="../../options.cpp" line="2655"/>
         <source>Choose MESS variant&apos;s exe file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2647"/>
+        <location filename="../../options.cpp" line="2670"/>
         <source>MAME variant arguments</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2648"/>
+        <location filename="../../options.cpp" line="2671"/>
         <source>Specify command line arguments passed to the MAME variant
 (empty means: &apos;pass the arguments we were called with&apos;):</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2666"/>
+        <location filename="../../options.cpp" line="2689"/>
         <source>MESS variant arguments</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2667"/>
+        <location filename="../../options.cpp" line="2690"/>
         <source>Specify command line arguments passed to the MESS variant
 (empty means: &apos;pass the arguments we were called with&apos;):</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2731"/>
+        <location filename="../../options.cpp" line="2754"/>
         <source>Choose ROM tool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2743"/>
-        <location filename="../../options.cpp" line="2805"/>
-        <location filename="../../options.cpp" line="3489"/>
+        <location filename="../../options.cpp" line="2766"/>
+        <location filename="../../options.cpp" line="2828"/>
+        <location filename="../../options.cpp" line="3512"/>
         <source>Choose working directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2834"/>
+        <location filename="../../options.cpp" line="2857"/>
         <source>Choose software list cache file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2846"/>
+        <location filename="../../options.cpp" line="2869"/>
         <source>Choose general software folder</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2911"/>
+        <location filename="../../options.cpp" line="2934"/>
         <source>Choose catver.ini file</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3032"/>
-        <location filename="../../options.cpp" line="415"/>
-        <location filename="../../options.cpp" line="416"/>
-        <location filename="../../options.cpp" line="3634"/>
+        <location filename="../../options.cpp" line="438"/>
+        <location filename="../../options.cpp" line="439"/>
+        <location filename="../../options.cpp" line="3657"/>
         <source>Default</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2015"/>
-        <location filename="../../options.cpp" line="2075"/>
-        <location filename="../../options.cpp" line="3035"/>
+        <location filename="../../options.cpp" line="2038"/>
+        <location filename="../../options.cpp" line="2098"/>
+        <location filename="../../options.cpp" line="3058"/>
         <source>Preview file</source>
         <translation></translation>
     </message>
@@ -10189,302 +10179,337 @@ Retry embedding?</source>
     </message>
     <message>
         <location filename="../../options.cpp" line="284"/>
-        <location filename="../../options.cpp" line="1035"/>
+        <location filename="../../options.cpp" line="1058"/>
         <source>Category</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="285"/>
-        <location filename="../../options.cpp" line="1036"/>
+        <location filename="../../options.cpp" line="1059"/>
         <source>Version</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="299"/>
+        <location filename="../../options.cpp" line="303"/>
+        <source>Analyze current machine</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="305"/>
         <source>Analyze tagged sets</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="302"/>
+        <location filename="../../options.cpp" line="310"/>
+        <source>Copy machine to favorites</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="312"/>
         <source>Copy tagged sets to favorites</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="313"/>
+        <location filename="../../options.cpp" line="325"/>
         <source>Play (independent)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="315"/>
+        <location filename="../../options.cpp" line="327"/>
         <source>Play (embedded)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="408"/>
-        <location filename="../../options.cpp" line="414"/>
+        <location filename="../../options.cpp" line="331"/>
+        <source>Reload game list</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="334"/>
+        <source>Reload machine list</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="335"/>
+        <source>Check machine&apos;s ROM state</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="366"/>
+        <source>Game list with full detail</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="368"/>
+        <source>Machine list with full detail</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="431"/>
+        <location filename="../../options.cpp" line="437"/>
         <source>No style sheet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1039"/>
+        <location filename="../../options.cpp" line="1062"/>
         <source>View games by category (not filtered)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1041"/>
+        <location filename="../../options.cpp" line="1064"/>
         <source>View games by emulator version (not filtered)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1478"/>
+        <location filename="../../options.cpp" line="1501"/>
         <source>re-sort of game list impossible at this time, please wait for ROM verification to finish and try again</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1875"/>
+        <location filename="../../options.cpp" line="1898"/>
         <source>triggering automatic reload of game list</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1877"/>
+        <location filename="../../options.cpp" line="1900"/>
         <source>triggering automatic reload of machine list</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1128"/>
-        <location filename="../../options.cpp" line="2015"/>
-        <location filename="../../options.cpp" line="2075"/>
-        <location filename="../../options.cpp" line="3035"/>
+        <location filename="../../options.cpp" line="2038"/>
+        <location filename="../../options.cpp" line="2098"/>
+        <location filename="../../options.cpp" line="3058"/>
         <source>Preview directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2020"/>
-        <location filename="../../options.cpp" line="2080"/>
-        <location filename="../../options.cpp" line="3046"/>
+        <location filename="../../options.cpp" line="2043"/>
+        <location filename="../../options.cpp" line="2103"/>
+        <location filename="../../options.cpp" line="3069"/>
         <source>Flyer file</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1231"/>
-        <location filename="../../options.cpp" line="2020"/>
-        <location filename="../../options.cpp" line="2080"/>
-        <location filename="../../options.cpp" line="3046"/>
+        <location filename="../../options.cpp" line="2043"/>
+        <location filename="../../options.cpp" line="2103"/>
+        <location filename="../../options.cpp" line="3069"/>
         <source>Flyer directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2025"/>
-        <location filename="../../options.cpp" line="2085"/>
-        <location filename="../../options.cpp" line="3057"/>
+        <location filename="../../options.cpp" line="2048"/>
+        <location filename="../../options.cpp" line="2108"/>
+        <location filename="../../options.cpp" line="3080"/>
         <source>Icon file</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1334"/>
-        <location filename="../../options.cpp" line="2025"/>
-        <location filename="../../options.cpp" line="2085"/>
-        <location filename="../../options.cpp" line="3057"/>
+        <location filename="../../options.cpp" line="2048"/>
+        <location filename="../../options.cpp" line="2108"/>
+        <location filename="../../options.cpp" line="3080"/>
         <source>Icon directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2050"/>
-        <location filename="../../options.cpp" line="2110"/>
-        <location filename="../../options.cpp" line="3112"/>
+        <location filename="../../options.cpp" line="2073"/>
+        <location filename="../../options.cpp" line="2133"/>
+        <location filename="../../options.cpp" line="3135"/>
         <source>PCB file</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1849"/>
-        <location filename="../../options.cpp" line="2050"/>
-        <location filename="../../options.cpp" line="2110"/>
-        <location filename="../../options.cpp" line="3112"/>
+        <location filename="../../options.cpp" line="2073"/>
+        <location filename="../../options.cpp" line="2133"/>
+        <location filename="../../options.cpp" line="3135"/>
         <source>PCB directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2459"/>
+        <location filename="../../options.cpp" line="2482"/>
         <source>Choose Qt style sheet file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2459"/>
+        <location filename="../../options.cpp" line="2482"/>
         <source>Qt Style Sheets (*.qss)</source>
         <translation>Qt Style Sheets (*.qss)</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2471"/>
+        <location filename="../../options.cpp" line="2494"/>
         <source>Choose temporary work file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2471"/>
-        <location filename="../../options.cpp" line="2595"/>
-        <location filename="../../options.cpp" line="2607"/>
-        <location filename="../../options.cpp" line="2620"/>
-        <location filename="../../options.cpp" line="2632"/>
-        <location filename="../../options.cpp" line="2683"/>
-        <location filename="../../options.cpp" line="2695"/>
-        <location filename="../../options.cpp" line="2707"/>
-        <location filename="../../options.cpp" line="2719"/>
-        <location filename="../../options.cpp" line="2731"/>
-        <location filename="../../options.cpp" line="2755"/>
-        <location filename="../../options.cpp" line="2767"/>
-        <location filename="../../options.cpp" line="2779"/>
-        <location filename="../../options.cpp" line="2793"/>
-        <location filename="../../options.cpp" line="2834"/>
-        <location filename="../../options.cpp" line="2860"/>
-        <location filename="../../options.cpp" line="2886"/>
-        <location filename="../../options.cpp" line="2898"/>
-        <location filename="../../options.cpp" line="2911"/>
-        <location filename="../../options.cpp" line="3132"/>
-        <location filename="../../options.cpp" line="3144"/>
-        <location filename="../../options.cpp" line="3156"/>
-        <location filename="../../options.cpp" line="3168"/>
-        <location filename="../../options.cpp" line="3180"/>
-        <location filename="../../options.cpp" line="3192"/>
-        <location filename="../../options.cpp" line="3204"/>
-        <location filename="../../options.cpp" line="3216"/>
-        <location filename="../../options.cpp" line="3242"/>
-        <location filename="../../options.cpp" line="3268"/>
-        <location filename="../../options.cpp" line="3477"/>
+        <location filename="../../options.cpp" line="2494"/>
+        <location filename="../../options.cpp" line="2618"/>
+        <location filename="../../options.cpp" line="2630"/>
+        <location filename="../../options.cpp" line="2643"/>
+        <location filename="../../options.cpp" line="2655"/>
+        <location filename="../../options.cpp" line="2706"/>
+        <location filename="../../options.cpp" line="2718"/>
+        <location filename="../../options.cpp" line="2730"/>
+        <location filename="../../options.cpp" line="2742"/>
+        <location filename="../../options.cpp" line="2754"/>
+        <location filename="../../options.cpp" line="2778"/>
+        <location filename="../../options.cpp" line="2790"/>
+        <location filename="../../options.cpp" line="2802"/>
+        <location filename="../../options.cpp" line="2816"/>
+        <location filename="../../options.cpp" line="2857"/>
+        <location filename="../../options.cpp" line="2883"/>
+        <location filename="../../options.cpp" line="2909"/>
+        <location filename="../../options.cpp" line="2921"/>
+        <location filename="../../options.cpp" line="2934"/>
+        <location filename="../../options.cpp" line="3155"/>
+        <location filename="../../options.cpp" line="3167"/>
+        <location filename="../../options.cpp" line="3179"/>
+        <location filename="../../options.cpp" line="3191"/>
+        <location filename="../../options.cpp" line="3203"/>
+        <location filename="../../options.cpp" line="3215"/>
+        <location filename="../../options.cpp" line="3227"/>
+        <location filename="../../options.cpp" line="3239"/>
+        <location filename="../../options.cpp" line="3265"/>
+        <location filename="../../options.cpp" line="3291"/>
+        <location filename="../../options.cpp" line="3500"/>
         <source>All files (*)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2483"/>
+        <location filename="../../options.cpp" line="2506"/>
         <source>Choose preview directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2497"/>
+        <location filename="../../options.cpp" line="2520"/>
         <source>Choose flyer directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2511"/>
+        <location filename="../../options.cpp" line="2534"/>
         <source>Choose icon directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2581"/>
+        <location filename="../../options.cpp" line="2604"/>
         <source>Choose PCB directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2595"/>
+        <location filename="../../options.cpp" line="2618"/>
         <source>Choose options template file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2607"/>
-        <location filename="../../options.cpp" line="3477"/>
+        <location filename="../../options.cpp" line="2630"/>
+        <location filename="../../options.cpp" line="3500"/>
         <source>Choose emulator executable file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2683"/>
+        <location filename="../../options.cpp" line="2706"/>
         <source>Choose emulator log file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2695"/>
+        <location filename="../../options.cpp" line="2718"/>
         <source>Choose XML gamelist cache file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2707"/>
+        <location filename="../../options.cpp" line="2730"/>
         <source>Choose zip tool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2719"/>
+        <location filename="../../options.cpp" line="2742"/>
         <source>Choose file removal tool</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2755"/>
+        <location filename="../../options.cpp" line="2778"/>
         <source>Choose game favorites file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2767"/>
+        <location filename="../../options.cpp" line="2790"/>
         <source>Choose play history file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2779"/>
+        <location filename="../../options.cpp" line="2802"/>
         <source>Choose gamelist cache file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2793"/>
+        <location filename="../../options.cpp" line="2816"/>
         <source>Choose ROM state cache file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2872"/>
+        <location filename="../../options.cpp" line="2895"/>
         <source>Choose data directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3132"/>
+        <location filename="../../options.cpp" line="3155"/>
         <source>Choose ZIP-compressed preview file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3144"/>
+        <location filename="../../options.cpp" line="3167"/>
         <source>Choose ZIP-compressed flyer file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3156"/>
+        <location filename="../../options.cpp" line="3179"/>
         <source>Choose ZIP-compressed icon file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3204"/>
+        <location filename="../../options.cpp" line="3227"/>
         <source>Choose ZIP-compressed title file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3216"/>
+        <location filename="../../options.cpp" line="3239"/>
         <source>Choose ZIP-compressed PCB file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3228"/>
+        <location filename="../../options.cpp" line="3251"/>
         <source>Choose software snap directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3242"/>
+        <location filename="../../options.cpp" line="3265"/>
         <source>Choose ZIP-compressed software snap file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3254"/>
+        <location filename="../../options.cpp" line="3277"/>
         <source>Choose software notes folder</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3268"/>
+        <location filename="../../options.cpp" line="3291"/>
         <source>Choose software notes template</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3268"/>
+        <location filename="../../options.cpp" line="3291"/>
         <source>HTML files (*.html *.htm)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3447"/>
+        <location filename="../../options.cpp" line="3470"/>
         <source>shortcut map is clean</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3449"/>
+        <location filename="../../options.cpp" line="3472"/>
         <source>WARNING: shortcut map contains duplicates</source>
         <translation></translation>
     </message>
@@ -11244,9 +11269,9 @@ Retry embedding?</source>
     </message>
     <message>
         <location filename="../../options.ui" line="2164"/>
-        <location filename="../../options.cpp" line="2055"/>
-        <location filename="../../options.cpp" line="2115"/>
-        <location filename="../../options.cpp" line="3123"/>
+        <location filename="../../options.cpp" line="2078"/>
+        <location filename="../../options.cpp" line="2138"/>
+        <location filename="../../options.cpp" line="3146"/>
         <source>SW snap folder</source>
         <translation></translation>
     </message>
@@ -11786,12 +11811,12 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="298"/>
+        <location filename="../../options.cpp" line="301"/>
         <source>Analyze current game</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="327"/>
+        <location filename="../../options.cpp" line="344"/>
         <source>Open ROMAlyzer dialog</source>
         <translation></translation>
     </message>
@@ -11842,10 +11867,10 @@ Retry embedding?</source>
     </message>
     <message>
         <location filename="../../options.ui" line="3137"/>
-        <location filename="../../options.cpp" line="3686"/>
         <location filename="../../options.cpp" line="3709"/>
-        <location filename="../../options.cpp" line="3762"/>
-        <location filename="../../options.cpp" line="3849"/>
+        <location filename="../../options.cpp" line="3732"/>
+        <location filename="../../options.cpp" line="3785"/>
+        <location filename="../../options.cpp" line="3872"/>
         <source>No joysticks found</source>
         <translation></translation>
     </message>
@@ -12000,22 +12025,22 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1251"/>
+        <location filename="../../options.cpp" line="1274"/>
         <source>WARNING: can&apos;t initialize joystick</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4020"/>
+        <location filename="../../options.cpp" line="4043"/>
         <source>joystick map is clean</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="4022"/>
+        <location filename="../../options.cpp" line="4045"/>
         <source>WARNING: joystick map contains duplicates</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2886"/>
+        <location filename="../../options.cpp" line="2909"/>
         <source>Choose game info DB</source>
         <translation></translation>
     </message>
@@ -12040,7 +12065,7 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1468"/>
+        <location filename="../../options.cpp" line="1491"/>
         <source>please restart QMC2 for some changes to take effect</source>
         <translation></translation>
     </message>
@@ -12058,7 +12083,7 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1426"/>
+        <location filename="../../options.cpp" line="1449"/>
         <source>invalidating game info DB</source>
         <translation></translation>
     </message>
@@ -12090,12 +12115,12 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1445"/>
+        <location filename="../../options.cpp" line="1468"/>
         <source>invalidating emulator info DB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2898"/>
+        <location filename="../../options.cpp" line="2921"/>
         <source>Choose emulator info DB</source>
         <translation></translation>
     </message>
@@ -12147,57 +12172,57 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="361"/>
+        <location filename="../../options.cpp" line="384"/>
         <source>Previous track (audio player)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="362"/>
+        <location filename="../../options.cpp" line="385"/>
         <source>Next track (audio player)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="363"/>
+        <location filename="../../options.cpp" line="386"/>
         <source>Fast backward (audio player)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="364"/>
+        <location filename="../../options.cpp" line="387"/>
         <source>Fast forward (audio player)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="365"/>
+        <location filename="../../options.cpp" line="388"/>
         <source>Stop track (audio player)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="366"/>
+        <location filename="../../options.cpp" line="389"/>
         <source>Pause track (audio player)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="367"/>
+        <location filename="../../options.cpp" line="390"/>
         <source>Play track (audio player)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="349"/>
+        <location filename="../../options.cpp" line="370"/>
         <source>Parent / clone hierarchy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="368"/>
+        <location filename="../../options.cpp" line="391"/>
         <source>Raise volume (audio player)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="369"/>
+        <location filename="../../options.cpp" line="392"/>
         <source>Lower volume (audio player)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="300"/>
+        <location filename="../../options.cpp" line="306"/>
         <source>Export ROM Status</source>
         <translation></translation>
     </message>
@@ -12265,27 +12290,27 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="328"/>
+        <location filename="../../options.cpp" line="345"/>
         <source>Toggle ROM state C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="329"/>
+        <location filename="../../options.cpp" line="346"/>
         <source>Toggle ROM state M</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="330"/>
+        <location filename="../../options.cpp" line="347"/>
         <source>Toggle ROM state I</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="331"/>
+        <location filename="../../options.cpp" line="348"/>
         <source>Toggle ROM state N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="332"/>
+        <location filename="../../options.cpp" line="349"/>
         <source>Toggle ROM state U</source>
         <translation></translation>
     </message>
@@ -12300,12 +12325,12 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="338"/>
+        <location filename="../../options.cpp" line="355"/>
         <source>Launch QMC2 for SDLMAME</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="339"/>
+        <location filename="../../options.cpp" line="356"/>
         <source>Launch QMC2 for SDLMESS</source>
         <translation></translation>
     </message>
@@ -12335,22 +12360,22 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="357"/>
+        <location filename="../../options.cpp" line="379"/>
         <source>Toggle arcade mode</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="358"/>
+        <location filename="../../options.cpp" line="380"/>
         <source>Show FPS (arcade mode)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="359"/>
+        <location filename="../../options.cpp" line="381"/>
         <source>Take snapshot (arcade mode)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="305"/>
+        <location filename="../../options.cpp" line="316"/>
         <source>Setup arcade mode</source>
         <translation></translation>
     </message>
@@ -12405,12 +12430,12 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="335"/>
+        <location filename="../../options.cpp" line="352"/>
         <source>Launch QMC2 for MAME</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="336"/>
+        <location filename="../../options.cpp" line="353"/>
         <source>Launch QMC2 for MESS</source>
         <translation></translation>
     </message>
@@ -12437,31 +12462,31 @@ Retry embedding?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1535"/>
+        <location filename="../../options.cpp" line="1558"/>
         <source>sorting game list by %1 in %2 order</source>
         <translation>sorting game list by %1 in %2 order</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1537"/>
+        <location filename="../../options.cpp" line="1560"/>
         <source>sorting machine list by %1 in %2 order</source>
         <translation>sorting machine list by %1 in %2 order</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1318"/>
+        <location filename="../../options.cpp" line="1341"/>
         <source>An open game-specific emulator configuration has been detected.
 Use local game-settings, overwrite with global settings or don&apos;t apply?</source>
         <translation>An open game-specific emulator configuration has been detected.￼
 Use local game-settings, overwrite with global settings or don&apos;t apply?</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1320"/>
+        <location filename="../../options.cpp" line="1343"/>
         <source>An open machine-specific emulator configuration has been detected.
 Use local machine-settings, overwrite with global settings or don&apos;t apply?</source>
         <translation>An open machine-specific emulator configuration has been detected.￼
 Use local machine-settings, overwrite with global settings or don&apos;t apply?</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="356"/>
+        <location filename="../../options.cpp" line="377"/>
         <source>Toggle full screen</source>
         <translation></translation>
     </message>
@@ -12487,64 +12512,64 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1756"/>
-        <location filename="../../options.cpp" line="1760"/>
+        <location filename="../../options.cpp" line="1779"/>
+        <location filename="../../options.cpp" line="1783"/>
         <source>FATAL: can&apos;t open cabinet file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open cabinet file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1774"/>
-        <location filename="../../options.cpp" line="1778"/>
+        <location filename="../../options.cpp" line="1797"/>
+        <location filename="../../options.cpp" line="1801"/>
         <source>FATAL: can&apos;t open controller file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open controller file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2030"/>
-        <location filename="../../options.cpp" line="2090"/>
-        <location filename="../../options.cpp" line="3068"/>
+        <location filename="../../options.cpp" line="2053"/>
+        <location filename="../../options.cpp" line="2113"/>
+        <location filename="../../options.cpp" line="3091"/>
         <source>Cabinet file</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1437"/>
-        <location filename="../../options.cpp" line="2030"/>
-        <location filename="../../options.cpp" line="2090"/>
-        <location filename="../../options.cpp" line="3068"/>
+        <location filename="../../options.cpp" line="2053"/>
+        <location filename="../../options.cpp" line="2113"/>
+        <location filename="../../options.cpp" line="3091"/>
         <source>Cabinet directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2035"/>
-        <location filename="../../options.cpp" line="2095"/>
-        <location filename="../../options.cpp" line="3079"/>
+        <location filename="../../options.cpp" line="2058"/>
+        <location filename="../../options.cpp" line="2118"/>
+        <location filename="../../options.cpp" line="3102"/>
         <source>Controller file</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1540"/>
-        <location filename="../../options.cpp" line="2035"/>
-        <location filename="../../options.cpp" line="2095"/>
-        <location filename="../../options.cpp" line="3079"/>
+        <location filename="../../options.cpp" line="2058"/>
+        <location filename="../../options.cpp" line="2118"/>
+        <location filename="../../options.cpp" line="3102"/>
         <source>Controller directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2525"/>
+        <location filename="../../options.cpp" line="2548"/>
         <source>Choose cabinet directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2539"/>
+        <location filename="../../options.cpp" line="2562"/>
         <source>Choose controller directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3168"/>
+        <location filename="../../options.cpp" line="3191"/>
         <source>Choose ZIP-compressed cabinet file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3180"/>
+        <location filename="../../options.cpp" line="3203"/>
         <source>Choose ZIP-compressed controller file</source>
         <translation></translation>
     </message>
@@ -12626,59 +12651,59 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1792"/>
-        <location filename="../../options.cpp" line="1796"/>
+        <location filename="../../options.cpp" line="1815"/>
+        <location filename="../../options.cpp" line="1819"/>
         <source>FATAL: can&apos;t open marquee file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open marquee file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="1810"/>
-        <location filename="../../options.cpp" line="1814"/>
+        <location filename="../../options.cpp" line="1833"/>
+        <location filename="../../options.cpp" line="1837"/>
         <source>FATAL: can&apos;t open title file, please check access permissions for %1</source>
         <translation>FATAL: can&apos;t open title file, please check access permissions for %1</translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2040"/>
-        <location filename="../../options.cpp" line="2100"/>
-        <location filename="../../options.cpp" line="3090"/>
+        <location filename="../../options.cpp" line="2063"/>
+        <location filename="../../options.cpp" line="2123"/>
+        <location filename="../../options.cpp" line="3113"/>
         <source>Marquee file</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1643"/>
-        <location filename="../../options.cpp" line="2040"/>
-        <location filename="../../options.cpp" line="2100"/>
-        <location filename="../../options.cpp" line="3090"/>
+        <location filename="../../options.cpp" line="2063"/>
+        <location filename="../../options.cpp" line="2123"/>
+        <location filename="../../options.cpp" line="3113"/>
         <source>Marquee directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2045"/>
-        <location filename="../../options.cpp" line="2105"/>
-        <location filename="../../options.cpp" line="3101"/>
+        <location filename="../../options.cpp" line="2068"/>
+        <location filename="../../options.cpp" line="2128"/>
+        <location filename="../../options.cpp" line="3124"/>
         <source>Title file</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1746"/>
-        <location filename="../../options.cpp" line="2045"/>
-        <location filename="../../options.cpp" line="2105"/>
-        <location filename="../../options.cpp" line="3101"/>
+        <location filename="../../options.cpp" line="2068"/>
+        <location filename="../../options.cpp" line="2128"/>
+        <location filename="../../options.cpp" line="3124"/>
         <source>Title directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2553"/>
+        <location filename="../../options.cpp" line="2576"/>
         <source>Choose marquee directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2567"/>
+        <location filename="../../options.cpp" line="2590"/>
         <source>Choose title directory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="3192"/>
+        <location filename="../../options.cpp" line="3215"/>
         <source>Choose ZIP-compressed marquee file</source>
         <translation></translation>
     </message>
@@ -12778,12 +12803,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2860"/>
+        <location filename="../../options.cpp" line="2883"/>
         <source>Choose front end log file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="2820"/>
+        <location filename="../../options.cpp" line="2843"/>
         <source>Choose MAWS cache directory</source>
         <translation></translation>
     </message>
@@ -12853,7 +12878,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="307"/>
+        <location filename="../../options.cpp" line="319"/>
         <source>Clear MAWS cache</source>
         <translation></translation>
     </message>
@@ -13093,61 +13118,61 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <name>QObject</name>
     <message>
         <location filename="../../gamelist.cpp" line="2128"/>
-        <location filename="../../options.cpp" line="1520"/>
+        <location filename="../../options.cpp" line="1543"/>
         <source>players</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2135"/>
-        <location filename="../../options.cpp" line="1527"/>
+        <location filename="../../options.cpp" line="1550"/>
         <source>category</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2138"/>
-        <location filename="../../options.cpp" line="1530"/>
+        <location filename="../../options.cpp" line="1553"/>
         <source>version</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2125"/>
-        <location filename="../../options.cpp" line="1517"/>
+        <location filename="../../options.cpp" line="1540"/>
         <source>ROM types</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2101"/>
-        <location filename="../../options.cpp" line="1492"/>
+        <location filename="../../options.cpp" line="1515"/>
         <source>game description</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2107"/>
-        <location filename="../../options.cpp" line="1498"/>
+        <location filename="../../options.cpp" line="1521"/>
         <source>ROM state</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2110"/>
-        <location filename="../../options.cpp" line="1501"/>
+        <location filename="../../options.cpp" line="1524"/>
         <source>tag</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2113"/>
-        <location filename="../../options.cpp" line="1504"/>
+        <location filename="../../options.cpp" line="1527"/>
         <source>year</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2116"/>
-        <location filename="../../options.cpp" line="1507"/>
+        <location filename="../../options.cpp" line="1530"/>
         <source>manufacturer</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2131"/>
-        <location filename="../../options.cpp" line="1523"/>
+        <location filename="../../options.cpp" line="1546"/>
         <source>driver status</source>
         <translation></translation>
     </message>
@@ -13181,8 +13206,8 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../options.cpp" line="866"/>
-        <location filename="../../options.cpp" line="1956"/>
+        <location filename="../../options.cpp" line="889"/>
+        <location filename="../../options.cpp" line="1979"/>
         <source>Default</source>
         <translation></translation>
     </message>
@@ -13194,7 +13219,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4012"/>
-        <location filename="../../qmc2main.cpp" line="10236"/>
+        <location filename="../../qmc2main.cpp" line="10242"/>
         <source>Import from...</source>
         <translation>Import from...</translation>
     </message>
@@ -13205,52 +13230,52 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10128"/>
+        <location filename="../../qmc2main.cpp" line="10134"/>
         <source>Setting up the GUI, please wait...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10177"/>
-        <location filename="../../qmc2main.cpp" line="10179"/>
+        <location filename="../../qmc2main.cpp" line="10183"/>
+        <location filename="../../qmc2main.cpp" line="10185"/>
         <source>M.A.M.E. Catalog / Launcher II v</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10183"/>
+        <location filename="../../qmc2main.cpp" line="10189"/>
         <source>SVN r%1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10214"/>
+        <location filename="../../qmc2main.cpp" line="10220"/>
         <source>processing global emulator configuration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10228"/>
+        <location filename="../../qmc2main.cpp" line="10234"/>
         <source>Export to...</source>
         <translation>Export to...</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10230"/>
-        <location filename="../../qmc2main.cpp" line="10231"/>
+        <location filename="../../qmc2main.cpp" line="10236"/>
+        <location filename="../../qmc2main.cpp" line="10237"/>
         <source>Export global MAME configuration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10238"/>
-        <location filename="../../qmc2main.cpp" line="10239"/>
+        <location filename="../../qmc2main.cpp" line="10244"/>
+        <location filename="../../qmc2main.cpp" line="10245"/>
         <source>Import global MAME configuration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10254"/>
-        <location filename="../../qmc2main.cpp" line="10262"/>
+        <location filename="../../qmc2main.cpp" line="10260"/>
+        <location filename="../../qmc2main.cpp" line="10268"/>
         <source>&lt;inipath&gt;/mame.ini</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10258"/>
-        <location filename="../../qmc2main.cpp" line="10266"/>
+        <location filename="../../qmc2main.cpp" line="10264"/>
+        <location filename="../../qmc2main.cpp" line="10272"/>
         <source>Select file...</source>
         <translation>Select file...</translation>
     </message>
@@ -13292,47 +13317,47 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2120"/>
-        <location filename="../../options.cpp" line="1511"/>
+        <location filename="../../options.cpp" line="1534"/>
         <source>game name</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10201"/>
+        <location filename="../../qmc2main.cpp" line="10207"/>
         <source>OpenGL features enabled</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10233"/>
-        <location filename="../../qmc2main.cpp" line="10234"/>
+        <location filename="../../qmc2main.cpp" line="10239"/>
+        <location filename="../../qmc2main.cpp" line="10240"/>
         <source>Export global MESS configuration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10241"/>
-        <location filename="../../qmc2main.cpp" line="10242"/>
+        <location filename="../../qmc2main.cpp" line="10247"/>
+        <location filename="../../qmc2main.cpp" line="10248"/>
         <source>Import global MESS configuration</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2103"/>
-        <location filename="../../options.cpp" line="1494"/>
+        <location filename="../../options.cpp" line="1517"/>
         <source>machine description</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2122"/>
-        <location filename="../../options.cpp" line="1513"/>
+        <location filename="../../options.cpp" line="1536"/>
         <source>machine name</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10210"/>
+        <location filename="../../qmc2main.cpp" line="10216"/>
         <source>SDL joystick support enabled - using SDL v%1.%2.%3</source>
         <translation>SDL joystick support enabled - using SDL v%1.%2.%3</translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10256"/>
-        <location filename="../../qmc2main.cpp" line="10264"/>
+        <location filename="../../qmc2main.cpp" line="10262"/>
+        <location filename="../../qmc2main.cpp" line="10270"/>
         <source>&lt;inipath&gt;/mess.ini</source>
         <translation>&lt;inipath&gt;/mess.ini</translation>
     </message>
@@ -13349,17 +13374,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10175"/>
+        <location filename="../../qmc2main.cpp" line="10181"/>
         <source>M.E.S.S. Catalog / Launcher II v</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../qmc2main.cpp" line="10205"/>
+        <location filename="../../qmc2main.cpp" line="10211"/>
         <source>Phonon features enabled - using Phonon v%1</source>
         <translation>Phonon features enabled - using Phonon v%1</translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1703"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1701"/>
         <source>video player: XML error: fatal error on line %1, column %2: %3</source>
         <translation></translation>
     </message>
@@ -17732,11 +17757,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="107"/>
-        <location filename="../../youtubevideoplayer.cpp" line="774"/>
-        <location filename="../../youtubevideoplayer.cpp" line="798"/>
-        <location filename="../../youtubevideoplayer.cpp" line="818"/>
-        <location filename="../../youtubevideoplayer.cpp" line="867"/>
-        <location filename="../../youtubevideoplayer.cpp" line="885"/>
+        <location filename="../../youtubevideoplayer.cpp" line="773"/>
+        <location filename="../../youtubevideoplayer.cpp" line="797"/>
+        <location filename="../../youtubevideoplayer.cpp" line="817"/>
+        <location filename="../../youtubevideoplayer.cpp" line="866"/>
+        <location filename="../../youtubevideoplayer.cpp" line="884"/>
         <source>Current buffer fill level: %1%</source>
         <translation></translation>
     </message>
@@ -17773,7 +17798,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="156"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1337"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1336"/>
         <source>Full screen (return with toggle-key)</source>
         <translation></translation>
     </message>
@@ -17834,114 +17859,114 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="799"/>
+        <location filename="../../youtubevideoplayer.cpp" line="798"/>
         <source>Buffering: %1%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="820"/>
+        <location filename="../../youtubevideoplayer.cpp" line="819"/>
         <source>Loading</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="837"/>
+        <location filename="../../youtubevideoplayer.cpp" line="836"/>
         <source>Playing</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="848"/>
+        <location filename="../../youtubevideoplayer.cpp" line="847"/>
         <source>Paused</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="851"/>
+        <location filename="../../youtubevideoplayer.cpp" line="850"/>
         <source>video player: playback error: %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="852"/>
+        <location filename="../../youtubevideoplayer.cpp" line="851"/>
         <source>Video playback error: %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="932"/>
+        <location filename="../../youtubevideoplayer.cpp" line="931"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1019"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1018"/>
         <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1020"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1127"/>
-        <location filename="../../youtubevideoplayer.cpp" line="1508"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1019"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1126"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1506"/>
         <source>Video info error: %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1089"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1088"/>
         <source>video player: video info error: timeout occurred</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1090"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1089"/>
         <source>Video info error: timeout occurred</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1126"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1125"/>
         <source>video player: video info error: %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1335"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1334"/>
         <source>Full screen (press %1 to return)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1507"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1505"/>
         <source>video player: video image info error: %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1539"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1537"/>
         <source>video player: search request error: %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1567"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1565"/>
         <source>video player: search error: can&apos;t parse XML data</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1600"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1598"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1606"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1604"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1623"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1621"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1625"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1623"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1627"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1625"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../youtubevideoplayer.cpp" line="1629"/>
+        <location filename="../../youtubevideoplayer.cpp" line="1627"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
         <translation></translation>
     </message>
