@@ -3,7 +3,7 @@ Version:        0.36
 Release:        1
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II
 Group:          System/Emulators/Other
-License:        GPL-2
+License:        GPL-2.0
 URL:            http://qmc2.arcadehits.net/wordpress
 Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
 
@@ -16,6 +16,7 @@ BuildRequires:  gcc
 BuildRequires:  rsync
 BuildRequires:  desktop-file-utils
 BuildRequires:  openSUSE-release
+BuildRequires:  fdupes
 
 %description
 QMC2 is a Qt 4 based multi-platform GUI front end for several MAME and MESS variants.
@@ -29,7 +30,7 @@ mv %{name} sdlmess
 
 %build
 pushd sdlmess
-make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake CTIME=0 DISTCFG=1\
+make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMESS JOYSTICK=1 PHONON=1 OPENGL=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3 \
@@ -37,7 +38,7 @@ make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake CTIME=0 DISTCFG=1\
 popd
 
 pushd sdlmame
-make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake CTIME=0 DISTCFG=1\
+make %{?_smp_mflags} QMAKE=%{_prefix}/bin/qmake DISTCFG=1 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMAME JOYSTICK=1 PHONON=1 OPENGL=0 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3 \
@@ -55,7 +56,6 @@ make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     WIP=1 DATABASE=1
 popd
 
-# remove the old qmc2.ini since we only need one
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/qmc2/qmc2.ini
 
 pushd sdlmame
@@ -65,6 +65,13 @@ make install QMAKE=%{_prefix}/bin/qmake DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     CXX_FLAGS=-O3 CC_FLAGS=-O3 \
     WIP=1 DATABASE=1
 popd
+
+# manually install doc files in order to avoid "files-duplicate" warning
+install -dp -m 0755 $RPM_BUILD_ROOT%{_defaultdocdir}/%{name}
+cp -a sdlmame/data/doc/html/ $RPM_BUILD_ROOT%{_defaultdocdir}/%{name}/
+
+# symlink duplicate files
+%fdupes -s $RPM_BUILD_ROOT/usr/share
 
 # update the desktop files
 %suse_update_desktop_file %{name}-sdlmame Game ArcadeGame
@@ -80,7 +87,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc sdlmame/data/doc/html
 %config(noreplace) %{_sysconfdir}/qmc2
 %{_bindir}/runonce
 %{_datadir}/qmc2
@@ -91,8 +97,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/qmc2-sdlmess.desktop
 
 %changelog
-* Mon Feb 06 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.36-1
-- updated spec to QMC2 0.36
+* Sun Apr 29 2012 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.36-1
+- updated spec to QMC2 0.36 / added fdupes macro / updated licence name
 
 * Tue Nov 15 2011 R. Reucher <rene[dot]reucher[at]batcom-it[dot]net> - 0.35-1
 - updated spec to QMC2 0.35
