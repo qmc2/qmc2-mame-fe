@@ -83,6 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
+%doc %{_defaultdocdir}/%{name}/
 %config(noreplace) %{_sysconfdir}/qmc2
 %{_bindir}/runonce
 %{_datadir}/qmc2
