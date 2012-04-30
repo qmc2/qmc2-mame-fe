@@ -443,7 +443,7 @@ MainWindow::MainWindow(QWidget *parent)
   toolbar->addSeparator();
   toolbar->addAction(widgetActionToolbarSearch);
   connect(comboBoxToolbarSearch, SIGNAL(activated(const QString &)), this, SLOT(comboBoxToolbarSearch_activated(const QString &)));
-  connect(comboBoxToolbarSearch, SIGNAL(editTextChanged(const QString &)), this, SLOT(comboBoxToolbarSearch_textChanged(const QString &)));
+  connect(comboBoxToolbarSearch, SIGNAL(editTextChanged(const QString &)), this, SLOT(comboBoxToolbarSearch_editTextChanged(const QString &)));
 
 #if defined(QMC2_EMUTYPE_MAME)
   tabWidgetSoftwareDetail->removeTab(tabWidgetSoftwareDetail->indexOf(tabProjectMESS));
@@ -2889,11 +2889,15 @@ void MainWindow::destroyArcadeView()
   }
 }
 
-void MainWindow::on_comboBoxSearch_editTextChanged(const QString &)
+void MainWindow::on_comboBoxSearch_editTextChanged(const QString &text)
 {
 #ifdef QMC2_DEBUG
-  log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_comboBoxSearch_editTextChanged(const QString &)");
+  log(QMC2_LOG_FRONTEND, QString("DEBUG: MainWindow::on_comboBoxSearch_editTextChanged(const QString &text = %1)").arg(text));
 #endif
+
+  comboBoxToolbarSearch->lineEdit()->blockSignals(true);
+  comboBoxToolbarSearch->lineEdit()->setText(text);
+  comboBoxToolbarSearch->lineEdit()->blockSignals(false);
 
   searchTimer.start(QMC2_SEARCH_DELAY);
 }
@@ -2940,13 +2944,13 @@ void MainWindow::on_comboBoxSearch_activated(const QString &pattern)
   log(QMC2_LOG_FRONTEND, "DEBUG: MainWindow::on_comboBoxSearch_activated(const QString &pattern = \"" + pattern + "\")");
 #endif
 
-  on_comboBoxSearch_editTextChanged_delayed();
   if ( tabWidgetGamelist->currentWidget() != tabSearch ) {
     tabWidgetGamelist->blockSignals(true);
     tabWidgetGamelist->setCurrentWidget(tabSearch);
     tabWidgetGamelist->blockSignals(false);
   }
   QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
+  on_comboBoxSearch_editTextChanged_delayed();
 }
 
 void MainWindow::on_listWidgetSearch_currentTextChanged(QString s)
@@ -9941,9 +9945,10 @@ void MainWindow::comboBoxToolbarSearch_activated(const QString &text)
 	tabWidgetGamelist->setCurrentIndex(QMC2_SEARCH_INDEX);
 	tabWidgetGamelist->blockSignals(false);
 	QTimer::singleShot(0, listWidgetSearch, SLOT(setFocus()));
+	on_comboBoxSearch_editTextChanged_delayed();
 }
 
-void MainWindow::comboBoxToolbarSearch_textChanged(const QString &text)
+void MainWindow::comboBoxToolbarSearch_editTextChanged(const QString &text)
 {
 	if ( tabWidgetGamelist->currentIndex() == QMC2_SEARCH_INDEX )
 		comboBoxSearch->lineEdit()->setText(text);
