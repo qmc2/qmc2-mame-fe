@@ -30,7 +30,7 @@ inf: informational only
   <li>fix: file-chooser: the machine-dependent software-folder was not correctly pre-selected when existing device configurations were loaded in parallel</li>
   <li>fix: MESS device configurator: avoid a rare crash when systems are hovered very quickly (asynchronous updates may otherwise work on meanwhile invalid data)</li>
   <li>fix: clear favorites and play-history upon reload and make sure the last selected game/machine is correctly re-selected (if applicable)</li>
-  <li>fix: ROMAlyzer: when repairing a set and the wanted CRC or name (header-)entries already exist in the target ZIP, recreate the complete ZIP file in order to replace the 'bad' file</li>
+  <li>fix: ROMAlyzer: when repairing a set and the wanted CRC or name (header-)entries already exists in the target ZIP, recreate the complete ZIP file in order to replace the 'bad' file</li>
   <li>fix: ROMAlyzer: don't rewrite sets that are analyzed on behalf of the checksum-wizard (even if 'rewrite while analyzing' has been activated)</li>
   <li>fix: corrected some additional MESS-specific phrases and removed WIP-only stuff from key- &amp; joystick-mappers</li>
   <li>fix: adjusted the behavior of the two main search combo-boxes and tied them more closely</li>
@@ -48,7 +48,7 @@ inf: informational only
   <li>imp: updated redistributed Qt translations from Qt 4.8.1</li>
   <li>imp: honor 'players' value for device sets where applicable (i.e. some input devices)</li>
   <li>imp: MESS device configurator: sort slot-options alphanumerically, add a separator between 'not used' and available options, allow disabling of <i>default</i> slot-options</li>
-  <li>imp: main widget: revised all auto-connected menu actions to use QAction::triggered(bool) (instead of a meanwhile deprecated slot)</li>
+  <li>imp: main widget: revised all auto-connected menu actions to use QAction::triggered(bool) (instead of a meanwhile deprecated signal)</li>
   <li>imp: slightly better responsiveness while loading cached XML data</li>
   <li>new: ROMAlyzer: added support for CHD v5 (new since MAME/MESS 0.145u1) -- built-in analysis will work for CHD v3, v4 and v5; however, note that all 'CHD manager' functionality <b>requires chdman from MAME/MESS 0.145u1+ now</b></li>
   <li>new: ROMAlyzer: added a function to store the current log contents to a file</li>
