@@ -493,7 +493,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     void treeWidgetVersionViewHeader_customContextMenuRequested(const QPoint &);
     void actionVersionHeader_triggered();
 #endif
-    void comboBoxToolbarSearch_textChanged(const QString &);
+    void comboBoxToolbarSearch_editTextChanged(const QString &);
     void comboBoxToolbarSearch_activated(const QString &);
 
   protected:
