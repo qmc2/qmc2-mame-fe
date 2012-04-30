@@ -185,7 +185,7 @@
     <message>
         <location filename="../../about.cpp" line="168"/>
         <source>Qt library paths:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bibliotecas do Qt:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="173"/>
@@ -9901,7 +9901,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="303"/>
         <source>Analyze current machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Analisar máquina atual</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="305"/>
@@ -9921,7 +9921,7 @@ Tentar novamente?</translation>
     <message>
         <location filename="../../options.cpp" line="310"/>
         <source>Copy machine to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar máquina para os favoritos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="312"/>
@@ -10772,27 +10772,27 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.cpp" line="331"/>
         <source>Reload game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Recarregar lista de jogos</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="334"/>
         <source>Reload machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Recarregar lista de máquinas</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="335"/>
         <source>Check machine&apos;s ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Verificar estado da ROM da máquina</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="366"/>
         <source>Game list with full detail</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de jogos em detalhes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="368"/>
         <source>Machine list with full detail</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista de máquinas em detalhes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2356"/>
@@ -12230,7 +12230,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../options.ui" line="135"/>
         <source>ES (Spanish)</source>
-        <translation type="unfinished"></translation>
+        <translation>ES (Espanhol)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="145"/>
@@ -13559,7 +13559,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="2842"/>
         <source>checksum wizard: no entry with the CRC &apos;%1&apos; or name &apos;%2&apos; was found, adding the missing file to the existing ZIP</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: nenhuma entrada com o CRC &apos;%1&apos; ou nome &apos;%2&apos; foi encontrado, adicionando o arquivo não encontrado para o ZIP existente</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2899"/>
@@ -14660,7 +14660,7 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="2808"/>
         <source>checksum wizard: an entry with the name &apos;%1&apos; already exists, recreating the ZIP from scratch to replace the bad file</source>
-        <translation type="unfinished"></translation>
+        <translation>checksum wizard: uma entrada com o nome &apos;%1&apos; já existe, recriando o ZIP do início para substituir o arquivo ruim</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2834"/>
