@@ -1179,10 +1179,11 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 					QList<QTreeWidgetItem *> itemList = treeWidgetDeviceSetup->findItems(valuePair.first[i], Qt::MatchExactly);
 					if ( itemList.count() > 0 ) {
 						QTreeWidgetItem *item = itemList[0];
-						item->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, valuePair.second[i]);
+						QString data = valuePair.second[i];
+						item->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, data);
 						FileEditWidget *few = (FileEditWidget*)treeWidgetDeviceSetup->itemWidget(item, QMC2_DEVCONFIG_COLUMN_FILE);
 						if ( few )
-							few->lineEditFile->setText(valuePair.second[i]);
+							few->lineEditFile->setText(data);
 					}
 				}
 			}
