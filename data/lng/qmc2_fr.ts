@@ -89,7 +89,7 @@
     <message>
         <location filename="../../about.cpp" line="168"/>
         <source>Qt library paths:</source>
-        <translation type="unfinished"></translation>
+        <translation>chemins des libs Qt:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="173"/>
@@ -1436,7 +1436,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../audioeffects.ui" line="36"/>
         <source>Close audio effects dialog</source>
-        <translation>Fermer le dialogue d&apos;effets Audio</translation>
+        <translation>Fermer la fenêtre d&apos;effets Audio</translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="39"/>
@@ -1577,7 +1577,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../customidsetup.ui" line="231"/>
         <source>Cancel ID customization and close dialog</source>
-        <translation>Annuler la personnalisation et fermer le dialogue</translation>
+        <translation>Annuler la personnalisation et fermer la fenêtre</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="234"/>
@@ -1597,7 +1597,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../customidsetup.ui" line="251"/>
         <source>Accept customized IDs and close dialog</source>
-        <translation>Accepter la personnalisation et fermer le dialogue</translation>
+        <translation>Accepter la personnalisation et fermer la fenêtre</translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="254"/>
@@ -2208,7 +2208,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedderopt.ui" line="37"/>
         <source>Take a snapshot of the current window content -- hold to take snapshots repeatedly (every 100ms)</source>
-        <translation>Prendre une capture d&apos;écran de la fenêtre courante - maintenir pour prendre en mode rafale (chaque 100ms)</translation>
+        <translation>Prendre une capture d&apos;écran de la fenêtre actuelle - maintenir pour prendre en mode rafale (chaque 100ms)</translation>
     </message>
     <message>
         <location filename="../../embedderopt.ui" line="40"/>
@@ -3186,7 +3186,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1342"/>
         <source>loading ROM state from cache</source>
-        <translation>chargement des état de ROM depuis le cache</translation>
+        <translation>chargement des états de ROM depuis le cache</translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1344"/>
@@ -5222,7 +5222,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../options.cpp" line="4091"/>
         <source>Current value of axis %1</source>
-        <translation>Valeur courante de l&apos;axe %1</translation>
+        <translation>Valeur actuelle de l&apos;axe %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4095"/>
@@ -5301,7 +5301,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../options.cpp" line="4327"/>
         <source>Current value of axis %1</source>
-        <translation>Valeur courante de l&apos;axe %1</translation>
+        <translation>Valeur actuelle de l&apos;axe %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4337"/>
@@ -5311,7 +5311,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../options.cpp" line="4338"/>
         <source>Current state of button %1</source>
-        <translation>Valeur courante du bouton %1</translation>
+        <translation>Valeur actuelle du bouton %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4348"/>
@@ -5321,7 +5321,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../options.cpp" line="4349"/>
         <source>Current value of hat %1</source>
-        <translation>Valeur courante du hat %1</translation>
+        <translation>Valeur actuelle du hat %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4359"/>
@@ -5331,7 +5331,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../options.cpp" line="4360"/>
         <source>Current X-delta of trackball %1</source>
-        <translation>Valeur courante X-delta du trackball %1</translation>
+        <translation>Valeur actuelle X-delta du trackball %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4370"/>
@@ -5341,7 +5341,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../options.cpp" line="4371"/>
         <source>Current Y-delta of trackball %1</source>
-        <translation>Valeur courante Y-delta du trackball %1</translation>
+        <translation>Valeur actuelle Y-delta du trackball %1</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="4459"/>
@@ -5442,7 +5442,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.ui" line="229"/>
         <location filename="../../messdevcfg.ui" line="232"/>
         <source>Device setup of current configuration</source>
-        <translation>Paramétrage du périphérique de la configuration courante</translation>
+        <translation>Paramétrage du périphérique de la configuration actuelle</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="250"/>
@@ -5479,43 +5479,43 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.ui" line="366"/>
         <location filename="../../messdevcfg.ui" line="369"/>
         <source>Save selected instance / file as a new device configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvergarde de l&apos;instance / fichier sélectionné comme nouvelle configuration de périphérique</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="389"/>
         <location filename="../../messdevcfg.ui" line="392"/>
         <source>Select the device instance the file is mapped to</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner l&apos;instance de périphérique pour le fichier</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="408"/>
         <location filename="../../messdevcfg.ui" line="411"/>
         <source>Automatically select the first matching device instance when selecting a file with a valid extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir automatiquement le premier périphérique correspondant en sélectionnant le fichier avec une extension valide</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="431"/>
         <location filename="../../messdevcfg.ui" line="434"/>
         <source>Filter files by allowed extensions for the current device instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Extensions de fichiers de filtres autorisées pour l&apos;instance de périphérique en cours</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="454"/>
         <location filename="../../messdevcfg.ui" line="457"/>
         <source>Process ZIP contents on item activation</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir les contenus de ZIP à leur sélection</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="477"/>
         <location filename="../../messdevcfg.ui" line="480"/>
         <source>Enter search string (case-insensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrer une chaîne de recherche (sensible à la casse)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="496"/>
         <location filename="../../messdevcfg.ui" line="499"/>
         <source>Clear search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyer la chaîne de recherche</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="516"/>
@@ -5527,19 +5527,19 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.ui" line="538"/>
         <location filename="../../messdevcfg.ui" line="541"/>
         <source>Reload directory contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger les contenus des répertoires</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="558"/>
         <location filename="../../messdevcfg.ui" line="561"/>
         <source>Play the selected configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Jouer la configuration sélectionnée</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="578"/>
         <location filename="../../messdevcfg.ui" line="581"/>
         <source>Play the selected configuration (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jouer la configuration sélectionnée (embarqué)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="647"/>
@@ -5602,7 +5602,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.ui" line="138"/>
         <location filename="../../messdevcfg.ui" line="141"/>
         <source>Clone current device configuration</source>
-        <translation>Cloner la configuration de périphérique courante</translation>
+        <translation>Cloner la configuration de périphérique actuelle</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="967"/>
@@ -5626,17 +5626,17 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="165"/>
         <location filename="../../messdevcfg.cpp" line="492"/>
         <source>Reading slot info, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lecture des infos de slot, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="166"/>
         <source>Enter configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrer le nom de configuration</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="156"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrer une chaîne de recherche</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="230"/>
@@ -5663,17 +5663,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="242"/>
         <source>Remove configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Enlever la configuration</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="243"/>
         <source>&amp;Remove configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Enlever la configuration</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="251"/>
         <source>Select a file to be mapped to this device instance</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner un fichier à mapper avec l&apos;instance de ce périphérique</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="252"/>
@@ -5683,13 +5683,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="263"/>
         <source>Use as default directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser comme répertoire par défaut</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="285"/>
         <location filename="../../messdevcfg.cpp" line="1608"/>
         <source>&amp;Open archive</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ouvrir l&apos;archive</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="334"/>
@@ -5698,50 +5698,50 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="1366"/>
         <location filename="../../messdevcfg.cpp" line="1791"/>
         <source>No devices available</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de périphériques disponibles</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="428"/>
         <location filename="../../messdevcfg.cpp" line="433"/>
         <source>FATAL: invalid XML data retrieved for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: données XML non valides reçues pour &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="495"/>
         <source>loading available system slots</source>
-        <translation type="unfinished"></translation>
+        <translation>chargement des slots système disponibles</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="392"/>
         <location filename="../../messdevcfg.cpp" line="516"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">FATAL: impossible de démarrer MESS en un temps raisonnable, abandon</translation>
+        <translation>FATAL: impossible de démarrer MESS en un temps raisonnable, abandon</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="235"/>
         <location filename="../../messdevcfg.cpp" line="277"/>
         <source>Play selected machine (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jouer la machine sélectionnée (embarqué)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="517"/>
         <source>Failed to read slot info</source>
-        <translation type="unfinished"></translation>
+        <translation>Echec de lecture de l&apos;info de slot</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="522"/>
         <source>WARNING: the external command used for reading the available system slots crashed, slot-options may not be complete</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: la commande externe utilisée pour lire les slots système disponibles a crashé, les options de slot ne sont peut-être pas complètes</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="598"/>
         <source>done (loading available system slots, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>fait (chargement des slots sysème disponibles, temps écoulé = %1)</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="647"/>
         <source>FATAL: error while parsing XML data for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: erreur d&apos;analyse des données XML pour &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="831"/>
@@ -5811,7 +5811,7 @@ Voulez-vous choisir un nom différent?</translation>
         <location filename="../../qmc2main.cpp" line="5990"/>
         <location filename="../../qmc2main.cpp" line="6037"/>
         <source>Default</source>
-        <translation>Défaut</translation>
+        <translation>Par défaut</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="526"/>
@@ -5833,7 +5833,7 @@ Voulez-vous choisir un nom différent?</translation>
         <location filename="../../qmc2main.cpp" line="642"/>
         <location filename="../../qmc2main.cpp" line="643"/>
         <source>Loading machine list, please wait...</source>
-        <translation>Chargement de la liste des machines, patienter svp...</translation>
+        <translation>Chargement de la liste des machines, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="437"/>
@@ -6324,12 +6324,12 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5737"/>
         <source>saving current game&apos;s favorite software</source>
-        <translation type="unfinished"></translation>
+        <translation>sauvegarde du logiciel favori pour le jeu actuel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5750"/>
         <source>saving current machine&apos;s favorite software</source>
-        <translation type="unfinished"></translation>
+        <translation>sauvegarde du logiciel favori pour la machine actuelle</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5764"/>
@@ -6359,7 +6359,7 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5817"/>
         <source>destroying about dialog</source>
-        <translation>destruction du dialogue &apos;A propos&apos;</translation>
+        <translation>destruction de la fenêtre &apos;A propos&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5830"/>
@@ -6575,7 +6575,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.ui" line="891"/>
         <location filename="../../qmc2main.ui" line="894"/>
         <source>Indicator for current memory usage</source>
-        <translation>Indicateur de l&apos;utilisation mémoire courante</translation>
+        <translation>Indicateur de l&apos;utilisation actuelle de mémoire</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1408"/>
@@ -7132,7 +7132,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.ui" line="2937"/>
         <location filename="../../qmc2main.ui" line="2940"/>
         <source>Open ROMAlyzer dialog</source>
-        <translation>Ouvrir le dialogue de ROMAlyzer</translation>
+        <translation>Ouvrir la fenêtre de ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2943"/>
@@ -7504,7 +7504,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.ui" line="259"/>
         <location filename="../../qmc2main.ui" line="391"/>
         <source>Loading game list, please wait...</source>
-        <translation>Chargement de la liste des jeux, patienter svp...</translation>
+        <translation>Chargement de la liste des jeux, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="414"/>
@@ -7663,7 +7663,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.ui" line="1937"/>
         <location filename="../../qmc2main.ui" line="1940"/>
         <source>Progress indicator for current track</source>
-        <translation>Indicateur de progression de la piste courante</translation>
+        <translation>Indicateur de progression de la piste actuelle</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1946"/>
@@ -7846,12 +7846,12 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="526"/>
         <source>Creating category view, please wait...</source>
-        <translation>Création de la vue en catégories, patienter svp...</translation>
+        <translation>Création de la vue en catégories, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="661"/>
         <source>Creating version view, please wait...</source>
-        <translation>Création de la vue en versions, patienter svp...</translation>
+        <translation>Création de la vue en versions, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2788"/>
@@ -8332,7 +8332,7 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5719"/>
         <source>destroying arcade setup dialog</source>
-        <translation>destruction du dialogue de configuration arcade</translation>
+        <translation>destruction de la fenêtre de configuration arcade</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5782"/>
@@ -8500,7 +8500,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="951"/>
         <location filename="../../qmc2main.cpp" line="1019"/>
         <source>Analyse current game&apos;s ROM set with ROMAlyzer</source>
-        <translation>Analyse du ROMset courant du jeu avec ROMAlyzer</translation>
+        <translation>Analyse du ROMset actuel du jeu avec ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="858"/>
@@ -8508,7 +8508,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="953"/>
         <location filename="../../qmc2main.cpp" line="1021"/>
         <source>Analyse current machine&apos;s ROM set with ROMAlyzer</source>
-        <translation>Analyse du ROMset courant de la machine avec ROMAlyzer</translation>
+        <translation>Analyse du ROMset actuel de la machine avec ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1046"/>
@@ -8751,7 +8751,7 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="6088"/>
         <source>removing current style sheet</source>
-        <translation>enlever la feuille de style courante</translation>
+        <translation>enlever la feuille de style actuelle</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8397"/>
@@ -8801,30 +8801,30 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="588"/>
         <location filename="../../qmc2main.cpp" line="589"/>
         <source>Play all tagged machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Joue toutes les machines taggées</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="590"/>
         <location filename="../../qmc2main.cpp" line="591"/>
         <source>Clear machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyer le cache de la liste des machines</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="592"/>
         <location filename="../../qmc2main.cpp" line="593"/>
         <source>Forcedly clear (remove) the machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyage forcé (suppression) du cache de la liste de machines</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="594"/>
         <source>List of all supported machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste de toutes les machines supportées</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="602"/>
         <location filename="../../qmc2main.cpp" line="603"/>
         <source>Play all tagged machines (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jouer toutes les machines taggées (embarqué)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="606"/>
@@ -8835,18 +8835,18 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="612"/>
         <location filename="../../qmc2main.cpp" line="613"/>
         <source>Add all tagged machines to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter toutes les machines taggées aux favoris</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="432"/>
         <location filename="../../qmc2main.cpp" line="1311"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrer une chaîne de recherche</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="561"/>
         <source>Dock / undock this widget</source>
-        <translation type="unfinished"></translation>
+        <translation>Accroche / Décroche ce widget</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="595"/>
@@ -8854,47 +8854,47 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.cpp" line="597"/>
         <location filename="../../qmc2main.cpp" line="598"/>
         <source>Clear MESS wiki cache</source>
-        <translation type="unfinished">Nettoyer le cache du wiki MESS</translation>
+        <translation>Nettoyer le cache du wiki MESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="649"/>
         <source>Show game/software titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les titres des jeux/machines</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="650"/>
         <source>Show game- or software-titles at the bottom of any images</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les titres des jeux -ou machines- au bas de toutes les images</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="651"/>
         <source>Show game titles only when the game list is not visible due to the current layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les titres des jeux uniquement quand la liste des jeux n&apos;est pas visible en raison du layout actuel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="653"/>
         <source>Show machine/software titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les titres des machines/logiciels</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="654"/>
         <source>Show machine- or software-titles at the bottom of any images</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les titres des machines -ou logiciels- au bas de toutes les images</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="655"/>
         <source>Show machine titles only when the machine list is not visible due to the current layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les titres des machines uniquement si la liste des machines n&apos;est pas visible en raison du layout actuel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1511"/>
         <source>sorry, devices cannot run standalone</source>
-        <translation type="unfinished"></translation>
+        <translation>désolé, les périphériques ne peuvent fonctionner seuls</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1689"/>
         <source>No devices available</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de périphériques disponibles</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1907"/>
@@ -8909,98 +8909,98 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2255"/>
         <source>MESS wiki in-memory cache cleared (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache du wiki MESS nettoyé (%1)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2282"/>
         <source>YouTube on-disk cache cleared (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache disque YouTube nettoyé (%1)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2314"/>
         <source>ROM state cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>fichier de cache d&apos;état de ROM &apos;%1&apos; nettoyé de force suite à la demande de l&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2316"/>
         <source>WARNING: cannot remove the ROM state cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: n&apos;a pas pu enlever le fichier de cache d&apos;état de ROM &apos;%1&apos;, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2321"/>
         <source>triggering an automatic ROM check on next reload</source>
-        <translation type="unfinished"></translation>
+        <translation>actionner la vérification automatique de ROM au prochain rafraîchissement</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2350"/>
         <source>game list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>fichier de cache de la liste de jeux &apos;%1&apos; nettoyé de force suite à la demande de l&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2352"/>
         <source>WARNING: cannot remove the game list cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: n&apos;a pas pu enlever le fichier de cache de la liste de jeux &apos;%1&apos;, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2355"/>
         <source>machine list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>fichier de cache de la liste de machines &apos;%1&apos; nettoyé de force suite à la demande de l&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2357"/>
         <source>WARNING: cannot remove the machine list cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: n&apos;a pas pu enlever le fichier de cache de la liste de machines &apos;%1&apos;, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2386"/>
         <source>XML cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>fichier de cache XML &apos;%1&apos; nettoyé de force suite à la demande de l&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2388"/>
         <source>WARNING: cannot remove the XML cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: n&apos;a pas pu enlever le fichier de cache XML &apos;%1&apos;, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2419"/>
         <source>software list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation type="unfinished"></translation>
+        <translation>fichier de cache de la liste de logiciels &apos;%1&apos; nettoyé de force suite à la demande de l&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2421"/>
         <source>WARNING: cannot remove the software list cache file &apos;%1&apos;, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: n&apos;a pas pu enlever le fichier de cache de la liste de logiciels &apos;%1&apos;, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3336"/>
         <source>ProjectMESS page for &apos;%1&apos; / &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>page ProjectMESS de &apos;%1&apos; / &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3341"/>
         <source>Fetching ProjectMESS page for &apos;%1&apos; / &apos;%2&apos;, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Récupération de la page ProjectMESS de &apos;%1&apos; / &apos;%2&apos;, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3810"/>
         <source>MESS wiki page for all drivers</source>
-        <translation type="unfinished"></translation>
+        <translation>page de wiki MESS pour tous les pilotes</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3827"/>
         <location filename="../../qmc2main.cpp" line="3837"/>
         <source>MESS wiki page for driver &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>page de wiki MESS pour le pilote &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3822"/>
         <source>Fetching MESS wiki page for all drivers, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Récupération de la page wiki MESS pour tous les pilotes, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3831"/>
         <source>Fetching MESS wiki page for driver &apos;%1&apos;, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Récupération de la page wiki MESS pour le pilote &apos;%1&apos;, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4656"/>
@@ -9057,39 +9057,39 @@ Re-essayer l&apos;embarquement?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="5592"/>
         <source>destroying audio effects dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>destruction de la fenêtre des effets audio</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5836"/>
         <source>destroying MESS wiki lookup</source>
-        <translation type="unfinished"></translation>
+        <translation>destruction de l&apos;affichage du wiki MESS</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5962"/>
         <source>Welcome to QMC2 v%1!</source>
-        <translation type="unfinished"></translation>
+        <translation>Bienvenue dans QMC2 v%1!</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6267"/>
         <source>loading YouTube video info map</source>
-        <translation type="unfinished"></translation>
+        <translation>chargement de la carte d&apos;info de vidéo YouTube</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6284"/>
         <source>YouTube index - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>YouTube index - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="6313"/>
         <source>done (loading YouTube video info map)</source>
-        <translation type="unfinished"></translation>
+        <translation>fait (chargement de la carte d&apos;info de vidéo YouTube)</translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="6314"/>
         <source>%n video info record(s) loaded</source>
-        <translation type="unfinished">
-            <numerusform></numerusform>
-            <numerusform></numerusform>
+        <translation>
+            <numerusform>%n information de vidéo chargée</numerusform>
+            <numerusform>%n informations de vidéo chargées</numerusform>
         </translation>
     </message>
     <message>
@@ -9142,44 +9142,44 @@ Ajouter une URL</translation>
         <location filename="../../qmc2main.cpp" line="9286"/>
         <location filename="../../qmc2main.cpp" line="9320"/>
         <source>Play tagged - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Jouer taggé - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9356"/>
         <source>Add favorites - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter aux favoris - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9389"/>
         <location filename="../../qmc2main.cpp" line="9417"/>
         <location filename="../../qmc2main.cpp" line="9457"/>
         <source>please wait for current activity to finish and try again (this batch-mode operation can only run exclusively)</source>
-        <translation type="unfinished"></translation>
+        <translation>merci de patienter pendant l&apos;activité en cours et tenter de nouveau (cette opération ne peut fonctionner qu&apos;exclusivement)</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9463"/>
         <source>ROM tool tagged - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>outil de ROM taggé - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9597"/>
         <source>Tag - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Tagger - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9639"/>
         <source>Untag - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Enlever le tag - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9681"/>
         <source>Invert tag - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverser le tag - %p%</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9893"/>
         <source>Software detail</source>
-        <translation type="unfinished"></translation>
+        <translation>Détail du logiciel</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8672"/>
@@ -9272,7 +9272,7 @@ Ajouter une URL</translation>
         <location filename="../../qmc2main.cpp" line="4622"/>
         <location filename="../../qmc2main.cpp" line="4625"/>
         <source>WARNING: multiple windows for emulator #%1 found, choosing window ID %2 for embedding</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: plusieurs fenêtres trouvées pour l&apos;émulateur #%1, choix de la fenêtre ID %2 pour embarquement</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4635"/>
@@ -9632,7 +9632,7 @@ Ajouter une URL</translation>
         <location filename="../../miniwebbrowser.ui" line="79"/>
         <location filename="../../miniwebbrowser.ui" line="82"/>
         <source>Reload current URL</source>
-        <translation>Recharger l&apos;adresse URL courante</translation>
+        <translation>Recharger l&apos;adresse URL actuelle</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="102"/>
@@ -9644,7 +9644,7 @@ Ajouter une URL</translation>
         <location filename="../../miniwebbrowser.ui" line="145"/>
         <location filename="../../miniwebbrowser.ui" line="148"/>
         <source>Enter current URL</source>
-        <translation>Entrer sur l&apos;adresse URL courante</translation>
+        <translation>Entrer sur l&apos;adresse URL actuelle</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.ui" line="167"/>
@@ -9761,7 +9761,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.cpp" line="301"/>
         <source>Analyze current game</source>
-        <translation>Analyse du jeu courant</translation>
+        <translation>Analyse du jeu actuel</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="308"/>
@@ -9836,12 +9836,12 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.cpp" line="359"/>
         <source>Tag current set</source>
-        <translation>Tagger le set courant</translation>
+        <translation>Tagger le set actuel</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="360"/>
         <source>Untag current set</source>
-        <translation>Enlever le tag du set courant</translation>
+        <translation>Enlever le tag du set actuel</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="361"/>
@@ -10111,14 +10111,14 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.cpp" line="2754"/>
         <source>Choose ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir l&apos;outil de ROM</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2766"/>
         <location filename="../../options.cpp" line="2828"/>
         <location filename="../../options.cpp" line="3512"/>
         <source>Choose working directory</source>
-        <translation type="unfinished">Choisir le répertoire de travail</translation>
+        <translation>Choisir le répertoire de travail</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2857"/>
@@ -11712,7 +11712,7 @@ Ajouter une URL</translation>
         <location filename="../../options.ui" line="4481"/>
         <location filename="../../options.ui" line="4804"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
-        <translation type="unfinished">Répertoire de travail utilisé quand l&apos;émulateur est exécuté (si vide, utilise le répertoire de travail courant de QMC2)</translation>
+        <translation>Répertoire de travail utilisé quand l&apos;émulateur est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4494"/>
@@ -13261,7 +13261,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../qmc2main.cpp" line="10137"/>
         <source>Setting up the GUI, please wait...</source>
-        <translation>Configuration du GUI, patienter svp...</translation>
+        <translation>Configuration du GUI, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10186"/>
@@ -13541,7 +13541,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="2926"/>
         <source>repaired</source>
-        <translation type="unfinished"></translation>
+        <translation>réparé</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2928"/>
@@ -13725,7 +13725,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="245"/>
         <source>please wait for reload to finish and try again</source>
-        <translation>Patientez SVP durant le rechargement puis recommencez</translation>
+        <translation>merci de patienter durant le rechargement puis recommencez</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="248"/>
@@ -13815,7 +13815,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="687"/>
         <source>report limit reached, removing %n set(s) from the report</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14227,7 +14226,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>checksum wizard: repairing %n bad set(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14362,7 +14360,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2944"/>
         <source>checksum wizard: done (repairing %n bad set(s))</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14686,12 +14683,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="842"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de données</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="829"/>
         <source>Name of the database on the server</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom de la base de donnée sur le serveur</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="436"/>
@@ -14756,7 +14753,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="752"/>
         <source>Server / IP</source>
-        <translation type="unfinished"></translation>
+        <translation>Serveur / IP</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="739"/>
@@ -14881,7 +14878,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="919"/>
         <source>Overwrite</source>
-        <translation type="unfinished"></translation>
+        <translation>Ecraser</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="932"/>
@@ -14972,7 +14969,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.ui" line="1251"/>
         <location filename="../../romalyzer.ui" line="1454"/>
         <source>Search</source>
-        <translation type="unfinished">Recherche</translation>
+        <translation>Recherche</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1330"/>
@@ -15154,7 +15151,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1702"/>
         <source>Current ROMAlyzer status</source>
-        <translation>Statut courant de ROMAlyzer</translation>
+        <translation>Statut actuel de ROMAlyzer</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1721"/>
@@ -16395,7 +16392,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="1183"/>
         <location filename="../../softwarelist.cpp" line="1953"/>
         <source>No additional devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de périphériques additionnels</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="198"/>
@@ -16418,7 +16415,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.ui" line="273"/>
         <source>Known software</source>
-        <translation type="unfinished"></translation>
+        <translation>Logiciel connu</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="276"/>
@@ -16439,7 +16436,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="291"/>
         <location filename="../../softwarelist.ui" line="294"/>
         <source>List of known software</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste de logiciel connu</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="55"/>
@@ -16461,7 +16458,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.ui" line="138"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="158"/>
@@ -16502,7 +16499,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="194"/>
         <location filename="../../softwarelist.cpp" line="217"/>
         <source>Publisher</source>
-        <translation>Publieur</translation>
+        <translation>Editeur</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="322"/>
@@ -16553,7 +16550,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="376"/>
         <location filename="../../softwarelist.ui" line="379"/>
         <source>Favorite software configurations</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurations logiciel favories</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="427"/>
@@ -16576,13 +16573,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="485"/>
         <location filename="../../softwarelist.ui" line="488"/>
         <source>Search results</source>
-        <translation type="unfinished"></translation>
+        <translation>Résultats de recherche</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="555"/>
         <location filename="../../softwarelist.cpp" line="513"/>
         <source>Loading software-lists, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement des listes de logiciel, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="67"/>
@@ -16800,7 +16797,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="1397"/>
         <location filename="../../softwarelist.cpp" line="1431"/>
         <source>Searching</source>
-        <translation type="unfinished">Recherche</translation>
+        <translation>Recherche</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1368"/>
@@ -16898,7 +16895,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="56"/>
         <source>ASCII export file -- use $ID$ as a placeholder for the current driver</source>
-        <translation type="unfinished"></translation>
+        <translation>fichier ASCII d&apos;export - utiliser $ID$ comme base pour le driver actuel</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="63"/>
@@ -16928,7 +16925,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="157"/>
         <source>CSV export file -- use $ID$ as a placeholder for the current driver</source>
-        <translation type="unfinished"></translation>
+        <translation>fichier CSV d&apos;export - utiliser $ID$ comme base pour le driver actuel</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="164"/>
@@ -16963,7 +16960,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="301"/>
         <source>Select the columns you want to export and the order in which they are to be listed (drag &amp; drop entries around)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner les colonnes à exporter et l&apos;ordre dans lequel elles seront listées (glisser &amp; déposer les éléments)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="314"/>
@@ -17027,7 +17024,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="368"/>
         <source>Close software-list export</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer l&apos;export de la liste de logiciels</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="371"/>
@@ -17117,22 +17114,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="564"/>
         <source>Include column header texts</source>
-        <translation type="unfinished"></translation>
+        <translation>Inclure les textes d&apos;entête de colonne</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="567"/>
         <source>Include column headers</source>
-        <translation type="unfinished"></translation>
+        <translation>Inclure les entêtes de colonne</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="35"/>
         <source>Both formats</source>
-        <translation type="unfinished"></translation>
+        <translation>Tous les formats</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="37"/>
         <source>Export software-list for &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter la liste de logiciels pour &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="185"/>
@@ -17149,7 +17146,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.cpp" line="196"/>
         <source>exporting current software-list in ASCII format to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>export de la liste de logiciels actuelle au format ASCII vers &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="198"/>
@@ -17159,22 +17156,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.cpp" line="203"/>
         <source>exporting current software-list in ASCII format to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>export de la liste de logiciels actuelle au format ASCII vers le presse-papier</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="279"/>
         <source>done (exporting current software-list in ASCII format to clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>fait (export de la liste de logiciels actuelle au format ASCII vers le presse-papier)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="282"/>
         <source>done (exporting current software-list in ASCII format to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>fait (export de la liste de logiciels actuelle au format ASCII vers &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="328"/>
         <source>exporting current software-list in CSV format to &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>export de la liste de logiciels actuelle au format CSV vers &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="330"/>
@@ -17184,17 +17181,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.cpp" line="335"/>
         <source>exporting current software-list in CSV format to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>export de la liste de logiciels actuelle au format CSV vers le presse-papier</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="394"/>
         <source>done (exporting current software-list in CSV format to clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>fait (export de la liste de logiciels actuelle au format CSV vers le presse-papier)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="397"/>
         <source>done (exporting current software-list in CSV format to &apos;%1&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>fait (export de la liste de logiciels actuelle au format CSV vers &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="409"/>
@@ -17535,7 +17532,7 @@ Quitter maintenant, accepter cette fois ou ignorer complètement?</translation>
     <message>
         <location filename="../../welcome.ui" line="174"/>
         <source>Working directory that&apos;s used when the emulator is executed (if empty, QMC2&apos;s current working directory is used)</source>
-        <translation>Répertoire de travail utilisé quand l&apos;émulateur est exécuté (si vide, utilise le répertoire de travail courant de QMC2)</translation>
+        <translation>Répertoire de travail utilisé quand l&apos;émulateur est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="181"/>
@@ -17632,165 +17629,165 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../youtubevideoplayer.ui" line="40"/>
         <source>Attached videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Vidéos attachées</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="74"/>
         <source>Start playing / select next video automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Commencer à jouer / sélectionner la vidéo suivante automatiquement</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="77"/>
         <source>Play-O-Matic</source>
-        <translation type="unfinished"></translation>
+        <translation>Play-O-Matic</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="93"/>
         <source>Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="112"/>
         <source>Choose the video selection mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le mode de sélection de vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="116"/>
         <source>sequential</source>
-        <translation type="unfinished"></translation>
+        <translation>séquentiel</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="121"/>
         <source>random</source>
-        <translation type="unfinished"></translation>
+        <translation>au hasard</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="138"/>
         <source>Allow videos to be repeated (otherwise stop after last video)</source>
-        <translation type="unfinished"></translation>
+        <translation>Autorise les vidéos à être revisionnées (sinon stoppe la lecture à la dernière vidéo)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="141"/>
         <source>Allow repeat</source>
-        <translation type="unfinished"></translation>
+        <translation>Autorise la répétition</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="174"/>
         <source>Video player</source>
-        <translation type="unfinished"></translation>
+        <translation>Lecteur vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="196"/>
         <source>Select the preferred video format (automatically falls back to the next available format)</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le format vidéo préfére (bascule automatiquement vers le format vidéo disponible suivant)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="203"/>
         <location filename="../../youtubevideoplayer.cpp" line="83"/>
         <source>FLV 240P</source>
-        <translation type="unfinished"></translation>
+        <translation>FLV 240P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="212"/>
         <location filename="../../youtubevideoplayer.cpp" line="84"/>
         <source>FLV 360P</source>
-        <translation type="unfinished"></translation>
+        <translation>FLV 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="221"/>
         <location filename="../../youtubevideoplayer.cpp" line="85"/>
         <source>MP4 360P</source>
-        <translation type="unfinished"></translation>
+        <translation>MP4 360P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="230"/>
         <location filename="../../youtubevideoplayer.cpp" line="86"/>
         <source>FLV 480P</source>
-        <translation type="unfinished"></translation>
+        <translation>FLV 480P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="239"/>
         <location filename="../../youtubevideoplayer.cpp" line="87"/>
         <source>MP4 720P</source>
-        <translation type="unfinished"></translation>
+        <translation>MP4 720P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="248"/>
         <location filename="../../youtubevideoplayer.cpp" line="88"/>
         <source>MP4 1080P</source>
-        <translation type="unfinished"></translation>
+        <translation>MP4 1080P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="257"/>
         <location filename="../../youtubevideoplayer.cpp" line="89"/>
         <source>MP4 3072P</source>
-        <translation type="unfinished"></translation>
+        <translation>MP4 3072P</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="275"/>
         <location filename="../../youtubevideoplayer.cpp" line="148"/>
         <source>Start / pause / resume video playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Joue / pause / reprise de la lecture vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="315"/>
         <source>Remaining playing time</source>
-        <translation type="unfinished"></translation>
+        <translation>Temps restant</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="334"/>
         <source>Current buffer fill level</source>
-        <translation type="unfinished"></translation>
+        <translation>Niveau de cache actuel</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="363"/>
         <source>Search videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche de vidéos</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="378"/>
         <source>Search pattern -- use the &apos;hint&apos; button to get a suggestion</source>
-        <translation type="unfinished"></translation>
+        <translation>Pattern de recherche - utilise le bouton &apos;hint&apos; pour des suggestions</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="391"/>
         <source>Search YouTube videos using the specified search pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche dans les vidéos YouTube en utilisante le pattern spécifié</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="435"/>
         <source>Maximum number of results per search request</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre maximum de résultats par recherche</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="466"/>
         <source>Start index for the search request</source>
-        <translation type="unfinished"></translation>
+        <translation>Commencer l&apos;index pour la requête de recherche</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="491"/>
         <source>SI:</source>
-        <translation type="unfinished"></translation>
+        <translation>SI:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="498"/>
         <source>R:</source>
-        <translation type="unfinished"></translation>
+        <translation>R:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.ui" line="418"/>
         <source>Suggest a search pattern (hold down for menu)</source>
-        <translation type="unfinished"></translation>
+        <translation>Suggérer un pattern de recherche (laisser appuyé pour le menu)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="65"/>
         <source>Mute / unmute audio output</source>
-        <translation type="unfinished"></translation>
+        <translation>Coupe / Ouvre la sortie audio</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="100"/>
         <source>Video progress</source>
-        <translation type="unfinished"></translation>
+        <translation>Progression de la vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="107"/>
@@ -17800,212 +17797,212 @@ p, li { white-space: pre-wrap; }
         <location filename="../../youtubevideoplayer.cpp" line="866"/>
         <location filename="../../youtubevideoplayer.cpp" line="884"/>
         <source>Current buffer fill level: %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Niveau de cache actuel: %1%</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="114"/>
         <location filename="../../youtubevideoplayer.cpp" line="190"/>
         <source>Play this video</source>
-        <translation type="unfinished"></translation>
+        <translation>Joue cette vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="121"/>
         <location filename="../../youtubevideoplayer.cpp" line="163"/>
         <location filename="../../youtubevideoplayer.cpp" line="201"/>
         <source>Copy video URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier l&apos;URL de la vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="127"/>
         <location filename="../../youtubevideoplayer.cpp" line="169"/>
         <location filename="../../youtubevideoplayer.cpp" line="206"/>
         <source>Copy author URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier l&apos;URL de l&apos;auteur</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="133"/>
         <location filename="../../youtubevideoplayer.cpp" line="175"/>
         <source>Paste video URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Coller l&apos;URL de la vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="140"/>
         <source>Remove selected videos</source>
-        <translation type="unfinished"></translation>
+        <translation>Enlever les vidéos sélectionnées</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="156"/>
         <location filename="../../youtubevideoplayer.cpp" line="1336"/>
         <source>Full screen (return with toggle-key)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plein écran (retour avec la touche de bascul)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="182"/>
         <location filename="../../youtubevideoplayer.cpp" line="195"/>
         <source>Attach this video</source>
-        <translation type="unfinished"></translation>
+        <translation>Attacher cette vidéo</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="213"/>
         <source>Auto-suggest a search pattern?</source>
-        <translation type="unfinished"></translation>
+        <translation>Suggérer automatique un pattern de recherche?</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="214"/>
         <source>Auto-suggest</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto-suggestion</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="219"/>
         <source>Enter string to be appended</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrer la chaîne qui sera ajoutée</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="220"/>
         <source>Append...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter...</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="230"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrer la chaîne de recherche</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="340"/>
         <source>Appended string</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter une chaîne</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="341"/>
         <source>Enter the string to be appended when suggesting a pattern:</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrer la chaîne à ajouter quand un pattern est suggéré:</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="603"/>
         <source>Full-screen mode -- press %1 to return to windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode plein écran - presser %1 pour retourner au mode fenêtré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="605"/>
         <source>Full-screen mode -- press toggle-key to return to windowed mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode plein écran - presser la touche de bacul pour retourner au mode fenêtré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="629"/>
         <source>video player: a video with the ID &apos;%1&apos; is already attached, ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: une vidéo avec l&apos;ID &apos;%1&apos; est déjà attachée, ignoré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="798"/>
         <source>Buffering: %1%</source>
-        <translation type="unfinished"></translation>
+        <translation>Mise en cache: %1%</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="819"/>
         <source>Loading</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="836"/>
         <source>Playing</source>
-        <translation type="unfinished"></translation>
+        <translation>En lecture</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="847"/>
         <source>Paused</source>
-        <translation type="unfinished"></translation>
+        <translation>En pause</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="850"/>
         <source>video player: playback error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: erreur de lecture: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="851"/>
         <source>Video playback error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur de lecture vidéo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="931"/>
         <source>Fetching info for video ID &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Récupération des informations de la vidéo ID &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1018"/>
         <source>video player: video info error: ID = &apos;%1&apos;, status = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: info erreur vidéo ID = &apos;%1&apos;, statut = &apos;%2&apos;, errorCode = &apos;%3&apos;, errorText = &apos;%4&apos;</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1019"/>
         <location filename="../../youtubevideoplayer.cpp" line="1126"/>
         <location filename="../../youtubevideoplayer.cpp" line="1506"/>
         <source>Video info error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Info de l&apos;erreur vidéo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1088"/>
         <source>video player: video info error: timeout occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: info de l&apos;erreur vidéo: délai expiré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1089"/>
         <source>Video info error: timeout occurred</source>
-        <translation type="unfinished"></translation>
+        <translation>Info de l&apos;erreur vidéo: délai expiré</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1125"/>
         <source>video player: video info error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: info de l&apos;erreur vidéo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1334"/>
         <source>Full screen (press %1 to return)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plein écran (presser %1 pour revenir)</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1505"/>
         <source>video player: video image info error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: info de l&apos;erreur d&apos;image vidéo: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1537"/>
         <source>video player: search request error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: erreur de recherche: %1</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1565"/>
         <source>video player: search error: can&apos;t parse XML data</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: erreur de recherche: n&apos;a pas pu parcourir les données XML</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1598"/>
         <source>video player: can&apos;t determine the video ID from the reply URL &apos;%1&apos; -- please inform developers</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: impossible de déterminer l&apos;ID de la vidéo depuis l&apos;URL &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1604"/>
         <source>video player: can&apos;t associate the returned image for video ID &apos;%1&apos; -- please inform developers</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: impossible d&apos;associer l&apos;image retournée pour la vidéo ID &apos;%1&apos; - merci d&apos;informer les développeurs</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1621"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos; to the YouTube cache directory &apos;%2&apos; -- please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos; dans le répertoire de cache Youtube &apos;%2&apos; - vérifiez les permissions svp</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1623"/>
         <source>video player: can&apos;t save the image for video ID &apos;%1&apos;, the YouTube cache directory &apos;%2&apos; does not exist -- please correct</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: impossible d&apos;enregistrer l&apos;image pour la vidéo ID &apos;%1&apos;, le répertoire de cache Youtube &apos;%2&apos; n&apos;existe pas - merci de corriger</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1625"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, retrieved image is not valid</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, l&apos;image reçu n&apos;est pas valide</translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1627"/>
         <source>video player: image download failed for video ID &apos;%1&apos;, error text = &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>lecteur vidéo: le téléchargement de l&apos;image pour la vidéo ID &apos;%1&apos; a échoué, texte de l&apos;&apos;erreur = &apos;%2&apos;</translation>
     </message>
 </context>
 </TS>
