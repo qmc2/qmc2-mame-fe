@@ -470,46 +470,110 @@
 #define QMC2_VARIANT_SDLMESS_NAME		"qmc2-sdlmess"
 #define QMC2_VARIANT_SDLMESS_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_SDLMESS_NAME
 #define QMC2_VARIANT_SDLMESS_TITLE		MainWindow::tr("M.E.S.S. Catalog / Launcher II")
+#define QMC2_VARIANT_SDLUME_NAME		"qmc2-sdlume"
+#define QMC2_VARIANT_SDLUME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_SDLUME_NAME
+#define QMC2_VARIANT_SDLUME_TITLE		MainWindow::tr("U.M.E. Catalog / Launcher II")
 #define QMC2_VARIANT_MAME_NAME			"qmc2-mame.exe"
-#define QMC2_VARIANT_MAME_BUNDLE_ID		""
+#define QMC2_VARIANT_MAME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_MAME_NAME
 #define QMC2_VARIANT_MAME_TITLE			MainWindow::tr("M.A.M.E. Catalog / Launcher II")
 #define QMC2_VARIANT_MESS_NAME			"qmc2-mess.exe"
-#define QMC2_VARIANT_MESS_BUNDLE_ID		""
+#define QMC2_VARIANT_MESS_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_MESS_NAME
 #define QMC2_VARIANT_MESS_TITLE			MainWindow::tr("M.E.S.S. Catalog / Launcher II")
+#define QMC2_VARIANT_UME_NAME			"qmc2-ume.exe"
+#define QMC2_VARIANT_UME_BUNDLE_ID		"net.arcadehits.qmc2." QMC2_VARIANT_UME_NAME
+#define QMC2_VARIANT_UME_TITLE			MainWindow::tr("U.M.E. Catalog / Launcher II")
 
 // separation for QMC2 variants
 #if defined(QMC2_SDLMAME)
-#define QMC2_FRONTEND_PREFIX			QString("Frontend/qmc2-sdlmame/")
-#define QMC2_FRONTEND_PREFIX_OTHER		QString("Frontend/qmc2-sdlmess/")
-#define QMC2_EMULATOR_PREFIX			QString("MAME/")
-#define QMC2_EMULATOR_PREFIX_OTHER		QString("MESS/")
-#define QMC2_ARCADE_PREFIX			QString("Arcade/qmc2-sdlmame/")
+#define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-sdlmame/")
+#define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-sdlmess/")
+#define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-sdlume/")
+#define QMC2_FRONTEND_PREFIX			QMC2_FRONTEND_PREFIX_MAME
+#define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
+#define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
+#define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
+#define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_MAME
+#define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/qmc2-sdlmame/")
+#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/qmc2-sdlmess/")
+#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/qmc2-sdlume/")
+#define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MAME
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_SDLMAME_NAME)
 #define QMC2_EMUTYPE_MAME
 #elif defined(QMC2_SDLMESS)
-#define QMC2_FRONTEND_PREFIX			QString("Frontend/qmc2-sdlmess/")
-#define QMC2_FRONTEND_PREFIX_OTHER		QString("Frontend/qmc2-sdlmame/")
-#define QMC2_EMULATOR_PREFIX			QString("MESS/")
-#define QMC2_EMULATOR_PREFIX_OTHER		QString("MAME/")
-#define QMC2_ARCADE_PREFIX			QString("Arcade/qmc2-sdlmess/")
+#define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-sdlmame/")
+#define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-sdlmess/")
+#define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-sdlume/")
+#define QMC2_FRONTEND_PREFIX			QMC2_FRONTEND_PREFIX_MESS
+#define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
+#define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
+#define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
+#define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_MESS
+#define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/qmc2-sdlmame/")
+#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/qmc2-sdlmess/")
+#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/qmc2-sdlume/")
+#define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MESS
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_SDLMESS_NAME)
 #define QMC2_EMUTYPE_MESS
+#elif defined(QMC2_SDLUME)
+#define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-sdlmame/")
+#define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-sdlmess/")
+#define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-sdlume/")
+#define QMC2_FRONTEND_PREFIX			QMC2_FRONTEND_PREFIX_UME
+#define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
+#define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
+#define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
+#define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_UME
+#define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/qmc2-sdlmame/")
+#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/qmc2-sdlmess/")
+#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/qmc2-sdlume/")
+#define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_UME
+#define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_SDLUME_NAME)
+#define QMC2_EMUTYPE_UME
 #elif defined(QMC2_MAME)
-#define QMC2_FRONTEND_PREFIX			QString("Frontend/qmc2-mame/")
-#define QMC2_FRONTEND_PREFIX_OTHER		QString("Frontend/qmc2-mess/")
-#define QMC2_EMULATOR_PREFIX			QString("MAME/")
-#define QMC2_EMULATOR_PREFIX_OTHER		QString("MESS/")
-#define QMC2_ARCADE_PREFIX			QString("Arcade/qmc2-mame/")
+#define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-mame/")
+#define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-mess/")
+#define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-ume/")
+#define QMC2_FRONTEND_PREFIX			QMC2_FRONTEND_PREFIX_MAME
+#define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
+#define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
+#define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
+#define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_MAME
+#define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/qmc2-mame/")
+#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/qmc2-mess/")
+#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/qmc2-ume/")
+#define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MAME
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_MAME_NAME)
 #define QMC2_EMUTYPE_MAME
 #elif defined(QMC2_MESS)
-#define QMC2_FRONTEND_PREFIX			QString("Frontend/qmc2-mess/")
-#define QMC2_FRONTEND_PREFIX_OTHER		QString("Frontend/qmc2-mame/")
-#define QMC2_EMULATOR_PREFIX			QString("MESS/")
-#define QMC2_EMULATOR_PREFIX_OTHER		QString("MAME/")
-#define QMC2_ARCADE_PREFIX			QString("Arcade/qmc2-mess/")
+#define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-mame/")
+#define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-mess/")
+#define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-ume/")
+#define QMC2_FRONTEND_PREFIX			QMC2_FRONTEND_PREFIX_MESS
+#define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
+#define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
+#define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
+#define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_MESS
+#define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/qmc2-mame/")
+#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/qmc2-mess/")
+#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/qmc2-ume/")
+#define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_MESS
 #define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_MESS_NAME)
 #define QMC2_EMUTYPE_MESS
+#elif defined(QMC2_UME)
+#define QMC2_FRONTEND_PREFIX_MAME		QString("Frontend/qmc2-mame/")
+#define QMC2_FRONTEND_PREFIX_MESS		QString("Frontend/qmc2-mess/")
+#define QMC2_FRONTEND_PREFIX_UME		QString("Frontend/qmc2-ume/")
+#define QMC2_FRONTEND_PREFIX			QMC2_FRONTEND_PREFIX_UME
+#define QMC2_EMULATOR_PREFIX_MAME		QString("MAME/")
+#define QMC2_EMULATOR_PREFIX_MESS		QString("MESS/")
+#define QMC2_EMULATOR_PREFIX_UME		QString("UME/")
+#define QMC2_EMULATOR_PREFIX			QMC2_EMULATOR_PREFIX_UME
+#define QMC2_ARCADE_PREFIX_MAME			QString("Arcade/qmc2-mame/")
+#define QMC2_ARCADE_PREFIX_MESS			QString("Arcade/qmc2-mess/")
+#define QMC2_ARCADE_PREFIX_UME			QString("Arcade/qmc2-ume/")
+#define QMC2_ARCADE_PREFIX			QMC2_ARCADE_PREFIX_UME
+#define QMC2_VARIANT_NAME			QString(QMC2_VARIANT_UME_NAME)
+#define QMC2_EMUTYPE_UME
 #endif
 
 // Mac OS X uses "~/Library/Application Support/app" rather than "~/.app"
