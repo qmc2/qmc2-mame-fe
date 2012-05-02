@@ -162,7 +162,10 @@ MESSDeviceConfigurator::MESSDeviceConfigurator(QString machineName, QWidget *par
 	updateSlots = true;
 
 	lineEditConfigurationName->blockSignals(true);
-	lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
+	if ( messSystemSlotMap.isEmpty() )
+		lineEditConfigurationName->setText(tr("Reading slot info, please wait..."));
+	else
+		lineEditConfigurationName->setText(tr("No devices"));
 	lineEditConfigurationName->setPlaceholderText(tr("Enter configuration name"));
 	lineEditConfigurationName->blockSignals(false);
 
