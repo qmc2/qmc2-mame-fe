@@ -308,13 +308,14 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 			if ( startIndex >= 0 ) {
 				startIndex += 11;
 				int endIndex = line.indexOf("\"", startIndex);
-				QString devInterface = line.mid(startIndex, endIndex - startIndex);
+				QStringList devInterfaces = line.mid(startIndex, endIndex - startIndex).split(",", QString::SkipEmptyParts);
 				line = qmc2Gamelist->xmlLines[i++].simplified();
 				startIndex = line.indexOf("briefname=\"") + 11;
 				endIndex = line.indexOf("\"", startIndex);
 				QString devName = line.mid(startIndex, endIndex - startIndex);
 				if ( !devName.isEmpty() )
-					deviceInstanceMap[devInterface] << devName;
+					foreach (QString devIf, devInterfaces)
+						deviceInstanceMap[devIf] << devName;
 			} else {
 				line = qmc2Gamelist->xmlLines[i++].simplified();
 				startIndex = line.indexOf("briefname=\"") + 11;
@@ -337,13 +338,14 @@ QString &SoftwareList::lookupMountDevice(QString device, QString interface, QStr
 			if ( startIndex >= 0 ) {
 				startIndex += 11;
 				int endIndex = line.indexOf("\"", startIndex);
-				QString devInterface = line.mid(startIndex, endIndex - startIndex);
+				QStringList devInterfaces = line.mid(startIndex, endIndex - startIndex).split(",", QString::SkipEmptyParts);
 				line = qmc2Gamelist->xmlLines[i++].simplified();
 				startIndex = line.indexOf("briefname=\"") + 11;
 				endIndex = line.indexOf("\"", startIndex);
 				QString devName = line.mid(startIndex, endIndex - startIndex);
 				if ( !devName.isEmpty() )
-					deviceInstanceMap[devInterface] << devName;
+					foreach (QString devIf, devInterfaces)
+						deviceInstanceMap[devIf] << devName;
 			} else {
 				line = qmc2Gamelist->xmlLines[i++].simplified();
 				startIndex = line.indexOf("briefname=\"") + 11;
