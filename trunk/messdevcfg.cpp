@@ -1177,8 +1177,13 @@ void MESSDeviceConfigurator::on_lineEditConfigurationName_textChanged(const QStr
 				QPair<QStringList, QStringList> valuePair = configurationMap[configName];
 				for (int i = 0; i < valuePair.first.count(); i++) {
 					QList<QTreeWidgetItem *> itemList = treeWidgetDeviceSetup->findItems(valuePair.first[i], Qt::MatchExactly);
-					if ( itemList.count() > 0 )
-						itemList[0]->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, valuePair.second[i]);
+					if ( itemList.count() > 0 ) {
+						QTreeWidgetItem *item = itemList[0];
+						item->setData(QMC2_DEVCONFIG_COLUMN_FILE, Qt::EditRole, valuePair.second[i]);
+						FileEditWidget *few = (FileEditWidget*)treeWidgetDeviceSetup->itemWidget(item, QMC2_DEVCONFIG_COLUMN_FILE);
+						if ( few )
+							few->lineEditFile->setText(valuePair.second[i]);
+					}
 				}
 			}
 		} else {
