@@ -178,9 +178,6 @@
    </property>
   </action>
   <action name="actionProjectPreferences">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="text">
     <string>Preferences...</string>
    </property>
