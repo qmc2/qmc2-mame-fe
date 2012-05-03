@@ -103,14 +103,14 @@ void ProjectWidget::on_toolButtonRun_clicked()
     connect(chdmanProc, SIGNAL(stateChanged(QProcess::ProcessState)), this, SLOT(stateChanged(QProcess::ProcessState)));
 
     ui->plainTextEditProjectLog->clear();
-    log(tr("starting external process"));
+    log(tr("starting process"));
 
     chdmanProc->start(globalConfig->preferencesChdmanBinary(), args);
 }
 
 void ProjectWidget::started()
 {
-    log(tr("process started; PID = %1").arg(chdmanProc->pid()));
+    log(tr("process started: PID = %1").arg(chdmanProc->pid()));
 }
 
 void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
@@ -126,7 +126,7 @@ void ProjectWidget::readyReadStandardOutput()
     for (i = 0; i < sl.count(); i++) {
         s = sl[i].simplified();
         if ( !s.isEmpty() )
-            log(tr("stdout:") + " " + s);
+            log(tr("stdout") + ": " + s);
     }
 }
 
@@ -138,7 +138,7 @@ void ProjectWidget::readyReadStandardError()
     for (i = 0; i < sl.count(); i++) {
         s = sl[i].simplified();
         if ( !s.isEmpty() )
-            log(tr("stderr:") + " " + s);
+            log(tr("stderr") + ": " + s);
     }
 }
 
