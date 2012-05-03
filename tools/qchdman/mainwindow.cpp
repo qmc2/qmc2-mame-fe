@@ -23,9 +23,16 @@ MainWindow::MainWindow(QWidget *parent) :
     nextProjectID = 0;
 
     if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
-        on_actionWindowViewModeWindowed_triggered(true);
+        on_actionWindowViewModeWindowed_triggered();
     else
-        on_actionWindowViewModeTabbed_triggered(true);
+        on_actionWindowViewModeTabbed_triggered();
+
+    // check CHDMAN binary setting
+    QFileInfo chdmanFileInfo(globalConfig->preferencesChdmanBinary());
+    if ( globalConfig->preferencesChdmanBinary().isEmpty() || !chdmanFileInfo.isExecutable() ) {
+        preferencesDialog = new PreferencesDialog(0);
+        QTimer::singleShot(100, preferencesDialog, SLOT(initialSetup()));
+    }
 }
 
 MainWindow::~MainWindow()

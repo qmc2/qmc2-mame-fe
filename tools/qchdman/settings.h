@@ -15,6 +15,10 @@ public:
     ~Settings() { sync(); }
 
 public slots:
+    // Preferences
+    void setPreferencesChdmanBinary(QString path) { setValue("Preferences/ChdmanBinary", path); }
+    QString preferencesChdmanBinary() { return value("Preferences/ChdmanBinary", QString()).toString(); }
+
     // MainWindow
     void setMainWindowState(QByteArray state) { setValue("MainWindow/State", state); }
     QByteArray mainWindowState() { return value("MainWindow/State", QByteArray()).toByteArray(); }

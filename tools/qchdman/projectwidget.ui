@@ -16,6 +16,9 @@
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
+     <property name="childrenCollapsible">
+      <bool>false</bool>
+     </property>
      <widget class="QWidget" name="layoutWidget">
       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
        <item>
@@ -46,7 +49,17 @@
            </property>
            <item>
             <property name="text">
+             <string>Display information about a CHD</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Verify the integrity of a CHD input file</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Copy data from one CHD to another of the same type</string>
             </property>
            </item>
            <item>
@@ -87,11 +100,6 @@
            <item>
             <property name="text">
              <string>Extract laserdisc AVI file from a CHD input file</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Copy data from one CHD to another of the same type</string>
             </property>
            </item>
           </widget>
@@ -145,6 +153,54 @@
             <property name="currentIndex">
              <number>0</number>
             </property>
+            <widget class="QWidget" name="pageInfo">
+             <layout class="QGridLayout" name="gridLayout_4">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelInfoInputFile">
+                <property name="text">
+                 <string>CHD input file</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="lineEditInfoInputFile">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QToolButton" name="toolButtonBrowseInfoInputFile">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="icon">
+                 <iconset resource="qchdman.qrc">
+                  <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <spacer name="verticalSpacerInfo">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>213</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
             <widget class="QWidget" name="pageVerify">
              <layout class="QGridLayout" name="gridLayout_3">
               <item row="1" column="0">
@@ -224,6 +280,7 @@
               </item>
              </layout>
             </widget>
+            <widget class="QWidget" name="pageCopy"/>
             <widget class="QWidget" name="pageCreateRaw"/>
             <widget class="QWidget" name="pageCreateHardDisk"/>
             <widget class="QWidget" name="pageCreateCD"/>
@@ -232,7 +289,6 @@
             <widget class="QWidget" name="pageExtractHardDisk"/>
             <widget class="QWidget" name="pageExtractCD"/>
             <widget class="QWidget" name="pageExtractLaserDisc"/>
-            <widget class="QWidget" name="pageCopy"/>
            </widget>
           </item>
          </layout>
@@ -244,6 +300,9 @@
       <property name="toolTip">
        <string>Project log</string>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
      </widget>
     </widget>
    </item>
@@ -252,6 +311,8 @@
  <tabstops>
   <tabstop>comboBoxProjectType</tabstop>
   <tabstop>toolButtonRun</tabstop>
+  <tabstop>lineEditInfoInputFile</tabstop>
+  <tabstop>toolButtonBrowseInfoInputFile</tabstop>
   <tabstop>lineEditVerifyInputFile</tabstop>
   <tabstop>toolButtonBrowseVerifyInputFile</tabstop>
   <tabstop>lineEditVerifyParentInputFile</tabstop>
