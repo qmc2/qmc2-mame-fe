@@ -56,7 +56,7 @@
            </item>
            <item>
             <property name="text">
-             <string>Copy data from CHD image to another</string>
+             <string>Copy data from one CHD image to another</string>
             </property>
            </item>
           </widget>
