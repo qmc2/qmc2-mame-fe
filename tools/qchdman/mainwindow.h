@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <preferencesdialog.h>
 
 namespace Ui {
 class MainWindow;
@@ -13,6 +14,7 @@ class MainWindow : public QMainWindow
     
 public:
     int nextProjectID;
+    PreferencesDialog *preferencesDialog;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();

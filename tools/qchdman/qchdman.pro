@@ -13,16 +13,19 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     projectwindow.cpp \
-    projectwidget.cpp
+    projectwidget.cpp \
+    preferencesdialog.cpp
 
 HEADERS  += mainwindow.h \
     macros.h \
     projectwindow.h \
     projectwidget.h \
-    settings.h
+    settings.h \
+    preferencesdialog.h
 
 FORMS    += mainwindow.ui \
-    projectwidget.ui
+    projectwidget.ui \
+    preferencesdialog.ui
 
 RESOURCES += \
     qchdman.qrc

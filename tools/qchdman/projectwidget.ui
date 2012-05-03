@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
-    <height>653</height>
+    <width>948</width>
+    <height>686</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -120,6 +120,9 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="toolTip">
+            <string>Run this project</string>
+           </property>
            <property name="icon">
             <iconset resource="qchdman.qrc">
              <normaloff>:/data/img/process.png</normaloff>:/data/img/process.png</iconset>
@@ -142,7 +145,85 @@
             <property name="currentIndex">
              <number>0</number>
             </property>
-            <widget class="QWidget" name="pageVerify"/>
+            <widget class="QWidget" name="pageVerify">
+             <layout class="QGridLayout" name="gridLayout_3">
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelVerifyParentInputFile">
+                <property name="text">
+                 <string>Parent CHD input file</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="lineEditVerifyInputFile">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="lineEditVerifyParentInputFile">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QToolButton" name="toolButtonBrowseVerifyParentInputFile">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="icon">
+                 <iconset resource="qchdman.qrc">
+                  <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QToolButton" name="toolButtonBrowseVerifyInputFile">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="icon">
+                 <iconset resource="qchdman.qrc">
+                  <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelVerifyInputFile">
+                <property name="text">
+                 <string>CHD input file</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0" colspan="3">
+               <spacer name="verticalSpacerVerify">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
             <widget class="QWidget" name="pageCreateRaw"/>
             <widget class="QWidget" name="pageCreateHardDisk"/>
             <widget class="QWidget" name="pageCreateCD"/>
@@ -159,13 +240,43 @@
        </item>
       </layout>
      </widget>
-     <widget class="QPlainTextEdit" name="plainTextEditProjectLog"/>
+     <widget class="QPlainTextEdit" name="plainTextEditProjectLog">
+      <property name="toolTip">
+       <string>Project log</string>
+      </property>
+     </widget>
     </widget>
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>comboBoxProjectType</tabstop>
+  <tabstop>toolButtonRun</tabstop>
+  <tabstop>lineEditVerifyInputFile</tabstop>
+  <tabstop>toolButtonBrowseVerifyInputFile</tabstop>
+  <tabstop>lineEditVerifyParentInputFile</tabstop>
+  <tabstop>toolButtonBrowseVerifyParentInputFile</tabstop>
+  <tabstop>plainTextEditProjectLog</tabstop>
+ </tabstops>
  <resources>
   <include location="qchdman.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>comboBoxProjectType</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>stackedWidgetProjectDetails</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>187</x>
+     <y>12</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>237</x>
+     <y>135</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

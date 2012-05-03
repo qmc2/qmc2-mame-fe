@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    preferencesDialog = NULL;
+
     restoreGeometry(globalConfig->mainWindowGeometry());
     restoreState(globalConfig->mainWindowState());
 
@@ -51,6 +53,9 @@ void MainWindow::on_actionProjectSaveAs_triggered(bool)
 
 void MainWindow::on_actionProjectPreferences_triggered(bool)
 {
+    if ( !preferencesDialog )
+        preferencesDialog = new PreferencesDialog(0);
+    preferencesDialog->exec();
 }
 
 void MainWindow::on_actionProjectExit_triggered(bool)
@@ -120,6 +125,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
 {
     globalConfig->setMainWindowState(saveState());
     globalConfig->setMainWindowGeometry(saveGeometry());
+
+    if ( preferencesDialog )
+        delete preferencesDialog;
 
     delete globalConfig;
 
