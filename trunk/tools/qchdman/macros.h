@@ -19,4 +19,16 @@
 
 #define QCHDMAN_DYN_DOT_PATH        (qApp->arguments().indexOf("-qmc2_config_path") >= 0 && qApp->arguments().indexOf("-qmc2_config_path") + 1 <= qApp->arguments().count() ? qApp->arguments()[qApp->arguments().indexOf("-qmc2_config_path") + 1]: QCHDMAN_DOT_PATH)
 
+#define QCHDMAN_PRJ_INFO            0
+#define QCHDMAN_PRJ_VERIFY          1
+#define QCHDMAN_PRJ_COPY            2
+#define QCHDMAN_PRJ_CREATE_RAW      3
+#define QCHDMAN_PRJ_CREATE_HD       4
+#define QCHDMAN_PRJ_CREATE_CD       5
+#define QCHDMAN_PRJ_CREATE_LD       6
+#define QCHDMAN_PRJ_EXTRACT_RAW     7
+#define QCHDMAN_PRJ_EXTRACT_HD      8
+#define QCHDMAN_PRJ_EXTRACT_CD      9
+#define QCHDMAN_PRJ_EXTRACT_LD      10
+
 #endif // MACROS_H
