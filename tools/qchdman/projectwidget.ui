@@ -46,17 +46,52 @@
            </property>
            <item>
             <property name="text">
-             <string>Create a new CHD image</string>
+             <string>Verify the integrity of a CHD input file</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Extract data from an existing CHD image</string>
+             <string>Create a raw CHD from an input file</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>Copy data from one CHD image to another</string>
+             <string>Create a hard disk CHD from an input file</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Create a CD CHD from an input file</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Create a laserdisc CHD from an input file</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Extract raw file from a CHD input file</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Extract raw hard disk file from a CHD input file</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Extract CD file from a CHD input file</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Extract laserdisc AVI file from a CHD input file</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Copy data from one CHD to another of the same type</string>
             </property>
            </item>
           </widget>
@@ -105,10 +140,18 @@
           <item row="0" column="0">
            <widget class="QStackedWidget" name="stackedWidgetProjectDetails">
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
-            <widget class="QWidget" name="pageCreateCHD"/>
-            <widget class="QWidget" name="pageExtractCHD"/>
+            <widget class="QWidget" name="pageVerify"/>
+            <widget class="QWidget" name="pageCreateRaw"/>
+            <widget class="QWidget" name="pageCreateHardDisk"/>
+            <widget class="QWidget" name="pageCreateCD"/>
+            <widget class="QWidget" name="pageCreateLaserDisc"/>
+            <widget class="QWidget" name="pageExtractRaw"/>
+            <widget class="QWidget" name="pageExtractHardDisk"/>
+            <widget class="QWidget" name="pageExtractCD"/>
+            <widget class="QWidget" name="pageExtractLaserDisc"/>
+            <widget class="QWidget" name="pageCopy"/>
            </widget>
           </item>
          </layout>
