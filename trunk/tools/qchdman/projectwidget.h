@@ -23,8 +23,6 @@ public:
     explicit ProjectWidget(QWidget *parent = 0);
     ~ProjectWidget();
 
-    QSize splitterSizes();
-
 public slots:
     // Info
     void on_toolButtonBrowseInfoInputFile_clicked();
@@ -55,7 +53,6 @@ public slots:
     void log(QString);
     void copyStdoutToClipboard();
     void copyStderrToClipboard();
-    void on_splitter_splitterMoved(int, int);
     void on_comboBoxProjectType_currentIndexChanged(int);
     void on_toolButtonRun_clicked();
     void on_toolButtonStop_clicked();

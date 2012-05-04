@@ -6,344 +6,325 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>948</width>
-    <height>686</height>
+    <width>557</width>
+    <height>334</height>
    </rect>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,1">
    <item row="0" column="0">
-    <widget class="QSplitter" name="splitter">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
+    <widget class="QLabel" name="labelProjectType">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
-     <property name="childrenCollapsible">
+     <property name="text">
+      <string>Project type:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="comboBoxProjectType">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QComboBox::AdjustToContents</enum>
+     </property>
+     <item>
+      <property name="text">
+       <string>Display information about a CHD</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Verify the integrity of a CHD input file</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Copy data from one CHD to another of the same type</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Create a raw CHD from an input file</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Create a hard disk CHD from an input file</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Create a CD CHD from an input file</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Create a laserdisc CHD from an input file</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Extract raw file from a CHD input file</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Extract raw hard disk file from a CHD input file</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Extract CD file from a CHD input file</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Extract laserdisc AVI file from a CHD input file</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QProgressBar" name="progressBar">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
+     <property name="format">
+      <string>Idle</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QToolButton" name="toolButtonRun">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Run this project</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qchdman.qrc">
+       <normaloff>:/data/img/process.png</normaloff>:/data/img/process.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QToolButton" name="toolButtonStop">
+     <property name="enabled">
       <bool>false</bool>
      </property>
-     <widget class="QWidget" name="layoutWidget">
-      <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLabel" name="labelProjectType">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Project type:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="comboBoxProjectType">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="sizeAdjustPolicy">
-            <enum>QComboBox::AdjustToContents</enum>
-           </property>
-           <item>
-            <property name="text">
-             <string>Display information about a CHD</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Verify the integrity of a CHD input file</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Copy data from one CHD to another of the same type</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Create a raw CHD from an input file</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Create a hard disk CHD from an input file</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Create a CD CHD from an input file</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Create a laserdisc CHD from an input file</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Extract raw file from a CHD input file</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Extract raw hard disk file from a CHD input file</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Extract CD file from a CHD input file</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Extract laserdisc AVI file from a CHD input file</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QProgressBar" name="progressBar">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="value">
-            <number>0</number>
-           </property>
-           <property name="format">
-            <string>Idle</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="toolButtonRun">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Run this project</string>
-           </property>
-           <property name="icon">
-            <iconset resource="qchdman.qrc">
-             <normaloff>:/data/img/process.png</normaloff>:/data/img/process.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="toolButtonStop">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Terminate the running process</string>
-           </property>
-           <property name="icon">
-            <iconset resource="qchdman.qrc">
-             <normaloff>:/data/img/exit.png</normaloff>:/data/img/exit.png</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="toolButtonActions">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="icon">
-            <iconset resource="qchdman.qrc">
-             <normaloff>:/data/img/work.png</normaloff>:/data/img/work.png</iconset>
-           </property>
-           <property name="popupMode">
-            <enum>QToolButton::InstantPopup</enum>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBoxProjectDetails">
-         <property name="title">
-          <string>Project details</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <property name="margin">
-           <number>0</number>
-          </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="toolTip">
+      <string>Terminate the running process</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qchdman.qrc">
+       <normaloff>:/data/img/exit.png</normaloff>:/data/img/exit.png</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5">
+    <widget class="QToolButton" name="toolButtonActions">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="icon">
+      <iconset resource="qchdman.qrc">
+       <normaloff>:/data/img/work.png</normaloff>:/data/img/work.png</iconset>
+     </property>
+     <property name="popupMode">
+      <enum>QToolButton::InstantPopup</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="6">
+    <widget class="QGroupBox" name="groupBoxProjectDetails">
+     <property name="title">
+      <string>Project details</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayoutProjectDetails">
+      <item row="0" column="0">
+       <widget class="QStackedWidget" name="stackedWidgetProjectDetails">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="pageInfo">
+         <layout class="QGridLayout" name="gridLayoutPageInfo">
           <item row="0" column="0">
-           <widget class="QStackedWidget" name="stackedWidgetProjectDetails">
-            <property name="currentIndex">
-             <number>0</number>
+           <widget class="QLabel" name="labelInfoInputFile">
+            <property name="text">
+             <string>CHD input file</string>
             </property>
-            <widget class="QWidget" name="pageInfo">
-             <layout class="QGridLayout" name="gridLayout_4">
-              <item row="0" column="0">
-               <widget class="QLabel" name="labelInfoInputFile">
-                <property name="text">
-                 <string>CHD input file</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEditInfoInputFile">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="QToolButton" name="toolButtonBrowseInfoInputFile">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="icon">
-                 <iconset resource="qchdman.qrc">
-                  <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <spacer name="verticalSpacerInfo">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>213</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="pageVerify">
-             <layout class="QGridLayout" name="gridLayout_3">
-              <item row="1" column="0">
-               <widget class="QLabel" name="labelVerifyParentInputFile">
-                <property name="text">
-                 <string>Parent CHD input file</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEditVerifyInputFile">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEditVerifyParentInputFile">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="2">
-               <widget class="QToolButton" name="toolButtonBrowseVerifyParentInputFile">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="icon">
-                 <iconset resource="qchdman.qrc">
-                  <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="QToolButton" name="toolButtonBrowseVerifyInputFile">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="icon">
-                 <iconset resource="qchdman.qrc">
-                  <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="labelVerifyInputFile">
-                <property name="text">
-                 <string>CHD input file</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0" colspan="3">
-               <spacer name="verticalSpacerVerify">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="pageCopy"/>
-            <widget class="QWidget" name="pageCreateRaw"/>
-            <widget class="QWidget" name="pageCreateHardDisk"/>
-            <widget class="QWidget" name="pageCreateCD"/>
-            <widget class="QWidget" name="pageCreateLaserDisc"/>
-            <widget class="QWidget" name="pageExtractRaw"/>
-            <widget class="QWidget" name="pageExtractHardDisk"/>
-            <widget class="QWidget" name="pageExtractCD"/>
-            <widget class="QWidget" name="pageExtractLaserDisc"/>
            </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEditInfoInputFile">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QToolButton" name="toolButtonBrowseInfoInputFile">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="icon">
+             <iconset resource="qchdman.qrc">
+              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+           <spacer name="verticalSpacerInfo">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QPlainTextEdit" name="plainTextEditProjectLog">
-      <property name="toolTip">
-       <string>Project log</string>
-      </property>
-      <property name="lineWrapMode">
-       <enum>QPlainTextEdit::NoWrap</enum>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
+        <widget class="QWidget" name="pageVerify">
+         <layout class="QGridLayout" name="gridLayoutPageVerify">
+          <item row="1" column="0">
+           <widget class="QLabel" name="labelVerifyParentInputFile">
+            <property name="text">
+             <string>Parent CHD input file</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="lineEditVerifyInputFile">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="lineEditVerifyParentInputFile">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QToolButton" name="toolButtonBrowseVerifyParentInputFile">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="icon">
+             <iconset resource="qchdman.qrc">
+              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QToolButton" name="toolButtonBrowseVerifyInputFile">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="icon">
+             <iconset resource="qchdman.qrc">
+              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelVerifyInputFile">
+            <property name="text">
+             <string>CHD input file</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <spacer name="verticalSpacerVerify">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="pageCopy"/>
+        <widget class="QWidget" name="pageCreateRaw"/>
+        <widget class="QWidget" name="pageCreateHardDisk"/>
+        <widget class="QWidget" name="pageCreateCD"/>
+        <widget class="QWidget" name="pageCreateLaserDisc"/>
+        <widget class="QWidget" name="pageExtractRaw"/>
+        <widget class="QWidget" name="pageExtractHardDisk"/>
+        <widget class="QWidget" name="pageExtractCD"/>
+        <widget class="QWidget" name="pageExtractLaserDisc"/>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="6">
+    <widget class="QPlainTextEdit" name="plainTextEditProjectLog">
+     <property name="toolTip">
+      <string>Project log</string>
+     </property>
+     <property name="lineWrapMode">
+      <enum>QPlainTextEdit::NoWrap</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
   </layout>

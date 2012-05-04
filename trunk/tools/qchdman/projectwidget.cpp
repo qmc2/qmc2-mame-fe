@@ -20,13 +20,9 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    chdmanProc = NULL;
-
     ui->groupBoxProjectDetails->setTitle(ui->comboBoxProjectType->currentText());
-    QList<int> sizesList;
-    QSize sizes = globalConfig->projectWidgetSplitterSizes();
-    sizesList << sizes.width() << sizes.height();
-    ui->splitter->setSizes(sizesList);
+
+    chdmanProc = NULL;
 
     menuActions = new QMenu(this);
     actionCopyStdoutToClipboard = menuActions->addAction(tr("Copy stdout to clipboard"), this, SLOT(copyStdoutToClipboard()));
@@ -39,21 +35,9 @@ ProjectWidget::~ProjectWidget()
     delete ui;
 }
 
-QSize ProjectWidget::splitterSizes()
-{
-    QList<int> sizesList = ui->splitter->sizes();
-    QSize sizes(sizesList[0], sizesList[1]);
-    return sizes;
-}
-
 void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int)
 {
     ui->groupBoxProjectDetails->setTitle(ui->comboBoxProjectType->currentText());
-}
-
-void ProjectWidget::on_splitter_splitterMoved(int, int)
-{
-    globalConfig->setProjectWidgetSplitterSizes(splitterSizes());
 }
 
 void ProjectWidget::on_toolButtonRun_clicked()
@@ -258,6 +242,7 @@ void ProjectWidget::log(QString message)
 {
     message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + jobName + ": ");
     ui->plainTextEditProjectLog->appendPlainText(message);
+    ui->plainTextEditProjectLog->verticalScrollBar()->setValue(ui->plainTextEditProjectLog->verticalScrollBar()->maximum());
 }
 
 void ProjectWidget::copyStdoutToClipboard()
