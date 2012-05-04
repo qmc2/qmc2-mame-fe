@@ -19,6 +19,7 @@ public:
     QMenu *menuActions;
     QAction *actionCopyStdoutToClipboard;
     QAction *actionCopyStderrToClipboard;
+    bool terminatedOnDemand;
 
     explicit ProjectWidget(QWidget *parent = 0);
     ~ProjectWidget();

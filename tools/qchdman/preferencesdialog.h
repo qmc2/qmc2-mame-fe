@@ -18,12 +18,9 @@ public:
 public slots:
     void initialSetup();
     void restoreSettings();
-    void applySettings();
+    void applySettings(); 
     void on_pushButtonOk_clicked();
-
-    // GUI
-
-    // Paths
+    void on_pushButtonApply_clicked();
     void on_toolButtonBrowseChdmanBinary_clicked();
 
 protected:

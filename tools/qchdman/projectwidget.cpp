@@ -23,6 +23,7 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     ui->groupBoxProjectDetails->setTitle(ui->comboBoxProjectType->currentText());
 
     chdmanProc = NULL;
+    terminatedOnDemand = false;
 
     menuActions = new QMenu(this);
     actionCopyStdoutToClipboard = menuActions->addAction(tr("Copy stdout to clipboard"), this, SLOT(copyStdoutToClipboard()));
@@ -110,6 +111,7 @@ void ProjectWidget::on_toolButtonRun_clicked()
     stdoutOutput.clear();
     stderrOutput.clear();
 
+    terminatedOnDemand = false;
     chdmanProc->start(globalConfig->preferencesChdmanBinary(), args);
     ui->toolButtonRun->setEnabled(false);
     ui->progressBar->setFormat(tr("Starting"));
@@ -119,6 +121,7 @@ void ProjectWidget::on_toolButtonRun_clicked()
 void ProjectWidget::on_toolButtonStop_clicked()
 {
     log(tr("terminating process"));
+    terminatedOnDemand = true;
     chdmanProc->terminate();
 }
 
@@ -137,7 +140,10 @@ void ProjectWidget::started()
 void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
 {
     runningProjects--;
-    log(tr("process finished: exitCode = %1, exitStatus = %2").arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))));
+    QString statusString = tr("normal");
+    if ( !terminatedOnDemand && exitStatus == QProcess::CrashExit )
+        statusString = tr("crashed");
+    log(tr("process finished: exitCode = %1, exitStatus = %2").arg(exitCode).arg(statusString));
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
     ui->progressBar->setFormat(tr("Idle"));
@@ -188,12 +194,17 @@ void ProjectWidget::readyReadStandardError()
 void ProjectWidget::error(QProcess::ProcessError processError)
 {
     QString errString;
+    bool doLog = true;
+
     switch ( processError ) {
     case QProcess::FailedToStart:
         errString = tr("failed to start");
         break;
     case QProcess::Crashed:
         errString = tr("crashed");
+        if ( terminatedOnDemand )
+            doLog = false;
+        else
         break;
     case QProcess::Timedout:
         errString = tr("timed out");
@@ -210,7 +221,9 @@ void ProjectWidget::error(QProcess::ProcessError processError)
         break;
     }
 
-    log(tr("process error: %1").arg(errString));
+    if ( doLog )
+        log(tr("process error: %1").arg(errString));
+
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
     ui->progressBar->setFormat(tr("Idle"));
