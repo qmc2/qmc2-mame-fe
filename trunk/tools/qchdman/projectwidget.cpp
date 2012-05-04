@@ -17,6 +17,8 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    chdmanProc = NULL;
+
     ui->groupBoxProjectDetails->setTitle(ui->comboBoxProjectType->currentText());
     QList<int> sizesList;
     QSize sizes = globalConfig->projectWidgetSplitterSizes();
@@ -31,6 +33,10 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
 
 ProjectWidget::~ProjectWidget()
 {
+    if ( chdmanProc ) {
+        if ( chdmanProc->state() == QProcess::Running )
+             chdmanProc->kill();
+    }
     delete ui;
 }
 
@@ -61,6 +67,7 @@ void ProjectWidget::on_toolButtonRun_clicked()
         args << "info";
         if ( !ui->lineEditInfoInputFile->text().isEmpty() )
             args << "--input" << ui->lineEditInfoInputFile->text();
+        ui->progressBar->setRange(0, 100);
         break;
     case QCHDMAN_PRJ_VERIFY:
         jobName = tr("Verify");
@@ -69,6 +76,7 @@ void ProjectWidget::on_toolButtonRun_clicked()
             args << "--input" << ui->lineEditVerifyInputFile->text();
         if ( !ui->lineEditVerifyParentInputFile->text().isEmpty() )
             args << "--inputparent" << ui->lineEditVerifyParentInputFile->text();
+        ui->progressBar->setRange(0, 100);
         break;
     case QCHDMAN_PRJ_COPY:
         jobName = tr("Copy");
@@ -116,6 +124,8 @@ void ProjectWidget::on_toolButtonRun_clicked()
 
     chdmanProc->start(globalConfig->preferencesChdmanBinary(), args);
     ui->toolButtonRun->setEnabled(false);
+    ui->progressBar->setFormat(tr("Starting"));
+    ui->progressBar->setValue(0);
 }
 
 void ProjectWidget::on_toolButtonStop_clicked()
@@ -126,17 +136,20 @@ void ProjectWidget::on_toolButtonStop_clicked()
 
 void ProjectWidget::started()
 {
+    runningProjects++;
     log(tr("process started: PID = %1").arg(chdmanProc->pid()));
     ui->toolButtonStop->setEnabled(true);
-    runningProjects++;
+    ui->progressBar->setFormat(tr("Running"));
 }
 
 void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
 {
+    runningProjects--;
     log(tr("process finished: exitCode = %1, exitStatus = %2").arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))));
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
-    runningProjects--;
+    ui->progressBar->setFormat(tr("Idle"));
+    ui->progressBar->setValue(0);
 }
 
 void ProjectWidget::readyReadStandardOutput()
@@ -157,12 +170,27 @@ void ProjectWidget::readyReadStandardError()
     QString s = chdmanProc->readAllStandardError();
     stderrOutput += s;
     QStringList sl = s.split("\n");
-    int i;
-    for (i = 0; i < sl.count(); i++) {
+    int percent = 0;
+    for (int i = 0; i < sl.count(); i++) {
         s = sl[i].simplified();
-        if ( !s.isEmpty() )
+        if ( !s.isEmpty() ) {
             log(tr("stderr") + ": " + s);
+            switch ( ui->comboBoxProjectType->currentIndex() ) {
+            case QCHDMAN_PRJ_VERIFY:
+                if ( s.contains(QRegExp(", \\d+\\.\\d+\\%\\ complete\\.\\.\\.")) ) {
+                    QRegExp rx(", (\\d+)\\.(\\d+)\\%\\ complete\\.\\.\\.");
+                    int pos = rx.indexIn(s);
+                    if ( pos > -1 ) {
+                        int decimal = rx.cap(2).toInt();
+                        percent = rx.cap(1).toInt() + (decimal >= 5 ? 1 : 0);
+                    }
+                } else if ( s.contains("Compression complete ... final ratio =") )
+                    percent = 100;
+                break;
+            }
+        }
     }
+    ui->progressBar->setValue(percent);
 }
 
 void ProjectWidget::error(QProcess::ProcessError processError)
@@ -193,6 +221,8 @@ void ProjectWidget::error(QProcess::ProcessError processError)
     log(tr("process error: %1").arg(errString));
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
+    ui->progressBar->setFormat(tr("Idle"));
+    ui->progressBar->setValue(0);
 }
 
 void ProjectWidget::stateChanged(QProcess::ProcessState)

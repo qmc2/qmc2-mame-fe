@@ -9,6 +9,7 @@ class ProjectWindow : public QMdiSubWindow
     Q_OBJECT
 
 public:
+    bool firstShowEvent;
     QString projectName;
     ProjectWidget *projectWidget;
 

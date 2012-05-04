@@ -13,6 +13,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     
 public:
+    QLabel *statisticsLabel;
     QTimer statusTimer;
     int nextProjectID;
     PreferencesDialog *preferencesDialog;
