@@ -1,5 +1,8 @@
 #include <QtGui>
 #include <QFileDialog>
+#if defined(Q_OS_WIN)
+#include <windows.h>
+#endif
 
 #include "projectwidget.h"
 #include "ui_projectwidget.h"
@@ -33,10 +36,6 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
 
 ProjectWidget::~ProjectWidget()
 {
-    if ( chdmanProc ) {
-        if ( chdmanProc->state() == QProcess::Running )
-             chdmanProc->kill();
-    }
     delete ui;
 }
 
@@ -137,7 +136,11 @@ void ProjectWidget::on_toolButtonStop_clicked()
 void ProjectWidget::started()
 {
     runningProjects++;
+#if defined(Q_OS_WIN)
+    log(tr("process started: PID = %1").arg((chdmanProc->pid()->dwProcessId));
+#else
     log(tr("process started: PID = %1").arg(chdmanProc->pid()));
+#endif
     ui->toolButtonStop->setEnabled(true);
     ui->progressBar->setFormat(tr("Running"));
 }

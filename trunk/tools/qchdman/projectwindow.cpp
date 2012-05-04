@@ -48,6 +48,13 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
 {
     globalConfig->setProjectWidgetSplitterSizes(projectWidget->splitterSizes());
 
+    if ( projectWidget->chdmanProc ) {
+        if ( projectWidget->chdmanProc->state() == QProcess::Running ) {
+             projectWidget->chdmanProc->kill();
+             projectWidget->chdmanProc->waitForFinished();
+        }
+    }
+
     QMdiSubWindow::closeEvent(e);
 
     deleteLater();
