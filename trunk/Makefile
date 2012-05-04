@@ -919,6 +919,24 @@ ifeq '$(ARCH)' 'Darwin'
 $(QMAKEFILE): arch/Darwin/Info.plist
 endif
 
+# tools
+ifeq '$(ARCH)' 'Windows'
+# FIXME
+else
+qchdman:
+	@$(CD) tools/qchdman && $(QMAKE) && $(MAKE)
+
+qchdman-clean:
+	@$(CD) tools/qchdman && $(QMAKE) && $(MAKE) distclean
+
+qchdman-install: qchdman
+	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman" "$(DESTDIR)/$(BINDIR)"
+
+tools: qchdman
+tools-clean: qchdman-clean
+tools-install: qchdman-install
+endif
+
 ifeq '$(QUIET)' '1'
 ifeq '$(ARCH)' 'Windows'
 rcgen: qmc2-mame.rc qmc2-mess.rc
@@ -1102,7 +1120,12 @@ endif
 
 endif
 
+ifneq '$(ARCH)' 'Windows'
+distclean: clean qchdman-clean
+else
 distclean: clean
+endif
+
 clean: $(QMAKEFILE)
 	@echo "Cleaning up build of QMC2 v$(VERSION)"
 ifeq '$(QUIET)' '0'
@@ -1176,14 +1199,14 @@ ifneq '$(ARCH)' 'Windows'
 # rules for creation of distribution archives
 NOW = $(shell $(DATE))
 snapshot: snap exclude.list
-snap: clean
+snap: distclean
 	@echo "Creating source distribution snapshot for QMC2 v$(VERSION)-$(NOW)"
 	$(CD) .. ; \
 	$(TAR) -c -f - -X $(PROJECT)/exclude.list $(PROJECT) | bzip2 -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.bz2 ; \
 	$(TAR) -c -f - -X $(PROJECT)/exclude.list $(PROJECT) | gzip -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.gz
 
 distribution: dist exclude.list
-dist: clean
+dist: distclean
 	@echo "Creating source distribution archive for QMC2 v$(VERSION)"
 	$(CD) .. ; \
 	$(TAR) -c -f - -X $(PROJECT)/exclude.list $(PROJECT) | bzip2 -9 > $(PROJECT)-$(VERSION).tar.bz2 ; \
@@ -1255,7 +1278,7 @@ endif
 ifneq '$(ARCH)' 'Windows'
 	@$(MAKE) config | $(GREP) -v "Entering directory" | $(GREP) -v "Leaving directory"
 else
-	@$(MAKE) config"
+	@$(MAKE) config
 endif
 
 config:

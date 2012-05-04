@@ -15,7 +15,7 @@
 #else
 #define QCHDMAN_DOT_PATH            (QDir::homePath() + "/.qmc2")
 #endif
-#define QCHDMAN_DYN_DOT_PATH        (qApp->arguments().indexOf("-qmc2_config_path") >= 0 && qApp->arguments().indexOf("-qmc2_config_path") + 1 <= qApp->arguments().count() ? qApp->arguments()[qApp->arguments().indexOf("-qmc2_config_path") + 1]: QCHDMAN_DOT_PATH)
+#define QCHDMAN_DYN_DOT_PATH        (qApp->arguments().indexOf("-config_path") >= 0 && qApp->arguments().indexOf("-config_path") + 1 <= qApp->arguments().count() ? qApp->arguments()[qApp->arguments().indexOf("-config_path") + 1]: QCHDMAN_DOT_PATH)
 
 // project types
 #define QCHDMAN_PRJ_INFO            0
