@@ -3,6 +3,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "projectwindow.h"
+#include "projectwidget.h"
 #include "macros.h"
 #include "settings.h"
 
@@ -15,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    preferencesDialog = NULL;
+    preferencesDialog = new PreferencesDialog(this);
 
     restoreGeometry(globalConfig->mainWindowGeometry());
     restoreState(globalConfig->mainWindowState());
@@ -29,11 +30,9 @@ MainWindow::MainWindow(QWidget *parent) :
         on_actionWindowViewModeTabbed_triggered();
 
     // check CHDMAN binary setting
-    QFileInfo chdmanFileInfo(globalConfig->preferencesChdmanBinary());
-    if ( globalConfig->preferencesChdmanBinary().isEmpty() || !chdmanFileInfo.isExecutable() ) {
-        preferencesDialog = new PreferencesDialog(0);
+    QFileInfo chdmanFileInfo(globalConfig->preferencesChdmanBinary());   
+    if ( globalConfig->preferencesChdmanBinary().isEmpty() || !chdmanFileInfo.isExecutable() )
         QTimer::singleShot(100, preferencesDialog, SLOT(initialSetup()));
-    }
 
     statisticsLabel = new QLabel;
     statisticsLabel->setFrameStyle(QFrame::Raised | QFrame::StyledPanel);
@@ -41,6 +40,8 @@ MainWindow::MainWindow(QWidget *parent) :
     updateStatus();
     connect(&statusTimer, SIGNAL(timeout()), this, SLOT(updateStatus()));
     statusTimer.start(QCHDMAN_STATUS_INTERVAL);
+
+    QTimer::singleShot(0, preferencesDialog, SLOT(applySettings()));
 }
 
 MainWindow::~MainWindow()
@@ -68,8 +69,6 @@ void MainWindow::on_actionProjectSaveAs_triggered(bool)
 
 void MainWindow::on_actionProjectPreferences_triggered(bool)
 {
-    if ( !preferencesDialog )
-        preferencesDialog = new PreferencesDialog(0);
     preferencesDialog->exec();
 }
 
@@ -141,8 +140,19 @@ void MainWindow::updateStatus()
     statisticsLabel->setText(tr("Running projects: %1").arg(runningProjects));
 }
 
+void MainWindow::setLogFont()
+{
+    QFont f;
+    f.fromString(globalConfig->preferencesLogFont());
+    f.setPointSize(globalConfig->preferencesLogFontSize());
+    foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList())
+            ((ProjectWidget *)w->widget())->setLogFont(f);
+}
+
 void MainWindow::closeEvent(QCloseEvent *e)
 {
+    ui->mdiArea->closeAllSubWindows();
+
     globalConfig->setMainWindowState(saveState());
     globalConfig->setMainWindowGeometry(saveGeometry());
 
