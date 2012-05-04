@@ -137,6 +137,43 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QToolButton" name="toolButtonStop">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>Terminate the running process</string>
+           </property>
+           <property name="icon">
+            <iconset resource="qchdman.qrc">
+             <normaloff>:/data/img/exit.png</normaloff>:/data/img/exit.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButtonActions">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="icon">
+            <iconset resource="qchdman.qrc">
+             <normaloff>:/data/img/work.png</normaloff>:/data/img/work.png</iconset>
+           </property>
+           <property name="popupMode">
+            <enum>QToolButton::InstantPopup</enum>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item>
@@ -311,6 +348,8 @@
  <tabstops>
   <tabstop>comboBoxProjectType</tabstop>
   <tabstop>toolButtonRun</tabstop>
+  <tabstop>toolButtonStop</tabstop>
+  <tabstop>toolButtonActions</tabstop>
   <tabstop>lineEditInfoInputFile</tabstop>
   <tabstop>toolButtonBrowseInfoInputFile</tabstop>
   <tabstop>lineEditVerifyInputFile</tabstop>

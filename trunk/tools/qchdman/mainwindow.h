@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
+#include <QtGui>
 #include <preferencesdialog.h>
 
 namespace Ui {
@@ -13,6 +13,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
     
 public:
+    QTimer statusTimer;
     int nextProjectID;
     PreferencesDialog *preferencesDialog;
 
@@ -41,6 +42,9 @@ public slots:
     // Help menu
     void on_actionHelpAbout_triggered(bool checked = true);
     void on_actionHelpAboutQt_triggered(bool checked = true);
+
+    // Other
+    void updateStatus();
 
 protected:
     void closeEvent(QCloseEvent *);

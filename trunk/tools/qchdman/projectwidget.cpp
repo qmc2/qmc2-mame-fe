@@ -9,6 +9,7 @@
 
 extern Settings *globalConfig;
 extern MainWindow *mW;
+extern quint64 runningProjects;
 
 ProjectWidget::ProjectWidget(QWidget *parent) :
     QWidget(parent),
@@ -21,6 +22,11 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     QSize sizes = globalConfig->projectWidgetSplitterSizes();
     sizesList << sizes.width() << sizes.height();
     ui->splitter->setSizes(sizesList);
+
+    menuActions = new QMenu(this);
+    actionCopyStdoutToClipboard = menuActions->addAction(tr("Copy stdout to clipboard"), this, SLOT(copyStdoutToClipboard()));
+    actionCopyStderrToClipboard = menuActions->addAction(tr("Copy stderr to clipboard"), this, SLOT(copyStderrToClipboard()));
+    ui->toolButtonActions->setMenu(menuActions);
 }
 
 ProjectWidget::~ProjectWidget()
@@ -105,22 +111,38 @@ void ProjectWidget::on_toolButtonRun_clicked()
     ui->plainTextEditProjectLog->clear();
     log(tr("starting process"));
 
+    stdoutOutput.clear();
+    stderrOutput.clear();
+
     chdmanProc->start(globalConfig->preferencesChdmanBinary(), args);
+    ui->toolButtonRun->setEnabled(false);
+}
+
+void ProjectWidget::on_toolButtonStop_clicked()
+{
+    log(tr("terminating process"));
+    chdmanProc->terminate();
 }
 
 void ProjectWidget::started()
 {
     log(tr("process started: PID = %1").arg(chdmanProc->pid()));
+    ui->toolButtonStop->setEnabled(true);
+    runningProjects++;
 }
 
 void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
 {
     log(tr("process finished: exitCode = %1, exitStatus = %2").arg(exitCode).arg(QString(exitStatus == QProcess::NormalExit ? tr("normal") : tr("crashed"))));
+    ui->toolButtonRun->setEnabled(true);
+    ui->toolButtonStop->setEnabled(false);
+    runningProjects--;
 }
 
 void ProjectWidget::readyReadStandardOutput()
 {
     QString s = chdmanProc->readAllStandardOutput();
+    stdoutOutput += s;
     QStringList sl = s.split("\n");
     int i;
     for (i = 0; i < sl.count(); i++) {
@@ -133,6 +155,7 @@ void ProjectWidget::readyReadStandardOutput()
 void ProjectWidget::readyReadStandardError()
 {
     QString s = chdmanProc->readAllStandardError();
+    stderrOutput += s;
     QStringList sl = s.split("\n");
     int i;
     for (i = 0; i < sl.count(); i++) {
@@ -168,6 +191,8 @@ void ProjectWidget::error(QProcess::ProcessError processError)
     }
 
     log(tr("process error: %1").arg(errString));
+    ui->toolButtonRun->setEnabled(true);
+    ui->toolButtonStop->setEnabled(false);
 }
 
 void ProjectWidget::stateChanged(QProcess::ProcessState)
@@ -200,4 +225,14 @@ void ProjectWidget::log(QString message)
 {
     message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + jobName + ": ");
     ui->plainTextEditProjectLog->appendPlainText(message);
+}
+
+void ProjectWidget::copyStdoutToClipboard()
+{
+    qApp->clipboard()->setText(stdoutOutput);
+}
+
+void ProjectWidget::copyStderrToClipboard()
+{
+    qApp->clipboard()->setText(stderrOutput);
 }

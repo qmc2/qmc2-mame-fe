@@ -7,6 +7,7 @@
 #include "settings.h"
 
 extern Settings *globalConfig;
+extern quint64 runningProjects;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,6 +34,9 @@ MainWindow::MainWindow(QWidget *parent) :
         preferencesDialog = new PreferencesDialog(0);
         QTimer::singleShot(100, preferencesDialog, SLOT(initialSetup()));
     }
+
+    connect(&statusTimer, SIGNAL(timeout()), this, SLOT(updateStatus()));
+    statusTimer.start(1000);
 }
 
 MainWindow::~MainWindow()
@@ -126,6 +130,11 @@ void MainWindow::on_actionHelpAbout_triggered(bool)
 
 void MainWindow::on_actionHelpAboutQt_triggered(bool)
 {
+}
+
+void MainWindow::updateStatus()
+{
+    statusBar()->showMessage(tr("Running projects: %1").arg(runningProjects));
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)
