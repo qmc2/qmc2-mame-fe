@@ -35,8 +35,12 @@ MainWindow::MainWindow(QWidget *parent) :
         QTimer::singleShot(100, preferencesDialog, SLOT(initialSetup()));
     }
 
+    statisticsLabel = new QLabel;
+    statisticsLabel->setFrameStyle(QFrame::Raised | QFrame::StyledPanel);
+    statusBar()->addPermanentWidget(statisticsLabel);
+    updateStatus();
     connect(&statusTimer, SIGNAL(timeout()), this, SLOT(updateStatus()));
-    statusTimer.start(1000);
+    statusTimer.start(QCHDMAN_STATUS_INTERVAL);
 }
 
 MainWindow::~MainWindow()
@@ -134,7 +138,7 @@ void MainWindow::on_actionHelpAboutQt_triggered(bool)
 
 void MainWindow::updateStatus()
 {
-    statusBar()->showMessage(tr("Running projects: %1").arg(runningProjects));
+    statisticsLabel->setText(tr("Running projects: %1").arg(runningProjects));
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)

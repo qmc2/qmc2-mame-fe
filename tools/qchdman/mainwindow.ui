@@ -39,7 +39,7 @@
      <height>19</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menProject">
+   <widget class="QMenu" name="menuProject">
     <property name="title">
      <string>&amp;Project</string>
     </property>
@@ -92,7 +92,7 @@
     <addaction name="actionHelpAbout"/>
     <addaction name="actionHelpAboutQt"/>
    </widget>
-   <addaction name="menProject"/>
+   <addaction name="menuProject"/>
    <addaction name="menuWindow"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -100,6 +100,9 @@
   <action name="actionProjectNew">
    <property name="text">
     <string>New</string>
+   </property>
+   <property name="statusTip">
+    <string>Create a new project</string>
    </property>
   </action>
   <action name="actionProjectLoad">
@@ -109,6 +112,9 @@
    <property name="text">
     <string>Load...</string>
    </property>
+   <property name="statusTip">
+    <string>Load existing project from file</string>
+   </property>
   </action>
   <action name="actionProjectSave">
    <property name="enabled">
@@ -116,6 +122,9 @@
    </property>
    <property name="text">
     <string>Save</string>
+   </property>
+   <property name="statusTip">
+    <string>Save project to file</string>
    </property>
   </action>
   <action name="actionProjectSaveAs">
@@ -125,40 +134,64 @@
    <property name="text">
     <string>Save as...</string>
    </property>
+   <property name="statusTip">
+    <string>Save project under a different name</string>
+   </property>
   </action>
   <action name="actionProjectExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+   <property name="statusTip">
+    <string>Quit GUI</string>
    </property>
   </action>
   <action name="actionWindowNext">
    <property name="text">
     <string>Next</string>
    </property>
+   <property name="statusTip">
+    <string>Select next project window</string>
+   </property>
   </action>
   <action name="actionWindowPrevious">
    <property name="text">
     <string>Previous</string>
+   </property>
+   <property name="statusTip">
+    <string>Select previous project window</string>
    </property>
   </action>
   <action name="actionWindowTile">
    <property name="text">
     <string>Tile</string>
    </property>
+   <property name="statusTip">
+    <string>Tile project windows</string>
+   </property>
   </action>
   <action name="actionWindowCascade">
    <property name="text">
     <string>Cascade</string>
+   </property>
+   <property name="statusTip">
+    <string>Cascade project windows</string>
    </property>
   </action>
   <action name="actionWindowClose">
    <property name="text">
     <string>Close</string>
    </property>
+   <property name="statusTip">
+    <string>Close active project window</string>
+   </property>
   </action>
   <action name="actionWindowCloseAll">
    <property name="text">
     <string>Close all</string>
+   </property>
+   <property name="statusTip">
+    <string>Close all project windows</string>
    </property>
   </action>
   <action name="actionHelpAbout">
@@ -168,6 +201,9 @@
    <property name="text">
     <string>About...</string>
    </property>
+   <property name="statusTip">
+    <string>About this program</string>
+   </property>
   </action>
   <action name="actionHelpAboutQt">
    <property name="enabled">
@@ -176,10 +212,16 @@
    <property name="text">
     <string>About Qt...</string>
    </property>
+   <property name="statusTip">
+    <string>About Qt</string>
+   </property>
   </action>
   <action name="actionProjectPreferences">
    <property name="text">
     <string>Preferences...</string>
+   </property>
+   <property name="statusTip">
+    <string>General preferences</string>
    </property>
   </action>
   <action name="actionNo_recent_files">
@@ -194,6 +236,9 @@
    <property name="text">
     <string>Windowed</string>
    </property>
+   <property name="statusTip">
+    <string>View projects in windowed mode</string>
+   </property>
   </action>
   <action name="actionWindowViewModeTabbed">
    <property name="checkable">
@@ -201,6 +246,9 @@
    </property>
    <property name="text">
     <string>Tabbed</string>
+   </property>
+   <property name="statusTip">
+    <string>View projects in tabbed mode</string>
    </property>
   </action>
  </widget>
