@@ -137,7 +137,7 @@ void ProjectWidget::started()
 {
     runningProjects++;
 #if defined(Q_OS_WIN)
-    log(tr("process started: PID = %1").arg((chdmanProc->pid()->dwProcessId));
+    log(tr("process started: PID = %1").arg(chdmanProc->pid()->dwProcessId));
 #else
     log(tr("process started: PID = %1").arg(chdmanProc->pid()));
 #endif
