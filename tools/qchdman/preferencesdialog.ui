@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>420</width>
-    <height>215</height>
+    <width>358</width>
+    <height>156</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,6 +23,101 @@
       <attribute name="title">
        <string>GUI</string>
       </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelStyle">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Style</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="3">
+        <widget class="QComboBox" name="comboBoxStyle"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelAppFont">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Font</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QFontComboBox" name="fontComboBoxAppFont"/>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="labelAppFontSize">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Size</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QSpinBox" name="spinBoxAppFontSize"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="labelLogFont">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Log font</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QFontComboBox" name="fontComboBoxLogFont"/>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="labelLogFontSize">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Size</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QSpinBox" name="spinBoxLogFontSize"/>
+       </item>
+       <item row="3" column="0" colspan="4">
+        <spacer name="verticalSpacerGUI">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>331</width>
+           <height>3</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tabPaths">
       <attribute name="title">
@@ -60,15 +155,15 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <spacer name="verticalSpacer">
+       <item row="1" column="0" colspan="3">
+        <spacer name="verticalSpacerPaths">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>111</height>
+           <height>0</height>
           </size>
          </property>
         </spacer>
@@ -112,10 +207,15 @@
  </widget>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>lineEditChdmanBinary</tabstop>
-  <tabstop>toolButtonBrowseChdmanBinary</tabstop>
+  <tabstop>comboBoxStyle</tabstop>
+  <tabstop>fontComboBoxAppFont</tabstop>
+  <tabstop>spinBoxAppFontSize</tabstop>
+  <tabstop>fontComboBoxLogFont</tabstop>
+  <tabstop>spinBoxLogFontSize</tabstop>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonCancel</tabstop>
+  <tabstop>lineEditChdmanBinary</tabstop>
+  <tabstop>toolButtonBrowseChdmanBinary</tabstop>
  </tabstops>
  <resources>
   <include location="qchdman.qrc"/>

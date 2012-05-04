@@ -51,6 +51,7 @@ public slots:
 
     // Other
     void log(QString);
+    void setLogFont(QFont);
     void copyStdoutToClipboard();
     void copyStderrToClipboard();
     void on_comboBoxProjectType_currentIndexChanged(int);

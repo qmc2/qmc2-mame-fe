@@ -28,6 +28,11 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     actionCopyStdoutToClipboard = menuActions->addAction(tr("Copy stdout to clipboard"), this, SLOT(copyStdoutToClipboard()));
     actionCopyStderrToClipboard = menuActions->addAction(tr("Copy stderr to clipboard"), this, SLOT(copyStderrToClipboard()));
     ui->toolButtonActions->setMenu(menuActions);
+
+    QFont f;
+    f.fromString(globalConfig->preferencesLogFont());
+    f.setPointSize(globalConfig->preferencesLogFontSize());
+    ui->plainTextEditProjectLog->setFont(f);
 }
 
 ProjectWidget::~ProjectWidget()
@@ -243,6 +248,11 @@ void ProjectWidget::log(QString message)
     message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + jobName + ": ");
     ui->plainTextEditProjectLog->appendPlainText(message);
     ui->plainTextEditProjectLog->verticalScrollBar()->setValue(ui->plainTextEditProjectLog->verticalScrollBar()->maximum());
+}
+
+void ProjectWidget::setLogFont(QFont f)
+{
+    ui->plainTextEditProjectLog->setFont(f);
 }
 
 void ProjectWidget::copyStdoutToClipboard()

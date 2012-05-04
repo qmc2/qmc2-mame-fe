@@ -17,6 +17,8 @@ public:
 
 public slots:
     void initialSetup();
+    void restoreSettings();
+    void applySettings();
     void on_pushButtonOk_clicked();
 
     // GUI
