@@ -4,6 +4,7 @@
 #include "settings.h"
 #include "macros.h"
 
+quint64 runningProjects = 0;
 MainWindow *mW = NULL;
 Settings *globalConfig = NULL;
 

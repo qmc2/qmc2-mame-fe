@@ -12,8 +12,13 @@ class ProjectWidget : public QWidget
     Q_OBJECT
 
 public:
+    QString stdoutOutput;
+    QString stderrOutput;
     QString jobName;
     QProcess *chdmanProc;
+    QMenu *menuActions;
+    QAction *actionCopyStdoutToClipboard;
+    QAction *actionCopyStderrToClipboard;
 
     explicit ProjectWidget(QWidget *parent = 0);
     ~ProjectWidget();
@@ -48,9 +53,12 @@ public slots:
 
     // Other
     void log(QString);
+    void copyStdoutToClipboard();
+    void copyStderrToClipboard();
+    void on_splitter_splitterMoved(int, int);
     void on_comboBoxProjectType_currentIndexChanged(int);
     void on_toolButtonRun_clicked();
-    void on_splitter_splitterMoved(int, int);
+    void on_toolButtonStop_clicked();
 
     // Process control
     void started();
