@@ -28,8 +28,6 @@ public slots:
     int mainWindowViewMode() { return value("MainWindow/ViewMode", QCHDMAN_VIEWMODE_WINDOWED).toInt(); }
 
     // ProjectWidget
-    void setProjectWidgetSplitterSizes(QSize sizes) { setValue("ProjectWidget/SplitterSizes", sizes); }
-    QSize projectWidgetSplitterSizes() { return value("ProjectWidget/SplitterSizes", QSize(70, 30)).toSize(); }
 };
 
 #endif // SETTINGS_H
