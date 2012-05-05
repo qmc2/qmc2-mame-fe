@@ -1258,7 +1258,7 @@ help:
 	@echo "### Target ###  ### Description ###"
 	@echo "all (default)   Build QMC2, aliases: $(PROJECT), bin, $(PROJECT)-bin"
 	@echo "clean           Clean up compilation & linkage binaries from source tree"
-	@echo "config          Show current build configurion"
+	@echo "config          Show build configuration options and their current values"
 ifneq '$(ARCH)' 'Windows'
 	@echo "dist            Create source distribution archives (tar.gz and tar.bz2)"
 	@echo "exclude-list    Recreate SVN exclude-list (only used by developers)"
@@ -1277,12 +1277,13 @@ ifeq '$(ARCH)' 'Darwin'
 else
 	@echo "configure       Create qmake output and stop, alias: qmake"
 endif
-	@echo ""
+	@echo "tools           Build tools: qchdman"
+	@echo "tools-clean     Clean up tools: qchdman-clean"
 ifneq '$(ARCH)' 'Windows'
-	@$(MAKE) config | $(GREP) -v "Entering directory" | $(GREP) -v "Leaving directory"
-else
-	@$(MAKE) config
+	@echo "tools-install   Install tools: qchdman-install"
 endif
+	@echo ""
+	@echo "Run 'make config' for build configuration options."
 
 config:
 	@echo "Current build configuration:"
