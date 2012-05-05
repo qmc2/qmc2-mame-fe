@@ -56,6 +56,8 @@ void ProjectWidget::on_toolButtonRun_clicked()
         args << "info";
         if ( !ui->lineEditInfoInputFile->text().isEmpty() )
             args << "--input" << ui->lineEditInfoInputFile->text();
+        if ( ui->checkBoxInfoVerbose->isChecked() )
+            args << "--verbose";
         ui->progressBar->setRange(0, 100);
         break;
     case QCHDMAN_PRJ_VERIFY:
