@@ -203,7 +203,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="3">
+          <item row="2" column="0" colspan="3">
            <spacer name="verticalSpacerInfo">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -215,6 +215,13 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item row="1" column="0" colspan="3">
+           <widget class="QCheckBox" name="checkBoxInfoVerbose">
+            <property name="text">
+             <string>Output additional information (verbose)</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -333,6 +340,7 @@
   <tabstop>toolButtonActions</tabstop>
   <tabstop>lineEditInfoInputFile</tabstop>
   <tabstop>toolButtonBrowseInfoInputFile</tabstop>
+  <tabstop>checkBoxInfoVerbose</tabstop>
   <tabstop>lineEditVerifyInputFile</tabstop>
   <tabstop>toolButtonBrowseVerifyInputFile</tabstop>
   <tabstop>lineEditVerifyParentInputFile</tabstop>
