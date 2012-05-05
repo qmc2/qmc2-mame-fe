@@ -921,7 +921,14 @@ endif
 
 # tools
 ifeq '$(ARCH)' 'Windows'
-# FIXME
+qchdman:
+	@$(CD) tools\qchdman && $(QMAKE) && $(MAKE)
+
+qchdman-clean:
+	@$(CD) tools\qchdman && $(QMAKE) && $(MAKE) distclean
+
+tools: qchdman
+tools-clean: qchdman-clean
 else
 qchdman:
 	@$(CD) tools/qchdman && $(QMAKE) && $(MAKE)
@@ -1120,11 +1127,7 @@ endif
 
 endif
 
-ifneq '$(ARCH)' 'Windows'
-distclean: clean qchdman-clean
-else
-distclean: clean
-endif
+distclean: clean tools-clean
 
 clean: $(QMAKEFILE)
 	@echo "Cleaning up build of QMC2 v$(VERSION)"
