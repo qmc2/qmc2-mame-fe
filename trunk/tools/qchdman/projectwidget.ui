@@ -6,97 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>557</width>
+    <width>574</width>
     <height>334</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,1">
-   <item row="0" column="0">
-    <widget class="QLabel" name="labelProjectType">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Project type</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QComboBox" name="comboBoxProjectType">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="maxVisibleItems">
-      <number>20</number>
-     </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QComboBox::AdjustToContents</enum>
-     </property>
-     <item>
-      <property name="text">
-       <string>Display information about a CHD</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Verify the integrity of a CHD input file</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Copy data from one CHD to another of the same type</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Create a raw CHD from an input file</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Create a hard disk CHD from an input file</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Create a CD CHD from an input file</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Create a laserdisc CHD from an input file</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Extract raw file from a CHD input file</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Extract raw hard disk file from a CHD input file</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Extract CD file from a CHD input file</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Extract laserdisc AVI file from a CHD input file</string>
-      </property>
-     </item>
-    </widget>
-   </item>
    <item row="0" column="2">
     <widget class="QProgressBar" name="progressBar">
+     <property name="toolTip">
+      <string>Project status / progress</string>
+     </property>
      <property name="value">
       <number>0</number>
      </property>
@@ -118,7 +37,7 @@
      </property>
      <property name="icon">
       <iconset resource="qchdman.qrc">
-       <normaloff>:/data/img/process.png</normaloff>:/data/img/process.png</iconset>
+       <normaloff>:/images/run.png</normaloff>:/images/run.png</iconset>
      </property>
     </widget>
    </item>
@@ -138,7 +57,7 @@
      </property>
      <property name="icon">
       <iconset resource="qchdman.qrc">
-       <normaloff>:/data/img/exit.png</normaloff>:/data/img/exit.png</iconset>
+       <normaloff>:/images/stop.png</normaloff>:/images/stop.png</iconset>
      </property>
     </widget>
    </item>
@@ -150,19 +69,35 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="toolTip">
+      <string>Tools menu</string>
+     </property>
      <property name="icon">
       <iconset resource="qchdman.qrc">
-       <normaloff>:/data/img/work.png</normaloff>:/data/img/work.png</iconset>
+       <normaloff>:/images/tools.png</normaloff>:/images/tools.png</iconset>
      </property>
      <property name="popupMode">
       <enum>QToolButton::InstantPopup</enum>
      </property>
     </widget>
    </item>
+   <item row="2" column="0" colspan="6">
+    <widget class="QPlainTextEdit" name="plainTextEditProjectLog">
+     <property name="toolTip">
+      <string>Project log</string>
+     </property>
+     <property name="lineWrapMode">
+      <enum>QPlainTextEdit::NoWrap</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="0" colspan="6">
     <widget class="QGroupBox" name="groupBoxProjectDetails">
      <property name="title">
-      <string>Project details</string>
+      <string/>
      </property>
      <layout class="QGridLayout" name="gridLayoutProjectDetails">
       <item row="0" column="0">
@@ -199,7 +134,7 @@
             </property>
             <property name="icon">
              <iconset resource="qchdman.qrc">
-              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+              <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
            </widget>
           </item>
@@ -264,7 +199,7 @@
             </property>
             <property name="icon">
              <iconset resource="qchdman.qrc">
-              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+              <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
            </widget>
           </item>
@@ -278,7 +213,7 @@
             </property>
             <property name="icon">
              <iconset resource="qchdman.qrc">
-              <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+              <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
             </property>
            </widget>
           </item>
@@ -318,17 +253,122 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="0" colspan="6">
-    <widget class="QPlainTextEdit" name="plainTextEditProjectLog">
+   <item row="0" column="0">
+    <widget class="QComboBox" name="comboBoxProjectType">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="toolTip">
-      <string>Project log</string>
+      <string>Select project type</string>
      </property>
-     <property name="lineWrapMode">
-      <enum>QPlainTextEdit::NoWrap</enum>
+     <property name="maxVisibleItems">
+      <number>20</number>
      </property>
-     <property name="readOnly">
-      <bool>true</bool>
+     <property name="sizeAdjustPolicy">
+      <enum>QComboBox::AdjustToContents</enum>
      </property>
+     <item>
+      <property name="text">
+       <string>Display information about a CHD</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/info.png</normaloff>:/images/info.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Verify the integrity of a CHD input file</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/verify.png</normaloff>:/images/verify.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Copy data from one CHD to another of the same type</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/copy.png</normaloff>:/images/copy.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Create a raw CHD from an input file</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/createraw.png</normaloff>:/images/createraw.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Create a hard disk CHD from an input file</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/createhd.png</normaloff>:/images/createhd.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Create a CD CHD from an input file</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/createcd.png</normaloff>:/images/createcd.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Create a laserdisc CHD from an input file</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/createld.png</normaloff>:/images/createld.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Extract raw file from a CHD input file</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/extractraw.png</normaloff>:/images/extractraw.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Extract raw hard disk file from a CHD input file</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/extracthd.png</normaloff>:/images/extracthd.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Extract CD file from a CHD input file</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/extractcd.png</normaloff>:/images/extractcd.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Extract laserdisc AVI file from a CHD input file</string>
+      </property>
+      <property name="icon">
+       <iconset resource="qchdman.qrc">
+        <normaloff>:/images/extractld.png</normaloff>:/images/extractld.png</iconset>
+      </property>
+     </item>
     </widget>
    </item>
   </layout>
@@ -362,8 +402,8 @@
      <y>12</y>
     </hint>
     <hint type="destinationlabel">
-     <x>237</x>
-     <y>135</y>
+     <x>248</x>
+     <y>126</y>
     </hint>
    </hints>
   </connection>

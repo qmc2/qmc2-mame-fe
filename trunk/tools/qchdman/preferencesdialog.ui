@@ -151,7 +151,7 @@
          </property>
          <property name="icon">
           <iconset resource="qchdman.qrc">
-           <normaloff>:/data/img/fileopen.png</normaloff>:/data/img/fileopen.png</iconset>
+           <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
          </property>
         </widget>
        </item>
