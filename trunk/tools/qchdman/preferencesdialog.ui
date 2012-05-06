@@ -232,11 +232,11 @@
   <tabstop>spinBoxAppFontSize</tabstop>
   <tabstop>fontComboBoxLogFont</tabstop>
   <tabstop>spinBoxLogFontSize</tabstop>
+  <tabstop>lineEditChdmanBinary</tabstop>
+  <tabstop>toolButtonBrowseChdmanBinary</tabstop>
   <tabstop>pushButtonOk</tabstop>
   <tabstop>pushButtonApply</tabstop>
   <tabstop>pushButtonCancel</tabstop>
-  <tabstop>lineEditChdmanBinary</tabstop>
-  <tabstop>toolButtonBrowseChdmanBinary</tabstop>
  </tabstops>
  <resources>
   <include location="qchdman.qrc"/>
