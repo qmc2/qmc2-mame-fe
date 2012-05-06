@@ -104,6 +104,9 @@
    <property name="statusTip">
     <string>Create a new project</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="actionProjectLoad">
    <property name="enabled">
@@ -114,6 +117,9 @@
    </property>
    <property name="statusTip">
     <string>Load existing project from file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
    </property>
   </action>
   <action name="actionProjectSave">
@@ -126,6 +132,9 @@
    <property name="statusTip">
     <string>Save project to file</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="actionProjectSaveAs">
    <property name="enabled">
@@ -137,6 +146,9 @@
    <property name="statusTip">
     <string>Save project under a different name</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
   </action>
   <action name="actionProjectExit">
    <property name="text">
@@ -144,6 +156,9 @@
    </property>
    <property name="statusTip">
     <string>Quit GUI</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
    </property>
   </action>
   <action name="actionWindowNext">
@@ -153,6 +168,9 @@
    <property name="statusTip">
     <string>Select next project window</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+N</string>
+   </property>
   </action>
   <action name="actionWindowPrevious">
    <property name="text">
@@ -160,6 +178,9 @@
    </property>
    <property name="statusTip">
     <string>Select previous project window</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+P</string>
    </property>
   </action>
   <action name="actionWindowTile">
@@ -169,6 +190,9 @@
    <property name="statusTip">
     <string>Tile project windows</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+T</string>
+   </property>
   </action>
   <action name="actionWindowCascade">
    <property name="text">
@@ -176,6 +200,9 @@
    </property>
    <property name="statusTip">
     <string>Cascade project windows</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+C</string>
    </property>
   </action>
   <action name="actionWindowClose">
@@ -223,6 +250,9 @@
    <property name="statusTip">
     <string>General preferences</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="actionNo_recent_files">
    <property name="text">
@@ -239,6 +269,9 @@
    <property name="statusTip">
     <string>View projects in windowed mode</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+W</string>
+   </property>
   </action>
   <action name="actionWindowViewModeTabbed">
    <property name="checkable">
@@ -249,6 +282,9 @@
    </property>
    <property name="statusTip">
     <string>View projects in tabbed mode</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+T</string>
    </property>
   </action>
  </widget>

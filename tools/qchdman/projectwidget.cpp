@@ -4,6 +4,7 @@
 #include <windows.h>
 #endif
 
+#include "projectwindow.h"
 #include "projectwidget.h"
 #include "ui_projectwidget.h"
 #include "mainwindow.h"
@@ -41,6 +42,7 @@ ProjectWidget::~ProjectWidget()
 
 void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
 {
+    // FIXME: copy data where applicable
     switch ( index ) {
     case QCHDMAN_PRJ_INFO:
         break;
