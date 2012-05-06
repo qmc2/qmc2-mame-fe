@@ -184,6 +184,7 @@ void ProjectWidget::on_toolButtonRun_clicked()
     terminatedOnDemand = false;
     chdmanProc->start(globalConfig->preferencesChdmanBinary(), args);
     ui->toolButtonRun->setEnabled(false);
+    ui->comboBoxProjectType->setEnabled(false);
     ui->progressBar->setFormat(tr("Starting"));
     ui->progressBar->setValue(0);
 }
@@ -216,6 +217,7 @@ void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
     log(tr("process finished: exitCode = %1, exitStatus = %2").arg(exitCode).arg(statusString));
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
+    ui->comboBoxProjectType->setEnabled(true);
     ui->progressBar->setFormat(tr("Idle"));
     ui->progressBar->setValue(0);
 }
@@ -296,6 +298,7 @@ void ProjectWidget::error(QProcess::ProcessError processError)
 
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
+    ui->comboBoxProjectType->setEnabled(true);
     ui->progressBar->setFormat(tr("Idle"));
     ui->progressBar->setValue(0);
 }
