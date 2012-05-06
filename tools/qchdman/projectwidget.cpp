@@ -92,30 +92,48 @@ void ProjectWidget::on_toolButtonRun_clicked()
         break;
     case QCHDMAN_PRJ_COPY:
         jobName = tr("Copy");
+        args << "copy";
+        // FIXME
         break;
     case QCHDMAN_PRJ_CREATE_RAW:
         jobName = tr("CreateRaw");
+        args << "createraw";
+        // FIXME
         break;
     case QCHDMAN_PRJ_CREATE_HD:
         jobName = tr("CreateHD");
+        args << "createhd";
+        // FIXME
         break;
     case QCHDMAN_PRJ_CREATE_CD:
         jobName = tr("CreateCD");
+        args << "createcd";
+        // FIXME
         break;
     case QCHDMAN_PRJ_CREATE_LD:
         jobName = tr("CreateLD");
+        args << "createld";
+        // FIXME
         break;
     case QCHDMAN_PRJ_EXTRACT_RAW:
         jobName = tr("ExtractRaw");
+        args << "extractraw";
+        // FIXME
         break;
     case QCHDMAN_PRJ_EXTRACT_HD:
         jobName = tr("ExtractHD");
+        args << "extracthd";
+        // FIXME
         break;
     case QCHDMAN_PRJ_EXTRACT_CD:
         jobName = tr("ExtractCD");
+        args << "extractcd";
+        // FIXME
         break;
     case QCHDMAN_PRJ_EXTRACT_LD:
         jobName = tr("ExtractLD");
+        args << "extractld";
+        // FIXME
         break;
     }
 

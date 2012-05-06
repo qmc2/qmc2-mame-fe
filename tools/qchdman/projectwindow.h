@@ -9,7 +9,6 @@ class ProjectWindow : public QMdiSubWindow
     Q_OBJECT
 
 public:
-    bool firstShowEvent;
     QString projectName;
     ProjectWidget *projectWidget;
 
@@ -17,8 +16,6 @@ public:
     ~ProjectWindow();
 
 protected:
-    void showEvent(QShowEvent *);
-    void hideEvent(QHideEvent *);
     void closeEvent(QCloseEvent *);
 };
 

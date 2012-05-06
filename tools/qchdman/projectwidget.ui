@@ -6,11 +6,11 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>574</width>
-    <height>334</height>
+    <width>515</width>
+    <height>313</height>
    </rect>
   </property>
-  <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,1">
+  <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,1" columnstretch="1,0,0,0,0,0">
    <item row="0" column="2">
     <widget class="QProgressBar" name="progressBar">
      <property name="toolTip">
@@ -107,23 +107,6 @@
         </property>
         <widget class="QWidget" name="pageInfo">
          <layout class="QGridLayout" name="gridLayoutPageInfo">
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelInfoInputFile">
-            <property name="text">
-             <string>CHD input file</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEditInfoInputFile">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="2">
            <widget class="QToolButton" name="toolButtonBrowseInfoInputFile">
             <property name="sizePolicy">
@@ -154,7 +137,23 @@
           <item row="1" column="0" colspan="3">
            <widget class="QCheckBox" name="checkBoxInfoVerbose">
             <property name="text">
-             <string>Output additional information (verbose)</string>
+             <string>Output additional information (optional)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QLineEdit" name="lineEditInfoInputFile">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>CHD input file (required)</string>
+            </property>
+            <property name="placeholderText">
+             <string>CHD input file (required)</string>
             </property>
            </widget>
           </item>
@@ -162,33 +161,6 @@
         </widget>
         <widget class="QWidget" name="pageVerify">
          <layout class="QGridLayout" name="gridLayoutPageVerify">
-          <item row="1" column="0">
-           <widget class="QLabel" name="labelVerifyParentInputFile">
-            <property name="text">
-             <string>Parent CHD input file</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEditVerifyInputFile">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="lineEditVerifyParentInputFile">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="2">
            <widget class="QToolButton" name="toolButtonBrowseVerifyParentInputFile">
             <property name="sizePolicy">
@@ -217,13 +189,6 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelVerifyInputFile">
-            <property name="text">
-             <string>CHD input file</string>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="0" colspan="3">
            <spacer name="verticalSpacerVerify">
             <property name="orientation">
@@ -236,6 +201,38 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QLineEdit" name="lineEditVerifyInputFile">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>CHD input file (required)</string>
+            </property>
+            <property name="placeholderText">
+             <string>CHD input file (required)</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QLineEdit" name="lineEditVerifyParentInputFile">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Parent CHD input file (optional)</string>
+            </property>
+            <property name="placeholderText">
+             <string>Parent CHD input file (optional)</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -267,12 +264,9 @@
      <property name="maxVisibleItems">
       <number>20</number>
      </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QComboBox::AdjustToContents</enum>
-     </property>
      <item>
       <property name="text">
-       <string>Display information about a CHD</string>
+       <string>Display information about a CHD input file</string>
       </property>
       <property name="icon">
        <iconset resource="qchdman.qrc">
@@ -290,7 +284,7 @@
      </item>
      <item>
       <property name="text">
-       <string>Copy data from one CHD to another of the same type</string>
+       <string>Copy data from one CHD to another</string>
       </property>
       <property name="icon">
        <iconset resource="qchdman.qrc">
@@ -308,7 +302,7 @@
      </item>
      <item>
       <property name="text">
-       <string>Create a hard disk CHD from an input file</string>
+       <string>Create an HD CHD from an input file</string>
       </property>
       <property name="icon">
        <iconset resource="qchdman.qrc">
@@ -326,7 +320,7 @@
      </item>
      <item>
       <property name="text">
-       <string>Create a laserdisc CHD from an input file</string>
+       <string>Create an LD CHD from an input file</string>
       </property>
       <property name="icon">
        <iconset resource="qchdman.qrc">
@@ -335,7 +329,7 @@
      </item>
      <item>
       <property name="text">
-       <string>Extract raw file from a CHD input file</string>
+       <string>Extract a raw file from a CHD input file</string>
       </property>
       <property name="icon">
        <iconset resource="qchdman.qrc">
@@ -344,7 +338,7 @@
      </item>
      <item>
       <property name="text">
-       <string>Extract raw hard disk file from a CHD input file</string>
+       <string>Extract an HD file from a CHD input file</string>
       </property>
       <property name="icon">
        <iconset resource="qchdman.qrc">
@@ -353,7 +347,7 @@
      </item>
      <item>
       <property name="text">
-       <string>Extract CD file from a CHD input file</string>
+       <string>Extract a CD file from a CHD input file</string>
       </property>
       <property name="icon">
        <iconset resource="qchdman.qrc">
@@ -362,7 +356,7 @@
      </item>
      <item>
       <property name="text">
-       <string>Extract laserdisc AVI file from a CHD input file</string>
+       <string>Extract an LD AVI file from a CHD input file</string>
       </property>
       <property name="icon">
        <iconset resource="qchdman.qrc">

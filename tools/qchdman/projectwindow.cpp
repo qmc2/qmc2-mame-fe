@@ -12,8 +12,6 @@ extern MainWindow *mW;
 ProjectWindow::ProjectWindow(QString pn, QWidget *parent) :
     QMdiSubWindow(parent)
 {
-    firstShowEvent = true;
-
     if ( pn.isEmpty() )
         projectName = tr("Noname-%1").arg(mW->nextProjectID++);
     else
@@ -27,21 +25,6 @@ ProjectWindow::ProjectWindow(QString pn, QWidget *parent) :
 
 ProjectWindow::~ProjectWindow()
 {
-}
-
-void ProjectWindow::showEvent(QShowEvent *e)
-{
-    if ( firstShowEvent && globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED ) {
-        adjustSize();
-        firstShowEvent = false;
-    }
-
-    QMdiSubWindow::showEvent(e);
-}
-
-void ProjectWindow::hideEvent(QHideEvent *e)
-{
-    QMdiSubWindow::hideEvent(e);
 }
 
 void ProjectWindow::closeEvent(QCloseEvent *e)
