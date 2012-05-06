@@ -20,8 +20,6 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->groupBoxProjectDetails->setTitle(ui->comboBoxProjectType->currentText());
-
     chdmanProc = NULL;
     terminatedOnDemand = false;
 
@@ -41,9 +39,32 @@ ProjectWidget::~ProjectWidget()
     delete ui;
 }
 
-void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int)
+void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
 {
-    ui->groupBoxProjectDetails->setTitle(ui->comboBoxProjectType->currentText());
+    switch ( index ) {
+    case QCHDMAN_PRJ_INFO:
+        break;
+    case QCHDMAN_PRJ_VERIFY:
+        break;
+    case QCHDMAN_PRJ_COPY:
+        break;
+    case QCHDMAN_PRJ_CREATE_RAW:
+        break;
+    case QCHDMAN_PRJ_CREATE_HD:
+        break;
+    case QCHDMAN_PRJ_CREATE_CD:
+        break;
+    case QCHDMAN_PRJ_CREATE_LD:
+        break;
+    case QCHDMAN_PRJ_EXTRACT_RAW:
+        break;
+    case QCHDMAN_PRJ_EXTRACT_HD:
+        break;
+    case QCHDMAN_PRJ_EXTRACT_CD:
+        break;
+    case QCHDMAN_PRJ_EXTRACT_LD:
+        break;
+    }
 }
 
 void ProjectWidget::on_toolButtonRun_clicked()
