@@ -39,8 +39,6 @@ public slots:
     QByteArray mainWindowGeometry() { return value("MainWindow/Geometry", QByteArray()).toByteArray(); }
     void setMainWindowViewMode(int mode) { setValue("MainWindow/ViewMode", mode); };
     int mainWindowViewMode() { return value("MainWindow/ViewMode", QCHDMAN_VIEWMODE_WINDOWED).toInt(); }
-
-    // ProjectWidget
 };
 
 #endif // SETTINGS_H

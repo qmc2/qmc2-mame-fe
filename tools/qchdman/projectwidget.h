@@ -51,6 +51,7 @@ public slots:
     // Copy
 
     // Other
+    void init();
     void log(QString);
     void setLogFont(QFont);
     void copyStdoutToClipboard();

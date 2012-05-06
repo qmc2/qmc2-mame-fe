@@ -33,6 +33,8 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     f.fromString(globalConfig->preferencesLogFont());
     f.setPointSize(globalConfig->preferencesLogFontSize());
     ui->plainTextEditProjectLog->setFont(f);
+
+    QTimer::singleShot(0, this, SLOT(init()));
 }
 
 ProjectWidget::~ProjectWidget()
@@ -42,13 +44,18 @@ ProjectWidget::~ProjectWidget()
 
 void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
 {
+    int widgetHeight = 0;
+
     // FIXME: copy data where applicable
     switch ( index ) {
     case QCHDMAN_PRJ_INFO:
+        widgetHeight = ui->groupBoxInfo->height() + 2 * ui->gridLayoutGroupBoxInfo->contentsMargins().bottom();
         break;
     case QCHDMAN_PRJ_VERIFY:
+        widgetHeight = ui->groupBoxVerify->height() + 2 * ui->gridLayoutGroupBoxVerify->contentsMargins().bottom();
         break;
     case QCHDMAN_PRJ_COPY:
+        widgetHeight = ui->groupBoxCopy->height() + 2 * ui->gridLayoutGroupBoxCopy->contentsMargins().bottom();
         break;
     case QCHDMAN_PRJ_CREATE_RAW:
         break;
@@ -67,6 +74,14 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
     case QCHDMAN_PRJ_EXTRACT_LD:
         break;
     }
+
+    // adjust splitter
+    int splitterHeight = ui->splitter->height();
+    double percent = (double)widgetHeight / (double)splitterHeight;
+    int newHeight = int((double)splitterHeight * percent);
+    QList<int> newSizes;
+    newSizes << newHeight << splitterHeight - newHeight;
+    ui->splitter->setSizes(newSizes);
 }
 
 void ProjectWidget::on_toolButtonRun_clicked()
@@ -95,7 +110,19 @@ void ProjectWidget::on_toolButtonRun_clicked()
     case QCHDMAN_PRJ_COPY:
         jobName = tr("Copy");
         args << "copy";
-        // FIXME
+//      --output, -o <filename>: output file name (required)
+//      --outputparent, -op <filename>: parent file name for output CHD
+//      --force, -f: force overwriting an existing file
+//      --input, -i <filename>: input file name (required)
+//      --inputparent, -ip <filename>: parent file name for input CHD
+//      --inputstartbyte, -isb <offset>: starting byte offset within the input
+//      --inputstarthunk, -ish <offset>: starting hunk offset within the input
+//      --inputbytes, -ib <length>: effective length of input in bytes
+//      --inputhunks, -ih <length>: effective length of input in hunks
+//      --hunksize, -hs <bytes>: size of each hunk, in bytes
+//      --compression, -c <none|type1[,type2[,...]]>: which compression codecs to use (up to 4)
+//      --numprocessors, -np <processors>: limit the number of processors to use during compression
+
         break;
     case QCHDMAN_PRJ_CREATE_RAW:
         jobName = tr("CreateRaw");
@@ -297,6 +324,11 @@ void ProjectWidget::on_toolButtonBrowseVerifyParentInputFile_clicked()
     QString s = QFileDialog::getOpenFileName(this, tr("Choose parent CHD input file"), ui->lineEditVerifyParentInputFile->text(), tr("CHD files (*.chd);;All files (*)"));
     if ( !s.isNull() )
         ui->lineEditVerifyParentInputFile->setText(s);
+}
+
+void ProjectWidget::init()
+{
+    on_comboBoxProjectType_currentIndexChanged(QCHDMAN_PRJ_INFO);
 }
 
 void ProjectWidget::log(QString message)
