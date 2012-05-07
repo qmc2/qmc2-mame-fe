@@ -947,8 +947,18 @@ qchdman:
 qchdman-clean:
 	@$(CD) tools/qchdman && $(QMAKE) && $(MAKE) distclean
 
+ifeq '$(ARCH)' 'Darwin'
+tools/qchdman/qchdman.app/Contents/Resources/qt.conf:
+	@$(MACDEPLOYQT) tools/qchdman/qchdman.app
+qchdman-macdeployqt: tools/qchdman/qchdman.app/Contents/Resources/qt.conf
+qchdman-install: qchdman qchdman-macdeployqt
+	@$(MKDIR) "/Applications/qchdman"
+	@$(CHMOD) a+rx "/Applications/qchdman"
+	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman.app" "/Applications/qchdman"
+else
 qchdman-install: qchdman
 	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman" "$(DESTDIR)/$(BINDIR)"
+endif
 
 tools: qchdman
 tools-clean: qchdman-clean
