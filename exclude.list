@@ -3226,6 +3226,7 @@ qmc2/.svn/text-base/youtubevideoplayer.h.svn-base
 qmc2/.svn/text-base/youtubevideoplayer.ui.svn-base
 qmc2/tools/qchdman/images/.svn
 qmc2/tools/qchdman/images/.svn/prop-base/active.png.svn-base
+qmc2/tools/qchdman/images/.svn/prop-base/compression.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/copy.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/createcd.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/createhd.png.svn-base
@@ -3246,6 +3247,7 @@ qmc2/tools/qchdman/images/.svn/prop-base/stop.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/tools.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/verify.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/active.png.svn-base
+qmc2/tools/qchdman/images/.svn/text-base/compression.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/copy.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/createcd.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/createhd.png.svn-base
