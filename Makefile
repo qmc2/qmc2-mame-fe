@@ -1255,19 +1255,20 @@ ifneq '$(ARCH)' 'Windows'
 
 # rules for creation of distribution archives
 NOW = $(shell $(DATE))
+SRCDIR = $(shell $(BASENAME) `pwd`)
 snapshot: snap exclude.list
 snap: distclean
 	@echo "Creating source distribution snapshot for QMC2 v$(VERSION)-$(NOW)"
 	$(CD) .. ; \
-	$(TAR) -c -f - -X $(PROJECT)/exclude.list $(PROJECT) | bzip2 -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.bz2 ; \
-	$(TAR) -c -f - -X $(PROJECT)/exclude.list $(PROJECT) | gzip -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.gz
+	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.bz2 ; \
+	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION)-$(NOW).tar.gz
 
 distribution: dist exclude.list
 dist: distclean
 	@echo "Creating source distribution archive for QMC2 v$(VERSION)"
 	$(CD) .. ; \
-	$(TAR) -c -f - -X $(PROJECT)/exclude.list $(PROJECT) | bzip2 -9 > $(PROJECT)-$(VERSION).tar.bz2 ; \
-	$(TAR) -c -f - -X $(PROJECT)/exclude.list $(PROJECT) | gzip -9 > $(PROJECT)-$(VERSION).tar.gz
+	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | bzip2 -9 > $(PROJECT)-$(VERSION).tar.bz2 ; \
+	$(TAR) -c -f - -X $(SRCDIR)/exclude.list $(SRCDIR) | gzip -9 > $(PROJECT)-$(VERSION).tar.gz
 
 endif
 
