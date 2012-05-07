@@ -3232,6 +3232,7 @@ qmc2/tools/qchdman/images/.svn/prop-base/createcd.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/createhd.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/createld.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/createraw.png.svn-base
+qmc2/tools/qchdman/images/.svn/prop-base/default.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/extractcd.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/extracthd.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/extractld.png.svn-base
@@ -3242,6 +3243,7 @@ qmc2/tools/qchdman/images/.svn/prop-base/filesaveas.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/filesave.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/inactive.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/info.png.svn-base
+qmc2/tools/qchdman/images/.svn/prop-base/none.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/run.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/stop.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/tools.png.svn-base
@@ -3253,6 +3255,7 @@ qmc2/tools/qchdman/images/.svn/text-base/createcd.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/createhd.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/createld.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/createraw.png.svn-base
+qmc2/tools/qchdman/images/.svn/text-base/default.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/extractcd.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/extracthd.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/extractld.png.svn-base
@@ -3263,6 +3266,7 @@ qmc2/tools/qchdman/images/.svn/text-base/filesaveas.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/filesave.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/inactive.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/info.png.svn-base
+qmc2/tools/qchdman/images/.svn/text-base/none.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/run.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/stop.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/tools.png.svn-base
