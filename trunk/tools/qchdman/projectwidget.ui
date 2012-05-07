@@ -843,6 +843,9 @@ p, li { white-space: pre-wrap; }
                  <property name="toolTip">
                   <string>Select up to 4 compression codecs to use (--compression)</string>
                  </property>
+                 <property name="maxVisibleItems">
+                  <number>20</number>
+                 </property>
                 </widget>
                </item>
               </layout>
