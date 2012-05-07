@@ -31,6 +31,10 @@ public slots:
     int preferencesLogFontSize() { return value("Preferences/LogFontSize", qApp->font().pointSize()).toInt(); }
     void setPreferencesChdmanBinary(QString path) { setValue("Preferences/ChdmanBinary", path); }
     QString preferencesChdmanBinary() { return value("Preferences/ChdmanBinary", QString()).toString(); }
+    void setPreferencesShowHelpTexts(bool enable) { setValue("Preferences/ShowHelpTexts", enable); }
+    bool preferencesShowHelpTexts() { return value("Preferences/ShowHelpTexts", false).toBool(); }
+    void setPreferencesMaximizeWindows(bool enable) { setValue("Preferences/MaximizeWindows", enable); }
+    bool preferencesMaximizeWindows() { return value("Preferences/MaximizeWindows", false).toBool(); }
 
     // MainWindow
     void setMainWindowState(QByteArray state) { setValue("MainWindow/State", state); }

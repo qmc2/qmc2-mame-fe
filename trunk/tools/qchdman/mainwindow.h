@@ -46,7 +46,7 @@ public slots:
 
     // Other
     void updateStatus();
-    void setLogFont();
+    void applySettings();
 
 protected:
     void closeEvent(QCloseEvent *);

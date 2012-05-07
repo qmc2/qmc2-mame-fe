@@ -35,7 +35,6 @@ MainWindow::MainWindow(QWidget *parent) :
         QTimer::singleShot(100, preferencesDialog, SLOT(initialSetup()));
 
     statisticsLabel = new QLabel;
-    statisticsLabel->setFrameStyle(QFrame::Raised | QFrame::StyledPanel);
     statusBar()->addPermanentWidget(statisticsLabel);
     updateStatus();
     connect(&statusTimer, SIGNAL(timeout()), this, SLOT(updateStatus()));
@@ -53,6 +52,9 @@ void MainWindow::on_actionProjectNew_triggered(bool)
 {
     ProjectWindow *projectWindow = new ProjectWindow(QString(), ui->mdiArea);
     projectWindow->show();
+    if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
+        if ( globalConfig->preferencesMaximizeWindows() )
+            projectWindow->showMaximized();
 }
 
 void MainWindow::on_actionProjectLoad_triggered(bool)
@@ -137,16 +139,21 @@ void MainWindow::on_actionHelpAboutQt_triggered(bool)
 
 void MainWindow::updateStatus()
 {
-    statisticsLabel->setText(tr("Running projects: %1").arg(runningProjects));
+    statisticsLabel->setText(" " + tr("Running projects: %1").arg(runningProjects) + " ");
 }
 
-void MainWindow::setLogFont()
+void MainWindow::applySettings()
 {
     QFont f;
     f.fromString(globalConfig->preferencesLogFont());
     f.setPointSize(globalConfig->preferencesLogFontSize());
-    foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList())
-            ((ProjectWidget *)w->widget())->setLogFont(f);
+    foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
+        ProjectWidget *pW = (ProjectWidget *)w->widget();
+        if ( pW ) {
+            pW->setLogFont(f);
+            pW->on_comboBoxProjectType_currentIndexChanged(-1);
+        }
+    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)

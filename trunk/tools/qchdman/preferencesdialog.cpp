@@ -7,7 +7,7 @@
 #include "settings.h"
 
 extern Settings *globalConfig;
-extern MainWindow *mW;
+extern MainWindow *mainWindow;
 
 PreferencesDialog::PreferencesDialog(QWidget *parent) :
     QDialog(parent),
@@ -41,13 +41,15 @@ void PreferencesDialog::applySettings()
     f.fromString(globalConfig->preferencesAppFont());
     f.setPointSize(globalConfig->preferencesAppFontSize());
     qApp->setFont(f);
-
     globalConfig->setPreferencesLogFont(ui->fontComboBoxLogFont->currentFont().toString());
     globalConfig->setPreferencesLogFontSize(ui->spinBoxLogFontSize->value());
-    mW->setLogFont();
+    globalConfig->setPreferencesShowHelpTexts(ui->checkBoxShowProjectHelp->isChecked());
+    globalConfig->setPreferencesMaximizeWindows(ui->checkBoxMaximizeWindows->isChecked());
 
     // Paths
     globalConfig->setPreferencesChdmanBinary(ui->lineEditChdmanBinary->text());
+
+    mainWindow->applySettings();
 }
 
 void PreferencesDialog::on_pushButtonOk_clicked()
@@ -83,6 +85,8 @@ void PreferencesDialog::restoreSettings()
         f = qApp->font();
     ui->fontComboBoxLogFont->setCurrentFont(f);
     ui->spinBoxLogFontSize->setValue(globalConfig->preferencesLogFontSize());
+    ui->checkBoxShowProjectHelp->setChecked(globalConfig->preferencesShowHelpTexts());
+    ui->checkBoxMaximizeWindows->setChecked(globalConfig->preferencesMaximizeWindows());
 
     // Paths
     ui->lineEditChdmanBinary->setText(globalConfig->preferencesChdmanBinary());
