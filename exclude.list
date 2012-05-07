@@ -3225,6 +3225,7 @@ qmc2/.svn/text-base/youtubevideoplayer.cpp.svn-base
 qmc2/.svn/text-base/youtubevideoplayer.h.svn-base
 qmc2/.svn/text-base/youtubevideoplayer.ui.svn-base
 qmc2/tools/qchdman/images/.svn
+qmc2/tools/qchdman/images/.svn/prop-base/active.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/copy.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/createcd.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/createhd.png.svn-base
@@ -3238,11 +3239,13 @@ qmc2/tools/qchdman/images/.svn/prop-base/filenew.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/fileopen.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/filesaveas.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/filesave.png.svn-base
+qmc2/tools/qchdman/images/.svn/prop-base/inactive.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/info.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/run.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/stop.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/tools.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/verify.png.svn-base
+qmc2/tools/qchdman/images/.svn/text-base/active.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/copy.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/createcd.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/createhd.png.svn-base
@@ -3256,6 +3259,7 @@ qmc2/tools/qchdman/images/.svn/text-base/filenew.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/fileopen.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/filesaveas.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/filesave.png.svn-base
+qmc2/tools/qchdman/images/.svn/text-base/inactive.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/info.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/run.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/stop.png.svn-base
