@@ -680,6 +680,10 @@ endif
 
 ifeq '$(QMAKEV)' '2'
 
+ifneq '$(ARCH)' 'Windows'
+QT_LIBVERSION = $(shell $(QMAKE) -v | $(GREP) "Qt version" | $(AWK) '{print $$4}')
+endif
+
 # complete version string
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR)
 
@@ -1360,6 +1364,9 @@ endif
 	@echo "QMAKE                Qt make (qmake) command                      $(QMAKE)"
 	@echo "QMAKEFILE            Qt generated Makefile name                   $(QMAKEFILE)"
 	@echo "QT_TRANSLATION       Specify path to Qt translations or 'qmc2'    $(QT_TRANSLATION)"
+ifneq '$(ARCH)' 'Windows'
+	@echo "QT_LIBVERSION        Version of the Qt library in use             $(QT_LIBVERSION)"
+endif
 	@echo "QUIET                Suppress output of compile/link (0, 1)       $(QUIET)"
 	@echo "RM                   UNIX command rm                              $(RM)"
 	@echo "RMDIR                UNIX command rmdir                           $(RMDIR)"
