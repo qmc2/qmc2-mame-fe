@@ -24,9 +24,38 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     chdmanProc = NULL;
     terminatedOnDemand = false;
 
+    compressionTypes["avhu"] = tr("avhu (A/V Huffman)");
+    compressionTypes["cdfl"] = tr("cdfl (CD FLAC)");
+    //    compressionTypes["flcb"] = tr("flcb (FLAC, big-endian)");
+    //    compressionTypes["flcl"] = tr("flcl (FLAC, little-endian)");
+    compressionTypes["huff"] = tr("huff (Huffman)");
+    compressionTypes["lzma"] = tr("lzma (LZMA)");
+    compressionTypes["zlib"] = tr("zlib (Deflate)");
+
+    copyCompressors << "zlib" << "lzma" << "huff";
+    ui->comboBoxCopyCompression->insertItem(0, copyCompressors.join(","));
+    ui->comboBoxCopyCompression->setItemIcon(0, QIcon(":/images/compression.png"));
+    ui->comboBoxCopyCompression->insertSeparator(1);
+    ui->comboBoxCopyCompression->insertItem(2, tr("all"));
+    ui->comboBoxCopyCompression->insertItem(3, tr("none"));
+    ui->comboBoxCopyCompression->insertSeparator(4);
+    int i = 5;
+    foreach (QString cmp, compressionTypes) {
+        ui->comboBoxCopyCompression->insertItem(i, cmp);
+        if ( copyCompressors.contains(cmp.split(" ", QString::SkipEmptyParts).at(0)) ) {
+            ui->comboBoxCopyCompression->setItemIcon(i, QIcon(":/images/active.png"));
+            ui->comboBoxCopyCompression->setItemData(i, QCHDMAN_ITEM_ACTIVE, Qt::WhatsThisRole);
+        } else {
+            ui->comboBoxCopyCompression->setItemIcon(i, QIcon(":/images/inactive.png"));
+            ui->comboBoxCopyCompression->setItemData(i, QCHDMAN_ITEM_INACTIVE, Qt::WhatsThisRole);
+        }
+    }
+
     menuActions = new QMenu(this);
     actionCopyStdoutToClipboard = menuActions->addAction(tr("Copy stdout to clipboard"), this, SLOT(copyStdoutToClipboard()));
     actionCopyStderrToClipboard = menuActions->addAction(tr("Copy stderr to clipboard"), this, SLOT(copyStderrToClipboard()));
+    actionCopyCommandToClipboard = menuActions->addAction(tr("Copy command to clipboard"), this, SLOT(copyCommandToClipboard()));
+    menuActions->insertSeparator(actionCopyCommandToClipboard);
     ui->toolButtonActions->setMenu(menuActions);
 
     QFont f;
@@ -93,87 +122,103 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
     ui->splitter->setSizes(newSizes);
 }
 
-void ProjectWidget::on_toolButtonRun_clicked()
-{
-    QStringList args;
+void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
+{    
+    arguments.clear();
 
     switch ( ui->comboBoxProjectType->currentIndex() ) {
     case QCHDMAN_PRJ_INFO:
         jobName = tr("Info");
-        args << "info";
+        arguments << "info";
         if ( !ui->lineEditInfoInputFile->text().isEmpty() )
-            args << "--input" << ui->lineEditInfoInputFile->text();
+            arguments << "--input" << ui->lineEditInfoInputFile->text();
         if ( ui->checkBoxInfoVerbose->isChecked() )
-            args << "--verbose";
-        ui->progressBar->setRange(0, 100);
+            arguments << "--verbose";
         break;
     case QCHDMAN_PRJ_VERIFY:
         jobName = tr("Verify");
-        args << "verify";
+        arguments << "verify";
         if ( !ui->lineEditVerifyInputFile->text().isEmpty() )
-            args << "--input" << ui->lineEditVerifyInputFile->text();
+            arguments << "--input" << ui->lineEditVerifyInputFile->text();
         if ( !ui->lineEditVerifyParentInputFile->text().isEmpty() )
-            args << "--inputparent" << ui->lineEditVerifyParentInputFile->text();
-        ui->progressBar->setRange(0, 100);
+            arguments << "--inputparent" << ui->lineEditVerifyParentInputFile->text();
         break;
     case QCHDMAN_PRJ_COPY:
         jobName = tr("Copy");
-        args << "copy";
-//      --output, -o <filename>: output file name (required)
-//      --outputparent, -op <filename>: parent file name for output CHD
-//      --force, -f: force overwriting an existing file
-//      --input, -i <filename>: input file name (required)
-//      --inputparent, -ip <filename>: parent file name for input CHD
-//      --inputstartbyte, -isb <offset>: starting byte offset within the input
-//      --inputstarthunk, -ish <offset>: starting hunk offset within the input
-//      --inputbytes, -ib <length>: effective length of input in bytes
-//      --inputhunks, -ih <length>: effective length of input in hunks
-//      --hunksize, -hs <bytes>: size of each hunk, in bytes
-//      --compression, -c <none|type1[,type2[,...]]>: which compression codecs to use (up to 4)
-//      --numprocessors, -np <processors>: limit the number of processors to use during compression
-
+        arguments << "copy";
+        if ( !ui->lineEditCopyInputFile->text().isEmpty() )
+            arguments << "--input" << ui->lineEditCopyInputFile->text();
+        if ( !ui->lineEditCopyParentInputFile->text().isEmpty() )
+            arguments << "--parentinput" << ui->lineEditCopyParentInputFile->text();
+        if ( !ui->lineEditCopyOutputFile->text().isEmpty() )
+            arguments << "--output" << ui->lineEditCopyOutputFile->text();
+        if ( !ui->lineEditCopyParentOutputFile->text().isEmpty() )
+            arguments << "--parentoutput" << ui->lineEditCopyParentOutputFile->text();
+        if ( ui->checkBoxCopyForce->isChecked() )
+            arguments << "--force";
+        if ( ui->spinBoxCopyInputStartByte->value() >= 0 )
+            arguments << "--inputstartbyte" << QString::number(ui->spinBoxCopyInputStartByte->value());
+        if ( ui->spinBoxCopyInputStartHunk->value() >= 0 )
+            arguments << "--inputstarthunk" << QString::number(ui->spinBoxCopyInputStartHunk->value());
+        if ( ui->spinBoxCopyInputBytes->value() >= 0 )
+            arguments << "--inputbytes" << QString::number(ui->spinBoxCopyInputBytes->value());
+        if ( ui->spinBoxCopyInputHunks->value() >= 0 )
+            arguments << "--inputhunks" << QString::number(ui->spinBoxCopyInputHunks->value());
+        if ( ui->spinBoxCopyHunkSize->value() >= 0 )
+            arguments << "--hunksize" << QString::number(ui->spinBoxCopyHunkSize->value());
+        if ( !copyCompressors.isEmpty() ) {
+            arguments << "--compression";
+            arguments << copyCompressors.join(",");
+        }
+        if ( ui->spinBoxCopyProcessors->value() >= 1 )
+            arguments << "--numprocessors" << QString::number(ui->spinBoxCopyProcessors->value());
         break;
     case QCHDMAN_PRJ_CREATE_RAW:
         jobName = tr("CreateRaw");
-        args << "createraw";
+        arguments << "createraw";
         // FIXME
         break;
     case QCHDMAN_PRJ_CREATE_HD:
         jobName = tr("CreateHD");
-        args << "createhd";
+        arguments << "createhd";
         // FIXME
         break;
     case QCHDMAN_PRJ_CREATE_CD:
         jobName = tr("CreateCD");
-        args << "createcd";
+        arguments << "createcd";
         // FIXME
         break;
     case QCHDMAN_PRJ_CREATE_LD:
         jobName = tr("CreateLD");
-        args << "createld";
+        arguments << "createld";
         // FIXME
         break;
     case QCHDMAN_PRJ_EXTRACT_RAW:
         jobName = tr("ExtractRaw");
-        args << "extractraw";
+        arguments << "extractraw";
         // FIXME
         break;
     case QCHDMAN_PRJ_EXTRACT_HD:
         jobName = tr("ExtractHD");
-        args << "extracthd";
+        arguments << "extracthd";
         // FIXME
         break;
     case QCHDMAN_PRJ_EXTRACT_CD:
         jobName = tr("ExtractCD");
-        args << "extractcd";
+        arguments << "extractcd";
         // FIXME
         break;
     case QCHDMAN_PRJ_EXTRACT_LD:
         jobName = tr("ExtractLD");
-        args << "extractld";
+        arguments << "extractld";
         // FIXME
         break;
     }
+
+    if ( refreshArgsOnly )
+        return;
+
+    ui->progressBar->setRange(0, 100);
 
     chdmanProc = new QProcess(this);
 
@@ -191,7 +236,7 @@ void ProjectWidget::on_toolButtonRun_clicked()
     stderrOutput.clear();
 
     terminatedOnDemand = false;
-    chdmanProc->start(globalConfig->preferencesChdmanBinary(), args);
+    chdmanProc->start(globalConfig->preferencesChdmanBinary(), arguments);
     ui->toolButtonRun->setEnabled(false);
     ui->comboBoxProjectType->setEnabled(false);
     ui->progressBar->setFormat(tr("Starting"));
@@ -256,6 +301,7 @@ void ProjectWidget::readyReadStandardError()
             log(tr("stderr") + ": " + s);
             switch ( ui->comboBoxProjectType->currentIndex() ) {
             case QCHDMAN_PRJ_VERIFY:
+            case QCHDMAN_PRJ_COPY:
                 if ( s.contains(QRegExp(", \\d+\\.\\d+\\%\\ complete\\.\\.\\.")) ) {
                     QRegExp rx(", (\\d+)\\.(\\d+)\\%\\ complete\\.\\.\\.");
                     int pos = rx.indexIn(s);
@@ -338,6 +384,69 @@ void ProjectWidget::on_toolButtonBrowseVerifyParentInputFile_clicked()
         ui->lineEditVerifyParentInputFile->setText(s);
 }
 
+void ProjectWidget::on_toolButtonBrowseCopyInputFile_clicked()
+{
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD input file"), ui->lineEditCopyInputFile->text(), tr("CHD files (*.chd);;All files (*)"));
+    if ( !s.isNull() )
+        ui->lineEditCopyInputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseCopyOutputFile_clicked()
+{
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD output file"), ui->lineEditCopyOutputFile->text(), tr("CHD files (*.chd);;All files (*)"));
+    if ( !s.isNull() )
+        ui->lineEditCopyOutputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseCopyParentInputFile_clicked()
+{
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose parent CHD input file"), ui->lineEditCopyParentInputFile->text(), tr("CHD files (*.chd);;All files (*)"));
+    if ( !s.isNull() )
+        ui->lineEditCopyParentInputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseCopyParentOutputFile_clicked()
+{
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose parent CHD output file"), ui->lineEditCopyParentOutputFile->text(), tr("CHD files (*.chd);;All files (*)"));
+    if ( !s.isNull() )
+        ui->lineEditCopyParentOutputFile->setText(s);
+}
+
+void ProjectWidget::on_comboBoxCopyCompression_currentIndexChanged(int index)
+{
+    if ( index == 2 ) { // all
+        copyCompressors.clear();
+        for (int i = 5; i < ui->comboBoxCopyCompression->count(); i++) {
+            copyCompressors << ui->comboBoxCopyCompression->itemText(i).split(" ", QString::SkipEmptyParts)[0];
+            ui->comboBoxCopyCompression->setItemIcon(i, QIcon(":/images/active.png"));
+            ui->comboBoxCopyCompression->setItemData(i, QCHDMAN_ITEM_ACTIVE, Qt::WhatsThisRole);
+        }
+    } else if ( index == 3 ) { // none
+        copyCompressors.clear();
+        for (int i = 5; i < ui->comboBoxCopyCompression->count(); i++) {
+            ui->comboBoxCopyCompression->setItemIcon(i, QIcon(":/images/inactive.png"));
+            ui->comboBoxCopyCompression->setItemData(i, QCHDMAN_ITEM_INACTIVE, Qt::WhatsThisRole);
+        }
+    } else if ( index > 4 ) { // toggles
+        copyCompressors.clear();
+        if ( ui->comboBoxCopyCompression->itemData(index, Qt::WhatsThisRole).toString() == QCHDMAN_ITEM_ACTIVE ) {
+            ui->comboBoxCopyCompression->setItemIcon(index, QIcon(":/images/inactive.png"));
+            ui->comboBoxCopyCompression->setItemData(index, QCHDMAN_ITEM_INACTIVE, Qt::WhatsThisRole);
+        } else {
+            ui->comboBoxCopyCompression->setItemIcon(index, QIcon(":/images/active.png"));
+            ui->comboBoxCopyCompression->setItemData(index, QCHDMAN_ITEM_ACTIVE, Qt::WhatsThisRole);
+        }
+        for (int i = 5; i < ui->comboBoxCopyCompression->count(); i++)
+            if ( ui->comboBoxCopyCompression->itemData(i, Qt::WhatsThisRole).toString() == QCHDMAN_ITEM_ACTIVE )
+                copyCompressors << ui->comboBoxCopyCompression->itemText(i).split(" ", QString::SkipEmptyParts)[0];
+    }
+    if ( copyCompressors.isEmpty() )
+        ui->comboBoxCopyCompression->setItemText(0, tr("none"));
+    else
+        ui->comboBoxCopyCompression->setItemText(0, copyCompressors.join(","));
+    ui->comboBoxCopyCompression->setCurrentIndex(0);
+}
+
 void ProjectWidget::init()
 {
     on_comboBoxProjectType_currentIndexChanged(QCHDMAN_PRJ_INFO);
@@ -363,4 +472,17 @@ void ProjectWidget::copyStdoutToClipboard()
 void ProjectWidget::copyStderrToClipboard()
 {
     qApp->clipboard()->setText(stderrOutput);
+}
+
+void ProjectWidget::copyCommandToClipboard()
+{
+    on_toolButtonRun_clicked(true);
+    QString command = globalConfig->preferencesChdmanBinary();
+    foreach (QString arg, arguments) {
+        if ( arg.contains(QRegExp("\\s")) )
+            command += " \"" + arg + "\"";
+        else
+            command += " " + arg;
+    }
+    qApp->clipboard()->setText(command);
 }
