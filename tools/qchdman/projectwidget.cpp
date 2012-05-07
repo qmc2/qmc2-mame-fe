@@ -26,30 +26,32 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
 
     compressionTypes["avhu"] = tr("avhu (A/V Huffman)");
     compressionTypes["cdfl"] = tr("cdfl (CD FLAC)");
-    //    compressionTypes["flcb"] = tr("flcb (FLAC, big-endian)");
-    //    compressionTypes["flcl"] = tr("flcl (FLAC, little-endian)");
+    compressionTypes["cdlz"] = tr("cdlz (CD LZMA)");
+    compressionTypes["cdzl"] = tr("cdzl (CD Deflate)");
+    compressionTypes["flac"] = tr("flac (FLAC)");
     compressionTypes["huff"] = tr("huff (Huffman)");
     compressionTypes["lzma"] = tr("lzma (LZMA)");
     compressionTypes["zlib"] = tr("zlib (Deflate)");
 
-    copyCompressors << "zlib" << "lzma" << "huff";
-    ui->comboBoxCopyCompression->insertItem(0, copyCompressors.join(","));
+    copyCompressors.clear();
+
+    ui->comboBoxCopyCompression->blockSignals(true);
+    ui->comboBoxCopyCompression->insertItem(0, tr("default"));
     ui->comboBoxCopyCompression->setItemIcon(0, QIcon(":/images/compression.png"));
     ui->comboBoxCopyCompression->insertSeparator(1);
-    ui->comboBoxCopyCompression->insertItem(2, tr("all"));
+    ui->comboBoxCopyCompression->insertItem(2, tr("default"));
+    ui->comboBoxCopyCompression->setItemIcon(2, QIcon(":/images/default.png"));
     ui->comboBoxCopyCompression->insertItem(3, tr("none"));
+    ui->comboBoxCopyCompression->setItemIcon(3, QIcon(":/images/none.png"));
     ui->comboBoxCopyCompression->insertSeparator(4);
     int i = 5;
     foreach (QString cmp, compressionTypes) {
         ui->comboBoxCopyCompression->insertItem(i, cmp);
-        if ( copyCompressors.contains(cmp.split(" ", QString::SkipEmptyParts).at(0)) ) {
-            ui->comboBoxCopyCompression->setItemIcon(i, QIcon(":/images/active.png"));
-            ui->comboBoxCopyCompression->setItemData(i, QCHDMAN_ITEM_ACTIVE, Qt::WhatsThisRole);
-        } else {
-            ui->comboBoxCopyCompression->setItemIcon(i, QIcon(":/images/inactive.png"));
-            ui->comboBoxCopyCompression->setItemData(i, QCHDMAN_ITEM_INACTIVE, Qt::WhatsThisRole);
-        }
+        ui->comboBoxCopyCompression->setItemIcon(i, QIcon(":/images/inactive.png"));
+        ui->comboBoxCopyCompression->setItemData(i, QCHDMAN_ITEM_INACTIVE, Qt::WhatsThisRole);
+        i++;
     }
+    ui->comboBoxCopyCompression->blockSignals(false);
 
     menuActions = new QMenu(this);
     actionCopyStdoutToClipboard = menuActions->addAction(tr("Copy stdout to clipboard"), this, SLOT(copyStdoutToClipboard()));
@@ -166,10 +168,10 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
             arguments << "--inputhunks" << QString::number(ui->spinBoxCopyInputHunks->value());
         if ( ui->spinBoxCopyHunkSize->value() >= 0 )
             arguments << "--hunksize" << QString::number(ui->spinBoxCopyHunkSize->value());
-        if ( !copyCompressors.isEmpty() ) {
-            arguments << "--compression";
-            arguments << copyCompressors.join(",");
-        }
+        if ( !copyCompressors.isEmpty() )
+            arguments << "--compression" << copyCompressors.join(",");
+        else if ( ui->comboBoxCopyCompression->currentText() != tr("default") )
+            arguments << "--compression" << "none";
         if ( ui->spinBoxCopyProcessors->value() >= 1 )
             arguments << "--numprocessors" << QString::number(ui->spinBoxCopyProcessors->value());
         break;
@@ -414,12 +416,14 @@ void ProjectWidget::on_toolButtonBrowseCopyParentOutputFile_clicked()
 
 void ProjectWidget::on_comboBoxCopyCompression_currentIndexChanged(int index)
 {
-    if ( index == 2 ) { // all
+    bool isDefault = false;
+
+    if ( index == 2 ) { // default
+        isDefault = true;
         copyCompressors.clear();
         for (int i = 5; i < ui->comboBoxCopyCompression->count(); i++) {
-            copyCompressors << ui->comboBoxCopyCompression->itemText(i).split(" ", QString::SkipEmptyParts)[0];
-            ui->comboBoxCopyCompression->setItemIcon(i, QIcon(":/images/active.png"));
-            ui->comboBoxCopyCompression->setItemData(i, QCHDMAN_ITEM_ACTIVE, Qt::WhatsThisRole);
+            ui->comboBoxCopyCompression->setItemIcon(i, QIcon(":/images/inactive.png"));
+            ui->comboBoxCopyCompression->setItemData(i, QCHDMAN_ITEM_INACTIVE, Qt::WhatsThisRole);
         }
     } else if ( index == 3 ) { // none
         copyCompressors.clear();
@@ -440,11 +444,17 @@ void ProjectWidget::on_comboBoxCopyCompression_currentIndexChanged(int index)
             if ( ui->comboBoxCopyCompression->itemData(i, Qt::WhatsThisRole).toString() == QCHDMAN_ITEM_ACTIVE )
                 copyCompressors << ui->comboBoxCopyCompression->itemText(i).split(" ", QString::SkipEmptyParts)[0];
     }
-    if ( copyCompressors.isEmpty() )
+
+    if ( isDefault )
+        ui->comboBoxCopyCompression->setItemText(0, tr("default"));
+    else if ( copyCompressors.isEmpty() )
         ui->comboBoxCopyCompression->setItemText(0, tr("none"));
     else
         ui->comboBoxCopyCompression->setItemText(0, copyCompressors.join(","));
+
+    ui->comboBoxCopyCompression->blockSignals(true);
     ui->comboBoxCopyCompression->setCurrentIndex(0);
+    ui->comboBoxCopyCompression->blockSignals(false);
 }
 
 void ProjectWidget::init()
