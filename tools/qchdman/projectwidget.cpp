@@ -12,7 +12,7 @@
 #include "settings.h"
 
 extern Settings *globalConfig;
-extern MainWindow *mW;
+extern MainWindow *mainWindow;
 extern quint64 runningProjects;
 
 ProjectWidget::ProjectWidget(QWidget *parent) :
@@ -46,16 +46,25 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
 {
     int widgetHeight = 0;
 
+    if ( index == -1 )
+        index = ui->comboBoxProjectType->currentIndex();
+
     // FIXME: copy data where applicable
     switch ( index ) {
     case QCHDMAN_PRJ_INFO:
         widgetHeight = ui->groupBoxInfo->height() + 2 * ui->gridLayoutGroupBoxInfo->contentsMargins().bottom();
+        if ( globalConfig->preferencesShowHelpTexts() )
+            widgetHeight += ui->labelInfoHelp->height();
         break;
     case QCHDMAN_PRJ_VERIFY:
         widgetHeight = ui->groupBoxVerify->height() + 2 * ui->gridLayoutGroupBoxVerify->contentsMargins().bottom();
+        if ( globalConfig->preferencesShowHelpTexts() )
+            widgetHeight += ui->labelVerifyHelp->height();
         break;
     case QCHDMAN_PRJ_COPY:
         widgetHeight = ui->groupBoxCopy->height() + 2 * ui->gridLayoutGroupBoxCopy->contentsMargins().bottom();
+        if ( globalConfig->preferencesShowHelpTexts() )
+            widgetHeight += ui->labelCopyHelp->height();
         break;
     case QCHDMAN_PRJ_CREATE_RAW:
         break;

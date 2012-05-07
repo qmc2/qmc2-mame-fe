@@ -5,7 +5,7 @@
 #include "macros.h"
 
 quint64 runningProjects = 0;
-MainWindow *mW = NULL;
+MainWindow *mainWindow = NULL;
 Settings *globalConfig = NULL;
 
 int main(int argc, char *argv[])
@@ -20,6 +20,6 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.show();
-    mW = &w;
+    mainWindow = &w;
     return a.exec();
 }

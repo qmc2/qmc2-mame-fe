@@ -7,171 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>358</width>
-    <height>156</height>
+    <height>180</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Preferences</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QTabWidget" name="tabWidget">
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
-     <widget class="QWidget" name="tabGUI">
-      <attribute name="title">
-       <string>GUI</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelStyle">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Style</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1" colspan="3">
-        <widget class="QComboBox" name="comboBoxStyle"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="labelAppFont">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Font</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QFontComboBox" name="fontComboBoxAppFont"/>
-       </item>
-       <item row="1" column="2">
-        <widget class="QLabel" name="labelAppFontSize">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Size</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QSpinBox" name="spinBoxAppFontSize"/>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="labelLogFont">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Log font</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QFontComboBox" name="fontComboBoxLogFont"/>
-       </item>
-       <item row="2" column="2">
-        <widget class="QLabel" name="labelLogFontSize">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Size</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="3">
-        <widget class="QSpinBox" name="spinBoxLogFontSize"/>
-       </item>
-       <item row="3" column="0" colspan="4">
-        <spacer name="verticalSpacerGUI">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>331</width>
-           <height>3</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tabPaths">
-      <attribute name="title">
-       <string>Paths</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelChdmanBinary">
-         <property name="text">
-          <string>CHDMAN binary</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEditChdmanBinary">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QToolButton" name="toolButtonBrowseChdmanBinary">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="icon">
-          <iconset resource="qchdman.qrc">
-           <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="3">
-        <spacer name="verticalSpacerPaths">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>0</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-   </item>
    <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
@@ -223,6 +65,211 @@
      </item>
     </layout>
    </item>
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabGUI">
+      <attribute name="title">
+       <string>GUI</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayoutTabGUI">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelStyle">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Style</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelAppFont">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Font</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QFontComboBox" name="fontComboBoxAppFont">
+         <property name="toolTip">
+          <string>Application font</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="labelAppFontSize">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Size</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QSpinBox" name="spinBoxAppFontSize">
+         <property name="toolTip">
+          <string>Application font size</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="labelLogFont">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Log font</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QFontComboBox" name="fontComboBoxLogFont">
+         <property name="toolTip">
+          <string>Log font</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="labelLogFontSize">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Size</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QSpinBox" name="spinBoxLogFontSize">
+         <property name="toolTip">
+          <string>Log font size</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="4">
+        <layout class="QHBoxLayout" name="horizontalLayoutGUI">
+         <item>
+          <widget class="QCheckBox" name="checkBoxShowProjectHelp">
+           <property name="toolTip">
+            <string>Make sure project help texts are shown when you switch the type</string>
+           </property>
+           <property name="text">
+            <string>Display project help texts</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBoxMaximizeWindows">
+           <property name="toolTip">
+            <string>Maximize new project windows</string>
+           </property>
+           <property name="text">
+            <string>Maximize project windows</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="1" colspan="3">
+        <widget class="QComboBox" name="comboBoxStyle">
+         <property name="toolTip">
+          <string>Select the GUI style</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="4">
+        <spacer name="verticalSpacerGUI">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>331</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabPaths">
+      <attribute name="title">
+       <string>Paths</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayoutTabPaths">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelChdmanBinary">
+         <property name="text">
+          <string>CHDMAN binary</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEditChdmanBinary">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="toolTip">
+          <string>Patch to the CHDMAN binary</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QToolButton" name="toolButtonBrowseChdmanBinary">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="icon">
+          <iconset resource="qchdman.qrc">
+           <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
+        <spacer name="verticalSpacerPaths">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
   </layout>
  </widget>
  <tabstops>
@@ -232,6 +279,8 @@
   <tabstop>spinBoxAppFontSize</tabstop>
   <tabstop>fontComboBoxLogFont</tabstop>
   <tabstop>spinBoxLogFontSize</tabstop>
+  <tabstop>checkBoxShowProjectHelp</tabstop>
+  <tabstop>checkBoxMaximizeWindows</tabstop>
   <tabstop>lineEditChdmanBinary</tabstop>
   <tabstop>toolButtonBrowseChdmanBinary</tabstop>
   <tabstop>pushButtonOk</tabstop>
