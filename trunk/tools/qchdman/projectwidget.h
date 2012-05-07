@@ -19,7 +19,11 @@ public:
     QMenu *menuActions;
     QAction *actionCopyStdoutToClipboard;
     QAction *actionCopyStderrToClipboard;
+    QAction *actionCopyCommandToClipboard;
     bool terminatedOnDemand;
+    QMap<QString, QString> compressionTypes;
+    QStringList copyCompressors;
+    QStringList arguments;
 
     explicit ProjectWidget(QWidget *parent = 0);
     ~ProjectWidget();
@@ -31,6 +35,13 @@ public slots:
     // Verify
     void on_toolButtonBrowseVerifyInputFile_clicked();
     void on_toolButtonBrowseVerifyParentInputFile_clicked();
+
+    // Copy
+    void on_toolButtonBrowseCopyInputFile_clicked();
+    void on_toolButtonBrowseCopyOutputFile_clicked();
+    void on_toolButtonBrowseCopyParentInputFile_clicked();
+    void on_toolButtonBrowseCopyParentOutputFile_clicked();
+    void on_comboBoxCopyCompression_currentIndexChanged(int);
 
     // CreateRaw
 
@@ -48,16 +59,15 @@ public slots:
 
     // ExtractLaserDisc
 
-    // Copy
-
     // Other
     void init();
     void log(QString);
     void setLogFont(QFont);
     void copyStdoutToClipboard();
     void copyStderrToClipboard();
+    void copyCommandToClipboard();
     void on_comboBoxProjectType_currentIndexChanged(int);
-    void on_toolButtonRun_clicked();
+    void on_toolButtonRun_clicked(bool refreshArgsOnly = false);
     void on_toolButtonStop_clicked();
 
     // Process control

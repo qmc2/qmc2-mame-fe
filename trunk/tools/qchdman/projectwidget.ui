@@ -504,7 +504,7 @@ p, li { white-space: pre-wrap; }
               </property>
               <layout class="QGridLayout" name="gridLayoutGroupBoxCopy">
                <item row="5" column="1">
-                <widget class="QSpinBox" name="spinBoxInputStartByte">
+                <widget class="QSpinBox" name="spinBoxCopyInputStartByte">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -609,7 +609,7 @@ p, li { white-space: pre-wrap; }
                <item row="7" column="2">
                 <widget class="QLabel" name="labelCopyCompressors">
                  <property name="text">
-                  <string>Compressors</string>
+                  <string>Compression</string>
                  </property>
                 </widget>
                </item>
@@ -772,18 +772,18 @@ p, li { white-space: pre-wrap; }
                   <string>default</string>
                  </property>
                  <property name="minimum">
-                  <number>-1</number>
+                  <number>0</number>
                  </property>
                  <property name="maximum">
                   <number>9999</number>
                  </property>
                  <property name="value">
-                  <number>-1</number>
+                  <number>0</number>
                  </property>
                 </widget>
                </item>
                <item row="5" column="3">
-                <widget class="QSpinBox" name="spinBoxInputStartHunk">
+                <widget class="QSpinBox" name="spinBoxCopyInputStartHunk">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -833,7 +833,7 @@ p, li { white-space: pre-wrap; }
                 </widget>
                </item>
                <item row="7" column="3">
-                <widget class="QComboBox" name="comboBoxCopyCompressors">
+                <widget class="QComboBox" name="comboBoxCopyCompression">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -843,11 +843,6 @@ p, li { white-space: pre-wrap; }
                  <property name="toolTip">
                   <string>Select up to 4 compression codecs to use (--compression)</string>
                  </property>
-                 <item>
-                  <property name="text">
-                   <string>default</string>
-                  </property>
-                 </item>
                 </widget>
                </item>
               </layout>
@@ -959,12 +954,12 @@ p, li { white-space: pre-wrap; }
   <tabstop>toolButtonBrowseCopyParentOutputFile</tabstop>
   <tabstop>checkBoxCopyForce</tabstop>
   <tabstop>spinBoxCopyProcessors</tabstop>
-  <tabstop>spinBoxInputStartByte</tabstop>
-  <tabstop>spinBoxInputStartHunk</tabstop>
+  <tabstop>spinBoxCopyInputStartByte</tabstop>
+  <tabstop>spinBoxCopyInputStartHunk</tabstop>
   <tabstop>spinBoxCopyInputBytes</tabstop>
   <tabstop>spinBoxCopyInputHunks</tabstop>
   <tabstop>spinBoxCopyHunkSize</tabstop>
-  <tabstop>comboBoxCopyCompressors</tabstop>
+  <tabstop>comboBoxCopyCompression</tabstop>
   <tabstop>plainTextEditProjectLog</tabstop>
  </tabstops>
  <resources>

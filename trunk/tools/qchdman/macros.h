@@ -37,4 +37,7 @@
 #define QCHDMAN_VIEWMODE_WINDOWED   QMdiArea::SubWindowView
 #define QCHDMAN_VIEWMODE_TABBED     QMdiArea::TabbedView
 
+#define QCHDMAN_ITEM_ACTIVE         QString("active")
+#define QCHDMAN_ITEM_INACTIVE       QString("inactive")
+
 #endif // MACROS_H
