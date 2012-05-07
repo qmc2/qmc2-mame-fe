@@ -682,6 +682,15 @@ ifeq '$(QMAKEV)' '2'
 
 ifneq '$(ARCH)' 'Windows'
 QT_LIBVERSION = $(shell $(QMAKE) -v | $(GREP) "Qt version" | $(AWK) '{print $$4}')
+ifeq '$(ARCH)' 'Darwin'
+QT_LIBTMP = $(shell echo $(QT_LIBVERSION) | tr "." " " )
+QT_LIBMAJ = $(shell echo $(QT_LIBTMP) | $(AWK) '{ print $$1 }')
+QT_LIBMIN = $(shell echo $(QT_LIBTMP) | $(AWK) '{ print $$2 }')
+QT_LIB48PLUS = $(shell [ $(QT_LIBMAJ) -ge 4 ] && [ $(QT_LIBMIN) -ge 8 ] && echo true)
+ifeq '$(QT_LIB48PLUS)' 'true'
+QMAKEFILE = Makefile.qmake
+endif
+endif
 endif
 
 # complete version string
@@ -919,8 +928,6 @@ ifeq '$(ARCH)' 'Darwin'
 # put the version, SCM revision and icon resource in Info.plist on Mac OS X
 %.plist: %.plist.in
 	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICON@/$(MYAPPICON)/g' < $< > $@
-
-$(QMAKEFILE): arch/Darwin/Info.plist
 endif
 
 # tools
@@ -964,10 +971,14 @@ $(PROJECT)-bin: lang $(QMAKEFILE)
 endif
 	@echo "Updating build of QMC2 v$(VERSION)"
 ifeq '$(ARCH)' 'Darwin'
+ifeq '$(QT_LIB48PLUS)' 'true'
+	+@$(MAKESILENT) -f $(QMAKEFILE) > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) runonce.pro > /dev/null && $(MAKESILENT) -f $(QMAKEFILE) > /dev/null
+else
 ifeq '$(CTIME)' '0'
 	+@xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake runonce.pro > /dev/null && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null
 else
 	+@$(TIME) (xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null && cd runonce && $(QMAKE) -makefile -o Makefile.qmake runonce.pro > /dev/null && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release > /dev/null)
+endif
 endif
 else
 ifeq '$(ARCH)' 'Windows'
@@ -992,7 +1003,12 @@ endif
 	@echo "Build of QMC2 v$(VERSION) complete"
 	@echo "Target emulator: $(QMC2_EMULATOR)"
 
+
+ifeq '$(ARCH)' 'Darwin'
+$(QMAKEFILE): $(PROJECT).pro arch/Darwin/Info.plist
+else
 $(QMAKEFILE): $(PROJECT).pro
+endif
 	@echo "Configuring build of QMC2 v$(VERSION)"
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)" > /dev/null) 
@@ -1002,9 +1018,11 @@ else
 	@$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
 ifeq '$(ARCH)' 'Darwin'
+ifneq '$(QT_LIB48PLUS)' 'true'
 	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
 	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 	@$(MV) ./Makefile.qmake.xcodeproj/qt_preprocess.mak.new ./Makefile.qmake.xcodeproj/qt_preprocess.mak
+endif
 endif
 else
 ifeq '$(ARCH)' 'Windows'
@@ -1022,10 +1040,14 @@ $(PROJECT)-bin: lang $(QMAKEFILE)
 endif
 	@echo "Updating build of QMC2 v$(VERSION)"
 ifeq '$(ARCH)' 'Darwin'
+ifeq '$(QT_LIB48PLUS)' 'true'
+	+@$(MAKE) -f $(QMAKEFILE) && cd runonce && $(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) QMC2_MINGW=$(MINGW) runonce.pro && $(MAKE) -f $(QMAKEFILE)
+else
 ifeq '$(CTIME)' '0'
 	+@xcodebuild -project Makefile.qmake.xcodeproj -configuration Release && cd runonce && $(QMAKE) -makefile -o Makefile.qmake runonce.pro && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release
 else
 	+@$(TIME) (xcodebuild -project Makefile.qmake.xcodeproj -configuration Release && cd runonce && $(QMAKE) -makefile -o Makefile.qmake runonce.pro && xcodebuild -project Makefile.qmake.xcodeproj -configuration Release)
+endif
 endif
 else
 ifeq '$(ARCH)' 'Windows'
@@ -1050,7 +1072,11 @@ endif
 	@echo "Build of QMC2 v$(VERSION) complete"
 	@echo "Target emulator: $(QMC2_EMULATOR)"
 
+ifeq '$(ARCH)' 'Darwin'
+$(QMAKEFILE): $(PROJECT).pro arch/Darwin/Info.plist
+else
 $(QMAKEFILE): $(PROJECT).pro
+endif
 	@echo "Configuring build of QMC2 v$(VERSION)"
 ifneq '$(ARCH)' 'Windows'
 	@$(shell scripts/setup_imgset.sh "$(IMGSET)" "$(RM)" "$(LN)" "$(BASENAME)") 
@@ -1058,10 +1084,14 @@ else
 	@$(shell scripts\\setup_imgset.bat $(IMGSET)) 
 endif
 ifeq '$(ARCH)' 'Darwin'
+ifneq '$(QT_LIB48PLUS)' 'true'
 	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 	@$(SED) -e "s/-c /cc -c /" < ./Makefile.qmake.xcodeproj/qt_preprocess.mak > "./Makefile.qmake.xcodeproj/qt_preprocess.mak.new"
 	@$(RM) ./Makefile.qmake.xcodeproj/qt_preprocess.mak
 	@$(MV) ./Makefile.qmake.xcodeproj/qt_preprocess.mak.new ./Makefile.qmake.xcodeproj/qt_preprocess.mak
+else
+	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
+endif
 else
 	$(QMAKE) -makefile -o Makefile.qmake $(QT_MAKE_SPEC) VERSION=$(VERSION) QMC2_MINGW=$(MINGW) $(QMAKE_CONF) $(SDL_LIBS) $(QT_CONF) $(QMAKE_CXX_COMPILER) $(QMAKE_CXX_FLAGS) $(QMAKE_CC_FLAGS) $(QMAKE_L_FLAGS) $(QMAKE_L_LIBS) $(QMAKE_L_LIBDIRS) $(QMAKE_LINKER) '$(DEFINES)' $<
 endif
@@ -1142,6 +1172,7 @@ ifneq '$(ARCH)' 'Windows'
 	@$(RM) -Rf tools/qmc2_options_editor_java/bin
 endif
 ifeq '$(ARCH)' 'Darwin'
+ifneq '$(QT_LIB48PLUS)' 'true'
 	@$(RM) -r runonce/Makefile.qmake.xcodeproj runonce/build
 	@xcodebuild -project Makefile.qmake.xcodeproj -alltargets -configuration Release clean
 	@xcodebuild -project Makefile.qmake.xcodeproj -alltargets -configuration Debug clean
@@ -1151,6 +1182,10 @@ ifeq '$(ARCH)' 'Darwin'
 	@$(RM) $(patsubst %.ui,ui_%.h,$(wildcard *.ui) $(notdir $(wildcard */*.ui)))
 	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp arch/Darwin/Info.plist Info.plist Makefile.qmake.xcodeproj/*
 	@$(RMDIR) Makefile.qmake.xcodeproj
+else
+	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE)
+	@$(MAKE) -f $(QMAKEFILE) distclean
+endif
 else
 ifneq '$(ARCH)' 'Windows'
 	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE)
@@ -1174,6 +1209,7 @@ ifneq '$(ARCH)' 'Windows'
 	@$(RM) -Rf tools/qmc2_options_editor_java/bin > /dev/null
 endif
 ifeq '$(ARCH)' 'Darwin'
+ifneq '$(QT_LIB48PLUS)' 'true'
 	@$(RM) -r runonce/Makefile.qmake.xcodeproj runonce/build > /dev/null
 	@xcodebuild -project Makefile.qmake.xcodeproj -alltargets -configuration Release clean > /dev/null
 	@xcodebuild -project Makefile.qmake.xcodeproj -alltargets -configuration Debug clean > /dev/null
@@ -1183,6 +1219,10 @@ ifeq '$(ARCH)' 'Darwin'
 	@$(RM) $(patsubst %.ui,ui_%.h,$(wildcard *.ui) $(notdir $(wildcard */*.ui))) > /dev/null
 	@$(RM) $(wildcard moc_*.cpp) qrc_qmc2.cpp arch/Darwin/Info.plist Info.plist Makefile.qmake.xcodeproj/* > /dev/null
 	@$(RMDIR) Makefile.qmake.xcodeproj > /dev/null
+else
+	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE) > /dev/null
+	@$(MAKE) -f $(QMAKEFILE) distclean > /dev/null
+endif
 else
 ifneq '$(ARCH)' 'Windows'
 	@$(RM) runonce/runonce.o runonce/$(QMAKEFILE) > /dev/null
