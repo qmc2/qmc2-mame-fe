@@ -81,21 +81,22 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
         index = ui->comboBoxProjectType->currentIndex();
 
     // FIXME: copy data where applicable
+
     switch ( index ) {
     case QCHDMAN_PRJ_INFO:
-        widgetHeight = ui->groupBoxInfo->height() + 2 * ui->gridLayoutGroupBoxInfo->contentsMargins().bottom();
+        widgetHeight = ui->frameInfo->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
         if ( globalConfig->preferencesShowHelpTexts() )
-            widgetHeight += ui->labelInfoHelp->height();
+            widgetHeight += ui->labelInfoHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
         break;
     case QCHDMAN_PRJ_VERIFY:
-        widgetHeight = ui->groupBoxVerify->height() + 2 * ui->gridLayoutGroupBoxVerify->contentsMargins().bottom();
+        widgetHeight = ui->frameVerify->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
         if ( globalConfig->preferencesShowHelpTexts() )
-            widgetHeight += ui->labelVerifyHelp->height();
+            widgetHeight += ui->labelVerifyHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
         break;
     case QCHDMAN_PRJ_COPY:
-        widgetHeight = ui->groupBoxCopy->height() + 2 * ui->gridLayoutGroupBoxCopy->contentsMargins().bottom();
+        widgetHeight = ui->frameCopy->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
         if ( globalConfig->preferencesShowHelpTexts() )
-            widgetHeight += ui->labelCopyHelp->height();
+            widgetHeight += ui->labelCopyHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
         break;
     case QCHDMAN_PRJ_CREATE_RAW:
         break;

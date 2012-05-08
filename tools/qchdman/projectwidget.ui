@@ -229,13 +229,10 @@
          <x>0</x>
          <y>0</y>
          <width>721</width>
-         <height>488</height>
+         <height>487</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayoutScrollArea">
-        <property name="margin">
-         <number>0</number>
-        </property>
         <item row="0" column="0">
          <widget class="QStackedWidget" name="stackedWidgetProjectDetails">
           <property name="currentIndex">
@@ -246,24 +243,12 @@
             <property name="margin">
              <number>0</number>
             </property>
-            <property name="spacing">
-             <number>0</number>
-            </property>
             <item row="0" column="0" colspan="2">
-             <widget class="QGroupBox" name="groupBoxInfo">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="title">
-               <string/>
-              </property>
-              <property name="flat">
-               <bool>true</bool>
-              </property>
-              <layout class="QGridLayout" name="gridLayoutGroupBoxInfo">
+             <widget class="QFrame" name="frameInfo">
+              <layout class="QGridLayout" name="gridLayoutFrameInfo">
+               <property name="margin">
+                <number>0</number>
+               </property>
                <item row="0" column="1">
                 <widget class="QToolButton" name="toolButtonBrowseInfoInputFile">
                  <property name="sizePolicy">
@@ -310,18 +295,17 @@
             <item row="1" column="0" colspan="2">
              <widget class="QLabel" name="labelInfoHelp">
               <property name="text">
-               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CHDMAN Info&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Displays information about a CHD file.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Parameters&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--verbose, -v: output additional information&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;p&gt;
+&lt;b&gt;CHDMAN Info&lt;/b&gt;
+&lt;/p&gt;
+Displays information about a CHD file.
+&lt;p&gt;
+&lt;b&gt;Parameters&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: Input file name (required)&lt;br&gt;
+--verbose, -v: Output additional information
+&lt;/p&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -345,7 +329,7 @@ p, li { white-space: pre-wrap; }
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>0</height>
+                <height>40</height>
                </size>
               </property>
              </spacer>
@@ -357,54 +341,12 @@ p, li { white-space: pre-wrap; }
             <property name="margin">
              <number>0</number>
             </property>
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item row="2" column="0" colspan="2">
-             <widget class="QLabel" name="labelVerifyHelp">
-              <property name="text">
-               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CHDMAN Verify&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Verifies a CHD's integrity.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Parameters&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--inputparent, -ip &amp;lt;filename&amp;gt;: parent file name for input CHD&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-              </property>
-              <property name="wordWrap">
-               <bool>true</bool>
-              </property>
-              <property name="margin">
-               <number>8</number>
-              </property>
-              <property name="indent">
-               <number>8</number>
-              </property>
-             </widget>
-            </item>
             <item row="1" column="0" colspan="2">
-             <widget class="QGroupBox" name="groupBoxVerify">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="title">
-               <string/>
-              </property>
-              <property name="flat">
-               <bool>true</bool>
-              </property>
-              <layout class="QGridLayout" name="gridLayoutGroupBoxVerify">
+             <widget class="QFrame" name="frameVerify">
+              <layout class="QGridLayout" name="gridLayoutFrameVerify">
+               <property name="margin">
+                <number>0</number>
+               </property>
                <item row="0" column="0">
                 <widget class="QLineEdit" name="lineEditVerifyInputFile">
                  <property name="sizePolicy">
@@ -468,6 +410,35 @@ p, li { white-space: pre-wrap; }
               </layout>
              </widget>
             </item>
+            <item row="2" column="0" colspan="2">
+             <widget class="QLabel" name="labelVerifyHelp">
+              <property name="text">
+               <string>&lt;p&gt;
+&lt;b&gt;CHDMAN Verify&lt;/b&gt;
+&lt;/p&gt;
+Verifies a CHD's integrity.
+&lt;p&gt;
+&lt;b&gt;Parameters&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
+--inputparent, -ip &amp;lt;filename&amp;gt;: parent file name for input CHD
+&lt;/p&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="margin">
+               <number>8</number>
+              </property>
+              <property name="indent">
+               <number>8</number>
+              </property>
+             </widget>
+            </item>
             <item row="3" column="0" colspan="2">
              <spacer name="verticalSpacerVerify">
               <property name="orientation">
@@ -476,7 +447,7 @@ p, li { white-space: pre-wrap; }
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>0</height>
+                <height>40</height>
                </size>
               </property>
              </spacer>
@@ -484,25 +455,16 @@ p, li { white-space: pre-wrap; }
            </layout>
           </widget>
           <widget class="QWidget" name="pageCopy">
-           <layout class="QGridLayout" name="gridLayoutPageCopy" columnstretch="0,0">
+           <layout class="QGridLayout" name="gridLayoutPageCopy">
             <property name="margin">
              <number>0</number>
             </property>
-            <property name="spacing">
-             <number>0</number>
-            </property>
             <item row="7" column="0" colspan="2">
-             <widget class="QGroupBox" name="groupBoxCopy">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="flat">
-               <bool>true</bool>
-              </property>
-              <layout class="QGridLayout" name="gridLayoutGroupBoxCopy">
+             <widget class="QFrame" name="frameCopy">
+              <layout class="QGridLayout" name="gridLayoutFrameCopy">
+               <property name="margin">
+                <number>0</number>
+               </property>
                <item row="5" column="1">
                 <widget class="QSpinBox" name="spinBoxCopyInputStartByte">
                  <property name="sizePolicy">
@@ -854,28 +816,27 @@ p, li { white-space: pre-wrap; }
             <item row="8" column="0" colspan="2">
              <widget class="QLabel" name="labelCopyHelp">
               <property name="text">
-               <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CHDMAN Copy&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copies data from one CHD to another of the same type.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Parameters&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--output, -o &amp;lt;filename&amp;gt;: output file name (required)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--outputparent, -op &amp;lt;filename&amp;gt;: parent file name for output CHD&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--force, -f: force overwriting an existing file&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--inputparent, -ip &amp;lt;filename&amp;gt;: parent file name for input CHD&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--inputstartbyte, -isb &amp;lt;offset&amp;gt;: starting byte offset within the input&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--inputstarthunk, -ish &amp;lt;offset&amp;gt;: starting hunk offset within the input&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--inputbytes, -ib &amp;lt;length&amp;gt;: effective length of input in bytes&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--inputhunks, -ih &amp;lt;length&amp;gt;: effective length of input in hunks&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk, in bytes&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;--numprocessors, -np &amp;lt;processors&amp;gt;: limit the number of processors to use during compression&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;p&gt;
+&lt;b&gt;CHDMAN Copy&lt;/b&gt;
+&lt;/p&gt;
+Copies data from one CHD to another of the same type.
+&lt;p&gt;
+&lt;b&gt;Parameters&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: output file name (required)&lt;br&gt;
+--inputparent, -ip &amp;lt;filename&amp;gt;: parent file name for input CHD&lt;br&gt;
+--outputparent, -op &amp;lt;filename&amp;gt;: parent file name for output CHD&lt;br&gt;
+--force, -f: force overwriting an existing file&lt;br&gt;
+--numprocessors, -np &amp;lt;processors&amp;gt;: limit the number of processors to use during compression&lt;br&gt;
+--inputstartbyte, -isb &amp;lt;offset&amp;gt;: starting byte offset within the input&lt;br&gt;
+--inputstarthunk, -ish &amp;lt;offset&amp;gt;: starting hunk offset within the input&lt;br&gt;
+--inputbytes, -ib &amp;lt;length&amp;gt;: effective length of input in bytes&lt;br&gt;
+--inputhunks, -ih &amp;lt;length&amp;gt;: effective length of input in hunks&lt;br&gt;
+--hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk, in bytes&lt;br&gt;
+--compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
+&lt;/p&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -899,7 +860,7 @@ p, li { white-space: pre-wrap; }
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>0</height>
+                <height>40</height>
                </size>
               </property>
              </spacer>

@@ -124,6 +124,7 @@ void MainWindow::on_actionWindowViewModeWindowed_triggered(bool)
     ui->mdiArea->setViewMode(QCHDMAN_VIEWMODE_WINDOWED);
     ui->actionWindowCascade->setEnabled(true);
     ui->actionWindowTile->setEnabled(true);
+    applySettings();
 }
 
 void MainWindow::on_actionWindowViewModeTabbed_triggered(bool)
@@ -134,6 +135,7 @@ void MainWindow::on_actionWindowViewModeTabbed_triggered(bool)
     ui->mdiArea->setViewMode(QCHDMAN_VIEWMODE_TABBED);
     ui->actionWindowCascade->setEnabled(false);
     ui->actionWindowTile->setEnabled(false);
+    applySettings();
 }
 
 void MainWindow::on_actionHelpAbout_triggered(bool)
@@ -142,6 +144,7 @@ void MainWindow::on_actionHelpAbout_triggered(bool)
 
 void MainWindow::on_actionHelpAboutQt_triggered(bool)
 {
+    QApplication::aboutQt();
 }
 
 void MainWindow::updateStatus()
@@ -151,6 +154,7 @@ void MainWindow::updateStatus()
 
 void MainWindow::applySettings()
 {
+    qApp->processEvents();
     QFont f;
     f.fromString(globalConfig->preferencesLogFont());
     f.setPointSize(globalConfig->preferencesLogFontSize());

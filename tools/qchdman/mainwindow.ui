@@ -226,9 +226,6 @@
    </property>
   </action>
   <action name="actionHelpAboutQt">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="text">
     <string>About Qt...</string>
    </property>
