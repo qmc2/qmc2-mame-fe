@@ -12,14 +12,14 @@ extern MainWindow *mainWindow;
 ProjectWindow::ProjectWindow(QString pn, QWidget *parent) :
     QMdiSubWindow(parent)
 {
+    closeOk = true;
+
     if ( pn.isEmpty() )
         projectName = tr("Noname-%1").arg(mainWindow->nextProjectID++);
     else
         projectName = pn;
 
     setWindowTitle(projectName);
-
-    closeOk = true;
     projectWidget = new ProjectWidget(this);
     setWidget(projectWidget);
 }

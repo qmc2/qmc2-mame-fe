@@ -25,6 +25,7 @@
 #define QCHDMAN_DYN_DOT_PATH        (qApp->arguments().indexOf("-config_path") >= 0 && qApp->arguments().indexOf("-config_path") + 1 <= qApp->arguments().count() ? qApp->arguments()[qApp->arguments().indexOf("-config_path") + 1]: QCHDMAN_DOT_PATH)
 
 // project types
+#define QCHDMAN_PRJ_UNKNOWN         -1
 #define QCHDMAN_PRJ_INFO            0
 #define QCHDMAN_PRJ_VERIFY          1
 #define QCHDMAN_PRJ_COPY            2
@@ -39,6 +40,9 @@
 
 // status update timer interval
 #define QCHDMAN_STATUS_INTERVAL     500
+
+// max. recent files
+#define QCHDMAN_MAX_RECENT_FILES    10
 
 // view-modes
 #define QCHDMAN_VIEWMODE_WINDOWED   QMdiArea::SubWindowView

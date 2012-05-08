@@ -20,6 +20,9 @@ public:
     QAction *actionCopyStdoutToClipboard;
     QAction *actionCopyStderrToClipboard;
     QAction *actionCopyCommandToClipboard;
+    QAction *actionLoad;
+    QAction *actionSave;
+    QAction *actionSaveAs;
     bool terminatedOnDemand;
     QMap<QString, QString> compressionTypes;
     QStringList copyCompressors;
@@ -70,6 +73,7 @@ public slots:
     void load(const QString &fileName = QString());
     void save();
     void saveAs(const QString &fileName = QString());
+    void triggerSaveAs();
     void on_comboBoxProjectType_currentIndexChanged(int);
     void on_toolButtonRun_clicked(bool refreshArgsOnly = false);
     void on_toolButtonStop_clicked();

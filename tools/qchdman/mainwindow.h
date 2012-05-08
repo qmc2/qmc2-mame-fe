@@ -20,6 +20,7 @@ public:
     int nextProjectID;
     PreferencesDialog *preferencesDialog;
     QStringList projectTypes;
+    QStringList recentFiles;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -51,6 +52,8 @@ public slots:
     // Other
     void updateStatus();
     void applySettings();
+    void addRecentFile(const QString &);
+    void loadRecentFile();
     void resetCloseFlag() { closeOk = true; }
 
 protected:
