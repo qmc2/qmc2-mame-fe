@@ -107,13 +107,14 @@ ROMAlyzer::ROMAlyzer(QWidget *parent)
   chdCompressionTypes << tr("none") << tr("zlib") << tr("zlib+") << tr("A/V codec");
 
   // compression types for CHD v5
-  chdCompressionTypesV5["zlib"] = tr("zlib (Deflate)");
-  chdCompressionTypesV5["lzma"] = tr("lzma (LZMA)");
-  chdCompressionTypesV5["huff"] = tr("huff (Huffman)");
-  chdCompressionTypesV5["flcb"] = tr("flcb (FLAC, big-endian)");
-  chdCompressionTypesV5["flcl"] = tr("flcl (FLAC, little-endian)");
-  chdCompressionTypesV5["cdfl"] = tr("cdfl (CD FLAC)");
   chdCompressionTypesV5["avhu"] = tr("avhu (A/V Huffman)");
+  chdCompressionTypesV5["cdfl"] = tr("cdfl (CD FLAC)");
+  chdCompressionTypesV5["cdlz"] = tr("cdlz (CD LZMA)");
+  chdCompressionTypesV5["cdzl"] = tr("cdzl (CD Deflate)");
+  chdCompressionTypesV5["flac"] = tr("flac (FLAC)");
+  chdCompressionTypesV5["huff"] = tr("huff (Huffman)");
+  chdCompressionTypesV5["lzma"] = tr("lzma (LZMA)");
+  chdCompressionTypesV5["zlib"] = tr("zlib (Deflate)");
 
   chdManagerRunning = chdManagerMD5Success = chdManagerSHA1Success = false;
 #if QMC2_CHD_CURRENT_VERSION < 5
