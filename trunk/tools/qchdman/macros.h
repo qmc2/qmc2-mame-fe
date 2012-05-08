@@ -41,6 +41,9 @@
 // status update timer interval
 #define QCHDMAN_STATUS_INTERVAL     500
 
+// status message timeout
+#define QCHDMAN_STATUS_MSGTIME      2000
+
 // max. recent files
 #define QCHDMAN_MAX_RECENT_FILES    10
 

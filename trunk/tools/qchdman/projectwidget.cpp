@@ -1,5 +1,7 @@
 #include <QtGui>
 #include <QFileDialog>
+#include <QMessageBox>
+
 #if defined(Q_OS_WIN)
 #include <windows.h>
 #endif
@@ -613,7 +615,7 @@ void ProjectWidget::load(const QString &fileName)
         parentWidget()->setWindowTitle(fName);
         mainWindow->addRecentFile(fName);
     } else
-        mainWindow->statusBar()->showMessage(tr("Failed loading project '%1'").arg(fName), 2000);
+        mainWindow->statusBar()->showMessage(tr("Failed loading project '%1'").arg(fName), QCHDMAN_STATUS_MSGTIME);
 }
 
 void ProjectWidget::save()
@@ -701,10 +703,10 @@ void ProjectWidget::saveAs(const QString &fileName)
         saveFile.close();
         ((ProjectWindow *)parentWidget())->projectName = projectName;
         parentWidget()->setWindowTitle(projectName);
-        mainWindow->statusBar()->showMessage(tr("Project '%1' saved").arg(projectName), 2000);
+        mainWindow->statusBar()->showMessage(tr("Project '%1' saved").arg(projectName), QCHDMAN_STATUS_MSGTIME);
         mainWindow->addRecentFile(projectName);
     } else
-        mainWindow->statusBar()->showMessage(tr("Failed saving project '%1'").arg(projectName), 2000);
+        mainWindow->statusBar()->showMessage(tr("Failed saving project '%1'").arg(projectName), QCHDMAN_STATUS_MSGTIME);
 }
 
 void ProjectWidget::triggerSaveAs()
