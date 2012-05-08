@@ -43,6 +43,8 @@ public slots:
     QByteArray mainWindowGeometry() { return value("MainWindow/Geometry", QByteArray()).toByteArray(); }
     void setMainWindowViewMode(int mode) { setValue("MainWindow/ViewMode", mode); };
     int mainWindowViewMode() { return value("MainWindow/ViewMode", QCHDMAN_VIEWMODE_WINDOWED).toInt(); }
+    void setMainWindowRecentFiles(QStringList recentFiles) { setValue("MainWindow/RecentFiles", recentFiles); }
+    QStringList mainWindowRecentFiles() { return value("MainWindow/RecentFiles", QStringList()).toStringList(); }
 };
 
 #endif // SETTINGS_H

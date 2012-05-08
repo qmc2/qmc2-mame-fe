@@ -39,6 +39,13 @@ MainWindow::MainWindow(QWidget *parent) :
     else
         on_actionWindowViewModeTabbed_triggered();
 
+    recentFiles = globalConfig->mainWindowRecentFiles();
+    foreach (QString file, recentFiles) {
+        QFile f(file);
+        if ( f.exists() )
+            ui->menuProjectRecent->addAction(file, this, SLOT(loadRecentFile()));
+    }
+
     // check CHDMAN binary setting
     QFileInfo chdmanFileInfo(globalConfig->preferencesChdmanBinary());   
     if ( globalConfig->preferencesChdmanBinary().isEmpty() || !chdmanFileInfo.isExecutable() )
@@ -69,6 +76,15 @@ void MainWindow::on_actionProjectNew_triggered(bool)
 
 void MainWindow::on_actionProjectLoad_triggered(bool)
 {
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Choose file"), QString(), tr("All files (*)"));
+    if ( !fileName.isNull() ) {
+        ProjectWindow *projectWindow = new ProjectWindow(fileName, ui->mdiArea);
+        projectWindow->show();
+        if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
+            if ( globalConfig->preferencesMaximizeWindows() )
+                projectWindow->showMaximized();
+        projectWindow->projectWidget->load(fileName);
+    }
 }
 
 void MainWindow::on_actionProjectSave_triggered(bool)
@@ -186,6 +202,39 @@ void MainWindow::applySettings()
             projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
         }
     }
+}
+
+void MainWindow::addRecentFile(const QString &fileName)
+{
+    if ( !fileName.isEmpty() ) {
+        recentFiles.removeAll(fileName);
+        recentFiles.insert(0, fileName);
+        if ( recentFiles.count() > QCHDMAN_MAX_RECENT_FILES )
+            recentFiles.removeAt(recentFiles.count() - 1);
+        ui->menuProjectRecent->clear();
+        foreach (QString file, recentFiles) {
+            QFile f(file);
+            if ( f.exists() )
+                ui->menuProjectRecent->addAction(file, this, SLOT(loadRecentFile()));
+        }
+        globalConfig->setMainWindowRecentFiles(recentFiles);
+    }
+}
+
+void MainWindow::loadRecentFile()
+{
+    QAction *action = (QAction *)sender();
+    QFile f(action->text());
+    if ( !f.exists() ) {
+        statusBar()->showMessage(tr("Project '%1' doesn't exist"), 2000);
+        return;
+    }
+    ProjectWindow *projectWindow = new ProjectWindow(action->text(), ui->mdiArea);
+    projectWindow->show();
+    if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
+        if ( globalConfig->preferencesMaximizeWindows() )
+            projectWindow->showMaximized();
+    projectWindow->projectWidget->load(action->text());
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)

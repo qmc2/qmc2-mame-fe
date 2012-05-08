@@ -55,9 +55,14 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     ui->comboBoxCopyCompression->blockSignals(false);
 
     menuActions = new QMenu(this);
+    actionLoad = menuActions->addAction(tr("Load"), this, SLOT(load()));
+    actionSave = menuActions->addAction(tr("Save"), this, SLOT(save()));
+    actionSaveAs = menuActions->addAction(tr("Save as..."), this, SLOT(triggerSaveAs()));
     actionCopyStdoutToClipboard = menuActions->addAction(tr("Copy stdout to clipboard"), this, SLOT(copyStdoutToClipboard()));
     actionCopyStderrToClipboard = menuActions->addAction(tr("Copy stderr to clipboard"), this, SLOT(copyStderrToClipboard()));
     actionCopyCommandToClipboard = menuActions->addAction(tr("Copy command to clipboard"), this, SLOT(copyCommandToClipboard()));
+    menuActions->insertSeparator(actionSave);
+    menuActions->insertSeparator(actionCopyStdoutToClipboard);
     menuActions->insertSeparator(actionCopyCommandToClipboard);
     ui->toolButtonActions->setMenu(menuActions);
 
@@ -499,8 +504,116 @@ void ProjectWidget::copyCommandToClipboard()
     qApp->clipboard()->setText(command);
 }
 
-void ProjectWidget::load(const QString &filename)
+void ProjectWidget::load(const QString &fileName)
 {
+    QString fName = fileName;
+    if ( fName.isEmpty() ) {
+        fName = QFileDialog::getOpenFileName(this, tr("Choose file"), QString(), tr("All files (*)"));
+        if ( fName.isNull() )
+            return;
+    }
+
+    QFile loadFile(fName);
+    if ( loadFile.open(QIODevice::ReadOnly | QIODevice::Text) ) {
+        QTextStream ts(&loadFile);
+        int projectType = QCHDMAN_PRJ_UNKNOWN;
+        while ( !ts.atEnd() && projectType == QCHDMAN_PRJ_UNKNOWN ) {
+            QString line = ts.readLine().trimmed();
+            if ( line.startsWith("ProjectType = ") ) {
+                projectType = mainWindow->projectTypes.indexOf(line.remove("ProjectType = "));
+            } else
+                continue;
+        }
+        if ( projectType != QCHDMAN_PRJ_UNKNOWN ) {
+            ts.seek(0);
+            while ( !ts.atEnd() ) {
+                QString line = ts.readLine().trimmed();
+                if ( line.startsWith("#") )
+                    continue;
+                switch ( projectType ) {
+                case QCHDMAN_PRJ_INFO:
+                    if ( line.startsWith("InfoInputFile = ") )
+                        ui->lineEditInfoInputFile->setText(line.remove("InfoInputFile = "));
+                    if ( line.startsWith("InfoVerbose = ") )
+                        ui->checkBoxInfoVerbose->setChecked(line.remove("InfoVerbose = ").toInt());
+                    break;
+                case QCHDMAN_PRJ_VERIFY:
+                    if ( line.startsWith("VerifyInputFile = ") )
+                        ui->lineEditVerifyInputFile->setText(line.remove("VerifyInputFile = "));
+                    if ( line.startsWith("VerifyParentInputFile = ") )
+                        ui->lineEditVerifyParentInputFile->setText(line.remove("VerifyParentInputFile = "));
+                    break;
+                case QCHDMAN_PRJ_COPY:
+                    if ( line.startsWith("CopyInputFile = ") )
+                        ui->lineEditCopyInputFile->setText(line.remove("CopyInputFile = "));
+                    if ( line.startsWith("CopyOutputFile = ") )
+                        ui->lineEditCopyOutputFile->setText(line.remove("CopyOutputFile = "));
+                    if ( line.startsWith("CopyParentInputFile = ") )
+                        ui->lineEditCopyParentInputFile->setText(line.remove("CopyParentInputFile = "));
+                    if ( line.startsWith("CopyParentOutputFile = ") )
+                        ui->lineEditCopyParentOutputFile->setText(line.remove("CopyParentOutputFile = "));
+                    if ( line.startsWith("CopyForce = ") )
+                        ui->checkBoxCopyForce->setChecked(line.remove("CopyForce = ").toInt());
+                    if ( line.startsWith("CopyProcessors = ") )
+                        ui->spinBoxCopyProcessors->setValue(line.remove("CopyProcessors = ").toInt());
+                    if ( line.startsWith("CopyInputStartByte = ") )
+                        ui->spinBoxCopyInputStartByte->setValue(line.remove("CopyInputStartByte = ").toInt());
+                    if ( line.startsWith("CopyInputStartHunk = ") )
+                        ui->spinBoxCopyInputStartHunk->setValue(line.remove("CopyInputStartHunk = ").toInt());
+                    if ( line.startsWith("CopyInputBytes = ") )
+                        ui->spinBoxCopyInputBytes->setValue(line.remove("CopyInputBytes = ").toInt());
+                    if ( line.startsWith("CopyInputHunks = ") )
+                        ui->spinBoxCopyInputHunks->setValue(line.remove("CopyInputHunks = ").toInt());
+                    if ( line.startsWith("CopyHunkSize = ") )
+                        ui->spinBoxCopyHunkSize->setValue(line.remove("CopyHunkSize = ").toInt());
+                    if ( line.startsWith("CopyCompression = ") ) {
+                        QString compression = line.remove("CopyCompression = ");
+                        if ( compression == "none" )
+                            ui->comboBoxCopyCompression->setCurrentIndex(3);
+                        else if ( compression != "default" ) {
+                            copyCompressors.clear();
+                            foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
+                                if ( compressionTypes.contains(cmp) ) {
+                                    int index = ui->comboBoxCopyCompression->findText(cmp + " ", Qt::MatchStartsWith);
+                                    if ( index > 4 ) {
+                                        ui->comboBoxCopyCompression->setItemIcon(index, QIcon(":/images/active.png"));
+                                        ui->comboBoxCopyCompression->setItemData(index, QCHDMAN_ITEM_ACTIVE, Qt::WhatsThisRole);
+                                        copyCompressors << cmp;
+                                    }
+                                }
+                            }
+                            on_comboBoxCopyCompression_currentIndexChanged(-1);
+                        }
+                    }
+                    break;
+                case QCHDMAN_PRJ_CREATE_RAW:
+                    break;
+                case QCHDMAN_PRJ_CREATE_HD:
+                    break;
+                case QCHDMAN_PRJ_CREATE_CD:
+                    break;
+                case QCHDMAN_PRJ_CREATE_LD:
+                    break;
+                case QCHDMAN_PRJ_EXTRACT_RAW:
+                    break;
+                case QCHDMAN_PRJ_EXTRACT_HD:
+                    break;
+                case QCHDMAN_PRJ_EXTRACT_CD:
+                    break;
+                case QCHDMAN_PRJ_EXTRACT_LD:
+                    break;
+                }
+            }
+            ui->comboBoxProjectType->setCurrentIndex(projectType);
+            qApp->processEvents();
+            on_comboBoxProjectType_currentIndexChanged(projectType);
+        }
+        loadFile.close();
+        ((ProjectWindow *)parentWidget())->projectName = fName;
+        parentWidget()->setWindowTitle(fName);
+        mainWindow->addRecentFile(fName);
+    } else
+        mainWindow->statusBar()->showMessage(tr("Failed loading project '%1'").arg(fName), 2000);
 }
 
 void ProjectWidget::save()
@@ -519,11 +632,11 @@ void ProjectWidget::saveAs(const QString &fileName)
 {
     QString projectName = fileName;
 
-    if ( fileName.isEmpty() || askFileName ) {
+    if ( projectName.isEmpty() || askFileName ) {
         projectName = ((ProjectWindow *)parentWidget())->projectName;
         if ( projectName.startsWith(tr("Noname-%1").arg("")) || projectName.isEmpty() || askFileName ) {
-            QString s = QFileDialog::getSaveFileName(this, tr("Choose file name"), projectName, tr("All files (*)"));
-            if ( s.isEmpty() )
+            QString s = QFileDialog::getSaveFileName(this, tr("Choose file"), projectName, tr("All files (*)"));
+            if ( s.isNull() )
                 return;
             else
                 projectName = s;
@@ -588,7 +701,15 @@ void ProjectWidget::saveAs(const QString &fileName)
         saveFile.close();
         ((ProjectWindow *)parentWidget())->projectName = projectName;
         parentWidget()->setWindowTitle(projectName);
-    } else {
-        // FIXME
-    }
+        mainWindow->statusBar()->showMessage(tr("Project '%1' saved").arg(projectName), 2000);
+        mainWindow->addRecentFile(projectName);
+    } else
+        mainWindow->statusBar()->showMessage(tr("Failed saving project '%1'").arg(projectName), 2000);
+}
+
+void ProjectWidget::triggerSaveAs()
+{
+    askFileName = true;
+    saveAs();
+    askFileName = false;
 }
