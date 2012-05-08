@@ -24,6 +24,7 @@ public:
     QMap<QString, QString> compressionTypes;
     QStringList copyCompressors;
     QStringList arguments;
+    bool askFileName;
 
     explicit ProjectWidget(QWidget *parent = 0);
     ~ProjectWidget();
@@ -66,6 +67,9 @@ public slots:
     void copyStdoutToClipboard();
     void copyStderrToClipboard();
     void copyCommandToClipboard();
+    void load(const QString &fileName = QString());
+    void save();
+    void saveAs(const QString &fileName = QString());
     void on_comboBoxProjectType_currentIndexChanged(int);
     void on_toolButtonRun_clicked(bool refreshArgsOnly = false);
     void on_toolButtonStop_clicked();

@@ -32,6 +32,8 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle(QCHDMAN_APP_TITLE + " " + QCHDMAN_APP_VERSION);
     nextProjectID = 0;
 
+    projectTypes << "Info" << "Verify" << "Copy" << "CreateRaw" << "CreateHD" << "CreateCD" << "CreateLD" << "ExtractRaw" << "ExtractHD" << "ExtractCD" << "ExtractLD";
+
     if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
         on_actionWindowViewModeWindowed_triggered();
     else
@@ -71,10 +73,28 @@ void MainWindow::on_actionProjectLoad_triggered(bool)
 
 void MainWindow::on_actionProjectSave_triggered(bool)
 {
+    ProjectWindow *projectWindow = (ProjectWindow *)ui->mdiArea->activeSubWindow();
+    if ( projectWindow )
+        projectWindow->projectWidget->save();
 }
 
 void MainWindow::on_actionProjectSaveAs_triggered(bool)
 {
+    ProjectWindow *projectWindow = (ProjectWindow *)ui->mdiArea->activeSubWindow();
+    if ( projectWindow ) {
+        projectWindow->projectWidget->askFileName = true;
+        projectWindow->projectWidget->saveAs();
+        projectWindow->projectWidget->askFileName = false;
+    }
+}
+
+void MainWindow::on_actionProjectSaveAll_triggered(bool)
+{
+    foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
+        ProjectWidget *projectWidget = (ProjectWidget *)w->widget();
+        if ( projectWidget )
+            projectWidget->save();
+    }
 }
 
 void MainWindow::on_actionProjectPreferences_triggered(bool)
@@ -160,10 +180,10 @@ void MainWindow::applySettings()
     f.fromString(globalConfig->preferencesLogFont());
     f.setPointSize(globalConfig->preferencesLogFontSize());
     foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
-        ProjectWidget *pW = (ProjectWidget *)w->widget();
-        if ( pW ) {
-            pW->setLogFont(f);
-            pW->on_comboBoxProjectType_currentIndexChanged(-1);
+        ProjectWidget *projectWidget = (ProjectWidget *)w->widget();
+        if ( projectWidget ) {
+            projectWidget->setLogFont(f);
+            projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
         }
     }
 }

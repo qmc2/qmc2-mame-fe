@@ -477,7 +477,7 @@ Verifies a CHD's integrity.
                   <string>Starting byte offset within the input (--inputstartbyte)</string>
                  </property>
                  <property name="specialValueText">
-                  <string>default</string>
+                  <string>auto</string>
                  </property>
                  <property name="minimum">
                   <number>-1</number>
@@ -502,7 +502,7 @@ Verifies a CHD's integrity.
                   <string>Size in bytes of each hunk (--hunksize)</string>
                  </property>
                  <property name="specialValueText">
-                  <string>default</string>
+                  <string>auto</string>
                  </property>
                  <property name="minimum">
                   <number>-1</number>
@@ -541,7 +541,7 @@ Verifies a CHD's integrity.
                   <string>Effective length of input in bytes (--inputbytes)</string>
                  </property>
                  <property name="specialValueText">
-                  <string>default</string>
+                  <string>auto</string>
                  </property>
                  <property name="minimum">
                   <number>-1</number>
@@ -731,7 +731,7 @@ Verifies a CHD's integrity.
                   <string>Limit the number of processors to use during compression (--numprocessors)</string>
                  </property>
                  <property name="specialValueText">
-                  <string>default</string>
+                  <string>auto</string>
                  </property>
                  <property name="minimum">
                   <number>0</number>
@@ -756,7 +756,7 @@ Verifies a CHD's integrity.
                   <string>Starting hunk offset within the input (--inputstarthunk)</string>
                  </property>
                  <property name="specialValueText">
-                  <string>default</string>
+                  <string>auto</string>
                  </property>
                  <property name="minimum">
                   <number>-1</number>
@@ -781,7 +781,7 @@ Verifies a CHD's integrity.
                   <string>Effective length of input in hunks (--inputhunks)</string>
                  </property>
                  <property name="specialValueText">
-                  <string>default</string>
+                  <string>auto</string>
                  </property>
                  <property name="minimum">
                   <number>-1</number>

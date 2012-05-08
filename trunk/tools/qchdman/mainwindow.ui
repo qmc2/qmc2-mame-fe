@@ -37,9 +37,6 @@
      <string>&amp;Project</string>
     </property>
     <widget class="QMenu" name="menuProjectRecent">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
      <property name="title">
       <string>Recent</string>
      </property>
@@ -51,6 +48,7 @@
     <addaction name="separator"/>
     <addaction name="actionProjectSave"/>
     <addaction name="actionProjectSaveAs"/>
+    <addaction name="actionProjectSaveAll"/>
     <addaction name="separator"/>
     <addaction name="actionProjectPreferences"/>
     <addaction name="separator"/>
@@ -102,9 +100,6 @@
    </property>
   </action>
   <action name="actionProjectLoad">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="text">
     <string>Load...</string>
    </property>
@@ -116,9 +111,6 @@
    </property>
   </action>
   <action name="actionProjectSave">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="text">
     <string>Save</string>
    </property>
@@ -130,9 +122,6 @@
    </property>
   </action>
   <action name="actionProjectSaveAs">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="text">
     <string>Save as...</string>
    </property>
@@ -275,6 +264,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+T</string>
+   </property>
+  </action>
+  <action name="actionProjectSaveAll">
+   <property name="text">
+    <string>Save all</string>
    </property>
   </action>
  </widget>
