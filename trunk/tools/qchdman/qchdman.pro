@@ -1,5 +1,4 @@
 QT += core gui
-CONFIG += warn_on release
 
 TARGET = qchdman
 TEMPLATE = app
