@@ -48,6 +48,7 @@ public slots:
     // Other
     void updateStatus();
     void applySettings();
+    void resetCloseFlag() { closeOk = true; }
 
 protected:
     void closeEvent(QCloseEvent *);

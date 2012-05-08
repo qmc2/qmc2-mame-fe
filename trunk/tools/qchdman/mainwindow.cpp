@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     restoreGeometry(globalConfig->mainWindowGeometry());
     restoreState(globalConfig->mainWindowState());
 
-    setWindowTitle(QCHDMAN_TITLE + " " + QCHDMAN_VERSION);
+    setWindowTitle(QCHDMAN_APP_TITLE + " " + QCHDMAN_APP_VERSION);
     nextProjectID = 0;
 
     if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )

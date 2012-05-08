@@ -32,8 +32,13 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
 {
     closeOk = true;
 
+    if ( !mainWindow->closeOk ) {
+        e->ignore();
+        return;
+    }
+
     if ( projectWidget->chdmanProc ) {
-        if ( projectWidget->chdmanProc->state() == QProcess::Running && mainWindow->closeOk ) {
+        if ( projectWidget->chdmanProc->state() == QProcess::Running ) {
             switch ( QMessageBox::question(this, tr("Confirm"),
                                            tr("Project '%1' is currently running.\nClosing its window will kill the external process!\n\nProceed?").arg(windowTitle()),
                                            QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
@@ -45,6 +50,7 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
             default:
                 closeOk = false;
                 mainWindow->closeOk = false;
+                QTimer::singleShot(100, mainWindow, SLOT(resetCloseFlag()));
                 break;
             }
         } else

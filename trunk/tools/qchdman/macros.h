@@ -1,13 +1,17 @@
 #ifndef MACROS_H
 #define MACROS_H
 
+// make a string out of a non-string constant
+#define STR(s)                      #s
+#define XSTR(s)                     STR(s)
+
 // title, author, copyright, ...
-#define QCHDMAN_TITLE               QString("Qt CHDMAN GUI")
-#define QCHDMAN_VERSION             QString("0.1")
-#define QCHDMAN_COPYRIGHT           tr("Copyright (C) 2012, René Reucher. All Rights Reserved.")
+#define QCHDMAN_APP_NAME            QString("qchdman")
+#define QCHDMAN_APP_TITLE           QString("Qt CHDMAN GUI")
+#define QCHDMAN_APP_VERSION         QString(XSTR(QCHDMAN_VERSION))
+#define QCHDMAN_APP_COPYRIGHT       tr("Copyright (C) 2012, René Reucher. All Rights Reserved.")
 #define QCHDMAN_ORG_DOMAIN          QString("qmc2.arcadehits.net")
 #define QCHDMAN_ORG_NAME            QString("qmc2")
-#define QCHDMAN_APP_NAME            QString("qchdman")
 
 // dot-path related
 #if defined(Q_OS_MAC)
