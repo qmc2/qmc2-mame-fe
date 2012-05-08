@@ -1,4 +1,6 @@
- #include <QtGui>
+#include <QtGui>
+#include <QFileDialog>
+#include <QMessageBox>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -162,6 +164,14 @@ void MainWindow::on_actionWindowViewModeWindowed_triggered(bool)
     ui->actionWindowCascade->setEnabled(true);
     ui->actionWindowTile->setEnabled(true);
     applySettings();
+    foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
+        ProjectWindow *projectWindow = (ProjectWindow *)w;
+        if ( globalConfig->preferencesMaximizeWindows() ) {
+            projectWindow->showMaximized();
+            qApp->processEvents();
+        }
+        projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+    }
 }
 
 void MainWindow::on_actionWindowViewModeTabbed_triggered(bool)
@@ -173,6 +183,10 @@ void MainWindow::on_actionWindowViewModeTabbed_triggered(bool)
     ui->actionWindowCascade->setEnabled(false);
     ui->actionWindowTile->setEnabled(false);
     applySettings();
+    foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
+        ProjectWindow *projectWindow = (ProjectWindow *)w;
+        projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+    }
 }
 
 void MainWindow::on_actionHelpAbout_triggered(bool)
@@ -226,7 +240,7 @@ void MainWindow::loadRecentFile()
     QAction *action = (QAction *)sender();
     QFile f(action->text());
     if ( !f.exists() ) {
-        statusBar()->showMessage(tr("Project '%1' doesn't exist"), 2000);
+        statusBar()->showMessage(tr("Project '%1' doesn't exist"), QCHDMAN_STATUS_MSGTIME);
         return;
     }
     ProjectWindow *projectWindow = new ProjectWindow(action->text(), ui->mdiArea);
