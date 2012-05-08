@@ -1,7 +1,9 @@
-QT += core gui
+VERSION = 0.1
 
+QT += core gui
 TARGET = qchdman
 TEMPLATE = app
+DEFINES += QCHDMAN_VERSION=$$VERSION
 
 SOURCES += main.cpp\
     mainwindow.cpp \

@@ -303,8 +303,8 @@ Displays information about a CHD file.
 &lt;b&gt;Parameters&lt;/b&gt;
 &lt;/p&gt;
 &lt;p&gt;
---input, -i &amp;lt;filename&amp;gt;: Input file name (required)&lt;br&gt;
---verbose, -v: Output additional information
+--input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
+--verbose, -v: output additional information
 &lt;/p&gt;</string>
               </property>
               <property name="alignment">
