@@ -19,6 +19,7 @@ ProjectWindow::ProjectWindow(QString pn, QWidget *parent) :
 
     setWindowTitle(projectName);
 
+    closeOk = true;
     projectWidget = new ProjectWidget(this);
     setWidget(projectWidget);
 }
@@ -29,14 +30,30 @@ ProjectWindow::~ProjectWindow()
 
 void ProjectWindow::closeEvent(QCloseEvent *e)
 {
+    closeOk = true;
+
     if ( projectWidget->chdmanProc ) {
-        if ( projectWidget->chdmanProc->state() == QProcess::Running ) {
-             projectWidget->chdmanProc->kill();
-             projectWidget->chdmanProc->waitForFinished();
-        }
+        if ( projectWidget->chdmanProc->state() == QProcess::Running && mainWindow->closeOk ) {
+            switch ( QMessageBox::question(this, tr("Confirm"),
+                                           tr("Project '%1' is currently running.\nClosing its window will kill the external process!\n\nProceed?").arg(windowTitle()),
+                                           QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
+            case QMessageBox::Yes:
+                projectWidget->chdmanProc->kill();
+                projectWidget->chdmanProc->waitForFinished();
+                break;
+            case QMessageBox::No:
+            default:
+                closeOk = false;
+                mainWindow->closeOk = false;
+                break;
+            }
+        } else
+            closeOk = mainWindow->closeOk;
     }
 
-    QMdiSubWindow::closeEvent(e);
-
-    deleteLater();
+    if ( closeOk ) {
+        e->accept();
+        deleteLater();
+    } else
+        e->ignore();
 }
