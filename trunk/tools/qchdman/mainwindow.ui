@@ -19,14 +19,7 @@
      <number>0</number>
     </property>
     <item row="0" column="0">
-     <widget class="QMdiArea" name="mdiArea">
-      <property name="tabsClosable">
-       <bool>true</bool>
-      </property>
-      <property name="tabsMovable">
-       <bool>true</bool>
-      </property>
-     </widget>
+     <widget class="QMdiArea" name="mdiArea"/>
     </item>
    </layout>
   </widget>
