@@ -32,6 +32,14 @@ void ProjectWindow::closeEvent(QCloseEvent *e)
 {
     closeOk = true;
 
+    if ( mainWindow->forceQuit ) {
+        projectWidget->chdmanProc->kill();
+        projectWidget->chdmanProc->waitForFinished();
+        e->accept();
+        deleteLater();
+        return;
+    }
+
     if ( !mainWindow->closeOk ) {
         e->ignore();
         return;
