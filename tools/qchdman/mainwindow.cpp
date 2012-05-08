@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    closeOk = true;
+
 #if QT_VERSION >= 0x040800
     ui->mdiArea->setTabsMovable(true);
     ui->mdiArea->setTabsClosable(true);
@@ -163,15 +165,22 @@ void MainWindow::applySettings()
 
 void MainWindow::closeEvent(QCloseEvent *e)
 {
+    closeOk = true;
+
     ui->mdiArea->closeAllSubWindows();
+    qApp->processEvents();
 
-    globalConfig->setMainWindowState(saveState());
-    globalConfig->setMainWindowGeometry(saveGeometry());
+    QList<QMdiSubWindow *>subWindowList = ui->mdiArea->subWindowList();
 
-    if ( preferencesDialog )
-        delete preferencesDialog;
+    if ( subWindowList.isEmpty() && closeOk ) {
+        globalConfig->setMainWindowState(saveState());
+        globalConfig->setMainWindowGeometry(saveGeometry());
 
-    delete globalConfig;
+        if ( preferencesDialog )
+            delete preferencesDialog;
 
-    QMainWindow::closeEvent(e);
+        e->accept();
+        delete globalConfig;
+    } else
+        e->ignore();
 }
