@@ -14,6 +14,7 @@ class MainWindow : public QMainWindow
     
 public:
     bool closeOk;
+    bool forceQuit;
     QLabel *statisticsLabel;
     QTimer statusTimer;
     int nextProjectID;
