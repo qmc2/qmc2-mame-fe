@@ -931,21 +931,20 @@ ifeq '$(ARCH)' 'Darwin'
 endif
 
 # tools
-QCHDMAN_DEFINES = DEFINES+=
 ifeq '$(DEBUG)' '0'
 QCHDMAN_CONF += CONFIG+=warn_off CONFIG+=release
-QCHDMAN_DEFINES += QCHDMAN_RELEASE
+QCHDMAN_DEFINES = DEFINES+=QCHDMAN_RELEASE
 else
 QCHDMAN_CONF += CONFIG+=warn_on CONFIG+=debug
-QCHDMAN_DEFINES += QCHDMAN_DEBUG
+QCHDMAN_DEFINES = DEFINES+=QCHDMAN_DEBUG
 endif
 
 ifeq '$(ARCH)' 'Windows'
 qchdman:
-	@$(CD) tools\qchdman && $(QMAKE) $(QCHDMAN_CONF) '$(QCHDMAN_DEFINES)' && $(MAKE)
+	@$(CD) tools\qchdman && $(QMAKE) $(QCHDMAN_CONF) "$(QCHDMAN_DEFINES)" && $(MAKE)
 
 qchdman-clean:
-	@$(CD) tools\qchdman && $(QMAKE) $(QCHDMAN_CONF) '$(QCHDMAN_DEFINES)' && $(MAKE) distclean
+	@$(CD) tools\qchdman && $(QMAKE) $(QCHDMAN_CONF) "$(QCHDMAN_DEFINES)" && $(MAKE) distclean
 
 tools: qchdman
 tools-clean: qchdman-clean
