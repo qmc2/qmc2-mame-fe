@@ -5,6 +5,9 @@
 #define STR(s)                      #s
 #define XSTR(s)                     STR(s)
 
+// project file format version
+#define QCHDMAN_PRJ_FMT_VERSION     1
+
 // title, author, copyright, ...
 #define QCHDMAN_APP_NAME            QString("qchdman")
 #define QCHDMAN_APP_TITLE           QString("Qt CHDMAN GUI")

@@ -23,6 +23,7 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
 
     chdmanProc = NULL;
     terminatedOnDemand = false;
+    askFileName = false;
 
     compressionTypes["avhu"] = tr("avhu (A/V Huffman)");
     compressionTypes["cdfl"] = tr("cdfl (CD FLAC)");
@@ -496,4 +497,98 @@ void ProjectWidget::copyCommandToClipboard()
             command += " " + arg;
     }
     qApp->clipboard()->setText(command);
+}
+
+void ProjectWidget::load(const QString &filename)
+{
+}
+
+void ProjectWidget::save()
+{
+    QString projectName = ((ProjectWindow *)parentWidget())->projectName;
+
+    if ( projectName.startsWith(tr("Noname-%1").arg("")) )
+        askFileName = true;
+
+    saveAs(projectName);
+
+    askFileName = false;
+}
+
+void ProjectWidget::saveAs(const QString &fileName)
+{
+    QString projectName = fileName;
+
+    if ( fileName.isEmpty() || askFileName ) {
+        projectName = ((ProjectWindow *)parentWidget())->projectName;
+        if ( projectName.startsWith(tr("Noname-%1").arg("")) || projectName.isEmpty() || askFileName ) {
+            QString s = QFileDialog::getSaveFileName(this, tr("Choose file name"), projectName, tr("All files (*)"));
+            if ( s.isEmpty() )
+                return;
+            else
+                projectName = s;
+        }
+    }
+
+    QFile saveFile(projectName);
+    if ( saveFile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
+        QTextStream ts(&saveFile);
+        int projectType = ui->comboBoxProjectType->currentIndex();
+        ts << "# " << tr("Qt CHDMAN project file -- please do not edit manually") << "\n";
+        ts << "ApplicationVersion = " << QCHDMAN_APP_VERSION << "\n";
+        ts << "ProjectFormatVersion = " << QCHDMAN_PRJ_FMT_VERSION << "\n";
+        ts << "ProjectType = " << mainWindow->projectTypes[projectType] << "\n";
+        switch ( projectType ) {
+        case QCHDMAN_PRJ_INFO:
+            ts << "InfoInputFile = " << ui->lineEditInfoInputFile->text() << "\n";
+            ts << "InfoVerbose = " << ui->checkBoxInfoVerbose->isChecked() << "\n";
+            break;
+        case QCHDMAN_PRJ_VERIFY:
+            ts << "VerifyInputFile = " << ui->lineEditVerifyInputFile->text() << "\n";
+            ts << "VerifyParentInputFile = " << ui->lineEditVerifyParentInputFile->text() << "\n";
+            break;
+        case QCHDMAN_PRJ_COPY:
+            ts << "CopyInputFile = " << ui->lineEditCopyInputFile->text() << "\n";
+            ts << "CopyOutputFile = " << ui->lineEditCopyOutputFile->text() << "\n";
+            ts << "CopyParentInputFile = " << ui->lineEditCopyParentInputFile->text() << "\n";
+            ts << "CopyParentOutputFile = " << ui->lineEditCopyParentOutputFile->text() << "\n";
+            ts << "CopyForce = " << ui->checkBoxCopyForce->isChecked() << "\n";
+            ts << "CopyProcessors = " << ui->spinBoxCopyProcessors->value() << "\n";
+            ts << "CopyInputStartByte = " << ui->spinBoxCopyInputStartByte->value() << "\n";
+            ts << "CopyInputStartHunk = " << ui->spinBoxCopyInputStartHunk->value() << "\n";
+            ts << "CopyInputBytes = " << ui->spinBoxCopyInputBytes->value() << "\n";
+            ts << "CopyInputHunks = " << ui->spinBoxCopyInputHunks->value() << "\n";
+            ts << "CopyHunkSize = " << ui->spinBoxCopyHunkSize->value() << "\n";
+            ts << "CopyCompression = ";
+            if ( !copyCompressors.isEmpty() )
+                ts << copyCompressors.join(",");
+            else if ( ui->comboBoxCopyCompression->currentText() == tr("default") )
+                ts << "default";
+            else
+                ts << "none";
+            ts << "\n";
+            break;
+        case QCHDMAN_PRJ_CREATE_RAW:
+            break;
+        case QCHDMAN_PRJ_CREATE_HD:
+            break;
+        case QCHDMAN_PRJ_CREATE_CD:
+            break;
+        case QCHDMAN_PRJ_CREATE_LD:
+            break;
+        case QCHDMAN_PRJ_EXTRACT_RAW:
+            break;
+        case QCHDMAN_PRJ_EXTRACT_HD:
+            break;
+        case QCHDMAN_PRJ_EXTRACT_CD:
+            break;
+        case QCHDMAN_PRJ_EXTRACT_LD:
+            break;
+        }
+        saveFile.close();
+        ((ProjectWindow *)parentWidget())->projectName = projectName;
+        parentWidget()->setWindowTitle(projectName);
+    } else {
+        // FIXME
+    }
 }

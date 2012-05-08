@@ -19,6 +19,7 @@ public:
     QTimer statusTimer;
     int nextProjectID;
     PreferencesDialog *preferencesDialog;
+    QStringList projectTypes;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -29,6 +30,7 @@ public slots:
     void on_actionProjectLoad_triggered(bool checked = true);
     void on_actionProjectSave_triggered(bool checked = true);
     void on_actionProjectSaveAs_triggered(bool checked = true);
+    void on_actionProjectSaveAll_triggered(bool checked = true);
     void on_actionProjectPreferences_triggered(bool checked = true);
     void on_actionProjectExit_triggered(bool checked = true);
 
