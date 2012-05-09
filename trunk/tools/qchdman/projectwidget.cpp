@@ -139,7 +139,7 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
 
     switch ( ui->comboBoxProjectType->currentIndex() ) {
     case QCHDMAN_PRJ_INFO:
-        jobName = tr("Info");
+        projectTypeName = tr("Info");
         arguments << "info";
         if ( !ui->lineEditInfoInputFile->text().isEmpty() )
             arguments << "--input" << ui->lineEditInfoInputFile->text();
@@ -147,7 +147,7 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
             arguments << "--verbose";
         break;
     case QCHDMAN_PRJ_VERIFY:
-        jobName = tr("Verify");
+        projectTypeName = tr("Verify");
         arguments << "verify";
         if ( !ui->lineEditVerifyInputFile->text().isEmpty() )
             arguments << "--input" << ui->lineEditVerifyInputFile->text();
@@ -155,7 +155,7 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
             arguments << "--inputparent" << ui->lineEditVerifyParentInputFile->text();
         break;
     case QCHDMAN_PRJ_COPY:
-        jobName = tr("Copy");
+        projectTypeName = tr("Copy");
         arguments << "copy";
         if ( !ui->lineEditCopyInputFile->text().isEmpty() )
             arguments << "--input" << ui->lineEditCopyInputFile->text();
@@ -185,42 +185,42 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
             arguments << "--numprocessors" << QString::number(ui->spinBoxCopyProcessors->value());
         break;
     case QCHDMAN_PRJ_CREATE_RAW:
-        jobName = tr("CreateRaw");
+        projectTypeName = tr("CreateRaw");
         arguments << "createraw";
         // FIXME
         break;
     case QCHDMAN_PRJ_CREATE_HD:
-        jobName = tr("CreateHD");
+        projectTypeName = tr("CreateHD");
         arguments << "createhd";
         // FIXME
         break;
     case QCHDMAN_PRJ_CREATE_CD:
-        jobName = tr("CreateCD");
+        projectTypeName = tr("CreateCD");
         arguments << "createcd";
         // FIXME
         break;
     case QCHDMAN_PRJ_CREATE_LD:
-        jobName = tr("CreateLD");
+        projectTypeName = tr("CreateLD");
         arguments << "createld";
         // FIXME
         break;
     case QCHDMAN_PRJ_EXTRACT_RAW:
-        jobName = tr("ExtractRaw");
+        projectTypeName = tr("ExtractRaw");
         arguments << "extractraw";
         // FIXME
         break;
     case QCHDMAN_PRJ_EXTRACT_HD:
-        jobName = tr("ExtractHD");
+        projectTypeName = tr("ExtractHD");
         arguments << "extracthd";
         // FIXME
         break;
     case QCHDMAN_PRJ_EXTRACT_CD:
-        jobName = tr("ExtractCD");
+        projectTypeName = tr("ExtractCD");
         arguments << "extractcd";
         // FIXME
         break;
     case QCHDMAN_PRJ_EXTRACT_LD:
-        jobName = tr("ExtractLD");
+        projectTypeName = tr("ExtractLD");
         arguments << "extractld";
         // FIXME
         break;
@@ -473,7 +473,7 @@ void ProjectWidget::init()
 
 void ProjectWidget::log(QString message)
 {
-    message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + jobName + ": ");
+    message.prepend(QTime::currentTime().toString("hh:mm:ss.zzz") + ": " + projectTypeName + ": ");
     ui->plainTextEditProjectLog->appendPlainText(message);
     ui->plainTextEditProjectLog->verticalScrollBar()->setValue(ui->plainTextEditProjectLog->verticalScrollBar()->maximum());
 }
