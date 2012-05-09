@@ -146,7 +146,7 @@
     <message>
         <location filename="../mainwindow.ui" line="173"/>
         <source>Tile project windows</source>
-        <translation>Project Fenster in Kacheln aufteilen</translation>
+        <translation>Projekt Fenster in Kacheln aufteilen</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="176"/>
@@ -264,6 +264,11 @@
         <translation>Alle speichern</translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="274"/>
+        <source>Save all projects</source>
+        <translation>Alle Projekte speichern</translation>
+    </message>
+    <message>
         <location filename="../mainwindow.cpp" line="81"/>
         <source>Choose file</source>
         <translation>Datei auswählen</translation>
@@ -291,10 +296,12 @@
     <message>
         <location filename="../mainwindow.cpp" line="285"/>
         <source>There is 1 project currently running.
+
 Closing its window will kill the external process!
 
 Proceed?</source>
         <translation>1 Projekt wird gerade ausgeführt.
+
 Das Schließen seines Fensters führt zum Abbruch des externen Prozesses!
 
 Fortfahren?</translation>
@@ -302,10 +309,12 @@ Fortfahren?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="286"/>
         <source>There are %1 projects currently running.
+
 Closing their windows will kill the external processes!
 
 Proceed?</source>
         <translation>%1 Projekte werden gerade ausgeführt.
+
 Das Schließen ihrer Fenster führt zum Abbruch der externen Prozesse!
 
 Fortfahren?</translation>
@@ -1081,10 +1090,12 @@ Copies data from one CHD to another of the same type.
     <message>
         <location filename="../projectwindow.cpp" line="53"/>
         <source>Project &apos;%1&apos; is currently running.
+
 Closing its window will kill the external process!
 
 Proceed?</source>
-        <translation>Projekt &apos;%1&apos; wird gerade ausgeführt.
+        <translation>Projekt &apos;%1&apos; wird gerade ausgeführt
+.
 Das Schließen seines Fensters führt zum Abbruch des externen Prozesses!
 
 Fortfahren?</translation>

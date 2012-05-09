@@ -282,8 +282,8 @@ void MainWindow::closeEvent(QCloseEvent *e)
     if ( runningProjects > 0 ) {
         switch ( QMessageBox::question(this, tr("Confirm"),
                                        runningProjects == 1 ?
-                                       tr("There is 1 project currently running.\nClosing its window will kill the external process!\n\nProceed?") :
-                                       tr("There are %1 projects currently running.\nClosing their windows will kill the external processes!\n\nProceed?").arg(runningProjects),
+                                       tr("There is 1 project currently running.\n\nClosing its window will kill the external process!\n\nProceed?") :
+                                       tr("There are %1 projects currently running.\n\nClosing their windows will kill the external processes!\n\nProceed?").arg(runningProjects),
                                        QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ) {
         case QMessageBox::Yes:
             forceQuit = true;
