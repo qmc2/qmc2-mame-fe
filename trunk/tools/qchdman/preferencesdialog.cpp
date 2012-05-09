@@ -65,6 +65,11 @@ void PreferencesDialog::on_pushButtonApply_clicked()
     adjustSize();
 }
 
+void PreferencesDialog::on_pushButtonCancel_clicked()
+{
+    restoreSettings();
+}
+
 void PreferencesDialog::on_toolButtonBrowseChdmanBinary_clicked()
 {
     QString s = QFileDialog::getOpenFileName(this, tr("Choose CHDMAN binary"), ui->lineEditChdmanBinary->text(), tr("All files (*)"));

@@ -15,6 +15,7 @@ public:
     bool terminatedOnDemand;
     bool askFileName;
     bool needsTabbedUiAdjustment;
+    bool needsWindowedUiAdjustment;
     QString stdoutOutput;
     QString stderrOutput;
     QString jobName;

@@ -211,6 +211,12 @@
       <bool>true</bool>
      </property>
      <widget class="QScrollArea" name="scrollArea">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
@@ -881,6 +887,12 @@ Copies data from one CHD to another of the same type.
       </widget>
      </widget>
      <widget class="QPlainTextEdit" name="plainTextEditProjectLog">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="toolTip">
        <string>Project log</string>
       </property>

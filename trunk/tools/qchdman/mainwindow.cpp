@@ -215,6 +215,7 @@ void MainWindow::applySettings()
             projectWidget->setLogFont(f);
             projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
             projectWidget->needsTabbedUiAdjustment = true;
+            projectWidget->needsWindowedUiAdjustment = true;
         }
     }
 }
@@ -263,8 +264,14 @@ void MainWindow::on_mdiArea_subWindowActivated(QMdiSubWindow *w)
             projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
             projectWindow->projectWidget->needsTabbedUiAdjustment = false;
         }
-    } else
+        projectWindow->projectWidget->needsWindowedUiAdjustment = true;
+    } else {
+        if ( projectWindow->projectWidget->needsWindowedUiAdjustment ) {
+            projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+            projectWindow->projectWidget->needsWindowedUiAdjustment = false;
+        }
         projectWindow->projectWidget->needsTabbedUiAdjustment = true;
+    }
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)

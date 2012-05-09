@@ -21,6 +21,7 @@ public slots:
     void applySettings(); 
     void on_pushButtonOk_clicked();
     void on_pushButtonApply_clicked();
+    void on_pushButtonCancel_clicked();
     void on_toolButtonBrowseChdmanBinary_clicked();
 
 protected:
