@@ -18,6 +18,10 @@ public:
     ~Settings() { sync(); }
 
 public slots:
+    // General
+    void setApplicationVersion(QString version) { setValue("Version", version); }
+    QString applicationVersion() { return value("Version", QCHDMAN_APP_VERSION).toString(); }
+
     // Preferences
     void setPreferencesGuiStyle(QString style) { setValue("Preferences/GuiStyle", style); }
     QString preferencesGuiStyle() { return value("Preferences/GuiStyle", qApp->style()->objectName()).toString(); }
