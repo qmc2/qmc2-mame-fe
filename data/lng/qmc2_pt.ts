@@ -5852,7 +5852,7 @@ Você quer escolher um nome diferente?</translation>
         <location filename="../../macros.h" line="475"/>
         <location filename="../../macros.h" line="484"/>
         <source>U.M.E. Catalog / Launcher II</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="576"/>
@@ -14151,17 +14151,17 @@ Usar configurações de máquina local, sobrescrever com as configurações glob
     <message>
         <location filename="../../romalyzer.cpp" line="112"/>
         <source>cdlz (CD LZMA)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="113"/>
         <source>cdzl (CD Deflate)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="114"/>
         <source>flac (FLAC)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="125"/>
