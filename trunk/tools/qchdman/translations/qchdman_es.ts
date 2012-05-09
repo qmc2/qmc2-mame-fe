@@ -264,6 +264,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../mainwindow.ui" line="274"/>
+        <source>Save all projects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../mainwindow.cpp" line="81"/>
         <source>Choose file</source>
         <translation type="unfinished"></translation>
@@ -291,6 +296,7 @@
     <message>
         <location filename="../mainwindow.cpp" line="285"/>
         <source>There is 1 project currently running.
+
 Closing its window will kill the external process!
 
 Proceed?</source>
@@ -299,6 +305,7 @@ Proceed?</source>
     <message>
         <location filename="../mainwindow.cpp" line="286"/>
         <source>There are %1 projects currently running.
+
 Closing their windows will kill the external processes!
 
 Proceed?</source>
@@ -1075,6 +1082,7 @@ Copies data from one CHD to another of the same type.
     <message>
         <location filename="../projectwindow.cpp" line="53"/>
         <source>Project &apos;%1&apos; is currently running.
+
 Closing its window will kill the external process!
 
 Proceed?</source>

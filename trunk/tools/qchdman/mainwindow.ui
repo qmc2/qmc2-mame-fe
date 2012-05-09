@@ -270,6 +270,9 @@
    <property name="text">
     <string>Save all</string>
    </property>
+   <property name="statusTip">
+    <string>Save all projects</string>
+   </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

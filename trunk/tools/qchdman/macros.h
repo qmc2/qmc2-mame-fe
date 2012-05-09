@@ -47,10 +47,11 @@
 // max. recent files
 #define QCHDMAN_MAX_RECENT_FILES    10
 
-// view-modes
+// view modes
 #define QCHDMAN_VIEWMODE_WINDOWED   QMdiArea::SubWindowView
 #define QCHDMAN_VIEWMODE_TABBED     QMdiArea::TabbedView
 
+// item states
 #define QCHDMAN_ITEM_ACTIVE         QString("active")
 #define QCHDMAN_ITEM_INACTIVE       QString("inactive")
 
