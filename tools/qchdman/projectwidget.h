@@ -12,6 +12,9 @@ class ProjectWidget : public QWidget
     Q_OBJECT
 
 public:
+    bool terminatedOnDemand;
+    bool askFileName;
+    bool needsTabbedUiAdjustment;
     QString stdoutOutput;
     QString stderrOutput;
     QString jobName;
@@ -23,11 +26,9 @@ public:
     QAction *actionLoad;
     QAction *actionSave;
     QAction *actionSaveAs;
-    bool terminatedOnDemand;
     QMap<QString, QString> compressionTypes;
     QStringList copyCompressors;
     QStringList arguments;
-    bool askFileName;
 
     explicit ProjectWidget(QWidget *parent = 0);
     ~ProjectWidget();

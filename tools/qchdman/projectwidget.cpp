@@ -26,6 +26,7 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     chdmanProc = NULL;
     terminatedOnDemand = false;
     askFileName = false;
+    needsTabbedUiAdjustment = true;
 
     compressionTypes["avhu"] = tr("avhu (A/V Huffman)");
     compressionTypes["cdfl"] = tr("cdfl (CD FLAC)");
