@@ -7,6 +7,7 @@
 #include <QStyle>
 #include <QSize>
 #include <QFont>
+#include <QLocale>
 #include "macros.h"
 
 class Settings : public QSettings
@@ -14,8 +15,41 @@ class Settings : public QSettings
     Q_OBJECT
 
 public:
-    Settings() : QSettings(QSettings::IniFormat, QSettings::UserScope, QCHDMAN_APP_NAME) { }
-    ~Settings() { sync(); }
+    QMap<QString, QLocale::Language> languageMap;
+
+    Settings() : QSettings(QSettings::IniFormat, QSettings::UserScope, QCHDMAN_APP_NAME)
+    {
+        languageMap["de"] = QLocale::German;
+        languageMap["es"] = QLocale::Spanish;
+        languageMap["fr"] = QLocale::French;
+        languageMap["it"] = QLocale::Italian;
+        languageMap["pl"] = QLocale::Polish;
+        languageMap["pt"] = QLocale::Portuguese;
+        languageMap["ro"] = QLocale::Romanian;
+        languageMap["us"] = QLocale::English;
+    }
+
+    ~Settings()
+    {
+        sync();
+    }
+
+    QString languageToString(QLocale::Language lang)
+    {
+        QString langStr = languageMap.key(lang);
+        if ( !langStr.isEmpty() )
+            return langStr;
+        else
+            return "us";
+    }
+
+    QLocale::Language languageFromString(QString lang)
+    {
+        if ( languageMap.contains(lang) )
+            return languageMap[lang];
+        else
+            return QLocale::English;
+    }
 
 public slots:
     // General
@@ -39,6 +73,8 @@ public slots:
     bool preferencesShowHelpTexts() { return value("Preferences/ShowHelpTexts", false).toBool(); }
     void setPreferencesMaximizeWindows(bool enable) { setValue("Preferences/MaximizeWindows", enable); }
     bool preferencesMaximizeWindows() { return value("Preferences/MaximizeWindows", false).toBool(); }
+    void setPreferencesLanguage(QString lang) { setValue("Preferences/Language", lang); }
+    QString preferencesLanguage() { return value("Preferences/Language", languageToString(QLocale::system().language())).toString(); }
 
     // MainWindow
     void setMainWindowState(QByteArray state) { setValue("MainWindow/State", state); }

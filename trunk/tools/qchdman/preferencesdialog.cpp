@@ -35,6 +35,8 @@ void PreferencesDialog::initialSetup()
 void PreferencesDialog::applySettings()
 {
     // GUI
+    QString lang = ui->comboBoxLanguage->currentText();
+    globalConfig->setPreferencesLanguage(lang.mid(lang.indexOf("(") + 1, 2));
     globalConfig->setPreferencesGuiStyle(ui->comboBoxStyle->currentText());
     qApp->setStyle(globalConfig->preferencesGuiStyle());
     globalConfig->setPreferencesAppFont(ui->fontComboBoxAppFont->currentFont().toString());
@@ -80,7 +82,14 @@ void PreferencesDialog::on_toolButtonBrowseChdmanBinary_clicked()
 void PreferencesDialog::restoreSettings()
 {
     // GUI
-    int i = ui->comboBoxStyle->findText(globalConfig->preferencesGuiStyle());
+    QString lang = globalConfig->preferencesLanguage();
+    int i = ui->comboBoxLanguage->findText("(" + lang + ")", Qt::MatchEndsWith);
+    if ( i >= 0 )
+        ui->comboBoxLanguage->setCurrentIndex(i);
+    else
+        ui->comboBoxLanguage->setCurrentIndex(ui->comboBoxLanguage->findText("(us)", Qt::MatchEndsWith));
+
+    i = ui->comboBoxStyle->findText(globalConfig->preferencesGuiStyle());
     if ( i >= 0 )
         ui->comboBoxStyle->setCurrentIndex(i);
     QFont f;

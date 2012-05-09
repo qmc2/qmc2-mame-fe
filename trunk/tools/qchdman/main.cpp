@@ -21,6 +21,14 @@ int main(int argc, char *argv[])
     globalConfig = new Settings();
     globalConfig->setApplicationVersion(QCHDMAN_APP_VERSION);
 
+    // FIXME: load a Qt translation as well
+    QString language = globalConfig->preferencesLanguage();
+    if ( !globalConfig->languageMap.contains(language) )
+        language = "us";
+    QTranslator qchdmanTranslator;
+    if ( qchdmanTranslator.load(QString("qchdman_%1").arg(language), ":/translations") )
+        qchdmanApplication.installTranslator(&qchdmanTranslator);
+
     MainWindow w;
     mainWindow = &w;
     mainWindow->show();
