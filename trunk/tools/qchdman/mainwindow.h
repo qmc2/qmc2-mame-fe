@@ -55,6 +55,7 @@ public slots:
     void addRecentFile(const QString &);
     void loadRecentFile();
     void resetCloseFlag() { closeOk = true; }
+    void on_mdiArea_subWindowActivated(QMdiSubWindow *);
 
 protected:
     void closeEvent(QCloseEvent *);

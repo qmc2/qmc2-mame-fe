@@ -214,6 +214,7 @@ void MainWindow::applySettings()
         if ( projectWidget ) {
             projectWidget->setLogFont(f);
             projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+            projectWidget->needsTabbedUiAdjustment = true;
         }
     }
 }
@@ -249,6 +250,21 @@ void MainWindow::loadRecentFile()
         if ( globalConfig->preferencesMaximizeWindows() )
             projectWindow->showMaximized();
     projectWindow->projectWidget->load(action->text());
+}
+
+void MainWindow::on_mdiArea_subWindowActivated(QMdiSubWindow *w)
+{
+    if ( !w )
+        return;
+
+    ProjectWindow *projectWindow = (ProjectWindow *)w;
+    if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_TABBED ) {
+        if ( projectWindow->projectWidget->needsTabbedUiAdjustment ) {
+            projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+            projectWindow->projectWidget->needsTabbedUiAdjustment = false;
+        }
+    } else
+        projectWindow->projectWidget->needsTabbedUiAdjustment = true;
 }
 
 void MainWindow::closeEvent(QCloseEvent *e)
