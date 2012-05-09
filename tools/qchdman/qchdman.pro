@@ -26,18 +26,21 @@ SOURCES += main.cpp\
     mainwindow.cpp \
     projectwindow.cpp \
     projectwidget.cpp \
-    preferencesdialog.cpp
+    preferencesdialog.cpp \
+    aboutdialog.cpp
 
 HEADERS  += mainwindow.h \
     macros.h \
     projectwindow.h \
     projectwidget.h \
     settings.h \
-    preferencesdialog.h
+    preferencesdialog.h \
+    aboutdialog.h
 
 FORMS += mainwindow.ui \
     projectwidget.ui \
-    preferencesdialog.ui
+    preferencesdialog.ui \
+    aboutdialog.ui
 
 RESOURCES += qchdman.qrc
 

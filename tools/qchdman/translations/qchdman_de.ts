@@ -2,6 +2,69 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="de_DE">
 <context>
+    <name>AboutDialog</name>
+    <message>
+        <location filename="../aboutdialog.ui" line="14"/>
+        <source>About</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.ui" line="105"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="20"/>
+        <source>Version</source>
+        <translation>Version</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="21"/>
+        <source>Qt based graphical user interface to CHDMAN, the MAME/MESS CHD management tool</source>
+        <translation>Qt basierte grafische Benutzungsoberfläche für CHDMAN, das MAME/MESS CHD Management Werkzeug</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="22"/>
+        <source>Copyright (C) 2012, R. Reucher. All Rights Reserved.</source>
+        <translation>Copyright (C) 2012, R. Reucher. Alle Rechte vorbehalten.</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="23"/>
+        <source>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the license, or (at your option) any later version.</source>
+        <translation>Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="26"/>
+        <source>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. </source>
+        <translation>Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, dass es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK.</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="28"/>
+        <source>See the</source>
+        <translation>Siehe die</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="28"/>
+        <source>GNU General Public License</source>
+        <translation>GNU General Public License</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="28"/>
+        <source>for more details.</source>
+        <translation>für weitere Details.</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="29"/>
+        <source>Qt CHDMAN GUI is part of the</source>
+        <translation>Qt CHDMAN GUI ist Teil des</translation>
+    </message>
+    <message>
+        <location filename="../aboutdialog.cpp" line="29"/>
+        <source>QMC2 project</source>
+        <translation>QMC2 Projekts</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
@@ -189,112 +252,112 @@
         <translation>Alle Projekt Fenster schließen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="211"/>
+        <location filename="../mainwindow.ui" line="208"/>
         <source>About...</source>
         <translation>Über...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="214"/>
+        <location filename="../mainwindow.ui" line="211"/>
         <source>About this program</source>
         <translation>Über dieses Programm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="219"/>
+        <location filename="../mainwindow.ui" line="216"/>
         <source>About Qt...</source>
         <translation>Über Qt...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="222"/>
+        <location filename="../mainwindow.ui" line="219"/>
         <source>About Qt</source>
         <translation>Über Qt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="227"/>
+        <location filename="../mainwindow.ui" line="224"/>
         <source>Preferences...</source>
         <translation>Einstellungen...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="230"/>
+        <location filename="../mainwindow.ui" line="227"/>
         <source>General preferences</source>
         <translation>Allgemeine Einstellungen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="233"/>
+        <location filename="../mainwindow.ui" line="230"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="238"/>
+        <location filename="../mainwindow.ui" line="235"/>
         <source>No recent files</source>
         <translation>Keine kürzlich verwendeten Dateien</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="246"/>
+        <location filename="../mainwindow.ui" line="243"/>
         <source>Windowed</source>
         <translation>Fenster</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="249"/>
+        <location filename="../mainwindow.ui" line="246"/>
         <source>View projects in windowed mode</source>
         <translation>Projekte in Fenstern anzeigen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="252"/>
+        <location filename="../mainwindow.ui" line="249"/>
         <source>Ctrl+Shift+W</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="260"/>
+        <location filename="../mainwindow.ui" line="257"/>
         <source>Tabbed</source>
         <translation>Reiter</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="263"/>
+        <location filename="../mainwindow.ui" line="260"/>
         <source>View projects in tabbed mode</source>
         <translation>Projekte in Reitern anzeigen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="266"/>
+        <location filename="../mainwindow.ui" line="263"/>
         <source>Ctrl+Shift+T</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="271"/>
+        <location filename="../mainwindow.ui" line="268"/>
         <source>Save all</source>
         <translation>Alle speichern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="274"/>
+        <location filename="../mainwindow.ui" line="271"/>
         <source>Save all projects</source>
         <translation>Alle Projekte speichern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="81"/>
+        <location filename="../mainwindow.cpp" line="82"/>
         <source>Choose file</source>
         <translation>Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="81"/>
+        <location filename="../mainwindow.cpp" line="82"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="203"/>
+        <location filename="../mainwindow.cpp" line="206"/>
         <source>Running projects: %1</source>
         <translation>Aktive Projekte: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="245"/>
+        <location filename="../mainwindow.cpp" line="248"/>
         <source>Project &apos;%1&apos; doesn&apos;t exist</source>
         <translation>Project &apos;%1&apos; existiert nicht</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="283"/>
+        <location filename="../mainwindow.cpp" line="286"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="285"/>
+        <location filename="../mainwindow.cpp" line="288"/>
         <source>There is 1 project currently running.
 
 Closing its window will kill the external process!
@@ -307,7 +370,7 @@ Das Schließen seines Fensters führt zum Abbruch des externen Prozesses!
 Fortfahren?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="286"/>
+        <location filename="../mainwindow.cpp" line="289"/>
         <source>There are %1 projects currently running.
 
 Closing their windows will kill the external processes!
@@ -329,8 +392,8 @@ Fortfahren?</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="35"/>
-        <source>OK</source>
-        <translation>OK</translation>
+        <source>Ok</source>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="42"/>
