@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>358</width>
-    <height>180</height>
+    <width>359</width>
+    <height>206</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -75,7 +75,7 @@
        <string>GUI</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayoutTabGUI">
-       <item row="0" column="0">
+       <item row="1" column="0">
         <widget class="QLabel" name="labelStyle">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -88,7 +88,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="2" column="0">
         <widget class="QLabel" name="labelAppFont">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -101,14 +101,14 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="2" column="1">
         <widget class="QFontComboBox" name="fontComboBoxAppFont">
          <property name="toolTip">
           <string>Application font</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
+       <item row="2" column="2">
         <widget class="QLabel" name="labelAppFontSize">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -121,14 +121,14 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="3">
+       <item row="2" column="3">
         <widget class="QSpinBox" name="spinBoxAppFontSize">
          <property name="toolTip">
           <string>Application font size</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="3" column="0">
         <widget class="QLabel" name="labelLogFont">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -141,14 +141,14 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="3" column="1">
         <widget class="QFontComboBox" name="fontComboBoxLogFont">
          <property name="toolTip">
           <string>Log font</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="2">
+       <item row="3" column="2">
         <widget class="QLabel" name="labelLogFontSize">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -161,14 +161,14 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="3">
+       <item row="3" column="3">
         <widget class="QSpinBox" name="spinBoxLogFontSize">
          <property name="toolTip">
           <string>Log font size</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="0" colspan="4">
+       <item row="4" column="0" colspan="4">
         <layout class="QHBoxLayout" name="horizontalLayoutGUI">
          <item>
           <widget class="QCheckBox" name="checkBoxShowProjectHelp">
@@ -192,14 +192,14 @@
          </item>
         </layout>
        </item>
-       <item row="0" column="1" colspan="3">
+       <item row="1" column="1" colspan="3">
         <widget class="QComboBox" name="comboBoxStyle">
          <property name="toolTip">
           <string>Select the GUI style</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="0" colspan="4">
+       <item row="5" column="0" colspan="4">
         <spacer name="verticalSpacerGUI">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -211,6 +211,63 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="0" column="1" colspan="3">
+        <widget class="QComboBox" name="comboBoxLanguage">
+         <property name="toolTip">
+          <string>Select the GUI language (requires a restart to take effect!)</string>
+         </property>
+         <property name="currentIndex">
+          <number>7</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>German (de)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Spanish (es)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>French (fr)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Italian (it)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Polish (pl)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Portuguese (pt)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Romanian (ro)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>English (us)</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelLanguage">
+         <property name="text">
+          <string>Lanuage</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -235,7 +292,7 @@
           </sizepolicy>
          </property>
          <property name="toolTip">
-          <string>Patch to the CHDMAN binary</string>
+          <string>Path to the CHDMAN binary</string>
          </property>
         </widget>
        </item>
@@ -274,6 +331,7 @@
  </widget>
  <tabstops>
   <tabstop>tabWidget</tabstop>
+  <tabstop>comboBoxLanguage</tabstop>
   <tabstop>comboBoxStyle</tabstop>
   <tabstop>fontComboBoxAppFont</tabstop>
   <tabstop>spinBoxAppFontSize</tabstop>
