@@ -21,12 +21,18 @@ public:
     QString projectTypeName;
     QProcess *chdmanProc;
     QMenu *menuActions;
+    QMenu *menuMorphActions;
+    QMenu *menuCloneActions;
     QAction *actionCopyStdoutToClipboard;
     QAction *actionCopyStderrToClipboard;
     QAction *actionCopyCommandToClipboard;
     QAction *actionLoad;
     QAction *actionSave;
     QAction *actionSaveAs;
+    QAction *actionMorphMenu;
+    QAction *actionCloneMenu;
+    QMap<QAction *, int> morphActionMap;
+    QMap<QAction *, int> cloneActionMap;
     QMap<QString, QString> compressionTypes;
     QStringList copyCompressors;
     QStringList arguments;
@@ -76,6 +82,8 @@ public slots:
     void save();
     void saveAs(const QString &fileName = QString());
     void triggerSaveAs();
+    void clone();
+    void morph();
     void on_comboBoxProjectType_currentIndexChanged(int);
     void on_toolButtonRun_clicked(bool refreshArgsOnly = false);
     void on_toolButtonStop_clicked();

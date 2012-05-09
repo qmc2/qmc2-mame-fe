@@ -60,10 +60,41 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     actionLoad = menuActions->addAction(tr("Load"), this, SLOT(load()));
     actionSave = menuActions->addAction(tr("Save"), this, SLOT(save()));
     actionSaveAs = menuActions->addAction(tr("Save as..."), this, SLOT(triggerSaveAs()));
+
+    menuCloneActions = new QMenu(tr("Clone to"), this);
+    cloneActionMap[menuCloneActions->addAction(tr("Info"), this, SLOT(clone()))] = QCHDMAN_PRJ_INFO;
+    cloneActionMap[menuCloneActions->addAction(tr("Verify"), this, SLOT(clone()))] = QCHDMAN_PRJ_VERIFY;
+    cloneActionMap[menuCloneActions->addAction(tr("Copy"), this, SLOT(clone()))] = QCHDMAN_PRJ_COPY;
+    cloneActionMap[menuCloneActions->addAction(tr("CreateRaw"), this, SLOT(clone()))] = QCHDMAN_PRJ_CREATE_RAW;
+    cloneActionMap[menuCloneActions->addAction(tr("CreadeHD"), this, SLOT(clone()))] = QCHDMAN_PRJ_CREATE_HD;
+    cloneActionMap[menuCloneActions->addAction(tr("CreateCD"), this, SLOT(clone()))] = QCHDMAN_PRJ_CREATE_CD;
+    cloneActionMap[menuCloneActions->addAction(tr("CreateLD"), this, SLOT(clone()))] = QCHDMAN_PRJ_CREATE_LD;
+    cloneActionMap[menuCloneActions->addAction(tr("ExtractRaw"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_RAW;
+    cloneActionMap[menuCloneActions->addAction(tr("ExtractHD"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_HD;
+    cloneActionMap[menuCloneActions->addAction(tr("ExtractCD"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_CD;
+    cloneActionMap[menuCloneActions->addAction(tr("ExtractLD"), this, SLOT(clone()))] = QCHDMAN_PRJ_EXTRACT_LD;
+    actionCloneMenu = menuActions->addMenu(menuCloneActions);
+
+    menuMorphActions = new QMenu(tr("Morph to"), this);
+    morphActionMap[menuMorphActions->addAction(tr("Info"), this, SLOT(morph()))] = QCHDMAN_PRJ_INFO;
+    morphActionMap[menuMorphActions->addAction(tr("Verify"), this, SLOT(morph()))] = QCHDMAN_PRJ_VERIFY;
+    morphActionMap[menuMorphActions->addAction(tr("Copy"), this, SLOT(morph()))] = QCHDMAN_PRJ_COPY;
+    morphActionMap[menuMorphActions->addAction(tr("CreateRaw"), this, SLOT(morph()))] = QCHDMAN_PRJ_CREATE_RAW;
+    morphActionMap[menuMorphActions->addAction(tr("CreadeHD"), this, SLOT(morph()))] = QCHDMAN_PRJ_CREATE_HD;
+    morphActionMap[menuMorphActions->addAction(tr("CreateCD"), this, SLOT(morph()))] = QCHDMAN_PRJ_CREATE_CD;
+    morphActionMap[menuMorphActions->addAction(tr("CreateLD"), this, SLOT(morph()))] = QCHDMAN_PRJ_CREATE_LD;
+    morphActionMap[menuMorphActions->addAction(tr("ExtractRaw"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_RAW;
+    morphActionMap[menuMorphActions->addAction(tr("ExtractHD"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_HD;
+    morphActionMap[menuMorphActions->addAction(tr("ExtractCD"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_CD;
+    morphActionMap[menuMorphActions->addAction(tr("ExtractLD"), this, SLOT(morph()))] = QCHDMAN_PRJ_EXTRACT_LD;
+    actionMorphMenu = menuActions->addMenu(menuMorphActions);
+
     actionCopyStdoutToClipboard = menuActions->addAction(tr("Copy stdout to clipboard"), this, SLOT(copyStdoutToClipboard()));
     actionCopyStderrToClipboard = menuActions->addAction(tr("Copy stderr to clipboard"), this, SLOT(copyStderrToClipboard()));
     actionCopyCommandToClipboard = menuActions->addAction(tr("Copy command to clipboard"), this, SLOT(copyCommandToClipboard()));
+
     menuActions->insertSeparator(actionSave);
+    menuActions->insertSeparator(actionCloneMenu);
     menuActions->insertSeparator(actionCopyStdoutToClipboard);
     menuActions->insertSeparator(actionCopyCommandToClipboard);
     ui->toolButtonActions->setMenu(menuActions);
@@ -714,4 +745,18 @@ void ProjectWidget::triggerSaveAs()
     askFileName = true;
     saveAs();
     askFileName = false;
+}
+
+void ProjectWidget::clone()
+{
+    QAction *action = (QAction *)sender();
+    on_toolButtonRun_clicked(true);
+    log(tr("cloning to '%1' is not supported yet").arg(action->text()));
+}
+
+void ProjectWidget::morph()
+{
+    QAction *action = (QAction *)sender();
+    on_toolButtonRun_clicked(true);
+    log(tr("morphing to '%1' is not supported yet").arg(action->text()));
 }
