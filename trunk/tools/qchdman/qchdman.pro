@@ -16,6 +16,10 @@ greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
 }
 
+win32 {
+    RC_FILE = qchdman.rc
+}
+
 DEFINES += QCHDMAN_VERSION=$$VERSION
 
 SOURCES += main.cpp\
