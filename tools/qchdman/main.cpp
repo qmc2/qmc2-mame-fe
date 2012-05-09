@@ -12,6 +12,7 @@ Settings *globalConfig = NULL;
 int main(int argc, char *argv[])
 {
     QApplication qchdmanApplication(argc, argv);
+    qchdmanApplication.setWindowIcon(QIcon(":/images/qchdman.png"));
 
     QCoreApplication::setOrganizationName(QCHDMAN_ORG_NAME);
     QCoreApplication::setOrganizationDomain(QCHDMAN_ORG_DOMAIN);
