@@ -3244,6 +3244,9 @@ qmc2/tools/qchdman/images/.svn/prop-base/filesave.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/inactive.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/info.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/none.png.svn-base
+qmc2/tools/qchdman/images/.svn/prop-base/qchdman.icns.svn-base
+qmc2/tools/qchdman/images/.svn/prop-base/qchdman.ico.svn-base
+qmc2/tools/qchdman/images/.svn/prop-base/qchdman.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/run.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/stop.png.svn-base
 qmc2/tools/qchdman/images/.svn/prop-base/tools.png.svn-base
@@ -3267,6 +3270,9 @@ qmc2/tools/qchdman/images/.svn/text-base/filesave.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/inactive.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/info.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/none.png.svn-base
+qmc2/tools/qchdman/images/.svn/text-base/qchdman.icns.svn-base
+qmc2/tools/qchdman/images/.svn/text-base/qchdman.ico.svn-base
+qmc2/tools/qchdman/images/.svn/text-base/qchdman.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/run.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/stop.png.svn-base
 qmc2/tools/qchdman/images/.svn/text-base/tools.png.svn-base
@@ -3288,6 +3294,7 @@ qmc2/tools/qchdman/.svn/text-base/projectwindow.h.svn-base
 qmc2/tools/qchdman/.svn/text-base/qchdman.pro.svn-base
 qmc2/tools/qchdman/.svn/text-base/qchdman.pro.user.svn-base
 qmc2/tools/qchdman/.svn/text-base/qchdman.qrc.svn-base
+qmc2/tools/qchdman/.svn/text-base/qchdman.rc.svn-base
 qmc2/tools/qchdman/.svn/text-base/settings.h.svn-base
 qmc2/tools/qchdman/translations/.svn
 qmc2/tools/qchdman/translations/.svn/prop-base/qchdman_de.qm.svn-base
