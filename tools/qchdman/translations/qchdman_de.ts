@@ -510,22 +510,22 @@ Fortfahren?</translation>
     <message>
         <location filename="../projectwidget.ui" line="57"/>
         <source>Create a raw CHD from an input file</source>
-        <translation>Erstellen einer Raw CHD Datei aus Eingabedatei</translation>
+        <translation>Erstellen einer Raw CHD Datei aus einer Datei</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="66"/>
         <source>Create an HD CHD from an input file</source>
-        <translation>Erstellen einer HD CHD Datei aus Eingabedatei</translation>
+        <translation>Erstellen einer HD CHD Datei aus einer Datei</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="75"/>
         <source>Create a CD CHD from an input file</source>
-        <translation>Erstellen einer CD CHD Datei aus Eingabedatei</translation>
+        <translation>Erstellen einer CD CHD Datei aus einer Datei</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="84"/>
         <source>Create an LD CHD from an input file</source>
-        <translation>Erstellen einer LD CHD Datei aus Eingabedatei</translation>
+        <translation>Erstellen einer LD CHD Datei aus einer Datei</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="93"/>
@@ -611,7 +611,17 @@ Displays information about a CHD file.
 --input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
 --verbose, -v: output additional information
 &lt;/p&gt;</source>
-        <translation></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN Info&lt;/b&gt;
+&lt;/p&gt;
+Zeigt Detail-Informationen über eine CHD Datei an.
+&lt;p&gt;
+&lt;b&gt;Parameter&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;Datei&amp;gt;: CHD Eingabedatei (erforderlich)&lt;br&gt;
+--verbose, -v: Ausgabe zusätzlicher Informationen
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="395"/>
@@ -638,7 +648,17 @@ Verifies a CHD&apos;s integrity.
 --input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
 --inputparent, -ip &amp;lt;filename&amp;gt;: parent file name for input CHD
 &lt;/p&gt;</source>
-        <translation></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN Verify&lt;/b&gt;
+&lt;/p&gt;
+Verifiziert die Integrität einer CHD Datei.
+&lt;p&gt;
+&lt;b&gt;Parameter&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;Datei&amp;gt;: CHD Eingabedatei (erforderlich)&lt;br&gt;
+--inputparent, -ip &amp;lt;Datei&amp;gt;: Eltern CHD Eingabedatei
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="483"/>
@@ -773,7 +793,27 @@ Copies data from one CHD to another of the same type.
 --hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk, in bytes&lt;br&gt;
 --compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
 &lt;/p&gt;</source>
-        <translation></translation>
+        <translation>&lt;p&gt;
+&lt;b&gt;CHDMAN Copy&lt;/b&gt;
+&lt;/p&gt;
+Kopiert die Daten einer CHD in eine andere desselben Typs.
+&lt;p&gt;
+&lt;b&gt;Parameter&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;Datei&amp;gt;: CHD Eingabedatei (erforderlich)&lt;br&gt;
+--output, -o &amp;lt;Datei&amp;gt;: CHD Ausgabedatei (erforderlich)&lt;br&gt;
+--inputparent, -ip &amp;lt;Datei&amp;gt;: Eltern CHD Eingabedatei&lt;br&gt;
+--outputparent, -op &amp;lt;Datei&amp;gt;: Eltern CHD Ausgabedatei&lt;br&gt;
+--force, -f: Überschreiben vorhandener Dateien erzwingen&lt;br&gt;
+--numprocessors, -np &amp;lt;Prozessoren&amp;gt;: Anzahl der zur Kompression verwendeten Prozessoren beschränken&lt;br&gt;
+--inputstartbyte, -isb &amp;lt;Offset&amp;gt;: Start-Byte-Offset in Eingabedaten&lt;br&gt;
+--inputstarthunk, -ish &amp;lt;Offset&amp;gt;: Start-Hunk-Offset in Eingabedaten&lt;br&gt;
+--inputbytes, -ib &amp;lt;Länge&amp;gt;: Effektive Länge der Eingabedaten in Bytes&lt;br&gt;
+--inputhunks, -ih &amp;lt;Länge&amp;gt;: Effektive Länge der Eingabedaten in Hunks&lt;br&gt;
+--hunksize, -hs &amp;lt;Bytes&amp;gt;: Größe eines Hunks in Bytes&lt;br&gt;
+--compression, -c &amp;lt;none|Typ1[,Typ2[,...]]&amp;gt;: Verwendete Kompressions-Codecs (bis zu 4)
+&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="897"/>
