@@ -8,11 +8,10 @@
 // project file format version
 #define QCHDMAN_PRJ_FMT_VERSION     1
 
-// title, author, copyright, ...
+// app name, title, version, ...
 #define QCHDMAN_APP_NAME            QString("qchdman")
 #define QCHDMAN_APP_TITLE           QString("Qt CHDMAN GUI")
 #define QCHDMAN_APP_VERSION         QString(XSTR(QCHDMAN_VERSION))
-#define QCHDMAN_APP_COPYRIGHT       tr("Copyright (C) 2012, René Reucher. All Rights Reserved.")
 #define QCHDMAN_ORG_DOMAIN          QString("qmc2.arcadehits.net")
 #define QCHDMAN_ORG_NAME            QString("qmc2")
 
