@@ -18,7 +18,7 @@ public:
     bool needsWindowedUiAdjustment;
     QString stdoutOutput;
     QString stderrOutput;
-    QString jobName;
+    QString projectTypeName;
     QProcess *chdmanProc;
     QMenu *menuActions;
     QAction *actionCopyStdoutToClipboard;

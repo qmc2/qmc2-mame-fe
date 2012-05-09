@@ -387,22 +387,22 @@ Fortfahren?</translation>
     <message>
         <location filename="../preferencesdialog.ui" line="176"/>
         <source>Make sure project help texts are shown when you switch the type</source>
-        <translation>Sicherstellen, dass die Projekt Hilfe-Texte angezeigt werden, wenn der Typ geändert wird</translation>
+        <translation>Sicherstellen, dass die Projekt Hilfe Texte angezeigt werden, wenn der Typ geändert wird</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="179"/>
         <source>Display project help texts</source>
-        <translation>Projekt Hilfe-Texte anzeigen</translation>
+        <translation>Projekt Hilfe Texte anzeigen</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="186"/>
         <source>Maximize new project windows</source>
-        <translation>Neue Projekt-Fenster maximieren</translation>
+        <translation>Neue Projekt Fenster maximieren</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="189"/>
         <source>Maximize project windows</source>
-        <translation>Projekt-Fenster maximieren</translation>
+        <translation>Projekt Fenster maximieren</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="198"/>
