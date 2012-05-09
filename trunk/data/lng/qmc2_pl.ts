@@ -152,7 +152,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="168"/>
         <source>Qt library paths:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżki bibliotek Qt:</translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="173"/>
@@ -8459,7 +8459,7 @@ Czy mają być zabite przy wyjściu?</translation>
         <location filename="../../macros.h" line="475"/>
         <location filename="../../macros.h" line="484"/>
         <source>U.M.E. Catalog / Launcher II</source>
-        <translation type="unfinished"></translation>
+        <translation>U.M.E. Catalog / Launcher II</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3232"/>
@@ -8915,8 +8915,6 @@ Czy mają być zabite przy wyjściu?</translation>
         <source>%n file(s)</source>
         <translatorcomment>%n plików</translatorcomment>
         <translation>
-            <numerusform></numerusform>
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -10724,7 +10722,7 @@ Ponowić próbę osadzania?</translation>
     <message>
         <location filename="../../options.ui" line="135"/>
         <source>ES (Spanish)</source>
-        <translation type="unfinished"></translation>
+        <translation>ES (hiszpański)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="145"/>
@@ -12490,7 +12488,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="303"/>
         <source>Analyze current machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Analizuj bieżącą maszynę</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="305"/>
@@ -12500,7 +12498,7 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="310"/>
         <source>Copy machine to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Skopiuj maszynę do ulubionych</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="312"/>
@@ -12520,27 +12518,27 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../options.cpp" line="331"/>
         <source>Reload game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeładuj listę gier</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="334"/>
         <source>Reload machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeładuj listę maszyn</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="335"/>
         <source>Check machine&apos;s ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdź stan ROM-u maszyny</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="366"/>
         <source>Game list with full detail</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista gier ze wszystkimi szczegółami</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="368"/>
         <source>Machine list with full detail</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista maszyn ze wszystkimi szczegółami</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="431"/>
@@ -14604,17 +14602,17 @@ Użyć ustawień lokalnych maszyny, nadpisać ustawieniami globalnymi czy nie za
     <message>
         <location filename="../../romalyzer.cpp" line="112"/>
         <source>cdlz (CD LZMA)</source>
-        <translation type="unfinished"></translation>
+        <translation>cdlz (CD LZMA)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="113"/>
         <source>cdzl (CD Deflate)</source>
-        <translation type="unfinished"></translation>
+        <translation>cdzl (CD Deflate)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="114"/>
         <source>flac (FLAC)</source>
-        <translation type="unfinished"></translation>
+        <translation>flac (FLAC)</translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="125"/>
