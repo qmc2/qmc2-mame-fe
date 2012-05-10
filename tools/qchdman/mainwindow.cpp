@@ -68,6 +68,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+QMdiArea *MainWindow::mdiArea()
+{
+    return ui->mdiArea;
+}
+
 void MainWindow::on_actionProjectNew_triggered(bool)
 {
     ProjectWindow *projectWindow = new ProjectWindow(QString(), ui->mdiArea);
@@ -162,8 +167,10 @@ void MainWindow::on_actionWindowViewModeWindowed_triggered(bool)
     ui->actionWindowViewModeTabbed->setChecked(false);
     globalConfig->setMainWindowViewMode(QCHDMAN_VIEWMODE_WINDOWED);
     ui->mdiArea->setViewMode(QCHDMAN_VIEWMODE_WINDOWED);
-    ui->actionWindowCascade->setEnabled(true);
-    ui->actionWindowTile->setEnabled(true);
+    if ( !ui->mdiArea->subWindowList().isEmpty() ) {
+        ui->actionWindowCascade->setEnabled(true);
+        ui->actionWindowTile->setEnabled(true);
+    }
     applySettings();
     foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
         ProjectWindow *projectWindow = (ProjectWindow *)w;
@@ -254,6 +261,29 @@ void MainWindow::loadRecentFile()
         if ( globalConfig->preferencesMaximizeWindows() )
             projectWindow->showMaximized();
     projectWindow->projectWidget->load(action->text());
+}
+
+void MainWindow::enableActions(bool enable)
+{
+    ui->actionProjectSave->setEnabled(enable);
+    ui->actionProjectSaveAs->setEnabled(enable);
+    ui->actionProjectSaveAll->setEnabled(enable);
+    if ( ui->mdiArea->subWindowList().count() > 0 || !enable ) {
+        ui->actionWindowNext->setEnabled(enable);
+        ui->actionWindowPrevious->setEnabled(enable);
+    }
+    if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED ) {
+        ui->actionWindowTile->setEnabled(enable);
+        ui->actionWindowCascade->setEnabled(enable);
+    }
+    ui->actionWindowClose->setEnabled(enable);
+    ui->actionWindowCloseAll->setEnabled(enable);
+}
+
+void MainWindow::disableActionsRequiringTwo()
+{
+    ui->actionWindowNext->setEnabled(false);
+    ui->actionWindowPrevious->setEnabled(false);
 }
 
 void MainWindow::on_mdiArea_subWindowActivated(QMdiSubWindow *w)

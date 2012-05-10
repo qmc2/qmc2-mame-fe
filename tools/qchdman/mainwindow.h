@@ -2,7 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QtGui>
-#include <preferencesdialog.h>
+
+#include "preferencesdialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -24,6 +25,8 @@ public:
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    QMdiArea *mdiArea();
 
 public slots:
     // File menu
@@ -54,6 +57,9 @@ public slots:
     void applySettings();
     void addRecentFile(const QString &);
     void loadRecentFile();
+    void enableActions(bool enable = true);
+    void disableActions() { enableActions(false); }
+    void disableActionsRequiringTwo();
     void resetCloseFlag() { closeOk = true; }
     void on_mdiArea_subWindowActivated(QMdiSubWindow *);
 
