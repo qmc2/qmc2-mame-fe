@@ -1,5 +1,4 @@
 #include <QtGui>
-#include <QFileDialog>
 #include <QMessageBox>
 
 #include "projectwindow.h"

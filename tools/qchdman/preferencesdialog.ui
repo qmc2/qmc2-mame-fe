@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>359</width>
-    <height>206</height>
+    <height>231</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -74,7 +74,64 @@
       <attribute name="title">
        <string>GUI</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayoutTabGUI">
+      <layout class="QGridLayout" name="gridLayoutTabGUI" columnstretch="0,1,0,0">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelLanguage">
+         <property name="text">
+          <string>Lanuage</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="3">
+        <widget class="QComboBox" name="comboBoxLanguage">
+         <property name="toolTip">
+          <string>Select the GUI language (requires a restart to take effect!)</string>
+         </property>
+         <property name="currentIndex">
+          <number>7</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>German (de)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Spanish (es)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>French (fr)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Italian (it)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Polish (pl)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Portuguese (pt)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Romanian (ro)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>English (us)</string>
+          </property>
+         </item>
+        </widget>
+       </item>
        <item row="1" column="0">
         <widget class="QLabel" name="labelStyle">
          <property name="sizePolicy">
@@ -85,6 +142,13 @@
          </property>
          <property name="text">
           <string>Style</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="3">
+        <widget class="QComboBox" name="comboBoxStyle">
+         <property name="toolTip">
+          <string>Select the GUI style</string>
          </property>
         </widget>
        </item>
@@ -169,8 +233,8 @@
         </widget>
        </item>
        <item row="4" column="0" colspan="4">
-        <layout class="QHBoxLayout" name="horizontalLayoutGUI">
-         <item>
+        <layout class="QGridLayout" name="gridLayoutGuiFlags">
+         <item row="0" column="0">
           <widget class="QCheckBox" name="checkBoxShowProjectHelp">
            <property name="toolTip">
             <string>Make sure project help texts are shown when you switch the type</string>
@@ -180,7 +244,7 @@
            </property>
           </widget>
          </item>
-         <item>
+         <item row="0" column="1">
           <widget class="QCheckBox" name="checkBoxMaximizeWindows">
            <property name="toolTip">
             <string>Maximize new project windows</string>
@@ -190,14 +254,17 @@
            </property>
           </widget>
          </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QCheckBox" name="checkBoxNativeFileDialogs">
+           <property name="toolTip">
+            <string>Use the platform's native file dialogs or the Qt built-in ones</string>
+           </property>
+           <property name="text">
+            <string>Use native file dialogs</string>
+           </property>
+          </widget>
+         </item>
         </layout>
-       </item>
-       <item row="1" column="1" colspan="3">
-        <widget class="QComboBox" name="comboBoxStyle">
-         <property name="toolTip">
-          <string>Select the GUI style</string>
-         </property>
-        </widget>
        </item>
        <item row="5" column="0" colspan="4">
         <spacer name="verticalSpacerGUI">
@@ -211,63 +278,6 @@
           </size>
          </property>
         </spacer>
-       </item>
-       <item row="0" column="1" colspan="3">
-        <widget class="QComboBox" name="comboBoxLanguage">
-         <property name="toolTip">
-          <string>Select the GUI language (requires a restart to take effect!)</string>
-         </property>
-         <property name="currentIndex">
-          <number>7</number>
-         </property>
-         <item>
-          <property name="text">
-           <string>German (de)</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Spanish (es)</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>French (fr)</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Italian (it)</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Polish (pl)</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Portuguese (pt)</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Romanian (ro)</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>English (us)</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelLanguage">
-         <property name="text">
-          <string>Lanuage</string>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>
@@ -339,6 +349,7 @@
   <tabstop>spinBoxLogFontSize</tabstop>
   <tabstop>checkBoxShowProjectHelp</tabstop>
   <tabstop>checkBoxMaximizeWindows</tabstop>
+  <tabstop>checkBoxNativeFileDialogs</tabstop>
   <tabstop>lineEditChdmanBinary</tabstop>
   <tabstop>toolButtonBrowseChdmanBinary</tabstop>
   <tabstop>pushButtonOk</tabstop>

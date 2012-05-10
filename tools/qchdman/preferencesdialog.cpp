@@ -49,6 +49,7 @@ void PreferencesDialog::applySettings()
     globalConfig->setPreferencesLogFontSize(ui->spinBoxLogFontSize->value());
     globalConfig->setPreferencesShowHelpTexts(ui->checkBoxShowProjectHelp->isChecked());
     globalConfig->setPreferencesMaximizeWindows(ui->checkBoxMaximizeWindows->isChecked());
+    globalConfig->setPreferencesNativeFileDialogs(ui->checkBoxNativeFileDialogs->isChecked());
 
     // Paths
     globalConfig->setPreferencesChdmanBinary(ui->lineEditChdmanBinary->text());
@@ -74,7 +75,7 @@ void PreferencesDialog::on_pushButtonCancel_clicked()
 
 void PreferencesDialog::on_toolButtonBrowseChdmanBinary_clicked()
 {
-    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHDMAN binary"), ui->lineEditChdmanBinary->text(), tr("All files (*)"));
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHDMAN binary"), ui->lineEditChdmanBinary->text(), tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !s.isNull() )
         ui->lineEditChdmanBinary->setText(s);
 }
@@ -103,6 +104,7 @@ void PreferencesDialog::restoreSettings()
     ui->spinBoxLogFontSize->setValue(globalConfig->preferencesLogFontSize());
     ui->checkBoxShowProjectHelp->setChecked(globalConfig->preferencesShowHelpTexts());
     ui->checkBoxMaximizeWindows->setChecked(globalConfig->preferencesMaximizeWindows());
+    ui->checkBoxNativeFileDialogs->setChecked(globalConfig->preferencesNativeFileDialogs());
 
     // Paths
     ui->lineEditChdmanBinary->setText(globalConfig->preferencesChdmanBinary());

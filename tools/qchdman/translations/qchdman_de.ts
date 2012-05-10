@@ -14,52 +14,52 @@
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="20"/>
+        <location filename="../aboutdialog.cpp" line="18"/>
         <source>Version</source>
         <translation>Version</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="21"/>
+        <location filename="../aboutdialog.cpp" line="19"/>
         <source>Qt based graphical user interface to CHDMAN, the MAME/MESS CHD management tool</source>
         <translation>Qt basierte grafische Benutzungsoberfläche für CHDMAN, das MAME/MESS CHD Management Werkzeug</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="22"/>
+        <location filename="../aboutdialog.cpp" line="20"/>
         <source>Copyright (C) 2012, R. Reucher. All Rights Reserved.</source>
         <translation>Copyright (C) 2012, R. Reucher. Alle Rechte vorbehalten.</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="23"/>
+        <location filename="../aboutdialog.cpp" line="21"/>
         <source>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the license, or (at your option) any later version.</source>
         <translation>Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="26"/>
+        <location filename="../aboutdialog.cpp" line="24"/>
         <source>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. </source>
         <translation>Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, dass es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK.</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="28"/>
+        <location filename="../aboutdialog.cpp" line="26"/>
         <source>See the</source>
-        <translation>Siehe die</translation>
+        <translation>Sehen Sie die</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="28"/>
+        <location filename="../aboutdialog.cpp" line="26"/>
         <source>GNU General Public License</source>
         <translation>GNU General Public License</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="28"/>
+        <location filename="../aboutdialog.cpp" line="26"/>
         <source>for more details.</source>
         <translation>für weitere Details.</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="29"/>
+        <location filename="../aboutdialog.cpp" line="27"/>
         <source>Qt CHDMAN GUI is part of the</source>
         <translation>Qt CHDMAN GUI ist Teil des</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="29"/>
+        <location filename="../aboutdialog.cpp" line="27"/>
         <source>QMC2 project</source>
         <translation>QMC2 Projekts</translation>
     </message>
@@ -411,139 +411,149 @@ Fortfahren?</translation>
         <translation>GUI</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="87"/>
+        <location filename="../preferencesdialog.ui" line="144"/>
         <source>Style</source>
         <translation>Stil</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="100"/>
+        <location filename="../preferencesdialog.ui" line="164"/>
         <source>Font</source>
         <translation>Schriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="107"/>
+        <location filename="../preferencesdialog.ui" line="171"/>
         <source>Application font</source>
         <translation>Allgemeine Schriftart der Applikation</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="120"/>
-        <location filename="../preferencesdialog.ui" line="160"/>
+        <location filename="../preferencesdialog.ui" line="184"/>
+        <location filename="../preferencesdialog.ui" line="224"/>
         <source>Size</source>
         <translation>Größe</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="127"/>
+        <location filename="../preferencesdialog.ui" line="191"/>
         <source>Application font size</source>
         <translation>Größe der allgemeinen Applikationsschriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="140"/>
-        <location filename="../preferencesdialog.ui" line="147"/>
+        <location filename="../preferencesdialog.ui" line="204"/>
+        <location filename="../preferencesdialog.ui" line="211"/>
         <source>Log font</source>
         <translation>Log-Schriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="167"/>
+        <location filename="../preferencesdialog.ui" line="231"/>
         <source>Log font size</source>
         <translation>Größe der Log-Schriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="176"/>
+        <location filename="../preferencesdialog.ui" line="240"/>
         <source>Make sure project help texts are shown when you switch the type</source>
         <translation>Sicherstellen, dass die Projekt Hilfe Texte angezeigt werden, wenn der Typ geändert wird</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="179"/>
+        <location filename="../preferencesdialog.ui" line="243"/>
         <source>Display project help texts</source>
         <translation>Projekt Hilfe Texte anzeigen</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="186"/>
+        <location filename="../preferencesdialog.ui" line="250"/>
         <source>Maximize new project windows</source>
         <translation>Neue Projekt Fenster maximieren</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="189"/>
+        <location filename="../preferencesdialog.ui" line="253"/>
         <source>Maximize project windows</source>
         <translation>Projekt Fenster maximieren</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="198"/>
+        <location filename="../preferencesdialog.ui" line="151"/>
         <source>Select the GUI style</source>
         <translation>GUI Stil auswählen</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="218"/>
+        <location filename="../preferencesdialog.ui" line="88"/>
         <source>Select the GUI language (requires a restart to take effect!)</source>
         <translation>Sprache der GUI auswählen (erfordert einen Neustart!)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="225"/>
+        <location filename="../preferencesdialog.ui" line="95"/>
         <source>German (de)</source>
         <translation>Deutsch (de)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="230"/>
+        <location filename="../preferencesdialog.ui" line="100"/>
         <source>Spanish (es)</source>
         <translation>Spanisch (es)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="235"/>
+        <location filename="../preferencesdialog.ui" line="105"/>
         <source>French (fr)</source>
         <translation>Französisch (fr)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="240"/>
+        <location filename="../preferencesdialog.ui" line="110"/>
         <source>Italian (it)</source>
         <translation>Italienisch (it)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="245"/>
+        <location filename="../preferencesdialog.ui" line="115"/>
         <source>Polish (pl)</source>
         <translation>Polnisch (pl)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="250"/>
+        <location filename="../preferencesdialog.ui" line="120"/>
         <source>Portuguese (pt)</source>
         <translation>Portugiesisch (pt)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="255"/>
+        <location filename="../preferencesdialog.ui" line="125"/>
         <source>Romanian (ro)</source>
         <translation>Rumänisch (ro)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="260"/>
+        <location filename="../preferencesdialog.ui" line="130"/>
         <source>English (us)</source>
         <translation>Englisch (us)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="268"/>
+        <location filename="../preferencesdialog.ui" line="81"/>
         <source>Lanuage</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="276"/>
+        <location filename="../preferencesdialog.ui" line="260"/>
+        <source>Use the platform&apos;s native file dialogs or the Qt built-in ones</source>
+        <translation>Verwendung der nativen Datei-Dialoge des Systems oder der in Qt eingebauten Dialoge</translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="263"/>
+        <source>Use native file dialogs</source>
+        <translation>Native Dialoge verwenden</translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="286"/>
         <source>Paths</source>
         <translation>Pfade</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="282"/>
+        <location filename="../preferencesdialog.ui" line="292"/>
         <source>CHDMAN binary</source>
         <translation>CHDMAN Binary</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="295"/>
+        <location filename="../preferencesdialog.ui" line="305"/>
         <source>Path to the CHDMAN binary</source>
         <translation>Pfad zum CHDMAN Binary</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="77"/>
+        <location filename="../preferencesdialog.cpp" line="78"/>
         <source>Choose CHDMAN binary</source>
         <translation>CHDMAN Binary auswählen</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.cpp" line="77"/>
+        <location filename="../preferencesdialog.cpp" line="78"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
@@ -1201,17 +1211,17 @@ Kopiert die Daten einer CHD in eine andere desselben Typs.
 <context>
     <name>ProjectWindow</name>
     <message>
-        <location filename="../projectwindow.cpp" line="20"/>
+        <location filename="../projectwindow.cpp" line="19"/>
         <source>Noname-%1</source>
         <translation>OhneName-%1</translation>
     </message>
     <message>
-        <location filename="../projectwindow.cpp" line="52"/>
+        <location filename="../projectwindow.cpp" line="51"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
     <message>
-        <location filename="../projectwindow.cpp" line="53"/>
+        <location filename="../projectwindow.cpp" line="52"/>
         <source>Project &apos;%1&apos; is currently running.
 
 Closing its window will kill the external process!

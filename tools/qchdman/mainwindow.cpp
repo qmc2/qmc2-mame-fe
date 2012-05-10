@@ -79,7 +79,7 @@ void MainWindow::on_actionProjectNew_triggered(bool)
 
 void MainWindow::on_actionProjectLoad_triggered(bool)
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Choose file"), QString(), tr("All files (*)"));
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Choose file"), QString(), tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !fileName.isNull() ) {
         ProjectWindow *projectWindow = new ProjectWindow(fileName, ui->mdiArea);
         projectWindow->show();
