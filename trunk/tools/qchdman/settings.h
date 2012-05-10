@@ -75,6 +75,8 @@ public slots:
     bool preferencesMaximizeWindows() { return value("Preferences/MaximizeWindows", false).toBool(); }
     void setPreferencesLanguage(QString lang) { setValue("Preferences/Language", lang); }
     QString preferencesLanguage() { return value("Preferences/Language", languageToString(QLocale::system().language())).toString(); }
+    void setPreferencesNativeFileDialogs(bool enable) { setValue("Preferences/NativeFileDialogs", enable); }
+    bool preferencesNativeFileDialogs() { return value("Preferences/NativeFileDialogs", true).toBool(); }
 
     // MainWindow
     void setMainWindowState(QByteArray state) { setValue("MainWindow/State", state); }

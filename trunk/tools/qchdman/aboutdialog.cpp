@@ -1,6 +1,4 @@
 #include <QtGui>
-#include <QFileDialog>
-#include <QMessageBox>
 
 #include "aboutdialog.h"
 #include "ui_aboutdialog.h"

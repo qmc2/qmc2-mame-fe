@@ -4,6 +4,18 @@ QT += core gui
 TARGET = qchdman
 TEMPLATE = app
 
+# copy Qt translations from base project
+precompile.target = prebuild
+win32 {
+    precompile.commands = @copy ..\\..\\data\\lng\\qt_*.qm translations
+} else {
+    precompile.commands = @cp ../../data/lng/qt_*.qm translations
+}
+precompile.depends =
+QMAKE_EXTRA_TARGETS += precompile
+PRE_TARGETDEPS += prebuild
+QMAKE_CLEAN += translations/qt_*.qm
+
 greaterThan(DEBUG, 0) | contains(DEFINES, "QCHDMAN_DEBUG") {
     !contains(DEFINES, "QCHDMAN_DEBUG"): DEFINES += QCHDMAN_DEBUG
     !contains(CONFIG, "warn_on debug"): CONFIG += warn_on debug
