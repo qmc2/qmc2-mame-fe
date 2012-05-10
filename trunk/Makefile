@@ -947,6 +947,7 @@ qchdman-clean:
 	@$(CD) tools\qchdman && $(QMAKE) $(QCHDMAN_CONF) "$(QCHDMAN_DEFINES)" && $(MAKE) distclean
 	@$(RMDIR) /s /q tools\qchdman\release
 	@$(RMDIR) /s /q tools\qchdman\debug
+	@$(RM) object_script.qchdman.Release object_script.qchdman.Debug
 
 tools: qchdman
 tools-clean: qchdman-clean
