@@ -5,17 +5,13 @@ TARGET = qchdman
 TEMPLATE = app
 
 # copy Qt translations from base project
-precompile.target = prebuild
-precompile.depends =
 win32 {
-    precompile.commands = @copy ..\\..\\data\\lng\\qt_*.qm translations
+    system(copy ..\\..\\data\\lng\\qt_*.qm translations > NUL)
     QMAKE_CLEAN += translations\\qt_*.qm
 } else {
-    precompile.commands = @cp ../../data/lng/qt_*.qm translations
+    system(cp ../../data/lng/qt_*.qm translations > /dev/null)
     QMAKE_CLEAN += translations/qt_*.qm
 }
-QMAKE_EXTRA_TARGETS += precompile
-PRE_TARGETDEPS += prebuild
 
 greaterThan(DEBUG, 0) | contains(DEFINES, "QCHDMAN_DEBUG") {
     !contains(DEFINES, "QCHDMAN_DEBUG"): DEFINES += QCHDMAN_DEBUG
