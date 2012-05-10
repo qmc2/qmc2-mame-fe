@@ -16,6 +16,9 @@ public:
     ProjectWindow(QString pn = QString(), QWidget *parent = 0);
     ~ProjectWindow();
 
+public slots:
+    void myWindowStateChanged(Qt::WindowStates, Qt::WindowStates);
+
 protected:
     void closeEvent(QCloseEvent *);
 };

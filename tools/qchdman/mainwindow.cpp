@@ -144,11 +144,13 @@ void MainWindow::on_actionWindowPrevious_triggered(bool)
 void MainWindow::on_actionWindowTile_triggered(bool)
 {
     ui->mdiArea->tileSubWindows();
+    QTimer::singleShot(0, this, SLOT(updateSubWindows()));
 }
 
 void MainWindow::on_actionWindowCascade_triggered(bool)
 {
     ui->mdiArea->cascadeSubWindows();
+    QTimer::singleShot(0, this, SLOT(updateSubWindows()));
 }
 
 void MainWindow::on_actionWindowClose_triggered(bool)
@@ -227,6 +229,16 @@ void MainWindow::applySettings()
             projectWidget->needsTabbedUiAdjustment = true;
             projectWidget->needsWindowedUiAdjustment = true;
         }
+    }
+}
+
+void MainWindow::updateSubWindows()
+{
+    foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
+        ProjectWidget *projectWidget = (ProjectWidget *)w->widget();
+        projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+        projectWidget->needsTabbedUiAdjustment = true;
+        projectWidget->needsWindowedUiAdjustment = true;
     }
 }
 
