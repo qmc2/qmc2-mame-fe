@@ -39,6 +39,12 @@ ProjectWindow::~ProjectWindow()
 
 void ProjectWindow::myWindowStateChanged(Qt::WindowStates oldState, Qt::WindowStates newState)
 {
+    if ( newState == Qt::WindowNoState && oldState == Qt::WindowActive)
+        return;
+
+    if ( newState == Qt::WindowActive && oldState == Qt::WindowNoState )
+        return;
+
     projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
 }
 
