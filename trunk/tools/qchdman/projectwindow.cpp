@@ -23,10 +23,17 @@ ProjectWindow::ProjectWindow(QString pn, QWidget *parent) :
     setWindowTitle(projectName);
     projectWidget = new ProjectWidget(this);
     setWidget(projectWidget);
+
+    mainWindow->enableActions();
 }
 
 ProjectWindow::~ProjectWindow()
 {
+    int windowCount = mainWindow->mdiArea()->subWindowList().count();
+    if ( windowCount == 1 )
+        mainWindow->disableActions();
+    else if ( windowCount == 2 )
+        mainWindow->disableActionsRequiringTwo();
 }
 
 void ProjectWindow::closeEvent(QCloseEvent *e)

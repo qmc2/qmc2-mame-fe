@@ -111,6 +111,9 @@
    </property>
   </action>
   <action name="actionProjectSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Save</string>
    </property>
@@ -122,6 +125,9 @@
    </property>
   </action>
   <action name="actionProjectSaveAs">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Save as...</string>
    </property>
@@ -144,6 +150,9 @@
    </property>
   </action>
   <action name="actionWindowNext">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Next</string>
    </property>
@@ -155,6 +164,9 @@
    </property>
   </action>
   <action name="actionWindowPrevious">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Previous</string>
    </property>
@@ -166,6 +178,9 @@
    </property>
   </action>
   <action name="actionWindowTile">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Tile</string>
    </property>
@@ -177,6 +192,9 @@
    </property>
   </action>
   <action name="actionWindowCascade">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Cascade</string>
    </property>
@@ -188,6 +206,9 @@
    </property>
   </action>
   <action name="actionWindowClose">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Close</string>
    </property>
@@ -196,6 +217,9 @@
    </property>
   </action>
   <action name="actionWindowCloseAll">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Close all</string>
    </property>
@@ -264,11 +288,17 @@
    </property>
   </action>
   <action name="actionProjectSaveAll">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Save all</string>
    </property>
    <property name="statusTip">
     <string>Save all projects</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+S</string>
    </property>
   </action>
  </widget>
