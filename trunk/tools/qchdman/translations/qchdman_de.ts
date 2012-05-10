@@ -127,237 +127,242 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="115"/>
+        <location filename="../mainwindow.ui" line="118"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="118"/>
+        <location filename="../mainwindow.ui" line="121"/>
         <source>Save project to file</source>
         <translation>Project in Datei speichern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="121"/>
+        <location filename="../mainwindow.ui" line="124"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="126"/>
+        <location filename="../mainwindow.ui" line="132"/>
         <source>Save as...</source>
         <translation>Speichern unter...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="129"/>
+        <location filename="../mainwindow.ui" line="135"/>
         <source>Save project under a different name</source>
         <translation>Projekt unter einem anderen Namen speichern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="132"/>
+        <location filename="../mainwindow.ui" line="138"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="137"/>
+        <location filename="../mainwindow.ui" line="143"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="140"/>
+        <location filename="../mainwindow.ui" line="146"/>
         <source>Quit GUI</source>
         <translation>GUI beenden</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="143"/>
+        <location filename="../mainwindow.ui" line="149"/>
         <source>Ctrl+X</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="148"/>
+        <location filename="../mainwindow.ui" line="157"/>
         <source>Next</source>
         <translation>Nächstes</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="151"/>
+        <location filename="../mainwindow.ui" line="160"/>
         <source>Select next project window</source>
         <translation>Nächstes Projekt Fenster auswählen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="154"/>
+        <location filename="../mainwindow.ui" line="163"/>
         <source>Ctrl+Alt+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="159"/>
+        <location filename="../mainwindow.ui" line="171"/>
         <source>Previous</source>
         <translation>Vorheriges</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="162"/>
+        <location filename="../mainwindow.ui" line="174"/>
         <source>Select previous project window</source>
         <translation>Vorheriges Projekt Fenster auswählen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="165"/>
+        <location filename="../mainwindow.ui" line="177"/>
         <source>Ctrl+Alt+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="170"/>
+        <location filename="../mainwindow.ui" line="185"/>
         <source>Tile</source>
         <translation>Kacheln</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="173"/>
+        <location filename="../mainwindow.ui" line="188"/>
         <source>Tile project windows</source>
         <translation>Projekt Fenster in Kacheln aufteilen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="176"/>
+        <location filename="../mainwindow.ui" line="191"/>
         <source>Ctrl+Alt+T</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="181"/>
+        <location filename="../mainwindow.ui" line="199"/>
         <source>Cascade</source>
         <translation>Kaskadieren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="184"/>
+        <location filename="../mainwindow.ui" line="202"/>
         <source>Cascade project windows</source>
         <translation>Projekt Fenster kaskadieren</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="187"/>
+        <location filename="../mainwindow.ui" line="205"/>
         <source>Ctrl+Alt+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="192"/>
+        <location filename="../mainwindow.ui" line="213"/>
         <source>Close</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="195"/>
+        <location filename="../mainwindow.ui" line="216"/>
         <source>Close active project window</source>
         <translation>Aktives Projekt Fenster schließen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="200"/>
+        <location filename="../mainwindow.ui" line="224"/>
         <source>Close all</source>
         <translation>Alle schließen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="203"/>
+        <location filename="../mainwindow.ui" line="227"/>
         <source>Close all project windows</source>
         <translation>Alle Projekt Fenster schließen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="208"/>
+        <location filename="../mainwindow.ui" line="232"/>
         <source>About...</source>
         <translation>Über...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="211"/>
+        <location filename="../mainwindow.ui" line="235"/>
         <source>About this program</source>
         <translation>Über dieses Programm</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="216"/>
+        <location filename="../mainwindow.ui" line="240"/>
         <source>About Qt...</source>
         <translation>Über Qt...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="219"/>
+        <location filename="../mainwindow.ui" line="243"/>
         <source>About Qt</source>
         <translation>Über Qt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="224"/>
+        <location filename="../mainwindow.ui" line="248"/>
         <source>Preferences...</source>
         <translation>Einstellungen...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="227"/>
+        <location filename="../mainwindow.ui" line="251"/>
         <source>General preferences</source>
         <translation>Allgemeine Einstellungen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="230"/>
+        <location filename="../mainwindow.ui" line="254"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="235"/>
+        <location filename="../mainwindow.ui" line="259"/>
         <source>No recent files</source>
         <translation>Keine kürzlich verwendeten Dateien</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="243"/>
+        <location filename="../mainwindow.ui" line="267"/>
         <source>Windowed</source>
         <translation>Fenster</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="246"/>
+        <location filename="../mainwindow.ui" line="270"/>
         <source>View projects in windowed mode</source>
         <translation>Projekte in Fenstern anzeigen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="249"/>
+        <location filename="../mainwindow.ui" line="273"/>
         <source>Ctrl+Shift+W</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="257"/>
+        <location filename="../mainwindow.ui" line="281"/>
         <source>Tabbed</source>
         <translation>Reiter</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="260"/>
+        <location filename="../mainwindow.ui" line="284"/>
         <source>View projects in tabbed mode</source>
         <translation>Projekte in Reitern anzeigen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="263"/>
+        <location filename="../mainwindow.ui" line="287"/>
         <source>Ctrl+Shift+T</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="268"/>
+        <location filename="../mainwindow.ui" line="295"/>
         <source>Save all</source>
         <translation>Alle speichern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="271"/>
+        <location filename="../mainwindow.ui" line="298"/>
         <source>Save all projects</source>
         <translation>Alle Projekte speichern</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="82"/>
+        <location filename="../mainwindow.ui" line="301"/>
+        <source>Ctrl+Alt+S</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="87"/>
         <source>Choose file</source>
         <translation>Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="82"/>
+        <location filename="../mainwindow.cpp" line="87"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="206"/>
+        <location filename="../mainwindow.cpp" line="215"/>
         <source>Running projects: %1</source>
         <translation>Aktive Projekte: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="248"/>
+        <location filename="../mainwindow.cpp" line="267"/>
         <source>Project &apos;%1&apos; doesn&apos;t exist</source>
         <translation>Project &apos;%1&apos; existiert nicht</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="286"/>
+        <location filename="../mainwindow.cpp" line="328"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="288"/>
+        <location filename="../mainwindow.cpp" line="330"/>
         <source>There is 1 project currently running.
 
 Closing its window will kill the external process!
@@ -370,7 +375,7 @@ Das Schließen seines Fensters führt zum Abbruch des externen Prozesses!
 Fortfahren?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="289"/>
+        <location filename="../mainwindow.cpp" line="331"/>
         <source>There are %1 projects currently running.
 
 Closing their windows will kill the external processes!
@@ -1216,12 +1221,12 @@ Kopiert die Daten einer CHD in eine andere desselben Typs.
         <translation>OhneName-%1</translation>
     </message>
     <message>
-        <location filename="../projectwindow.cpp" line="51"/>
+        <location filename="../projectwindow.cpp" line="64"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
     <message>
-        <location filename="../projectwindow.cpp" line="52"/>
+        <location filename="../projectwindow.cpp" line="65"/>
         <source>Project &apos;%1&apos; is currently running.
 
 Closing its window will kill the external process!
