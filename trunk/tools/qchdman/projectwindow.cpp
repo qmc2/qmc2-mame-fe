@@ -20,11 +20,12 @@ ProjectWindow::ProjectWindow(QString pn, QWidget *parent) :
     else
         projectName = pn;
 
-    setWindowTitle(projectName);
     projectWidget = new ProjectWidget(this);
     setWidget(projectWidget);
-
+    setWindowTitle(projectName);
     mainWindow->enableActions();
+
+    connect(this, SIGNAL(windowStateChanged(Qt::WindowStates, Qt::WindowStates)), this, SLOT(myWindowStateChanged(Qt::WindowStates, Qt::WindowStates)));
 }
 
 ProjectWindow::~ProjectWindow()
@@ -34,6 +35,11 @@ ProjectWindow::~ProjectWindow()
         mainWindow->disableActions();
     else if ( windowCount == 2 )
         mainWindow->disableActionsRequiringTwo();
+}
+
+void ProjectWindow::myWindowStateChanged(Qt::WindowStates oldState, Qt::WindowStates newState)
+{
+    projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
 }
 
 void ProjectWindow::closeEvent(QCloseEvent *e)

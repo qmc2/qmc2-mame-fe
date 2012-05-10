@@ -55,6 +55,7 @@ public slots:
     // Other
     void updateStatus();
     void applySettings();
+    void updateSubWindows();
     void addRecentFile(const QString &);
     void loadRecentFile();
     void enableActions(bool enable = true);
