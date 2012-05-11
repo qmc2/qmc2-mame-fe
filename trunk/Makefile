@@ -957,18 +957,20 @@ qchdman:
 
 qchdman-clean:
 	@$(CD) tools/qchdman && $(QMAKE) $(QCHDMAN_CONF) '$(QCHDMAN_DEFINES)' && $(MAKE) distclean
-
 ifeq '$(ARCH)' 'Darwin'
+	@$(RM) tools/qchdman/Info.plist
+
+QCHDMAN_VERSION=$(shell $(GREP) "VERSION =" tools/qchdman/qchdman.pro | $(AWK) '{ print $$3 }')
 tools/qchdman/Info.plist: tools/qchdman/Info.plist.in
-	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICON@/qchdman.icns/g' < $< > $@
+	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(QCHDMAN_VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICON@/qchdman.icns/g' < $< > $@
 tools/qchdman/qchdman.app/Contents/Resources/qt.conf: tools/qchdman/Info.plist
 	@$(MACDEPLOYQT) tools/qchdman/qchdman.app
 qchdman-macdeployqt: tools/qchdman/qchdman.app/Contents/Resources/qt.conf
 qchdman-install: qchdman qchdman-macdeployqt
-	@$(MKDIR) "/Applications/qchdman"
-	@$(CHMOD) a+rx "/Applications/qchdman"
-	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman.app" "/Applications/qchdman"
-	@$(RSYNC) images/qchdman.icns /Applications/qchdman/Contents/Resources/
+	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman.app" "/Applications"
+	@$(CHMOD) a+rx "/Applications/qchdman.app"
+	@$(RSYNC) tools/qchdman/images/qchdman.icns /Applications/qchdman.app/Contents/Resources/
+	@$(RSYNC) tools/qchdman/Info.plist /Applications/qchdman.app/Contents/
 else
 qchdman-install: qchdman
 	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman" "$(DESTDIR)/$(BINDIR)"

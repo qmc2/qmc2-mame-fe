@@ -3,19 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>@EXECUTABLE@</string>
+	<string>qchdman</string>
 	<key>CFBundleExecutable</key>
-	<string>@EXECUTABLE@</string>
+	<string>qchdman</string>
 	<key>CFBundleGetInfoString</key>
 	<string>@SHORT_VERSION@, Copyright © 2012 R. Reucher, Germany</string>
 	<key>CFBundleIconFile</key>
 	<string>@ICON@</string>
 	<key>CFBundleIdentifier</key>
-	<string>net.arcadehits.qmc2.@EXECUTABLE@</string>
+	<string>net.arcadehits.qmc2.qchdman</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>@EXECUTABLE@</string>
+	<string>qchdman</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
