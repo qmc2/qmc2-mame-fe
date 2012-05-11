@@ -1072,7 +1072,7 @@ Kopiert die Daten einer CHD in eine andere desselben Typs.
     <message>
         <location filename="../projectwidget.cpp" line="335"/>
         <source>Running</source>
-        <translation>Wird ausgeführt</translation>
+        <translation>Rennt</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="341"/>
