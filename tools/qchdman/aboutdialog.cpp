@@ -15,7 +15,11 @@ AboutDialog::AboutDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
+#if QCHDMAN_SVN_REV == 0
     QString credits = "<p><font size=\"+2\"><b>" + QCHDMAN_APP_TITLE + " " + QCHDMAN_APP_VERSION + "</b></font></p>" +
+#else
+    QString credits = "<p><font size=\"+2\"><b>" + QCHDMAN_APP_TITLE + " " + QCHDMAN_APP_VERSION + QString(" (SVN r%1)").arg(QCHDMAN_SVN_REV) + "</b></font></p>" +
+#endif
                       "<p>" + tr("Qt based graphical user interface to CHDMAN, the MAME/MESS CHD management tool") + "</p>" +
                       "<p>" + tr("Copyright") + " &copy; 2012, R. Reucher. " + tr("All Rights Reserved.") + "</p>" +
                       "<p>" + tr("This program is free software; you can redistribute it and/or modify it under the terms of "
