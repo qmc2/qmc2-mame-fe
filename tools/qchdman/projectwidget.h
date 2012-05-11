@@ -83,8 +83,11 @@ public slots:
     void save();
     void saveAs(const QString &fileName = QString());
     void triggerSaveAs();
+    void triggerUpdate() { on_comboBoxProjectType_currentIndexChanged(-1); }
     void clone();
     void morph();
+    void run();
+    void stop();
     void on_comboBoxProjectType_currentIndexChanged(int);
     void on_toolButtonRun_clicked(bool refreshArgsOnly = false);
     void on_toolButtonStop_clicked();

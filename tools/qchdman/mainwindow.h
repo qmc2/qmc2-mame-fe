@@ -65,6 +65,7 @@ public slots:
     void on_mdiArea_subWindowActivated(QMdiSubWindow *);
 
 protected:
+    void resizeEvent(QResizeEvent *);
     void closeEvent(QCloseEvent *);
 
 private:

@@ -347,22 +347,22 @@
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="215"/>
+        <location filename="../mainwindow.cpp" line="236"/>
         <source>Running projects: %1</source>
         <translation>Aktive Projekte: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="267"/>
+        <location filename="../mainwindow.cpp" line="298"/>
         <source>Project &apos;%1&apos; doesn&apos;t exist</source>
         <translation>Project &apos;%1&apos; existiert nicht</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="328"/>
+        <location filename="../mainwindow.cpp" line="379"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="330"/>
+        <location filename="../mainwindow.cpp" line="381"/>
         <source>There is 1 project currently running.
 
 Closing its window will kill the external process!
@@ -375,7 +375,7 @@ Das Schließen seines Fensters führt zum Abbruch des externen Prozesses!
 Fortfahren?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="331"/>
+        <location filename="../mainwindow.cpp" line="382"/>
         <source>There are %1 projects currently running.
 
 Closing their windows will kill the external processes!
@@ -632,8 +632,8 @@ Fortfahren?</translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="144"/>
-        <location filename="../projectwidget.cpp" line="333"/>
-        <location filename="../projectwidget.cpp" line="415"/>
+        <location filename="../projectwidget.cpp" line="349"/>
+        <location filename="../projectwidget.cpp" line="432"/>
         <source>Idle</source>
         <translation>Untätig</translation>
     </message>
@@ -941,15 +941,15 @@ Kopiert die Daten einer CHD in eine andere desselben Typs.
     <message>
         <location filename="../projectwidget.cpp" line="47"/>
         <location filename="../projectwidget.cpp" line="50"/>
-        <location filename="../projectwidget.cpp" line="229"/>
-        <location filename="../projectwidget.cpp" line="505"/>
-        <location filename="../projectwidget.cpp" line="727"/>
+        <location filename="../projectwidget.cpp" line="243"/>
+        <location filename="../projectwidget.cpp" line="522"/>
+        <location filename="../projectwidget.cpp" line="744"/>
         <source>default</source>
         <translation>Standard</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="52"/>
-        <location filename="../projectwidget.cpp" line="507"/>
+        <location filename="../projectwidget.cpp" line="524"/>
         <source>none</source>
         <translation>Keine</translation>
     </message>
@@ -994,221 +994,221 @@ Kopiert die Daten einer CHD in eine andere desselben Typs.
         <translation>Kommando kopieren</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="189"/>
+        <location filename="../projectwidget.cpp" line="203"/>
         <source>Info</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="197"/>
+        <location filename="../projectwidget.cpp" line="211"/>
         <source>Verify</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="205"/>
+        <location filename="../projectwidget.cpp" line="219"/>
         <source>Copy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="235"/>
+        <location filename="../projectwidget.cpp" line="249"/>
         <source>CreateRaw</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="240"/>
+        <location filename="../projectwidget.cpp" line="254"/>
         <source>CreateHD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="245"/>
+        <location filename="../projectwidget.cpp" line="259"/>
         <source>CreateCD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="250"/>
+        <location filename="../projectwidget.cpp" line="264"/>
         <source>CreateLD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="255"/>
+        <location filename="../projectwidget.cpp" line="269"/>
         <source>ExtractRaw</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="260"/>
+        <location filename="../projectwidget.cpp" line="274"/>
         <source>ExtractHD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="265"/>
+        <location filename="../projectwidget.cpp" line="279"/>
         <source>ExtractCD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="270"/>
+        <location filename="../projectwidget.cpp" line="284"/>
         <source>ExtractLD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="291"/>
+        <location filename="../projectwidget.cpp" line="305"/>
         <source>starting process</source>
         <translation>Prozess wird gestartet</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="300"/>
+        <location filename="../projectwidget.cpp" line="315"/>
         <source>Starting</source>
         <translation>Starte</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="306"/>
+        <location filename="../projectwidget.cpp" line="321"/>
         <source>terminating process</source>
         <translation>Prozess wird beendet</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="315"/>
-        <location filename="../projectwidget.cpp" line="317"/>
+        <location filename="../projectwidget.cpp" line="330"/>
+        <location filename="../projectwidget.cpp" line="332"/>
         <source>process started: PID = %1</source>
         <translation>Prozess gestartet: PID = %1</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="320"/>
+        <location filename="../projectwidget.cpp" line="335"/>
         <source>Running</source>
         <translation>Wird ausgeführt</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="326"/>
+        <location filename="../projectwidget.cpp" line="341"/>
         <source>normal</source>
         <translation>normal</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="328"/>
-        <location filename="../projectwidget.cpp" line="389"/>
+        <location filename="../projectwidget.cpp" line="343"/>
+        <location filename="../projectwidget.cpp" line="405"/>
         <source>crashed</source>
         <translation>abgebrochen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="329"/>
+        <location filename="../projectwidget.cpp" line="344"/>
         <source>process finished: exitCode = %1, exitStatus = %2</source>
         <translation>Prozess beendet: exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="346"/>
+        <location filename="../projectwidget.cpp" line="362"/>
         <source>stdout</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="359"/>
+        <location filename="../projectwidget.cpp" line="375"/>
         <source>stderr</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="386"/>
+        <location filename="../projectwidget.cpp" line="402"/>
         <source>failed to start</source>
         <translation>Start fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="395"/>
+        <location filename="../projectwidget.cpp" line="411"/>
         <source>timed out</source>
         <translation>Timeout</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="398"/>
+        <location filename="../projectwidget.cpp" line="414"/>
         <source>write error</source>
         <translation>Schreibfehler</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="401"/>
+        <location filename="../projectwidget.cpp" line="417"/>
         <source>read error</source>
         <translation>Lesefehler</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="405"/>
+        <location filename="../projectwidget.cpp" line="421"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="410"/>
+        <location filename="../projectwidget.cpp" line="426"/>
         <source>process error: %1</source>
         <translation>Prozess Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="426"/>
-        <location filename="../projectwidget.cpp" line="433"/>
-        <location filename="../projectwidget.cpp" line="447"/>
+        <location filename="../projectwidget.cpp" line="443"/>
+        <location filename="../projectwidget.cpp" line="450"/>
+        <location filename="../projectwidget.cpp" line="464"/>
         <source>Choose CHD input file</source>
         <translation>CHD Eingabedatei auswählen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="426"/>
-        <location filename="../projectwidget.cpp" line="433"/>
-        <location filename="../projectwidget.cpp" line="440"/>
-        <location filename="../projectwidget.cpp" line="447"/>
-        <location filename="../projectwidget.cpp" line="454"/>
-        <location filename="../projectwidget.cpp" line="461"/>
-        <location filename="../projectwidget.cpp" line="468"/>
+        <location filename="../projectwidget.cpp" line="443"/>
+        <location filename="../projectwidget.cpp" line="450"/>
+        <location filename="../projectwidget.cpp" line="457"/>
+        <location filename="../projectwidget.cpp" line="464"/>
+        <location filename="../projectwidget.cpp" line="471"/>
+        <location filename="../projectwidget.cpp" line="478"/>
+        <location filename="../projectwidget.cpp" line="485"/>
         <source>CHD files (*.chd);;All files (*)</source>
         <translation>CHD Dateien (*.chd);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="440"/>
-        <location filename="../projectwidget.cpp" line="461"/>
+        <location filename="../projectwidget.cpp" line="457"/>
+        <location filename="../projectwidget.cpp" line="478"/>
         <source>Choose parent CHD input file</source>
         <translation>Eltern CHD Eingabedatei auswählen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="454"/>
+        <location filename="../projectwidget.cpp" line="471"/>
         <source>Choose CHD output file</source>
         <translation>CHD Ausgabedatei auswählen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="468"/>
+        <location filename="../projectwidget.cpp" line="485"/>
         <source>Choose parent CHD output file</source>
         <translation>Eltern CHD Ausgabedatei auswählen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="560"/>
-        <location filename="../projectwidget.cpp" line="687"/>
+        <location filename="../projectwidget.cpp" line="577"/>
+        <location filename="../projectwidget.cpp" line="704"/>
         <source>Choose file</source>
         <translation>Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="560"/>
-        <location filename="../projectwidget.cpp" line="687"/>
+        <location filename="../projectwidget.cpp" line="577"/>
+        <location filename="../projectwidget.cpp" line="704"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="665"/>
+        <location filename="../projectwidget.cpp" line="682"/>
         <source>Failed loading project &apos;%1&apos;</source>
         <translation>Project &apos;%1&apos; konnte nicht geladen werden</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="672"/>
-        <location filename="../projectwidget.cpp" line="686"/>
+        <location filename="../projectwidget.cpp" line="689"/>
+        <location filename="../projectwidget.cpp" line="703"/>
         <source>Noname-%1</source>
         <translation>OhneName-%1</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="699"/>
+        <location filename="../projectwidget.cpp" line="716"/>
         <source>Qt CHDMAN project file -- please do not edit manually</source>
         <translation>Qt CHDMAN Projekt Datei -- bitte nicht manuell editieren</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="753"/>
+        <location filename="../projectwidget.cpp" line="770"/>
         <source>Project &apos;%1&apos; saved</source>
         <translation>Projekt &apos;%1&apos; gespeichert</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="756"/>
+        <location filename="../projectwidget.cpp" line="773"/>
         <source>Failed saving project &apos;%1&apos;</source>
         <translation>Project &apos;%1&apos; konnte nicht gespeichert werden</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="778"/>
+        <location filename="../projectwidget.cpp" line="795"/>
         <source>cloning to &apos;%1&apos; is not supported yet</source>
         <translation>Klonen nach &apos;%1&apos; ist noch nicht unterstützt</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="793"/>
+        <location filename="../projectwidget.cpp" line="810"/>
         <source>morphing to &apos;%1&apos; is not supported yet</source>
         <translation>Unwandeln in &apos;%1&apos; ist noch nicht unterstützt</translation>
     </message>
@@ -1216,17 +1216,17 @@ Kopiert die Daten einer CHD in eine andere desselben Typs.
 <context>
     <name>ProjectWindow</name>
     <message>
-        <location filename="../projectwindow.cpp" line="19"/>
+        <location filename="../projectwindow.cpp" line="20"/>
         <source>Noname-%1</source>
         <translation>OhneName-%1</translation>
     </message>
     <message>
-        <location filename="../projectwindow.cpp" line="70"/>
+        <location filename="../projectwindow.cpp" line="80"/>
         <source>Confirm</source>
         <translation>Bestätigen</translation>
     </message>
     <message>
-        <location filename="../projectwindow.cpp" line="71"/>
+        <location filename="../projectwindow.cpp" line="81"/>
         <source>Project &apos;%1&apos; is currently running.
 
 Closing its window will kill the external process!
