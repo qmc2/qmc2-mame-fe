@@ -20,6 +20,7 @@ public:
 
 public slots:
     void myWindowStateChanged(Qt::WindowStates, Qt::WindowStates);
+    void systemMenuAction(QAction *);
 
 protected:
     void closeEvent(QCloseEvent *);
