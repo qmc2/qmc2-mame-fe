@@ -399,7 +399,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="311"/>
         <source>Browse snapshot directory</source>
-        <translation>Parcourir pour le répertoire de captures d&apos;écran</translation>
+        <translation>Parcourir pour le répertoire des captures d&apos;écran</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="72"/>
@@ -1083,7 +1083,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1419"/>
         <source>Control display of cabinet image</source>
-        <translation>Contrôle de l&apos;affichage des des bornes (cabinets)</translation>
+        <translation>Contrôle de l&apos;affichage des des bornes</translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1422"/>
@@ -1617,7 +1617,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../customidsetup.ui" line="108"/>
         <source>Enable / disable sorting</source>
-        <translation>Active / déseactive le tri</translation>
+        <translation>Active / désactive le tri</translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="25"/>
@@ -5479,7 +5479,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.ui" line="366"/>
         <location filename="../../messdevcfg.ui" line="369"/>
         <source>Save selected instance / file as a new device configuration</source>
-        <translation>Sauvergarde de l&apos;instance / fichier sélectionné comme nouvelle configuration de périphérique</translation>
+        <translation>Sauvegarde de l&apos;instance / fichier sélectionné comme nouvelle configuration de périphérique</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="389"/>
@@ -5621,7 +5621,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="232"/>
         <location filename="../../messdevcfg.cpp" line="274"/>
         <source>Play selected game</source>
-        <translation>Joue le jeu sélectionné</translation>
+        <translation>Jouer le jeu sélectionné</translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="166"/>
@@ -6739,7 +6739,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../qmc2main.ui" line="2565"/>
         <location filename="../../qmc2main.ui" line="2568"/>
         <source>Play current game</source>
-        <translation>Joue le jeu sélectionné</translation>
+        <translation>Jouer le jeu sélectionné</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="2571"/>
@@ -7256,13 +7256,13 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3493"/>
         <source>Clear game list cache</source>
-        <translation>Nettoyer le cache de la liste de jeux</translation>
+        <translation>Nettoyer le cache de la liste des jeux</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3496"/>
         <location filename="../../qmc2main.ui" line="3499"/>
         <source>Forcedly clear (remove) the game list cache</source>
-        <translation>Nettoyage forcé (suppression) du cache de la liste de jeux</translation>
+        <translation>Nettoyage forcé (suppression) du cache de la liste des jeux</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3507"/>
@@ -7278,13 +7278,13 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.ui" line="3521"/>
         <source>Clear software list cache</source>
-        <translation>Nettoyer le cache de la liste de logiciels</translation>
+        <translation>Nettoyer le cache de la liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3524"/>
         <location filename="../../qmc2main.ui" line="3527"/>
         <source>Forcedly clear (remove) the software list cache</source>
-        <translation>Nettoyage forcé (suppression) du cache de la liste de logiciels</translation>
+        <translation>Nettoyage forcé (suppression) du cache de la liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3535"/>
@@ -8241,7 +8241,7 @@ Faut-il les tuer à la sortie ?</translation>
         <location filename="../../macros.h" line="475"/>
         <location filename="../../macros.h" line="484"/>
         <source>U.M.E. Catalog / Launcher II</source>
-        <translation type="unfinished"></translation>
+        <translation>U.M.E. Catalog / Launcher II</translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3232"/>
@@ -8941,12 +8941,12 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2350"/>
         <source>game list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation>fichier de cache de la liste de jeux &apos;%1&apos; nettoyé de force suite à la demande de l&apos;utilisateur</translation>
+        <translation>fichier de cache de la liste des jeux &apos;%1&apos; nettoyé de force suite à la demande de l&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2352"/>
         <source>WARNING: cannot remove the game list cache file &apos;%1&apos;, please check permissions</source>
-        <translation>ATTENTION: n&apos;a pas pu enlever le fichier de cache de la liste de jeux &apos;%1&apos;, vérifiez les permissions</translation>
+        <translation>ATTENTION: n&apos;a pas pu enlever le fichier de cache de la liste des jeux &apos;%1&apos;, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2355"/>
@@ -8971,12 +8971,12 @@ Faut-il les tuer à la sortie ?</translation>
     <message>
         <location filename="../../qmc2main.cpp" line="2419"/>
         <source>software list cache file &apos;%1&apos; forcedly removed upon user request</source>
-        <translation>fichier de cache de la liste de logiciels &apos;%1&apos; nettoyé de force suite à la demande de l&apos;utilisateur</translation>
+        <translation>fichier de cache de la liste des logiciels &apos;%1&apos; nettoyé de force suite à la demande de l&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="2421"/>
         <source>WARNING: cannot remove the software list cache file &apos;%1&apos;, please check permissions</source>
-        <translation>ATTENTION: n&apos;a pas pu enlever le fichier de cache de la liste de logiciels &apos;%1&apos;, vérifiez les permissions</translation>
+        <translation>ATTENTION: n&apos;a pas pu enlever le fichier de cache de la liste des logiciels &apos;%1&apos;, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="3340"/>
@@ -9374,12 +9374,12 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="120"/>
         <source>Path to store cabinet images</source>
-        <translation>Chemin du répertoire de stockage des bornes (cabinets)</translation>
+        <translation>Chemin du répertoire de stockage des bornes</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="133"/>
         <source>Browse path to store cabinet images</source>
-        <translation>Parcourir pour le répertoire de stockage des bornes (cabinets)</translation>
+        <translation>Parcourir pour le répertoire de stockage des bornes</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="150"/>
@@ -9586,7 +9586,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="139"/>
         <source>Choose cabinet directory</source>
-        <translation>Choisir le répertoire des bornes (cabinets)</translation>
+        <translation>Choisir le répertoire des bornes</translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="152"/>
@@ -9690,7 +9690,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="88"/>
         <source>Save link as...</source>
-        <translation>Sauver le lien sous...</translation>
+        <translation>Sauvegarder le lien sous...</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="90"/>
@@ -9700,7 +9700,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="92"/>
         <source>Save image as...</source>
-        <translation>Sauver l&apos;image sous...</translation>
+        <translation>Sauvegarder l&apos;image sous...</translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="94"/>
@@ -10081,39 +10081,41 @@ Ajouter une URL</translation>
         <location filename="../../options.cpp" line="2357"/>
         <location filename="../../options.cpp" line="3538"/>
         <source>Specify pre-defined foreign IDs for this emulator, launchable through the menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Spécifier les IDs pré-définis pour cet émulateur, exécutable depuis le menu</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2643"/>
         <source>Choose MAME variant&apos;s exe file</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le fichier exe de la variante MAME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2655"/>
         <source>Choose MESS variant&apos;s exe file</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le fichier exe de la variante MESS</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2670"/>
         <source>MAME variant arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Arguments pour la variante MAME</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2671"/>
         <source>Specify command line arguments passed to the MAME variant
 (empty means: &apos;pass the arguments we were called with&apos;):</source>
-        <translation type="unfinished"></translation>
+        <translation>Spécifier les arguments en ligne de commande qui seront passés à la variante MAME
+(vide signifie: &apos;envoyer les arguments qui ont été appelés&apos;):</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2689"/>
         <source>MESS variant arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Arguments pour la variante MESS</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2690"/>
         <source>Specify command line arguments passed to the MESS variant
 (empty means: &apos;pass the arguments we were called with&apos;):</source>
-        <translation type="unfinished"></translation>
+        <translation>Spécifier les arguments en ligne de commande qui seront passés à la variante MESS
+(vide signifie: &apos;envoyer les arguments qui ont été appelés&apos;):</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2754"/>
@@ -10130,12 +10132,12 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.cpp" line="2857"/>
         <source>Choose software list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le fichier de cache de la liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2869"/>
         <source>Choose general software folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le répertoire des logiciels général</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2934"/>
@@ -10165,59 +10167,59 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.cpp" line="210"/>
         <source>Minimize when launching (non-embedded) emulators?</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimiser lors de l&apos;exécution d&apos;émulateurs (non embarqués) ?</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="226"/>
         <location filename="../../options.cpp" line="236"/>
         <source>Specify arguments...</source>
-        <translation type="unfinished"></translation>
+        <translation>Spécifier les arguments...</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="229"/>
         <location filename="../../options.cpp" line="239"/>
         <source>Reset to default (same path assumed)</source>
-        <translation type="unfinished"></translation>
+        <translation>Remettre les paramètres par défaut (même chemin)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="245"/>
         <source>Browse emulator information database (messinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Naviguer dans la base de données d&apos;informations d&apos;émulateur (messinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="246"/>
         <source>Load emulator information database (messinfo.dat)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement de la base de données d&apos;informations d&apos;émulateur (messinfo.dat)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="247"/>
         <source>Emulator information database - messinfo.dat (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Base de données d&apos;informations d&apos;émulateur - messinfo.dat (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="278"/>
         <source>Save machine selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder la sélection de machines</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="279"/>
         <source>Save machine selection on exit and before reloading the machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder la sélection de machine à la sortie et avant de recharger la liste des machines</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="280"/>
         <source>Restore machine selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurer la sélection de machine</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="281"/>
         <source>Restore saved machine selection at start and after reloading the machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurer la sélection de machine sauvegardée au démarrage et après le chargement de la liste des machines</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="282"/>
         <source>Machine list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache de la liste des machines</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="284"/>
@@ -10234,7 +10236,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.cpp" line="303"/>
         <source>Analyze current machine</source>
-        <translation type="unfinished"></translation>
+        <translation>Analyse de la machine actuelle</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="305"/>
@@ -10244,7 +10246,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.cpp" line="310"/>
         <source>Copy machine to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter la machine aux favoris</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="312"/>
@@ -10264,27 +10266,27 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.cpp" line="331"/>
         <source>Reload game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger la liste des jeux</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="334"/>
         <source>Reload machine list</source>
-        <translation type="unfinished"></translation>
+        <translation>Recharger la liste des machines</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="335"/>
         <source>Check machine&apos;s ROM state</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifie l&apos;état de ROM de la machine</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="366"/>
         <source>Game list with full detail</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste des jeux détaillée</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="368"/>
         <source>Machine list with full detail</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste des machines en liste détaillée</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="431"/>
@@ -10305,7 +10307,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.cpp" line="1501"/>
         <source>re-sort of game list impossible at this time, please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished"></translation>
+        <translation>impossible de re-trier la liste des jeux pour le moment, patientez jusqu&apos;à ce que la vérification de ROM finisse et essayez de nouveau</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1898"/>
@@ -10523,22 +10525,22 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.cpp" line="3251"/>
         <source>Choose software snap directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le répertoire des captures des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3265"/>
         <source>Choose ZIP-compressed software snap file</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le fichier ZIP contenant les captures des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3277"/>
         <source>Choose software notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le répertoire des notes des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3291"/>
         <source>Choose software notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le template des notes des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3291"/>
@@ -10638,7 +10640,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="176"/>
         <source>Save game selection</source>
-        <translation>Sauver la sélection de jeu</translation>
+        <translation>Sauvegarder la sélection de jeu</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="100"/>
@@ -11272,7 +11274,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="2867"/>
         <source>SW snap position</source>
-        <translation type="unfinished"></translation>
+        <translation>Position du SW snap</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2753"/>
@@ -11307,17 +11309,17 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="4333"/>
         <source>Software list cache file (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache de la liste des logiciels (écriture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4346"/>
         <source>Browse software list cache file</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir pour le fichier de cache de la liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4370"/>
         <source>Directory used as the default software folder for the MESS device configurator (if a sub-folder named as the current machine exists, that folder will be selected instead)</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire utilisé comme répertoire par défaut des logiciels pour le configurateur de périphériques MESS (si un sous-répertoire nommé comme la machine actuelle existe, il sera sinon sélectionné)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2487"/>
@@ -11327,7 +11329,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="2166"/>
         <source>Switch between specifying a software snap directory or a ZIP-compressed software snap file</source>
-        <translation type="unfinished"></translation>
+        <translation>Bascule entre le choix du répertoire de captures et l&apos;archive ZIP des captures des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2169"/>
@@ -11335,27 +11337,27 @@ Ajouter une URL</translation>
         <location filename="../../options.cpp" line="2138"/>
         <location filename="../../options.cpp" line="3146"/>
         <source>SW snap folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire SW snap</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1976"/>
         <source>Software snap-shot directory (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire pour les captures d&apos;écran (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1989"/>
         <source>Browse software snap-shot directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir pour le répertoire des captures d&apos;écran</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2013"/>
         <source>ZIP-compressed software snap-shot file (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>archive ZIP de captures d&apos;écran des logiciels (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2026"/>
         <source>Browse ZIP-compressed software snap-shot file</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir pour l&apos;archive ZIP de capture d&apos;écran des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2407"/>
@@ -11370,7 +11372,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="2530"/>
         <source>Select the cursor position QMC2 uses when auto-scrolling to the current item (this setting applies to all views and lists!)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner la position du curseur que QMC2 utilise lors du défilement automatique vers l&apos;élément actuel (ce paramètre s&apos;applique à toutes les vues et listes!)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2537"/>
@@ -11400,67 +11402,67 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="173"/>
         <source>Save game selection on exit and before reloading the game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvergarder la sélection de jeu à la sortie et avant de recharger la liste des jeux</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="193"/>
         <source>Restore saved game selection at start and after reloading the game list</source>
-        <translation type="unfinished"></translation>
+        <translation>Restaurer la sélection de jeu sauvegardé au démarrage et après le chargement de la liste des jeux</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="743"/>
         <source>Use a unifed tool- and title-bar on Mac OS X</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser un outil unifié- et une barre d&apos;outils sur Mac OS X</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="746"/>
         <source>Unify with title</source>
-        <translation type="unfinished"></translation>
+        <translation>Unifier avec le titre</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="765"/>
         <source>Minimize when launching emulators?</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimiser au lancement d&apos;émulateurs?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="768"/>
         <source>Minimize on emulator launch</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimiser au lancement d&apos;émulateur</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="785"/>
         <source>Suppress all messages sent through either the QDebug class or one of the qDebug() / qCritical() / qWarning() / qFatal() functions</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer tous les messages envoyés vers la classe QDedug ou autre fonction qDebug() / qCritical() / qWarning() / qFatal()</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="788"/>
         <source>Suppress Qt messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer les messages de QT</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="795"/>
         <source>Show splash screen when starting up?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher l&apos;écran de démarrage au lancement?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="798"/>
         <source>Show splash screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher l&apos;écran de démarrage</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2182"/>
         <source>Software notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire des notes logicels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2195"/>
         <source>Folder used to store personal notes about any software titles (write)</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire utilisé pour stocker les notes personnelles au sujet de tout les titres de logiciels (écriture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2208"/>
         <source>Browse software notes folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir pour le répertoire des notes logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2382"/>
@@ -11475,42 +11477,42 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="2503"/>
         <source>Display ROM status icons in master lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les icônes de statut de ROM dans les listes?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2506"/>
         <source>Show ROM status icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher l&apos;icône de statut ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2749"/>
         <source>Select the position where sofware snap-shots are displayed within software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner la position où les captures d&apos;écran des logiciels sont affichées dans les listes des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2783"/>
         <source>Disable snaps</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactive les captures</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2420"/>
         <source>Display software snap-shots when hovering the software list with the mouse cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les captures d&apos;écran des logiciels par survol de la souris sur la liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2423"/>
         <source>SW snaps on mouse hover</source>
-        <translation type="unfinished"></translation>
+        <translation>snaps SW sur survol de souris</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2295"/>
         <source>Enable ROM state filtering?</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer le filtrage d&apos;état de ROM?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="135"/>
         <source>ES (Spanish)</source>
-        <translation type="unfinished"></translation>
+        <translation>ES (Espagnol)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="145"/>
@@ -11525,42 +11527,42 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="2219"/>
         <source>Enable the use of a template for (empty) software notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Active l&apos;utilisation d&apos;un template pour les notes logiciels (vide)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2222"/>
         <source>Software notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Template des notes logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2235"/>
         <source>HTML file used as a template for software-notes (read)</source>
-        <translation type="unfinished"></translation>
+        <translation>fichier HTML utilisé comme template pour les notes de logiciels (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2248"/>
         <source>Browse software notes template</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir pour le template des notes logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2352"/>
         <source>Automatically disable SW snaps when software-detail is visible (may be annoying)</source>
-        <translation type="unfinished"></translation>
+        <translation>Désactive automatiquement les snaps SW quand les détails des logciels sont visibles (peut être dérangeant)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2355"/>
         <source>No SW snaps for visible details</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de snaps SW pour les détails visibles</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2718"/>
         <source>Select the default launch-mode (independent or embedded window) used when emulation is started by activating an entry in any list</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le mode de lancement par défaut (indépendant ou embarqué) à utiliser lorsque l&apos;émulation est démarrée par l&apos;activation d&apos;une entrée dans une liste</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2722"/>
         <source>independent</source>
-        <translation type="unfinished"></translation>
+        <translation>indépendant</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2731"/>
@@ -11570,32 +11572,32 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="2874"/>
         <source>Default launch-mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode de lancement</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2903"/>
         <source>Display (or hide) device sets in master lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher (ou masquer) les sets de périphériques dans les listes?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2906"/>
         <source>Show device sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Voir les sets de périphériques</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2923"/>
         <source>Display (or hide) BIOS sets in master lists?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher (ou masquer) les sets BIOS dans les listes?</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2926"/>
         <source>Show BIOS sets</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher les sets BIOS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3514"/>
         <source>Proxy / &amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy / Ou&amp;tils</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3688"/>
@@ -11615,32 +11617,32 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="3744"/>
         <source>ROM tool argument list (i. e. &quot;$ID$ $DESCRIPTION$&quot;)</source>
-        <translation type="unfinished"></translation>
+        <translation>liste d&apos;arguments de l&apos;outil de ROM (ex. &quot;$ID$ $DESCRIPTION$&quot;)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3777"/>
         <source>Browse working directory of the ROM tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir pour le répertoire de travail de l&apos;outil de ROM</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3794"/>
         <source>Copy the tool&apos;s output to the front end log (keeping it for debugging)</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier la sortie de l&apos;outil vers le log du Front-End (conservé pour débug)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3797"/>
         <source>Copy tool output to front end log</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier la sortie de l&apos;outil dans le log du Front-End</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3804"/>
         <source>Automatically close the tool-executor dialog when the external process finished</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer automatiquement la fenêtre de l&apos;outil quand le processus externe est terminé</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3807"/>
         <source>Close dialog automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer la fenêtre automatiquement</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4083"/>
@@ -11650,52 +11652,52 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="4120"/>
         <source>XML game list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>cache XML de la liste des jeux</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4157"/>
         <source>Game list cache</source>
-        <translation>Cache de la liste de jeux</translation>
+        <translation>Cache de la liste des jeux</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4320"/>
         <source>Software list cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache de la liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4394"/>
         <source>MAME variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>exe de la variante MAME</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4407"/>
         <source>Specify the exe file for the MAME variant (leave empty when all variants are installed in the same directory)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spécifier le fichier exe de la variante MAME (laisser vide quand toutes les variantes sont dans le même répertoire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4420"/>
         <source>Browse MAME variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir pour l&apos;exe de la variante MAME</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4431"/>
         <source>MESS variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>exe de la variante MESS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4444"/>
         <source>Specify the exe file for the MESS variant (leave empty when all variants are installed in the same directory)</source>
-        <translation type="unfinished"></translation>
+        <translation>Spécifier le fichier exe de la variante MESS (laisser vide quand toutes les variantes sont dans le même répertoire)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4457"/>
         <source>Browse MESS variant exe</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir pour l&apos;exe de la variante MESS</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4554"/>
         <source>Indicates if the $ID$ placeholder is missing on the supplied command line (yellow) or not (green)</source>
-        <translation type="unfinished"></translation>
+        <translation>Indique si l&apos;$ID$ est manquant dans la ligne de commande envoyée (jaune) or pas (vert) </translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4595"/>
@@ -11705,7 +11707,7 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="4609"/>
         <source>Arguments passed to the emulator -- use $ID$ as placeholder for the unique set ID, $DESCRIPTION$ for its description</source>
-        <translation type="unfinished"></translation>
+        <translation>Arguments passés à l&apos;émulateur -- utiliser $ID$ comme base pour un set unique ID, $DESCRIPTION$ pour sa description</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3751"/>
@@ -11730,17 +11732,17 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.ui" line="4357"/>
         <source>General software folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire général des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3764"/>
         <source>Working directory that&apos;s used when the ROM tool is executed (if empty, QMC2&apos;s current working directory is used)</source>
-        <translation type="unfinished"></translation>
+        <translation>Répertoire de travail utilisé quand l&apos;outil de ROM est exécuté (si vide, utilise le répertoire de travail actuel de QMC2)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4383"/>
         <source>Browse general software folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Parcourir pour le répertoire général des logiciels</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4512"/>
@@ -12329,27 +12331,27 @@ Ajouter une URL</translation>
     <message>
         <location filename="../../options.cpp" line="345"/>
         <source>Toggle ROM state C</source>
-        <translation>Basculer le ROM state C</translation>
+        <translation>Basculer en ROM state C</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="346"/>
         <source>Toggle ROM state M</source>
-        <translation>Basculer le ROM state M</translation>
+        <translation>Basculer en ROM state M</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="347"/>
         <source>Toggle ROM state I</source>
-        <translation>Basculer le ROM state I</translation>
+        <translation>Basculer en ROM state I</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="348"/>
         <source>Toggle ROM state N</source>
-        <translation>Basculer le ROM state N</translation>
+        <translation>Basculer en ROM state N</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="349"/>
         <source>Toggle ROM state U</source>
-        <translation>Basculer le ROM state O</translation>
+        <translation>Basculer en ROM state U</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="775"/>
@@ -12572,7 +12574,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="2113"/>
         <location filename="../../options.cpp" line="3091"/>
         <source>Cabinet directory</source>
-        <translation>Répertoire des bornes (cabinets)</translation>
+        <translation>Répertoire des bornes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2058"/>
@@ -12592,7 +12594,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="2548"/>
         <source>Choose cabinet directory</source>
-        <translation>Choisir le répertoire des bornes (cabinets)</translation>
+        <translation>Choisir le répertoire des bornes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2562"/>
@@ -12602,7 +12604,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="3191"/>
         <source>Choose ZIP-compressed cabinet file</source>
-        <translation>Choisir le fichier ZIP contenant les bornes (cabinets)</translation>
+        <translation>Choisir le fichier ZIP contenant les bornes</translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="3203"/>
@@ -12624,7 +12626,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.ui" line="186"/>
         <source>Scaled cabinet</source>
-        <translation>Bornes (cabinets) redimensionnées</translation>
+        <translation>Bornes redimensionnées</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="216"/>
@@ -12639,27 +12641,27 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.ui" line="1477"/>
         <source>Cabinet directory (read)</source>
-        <translation>Répertoire des bornes (cabinets) (lecture)</translation>
+        <translation>Répertoire des bornes (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1490"/>
         <source>Browse cabinet directory</source>
-        <translation>Parcourir pour le répertoire de bornes (cabinets)</translation>
+        <translation>Parcourir pour le répertoire de bornes</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1514"/>
         <source>ZIP-compressed cabinet file (read)</source>
-        <translation>archive ZIP de bornes (cabinets) (lecture)</translation>
+        <translation>archive ZIP de bornes (lecture)</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1527"/>
         <source>Browse ZIP-compressed cabinet file</source>
-        <translation>Parcourir pour l&apos;archive ZIP des bornes (cabinets)</translation>
+        <translation>Parcourir pour l&apos;archive ZIP des bornes</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1439"/>
         <source>Switch between specifying a cabinet directory or a ZIP-compressed cabinet file</source>
-        <translation>Bascule entre le choix du répertoire de bornes et l&apos;archive ZIP de bornes (cabinets)</translation>
+        <translation>Bascule entre le choix du répertoire de bornes et l&apos;archive ZIP de bornes</translation>
     </message>
     <message>
         <location filename="../../options.ui" line="1580"/>
@@ -13838,7 +13840,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>report limit reached, removing %n set(s) from the report</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14249,7 +14250,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>checksum wizard: repairing %n bad set(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14384,7 +14384,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2945"/>
         <source>checksum wizard: done (repairing %n bad set(s))</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14527,7 +14526,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="185"/>
         <source>Save the current log contents to a file</source>
-        <translation>Sauvergarder le contenu de log dans un fichier</translation>
+        <translation>Sauvegarder le contenu de log dans un fichier</translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="265"/>
@@ -16360,7 +16359,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../embedderopt.cpp" line="180"/>
         <source>Save as...</source>
-        <translation>Sauver sous...</translation>
+        <translation>Sauvegarder sous...</translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="186"/>
@@ -16380,7 +16379,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../embedderopt.cpp" line="296"/>
         <source>FATAL: couldn&apos;t save snapshot image to &apos;%1&apos;</source>
-        <translation>FATAL: échec de sauvergarder l&apos;image en &apos;%1&apos;</translation>
+        <translation>FATAL: échec de sauvegarde de l&apos;image en &apos;%1&apos;</translation>
     </message>
 </context>
 <context>
@@ -16400,7 +16399,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="101"/>
         <location filename="../../softwarelist.ui" line="104"/>
         <source>Select a pre-defined device configuration to be added to the software setup</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionner une configuration pré-définie à ajouter au paramétrage des logiciels</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="108"/>
@@ -16413,19 +16412,19 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="198"/>
         <location filename="../../softwarelist.ui" line="201"/>
         <source>Remove the currently selected favorite software configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Enlever la configuration favorite des logiciels actuellement sélectionnée</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="218"/>
         <location filename="../../softwarelist.ui" line="221"/>
         <source>Play the selected software configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Jouer la configuration des logiciels sélectionnée</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="238"/>
         <location filename="../../softwarelist.ui" line="241"/>
         <source>Play the selected software configuration (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jouer la configuration des logiciels sélectionnée (embarqué)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="273"/>
@@ -16435,40 +16434,40 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.ui" line="276"/>
         <source>Complete list of known software for the current system</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste complète des logiciels connus pour le système actuel</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="361"/>
         <source>View / manage your favorite software list for the current system</source>
-        <translation type="unfinished"></translation>
+        <translation>Voir / Gérer votre liste des logiciels favoris pour le système actuel</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="451"/>
         <source>Search within the list of known software for the current system</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher dans la liste des logiciels connus pour le système actuel</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="291"/>
         <location filename="../../softwarelist.ui" line="294"/>
         <source>List of known software</source>
-        <translation>Liste de logiciel connu</translation>
+        <translation>Liste des logiciels connus</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="55"/>
         <location filename="../../softwarelist.ui" line="58"/>
         <source>Toggle filtering of compatible software titles</source>
-        <translation type="unfinished"></translation>
+        <translation>Basculer le filtrage des titres des logiciels compatibles</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="78"/>
         <location filename="../../softwarelist.ui" line="81"/>
         <source>Toggle detailed software information</source>
-        <translation type="unfinished"></translation>
+        <translation>Basculer les informations détaillées du logiciel</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="135"/>
         <source>Export the current software-list to an ASCII or CSV formatted file (or the clipboard)</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter la liste des logiciels actuelle vers un fichier au format ASCII ou CSV formaté (ou le presse-papier)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="138"/>
@@ -16478,13 +16477,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.ui" line="158"/>
         <source>Open options menu for the favorites list</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir le menu des options pour la liste des favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="178"/>
         <location filename="../../softwarelist.ui" line="181"/>
         <source>Add the currently selected software and device setup to the favorites list (or overwrite existing favorite)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter le paramétrage de périphérique et le logiciel actuellement sélection à la liste des favoris (ou écrase les favoris existants)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="307"/>
@@ -16582,7 +16581,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="466"/>
         <location filename="../../softwarelist.ui" line="469"/>
         <source>Search for known software (not case-sensitive)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche de logiciels connus (insensible à la casse min/MAJ)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="485"/>
@@ -16594,22 +16593,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="555"/>
         <location filename="../../softwarelist.cpp" line="515"/>
         <source>Loading software-lists, please wait...</source>
-        <translation>Chargement des listes de logiciel, patientez svp...</translation>
+        <translation>Chargement des listes des logiciels, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="67"/>
         <source>Add the currently selected software to the favorites list</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter le logiciel actuellement sélectionné à la liste des favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="78"/>
         <source>Enter search string</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrer une chaîne de recherche</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="112"/>
         <source>Play selected software</source>
-        <translation type="unfinished"></translation>
+        <translation>Jouer le logiciel sélectionné</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="113"/>
@@ -16619,7 +16618,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="118"/>
         <source>Play selected software (embedded)</source>
-        <translation type="unfinished"></translation>
+        <translation>Jouer le logiciel sélectionné (embarqué)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="119"/>
@@ -16629,125 +16628,125 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="125"/>
         <source>Add to favorite software list</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter à la liste des logiciels favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="126"/>
         <source>&amp;Add to favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ajouter aux favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="130"/>
         <source>Remove from favorite software list</source>
-        <translation type="unfinished"></translation>
+        <translation>Retirer de la liste des logiciels favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="131"/>
         <source>&amp;Remove from favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Retirer des favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="138"/>
         <source>Load favorites from a file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Charger les favoris depuis un fichier...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="143"/>
         <source>Save favorites to a file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder les favoris dans un fichier...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="274"/>
         <source>WARNING: software list &apos;%1&apos; not found</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: liste des logiciels &apos;%1&apos; non trouvée</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="452"/>
         <source>Known software (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Logiciels connus (%1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="453"/>
         <source>Favorites (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Favoris (%1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="454"/>
         <source>Search (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche (%1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="468"/>
         <location filename="../../softwarelist.cpp" line="688"/>
         <source>Known software (no data available)</source>
-        <translation type="unfinished"></translation>
+        <translation>Logiciels connus (pas de données disponibles)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="469"/>
         <location filename="../../softwarelist.cpp" line="689"/>
         <source>Favorites (no data available)</source>
-        <translation type="unfinished"></translation>
+        <translation>Favoris (pas de données disponibles)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="470"/>
         <location filename="../../softwarelist.cpp" line="690"/>
         <source>Search (no data available)</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche (pas de données disponibles)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="547"/>
         <source>loading XML software list data from cache</source>
-        <translation type="unfinished"></translation>
+        <translation>chargement de la liste de logiciels XML depuis le cache</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="552"/>
         <source>SWL cache - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>cache SWL - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="581"/>
         <source>done (loading XML software list data from cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>fait (chargement de la liste des logiciels XML depuis le cache, temps écoulé = %1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="589"/>
         <source>ERROR: the file name for the MAME software list cache is empty -- please correct this and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>ERREUR : le nom du fichier pour le cache de la liste des logiciels MAME est vide - merci de corriger ceci et rechargez ensuite la liste des jeux</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="591"/>
         <source>ERROR: the file name for the MESS software list cache is empty -- please correct this and reload the machine list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>ERREUR : le nom du fichier pour le cache de la liste des logiciels MESS est vide - merci de corriger ceci et rechargez ensuite la liste des machines</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="608"/>
         <source>loading XML software list data and (re)creating cache</source>
-        <translation type="unfinished"></translation>
+        <translation>chargement de la liste des logiciels XML et (re)création du cache</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="611"/>
         <source>SWL data - %p%</source>
-        <translation type="unfinished"></translation>
+        <translation>données SWL - %p%</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="617"/>
         <source>ERROR: can&apos;t open the MAME software list cache for writing, path = %1 -- please check/correct access permissions and reload the game list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>ERREUR: impossible d&apos;ouvrir le cache des listes des logiciels MAME en écriture, chemin = %1 - merci de vérifier/corriger les permissions d&apos;accès et rechargez ensuite la liste des jeux</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="619"/>
         <source>ERROR: can&apos;t open the MESS software list cache for writing, path = %1 -- please check/correct access permissions and reload the machine list afterwards</source>
-        <translation type="unfinished"></translation>
+        <translation>ERREUR: impossible d&apos;ouvrir le cache des listes des logiciels MESS en écriture, chemin = %1 - merci de vérifier/corriger les permissions d&apos;accès et rechargez ensuite la liste des machines</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="718"/>
         <source>Loading software-list &apos;%1&apos;, please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement de la liste des logiciels &apos;%1&apos;, patientez svp...</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="733"/>
         <source>FATAL: error while parsing XML data for software list &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: erreur durant la lecture de la liste des logiciels XML &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="778"/>
@@ -16763,7 +16762,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="970"/>
         <source>WARNING: the external process called to load the MAME software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: le processus externe appelé pour charger les listes des logiciels MAME n&apos;a pas fini proprement -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="970"/>
@@ -16780,32 +16779,32 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="972"/>
         <source>WARNING: the external process called to load the MESS software lists didn&apos;t exit cleanly -- exitCode = %1, exitStatus = %2</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: le processus externe appelé pour charger les listes des logiciels MESS n&apos;a pas fini proprement -- exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="978"/>
         <source>done (loading XML software list data and (re)creating cache, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>fait (chargement de la liste des logiciels XML et (re)création du cache, temps écoulé = %1)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1034"/>
         <source>WARNING: the currently selected MAME emulator doesn&apos;t support software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: l&apos;émulateur MAME actuellement sélectionné ne supporte pas les listes de logiciels</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1036"/>
         <source>WARNING: the currently selected MESS emulator doesn&apos;t support software lists</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: l&apos;émulateur MESS actuellement sélectionné ne supporte pas les listes de logiciels</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1052"/>
         <source>WARNING: the external process called to load the MAME software lists caused an error -- processError = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: le processus externe appelé pour charger les listes des logiciels MAME a provoqué une erreur -- processError = %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1054"/>
         <source>WARNING: the external process called to load the MESS software lists caused an error -- processError = %1</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: le processus externe appelé pour charger les listes des logiciels MESS a provoqué une erreur -- processError = %1</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1365"/>
@@ -16819,19 +16818,19 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="1404"/>
         <location filename="../../softwarelist.cpp" line="1438"/>
         <source>FATAL: error while parsing XML data for software list entry &apos;%1:%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: erreur durant la lecture de la liste des logiciels XML &apos;%1:%2&apos; </translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="1373"/>
         <location filename="../../softwarelist.cpp" line="1407"/>
         <location filename="../../softwarelist.cpp" line="1441"/>
         <source>FATAL: couldn&apos;t find XML data for software list &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossible de trouver les données XML pour la liste des logiciels &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2165"/>
         <source>Choose file to merge favorites from</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le fichier pour fusionner les favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2165"/>
@@ -16842,57 +16841,57 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="2177"/>
         <source>loading software-favorites for &apos;%1&apos; from &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement des logiciels favoris de &apos;%1&apos; depuis &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2216"/>
         <source>entry &apos;%1:%2&apos; successfully imported</source>
-        <translation type="unfinished"></translation>
+        <translation>entrée &apos;%1:%2&apos; importée avec succès</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2218"/>
         <source>WARNING: entry &apos;%1:%2&apos; cannot be associated with any known software for this system (line %3 ignored)</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: l&apos;entrée &apos;%1:%2&apos; ne peut être associée avec aucun logiciel connu pour ce système (ligne %3 ignorée)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2220"/>
         <source>WARNING: a favorite entry for &apos;%1:%2&apos; already exists (line %3 ignored)</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: une entrée de favoris pour &apos;%1:%2&apos; existe déjà (ligne %3 ignorée)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2222"/>
         <source>WARNING: syntax error on line %1 (ignored)</source>
-        <translation type="unfinished"></translation>
+        <translation>ATTENTION: erreur de syntaxe à la ligne %1 (ignoré)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2226"/>
         <source>done (loading software-favorites for &apos;%1&apos; from &apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>fait (chargement des logiciels favoris de &apos;%1&apos; depuis &apos;%2&apos;)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2228"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for reading, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossible d&apos;ouvrir &apos;%1&apos; en lecture, vérifiez les permissions</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2243"/>
         <source>Choose file to store favorites to</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir le fichier pour enregistrer les favoris</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2254"/>
         <source>saving software-favorites for &apos;%1&apos; to &apos;%2&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>sauvegarde des logiciels favoris pour &apos;%1&apos; à &apos;%2&apos;</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2276"/>
         <source>done (saving software-favorites for &apos;%1&apos; to &apos;%2&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation>fait (sauvegarde des logiciels favoris pour &apos;%1&apos; à &apos;%2&apos;)</translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2278"/>
         <source>FATAL: can&apos;t open &apos;%1&apos; for writing, please check permissions</source>
-        <translation type="unfinished"></translation>
+        <translation>FATAL: impossible d&apos;ouvrir &apos;%1&apos; en écriture, vérifiez les permissions</translation>
     </message>
 </context>
 <context>
@@ -17039,7 +17038,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="368"/>
         <source>Close software-list export</source>
-        <translation>Fermer l&apos;export de la liste de logiciels</translation>
+        <translation>Fermer l&apos;export de la liste des logiciels</translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="371"/>
@@ -17144,7 +17143,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.cpp" line="37"/>
         <source>Export software-list for &apos;%1&apos;</source>
-        <translation>Exporter la liste de logiciels pour &apos;%1&apos;</translation>
+        <translation>Exporter la liste des logiciels pour &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="185"/>
@@ -17161,7 +17160,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.cpp" line="196"/>
         <source>exporting current software-list in ASCII format to &apos;%1&apos;</source>
-        <translation>export de la liste de logiciels actuelle au format ASCII vers &apos;%1&apos;</translation>
+        <translation>export de la liste des logiciels actuelle au format ASCII vers &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="198"/>
@@ -17171,22 +17170,22 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.cpp" line="203"/>
         <source>exporting current software-list in ASCII format to clipboard</source>
-        <translation>export de la liste de logiciels actuelle au format ASCII vers le presse-papier</translation>
+        <translation>export de la liste des logiciels actuelle au format ASCII vers le presse-papier</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="279"/>
         <source>done (exporting current software-list in ASCII format to clipboard)</source>
-        <translation>fait (export de la liste de logiciels actuelle au format ASCII vers le presse-papier)</translation>
+        <translation>fait (export de la liste des logiciels actuelle au format ASCII vers le presse-papier)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="282"/>
         <source>done (exporting current software-list in ASCII format to &apos;%1&apos;)</source>
-        <translation>fait (export de la liste de logiciels actuelle au format ASCII vers &apos;%1&apos;)</translation>
+        <translation>fait (export de la liste des logiciels actuelle au format ASCII vers &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="328"/>
         <source>exporting current software-list in CSV format to &apos;%1&apos;</source>
-        <translation>export de la liste de logiciels actuelle au format CSV vers &apos;%1&apos;</translation>
+        <translation>export de la liste des logiciels actuelle au format CSV vers &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="330"/>
@@ -17196,17 +17195,17 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.cpp" line="335"/>
         <source>exporting current software-list in CSV format to clipboard</source>
-        <translation>export de la liste de logiciels actuelle au format CSV vers le presse-papier</translation>
+        <translation>export de la liste des logiciels actuelle au format CSV vers le presse-papier</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="394"/>
         <source>done (exporting current software-list in CSV format to clipboard)</source>
-        <translation>fait (export de la liste de logiciels actuelle au format CSV vers le presse-papier)</translation>
+        <translation>fait (export de la liste des logiciels actuelle au format CSV vers le presse-papier)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="397"/>
         <source>done (exporting current software-list in CSV format to &apos;%1&apos;)</source>
-        <translation>fait (export de la liste de logiciels actuelle au format CSV vers &apos;%1&apos;)</translation>
+        <translation>fait (export de la liste des logiciels actuelle au format CSV vers &apos;%1&apos;)</translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="409"/>
