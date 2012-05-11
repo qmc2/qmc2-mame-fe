@@ -29,6 +29,10 @@ greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
 }
 
+macx {
+    QMAKE_INFO_PLIST = Info.plist
+}
+
 win32 {
     RC_FILE = qchdman.rc
 }

@@ -959,13 +959,16 @@ qchdman-clean:
 	@$(CD) tools/qchdman && $(QMAKE) $(QCHDMAN_CONF) '$(QCHDMAN_DEFINES)' && $(MAKE) distclean
 
 ifeq '$(ARCH)' 'Darwin'
-tools/qchdman/qchdman.app/Contents/Resources/qt.conf:
+tools/qchdman/Info.plist: tools/qchdman/Info.plist.in
+	@$(SED) -e 's/@SHORT_VERSION@/$(subst /,\/,$(VERSION))/g' -e 's/@SCM_REVISION@/$(subst /,\/,$(SVN_REV))/g' -e 's/@ICON@/qchdman.icns/g' < $< > $@
+tools/qchdman/qchdman.app/Contents/Resources/qt.conf: tools/qchdman/Info.plist
 	@$(MACDEPLOYQT) tools/qchdman/qchdman.app
 qchdman-macdeployqt: tools/qchdman/qchdman.app/Contents/Resources/qt.conf
 qchdman-install: qchdman qchdman-macdeployqt
 	@$(MKDIR) "/Applications/qchdman"
 	@$(CHMOD) a+rx "/Applications/qchdman"
 	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman.app" "/Applications/qchdman"
+	@$(RSYNC) images/qchdman.icns /Applications/qchdman/Contents/Resources/
 else
 qchdman-install: qchdman
 	@$(RSYNC) --exclude '*svn*' "tools/qchdman/qchdman" "$(DESTDIR)/$(BINDIR)"
