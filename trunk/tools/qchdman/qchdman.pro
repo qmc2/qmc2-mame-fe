@@ -21,6 +21,10 @@ greaterThan(DEBUG, 0) | contains(DEFINES, "QCHDMAN_DEBUG") {
     !contains(CONFIG, "warn_off release"): CONFIG += warn_off release
 }
 
+greaterThan(SVN_REV, 0) {
+    DEFINES += QCHDMAN_SVN_REV=$$SVN_REV
+}
+
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
 }
