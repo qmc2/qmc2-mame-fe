@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>312</width>
-    <height>247</height>
+    <width>277</width>
+    <height>208</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,20 +32,7 @@
          </sizepolicy>
         </property>
         <property name="pixmap">
-         <pixmap resource="qchdman.qrc">:/images/qchdman.png</pixmap>
-        </property>
-        <property name="margin">
-         <number>4</number>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="labelTitle">
-        <property name="text">
-         <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Qt CHDMAN GUI&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Version 0.1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         <pixmap resource="qchdman.qrc">:/images/logo-small.png</pixmap>
         </property>
         <property name="margin">
          <number>4</number>

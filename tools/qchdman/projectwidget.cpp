@@ -36,6 +36,11 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     compressionTypes["lzma"] = tr("lzma (LZMA)");
     compressionTypes["zlib"] = tr("zlib (Deflate)");
 
+    // FIXME: incomplete
+    copyGroups[QCHDMAN_PRJ_INFO] << ui->lineEditInfoInputFile << ui->checkBoxInfoVerbose;
+    copyGroups[QCHDMAN_PRJ_VERIFY] << ui->lineEditVerifyInputFile << ui->lineEditVerifyParentInputFile;
+    copyGroups[QCHDMAN_PRJ_COPY] << ui->lineEditCopyInputFile << ui->lineEditCopyOutputFile << ui->lineEditCopyParentInputFile << ui->lineEditCopyParentOutputFile;
+
     copyCompressors.clear();
 
     ui->comboBoxCopyCompression->blockSignals(true);
@@ -119,39 +124,64 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
     if ( index == -1 )
         index = ui->comboBoxProjectType->currentIndex();
 
-    // FIXME: copy data where applicable
+#if defined(Q_OS_MAC)
+    bool isAquaStyle = globalConfig->preferencesGuiStyle().startsWith("Macintosh");
+#endif
 
     switch ( index ) {
     case QCHDMAN_PRJ_INFO:
         widgetHeight = ui->frameInfo->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
         if ( globalConfig->preferencesShowHelpTexts() )
             widgetHeight += ui->labelInfoHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
+#if defined(Q_OS_MAC)
+        if ( isAquaStyle )
+            widgetHeight -= ui->labelInfoHelp->margin();
+#endif
+        parentWidget()->setWindowIcon(QIcon(":/images/info.png"));
         break;
     case QCHDMAN_PRJ_VERIFY:
         widgetHeight = ui->frameVerify->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
         if ( globalConfig->preferencesShowHelpTexts() )
             widgetHeight += ui->labelVerifyHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
+#if defined(Q_OS_MAC)
+        if ( isAquaStyle )
+            widgetHeight -= ui->labelVerifyHelp->margin();
+#endif
+        parentWidget()->setWindowIcon(QIcon(":/images/verify.png"));
         break;
     case QCHDMAN_PRJ_COPY:
         widgetHeight = ui->frameCopy->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
         if ( globalConfig->preferencesShowHelpTexts() )
             widgetHeight += ui->labelCopyHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
+#if defined(Q_OS_MAC)
+        if ( isAquaStyle )
+            widgetHeight -= ui->labelCopyHelp->margin();
+#endif
+        parentWidget()->setWindowIcon(QIcon(":/images/copy.png"));
         break;
     case QCHDMAN_PRJ_CREATE_RAW:
+        parentWidget()->setWindowIcon(QIcon(":/images/createraw.png"));
         break;
     case QCHDMAN_PRJ_CREATE_HD:
+        parentWidget()->setWindowIcon(QIcon(":/images/createhd.png"));
         break;
     case QCHDMAN_PRJ_CREATE_CD:
+        parentWidget()->setWindowIcon(QIcon(":/images/createcd.png"));
         break;
     case QCHDMAN_PRJ_CREATE_LD:
+        parentWidget()->setWindowIcon(QIcon(":/images/createld.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_RAW:
+        parentWidget()->setWindowIcon(QIcon(":/images/extractraw.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_HD:
+        parentWidget()->setWindowIcon(QIcon(":/images/extracthd.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_CD:
+        parentWidget()->setWindowIcon(QIcon(":/images/extractcd.png"));
         break;
     case QCHDMAN_PRJ_EXTRACT_LD:
+        parentWidget()->setWindowIcon(QIcon(":/images/extractld.png"));
         break;
     }
 
@@ -750,13 +780,29 @@ void ProjectWidget::triggerSaveAs()
 void ProjectWidget::clone()
 {
     QAction *action = (QAction *)sender();
+
     on_toolButtonRun_clicked(true);
-    log(tr("cloning to '%1' is not supported yet").arg(action->text()));
+
+    int cloneType = cloneActionMap[action];
+
+    if ( copyGroups.contains(cloneType) ) {
+        QList<QWidget *> copyWidgets = copyGroups[cloneType];
+
+    } else
+        log(tr("cloning to '%1' is not supported yet").arg(action->text()));
 }
 
 void ProjectWidget::morph()
 {
     QAction *action = (QAction *)sender();
+
     on_toolButtonRun_clicked(true);
-    log(tr("morphing to '%1' is not supported yet").arg(action->text()));
+
+    int morphType = morphActionMap[action];
+
+    if ( copyGroups.contains(morphType) ) {
+        QList<QWidget *> copyWidgets = copyGroups[morphType];
+
+    } else
+        log(tr("morphing to '%1' is not supported yet").arg(action->text()));
 }
