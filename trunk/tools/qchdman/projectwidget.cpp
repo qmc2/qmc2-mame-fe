@@ -311,6 +311,7 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
     chdmanProc->start(globalConfig->preferencesChdmanBinary(), arguments);
     ui->toolButtonRun->setEnabled(false);
     ui->comboBoxProjectType->setEnabled(false);
+    menuMorphActions->setEnabled(false);
     ui->progressBar->setFormat(tr("Starting"));
     ui->progressBar->setValue(0);
 }
@@ -344,6 +345,7 @@ void ProjectWidget::finished(int exitCode, QProcess::ExitStatus exitStatus)
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
     ui->comboBoxProjectType->setEnabled(true);
+    menuMorphActions->setEnabled(true);
     ui->progressBar->setFormat(tr("Idle"));
     ui->progressBar->setValue(0);
 }
@@ -426,6 +428,7 @@ void ProjectWidget::error(QProcess::ProcessError processError)
     ui->toolButtonRun->setEnabled(true);
     ui->toolButtonStop->setEnabled(false);
     ui->comboBoxProjectType->setEnabled(true);
+    menuMorphActions->setEnabled(true);
     ui->progressBar->setFormat(tr("Idle"));
     ui->progressBar->setValue(0);
 }
@@ -805,4 +808,16 @@ void ProjectWidget::morph()
 
     } else
         log(tr("morphing to '%1' is not supported yet").arg(action->text()));
+}
+
+void ProjectWidget::run()
+{
+    if ( ui->toolButtonRun->isEnabled() )
+        ui->toolButtonRun->animateClick();
+}
+
+void ProjectWidget::stop()
+{
+    if ( ui->toolButtonStop->isEnabled() )
+        ui->toolButtonStop->animateClick();
 }

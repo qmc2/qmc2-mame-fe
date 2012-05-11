@@ -75,7 +75,7 @@ QMdiArea *MainWindow::mdiArea()
 
 void MainWindow::on_actionProjectNew_triggered(bool)
 {
-    ProjectWindow *projectWindow = new ProjectWindow(QString(), ui->mdiArea);
+    ProjectWindow *projectWindow = new ProjectWindow(QString(), QCHDMAN_MDI_PROJECT, ui->mdiArea);
     projectWindow->show();
     if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
         if ( globalConfig->preferencesMaximizeWindows() )
@@ -86,7 +86,7 @@ void MainWindow::on_actionProjectLoad_triggered(bool)
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Choose file"), QString(), tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
     if ( !fileName.isNull() ) {
-        ProjectWindow *projectWindow = new ProjectWindow(fileName, ui->mdiArea);
+        ProjectWindow *projectWindow = new ProjectWindow(fileName, QCHDMAN_MDI_PROJECT, ui->mdiArea);
         projectWindow->show();
         if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
             if ( globalConfig->preferencesMaximizeWindows() )
@@ -98,26 +98,39 @@ void MainWindow::on_actionProjectLoad_triggered(bool)
 void MainWindow::on_actionProjectSave_triggered(bool)
 {
     ProjectWindow *projectWindow = (ProjectWindow *)ui->mdiArea->activeSubWindow();
-    if ( projectWindow )
-        projectWindow->projectWidget->save();
+    if ( projectWindow ) {
+        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
+            projectWindow->projectWidget->save();
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+            // FIXME
+        }
+    }
 }
 
 void MainWindow::on_actionProjectSaveAs_triggered(bool)
 {
     ProjectWindow *projectWindow = (ProjectWindow *)ui->mdiArea->activeSubWindow();
     if ( projectWindow ) {
-        projectWindow->projectWidget->askFileName = true;
-        projectWindow->projectWidget->saveAs();
-        projectWindow->projectWidget->askFileName = false;
+        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
+            projectWindow->projectWidget->askFileName = true;
+            projectWindow->projectWidget->saveAs();
+            projectWindow->projectWidget->askFileName = false;
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+            // FIXME
+        }
     }
 }
 
 void MainWindow::on_actionProjectSaveAll_triggered(bool)
 {
     foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
-        ProjectWidget *projectWidget = (ProjectWidget *)w->widget();
-        if ( projectWidget )
+        ProjectWindow *projectWindow = (ProjectWindow *)w;
+        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
+            ProjectWidget *projectWidget = (ProjectWidget *)projectWindow->widget();
             projectWidget->save();
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+            // FIXME
+        }
     }
 }
 
@@ -180,7 +193,11 @@ void MainWindow::on_actionWindowViewModeWindowed_triggered(bool)
             projectWindow->showMaximized();
             qApp->processEvents();
         }
-        projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
+            projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+            // FIXME
+        }
     }
 }
 
@@ -195,7 +212,11 @@ void MainWindow::on_actionWindowViewModeTabbed_triggered(bool)
     applySettings();
     foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
         ProjectWindow *projectWindow = (ProjectWindow *)w;
-        projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
+            projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+            // FIXME
+        }
     }
 }
 
@@ -222,12 +243,17 @@ void MainWindow::applySettings()
     f.fromString(globalConfig->preferencesLogFont());
     f.setPointSize(globalConfig->preferencesLogFontSize());
     foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
-        ProjectWidget *projectWidget = (ProjectWidget *)w->widget();
-        if ( projectWidget ) {
-            projectWidget->setLogFont(f);
-            projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
-            projectWidget->needsTabbedUiAdjustment = true;
-            projectWidget->needsWindowedUiAdjustment = true;
+        ProjectWindow *projectWindow = (ProjectWindow *)w;
+        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
+            ProjectWidget *projectWidget = (ProjectWidget *)projectWindow->widget();
+            if ( projectWidget ) {
+                projectWidget->setLogFont(f);
+                projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+                projectWidget->needsTabbedUiAdjustment = true;
+                projectWidget->needsWindowedUiAdjustment = true;
+            }
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+            // FIXME
         }
     }
 }
@@ -235,10 +261,15 @@ void MainWindow::applySettings()
 void MainWindow::updateSubWindows()
 {
     foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
-        ProjectWidget *projectWidget = (ProjectWidget *)w->widget();
-        projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
-        projectWidget->needsTabbedUiAdjustment = true;
-        projectWidget->needsWindowedUiAdjustment = true;
+        ProjectWindow *projectWindow = (ProjectWindow *)w;
+        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
+            ProjectWidget *projectWidget = (ProjectWidget *)projectWindow->widget();
+            projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+            projectWidget->needsTabbedUiAdjustment = true;
+            projectWidget->needsWindowedUiAdjustment = true;
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+            // FIXME
+        }
     }
 }
 
@@ -267,7 +298,7 @@ void MainWindow::loadRecentFile()
         statusBar()->showMessage(tr("Project '%1' doesn't exist"), QCHDMAN_STATUS_MSGTIME);
         return;
     }
-    ProjectWindow *projectWindow = new ProjectWindow(action->text(), ui->mdiArea);
+    ProjectWindow *projectWindow = new ProjectWindow(action->text(), QCHDMAN_MDI_PROJECT, ui->mdiArea);
     projectWindow->show();
     if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
         if ( globalConfig->preferencesMaximizeWindows() )
@@ -305,17 +336,37 @@ void MainWindow::on_mdiArea_subWindowActivated(QMdiSubWindow *w)
 
     ProjectWindow *projectWindow = (ProjectWindow *)w;
     if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_TABBED ) {
-        if ( projectWindow->projectWidget->needsTabbedUiAdjustment ) {
-            projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
-            projectWindow->projectWidget->needsTabbedUiAdjustment = false;
+        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
+            if ( projectWindow->projectWidget->needsTabbedUiAdjustment ) {
+                projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+                projectWindow->projectWidget->needsTabbedUiAdjustment = false;
+            }
+            projectWindow->projectWidget->needsWindowedUiAdjustment = true;
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+            // FIXME
         }
-        projectWindow->projectWidget->needsWindowedUiAdjustment = true;
     } else {
-        if ( projectWindow->projectWidget->needsWindowedUiAdjustment ) {
-            projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
-            projectWindow->projectWidget->needsWindowedUiAdjustment = false;
+        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
+            if ( projectWindow->projectWidget->needsWindowedUiAdjustment ) {
+                projectWindow->projectWidget->on_comboBoxProjectType_currentIndexChanged(-1);
+                projectWindow->projectWidget->needsWindowedUiAdjustment = false;
+            }
+            projectWindow->projectWidget->needsTabbedUiAdjustment = true;
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+            // FIXME
         }
-        projectWindow->projectWidget->needsTabbedUiAdjustment = true;
+    }
+}
+
+void MainWindow::resizeEvent(QResizeEvent *)
+{
+    foreach (QMdiSubWindow *w, ui->mdiArea->subWindowList()) {
+        ProjectWindow *projectWindow = (ProjectWindow *)w;
+        if ( projectWindow->subWindowType == QCHDMAN_MDI_PROJECT ) {
+            QTimer::singleShot(0, (ProjectWidget *)w->widget(), SLOT(triggerUpdate()));
+        } else if ( projectWindow->subWindowType == QCHDMAN_MDI_JOB ) {
+            // FIXME
+        }
     }
 }
 

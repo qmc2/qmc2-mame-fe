@@ -3,6 +3,7 @@
 
 #include <QMdiSubWindow>
 #include "projectwidget.h"
+#include "macros.h"
 
 class ProjectWindow : public QMdiSubWindow
 {
@@ -10,10 +11,11 @@ class ProjectWindow : public QMdiSubWindow
 
 public:
     bool closeOk;
+    int subWindowType;
     QString projectName;
     ProjectWidget *projectWidget;
 
-    ProjectWindow(QString pn = QString(), QWidget *parent = 0);
+    ProjectWindow(QString pn = QString(), int type = QCHDMAN_MDI_PROJECT, QWidget *parent = 0);
     ~ProjectWindow();
 
 public slots:
