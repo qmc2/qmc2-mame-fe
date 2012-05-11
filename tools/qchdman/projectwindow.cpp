@@ -43,6 +43,12 @@ ProjectWindow::~ProjectWindow()
         mainWindow->disableActionsRequiringTwo();
 }
 
+void ProjectWindow::setProjectName(QString newName)
+{
+    projectName = newName;
+    setWindowTitle(projectName);
+}
+
 void ProjectWindow::myWindowStateChanged(Qt::WindowStates oldState, Qt::WindowStates newState)
 {
     if ( subWindowType == QCHDMAN_MDI_PROJECT ) {

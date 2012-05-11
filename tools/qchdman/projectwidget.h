@@ -35,6 +35,7 @@ public:
     QMap<QAction *, int> cloneActionMap;
     QMap<QString, QString> compressionTypes;
     QMap<int, QList<QWidget *> > copyGroups;
+    QMap<int, QList<int> > copyTypes;
     QStringList copyCompressors;
     QStringList arguments;
 
@@ -76,6 +77,7 @@ public slots:
     void init();
     void log(QString);
     void setLogFont(QFont);
+    void setProjectType(int);
     void copyStdoutToClipboard();
     void copyStderrToClipboard();
     void copyCommandToClipboard();

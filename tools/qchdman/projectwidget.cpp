@@ -38,8 +38,15 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
 
     // FIXME: incomplete
     copyGroups[QCHDMAN_PRJ_INFO] << ui->lineEditInfoInputFile << ui->checkBoxInfoVerbose;
+    copyTypes[QCHDMAN_PRJ_INFO] << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_CHECKBOX;
     copyGroups[QCHDMAN_PRJ_VERIFY] << ui->lineEditVerifyInputFile << ui->lineEditVerifyParentInputFile;
-    copyGroups[QCHDMAN_PRJ_COPY] << ui->lineEditCopyInputFile << ui->lineEditCopyOutputFile << ui->lineEditCopyParentInputFile << ui->lineEditCopyParentOutputFile;
+    copyTypes[QCHDMAN_PRJ_VERIFY] << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT;
+    copyGroups[QCHDMAN_PRJ_COPY] << ui->lineEditCopyInputFile << ui->lineEditCopyParentInputFile << ui->lineEditCopyOutputFile << ui->lineEditCopyParentOutputFile
+                                 << ui->checkBoxCopyForce << ui->spinBoxCopyProcessors << ui->spinBoxCopyInputStartByte << ui->spinBoxCopyInputStartHunk
+                                 << ui->spinBoxCopyInputBytes << ui->spinBoxCopyInputHunks << ui->spinBoxCopyHunkSize << ui->comboBoxCopyCompression;
+    copyTypes[QCHDMAN_PRJ_COPY] << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_CHECKBOX
+                                << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
+                                << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX;
 
     copyCompressors.clear();
 
@@ -547,6 +554,13 @@ void ProjectWidget::setLogFont(QFont f)
     ui->plainTextEditProjectLog->setFont(f);
 }
 
+void ProjectWidget::setProjectType(int newType)
+{
+    ui->comboBoxProjectType->setCurrentIndex(newType);
+    qApp->processEvents();
+    on_comboBoxProjectType_currentIndexChanged(-1);
+}
+
 void ProjectWidget::copyStdoutToClipboard()
 {
     qApp->clipboard()->setText(stdoutOutput);
@@ -789,8 +803,35 @@ void ProjectWidget::clone()
     int cloneType = cloneActionMap[action];
 
     if ( copyGroups.contains(cloneType) ) {
-        QList<QWidget *> copyWidgets = copyGroups[cloneType];
-
+        ProjectWindow *projectWindow = mainWindow->createProjectWindow();
+        ProjectWidget *projectWidget = projectWindow->projectWidget;
+        projectWidget->setProjectType(cloneType);
+        QList<QWidget *> sourceWidgets = copyGroups[ui->comboBoxProjectType->currentIndex()];
+        QList<int> sourceTypes = copyTypes[ui->comboBoxProjectType->currentIndex()];
+        QList<QWidget *> targetWidgets = projectWidget->copyGroups[cloneType];
+        QList<int> targetTypes = projectWidget->copyTypes[cloneType];
+        for (int i = 0; i < sourceWidgets.count() && i < targetWidgets.count(); i++) {
+            QWidget *sW = sourceWidgets[i];
+            int sT = sourceTypes[i];
+            QWidget *tW = targetWidgets[i];
+            int tT = targetTypes[i];
+            if ( sT != tT )
+                continue;
+            switch ( sT ) {
+            case QCHDMAN_TYPE_LINEEDIT:
+                ((QLineEdit *)tW)->setText(((QLineEdit *)sW)->text());
+                break;
+            case QCHDMAN_TYPE_SPINBOX:
+                ((QSpinBox *)tW)->setValue(((QSpinBox *)sW)->value());
+                break;
+            case QCHDMAN_TYPE_CHECKBOX:
+                ((QCheckBox *)tW)->setChecked(((QCheckBox *)sW)->isChecked());
+                break;
+            case QCHDMAN_TYPE_COMBOBOX: // FIXME
+                ((QComboBox *)tW)->setCurrentIndex(((QComboBox *)sW)->currentIndex());
+                break;
+            }
+        }
     } else
         log(tr("cloning to '%1' is not supported yet").arg(action->text()));
 }
@@ -804,8 +845,33 @@ void ProjectWidget::morph()
     int morphType = morphActionMap[action];
 
     if ( copyGroups.contains(morphType) ) {
-        QList<QWidget *> copyWidgets = copyGroups[morphType];
-
+        QList<QWidget *> sourceWidgets = copyGroups[ui->comboBoxProjectType->currentIndex()];
+        QList<int> sourceTypes = copyTypes[ui->comboBoxProjectType->currentIndex()];
+        QList<QWidget *> targetWidgets = copyGroups[morphType];
+        QList<int> targetTypes = copyTypes[morphType];
+        setProjectType(morphType);
+        for (int i = 0; i < sourceWidgets.count() && i < targetWidgets.count(); i++) {
+            QWidget *sW = sourceWidgets[i];
+            int sT = sourceTypes[i];
+            QWidget *tW = targetWidgets[i];
+            int tT = targetTypes[i];
+            if ( sT != tT )
+                continue;
+            switch ( sT ) {
+            case QCHDMAN_TYPE_LINEEDIT:
+                ((QLineEdit *)tW)->setText(((QLineEdit *)sW)->text());
+                break;
+            case QCHDMAN_TYPE_SPINBOX:
+                ((QSpinBox *)tW)->setValue(((QSpinBox *)sW)->value());
+                break;
+            case QCHDMAN_TYPE_CHECKBOX:
+                ((QCheckBox *)tW)->setChecked(((QCheckBox *)sW)->isChecked());
+                break;
+            case QCHDMAN_TYPE_COMBOBOX: // FIXME
+                ((QComboBox *)tW)->setCurrentIndex(((QComboBox *)sW)->currentIndex());
+                break;
+            }
+        }
     } else
         log(tr("morphing to '%1' is not supported yet").arg(action->text()));
 }
