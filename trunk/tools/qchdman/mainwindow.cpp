@@ -75,11 +75,7 @@ QMdiArea *MainWindow::mdiArea()
 
 void MainWindow::on_actionProjectNew_triggered(bool)
 {
-    ProjectWindow *projectWindow = new ProjectWindow(QString(), QCHDMAN_MDI_PROJECT, ui->mdiArea);
-    projectWindow->show();
-    if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
-        if ( globalConfig->preferencesMaximizeWindows() )
-            projectWindow->showMaximized();
+    createProjectWindow();
 }
 
 void MainWindow::on_actionProjectLoad_triggered(bool)
@@ -229,6 +225,18 @@ void MainWindow::on_actionHelpAbout_triggered(bool)
 void MainWindow::on_actionHelpAboutQt_triggered(bool)
 {
     QApplication::aboutQt();
+}
+
+ProjectWindow *MainWindow::createProjectWindow()
+{
+    ProjectWindow *projectWindow = new ProjectWindow(QString(), QCHDMAN_MDI_PROJECT, ui->mdiArea);
+
+    projectWindow->show();
+    if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_WINDOWED )
+        if ( globalConfig->preferencesMaximizeWindows() )
+            projectWindow->showMaximized();
+
+    return projectWindow;
 }
 
 void MainWindow::updateStatus()

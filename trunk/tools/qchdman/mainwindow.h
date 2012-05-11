@@ -4,6 +4,7 @@
 #include <QtGui>
 
 #include "preferencesdialog.h"
+#include "projectwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +28,7 @@ public:
     ~MainWindow();
 
     QMdiArea *mdiArea();
+    ProjectWindow *createProjectWindow();
 
 public slots:
     // File menu

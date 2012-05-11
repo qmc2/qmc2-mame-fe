@@ -18,6 +18,8 @@ public:
     ProjectWindow(QString pn = QString(), int type = QCHDMAN_MDI_PROJECT, QWidget *parent = 0);
     ~ProjectWindow();
 
+    void setProjectName(QString);
+
 public slots:
     void myWindowStateChanged(Qt::WindowStates, Qt::WindowStates);
     void systemMenuAction(QAction *);

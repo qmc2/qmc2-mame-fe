@@ -37,6 +37,12 @@
 #define QCHDMAN_PRJ_EXTRACT_CD      9
 #define QCHDMAN_PRJ_EXTRACT_LD      10
 
+// widget types
+#define QCHDMAN_TYPE_LINEEDIT       0
+#define QCHDMAN_TYPE_SPINBOX        1
+#define QCHDMAN_TYPE_CHECKBOX       2
+#define QCHDMAN_TYPE_COMBOBOX       3
+
 // MDI sub-window types
 #define QCHDMAN_MDI_PROJECT         0
 #define QCHDMAN_MDI_JOB             1
