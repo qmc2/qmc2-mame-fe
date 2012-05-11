@@ -34,6 +34,7 @@ public:
     QMap<QAction *, int> morphActionMap;
     QMap<QAction *, int> cloneActionMap;
     QMap<QString, QString> compressionTypes;
+    QMap<int, QList<QWidget *> > copyGroups;
     QStringList copyCompressors;
     QStringList arguments;
 
