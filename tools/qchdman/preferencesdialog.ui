@@ -88,7 +88,7 @@
           <string>Select the GUI language (requires a restart to take effect!)</string>
          </property>
          <property name="currentIndex">
-          <number>7</number>
+          <number>0</number>
          </property>
          <item>
           <property name="text">
@@ -103,6 +103,11 @@
          <item>
           <property name="text">
            <string>French (fr)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Greek (gr)</string>
           </property>
          </item>
          <item>

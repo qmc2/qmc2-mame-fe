@@ -22,6 +22,7 @@ public:
         languageMap["de"] = QLocale::German;
         languageMap["es"] = QLocale::Spanish;
         languageMap["fr"] = QLocale::French;
+        languageMap["gr"] = QLocale::Greek;
         languageMap["it"] = QLocale::Italian;
         languageMap["pl"] = QLocale::Polish;
         languageMap["pt"] = QLocale::Portuguese;
