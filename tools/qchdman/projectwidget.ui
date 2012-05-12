@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>735</width>
-    <height>644</height>
+    <width>773</width>
+    <height>673</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -234,8 +234,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>721</width>
-         <height>487</height>
+         <width>759</width>
+         <height>539</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayoutScrollArea">
@@ -840,7 +840,7 @@ Copies data from one CHD to another of the same type.
 --inputstarthunk, -ish &amp;lt;offset&amp;gt;: starting hunk offset within the input&lt;br&gt;
 --inputbytes, -ib &amp;lt;length&amp;gt;: effective length of input in bytes&lt;br&gt;
 --inputhunks, -ih &amp;lt;length&amp;gt;: effective length of input in hunks&lt;br&gt;
---hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk, in bytes&lt;br&gt;
+--hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk in bytes&lt;br&gt;
 --compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
 &lt;/p&gt;</string>
               </property>
@@ -1236,8 +1236,8 @@ Creates a new raw CHD from an input file.
 --inputstarthunk, -ish &amp;lt;offset&amp;gt;: starting hunk offset within the input&lt;br&gt;
 --inputbytes, -ib &amp;lt;length&amp;gt;: effective length of input in bytes&lt;br&gt;
 --inputhunks, -ih &amp;lt;length&amp;gt;: effective length of input in hunks&lt;br&gt;
---hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk, in bytes (required)&lt;br&gt;
---unitsize, -us &amp;lt;bytes&amp;gt;: size of each unit, in bytes (required)&lt;br&gt;
+--hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk in bytes (required)&lt;br&gt;
+--unitsize, -us &amp;lt;bytes&amp;gt;: size of each unit in bytes (required)&lt;br&gt;
 --compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
 &lt;/p&gt;</string>
               </property>
@@ -1270,13 +1270,535 @@ Creates a new raw CHD from an input file.
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="pageCreateHardDisk"/>
+          <widget class="QWidget" name="pageCreateHD">
+           <layout class="QGridLayout" name="gridLayoutPageCreateHD">
+            <property name="margin">
+             <number>0</number>
+            </property>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelCreateHDHelp">
+              <property name="text">
+               <string>&lt;p&gt;
+&lt;b&gt;CHDMAN CreateHD&lt;/b&gt;
+&lt;/p&gt;
+Creates a new HD CHD from an input file.
+&lt;p&gt;
+&lt;b&gt;Parameters&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: input file name&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: output file name (required)&lt;br&gt;
+--outputparent, -op &amp;lt;filename&amp;gt;: parent file name for output CHD&lt;br&gt;
+--ident, -id &amp;lt;filename&amp;gt;: name of ident file to provide CHS information&lt;br&gt;
+--force, -f: force overwriting an existing file&lt;br&gt;
+--numprocessors, -np &amp;lt;processors&amp;gt;: limit the number of processors to use during compression&lt;br&gt;
+--inputstartbyte, -isb &amp;lt;offset&amp;gt;: starting byte offset within the input&lt;br&gt;
+--inputstarthunk, -ish &amp;lt;offset&amp;gt;: starting hunk offset within the input&lt;br&gt;
+--inputbytes, -ib &amp;lt;length&amp;gt;: effective length of input in bytes&lt;br&gt;
+--inputhunks, -ih &amp;lt;length&amp;gt;: effective length of input in hunks&lt;br&gt;
+--hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk in bytes (required)&lt;br&gt;
+--chs, -chs &amp;lt;cylinders,heads,sectors&amp;gt;: specifies CHS values directly&lt;br&gt;
+--sectorsize, -ss &amp;lt;bytes&amp;gt;: size of each hard disk sector in bytes&lt;br&gt;
+--compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
+&lt;/p&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="margin">
+               <number>8</number>
+              </property>
+              <property name="indent">
+               <number>8</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <spacer name="verticalSpacerCreateHD">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="0">
+             <widget class="QFrame" name="frameCreateHD">
+              <layout class="QGridLayout" name="gridLayoutFrameCreateHD" columnstretch="0,3,0,1,1,1,0">
+               <property name="margin">
+                <number>0</number>
+               </property>
+               <item row="5" column="1">
+                <widget class="QSpinBox" name="spinBoxCreateHDInputStartByte">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Starting byte offset within the input (--inputstartbyte)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="labelCreateHDInputBytes">
+                 <property name="text">
+                  <string>Input bytes</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QLabel" name="labelCreateHDHunkSize">
+                 <property name="text">
+                  <string>Hunk size</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="2">
+                <widget class="QLabel" name="labelCreateHDInputHunks">
+                 <property name="text">
+                  <string>Input hunks</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="QCheckBox" name="checkBoxCreateHDForce">
+                 <property name="toolTip">
+                  <string>Force overwriting output files (--force)</string>
+                 </property>
+                 <property name="text">
+                  <string>Overwrite existing files</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QLabel" name="labelCreateHDProcessors">
+                 <property name="text">
+                  <string>Number of CPUs</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QSpinBox" name="spinBoxCreateHDInputBytes">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Effective length of input in bytes (--inputbytes)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="labelCreateHDInputStartByte">
+                 <property name="text">
+                  <string>Input start byte</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="1">
+                <widget class="QSpinBox" name="spinBoxCreateHDHunkSize">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Size in bytes of each hunk (--hunksize)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QLabel" name="labelCreateHDInputStartHunk">
+                 <property name="text">
+                  <string>Input start hunk</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="1">
+                <widget class="QSpinBox" name="spinBoxCreateHDSectorSize">
+                 <property name="toolTip">
+                  <string>Size in bytes of each hard disk sector (--sectorsize)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="3" colspan="3">
+                <widget class="QSpinBox" name="spinBoxCreateHDInputHunks">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Effective length of input in hunks (--inputhunks)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="6">
+                <widget class="QToolButton" name="toolButtonBrowseCreateHDIdentFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="0">
+                <widget class="QLabel" name="labelCreateHDSectorSize">
+                 <property name="text">
+                  <string>Sector size</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="6">
+                <widget class="QLineEdit" name="lineEditCreateHDIdentFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Ident file to provide CHS information (--ident)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Ident file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="3" colspan="3">
+                <widget class="QSpinBox" name="spinBoxCreateHDInputStartHunk">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Starting hunk offset within the input (--inputstarthunk)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="6">
+                <widget class="QLineEdit" name="lineEditCreateHDOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>CHD output file (--output)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>CHD output file (required)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="3" colspan="3">
+                <widget class="QSpinBox" name="spinBoxCreateHDProcessors">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Limit the number of processors to use during compression (--numprocessors)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>0</number>
+                 </property>
+                 <property name="maximum">
+                  <number>9999</number>
+                 </property>
+                 <property name="value">
+                  <number>0</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="5">
+                <widget class="QSpinBox" name="spinBoxCreateHDSectors">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Sectors  (--chs)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="4">
+                <widget class="QSpinBox" name="spinBoxCreateHDHeads">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Heads  (--chs)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0" colspan="6">
+                <widget class="QLineEdit" name="lineEditCreateHDInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Input file (--input)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Input file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="6">
+                <widget class="QLineEdit" name="lineEditCreateHDParentOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Parent CHD output file (--outputparent)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Parent CHD output file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="3" colspan="3">
+                <widget class="QComboBox" name="comboBoxCreateHDCompression">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Select up to 4 compression codecs to use (--compression)</string>
+                 </property>
+                 <property name="maxVisibleItems">
+                  <number>20</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="3">
+                <widget class="QSpinBox" name="spinBoxCreateHDCylinders">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Cylinders (--chs)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="2">
+                <widget class="QLabel" name="labelCreateHDCompressors">
+                 <property name="text">
+                  <string>Compression</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="6">
+                <widget class="QToolButton" name="toolButtonBrowseCreateHDInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="6">
+                <widget class="QToolButton" name="toolButtonBrowseCreateHDOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="6">
+                <widget class="QToolButton" name="toolButtonBrowseCreateHDParentOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="2">
+                <widget class="QLabel" name="labelCreateHDCHS">
+                 <property name="text">
+                  <string>CHS</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="pageCreateCD"/>
-          <widget class="QWidget" name="pageCreateLaserDisc"/>
+          <widget class="QWidget" name="pageCreateLD"/>
           <widget class="QWidget" name="pageExtractRaw"/>
-          <widget class="QWidget" name="pageExtractHardDisk"/>
+          <widget class="QWidget" name="pageExtractHD"/>
           <widget class="QWidget" name="pageExtractCD"/>
-          <widget class="QWidget" name="pageExtractLaserDisc"/>
+          <widget class="QWidget" name="pageExtractLD"/>
          </widget>
         </item>
        </layout>
@@ -1347,6 +1869,26 @@ Creates a new raw CHD from an input file.
   <tabstop>spinBoxCreateRawHunkSize</tabstop>
   <tabstop>spinBoxCreateRawUnitSize</tabstop>
   <tabstop>comboBoxCreateRawCompression</tabstop>
+  <tabstop>lineEditCreateHDInputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateHDInputFile</tabstop>
+  <tabstop>lineEditCreateHDOutputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateHDOutputFile</tabstop>
+  <tabstop>lineEditCreateHDParentOutputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateHDParentOutputFile</tabstop>
+  <tabstop>lineEditCreateHDIdentFile</tabstop>
+  <tabstop>toolButtonBrowseCreateHDIdentFile</tabstop>
+  <tabstop>checkBoxCreateHDForce</tabstop>
+  <tabstop>spinBoxCreateHDProcessors</tabstop>
+  <tabstop>spinBoxCreateHDInputStartByte</tabstop>
+  <tabstop>spinBoxCreateHDInputStartHunk</tabstop>
+  <tabstop>spinBoxCreateHDInputBytes</tabstop>
+  <tabstop>spinBoxCreateHDInputHunks</tabstop>
+  <tabstop>spinBoxCreateHDHunkSize</tabstop>
+  <tabstop>spinBoxCreateHDCylinders</tabstop>
+  <tabstop>spinBoxCreateHDHeads</tabstop>
+  <tabstop>spinBoxCreateHDSectors</tabstop>
+  <tabstop>spinBoxCreateHDSectorSize</tabstop>
+  <tabstop>comboBoxCreateHDCompression</tabstop>
   <tabstop>plainTextEditProjectLog</tabstop>
  </tabstops>
  <resources>

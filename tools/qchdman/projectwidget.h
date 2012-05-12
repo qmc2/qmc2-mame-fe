@@ -38,6 +38,7 @@ public:
     QMap<int, QList<int> > copyTypes;
     QStringList copyCompressors;
     QStringList createRawCompressors;
+    QStringList createHDCompressors;
     QStringList arguments;
 
     explicit ProjectWidget(QWidget *parent = 0);
@@ -62,21 +63,26 @@ public slots:
     void on_toolButtonBrowseCreateRawInputFile_clicked();
     void on_toolButtonBrowseCreateRawOutputFile_clicked();
     void on_toolButtonBrowseCreateRawParentOutputFile_clicked();
-    void on_comboBoxCreateRawCompression_currentIndexChanged(int index);
+    void on_comboBoxCreateRawCompression_currentIndexChanged(int);
 
-    // CreateHardDisk
+    // CreateHD
+    void on_toolButtonBrowseCreateHDInputFile_clicked();
+    void on_toolButtonBrowseCreateHDOutputFile_clicked();
+    void on_toolButtonBrowseCreateHDParentOutputFile_clicked();
+    void on_toolButtonBrowseCreateHDIdentFile_clicked();
+    void on_comboBoxCreateHDCompression_currentIndexChanged(int);
 
     // CreateCD
 
-    // CreateLaserDisc
+    // CreateLD
 
     // ExtractRaw
 
-    // ExtractHardDisk
+    // ExtractHD
 
     // ExtractCD
 
-    // ExtractLaserDisc
+    // ExtractLD
 
     // Other
     void init();
@@ -86,6 +92,7 @@ public slots:
     void copyStdoutToClipboard();
     void copyStderrToClipboard();
     void copyCommandToClipboard();
+    void updateCompression(QComboBox *, QStringList *, int);
     void load(const QString &fileName = QString());
     void save();
     void saveAs(const QString &fileName = QString());
