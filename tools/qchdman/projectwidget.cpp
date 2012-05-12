@@ -470,7 +470,8 @@ void ProjectWidget::readyReadStandardOutput()
     QStringList sl = s.split("\n");
     int i;
     for (i = 0; i < sl.count(); i++) {
-        s = sl[i].simplified();
+        s = sl[i];
+        s.remove(QRegExp("\\s+$"));
         if ( !s.isEmpty() )
             log(tr("stdout") + ": " + s);
     }
@@ -483,7 +484,8 @@ void ProjectWidget::readyReadStandardError()
     QStringList sl = s.split("\n");
     int percent = 0;
     for (int i = 0; i < sl.count(); i++) {
-        s = sl[i].simplified();
+        s = sl[i];
+        s.remove(QRegExp("\\s+$"));
         if ( !s.isEmpty() ) {
             log(tr("stderr") + ": " + s);
             switch ( ui->comboBoxProjectType->currentIndex() ) {
