@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>773</width>
-    <height>673</height>
+    <width>680</width>
+    <height>634</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -234,7 +234,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>759</width>
+         <width>666</width>
          <height>539</height>
         </rect>
        </property>
@@ -1612,7 +1612,7 @@ Creates a new HD CHD from an input file.
                <item row="7" column="5">
                 <widget class="QSpinBox" name="spinBoxCreateHDSectors">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                  <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -1637,7 +1637,7 @@ Creates a new HD CHD from an input file.
                <item row="7" column="4">
                 <widget class="QSpinBox" name="spinBoxCreateHDHeads">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                  <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -1710,7 +1710,7 @@ Creates a new HD CHD from an input file.
                <item row="7" column="3">
                 <widget class="QSpinBox" name="spinBoxCreateHDCylinders">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                  <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -1784,7 +1784,7 @@ Creates a new HD CHD from an input file.
                <item row="7" column="2">
                 <widget class="QLabel" name="labelCreateHDCHS">
                  <property name="text">
-                  <string>CHS</string>
+                  <string>Cyls / Heads / Sectors</string>
                  </property>
                 </widget>
                </item>

@@ -416,59 +416,64 @@ Fortfahren?</translation>
         <translation>GUI</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="144"/>
+        <location filename="../preferencesdialog.ui" line="110"/>
+        <source>Greek (gr)</source>
+        <translation>Griechisch (gr)</translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="149"/>
         <source>Style</source>
         <translation>Stil</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="164"/>
+        <location filename="../preferencesdialog.ui" line="169"/>
         <source>Font</source>
         <translation>Schriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="171"/>
+        <location filename="../preferencesdialog.ui" line="176"/>
         <source>Application font</source>
         <translation>Allgemeine Schriftart der Applikation</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="184"/>
-        <location filename="../preferencesdialog.ui" line="224"/>
+        <location filename="../preferencesdialog.ui" line="189"/>
+        <location filename="../preferencesdialog.ui" line="229"/>
         <source>Size</source>
         <translation>Größe</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="191"/>
+        <location filename="../preferencesdialog.ui" line="196"/>
         <source>Application font size</source>
         <translation>Größe der allgemeinen Applikationsschriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="204"/>
-        <location filename="../preferencesdialog.ui" line="211"/>
+        <location filename="../preferencesdialog.ui" line="209"/>
+        <location filename="../preferencesdialog.ui" line="216"/>
         <source>Log font</source>
         <translation>Log-Schriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="231"/>
+        <location filename="../preferencesdialog.ui" line="236"/>
         <source>Log font size</source>
         <translation>Größe der Log-Schriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="243"/>
+        <location filename="../preferencesdialog.ui" line="248"/>
         <source>Display project help texts</source>
         <translation>Projekt Hilfe Texte anzeigen</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="250"/>
+        <location filename="../preferencesdialog.ui" line="255"/>
         <source>Maximize new project windows</source>
         <translation>Neue Projekt Fenster maximieren</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="253"/>
+        <location filename="../preferencesdialog.ui" line="258"/>
         <source>Maximize project windows</source>
         <translation>Projekt Fenster maximieren</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="151"/>
+        <location filename="../preferencesdialog.ui" line="156"/>
         <source>Select the GUI style</source>
         <translation>GUI Stil auswählen</translation>
     </message>
@@ -493,27 +498,27 @@ Fortfahren?</translation>
         <translation>Französisch (fr)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="110"/>
+        <location filename="../preferencesdialog.ui" line="115"/>
         <source>Italian (it)</source>
         <translation>Italienisch (it)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="115"/>
+        <location filename="../preferencesdialog.ui" line="120"/>
         <source>Polish (pl)</source>
         <translation>Polnisch (pl)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="120"/>
+        <location filename="../preferencesdialog.ui" line="125"/>
         <source>Portuguese (pt)</source>
         <translation>Portugiesisch (pt)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="125"/>
+        <location filename="../preferencesdialog.ui" line="130"/>
         <source>Romanian (ro)</source>
         <translation>Rumänisch (ro)</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="130"/>
+        <location filename="../preferencesdialog.ui" line="135"/>
         <source>English (us)</source>
         <translation>Englisch (us)</translation>
     </message>
@@ -523,32 +528,32 @@ Fortfahren?</translation>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="240"/>
+        <location filename="../preferencesdialog.ui" line="245"/>
         <source>Make sure project help texts are shown</source>
         <translation>Sicherstellen, dass die Projekt Hilfe Texte angezeigt werden</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="260"/>
+        <location filename="../preferencesdialog.ui" line="265"/>
         <source>Use the platform&apos;s native file dialogs or the Qt built-in ones</source>
         <translation>Verwendung der nativen Datei-Dialoge des Systems oder der in Qt eingebauten Dialoge</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="263"/>
+        <location filename="../preferencesdialog.ui" line="268"/>
         <source>Use native file dialogs</source>
         <translation>Native Dialoge verwenden</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="286"/>
+        <location filename="../preferencesdialog.ui" line="291"/>
         <source>Paths</source>
         <translation>Pfade</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="292"/>
+        <location filename="../preferencesdialog.ui" line="297"/>
         <source>CHDMAN binary</source>
         <translation>CHDMAN Binary</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="305"/>
+        <location filename="../preferencesdialog.ui" line="310"/>
         <source>Path to the CHDMAN binary</source>
         <translation>Pfad zum CHDMAN Binary</translation>
     </message>
@@ -633,7 +638,7 @@ Fortfahren?</translation>
     <message>
         <location filename="../projectwidget.ui" line="144"/>
         <location filename="../projectwidget.cpp" line="462"/>
-        <location filename="../projectwidget.cpp" line="548"/>
+        <location filename="../projectwidget.cpp" line="550"/>
         <source>Idle</source>
         <translation>Untätig</translation>
     </message>
@@ -952,6 +957,11 @@ Erzeugt eine neue HD CHD Datei aus einer Eingabedatei.
         <translation>Ident Datei zur Angabe von CHS Informationsn (--ident)</translation>
     </message>
     <message>
+        <location filename="../projectwidget.ui" line="1787"/>
+        <source>Cyls / Heads / Sectors</source>
+        <translation>Zylinder / Köpfe / Sektoren</translation>
+    </message>
+    <message>
         <location filename="../projectwidget.ui" line="477"/>
         <location filename="../projectwidget.ui" line="1176"/>
         <location filename="../projectwidget.ui" line="1738"/>
@@ -1109,11 +1119,6 @@ Erzeugt eine neue HD CHD Datei aus einer Eingabedatei.
         <translation>Zylinder (--chs)</translation>
     </message>
     <message>
-        <location filename="../projectwidget.ui" line="1787"/>
-        <source>CHS</source>
-        <translation>CHS</translation>
-    </message>
-    <message>
         <location filename="../projectwidget.ui" line="1815"/>
         <source>Project log</source>
         <translation>Projekt Log</translation>
@@ -1164,20 +1169,20 @@ Erzeugt eine neue HD CHD Datei aus einer Eingabedatei.
         <location filename="../projectwidget.cpp" line="290"/>
         <location filename="../projectwidget.cpp" line="320"/>
         <location filename="../projectwidget.cpp" line="348"/>
-        <location filename="../projectwidget.cpp" line="749"/>
-        <location filename="../projectwidget.cpp" line="1021"/>
-        <location filename="../projectwidget.cpp" line="1042"/>
-        <location filename="../projectwidget.cpp" line="1062"/>
-        <location filename="../projectwidget.cpp" line="1140"/>
-        <location filename="../projectwidget.cpp" line="1219"/>
+        <location filename="../projectwidget.cpp" line="751"/>
+        <location filename="../projectwidget.cpp" line="1023"/>
+        <location filename="../projectwidget.cpp" line="1044"/>
+        <location filename="../projectwidget.cpp" line="1064"/>
+        <location filename="../projectwidget.cpp" line="1142"/>
+        <location filename="../projectwidget.cpp" line="1221"/>
         <source>default</source>
         <translation>Standard</translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="83"/>
-        <location filename="../projectwidget.cpp" line="751"/>
-        <location filename="../projectwidget.cpp" line="1138"/>
-        <location filename="../projectwidget.cpp" line="1217"/>
+        <location filename="../projectwidget.cpp" line="753"/>
+        <location filename="../projectwidget.cpp" line="1140"/>
+        <location filename="../projectwidget.cpp" line="1219"/>
         <source>none</source>
         <translation>Keine</translation>
     </message>
@@ -1309,7 +1314,7 @@ Erzeugt eine neue HD CHD Datei aus einer Eingabedatei.
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="455"/>
-        <location filename="../projectwidget.cpp" line="520"/>
+        <location filename="../projectwidget.cpp" line="522"/>
         <source>crashed</source>
         <translation>abgebrochen</translation>
     </message>
@@ -1319,146 +1324,146 @@ Erzeugt eine neue HD CHD Datei aus einer Eingabedatei.
         <translation>Prozess beendet: exitCode = %1, exitStatus = %2</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="475"/>
+        <location filename="../projectwidget.cpp" line="476"/>
         <source>stdout</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="488"/>
+        <location filename="../projectwidget.cpp" line="490"/>
         <source>stderr</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="517"/>
+        <location filename="../projectwidget.cpp" line="519"/>
         <source>failed to start</source>
         <translation>Start fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="526"/>
+        <location filename="../projectwidget.cpp" line="528"/>
         <source>timed out</source>
         <translation>Timeout</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="529"/>
+        <location filename="../projectwidget.cpp" line="531"/>
         <source>write error</source>
         <translation>Schreibfehler</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="532"/>
+        <location filename="../projectwidget.cpp" line="534"/>
         <source>read error</source>
         <translation>Lesefehler</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="536"/>
+        <location filename="../projectwidget.cpp" line="538"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="541"/>
+        <location filename="../projectwidget.cpp" line="543"/>
         <source>process error: %1</source>
         <translation>Prozess Fehler: %1</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="559"/>
-        <location filename="../projectwidget.cpp" line="566"/>
-        <location filename="../projectwidget.cpp" line="580"/>
+        <location filename="../projectwidget.cpp" line="561"/>
+        <location filename="../projectwidget.cpp" line="568"/>
+        <location filename="../projectwidget.cpp" line="582"/>
         <source>Choose CHD input file</source>
         <translation>CHD Eingabedatei auswählen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="559"/>
-        <location filename="../projectwidget.cpp" line="566"/>
-        <location filename="../projectwidget.cpp" line="573"/>
-        <location filename="../projectwidget.cpp" line="580"/>
-        <location filename="../projectwidget.cpp" line="587"/>
-        <location filename="../projectwidget.cpp" line="594"/>
-        <location filename="../projectwidget.cpp" line="601"/>
-        <location filename="../projectwidget.cpp" line="620"/>
-        <location filename="../projectwidget.cpp" line="627"/>
-        <location filename="../projectwidget.cpp" line="646"/>
-        <location filename="../projectwidget.cpp" line="653"/>
+        <location filename="../projectwidget.cpp" line="561"/>
+        <location filename="../projectwidget.cpp" line="568"/>
+        <location filename="../projectwidget.cpp" line="575"/>
+        <location filename="../projectwidget.cpp" line="582"/>
+        <location filename="../projectwidget.cpp" line="589"/>
+        <location filename="../projectwidget.cpp" line="596"/>
+        <location filename="../projectwidget.cpp" line="603"/>
+        <location filename="../projectwidget.cpp" line="622"/>
+        <location filename="../projectwidget.cpp" line="629"/>
+        <location filename="../projectwidget.cpp" line="648"/>
+        <location filename="../projectwidget.cpp" line="655"/>
         <source>CHD files (*.chd);;All files (*)</source>
         <translation>CHD Dateien (*.chd);;Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="573"/>
-        <location filename="../projectwidget.cpp" line="594"/>
+        <location filename="../projectwidget.cpp" line="575"/>
+        <location filename="../projectwidget.cpp" line="596"/>
         <source>Choose parent CHD input file</source>
         <translation>Eltern CHD Eingabedatei auswählen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="587"/>
-        <location filename="../projectwidget.cpp" line="620"/>
-        <location filename="../projectwidget.cpp" line="646"/>
+        <location filename="../projectwidget.cpp" line="589"/>
+        <location filename="../projectwidget.cpp" line="622"/>
+        <location filename="../projectwidget.cpp" line="648"/>
         <source>Choose CHD output file</source>
         <translation>CHD Ausgabedatei auswählen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="601"/>
-        <location filename="../projectwidget.cpp" line="627"/>
-        <location filename="../projectwidget.cpp" line="653"/>
+        <location filename="../projectwidget.cpp" line="603"/>
+        <location filename="../projectwidget.cpp" line="629"/>
+        <location filename="../projectwidget.cpp" line="655"/>
         <source>Choose parent CHD output file</source>
         <translation>Eltern CHD Ausgabedatei auswählen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="613"/>
-        <location filename="../projectwidget.cpp" line="639"/>
+        <location filename="../projectwidget.cpp" line="615"/>
+        <location filename="../projectwidget.cpp" line="641"/>
         <source>Choose input file</source>
         <translation>Eingabedatei auswählen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="660"/>
+        <location filename="../projectwidget.cpp" line="662"/>
         <source>Choose ident file</source>
         <translation>Ident Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="764"/>
-        <location filename="../projectwidget.cpp" line="981"/>
+        <location filename="../projectwidget.cpp" line="766"/>
+        <location filename="../projectwidget.cpp" line="983"/>
         <source>Choose file</source>
         <translation>Datei auswählen</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="613"/>
-        <location filename="../projectwidget.cpp" line="639"/>
-        <location filename="../projectwidget.cpp" line="660"/>
-        <location filename="../projectwidget.cpp" line="764"/>
-        <location filename="../projectwidget.cpp" line="981"/>
+        <location filename="../projectwidget.cpp" line="615"/>
+        <location filename="../projectwidget.cpp" line="641"/>
+        <location filename="../projectwidget.cpp" line="662"/>
+        <location filename="../projectwidget.cpp" line="766"/>
+        <location filename="../projectwidget.cpp" line="983"/>
         <source>All files (*)</source>
         <translation>Alle Dateien (*)</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="959"/>
+        <location filename="../projectwidget.cpp" line="961"/>
         <source>Failed loading project &apos;%1&apos;</source>
         <translation>Project &apos;%1&apos; konnte nicht geladen werden</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="966"/>
-        <location filename="../projectwidget.cpp" line="980"/>
+        <location filename="../projectwidget.cpp" line="968"/>
+        <location filename="../projectwidget.cpp" line="982"/>
         <source>Noname-%1</source>
         <translation>OhneName-%1</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="993"/>
+        <location filename="../projectwidget.cpp" line="995"/>
         <source>Qt CHDMAN project file -- please do not edit manually</source>
         <translation>Qt CHDMAN Projekt Datei -- bitte nicht manuell editieren</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="1089"/>
+        <location filename="../projectwidget.cpp" line="1091"/>
         <source>Project &apos;%1&apos; saved</source>
         <translation>Projekt &apos;%1&apos; gespeichert</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="1092"/>
+        <location filename="../projectwidget.cpp" line="1094"/>
         <source>Failed saving project &apos;%1&apos;</source>
         <translation>Project &apos;%1&apos; konnte nicht gespeichert werden</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="1180"/>
+        <location filename="../projectwidget.cpp" line="1182"/>
         <source>cloning to &apos;%1&apos; is not supported yet</source>
         <translation>Klonen nach &apos;%1&apos; wird noch nicht unterstützt</translation>
     </message>
     <message>
-        <location filename="../projectwidget.cpp" line="1259"/>
+        <location filename="../projectwidget.cpp" line="1261"/>
         <source>morphing to &apos;%1&apos; is not supported yet</source>
         <translation>Umwandeln in &apos;%1&apos; wird noch nicht unterstützt</translation>
     </message>
