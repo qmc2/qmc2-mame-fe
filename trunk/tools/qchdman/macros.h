@@ -38,6 +38,7 @@
 #define QCHDMAN_PRJ_EXTRACT_LD      10
 
 // widget types
+#define QCHDMAN_TYPE_NONE           -1
 #define QCHDMAN_TYPE_LINEEDIT       0
 #define QCHDMAN_TYPE_SPINBOX        1
 #define QCHDMAN_TYPE_CHECKBOX       2

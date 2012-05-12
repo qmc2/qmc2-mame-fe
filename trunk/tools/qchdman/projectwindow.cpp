@@ -30,7 +30,7 @@ ProjectWindow::ProjectWindow(QString pn, int type, QWidget *parent) :
     }
 
     connect(this, SIGNAL(windowStateChanged(Qt::WindowStates, Qt::WindowStates)), this, SLOT(myWindowStateChanged(Qt::WindowStates, Qt::WindowStates)));
-    connect(systemMenu(), SIGNAL(triggered(QAction*)), this, SLOT(systemMenuAction(QAction*)));
+    connect(systemMenu(), SIGNAL(triggered(QAction *)), this, SLOT(systemMenuAction(QAction *)));
     mainWindow->enableActions();
 }
 
@@ -66,7 +66,7 @@ void ProjectWindow::myWindowStateChanged(Qt::WindowStates oldState, Qt::WindowSt
 
 void ProjectWindow::systemMenuAction(QAction *action)
 {
-    // this works arounds a known Qt bug when an QMdiArea is in tabbed mode and the restore system-menu action is triggered... we must switch to windowed-mode in this case!
+    // this works arounds a known Qt bug when a QMdiArea is in tabbed mode and the restore system-menu action is triggered... we must switch to windowed-mode in this case!
     if ( globalConfig->mainWindowViewMode() == QCHDMAN_VIEWMODE_TABBED ) {
         if ( !systemMenu()->actions().isEmpty() )
             if ( action == systemMenu()->actions().first() )

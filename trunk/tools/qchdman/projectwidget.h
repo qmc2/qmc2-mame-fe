@@ -37,6 +37,7 @@ public:
     QMap<int, QList<QWidget *> > copyGroups;
     QMap<int, QList<int> > copyTypes;
     QStringList copyCompressors;
+    QStringList createRawCompressors;
     QStringList arguments;
 
     explicit ProjectWidget(QWidget *parent = 0);
@@ -58,6 +59,10 @@ public slots:
     void on_comboBoxCopyCompression_currentIndexChanged(int);
 
     // CreateRaw
+    void on_toolButtonBrowseCreateRawInputFile_clicked();
+    void on_toolButtonBrowseCreateRawOutputFile_clicked();
+    void on_toolButtonBrowseCreateRawParentOutputFile_clicked();
+    void on_comboBoxCreateRawCompression_currentIndexChanged(int index);
 
     // CreateHardDisk
 
