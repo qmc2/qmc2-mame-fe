@@ -682,13 +682,6 @@
       <description lang="fr" text="Taille de RAM (si supporté par le driver)"/>
       <description lang="pt" text="Tamanho da RAM (se suportado pelo driver)"/>
     </option>
-    <option name="natural" type="bool" default="false">
-      <description lang="us" text="Specifies whether to use a natural keyboard or not"/>
-      <description lang="de" text="Gibt an, ob eine natürliche Tastatur verwendet werden soll oder nicht"/>
-      <description lang="pl" text="Określa, czy używać naturalnej klawiatury, czy nie"/>
-      <description lang="fr" text="Spécifier l'utilisation du clavier naturel ou pas"/>
-      <description lang="pt" text="Especificar a utilização de um teclado natural ou não"/>
-    </option>
     <option name="uifont" type="string" default="default">
       <description lang="us" text="Specify a font to use"/>
       <description lang="de" text="Zu verwendende Schriftart angeben"/>
