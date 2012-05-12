@@ -47,26 +47,48 @@ ProjectWidget::ProjectWidget(QWidget *parent) :
     copyTypes[QCHDMAN_PRJ_COPY] << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_CHECKBOX
                                 << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
                                 << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX;
+    copyGroups[QCHDMAN_PRJ_CREATE_RAW] << ui->lineEditCreateRawInputFile << 0 << ui->lineEditCreateRawOutputFile << ui->lineEditCreateRawParentOutputFile
+                                       << ui->checkBoxCreateRawForce << ui->spinBoxCreateRawProcessors << ui->spinBoxCreateRawInputStartByte << ui->spinBoxCreateRawInputStartHunk
+                                       << ui->spinBoxCreateRawInputBytes << ui->spinBoxCreateRawInputHunks << ui->spinBoxCreateRawHunkSize << ui->comboBoxCreateRawCompression
+                                       << ui->spinBoxCreateRawUnitSize;
+    copyTypes[QCHDMAN_PRJ_CREATE_RAW] << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_NONE << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_LINEEDIT << QCHDMAN_TYPE_CHECKBOX
+                                      << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_SPINBOX
+                                      << QCHDMAN_TYPE_SPINBOX << QCHDMAN_TYPE_COMBOBOX << QCHDMAN_TYPE_SPINBOX;
+
 
     copyCompressors.clear();
+    createRawCompressors.clear();
 
     ui->comboBoxCopyCompression->blockSignals(true);
+    ui->comboBoxCreateRawCompression->blockSignals(true);
     ui->comboBoxCopyCompression->insertItem(0, tr("default"));
+    ui->comboBoxCreateRawCompression->insertItem(0, tr("default"));
     ui->comboBoxCopyCompression->setItemIcon(0, QIcon(":/images/compression.png"));
+    ui->comboBoxCreateRawCompression->setItemIcon(0, QIcon(":/images/compression.png"));
     ui->comboBoxCopyCompression->insertSeparator(1);
+    ui->comboBoxCreateRawCompression->insertSeparator(1);
     ui->comboBoxCopyCompression->insertItem(2, tr("default"));
+    ui->comboBoxCreateRawCompression->insertItem(2, tr("default"));
     ui->comboBoxCopyCompression->setItemIcon(2, QIcon(":/images/default.png"));
+    ui->comboBoxCreateRawCompression->setItemIcon(2, QIcon(":/images/default.png"));
     ui->comboBoxCopyCompression->insertItem(3, tr("none"));
+    ui->comboBoxCreateRawCompression->insertItem(3, tr("none"));
     ui->comboBoxCopyCompression->setItemIcon(3, QIcon(":/images/none.png"));
+    ui->comboBoxCreateRawCompression->setItemIcon(3, QIcon(":/images/none.png"));
     ui->comboBoxCopyCompression->insertSeparator(4);
+    ui->comboBoxCreateRawCompression->insertSeparator(4);
     int i = 5;
     foreach (QString cmp, compressionTypes) {
         ui->comboBoxCopyCompression->insertItem(i, cmp);
+        ui->comboBoxCreateRawCompression->insertItem(i, cmp);
         ui->comboBoxCopyCompression->setItemIcon(i, QIcon(":/images/inactive.png"));
+        ui->comboBoxCreateRawCompression->setItemIcon(i, QIcon(":/images/inactive.png"));
         ui->comboBoxCopyCompression->setItemData(i, QCHDMAN_ITEM_INACTIVE, Qt::WhatsThisRole);
+        ui->comboBoxCreateRawCompression->setItemData(i, QCHDMAN_ITEM_INACTIVE, Qt::WhatsThisRole);
         i++;
     }
     ui->comboBoxCopyCompression->blockSignals(false);
+    ui->comboBoxCreateRawCompression->blockSignals(false);
 
     menuActions = new QMenu(this);
     actionLoad = menuActions->addAction(tr("Load"), this, SLOT(load()));
@@ -167,6 +189,13 @@ void ProjectWidget::on_comboBoxProjectType_currentIndexChanged(int index)
         parentWidget()->setWindowIcon(QIcon(":/images/copy.png"));
         break;
     case QCHDMAN_PRJ_CREATE_RAW:
+        widgetHeight = ui->frameCreateRaw->height() + 4 * ui->gridLayoutScrollArea->contentsMargins().bottom();
+        if ( globalConfig->preferencesShowHelpTexts() )
+            widgetHeight += ui->labelCreateRawHelp->height() + ui->gridLayoutScrollArea->contentsMargins().bottom();
+#if defined(Q_OS_MAC)
+        if ( isAquaStyle )
+            widgetHeight -= ui->labelCreateRawHelp->margin();
+#endif
         parentWidget()->setWindowIcon(QIcon(":/images/createraw.png"));
         break;
     case QCHDMAN_PRJ_CREATE_HD:
@@ -255,7 +284,32 @@ void ProjectWidget::on_toolButtonRun_clicked(bool refreshArgsOnly)
     case QCHDMAN_PRJ_CREATE_RAW:
         projectTypeName = tr("CreateRaw");
         arguments << "createraw";
-        // FIXME
+        if ( !ui->lineEditCreateRawInputFile->text().isEmpty() )
+            arguments << "--input" << ui->lineEditCreateRawInputFile->text();
+        if ( !ui->lineEditCreateRawOutputFile->text().isEmpty() )
+            arguments << "--output" << ui->lineEditCreateRawOutputFile->text();
+        if ( !ui->lineEditCreateRawParentOutputFile->text().isEmpty() )
+            arguments << "--parentoutput" << ui->lineEditCreateRawParentOutputFile->text();
+        if ( ui->checkBoxCreateRawForce->isChecked() )
+            arguments << "--force";
+        if ( ui->spinBoxCreateRawInputStartByte->value() >= 0 )
+            arguments << "--inputstartbyte" << QString::number(ui->spinBoxCreateRawInputStartByte->value());
+        if ( ui->spinBoxCreateRawInputStartHunk->value() >= 0 )
+            arguments << "--inputstarthunk" << QString::number(ui->spinBoxCreateRawInputStartHunk->value());
+        if ( ui->spinBoxCreateRawInputBytes->value() >= 0 )
+            arguments << "--inputbytes" << QString::number(ui->spinBoxCreateRawInputBytes->value());
+        if ( ui->spinBoxCreateRawInputHunks->value() >= 0 )
+            arguments << "--inputhunks" << QString::number(ui->spinBoxCreateRawInputHunks->value());
+        if ( ui->spinBoxCreateRawHunkSize->value() > 0 )
+            arguments << "--hunksize" << QString::number(ui->spinBoxCreateRawHunkSize->value());
+        if ( ui->spinBoxCreateRawUnitSize->value() > 0 )
+            arguments << "--unitsize" << QString::number(ui->spinBoxCreateRawUnitSize->value());
+        if ( !createRawCompressors.isEmpty() )
+            arguments << "--compression" << createRawCompressors.join(",");
+        else if ( ui->comboBoxCreateRawCompression->currentText() != tr("default") )
+            arguments << "--compression" << "none";
+        if ( ui->spinBoxCreateRawProcessors->value() >= 1 )
+            arguments << "--numprocessors" << QString::number(ui->spinBoxCreateRawProcessors->value());
         break;
     case QCHDMAN_PRJ_CREATE_HD:
         projectTypeName = tr("CreateHD");
@@ -383,6 +437,7 @@ void ProjectWidget::readyReadStandardError()
             switch ( ui->comboBoxProjectType->currentIndex() ) {
             case QCHDMAN_PRJ_VERIFY:
             case QCHDMAN_PRJ_COPY:
+            case QCHDMAN_PRJ_CREATE_RAW:
                 if ( s.contains(QRegExp(", \\d+\\.\\d+\\%\\ complete\\.\\.\\.")) ) {
                     QRegExp rx(", (\\d+)\\.(\\d+)\\%\\ complete\\.\\.\\.");
                     int pos = rx.indexIn(s);
@@ -537,6 +592,70 @@ void ProjectWidget::on_comboBoxCopyCompression_currentIndexChanged(int index)
     ui->comboBoxCopyCompression->blockSignals(false);
 }
 
+void ProjectWidget::on_toolButtonBrowseCreateRawInputFile_clicked()
+{
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose input file"), ui->lineEditCreateRawInputFile->text(), tr("All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditCreateRawInputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseCreateRawOutputFile_clicked()
+{
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose CHD output file"), ui->lineEditCreateRawOutputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditCreateRawOutputFile->setText(s);
+}
+
+void ProjectWidget::on_toolButtonBrowseCreateRawParentOutputFile_clicked()
+{
+    QString s = QFileDialog::getOpenFileName(this, tr("Choose parent CHD output file"), ui->lineEditCreateRawParentOutputFile->text(), tr("CHD files (*.chd);;All files (*)"), 0, globalConfig->preferencesNativeFileDialogs() ? (QFileDialog::Options)0 : QFileDialog::DontUseNativeDialog);
+    if ( !s.isNull() )
+        ui->lineEditCreateRawParentOutputFile->setText(s);
+}
+
+void ProjectWidget::on_comboBoxCreateRawCompression_currentIndexChanged(int index)
+{
+    bool isDefault = false;
+
+    if ( index == 2 ) { // default
+        isDefault = true;
+        createRawCompressors.clear();
+        for (int i = 5; i < ui->comboBoxCreateRawCompression->count(); i++) {
+            ui->comboBoxCreateRawCompression->setItemIcon(i, QIcon(":/images/inactive.png"));
+            ui->comboBoxCreateRawCompression->setItemData(i, QCHDMAN_ITEM_INACTIVE, Qt::WhatsThisRole);
+        }
+    } else if ( index == 3 ) { // none
+        createRawCompressors.clear();
+        for (int i = 5; i < ui->comboBoxCreateRawCompression->count(); i++) {
+            ui->comboBoxCreateRawCompression->setItemIcon(i, QIcon(":/images/inactive.png"));
+            ui->comboBoxCreateRawCompression->setItemData(i, QCHDMAN_ITEM_INACTIVE, Qt::WhatsThisRole);
+        }
+    } else if ( index > 4 ) { // toggles
+        createRawCompressors.clear();
+        if ( ui->comboBoxCreateRawCompression->itemData(index, Qt::WhatsThisRole).toString() == QCHDMAN_ITEM_ACTIVE ) {
+            ui->comboBoxCreateRawCompression->setItemIcon(index, QIcon(":/images/inactive.png"));
+            ui->comboBoxCreateRawCompression->setItemData(index, QCHDMAN_ITEM_INACTIVE, Qt::WhatsThisRole);
+        } else {
+            ui->comboBoxCreateRawCompression->setItemIcon(index, QIcon(":/images/active.png"));
+            ui->comboBoxCreateRawCompression->setItemData(index, QCHDMAN_ITEM_ACTIVE, Qt::WhatsThisRole);
+        }
+        for (int i = 5; i < ui->comboBoxCreateRawCompression->count(); i++)
+            if ( ui->comboBoxCreateRawCompression->itemData(i, Qt::WhatsThisRole).toString() == QCHDMAN_ITEM_ACTIVE )
+                createRawCompressors << ui->comboBoxCreateRawCompression->itemText(i).split(" ", QString::SkipEmptyParts)[0];
+    }
+
+    if ( isDefault )
+        ui->comboBoxCreateRawCompression->setItemText(0, tr("default"));
+    else if ( createRawCompressors.isEmpty() )
+        ui->comboBoxCreateRawCompression->setItemText(0, tr("none"));
+    else
+        ui->comboBoxCreateRawCompression->setItemText(0, createRawCompressors.join(","));
+
+    ui->comboBoxCreateRawCompression->blockSignals(true);
+    ui->comboBoxCreateRawCompression->setCurrentIndex(0);
+    ui->comboBoxCreateRawCompression->blockSignals(false);
+}
+
 void ProjectWidget::init()
 {
     on_comboBoxProjectType_currentIndexChanged(QCHDMAN_PRJ_INFO);
@@ -667,6 +786,47 @@ void ProjectWidget::load(const QString &fileName)
                     }
                     break;
                 case QCHDMAN_PRJ_CREATE_RAW:
+                    if ( line.startsWith("CreateRawInputFile = ") )
+                        ui->lineEditCreateRawInputFile->setText(line.remove("CreateRawInputFile = "));
+                    if ( line.startsWith("CreateRawOutputFile = ") )
+                        ui->lineEditCreateRawOutputFile->setText(line.remove("CreateRawOutputFile = "));
+                    if ( line.startsWith("CreateRawParentOutputFile = ") )
+                        ui->lineEditCreateRawParentOutputFile->setText(line.remove("CreateRawParentOutputFile = "));
+                    if ( line.startsWith("CreateRawForce = ") )
+                        ui->checkBoxCreateRawForce->setChecked(line.remove("CreateRawForce = ").toInt());
+                    if ( line.startsWith("CreateRawProcessors = ") )
+                        ui->spinBoxCreateRawProcessors->setValue(line.remove("CreateRawProcessors = ").toInt());
+                    if ( line.startsWith("CreateRawInputStartByte = ") )
+                        ui->spinBoxCreateRawInputStartByte->setValue(line.remove("CreateRawInputStartByte = ").toInt());
+                    if ( line.startsWith("CreateRawInputStartHunk = ") )
+                        ui->spinBoxCreateRawInputStartHunk->setValue(line.remove("CreateRawInputStartHunk = ").toInt());
+                    if ( line.startsWith("CreateRawInputBytes = ") )
+                        ui->spinBoxCreateRawInputBytes->setValue(line.remove("CreateRawInputBytes = ").toInt());
+                    if ( line.startsWith("CreateRawInputHunks = ") )
+                        ui->spinBoxCreateRawInputHunks->setValue(line.remove("CreateRawInputHunks = ").toInt());
+                    if ( line.startsWith("CreateRawHunkSize = ") )
+                        ui->spinBoxCreateRawHunkSize->setValue(line.remove("CreateRawHunkSize = ").toInt());
+                    if ( line.startsWith("CreateRawUnitSize = ") )
+                        ui->spinBoxCreateRawUnitSize->setValue(line.remove("CreateRawUnitSize = ").toInt());
+                    if ( line.startsWith("CreateRawCompression = ") ) {
+                        QString compression = line.remove("CreateRawCompression = ");
+                        if ( compression == "none" )
+                            ui->comboBoxCreateRawCompression->setCurrentIndex(3);
+                        else if ( compression != "default" ) {
+                            createRawCompressors.clear();
+                            foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
+                                if ( compressionTypes.contains(cmp) ) {
+                                    int index = ui->comboBoxCreateRawCompression->findText(cmp + " ", Qt::MatchStartsWith);
+                                    if ( index > 4 ) {
+                                        ui->comboBoxCreateRawCompression->setItemIcon(index, QIcon(":/images/active.png"));
+                                        ui->comboBoxCreateRawCompression->setItemData(index, QCHDMAN_ITEM_ACTIVE, Qt::WhatsThisRole);
+                                        createRawCompressors << cmp;
+                                    }
+                                }
+                            }
+                            on_comboBoxCreateRawCompression_currentIndexChanged(-1);
+                        }
+                    }
                     break;
                 case QCHDMAN_PRJ_CREATE_HD:
                     break;
@@ -762,7 +922,25 @@ void ProjectWidget::saveAs(const QString &fileName)
             ts << "\n";
             break;
         case QCHDMAN_PRJ_CREATE_RAW:
-            break;
+            ts << "CreateRawInputFile = " << ui->lineEditCreateRawInputFile->text() << "\n";
+            ts << "CreateRawOutputFile = " << ui->lineEditCreateRawOutputFile->text() << "\n";
+            ts << "CreateRawParentOutputFile = " << ui->lineEditCreateRawParentOutputFile->text() << "\n";
+            ts << "CreateRawForce = " << ui->checkBoxCreateRawForce->isChecked() << "\n";
+            ts << "CreateRawProcessors = " << ui->spinBoxCreateRawProcessors->value() << "\n";
+            ts << "CreateRawInputStartByte = " << ui->spinBoxCreateRawInputStartByte->value() << "\n";
+            ts << "CreateRawInputStartHunk = " << ui->spinBoxCreateRawInputStartHunk->value() << "\n";
+            ts << "CreateRawInputBytes = " << ui->spinBoxCreateRawInputBytes->value() << "\n";
+            ts << "CreateRawInputHunks = " << ui->spinBoxCreateRawInputHunks->value() << "\n";
+            ts << "CreateRawHunkSize = " << ui->spinBoxCreateRawHunkSize->value() << "\n";
+            ts << "CreateRawUnitSize = " << ui->spinBoxCreateRawUnitSize->value() << "\n";
+            ts << "CreateRawCompression = ";
+            if ( !createRawCompressors.isEmpty() )
+                ts << createRawCompressors.join(",");
+            else if ( ui->comboBoxCreateRawCompression->currentText() == tr("default") )
+                ts << "default";
+            else
+                ts << "none";
+            ts << "\n";            break;
         case QCHDMAN_PRJ_CREATE_HD:
             break;
         case QCHDMAN_PRJ_CREATE_CD:
@@ -815,7 +993,7 @@ void ProjectWidget::clone()
             int sT = sourceTypes[i];
             QWidget *tW = targetWidgets[i];
             int tT = targetTypes[i];
-            if ( sT != tT )
+            if ( sT != tT || !sW || !tW )
                 continue;
             switch ( sT ) {
             case QCHDMAN_TYPE_LINEEDIT:
@@ -827,8 +1005,47 @@ void ProjectWidget::clone()
             case QCHDMAN_TYPE_CHECKBOX:
                 ((QCheckBox *)tW)->setChecked(((QCheckBox *)sW)->isChecked());
                 break;
-            case QCHDMAN_TYPE_COMBOBOX: // FIXME
-                ((QComboBox *)tW)->setCurrentIndex(((QComboBox *)sW)->currentIndex());
+            case QCHDMAN_TYPE_COMBOBOX: {
+                    QString compression = ((QComboBox *)sW)->currentText();
+                    QComboBox *cb = (QComboBox *)tW;
+                    if ( compression == tr("none") )
+                        cb->setCurrentIndex(3);
+                    else if ( compression != tr("default") ) {
+                        switch ( cloneType ) {
+                        case QCHDMAN_PRJ_COPY:
+                            projectWidget->copyCompressors.clear();
+                            break;
+                        case QCHDMAN_PRJ_CREATE_RAW:
+                            projectWidget->createRawCompressors.clear();
+                            break;
+                        }
+                        foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
+                            if ( compressionTypes.contains(cmp) ) {
+                                int index = cb->findText(cmp + " ", Qt::MatchStartsWith);
+                                if ( index > 4 ) {
+                                    cb->setItemIcon(index, QIcon(":/images/active.png"));
+                                    cb->setItemData(index, QCHDMAN_ITEM_ACTIVE, Qt::WhatsThisRole);
+                                    switch ( cloneType ) {
+                                    case QCHDMAN_PRJ_COPY:
+                                        projectWidget->copyCompressors << cmp;
+                                        break;
+                                    case QCHDMAN_PRJ_CREATE_RAW:
+                                        projectWidget->createRawCompressors << cmp;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        switch ( cloneType ) {
+                        case QCHDMAN_PRJ_COPY:
+                            projectWidget->on_comboBoxCopyCompression_currentIndexChanged(-1);
+                            break;
+                        case QCHDMAN_PRJ_CREATE_RAW:
+                            projectWidget->on_comboBoxCreateRawCompression_currentIndexChanged(-1);
+                            break;
+                        }
+                    }
+                }
                 break;
             }
         }
@@ -855,7 +1072,7 @@ void ProjectWidget::morph()
             int sT = sourceTypes[i];
             QWidget *tW = targetWidgets[i];
             int tT = targetTypes[i];
-            if ( sT != tT )
+            if ( sT != tT || !sW || !tW )
                 continue;
             switch ( sT ) {
             case QCHDMAN_TYPE_LINEEDIT:
@@ -867,8 +1084,47 @@ void ProjectWidget::morph()
             case QCHDMAN_TYPE_CHECKBOX:
                 ((QCheckBox *)tW)->setChecked(((QCheckBox *)sW)->isChecked());
                 break;
-            case QCHDMAN_TYPE_COMBOBOX: // FIXME
-                ((QComboBox *)tW)->setCurrentIndex(((QComboBox *)sW)->currentIndex());
+            case QCHDMAN_TYPE_COMBOBOX: {
+                    QString compression = ((QComboBox *)sW)->currentText();
+                    QComboBox *cb = (QComboBox *)tW;
+                    if ( compression == tr("none") )
+                        cb->setCurrentIndex(3);
+                    else if ( compression != tr("default") ) {
+                        switch ( morphType ) {
+                        case QCHDMAN_PRJ_COPY:
+                            copyCompressors.clear();
+                            break;
+                        case QCHDMAN_PRJ_CREATE_RAW:
+                            createRawCompressors.clear();
+                            break;
+                        }
+                        foreach (QString cmp, compression.split(",", QString::SkipEmptyParts)) {
+                            if ( compressionTypes.contains(cmp) ) {
+                                int index = cb->findText(cmp + " ", Qt::MatchStartsWith);
+                                if ( index > 4 ) {
+                                    cb->setItemIcon(index, QIcon(":/images/active.png"));
+                                    cb->setItemData(index, QCHDMAN_ITEM_ACTIVE, Qt::WhatsThisRole);
+                                    switch ( morphType ) {
+                                    case QCHDMAN_PRJ_COPY:
+                                        copyCompressors << cmp;
+                                        break;
+                                    case QCHDMAN_PRJ_CREATE_RAW:
+                                        createRawCompressors << cmp;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        switch ( morphType ) {
+                        case QCHDMAN_PRJ_COPY:
+                            on_comboBoxCopyCompression_currentIndexChanged(-1);
+                            break;
+                        case QCHDMAN_PRJ_CREATE_RAW:
+                            on_comboBoxCreateRawCompression_currentIndexChanged(-1);
+                            break;
+                        }
+                    }
+                }
                 break;
             }
         }

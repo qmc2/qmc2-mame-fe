@@ -335,7 +335,7 @@ Displays information about a CHD file.
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>40</height>
+                <height>0</height>
                </size>
               </property>
              </spacer>
@@ -453,7 +453,7 @@ Verifies a CHD's integrity.
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>40</height>
+                <height>0</height>
                </size>
               </property>
              </spacer>
@@ -471,6 +471,23 @@ Verifies a CHD's integrity.
                <property name="margin">
                 <number>0</number>
                </property>
+               <item row="7" column="2">
+                <widget class="QLabel" name="labelCopyCompressors">
+                 <property name="text">
+                  <string>Compression</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="QCheckBox" name="checkBoxCopyForce">
+                 <property name="toolTip">
+                  <string>Force overwriting output files (--force)</string>
+                 </property>
+                 <property name="text">
+                  <string>Overwrite existing files</string>
+                 </property>
+                </widget>
+               </item>
                <item row="5" column="1">
                 <widget class="QSpinBox" name="spinBoxCopyInputStartByte">
                  <property name="sizePolicy">
@@ -574,47 +591,10 @@ Verifies a CHD's integrity.
                  </property>
                 </widget>
                </item>
-               <item row="7" column="2">
-                <widget class="QLabel" name="labelCopyCompressors">
-                 <property name="text">
-                  <string>Compression</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="4">
-                <widget class="QToolButton" name="toolButtonBrowseCopyParentInputFile">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="icon">
-                  <iconset resource="qchdman.qrc">
-                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
-                 </property>
-                </widget>
-               </item>
                <item row="5" column="0">
                 <widget class="QLabel" name="labelCopyInputStartByte">
                  <property name="text">
                   <string>Input start byte</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="0" colspan="4">
-                <widget class="QLineEdit" name="lineEditCopyParentInputFile">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="toolTip">
-                  <string>Parent CHD input file (--inputparent)</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Parent CHD input file</string>
                  </property>
                 </widget>
                </item>
@@ -715,16 +695,6 @@ Verifies a CHD's integrity.
                  </property>
                 </widget>
                </item>
-               <item row="4" column="0" colspan="2">
-                <widget class="QCheckBox" name="checkBoxCopyForce">
-                 <property name="toolTip">
-                  <string>Force overwriting output files (--force)</string>
-                 </property>
-                 <property name="text">
-                  <string>Overwrite existing files</string>
-                 </property>
-                </widget>
-               </item>
                <item row="4" column="3">
                 <widget class="QSpinBox" name="spinBoxCopyProcessors">
                  <property name="sizePolicy">
@@ -816,6 +786,36 @@ Verifies a CHD's integrity.
                  </property>
                 </widget>
                </item>
+               <item row="2" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditCopyParentInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Parent CHD input file (--inputparent)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Parent CHD input file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseCopyParentInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -866,14 +866,410 @@ Copies data from one CHD to another of the same type.
               <property name="sizeHint" stdset="0">
                <size>
                 <width>20</width>
-                <height>40</height>
+                <height>0</height>
                </size>
               </property>
              </spacer>
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="pageCreateRaw"/>
+          <widget class="QWidget" name="pageCreateRaw">
+           <layout class="QGridLayout" name="gridLayoutPageCreateRaw">
+            <property name="margin">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QFrame" name="frameCreateRaw">
+              <layout class="QGridLayout" name="gridLayoutFrameCreateRaw">
+               <property name="margin">
+                <number>0</number>
+               </property>
+               <item row="3" column="3">
+                <widget class="QSpinBox" name="spinBoxCreateRawProcessors">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Limit the number of processors to use during compression (--numprocessors)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>0</number>
+                 </property>
+                 <property name="maximum">
+                  <number>9999</number>
+                 </property>
+                 <property name="value">
+                  <number>0</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QLabel" name="labelCreateRawInputHunks">
+                 <property name="text">
+                  <string>Input hunks</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseCreateRawInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QSpinBox" name="spinBoxCreateRawInputBytes">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Effective length of input in bytes (--inputbytes)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QLabel" name="labelCreateRawProcessors">
+                 <property name="text">
+                  <string>Number of CPUs</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditCreateRawOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>CHD output file (--output)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>CHD output file (required)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QSpinBox" name="spinBoxCreateRawInputStartByte">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Starting byte offset within the input (--inputstartbyte)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QSpinBox" name="spinBoxCreateRawHunkSize">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Size in bytes of each hunk (--hunksize)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>(required)</string>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="QCheckBox" name="checkBoxCreateRawForce">
+                 <property name="toolTip">
+                  <string>Force overwriting output files (--force)</string>
+                 </property>
+                 <property name="text">
+                  <string>Overwrite existing files</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="3">
+                <widget class="QSpinBox" name="spinBoxCreateRawInputHunks">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Effective length of input in hunks (--inputhunks)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="labelCreateRawInputStartByte">
+                 <property name="text">
+                  <string>Input start byte</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditCreateRawInputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Input file (--input)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Input file (required)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="4">
+                <widget class="QLineEdit" name="lineEditCreateRawParentOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Parent CHD output file (--outputparent)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Parent CHD output file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="labelCreateRawHunkSize">
+                 <property name="text">
+                  <string>Hunk size</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseCreateRawOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="labelCreateRawInputBytes">
+                 <property name="text">
+                  <string>Input bytes</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="3">
+                <widget class="QSpinBox" name="spinBoxCreateRawInputStartHunk">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Starting hunk offset within the input (--inputstarthunk)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>auto</string>
+                 </property>
+                 <property name="minimum">
+                  <number>-1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                 <property name="value">
+                  <number>-1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QLabel" name="labelCreateRawInputStartHunk">
+                 <property name="text">
+                  <string>Input start hunk</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="4">
+                <widget class="QToolButton" name="toolButtonBrowseCreateRawParentOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="qchdman.qrc">
+                   <normaloff>:/images/fileopen.png</normaloff>:/images/fileopen.png</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QLabel" name="labelCreateRawCompressors">
+                 <property name="text">
+                  <string>Compression</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="1">
+                <widget class="QComboBox" name="comboBoxCreateRawCompression">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Select up to 4 compression codecs to use (--compression)</string>
+                 </property>
+                 <property name="maxVisibleItems">
+                  <number>20</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="2">
+                <widget class="QLabel" name="labelCreateRawUnitSize">
+                 <property name="text">
+                  <string>Unit size</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="3">
+                <widget class="QSpinBox" name="spinBoxCreateRawUnitSize">
+                 <property name="toolTip">
+                  <string>Size in bytes of each unit (--unitsize)</string>
+                 </property>
+                 <property name="specialValueText">
+                  <string>(required)</string>
+                 </property>
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelCreateRawHelp">
+              <property name="text">
+               <string>&lt;p&gt;
+&lt;b&gt;CHDMAN CreateRaw&lt;/b&gt;
+&lt;/p&gt;
+Creates a new raw CHD from an input file.
+&lt;p&gt;
+&lt;b&gt;Parameters&lt;/b&gt;
+&lt;/p&gt;
+&lt;p&gt;
+--input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
+--output, -o &amp;lt;filename&amp;gt;: output file name (required)&lt;br&gt;
+--outputparent, -op &amp;lt;filename&amp;gt;: parent file name for output CHD&lt;br&gt;
+--force, -f: force overwriting an existing file&lt;br&gt;
+--numprocessors, -np &amp;lt;processors&amp;gt;: limit the number of processors to use during compression&lt;br&gt;
+--inputstartbyte, -isb &amp;lt;offset&amp;gt;: starting byte offset within the input&lt;br&gt;
+--inputstarthunk, -ish &amp;lt;offset&amp;gt;: starting hunk offset within the input&lt;br&gt;
+--inputbytes, -ib &amp;lt;length&amp;gt;: effective length of input in bytes&lt;br&gt;
+--inputhunks, -ih &amp;lt;length&amp;gt;: effective length of input in hunks&lt;br&gt;
+--hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk, in bytes (required)&lt;br&gt;
+--unitsize, -us &amp;lt;bytes&amp;gt;: size of each unit, in bytes (required)&lt;br&gt;
+--compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
+&lt;/p&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+              <property name="margin">
+               <number>8</number>
+              </property>
+              <property name="indent">
+               <number>8</number>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <spacer name="verticalSpacerCreateRaw">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="pageCreateHardDisk"/>
           <widget class="QWidget" name="pageCreateCD"/>
           <widget class="QWidget" name="pageCreateLaserDisc"/>
@@ -936,6 +1332,21 @@ Copies data from one CHD to another of the same type.
   <tabstop>spinBoxCopyInputHunks</tabstop>
   <tabstop>spinBoxCopyHunkSize</tabstop>
   <tabstop>comboBoxCopyCompression</tabstop>
+  <tabstop>lineEditCreateRawInputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateRawInputFile</tabstop>
+  <tabstop>lineEditCreateRawOutputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateRawOutputFile</tabstop>
+  <tabstop>lineEditCreateRawParentOutputFile</tabstop>
+  <tabstop>toolButtonBrowseCreateRawParentOutputFile</tabstop>
+  <tabstop>checkBoxCreateRawForce</tabstop>
+  <tabstop>spinBoxCreateRawProcessors</tabstop>
+  <tabstop>spinBoxCreateRawInputStartByte</tabstop>
+  <tabstop>spinBoxCreateRawInputStartHunk</tabstop>
+  <tabstop>spinBoxCreateRawInputBytes</tabstop>
+  <tabstop>spinBoxCreateRawInputHunks</tabstop>
+  <tabstop>spinBoxCreateRawHunkSize</tabstop>
+  <tabstop>spinBoxCreateRawUnitSize</tabstop>
+  <tabstop>comboBoxCreateRawCompression</tabstop>
   <tabstop>plainTextEditProjectLog</tabstop>
  </tabstops>
  <resources>
