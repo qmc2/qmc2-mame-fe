@@ -704,7 +704,7 @@ space = $(blank) $(blank)
 DEFINES = DEFINES+=QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_ARCADE_OPENGL=$(ARCADE_OPENGL) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED) QMC2_XWININFO=$(XWININFO)
 
 # available translations
-QMC2_TRANSLATIONS = us de pl fr pt it ro es
+QMC2_TRANSLATIONS = us de pl fr pt it ro es gr
 QT_TRANSLATIONS = de pl fr pt es
 
 # process make options
@@ -1515,6 +1515,9 @@ data/lng/qmc2_ro.qm: data/lng/qmc2_ro.ts
 data/lng/qmc2_es.qm: data/lng/qmc2_es.ts
 	$(LREL)
 
+data/lng/qmc2_gr.qm: data/lng/qmc2_gr.ts
+	$(LREL)
+
 # Qt translations
 
 #data/lng/qt_us.qm: data/lng/qt_us.ts
@@ -1540,6 +1543,9 @@ data/lng/qt_pt.qm: data/lng/qt_pt.ts
 
 data/lng/qt_es.qm: data/lng/qt_es.ts
 	$(LREL)
+
+#data/lng/qt_gr.qm: data/lng/qt_gr.ts
+#	$(LREL)
 
 else
 
@@ -1569,6 +1575,9 @@ data\lng\qmc2_ro.qm: data\lng\qmc2_ro.ts
 data\lng\qmc2_es.qm: data\lng\qmc2_es.ts
 	$(LREL)
 
+data\lng\qmc2_gr.qm: data\lng\qmc2_gr.ts
+	$(LREL)
+
 # Qt translations
 
 #data\lng\qt_us.qm: data\lng\qt_us.ts
@@ -1594,6 +1603,9 @@ data\lng\qt_pt.qm: data\lng\qt_pt.ts
 
 data\lng\qt_es.qm: data\lng\qt_es.ts
 	$(LREL)
+
+#data\lng\qt_gr.qm: data\lng\qt_gr.ts
+#	$(LREL)
 
 endif
 

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it_IT">
+<TS version="2.0">
 <context>
     <name>About</name>
     <message>
         <location filename="../../about.ui" line="15"/>
         <source>About QMC2</source>
-        <translation>Riguardo QMC2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.ui" line="59"/>
         <source>Project details</source>
-        <translation>Dettagli del progetto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
         <location filename="../../about.ui" line="71"/>
@@ -22,14 +22,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Qt 4 based UNIX multi-emulator frontend&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version X.Y[.bZ], built for SDLMAME&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2006 - 2008 R. Reucher, Germany&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translatorcomment>Credo sia meglio lasciarlo in inglese</translatorcomment>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;QMC2 - M.A.M.E. Catalog / Launcher II&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Qt 4 based UNIX multi-emulator frontend&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Version X.Y[.bZ], built for SDLMAME&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Copyright © 2006 - 2008 R. Reucher, Germany&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.ui" line="93"/>
@@ -47,204 +40,191 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;List subscription:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;https://lists.sourceforge.net/lists/listinfo/qmc2-devel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Homepage progetto:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;http://www.mameworld.net/mamecat&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Sito sviluppo:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;http://sourceforge.net/projects/qmc2&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Mailing list per lo sviluppo&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;qmc2-devel@lists.sourceforge.net (solo iscritti)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Iscrizione alla mail list:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;https://lists.sourceforge.net/lists/listinfo/qmc2-devel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.ui" line="123"/>
         <source>System information</source>
-        <translation>Informazioni di sistema</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="59"/>
         <source>Mac OS X 10.3</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="60"/>
         <source>Mac OS X 10.4</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="61"/>
         <source>Mac OS X 10.5</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="62"/>
         <source>Mac OS X 10.6</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="63"/>
         <source>Mac (unkown)</source>
-        <translation>Mac (sconosciuto)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="67"/>
         <source>Windows NT (Windows 4.0)</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="68"/>
         <source>Windows 2000 (Windows 5.0)</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="69"/>
         <source>Windows XP (Windows 5.1)</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="70"/>
         <source>Windows Server 2003, Windows Server 2003 R2, Windows Home Server or Windows XP Professional x64 Edition (Windows 5.2)</source>
-        <translation>Windows Server 2003, Windows Server 2003 R2, Windows Home Server o Windows XP Professional x64 Edition (Windows 5.2)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="71"/>
         <source>Windows Vista or Windows Server 2008 (Windows 6.0)</source>
-        <translation>Windows Vista o Windows Server 2008 (Windows 6.0)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="72"/>
         <source>Windows 7 or Windows Server 2008 R2 (Windows 6.1)</source>
-        <translation>Windows 7 o Windows Server 2008 R2 (Windows 6.1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="73"/>
         <source>Windows (unknown)</source>
-        <translation>Windows (sconosciuto)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="119"/>
         <source>Qt 4 based multi-platform/multi-emulator front end</source>
-        <translation>Interfaccia multi-piattaforma/multi-emulatore basata su Qt4</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="120"/>
         <source>Version </source>
-        <translation>Versione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="122"/>
         <source>SVN r%1</source>
-        <translation>SVN r%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="124"/>
         <source>built for</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="136"/>
         <source>Copyright</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="136"/>
         <source>Germany</source>
-        <translation>Germania</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="140"/>
         <source>Project homepage:</source>
-        <translation>Homepage progetto:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="141"/>
         <source>Development site:</source>
-        <translation>Sito di sviluppo:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="142"/>
         <source>QMC2 development mailing list:</source>
-        <translation>Mailing list sviluppo QMC2:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="142"/>
         <source>subscription required</source>
-        <translation>iscrizione necessaria</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="143"/>
         <source>List subscription:</source>
-        <translation>Lista iscrizioni:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="144"/>
         <source>Bug tracking system:</source>
-        <translation>Sistema di bug tracking:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="153"/>
         <source>Build OS:</source>
-        <translation>OS compilazione:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="156"/>
         <location filename="../../about.cpp" line="158"/>
         <source>Running OS:</source>
-        <translation>OS corrente:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="160"/>
         <source>Emulator version:</source>
-        <translation>Versione emulatore:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="161"/>
         <source>Template information:</source>
-        <translation>Informazioni template:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="161"/>
         <source>Emulator:</source>
-        <translation>Emulatore:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="161"/>
         <source>Version:</source>
-        <translation>Versione:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="161"/>
         <source>Format:</source>
-        <translation>Formato:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="162"/>
         <source>Qt version:</source>
-        <translation>Versione Qt:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="162"/>
         <location filename="../../about.cpp" line="170"/>
         <source>Compile-time:</source>
-        <translation>Tempo-compilazione:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="162"/>
         <location filename="../../about.cpp" line="170"/>
         <location filename="../../about.cpp" line="173"/>
         <source>Run-time:</source>
-        <translation>Tempo-esecuzione:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="166"/>
         <source>Build key:</source>
-        <translation>Chiave compilazione:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="168"/>
@@ -254,52 +234,52 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../about.cpp" line="170"/>
         <source>SDL version:</source>
-        <translation>Versione SDL:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="173"/>
         <source>Phonon version:</source>
-        <translation>Versione Phonon:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="173"/>
         <source>Phonon backend / supported MIME types:</source>
-        <translation>Phonon backend / tipi MIME supportati:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="182"/>
         <source>Physical memory:</source>
-        <translation>Memoria fisica:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="182"/>
         <source>Total: %1 MB</source>
-        <translation>Totale: %1 MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="182"/>
         <source>Free: %1 MB</source>
-        <translation>Liberi: %1 MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="182"/>
         <source>Used: %1 MB</source>
-        <translation>Usati: %1 MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="184"/>
         <source>Number of CPUs:</source>
-        <translation>Numero di CPU:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="184"/>
         <source>unknown</source>
-        <translation>sconosciuto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../about.cpp" line="185"/>
         <source>Environment variables:</source>
-        <translation>Variabili d&apos;ambiente:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -307,19 +287,19 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadescene.cpp" line="40"/>
         <source>FPS: --</source>
-        <translation>FPS:--</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescene.cpp" line="262"/>
         <location filename="../../arcade/arcadescene.cpp" line="264"/>
         <source>FPS: %1</source>
-        <translation>FPS: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescene.cpp" line="307"/>
         <location filename="../../arcade/arcadescene.cpp" line="310"/>
         <source>Paused</source>
-        <translation>In Pausa</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -327,37 +307,37 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="48"/>
         <source>ArcadeScreenshotSaverThread: Started</source>
-        <translation>ArcadeScreenshotSaverThread: Avviato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="66"/>
         <source>ArcadeScreenshotSaverThread: Saving screen shot</source>
-        <translation>ArcadeScreenshotSaverThread: Salvataggio screen shot</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="71"/>
         <source>ArcadeScreenshotSaverThread: Failed to create screen shot directory &apos;%1&apos; - aborting screen shot creation</source>
-        <translation>ArcadeScreenshotSaverThread: Errore nel creare directory screen shot &apos;%1&apos; - annullo creazione screen shot</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="80"/>
         <source>ArcadeScreenshotSaverThread: Screen shot successfully saved as &apos;%1&apos;</source>
-        <translation>ArcadeScreenshotSaverThread: Screen shot salvato con successo come &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="82"/>
         <source>ArcadeScreenshotSaverThread: Failed to save screen shot as &apos;%1&apos;</source>
-        <translation>ArcadeScreenshotSaverThread: Impossibile salvare screen shot come &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="83"/>
         <source>Saving screen shot</source>
-        <translation>Salvataggio screen shot</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadescreenshotsaverthread.cpp" line="92"/>
         <source>ArcadeScreenshotSaverThread: Ended</source>
-        <translation>ArcadeScreenshotSaverThread: Terminato</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -365,17 +345,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="15"/>
         <source>Arcade setup</source>
-        <translation>Impostazioni arcade</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="25"/>
         <source>Graphics mode settings</source>
-        <translation>Impostazioni modalità grafica</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="58"/>
         <source>General</source>
-        <translation>Generali</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="72"/>
@@ -389,12 +369,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2112"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2333"/>
         <source>X:</source>
-        <translation>X:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="79"/>
         <source>X coordinate of scene window position</source>
-        <translation>Coordinata X della posizione della finestra di scena</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="95"/>
@@ -408,12 +388,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2138"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2359"/>
         <source>Y:</source>
-        <translation>Y:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="102"/>
         <source>Y coordinate of scene window position</source>
-        <translation>Coordinata Y della posizione della finestra di scena</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="118"/>
@@ -427,12 +407,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2164"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2385"/>
         <source>W:</source>
-        <translation>W:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="125"/>
         <source>Width of scene window</source>
-        <translation>Ampiezza della finestra di scena</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="141"/>
@@ -446,199 +426,199 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2190"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2411"/>
         <source>H:</source>
-        <translation>H:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="148"/>
         <source>Height of scene window</source>
-        <translation>Altezza della finestra di scena</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="158"/>
         <source>Aspect ratio</source>
-        <translation>Rapporto d&apos;aspetto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="178"/>
         <source>X portion of scene aspect ratio (should be equal to screen&apos;s aspect ratio)</source>
-        <translation>Parte X del rapporto d&apos;aspetto della scena (dovrebbe essere uguale al rapporto d&apos;aspetto dello schermo)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="201"/>
         <source>Y portion of scene aspect ratio (should be equal to screen&apos;s aspect ratio)</source>
-        <translation>Parte Y del rapporto d&apos;aspetto della scena (dovrebbe essere uguale al rapporto d&apos;aspetto dello schermo)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="216"/>
         <source>Display arcade scene in full screen mode or windowed</source>
-        <translation>Mostra scena arcade a tutto schermo o in una finestra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="219"/>
         <source>Full screen</source>
-        <translation>Schermo intero</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="229"/>
         <source>Use window resolution in full screen mode (for slow systems)</source>
-        <translation>Utilizza risoluzione della finestra in modalità schermo intero (per sistemi lenti)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="232"/>
         <source>Use window resolution</source>
-        <translation>Usa risoluzione della finestra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="239"/>
         <source>Show frames per second counter in the lower left corner</source>
-        <translation>Mostra le immagini per secondo nell&apos;angolo in basso a sinistra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="242"/>
         <source>Show FPS</source>
-        <translation>Mostra FPS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="253"/>
         <source>Enable anti aliasing on primitive drawing</source>
-        <translation>Abilità anti aliasing sulle primitive di disegno</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="256"/>
         <source>Primitive AA</source>
-        <translation>Primitive AA</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="263"/>
         <source>Scale items smoothly</source>
-        <translation>Scala gli oggetti dolcemente</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="266"/>
         <source>Smooth item scaling</source>
-        <translation>Scalatura dolce</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="273"/>
         <source>Keep aspect ratio when resizing scene window</source>
-        <translation>Mantieni il rapporto d&apos;aspetto quando modifichi la grandezza della finestra di scena</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="276"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="590"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="634"/>
         <source>Keep aspect ratio</source>
-        <translation>Mantieni rapporto d&apos;aspetto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="285"/>
         <source>Center arcade window on screen</source>
-        <translation>Centra la finestra arcade sullo schermo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="288"/>
         <source>Center window</source>
-        <translation>Centra finestra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="295"/>
         <source>Snapshot directory</source>
-        <translation>Directory snapshot</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="304"/>
         <source>Directory to store snapshots (write)</source>
-        <translation>Directory dove salvare le immagini catturate</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="311"/>
         <source>Browse snapshot directory</source>
-        <translation>Visualizza directory snapshot</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="329"/>
         <source>OpenGL</source>
-        <translation>OpenGL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="343"/>
         <source>Enable direct rendering</source>
-        <translation>Abilità direct rendering</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="346"/>
         <source>Direct rendering</source>
-        <translation>Direct rendering</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="353"/>
         <source>Enable enhanced OpenGL anti aliasing</source>
-        <translation>Abilità anti aliasing OpenGL migliorato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="356"/>
         <source>Anti aliasing</source>
-        <translation>Anti aliasing</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="363"/>
         <source>Synchronize buffer swaps with screen</source>
-        <translation>Sincronizza i cambi di buffer con lo schermo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="366"/>
         <source>Sync to screen</source>
-        <translation>Syncronizza allo schermo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="373"/>
         <source>Enable double buffering (avoids flicker)</source>
-        <translation>Abilità doppio buffering (evita sfarfallamenti)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="376"/>
         <source>Double buffering</source>
-        <translation>Doppio Buffering</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="383"/>
         <source>Enable depth buffering (Z-buffer)</source>
-        <translation>Abilità buffering di profondità (Z buffer)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="386"/>
         <source>Depth buffering</source>
-        <translation>Buffering profondità</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="393"/>
         <source>Use RGBA color mode</source>
-        <translation>Utilizza modo colore RGBA</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="396"/>
         <source>RGBA</source>
-        <translation>RGBA</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="403"/>
         <source>Use alpha channel information for transparency</source>
-        <translation>Utilizza le informazioni del canale alpha per la trasparenza</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="406"/>
         <source>Alpha channel</source>
-        <translation>Canale alpha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="413"/>
         <source>Enable multi sampling</source>
-        <translation>Abilità multi campionamento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="416"/>
         <source>Multi sampling</source>
-        <translation>Multi sampling</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="423"/>
@@ -653,148 +633,148 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="433"/>
         <source>Enable accumulator buffer</source>
-        <translation>Abilità buffer accumulatore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="436"/>
         <source>Accumulator buffer</source>
-        <translation>Buffer accumulatore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="443"/>
         <source>Enable stencil buffer</source>
-        <translation>Abilita buffer stencil</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="446"/>
         <source>Stencil buffer</source>
-        <translation>Buffer stencil</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="453"/>
         <source>Enable stereo buffer</source>
-        <translation>Abilità buffer stereo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="456"/>
         <source>Stereo buffer</source>
-        <translation>Buffer stereo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="486"/>
         <source>Scene layout</source>
-        <translation>Layout scena</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="492"/>
         <source>Layout name</source>
-        <translation>Nome layout</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="505"/>
         <source>Select the layout you want to edit / use</source>
-        <translation>Seleziona il layout che vuoi usare / modificare</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="518"/>
         <source>Items, placements and parameters</source>
-        <translation>Oggetti, posizioni e parametri</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="553"/>
         <source>Use a background image</source>
-        <translation>Usa un immagine di sfondo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="556"/>
         <source>Background image</source>
-        <translation>Immagine di sfondo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="563"/>
         <source>Background image file (read)</source>
-        <translation>File dell&apos;immagine di sfondo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="576"/>
         <source>Browse background image file</source>
-        <translation>Mostra file dell&apos;immagine di sfondo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="587"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="631"/>
         <source>Keep image&apos;s aspect ratio when scaling</source>
-        <translation>Mantieni il rapporto d&apos;aspetto nello scalare</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="597"/>
         <source>Use a foreground image</source>
-        <translation>Usa un immagine di primo piano</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="600"/>
         <source>Foreground image</source>
-        <translation>Immagine di primo piano</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="607"/>
         <source>Foreground image file (read)</source>
-        <translation>File dell&apos;immagine di primo piano</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="620"/>
         <source>Browse foreground image file</source>
-        <translation>Mostra file dell&apos;immagine di primo piano</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="641"/>
         <source>Arcade font</source>
-        <translation>Font arcade</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="648"/>
         <source>Arcade font (= system default if empty)</source>
-        <translation>Font arcade (= predefinito di sistema se vuoto)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="658"/>
         <source>Browse arcade font</source>
-        <translation>Mostra font arcade</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="669"/>
         <source>Select font color</source>
-        <translation>Seleziona colore font</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="672"/>
         <source>Font color</source>
-        <translation>Colore font</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="683"/>
         <source>Virtual resolution</source>
-        <translation>Risoluzione virtuale</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="711"/>
         <source>Virtual width of scene</source>
-        <translation>Larghezza virtuale della scena</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="744"/>
         <source>Virtual height of scene</source>
-        <translation>Altezza virtuale della scena</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="756"/>
         <source>Control display of game list</source>
-        <translation>Controlla display della lista giochi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="759"/>
         <source>Game list</source>
-        <translation>Lista giochi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="771"/>
@@ -806,7 +786,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2097"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2318"/>
         <source>Geometry</source>
-        <translation>Geometria</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="796"/>
@@ -818,7 +798,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2122"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2343"/>
         <source>X coordinate of item position</source>
-        <translation>Coordinata X della posizione dell&apos;oggetto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="822"/>
@@ -830,7 +810,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2148"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2369"/>
         <source>Y coordinate of item position</source>
-        <translation>Coordinata Y della posizione dell&apos;oggetto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="848"/>
@@ -842,7 +822,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2174"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2395"/>
         <source>Item width</source>
-        <translation>Larghezza oggetto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="874"/>
@@ -854,7 +834,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2200"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2421"/>
         <source>Item height</source>
-        <translation>Altezza oggetto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="886"/>
@@ -866,7 +846,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2212"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2433"/>
         <source>Use background for this item</source>
-        <translation>Usa sfondo per questo oggetto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="889"/>
@@ -878,7 +858,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2215"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2436"/>
         <source>Background</source>
-        <translation>Sfondo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="904"/>
@@ -890,7 +870,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2230"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2451"/>
         <source>Select background color</source>
-        <translation>Seleziona colore di sfondo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="918"/>
@@ -902,7 +882,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2244"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2465"/>
         <source>T:</source>
-        <translation>T:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="925"/>
@@ -914,7 +894,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2251"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2472"/>
         <source>Select background transparency</source>
-        <translation>Seleziona trasparenza sfondo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="928"/>
@@ -926,7 +906,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2254"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2475"/>
         <source>%</source>
-        <translation>%</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="938"/>
@@ -938,7 +918,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2264"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2485"/>
         <source>Use texture bitmap for background</source>
-        <translation>Usa texture bitmap come sfondo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="941"/>
@@ -950,7 +930,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2267"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2488"/>
         <source>Texture</source>
-        <translation>Texture</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="948"/>
@@ -962,7 +942,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2274"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2495"/>
         <source>Texture bitmap for background</source>
-        <translation>Texture bitmap per lo sfondo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="961"/>
@@ -974,17 +954,17 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadesetupdialog.ui" line="2287"/>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2508"/>
         <source>Browse texture bitmap for background</source>
-        <translation>Mostra texture bitmap per lo sfondo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="977"/>
         <source>Control display of preview image</source>
-        <translation>Controlla display di anteprima immagine</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="980"/>
         <source>Preview image</source>
-        <translation>Anteprima immagine</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1198"/>
@@ -999,22 +979,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1419"/>
         <source>Control display of cabinet image</source>
-        <translation>Controlla display dell&apos;immagine cabinet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1422"/>
         <source>Cabinet image</source>
-        <translation>Immagine cabinet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1640"/>
         <source>Control display of controller image</source>
-        <translation>Controlla display dell&apos;immagine controller</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1643"/>
         <source>Controller image</source>
-        <translation>Immagine controller</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1861"/>
@@ -1024,102 +1004,102 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="1864"/>
         <source>Marquee image</source>
-        <translation type="unfinished">Immagine marchio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2082"/>
         <source>Control display of title image</source>
-        <translation>Controlla display dell&apos;immagine titolo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2085"/>
         <source>Title image</source>
-        <translation>Immagine titolo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2303"/>
         <source>Control display of MAWS lookup</source>
-        <translation>Controlla display delle ricerche MAWS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2306"/>
         <source>MAWS lookup</source>
-        <translation>Ricerce MAWS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2530"/>
         <source>Scene rotation</source>
-        <translation>Rotazione scena</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2537"/>
         <source>Scene rotation angle in degrees</source>
-        <translation>Angolo di rotazione della scena in gradi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message utf8="true">
         <location filename="../../arcade/arcadesetupdialog.ui" line="2540"/>
         <source>°</source>
-        <translation>°</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2584"/>
         <source>Apply settings</source>
-        <translation>Applica impostazioni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2587"/>
         <source>&amp;Apply</source>
-        <translation>&amp;Applica</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2601"/>
         <source>Restore currently applied settings</source>
-        <translation>Ripristina impostazioni correnti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2604"/>
         <source>&amp;Restore</source>
-        <translation>&amp;Ripristina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2618"/>
         <source>Reset to default settings (click &lt;i&gt;Restore&lt;/i&gt; to restore currently applied settings!)</source>
-        <translation>Ripristina le impostazioni di default (clicca &lt;i&gt;Ripristina&lt;/i&gt; per ripristinare le impostazioni correnti!)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2621"/>
         <source>&amp;Default</source>
-        <translation>&amp;Default</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2645"/>
         <source>Close and apply settings</source>
-        <translation>Chiudi e applica le impostazioni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2648"/>
         <source>&amp;Ok</source>
-        <translation>&amp;OK</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2655"/>
         <source>Close and discard changes</source>
-        <translation>Chiudi e annulla modifiche</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.ui" line="2658"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Cancella</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.cpp" line="25"/>
         <source>Machine list</source>
-        <translation>Lista Macchine</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadesetupdialog.cpp" line="26"/>
         <source>Control display of machine list</source>
-        <translation>Controlla display della lista macchine</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1127,57 +1107,57 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="56"/>
         <source>QMC2 - ArcadeView</source>
-        <translation>QMC2 - VistaArcade</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="91"/>
         <source>ArcadeView: Cleaning up</source>
-        <translation>VistaArcade: Pulizia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="123"/>
         <source>ArcadeView: Switching to windowed mode</source>
-        <translation>VistaArcade: Passaggio alla modalità finestra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="130"/>
         <source>ArcadeView: Switching to full screen mode</source>
-        <translation>VistaArcade: Passaggio alla modalità schermo intero</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="133"/>
         <source>ArcadeView: Resolution switching is not yet supported</source>
-        <translation>VistaArcade: Il cambio di risoluzione non è ancora supportato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="149"/>
         <source>ArcadeView: Setting window size to %1x%2</source>
-        <translation>VistaArcade: Ridimensionamento finestra a %1x%2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="159"/>
         <source>ArcadeView: Setting window position to %1, %2</source>
-        <translation>VistaArcade: Imposto posizione finestra a %1, %2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="173"/>
         <source>ArcadeView: This system does not appear to support OpenGL -- reverting to non-OpenGL / software renderer</source>
-        <translation>VistaArcade: Questo sistema non sembra supportare OpenGL -- torno al rendering non-OpenGL / software</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="178"/>
         <source>ArcadeView: Using OpenGL renderer</source>
-        <translation>VistaArcade: Usando rendering OpenGL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="182"/>
         <source>ArcadeView: This system does not appear to support vertical syncing -- disabling SyncToScreen</source>
-        <translation>VistaArcade: Questo sistema non sembra supportare la sincronizzazione verticale -- disabilito SincronizzaAlloSchermo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="185"/>
         <source>ArcadeView: OpenGL: SyncToScreen: %1</source>
-        <translation>VistaArcade: OpenGL: SyncToScreen: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="185"/>
@@ -1193,7 +1173,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadeview.cpp" line="213"/>
         <location filename="../../arcade/arcadeview.cpp" line="215"/>
         <source>on</source>
-        <translation>acceso</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="185"/>
@@ -1209,32 +1189,32 @@ p, li { white-space: pre-wrap; }
         <location filename="../../arcade/arcadeview.cpp" line="213"/>
         <location filename="../../arcade/arcadeview.cpp" line="215"/>
         <source>off</source>
-        <translation>spento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="187"/>
         <source>ArcadeView: OpenGL: DoubleBuffer: %1</source>
-        <translation>VistaArcade: OpenGL: DoppioBuffer: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="189"/>
         <source>ArcadeView: OpenGL: DepthBuffer: %1</source>
-        <translation>VistaArcade: OpenGL: Buffer profondità: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="191"/>
         <source>ArcadeView: OpenGL: RGBA: %1</source>
-        <translation>VistaArcade: OpenGL: RGBA: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="193"/>
         <source>ArcadeView: OpenGL: AlphaChannel: %1</source>
-        <translation>VistaArcade: OpenGL: CanaleAlpha: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="195"/>
         <source>ArcadeView: OpenGL: AccumulatorBuffer: %1</source>
-        <translation>VistaArcade: OpenGL: BufferAccumulatore: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="197"/>
@@ -1249,7 +1229,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="201"/>
         <source>ArcadeView: OpenGL: DirectRendering: %1</source>
-        <translation>ArcadeView: OpenGL: DirectRendering: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="204"/>
@@ -1264,139 +1244,139 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="210"/>
         <source>ArcadeView: This system does not appear to support OpenGL multi sampling -- disabling MultiSample</source>
-        <translation>VistaArcade: Questo sistema non sembra supportare OpenGL multi sampling -- disabilito MultiCampionamento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="213"/>
         <source>ArcadeView: OpenGL: MultiSample: %1</source>
-        <translation>VistaArcade: OpenGL: MultiSample: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="215"/>
         <source>ArcadeView: OpenGL: AntiAliasing: %1</source>
-        <translation>VistaArcade: OpenGL: AntiAliasing: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="225"/>
         <source>ArcadeView: Using software renderer</source>
-        <translation>VistaArcade: Uso rendering software</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="230"/>
         <source>ArcadeView: X11: Screen number: %1</source>
-        <translation>VistaArcade: X11: NUmero schermo: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="231"/>
         <source>ArcadeView: X11: Color depth: %1</source>
-        <translation>VistaArcade: X11: Profondità colore: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="232"/>
         <source>ArcadeView: X11: DPI-X: %1</source>
-        <translation>VistaArcade: X11: DPI-X: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="233"/>
         <source>ArcadeView: X11: DPI-Y: %1</source>
-        <translation>VistaArcade: X11: DPI-Y: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="234"/>
         <source>ArcadeView: X11: Compositing manager: %1</source>
-        <translation>VistaArcade: X11: Manager compositing: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="234"/>
         <source>running</source>
-        <translation>in esecuzione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="234"/>
         <source>not running</source>
-        <translation>fermato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="238"/>
         <source>ArcadeView: Screen geometry: %1x%2</source>
-        <translation>VistaArcade: geometria schermo: %1x%2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="239"/>
         <source>ArcadeView: Virtual resolution: %1x%2</source>
-        <translation>VistaArcade: risoluzione virtuale: %1x%2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="240"/>
         <source>ArcadeView: Selected aspect ratio: %1:%2</source>
-        <translation>VistaArcade: Rapporto d&apos;aspetto selezionato: %1:%2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="241"/>
         <source>ArcadeView: Scene rotation angle: %1 degrees</source>
-        <translation>VistaArcade: Angolo di rotazione della scena: %1 gradi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="244"/>
         <source>ArcadeView: Virtual resolution doesn&apos;t fit aspect ratio -- scene coordinates may be stretched or compressed</source>
-        <translation>VistaArcade: La risoluzione virtuale non è compatibile col rapporto d&apos;aspetto -- le coordinate della scena potrebbero essere allungate o compresse</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="245"/>
         <source>ArcadeView: Aspect ratio will be maintained</source>
-        <translation>VistaArcade: Il rapporto d&apos;aspetto verrà mantenuto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="245"/>
         <source>ArcadeView: Aspect ratio will not be maintained</source>
-        <translation>VistaArcade: Il rapporto d&apos;aspetto non verrà mantenuto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="246"/>
         <source>ArcadeView: FPS counter display %1</source>
-        <translation>Vista Arcade: Contatore FPS mostra %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="246"/>
         <location filename="../../arcade/arcadeview.cpp" line="249"/>
         <source>activated</source>
-        <translation>attivato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="246"/>
         <location filename="../../arcade/arcadeview.cpp" line="249"/>
         <source>deactivated</source>
-        <translation>disattivato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="249"/>
         <source>ArcadeView: Primitive antialiasing %1</source>
-        <translation>VistaArcade:Primitive antialiasing %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="253"/>
         <source>ArcadeView: Centering window on screen</source>
-        <translation>VistaArcade: Centro la finestra sullo schermo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="257"/>
         <source>ArcadeView: Restoring saved window position</source>
-        <translation>VistaArcade: Ripristinando la posione della finestra salvata</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="284"/>
         <source>ArcadeView: Rendering screen shot</source>
-        <translation>VistaArcade: Rendering screen shot</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="293"/>
         <source>Saving screen shot</source>
-        <translation>Salvataggio screen shot</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../arcade/arcadeview.cpp" line="303"/>
         <source>ArcadeView: Adjusting window size to %1x%2 to maintain the aspect ratio</source>
-        <translation>VistaArcade: Modifico grandezza finestra a %1x%2 per mantenere il rapporto d&apos;aspetto</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1404,71 +1384,71 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../audioeffects.ui" line="14"/>
         <source>Audio effects</source>
-        <translation>Effetti audio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="36"/>
         <source>Close audio effects dialog</source>
-        <translation>Chiudi finestra effetti audio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="39"/>
         <source>Close</source>
-        <translation>Chiudi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="59"/>
         <location filename="../../audioeffects.ui" line="62"/>
         <source>List of available audio effects</source>
-        <translation>Lista degli effetti audio disponibili</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="81"/>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="86"/>
         <source>Description</source>
-        <translation>Descrizione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="91"/>
         <source>Enable</source>
-        <translation>Abilita</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../audioeffects.ui" line="96"/>
         <source>Setup</source>
-        <translation>Impostazioni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="35"/>
         <location filename="../../audioeffects.cpp" line="194"/>
         <location filename="../../audioeffects.cpp" line="199"/>
         <source>Enable effect &apos;%1&apos;</source>
-        <translation>Abilita effetto &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="52"/>
         <source>Setup effect &apos;%1&apos;</source>
-        <translation>Impostazioni effetto &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="186"/>
         <location filename="../../audioeffects.cpp" line="207"/>
         <source>Disable effect &apos;%1&apos;</source>
-        <translation>Disabilita effetto &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="195"/>
         <source>WARNING: audio player: can&apos;t insert effect &apos;%1&apos;</source>
-        <translation>ATTENZIONE: player audio: impossibile inserire effetto &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../audioeffects.cpp" line="208"/>
         <source>WARNING: audio player: can&apos;t remove effect &apos;%1&apos;</source>
-        <translation>ATTENZIONE: player audio: impossibile rimuovere effetto &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1476,35 +1456,35 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../cabinet.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation>Copia sugli appunti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../cabinet.cpp" line="54"/>
         <source>Refresh</source>
-        <translation>Aggiornamento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../cabinet.cpp" line="61"/>
         <location filename="../../cabinet.cpp" line="62"/>
         <source>Game cabinet image</source>
-        <translation>Immagine cabinet gioco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../cabinet.cpp" line="64"/>
         <location filename="../../cabinet.cpp" line="65"/>
         <source>Machine cabinet image</source>
-        <translation>Immagine cabinet macchina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../cabinet.cpp" line="73"/>
         <location filename="../../cabinet.cpp" line="77"/>
         <source>FATAL: can&apos;t open cabinet file, please check access permissions for %1</source>
-        <translation>FATALE: impossibile aprire file cabinet, per favore controlla i permessi d&apos;accesso per %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../cabinet.cpp" line="105"/>
         <source>Waiting for data...</source>
-        <translation>Aspettando i dati...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1512,35 +1492,35 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../controller.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation>Copia sugli appunti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="54"/>
         <source>Refresh</source>
-        <translation>Aggiornamento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="61"/>
         <location filename="../../controller.cpp" line="62"/>
         <source>Game controller image</source>
-        <translation>Immagine controller gioco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="64"/>
         <location filename="../../controller.cpp" line="65"/>
         <source>Machine controller image</source>
-        <translation>Immagine controller macchina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="73"/>
         <location filename="../../controller.cpp" line="77"/>
         <source>FATAL: can&apos;t open controller file, please check access permissions for %1</source>
-        <translation>FATALE: impossibile aprire file controller, per favore controlla i permessi d&apos;accesso per %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../controller.cpp" line="105"/>
         <source>Waiting for data...</source>
-        <translation>Aspettando i dati...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1548,7 +1528,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../customidsetup.ui" line="14"/>
         <source>Setup custom IDs</source>
-        <translation>Imposta ID personalizzati</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="28"/>
@@ -1561,69 +1541,69 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../customidsetup.ui" line="154"/>
-        <source>Add a new ID</source>
-        <translation>Aggiungi un nuovo ID</translation>
-    </message>
-    <message>
-        <location filename="../../customidsetup.ui" line="231"/>
-        <source>Cancel ID customization and close dialog</source>
-        <translation>Annulla personalizzazione ID e chiudi</translation>
-    </message>
-    <message>
-        <location filename="../../customidsetup.ui" line="234"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Cancella</translation>
-    </message>
-    <message>
-        <location filename="../../customidsetup.ui" line="251"/>
-        <source>Accept customized IDs and close dialog</source>
-        <translation>Accetta gli ID personalizzati e chiudi</translation>
-    </message>
-    <message>
-        <location filename="../../customidsetup.ui" line="254"/>
-        <source>&amp;Ok</source>
-        <translation>&amp;Ok</translation>
-    </message>
-    <message>
         <location filename="../../customidsetup.ui" line="86"/>
         <source>Copy IDs from another foreign emulator (if any)</source>
-        <translation>Copia gli ID da un altro emulatore (se presente)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="89"/>
         <source>Copy IDs</source>
-        <translation>Copia ID</translation>
-    </message>
-    <message>
-        <location filename="../../customidsetup.ui" line="134"/>
-        <source>Remove the currently selected ID</source>
-        <translation>Elimina l&apos;ID selezionato</translation>
-    </message>
-    <message>
-        <location filename="../../customidsetup.ui" line="168"/>
-        <source>Edit custom IDs for this emulator (double-click an item to edit)</source>
-        <translation>Personalizza ID per questo emulatore (doppio click su un oggetto per modificarlo)</translation>
-    </message>
-    <message>
-        <location filename="../../customidsetup.ui" line="199"/>
-        <source>ID</source>
-        <translation>ID</translation>
-    </message>
-    <message>
-        <location filename="../../customidsetup.ui" line="204"/>
-        <source>Description</source>
-        <translation>Descrizione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../customidsetup.ui" line="108"/>
         <source>Enable / disable sorting</source>
-        <translation>Abilita / disailita ordinamento</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../customidsetup.ui" line="134"/>
+        <source>Remove the currently selected ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../customidsetup.ui" line="154"/>
+        <source>Add a new ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../customidsetup.ui" line="168"/>
+        <source>Edit custom IDs for this emulator (double-click an item to edit)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../customidsetup.ui" line="199"/>
+        <source>ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../customidsetup.ui" line="204"/>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../customidsetup.ui" line="231"/>
+        <source>Cancel ID customization and close dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../customidsetup.ui" line="234"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../customidsetup.ui" line="251"/>
+        <source>Accept customized IDs and close dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../customidsetup.ui" line="254"/>
+        <source>&amp;Ok</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../customidsetup.cpp" line="25"/>
         <source>Setup custom IDs for &apos;%1&apos;</source>
-        <translation>Imposta ID personalizzati per &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1631,67 +1611,67 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="14"/>
         <source>Demo mode</source>
-        <translation>Modalità demo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="26"/>
         <source>ROM state filter</source>
-        <translation>Filtro stato ROM</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="44"/>
         <source>Select ROM state C (correct)?</source>
-        <translation>Seleziona ROM stato C (corrette)?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="67"/>
         <source>Select ROM state M (mostly correct)?</source>
-        <translation>Seleziona ROM stato M (parzialmente corrette)?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="90"/>
         <source>Select ROM state I (incorrect)?</source>
-        <translation>Sleziona ROM stato I (Incorrette)?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="110"/>
         <source>Select ROM state N (not found)?</source>
-        <translation>Seleziona ROM stato N (non trovate)?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="130"/>
         <source>Select ROM state U (unknown)?</source>
-        <translation>Seleziona ROM stato U (sconosciuto)?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="152"/>
         <source>Seconds to run</source>
-        <translation>Secondi da eseguire</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="159"/>
         <source>Number of seconds to run an emulator in demo mode</source>
-        <translation>Numero di secondi di esecuzione di un emulatore un modalità demo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="174"/>
         <source>Start emulators in full screen mode (otherwise use windowed mode)</source>
-        <translation>Avvia emulatore in modalità schermo intero (altrimenti usa la modalità finestra)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="177"/>
         <source>Full screen</source>
-        <translation>Schermo intero</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="190"/>
         <source>Maximize emulators when in windowed mode</source>
-        <translation>Massimizza emulatore quando in modalità finestra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="193"/>
         <source>Maximized</source>
-        <translation>Massimizza</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="203"/>
@@ -1701,92 +1681,91 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../demomode.ui" line="206"/>
         <source>Embedded</source>
-        <translation>Integrato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="213"/>
         <source>Use only tagged games</source>
-        <translation>Usa solo giochi taggati</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="216"/>
         <source>Tagged</source>
-        <translation>Taggati</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="231"/>
         <source>Close this dialog (and stop running demo)</source>
-        <translation>Chiudi questa finestra ( e arresta il demo)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="234"/>
         <source>&amp;Close</source>
-        <translation>&amp;Chiudi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="260"/>
         <location filename="../../demomode.cpp" line="108"/>
         <source>Run demo now</source>
-        <translation>Avvia demo ora</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="263"/>
         <location filename="../../demomode.cpp" line="107"/>
         <source>Run &amp;demo</source>
-        <translation>Avvia &amp;demo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="289"/>
         <source>Pause (seconds)</source>
-        <translation>Pausa (secondi)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.ui" line="296"/>
         <source>Number of seconds to pause between emulator runs</source>
-        <translation>Numero di secondi di pausa fra le esecuzioni dell&apos;emulatore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="105"/>
         <source>demo mode stopped</source>
-        <translation>modalità demo arrestata</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="124"/>
         <source>please wait for reload to finish and try again</source>
-        <translation>per favore aspetta la fine del caricamento e riprova</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="128"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation>per favore aspetta la fine della validazione della ROM e riprova</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../../demomode.cpp" line="170"/>
         <source>demo mode started -- %n game(s) selected by filter</source>
-        <translation>
-            <numerusform>modalità demo avviata -- %n giochi selezionati dal filtro</numerusform>
+        <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="172"/>
         <source>demo mode cannot start -- no games selected by filter</source>
-        <translation>impossibile avviare modalità demo -- nessun gioco selezionato dal filtro</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="176"/>
         <source>Stop &amp;demo</source>
-        <translation>Ferma &amp;demo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="177"/>
         <source>Stop demo now</source>
-        <translation>Ferma la demo ora</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../demomode.cpp" line="240"/>
         <source>starting emulation in demo mode for &apos;%1&apos;</source>
-        <translation>avvio l&apos;emulazione in modalità demo per &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1794,321 +1773,321 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../detailsetup.ui" line="15"/>
         <source>Detail setup</source>
-        <translation>Impostazioni dettagli</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="30"/>
         <source>Available details</source>
-        <translation>Dettaggli disponibili</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="36"/>
         <source>List of available details</source>
-        <translation>Lista dei dettagli disponibili</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="51"/>
         <source>Configure current detail</source>
-        <translation>Configura dettaglio corrente</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="54"/>
         <source>Configure...</source>
-        <translation>Configura...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="68"/>
         <source>Activate selected details</source>
-        <translation>Attiva dettagli selezionati</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="85"/>
         <source>Active details</source>
-        <translation>Dettagli attivi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="91"/>
         <source>List of active details and their order</source>
-        <translation>Lista dei dettagli attivi e loro ordine</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="106"/>
         <source>Deactivate selected details</source>
-        <translation>Disattiva dettagli selezionati</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="120"/>
         <source>Move selected detail up</source>
-        <translation>Muovi il dettaglio selezionato su</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="137"/>
         <source>Move selected detail down</source>
-        <translation>Muovi il dettaglio selezionato giù</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="170"/>
         <source>Apply detail setup and close dialog</source>
-        <translation>Applica impostazioni dettagli ed esci</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="173"/>
         <source>&amp;Ok</source>
-        <translation>&amp;Ok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="184"/>
         <source>Apply detail setup</source>
-        <translation>Applica impostazioni dettagli</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="187"/>
         <source>&amp;Apply</source>
-        <translation>&amp;Applica</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="198"/>
         <source>Cancel detail setup and close dialog</source>
-        <translation>Annulla impostazioni dettagli e chiudi la finestra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.ui" line="201"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Cancella</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="22"/>
         <location filename="../../detailsetup.cpp" line="99"/>
         <source>Pre&amp;view</source>
-        <translation>Ante&amp;prima</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="23"/>
         <source>Game preview image</source>
-        <translation>Immagine anteprima gioco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="25"/>
         <location filename="../../detailsetup.cpp" line="102"/>
         <source>Fl&amp;yer</source>
-        <translation>Fl&amp;yer</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="26"/>
         <source>Game flyer image</source>
-        <translation>Immagine flyer gioco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="28"/>
         <source>Game &amp;info</source>
-        <translation>&amp;Informazioni gioco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="29"/>
         <source>Game information</source>
-        <translation>Informazioni gioco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="31"/>
         <location filename="../../detailsetup.cpp" line="108"/>
         <source>Em&amp;ulator info</source>
-        <translation>Informazioni em&amp;ulatore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="32"/>
         <location filename="../../detailsetup.cpp" line="109"/>
         <source>Emulator information</source>
-        <translation>Informazioni emulatore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="34"/>
         <location filename="../../detailsetup.cpp" line="111"/>
         <source>&amp;Configuration</source>
-        <translation>&amp;Configurazione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="35"/>
         <location filename="../../detailsetup.cpp" line="112"/>
         <source>Emulator configuration</source>
-        <translation>Configurazione emulatore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="37"/>
         <location filename="../../detailsetup.cpp" line="123"/>
         <source>Ca&amp;binet</source>
-        <translation>Ca&amp;binet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="38"/>
         <source>Arcade cabinet image</source>
-        <translation>Immagine cabinet arcade</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="40"/>
         <source>C&amp;ontroller</source>
-        <translation>C&amp;ontroller</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="41"/>
         <source>Control panel image</source>
-        <translation>Immagine pannello controllo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="43"/>
         <source>Mar&amp;quee</source>
-        <translation>Mar&amp;chio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="44"/>
         <source>Marquee image</source>
-        <translation>Immagine marchio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="46"/>
         <source>Titl&amp;e</source>
-        <translation>Titol&amp;o</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="47"/>
         <source>Title screen image</source>
-        <translation>Immagine schermo titolo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="49"/>
         <source>MA&amp;WS</source>
-        <translation>MA&amp;WS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="50"/>
         <source>MAWS page (web lookup)</source>
-        <translation>pagina MAWS (ricerca web)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="52"/>
         <location filename="../../detailsetup.cpp" line="120"/>
         <source>&amp;PCB</source>
-        <translation>&amp;PCB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="53"/>
         <location filename="../../detailsetup.cpp" line="121"/>
         <source>PCB image</source>
-        <translation>immagine PCB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="55"/>
         <location filename="../../detailsetup.cpp" line="126"/>
         <source>Softwar&amp;e list</source>
-        <translation>Lista softwar&amp;e</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="56"/>
         <location filename="../../detailsetup.cpp" line="127"/>
         <source>Software list</source>
-        <translation>Lista software</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="59"/>
         <location filename="../../detailsetup.cpp" line="130"/>
         <source>&amp;YouTube</source>
-        <translation>&amp;YouTube</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="60"/>
         <location filename="../../detailsetup.cpp" line="131"/>
         <source>YouTube videos</source>
-        <translation>Video YouTube</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="100"/>
         <source>Machine preview image</source>
-        <translation>Immagine anteprima macchina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="103"/>
         <source>Machine flyer image</source>
-        <translation>Immagine flyer macchina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="105"/>
         <source>Machine &amp;info</source>
-        <translation>&amp;Info macchina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="106"/>
         <source>Machine information</source>
-        <translation>Informazioni macchina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="114"/>
         <source>De&amp;vices</source>
-        <translation>Pe&amp;riferiche</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="115"/>
         <source>Device configuration</source>
-        <translation>Configura periferiche</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="117"/>
         <source>MESS &amp;Wiki</source>
-        <translation>MESS &amp;Wiki</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="118"/>
         <source>MESS wiki (web lookup)</source>
-        <translation>MESS wiki (ricerca web)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="124"/>
         <source>Machine cabinet image</source>
-        <translation>Immagine cabinet macchina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="369"/>
         <source>MAWS configuration (1/2)</source>
-        <translation>Configurazione MAWS (1/2)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="370"/>
         <source>MAWS URL pattern (use %1 as placeholder for game ID):</source>
-        <translation>URL pattern MAWS (usa %1 come segnaposto per gli ID giochi):</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="379"/>
         <location filename="../../detailsetup.cpp" line="383"/>
         <source>Yes</source>
-        <translation>Si</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="379"/>
         <source>No</source>
-        <translation>No</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="381"/>
         <source>MAWS configuration (2/2)</source>
-        <translation>Configurazione MAWS (2/2)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="381"/>
         <source>Enable MAWS quick download?</source>
-        <translation>Abilità download veloce MAWS?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="402"/>
         <source>Choose the YouTube cache directory</source>
-        <translation>Scegli directory cache di YouTube</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="412"/>
         <source>FATAL: can&apos;t create new YouTube cache directory, path = %1</source>
-        <translation>FATALE: impossibile creare una nuova directory cache di YouTube, percorso = %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../detailsetup.cpp" line="442"/>
         <source>INFO: the configuration tab can&apos;t be removed</source>
-        <translation>INFO: il tab configurazione non può essere rimosso</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2116,7 +2095,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../direditwidget.cpp" line="44"/>
         <source>Choose directory</source>
-        <translation>Scegli directory</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2128,7 +2107,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../docbrowser.cpp" line="93"/>
         <location filename="../../docbrowser.cpp" line="96"/>
         <source>MiniWebBrowser</source>
-        <translation>MiniWebBrowser</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2166,17 +2145,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../embedder.cpp" line="281"/>
         <source>emulator #%1 closed, window ID = 0x%2</source>
-        <translation>emulatore #%1 chiuso, ID finestra = 0x%2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="532"/>
         <source>window ID for emulator #%1 lost, looking for replacement</source>
-        <translation>ID finestra per emulatore #%1 perso, cerco un rimpiazzo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="557"/>
         <source>using replacement window ID %1 for emulator #%2</source>
-        <translation>uso ID finestra di rimpiazzo %1 per l&apos;emulatore #%2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../embedder.cpp" line="565"/>
@@ -2247,13 +2226,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="160"/>
         <source>All files (*)</source>
-        <translation>Tutti i file (*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="165"/>
         <location filename="../../emuopt.cpp" line="177"/>
         <source>Browse: </source>
-        <translation>Sfoglia:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2269,7 +2248,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../emuopt.cpp" line="1069"/>
         <location filename="../../emuopt.cpp" line="1071"/>
         <source>unknown</source>
-        <translation type="unfinished">sconosciuto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="400"/>
@@ -2294,12 +2273,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="415"/>
         <source>Value</source>
-        <translation type="unfinished">Valore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="816"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="819"/>
@@ -2354,7 +2333,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="865"/>
         <source>Default</source>
-        <translation type="unfinished">Predefinito</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="868"/>
@@ -2369,7 +2348,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="881"/>
         <source>Description</source>
-        <translation type="unfinished">Descrizione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="965"/>
@@ -2409,7 +2388,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1082"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished">per favore aspetta la fine del caricamento e riprova</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1091"/>
@@ -2419,17 +2398,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../emuopt.cpp" line="1123"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">FATALE: impossibile avviare eseguibile MAME in un tempo ragionevole, mi arrendo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1125"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">FATALE: impossibile avviare eseguibile MESS in un tempo ragionevole, mi arrendo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1181"/>
         <source>FATAL: can&apos;t create temporary file, please check emulator executable and permissions</source>
-        <translation type="unfinished">FATALE: impossibile creare file temporaneo, controlla eseguibile emulatore e permessi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1198"/>
@@ -2461,7 +2440,6 @@ p, li { white-space: pre-wrap; }
         <source>check results: %n difference(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -2489,7 +2467,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../emuopt.cpp" line="1420"/>
         <location filename="../../emuopt.cpp" line="1580"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Aspettando i dati...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../emuopt.cpp" line="1436"/>
@@ -2600,7 +2578,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../fileeditwidget.cpp" line="50"/>
         <source>Choose file</source>
-        <translation>Scegli file</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2608,40 +2586,40 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../filesystemmodel.h" line="274"/>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="274"/>
         <source>Size</source>
-        <translation>Dimensione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="274"/>
         <source>Date modified</source>
-        <translation>Data modifica</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="464"/>
         <location filename="../../filesystemmodel.h" line="478"/>
         <source> KB</source>
-        <translation> KB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="467"/>
         <location filename="../../filesystemmodel.h" line="481"/>
         <source> MB</source>
-        <translation> MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="470"/>
         <location filename="../../filesystemmodel.h" line="484"/>
         <source> GB</source>
-        <translation> GB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../filesystemmodel.h" line="473"/>
         <source> TB</source>
-        <translation> TB</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2649,35 +2627,35 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../flyer.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation>Copia sugli appunti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../flyer.cpp" line="54"/>
         <source>Refresh</source>
-        <translation>Aggiornamento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../flyer.cpp" line="61"/>
         <location filename="../../flyer.cpp" line="62"/>
         <source>Game flyer image</source>
-        <translation>Immagine flyer gioco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../flyer.cpp" line="64"/>
         <location filename="../../flyer.cpp" line="65"/>
         <source>Machine flyer image</source>
-        <translation>Immagine flyer macchina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../flyer.cpp" line="73"/>
         <location filename="../../flyer.cpp" line="77"/>
         <source>FATAL: can&apos;t open flyer file, please check access permissions for %1</source>
-        <translation>FATALE: impossibile aprire immagine flyer, per favore controlla i permessi d&apos;accesso per %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../flyer.cpp" line="105"/>
         <source>Waiting for data...</source>
-        <translation>Aspettando i dati...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2696,245 +2674,245 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="624"/>
         <location filename="../../gamelist.cpp" line="627"/>
         <source>unknown</source>
-        <translation>sconosciuto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>good</source>
-        <translation>buono</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>bad</source>
-        <translation>cattivo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>preliminary</source>
-        <translation>preliminare</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>supported</source>
-        <translation>supportato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="151"/>
         <source>unsupported</source>
-        <translation>non supportato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>imperfect</source>
-        <translation>imperfetto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>yes</source>
-        <translation>si</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>no</source>
-        <translation>no</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>baddump</source>
-        <translation>dump cattivo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="152"/>
         <source>nodump</source>
-        <translation>no dump</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="153"/>
         <source>vertical</source>
-        <translation>verticale</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="153"/>
         <source>horizontal</source>
-        <translation>orizzontale</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="153"/>
         <source>raster</source>
-        <translation>raster</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="153"/>
         <location filename="../../gamelist.cpp" line="1526"/>
         <location filename="../../gamelist.cpp" line="1795"/>
         <source>Unknown</source>
-        <translation>Sconosciuto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>On</source>
-        <translation>Acceso</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>Off</source>
-        <translation>Spento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>audio</source>
-        <translation>audio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>unused</source>
-        <translation>non utilizzato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>Unused</source>
-        <translation>Non utilizzato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="154"/>
         <source>cpu</source>
-        <translation>cpu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="155"/>
         <source>vector</source>
-        <translation>vettore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="155"/>
         <source>lcd</source>
-        <translation>lcd</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="155"/>
         <source>joy4way</source>
-        <translation>joy4vie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="155"/>
         <source>joy8way</source>
-        <translation>joy8vie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="155"/>
         <source>trackball</source>
-        <translation>trackball</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="156"/>
         <source>joy2way</source>
-        <translation>joy2vie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="156"/>
         <source>doublejoy8way</source>
-        <translation>doppiojoy8vie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="156"/>
         <source>dial</source>
-        <translation>chiama</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="156"/>
         <source>paddle</source>
-        <translation>paddle</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="156"/>
         <source>pedal</source>
-        <translation>pedale</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="157"/>
         <source>stick</source>
-        <translation>stick</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="157"/>
         <source>vjoy2way</source>
-        <translation>vjoy2vie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="157"/>
         <source>lightgun</source>
-        <translation>pistolaottica</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="157"/>
         <source>doublejoy4way</source>
-        <translation>doppiojoy4vie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="157"/>
         <source>vdoublejoy2way</source>
-        <translation>vdoppiojoy2vie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>doublejoy2way</source>
-        <translation>doppiojoy2vie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>printer</source>
-        <translation>stampante</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>cdrom</source>
-        <translation>cdrom</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>cartridge</source>
-        <translation>cartuccia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="158"/>
         <source>cassette</source>
-        <translation>cassetta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="159"/>
         <source>quickload</source>
-        <translation>caricamento veloce</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="159"/>
         <source>floppydisk</source>
-        <translation>floppydisk</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="159"/>
         <source>serial</source>
-        <translation>seriale</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="159"/>
         <source>snapshot</source>
-        <translation>snapshot</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="159"/>
         <source>original</source>
-        <translation>originale</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="160"/>
         <source>compatible</source>
-        <translation>compatibile</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="166"/>
         <location filename="../../gamelist.cpp" line="170"/>
         <source>FATAL: can&apos;t open icon file, please check access permissions for %1</source>
-        <translation>FATALE: impossibile aprire file icona, per favore controlla permessi d&apos;accesso per %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="408"/>
@@ -2946,279 +2924,278 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2161"/>
         <location filename="../../gamelist.cpp" line="3011"/>
         <source>Waiting for data...</source>
-        <translation>Aspettando i dati...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="442"/>
         <source>determining emulator version and supported sets</source>
-        <translation>determinando versione emulatore e set supportati</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="492"/>
         <location filename="../../gamelist.cpp" line="589"/>
         <source>FATAL: can&apos;t start MAME executable within a reasonable time frame, giving up</source>
-        <translation>FATALE: impossibile avviare eseguibile MAME in un tempo ragionevole, mi arrendo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="494"/>
         <location filename="../../gamelist.cpp" line="591"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
-        <translation>FATALE: impossibile avviare eseguibile MESS in un tempo ragionevole, mi arrendo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="531"/>
         <source>FATAL: selected executable file is not MAME</source>
-        <translation>FATALE: il file eseguibile selezionato non è MAME</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="546"/>
         <source>FATAL: selected executable file is not MESS</source>
-        <translation>FATALE: il file eseguibile selezionato non è MESS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="556"/>
         <location filename="../../gamelist.cpp" line="620"/>
         <source>FATAL: can&apos;t create temporary file, please check emulator executable and permissions</source>
-        <translation>FATALE: impossibile creare file temporaneo, controlla eseguibile emulatore e permessi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="618"/>
         <source>done (determining emulator version and supported sets, elapsed time = %1)</source>
-        <translation>terminato (determinazione versione emulatore e set supportati, tempo impiegato = %1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="625"/>
         <source>emulator info: type = %1, version = %2</source>
-        <translation>info emulatore: tipo = %1, versione = %2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="628"/>
         <source>FATAL: couldn&apos;t determine emulator type and version</source>
-        <translation>FATALE: impossibile determinare tipo e versione emulatore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="631"/>
         <source>FATAL: couldn&apos;t determine emulator version, type identification string is &apos;%1&apos; -- please inform developers if you&apos;re sure that this is a valid MAME binary</source>
-        <translation>FATALE: impossibile determinare versione e tipo emulatore, la stringa identificativa è &apos;%1&apos; -- per favore informa gli sviluppatori se sei sicuro che sia un binario valido di MAME</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="633"/>
         <source>FATAL: couldn&apos;t determine emulator version, type identification string is &apos;%1&apos; -- please inform developers if you&apos;re sure that this is a valid MESS binary</source>
-        <translation>FATALE: impossibile determinare versione e tipo emulatore, la stringa identificativa è &apos;%1&apos; -- per favore informa gli sviluppatori se sei sicuro che sia un binario valido di MESS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="643"/>
         <source>%n supported set(s)</source>
-        <translation>
-            <numerusform>%n set supportati</numerusform>
+        <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="645"/>
         <source>FATAL: couldn&apos;t determine the number of supported sets</source>
-        <translation>FATALE: impossibile determinare il numero di set supportati</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="685"/>
         <source>loading XML game list data from cache</source>
-        <translation>caricamento lista giochi XML dalla cache</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="687"/>
         <source>loading XML machine list data from cache</source>
-        <translation>caricamento lista macchine XML dalla cache</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="690"/>
         <source>XML cache - %p%</source>
-        <translation>Cache XML - %p%</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="730"/>
         <source>done (loading XML game list data from cache, elapsed time = %1)</source>
-        <translation>completato (caricamento lista giochi XML dalla cache, tempo impiegato = %1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="732"/>
         <source>WARNING: XML game list cache is incomplete, invalidating XML game list cache</source>
-        <translation>ATTENZIONE: la cache lista giochi XML è incompleta, invalido cache lista giochi XML</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="734"/>
         <source>done (loading XML machine list data from cache, elapsed time = %1)</source>
-        <translation>completato (caricamento lista macchine XML dalla cache, tempo impiegato = %1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="736"/>
         <source>WARNING: XML machine list cache is incomplete, invalidating XML machine list cache</source>
-        <translation>ATTENZIONE: la cache lista macchine XML è incompleta, invalido cache lista macchine XML</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="802"/>
         <source>loading XML game list data and (re)creating cache</source>
-        <translation>caricamento lista giochi XML e (ri)creazione cache</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="804"/>
         <source>loading XML machine list data and (re)creating cache</source>
-        <translation>caricamento lista macchine XML e (ri)creazione cache</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="807"/>
         <source>XML data - %p%</source>
-        <translation>dati XML - %p%</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="824"/>
         <source>WARNING: can&apos;t open XML game list cache for writing, please check permissions</source>
-        <translation>ATTENZIONE: impossibile aprire in scrittura cache lista giochi XML, per favore controlla i permessi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="826"/>
         <source>WARNING: can&apos;t open XML machine list cache for writing, please check permissions</source>
-        <translation>ATTENZIONE: impossibile aprire in scrittura cache lista macchine XML, per favore controlla i permessi</translation>
-    </message>
-    <message>
-        <location filename="../../gamelist.cpp" line="887"/>
-        <source>verifying ROM status for &apos;%1&apos;</source>
-        <translation>verifica stato ROM per &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="878"/>
         <location filename="../../gamelist.cpp" line="922"/>
         <source>ERROR: can&apos;t open ROM state cache for writing, path = %1</source>
-        <translation>ERRORE: impossibile aprire cache stato ROM in scrittura, percorso = %1</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../gamelist.cpp" line="887"/>
+        <source>verifying ROM status for &apos;%1&apos;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="932"/>
         <source>verifying ROM status for all games</source>
-        <translation>verifica stato ROM per tutti i giochi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="934"/>
         <source>verifying ROM status for all machines</source>
-        <translation>verifica stato ROM per tutte le macchine</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="939"/>
         <source>ROM check - %p%</source>
-        <translation>controllo ROM - %p%</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1020"/>
         <source>retrieving game information for &apos;%1&apos;</source>
-        <translation>recupero informazioni gioco per &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1022"/>
         <source>retrieving machine information for &apos;%1&apos;</source>
-        <translation>recupero informazioni macchina per &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1037"/>
         <source>WARNING: couldn&apos;t find game information for &apos;%1&apos;</source>
-        <translation>ATTENZIONE: impossibile trovare informazioni gioco per &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1039"/>
         <source>WARNING: couldn&apos;t find machine information for &apos;%1&apos;</source>
-        <translation>ATTENZIONE: impossibile trovare informazioni macchina per &apos;%1&apos;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Source file</source>
-        <translation>File origina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Is BIOS?</source>
-        <translation>È un BIOS?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Is device?</source>
-        <translation>È un device?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Runnable</source>
-        <translation>Eseguibile</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Clone of</source>
-        <translation>Clone di</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>ROM of</source>
-        <translation>ROM di</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1054"/>
         <source>Sample of</source>
-        <translation>Esempio di</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1067"/>
         <source>Year</source>
-        <translation>Anno</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1074"/>
         <source>Manufacturer</source>
-        <translation>Produttore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1079"/>
         <location filename="../../gamelist.cpp" line="1507"/>
         <location filename="../../gamelist.cpp" line="1776"/>
         <source>ROM</source>
-        <translation>ROM</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <source>BIOS</source>
-        <translation>BIOS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <source>Size</source>
-        <translation>Dimensione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <source>CRC</source>
-        <translation>CRC</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <location filename="../../gamelist.cpp" line="1217"/>
         <source>SHA1</source>
-        <translation>SHA1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <location filename="../../gamelist.cpp" line="1217"/>
         <source>Merge</source>
-        <translation>Merge</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <location filename="../../gamelist.cpp" line="1217"/>
         <source>Region</source>
-        <translation>Regione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <source>Offset</source>
-        <translation>Offset</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
@@ -3226,13 +3203,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1217"/>
         <location filename="../../gamelist.cpp" line="1237"/>
         <source>Status</source>
-        <translation>Stato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1084"/>
         <location filename="../../gamelist.cpp" line="1217"/>
         <source>Optional</source>
-        <translation>Opzionale</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1089"/>
@@ -3242,30 +3219,30 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1094"/>
         <source>Chip</source>
-        <translation>Chip</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1099"/>
         <location filename="../../gamelist.cpp" line="1169"/>
         <location filename="../../gamelist.cpp" line="1266"/>
         <source>Tag</source>
-        <translation>Tag</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1099"/>
         <location filename="../../gamelist.cpp" line="1108"/>
         <source>Type</source>
-        <translation>Tipo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1099"/>
         <source>Clock</source>
-        <translation>Clock</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1104"/>
         <source>Display</source>
-        <translation>DIsplay</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1108"/>
@@ -3275,27 +3252,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1108"/>
         <source>Flip-X</source>
-        <translation>Inverti-X</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1108"/>
         <source>Width</source>
-        <translation>Larghezza</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1108"/>
         <source>Height</source>
-        <translation>Altezza</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1108"/>
         <source>Refresh</source>
-        <translation>Aggiornamento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1108"/>
         <source>Pixel clock</source>
-        <translation>Clock pixel</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1108"/>
@@ -3331,62 +3308,62 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1113"/>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Sound</source>
-        <translation>Suono</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1117"/>
         <source>Channels</source>
-        <translation>Canali</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1122"/>
         <source>Input</source>
-        <translation>Input</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Service</source>
-        <translation>Servizio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Tilt</source>
-        <translation>Tilt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Players</source>
-        <translation>Giocatori</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Buttons</source>
-        <translation>Tasti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1126"/>
         <source>Coins</source>
-        <translation>Coins</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1133"/>
         <source>Control</source>
-        <translation>Controllo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1138"/>
         <source>Minimum</source>
-        <translation>Minimo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1138"/>
         <source>Maximum</source>
-        <translation>Massimo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1138"/>
         <source>Sensitivity</source>
-        <translation>Sensibilità</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1138"/>
@@ -3416,12 +3393,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1254"/>
         <location filename="../../gamelist.cpp" line="1304"/>
         <source>Default</source>
-        <translation>Predefinito</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1164"/>
         <source>Configuration</source>
-        <translation>Configurazione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1169"/>
@@ -3431,52 +3408,52 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1176"/>
         <source>Setting</source>
-        <translation>Impostazioni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1181"/>
         <source>Value</source>
-        <translation>Valore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1188"/>
         <source>Driver</source>
-        <translation>Driver</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Emulation</source>
-        <translation>Emulazione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Color</source>
-        <translation>Colore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Graphic</source>
-        <translation>Grafica</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Cocktail</source>
-        <translation>Cocktail</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Protection</source>
-        <translation>Protezione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Save state</source>
-        <translation>Stato salvataggio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1192"/>
         <source>Palette size</source>
-        <translation>Dimensione paletta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1197"/>
@@ -3486,27 +3463,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1202"/>
         <source>Description</source>
-        <translation>Descrizione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1207"/>
         <source>Sample</source>
-        <translation>Esempio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1212"/>
         <source>Disk</source>
-        <translation>Disco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1217"/>
         <source>MD5</source>
-        <translation>MD5</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1217"/>
         <source>Index</source>
-        <translation>Indice</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1222"/>
@@ -3516,32 +3493,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1232"/>
         <source>Software list</source>
-        <translation>Lista software</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1242"/>
         <source>Category</source>
-        <translation>Categoria</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1249"/>
         <source>Item</source>
-        <translation>Oggetto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1261"/>
         <source>Device</source>
-        <translation>Device</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1266"/>
         <source>Mandatory</source>
-        <translation>Obbligatorio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1266"/>
         <source>Interface</source>
-        <translation>Interfaccia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1273"/>
@@ -3556,111 +3533,110 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1285"/>
         <source>Extension</source>
-        <translation>Estensione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1292"/>
         <source>RAM options</source>
-        <translation>Opzioni RAM</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1296"/>
         <source>Option</source>
-        <translation>Opzione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1341"/>
         <source>WARNING: can&apos;t open ROM state cache, please check ROMs</source>
-        <translation>ATTENZIONE: impossibile aprire cache stato ROM, per favore controlla la ROM</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1344"/>
         <source>loading ROM state from cache</source>
-        <translation>caricamento stato ROM dalla cache</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1346"/>
         <source>ROM states - %p%</source>
-        <translation>Stati ROM - %p%</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1368"/>
         <source>done (loading ROM state from cache, elapsed time = %1)</source>
-        <translation>completato (caricamento stato ROM dalla cache, tempo impiegato = %1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="1369"/>
         <source>%n cached ROM state(s) loaded</source>
-        <translation>
-            <numerusform>%n stato(i) ROM caricati</numerusform>
+        <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1378"/>
         <source>processing game list</source>
-        <translation>processando lista giochi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1380"/>
         <source>processing machine list</source>
-        <translation>processando lista macchine</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1415"/>
         <source>WARNING: couldn&apos;t determine emulator version of game list cache</source>
-        <translation>ATTENZIONE: impossibile determinare versione emulatore dalla cache lista gioco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1417"/>
         <source>WARNING: couldn&apos;t determine emulator version of machine list cache</source>
-        <translation>ATTENZIONE: impossibile determinare versione emulatore dalla cache lista macchina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1422"/>
         <location filename="../../gamelist.cpp" line="1431"/>
         <source>INFORMATION: the game list cache will now be updated due to a new format</source>
-        <translation>INFORMAZIONE: la cache lista gioco verrà aggiornata ad un nuovo formato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1424"/>
         <location filename="../../gamelist.cpp" line="1433"/>
         <source>INFORMATION: the machine list cache will now be updated due to a new format</source>
-        <translation>INFORMAZIONE: la cache lista macchina verrà aggiornata ad un nuovo formato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1446"/>
         <source>loading game data from game list cache</source>
-        <translation>caricamento dati gioco da cache lista gioco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1448"/>
         <location filename="../../gamelist.cpp" line="1666"/>
         <source>Game data - %p%</source>
-        <translation>Dati gioco - %p%</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1450"/>
         <source>loading machine data from machine list cache</source>
-        <translation>caricamento dati macchina da cache lista macchina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1452"/>
         <location filename="../../gamelist.cpp" line="1670"/>
         <source>Machine data - %p%</source>
-        <translation>Dati macchina - %p%</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1505"/>
         <location filename="../../gamelist.cpp" line="1774"/>
         <source>ROM, CHD</source>
-        <translation>ROM, CHD</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1509"/>
         <location filename="../../gamelist.cpp" line="1778"/>
         <source>CHD</source>
-        <translation>CHD</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1516"/>
@@ -3668,7 +3644,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="1785"/>
         <location filename="../../gamelist.cpp" line="1786"/>
         <source>N/A</source>
-        <translation>N/A</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1527"/>
@@ -3676,17 +3652,17 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="3584"/>
         <location filename="../../gamelist.cpp" line="3717"/>
         <source>?</source>
-        <translation>?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1643"/>
         <source>done (loading game data from game list cache, elapsed time = %1)</source>
-        <translation>completato (caricamento dati da cache lista gioco, tempo impiegato = %1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1645"/>
         <source>done (loading machine data from machine list cache, elapsed time = %1)</source>
-        <translation>completato (caricamento dati da cache lista macchine, tempo impiegato = %1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1664"/>
@@ -3701,12 +3677,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="1677"/>
         <source>ERROR: can&apos;t open game list cache for writing, path = %1</source>
-        <translation>ERRORE: impossibile aprire in scrittura cache lista gioco, percorso = %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="1679"/>
         <source>ERROR: can&apos;t open machine list cache for writing, path = %1</source>
-        <translation>ERRORE: impossibile aprire in scrittura cache lista macchina, percorso = %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2147"/>
@@ -3720,7 +3696,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2997"/>
         <location filename="../../gamelist.cpp" line="2999"/>
         <source>ascending</source>
-        <translation>ascendente</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2147"/>
@@ -3728,7 +3704,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2997"/>
         <location filename="../../gamelist.cpp" line="2999"/>
         <source>descending</source>
-        <translation>discendente</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2149"/>
@@ -3740,24 +3716,23 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2181"/>
         <location filename="../../gamelist.cpp" line="2197"/>
         <source>restoring game selection</source>
-        <translation>ripristinando selezione gioco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2183"/>
         <location filename="../../gamelist.cpp" line="2199"/>
         <source>restoring machine selection</source>
-        <translation>ripristinando selezione macchina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2211"/>
         <source>done (processing game list, elapsed time = %1)</source>
-        <translation>completato (processamento lista gioco, tempo impiegato = %1)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2212"/>
         <source>%n game(s)</source>
-        <translation>
-            <numerusform>%n gioco(i)</numerusform>
+        <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
@@ -3765,8 +3740,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2212"/>
         <location filename="../../gamelist.cpp" line="2215"/>
         <source>, %n BIOS set(s)</source>
-        <translation>
-            <numerusform>, %n set BIOS</numerusform>
+        <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
@@ -3774,8 +3748,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2212"/>
         <location filename="../../gamelist.cpp" line="2215"/>
         <source> and %n device(s) loaded</source>
-        <translation>
-            <numerusform> e %n periferiche caricate</numerusform>
+        <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
@@ -3788,7 +3761,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="2215"/>
         <source>%n machine(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -3836,12 +3808,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="2279"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished">per favore aspetta la fine della validazione della ROM e riprova</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2284"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished">per favore aspetta la fine del caricamento e riprova</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2293"/>
@@ -3968,7 +3940,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../gamelist.cpp" line="2524"/>
         <source>T:</source>
-        <translation type="unfinished">T:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../gamelist.cpp" line="2547"/>
@@ -4010,14 +3982,12 @@ p, li { white-space: pre-wrap; }
         <source>checking real status of %n set(s) not mentioned during full audit</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../gamelist.cpp" line="2939"/>
         <source>done (checking real status of %n set(s) not mentioned during full audit)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -4068,7 +4038,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../../gamelist.cpp" line="3450"/>
         <source>%n icon(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -4123,57 +4092,57 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="14"/>
         <source>HTML Editor</source>
-        <translation>Editor HTML</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="37"/>
         <source>WYSIWYG</source>
-        <translation>WYSIWYG</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="47"/>
         <source>about:blank</source>
-        <translation>about:blank</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="56"/>
         <source>HTML</source>
-        <translation>HTML</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="86"/>
         <source>&amp;File</source>
-        <translation>&amp;File</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="95"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Edita</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="99"/>
         <source>Insert &amp;image</source>
-        <translation>Inserisci &amp;immagine</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="124"/>
         <source>F&amp;ormat</source>
-        <translation>F&amp;ormato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="128"/>
         <source>St&amp;yle</source>
-        <translation>Stile (&amp;y)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="142"/>
         <source>&amp;Align</source>
-        <translation>&amp;Allinea</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="175"/>
         <source>Standard tool-bar</source>
-        <translation>Barra degli strumenti standard</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="199"/>
@@ -4183,139 +4152,139 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="234"/>
         <source>&amp;New</source>
-        <translation>&amp;Nuovo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="237"/>
         <location filename="../../htmleditor/htmleditor.ui" line="240"/>
         <location filename="../../htmleditor/htmleditor.ui" line="243"/>
         <source>New file</source>
-        <translation>Nuovo file</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="252"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Apri...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="255"/>
         <location filename="../../htmleditor/htmleditor.ui" line="258"/>
         <location filename="../../htmleditor/htmleditor.ui" line="261"/>
         <source>Open file</source>
-        <translation>Apri file</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="270"/>
         <source>&amp;Save</source>
-        <translation>&amp;Salva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="273"/>
         <location filename="../../htmleditor/htmleditor.ui" line="276"/>
         <location filename="../../htmleditor/htmleditor.ui" line="279"/>
         <source>Save file</source>
-        <translation>Salva file</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="284"/>
         <source>Save &amp;copy...</source>
-        <translation>Salva &amp;con nome...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="287"/>
         <location filename="../../htmleditor/htmleditor.ui" line="290"/>
         <source>Save file under a different name</source>
-        <translation>Salva il file con un altro nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="299"/>
         <source>&amp;Undo</source>
-        <translation>&amp;Annulla</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="302"/>
         <source>Undo</source>
-        <translation>Annulla</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="311"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Ripeti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="314"/>
         <source>Redo</source>
-        <translation>Ripeti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="323"/>
         <source>Cu&amp;t</source>
-        <translation>&amp;Taglia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="326"/>
         <source>Cut</source>
-        <translation>Taglia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="335"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Copia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="338"/>
         <source>Copy</source>
-        <translation>Copia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="347"/>
         <source>&amp;Paste</source>
-        <translation>&amp;Incolla</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="350"/>
         <source>Paste</source>
-        <translation>Incolla</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="359"/>
         <source>Select a&amp;ll</source>
-        <translation>Seleziona &amp;tutto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="362"/>
         <source>Select all</source>
-        <translation>Seleziona tutto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="374"/>
         <source>&amp;Bold</source>
-        <translation>&amp;Grassetto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="377"/>
         <source>Bold</source>
-        <translation>Grassetto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="389"/>
         <source>&amp;Italic</source>
-        <translation>&amp;Italico</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="392"/>
         <source>Italic</source>
-        <translation>Italico</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="404"/>
         <source>&amp;Underline</source>
-        <translation>&amp;Sottolinea</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="407"/>
         <source>Underline</source>
-        <translation>Sottolinea</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="419"/>
@@ -4330,42 +4299,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="431"/>
         <source>Align &amp;left</source>
-        <translation>A&amp;llinea a sinistra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="434"/>
         <source>Align left</source>
-        <translation>Allinea a sinistra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="443"/>
         <source>Align &amp;center</source>
-        <translation>Allinea al &amp;centro</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="446"/>
         <source>Align center</source>
-        <translation>Allinea al centro</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="455"/>
         <source>Align &amp;right</source>
-        <translation>Allinea a dest&amp;ra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="458"/>
         <source>Align right</source>
-        <translation>Allinea a destra</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="467"/>
         <source>Align &amp;justied</source>
-        <translation>&amp;Giustifica</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="470"/>
         <source>Align justied</source>
-        <translation>Allineamento giustificato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.ui" line="479"/>
@@ -4563,12 +4532,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="68"/>
         <source>WYSIWYG</source>
-        <translation type="unfinished">WYSIWYG</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="69"/>
         <source>HTML</source>
-        <translation type="unfinished">HTML</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="227"/>
@@ -4586,7 +4555,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../htmleditor/htmleditor.cpp" line="261"/>
         <location filename="../../htmleditor/htmleditor.cpp" line="296"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tutti i file (*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../htmleditor/htmleditor.cpp" line="261"/>
@@ -5037,7 +5006,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imgcheck.cpp" line="1072"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished">per favore aspetta la fine del caricamento e riprova</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1077"/>
@@ -5052,7 +5021,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../imgcheck.cpp" line="1087"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished">per favore aspetta la fine della validazione della ROM e riprova</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../imgcheck.cpp" line="1092"/>
@@ -5125,7 +5094,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../downloaditem.cpp" line="115"/>
         <source>unknown</source>
-        <translation type="unfinished">sconosciuto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../downloaditem.cpp" line="116"/>
@@ -5476,12 +5445,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.ui" line="255"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="260"/>
         <source>Tag</source>
-        <translation type="unfinished">Tag</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="265"/>
@@ -5512,7 +5481,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.ui" line="318"/>
         <source>Option</source>
-        <translation type="unfinished">Opzione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../messdevcfg.ui" line="327"/>
@@ -5597,19 +5566,29 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../messdevcfg.cpp" line="156"/>
+        <source>Enter search string</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../messdevcfg.cpp" line="166"/>
         <location filename="../../messdevcfg.cpp" line="495"/>
         <source>Reading slot info, please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="169"/>
-        <source>Enter configuration name</source>
+        <location filename="../../messdevcfg.cpp" line="168"/>
+        <location filename="../../messdevcfg.cpp" line="638"/>
+        <location filename="../../messdevcfg.cpp" line="888"/>
+        <location filename="../../messdevcfg.cpp" line="937"/>
+        <location filename="../../messdevcfg.cpp" line="1114"/>
+        <location filename="../../messdevcfg.cpp" line="1236"/>
+        <source>No devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../messdevcfg.cpp" line="156"/>
-        <source>Enter search string</source>
+        <location filename="../../messdevcfg.cpp" line="169"/>
+        <source>Enter configuration name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5690,7 +5669,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../../messdevcfg.cpp" line="395"/>
         <location filename="../../messdevcfg.cpp" line="519"/>
         <source>FATAL: can&apos;t start MESS executable within a reasonable time frame, giving up</source>
-        <translation type="unfinished">FATALE: impossibile avviare eseguibile MESS in un tempo ragionevole, mi arrendo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../messdevcfg.cpp" line="431"/>
@@ -5716,16 +5695,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../messdevcfg.cpp" line="601"/>
         <source>done (loading available system slots, elapsed time = %1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../messdevcfg.cpp" line="168"/>
-        <location filename="../../messdevcfg.cpp" line="638"/>
-        <location filename="../../messdevcfg.cpp" line="888"/>
-        <location filename="../../messdevcfg.cpp" line="937"/>
-        <location filename="../../messdevcfg.cpp" line="1114"/>
-        <location filename="../../messdevcfg.cpp" line="1236"/>
-        <source>No devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5858,7 +5827,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1251"/>
         <location filename="../../qmc2main.cpp" line="1276"/>
         <source>Tag</source>
-        <translation type="unfinished">Tag</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="164"/>
@@ -5877,7 +5846,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1255"/>
         <location filename="../../qmc2main.cpp" line="1280"/>
         <source>Year</source>
-        <translation type="unfinished">Anno</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="174"/>
@@ -5889,7 +5858,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1257"/>
         <location filename="../../qmc2main.cpp" line="1282"/>
         <source>Manufacturer</source>
-        <translation type="unfinished">Produttore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="179"/>
@@ -5901,7 +5870,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1259"/>
         <location filename="../../qmc2main.cpp" line="1284"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="184"/>
@@ -5925,7 +5894,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1263"/>
         <location filename="../../qmc2main.cpp" line="1288"/>
         <source>Players</source>
-        <translation type="unfinished">Giocatori</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="194"/>
@@ -5948,7 +5917,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1236"/>
         <location filename="../../qmc2main.cpp" line="1292"/>
         <source>Category</source>
-        <translation type="unfinished">Categoria</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="204"/>
@@ -5982,7 +5951,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="8180"/>
         <location filename="../../qmc2main.cpp" line="8197"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Aspettando i dati...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="259"/>
@@ -6133,17 +6102,17 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="1399"/>
         <source>Pre&amp;view</source>
-        <translation type="unfinished">Ante&amp;prima</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1408"/>
         <source>Fl&amp;yer</source>
-        <translation type="unfinished">Fl&amp;yer</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1417"/>
         <source>Game &amp;info</source>
-        <translation type="unfinished">&amp;Informazioni gioco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1432"/>
@@ -6154,7 +6123,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="1453"/>
         <source>Em&amp;ulator info</source>
-        <translation type="unfinished">Informazioni em&amp;ulatore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1468"/>
@@ -6165,7 +6134,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="1489"/>
         <source>&amp;Configuration</source>
-        <translation type="unfinished">&amp;Configurazione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1498"/>
@@ -6175,42 +6144,42 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="1507"/>
         <source>Ca&amp;binet</source>
-        <translation type="unfinished">Ca&amp;binet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1516"/>
         <source>C&amp;ontroller</source>
-        <translation type="unfinished">C&amp;ontroller</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1525"/>
         <source>Mar&amp;quee</source>
-        <translation type="unfinished">Mar&amp;chio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1534"/>
         <source>Titl&amp;e</source>
-        <translation type="unfinished">Titol&amp;o</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1543"/>
         <source>MA&amp;WS</source>
-        <translation type="unfinished">MA&amp;WS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1552"/>
         <source>&amp;PCB</source>
-        <translation type="unfinished">&amp;PCB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1561"/>
         <source>Softwar&amp;e list</source>
-        <translation type="unfinished">Lista softwar&amp;e</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1570"/>
         <source>&amp;YouTube</source>
-        <translation type="unfinished">&amp;YouTube</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1606"/>
@@ -6259,7 +6228,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.ui" line="1737"/>
         <location filename="../../qmc2main.ui" line="2143"/>
         <source>Status</source>
-        <translation type="unfinished">Stato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="1742"/>
@@ -7109,7 +7078,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.ui" line="3273"/>
         <source>Show FPS</source>
-        <translation type="unfinished">Mostra FPS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.ui" line="3276"/>
@@ -7515,7 +7484,6 @@ Do you want to choose a different name?</source>
         <source>last message repeated %n time(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -7528,7 +7496,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="5994"/>
         <location filename="../../qmc2main.cpp" line="6041"/>
         <source>Default</source>
-        <translation type="unfinished">Predefinito</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="432"/>
@@ -7620,7 +7588,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="579"/>
         <source>Machine &amp;info</source>
-        <translation type="unfinished">&amp;Info macchina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="580"/>
@@ -7974,7 +7942,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="971"/>
         <location filename="../../qmc2main.cpp" line="1039"/>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Salva</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1028"/>
@@ -8058,7 +8026,7 @@ Do you want to choose a different name?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="1089"/>
         <source>Detail setup</source>
-        <translation type="unfinished">Impostazioni dettagli</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1141"/>
@@ -8143,7 +8111,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="1886"/>
         <location filename="../../qmc2main.cpp" line="2297"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished">per favore aspetta la fine della validazione della ROM e riprova</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1891"/>
@@ -8198,7 +8166,7 @@ Do you want to choose a different name?</source>
         <location filename="../../qmc2main.cpp" line="2402"/>
         <location filename="../../qmc2main.cpp" line="4363"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished">per favore aspetta la fine del caricamento e riprova</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="1999"/>
@@ -8238,14 +8206,12 @@ Do you really want to check all ROM states now?</source>
         <source>freed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="2233"/>
         <source>%n entry(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8260,7 +8226,6 @@ Do you really want to check all ROM states now?</source>
         <source>removed %n byte(s) in %1</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
@@ -8268,7 +8233,6 @@ Do you really want to check all ROM states now?</source>
         <location filename="../../qmc2main.cpp" line="2281"/>
         <source>%n file(s)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8575,7 +8539,7 @@ Retry embedding?</source>
         <location filename="../../qmc2main.cpp" line="8718"/>
         <location filename="../../qmc2main.cpp" line="8786"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tutti i file (*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="5273"/>
@@ -8823,14 +8787,12 @@ Should they be killed on exit?</source>
         <source>killing %n running emulator(s) on exit</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../qmc2main.cpp" line="5925"/>
         <source>keeping %n running emulator(s) alive</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8883,7 +8845,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6318"/>
         <source>%n video info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -8957,7 +8918,6 @@ Should they be killed on exit?</source>
         <source>%n game info record(s) loaded</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -8974,7 +8934,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6493"/>
         <source>%n machine info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -9022,7 +8981,6 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="6636"/>
         <source>%n emulator info record(s) loaded</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -9093,7 +9051,7 @@ Should they be killed on exit?</source>
         <location filename="../../qmc2main.cpp" line="7453"/>
         <location filename="../../qmc2main.cpp" line="7463"/>
         <source>running</source>
-        <translation type="unfinished">in esecuzione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="7402"/>
@@ -9217,22 +9175,22 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../qmc2main.cpp" line="8881"/>
         <source>Physical memory:</source>
-        <translation type="unfinished">Memoria fisica:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8881"/>
         <source>Total: %1 MB</source>
-        <translation type="unfinished">Totale: %1 MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8881"/>
         <source>Free: %1 MB</source>
-        <translation type="unfinished">Liberi: %1 MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="8881"/>
         <source>Used: %1 MB</source>
-        <translation type="unfinished">Usati: %1 MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="9290"/>
@@ -9283,12 +9241,12 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../marquee.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copia sugli appunti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../marquee.cpp" line="54"/>
         <source>Refresh</source>
-        <translation type="unfinished">Aggiornamento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../marquee.cpp" line="61"/>
@@ -9311,7 +9269,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../marquee.cpp" line="105"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Aspettando i dati...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9561,7 +9519,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../mawsqdlsetup.ui" line="629"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancella</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../mawsqdlsetup.cpp" line="113"/>
@@ -9710,7 +9668,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="104"/>
         <source>Copy</source>
-        <translation type="unfinished">Copia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../miniwebbrowser.cpp" line="107"/>
@@ -10079,7 +10037,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="622"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="638"/>
@@ -10719,7 +10677,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2303"/>
         <source>ROM state filter</source>
-        <translation type="unfinished">Filtro stato ROM</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2350"/>
@@ -10754,17 +10712,17 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2387"/>
         <source>Tag</source>
-        <translation type="unfinished">Tag</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2392"/>
         <source>Year</source>
-        <translation type="unfinished">Anno</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2397"/>
         <source>Manufacturer</source>
-        <translation type="unfinished">Produttore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2402"/>
@@ -10779,7 +10737,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="2412"/>
         <source>Players</source>
-        <translation type="unfinished">Giocatori</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="2417"/>
@@ -11089,7 +11047,7 @@ Should they be killed on exit?</source>
         <location filename="../../options.cpp" line="439"/>
         <location filename="../../options.cpp" line="3657"/>
         <source>Default</source>
-        <translation type="unfinished">Predefinito</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="3047"/>
@@ -11658,8 +11616,23 @@ Should they be killed on exit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../options.ui" line="4587"/>
+        <source>Registered emulator&apos;s name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="4597"/>
+        <source>Replace emulator registration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../options.ui" line="4600"/>
         <source>Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.ui" line="4614"/>
+        <source>Arguments passed to the emulator -- use $ID$ as placeholder for the unique set ID, $DESCRIPTION$ for its description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -11670,7 +11643,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="4662"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4667"/>
@@ -11703,8 +11676,8 @@ Should they be killed on exit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4587"/>
-        <source>Registered emulator&apos;s name</source>
+        <location filename="../../options.ui" line="4776"/>
+        <source> Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -11713,54 +11686,39 @@ Should they be killed on exit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../options.ui" line="4614"/>
-        <source>Arguments passed to the emulator -- use $ID$ as placeholder for the unique set ID, $DESCRIPTION$ for its description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="4597"/>
-        <source>Replace emulator registration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.ui" line="4776"/>
-        <source> Remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../options.ui" line="4830"/>
         <source>Apply settings</source>
-        <translation type="unfinished">Applica impostazioni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4833"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished">&amp;Applica</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4844"/>
         <source>Restore currently applied settings</source>
-        <translation type="unfinished">Ripristina impostazioni correnti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4847"/>
         <source>&amp;Restore</source>
-        <translation type="unfinished">&amp;Ripristina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4858"/>
         <source>Reset to default settings (click &lt;i&gt;Restore&lt;/i&gt; to restore currently applied settings!)</source>
-        <translation type="unfinished">Ripristina le impostazioni di default (clicca &lt;i&gt;Ripristina&lt;/i&gt; per ripristinare le impostazioni correnti!)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4861"/>
         <source>&amp;Default</source>
-        <translation type="unfinished">&amp;Default</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4885"/>
         <source>Close and apply settings</source>
-        <translation type="unfinished">Chiudi e applica le impostazioni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4888"/>
@@ -11770,12 +11728,12 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.ui" line="4895"/>
         <source>Close and discard changes</source>
-        <translation type="unfinished">Chiudi e annulla modifiche</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.ui" line="4898"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancella</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="210"/>
@@ -11909,7 +11867,7 @@ Should they be killed on exit?</source>
         <location filename="../../options.cpp" line="284"/>
         <location filename="../../options.cpp" line="1058"/>
         <source>Category</source>
-        <translation type="unfinished">Categoria</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="285"/>
@@ -11945,7 +11903,7 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.cpp" line="299"/>
         <source>About QMC2</source>
-        <translation type="unfinished">Riguardo QMC2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="301"/>
@@ -12033,8 +11991,23 @@ Should they be killed on exit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../options.cpp" line="331"/>
+        <source>Reload game list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../options.cpp" line="332"/>
         <source>Check game&apos;s ROM state</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="334"/>
+        <source>Reload machine list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../options.cpp" line="335"/>
+        <source>Check machine&apos;s ROM state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -12140,21 +12113,6 @@ Should they be killed on exit?</source>
     <message>
         <location filename="../../options.cpp" line="364"/>
         <source>Invert all tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.cpp" line="331"/>
-        <source>Reload game list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.cpp" line="334"/>
-        <source>Reload machine list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../options.cpp" line="335"/>
-        <source>Check machine&apos;s ROM state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -12446,13 +12404,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="1558"/>
         <location filename="../../options.cpp" line="1560"/>
         <source>ascending</source>
-        <translation type="unfinished">ascendente</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1558"/>
         <location filename="../../options.cpp" line="1560"/>
         <source>descending</source>
-        <translation type="unfinished">discendente</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1560"/>
@@ -12462,7 +12420,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../options.cpp" line="1572"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Aspettando i dati...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1743"/>
@@ -12474,19 +12432,19 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="1761"/>
         <location filename="../../options.cpp" line="1765"/>
         <source>FATAL: can&apos;t open flyer file, please check access permissions for %1</source>
-        <translation type="unfinished">FATALE: impossibile aprire immagine flyer, per favore controlla i permessi d&apos;accesso per %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1779"/>
         <location filename="../../options.cpp" line="1783"/>
         <source>FATAL: can&apos;t open cabinet file, please check access permissions for %1</source>
-        <translation type="unfinished">FATALE: impossibile aprire file cabinet, per favore controlla i permessi d&apos;accesso per %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1797"/>
         <location filename="../../options.cpp" line="1801"/>
         <source>FATAL: can&apos;t open controller file, please check access permissions for %1</source>
-        <translation type="unfinished">FATALE: impossibile aprire file controller, per favore controlla i permessi d&apos;accesso per %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1815"/>
@@ -12516,7 +12474,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="1886"/>
         <location filename="../../options.cpp" line="1890"/>
         <source>FATAL: can&apos;t open icon file, please check access permissions for %1</source>
-        <translation type="unfinished">FATALE: impossibile aprire file icona, per favore controlla permessi d&apos;accesso per %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="1898"/>
@@ -12650,7 +12608,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../options.cpp" line="3291"/>
         <location filename="../../options.cpp" line="3500"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tutti i file (*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="2506"/>
@@ -12918,12 +12876,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../pcb.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copia sugli appunti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../pcb.cpp" line="54"/>
         <source>Refresh</source>
-        <translation type="unfinished">Aggiornamento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../pcb.cpp" line="61"/>
@@ -12946,7 +12904,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../pcb.cpp" line="105"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Aspettando i dati...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -12954,24 +12912,24 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../preview.cpp" line="51"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copia sugli appunti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../preview.cpp" line="56"/>
         <source>Refresh</source>
-        <translation type="unfinished">Aggiornamento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../preview.cpp" line="63"/>
         <location filename="../../preview.cpp" line="64"/>
         <source>Game preview image</source>
-        <translation type="unfinished">Immagine anteprima gioco</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../preview.cpp" line="66"/>
         <location filename="../../preview.cpp" line="67"/>
         <source>Machine preview image</source>
-        <translation type="unfinished">Immagine anteprima macchina</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../preview.cpp" line="75"/>
@@ -12982,7 +12940,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../preview.cpp" line="107"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Aspettando i dati...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -13251,13 +13209,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="3182"/>
         <location filename="../../romalyzer.cpp" line="3194"/>
         <source>unknown</source>
-        <translation type="unfinished">sconosciuto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../options.cpp" line="889"/>
         <location filename="../../options.cpp" line="1979"/>
         <source>Default</source>
-        <translation type="unfinished">Predefinito</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="4013"/>
@@ -13308,7 +13266,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../qmc2main.cpp" line="10197"/>
         <source>SVN r%1</source>
-        <translation type="unfinished">SVN r%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qmc2main.cpp" line="10215"/>
@@ -13381,7 +13339,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="805"/>
         <location filename="../../romalyzer.cpp" line="3133"/>
         <source>CHD</source>
-        <translation type="unfinished">CHD</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="806"/>
@@ -13393,14 +13351,14 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="3133"/>
         <source>ROM</source>
-        <translation type="unfinished">ROM</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3137"/>
         <location filename="../../romalyzer.cpp" line="3179"/>
         <location filename="../../romalyzer.cpp" line="3198"/>
         <source>good</source>
-        <translation type="unfinished">buono</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="3145"/>
@@ -13446,7 +13404,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="2319"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Aspettando i dati...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2888"/>
@@ -13499,7 +13457,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="3013"/>
         <source>SHA1:</source>
-        <translation type="unfinished">SHA1:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="1701"/>
@@ -13560,13 +13518,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="103"/>
         <source>Merge</source>
-        <translation type="unfinished">Merge</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="108"/>
         <location filename="../../romalyzer.ui" line="1345"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="113"/>
@@ -13581,24 +13539,24 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="123"/>
         <source>Size</source>
-        <translation type="unfinished">Dimensione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="128"/>
         <location filename="../../romalyzer.ui" line="1417"/>
         <source>CRC</source>
-        <translation type="unfinished">CRC</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="133"/>
         <location filename="../../romalyzer.ui" line="1412"/>
         <source>SHA1</source>
-        <translation type="unfinished">SHA1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="138"/>
         <source>MD5</source>
-        <translation type="unfinished">MD5</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="147"/>
@@ -13822,7 +13780,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1889"/>
         <location filename="../../romalyzer.cpp" line="1903"/>
         <source> MB</source>
-        <translation type="unfinished"> MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="568"/>
@@ -13857,7 +13815,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="668"/>
         <source>Driver</source>
-        <translation type="unfinished">Driver</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="681"/>
@@ -14154,7 +14112,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1330"/>
         <source>ID</source>
-        <translation type="unfinished">ID</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1335"/>
@@ -14164,7 +14122,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1340"/>
         <source>Status</source>
-        <translation type="unfinished">Stato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1350"/>
@@ -14311,7 +14269,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.ui" line="1682"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Chiudi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.ui" line="1702"/>
@@ -14383,28 +14341,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../romalyzer.cpp" line="117"/>
-        <source>zlib (Deflate)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../romalyzer.cpp" line="116"/>
-        <source>lzma (LZMA)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../romalyzer.cpp" line="115"/>
-        <source>huff (Huffman)</source>
+        <location filename="../../romalyzer.cpp" line="110"/>
+        <source>avhu (A/V Huffman)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="111"/>
         <source>cdfl (CD FLAC)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../romalyzer.cpp" line="110"/>
-        <source>avhu (A/V Huffman)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -14420,6 +14363,21 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="114"/>
         <source>flac (FLAC)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="115"/>
+        <source>huff (Huffman)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="116"/>
+        <source>lzma (LZMA)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../romalyzer.cpp" line="117"/>
+        <source>zlib (Deflate)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -14445,12 +14403,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="170"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copia sugli appunti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="246"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished">per favore aspetta la fine del caricamento e riprova</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="249"/>
@@ -14512,7 +14470,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>%n game(s) to analyze</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14524,7 +14481,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="658"/>
         <source>%n machine(s) to analyze</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14541,13 +14497,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="671"/>
         <source>Paused</source>
-        <translation type="unfinished">In Pausa</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="688"/>
         <source>report limit reached, removing %n set(s) from the report</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14581,7 +14536,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>checking %n file(s) for &apos;%1&apos;</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14602,7 +14556,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2723"/>
         <location filename="../../romalyzer.cpp" line="2787"/>
         <source>ROM</source>
-        <translation type="unfinished">ROM</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="797"/>
@@ -14625,7 +14579,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2505"/>
         <location filename="../../romalyzer.cpp" line="2698"/>
         <source>bad</source>
-        <translation type="unfinished">cattivo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="870"/>
@@ -14651,7 +14605,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1172"/>
         <location filename="../../romalyzer.cpp" line="2233"/>
         <source>CHD</source>
-        <translation type="unfinished">CHD</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="891"/>
@@ -14676,7 +14630,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="930"/>
         <source>SHA1 </source>
-        <translation type="unfinished">SHA1 </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="941"/>
@@ -14685,12 +14639,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="2504"/>
         <location filename="../../romalyzer.cpp" line="2700"/>
         <source>good</source>
-        <translation type="unfinished">buono</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="955"/>
         <source>MD5 </source>
-        <translation type="unfinished">MD5 </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="969"/>
@@ -14701,7 +14655,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="999"/>
         <source>interrupted (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -14760,7 +14713,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>done (checking %n file(s) for &apos;%1&apos;)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -14773,14 +14725,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>%n game(s) left</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../../romalyzer.cpp" line="1086"/>
         <source>%n machine(s) left</source>
         <translation type="unfinished">
-            <numerusform></numerusform>
             <numerusform></numerusform>
         </translation>
     </message>
@@ -15002,7 +14952,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romalyzer.cpp" line="1476"/>
         <source>Copy</source>
-        <translation type="unfinished">Copia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1482"/>
@@ -15106,18 +15056,18 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1886"/>
         <location filename="../../romalyzer.cpp" line="1900"/>
         <source> KB</source>
-        <translation type="unfinished"> KB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1892"/>
         <location filename="../../romalyzer.cpp" line="1906"/>
         <source> GB</source>
-        <translation type="unfinished"> GB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1895"/>
         <source> TB</source>
-        <translation type="unfinished"> TB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1932"/>
@@ -15128,7 +15078,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1932"/>
         <location filename="../../romalyzer.cpp" line="2985"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tutti i file (*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="1944"/>
@@ -15154,7 +15104,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romalyzer.cpp" line="1998"/>
         <location filename="../../romalyzer.cpp" line="2244"/>
         <source>unknown</source>
-        <translation type="unfinished">sconosciuto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romalyzer.cpp" line="2000"/>
@@ -15327,7 +15277,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>checksum wizard: repairing %n bad set(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -15467,7 +15416,6 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <source>checksum wizard: done (repairing %n bad set(s))</source>
         <translation type="unfinished">
             <numerusform></numerusform>
-            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -15545,7 +15493,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="50"/>
         <source>HTML</source>
-        <translation type="unfinished">HTML</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="72"/>
@@ -15604,7 +15552,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="563"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Year</source>
-        <translation type="unfinished">Anno</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="213"/>
@@ -15613,7 +15561,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="564"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Manufacturer</source>
-        <translation type="unfinished">Produttore</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="218"/>
@@ -15807,7 +15755,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../romstatusexport.ui" line="731"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Chiudi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.ui" line="742"/>
@@ -15933,7 +15881,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="511"/>
         <location filename="../../romstatusexport.cpp" line="751"/>
         <source>Unknown</source>
-        <translation type="unfinished">Sconosciuto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="193"/>
@@ -15981,7 +15929,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="719"/>
         <location filename="../../romstatusexport.cpp" line="881"/>
         <source>unknown</source>
-        <translation type="unfinished">sconosciuto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="213"/>
@@ -16010,7 +15958,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="562"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Description</source>
-        <translation type="unfinished">Descrizione</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="230"/>
@@ -16018,7 +15966,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="560"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="231"/>
@@ -16026,7 +15974,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="561"/>
         <location filename="../../romstatusexport.cpp" line="806"/>
         <source>Status</source>
-        <translation type="unfinished">Stato</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="250"/>
@@ -16161,7 +16109,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../romstatusexport.cpp" line="927"/>
         <location filename="../../romstatusexport.cpp" line="939"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tutti i file (*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../romstatusexport.cpp" line="927"/>
@@ -16305,7 +16253,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../sampcheck.cpp" line="361"/>
         <source>please wait for reload to finish and try again</source>
-        <translation type="unfinished">per favore aspetta la fine del caricamento e riprova</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="366"/>
@@ -16315,7 +16263,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../sampcheck.cpp" line="371"/>
         <source>please wait for ROM verification to finish and try again</source>
-        <translation type="unfinished">per favore aspetta la fine della validazione della ROM e riprova</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../sampcheck.cpp" line="376"/>
@@ -16358,7 +16306,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../embedderopt.cpp" line="186"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copia sugli appunti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../embedderopt.cpp" line="291"/>
@@ -16381,7 +16329,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.ui" line="18"/>
         <source>Software list</source>
-        <translation type="unfinished">Lista software</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="35"/>
@@ -16487,7 +16435,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="192"/>
         <location filename="../../softwarelist.cpp" line="215"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="317"/>
@@ -16507,7 +16455,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="196"/>
         <location filename="../../softwarelist.cpp" line="219"/>
         <source>Year</source>
-        <translation type="unfinished">Anno</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="327"/>
@@ -16527,7 +16475,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="200"/>
         <location filename="../../softwarelist.cpp" line="223"/>
         <source>Interface</source>
-        <translation type="unfinished">Interfaccia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="337"/>
@@ -16559,7 +16507,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.ui" line="427"/>
         <location filename="../../softwarelist.cpp" line="205"/>
         <source>Device configuration</source>
-        <translation type="unfinished">Configura periferiche</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.ui" line="448"/>
@@ -16751,7 +16699,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="1852"/>
         <location filename="../../softwarelist.cpp" line="2195"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Aspettando i dati...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="970"/>
@@ -16830,7 +16778,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../softwarelist.cpp" line="2165"/>
         <location filename="../../softwarelist.cpp" line="2243"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tutti i file (*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2177"/>
@@ -16982,7 +16930,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../swlistexport.ui" line="505"/>
         <location filename="../../swlistexport.cpp" line="30"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="324"/>
@@ -16996,7 +16944,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../swlistexport.ui" line="515"/>
         <location filename="../../swlistexport.cpp" line="30"/>
         <source>Year</source>
-        <translation type="unfinished">Anno</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="334"/>
@@ -17010,7 +16958,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../swlistexport.ui" line="525"/>
         <location filename="../../swlistexport.cpp" line="30"/>
         <source>Interface</source>
-        <translation type="unfinished">Interfaccia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="344"/>
@@ -17037,7 +16985,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../swlistexport.ui" line="371"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Chiudi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../swlistexport.ui" line="382"/>
@@ -17210,7 +17158,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <location filename="../../swlistexport.cpp" line="409"/>
         <location filename="../../swlistexport.cpp" line="423"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tutti i file (*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../swlistexport.cpp" line="423"/>
@@ -17223,12 +17171,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="2410"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copia sugli appunti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2415"/>
         <source>Refresh</source>
-        <translation type="unfinished">Aggiornamento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="2623"/>
@@ -17242,12 +17190,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../softwarelist.cpp" line="3086"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copia sugli appunti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3091"/>
         <source>Refresh</source>
-        <translation type="unfinished">Aggiornamento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../softwarelist.cpp" line="3155"/>
@@ -17284,12 +17232,12 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../title.cpp" line="49"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished">Copia sugli appunti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../title.cpp" line="54"/>
         <source>Refresh</source>
-        <translation type="unfinished">Aggiornamento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../title.cpp" line="61"/>
@@ -17312,7 +17260,7 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
     <message>
         <location filename="../../title.cpp" line="105"/>
         <source>Waiting for data...</source>
-        <translation type="unfinished">Aspettando i dati...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -17427,20 +17375,13 @@ Use local machine-settings, overwrite with global settings or don&apos;t apply?<
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="218"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;Welcome to QMC2!&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator&apos;s executable file below.&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator&apos;s global configuration at any time later).&lt;/p&gt;
-&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;It&apos;s strongly recommended that you specify the ROM path you are going to use at least!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <location filename="../../welcome.ui" line="21"/>
+        <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="68"/>
-        <source>Emulator executable file</source>
+        <location filename="../../welcome.ui" line="28"/>
+        <source>&amp;Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -17449,8 +17390,48 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../welcome.ui" line="68"/>
+        <source>Emulator executable file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../welcome.ui" line="75"/>
         <source>Browse working directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="86"/>
+        <source>Browse hash path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="97"/>
+        <source>Browse ROM path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="108"/>
+        <source>Sample path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="121"/>
+        <source>Path to hash files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="128"/>
+        <source>Hash path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="154"/>
+        <source>Path to samples</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="161"/>
+        <source>Emulator executable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -17464,64 +17445,31 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="205"/>
-        <source>Path to ROM images</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../welcome.ui" line="97"/>
-        <source>Browse ROM path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../welcome.ui" line="154"/>
-        <source>Path to samples</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../welcome.ui" line="188"/>
         <source>Browse sample path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../welcome.ui" line="161"/>
-        <source>Emulator executable</source>
+        <location filename="../../welcome.ui" line="205"/>
+        <source>Path to ROM images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../welcome.ui" line="218"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:large; font-weight:600;&quot;&gt;Welcome to QMC2!&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This appears to be your first start of QMC2 because no valid configuration was found. In order to use QMC2 as a front end for an emulator, you must specify the path to the emulator&apos;s executable file below.&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The paths below the executable file are optional, but you should specify as many of them as you can right now to avoid problems or confusion later (of course, you can change the paths in the emulator&apos;s global configuration at any time later).&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;It&apos;s strongly recommended that you specify the ROM path you are going to use at least!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../welcome.ui" line="235"/>
         <source>ROM path</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../welcome.ui" line="108"/>
-        <source>Sample path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../welcome.ui" line="128"/>
-        <source>Hash path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../welcome.ui" line="121"/>
-        <source>Path to hash files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../welcome.ui" line="86"/>
-        <source>Browse hash path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../welcome.ui" line="28"/>
-        <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../welcome.ui" line="21"/>
-        <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancella</translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="37"/>
@@ -17571,7 +17519,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../welcome.cpp" line="120"/>
         <source>All files (*)</source>
-        <translation type="unfinished">Tutti i file (*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../welcome.cpp" line="139"/>
@@ -17908,7 +17856,7 @@ Exit now, accept once or ignore completely?</source>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="847"/>
         <source>Paused</source>
-        <translation type="unfinished">In Pausa</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../youtubevideoplayer.cpp" line="850"/>
