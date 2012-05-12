@@ -237,7 +237,7 @@
          <item row="0" column="0">
           <widget class="QCheckBox" name="checkBoxShowProjectHelp">
            <property name="toolTip">
-            <string>Make sure project help texts are shown when you switch the type</string>
+            <string>Make sure project help texts are shown</string>
            </property>
            <property name="text">
             <string>Display project help texts</string>

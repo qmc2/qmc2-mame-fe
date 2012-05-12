@@ -453,11 +453,6 @@ Fortfahren?</translation>
         <translation>Größe der Log-Schriftart</translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="240"/>
-        <source>Make sure project help texts are shown when you switch the type</source>
-        <translation>Sicherstellen, dass die Projekt Hilfe Texte angezeigt werden, wenn der Typ geändert wird</translation>
-    </message>
-    <message>
         <location filename="../preferencesdialog.ui" line="243"/>
         <source>Display project help texts</source>
         <translation>Projekt Hilfe Texte anzeigen</translation>
@@ -526,6 +521,11 @@ Fortfahren?</translation>
         <location filename="../preferencesdialog.ui" line="81"/>
         <source>Lanuage</source>
         <translation>Sprache</translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="240"/>
+        <source>Make sure project help texts are shown</source>
+        <translation>Sicherstellen, dass die Projekt Hilfe Texte angezeigt werden</translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="260"/>

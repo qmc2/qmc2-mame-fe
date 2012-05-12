@@ -445,11 +445,6 @@ Proceed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="240"/>
-        <source>Make sure project help texts are shown when you switch the type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../preferencesdialog.ui" line="243"/>
         <source>Display project help texts</source>
         <translation type="unfinished"></translation>
@@ -517,6 +512,11 @@ Proceed?</source>
     <message>
         <location filename="../preferencesdialog.ui" line="81"/>
         <source>Lanuage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="240"/>
+        <source>Make sure project help texts are shown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
