@@ -169,15 +169,16 @@ greaterThan(QT_MAJOR_VERSION, 3) {
 			htmleditor/htmleditor.h \
 			htmleditor/highlighter.h
 		PRECOMPILED_HEADER = qmc2_prefix.h
-		TRANSLATIONS += data/lng/qmc2_us.ts \
-			data/lng/qmc2_de.ts \
-			data/lng/qmc2_pl.ts \
-			data/lng/qmc2_fr.ts \
-			data/lng/qmc2_pt.ts \
-			data/lng/qmc2_it.ts \
-			data/lng/qmc2_ro.ts \
+		TRANSLATIONS += data/lng/qmc2_de.ts \
+			data/lng/qmc2_el.ts \
 			data/lng/qmc2_es.ts \
-			data/lng/qmc2_gr.ts
+			data/lng/qmc2_fr.ts \
+			data/lng/qmc2_it.ts \
+			data/lng/qmc2_pl.ts \
+			data/lng/qmc2_pt.ts \
+			data/lng/qmc2_ro.ts \
+			data/lng/qmc2_sv.ts \
+			data/lng/qmc2_us.ts
 		RESOURCES += qmc2.qrc
 		QMAKE_MAKEFILE = Makefile.qmake
 

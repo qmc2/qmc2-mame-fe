@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<TS version="2.0" language="sv_SE">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../aboutdialog.ui" line="14"/>
         <source>About</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="92"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="23"/>
         <source>Qt based graphical user interface to CHDMAN, the MAME/MESS CHD management tool</source>
-        <translation>Qt basierte grafische Benutzungsoberfläche für CHDMAN, das MAME/MESS CHD Management Werkzeug</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="24"/>
         <source>Copyright</source>
-        <translation>Copyright</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="24"/>
         <source>All Rights Reserved.</source>
-        <translation>Alle Rechte vorbehalten.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="25"/>
         <source>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the license, or (at your option) any later version.</source>
-        <translation>Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="28"/>
         <source>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. </source>
-        <translation>Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, dass es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="30"/>
         <source>See the</source>
-        <translation>Sehen Sie die</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="30"/>
         <source>GNU General Public License</source>
-        <translation>GNU General Public License</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="30"/>
         <source>for more details.</source>
-        <translation>für weitere Details.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="31"/>
         <source>Qt CHDMAN GUI is part of the</source>
-        <translation>Qt CHDMAN GUI ist Teil des</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../aboutdialog.cpp" line="31"/>
         <source>QMC2 project</source>
-        <translation>QMC2 Projekts</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -69,297 +69,297 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="37"/>
         <source>&amp;Project</source>
-        <translation>&amp;Projekt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="41"/>
         <source>Recent</source>
-        <translation>Kürzlich</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="59"/>
         <source>&amp;Window</source>
-        <translation>&amp;Fenster</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="63"/>
         <source>View mode</source>
-        <translation>Ansichtsmodus</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="81"/>
         <source>&amp;Help</source>
-        <translation>&amp;Hilfe</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="93"/>
         <source>New</source>
-        <translation>Neu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="96"/>
         <source>Create a new project</source>
-        <translation>Neues Projekt erstellen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="99"/>
         <source>Ctrl+N</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="104"/>
         <source>Load...</source>
-        <translation>Laden...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="107"/>
         <source>Load existing project from file</source>
-        <translation>Existierende Projekt Datei laden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="110"/>
         <source>Ctrl+L</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="118"/>
         <source>Save</source>
-        <translation>Speichern</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="121"/>
         <source>Save project to file</source>
-        <translation>Project in Datei speichern</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="124"/>
         <source>Ctrl+S</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="132"/>
         <source>Save as...</source>
-        <translation>Speichern unter...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="135"/>
         <source>Save project under a different name</source>
-        <translation>Projekt unter einem anderen Namen speichern</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="138"/>
         <source>Ctrl+Shift+S</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="143"/>
         <source>Exit</source>
-        <translation>Beenden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="146"/>
         <source>Quit GUI</source>
-        <translation>GUI beenden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="149"/>
         <source>Ctrl+X</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="157"/>
         <source>Next</source>
-        <translation>Nächstes</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="160"/>
         <source>Select next project window</source>
-        <translation>Nächstes Projekt Fenster auswählen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="163"/>
         <source>Ctrl+Alt+N</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="171"/>
         <source>Previous</source>
-        <translation>Vorheriges</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="174"/>
         <source>Select previous project window</source>
-        <translation>Vorheriges Projekt Fenster auswählen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="177"/>
         <source>Ctrl+Alt+P</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="185"/>
         <source>Tile</source>
-        <translation>Kacheln</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="188"/>
         <source>Tile project windows</source>
-        <translation>Projekt Fenster in Kacheln aufteilen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="191"/>
         <source>Ctrl+Alt+T</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="199"/>
         <source>Cascade</source>
-        <translation>Kaskadieren</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="202"/>
         <source>Cascade project windows</source>
-        <translation>Projekt Fenster kaskadieren</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="205"/>
         <source>Ctrl+Alt+C</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="213"/>
         <source>Close</source>
-        <translation>Schließen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="216"/>
         <source>Close active project window</source>
-        <translation>Aktives Projekt Fenster schließen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="224"/>
         <source>Close all</source>
-        <translation>Alle schließen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="227"/>
         <source>Close all project windows</source>
-        <translation>Alle Projekt Fenster schließen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="232"/>
         <source>About...</source>
-        <translation>Über...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="235"/>
         <source>About this program</source>
-        <translation>Über dieses Programm</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="240"/>
         <source>About Qt...</source>
-        <translation>Über Qt...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="243"/>
         <source>About Qt</source>
-        <translation>Über Qt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="248"/>
         <source>Preferences...</source>
-        <translation>Einstellungen...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="251"/>
         <source>General preferences</source>
-        <translation>Allgemeine Einstellungen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="254"/>
         <source>Ctrl+P</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="259"/>
         <source>No recent files</source>
-        <translation>Keine kürzlich verwendeten Dateien</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="267"/>
         <source>Windowed</source>
-        <translation>Fenster</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="270"/>
         <source>View projects in windowed mode</source>
-        <translation>Projekte in Fenstern anzeigen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="273"/>
         <source>Ctrl+Shift+W</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="281"/>
         <source>Tabbed</source>
-        <translation>Reiter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="284"/>
         <source>View projects in tabbed mode</source>
-        <translation>Projekte in Reitern anzeigen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="287"/>
         <source>Ctrl+Shift+T</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="295"/>
         <source>Save all</source>
-        <translation>Alle speichern</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="298"/>
         <source>Save all projects</source>
-        <translation>Alle Projekte speichern</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="301"/>
         <source>Ctrl+Alt+S</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="83"/>
         <source>Choose file</source>
-        <translation>Datei auswählen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="83"/>
         <source>All files (*)</source>
-        <translation>Alle Dateien (*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="244"/>
         <source>Running projects: %1</source>
-        <translation>Aktive Projekte: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="306"/>
         <source>Project &apos;%1&apos; doesn&apos;t exist</source>
-        <translation>Project &apos;%1&apos; existiert nicht</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="387"/>
         <source>Confirm</source>
-        <translation>Bestätigen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="389"/>
@@ -368,11 +368,7 @@
 Closing its window will kill the external process!
 
 Proceed?</source>
-        <translation>1 Projekt wird gerade ausgeführt.
-
-Das Schließen seines Fensters führt zum Abbruch des externen Prozesses!
-
-Fortfahren?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="390"/>
@@ -381,11 +377,7 @@ Fortfahren?</translation>
 Closing their windows will kill the external processes!
 
 Proceed?</source>
-        <translation>%1 Projekte werden gerade ausgeführt.
-
-Das Schließen ihrer Fenster führt zum Abbruch der externen Prozesse!
-
-Fortfahren?</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -393,184 +385,184 @@ Fortfahren?</translation>
     <message>
         <location filename="../preferencesdialog.ui" line="14"/>
         <source>Preferences</source>
-        <translation>Einstellungen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="35"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="42"/>
         <source>Apply</source>
-        <translation>Übernehmen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="49"/>
         <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="75"/>
         <source>GUI</source>
-        <translation>GUI</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="81"/>
+        <source>Lanuage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="88"/>
+        <source>Select the GUI language (requires a restart to take effect!)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="95"/>
+        <source>German (de)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="100"/>
+        <source>Spanish (es)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="105"/>
+        <source>Greek (el)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="110"/>
+        <source>French (fr)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="115"/>
+        <source>Italian (it)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="120"/>
+        <source>Polish (pl)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="125"/>
+        <source>Portuguese (pt)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="130"/>
+        <source>Romanian (ro)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="135"/>
+        <source>Swedish (sv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="140"/>
+        <source>English (us)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="154"/>
         <source>Style</source>
-        <translation>Stil</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="161"/>
+        <source>Select the GUI style</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="174"/>
         <source>Font</source>
-        <translation>Schriftart</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="181"/>
         <source>Application font</source>
-        <translation>Allgemeine Schriftart der Applikation</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="194"/>
         <location filename="../preferencesdialog.ui" line="234"/>
         <source>Size</source>
-        <translation>Größe</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="201"/>
         <source>Application font size</source>
-        <translation>Größe der allgemeinen Applikationsschriftart</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="214"/>
         <location filename="../preferencesdialog.ui" line="221"/>
         <source>Log font</source>
-        <translation>Log-Schriftart</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="241"/>
         <source>Log font size</source>
-        <translation>Größe der Log-Schriftart</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="253"/>
-        <source>Display project help texts</source>
-        <translation>Projekt Hilfe Texte anzeigen</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="260"/>
-        <source>Maximize new project windows</source>
-        <translation>Neue Projekt Fenster maximieren</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="263"/>
-        <source>Maximize project windows</source>
-        <translation>Projekt Fenster maximieren</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="161"/>
-        <source>Select the GUI style</source>
-        <translation>GUI Stil auswählen</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="88"/>
-        <source>Select the GUI language (requires a restart to take effect!)</source>
-        <translation>Sprache der GUI auswählen (erfordert einen Neustart!)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="95"/>
-        <source>German (de)</source>
-        <translation>Deutsch (de)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="100"/>
-        <source>Spanish (es)</source>
-        <translation>Spanisch (es)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="105"/>
-        <source>Greek (el)</source>
-        <translation>Griechisch (el)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="110"/>
-        <source>French (fr)</source>
-        <translation>Französisch (fr)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="115"/>
-        <source>Italian (it)</source>
-        <translation>Italienisch (it)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="120"/>
-        <source>Polish (pl)</source>
-        <translation>Polnisch (pl)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="125"/>
-        <source>Portuguese (pt)</source>
-        <translation>Portugiesisch (pt)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="130"/>
-        <source>Romanian (ro)</source>
-        <translation>Rumänisch (ro)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="135"/>
-        <source>Swedish (sv)</source>
-        <translation>Schwedisch (sv)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="140"/>
-        <source>English (us)</source>
-        <translation>Englisch (us)</translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="81"/>
-        <source>Lanuage</source>
-        <translation>Sprache</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="250"/>
         <source>Make sure project help texts are shown</source>
-        <translation>Sicherstellen, dass die Projekt Hilfe Texte angezeigt werden</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="253"/>
+        <source>Display project help texts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="260"/>
+        <source>Maximize new project windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="263"/>
+        <source>Maximize project windows</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="270"/>
         <source>Use the platform&apos;s native file dialogs or the Qt built-in ones</source>
-        <translation>Verwendung der nativen Datei-Dialoge des Systems oder der in Qt eingebauten Dialoge</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="273"/>
         <source>Use native file dialogs</source>
-        <translation>Native Dialoge verwenden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="296"/>
         <source>Paths</source>
-        <translation>Pfade</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="302"/>
         <source>CHDMAN binary</source>
-        <translation>CHDMAN Binary</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="315"/>
         <source>Path to the CHDMAN binary</source>
-        <translation>Pfad zum CHDMAN Binary</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.cpp" line="78"/>
         <source>Choose CHDMAN binary</source>
-        <translation>CHDMAN Binary auswählen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../preferencesdialog.cpp" line="78"/>
         <source>All files (*)</source>
-        <translation>Alle Dateien (*)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -578,113 +570,113 @@ Fortfahren?</translation>
     <message>
         <location filename="../projectwidget.ui" line="23"/>
         <source>Select project type</source>
-        <translation>Projekt-Typ auswählen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="30"/>
         <source>Display information about a CHD input file</source>
-        <translation>Informationen über eine CHD Datei anzeigen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="39"/>
         <source>Verify the integrity of a CHD input file</source>
-        <translation>Integrität einer CHD Datei prüfen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="48"/>
         <source>Copy data from one CHD to another</source>
-        <translation>Daten einer CHD Datei in eine andere kopieren</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="57"/>
         <source>Create a raw CHD from an input file</source>
-        <translation>Erstellen einer Raw CHD Datei aus einer Datei</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="66"/>
         <source>Create an HD CHD from an input file</source>
-        <translation>Erstellen einer HD CHD Datei aus einer Datei</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="75"/>
         <source>Create a CD CHD from an input file</source>
-        <translation>Erstellen einer CD CHD Datei aus einer Datei</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="84"/>
         <source>Create an LD CHD from an input file</source>
-        <translation>Erstellen einer LD CHD Datei aus einer Datei</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="93"/>
         <source>Extract a raw file from a CHD input file</source>
-        <translation>Extrahieren einer Raw Datei aus einer CHD Datei</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="102"/>
         <source>Extract an HD file from a CHD input file</source>
-        <translation>Extrahieren einer HD Datei aus einer CHD Datei</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="111"/>
         <source>Extract a CD file from a CHD input file</source>
-        <translation>Extrahieren einer CD Datei aus einer CHD Datei</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="120"/>
         <source>Extract an LD AVI file from a CHD input file</source>
-        <translation>Extrahieren einer LD AVI Datei aus einer CHD Datei</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="138"/>
         <source>Project status / progress</source>
-        <translation>Projekt Status / Fortschritt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="144"/>
         <location filename="../projectwidget.cpp" line="462"/>
         <location filename="../projectwidget.cpp" line="550"/>
         <source>Idle</source>
-        <translation>Untätig</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="157"/>
         <source>Run this project</source>
-        <translation>Dieses Projekt ausführen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="177"/>
         <source>Terminate the running process</source>
-        <translation>Ausgeführten Prozess beenden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="194"/>
         <source>Tools menu</source>
-        <translation>Werkzeugmenü</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="275"/>
         <source>Output additional information (--verbose)</source>
-        <translation>Ausgabe zusätzlicher Informationen (--verbose)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="278"/>
         <source>Verbose output</source>
-        <translation>Ausführlich</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="291"/>
         <location filename="../projectwidget.ui" line="365"/>
         <location filename="../projectwidget.ui" line="691"/>
         <source>CHD input file (--input)</source>
-        <translation>CHD Eingabedatei (--input)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="294"/>
         <location filename="../projectwidget.ui" line="368"/>
         <location filename="../projectwidget.ui" line="694"/>
         <source>CHD input file (required)</source>
-        <translation>CHD Eingabedatei (erforderlich)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="304"/>
@@ -699,29 +691,19 @@ Displays information about a CHD file.
 --input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
 --verbose, -v: output additional information
 &lt;/p&gt;</source>
-        <translation>&lt;p&gt;
-&lt;b&gt;CHDMAN Info&lt;/b&gt;
-&lt;/p&gt;
-Zeigt Detail-Informationen über eine CHD Datei an.
-&lt;p&gt;
-&lt;b&gt;Parameter&lt;/b&gt;
-&lt;/p&gt;
-&lt;p&gt;
---input, -i &amp;lt;Datei&amp;gt;: CHD Eingabedatei (erforderlich)&lt;br&gt;
---verbose, -v: Ausgabe zusätzlicher Informationen
-&lt;/p&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="395"/>
         <location filename="../projectwidget.ui" line="798"/>
         <source>Parent CHD input file (--inputparent)</source>
-        <translation>Eltern CHD Eingabedatei (--inputparent)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="398"/>
         <location filename="../projectwidget.ui" line="801"/>
         <source>Parent CHD input file</source>
-        <translation>Eltern CHD Eingabedatei</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="422"/>
@@ -736,24 +718,35 @@ Verifies a CHD&apos;s integrity.
 --input, -i &amp;lt;filename&amp;gt;: input file name (required)&lt;br&gt;
 --inputparent, -ip &amp;lt;filename&amp;gt;: parent file name for input CHD
 &lt;/p&gt;</source>
-        <translation>&lt;p&gt;
-&lt;b&gt;CHDMAN Verify&lt;/b&gt;
-&lt;/p&gt;
-Verifiziert die Integrität einer CHD Datei.
-&lt;p&gt;
-&lt;b&gt;Parameter&lt;/b&gt;
-&lt;/p&gt;
-&lt;p&gt;
---input, -i &amp;lt;Datei&amp;gt;: CHD Eingabedatei (erforderlich)&lt;br&gt;
---inputparent, -ip &amp;lt;Datei&amp;gt;: Eltern CHD Eingabedatei
-&lt;/p&gt;</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="477"/>
+        <location filename="../projectwidget.ui" line="1176"/>
+        <location filename="../projectwidget.ui" line="1738"/>
+        <source>Compression</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="484"/>
+        <location filename="../projectwidget.ui" line="1028"/>
+        <location filename="../projectwidget.ui" line="1387"/>
+        <source>Force overwriting output files (--force)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="487"/>
+        <location filename="../projectwidget.ui" line="1031"/>
+        <location filename="../projectwidget.ui" line="1390"/>
+        <source>Overwrite existing files</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="500"/>
         <location filename="../projectwidget.ui" line="990"/>
         <location filename="../projectwidget.ui" line="1347"/>
         <source>Starting byte offset within the input (--inputstartbyte)</source>
-        <translation>Start-Byte-Offset innerhalb der Eingabedaten (--inputstartbyte) </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="503"/>
@@ -778,35 +771,119 @@ Verifiziert die Integrität einer CHD Datei.
         <location filename="../projectwidget.ui" line="1649"/>
         <location filename="../projectwidget.ui" line="1722"/>
         <source>auto</source>
-        <translation>automatisch</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="525"/>
         <location filename="../projectwidget.ui" line="1015"/>
         <location filename="../projectwidget.ui" line="1442"/>
         <source>Size in bytes of each hunk (--hunksize)</source>
-        <translation>Größe eines Hunks in Bytes (--hunksize)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="544"/>
         <location filename="../projectwidget.ui" line="915"/>
         <location filename="../projectwidget.ui" line="1380"/>
         <source>Input hunks</source>
-        <translation>Eingabe Hunks</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="551"/>
         <location filename="../projectwidget.ui" line="1123"/>
         <location filename="../projectwidget.ui" line="1366"/>
         <source>Input bytes</source>
-        <translation>Eingabe Bytes</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="564"/>
         <location filename="../projectwidget.ui" line="942"/>
         <location filename="../projectwidget.ui" line="1410"/>
         <source>Effective length of input in bytes (--inputbytes)</source>
-        <translation>Effektive Länge der Eingabedaten in Bytes (--inputbytes) </translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="597"/>
+        <location filename="../projectwidget.ui" line="1063"/>
+        <location filename="../projectwidget.ui" line="1429"/>
+        <source>Input start byte</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="624"/>
+        <location filename="../projectwidget.ui" line="1092"/>
+        <location filename="../projectwidget.ui" line="1687"/>
+        <source>Parent CHD output file (--outputparent)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="627"/>
+        <location filename="../projectwidget.ui" line="1095"/>
+        <location filename="../projectwidget.ui" line="1690"/>
+        <source>Parent CHD output file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="640"/>
+        <location filename="../projectwidget.ui" line="974"/>
+        <location filename="../projectwidget.ui" line="1580"/>
+        <source>CHD output file (--output)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="643"/>
+        <location filename="../projectwidget.ui" line="977"/>
+        <location filename="../projectwidget.ui" line="1583"/>
+        <source>CHD output file (required)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="650"/>
+        <location filename="../projectwidget.ui" line="1102"/>
+        <location filename="../projectwidget.ui" line="1373"/>
+        <source>Hunk size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="657"/>
+        <location filename="../projectwidget.ui" line="961"/>
+        <location filename="../projectwidget.ui" line="1397"/>
+        <source>Number of CPUs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="664"/>
+        <location filename="../projectwidget.ui" line="1155"/>
+        <location filename="../projectwidget.ui" line="1461"/>
+        <source>Input start hunk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="707"/>
+        <location filename="../projectwidget.ui" line="896"/>
+        <location filename="../projectwidget.ui" line="1596"/>
+        <source>Limit the number of processors to use during compression (--numprocessors)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="732"/>
+        <location filename="../projectwidget.ui" line="1136"/>
+        <location filename="../projectwidget.ui" line="1555"/>
+        <source>Starting hunk offset within the input (--inputstarthunk)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="757"/>
+        <location filename="../projectwidget.ui" line="1044"/>
+        <location filename="../projectwidget.ui" line="1493"/>
+        <source>Effective length of input in hunks (--inputhunks)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="782"/>
+        <location filename="../projectwidget.ui" line="1189"/>
+        <location filename="../projectwidget.ui" line="1703"/>
+        <source>Select up to 4 compression codecs to use (--compression)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="825"/>
@@ -831,32 +908,34 @@ Copies data from one CHD to another of the same type.
 --hunksize, -hs &amp;lt;bytes&amp;gt;: size of each hunk in bytes&lt;br&gt;
 --compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
 &lt;/p&gt;</source>
-        <translation>&lt;p&gt;
-&lt;b&gt;CHDMAN Copy&lt;/b&gt;
-&lt;/p&gt;
-Kopiert die Daten einer CHD in eine andere desselben Typs.
-&lt;p&gt;
-&lt;b&gt;Parameter&lt;/b&gt;
-&lt;/p&gt;
-&lt;p&gt;
---input, -i &amp;lt;Datei&amp;gt;: CHD Eingabedatei (erforderlich)&lt;br&gt;
---output, -o &amp;lt;Datei&amp;gt;: CHD Ausgabedatei (erforderlich)&lt;br&gt;
---inputparent, -ip &amp;lt;Datei&amp;gt;: Eltern CHD Eingabedatei&lt;br&gt;
---outputparent, -op &amp;lt;Datei&amp;gt;: Eltern CHD Ausgabedatei&lt;br&gt;
---force, -f: Überschreiben vorhandener Dateien erzwingen&lt;br&gt;
---numprocessors, -np &amp;lt;Prozessoren&amp;gt;: Anzahl der zur Kompression verwendeten Prozessoren beschränken&lt;br&gt;
---inputstartbyte, -isb &amp;lt;Offset&amp;gt;: Start-Byte-Offset in Eingabedaten&lt;br&gt;
---inputstarthunk, -ish &amp;lt;Offset&amp;gt;: Start-Hunk-Offset in Eingabedaten&lt;br&gt;
---inputbytes, -ib &amp;lt;Länge&amp;gt;: Effektive Länge der Eingabedaten in Bytes&lt;br&gt;
---inputhunks, -ih &amp;lt;Länge&amp;gt;: Effektive Länge der Eingabedaten in Hunks&lt;br&gt;
---hunksize, -hs &amp;lt;Bytes&amp;gt;: Größe eines Hunks in Bytes&lt;br&gt;
---compression, -c &amp;lt;none|Typ1[,Typ2[,...]]&amp;gt;: Verwendete Kompressions-Codecs (bis zu 4)
-&lt;/p&gt;</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="1018"/>
+        <location filename="../projectwidget.ui" line="1209"/>
+        <source>(required)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="1076"/>
+        <location filename="../projectwidget.ui" line="1671"/>
+        <source>Input file (--input)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="1079"/>
+        <source>Input file (required)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="1199"/>
+        <source>Unit size</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1206"/>
         <source>Size in bytes of each unit (--unitsize)</source>
-        <translation>Größe einer Einheit in Bytes (--unitsize)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1222"/>
@@ -881,27 +960,7 @@ Creates a new raw CHD from an input file.
 --unitsize, -us &amp;lt;bytes&amp;gt;: size of each unit in bytes (required)&lt;br&gt;
 --compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
 &lt;/p&gt;</source>
-        <translation>&lt;p&gt;
-&lt;b&gt;CHDMAN CreateRaw&lt;/b&gt;
-&lt;/p&gt;
-Erzeugt eine neue Raw CHD Datei aus einer Eingabedatei.
-&lt;p&gt;
-&lt;b&gt;Parameter&lt;/b&gt;
-&lt;/p&gt;
-&lt;p&gt;
---input, -i &amp;lt;Datei&amp;gt;: Eingabedatei (erforderlich)&lt;br&gt;
---output, -o &amp;lt;Datei&amp;gt;: CHD Ausgabedatei (erforderlich)&lt;br&gt;
---outputparent, -op &amp;lt;Datei&amp;gt;: Eltern CHD Ausgabedatei&lt;br&gt;
---force, -f: Überschreiben vorhandener Dateien erzwingen&lt;br&gt;
---numprocessors, -np &amp;lt;Prozessoren&amp;gt;: Anzahl der zur Kompression verwendeten Prozessoren beschränken&lt;br&gt;
---inputstartbyte, -isb &amp;lt;Offset&amp;gt;: Start-Byte-Offset in Eingabedaten&lt;br&gt;
---inputstarthunk, -ish &amp;lt;Offset&amp;gt;: Start-Hunk-Offset in Eingabedaten&lt;br&gt;
---inputbytes, -ib &amp;lt;Länge&amp;gt;: Effektive Länge der Eingabedaten in Bytes&lt;br&gt;
---inputhunks, -ih &amp;lt;Länge&amp;gt;: Effektive Länge der Eingabedaten in Hunks&lt;br&gt;
---hunksize, -hs &amp;lt;Bytes&amp;gt;: Größe eines Hunks in Bytes (erforderlich)&lt;br&gt;
---unitsize, -us &amp;lt;Bytes&amp;gt;: Größe einer Einheit in Bytes (erforderlich)&lt;br&gt;
---compression, -c &amp;lt;none|Typ1[,Typ2[,...]]&amp;gt;: Verwendete Kompressions-Codecs (bis zu 4)
-&lt;/p&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1281"/>
@@ -928,245 +987,97 @@ Creates a new HD CHD from an input file.
 --sectorsize, -ss &amp;lt;bytes&amp;gt;: size of each hard disk sector in bytes&lt;br&gt;
 --compression, -c &amp;lt;none|type1[,type2[,...]]&amp;gt;: which compression codecs to use (up to 4)
 &lt;/p&gt;</source>
-        <translation>&lt;p&gt;
-&lt;b&gt;CHDMAN CreateHD&lt;/b&gt;
-&lt;/p&gt;
-Erzeugt eine neue HD CHD Datei aus einer Eingabedatei.
-&lt;p&gt;
-&lt;b&gt;Parameter&lt;/b&gt;
-&lt;/p&gt;
-&lt;p&gt;
---input, -i &amp;lt;Datei&amp;gt;: Eingabedatei&lt;br&gt;
---output, -o &amp;lt;Datei&amp;gt;: CHD Ausgabedatei (erforderlich)&lt;br&gt;
---outputparent, -op &amp;lt;Datei&amp;gt;: Eltern CHD Ausgabedatei&lt;br&gt;
---force, -f: Überschreiben vorhandener Dateien erzwingen&lt;br&gt;
---numprocessors, -np &amp;lt;Prozessoren&amp;gt;: Anzahl der zur Kompression verwendeten Prozessoren beschränken&lt;br&gt;
---inputstartbyte, -isb &amp;lt;Offset&amp;gt;: Start-Byte-Offset in Eingabedaten&lt;br&gt;
---inputstarthunk, -ish &amp;lt;Offset&amp;gt;: Start-Hunk-Offset in Eingabedaten&lt;br&gt;
---inputbytes, -ib &amp;lt;Länge&amp;gt;: Effektive Länge der Eingabedaten in Bytes&lt;br&gt;
---inputhunks, -ih &amp;lt;Länge&amp;gt;: Effektive Länge der Eingabedaten in Hunks&lt;br&gt;
---hunksize, -hs &amp;lt;Bytes&amp;gt;: Größe eines Hunks in Bytes (erforderlich)&lt;br&gt;
---chs, -chs &amp;lt;Zylinder,Köpfe,Sektoren&amp;gt;: Direkte Angabe der CHS Werte&lt;br&gt;
---sectorsize, -ss &amp;lt;Bytes&amp;gt;: Größe eines Festplatten Sektors in Bytes&lt;br&gt;
---compression, -c &amp;lt;none|Typ1[,Typ2[,...]]&amp;gt;: Verwendete Kompressions-Codecs (bis zu 4)
-&lt;/p&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1468"/>
         <source>Size in bytes of each hard disk sector (--sectorsize)</source>
-        <translation>Größe eines Festplatten Sektors in Bytes (--sectorsize)</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="1539"/>
-        <source>Ident file to provide CHS information (--ident)</source>
-        <translation>Ident Datei zur Angabe von CHS Informationsn (--ident)</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="1787"/>
-        <source>Cyls / Heads / Sectors</source>
-        <translation>Zylinder / Köpfe / Sektoren</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="477"/>
-        <location filename="../projectwidget.ui" line="1176"/>
-        <location filename="../projectwidget.ui" line="1738"/>
-        <source>Compression</source>
-        <translation>Kompression</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="597"/>
-        <location filename="../projectwidget.ui" line="1063"/>
-        <location filename="../projectwidget.ui" line="1429"/>
-        <source>Input start byte</source>
-        <translation>Eingabe Start Byte</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="624"/>
-        <location filename="../projectwidget.ui" line="1092"/>
-        <location filename="../projectwidget.ui" line="1687"/>
-        <source>Parent CHD output file (--outputparent)</source>
-        <translation>Eltern CHD Ausgabedatei (--outputparent)</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="627"/>
-        <location filename="../projectwidget.ui" line="1095"/>
-        <location filename="../projectwidget.ui" line="1690"/>
-        <source>Parent CHD output file</source>
-        <translation>Eltern CHD Ausgabedatei</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="640"/>
-        <location filename="../projectwidget.ui" line="974"/>
-        <location filename="../projectwidget.ui" line="1580"/>
-        <source>CHD output file (--output)</source>
-        <translation>CHD Ausgabedatei (--output)</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="643"/>
-        <location filename="../projectwidget.ui" line="977"/>
-        <location filename="../projectwidget.ui" line="1583"/>
-        <source>CHD output file (required)</source>
-        <translation>CHD Ausgabedatei (erforderlich)</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="650"/>
-        <location filename="../projectwidget.ui" line="1102"/>
-        <location filename="../projectwidget.ui" line="1373"/>
-        <source>Hunk size</source>
-        <translation>Hunk Größe</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="657"/>
-        <location filename="../projectwidget.ui" line="961"/>
-        <location filename="../projectwidget.ui" line="1397"/>
-        <source>Number of CPUs</source>
-        <translation>Verwendete CPUs</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="664"/>
-        <location filename="../projectwidget.ui" line="1155"/>
-        <location filename="../projectwidget.ui" line="1461"/>
-        <source>Input start hunk</source>
-        <translation>Eingabe Start Hunk</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="484"/>
-        <location filename="../projectwidget.ui" line="1028"/>
-        <location filename="../projectwidget.ui" line="1387"/>
-        <source>Force overwriting output files (--force)</source>
-        <translation>Überschreiben vorhandener Dateien erzwingen (--force)</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="487"/>
-        <location filename="../projectwidget.ui" line="1031"/>
-        <location filename="../projectwidget.ui" line="1390"/>
-        <source>Overwrite existing files</source>
-        <translation>Dateien überschreiben</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="707"/>
-        <location filename="../projectwidget.ui" line="896"/>
-        <location filename="../projectwidget.ui" line="1596"/>
-        <source>Limit the number of processors to use during compression (--numprocessors)</source>
-        <translation>Anzahl der Prozessoren beschränken, die zur Kompression verwendet werden (--numprocessors)</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="732"/>
-        <location filename="../projectwidget.ui" line="1136"/>
-        <location filename="../projectwidget.ui" line="1555"/>
-        <source>Starting hunk offset within the input (--inputstarthunk)</source>
-        <translation>Start-Hunk-Offset innerhalb der Eingabedaten (--inputstarthunk) </translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="757"/>
-        <location filename="../projectwidget.ui" line="1044"/>
-        <location filename="../projectwidget.ui" line="1493"/>
-        <source>Effective length of input in hunks (--inputhunks)</source>
-        <translation>Effektive Länge der Eingabedaten in Hunks (--inputhunks) </translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="782"/>
-        <location filename="../projectwidget.ui" line="1189"/>
-        <location filename="../projectwidget.ui" line="1703"/>
-        <source>Select up to 4 compression codecs to use (--compression)</source>
-        <translation>Bis zu 4 Kompressions-Codecs auswählen (--compression)</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="1018"/>
-        <location filename="../projectwidget.ui" line="1209"/>
-        <source>(required)</source>
-        <translation>(erforderlich)</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="1076"/>
-        <location filename="../projectwidget.ui" line="1671"/>
-        <source>Input file (--input)</source>
-        <translation>Eingabedatei (--input)</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="1079"/>
-        <source>Input file (required)</source>
-        <translation>Eingabedatei (erforderlich)</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.ui" line="1199"/>
-        <source>Unit size</source>
-        <translation>Größe einer Einheit</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1526"/>
         <source>Sector size</source>
-        <translation>Sektor Größe</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="1539"/>
+        <source>Ident file to provide CHS information (--ident)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1542"/>
         <source>Ident file</source>
-        <translation>Ident Datei</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1621"/>
         <source>Sectors  (--chs)</source>
-        <translation>Sektoren (--chs)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1646"/>
         <source>Heads  (--chs)</source>
-        <translation>Köpfe (--chs)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1674"/>
         <source>Input file</source>
-        <translation>Eingabedatei</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1719"/>
         <source>Cylinders (--chs)</source>
-        <translation>Zylinder (--chs)</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.ui" line="1787"/>
+        <source>Cyls / Heads / Sectors</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.ui" line="1815"/>
         <source>Project log</source>
-        <translation>Projekt Log</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="31"/>
         <source>avhu (A/V Huffman)</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="32"/>
         <source>cdfl (CD FLAC)</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="33"/>
         <source>cdlz (CD LZMA)</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="34"/>
         <source>cdzl (CD Deflate)</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="35"/>
         <source>flac (FLAC)</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="36"/>
         <source>huff (Huffman)</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="37"/>
         <source>lzma (LZMA)</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="38"/>
         <source>zlib (Deflate)</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="78"/>
@@ -1181,7 +1092,7 @@ Erzeugt eine neue HD CHD Datei aus einer Eingabedatei.
         <location filename="../projectwidget.cpp" line="1142"/>
         <location filename="../projectwidget.cpp" line="1221"/>
         <source>default</source>
-        <translation>Standard</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="83"/>
@@ -1189,191 +1100,191 @@ Erzeugt eine neue HD CHD Datei aus einer Eingabedatei.
         <location filename="../projectwidget.cpp" line="1140"/>
         <location filename="../projectwidget.cpp" line="1219"/>
         <source>none</source>
-        <translation>Keine</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="98"/>
         <source>Load</source>
-        <translation>Laden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="99"/>
         <source>Save</source>
-        <translation>Speichern</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="100"/>
         <source>Save as...</source>
-        <translation>Speichern unter...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="102"/>
         <source>Clone to</source>
-        <translation>Klonen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="116"/>
         <source>Morph to</source>
-        <translation>Umwandeln</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="130"/>
         <source>Copy stdout to clipboard</source>
-        <translation>stdout-Ausgaben kopieren</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="131"/>
         <source>Copy stderr to clipboard</source>
-        <translation>stderr-Ausgaben kopieren</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="132"/>
         <source>Copy command to clipboard</source>
-        <translation>Kommando kopieren</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="250"/>
         <source>Info</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="258"/>
         <source>Verify</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="266"/>
         <source>Copy</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="296"/>
         <source>CreateRaw</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="326"/>
         <source>CreateHD</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="370"/>
         <source>CreateCD</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="375"/>
         <source>CreateLD</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="380"/>
         <source>ExtractRaw</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="385"/>
         <source>ExtractHD</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="390"/>
         <source>ExtractCD</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="395"/>
         <source>ExtractLD</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="416"/>
         <source>starting process</source>
-        <translation>Prozess wird gestartet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="427"/>
         <source>Starting</source>
-        <translation>Starte</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="433"/>
         <source>terminating process</source>
-        <translation>Prozess wird beendet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="442"/>
         <location filename="../projectwidget.cpp" line="444"/>
         <source>process started: PID = %1</source>
-        <translation>Prozess gestartet: PID = %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="447"/>
         <source>Running</source>
-        <translation>Rennt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="453"/>
         <source>normal</source>
-        <translation>normal</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="455"/>
         <location filename="../projectwidget.cpp" line="522"/>
         <source>crashed</source>
-        <translation>abgebrochen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="456"/>
         <source>process finished: exitCode = %1, exitStatus = %2</source>
-        <translation>Prozess beendet: exitCode = %1, exitStatus = %2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="476"/>
         <source>stdout</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="490"/>
         <source>stderr</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="519"/>
         <source>failed to start</source>
-        <translation>Start fehlgeschlagen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="528"/>
         <source>timed out</source>
-        <translation>Timeout</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="531"/>
         <source>write error</source>
-        <translation>Schreibfehler</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="534"/>
         <source>read error</source>
-        <translation>Lesefehler</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="538"/>
         <source>unknown</source>
-        <translation>unbekannt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="543"/>
         <source>process error: %1</source>
-        <translation>Prozess Fehler: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="561"/>
         <location filename="../projectwidget.cpp" line="568"/>
         <location filename="../projectwidget.cpp" line="582"/>
         <source>Choose CHD input file</source>
-        <translation>CHD Eingabedatei auswählen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="561"/>
@@ -1388,44 +1299,33 @@ Erzeugt eine neue HD CHD Datei aus einer Eingabedatei.
         <location filename="../projectwidget.cpp" line="648"/>
         <location filename="../projectwidget.cpp" line="655"/>
         <source>CHD files (*.chd);;All files (*)</source>
-        <translation>CHD Dateien (*.chd);;Alle Dateien (*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="575"/>
         <location filename="../projectwidget.cpp" line="596"/>
         <source>Choose parent CHD input file</source>
-        <translation>Eltern CHD Eingabedatei auswählen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="589"/>
         <location filename="../projectwidget.cpp" line="622"/>
         <location filename="../projectwidget.cpp" line="648"/>
         <source>Choose CHD output file</source>
-        <translation>CHD Ausgabedatei auswählen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="603"/>
         <location filename="../projectwidget.cpp" line="629"/>
         <location filename="../projectwidget.cpp" line="655"/>
         <source>Choose parent CHD output file</source>
-        <translation>Eltern CHD Ausgabedatei auswählen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="615"/>
         <location filename="../projectwidget.cpp" line="641"/>
         <source>Choose input file</source>
-        <translation>Eingabedatei auswählen</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.cpp" line="662"/>
-        <source>Choose ident file</source>
-        <translation>Ident Datei auswählen</translation>
-    </message>
-    <message>
-        <location filename="../projectwidget.cpp" line="766"/>
-        <location filename="../projectwidget.cpp" line="983"/>
-        <source>Choose file</source>
-        <translation>Datei auswählen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="615"/>
@@ -1434,43 +1334,54 @@ Erzeugt eine neue HD CHD Datei aus einer Eingabedatei.
         <location filename="../projectwidget.cpp" line="766"/>
         <location filename="../projectwidget.cpp" line="983"/>
         <source>All files (*)</source>
-        <translation>Alle Dateien (*)</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.cpp" line="662"/>
+        <source>Choose ident file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../projectwidget.cpp" line="766"/>
+        <location filename="../projectwidget.cpp" line="983"/>
+        <source>Choose file</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="961"/>
         <source>Failed loading project &apos;%1&apos;</source>
-        <translation>Project &apos;%1&apos; konnte nicht geladen werden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="968"/>
         <location filename="../projectwidget.cpp" line="982"/>
         <source>Noname-%1</source>
-        <translation>OhneName-%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="995"/>
         <source>Qt CHDMAN project file -- please do not edit manually</source>
-        <translation>Qt CHDMAN Projekt Datei -- bitte nicht manuell editieren</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1091"/>
         <source>Project &apos;%1&apos; saved</source>
-        <translation>Projekt &apos;%1&apos; gespeichert</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1094"/>
         <source>Failed saving project &apos;%1&apos;</source>
-        <translation>Project &apos;%1&apos; konnte nicht gespeichert werden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1182"/>
         <source>cloning to &apos;%1&apos; is not supported yet</source>
-        <translation>Klonen nach &apos;%1&apos; wird noch nicht unterstützt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwidget.cpp" line="1261"/>
         <source>morphing to &apos;%1&apos; is not supported yet</source>
-        <translation>Umwandeln in &apos;%1&apos; wird noch nicht unterstützt</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1478,12 +1389,12 @@ Erzeugt eine neue HD CHD Datei aus einer Eingabedatei.
     <message>
         <location filename="../projectwindow.cpp" line="20"/>
         <source>Noname-%1</source>
-        <translation>OhneName-%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwindow.cpp" line="97"/>
         <source>Confirm</source>
-        <translation>Bestätigen</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../projectwindow.cpp" line="98"/>
@@ -1492,11 +1403,7 @@ Erzeugt eine neue HD CHD Datei aus einer Eingabedatei.
 Closing its window will kill the external process!
 
 Proceed?</source>
-        <translation>Projekt &apos;%1&apos; wird gerade ausgeführt
-.
-Das Schließen seines Fensters führt zum Abbruch des externen Prozesses!
-
-Fortfahren?</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

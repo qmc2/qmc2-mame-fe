@@ -22,11 +22,12 @@ public:
         languageMap["de"] = QLocale::German;
         languageMap["es"] = QLocale::Spanish;
         languageMap["fr"] = QLocale::French;
-        languageMap["gr"] = QLocale::Greek;
+        languageMap["el"] = QLocale::Greek;
         languageMap["it"] = QLocale::Italian;
         languageMap["pl"] = QLocale::Polish;
         languageMap["pt"] = QLocale::Portuguese;
         languageMap["ro"] = QLocale::Romanian;
+        languageMap["sv"] = QLocale::Swedish;
         languageMap["us"] = QLocale::English;
     }
 

@@ -137,12 +137,12 @@
                    </item>
                    <item>
                     <property name="text">
-                     <string>FR (French)</string>
+                     <string>EL (Greek)</string>
                     </property>
                    </item>
                    <item>
                     <property name="text">
-                     <string>GR (Greek)</string>
+                     <string>FR (French)</string>
                     </property>
                    </item>
                    <item>
@@ -163,6 +163,11 @@
                    <item>
                     <property name="text">
                      <string>RO (Romanian)</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>SV (Swedish)</string>
                     </property>
                    </item>
                    <item>

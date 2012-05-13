@@ -26,11 +26,13 @@ InfoAfterFile=c:\projects\qmc2\package\doc\install-en.rtf
 Name: "English"; MessagesFile: "compiler:Default.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
 Name: "French"; MessagesFile: "compiler:Languages\French.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
 Name: "German"; MessagesFile: "compiler:Languages\German.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-de.rtf"
+Name: "Greek"; MessagesFile: "compiler:Languages\Greek.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
 Name: "Italian"; MessagesFile: "compiler:Languages\Italian.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-us.rtf"
 Name: "Polish"; MessagesFile: "compiler:Languages\Polish.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
 Name: "Portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-pt.rtf"
 Name: "Romanian"; MessagesFile: "compiler:Languages\Romanian.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
 Name: "Spanish"; MessagesFile: "compiler:Languages\Spanish.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-es.rtf"
+Name: "Swedish"; MessagesFile: "compiler:Languages\Swedish.isl"; InfoAfterFile: "c:\projects\qmc2\package\doc\install-en.rtf"
 
 [Files]
 Source: "c:\projects\qmc2\package\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -46,11 +48,13 @@ Name: "{group}\QMC2 (M.E.S.S.)"; Filename: "{app}\qmc2-mess.exe"; WorkingDir: "{
 English.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 French.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 German.InstallVCRuntimeEnv=VC++ 2010 Laufzeit-Umgebung installieren
+Greek.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 Italian.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 Polish.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 Portuguese.InstallVCRuntimeEnv=Instalar ambiente de tempor de execução do VC++ 2010
 Romanian.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 Spanish.InstallVCRuntimeEnv=Instalar entorno de ejecución VC++ 2010
+Swedish.InstallVCRuntimeEnv=Install VC++ 2010 run-time environment
 
 [Run]
 Filename: "{app}\vcredist\vcredist_x86.exe"; Description: "{cm:InstallVCRuntimeEnv}"; Flags: postinstall runascurrentuser nowait unchecked skipifdoesntexist
