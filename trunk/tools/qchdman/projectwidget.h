@@ -58,7 +58,6 @@ public:
     QMap<QString, QString> compressionTypes;
     QMap<int, QList<QWidget *> > copyGroups;
     QMap<int, QList<int> > copyTypes;
-    QMap<QString, QList<DiskGeometry> > hardDiskTemplates;
     QStringList copyCompressors;
     QStringList createRawCompressors;
     QStringList createHDCompressors;

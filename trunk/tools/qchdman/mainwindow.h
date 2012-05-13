@@ -24,6 +24,7 @@ public:
     PreferencesDialog *preferencesDialog;
     QStringList projectTypes;
     QStringList recentFiles;
+    QMap<QString, QList<DiskGeometry> > hardDiskTemplates;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
