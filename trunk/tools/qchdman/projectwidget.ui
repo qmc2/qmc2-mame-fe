@@ -235,7 +235,7 @@
          <x>0</x>
          <y>0</y>
          <width>560</width>
-         <height>562</height>
+         <height>572</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayoutScrollArea">
@@ -1335,6 +1335,38 @@ Creates a new HD CHD from an input file.
                <property name="margin">
                 <number>0</number>
                </property>
+               <item row="2" column="0" colspan="6">
+                <widget class="QLineEdit" name="lineEditCreateHDParentOutputFile">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Parent CHD output file (--outputparent)</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Parent CHD output file</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="3" colspan="3">
+                <widget class="QComboBox" name="comboBoxCreateHDCompression">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Select up to 4 compression codecs to use (--compression)</string>
+                 </property>
+                 <property name="maxVisibleItems">
+                  <number>20</number>
+                 </property>
+                </widget>
+               </item>
                <item row="5" column="1">
                 <widget class="QSpinBox" name="spinBoxCreateHDInputStartByte">
                  <property name="sizePolicy">
@@ -1675,38 +1707,6 @@ Creates a new HD CHD from an input file.
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0" colspan="6">
-                <widget class="QLineEdit" name="lineEditCreateHDParentOutputFile">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="toolTip">
-                  <string>Parent CHD output file (--outputparent)</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Parent CHD output file</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="8" column="3" colspan="3">
-                <widget class="QComboBox" name="comboBoxCreateHDCompression">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="toolTip">
-                  <string>Select up to 4 compression codecs to use (--compression)</string>
-                 </property>
-                 <property name="maxVisibleItems">
-                  <number>20</number>
-                 </property>
-                </widget>
-               </item>
                <item row="7" column="3">
                 <widget class="QSpinBox" name="spinBoxCreateHDCylinders">
                  <property name="sizePolicy">
@@ -1788,14 +1788,14 @@ Creates a new HD CHD from an input file.
                  </property>
                 </widget>
                </item>
-               <item row="9" column="0">
-                <widget class="QLabel" name="label">
+               <item row="10" column="0">
+                <widget class="QLabel" name="labelCreateHDDiskCapacityLabel">
                  <property name="text">
                   <string>Disk capacity</string>
                  </property>
                 </widget>
                </item>
-               <item row="9" column="1">
+               <item row="10" column="1">
                 <widget class="QLabel" name="labelCreateHDDiskCapacity">
                  <property name="toolTip">
                   <string>Calculated hard disk capacity (if applicable)</string>
@@ -1808,6 +1808,30 @@ Creates a new HD CHD from an input file.
                  </property>
                  <property name="text">
                   <string>unknown</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="3" colspan="3">
+                <widget class="QComboBox" name="comboBoxCreateHDFromTemplate">
+                 <property name="toolTip">
+                  <string>Set disk geometry from predefined templates</string>
+                 </property>
+                 <property name="maxVisibleItems">
+                  <number>20</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="2">
+                <widget class="QLabel" name="labelCreateHDFromTemplate">
+                 <property name="text">
+                  <string>From template</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="0" colspan="7">
+                <widget class="Line" name="line">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
                  </property>
                 </widget>
                </item>
@@ -1912,6 +1936,7 @@ Creates a new HD CHD from an input file.
   <tabstop>spinBoxCreateHDSectors</tabstop>
   <tabstop>spinBoxCreateHDSectorSize</tabstop>
   <tabstop>comboBoxCreateHDCompression</tabstop>
+  <tabstop>comboBoxCreateHDFromTemplate</tabstop>
   <tabstop>plainTextEditProjectLog</tabstop>
  </tabstops>
  <resources>
