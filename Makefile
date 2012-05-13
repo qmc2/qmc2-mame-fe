@@ -704,8 +704,8 @@ space = $(blank) $(blank)
 DEFINES = DEFINES+=QMC2_VERSION=$(VERSION) QMC2_SVN_REV=$(SVN_REV) BUILD_OS_NAME=$(OSNAME) BUILD_OS_RELEASE=$(OSREL) BUILD_MACHINE=$(MACHINE) PREFIX=$(PREFIX) DATADIR="$(subst $(space),:,$(DATADIR))" SYSCONFDIR="$(subst $(space),:,$(SYSCONFDIR))" QMC2_JOYSTICK=$(JOYSTICK) QMC2_OPENGL=$(OPENGL) QMC2_ARCADE_OPENGL=$(ARCADE_OPENGL) QMC2_PHONON=$(PHONON) QMC2_FADER_SPEED=$(FADER_SPEED) QMC2_XWININFO=$(XWININFO)
 
 # available translations
-QMC2_TRANSLATIONS = us de pl fr pt it ro es gr
-QT_TRANSLATIONS = de pl fr pt es
+QMC2_TRANSLATIONS = de es el fr it pl pt ro sv us
+QT_TRANSLATIONS = de es fr pl pt sv
 
 # process make options
 ifeq '$(DEBUG)' '2'
@@ -1491,121 +1491,134 @@ ifneq '$(ARCH)' 'Windows'
 
 # QMC2 translations
 
-data/lng/qmc2_us.qm: data/lng/qmc2_us.ts
-	$(LREL)
-
 data/lng/qmc2_de.qm: data/lng/qmc2_de.ts
 	$(LREL)
 
-data/lng/qmc2_pl.qm: data/lng/qmc2_pl.ts
-	$(LREL)
-
-data/lng/qmc2_fr.qm: data/lng/qmc2_fr.ts
-	$(LREL)
-
-data/lng/qmc2_pt.qm: data/lng/qmc2_pt.ts
-	$(LREL)
-
-data/lng/qmc2_it.qm: data/lng/qmc2_it.ts
-	$(LREL)
-
-data/lng/qmc2_ro.qm: data/lng/qmc2_ro.ts
+data/lng/qmc2_el.qm: data/lng/qmc2_el.ts
 	$(LREL)
 
 data/lng/qmc2_es.qm: data/lng/qmc2_es.ts
 	$(LREL)
 
-data/lng/qmc2_gr.qm: data/lng/qmc2_gr.ts
+data/lng/qmc2_fr.qm: data/lng/qmc2_fr.ts
+	$(LREL)
+
+data/lng/qmc2_it.qm: data/lng/qmc2_it.ts
+	$(LREL)
+
+data/lng/qmc2_pl.qm: data/lng/qmc2_pl.ts
+	$(LREL)
+
+data/lng/qmc2_pt.qm: data/lng/qmc2_pt.ts
+	$(LREL)
+
+data/lng/qmc2_ro.qm: data/lng/qmc2_ro.ts
+	$(LREL)
+
+data/lng/qmc2_sv.qm: data/lng/qmc2_sv.ts
+	$(LREL)
+
+data/lng/qmc2_us.qm: data/lng/qmc2_us.ts
 	$(LREL)
 
 # Qt translations
 
-#data/lng/qt_us.qm: data/lng/qt_us.ts
-#	$(LREL)
-
 data/lng/qt_de.qm: data/lng/qt_de.ts
 	$(LREL)
 
-data/lng/qt_pl.qm: data/lng/qt_pl.ts
-	$(LREL)
-
-data/lng/qt_fr.qm: data/lng/qt_fr.ts
-	$(LREL)
-
-data/lng/qt_pt.qm: data/lng/qt_pt.ts
-	$(LREL)
-
-#data/lng/qt_it.qm: data/lng/qt_it.ts
-#	$(LREL)
-
-#data/lng/qt_ro.qm: data/lng/qt_ro.ts
+#data/lng/qt_el.qm: data/lng/qt_el.ts
 #	$(LREL)
 
 data/lng/qt_es.qm: data/lng/qt_es.ts
 	$(LREL)
 
-#data/lng/qt_gr.qm: data/lng/qt_gr.ts
+data/lng/qt_fr.qm: data/lng/qt_fr.ts
+	$(LREL)
+
+#data/lng/qt_it.qm: data/lng/qt_it.ts
+#	$(LREL)
+
+data/lng/qt_pl.qm: data/lng/qt_pl.ts
+	$(LREL)
+
+data/lng/qt_pt.qm: data/lng/qt_pt.ts
+	$(LREL)
+
+#data/lng/qt_ro.qm: data/lng/qt_ro.ts
+#	$(LREL)
+
+data/lng/qt_sv.qm: data/lng/qt_sv.ts
+	$(LREL)
+
+#data/lng/qt_us.qm: data/lng/qt_us.ts
 #	$(LREL)
 
 else
 
 # QMC2 translations
 
-data\lng\qmc2_us.qm: data\lng\qmc2_us.ts
-	$(LREL)
-
 data\lng\qmc2_de.qm: data\lng\qmc2_de.ts
 	$(LREL)
 
-data\lng\qmc2_pl.qm: data\lng\qmc2_pl.ts
-	$(LREL)
-
-data\lng\qmc2_fr.qm: data\lng\qmc2_fr.ts
-	$(LREL)
-
-data\lng\qmc2_pt.qm: data\lng\qmc2_pt.ts
-	$(LREL)
-
-data\lng\qmc2_it.qm: data\lng\qmc2_it.ts
-	$(LREL)
-
-data\lng\qmc2_ro.qm: data\lng\qmc2_ro.ts
+data\lng\qmc2_el.qm: data\lng\qmc2_el.ts
 	$(LREL)
 
 data\lng\qmc2_es.qm: data\lng\qmc2_es.ts
 	$(LREL)
 
-data\lng\qmc2_gr.qm: data\lng\qmc2_gr.ts
+data\lng\qmc2_fr.qm: data\lng\qmc2_fr.ts
+	$(LREL)
+
+data\lng\qmc2_it.qm: data\lng\qmc2_it.ts
+	$(LREL)
+
+data\lng\qmc2_pl.qm: data\lng\qmc2_pl.ts
+	$(LREL)
+
+data\lng\qmc2_pt.qm: data\lng\qmc2_pt.ts
+	$(LREL)
+
+data\lng\qmc2_ro.qm: data\lng\qmc2_ro.ts
+	$(LREL)
+
+data\lng\qmc2_sv.qm: data\lng\qmc2_sv.ts
+	$(LREL)
+
+data\lng\qmc2_us.qm: data\lng\qmc2_us.ts
 	$(LREL)
 
 # Qt translations
 
-#data\lng\qt_us.qm: data\lng\qt_us.ts
-#	$(LREL)
-
 data\lng\qt_de.qm: data\lng\qt_de.ts
 	$(LREL)
 
-data\lng\qt_pl.qm: data\lng\qt_pl.ts
-	$(LREL)
-
-data\lng\qt_fr.qm: data\lng\qt_fr.ts
-	$(LREL)
-
-data\lng\qt_pt.qm: data\lng\qt_pt.ts
-	$(LREL)
-
-#data\lng\qt_it.qm: data\lng\qt_it.ts
-#	$(LREL)
-
-#data\lng\qt_ro.qm: data\lng\qt_ro.ts
+#data\lng\qt_el.qm: data\lng\qt_el.ts
 #	$(LREL)
 
 data\lng\qt_es.qm: data\lng\qt_es.ts
 	$(LREL)
 
-#data\lng\qt_gr.qm: data\lng\qt_gr.ts
+data\lng\qt_fr.qm: data\lng\qt_fr.ts
+	$(LREL)
+
+#data\lng\qt_it.qm: data\lng\qt_it.ts
 #	$(LREL)
+
+data\lng\qt_pl.qm: data\lng\qt_pl.ts
+	$(LREL)
+
+data\lng\qt_pt.qm: data\lng\qt_pt.ts
+	$(LREL)
+
+data\lng\qt_sv.qm: data\lng\qt_sv.ts
+	$(LREL)
+
+#data\lng\qt_ro.qm: data\lng\qt_ro.ts
+#	$(LREL)
+
+#data\lng\qt_us.qm: data\lng\qt_us.ts
+#	$(LREL)
+
 
 endif
 

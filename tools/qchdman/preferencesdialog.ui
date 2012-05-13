@@ -102,12 +102,12 @@
          </item>
          <item>
           <property name="text">
-           <string>French (fr)</string>
+           <string>Greek (el)</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>Greek (gr)</string>
+           <string>French (fr)</string>
           </property>
          </item>
          <item>
@@ -128,6 +128,11 @@
          <item>
           <property name="text">
            <string>Romanian (ro)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Swedish (sv)</string>
           </property>
          </item>
          <item>

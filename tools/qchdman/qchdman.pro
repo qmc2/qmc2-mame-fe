@@ -69,4 +69,5 @@ TRANSLATIONS += translations/qchdman_de.ts \
     translations/qchdman_pl.ts \
     translations/qchdman_pt.ts \
     translations/qchdman_ro.ts \
+    translations/qchdman_sv.ts \
     translations/qchdman_us.ts

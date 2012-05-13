@@ -408,64 +408,59 @@ Proceed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="110"/>
-        <source>Greek (gr)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../preferencesdialog.ui" line="149"/>
+        <location filename="../preferencesdialog.ui" line="154"/>
         <source>Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="169"/>
+        <location filename="../preferencesdialog.ui" line="174"/>
         <source>Font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="176"/>
+        <location filename="../preferencesdialog.ui" line="181"/>
         <source>Application font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="189"/>
-        <location filename="../preferencesdialog.ui" line="229"/>
+        <location filename="../preferencesdialog.ui" line="194"/>
+        <location filename="../preferencesdialog.ui" line="234"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="196"/>
+        <location filename="../preferencesdialog.ui" line="201"/>
         <source>Application font size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="209"/>
-        <location filename="../preferencesdialog.ui" line="216"/>
+        <location filename="../preferencesdialog.ui" line="214"/>
+        <location filename="../preferencesdialog.ui" line="221"/>
         <source>Log font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="236"/>
+        <location filename="../preferencesdialog.ui" line="241"/>
         <source>Log font size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="248"/>
+        <location filename="../preferencesdialog.ui" line="253"/>
         <source>Display project help texts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="255"/>
+        <location filename="../preferencesdialog.ui" line="260"/>
         <source>Maximize new project windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="258"/>
+        <location filename="../preferencesdialog.ui" line="263"/>
         <source>Maximize project windows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="156"/>
+        <location filename="../preferencesdialog.ui" line="161"/>
         <source>Select the GUI style</source>
         <translation type="unfinished"></translation>
     </message>
@@ -486,6 +481,11 @@ Proceed?</source>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="105"/>
+        <source>Greek (el)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="110"/>
         <source>French (fr)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -511,6 +511,11 @@ Proceed?</source>
     </message>
     <message>
         <location filename="../preferencesdialog.ui" line="135"/>
+        <source>Swedish (sv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../preferencesdialog.ui" line="140"/>
         <source>English (us)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -520,32 +525,32 @@ Proceed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="245"/>
+        <location filename="../preferencesdialog.ui" line="250"/>
         <source>Make sure project help texts are shown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="265"/>
+        <location filename="../preferencesdialog.ui" line="270"/>
         <source>Use the platform&apos;s native file dialogs or the Qt built-in ones</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="268"/>
+        <location filename="../preferencesdialog.ui" line="273"/>
         <source>Use native file dialogs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="291"/>
+        <location filename="../preferencesdialog.ui" line="296"/>
         <source>Paths</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="297"/>
+        <location filename="../preferencesdialog.ui" line="302"/>
         <source>CHDMAN binary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../preferencesdialog.ui" line="310"/>
+        <location filename="../preferencesdialog.ui" line="315"/>
         <source>Path to the CHDMAN binary</source>
         <translation type="unfinished"></translation>
     </message>
